@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			parent.element_chosen(choice, usr, params)
 
 /atom/movable/screen/radial/center
-	name = "Close Menu"
+	name = "关闭菜单"
 	icon_state = "radial_center"
 
 /atom/movable/screen/radial/center/MouseEntered(location, control, params)
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.cut_overlays()
 	E.vis_contents.Cut()
 	E.alpha = 0
-	E.name = "None"
+	E.name = "无"
 	E.maptext = null
 	E.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	E.choice = null
@@ -261,7 +261,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.cut_overlays()
 	E.vis_contents.Cut()
 	if(choice_id == NEXT_PAGE_ID)
-		E.name = "Next Page"
+		E.name = "下一页"
 		E.next_page = TRUE
 		E.icon_state = "radial_slice" // Resets the bg icon state to the default for next page buttons.
 		E.add_overlay("radial_next")
@@ -286,7 +286,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			E.add_overlay(choices_icons[choice_id])
 		if (choice_datum?.info)
 			var/obj/effect/abstract/info/info_button = new(E, choice_datum.info)
-			info_button.name = "Info: [E.name]"
+			info_button.name = "信息：[E.name]"
 			info_button.tooltip_theme = choice_datum.tooltip_theme
 			SET_PLANE_EXPLICIT(info_button, ABOVE_HUD_PLANE, anchor)
 			info_button.layer = RADIAL_CONTENT_LAYER

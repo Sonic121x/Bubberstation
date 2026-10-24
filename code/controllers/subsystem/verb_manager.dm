@@ -20,7 +20,7 @@
  * minor hangs over and over again.
  */
 SUBSYSTEM_DEF(verb_manager)
-	name = "Verb Manager"
+	name = "指令管理"
 	wait = 1
 	ss_flags = SS_TICKER | SS_NO_INIT
 	priority = FIRE_PRIORITY_DELAYED_VERBS
@@ -136,7 +136,7 @@ SUBSYSTEM_DEF(verb_manager)
 /datum/controller/subsystem/verb_manager/proc/queue_verb(datum/callback/verb_callback/incoming_callback)
 	. = FALSE //errored
 	if(message_admins_on_queue)
-		message_admins("[name] verb queuing: tick usage: [TICK_USAGE]%, proc: [incoming_callback.delegate], object: [incoming_callback.object], usr: [usr]")
+		message_admins("[name]指令排队：时刻占用率：[TICK_USAGE]%，过程：[incoming_callback.delegate]，对象：[incoming_callback.object]，用户：[usr]")
 	verb_queue += incoming_callback
 	return TRUE
 

@@ -52,18 +52,18 @@
 #define MODLINK_FREQ_CENTCOM "CC"
 
 //Default text for different messages for the user.
-#define HELMET_UNSEAL_MESSAGE "hisses open"
-#define HELMET_SEAL_MESSAGE "hisses closed"
-#define CHESTPLATE_UNSEAL_MESSAGE "releases your chest"
-#define CHESTPLATE_SEAL_MESSAGE "cinches tightly around your chest"
-#define GAUNTLET_UNSEAL_MESSAGE "become loose around your fingers"
-#define GAUNTLET_SEAL_MESSAGE "tighten around your fingers and wrists"
-#define BOOT_UNSEAL_MESSAGE "relax their grip on your legs"
-#define BOOT_SEAL_MESSAGE "seal around your feet"
-#define GLASSES_UNSEAL_MESSAGE "moves away from your eyes"
-#define GLASSES_SEAL_MESSAGE "settle onto your eyes"
-#define NECKWEAR_UNSEAL_MESSAGE "looses around your neck"
-#define NECKWEAR_SEAL_MESSAGE "tightens around your neck"
+#define HELMET_UNSEAL_MESSAGE "发出嘶声并打开"
+#define HELMET_SEAL_MESSAGE "发出嘶声并闭合"
+#define CHESTPLATE_UNSEAL_MESSAGE "松开了你的胸部"
+#define CHESTPLATE_SEAL_MESSAGE "紧紧包裹住你的胸部"
+#define GAUNTLET_UNSEAL_MESSAGE "松开了你的手指"
+#define GAUNTLET_SEAL_MESSAGE "紧紧包裹住你的手指与手腕"
+#define BOOT_UNSEAL_MESSAGE "松开了对你腿部的束缚"
+#define BOOT_SEAL_MESSAGE "在你的脚部周围密封闭合"
+#define GLASSES_UNSEAL_MESSAGE "移离了你的眼睛"
+#define GLASSES_SEAL_MESSAGE "贴合在你的眼前"
+#define NECKWEAR_UNSEAL_MESSAGE "在你的脖子周围松开"
+#define NECKWEAR_SEAL_MESSAGE "在你的脖子周围收紧"
 
 /// Global list of all /datum/mod_theme
 GLOBAL_LIST_INIT(mod_themes, setup_mod_themes())

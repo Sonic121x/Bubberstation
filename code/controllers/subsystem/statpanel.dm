@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(statpanels)
-	name = "Stat Panels"
+	name = "状态面板"
 	wait = 4
 	priority = FIRE_PRIORITY_STATPANEL
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
@@ -23,17 +23,17 @@ SUBSYSTEM_DEF(statpanels)
 		var/datum/map_config/cached = SSmap_vote.next_map_config
 
 		if(isnull(SSmapping.current_map))
-			global_data = list("Loading")
+			global_data = list("加载中")
 		else if(SSmapping.current_map.feedback_link)
-			global_data = list(list("Map: [SSmapping.current_map.map_name]", " (Feedback)", "action=openLink&link=[SSmapping.current_map.feedback_link]"))
+			global_data = list(list("地图：[SSmapping.current_map.map_name]", " （反馈）", "action=openLink&link=[SSmapping.current_map.feedback_link]"))
 		else
-			global_data = list("Map: [SSmapping.current_map?.map_name]")
+			global_data = list("地图：[SSmapping.current_map?.map_name]")
 
 		if(SSmapping.current_map?.mapping_url)
-			global_data += list(list("same_line", " | (View in Browser)", "action=openWebMap"))
+			global_data += list(list("same_line", " | （在浏览器中查看）", "action=openWebMap"))
 
 		if(cached)
-			global_data += "Next Map: [cached.map_name]"
+			global_data += "下一张地图：[cached.map_name]"
 
 		// BUBBER EDIT ADDITION BEGIN - Extra stat panel info
 		var/real_round_time = world.timeofday - SSticker.real_round_start_time
@@ -43,15 +43,15 @@ SUBSYSTEM_DEF(statpanels)
 		// BUBBER EDIT ADDITION END - Extra stat panel info
 
 		global_data += list(
-			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
-			"Connected: [GLOB.clients.len] | Active: [active_players]/[CONFIG_GET(number/hard_popcap)] | Observing: [observing_players]", // BUBBER EDIT ADDITION - Extra stat panel info
-			"OOC: [GLOB.ooc_allowed ? "Enabled" : "Disabled"]", // BUBBER EDIT ADDITION - Extra stat panel info
+			"回合编号：[GLOB.round_id ? GLOB.round_id : "无"]",
+			"已连接：[GLOB.clients.len] | 活跃：[active_players]/[CONFIG_GET(number/hard_popcap)] | 观察中：[observing_players]", // BUBBER EDIT ADDITION - Extra stat panel info
+			"OOC：[GLOB.ooc_allowed ? "启用" : "禁用"]", // BUBBER EDIT ADDITION - Extra stat panel info
 			" ", // BUBBER EDIT ADDITION - Extra stat panel info
-			"Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]", // BUBBER EDIT ADDITION - Extra stat panel info
-			"Station Time: [server_timestamp(format = "YYYY-MM-DD hh:mm:ss", ic_time = TRUE)]",
-			"Round Time: [time2text(real_round_time, "hh:mm:ss", 0)]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Round Time: [ROUND_TIME()]"
-			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss", world.timezone)]",
-			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
+			"故事讲述者：[SSgamemode.storyteller ? SSgamemode.storyteller.name : "无"]", // BUBBER EDIT ADDITION - Extra stat panel info
+			"空间站时间：[server_timestamp(format = "YYYY-MM-DD hh:mm:ss", ic_time = TRUE)]",
+			"回合时长：[time2text(real_round_time, "hh:mm:ss", 0)]", // BUBBER EDIT CHANGE - Extra stat panel info - ORIGINAL: "Round Time: [ROUND_TIME()]"
+			"服务器时间：[time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss", world.timezone)]",
+			"时间膨胀：[round(SStime_track.time_dilation_current,1)]% 平均：([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 		)
 
 		if(SSshuttle.emergency)
@@ -131,21 +131,21 @@ SUBSYSTEM_DEF(statpanels)
 		var/datum/interview/current_interview = m.open_interviews[ckey]
 		if (current_interview && !current_interview.owner)
 			dc++
-	var/stat_string = "([m.open_interviews.len - dc] online / [dc] disconnected)"
+	var/stat_string = "（[m.open_interviews.len - dc]人在线 / [dc]人断线）"
 
 	// Prepare each queued interview
 	var/list/queued = list()
 	for (var/datum/interview/queued_interview in m.interview_queue)
 		queued += list(list(
 			"ref" = REF(queued_interview),
-			"status" = "\[[queued_interview.pos_in_queue]\]: [queued_interview.owner_ckey][!queued_interview.owner ? " (DC)": ""] \[INT-[queued_interview.id]\]"
+			"status" = "\[[queued_interview.pos_in_queue]\]: [queued_interview.owner_ckey][!queued_interview.owner ? " （断线）": ""] \[INT-[queued_interview.id]\]"
 		))
 
 	var/list/data = list(
 		"status" = list(
-			"Active:" = "[m.open_interviews.len] [stat_string]",
-			"Queued:" = "[m.interview_queue.len]",
-			"Closed:" = "[m.closed_interviews.len]"),
+			"进行中：" = "[m.open_interviews.len] [stat_string]",
+			"排队中：" = "[m.interview_queue.len]",
+			"已关闭：" = "[m.closed_interviews.len]"),
 		"interviews" = queued
 	)
 
@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
 	var/list/sdql2A = list()
-	sdql2A[++sdql2A.len] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
+	sdql2A[++sdql2A.len] = list("", "查看全局 SDQL2 列表", REF(GLOB.sdql2_vv_statobj))
 	var/list/sdql2B = list()
 	for(var/datum/sdql2_query/query as anything in GLOB.sdql2_queries)
 		sdql2B = query.generate_stat()
@@ -165,13 +165,13 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/generate_mc_data()
 	mc_data = list(
 		list("", "CPU:", world.cpu),
-		list("", "Instances:", "[num2text(world.contents.len, 10)]"),
-		list("", "World Time:", "[world.time]"),
-		list("", "Globals:", GLOB.stat_entry(), text_ref(GLOB)),
+		list("", "实例：", "[num2text(world.contents.len, 10)]"),
+		list("", "世界时间：", "[world.time]"),
+		list("", "全局变量：", GLOB.stat_entry(), text_ref(GLOB)),
 		list("", "[config]:", config.stat_entry(), text_ref(config)),
-		list("", "Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))\n  (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)"),
-		list("", "Master Controller:", Master.stat_entry(), text_ref(Master)),
-		list("", "Failsafe Controller:", Failsafe.stat_entry(), text_ref(Failsafe)),
+		list("", "Byond:", "(FPS:[world.fps]) （时刻数：[world.time/world.tick_lag]） （时刻漂移：[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)）\n  （内部时刻占用率：[round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%）"),
+		list("", "主控制器：", Master.stat_entry(), text_ref(Master)),
+		list("", "故障保护控制器：", Failsafe.stat_entry(), text_ref(Failsafe)),
 		list("", "", "")
 	)
 #if defined(MC_TAB_TRACY_INFO) || defined(SPACEMAN_DMM)
@@ -182,15 +182,15 @@ SUBSYSTEM_DEF(statpanels)
 		tracy_present = fexists(tracy_dll)
 	if(tracy_present)
 		if(Tracy.enabled)
-			mc_data.Insert(2, list(list("", "byond-tracy:", "Active (reason: [Tracy.init_reason || "N/A"])")))
+			mc_data.Insert(2, list(list("", "byond-tracy:", "已启用（原因：[Tracy.init_reason || "无"]）")))
 		else if(Tracy.error)
-			mc_data.Insert(2, list(list("", "byond-tracy:", "Errored ([Tracy.error])")))
+			mc_data.Insert(2, list(list("", "byond-tracy:", "发生错误（[Tracy.error]）")))
 		else if(fexists(TRACY_ENABLE_PATH))
-			mc_data.Insert(2, list(list("", "byond-tracy:", "Queued for next round")))
+			mc_data.Insert(2, list(list("", "byond-tracy:", "已安排于下回合启用")))
 		else
-			mc_data.Insert(2, list(list("", "byond-tracy:", "Inactive")))
+			mc_data.Insert(2, list(list("", "byond-tracy:", "未启用")))
 	else
-		mc_data.Insert(2, list(list("", "byond-tracy:", "[tracy_dll] not present")))
+		mc_data.Insert(2, list(list("", "byond-tracy:", "未找到[tracy_dll]")))
 #endif
 	for(var/datum/controller/subsystem/sub_system as anything in Master.subsystems)
 		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]]", sub_system.name, sub_system.stat_entry(), text_ref(sub_system))

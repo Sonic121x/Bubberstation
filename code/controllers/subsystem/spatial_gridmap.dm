@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(spatial_grid)
 	dependencies = list(
 		/datum/controller/subsystem/mapping,
 	)
-	name = "Spatial Grid"
+	name = "空间网格"
 
 	///list of the spatial_grid_cell datums per z level, arranged in the order of y index then x index
 	var/list/grids_by_z_level = list()
@@ -622,14 +622,14 @@ SUBSYSTEM_DEF(spatial_grid)
 	var/datum/spatial_grid_cell/real_cell = SSspatial_grid.get_cell_of(src)
 	var/list/containing_cells = SSspatial_grid.find_hanging_cell_refs_for_movable(src, remove_from_cells)
 
-	message_admins("[src] is located in the contents of [length(containing_cells)] spatial grid cells")
+	message_admins("[src]存在于[length(containing_cells)]个空间网格单元的内容列表中")
 
-	var/cell_coords = "the following cells contain [src]: "
+	var/cell_coords = "以下网格单元包含[src]："
 	for(var/datum/spatial_grid_cell/cell as anything in containing_cells)
 		cell_coords += "([cell.cell_x], [cell.cell_y], [cell.cell_z]), "
 
 	message_admins(cell_coords)
-	message_admins("[src] is supposed to only be contained in the cell at indexes ([real_cell.cell_x], [real_cell.cell_y], [real_cell.cell_z]). but is contained at the cells at [cell_coords]")
+	message_admins("[src]应仅存在于索引为([real_cell.cell_x], [real_cell.cell_y], [real_cell.cell_z])的网格单元中，但实际情况为[cell_coords]")
 
 ///creates number_to_generate new oranges_ear's and adds them to the subsystems list of ears.
 ///i really fucking hope this never gets called after init :clueless:
@@ -839,16 +839,16 @@ SUBSYSTEM_DEF(spatial_grid)
 	for(var/mob/inserted_client as anything in inserted_clients)
 		qdel(inserted_client)
 
-	message_admins("on z level [z] there are [raw_clients] clients ([insert_clients] of whom are fakes inserted to random station turfs)\
-	, [raw_hearables] hearables, and [raw_atmos] atmos machines. all of whom are inside the bounding box given by \
-	clients: ([client_min_x], [client_min_y]) x ([client_max_x], [client_max_y]), \
-	hearables: ([hearable_min_x], [hearable_min_y]) x ([hearable_max_x], [hearable_max_y]) \
-	and atmos machines: ([atmos_min_x], [atmos_min_y]) x ([atmos_max_x], [atmos_max_y]), \
-	on average there are [average_clients_per_cell] clients per cell, [average_hearables_per_cell] hearables per cell, \
-	and [average_atmos_mech_per_call] per cell, \
-	[cells_with_clients] cells have clients, [cells_with_hearables] have hearables, and [cells_with_atmos] have atmos machines \
-	the average client distance is: [average_client_distance], the average hearable_distance is [average_hearable_distance], \
-	and the average atmos distance is [average_atmos_distance] ")
+	message_admins("z 层[z]上有[raw_clients]个客户端（其中[insert_clients]个是插入空间站随机地块的模拟客户端）\
+	、[raw_hearables]个听觉对象和[raw_atmos]台大气设备。它们分别位于以下边界框内：\
+	客户端：([client_min_x], [client_min_y]) x ([client_max_x], [client_max_y])，\
+	听觉对象：([hearable_min_x], [hearable_min_y]) x ([hearable_max_x], [hearable_max_y])，\
+	大气设备：([atmos_min_x], [atmos_min_y]) x ([atmos_max_x], [atmos_max_y])。\
+	每个网格单元平均有[average_clients_per_cell]个客户端、[average_hearables_per_cell]个听觉对象\
+	和[average_atmos_mech_per_call]台大气设备。\
+	[cells_with_clients]个网格单元含客户端，[cells_with_hearables]个含听觉对象，[cells_with_atmos]个含大气设备。\
+	客户端平均距离为[average_client_distance]，听觉对象平均距离为[average_hearable_distance]，\
+	大气设备平均距离为[average_atmos_distance]。")
 
 //A debugging proc that colors objects based on what grid they belong to
 /datum/controller/subsystem/spatial_grid/proc/paint_grids()

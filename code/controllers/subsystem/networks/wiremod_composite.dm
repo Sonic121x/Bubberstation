@@ -6,7 +6,7 @@
  * See: https://en.wikipedia.org/wiki/Composite_data_type
  **/
 SUBSYSTEM_DEF(wiremod_composite)
-	name = "Wiremod Composite Templates"
+	name = "电路复合模板"
 	ss_flags = SS_NO_FIRE
 	/// The templates created and stored
 	var/list/templates = list()

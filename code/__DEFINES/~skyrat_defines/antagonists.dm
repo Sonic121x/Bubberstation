@@ -21,12 +21,12 @@
 
 // Borer evolution defines
 // The three primary paths that eventually diverge
-#define BORER_EVOLUTION_SYMBIOTE "Symbiote"
-#define BORER_EVOLUTION_HIVELORD "Hivelord"
-#define BORER_EVOLUTION_DIVEWORM "Diveworm"
+#define BORER_EVOLUTION_SYMBIOTE "共生体"
+#define BORER_EVOLUTION_HIVELORD "虫巢领主"
+#define BORER_EVOLUTION_DIVEWORM "钻行虫"
 // Just general upgrades that don't take you in a specific direction
-#define BORER_EVOLUTION_GENERAL "General"
-#define BORER_EVOLUTION_START "Start"
+#define BORER_EVOLUTION_GENERAL "通用"
+#define BORER_EVOLUTION_START "初始"
 
 // Borer effect flags
 

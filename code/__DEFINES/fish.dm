@@ -230,7 +230,7 @@
 #define AQUARIUM_FLUID_ANY_WATER "Any Fluid"
 
 ///Fluff. The name of the aquarium company shown in the fish catalog
-#define AQUARIUM_COMPANY "Aquatech Ltd."
+#define AQUARIUM_COMPANY "水族科技有限公司"
 
 ///aquarium mode where you've to manage food, fluid type and temperature to keep fish alive
 #define AQUARIUM_MODE_MANUAL "Manual"

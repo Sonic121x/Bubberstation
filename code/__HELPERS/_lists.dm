@@ -240,7 +240,7 @@
 	} while(FALSE)
 
 ///Returns a list in plain english as a string
-/proc/english_list(list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
+/proc/english_list(list/input, nothing_text = "无", and_text = "和", comma_text = "、", final_comma_text = "" )
 	var/total = length(input)
 	switch(total)
 		if (0)
@@ -262,7 +262,7 @@
 			return "[output][and_text][input[index]]"
 
 ///Returns a list of atom types in plain english as a string of each type name
-/proc/type_english_list(list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
+/proc/type_english_list(list/input, nothing_text = "无", and_text = "和", comma_text = "、", final_comma_text = "" )
 	var/list/english_input = list()
 	for(var/atom/type as anything in input)
 		english_input += "[initial(type.name)]"

@@ -53,9 +53,9 @@
 /// The maximum range between a port and an atom
 #define PORT_ATOM_MAX_RANGE 7
 
-#define COMPONENT_DEFAULT_NAME "component"
+#define COMPONENT_DEFAULT_NAME "组件"
 
-#define COMPONENT_DEFAULT_CATEGORY "Unassigned"
+#define COMPONENT_DEFAULT_CATEGORY "未分类"
 
 /// The minimum position of the x and y co-ordinates of the component in the UI
 #define COMPONENT_MIN_RANDOM_POS 200

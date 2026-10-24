@@ -128,7 +128,7 @@
 
 	/// No loot panel if it's on our person
 	if(isobj(target) && (target in get_all_gear(INCLUDE_PROSTHETICS|INCLUDE_ABSTRACT|INCLUDE_ACCESSORIES)))
-		to_chat(src, span_warning("You can't search for this item, it's already in your inventory![!HAS_TRAIT(target, TRAIT_NODROP) ? " Take it off first." : ""]"))
+		to_chat(src, span_warning("你无法寻找这件物品，它已经在你的物品栏里了！[!HAS_TRAIT(target, TRAIT_NODROP) ? "请先将它取下。" : ""]"))
 		return FALSE
 
 	client.loot_panel.open(get_turf(target))

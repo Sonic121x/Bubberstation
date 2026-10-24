@@ -6,7 +6,7 @@
 /// S close enough for government work though.
 /// Fuck you goonstation
 SUBSYSTEM_DEF(wardrobe)
-	name = "Wardrobe"
+	name = "衣柜"
 	wait = 10 // This is more like a queue then anything else
 	ss_flags = SS_BACKGROUND
 	dependencies = list(
@@ -388,14 +388,14 @@ SUBSYSTEM_DEF(wardrobe)
 
 	overflow_lienency = old_overflow_lienency
 	// Ok now we have our data, time to print it
-	var/list/wardrobe_info = list("<B>Performance information ([attempt_count] runs)</B><BR><BR><ol>")
+	var/list/wardrobe_info = list("<B>性能信息（[attempt_count]次运行）</B><BR><BR><ol>")
 	sortTim(type_info, cmp=/proc/cmp_wardrobe_performance)
 	for(var/list/deets in type_info)
 		wardrobe_info += "<li><u>[deets[1]]</u><ul>"
-		wardrobe_info += "<li>New: [deets[2]]ms</li>"
-		wardrobe_info += "<li>Provide: [deets[3]]ms</li>"
-		wardrobe_info += "<li>Qdel: [deets[4]]ms</li>"
-		wardrobe_info += "<li>Stash: [deets[5]]ms</li>"
+		wardrobe_info += "<li>创建：[deets[2]]毫秒</li>"
+		wardrobe_info += "<li>提供：[deets[3]]毫秒</li>"
+		wardrobe_info += "<li>排队删除：[deets[4]]毫秒</li>"
+		wardrobe_info += "<li>存入：[deets[5]]毫秒</li>"
 		wardrobe_info += "</ul></li>"
 	wardrobe_info += "</ol>"
 

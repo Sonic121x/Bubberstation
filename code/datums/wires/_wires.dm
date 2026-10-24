@@ -324,10 +324,10 @@
 
 		var/study_length = 1 SECONDS * floor(min(photo.picture.psize_x, photo.picture.psize_y) / 32)
 		if(study_length >= 4 SECONDS)
-			to_chat(user, span_notice("<i>You squint [photo]... Hey, there's blueprints in the frame! Really wish the photo was zoomed in, though. \
-				It's rather difficult to make out the wires.</i>"))
+			to_chat(user, span_notice("<i>你眯起眼睛看着[photo]……嘿，画面里有蓝图！要是照片拍得更近一些就好了。\
+				实在很难看清上面的导线。</i>"))
 		else
-			to_chat(user, span_notice("<i>You glance at [photo], looking for wires in the pictured blueprints.</i>"))
+			to_chat(user, span_notice("<i>你查看[photo]，寻找照片中蓝图上的导线。</i>"))
 
 		if(do_after(user, study_length, holder, interaction_key = STUDY_INTERACTION_KEY, cog_icon = null))
 			LAZYSET(studied_photos, REF(user.mind), REF(photo))
@@ -349,7 +349,7 @@
 /datum/wires/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, "Wires", "[holder.name] Wires")
+		ui = new(user, src, "Wires", "[holder.name]的导线")
 		ui.open()
 	try_study_photo(user)
 
@@ -363,7 +363,7 @@
 		payload.Add(list(list(
 			"color" = color,
 			"shownColor" = colorblind ? default_possible_colors[color] : color,
-			"wire" = (((reveal_wires || always_reveal_wire(color)) && !is_dud_color(color)) ? get_wire(color) : null),
+			"wire" = (((reveal_wires || always_reveal_wire(color)) && !is_dud_color(color)) ? chinese_wire_display(get_wire(color)) : null), // BUBBER EDIT: Chinese display labels
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))
@@ -388,7 +388,7 @@
 				cut_color(target_wire, source = L)
 				. = TRUE
 			else
-				to_chat(L, span_warning("You need wirecutters!"))
+				to_chat(L, span_warning("你需要剪线钳！"))
 		if("pulse")
 			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
 			if(I || isAdminGhostAI(usr))
@@ -397,7 +397,7 @@
 				pulse_color(target_wire, L)
 				. = TRUE
 			else
-				to_chat(L, span_warning("You need a multitool!"))
+				to_chat(L, span_warning("你需要多功能工具！"))
 		if("attach")
 			if(is_attached(target_wire))
 				I = detach_assembly(target_wire)
@@ -415,6 +415,6 @@
 							A.forceMove(L.drop_location())
 						. = TRUE
 					else
-						to_chat(L, span_warning("You cannot attach this assembly to these wires!"))
+						to_chat(L, span_warning("你无法将此组件连接到这些导线上！"))
 
 #undef MAXIMUM_EMP_WIRES

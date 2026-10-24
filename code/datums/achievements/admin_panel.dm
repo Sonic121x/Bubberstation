@@ -51,7 +51,7 @@
 	if(!(achievement_key in orphaned_keys))
 		return
 	log_admin("[key_name_admin(usr)] has deleted orphaned achievement metadata for key [achievement_key].")
-	message_admins("[key_name_admin(usr)] has deleted orphaned achievement metadata for key [achievement_key].")
+	message_admins("[key_name_admin(usr)]删除了键[achievement_key]对应的孤立成就元数据。")
 	SSdbcore.QuerySelect(list(
 		SSdbcore.NewQuery("DELETE FROM [format_table_name("achievement_metadata")] WHERE achievement_key = :key", list("key" = achievement_key)),
 		SSdbcore.NewQuery("DELETE FROM [format_table_name("achievements")] WHERE achievement_key = :key", list("key" = achievement_key)),
@@ -62,12 +62,12 @@
 	if(!(achievement_key in orphaned_keys))
 		return
 	log_admin("[key_name_admin(usr)] has archived orphaned achievement metadata for key [achievement_key].")
-	message_admins("[key_name_admin(usr)] has archived orphaned achievement metadata for key [achievement_key].")
+	message_admins("[key_name_admin(usr)]归档了键[achievement_key]对应的孤立成就元数据。")
 	SSdbcore.QuerySelect(list(
 		SSdbcore.NewQuery("UPDATE [format_table_name("achievement_metadata")] SET achievement_version = :version WHERE achievement_key = :key", list("key" = achievement_key, "version" = ACHIEVEMENT_ARCHIVED_VERSION)),
 	), warn = TRUE, qdel = TRUE)
 
-ADMIN_VERB(achievements_cleanup, R_ADMIN, "Achievements Admin Panel", "View achievements management panel.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(achievements_cleanup, R_ADMIN, "Achievements Admin Panel", "查看成就管理面板。", ADMIN_CATEGORY_MAIN)
 	var/datum/achievement_admin_panel/panel = new /datum/achievement_admin_panel()
 	panel.reload_data()
 	panel.ui_interact(user.mob)

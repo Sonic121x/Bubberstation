@@ -1,25 +1,25 @@
 /// Category for clothing in the organics printer
-#define RND_CATEGORY_AKHTER_CLOTHING "Clothing"
+#define RND_CATEGORY_AKHTER_CLOTHING "衣物"
 /// Category for equipment like belts and bags in the organics printer
-#define RND_CATEGORY_AKHTER_EQUIPMENT "Equipment"
+#define RND_CATEGORY_AKHTER_EQUIPMENT "装备"
 /// Category for resources made by the organics printer
-#define RND_CATEGORY_AKHTER_RESOURCES "Resources"
+#define RND_CATEGORY_AKHTER_RESOURCES "资源"
 
 /// Category for ingredients in the ration printer
-#define RND_CATEGORY_AKHTER_FOODRICATOR_INGREDIENTS "Ingredients"
+#define RND_CATEGORY_AKHTER_FOODRICATOR_INGREDIENTS "食材"
 /// Category for bags and containers of reagents in the ration printer
-#define RND_CATEGORY_AKHTER_FOODRICATOR_BAGS "Containers"
+#define RND_CATEGORY_AKHTER_FOODRICATOR_BAGS "容器"
 /// Category for snacks in the ration printer
-#define RND_CATEGORY_AKHTER_FOODRICATOR_SNACKS "Luxuries"
+#define RND_CATEGORY_AKHTER_FOODRICATOR_SNACKS "奢侈品"
 /// Category for utensils and whatnot in the ration printer
-#define RND_CATEGORY_AKHTER_FOODRICATOR_UTENSILS "Utensils"
+#define RND_CATEGORY_AKHTER_FOODRICATOR_UTENSILS "餐具"
 /// Category for the seeds the organics printer can make
-#define RND_CATEGORY_AKHTER_SEEDS "Synthesized Seeds"
+#define RND_CATEGORY_AKHTER_SEEDS "合成种子"
 
 /// Medical items in the deforest medstation
-#define RND_CATEGORY_DEFOREST_MEDICAL "Emergency Medical"
+#define RND_CATEGORY_DEFOREST_MEDICAL "急救医疗"
 /// Blood and blood bags
-#define RND_CATEGORY_DEFOREST_BLOOD "Synthesized Blood"
+#define RND_CATEGORY_DEFOREST_BLOOD "合成血液"
 
 
 /// The items the frontier clothing can hold

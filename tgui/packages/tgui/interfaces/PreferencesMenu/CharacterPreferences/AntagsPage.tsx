@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
+import { displayRole } from '../../../localization/roleDisplay';
 import { type Antagonist, Category } from '../antagonists/base';
 import type { PreferencesMenuData } from '../types';
 
@@ -97,11 +97,11 @@ function AntagSelection(props: AntagSelectionProps) {
       buttons={
         <>
           <Button color="good" onClick={() => enableAntags(antagonistKeys)}>
-            Enable All
+            全部启用
           </Button>
 
           <Button color="bad" onClick={() => disableAntags(antagonistKeys)}>
-            Disable All
+            全部禁用
           </Button>
         </>
       }
@@ -136,14 +136,14 @@ function AntagSelection(props: AntagSelectionProps) {
                     textAlign: 'center',
                   }}
                 >
-                  {antagonist.name}
+                  {displayRole(antagonist.name)}
                 </Stack.Item>
 
                 <Stack.Item align="center">
                   <Tooltip
                     content={
                       isBanned
-                        ? `You are banned from ${antagonist.name}.`
+                        ? `你已被禁止扮演${displayRole(antagonist.name)}。`
                         : antagonist.description.map((text, index) => {
                             return (
                               <div key={antagonist.key + index}>
@@ -184,7 +184,7 @@ function AntagSelection(props: AntagSelectionProps) {
 
                       {daysLeft > 0 && (
                         <Box className="antagonist-days-left">
-                          <b>{daysLeft}</b> days left
+                          还需<b>{daysLeft}</b>天
                         </Box>
                       )}
                     </Box>
@@ -203,17 +203,17 @@ export function AntagsPage() {
   return (
     <Box className="PreferencesMenu__Antags">
       <AntagSelection
-        name="Roundstart"
+        name="回合开始"
         antagonists={antagsByCategory.get(Category.Roundstart)!}
       />
 
       <AntagSelection
-        name="Midround"
+        name="回合中途"
         antagonists={antagsByCategory.get(Category.Midround)!}
       />
 
       <AntagSelection
-        name="Latejoin"
+        name="中途加入"
         antagonists={antagsByCategory.get(Category.Latejoin)!}
       />
     </Box>

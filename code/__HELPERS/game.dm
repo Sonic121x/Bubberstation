@@ -241,7 +241,7 @@
 		return
 	if (announce_to_ghosts)
 		var/area/player_area = get_area(character)
-		deadchat_broadcast(span_game(" has arrived at the station at [span_name(player_area.name)]."), span_game("[span_name(character.real_name)] ([rank])"), follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
+		deadchat_broadcast(span_game("已抵达空间站的[span_name(player_area.name)]。"), span_game("[span_name(character.real_name)] ([rank])"), follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if(character.mind && (character.mind.assigned_role.job_flags & JOB_ANNOUNCE_ARRIVAL))
 		aas_config_announce(/datum/aas_config_entry/arrival, list("PERSON" = character.real_name,"RANK" = rank))
 
@@ -329,7 +329,7 @@
  * Tips that starts with the @ character won't be html encoded. That's necessary for any tip containing markup tags,
  * just make sure they don't also have html characters like <, > and ' which will be garbled.
  */
-/proc/send_tip_of_the_round(target, selected_tip, source = "Tip of the round")
+/proc/send_tip_of_the_round(target, selected_tip, source = "本回合提示")
 	var/message
 	if(selected_tip)
 		message = selected_tip

@@ -5,26 +5,26 @@
 /// Macros are sorted by `/datum/detective_scan_category::display_order`
 
 /// Fingerpints detected
-#define DETSCAN_CATEGORY_FINGERS "Prints"
+#define DETSCAN_CATEGORY_FINGERS "指纹"
 /// Displays any bloodprints found and their uefi
-#define DETSCAN_CATEGORY_BLOOD "Blood"
+#define DETSCAN_CATEGORY_BLOOD "血液"
 /// Clothing and glove fibers
-#define DETSCAN_CATEGORY_FIBER "Fibers"
+#define DETSCAN_CATEGORY_FIBER "纤维"
 /// Liquids detected
-#define DETSCAN_CATEGORY_REAGENTS "Reagents"
+#define DETSCAN_CATEGORY_REAGENTS "试剂"
 /// ID Access
-#define DETSCAN_CATEGORY_ACCESS "ID Access"
+#define DETSCAN_CATEGORY_ACCESS "ID 卡权限"
 
 // The categories below do not have hard rules on what info is displayed, and are for categorizing info thematically.
 
 /// The mode that the items in, what kind of item is dispensed, etc
-#define DETSCAN_CATEGORY_SETTINGS "Active Settings"
+#define DETSCAN_CATEGORY_SETTINGS "当前设置"
 /// praise be
-#define DETSCAN_CATEGORY_HOLY "Holy Data"
+#define DETSCAN_CATEGORY_HOLY "神圣数据"
 /// Attributes that might be illegal, can also have ties to syndicate
-#define DETSCAN_CATEGORY_ILLEGAL "Illegal Tech"
+#define DETSCAN_CATEGORY_ILLEGAL "非法科技"
 /// Generic extra information category
-#define DETSCAN_CATEGORY_NOTES "Additional Notes"
+#define DETSCAN_CATEGORY_NOTES "附加备注"
 
 /// the order departments show up in for the id scan (its sorted by red to blue on the color wheel)
 #define DETSCAN_ACCESS_ORDER(...) list(\

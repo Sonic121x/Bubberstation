@@ -15,7 +15,7 @@ import {
   TextArea,
 } from 'tgui-core/components';
 import { round } from 'tgui-core/math';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
@@ -196,7 +196,7 @@ export const OpposingForceTab = (props) => {
             color={approved ? 'good' : denied ? 'bad' : 'orange'}
             mt={2}
           >
-            {status}
+            {chineseDisplay(status)}
           </NoticeBox>
         </Section>
       </Stack.Item>
@@ -459,13 +459,13 @@ export const OpposingForceObjectives = (props) => {
               <Stack.Item mt={2}>
                 <NoticeBox color={selectedObjective.approved ? 'good' : 'bad'}>
                   {selectedObjective.status_text === 'Not Reviewed'
-                    ? 'Objective Not Reviewed'
+                    ? '目标未审核'
                     : selectedObjective.approved
-                      ? 'Objective Approved'
+                      ? '目标已批准'
                       : selectedObjective.denied_text
-                        ? 'Objective Denied - Reason: ' +
+                        ? '目标已拒绝，原因：' +
                           selectedObjective.denied_text
-                        : 'Objective Denied'}
+                        : '目标已拒绝'}
                 </NoticeBox>
               </Stack.Item>
             </Stack.Item>
@@ -522,10 +522,10 @@ export const EquipmentTab = (props) => {
                   />
                   <LabeledList.Item label="Status">
                     {equipment.denied_reason
-                      ? equipment.status +
-                        ' - Reason: ' +
+                      ? chineseDisplay(equipment.status) +
+                        '，原因：' +
                         equipment.denied_reason
-                      : equipment.status}
+                      : chineseDisplay(equipment.status)}
                   </LabeledList.Item>
                 </LabeledList>
                 <Input
@@ -644,7 +644,7 @@ export const AdminTab = (props) => {
             <LabeledList.Item label="Name">{owner_mob}</LabeledList.Item>
             <LabeledList.Item label="Role">{owner_role}</LabeledList.Item>
             <LabeledList.Item label="Application Status">
-              {raw_status}
+              {chineseDisplay(raw_status)}
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -814,13 +814,13 @@ export const AdminTab = (props) => {
                   </LabeledList.Item>
                   <LabeledList.Item label="Status">
                     {objective.status_text === 'Not Reviewed'
-                      ? 'Objective Not Reviewed'
+                      ? '目标未审核'
                       : objective.approved
-                        ? 'Objective Approved'
+                        ? '目标已批准'
                         : objective.denied_text
-                          ? 'Objective Denied - Reason: ' +
+                          ? '目标已拒绝，原因：' +
                             objective.denied_text
-                          : 'Objective Denied'}
+                          : '目标已拒绝'}
                   </LabeledList.Item>
                 </LabeledList>
               </Section>
@@ -879,10 +879,10 @@ export const AdminTab = (props) => {
                   </LabeledList.Item>
                   <LabeledList.Item label="Status">
                     {equipment.denied_reason
-                      ? equipment.status +
-                        ' - Reason: ' +
+                      ? chineseDisplay(equipment.status) +
+                        '，原因：' +
                         equipment.denied_reason
-                      : equipment.status}
+                      : chineseDisplay(equipment.status)}
                   </LabeledList.Item>
                   <LabeledList.Item label="Amount">
                     {equipment.count}

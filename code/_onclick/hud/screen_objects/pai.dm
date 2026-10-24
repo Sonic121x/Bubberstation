@@ -1,4 +1,4 @@
-#define PAI_MISSING_SOFTWARE_MESSAGE span_warning("You must download the required software to use this.")
+#define PAI_MISSING_SOFTWARE_MESSAGE span_warning("必须先下载所需软件才能使用此功能。")
 
 /atom/movable/screen/pai
 	icon = 'icons/hud/screen_pai.dmi'
@@ -15,7 +15,7 @@
 	return TRUE
 
 /atom/movable/screen/pai/software
-	name = "Software Interface"
+	name = "软件界面"
 	icon_state = "pai"
 	screen_loc = ui_pai_software
 
@@ -26,7 +26,7 @@
 	pAI.ui_interact(pAI)
 
 /atom/movable/screen/pai/shell
-	name = "Toggle Holoform"
+	name = "切换全息形态"
 	icon_state = "pai_holoform"
 	screen_loc = ui_pai_shell
 
@@ -40,7 +40,7 @@
 		pAI.fold_out()
 
 /atom/movable/screen/pai/chassis
-	name = "Holochassis Appearance Composite"
+	name = "全息机体外观合成"
 	icon_state = "pai_chassis"
 	screen_loc = ui_pai_chassis
 
@@ -51,7 +51,7 @@
 	pAI.choose_chassis()
 
 /atom/movable/screen/pai/rest
-	name = "Rest"
+	name = "休息"
 	icon_state = "pai_rest"
 	screen_loc = ui_pai_rest
 
@@ -62,7 +62,7 @@
 	pAI.toggle_resting()
 
 /atom/movable/screen/pai/light
-	name = "Toggle Integrated Lights"
+	name = "切换内置灯光"
 	icon_state = "light"
 	screen_loc = ui_pai_light
 
@@ -73,7 +73,7 @@
 	pAI.toggle_integrated_light()
 
 /atom/movable/screen/pai/newscaster
-	name = "pAI Newscaster"
+	name = "个人 AI 新闻终端"
 	icon_state = "newscaster"
 	screen_loc = ui_pai_newscaster
 	required_software = "Newscaster"
@@ -85,7 +85,7 @@
 	pAI.newscaster.ui_interact(usr)
 
 /atom/movable/screen/pai/host_monitor
-	name = "Host Health Scan"
+	name = "宿主健康扫描"
 	icon_state = "host_monitor"
 	screen_loc = ui_pai_host_monitor
 	required_software = "Host Scan"
@@ -104,7 +104,7 @@
 		return TRUE
 
 /atom/movable/screen/pai/crew_manifest
-	name = "Crew Manifest"
+	name = "船员名册"
 	icon_state = "manifest"
 	screen_loc = ui_pai_crew_manifest
 	required_software = "Crew Manifest"
@@ -116,7 +116,7 @@
 	pAI.ai_roster()
 
 /atom/movable/screen/pai/state_laws
-	name = "State Laws"
+	name = "宣读法则"
 	icon_state = "state_laws"
 	screen_loc = ui_pai_state_laws
 
@@ -127,7 +127,7 @@
 	pAI.checklaws()
 
 /atom/movable/screen/pai/modpc
-	name = "Messenger"
+	name = "即时通讯"
 	icon_state = "pda_send"
 	screen_loc = ui_pai_mod_int
 	required_software = "Digital Messenger"
@@ -141,7 +141,7 @@
 		pAI.modularInterface?.interact(pAI)
 
 /atom/movable/screen/pai/internal_gps
-	name = "Internal GPS"
+	name = "内置 GPS"
 	icon_state = "internal_gps"
 	screen_loc = ui_pai_internal_gps
 	required_software = "Internal GPS"
@@ -156,7 +156,7 @@
 	pAI.internal_gps.attack_self(pAI)
 
 /atom/movable/screen/pai/image_take
-	name = "Take Image"
+	name = "拍照"
 	icon_state = "take_picture"
 	screen_loc = ui_pai_take_picture
 	required_software = "Photography Module"
@@ -169,7 +169,7 @@
 	pAI.aicamera.toggle_camera_mode(usr)
 
 /atom/movable/screen/pai/image_view
-	name = "View Images"
+	name = "查看照片"
 	icon_state = "view_images"
 	screen_loc = ui_pai_view_images
 	required_software = "Photography Module"
@@ -181,7 +181,7 @@
 	pAI.aicamera.viewpictures(usr)
 
 /atom/movable/screen/pai/radio
-	name = "radio"
+	name = "无线电"
 	icon = 'icons/hud/screen_cyborg.dmi'
 	icon_state = "radio"
 	screen_loc = ui_pai_radio

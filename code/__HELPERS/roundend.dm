@@ -250,11 +250,11 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	//Set news report and mode result
 	SSdynamic.set_round_result()
 
-	to_chat(world, span_infoplain(span_big(span_bold("<BR><BR><BR>The round has ended."))))
+	to_chat(world, span_infoplain(span_big(span_bold("<BR><BR><BR>本回合已结束。"))))
 	log_game("The round has ended.")
 	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
-		send2chat(new /datum/tgs_message_content("[GLOB.round_id ? "Round [GLOB.round_id]" : "The round has"] just ended."), channel_tag)
-	send2adminchat("Server", "Round just ended.")
+		send2chat(new /datum/tgs_message_content("[GLOB.round_id ? "第 [GLOB.round_id] 回合" : "本回合"]刚刚结束。"), channel_tag)
+	send2adminchat("Server", "本回合刚刚结束。")
 
 	/* //SKYRAT EDIT - START (DISCORD Updates)
 	MOVED CHECK INTO TICKER.DM
@@ -262,14 +262,14 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		send_news_report()
 	*/
 	for(var/channel_tag in CONFIG_GET(str_list/channel_announce_end_game))
-		send2chat("The current round has ended. Please standby for your shift interlude Nanotrasen News Network's report!", channel_tag)
+		send2chat("当前回合已结束。请等待换班间隙的纳米传讯新闻网络报道！", channel_tag)
 		send2chat(send_news_report(), channel_tag)
 	//SKYRAT EDIT - END
 
 	CHECK_TICK
 
 	handle_hearts()
-	set_observer_default_invisibility(0, span_warning("The round is over! You are now visible to the living."))
+	set_observer_default_invisibility(0, span_warning("回合结束了！活人现在能看见你了。"))
 
 	CHECK_TICK
 
@@ -357,26 +357,26 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='byond://?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
-		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
-	parts += "[FOURSPACES]Map: [SSmapping.current_map?.return_map_name()]"
-	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[FOURSPACES]Station Integrity: <B>[GLOB.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
+		parts += "[FOURSPACES]回合编号：<b>[info]</b>"
+	parts += "[FOURSPACES]地图：[SSmapping.current_map?.return_map_name()]"
+	parts += "[FOURSPACES]班次时长：<B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
+	parts += "[FOURSPACES]空间站完整度：<B>[GLOB.station_was_nuked ? span_redtext("已摧毁") : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
-		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
+		parts+= "[FOURSPACES]总人数：<B>[total_players]</B>"
 		if(station_evacuated)
-			parts += "<BR>[FOURSPACES]Evacuation Rate: <B>[popcount[POPCOUNT_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_ESCAPEES]/total_players)]%)</B>"
-			parts += "[FOURSPACES](on emergency shuttle): <B>[popcount[POPCOUNT_SHUTTLE_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_SHUTTLE_ESCAPEES]/total_players)]%)</B>"
-		parts += "[FOURSPACES]Survival Rate: <B>[popcount[POPCOUNT_SURVIVORS]] ([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%)</B>"
+			parts += "<BR>[FOURSPACES]撤离率：<B>[popcount[POPCOUNT_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_ESCAPEES]/total_players)]%)</B>"
+			parts += "[FOURSPACES]（乘坐紧急穿梭机）：<B>[popcount[POPCOUNT_SHUTTLE_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_SHUTTLE_ESCAPEES]/total_players)]%)</B>"
+		parts += "[FOURSPACES]生存率：<B>[popcount[POPCOUNT_SURVIVORS]] ([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%)</B>"
 		if(SSblackbox.first_death)
 			var/list/ded = SSblackbox.first_death
 			if(ded.len)
-				parts += "[FOURSPACES]First Death: <b>[ded["name"]], [ded["role"]], at [ded["area"]]. Damage taken: [ded["damage"]].[ded["last_words"] ? " Their last words were: \"[ded["last_words"]]\"" : ""]</b>"
+				parts += "[FOURSPACES]首位死者：<b>[ded["name"]]，[ded["role"]]，死亡地点：[ded["area"]]。承受伤害：[ded["damage"]]。[ded["last_words"] ? " 临终遗言：\"[ded["last_words"]]\"" : ""]</b>"
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
-				parts += "[FOURSPACES]<i>Nobody died this shift!</i>"
+				parts += "[FOURSPACES]<i>本班次无人死亡！</i>"
 	/* BUBBER EDIT REMOVAL BEGIN - Storyteller
-	parts += "[FOURSPACES]Round: [SSdynamic.current_tier.name]"
+	parts += "[FOURSPACES]回合：[SSdynamic.current_tier.name]"
 	for(var/datum/dynamic_ruleset/rule as anything in SSdynamic.executed_rulesets - SSdynamic.unreported_rulesets)
 		parts += "[FOURSPACES][FOURSPACES]- <b>[rule.name]</b> ([rule.config_tag])"
 	*/// BUBBER EDIT REMOVAL END - Storyteller
@@ -440,17 +440,17 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 				if(!M.onCentCom() && !M.onSyndieBase())
 					parts += "<div class='panel stationborder'>"
-					parts += "<span class='marooned'>You managed to survive, but were marooned on [station_name()]...</span>"
+					parts += "<span class='marooned'>你成功活了下来，却被遗留在[station_name()]……</span>"
 				else
 					parts += "<div class='panel greenborder'>"
-					parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
+					parts += span_greentext("你以[M.real_name]的身份，在[station_name()]的种种事件中成功存活。")
 			else
 				parts += "<div class='panel greenborder'>"
-				parts += span_greentext("You managed to survive the events on [station_name()] as [M.real_name].")
+				parts += span_greentext("你以[M.real_name]的身份，在[station_name()]的种种事件中成功存活。")
 
 		else
 			parts += "<div class='panel redborder'>"
-			parts += span_redtext("You did not survive the events on [station_name()]...")
+			parts += span_redtext("你未能在[station_name()]的种种事件中存活……")
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
@@ -476,20 +476,20 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		var/mob/living/silicon/ai/aiPlayer = i
 		var/datum/mind/aiMind = aiPlayer.deployed_shell?.mind || aiPlayer.mind
 		if(aiMind)
-			parts += "<b>[aiPlayer.name]</b>'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:" //SKYRAT EDIT CHANGE
+			parts += "<b>[aiPlayer.name]</b>[aiPlayer.stat != DEAD ? "在回合结束时" : "在[span_redtext("停用")]时"]的法则如下：" //SKYRAT EDIT CHANGE
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
-		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
+		parts += "<b>法则变更总次数：[aiPlayer.law_change_counter]</b>"
 
 		if (aiPlayer.connected_robots.len)
 			var/borg_num = aiPlayer.connected_robots.len
-			parts += "<br><b>[aiPlayer.real_name]</b>'s minions were:"
+			parts += "<br><b>[aiPlayer.real_name]</b>的下属如下："
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				borg_num--
 				if(robo.mind)
 					//SKYRAT EDIT CHANGE BEGIN - ROUNDEND
 					//parts += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " [span_redtext("(Deactivated)")]" : ""][borg_num ?", ":""]" - SKYRAT EDIT - ORIGINAL
-					parts += "<b>[robo.name]</b> [robo.stat == DEAD ? " [span_redtext("(Deactivated)")]" : ""][borg_num ?", ":""]"
+					parts += "<b>[robo.name]</b> [robo.stat == DEAD ? " [span_redtext("（已停用）")]" : ""][borg_num ?", ":""]"
 					//SKYRAT EDIT CHANGE END
 		if(!borg_spacer)
 			borg_spacer = TRUE
@@ -498,7 +498,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		if (!robo.connected_ai && robo.mind)
 			//SKYRAT EDIT CHANGE BEGIN - ROUNDEND
 			//parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "[span_greentext("survived")] as an AI-less borg!" : "was [span_redtext("unable to survive")] the rigors of being a cyborg without an AI."] Its laws were:"
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> [(robo.stat != DEAD)? "[span_greentext("survived")] as an AI-less borg!" : "was [span_redtext("unable to survive")] the rigors of being a cyborg without an AI."] Its laws were:"
+			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> [(robo.stat != DEAD)? "作为未连接 AI 的半机械人[span_greentext("存活了下来")]！" : "作为未连接 AI 的半机械人，[span_redtext("未能挺过")]重重考验。"]其法则如下："
 			//SKYRAT EDIT CHANGE END
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
@@ -542,13 +542,13 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		station_vault += current_acc.account_balance
 		if(!mr_moneybags || mr_moneybags.account_balance < current_acc.account_balance)
 			mr_moneybags = current_acc
-	parts += "<div class='panel stationborder'><span class='header'>Station Economic Summary:</span><br>"
-	parts += "<span class='service'>Service Statistics:</span><br>"
+	parts += "<div class='panel stationborder'><span class='header'>空间站经济总结：</span><br>"
+	parts += "<span class='service'>服务部门统计：</span><br>"
 	for(var/venue_path in SSrestaurant.all_venues)
 		var/datum/venue/venue = SSrestaurant.all_venues[venue_path]
 		tourist_income += venue.total_income
-		parts += "The [venue] served [venue.customers_served] customer\s and made [venue.total_income] [MONEY_NAME].<br>"
-	parts += "In total, they earned [tourist_income] [MONEY_NAME][tourist_income ? "!" : "..."]<br>"
+		parts += "[venue]接待了 [venue.customers_served] 名顾客，赚取了 [venue.total_income] [MONEY_NAME]。<br>"
+	parts += "总计赚取 [tourist_income] [MONEY_NAME][tourist_income ? "！" : "……"]<br>"
 	log_econ("Roundend service income: [tourist_income] [MONEY_NAME].")
 
 	// Award service achievements based on tourist income
@@ -562,23 +562,23 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 
 	switch(tourist_income)
 		if(0)
-			parts += "[span_redtext("Service did not earn any [MONEY_NAME]...")]<br>"
+			parts += "[span_redtext("服务部门没有赚到任何[MONEY_NAME]……")]<br>"
 		if(1 to 2000)
-			parts += "[span_redtext("Centcom is displeased. Come on service, surely you can do better than that.")]<br>"
+			parts += "[span_redtext("中央指挥部很不满意。服务部门加把劲，你们肯定能做得更好。")]<br>"
 		if(2001 to 4999)
-			parts += "[span_greentext("Centcom is satisfied with service's job today.")]<br>"
+			parts += "[span_greentext("中央指挥部对服务部门今天的工作表示满意。")]<br>"
 		else
-			parts += "<span class='reallybig greentext'>Centcom is incredibly impressed with service today! What a team!</span><br>"
+			parts += "<span class='reallybig greentext'>服务部门今天的表现令中央指挥部赞不绝口！真是出色的团队！</span><br>"
 
-	parts += "<b>General Statistics:</b><br>"
-	parts += "There were [station_vault] [MONEY_NAME] collected by crew this shift.<br>"
+	parts += "<b>总体统计：</b><br>"
+	parts += "本班次船员共收集了 [station_vault] [MONEY_NAME]。<br>"
 	if(total_players > 0)
-		parts += "An average of [station_vault/total_players] [MONEY_NAME] were collected.<br>"
+		parts += "平均每人收集了 [station_vault/total_players] [MONEY_NAME]。<br>"
 		log_econ("Roundend [MONEY_NAME_SINGULAR] total: [station_vault] [MONEY_NAME]. Average [MONEY_NAME_CAPITALIZED]: [station_vault/total_players]")
 	if(mr_moneybags)
-		parts += "The most affluent crew member at shift end was <b>[mr_moneybags.account_holder] with [mr_moneybags.account_balance]</b> [MONEY_SYMBOL]!</div>"
+		parts += "班次结束时最富有的船员是 <b>[mr_moneybags.account_holder]，拥有 [mr_moneybags.account_balance]</b> [MONEY_SYMBOL]！</div>"
 	else
-		parts += "Somehow, nobody made any money this shift! This'll result in some budget cuts...</div>"
+		parts += "不知为何，本班次竟然没人赚到钱！这会导致预算削减……</div>"
 	return parts.Join()
 
 /**
@@ -600,7 +600,7 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
 		var/list/parts = list()
-		parts += span_header("Medal Commendations:")
+		parts += span_header("勋章表彰：")
 		for (var/com in GLOB.commendations)
 			parts += com
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
@@ -621,10 +621,10 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 		hardcores += human_player
 	if(!length(hardcores))
 		return
-	. += "<div class='panel stationborder'><span class='header'>The following people made it out as a random hardcore character:</span>"
+	. += "<div class='panel stationborder'><span class='header'>以下人员以硬核随机角色的身份成功逃生：</span>"
 	. += "<ul class='playerlist'>"
 	for(var/mob/living/carbon/human/human_player in hardcores)
-		. += "<li>[printplayer(human_player.mind)] with a hardcore random score of [round(human_player.hardcore_survival_score)]</li>"
+		. += "<li>[printplayer(human_player.mind)]，硬核随机得分为 [round(human_player.hardcore_survival_score)]</li>"
 	. += "</ul></div>"
 
 /datum/controller/subsystem/ticker/proc/antag_report()
@@ -689,10 +689,10 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 	var/datum/action/report/R = new
 	C.persistent_client.player_actions += R
 	R.Grant(C.mob)
-	to_chat(C,span_infoplain("<a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a>"))
+	to_chat(C,span_infoplain("<a href='byond://?src=[REF(R)];report=1'>再次显示回合结束报告</a>"))
 
 /datum/action/report
-	name = "Show roundend report"
+	name = "显示回合结束报告"
 	button_icon_state = "round_end"
 	show_to_observers = FALSE
 
@@ -717,24 +717,24 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 /proc/printplayer(datum/mind/ply, fleecheck)
 	var/jobtext = ""
 	if(!is_unassigned_job(ply.assigned_role))
-		jobtext = " the <b>[ply.assigned_role.title]</b>"
+		jobtext = "，<b>[ply.assigned_role.title]</b>"
 	//SKYRAT EDIT CHANGE BEGIN - ROUNDEND
 	//var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and" - SKYRAT EDIT - ORIGINAL
 	var/text = "<b>[ply.name]</b>[jobtext]"
 	//SKYRAT EDIT CHANGE END
 	if(ply.current)
 		if(ply.current.stat == DEAD)
-			text += " [span_redtext("died")]"
+			text += " [span_redtext("死亡")]"
 		else
-			text += " [span_greentext("survived")]"
+			text += " [span_greentext("存活")]"
 		if(fleecheck)
 			var/turf/T = get_turf(ply.current)
 			if(!T || !is_station_level(T.z))
-				text += " while [span_redtext("fleeing the station")]"
+				text += "，当时正在[span_redtext("逃离空间站")]"
 		if(ply.current.real_name != ply.name)
-			text += " as <b>[ply.current.real_name]</b>"
+			text += "，身份为 <b>[ply.current.real_name]</b>"
 	else
-		text += " [span_redtext("had their body destroyed")]"
+		text += " [span_redtext("身体已被摧毁")]"
 	return text
 
 /proc/printplayerlist(list/players,fleecheck)
@@ -761,11 +761,11 @@ GLOBAL_LIST_INIT(achievements_unlocked, list())
 /datum/controller/subsystem/ticker/proc/cheevo_report()
 	var/list/parts = list()
 	if(length(GLOB.achievements_unlocked))
-		parts += "<span class='header'>Achievement Get!</span><BR>"
-		parts += "<span class='infoplain'>Total Achievements Earned: <B>[length(GLOB.achievements_unlocked)]!</B></span><BR>"
+		parts += "<span class='header'>成就达成！</span><BR>"
+		parts += "<span class='infoplain'>获得成就总数：<B>[length(GLOB.achievements_unlocked)]！</B></span><BR>"
 		parts += "<ul class='playerlist'>"
 		for(var/datum/achievement_report/cheevo_report in GLOB.achievements_unlocked)
-			parts += "<b>[cheevo_report.winner]</b> earned the [span_greentext("'[cheevo_report.cheevo]'")] achievement at [cheevo_report.award_location]!<BR>" // SKYRAT EDIT - No ckeys in the round end report - ORIGINAL: parts += "<BR>[cheevo_report.winner_key] was <b>[cheevo_report.winner]</b>, who earned the [span_greentext("'[cheevo_report.cheevo]'")] achievement at [cheevo_report.award_location]!<BR>"
+			parts += "<b>[cheevo_report.winner]</b> 在[cheevo_report.award_location]获得了[span_greentext("'[cheevo_report.cheevo]'")]成就！<BR>" // SKYRAT EDIT - No ckeys in the round end report - ORIGINAL: parts += "<BR>[cheevo_report.winner_key] was <b>[cheevo_report.winner]</b>, who earned the [span_greentext("'[cheevo_report.cheevo]'")] achievement at [cheevo_report.award_location]!<BR>"
 		parts += "</ul>"
 		return "<div class='panel greenborder'><ul>[parts.Join()]</ul></div>"
 

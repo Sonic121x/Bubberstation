@@ -30,14 +30,14 @@
 #define PROGRAM_CIRCUITS_RUN_WHEN_CLOSED (1<<5)
 
 //Program categories
-#define PROGRAM_CATEGORY_DEVICE "Device Tools"
-#define PROGRAM_CATEGORY_EQUIPMENT "Equipment"
-#define PROGRAM_CATEGORY_GAMES "Games"
-#define PROGRAM_CATEGORY_SECURITY "Security & Records"
-#define PROGRAM_CATEGORY_ENGINEERING "Engineering"
-#define PROGRAM_CATEGORY_SUPPLY "Supply"
-#define PROGRAM_CATEGORY_SCIENCE "Science"
-#define PROGRAM_CATEGORY_SERVICE "Service"
+#define PROGRAM_CATEGORY_DEVICE "设备工具"
+#define PROGRAM_CATEGORY_EQUIPMENT "装备"
+#define PROGRAM_CATEGORY_GAMES "游戏"
+#define PROGRAM_CATEGORY_SECURITY "安保与档案"
+#define PROGRAM_CATEGORY_ENGINEERING "工程"
+#define PROGRAM_CATEGORY_SUPPLY "补给"
+#define PROGRAM_CATEGORY_SCIENCE "科研"
+#define PROGRAM_CATEGORY_SERVICE "服务"
 
 ///The default amount a program should take in cell use.
 #define PROGRAM_BASIC_CELL_USE 2 WATTS
@@ -126,18 +126,18 @@
 
 //Defines for the names of all the themes
 #define PDA_THEME_NTOS_NAME "NtOS"
-#define PDA_THEME_DARK_MODE_NAME "NtOS Dark Mode"
-#define PDA_THEME_RETRO_NAME "Retro"
-#define PDA_THEME_SYNTH_NAME "Synth"
-#define PDA_THEME_TERMINAL_NAME "Terminal"
-#define PDA_THEME_SYNDICATE_NAME "Syndicate"
-#define PDA_THEME_CAT_NAME "Cat"
-#define PDA_THEME_LIGHT_MODE_NAME "NtOS Light Mode"
-#define PDA_THEME_SPOOKY_NAME "Eldritch"
-#define PDA_THEME_HACKERMAN_NAME "Hackerman"
-#define PDA_THEME_ROULETTE_NAME "Roulette Table"
-#define PDA_THEME_ABDUCTOR_NAME "Alien"
-#define PDA_THEME_BIRD_NAME "Bird"
+#define PDA_THEME_DARK_MODE_NAME "NtOS 深色模式"
+#define PDA_THEME_RETRO_NAME "复古"
+#define PDA_THEME_SYNTH_NAME "合成波"
+#define PDA_THEME_TERMINAL_NAME "终端"
+#define PDA_THEME_SYNDICATE_NAME "辛迪加"
+#define PDA_THEME_CAT_NAME "猫咪"
+#define PDA_THEME_LIGHT_MODE_NAME "NtOS 浅色模式"
+#define PDA_THEME_SPOOKY_NAME "诡秘"
+#define PDA_THEME_HACKERMAN_NAME "黑客"
+#define PDA_THEME_ROULETTE_NAME "轮盘赌桌"
+#define PDA_THEME_ABDUCTOR_NAME "外星"
+#define PDA_THEME_BIRD_NAME "鸟儿"
 
 
 ///List of PDA themes that are accessible to everyone by default.

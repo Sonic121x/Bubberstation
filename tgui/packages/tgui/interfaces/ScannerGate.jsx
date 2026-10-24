@@ -5,7 +5,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
@@ -218,14 +218,14 @@ const ScannerGateDisease = (props) => {
     <>
       <Box mb={2}>
         Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        disease equal or worse than {disease_threshold}.
+        disease equal or worse than {chineseDisplay(disease_threshold)}.
       </Box>
       <Box mb={2}>
         {DISEASE_THEASHOLD_LIST.map((threshold) => (
           <Button.Checkbox
             key={threshold}
             checked={threshold === disease_threshold}
-            content={threshold}
+            content={chineseDisplay(threshold)}
             onClick={() =>
               act('set_disease_threshold', {
                 new_threshold: threshold,

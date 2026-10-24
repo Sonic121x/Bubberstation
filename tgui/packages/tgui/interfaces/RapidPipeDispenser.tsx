@@ -12,7 +12,7 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalizeAll } from 'tgui-core/string';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
@@ -32,19 +32,19 @@ export const ICON_BY_CATEGORY_NAME = {
 
 const TOOLS = [
   {
-    name: 'Dispense',
+    name: '生成',
     bitmask: 1,
   },
   {
-    name: 'Connect',
+    name: '连接',
     bitmask: 2,
   },
   {
-    name: 'Destroy',
+    name: '拆除',
     bitmask: 4,
   },
   {
-    name: 'Reprogram',
+    name: '重新编程',
     bitmask: 8,
   },
 ] as const;
@@ -97,7 +97,7 @@ export function ColorItem(props) {
   const colorNames = Object.keys(paint_colors);
 
   return (
-    <LabeledList.Item label="Color">
+    <LabeledList.Item label="颜色">
       {colorNames.map((colorName) => (
         <ColorBox
           key={colorName}
@@ -117,7 +117,7 @@ export function ColorItem(props) {
         />
       ))}
       <Box inline ml={2} px={1} bold color={paint_colors[selected_color]}>
-        {capitalizeAll(selected_color)}
+        {chineseDisplay(capitalizeAll(selected_color))}
       </Box>
     </LabeledList.Item>
   );
@@ -128,7 +128,7 @@ function ModeItem(props) {
   const { mode } = data;
 
   return (
-    <LabeledList.Item label="Modes">
+    <LabeledList.Item label="模式">
       {TOOLS.map((tool) => (
         <Button.Checkbox
           key={tool.bitmask}
@@ -151,7 +151,7 @@ function CategoryItem(props) {
   const { category: rootCategoryIndex } = data;
 
   return (
-    <LabeledList.Item label="Category">
+    <LabeledList.Item label="类别">
       {ROOT_CATEGORIES.map((categoryName, i) => (
         <Button
           key={categoryName}
@@ -160,7 +160,7 @@ function CategoryItem(props) {
           color="transparent"
           onClick={() => act('category', { category: i })}
         >
-          {categoryName}
+          {chineseDisplay(categoryName)}
         </Button>
       ))}
     </LabeledList.Item>
@@ -192,7 +192,7 @@ function LayerSelect(props) {
   const { pipe_layers, multi_layer, max_pipe_layers = 1 } = data;
 
   return (
-    <LabeledList.Item label="Layer">
+    <LabeledList.Item label="管层">
       {Array.from({ length: max_pipe_layers }).map((_, layer) => (
         <Button.Checkbox
           key={layer}
@@ -211,12 +211,12 @@ function LayerSelect(props) {
       <Button.Checkbox
         key="multilayer"
         checked={multi_layer}
-        tooltip="Build on multiple pipe layers simultaneously"
+        tooltip="同时在多个管层上建造"
         onClick={() => {
           act('toggle_multi_layer');
         }}
       >
-        Multi
+        多层
       </Button.Checkbox>
     </LabeledList.Item>
   );
@@ -293,7 +293,7 @@ function PipeTypeSection(props) {
             selected={category.cat_name === shownCategory.cat_name}
             onClick={() => setCategoryName(category.cat_name)}
           >
-            {category.cat_name}
+            {chineseDisplay(category.cat_name)}
           </Tabs.Tab>
         ))}
       </Tabs>
@@ -324,10 +324,10 @@ export function SmartPipeBlockSection(props) {
                 color="transparent"
                 icon="info"
                 tooltipPosition="right"
-                tooltip="This is a panel for blocking certain connection
-                directions for the smart pipes.
-                The button in the center resets to
-                default (all directions can connect)"
+                tooltip="此面板用于禁止智能管道
+                在指定方向建立连接。
+                中间的按钮可恢复默认设置，
+                允许所有方向连接。"
               />
             </Stack.Item>
             <Stack.Item>

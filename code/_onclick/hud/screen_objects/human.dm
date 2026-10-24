@@ -2,7 +2,7 @@
 	icon = 'icons/hud/screen_midnight.dmi'
 
 /atom/movable/screen/human/toggle
-	name = "toggle"
+	name = "切换物品栏"
 	icon_state = "toggle"
 	base_icon_state = "toggle"
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -33,7 +33,7 @@
 	icon = 'icons/hud/screen_changeling.dmi'
 
 /atom/movable/screen/ling/chems
-	name = "chemical storage"
+	name = "化学物质储量"
 	icon_state = "power_display"
 	screen_loc = ui_lingchemdisplay
 	///Boolean on whether a mouse is being hovered over us right now.
@@ -41,7 +41,7 @@
 
 /atom/movable/screen/ling/chems/Click(location, control, params)
 	. = ..()
-	to_chat(usr, span_notice("Shows you how many chemicals you have. While hovering over this, it will show the max amount of chemicals you can hold."))
+	to_chat(usr, span_notice("显示你当前拥有的化学物质数量。将鼠标悬停于此，还会显示你能储存的最大数量。"))
 
 /atom/movable/screen/ling/chems/MouseEntered(location,control,params)
 	if(usr != get_mob())
@@ -64,7 +64,7 @@
 	antagonist_datum.update_chemical_hud(antagonist_datum.chem_charges)
 
 /atom/movable/screen/ling/sting
-	name = "current sting"
+	name = "当前蛰刺"
 	screen_loc = ui_lingstingdisplay
 	invisibility = INVISIBILITY_ABSTRACT
 	mouse_over_pointer = MOUSE_HAND_POINTER

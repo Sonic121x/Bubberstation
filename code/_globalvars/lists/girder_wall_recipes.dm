@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(material_girder_wall_recipes, init_material_girder_wall_recipes
 			girder_type = wall_type::girder_type,
 			girder_state = wall_type::girder_state,
 			make_delay = wall_type::make_delay,
-			start_alert = "adding plating..."
+			start_alert = "正在安装墙板……"
 		)
 
 	for (var/obj/structure/falsewall/falsewall_type as anything in falsewall_types)
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(material_girder_wall_recipes, init_material_girder_wall_recipes
 			girder_type = falsewall_type::girder_type,
 			girder_state = GIRDER_DISPLACED,
 			make_delay = 2 SECONDS,
-			start_alert = "concealing entrance..."
+			start_alert = "正在隐藏入口……"
 		)
 
 	for (var/obj/structure/tram/tram_type as anything in tram_types)
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(material_girder_wall_recipes, init_material_girder_wall_recipes
 			girder_type = tram_type::girder_type,
 			girder_state = GIRDER_TRAM,
 			make_delay = 4 SECONDS,
-			start_alert = "adding plating..."
+			start_alert = "正在安装墙板……"
 		)
 
 	return recipes

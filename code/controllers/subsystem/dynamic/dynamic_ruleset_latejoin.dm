@@ -21,7 +21,7 @@
 	return ..()
 
 /datum/dynamic_ruleset/latejoin/traitor
-	name = "Traitor"
+	name = "叛徒"
 	config_tag = "Latejoin Traitor"
 	preview_antag_datum = /datum/antagonist/traitor
 	pref_flag = ROLE_SYNDICATE_INFILTRATOR
@@ -36,7 +36,7 @@
 	candidate.add_antag_datum(/datum/antagonist/traitor)
 
 /datum/dynamic_ruleset/latejoin/changeling
-	name = "Changeling"
+	name = "变形怪"
 	config_tag = "Latejoin Changeling"
 	preview_antag_datum = /datum/antagonist/changeling
 	pref_flag = ROLE_STOWAWAY_CHANGELING
@@ -51,7 +51,7 @@
 	candidate.add_antag_datum(/datum/antagonist/changeling)
 
 /datum/dynamic_ruleset/latejoin/revolution
-	name = "Revolution"
+	name = "革命"
 	config_tag = "Latejoin Revolution"
 	preview_antag_datum = /datum/antagonist/rev/head
 	pref_flag = ROLE_PROVOCATEUR
@@ -92,15 +92,15 @@
 
 	if(head_check < heads_necessary - 1) // little bit of leeway
 		SSdynamic.unreported_rulesets += src
-		name += " (Canceled)"
+		name += "（已取消）"
 		log_dynamic("[config_tag]: Not enough heads of staff were present to start a revolution.")
 		return
 
 	if(!can_be_headrev(candidate))
 		SSdynamic.unreported_rulesets += src
-		name += " (Canceled)"
+		name += "（已取消）"
 		log_dynamic("[config_tag]: [key_name(candidate)] was ineligible after the timer expired. Ruleset canceled.")
-		message_admins("[config_tag]: [key_name(candidate)] was ineligible after the timer expired. Ruleset canceled.")
+		message_admins("[config_tag]：计时结束后，[key_name(candidate)] 已不符合资格。规则集已取消。")
 		return
 
 	GLOB.revolution_handler ||= new()

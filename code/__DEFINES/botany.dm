@@ -98,7 +98,7 @@
 #define HYDROTRAY_PLANT_HARVESTABLE "harvestable"
 
 /// A list of possible egg laying descriptions
-#define EGG_LAYING_MESSAGES list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")
+#define EGG_LAYING_MESSAGES list("下了一枚蛋。","蹲下身轻声啼鸣。","开始大声吵闹。","开始嘶哑地咯咯叫。")
 
 /// Used as a baseline plant rarity for more uncommon plants, usually requiring mutation
 #define PLANT_MODERATELY_RARE 20

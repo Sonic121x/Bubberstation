@@ -26,7 +26,7 @@
 	players,
 	play_sound = TRUE,
 	sound_override = 'sound/misc/bloop.ogg',
-	sender_override = "Server Admin Announcement",
+	sender_override = "服务器管理员公告",
 	encode_title = TRUE,
 	encode_text = FALSE,
 )

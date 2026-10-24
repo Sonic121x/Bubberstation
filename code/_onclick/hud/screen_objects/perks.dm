@@ -1,10 +1,10 @@
 /atom/movable/screen/perk
 	icon = 'icons/hud/perks.dmi'
-	name = "blank"
+	name = "空白"
 	icon_state = "blank"
 
 /atom/movable/screen/perk/more
-	name = "more"
+	name = "更多"
 	icon_state = "more"
 	// When compact we don't show our perk huds in ui.
 	var/compact = FALSE

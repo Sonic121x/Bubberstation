@@ -7,7 +7,7 @@
 		return TRUE
 
 /atom/movable/screen/ai/aicore
-	name = "AI core"
+	name = "AI 核心"
 	icon_state = "ai_core"
 	screen_loc = ui_ai_core
 
@@ -19,7 +19,7 @@
 	AI.view_core()
 
 /atom/movable/screen/ai/camera_list
-	name = "Show Camera List"
+	name = "显示摄像头列表"
 	icon_state = "camera"
 	screen_loc = ui_ai_camera_list
 
@@ -30,7 +30,7 @@
 	AI.show_camera_list()
 
 /atom/movable/screen/ai/camera_track
-	name = "Track With Camera"
+	name = "使用摄像头追踪"
 	icon_state = "track"
 	screen_loc = ui_ai_track_with_camera
 
@@ -41,7 +41,7 @@
 	AI.ai_camera_track()
 
 /atom/movable/screen/ai/camera_light
-	name = "Toggle Camera Light"
+	name = "切换摄像头照明"
 	icon_state = "camera_light"
 	screen_loc = ui_ai_camera_light
 
@@ -52,7 +52,7 @@
 	AI.toggle_camera_light()
 
 /atom/movable/screen/ai/modpc
-	name = "Messenger"
+	name = "即时通讯"
 	icon_state = "pda_send"
 	screen_loc = ui_ai_mod_int
 
@@ -63,7 +63,7 @@
 	AI.modularInterface?.interact(AI)
 
 /atom/movable/screen/ai/crew_monitor
-	name = "Crew Monitoring Console"
+	name = "船员监控控制台"
 	icon_state = "crew_monitor"
 	screen_loc = ui_ai_crew_monitor
 
@@ -74,7 +74,7 @@
 	GLOB.crewmonitor.show(AI,AI)
 
 /atom/movable/screen/ai/crew_manifest
-	name = "Crew Manifest"
+	name = "船员名册"
 	icon_state = "manifest"
 	screen_loc = ui_ai_crew_manifest
 
@@ -85,7 +85,7 @@
 	AI.ai_roster()
 
 /atom/movable/screen/ai/alerts
-	name = "Show Alerts"
+	name = "显示警报"
 	icon_state = "alerts"
 	screen_loc = ui_ai_alerts
 
@@ -96,7 +96,7 @@
 	AI.alert_control.ui_interact(AI)
 
 /atom/movable/screen/ai/announcement
-	name = "Make Vox Announcement"
+	name = "发布 VOX 语音公告"
 	icon_state = "announcement"
 	screen_loc = ui_ai_announcement
 
@@ -107,7 +107,7 @@
 	AI.announcement()
 
 /atom/movable/screen/ai/call_shuttle
-	name = "Call Emergency Shuttle"
+	name = "呼叫紧急穿梭机"
 	icon_state = "call_shuttle"
 	screen_loc = ui_ai_shuttle
 
@@ -118,7 +118,7 @@
 	AI.ai_call_shuttle()
 
 /atom/movable/screen/ai/state_laws
-	name = "State Laws"
+	name = "宣读法则"
 	icon_state = "state_laws"
 	screen_loc = ui_ai_state_laws
 
@@ -129,7 +129,7 @@
 	AI.checklaws()
 
 /atom/movable/screen/ai/image_take
-	name = "Take Image"
+	name = "拍照"
 	icon_state = "take_picture"
 	screen_loc = ui_ai_take_picture
 
@@ -144,7 +144,7 @@
 		R.aicamera.toggle_camera_mode(usr)
 
 /atom/movable/screen/ai/image_view
-	name = "View Images"
+	name = "查看照片"
 	icon_state = "view_images"
 	screen_loc = ui_ai_view_images
 
@@ -156,7 +156,7 @@
 		AI.aicamera.viewpictures(usr)
 
 /atom/movable/screen/ai/sensors
-	name = "Sensor Augmentation"
+	name = "传感器增强"
 	icon_state = "ai_sensor"
 	screen_loc = ui_ai_sensor
 
@@ -167,7 +167,7 @@
 	S.toggle_sensors()
 
 /atom/movable/screen/ai/multicam
-	name = "Multicamera Mode"
+	name = "多摄像头模式"
 	icon_state = "multicam"
 	screen_loc = ui_ai_multicam
 
@@ -178,7 +178,7 @@
 	AI.toggle_multicam()
 
 /atom/movable/screen/ai/add_multicam
-	name = "New Camera"
+	name = "新建摄像头视图"
 	icon_state = "new_cam"
 	screen_loc = ui_ai_add_multicam
 
@@ -205,15 +205,15 @@
 		return
 	var/turf/locturf = isturf(ai.loc) ? get_turf(ai.eyeobj) : get_turf(ai) //must be a var cuz error
 	var/ai_z = locturf.z
-	var/text = "Level<br/>[ai_z]"
+	var/text = "层级<br/>[ai_z]"
 	if(SSmapping.level_trait(ai_z, ZTRAIT_STATION))
-		text = "Floor<br/>[ai_z - 1]"
+		text = "楼层<br/>[ai_z - 1]"
 	else if (SSmapping.level_trait(ai_z, ZTRAIT_NOPHASE))
-		text = "ERROR"
+		text = "错误"
 	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
 
 /atom/movable/screen/ai/go_up
-	name = "go up"
+	name = "向上"
 	icon_state = "up"
 	screen_loc = ui_ai_godownup
 
@@ -223,7 +223,7 @@
 
 /atom/movable/screen/ai/go_up/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_LMB] = "Go up a floor"
+	context[SCREENTIP_CONTEXT_LMB] = "上移一层"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /atom/movable/screen/ai/go_up/Click(location,control,params)
@@ -234,12 +234,12 @@
 	ai.up()
 
 /atom/movable/screen/ai/go_up/down
-	name = "go down"
+	name = "向下"
 	icon_state = "down"
 
 /atom/movable/screen/ai/go_up/down/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_LMB] = "Go down a floor"
+	context[SCREENTIP_CONTEXT_LMB] = "下移一层"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /atom/movable/screen/ai/go_up/down/Click(location,control,params)

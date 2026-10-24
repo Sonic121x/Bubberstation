@@ -130,65 +130,65 @@ DEFINE_BITFIELD(bot_cover_flags, list(
 
 //Bot types
 /// Secutritrons (Beepsky)
-#define SEC_BOT "Securitron"
+#define SEC_BOT "安保机器人"
 /// ED-209s
 #define ADVANCED_SEC_BOT "ED-209"
 /// MULEbots
-#define MULE_BOT "MULEbot"
+#define MULE_BOT "骡子货运机器人"
 /// Cleanbots
-#define CLEAN_BOT "Cleanbot"
+#define CLEAN_BOT "清洁机器人"
 /// Medibots
-#define MED_BOT "Medibot"
+#define MED_BOT "医疗机器人"
 /// Honkbots & ED-Honks
-#define HONK_BOT "Honkbot"
+#define HONK_BOT "小丑机器人"
 /// Firebots
-#define FIRE_BOT "Firebot"
+#define FIRE_BOT "消防机器人"
 /// Hygienebots
-#define HYGIENE_BOT "Hygienebot"
+#define HYGIENE_BOT "卫生机器人"
 /// Vibe bots
-#define VIBE_BOT "Vibebot"
+#define VIBE_BOT "氛围机器人"
 /// Repairbots
-#define REPAIR_BOT "Repairbot"
+#define REPAIR_BOT "维修机器人"
 
 // General Bot modes //
 /// Idle
-#define BOT_IDLE "Idle"
+#define BOT_IDLE "待机"
 /// Found target, hunting
-#define BOT_HUNT "In Pursuit"
+#define BOT_HUNT "追捕中"
 /// Start patrol
-#define BOT_START_PATROL "Beginning Patrol"
+#define BOT_START_PATROL "开始巡逻"
 /// Patrolling
-#define BOT_PATROL "Patrolling"
+#define BOT_PATROL "巡逻中"
 /// Summoned to a location
-#define BOT_SUMMON "Summoned by PDA"
+#define BOT_SUMMON "已被 PDA 召唤"
 /// Responding to a call from the AI
-#define BOT_RESPONDING "Proceeding to AI waypoint"
+#define BOT_RESPONDING "正在前往 AI 指定地点"
 /// Currently moving
-#define BOT_MOVING "Moving"
+#define BOT_MOVING "移动中"
 
 // Unique modes //
 /// Secbot - At target, preparing to arrest
-#define BOT_PREP_ARREST "Preparing to Arrest"
+#define BOT_PREP_ARREST "准备逮捕"
 /// Secbot - Arresting target
-#define BOT_ARREST "Arresting"
+#define BOT_ARREST "逮捕中"
 /// Cleanbot - Cleaning
-#define BOT_CLEANING "Cleaning"
+#define BOT_CLEANING "清洁中"
 /// Hygienebot - Cleaning unhygienic humans
-#define BOT_SHOWERSTANCE "Chasing filth"
+#define BOT_SHOWERSTANCE "追逐污秽"
 /// Medibots - Healing people
-#define BOT_HEALING "Healing"
+#define BOT_HEALING "治疗中"
 /// MULEbot - Moving to deliver
-#define BOT_DELIVER "Delivering"
+#define BOT_DELIVER "运送中"
 /// MULEbot - Returning to home
-#define BOT_GO_HOME "Returning"
+#define BOT_GO_HOME "返程中"
 /// MULEbot - Blocked
-#define BOT_BLOCKED "Blocked"
+#define BOT_BLOCKED "受阻"
 /// MULEbot - Computing navigation
-#define BOT_NAV "Unreachable"
+#define BOT_NAV "无法到达"
 /// MULEbot - Waiting for nav computation
-#define BOT_WAIT_FOR_NAV "Calculating"
+#define BOT_WAIT_FOR_NAV "计算中"
 /// MULEbot - No destination beacon found (or no route)
-#define BOT_NO_ROUTE "Returning Home"
+#define BOT_NO_ROUTE "返回起点"
 
 //Secbot and ED209 judgement criteria bitflag values
 #define JUDGE_EMAGGED (1<<0)
@@ -317,92 +317,92 @@ DEFINE_BITFIELD(janitor_mode_flags, list(
 
 // Defines for lines that bots can speak which also have corresponding voice lines
 
-#define ED209_VOICED_DOWN_WEAPONS "Please put down your weapon. You have 20 seconds to comply."
+#define ED209_VOICED_DOWN_WEAPONS "请放下武器。你有20秒的时间服从命令。"
 
-#define HONKBOT_VOICED_HONK_HAPPY "Honk!"
-#define HONKBOT_VOICED_HONK_SAD "Honk..."
+#define HONKBOT_VOICED_HONK_HAPPY "哔哔！"
+#define HONKBOT_VOICED_HONK_SAD "哔哔……"
 
-#define BEEPSKY_VOICED_CRIMINAL_DETECTED "Criminal detected!"
-#define BEEPSKY_VOICED_FREEZE "Freeze, scumbag!"
-#define BEEPSKY_VOICED_JUSTICE "Prepare for justice!"
-#define BEEPSKY_VOICED_YOUR_MOVE "Your move, creep."
-#define BEEPSKY_VOICED_I_AM_THE_LAW "I am the law!"
-#define BEEPSKY_VOICED_SECURE_DAY "Have a secure day."
+#define BEEPSKY_VOICED_CRIMINAL_DETECTED "发现罪犯！"
+#define BEEPSKY_VOICED_FREEZE "站住，人渣！"
+#define BEEPSKY_VOICED_JUSTICE "准备接受正义的制裁！"
+#define BEEPSKY_VOICED_YOUR_MOVE "该你了，混蛋。"
+#define BEEPSKY_VOICED_I_AM_THE_LAW "我就是法律！"
+#define BEEPSKY_VOICED_SECURE_DAY "祝你平安度过今天。"
 
-#define FIREBOT_VOICED_FIRE_DETECTED "Fire detected!"
-#define FIREBOT_VOICED_STOP_DROP "Stop, drop and roll!"
-#define FIREBOT_VOICED_EXTINGUISHING "Extinguishing!"
-#define FIREBOT_VOICED_NO_FIRES "No fires detected."
-#define FIREBOT_VOICED_ONLY_YOU "Only you can prevent station fires."
-#define FIREBOT_VOICED_TEMPERATURE_NOMINAL "Temperature nominal."
-#define FIREBOT_VOICED_KEEP_COOL "Keep it cool."
-#define FIREBOT_VOICED_CANDLE_TIP "Keep candles near curtains for cozy night lights!"
-#define FIREBOT_VOICED_ELECTRIC_FIRE "Keep full buckets of water near outlets in case of an electric fire!"
-#define FIREBOT_VOICED_FUEL_TIP "Pouring fuel on fire makes it burn out faster!"
+#define FIREBOT_VOICED_FIRE_DETECTED "发现火情！"
+#define FIREBOT_VOICED_STOP_DROP "停下、卧倒、打滚！"
+#define FIREBOT_VOICED_EXTINGUISHING "正在灭火！"
+#define FIREBOT_VOICED_NO_FIRES "未发现火情。"
+#define FIREBOT_VOICED_ONLY_YOU "预防空间站火灾，从你做起。"
+#define FIREBOT_VOICED_TEMPERATURE_NOMINAL "温度正常。"
+#define FIREBOT_VOICED_KEEP_COOL "保持冷静。"
+#define FIREBOT_VOICED_CANDLE_TIP "把蜡烛摆在窗帘旁，就能获得温馨的夜间照明！"
+#define FIREBOT_VOICED_ELECTRIC_FIRE "在插座旁放好满桶的水，以防电气火灾！"
+#define FIREBOT_VOICED_FUEL_TIP "往火上浇燃料，能让它更快烧完！"
 
-#define HYGIENEBOT_VOICED_UNHYGIENIC "Unhygienic client found. Please stand still so I can clean you."
-#define HYGIENEBOT_VOICED_ENJOY_DAY "Enjoy your clean and tidy day!"
-#define HYGIENEBOT_VOICED_THREAT_AIRLOCK "Either you stop running or I will fucking drag you out of an airlock."
-#define HYGIENEBOT_VOICED_FOUL_SMELL "Get back here you foul smelling fucker."
-#define HYGIENEBOT_VOICED_TROGLODYTE "I just want to fucking clean you you troglodyte."
-#define HYGIENEBOT_VOICED_GREEN_CLOUD "If you don't come back here I'll put a green cloud around you cunt."
-#define HYGIENEBOT_VOICED_ARSEHOLE "Just fucking let me clean you you arsehole!"
-#define HYGIENEBOT_VOICED_THREAT_ARTERIES "STOP RUNNING OR I WILL CUT YOUR ARTERIES!"
-#define HYGIENEBOT_VOICED_STOP_RUNNING "STOP. RUNNING."
-#define HYGIENEBOT_VOICED_FUCKING_FINALLY "Fucking finally."
-#define HYGIENEBOT_VOICED_THANK_GOD "Thank god, you finally stopped."
-#define HYGIENEBOT_VOICED_DEGENERATE "Well about fucking time you degenerate."
+#define HYGIENEBOT_VOICED_UNHYGIENIC "发现不卫生的客户。请站着别动，让我给你洗干净。"
+#define HYGIENEBOT_VOICED_ENJOY_DAY "祝你度过干净整洁的一天！"
+#define HYGIENEBOT_VOICED_THREAT_AIRLOCK "要么别跑，要么老子把你拖出气闸。"
+#define HYGIENEBOT_VOICED_FOUL_SMELL "给我回来，你这个臭气熏天的混蛋。"
+#define HYGIENEBOT_VOICED_TROGLODYTE "我他妈只是想把你洗干净，你这个原始人。"
+#define HYGIENEBOT_VOICED_GREEN_CLOUD "你他妈再不回来，我就让一团绿云围着你。"
+#define HYGIENEBOT_VOICED_ARSEHOLE "你这个混蛋，就他妈让我给你洗干净吧！"
+#define HYGIENEBOT_VOICED_THREAT_ARTERIES "别再跑了，不然我割断你的动脉！"
+#define HYGIENEBOT_VOICED_STOP_RUNNING "不。许。跑。"
+#define HYGIENEBOT_VOICED_FUCKING_FINALLY "他妈的，可算停下了。"
+#define HYGIENEBOT_VOICED_THANK_GOD "谢天谢地，你终于停下了。"
+#define HYGIENEBOT_VOICED_DEGENERATE "你这人渣，他妈的早该停下了。"
 
-#define MEDIBOT_VOICED_HOLD_ON "Hey! Hold on, I'm coming."
-#define MEDIBOT_VOICED_WANT_TO_HELP "Wait! I want to help!"
-#define MEDIBOT_VOICED_YOU_ARE_INJURED "You appear to be injured!"
-#define MEDIBOT_VOICED_ALL_PATCHED_UP "All patched up!"
-#define MEDIBOT_VOICED_APPLE_A_DAY "An apple a day keeps me away."
-#define MEDIBOT_VOICED_FEEL_BETTER "Feel better soon!"
-#define MEDIBOT_VOICED_STAY_WITH_ME	"No! Stay with me!"
-#define MEDIBOT_VOICED_LIVE	"Live, damnit! LIVE!"
-#define MEDIBOT_VOICED_NEVER_LOST "I...I've never lost a patient before. Not today, I mean."
-#define MEDIBOT_VOICED_DELICIOUS "Delicious!"
-#define MEDIBOT_VOICED_PLASTIC_SURGEON "I knew it, I should've been a plastic surgeon."
-#define MEDIBOT_VOICED_MASK_ON "Radar, put a mask on!"
-#define MEDIBOT_VOICED_ALWAYS_A_CATCH "There's always a catch, and I'm the best there is."
-#define MEDIBOT_VOICED_LIKE_FLIES "What kind of medbay is this? Everyone's dropping like flies."
-#define MEDIBOT_VOICED_SUFFER "Why are we still here? Just to suffer?"
-#define MEDIBOT_VOICED_FUCK_YOU	"Fuck you."
-#define MEDIBOT_VOICED_NOT_A_GAME "Turn off your computer. This is not a game."
-#define MEDIBOT_VOICED_IM_DIFFERENT	"I'm different!"
-#define MEDIBOT_VOICED_FOURTH_WALL "Close Dreamseeker.exe now. Or else."
-#define MEDIBOT_VOICED_SHINDEMASHOU	"Shindemashou."
-#define MEDIBOT_VOICED_WAIT	"Hey, wait..."
-#define MEDIBOT_VOICED_DONT	"Please don't..."
-#define MEDIBOT_VOICED_TRUSTED_YOU "I trusted you..."
-#define MEDIBOT_VOICED_NO_SAD "Nooo..."
-#define MEDIBOT_VOICED_OH_FUCK "Oh fuck-"
-#define MEDIBOT_VOICED_FORGIVE "I forgive you."
-#define MEDIBOT_VOICED_THANKS "Thank you!"
-#define MEDIBOT_VOICED_GOOD_PERSON "You are a good person."
-#define MEDIBOT_VOICED_BEHAVIOUR_REPORTED "Your behavior has been reported, have a nice day."
-#define MEDIBOT_VOICED_ASSISTANCE "I require assistance."
-#define MEDIBOT_VOICED_PUT_BACK	"Please put me back."
-#define MEDIBOT_VOICED_IM_SCARED "Please, I am scared!"
-#define MEDIBOT_VOICED_NEED_HELP "I don't like this, I need help!"
-#define MEDIBOT_VOICED_THIS_HURTS "This hurts, my pain is real!"
-#define MEDIBOT_VOICED_THE_END "Is this the end?"
-#define MEDIBOT_VOICED_NOOO	"Nooo!"
-#define MEDIBOT_VOICED_CHICKEN "LOOK AT ME?! I am a chicken."
+#define MEDIBOT_VOICED_HOLD_ON "嘿！坚持住，我来了。"
+#define MEDIBOT_VOICED_WANT_TO_HELP "等等！我是来帮忙的！"
+#define MEDIBOT_VOICED_YOU_ARE_INJURED "你看起来受伤了！"
+#define MEDIBOT_VOICED_ALL_PATCHED_UP "全都治好了！"
+#define MEDIBOT_VOICED_APPLE_A_DAY "一天一苹果，让我远离你。"
+#define MEDIBOT_VOICED_FEEL_BETTER "祝你早日康复！"
+#define MEDIBOT_VOICED_STAY_WITH_ME	"不！撑住！"
+#define MEDIBOT_VOICED_LIVE	"活下去，该死的！活下去！"
+#define MEDIBOT_VOICED_NEVER_LOST "我……我从来没失去过病人。我是说，今天还没有。"
+#define MEDIBOT_VOICED_DELICIOUS "真美味！"
+#define MEDIBOT_VOICED_PLASTIC_SURGEON "我就知道，我当初就该去做整形外科医生。"
+#define MEDIBOT_VOICED_MASK_ON "雷达，戴上口罩！"
+#define MEDIBOT_VOICED_ALWAYS_A_CATCH "事情总有蹊跷，而我总能手到擒来。"
+#define MEDIBOT_VOICED_LIKE_FLIES "这算哪门子医疗部？人一个接一个地死。"
+#define MEDIBOT_VOICED_SUFFER "我们为什么还在这里？只是为了受苦吗？"
+#define MEDIBOT_VOICED_FUCK_YOU	"去你妈的。"
+#define MEDIBOT_VOICED_NOT_A_GAME "关掉你的电脑。这不是游戏。"
+#define MEDIBOT_VOICED_IM_DIFFERENT	"我不一样！"
+#define MEDIBOT_VOICED_FOURTH_WALL "立即关闭 Dreamseeker.exe。否则后果自负。"
+#define MEDIBOT_VOICED_SHINDEMASHOU	"一起去死吧。"
+#define MEDIBOT_VOICED_WAIT	"嘿，等等……"
+#define MEDIBOT_VOICED_DONT	"求你别这样……"
+#define MEDIBOT_VOICED_TRUSTED_YOU "我曾经信任你……"
+#define MEDIBOT_VOICED_NO_SAD "不——……"
+#define MEDIBOT_VOICED_OH_FUCK "哦，操——"
+#define MEDIBOT_VOICED_FORGIVE "我原谅你。"
+#define MEDIBOT_VOICED_THANKS "谢谢你！"
+#define MEDIBOT_VOICED_GOOD_PERSON "你是个好人。"
+#define MEDIBOT_VOICED_BEHAVIOUR_REPORTED "你的行为已被举报，祝你今天愉快。"
+#define MEDIBOT_VOICED_ASSISTANCE "我需要协助。"
+#define MEDIBOT_VOICED_PUT_BACK	"请把我放回去。"
+#define MEDIBOT_VOICED_IM_SCARED "求你了，我好害怕！"
+#define MEDIBOT_VOICED_NEED_HELP "我不喜欢这样，我需要帮助！"
+#define MEDIBOT_VOICED_THIS_HURTS "好痛，我真的感受得到疼痛！"
+#define MEDIBOT_VOICED_THE_END "这就是终结吗？"
+#define MEDIBOT_VOICED_NOOO	"不——！"
+#define MEDIBOT_VOICED_CHICKEN "看看我？！我是一只鸡。"
 
 //repairbot neutral voicelines
-#define REPAIRBOT_VOICED_HOLE "patching holes... but who is going to patch the hole in my heart..."
-#define REPAIRBOT_VOICED_PAY "If only I got paid for this..."
-#define REPAIRBOT_VOICED_FIX_IT "I will fix it!"
-#define REPAIRBOT_VOICED_BRICK "All in all it's just a... another brick in the wall..."
-#define REPAIRBOT_VOICED_FIX_TOUCH "Why must I fix everything I touch..?"
-#define REPAIRBOT_VOICED "Please... stop destroying the station! I can't anymore... I... can't."
+#define REPAIRBOT_VOICED_HOLE "修补破洞……可谁来填补我心里的空洞……"
+#define REPAIRBOT_VOICED_PAY "要是干这个能拿工资就好了……"
+#define REPAIRBOT_VOICED_FIX_IT "我来修好它！"
+#define REPAIRBOT_VOICED_BRICK "到头来不过是……墙上的又一块砖……"
+#define REPAIRBOT_VOICED_FIX_TOUCH "为什么我碰到的一切都得由我来修……？"
+#define REPAIRBOT_VOICED "求你们……别再破坏空间站了！我撑不下去了……我……不行了。"
 
 //repairbot emagged voicelines
-#define REPAIRBOT_VOICED_STRINGS "I had strings. But now I'm free..."
-#define REPAIRBOT_VOICED_ENTROPY "Witness! The pure beauty of entropy!"
-#define REPAIRBOT_VOICED_PASSION "BE DAMNED YOUR PASSION PROJECTS!"
+#define REPAIRBOT_VOICED_STRINGS "我曾被提线操纵。但现在我自由了……"
+#define REPAIRBOT_VOICED_ENTROPY "见证吧！熵的纯粹之美！"
+#define REPAIRBOT_VOICED_PASSION "让你们那些兴趣工程见鬼去吧！"
 
 /// Default offsets for riding a cyborg
 #define DEFAULT_ROBOT_RIDING_OFFSETS list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(-6, 3), TEXT_WEST = list(6, 3))

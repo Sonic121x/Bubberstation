@@ -1,5 +1,5 @@
 import { Icon, Stack } from 'tgui-core/components';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { TYPE_ICONS } from '../constants';
 import type { Diet } from '../types';
 
@@ -34,7 +34,7 @@ export function FoodtypeContent(props: Props) {
         <Icon name={TYPE_ICONS[type] || 'circle'} />
       </Stack.Item>
       <Stack.Item grow style={{ textTransform: 'capitalize' }}>
-        {type.toLowerCase()}
+        {chineseDisplay(type).toLowerCase()}
       </Stack.Item>
       <Stack.Item>
         {type === 'Can Make'

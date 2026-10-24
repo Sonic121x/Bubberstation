@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(lighting)
-	name = "Lighting"
+	name = "光照"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 		/datum/controller/subsystem/mapping,
@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(lighting)
 #endif
 
 /datum/controller/subsystem/lighting/stat_entry(msg)
-	msg = "\n  Sources:[length(sources_queue)]|Corners:[length(corners_queue)]|Objects:[length(objects_queue)]"
+	msg = "\n  光源:[length(sources_queue)]|角点:[length(corners_queue)]|对象:[length(objects_queue)]"
 	return ..()
 
 

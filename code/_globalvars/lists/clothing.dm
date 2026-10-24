@@ -20,8 +20,8 @@ GLOBAL_LIST_INIT(backpacklist, list(
 
 
 GLOBAL_LIST_INIT(suit_sensor_mode_to_defines, list(
-	"Off" = SENSOR_OFF,
-	"Binary vitals" = SENSOR_LIVING,
-	"Exact vitals" = SENSOR_VITALS,
-	"Tracking beacon" = SENSOR_COORDS,
+	"关闭" = SENSOR_OFF,
+	"生死状态" = SENSOR_LIVING,
+	"详细生命体征" = SENSOR_VITALS,
+	"追踪信标" = SENSOR_COORDS,
 ))

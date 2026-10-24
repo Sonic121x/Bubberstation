@@ -19,22 +19,22 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1,"/")
-		choices = sort_list(choices) + "Download Folder"
+		choices = sort_list(choices) + "下载文件夹"
 
-		var/choice = input(src,"Choose a file to access:","Download",null) as null|anything in choices
+		var/choice = input(src,"选择要访问的文件：","下载",null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return
 			if("/")
 				path = root
 				continue
-			if("Download Folder")
+			if("下载文件夹")
 				var/list/comp_flist = flist(path)
-				var/confirmation = input(src, "Are you SURE you want to download all the files in this folder? (This will open [length(comp_flist)] prompt[length(comp_flist) == 1 ? "" : "s"])", "Confirmation") in list("Yes", "No")
-				if(confirmation != "Yes")
+				var/confirmation = input(src, "确定要下载此文件夹中的所有文件吗？（这会打开 [length(comp_flist)] 个提示窗口[length(comp_flist) == 1 ? "" : ""]）", "确认") in list("是", "否")
+				if(confirmation != "是")
 					continue
-				log_admin("[key_name(src)] is downloading [length(comp_flist)] files from [path]") // SKYRAT EDIT -- ADDITION
-				message_admins("Admin [key_name_admin(src)] is downloading [length(comp_flist)] files from [path]") // SKYRAT EDIT -- ADDITION
+				log_admin("[key_name(src)] 正在从 [path] 下载 [length(comp_flist)] 个文件") // SKYRAT EDIT -- ADDITION
+				message_admins("管理员 [key_name_admin(src)] 正在从 [path] 下载 [length(comp_flist)] 个文件") // SKYRAT EDIT -- ADDITION
 				for(var/file in comp_flist)
 					src << ftp(path + file)
 				return
@@ -49,7 +49,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 		extensions += "[i]"
 	var/regex/valid_ext = new("\\.([extensions])$", "i")
 	if( !fexists(path) || !(valid_ext.Find(path)) )
-		to_chat(src, "<font color='red'>Error: browse_files(): File not found/Invalid file([path]).</font>")
+		to_chat(src, "<font color='red'>错误：browse_files()：找不到文件或文件无效（[path]）。</font>")
 		return
 
 	return path
@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 /client/proc/file_spam_check()
 	var/time_to_wait = GLOB.fileaccess_timer - world.time
 	if(time_to_wait > 0)
-		to_chat(src, "<font color='red'>Error: file_spam_check(): Spam. Please wait [DisplayTimeText(time_to_wait)].</font>")
+		to_chat(src, "<font color='red'>错误：file_spam_check()：请求过于频繁。请等待 [DisplayTimeText(time_to_wait)]。</font>")
 		return TRUE
 	var/delay = FTPDELAY
 	if(holder)

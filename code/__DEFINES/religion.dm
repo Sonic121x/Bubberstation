@@ -70,18 +70,18 @@
 #define RITE_ONE_TIME_USE (1<<2)
 
 ///Default prayer type for the pray verb
-#define DEFAULT_PRAYER "PRAYER"
+#define DEFAULT_PRAYER "祈祷"
 ///Cult prayer type
-#define CULT_PRAYER "CULTIST PRAYER"
+#define CULT_PRAYER "邪教徒祈祷"
 //Heretic prayer type
-#define HERETIC_PRAYER "HERETICAL PRAYER"
+#define HERETIC_PRAYER "异教徒祈祷"
 ///Chaplain prayer type
-#define CHAPLAIN_PRAYER "CHAPLAIN PRAYER"
+#define CHAPLAIN_PRAYER "牧师祈祷"
 ///Spiritual prayer type
-#define SPIRITUAL_PRAYER "SPIRITUAL PRAYER"
+#define SPIRITUAL_PRAYER "虔信者祈祷"
 ///Evil prayer type
-#define EVIL_PRAYER "EVIL PRAYER"
+#define EVIL_PRAYER "邪恶祈祷"
 ///Standard prayer type that santa sees
-#define SANTA_PRAYER "PRAYER"
+#define SANTA_PRAYER "祈祷"
 ///what type of prayer santa sees when someone's bad
-#define SANTA_NAUGHTY_PRAYER "PRAYER (NAUGHTY)"
+#define SANTA_NAUGHTY_PRAYER "祈祷（淘气）"

@@ -12,7 +12,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
 import type { LibraryConsoleData } from '../types';
 import { useLibraryContext } from '../useLibraryContext';
 
@@ -175,8 +175,8 @@ function UploadModal(props) {
       <LabeledList>
         <LabeledList.Item label="Category">
           <Dropdown
-            options={upload_categories}
-            selected={display_category}
+            options={chineseDropdownOptions(upload_categories)}
+            selected={display_category} displayText={chineseDisplay(display_category)}
             onSelected={(value) => setUploadCategory(value)}
           />
         </LabeledList.Item>

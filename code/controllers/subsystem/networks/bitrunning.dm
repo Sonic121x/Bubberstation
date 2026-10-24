@@ -1,7 +1,7 @@
 #define REDACTED "???"
 
 SUBSYSTEM_DEF(bitrunning)
-	name = "Bitrunning"
+	name = "比特潜行"
 	ss_flags = SS_NO_FIRE
 
 	var/list/all_domains = list()
@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(bitrunning)
 		UNTYPED_LIST_ADD(levels, list(
 			"announce_ghosts" = domain.announce_to_ghosts,
 			"cost" = domain.cost,
-			"desc" = can_view ? domain.desc : "Limited scanning capabilities. Cannot infer domain details.",
+			"desc" = can_view ? domain.desc : "扫描能力有限，无法推断虚拟领域的详细信息。",
 			"difficulty" = domain.difficulty,
 			"id" = domain.key,
 			"is_modular" = domain.is_modular,
@@ -54,11 +54,11 @@ SUBSYSTEM_DEF(bitrunning)
 	return choice
 
 /obj/item/paper/paperslip/bitrunning_error
-	name = "Apology Letter"
-	desc = "Something went wrong here."
+	name = "致歉信"
+	desc = "这里出了点问题。"
 
 /obj/item/paper/paperslip/bitrunning_error/Initialize(mapload)
-	default_raw_text = "Your reward for collecting the encrypted curiosity failed to arrive, please report this to technical support."
+	default_raw_text = "你收集加密奇物的奖励未能送达，请向技术支持报告此问题。"
 	return ..()
 
 #undef REDACTED

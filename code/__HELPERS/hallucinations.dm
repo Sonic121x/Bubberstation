@@ -165,11 +165,11 @@ GLOBAL_LIST_INIT_TYPED(random_hallucination_weighted_list, /list, generate_hallu
 		for(var/datum/hallucination/hallucination_type as anything in GLOB.random_hallucination_weighted_list[tier])
 			total_weight += GLOB.random_hallucination_weighted_list[tier][hallucination_type]
 
-	to_chat(usr, span_boldnotice("The total weight of the hallucination weighted list is [total_weight]."))
+	to_chat(usr, span_boldnotice("幻觉权重列表的总权重为 [total_weight]。"))
 	return total_weight
 
-ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucination Weights", "View the weight of each hallucination subtype in the random weighted list.", ADMIN_CATEGORY_DEBUG)
-	var/header = "<tr><th>Type</th> <th>Weight</th> <th>Tier</th> <th>Percent</th>"
+ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "显示幻觉权重", "查看随机权重列表中各幻觉子类型的权重。", ADMIN_CATEGORY_DEBUG)
+	var/header = "<tr><th>类型</th> <th>权重</th> <th>等级</th> <th>概率</th>"
 
 	var/total_weight = debug_hallucination_weighted_list()
 	var/list/all_weights = list()
@@ -187,13 +187,13 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 
 				// Otherwise we moved onto the next hallucination subtype so we can stop
 				else
-					all_weights["<tr><td>[last_type]</td> <td>[last_type_weight] / [total_weight]</td> <td>[initial(hallucination_type.hallucination_tier)]</td> <td>[round(100 * (last_type_weight / total_weight), 0.01)]% chance</td></tr>"] = last_type_weight
+					all_weights["<tr><td>[last_type]</td> <td>[last_type_weight] / [total_weight]</td> <td>[initial(hallucination_type.hallucination_tier)]</td> <td>[round(100 * (last_type_weight / total_weight), 0.01)]% 概率</td></tr>"] = last_type_weight
 
 			// Set last_type to the abstract parent of this hallucination
 			last_type = initial(hallucination_type.abstract_hallucination_parent)
 			// If last_type is the base hallucination it has no distinct subtypes so we can total it up immediately
 			if(last_type == /datum/hallucination)
-				all_weights["<tr><td>[hallucination_type]</td> <td>[this_weight] / [total_weight]</td> <td>[initial(hallucination_type.hallucination_tier)]</td> <td>[round(100 * (this_weight / total_weight), 0.01)]% chance</td></tr>"] = this_weight
+				all_weights["<tr><td>[hallucination_type]</td> <td>[this_weight] / [total_weight]</td> <td>[initial(hallucination_type.hallucination_tier)]</td> <td>[round(100 * (this_weight / total_weight), 0.01)]% 概率</td></tr>"] = this_weight
 				last_type = null
 
 			// Otherwise we start the weight sum for the next entry here
@@ -205,7 +205,7 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 
 	var/page_style = "<style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style>"
 	var/page_contents = "[page_style]<table style=\"width:100%\">[header][jointext(assoc_to_keys(all_weights), "")]</table>"
-	var/datum/browser/popup = new(user.mob, "hallucinationdebug", "Hallucination Weights", 600, 400)
+	var/datum/browser/popup = new(user.mob, "hallucinationdebug", "幻觉权重", 600, 400)
 	popup.set_content(page_contents)
 	popup.open()
 
@@ -227,7 +227,7 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 	return null
 
 /// Helper to give the passed mob the ability to select a hallucination from the list of all hallucination subtypes.
-/proc/select_hallucination_type(mob/user, message = "Select a hallucination subtype", title = "Choose Hallucination")
+/proc/select_hallucination_type(mob/user, message = "选择幻觉子类型", title = "选择幻觉")
 	var/static/list/hallucinations
 	if(!hallucinations)
 		hallucinations = typesof(/datum/hallucination)
@@ -251,17 +251,17 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 			if(initial(delusion_type.abstract_hallucination_parent) == delusion_type)
 				delusions -= delusion_type
 
-	var/chosen = tgui_input_list(user, "Select a delusion type. Custom will allow for custom icon entry.", "Select Delusion", delusions)
+	var/chosen = tgui_input_list(user, "选择妄想类型。选择自定义可指定自定义图标。", "选择妄想", delusions)
 	if(!chosen || !ispath(chosen, /datum/hallucination/delusion))
 		return
 
 	var/list/delusion_args = list()
-	var/static/list/options = list("Yes", "No")
-	var/duration = tgui_input_number(user, "How long should it last in seconds?", "Delusion: Duration", max_value = INFINITY, min_value = 1, default = 30)
-	var/affects_us = (tgui_alert(user, "Should they see themselves as the delusion?", "Delusion: Affects us", options) == "Yes")
-	var/affects_others = (tgui_alert(user, "Should they see everyone else delusion?", "Delusion: Affects others", options) == "Yes")
-	var/skip_nearby = (tgui_alert(user, "Should the delusion only affect people outside of their view?", "Delusion: Skip in view", options) == "Yes")
-	var/play_wabbajack = (tgui_alert(user, "Play the wabbajack sound when it happens?", "Delusion: Wabbajack sound", options) == "Yes")
+	var/static/list/options = list("是", "否")
+	var/duration = tgui_input_number(user, "持续多少秒？", "妄想：持续时间", max_value = INFINITY, min_value = 1, default = 30)
+	var/affects_us = (tgui_alert(user, "是否让目标将自己看成妄想形象？", "妄想：影响自身", options) == "是")
+	var/affects_others = (tgui_alert(user, "是否让目标将其他人看成妄想形象？", "妄想：影响他人", options) == "是")
+	var/skip_nearby = (tgui_alert(user, "是否仅让视野之外的人受到妄想效果影响？", "妄想：跳过视野内目标", options) == "是")
+	var/play_wabbajack = (tgui_alert(user, "发生时是否播放瓦巴杰克音效？", "妄想：瓦巴杰克音效", options) == "是")
 
 	delusion_args = list(
 		chosen,
@@ -274,15 +274,15 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 	)
 
 	if(ispath(chosen, /datum/hallucination/delusion/custom))
-		var/custom_icon_file = input(user, "Pick file for custom delusion:", "Custom Delusion: File") as null|file
+		var/custom_icon_file = input(user, "选择自定义妄想的图标文件：", "自定义妄想：文件") as null|file
 		if(!custom_icon_file)
 			return
 
-		var/custom_icon_state = tgui_input_text(user, "What icon state do you wanna use from the file?", "Custom Delusion: Icon State")
+		var/custom_icon_state = tgui_input_text(user, "使用文件中的哪个图标状态？", "自定义妄想：图标状态")
 		if(!custom_icon_state)
 			return
 
-		var/custom_name = tgui_input_text(user, "What name should it show up as? (Can be empty)", "Custom Delusion: Name", max_length = MAX_NAME_LEN)
+		var/custom_name = tgui_input_text(user, "应显示为什么名称？（可留空）", "自定义妄想：名称", max_length = MAX_NAME_LEN)
 
 		delusion_args += list(
 			custom_icon_file = custom_icon_file,
@@ -294,9 +294,9 @@ ADMIN_VERB(debug_hallucination_weighted_list_per_type, R_DEBUG, "Show Hallucinat
 
 /// Lines the bubblegum hallucinatoin uses when it pops up
 #define BUBBLEGUM_HALLUCINATION_LINES list( \
-		"I AM IMMORTAL.", \
-		"I SHALL TAKE YOUR WORLD.", \
-		"I SEE YOU.", \
-		"YOU CANNOT ESCAPE ME FOREVER.", \
-		"NOTHING CAN HOLD ME.", \
+		"我是不朽的。", \
+		"我将夺取你们的世界。", \
+		"我看见你了。", \
+		"你不可能永远逃脱我的掌控。", \
+		"没有什么能束缚我。", \
 	)

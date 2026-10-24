@@ -15,7 +15,7 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
-
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
@@ -319,7 +319,7 @@ const Settings = (props) => {
                   textAlign="center"
                   fluid
                   color="transparent"
-                  content={f}
+                  content={chineseDisplay(f)}
                   selected={fluidType === f}
                   onClick={() => act('fluid', { fluid: f })}
                 />
@@ -335,8 +335,8 @@ const Settings = (props) => {
               <LabeledList.Item label="Aquarium Mode">
                 <Dropdown
                   width="80%"
-                  selected={currentMode}
-                  options={aquariumModes}
+                  selected={currentMode} displayText={chineseDisplay(currentMode)}
+                  options={chineseDropdownOptions(aquariumModes)}
                   onSelected={(value) =>
                     act('change_mode', { new_mode: value })
                   }

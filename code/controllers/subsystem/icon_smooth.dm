@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(icon_smooth)
-	name = "Icon Smoothing"
+	name = "图标平滑拼接"
 	dependencies = list(
 		/datum/controller/subsystem/atoms,
 	)

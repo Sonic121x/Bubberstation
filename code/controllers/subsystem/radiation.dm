@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(radiation)
-	name = "Radiation"
+	name = "辐射"
 	ss_flags = SS_BACKGROUND | SS_NO_INIT
 
 	wait = 0.5 SECONDS
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(radiation)
 		processing.Cut(1, 2)
 
 /datum/controller/subsystem/radiation/stat_entry(msg)
-	msg = "Pulses:[processing.len]"
+	msg = "脉冲：[processing.len]"
 	return ..()
 
 /datum/controller/subsystem/radiation/proc/pulse(atom/source, datum/radiation_pulse_information/pulse_information)
@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(radiation)
 				continue
 
 			if (irradiate_after_basic_checks(target))
-				target.investigate_log("was irradiated by [source].", INVESTIGATE_RADIATION)
+				target.investigate_log("受到了[source]的辐射。", INVESTIGATE_RADIATION)
 
 		if(MC_TICK_CHECK)
 			break

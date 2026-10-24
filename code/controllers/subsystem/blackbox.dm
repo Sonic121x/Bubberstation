@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(blackbox)
-	name = "Blackbox"
+	name = "黑匣子"
 	wait = 6000
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
@@ -126,8 +126,8 @@ SUBSYSTEM_DEF(blackbox)
 	if(sealed)
 		return FALSE
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name_admin(usr)] sealed the blackbox!")
-	log_game("Blackbox sealed[IsAdminAdvancedProcCall() ? " by [key_name(usr)]" : ""].")
+		message_admins("[key_name_admin(usr)] 封存了黑匣子！")
+	log_game("黑匣子已封存[IsAdminAdvancedProcCall() ? "，操作人：[key_name(usr)]" : ""]。")
 	sealed = TRUE
 	return TRUE
 
@@ -330,7 +330,7 @@ Versioning
 	var/did_they_suicide = HAS_TRAIT_FROM(L, TRAIT_SUICIDED, REF(L)) // simple boolean, did they suicide (true) or not (false)
 
 	if(!did_they_suicide && !first_death.len)
-		first_death["name"] = "[(L.real_name == L.name) ? L.real_name : "[L.real_name] as [L.name]"]"
+		first_death["name"] = "[(L.real_name == L.name) ? L.real_name : "[L.real_name]（化名 [L.name]）"]"
 		first_death["role"] = null
 		first_death["role"] = L.mind.assigned_role.title
 		first_death["area"] = "[AREACOORD(L)]"

@@ -35,14 +35,14 @@
 #define TAG_ANTAG_REROLL "antag_reroll"
 
 
-#define EVENT_TRACK_MUNDANE "Mundane"
-#define EVENT_TRACK_MODERATE "Moderate"
-#define EVENT_TRACK_MAJOR "Major"
-#define EVENT_TRACK_CREWSET "Crewset"
-#define EVENT_TRACK_GHOSTSET "Ghostset"
+#define EVENT_TRACK_MUNDANE "日常事件"
+#define EVENT_TRACK_MODERATE "中等事件"
+#define EVENT_TRACK_MAJOR "重大事件"
+#define EVENT_TRACK_CREWSET "船员反派事件"
+#define EVENT_TRACK_GHOSTSET "幽灵反派事件"
 
-#define ALL_EVENTS "All"
-#define UNCATEGORIZED_EVENTS "Uncategorized"
+#define ALL_EVENTS "全部"
+#define UNCATEGORIZED_EVENTS "未分类"
 
 #define STORYTELLER_WAIT_TIME 20 SECONDS
 
@@ -50,8 +50,8 @@
 
 #define TRACK_FAIL_POINT_PENALTY_MULTIPLIER 0.5
 
-#define GAMEMODE_PANEL_MAIN "Main"
-#define GAMEMODE_PANEL_VARIABLES "Variables"
+#define GAMEMODE_PANEL_MAIN "主页"
+#define GAMEMODE_PANEL_VARIABLES "变量"
 
 /// Reused for multipliers of the thresholds
 #define MUNDANE_POINT_THRESHOLD 1

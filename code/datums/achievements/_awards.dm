@@ -1,7 +1,7 @@
 /datum/award
 	///Name of the achievement, If null it won't show up in the achievement browser. (Handy for inheritance trees)
 	var/name
-	var/desc = "You did it."
+	var/desc = "你做到了。"
 	///The dmi icon file that holds the award's icon state.
 	var/icon = ACHIEVEMENTS_SET
 	///The icon state for this award.
@@ -82,7 +82,7 @@
 
 ///Achievements are one-off awards for usually doing cool things.
 /datum/award/achievement
-	desc = "Achievement for epic people"
+	desc = "献给传奇人物的成就"
 	icon_state = "" // This should warn contributors that do not declare an icon when contributing new achievements.
 	///How many players have earned this achievement
 	var/times_achieved = 0
@@ -92,7 +92,7 @@
 		return
 	holder.data[type] = TRUE
 
-	to_chat(user, span_greenannounce("<B>Achievement unlocked: [name]!</B>"))
+	to_chat(user, span_greenannounce("<B>成就已解锁：[name]！</B>"))
 	var/sound/sound_to_send = LAZYACCESS(GLOB.achievement_sounds, user.client.prefs.read_preference(/datum/preference/choiced/sound_achievement))
 	if(sound_to_send)
 		SEND_SOUND(user, sound_to_send)
@@ -103,7 +103,7 @@
 
 	var/datum/achievement_report/new_report = new /datum/achievement_report()
 
-	new_report.winner = "[(user.real_name == user.name) ? user.real_name : "[user.real_name], as [user.name]"]"
+	new_report.winner = "[(user.real_name == user.name) ? user.real_name : "[user.real_name]，化名[user.name]"]"
 	new_report.cheevo = name
 	if(user.ckey)
 		new_report.winner_key = user.ckey
@@ -120,22 +120,22 @@
 
 /datum/award/achievement/get_ui_data(list/award_data, datum/achievement_data/holder)
 	. = ..()
-	.["achieve_info"] = "Unlocked by [times_achieved] players so far"
+	.["achieve_info"] = "目前已有[times_achieved]名玩家解锁"
 	if(!SSachievements.most_unlocked_achievement)
-		.["achieve_tooltip"] = "No achievement has been unlocked yet. Be the first today!"
+		.["achieve_tooltip"] = "尚无成就被解锁。成为今天的第一人吧！"
 		return
 	if(SSachievements.most_unlocked_achievement == src)
-		.["achieve_tooltip"] = "This is the most unlocked achievement"
+		.["achieve_tooltip"] = "这是解锁人数最多的成就"
 		return
 	var/percent = FLOOR(times_achieved / SSachievements.most_unlocked_achievement.times_achieved * 100, 0.01)
-	.["achieve_tooltip"] = "[(times_achieved && !percent) ? "Less than 0.01" : percent]% compared to the achievement unlocked by the most players: \"[SSachievements.most_unlocked_achievement.name])\""
+	.["achieve_tooltip"] = "解锁人数相当于最热门成就\"[SSachievements.most_unlocked_achievement.name]\"的[(times_achieved && !percent) ? "不到0.01" : percent]%"
 
 /datum/award/achievement/parse_value(raw_value)
 	return raw_value > 0
 
 ///Scores are for leaderboarded things, such as killcount of a specific boss
 /datum/award/score
-	desc = "you did it sooo many times."
+	desc = "你已经做过好——多次了。"
 	category = "Scores"
 
 	var/track_high_scores = TRUE
@@ -180,8 +180,8 @@
 
 ///Defining this here 'cause it's the first score a player should see in the Scores category.
 /datum/award/score/achievements_score
-	name = "Achievements Unlocked"
-	desc = "Don't worry, metagaming is all that matters."
+	name = "已解锁成就数"
+	desc = "别担心，刷成就才是正事。"
 	icon_state = "elephant" //Obey the reference
 	database_id = ACHIEVEMENTS_SCORE
 
@@ -286,7 +286,7 @@
 
 ///Compose the string to send to the user's chat when the progress is made. This one here is generic, but you should override it really.
 /datum/award/score/progress/proc/get_progress_string(progress_string)
-	return span_greenannounce("New progress made for [name]: <B>[progress_string]!</B>")
+	return span_greenannounce("[name]取得新进展：<B>[progress_string]！</B>")
 
 /datum/award/score/progress/load(datum/achievement_data/holder)
 	var/list/results = ..()

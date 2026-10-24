@@ -29,7 +29,7 @@
 //It's really not recommended to use this proc to give feedback, hence why silent is defaulting to true.
 /mob/living/carbon/proc/KnockToFloor(silent = TRUE, ignore_canknockdown = FALSE, knockdown_amt = 1)
 	if(!silent && body_position != LYING_DOWN)
-		to_chat(src, span_warning("You are knocked to the floor!"))
+		to_chat(src, span_warning("你被击倒在地！"))
 	Knockdown(knockdown_amt, ignore_canknockdown)
 
 /mob/living/proc/StaminaKnockdown(stamina_damage, disarm, brief_stun, hardstun, ignore_canknockdown = FALSE, paralyze_amount, knockdown_amt = 1)
@@ -84,7 +84,7 @@
 	switch(deprecise_zone(user.zone_selected))
 		if(BODY_ZONE_HEAD)
 			if(!(target.body_position == LYING_DOWN))
-				target.balloon_alert(user, "not floored!")
+				target.balloon_alert(user, "目标尚未倒地！")
 				return FALSE
 			. = TRUE
 			try_headslam(user, target, affecting)
@@ -111,9 +111,9 @@
 
 /// Attempts to perform a suplex after SUPLEX_TIMER, causing both to be stunned. (Why spacemen are able to do such a thing on reflex, nobody knows.)
 /datum/species/proc/try_suplex(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	target.visible_message(span_danger("[user.name] holds [target.name] tight and starts lifting [target.p_them()] up!"), \
-			span_userdanger("[user.name] holds you tight and lifts you up!"), ignored_mobs=user)
-	to_chat(user, span_danger("You hold [target.name] tight and lift [target.p_them()] up..."))
+	target.visible_message(span_danger("[user.name]紧紧抱住[target.name]，开始将其举起！"), \
+			span_userdanger("[user.name]紧紧抱住你，将你举了起来！"), ignored_mobs=user)
+	to_chat(user, span_danger("你紧紧抱住[target.name]，将其举起……"))
 	user.changeNext_move(SUPLEX_TIMER)
 	if(!do_after(user, SUPLEX_TIMER, target) || !grab_maneuver_state_check(user, target))
 		return FALSE
@@ -124,9 +124,9 @@
 		if(IS_OPAQUE_TURF(next_turf))
 			break
 		moved_turf = next_turf
-	target.visible_message(span_danger("[user.name] suplexes [target.name] down to the ground!"), \
-		span_userdanger("[user.name] suplexes you!"), ignored_mobs=user)
-	to_chat(user, span_danger("You suplex [target.name]!"))
+	target.visible_message(span_danger("[user.name]用背摔将[target.name]摔倒在地！"), \
+		span_userdanger("[user.name]对你使出了背摔！"), ignored_mobs=user)
+	to_chat(user, span_danger("你对[target.name]使出了背摔！"))
 	user.StaminaKnockdown(30, TRUE, TRUE)
 	user.SpinAnimation(7,1)
 	target.SpinAnimation(7,1)
@@ -134,19 +134,19 @@
 	target.StaminaKnockdown(80)
 	target.Paralyze(2 SECONDS)
 	// feels like there should be some funny brute here but iunno
-	log_combat(user, target, "suplexes", "down on the ground (knocking down both)")
+	log_combat(user, target, "背摔", "摔向地面（双方均倒地）")
 
 /// Attempts to perform a headslam, with the user slamming target's head into the floor. (Does not account for the potential nonexistence of aforementioned floor, e.g. space.)
 /datum/species/proc/try_headslam(mob/living/carbon/human/user, mob/living/carbon/human/target, obj/item/bodypart/affecting)
 	var/time_doing = 4 SECONDS
 	if(IS_UNCONSCIOUS_OR_CRIT(target))
 		time_doing = 2 SECONDS
-		target.visible_message(span_danger("[user] holds [target]'s head tightly..."), ignored_mobs = user)
-		to_chat(user, span_danger("You grasp [target]'s head to prepare to slam it down..."))
+		target.visible_message(span_danger("[user]紧紧抓住[target]的头……"), ignored_mobs = user)
+		to_chat(user, span_danger("你抓住[target]的头，准备往地上砸……"))
 	else
-		target.visible_message(span_danger("[user] holds [target]'s head and tries to overpower [target.p_them()]!"), \
-			span_userdanger("You struggle as [user] holds your head and tries to overpower you!"), ignored_mobs = user)
-		to_chat(user, span_danger("You grasp [target]'s head and try to overpower [target.p_them()]..."))
+		target.visible_message(span_danger("[user]抓住[target]的头，试图将其制服！"), \
+			span_userdanger("[user]抓住你的头，试图将你制服，你奋力挣扎！"), ignored_mobs = user)
+		to_chat(user, span_danger("你抓住[target]的头，试图将其制服……"))
 	user.changeNext_move(time_doing)
 	if(!do_after(user, time_doing, target) || !grab_maneuver_state_check(user, target))
 		return
@@ -156,9 +156,9 @@
 	if(armor_block < HEADSMASH_BLOCK_ARMOR)
 		head_knock = TRUE
 
-	target.visible_message(span_danger("[user.name] violently slams [target.name]'s head into the floor!"), \
-		span_userdanger("[user.name] slams your head against the floor!"), ignored_mobs = user)
-	to_chat(user, span_danger("You slam [target.name]'s head against the floor!"))
+	target.visible_message(span_danger("[user.name]将[target.name]的头狠狠砸向地面！"), \
+		span_userdanger("[user.name]将你的头砸向地面！"), ignored_mobs = user)
+	to_chat(user, span_danger("你将[target.name]的头砸向地面！"))
 
 	// wound bonus because if you're doing this you probably really don't like the other guy so you're looking forward to inconveniencing them (with a fracture)
 	var/fun_times_at_the_headbash_factory = (head_knock ? 8 : 3)
@@ -166,7 +166,7 @@
 		target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 15)
 	target.apply_damage(15, BRUTE, affecting, armor_block, wound_bonus = fun_times_at_the_headbash_factory, exposed_wound_bonus = fun_times_at_the_headbash_factory)
 	playsound(target, 'sound/effects/hit_kick.ogg', 70)
-	log_combat(user, target, "headsmashes", "against the floor")
+	log_combat(user, target, "砸头", "砸向地面")
 
 /// Attempts to perform a limb dislocation, with the user violently twisting one of target's limbs (as passed in). Only useful for extremities, because only extremities can eat dislocations.
 /datum/species/proc/try_dislocate(mob/living/carbon/human/user, mob/living/carbon/human/target, obj/item/bodypart/affecting)
@@ -177,20 +177,20 @@
 
 	if (!pregen_data.can_be_applied_to(affecting, random_roll = FALSE))
 		if (!(affecting.biological_state & BIO_JOINTED))
-			to_chat(user, span_warning("[target]'s [affecting.plaintext_zone] has no joint to dislocate!"))
+			to_chat(user, span_warning("[target]的[affecting.plaintext_zone]没有可供扭脱臼的关节！"))
 		return FALSE
 
 	user.changeNext_move(4 SECONDS)
-	target.visible_message(span_danger("[user.name] twists [target.name]'s [affecting.name] violently!"), \
-			span_userdanger("[user.name] twists your [affecting.name] violently!"), ignored_mobs=user)
-	to_chat(user, span_danger("You start twisting [target.name]'s [affecting.name] violently!"))
+	target.visible_message(span_danger("[user.name]猛烈扭转[target.name]的[affecting.name]！"), \
+			span_userdanger("[user.name]猛烈扭转你的[affecting.name]！"), ignored_mobs=user)
+	to_chat(user, span_danger("你开始猛烈扭转[target.name]的[affecting.name]！"))
 	if(!do_after(user, 4 SECONDS, target) || !grab_maneuver_state_check(user, target))
 		return FALSE
-	target.visible_message(span_danger("[user.name] dislocates [target.name]'s [affecting.name]!"), \
-		span_userdanger("[user.name] dislocates your [affecting.name]!"), ignored_mobs=user)
-	to_chat(user, span_danger("You dislocate [target.name]'s [affecting.name]!"))
+	target.visible_message(span_danger("[user.name]将[target.name]的[affecting.name]扭脱臼了！"), \
+		span_userdanger("[user.name]将你的[affecting.name]扭脱臼了！"), ignored_mobs=user)
+	to_chat(user, span_danger("你将[target.name]的[affecting.name]扭脱臼了！"))
 	affecting.force_wound_upwards(/datum/wound/blunt/bone/moderate)
-	log_combat(user, target, "dislocates", "the [affecting.name]")
+	log_combat(user, target, "扭脱臼", "部位：[affecting.name]")
 	return TRUE
 
 #undef HEADSMASH_BLOCK_ARMOR

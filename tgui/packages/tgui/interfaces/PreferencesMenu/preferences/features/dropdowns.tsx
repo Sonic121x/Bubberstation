@@ -7,7 +7,7 @@ import {
 import { Box, Dropdown, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
-
+import { chineseDisplay, chineseDropdownOptions } from 'tgui/localization/zhDisplay';
 import type {
   Feature,
   FeatureChoicedServerData,
@@ -48,8 +48,8 @@ export function generateOptions(
 
   for (const choice of choices) {
     const displayText: ReactNode = serverData.display_names
-      ? serverData.display_names[choice]
-      : capitalizeFirst(choice);
+      ? chineseDisplay(serverData.display_names[choice])
+      : chineseDisplay(capitalizeFirst(choice));
 
     newOptions.push({
       displayText,
@@ -69,7 +69,7 @@ export function FeatureDropdownInput(props: DropdownInputProps) {
       buttons={buttons}
       disabled={disabled || !serverData}
       onSelected={handleSetValue}
-      displayText={displayText ? capitalizeFirst(displayText) : ''}
+      displayText={displayText ? chineseDisplay(capitalizeFirst(displayText)) : ''}
       options={dropdownOptions}
       selected={value}
       width="100%"
@@ -91,8 +91,8 @@ export function FeatureDropdownInputCore(props: FeatureDropdownInputCoreProps) {
       buttons={buttons}
       disabled={disabled || !serverData}
       onSelected={handleSetValue}
-      displayText={displayText ? capitalizeFirst(displayText) : ''}
-      options={dropdownOptions}
+      displayText={displayText ? chineseDisplay(capitalizeFirst(displayText)) : ''}
+      options={chineseDropdownOptions(dropdownOptions)}
       selected={value}
       width="100%"
     />
@@ -113,8 +113,8 @@ export function FeatureIconnedDropdownInput(props: IconnedDropdownInputProps) {
 
     for (const choice of choices) {
       let displayText: ReactNode = serverData.display_names?.[choice]
-        ? serverData.display_names?.[choice]
-        : capitalizeFirst(choice);
+        ? chineseDisplay(serverData.display_names?.[choice])
+        : chineseDisplay(capitalizeFirst(choice));
 
       if (serverData.icons?.[choice]) {
         displayText = (
@@ -150,7 +150,7 @@ export function FeatureIconnedDropdownInput(props: IconnedDropdownInputProps) {
   return (
     <Dropdown
       buttons
-      displayText={displayText ? capitalizeFirst(displayText) : ''}
+      displayText={displayText ? chineseDisplay(capitalizeFirst(displayText)) : ''}
       onSelected={handleSetValue}
       options={dropdownOptions}
       selected={value}

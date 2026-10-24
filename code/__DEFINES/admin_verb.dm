@@ -1,7 +1,7 @@
 /client/CanProcCall(procname)
 	if(findtext(procname, "__avd_") == 1)
-		message_admins("[key_name_admin(usr)] attempted to directly call admin verb '[procname]'.")
-		log_admin("[key_name(usr)] attempted to directly call admin verb '[procname]'.")
+		message_admins("[key_name_admin(usr)]试图直接调用管理员指令“[procname]”。")
+		log_admin("[key_name(usr)]试图直接调用管理员指令“[procname]”。")
 		return FALSE
 	return ..()
 

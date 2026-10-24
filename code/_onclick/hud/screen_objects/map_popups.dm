@@ -4,7 +4,7 @@
  * be used for auto-scaling the map.
  */
 /atom/movable/screen/background
-	name = "background"
+	name = "背景"
 	icon = 'icons/hud/map_backgrounds.dmi'
 	icon_state = "clear"
 	layer = GAME_PLANE

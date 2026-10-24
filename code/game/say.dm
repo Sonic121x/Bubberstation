@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Start name span.
 	var/spanpart2 = "<span class='name'>"
 	//Radio freq/name display
-	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
+	var/freqpart = radio_freq ? "\[[chinese_radio_channel_display(get_radio_name(radio_freq, radio_freq_name))]\] " : "" // BUBBER EDIT: Chinese channel display
 	//Speaker name
 	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
 

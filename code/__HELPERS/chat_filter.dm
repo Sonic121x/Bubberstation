@@ -54,10 +54,10 @@
 
 	var/list/soft_filter_result = CAN_BYPASS_FILTER(user) ? null : is_soft_ic_filtered_for_pdas(message)
 	if (soft_filter_result)
-		if(tgui_alert(user, "Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to send it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "你的消息包含\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"。原因：\"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\"。确定要发送吗？", "敏感词提醒", list("是", "否")) != "是")
 			return FALSE
-		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term in PDA messages. Message: \"[message]\"")
-		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term in PDA messages. Message: \"[message]\"")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 忽略了\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"的敏感词提醒，可能正在 PDA 消息中使用禁用词。消息：\"[message]\"")
+		log_admin_private("[key_name(user)] 忽略了\"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"的敏感词提醒，可能正在 PDA 消息中使用禁用词。消息：\"[message]\"")
 
 	return TRUE
 

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(mapping)
-	name = "Mapping"
+	name = "地图管理"
 	dependencies = list(
 		/datum/controller/subsystem/job,
 		/datum/controller/subsystem/processing/station,
@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(mapping)
 		var/datum/map_config/old_config = current_map
 		current_map = config.defaultmap
 		if(!current_map || current_map.defaulted)
-			to_chat(world, span_boldannounce("Unable to load next or default map config, defaulting to [old_config.map_name]."))
+			to_chat(world, span_boldannounce("无法加载下一张地图或默认地图的配置，将使用 [old_config.map_name]。"))
 			current_map = old_config
 	plane_offset_to_true = list()
 	true_to_offset_planes = list()
@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(mapping)
 		return
 	clearing_reserved_turfs = TRUE
 	SSshuttle.transit_requesters.Cut()
-	message_admins("Clearing dynamic reservation space.")
+	message_admins("正在清理动态预留空间。")
 	var/list/obj/docking_port/mobile/in_transit = list()
 	for(var/i in SSshuttle.transit_docking_ports)
 		var/obj/docking_port/stationary/transit/T = i
@@ -328,7 +328,7 @@ SUBSYSTEM_DEF(mapping)
 		in_transit[T] = T.get_docked()
 	var/go_ahead = world.time + wipe_safety_delay
 	if(in_transit.len)
-		message_admins("Shuttles in transit detected. Attempting to fast travel. Timeout is [wipe_safety_delay/10] seconds.")
+		message_admins("检测到正在航行的穿梭机。正在尝试快速抵达，超时时间为 [wipe_safety_delay/10] 秒。")
 	var/list/cleared = list()
 	for(var/i in in_transit)
 		INVOKE_ASYNC(src, PROC_REF(safety_clear_transit_dock), i, in_transit[i], cleared)
@@ -424,7 +424,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		for (var/i in 1 to total_z)
 			traits += list(default_traits.Copy())
 	else if (total_z != traits.len)  // mismatch
-		INIT_ANNOUNCE("WARNING: [traits.len] trait sets specified for [total_z] z-levels in [path]!")
+		INIT_ANNOUNCE("警告：[path] 中的 [total_z] 个 Z 层被指定了 [traits.len] 组特征！")
 		if (total_z < traits.len)  // ignore extra traits
 			traits.Cut(total_z + 1)
 		while (total_z > traits.len)  // fall back to defaults on extra levels
@@ -465,7 +465,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		SSautomapper.load_templates_from_cache(files)
 	// SKYRAT EDIT ADDITION END
 	if(!silent)
-		add_startup_message("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!") //SKYRAT EDIT CHANGE
+		add_startup_message("已加载 [name]，耗时 [(REALTIMEOFDAY - start_time)/10] 秒！") //SKYRAT EDIT CHANGE
 	return parsed_maps
 
 /datum/controller/subsystem/mapping/proc/loadWorld()
@@ -477,7 +477,7 @@ Used by the AI doomsday and the self-destruct nuke.
 
 	// load the station
 	station_start = world.maxz + 1
-	INIT_ANNOUNCE("Loading [current_map.map_name]...")
+	INIT_ANNOUNCE("正在加载 [current_map.map_name]……")
 	LoadGroup(FailedZs, "Station", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup)
 
 	if(SSdbcore.Connect())
@@ -492,15 +492,15 @@ Used by the AI doomsday and the self-destruct nuke.
 	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
 	else if (!isnull(current_map.minetype) && current_map.minetype != MINETYPE_NONE && current_map.minetype != MINETYPE_ICE)
-		INIT_ANNOUNCE("WARNING: An unknown minetype '[current_map.minetype]' was set! This is being ignored! Update the maploader code!")
+		INIT_ANNOUNCE("警告：设置了未知的采矿区类型 '[current_map.minetype]'，已忽略！请更新地图加载器代码！")
 #endif
 
 	if(LAZYLEN(FailedZs)) //but seriously, unless the server's filesystem is messed up this will never happen
-		var/msg = "RED ALERT! The following map files failed to load: [FailedZs[1]]"
+		var/msg = "红色警报！以下地图文件加载失败：[FailedZs[1]]"
 		if(FailedZs.len > 1)
 			for(var/I in 2 to FailedZs.len)
 				msg += ", [FailedZs[I]]"
-		msg += ". Yell at your server host!"
+		msg += "。请联系服务器维护者！"
 		INIT_ANNOUNCE(msg)
 #undef INIT_ANNOUNCE
 
@@ -608,40 +608,40 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 		holodeck_templates[holo_template.template_id] = holo_template
 
-ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away mission for the station.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(load_away_mission, R_FUN, "加载外出任务", "为本站加载指定的外出任务。", ADMIN_CATEGORY_EVENTS)
 	if(!GLOB.the_gateway)
-		if(tgui_alert(user, "There's no home gateway on the station. You sure you want to continue ?", "Uh oh", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "空间站上没有出发传送门。确定要继续吗？", "注意", list("是", "否")) != "是")
 			return
 
-	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
+	var/list/possible_options = GLOB.potentialRandomZlevels + "自定义"
 	var/away_name
 	var/datum/space_level/away_level
 	var/secret = FALSE
-	if(tgui_alert(user, "Do you want your mission secret? (This will prevent ghosts from looking at your map in any way other than through a living player's eyes.)", "Are you $$$ekret?", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user, "是否将此任务设为秘密？（幽灵将只能通过存活玩家的视角查看该地图。）", "保密任务？", list("是", "否")) == "是")
 		secret = TRUE
-	var/answer = input(user, "What kind?","Away") as null|anything in possible_options
+	var/answer = input(user, "选择哪一种？","外出任务") as null|anything in possible_options
 	switch(answer)
-		if("Custom")
-			var/mapfile = input(user, "Pick file:", "File") as null|file
+		if("自定义")
+			var/mapfile = input(user, "选择文件：", "文件") as null|file
 			if(!mapfile)
 				return
-			away_name = "[mapfile] custom"
-			to_chat(user, span_notice("Loading [away_name]..."), MESSAGE_TYPE_DEBUG)
+			away_name = "[mapfile] 自定义"
+			to_chat(user, span_notice("正在加载 [away_name]……"), MESSAGE_TYPE_DEBUG)
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z(secret)
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(user, span_notice("Loading [away_name]..."), MESSAGE_TYPE_DEBUG)
+				to_chat(user, span_notice("正在加载 [away_name]……"), MESSAGE_TYPE_DEBUG)
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z(secret)
 			else
 				return
 
-	message_admins("Admin [key_name_admin(user)] has loaded [away_name] away mission.")
-	log_admin("Admin [key_name(user)] has loaded [away_name] away mission.")
+	message_admins("管理员 [key_name_admin(user)] 加载了外出任务 [away_name]。")
+	log_admin("管理员 [key_name(user)] 加载了外出任务 [away_name]。")
 	if(!away_level)
-		message_admins("Loading [away_name] failed!")
+		message_admins("加载 [away_name] 失败！")
 		return
 
 /// Adds a new reservation z level. A bit of space that can be handed out on request
@@ -914,21 +914,21 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(IsAdminAdvancedProcCall())
 		if(!check_rights(R_DEBUG))
 			return
-		var/confirmation_string = "This will load every single away mission in the [map_directory] directory. This might cause a bit of lag that can only be cleared on a world restart. Are you sure you want to do this?"
-		confirmation_alert_result = tgui_alert(usr, confirmation_string, "DEBUG ONLY!!!", list("Yes", "Cancel"))
-		if(confirmation_alert_result != "Yes")
+		var/confirmation_string = "这将加载 [map_directory] 目录中的所有外出任务，可能造成只能通过重启服务器才能消除的卡顿。确定要这样做吗？"
+		confirmation_alert_result = tgui_alert(usr, confirmation_string, "仅限调试！！！", list("是", "取消"))
+		if(confirmation_alert_result != "是")
 			return
 
 		var/current_wait_time = CONFIG_GET(number/gateway_delay)
-		switch(tgui_alert(usr, "Do you want to zero out the cooldown for access to these maps? Currently [DisplayTimeText(current_wait_time)]", "OH FUCK!!!", list("Yes", "No", "Cancel")))
-			if("No")
+		switch(tgui_alert(usr, "是否清除进入这些地图的冷却时间？当前为 [DisplayTimeText(current_wait_time)]", "请注意！！！", list("是", "否", "取消")))
+			if("否")
 				new_wait = current_wait_time
-			if("Cancel")
+			if("取消")
 				return
 
 	else
 		start_time = REALTIMEOFDAY
-		var/beginning_message = "Loading all away missions..."
+		var/beginning_message = "正在加载所有外出任务……"
 		to_chat(world, span_boldannounce(beginning_message), MESSAGE_TYPE_DEBUG)
 		log_world(beginning_message)
 		log_mapping(beginning_message)
@@ -946,7 +946,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 
 	if(!isnull(start_time))
 		var/tracked_time = (REALTIMEOFDAY - start_time) / 10
-		var/finished_message = "Loaded [number_of_away_missions] away missions in [tracked_time] second[tracked_time == 1 ? "" : "s"]!"
+		var/finished_message = "已加载 [number_of_away_missions] 个外出任务，耗时 [tracked_time] 秒！"
 		to_chat(world, span_boldannounce(finished_message), MESSAGE_TYPE_DEBUG)
 		log_world(finished_message)
 		log_mapping(finished_message)
@@ -956,8 +956,8 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 		log_mapping(gather_z_level_information())
 		return
 
-	message_admins("[key_name_admin(usr)] has loaded every single away mission in the [map_directory] directory. [ADMIN_SEE_ZLEVEL_LAYOUT]")
-	log_game("[key_name(usr)] has loaded every single away mission in the [map_directory] directory.")
+	message_admins("[key_name_admin(usr)] 已加载 [map_directory] 目录中的所有外出任务。[ADMIN_SEE_ZLEVEL_LAYOUT]")
+	log_game("[key_name(usr)] 已加载 [map_directory] 目录中的所有外出任务。")
 
 /// Lightweight proc that just checks to make sure that all of the expected z-levels were loaded. Split out for clarity from load_all_away_missions()
 /// Argument "checkable_levels" is just a list of the names (typically the filepaths) of the z-levels we were expected to load, which should correspond to the name on the space level datum.
@@ -984,5 +984,5 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	else
 		text = map_name
 	if(webmap_included && !isnull(SSmapping.current_map.mapping_url))
-		text += " | <a href='byond://?action=openWebMap'>(Show Map)</a>"
+		text += " | <a href='byond://?action=openWebMap'>（显示地图）</a>"
 	return text

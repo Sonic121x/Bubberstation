@@ -5,9 +5,9 @@
 
 	var/number_to_ask = round(LAZYLEN(GLOB.joined_player_list) * CONFIG_GET(number/commendation_percent_poll)) + rand(0,1)
 	if(number_to_ask == 0)
-		message_admins("Not enough eligible players to poll for commendations.")
+		message_admins("符合条件的玩家不足，无法征询表扬提名。")
 		return
-	message_admins("Polling [number_to_ask] players for commendations.")
+	message_admins("正在向 [number_to_ask] 名玩家征询表扬提名。")
 
 	// We need the list to be random, otherwise we'll end up always asking the same people to give out commendations.
 	var/list/eligible_player_list = shuffle(GLOB.joined_player_list)
@@ -24,7 +24,7 @@
 
 /// Once the round is actually over, cycle through the ckeys in the hearts list and give them the hearted status
 /datum/controller/subsystem/ticker/proc/handle_hearts()
-	var/list/message = list("The following players were commended this round: ")
+	var/list/message = list("以下玩家在本回合获得了表扬：")
 	var/i = 0
 	for(var/hearted_ckey in hearts)
 		i++
@@ -39,17 +39,17 @@
 /mob/proc/query_heart(attempt=1)
 	if(!client || attempt > 3)
 		return
-	if(attempt == 1 && tgui_alert(src, "Was there another character you noticed being kind this round that you would like to anonymously thank?", "<3?", list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
+	if(attempt == 1 && tgui_alert(src, "本回合是否有其他角色表现友善，让你想匿名表达感谢？", "<3?", list("是", "否"), timeout = 30 SECONDS) != "是")
 		return
 
 	var/heart_nominee
 	switch(attempt)
 		if(1)
-			heart_nominee = tgui_input_text(src, "What was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "对方叫什么名字？只输入姓或名也可能足够。", "<3?", max_length = MAX_NAME_LEN)
 		if(2)
-			heart_nominee = tgui_input_text(src, "Try again, what was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "再试一次，对方叫什么名字？只输入姓或名也可能足够。", "<3?", max_length = MAX_NAME_LEN)
 		if(3)
-			heart_nominee = tgui_input_text(src, "One more try, what was their name? Just a first or last name may be enough.", "<3?", max_length = MAX_NAME_LEN)
+			heart_nominee = tgui_input_text(src, "最后再试一次，对方叫什么名字？只输入姓或名也可能足够。", "<3?", max_length = MAX_NAME_LEN)
 
 	if(!heart_nominee)
 		return
@@ -66,11 +66,11 @@
 		if(heart_contender == src)
 			continue
 
-		switch(tgui_alert(src, "Is this the person: [heart_contender.real_name]?", "<3?", list("Yes!", "Nope", "Cancel"), timeout = 15 SECONDS))
-			if("Yes!")
+		switch(tgui_alert(src, "是这个人吗：[heart_contender.real_name]？", "<3?", list("没错！", "不是", "取消"), timeout = 15 SECONDS))
+			if("没错！")
 				heart_contender.receive_heart(src)
 				return
-			if("Nope")
+			if("不是")
 				continue
 			else
 				return
@@ -91,9 +91,9 @@
 /mob/proc/receive_heart(mob/heart_sender, duration = 24 HOURS, instant = FALSE)
 	if(!client)
 		return
-	to_chat(heart_sender, span_nicegreen("Commendation sent!"))
-	message_admins("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
-	log_admin_private("[key_name(heart_sender)] commended [key_name(src)] [instant ? "(instant)" : ""]")
+	to_chat(heart_sender, span_nicegreen("表扬已送出！"))
+	message_admins("[key_name(heart_sender)] 表扬了 [key_name(src)] [instant ? "（立即生效）" : ""]")
+	log_admin_private("[key_name(heart_sender)] 表扬了 [key_name(src)] [instant ? "（立即生效）" : ""]")
 	if(instant || SSticker.current_state == GAME_STATE_FINISHED)
 		client.adjust_heart(duration)
 	else

@@ -32,27 +32,27 @@
 	var/list/dirs
 	switch(dirtype)
 		if(PIPE_STRAIGHT, PIPE_BENDABLE)
-			dirs = list("[NORTH]" = "Vertical", "[EAST]" = "Horizontal")
+			dirs = list("[NORTH]" = "纵向", "[EAST]" = "横向")
 			if(dirtype == PIPE_BENDABLE)
-				dirs += list("[NORTHWEST]" = "West to North", "[NORTHEAST]" = "North to East",
-							"[SOUTHWEST]" = "South to West", "[SOUTHEAST]" = "East to South")
+				dirs += list("[NORTHWEST]" = "西至北", "[NORTHEAST]" = "北至东",
+							"[SOUTHWEST]" = "南至西", "[SOUTHEAST]" = "东至南")
 		if(PIPE_TRINARY)
-			dirs = list("[NORTH]" = "West South East", "[SOUTH]" = "East North West",
-						"[EAST]" = "North West South", "[WEST]" = "South East North")
+			dirs = list("[NORTH]" = "西南东", "[SOUTH]" = "东北西",
+						"[EAST]" = "北西南", "[WEST]" = "南东北")
 		if(PIPE_TRIN_M)
-			dirs = list("[NORTH]" = "North East South", "[SOUTHWEST]" = "North West South",
-						"[NORTHEAST]" = "South East North", "[SOUTH]" = "South West North",
-						"[WEST]" = "West North East", "[SOUTHEAST]" = "West South East",
-						"[NORTHWEST]" = "East North West", "[EAST]" = "East South West",)
+			dirs = list("[NORTH]" = "北东南", "[SOUTHWEST]" = "北西南",
+						"[NORTHEAST]" = "南东北", "[SOUTH]" = "南西北",
+						"[WEST]" = "西北东", "[SOUTHEAST]" = "西南东",
+						"[NORTHWEST]" = "东北西", "[EAST]" = "东南西",)
 		if(PIPE_UNARY)
-			dirs = list("[NORTH]" = "North", "[SOUTH]" = "South", "[WEST]" = "West", "[EAST]" = "East")
+			dirs = list("[NORTH]" = "北", "[SOUTH]" = "南", "[WEST]" = "西", "[EAST]" = "东")
 		if(PIPE_ONEDIR)
 			dirs = list("[SOUTH]" = name)
 		if(PIPE_UNARY_FLIPPABLE)
-			dirs = list("[NORTH]" = "North", "[EAST]" = "East", "[SOUTH]" = "South", "[WEST]" = "West",
-						"[NORTHEAST]" = "North Flipped", "[SOUTHEAST]" = "East Flipped", "[SOUTHWEST]" = "South Flipped", "[NORTHWEST]" = "West Flipped")
+			dirs = list("[NORTH]" = "北", "[EAST]" = "东", "[SOUTH]" = "南", "[WEST]" = "西",
+						"[NORTHEAST]" = "北（翻转）", "[SOUTHEAST]" = "东（翻转）", "[SOUTHWEST]" = "南（翻转）", "[NORTHWEST]" = "西（翻转）")
 		if(PIPE_ONEDIR_FLIPPABLE)
-			dirs = list("[SOUTH]" = name, "[SOUTHEAST]" = "[name] Flipped")
+			dirs = list("[SOUTH]" = name, "[SOUTHEAST]" = "[name]（翻转）")
 
 	var/list/rows = list()
 	for(var/dir in dirs)

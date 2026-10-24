@@ -10,7 +10,7 @@
 // See initialization order in /code/game/world.dm
 GLOBAL_REAL(Master, /datum/controller/master)
 /datum/controller/master
-	name = "Master"
+	name = "主控制器"
 
 	/// Are we processing (higher values increase the processing delay by n ticks)
 	var/processing = TRUE
@@ -143,7 +143,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
-ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "View the current states of the Subsystem Controllers.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "控制器概览", "查看各子系统控制器的当前状态。", ADMIN_CATEGORY_DEBUG)
 	Master.ui_interact(user.mob)
 
 /datum/controller/master/ui_status(mob/user, datum/ui_state/state)
@@ -224,13 +224,13 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 		if("view_variables")
 			if(!check_rights_for(ui.user.client, R_DEBUG))
 				message_admins(
-					"[key_name(ui.user)] tried to view master controller variables while having improper rights, \
-					this is potentially a malicious exploit and worth noting."
+					"[key_name(ui.user)] 尝试在权限不足的情况下查看主控制器变量，\
+					这可能是恶意利用漏洞的行为，请留意。"
 				)
 
 			var/datum/controller/subsystem/subsystem = locate(params["ref"]) in subsystems
 			if(isnull(subsystem))
-				to_chat(ui.user, span_warning("Failed to locate subsystem."))
+				to_chat(ui.user, span_warning("找不到子系统。"))
 				return
 
 			ui.user.client.debug_variables(subsystem)
@@ -299,10 +299,10 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 		LAZYINITLIST(BadBoy.failure_strikes)
 		switch(++BadBoy.failure_strikes[BadBoy.type])
 			if(2)
-				msg = "The [BadBoy.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
+				msg = "[BadBoy.name] 子系统已连续两次成为控制器重启前最后运行的子系统。现在将尝试恢复它，若再次发生则会将其禁用。"
 				FireHim = TRUE
 			if(3)
-				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be put offline."
+				msg = "[BadBoy.name] 子系统似乎导致主控制器不稳定，将被停用。"
 				BadBoy.ss_flags |= SS_NO_FIRE
 		if(msg)
 			to_chat(GLOB.admins, span_boldannounce("[msg]"))
@@ -315,7 +315,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_chat(world, span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
+		to_chat(world, span_boldannounce("主控制器出现故障，需要重新初始化所有系统。"))
 		Initialize(20, TRUE, FALSE)
 
 // Please don't stuff random bullshit here,
@@ -332,7 +332,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
-	add_startup_message("Initializing subsystems...") //SKYRAT EDIT CHANGE - Custom HTML Lobby Screen
+	add_startup_message("正在初始化子系统……") //SKYRAT EDIT CHANGE - Custom HTML Lobby Screen
 	// to_chat(world, span_boldannounce("Initializing subsystems..."), MESSAGE_TYPE_DEBUG) SKYRAT EDIT ORIGINAL
 
 	var/list/stage_sorted_subsystems = new(INITSTAGE_MAX)
@@ -420,7 +420,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 		// Can't initialize them if they have circular dependencies, there's no real failsafe here.
 		stack_trace("ERROR: CRITICAL: MC: The following subsystems have circular dependencies: [jointext(debug_msg, " -> ")]")
-		to_chat(world, span_bolddanger("CRITICAL: Failed to initialize [jointext(usr_msg, ", ")]"), MESSAGE_TYPE_DEBUG)
+		to_chat(world, span_bolddanger("严重错误：无法初始化 [jointext(usr_msg, ", ")]"), MESSAGE_TYPE_DEBUG)
 
 	for (var/datum/controller/subsystem/subsystem as anything in sorted_subsystems)
 		var/subsystem_init_stage = subsystem.init_stage
@@ -450,14 +450,14 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 				SetRunLevel(1) // Intentionally not using the defines here because the MC doesn't care about them
 			// Loop.
 			Master.StartProcessing(0)
-			add_startup_message("Clearing clutter...") //SKYRAT EDIT ADDITION
+			add_startup_message("正在清理杂项……") //SKYRAT EDIT ADDITION
 
 
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 
 
-	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
+	var/msg = "初始化完成，耗时 [time] 秒！"
 	to_chat(world, span_boldannounce("[msg]"), MESSAGE_TYPE_DEBUG)
 	log_world(msg)
 	SSticker.timeLeft = SSticker.start_at
@@ -535,19 +535,19 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	switch(result)
 		if(SS_INIT_FAILURE)
-			message_prefix = "Failed to initialize [subsystem.name] subsystem after"
+			message_prefix = "[subsystem.name] 子系统初始化失败，耗时"
 			chat_warning = TRUE
 		if(SS_INIT_SUCCESS, SS_INIT_NO_MESSAGE)
-			message_prefix = "Initialized [subsystem.name] subsystem within"
+			message_prefix = "[subsystem.name] 子系统初始化完成，耗时"
 		if(SS_INIT_NO_NEED)
 			// This SS is disabled or is otherwise shy.
 			return
 		else
 			// SS_INIT_NONE or an invalid value.
-			message_prefix = "Initialized [subsystem.name] subsystem with errors within"
+			message_prefix = "[subsystem.name] 子系统初始化完成但存在错误，耗时"
 			chat_warning = TRUE
 
-	var/message = "[message_prefix] [seconds] second[seconds == 1 ? "" : "s"]!"
+	var/message = "[message_prefix] [seconds] 秒！"
 	// SKYRAT EDIT REMOVAL BEGIN -- chat_message not used anymore due to change below
 	// var/chat_message = chat_warning ? span_boldwarning(message) : span_boldannounce(message)
 	// SKYRAT EDIT REMOVAL END
@@ -582,12 +582,12 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	if (rtn >= MC_LOOP_RTN_GRACEFUL_EXIT || processing < 0)
 		return //this was suppose to happen.
 	//loop ended, restart the mc
-	log_game("MC crashed or runtimed, restarting")
-	message_admins("MC crashed or runtimed, restarting")
+	log_game("主控制器崩溃或发生运行时错误，正在重启")
+	message_admins("主控制器崩溃或发生运行时错误，正在重启")
 	var/rtn2 = Recreate_MC()
 	if (rtn2 <= 0)
-		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
-		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+		log_game("无法重建主控制器（错误码：[rtn2]），现由故障保护控制器接管")
+		message_admins("无法重建主控制器（错误码：[rtn2]），现由故障保护控制器接管")
 		Failsafe.defcon = 2
 
 // Main loop.
@@ -1012,7 +1012,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 
 /datum/controller/master/stat_entry(msg)
-	msg = "(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)])"
+	msg = "(运行频率:[Master.processing]) (迭代:[Master.iteration]) (Tick 上限: [round(Master.current_ticklimit, 0.1)])"
 	return msg
 
 

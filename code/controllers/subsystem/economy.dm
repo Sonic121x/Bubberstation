@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(economy)
-	name = "Economy"
+	name = "经济"
 	wait = 5 MINUTES
 	runlevels = RUNLEVEL_GAME
 	///How many paychecks should players start out the round with?
@@ -170,10 +170,10 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/price_update()
 	var/fluff_string = ""
 	if(!HAS_TRAIT(SSeconomy, TRAIT_MARKET_CRASHING))
-		fluff_string = ", but company countermeasures protect <b>YOU</b> from being affected!"
+		fluff_string = "，但公司的应对措施让<b>你</b>免受影响！"
 	else
-		fluff_string = ", and company countermeasures are failing to protect <b>YOU</b> from being affected. We're all doomed!"
-	earning_report = "<b>Sector Economic Report</b><br><br> Sector vendor prices is currently at <b>[SSeconomy.inflation_value()*100]%</b>[fluff_string]<br><br> The station spending power is currently <b>[station_total] [MONEY_NAME_CAPITALIZED]</b>, and the crew's targeted allowance is at <b>[station_target] [MONEY_NAME_CAPITALIZED]</b>.<br><br>[SSstock_market.news_string]"
+		fluff_string = "，而公司的应对措施已无法让<b>你</b>免受影响。我们全完了！"
+	earning_report = "<b>星区经济报告</b><br><br>星区售货机价格目前为基准的 <b>[SSeconomy.inflation_value()*100]%</b>[fluff_string]<br><br>空间站当前购买力为 <b>[station_total] [MONEY_NAME_CAPITALIZED]</b>，船员的目标津贴为 <b>[station_target] [MONEY_NAME_CAPITALIZED]</b>。<br><br>[SSstock_market.news_string]"
 	var/update_alerts = FALSE
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_ECONOMY_ALERTS) && (living_player_count() > 1))
 		var/datum/bank_account/moneybags
@@ -185,11 +185,11 @@ SUBSYSTEM_DEF(economy)
 			if(!moneybags || moneybags.account_balance < current_acc.account_balance)
 				moneybags = current_acc
 		if (moneybags)
-			earning_report += "Our GMM Spotlight would like to alert you that <b>[moneybags.account_holder]</b> is your station's most affulent crewmate! They've hit it big with [moneybags.account_balance] [MONEY_NAME] saved. "
+			earning_report += "GMM 焦点栏目提醒您，<b>[moneybags.account_holder]</b>是本站最富有的船员！其积蓄已高达 [moneybags.account_balance] [MONEY_NAME]。"
 			update_alerts = TRUE
 			inflict_moneybags(moneybags)
-	earning_report += "That's all from the <i>Nanotrasen Economist Division</i>."
-	GLOB.news_network.submit_article(earning_report, "Station Earnings Report", NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts)
+	earning_report += "以上是<i>纳米传讯经济分析部</i>的全部报道。"
+	GLOB.news_network.submit_article(earning_report, "空间站收益报告", NEWSCASTER_STATION_ANNOUNCEMENTS, null, update_alert = update_alerts)
 	return TRUE
 
 /**

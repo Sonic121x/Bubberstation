@@ -32,7 +32,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/traitor
-	name = "Traitors"
+	name = "叛徒"
 	config_tag = "Roundstart Traitor"
 	preview_antag_datum = /datum/antagonist/traitor
 	pref_flag = ROLE_TRAITOR
@@ -44,7 +44,7 @@
 	candidate.add_antag_datum(/datum/antagonist/traitor)
 
 /datum/dynamic_ruleset/roundstart/malf_ai
-	name = "Malfunctioning AI"
+	name = "失控 AI"
 	config_tag = "Roundstart Malfunctioning AI"
 	pref_flag = ROLE_MALF
 	preview_antag_datum = /datum/antagonist/malf_ai
@@ -75,7 +75,7 @@
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_HUMAN_AI)
 
 /datum/dynamic_ruleset/roundstart/blood_brother
-	name = "Blood Brothers"
+	name = "血盟兄弟"
 	config_tag = "Roundstart Blood Brothers"
 	preview_antag_datum = /datum/antagonist/brother
 	pref_flag = ROLE_BROTHER
@@ -87,7 +87,7 @@
 	candidate.add_antag_datum(/datum/antagonist/brother)
 
 /datum/dynamic_ruleset/roundstart/changeling
-	name = "Changelings"
+	name = "变形怪"
 	config_tag = "Roundstart Changeling"
 	preview_antag_datum = /datum/antagonist/changeling
 	pref_flag = ROLE_CHANGELING
@@ -102,7 +102,7 @@
 // They have their static, so unlike blood worms who spawn in the middle of the round, they just kinda tend to do nothing. So having at least 2 is ideal.
 // This way, if one ends up being a fluke, the other can hopefully pick up the slack. It's a semi-rare event, so having a massive chance to just fizzle out isn't ideal.
 /datum/dynamic_ruleset/roundstart/blood_worm
-	name = "Blood Worms"
+	name = "血虫"
 	config_tag = "Roundstart Blood Worm"
 	preview_antag_datum = /datum/antagonist/blood_worm
 	pref_flag = ROLE_BLOOD_WORM
@@ -133,7 +133,7 @@
 	worm.enter_host(host, silent = TRUE, gain_progress = FALSE)
 
 /datum/dynamic_ruleset/roundstart/heretic
-	name = "Heretics"
+	name = "异教徒"
 	config_tag = "Roundstart Heretics"
 	preview_antag_datum = /datum/antagonist/heretic
 	pref_flag = ROLE_HERETIC
@@ -145,7 +145,7 @@
 	candidate.add_antag_datum(/datum/antagonist/heretic)
 
 /datum/dynamic_ruleset/roundstart/wizard
-	name = "Wizard"
+	name = "巫师"
 	config_tag = "Roundstart Wizard"
 	preview_antag_datum = /datum/antagonist/wizard
 	pref_flag = ROLE_WIZARD
@@ -176,7 +176,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/blood_cult
-	name = "Blood Cult"
+	name = "血教"
 	config_tag = "Roundstart Blood Cult"
 	preview_antag_datum = /datum/antagonist/cult
 	pref_flag = ROLE_CULTIST
@@ -237,7 +237,7 @@
 	return TRUE
 
 /datum/dynamic_ruleset/roundstart/nukies
-	name = "Nuclear Operatives"
+	name = "核爆特工"
 	config_tag = "Roundstart Nukeops"
 	preview_antag_datum = /datum/antagonist/nukeop
 	pref_flag = ROLE_OPERATIVE
@@ -276,7 +276,7 @@
 	var/obj/effect/landmark/nukeop_elevator/exterior/exterior = locate() in GLOB.landmarks_list
 	if(isnull(interior) || isnull(exterior))
 		stack_trace("Failed to find nukie elevator landmarks during load!")
-		message_admins("Failed to find nukie elevator landmarks during load, you might have some stuck nukies that need help.")
+		message_admins("加载时未找到核爆特工电梯地标，可能有核爆特工被困，需要帮助。")
 		return
 
 	var/turf/top_right_interior = get_turf(interior)
@@ -299,7 +299,7 @@
 		)
 		if(isnull(destination_turf))
 			stack_trace("Failed to find destination turf for nukie elevator!")
-			message_admins("Failed to find corresponding elevator turf for nuke ops, you might have some stuck nukies that need help.")
+			message_admins("未找到核爆特工对应的电梯地块，可能有核爆特工被困，需要帮助。")
 			continue
 
 		for(var/atom/movable/thing in elevator_turf)
@@ -374,7 +374,7 @@
 			SSticker.news_report = OPERATIVE_SKIRMISH
 
 /datum/dynamic_ruleset/roundstart/nukies/clown
-	name = "Clown Operatives"
+	name = "小丑特工"
 	config_tag = "Roundstart Clownops"
 	preview_antag_datum = /datum/antagonist/nukeop/clownop
 	pref_flag = ROLE_CLOWN_OPERATIVE
@@ -390,7 +390,7 @@
 		candidate.add_antag_datum(/datum/antagonist/nukeop/clownop)
 
 /datum/dynamic_ruleset/roundstart/revolution
-	name = "Revolution"
+	name = "革命"
 	config_tag = "Roundstart Revolution"
 	preview_antag_datum = /datum/antagonist/rev/head
 	pref_flag = ROLE_REV_HEAD
@@ -428,12 +428,12 @@
 			head_check++
 
 	if(head_check < heads_necessary)
-		log_dynamic("[config_tag]: Not enough heads of staff were present to start a revolution.")
+		log_dynamic("[config_tag]：在场部门主管人数不足，无法发动革命。")
 		addtimer(CALLBACK(src, PROC_REF(revs_execution_failed)), 1 MINUTES, TIMER_UNIQUE|TIMER_DELETE_ME)
 		return
 
 	if(!can_be_headrev(candidate, TRUE))
-		log_dynamic("[config_tag]: [key_name(candidate)] was not eligible to be a headrev after the timer expired - finding a replacement.")
+		log_dynamic("[config_tag]：计时结束后，[key_name(candidate)]不符合革命领袖资格，正在寻找替代人选。")
 		find_another_headrev()
 		return
 
@@ -451,10 +451,10 @@
 		if(!can_be_headrev(upstanding_citizen.mind, TRUE))
 			continue
 		reveal_head(upstanding_citizen.mind)
-		log_dynamic("[config_tag]: [key_name(upstanding_citizen)] was selected as a replacement headrev.")
+		log_dynamic("[config_tag]：[key_name(upstanding_citizen)]被选为替补革命领袖。")
 		return
 
-	log_dynamic("[config_tag]: Failed to find a replacement headrev.")
+	log_dynamic("[config_tag]：未能找到替补革命领袖。")
 	addtimer(CALLBACK(src, PROC_REF(revs_execution_failed)), 1 MINUTES, TIMER_UNIQUE|TIMER_DELETE_ME)
 
 /datum/dynamic_ruleset/roundstart/revolution/proc/revs_execution_failed()
@@ -462,12 +462,12 @@
 		return
 	// Execution is effectively cancelled by this point, but it's not like we can go back and refund it
 	SSdynamic.unreported_rulesets += src
-	name += " (Canceled)"
-	log_dynamic("[config_tag]: All headrevs were ineligible after the timer expired, and no replacements could be found. Ruleset canceled.")
-	message_admins("[config_tag]: All headrevs were ineligible after the timer expired, and no replacements could be found. Ruleset canceled.")
+	name += "（已取消）"
+	log_dynamic("[config_tag]：计时结束后，所有革命领袖均不符合资格，且未找到替代人选。规则组已取消。")
+	message_admins("[config_tag]：计时结束后，所有革命领袖均不符合资格，且未找到替代人选。规则组已取消。")
 
 /datum/dynamic_ruleset/roundstart/spies
-	name = "Spies"
+	name = "间谍"
 	config_tag = "Roundstart Spies"
 	preview_antag_datum = /datum/antagonist/spy
 	pref_flag = ROLE_SPY
@@ -484,7 +484,7 @@
 	candidate.add_antag_datum(/datum/antagonist/spy)
 
 /datum/dynamic_ruleset/roundstart/extended
-	name = "Extended"
+	name = "和平模式"
 	config_tag = "Extended"
 	weight = 0
 	min_antag_cap = 0
@@ -497,7 +497,7 @@
 		SSdynamic.rulesets_to_spawn[category] = 0
 
 /datum/dynamic_ruleset/roundstart/meteor
-	name = "Meteor"
+	name = "陨石"
 	config_tag = "Meteor"
 	weight = 0
 	min_antag_cap = 0
@@ -508,7 +508,7 @@
 	GLOB.meteor_mode.start_meteor()
 
 /datum/dynamic_ruleset/roundstart/nations
-	name = "Nations"
+	name = "诸国"
 	config_tag = "Nations"
 	weight = 0
 	min_antag_cap = 0

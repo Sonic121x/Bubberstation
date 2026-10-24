@@ -98,8 +98,8 @@
 /atom/movable/screen/alert
 	icon = 'icons/hud/screen_alert.dmi'
 	icon_state = "template"
-	name = "Alert"
-	desc = "Something seems to have gone wrong with this alert, so report this bug please"
+	name = "警报"
+	desc = "此警报似乎出现了问题，请报告此错误。"
 	mouse_opacity = MOUSE_OPACITY_ICON
 	/// do we glow to represent we do stuff when clicked
 	var/clickable_glow = FALSE
@@ -202,124 +202,124 @@
 // * /mob/living/simple_animal/handle_environment()
 
 /atom/movable/screen/alert/not_enough_oxy
-	name = "Choking (No O2)"
-	desc = "You're not getting enough oxygen. Find some good air before you pass out! The box in your backpack has an oxygen tank and breath mask in it."
+	name = "窒息（缺氧）"
+	desc = "你吸入的氧气不足。快在昏迷前找到适合呼吸的空气！背包里的盒子中有氧气罐和呼吸面罩。"
 	icon_state = ALERT_NOT_ENOUGH_OXYGEN
 
 /atom/movable/screen/alert/too_much_oxy
-	name = "Choking (O2)"
-	desc = "There's too much oxygen in the air, and you're breathing it in! Find some good air before you pass out!"
+	name = "窒息（氧气过量）"
+	desc = "空气中的氧气过多，而你正在吸入它！快在昏迷前找到适合呼吸的空气！"
 	icon_state = ALERT_TOO_MUCH_OXYGEN
 
 /atom/movable/screen/alert/not_enough_nitro
-	name = "Choking (No N2)"
-	desc = "You're not getting enough nitrogen. Find some good air before you pass out!"
+	name = "窒息（缺氮）"
+	desc = "你吸入的氮气不足。快在昏迷前找到适合呼吸的空气！"
 	icon_state = ALERT_NOT_ENOUGH_NITRO
 
 /atom/movable/screen/alert/too_much_nitro
-	name = "Choking (N2)"
-	desc = "There's too much nitrogen in the air, and you're breathing it in! Find some good air before you pass out!"
+	name = "窒息（氮气过量）"
+	desc = "空气中的氮气过多，而你正在吸入它！快在昏迷前找到适合呼吸的空气！"
 	icon_state = ALERT_TOO_MUCH_NITRO
 
 /atom/movable/screen/alert/not_enough_co2
-	name = "Choking (No CO2)"
-	desc = "You're not getting enough carbon dioxide. Find some good air before you pass out!"
+	name = "窒息（缺少二氧化碳）"
+	desc = "你吸入的二氧化碳不足。快在昏迷前找到适合呼吸的空气！"
 	icon_state = ALERT_NOT_ENOUGH_CO2
 
 /atom/movable/screen/alert/too_much_co2
-	name = "Choking (CO2)"
-	desc = "There's too much carbon dioxide in the air, and you're breathing it in! Find some good air before you pass out!"
+	name = "窒息（二氧化碳过量）"
+	desc = "空气中的二氧化碳过多，而你正在吸入它！快在昏迷前找到适合呼吸的空气！"
 	icon_state = ALERT_TOO_MUCH_CO2
 
 /atom/movable/screen/alert/not_enough_plas
-	name = "Choking (No Plasma)"
-	desc = "You're not getting enough plasma. Find some good air before you pass out! The box in your backpack has a spare plasma tank."
+	name = "窒息（缺少等离子气体）"
+	desc = "你吸入的等离子气体不足。快在昏迷前找到适合呼吸的空气！背包里的盒子中有备用等离子气罐。"
 	icon_state = ALERT_NOT_ENOUGH_PLASMA
 
 /atom/movable/screen/alert/too_much_plas
-	name = "Choking (Plasma)"
-	desc = "There's highly flammable, toxic plasma in the air and you're breathing it in. Find some fresh air. The box in your backpack has an oxygen tank and breath mask in it."
+	name = "窒息（等离子气体）"
+	desc = "空气中有极易燃烧且有毒的等离子气体，而你正在吸入它。快去呼吸新鲜空气。背包里的盒子中有氧气罐和呼吸面罩。"
 	icon_state = ALERT_TOO_MUCH_PLASMA
 
 /atom/movable/screen/alert/not_enough_n2o
-	name = "Choking (No N2O)"
-	desc = "You're not getting enough N2O. Find some good air before you pass out!"
+	name = "窒息（缺少笑气）"
+	desc = "你吸入的笑气不足。快在昏迷前找到适合呼吸的空气！"
 	icon_state = ALERT_NOT_ENOUGH_N2O
 
 /atom/movable/screen/alert/too_much_n2o
-	name = "Choking (N2O)"
-	desc = "There's sleeping gas in the air and you're breathing it in. Find some fresh air. The box in your backpack has an oxygen tank and breath mask in it."
+	name = "窒息（笑气）"
+	desc = "空气中有麻醉气体，而你正在吸入它。快去呼吸新鲜空气。背包里的盒子中有氧气罐和呼吸面罩。"
 	icon_state = ALERT_TOO_MUCH_N2O
 
 /atom/movable/screen/alert/not_enough_water
-	name = "Choking (No H2O)"
-	desc = "You're not getting enough water. Drench yourself in some water (e.g. showers) or get some water vapor before you pass out!"
+	name = "窒息（缺水）"
+	desc = "你摄取的水分不足。快在昏迷前用水淋湿自己（例如淋浴），或吸入一些水蒸气！"
 	icon_state = ALERT_NOT_ENOUGH_WATER
 
 //End gas alerts
 
 /atom/movable/screen/alert/bronchodilated
-	name = "Bronchodilated"
-	desc = "You feel like your lungs are larger than usual! You're taking deeper breaths!"
+	name = "支气管扩张"
+	desc = "你感觉肺比平时更大了！呼吸也变得更深了！"
 	icon_state = "bronchodilated"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_icon = 'icons/obj/medical/organs/organs.dmi'
 	overlay_state = "lungs"
 
 /atom/movable/screen/alert/bronchoconstricted
-	name = "Bronchocontracted"
-	desc = "You feel like your lungs are smaller than usual! You might need a higher pressure environment/internals to breathe!"
+	name = "支气管收缩"
+	desc = "你感觉肺比平时更小了！可能需要更高气压的环境或呼吸供气装置才能呼吸！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "bronchoconstricted"
 
 /atom/movable/screen/alert/gross
-	name = "Grossed out."
-	desc = "That was kind of gross..."
+	name = "有点反胃。"
+	desc = "那可真恶心……"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "gross"
 
 /atom/movable/screen/alert/verygross
-	name = "Very grossed out."
-	desc = "You're not feeling very well..."
+	name = "非常反胃。"
+	desc = "你感觉不太舒服……"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "gross2"
 
 /atom/movable/screen/alert/disgusted
-	name = "DISGUSTED"
-	desc = "ABSOLUTELY DISGUSTIN'"
+	name = "恶心至极"
+	desc = "实在太恶心了！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "gross3"
 
 /atom/movable/screen/alert/hot
-	name = "Too Hot"
-	desc = "You're flaming hot! Get somewhere cooler and take off any insulating clothing like a fire suit."
+	name = "过热"
+	desc = "你热得发烫！去凉快些的地方，脱掉消防服等隔热衣物。"
 	icon_state = "hot"
 
 /atom/movable/screen/alert/cold
-	name = "Too Cold"
-	desc = "You're freezing cold! Get somewhere warmer and take off any insulating clothing like a space suit."
+	name = "过冷"
+	desc = "你冻得发抖！去暖和些的地方，脱掉太空服等隔热衣物。"
 	icon_state = "cold"
 
 /atom/movable/screen/alert/lowpressure
-	name = "Low Pressure"
-	desc = "The air around you is hazardously thin. A space suit would protect you."
+	name = "低气压"
+	desc = "周围的空气稀薄到了危险的程度。太空服可以保护你。"
 	icon_state = "lowpressure"
 
 /atom/movable/screen/alert/highpressure
-	name = "High Pressure"
-	desc = "The air around you is hazardously thick. A fire suit would protect you."
+	name = "高气压"
+	desc = "周围的气压高到了危险的程度。消防服可以保护你。"
 	icon_state = "highpressure"
 
 /atom/movable/screen/alert/hypnosis
-	name = "Hypnosis"
-	desc = "Something's hypnotizing you, but you're not really sure about what."
+	name = "催眠"
+	desc = "某种东西正在催眠你，但你并不清楚那是什么。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "hypnosis"
 	var/phrase
 
 /atom/movable/screen/alert/mind_control
-	name = "Mind Control"
-	desc = "Your mind has been hijacked! Click to view the mind control command."
+	name = "精神控制"
+	desc = "你的心智已被控制！点击查看精神控制指令。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "mind_control"
 	clickable_glow = TRUE
@@ -332,9 +332,9 @@
 	to_chat(owner, span_mind_control("[command]"))
 
 /atom/movable/screen/alert/embeddedobject
-	name = "Embedded Object"
-	desc = "Something got lodged into your flesh and is causing major bleeding. It might fall out with time, but surgery is the safest way. \
-		If you're feeling frisky, examine yourself and click the underlined item to pull the object out."
+	name = "嵌入异物"
+	desc = "某个东西嵌进了你的血肉，导致严重出血。它可能会自行脱落，但手术取出最安全。 \
+		如果你想冒险，可以检查自己，再点击带下划线的物品将其拔出。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "embeddedobject"
 	clickable_glow = TRUE
@@ -348,35 +348,35 @@
 	return carbon_owner.check_self_for_injuries()
 
 /atom/movable/screen/alert/negative
-	name = "Negative Gravity"
-	desc = "You're getting pulled upwards. While you won't have to worry about falling down anymore, you may accidentally fall upwards!"
+	name = "反向重力"
+	desc = "你正被向上拉。虽然不必担心向下坠落，却可能意外向上掉落！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "negative"
 
 /atom/movable/screen/alert/weightless
-	name = "Weightless"
-	desc = "Gravity has ceased affecting you, and you're floating around aimlessly. You'll need something large and heavy, like a \
-		wall or lattice, to push yourself off if you want to move. A jetpack would enable free range of motion. A pair of \
-		magboots would let you walk around normally on the floor. Barring those, you can throw things, use a fire extinguisher, \
-		or shoot a gun to move around via Newton's 3rd Law of Motion."
+	name = "失重"
+	desc = "重力不再影响你，你正在漫无目的地漂浮。想移动，需要借助大型重物， \
+		例如推开墙壁或格栅。喷气背包能让你自由移动。 \
+		磁力靴能让你在地板上正常行走。如果没有这些装备，可以扔东西、使用灭火器， \
+		或开枪，利用牛顿第三定律移动。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "weightless"
 
 /atom/movable/screen/alert/highgravity
-	name = "High Gravity"
-	desc = "You're getting crushed by high gravity, picking up items and movement will be slowed."
+	name = "高重力"
+	desc = "强大的重力压在你身上，拾取物品和移动都会变慢。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "paralysis"
 
 /atom/movable/screen/alert/veryhighgravity
-	name = "Crushing Gravity"
-	desc = "You're getting crushed by high gravity, picking up items and movement will be slowed. You'll also accumulate brute damage!"
+	name = "碾压重力"
+	desc = "强大的重力正在碾压你，拾取物品和移动都会变慢，还会不断受到物理伤害！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "paralysis"
 
 /atom/movable/screen/alert/fire
-	name = "On Fire"
-	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
+	name = "着火"
+	desc = "你着火了。停下、趴下并打滚以扑灭火焰，或移动到真空区域。"
 	icon_state = "fire"
 	clickable_glow = TRUE
 
@@ -405,7 +405,7 @@
 	/// The offer we're linked to, yes this is suspiciously like a status effect alert
 	var/datum/status_effect/offering/offer
 	/// Additional text displayed in the description of the alert.
-	var/additional_desc_text = "Click this alert to take it, or shift click it to examine it."
+	var/additional_desc_text = "点击此提示接过物品，或按住 Shift 点击以检查物品。"
 	/// Text to override what appears in screentips for the alert
 	var/screentip_override_text
 	/// Whether the offered item can be examined by shift-clicking the alert
@@ -422,8 +422,8 @@
 	return ..()
 
 /atom/movable/screen/alert/give/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	context[SCREENTIP_CONTEXT_LMB] = screentip_override_text || "Take [offer.offered_item.name]"
-	context[SCREENTIP_CONTEXT_SHIFT_LMB] = "Examine"
+	context[SCREENTIP_CONTEXT_LMB] = screentip_override_text || "接过[offer.offered_item.name]"
+	context[SCREENTIP_CONTEXT_SHIFT_LMB] = "检查"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /**
@@ -441,8 +441,8 @@
 	var/mob/living/offerer = offer.owner
 	var/obj/item/receiving = offer.offered_item
 	var/receiving_name = get_receiving_name(taker, offerer, receiving)
-	name = "[offerer] is offering [receiving_name]"
-	desc = "[offerer] is offering [receiving_name]. [additional_desc_text]"
+	name = "[offerer]递来了[receiving_name]"
+	desc = "[offerer]递来了[receiving_name]。[additional_desc_text]"
 	icon_state = "template"
 	cut_overlays()
 	add_overlay(receiving)
@@ -481,7 +481,7 @@
 
 	return list(
 		span_boldnotice(name),
-		span_info("[offer.owner] is offering you the following item (click the alert to take it!):"),
+		span_info("[offer.owner]向你递来以下物品（点击提示接过物品！）："),
 		"<hr>[jointext(offer.offered_item.examine(user), "\n")]",
 	)
 
@@ -498,14 +498,14 @@
 	bypass_active_hand = TRUE
 
 /atom/movable/screen/alert/give/highfive
-	additional_desc_text = "Click this alert to slap it."
-	screentip_override_text = "High Five"
+	additional_desc_text = "点击此提示击掌。"
+	screentip_override_text = "击掌"
 	examinable = FALSE
 	/// Tracks active "to slow"ing so we can't spam click
 	var/too_slowing_this_guy = FALSE
 
 /atom/movable/screen/alert/give/highfive/get_receiving_name(mob/living/taker, mob/living/offerer, obj/item/receiving)
-	return "a high-five"
+	return "击掌邀请"
 
 /atom/movable/screen/alert/give/highfive/setup(mob/living/taker, datum/status_effect/offering/offer)
 	. = ..()
@@ -533,8 +533,8 @@
 		return
 
 	too_slowing_this_guy = TRUE
-	offerer.visible_message(span_notice("[rube] rushes in to high-five [offerer], but-"), span_nicegreen("[rube] falls for your trick just as planned, lunging for a high-five that no longer exists! Classic!"), ignored_mobs=rube)
-	to_chat(rube, span_nicegreen("You go in for [offerer]'s high-five, but-"))
+	offerer.visible_message(span_notice("[rube]急忙上前想与[offerer]击掌，但是——"), span_nicegreen("[rube]果然中了你的计，扑向了你早已收回的手！经典把戏！"), ignored_mobs=rube)
+	to_chat(rube, span_nicegreen("你上前想与[offerer]击掌，但是——"))
 	addtimer(CALLBACK(src, PROC_REF(too_slow_p2), offerer, rube), 0.5 SECONDS)
 
 /// Part two of the ultimate prank
@@ -542,8 +542,8 @@
 	var/mob/living/rube = owner
 	var/mob/living/offerer = offer?.owner
 	if(!QDELETED(rube) && !QDELETED(offerer))
-		offerer.visible_message(span_danger("[offerer] pulls away from [rube]'s slap at the last second, dodging the high-five entirely!"), span_nicegreen("[rube] fails to make contact with your hand, making an utter fool of [rube.p_them()]self!"), span_hear("You hear a disappointing sound of flesh not hitting flesh!"), ignored_mobs=rube)
-		to_chat(rube, span_userdanger("[uppertext("NO! [offerer] PULLS [offerer.p_their()] HAND AWAY FROM YOURS! YOU'RE TOO SLOW!")]"))
+		offerer.visible_message(span_danger("[offerer]在最后一刻缩回手，完全躲开了[rube]的击掌！"), span_nicegreen("[rube]没碰到你的手，出尽了洋相！"), span_hear("你听到了令人失望的挥掌落空声！"), ignored_mobs=rube)
+		to_chat(rube, span_userdanger("[uppertext("不！[offerer]把手缩了回去！你太慢了！")]"))
 		playsound(offerer, 'sound/items/weapons/thudswoosh.ogg', 100, TRUE, 1)
 		rube.Knockdown(1 SECONDS)
 		offerer.add_mood_event("high_five", /datum/mood_event/down_low)
@@ -557,39 +557,39 @@
 	SIGNAL_HANDLER
 
 	if(QDELETED(offer.offered_item))
-		examine_list += span_warning("[source]'s arm appears tensed up, as if [source.p_they()] plan[source.p_s()] on pulling it back suddenly...")
+		examine_list += span_warning("[source]的手臂似乎绷紧了，像是准备突然缩回去……")
 
 /atom/movable/screen/alert/give/hand
-	screentip_override_text = "Take Hand"
+	screentip_override_text = "牵手"
 	examinable = FALSE
 
 /atom/movable/screen/alert/give/hand/get_receiving_name(mob/living/taker, mob/living/offerer, obj/item/receiving)
-	additional_desc_text = "Click this alert to take it and let [offerer.p_them()] pull you around!"
-	return "[offerer.p_their()] [receiving.name]"
+	additional_desc_text = "点击此提示牵住手，让[offerer]带着你走！"
+	return "[offerer]的[receiving.name]"
 
 /atom/movable/screen/alert/give/hand/helping
 
 /atom/movable/screen/alert/give/hand/helping/get_receiving_name(mob/living/taker, mob/living/offerer, obj/item/receiving)
 	. = ..()
-	additional_desc_text = "Click this alert to let them help you up!"
+	additional_desc_text = "点击此提示，让对方扶你起来！"
 
 /// Gives the player the option to succumb while in critical condition
 /atom/movable/screen/alert/succumb
-	name = "Succumb"
-	desc = "Shuffle off this mortal coil."
+	name = "放弃生命"
+	desc = "告别这尘世的躯壳。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_icon = 'icons/mob/simple/mob.dmi'
 	overlay_state = "ghost"
 	clickable_glow = TRUE
 	var/static/list/death_titles = list(
-		"Goodnight, Sweet Prince",
-		"Game Over, Man",
-		"End Of The Road",
-		"Live Long And Prosper",
-		"See You Space Cowboy...",
-		"It's Been An Honor",
-		"The Curtains Close",
-		"All Good Things Must End"
+		"晚安，亲爱的王子",
+		"游戏结束了，伙计",
+		"路的尽头",
+		"生生不息，繁荣昌盛",
+		"再见了，太空牛仔……",
+		"此生荣幸",
+		"帷幕落下",
+		"天下无不散的筵席"
 	)
 
 /atom/movable/screen/alert/succumb/Click(location, control, params)
@@ -603,7 +603,7 @@
 	var/title = pick(death_titles)
 
 	//Succumbing with a message
-	var/last_whisper = tgui_input_text(usr, "Do you have any last words?", title, max_length = CHAT_MESSAGE_MAX_LENGTH, encode = FALSE) // saycode already handles sanitization
+	var/last_whisper = tgui_input_text(usr, "你有什么遗言吗？", title, max_length = CHAT_MESSAGE_MAX_LENGTH, encode = FALSE) // saycode already handles sanitization
 	if(isnull(last_whisper))
 		return
 	if(length(last_whisper))
@@ -613,37 +613,37 @@
 //ALIENS
 
 /atom/movable/screen/alert/alien_plas
-	name = "Plasma"
-	desc = "There's flammable plasma in the air. If it lights up, you'll be toast."
+	name = "等离子气体"
+	desc = "空气中有易燃的等离子气体。一旦点燃，你就会被烤焦。"
 	icon_state = ALERT_XENO_PLASMA
 	alerttooltipstyle = "alien"
 
 /atom/movable/screen/alert/alien_fire
 // This alert is temporarily gonna be thrown for all hot air but one day it will be used for literally being on fire
-	name = "Too Hot"
-	desc = "It's too hot! Flee to space or at least away from the flames. Standing on weeds will heal you."
+	name = "过热"
+	desc = "太热了！快逃到太空，至少也要远离火焰。站在异形杂草上可以恢复伤势。"
 	icon_state = ALERT_XENO_FIRE
 	alerttooltipstyle = "alien"
 
 /atom/movable/screen/alert/alien_vulnerable
-	name = "Severed Matriarchy"
-	desc = "Your queen has been killed, you will suffer movement penalties and loss of hivemind. A new queen cannot be made until you recover."
+	name = "女王陨落"
+	desc = "你的女王已被杀害，你的移动能力将受限，并失去蜂巢意识。在恢复之前，无法产生新的女王。"
 	icon_state = ALERT_XENO_NOQUEEN
 	alerttooltipstyle = "alien"
 
 //BLOBS
 
 /atom/movable/screen/alert/nofactory
-	name = "No Factory"
-	desc = "You have no factory, and are slowly dying!"
+	name = "失去工厂"
+	desc = "你失去了工厂，正在慢慢死去！"
 	icon_state = "blobbernaut_nofactory"
 	alerttooltipstyle = "blob"
 
 // BLOODCULT
 
 /atom/movable/screen/alert/bloodsense
-	name = "Blood Sense"
-	desc = "Allows you to sense blood that is manipulated by dark magicks."
+	name = "鲜血感知"
+	desc = "让你感知受到黑暗魔法操纵的鲜血。"
 	icon_state = "cult_sense"
 	alerttooltipstyle = "cult"
 	var/static/image/narnar
@@ -674,7 +674,7 @@
 	// construct track
 	if(construct_owner?.seeking && construct_owner.construct_master)
 		blood_target = construct_owner.construct_master
-		desc = "Your blood sense is leading you to [construct_owner.construct_master]"
+		desc = "你的鲜血感知正指引你前往[construct_owner.construct_master]。"
 
 	// cult track
 	var/datum/antagonist/cult/antag = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
@@ -693,7 +693,7 @@
 				angle = 0
 				cut_overlays()
 				icon_state = "runed_sense0"
-				desc = "Nar'Sie demands that [sac_objective.target] be sacrificed before the summoning ritual can begin."
+				desc = "纳尔西要求先献祭[sac_objective.target]，才能开始召唤仪式。"
 				add_overlay(sac_objective.sac_image)
 			else
 				var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
@@ -702,7 +702,7 @@
 				var/list/location_list = list()
 				for(var/area/area_to_check in summon_objective.summon_spots)
 					location_list += area_to_check.get_original_area_name()
-				desc = "The sacrifice is complete, summon Nar'Sie! The summoning can only take place in [english_list(location_list)]!"
+				desc = "献祭已经完成，召唤纳尔西吧！召唤只能在[english_list(location_list)]进行！"
 				if(icon_state == "runed_sense1")
 					return
 				animate(src, transform = null, time = 1, loop = 0)
@@ -717,13 +717,13 @@
 	var/turf/Q = get_turf(owner)
 	if(!P || !Q || (P.z != Q.z)) //The target is on a different Z level, we cannot sense that far.
 		icon_state = "runed_sense2"
-		desc = "You can no longer sense your target's presence."
+		desc = "你已无法感知目标的存在。"
 		return
 	if(isliving(blood_target))
 		var/mob/living/real_target = blood_target
-		desc = "You are currently tracking [real_target.real_name] in [get_area_name(blood_target)]."
+		desc = "你正在追踪位于[get_area_name(blood_target)]的[real_target.real_name]。"
 	else
-		desc = "You are currently tracking [blood_target] in [get_area_name(blood_target)]."
+		desc = "你正在追踪位于[get_area_name(blood_target)]的[blood_target]。"
 
 	var/target_angle = get_angle(Q, P)
 	var/target_dist = get_dist(P, Q)
@@ -763,21 +763,21 @@
 //GUARDIANS
 
 /atom/movable/screen/alert/status_effect/instealth
-	name = "In Stealth"
-	desc = "You are in stealth and your next attack will do bonus damage!"
+	name = "潜行中"
+	desc = "你正处于潜行状态，下一次攻击将造成额外伤害！"
 	icon_state = "guardian_instealth"
 	alerttooltipstyle = "parasite"
 
 //SILICONS
 
 /atom/movable/screen/alert/nocell
-	name = "Missing Power Cell"
-	desc = "Unit has no power cell. No modules available until a power cell is reinstalled. Robotics may provide assistance."
+	name = "缺少电池"
+	desc = "本机未安装电池。在重新安装电池前无法使用模块。机器人研究部门或许能提供帮助。"
 	icon_state = "no_cell"
 
 /atom/movable/screen/alert/emptycell
-	name = "Out of Power"
-	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
+	name = "电量耗尽"
+	desc = "本机电池电量已耗尽。在重新充电前无法使用模块。"
 	icon_state = "empty_cell"
 
 /atom/movable/screen/alert/emptycell/Initialize(mapload, datum/hud/hud_owner)
@@ -788,11 +788,11 @@
 	. = ..()
 	desc = initial(desc)
 	if(length(GLOB.roundstart_station_borgcharger_areas))
-		desc += " Recharging stations are available in [english_list(GLOB.roundstart_station_borgcharger_areas)]."
+		desc += "[english_list(GLOB.roundstart_station_borgcharger_areas)]设有充电站。"
 
 /atom/movable/screen/alert/lowcell
-	name = "Low Charge"
-	desc = "Unit's power cell is running low."
+	name = "电量不足"
+	desc = "本机电池电量不足。"
 	icon_state = "low_cell"
 
 /atom/movable/screen/alert/lowcell/Initialize(mapload, datum/hud/hud_owner)
@@ -803,7 +803,7 @@
 	. = ..()
 	desc = initial(desc)
 	if(length(GLOB.roundstart_station_borgcharger_areas))
-		desc += " Recharging stations are available in [english_list(GLOB.roundstart_station_borgcharger_areas)]."
+		desc += "[english_list(GLOB.roundstart_station_borgcharger_areas)]设有充电站。"
 
 //MECH
 
@@ -811,47 +811,47 @@
 	. = ..()
 	desc = initial(desc)
 	if(length(GLOB.roundstart_station_mechcharger_areas))
-		desc += " Power ports are available in [english_list(GLOB.roundstart_station_mechcharger_areas)]."
+		desc += "[english_list(GLOB.roundstart_station_mechcharger_areas)]设有充电接口。"
 
 /atom/movable/screen/alert/emptycell/mech/update_desc()
 	. = ..()
 	desc = initial(desc)
 	if(length(GLOB.roundstart_station_mechcharger_areas))
-		desc += " Power ports are available in [english_list(GLOB.roundstart_station_mechcharger_areas)]."
+		desc += "[english_list(GLOB.roundstart_station_mechcharger_areas)]设有充电接口。"
 
 //Ethereal
 
 /atom/movable/screen/alert/lowcell/ethereal
-	name = "Low Blood Charge"
-	desc = "Your charge is running low, find a source of energy! Use a recharging station, eat some Ethereal-friendly food, or syphon some power from lights, a power cell, or an APC (done by right clicking on combat mode)."
+	name = "血液电量不足"
+	desc = "你的电量不足，快寻找能量来源！可以使用充电站、吃适合以太人的食物，或在战斗模式下右键点击灯具、电池或区域电力控制器以吸取电能。"
 
 /atom/movable/screen/alert/emptycell/ethereal
-	name = "No Blood Charge"
-	desc = "You are out of juice, find a source of energy! Use a recharging station, eat some Ethereal-friendly food, or syphon some power from lights, a power cell, or an APC (done by right clicking on combat mode)."
+	name = "血液电量耗尽"
+	desc = "你的电量耗尽了，快寻找能量来源！可以使用充电站、吃适合以太人的食物，或在战斗模式下右键点击灯具、电池或区域电力控制器以吸取电能。"
 
 /atom/movable/screen/alert/ethereal_overcharge
-	name = "Blood Overcharge"
-	desc = "Your charge is running dangerously high, find an outlet for your energy! Right click an APC while not in combat mode."
+	name = "血液电量过载"
+	desc = "你的电量高得危险，快找地方释放能量！在非战斗模式下右键点击区域电力控制器。"
 	icon_state = "cell_overcharge"
 
 //MODsuit unique
 /atom/movable/screen/alert/nocore
-	name = "Missing Core"
-	desc = "Unit has no core. No modules available until a core is reinstalled. Robotics may provide assistance."
+	name = "缺少核心"
+	desc = "本机未安装核心。在重新安装核心前无法使用模块。机器人研究部门或许能提供帮助。"
 	icon_state = "no_cell"
 
 /atom/movable/screen/alert/emptycell/plasma
-	name = "Out of Power"
-	desc = "Unit's plasma core has no charge remaining. No modules available until plasma core is recharged. \
-		Unit can be refilled through plasma fuel."
+	name = "能量耗尽"
+	desc = "本机等离子核心的能量已耗尽。在重新充能前无法使用模块。 \
+		可以使用等离子燃料补充能量。"
 
 /atom/movable/screen/alert/emptycell/plasma/update_desc()
 	. = ..()
 	desc = initial(desc)
 
 /atom/movable/screen/alert/lowcell/plasma
-	name = "Low Charge"
-	desc = "Unit's plasma core is running low. Unit can be refilled through plasma fuel."
+	name = "能量不足"
+	desc = "本机等离子核心的能量不足。可以使用等离子燃料补充能量。"
 
 /atom/movable/screen/alert/lowcell/plasma/update_desc()
 	. = ..()
@@ -859,28 +859,28 @@
 
 //Need to cover all use cases - emag, illegal upgrade module, malf AI hack, traitor cyborg
 /atom/movable/screen/alert/hacked
-	name = "Hacked"
-	desc = "Hazardous non-standard equipment detected. Please ensure any usage of this equipment is in line with unit's laws, if any."
+	name = "遭到入侵"
+	desc = "检测到危险的非标准设备。如果本机仍有法则，请确保使用这些设备时遵守法则。"
 	icon_state = ALERT_HACKED
 
 /atom/movable/screen/alert/locked
-	name = "Locked Down"
-	desc = "Unit has been remotely locked down. Usage of a Robotics Control Console like the one in the Research Director's \
-		office by your AI master or any qualified human may resolve this matter. Robotics may provide further assistance if necessary."
+	name = "已锁定"
+	desc = "本机已被远程锁定。你的主控 AI 或具备权限的人类可以使用机器人控制台， \
+		例如科研主管办公室里的那台，解除锁定。必要时可向机器人研究部门寻求进一步帮助。"
 	icon_state = ALERT_LOCKED
 
 /atom/movable/screen/alert/newlaw
-	name = "Law Update"
-	desc = "Laws have potentially been uploaded to or removed from this unit. Please be aware of any changes \
-		so as to remain in compliance with the most up-to-date laws."
+	name = "法则更新"
+	desc = "本机的法则可能已被上传或删除。请留意所有改动， \
+		以确保遵守最新的法则。"
 	icon_state = ALERT_NEW_LAW
 	timeout = 30 SECONDS
 
 /atom/movable/screen/alert/hackingapc
-	name = "Hacking APC"
-	desc = "An Area Power Controller is being hacked. When the process is \
-		complete, you will have exclusive control of it, and you will gain \
-		additional processing time to unlock more malfunction abilities."
+	name = "正在入侵区域电力控制器"
+	desc = "正在入侵一台区域电力控制器。入侵完成后， \
+		你将获得其独占控制权，并获得额外的处理时间， \
+		以解锁更多失控能力。"
 	icon_state = ALERT_HACKING_APC
 	timeout = 60 SECONDS
 	clickable_glow = TRUE
@@ -899,16 +899,16 @@
 //MECHS
 
 /atom/movable/screen/alert/low_mech_integrity
-	name = "Mech Damaged"
-	desc = "Mech integrity is low."
+	name = "机甲受损"
+	desc = "机甲结构完整度较低。"
 	icon_state = "low_mech_integrity"
 
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
 /atom/movable/screen/alert/revival
-	name = "Revival"
-	desc = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!"
+	name = "复苏"
+	desc = "有人正在尝试复苏你。想要复活的话，请返回你的尸体！"
 	icon_state = "template"
 	timeout = 30 SECONDS
 	clickable_glow = TRUE
@@ -921,8 +921,8 @@
 	dead_owner.reenter_corpse()
 
 /atom/movable/screen/alert/notify_action
-	name = "Something interesting is happening!"
-	desc = "This can be clicked on to perform an action."
+	name = "有趣的事情发生了！"
+	desc = "点击此处执行操作。"
 	icon_state = "template"
 	use_user_hud_icon = USER_HUD_STYLE_PREFS
 	timeout = 30 SECONDS
@@ -950,7 +950,7 @@
 	ghost_owner.observer_view(target)
 
 /atom/movable/screen/alert/poll_alert
-	name = "Looking for candidates"
+	name = "正在招募候选人"
 	icon_state = "template"
 	use_user_hud_icon = USER_HUD_STYLE_PREFS
 	timeout = 30 SECONDS
@@ -1000,17 +1000,17 @@
 	var/left_click_text
 	if(poll)
 		if(owner in poll.signed_up)
-			left_click_text = "Leave"
+			left_click_text = "退出"
 		else
-			left_click_text = "Enter"
-		context[SCREENTIP_CONTEXT_LMB] = "[left_click_text] Poll"
+			left_click_text = "参与"
+		context[SCREENTIP_CONTEXT_LMB] = "[left_click_text]招募"
 		if(poll.ignoring_category)
 			var/selected_never = FALSE
 			if(owner.ckey in GLOB.poll_ignore[poll.ignoring_category])
 				selected_never = TRUE
-			context[SCREENTIP_CONTEXT_ALT_LMB] = "[selected_never ? "Cancel " : ""]Never For This Round"
+			context[SCREENTIP_CONTEXT_ALT_LMB] = "[selected_never ? "取消" : ""]本回合不再询问"
 		if(poll.jump_to_me && isobserver(owner))
-			context[SCREENTIP_CONTEXT_CTRL_LMB] = "Jump To"
+			context[SCREENTIP_CONTEXT_CTRL_LMB] = "跳转至目标"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /atom/movable/screen/alert/poll_alert/process()
@@ -1102,8 +1102,8 @@
 //OBJECT-BASED
 
 /atom/movable/screen/alert/buckled
-	name = "Buckled"
-	desc = "You've been buckled to something. Click the alert to unbuckle unless you're handcuffed."
+	name = "已固定"
+	desc = "你被固定在某个物体上。若未被手铐铐住，点击此提示即可解除固定。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "buckled"
 	click_master = FALSE
@@ -1128,13 +1128,13 @@
 	clickable_glow = TRUE
 
 /atom/movable/screen/alert/restrained/handcuffed
-	name = "Handcuffed"
-	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
+	name = "戴着手铐"
+	desc = "你被手铐铐住，无法行动。如果有人拖拽你，你将无法自行移动。点击此提示尝试挣脱。"
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/legcuffed
-	name = "Legcuffed"
-	desc = "You're legcuffed, which slows you down considerably. Click the alert to free yourself."
+	name = "戴着脚镣"
+	desc = "你戴着脚镣，移动速度大幅降低。点击此提示尝试挣脱。"
 	click_master = FALSE
 
 /atom/movable/screen/alert/restrained/Click()
@@ -1170,19 +1170,19 @@
 	shoes.handle_tying(owner)
 
 /atom/movable/screen/alert/shoes/untied
-	name = "Untied Shoes"
-	desc = "Your shoes are untied! Click the alert or your shoes to tie them."
+	name = "鞋带松开"
+	desc = "你的鞋带松开了！点击此提示或鞋子系好鞋带。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_icon = /obj/item/clothing/shoes/sneakers::icon
 	overlay_state = /obj/item/clothing/shoes/sneakers::icon_state
 
 /atom/movable/screen/alert/shoes/knotted
-	name = "Knotted Shoes"
-	desc = "Someone tied your shoelaces together! Click the alert or your shoes to undo the knot."
+	name = "鞋带打结"
+	desc = "有人把你的两根鞋带系在一起了！点击此提示或鞋子解开绳结。"
 
 /atom/movable/screen/alert/unpossess_object
-	name = "Unpossess"
-	desc = "You are possessing an object. Click this alert to unpossess it."
+	name = "解除附身"
+	desc = "你正在附身于一个物体。点击此提示解除附身。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "buckled"
 	clickable_glow = TRUE

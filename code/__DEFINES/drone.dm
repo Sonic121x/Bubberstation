@@ -6,9 +6,9 @@ GLOBAL_VAR_INIT(drone_machine_blacklist_enabled, FALSE)
 #define DRONE_TOTAL_LAYERS 1
 
 /// Message displayed when new drone spawns in drone network
-#define DRONE_NET_CONNECT span_notice("DRONE NETWORK: [name] connected.")
+#define DRONE_NET_CONNECT span_notice("无人机网络：[name]已连接。")
 /// Message displayed when drone in network dies
-#define DRONE_NET_DISCONNECT span_danger("DRONE NETWORK: [name] is not responding.")
+#define DRONE_NET_DISCONNECT span_danger("无人机网络：[name]无响应。")
 
 /// Maintenance Drone icon_state (multiple colors)
 #define MAINTDRONE "drone_maint"

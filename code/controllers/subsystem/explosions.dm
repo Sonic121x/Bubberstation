@@ -6,7 +6,7 @@
 GLOBAL_LIST_EMPTY(explosions)
 
 SUBSYSTEM_DEF(explosions)
-	name = "Explosions"
+	name = "爆炸"
 	priority = FIRE_PRIORITY_EXPLOSIONS
 	wait = 1
 	ss_flags = SS_TICKER|SS_NO_INIT
@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(explosions)
 
 
 /datum/controller/subsystem/explosions/stat_entry(msg)
-	msg += "\n  Cost:{"
+	msg += "\n  耗时:{"
 	msg += "LT:[round(cost_lowturf,1)]|"
 	msg += "MT:[round(cost_medturf,1)]|"
 	msg += "HT:[round(cost_highturf,1)]|"
@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(explosions)
 
 	msg += "} "
 
-	msg += "\n  Count:{"
+	msg += "\n  数量:{"
 	msg += "LT:[lowturf.len]|"
 	msg += "MT:[medturf.len]|"
 	msg += "HT:[highturf.len]|"
@@ -86,8 +86,8 @@ SUBSYSTEM_DEF(explosions)
 	throwturf -= T
 	held_throwturf -= T
 
-ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effect of a bomb would be.", ADMIN_CATEGORY_DEBUG)
-	var/newmode = tgui_alert(user, "Use reactionary explosions?","Check Bomb Impact", list("Yes", "No"))
+ADMIN_VERB(check_bomb_impacts, R_DEBUG, "查看炸弹影响", "预览炸弹的爆炸效果。", ADMIN_CATEGORY_DEBUG)
+	var/newmode = tgui_alert(user, "使用考虑障碍物阻挡的爆炸模拟吗？","查看炸弹影响", list("是", "否"))
 	var/turf/epicenter = get_turf(user.mob)
 	if(!epicenter)
 		return
@@ -95,27 +95,27 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 	var/dev = 0
 	var/heavy = 0
 	var/light = 0
-	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = tgui_input_list(user, "Pick the bomb size", "Bomb Size?", choices)
+	var/list/choices = list("小型炸弹","中型炸弹","大型炸弹","自定义炸弹")
+	var/choice = tgui_input_list(user, "选择炸弹规模", "炸弹规模", choices)
 	switch(choice)
 		if(null)
 			return 0
-		if("Small Bomb")
+		if("小型炸弹")
 			dev = 1
 			heavy = 2
 			light = 3
-		if("Medium Bomb")
+		if("中型炸弹")
 			dev = 2
 			heavy = 3
 			light = 4
-		if("Big Bomb")
+		if("大型炸弹")
 			dev = 3
 			heavy = 5
 			light = 7
-		if("Custom Bomb")
-			dev = input(user, "Devastation range (Tiles):") as num
-			heavy = input(user, "Heavy impact range (Tiles):") as num
-			light = input(user, "Light impact range (Tiles):") as num
+		if("自定义炸弹")
+			dev = input(user, "毁灭范围（格）：") as num
+			heavy = input(user, "重度冲击范围（格）：") as num
+			light = input(user, "轻度冲击范围（格）：") as num
 
 	var/max_range = max(dev, heavy, light)
 	var/x0 = epicenter.x
@@ -129,7 +129,7 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 		var/dist = CHEAP_HYPOTENUSE(our_x, our_y, x0, y0)
 		var/block = 0
 
-		if(newmode == "Yes")
+		if(newmode == "是")
 			if(explode != epicenter)
 				var/our_block = cached_exp_block[get_step_towards(explode, epicenter)]
 				block += our_block
@@ -330,7 +330,7 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 	var/started_at = REALTIMEOFDAY
 
 	// Now begins a bit of a logic train to find out whodunnit.
-	var/who_did_it = "N/A"
+	var/who_did_it = "不适用"
 	var/who_did_it_game_log = "N/A"
 
 	// Projectiles have special handling. They rely on a firer var and not fingerprints. Check special cases for firer being
@@ -341,7 +341,7 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 			var/obj/vehicle/sealed/mecha/firing_mecha = fired_projectile.firer
 			var/list/mob/drivers = firing_mecha.return_occupants()
 			if(length(drivers))
-				who_did_it = "\[Mecha drivers:"
+				who_did_it = "\[机甲驾驶员："
 				who_did_it_game_log = "\[Mecha drivers:"
 				for(var/mob/driver in drivers)
 					who_did_it += " [ADMIN_LOOKUPFLW(driver)]"
@@ -349,10 +349,10 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 				who_did_it += "\]"
 				who_did_it_game_log += "\]"
 		else if(ismob(fired_projectile.firer))
-			who_did_it = "\[Projectile firer: [ADMIN_LOOKUPFLW(fired_projectile.firer)]\]"
+			who_did_it = "\[弹射物发射者：[ADMIN_LOOKUPFLW(fired_projectile.firer)]\]"
 			who_did_it_game_log = "\[Projectile firer: [key_name(fired_projectile.firer)]\]"
 		else
-			who_did_it = "\[Projectile firer: [ADMIN_LOOKUPFLW(fired_projectile.firer?.fingerprintslast)]\]"
+			who_did_it = "\[弹射物发射者：[ADMIN_LOOKUPFLW(fired_projectile.firer?.fingerprintslast)]\]"
 			who_did_it_game_log = "\[Projectile firer: [key_name(fired_projectile.firer.fingerprintslast)]\]"
 	// Otherwise if the explosion cause is an atom, try get the fingerprints.
 	else if(istype(explosion_cause))
@@ -360,7 +360,7 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "See what the effec
 		who_did_it_game_log = key_name(explosion_cause.fingerprintslast)
 
 	if(adminlog)
-		message_admins("Explosion with size (Devast: [devastation_range], Heavy: [heavy_impact_range], Light: [light_impact_range], Flame: [flame_range], Flash: [flash_range]) in [ADMIN_VERBOSEJMP(epicenter)]. Possible cause: [explosion_cause]. Last fingerprints: [who_did_it].")
+		message_admins("[ADMIN_VERBOSEJMP(epicenter)]发生爆炸，范围为（毁灭：[devastation_range]，重度：[heavy_impact_range]，轻度：[light_impact_range]，火焰：[flame_range]，闪光：[flash_range]）。可能原因：[explosion_cause]。最后留下的指纹：[who_did_it]。")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range], [flash_range]) in [loc_name(epicenter)].  Possible cause: [explosion_cause]. Last fingerprints: [who_did_it_game_log].")
 
 	var/x0 = epicenter.x

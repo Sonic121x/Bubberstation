@@ -13,7 +13,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
-
+import { radioDisplay } from './common/radioDisplay';
 type RadioData = {
   freqlock: BooleanLike;
   frequency: number;
@@ -61,7 +61,7 @@ export const Radio = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Frequency">
+            <LabeledList.Item label="频率">
               {(freqlock && (
                 <Box inline color="light-gray">
                   {`${toFixed(frequency / 10, 1)} kHz`}
@@ -86,11 +86,11 @@ export const Radio = (props) => {
               )}
               {tunedChannel && (
                 <Box inline color={tunedChannel.color} ml={2}>
-                  [{tunedChannel.name}]
+                  [{radioDisplay(tunedChannel.name)}]
                 </Box>
               )}
             </LabeledList.Item>
-            <LabeledList.Item label="Audio">
+            <LabeledList.Item label="音频">
               <Button
                 textAlign="center"
                 width="37px"
@@ -110,7 +110,7 @@ export const Radio = (props) => {
                   ml={1}
                   icon="bullhorn"
                   selected={useCommand}
-                  content={`High volume ${useCommand ? 'ON' : 'OFF'}`}
+                  content={`高音量：${useCommand ? '开启' : '关闭'}`}
                   onClick={() => act('command')}
                 />
               )}
@@ -119,16 +119,16 @@ export const Radio = (props) => {
                   ml={1}
                   icon="bullhorn"
                   selected={subspace}
-                  content={`Subspace Tx ${subspace ? 'ON' : 'OFF'}`}
+                  content={`子空间传输：${subspace ? '开启' : '关闭'}`}
                   onClick={() => act('subspace')}
                 />
               )}
             </LabeledList.Item>
             {(!!subspace || channels.length > 0) && (
-              <LabeledList.Item label="Channels">
+              <LabeledList.Item label="频道">
                 {channels.length === 0 && (
                   <Box inline color="bad">
-                    No encryption keys installed.
+                    未安装加密密钥。
                   </Box>
                 )}
                 <Stack vertical>
@@ -137,7 +137,7 @@ export const Radio = (props) => {
                       <Button
                         icon={channel.status ? 'check-square-o' : 'square-o'}
                         selected={channel.status}
-                        content={channel.name}
+                        content={radioDisplay(channel.name)}
                         onClick={() =>
                           act('channel', {
                             channel: channel.name,
@@ -158,7 +158,7 @@ export const Radio = (props) => {
                             })
                           }
                         >
-                          Tune
+                          调谐
                         </Button>
                       )}
                     </Box>

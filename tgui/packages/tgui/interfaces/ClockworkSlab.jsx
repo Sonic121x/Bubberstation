@@ -11,7 +11,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
@@ -343,7 +343,7 @@ const ClockworkButtonSelection = (props) => {
         {tabs.map((tab) => (
           <Table.Cell key={tab} collapsing>
             <Button key={tab} fluid onClick={() => setSelectedTab(tab)}>
-              {tab}
+              {chineseDisplay(tab)}
             </Button>
           </Table.Cell>
         ))}

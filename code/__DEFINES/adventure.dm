@@ -31,11 +31,11 @@
 
 
 // Scanner bands, use these to guess what's in the site and prepare drone accordingly.
-#define EXOSCANNER_BAND_PLASMA "Plasma absorption band"
-#define EXOSCANNER_BAND_LIFE "Hydrocarbons/Molecular oxygen"
-#define EXOSCANNER_BAND_TECH "Narrow-band radio waves"
-#define EXOSCANNER_BAND_RADIATION "Exotic Radiation"
-#define EXOSCANNER_BAND_DENSITY "Increased Density"
+#define EXOSCANNER_BAND_PLASMA "等离子体吸收谱带"
+#define EXOSCANNER_BAND_LIFE "碳氢化合物/氧分子"
+#define EXOSCANNER_BAND_TECH "窄带无线电波"
+#define EXOSCANNER_BAND_RADIATION "异种辐射"
+#define EXOSCANNER_BAND_DENSITY "密度增高"
 // Exodrone tools
 #define EXODRONE_TOOL_WELDER "welder"
 #define EXODRONE_TOOL_TRANSLATOR "translator"
@@ -44,11 +44,11 @@
 #define EXODRONE_TOOL_DRILL "drill"
 
 GLOBAL_LIST_INIT(exodrone_tool_metadata,list(
-	EXODRONE_TOOL_WELDER = list("description"="A heavy duty welder.","icon"="burn"),
-	EXODRONE_TOOL_TRANSLATOR = list("description"="Powerful translation and data recording software.","icon"="language"),
-	EXODRONE_TOOL_LASER = list("description"="Multipurpose tool suitable for combat and precision cutting.","icon"="bolt"),
-	EXODRONE_TOOL_MULTITOOL = list("description"="Multipurpose tool for electronics manipulation. Comes with suite of radiation and radiowave sensors.","icon"="broadcast-tower"),
-	EXODRONE_TOOL_DRILL = list("description"="Heavy duty drill useful for mining.","icon"="screwdriver")
+	EXODRONE_TOOL_WELDER = list("description"="一把重型焊枪。","icon"="burn"),
+	EXODRONE_TOOL_TRANSLATOR = list("description"="功能强大的翻译与数据记录软件。","icon"="language"),
+	EXODRONE_TOOL_LASER = list("description"="适用于战斗和精密切割的多用途工具。","icon"="bolt"),
+	EXODRONE_TOOL_MULTITOOL = list("description"="用于操作电子设备的多用途工具，配备一套辐射和无线电波传感器。","icon"="broadcast-tower"),
+	EXODRONE_TOOL_DRILL = list("description"="适用于采矿的重型钻机。","icon"="screwdriver")
 ))
 
 // Site traits

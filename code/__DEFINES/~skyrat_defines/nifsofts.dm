@@ -1,7 +1,7 @@
 //Bitflags for what kind product category a NIFSoft goes under
 
-#define NIFSOFT_CATEGORY_GENERAL "General"
-#define NIFSOFT_CATEGORY_COSMETIC "Cosmetic"
-#define NIFSOFT_CATEGORY_UTILITY "Utility"
-#define NIFSOFT_CATEGORY_FUN "Fun"
-#define NIFSOFT_CATEGORY_INFORMATION "Information"
+#define NIFSOFT_CATEGORY_GENERAL "通用"
+#define NIFSOFT_CATEGORY_COSMETIC "外观"
+#define NIFSOFT_CATEGORY_UTILITY "实用"
+#define NIFSOFT_CATEGORY_FUN "娱乐"
+#define NIFSOFT_CATEGORY_INFORMATION "信息"

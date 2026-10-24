@@ -14,7 +14,7 @@ import {
   VirtualList,
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
-
+import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { CATEGORY_ICONS_COOKING, CATEGORY_ICONS_CRAFTING } from './constants';
@@ -375,7 +375,7 @@ export function PersonalCrafting(props: any) {
                                         : 'default'
                                     }
                                   >
-                                    {category}
+                                    {chineseDisplay(category)}
                                   </Stack.Item>
                                   {category === 'Can Make' && (
                                     <Stack.Item>
@@ -415,7 +415,7 @@ export function PersonalCrafting(props: any) {
                                               mr={1}
                                               ml={0.5}
                                             />
-                                            {cuisine}
+                                            {chineseDisplay(cuisine)}
                                           </Button.Checkbox>
                                         </Stack.Item>
                                       ))}
@@ -444,7 +444,7 @@ export function PersonalCrafting(props: any) {
                                               mr={1}
                                               ml={0.5}
                                             />
-                                            {dish}
+                                            {chineseDisplay(dish)}
                                           </Button.Checkbox>
                                         </Stack.Item>
                                       ))}
@@ -473,7 +473,7 @@ export function PersonalCrafting(props: any) {
                                               mr={1}
                                               ml={0.5}
                                             />
-                                            {meal}
+                                            {chineseDisplay(meal)}
                                           </Button.Checkbox>
                                         </Stack.Item>
                                       ))}

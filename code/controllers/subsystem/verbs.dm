@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(verbs)
-	name = "Verbs"
+	name = "指令"
 	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_EARLY
 	var/list/datum/verb_metadata/verbs_by_type = list()

@@ -1,7 +1,7 @@
 #define PING_BUFFER_TIME 25
 
 SUBSYSTEM_DEF(server_maint)
-	name = "Server Tasks"
+	name = "服务器任务"
 	wait = 6
 	ss_flags = SS_POST_FIRE_TIMING
 	priority = FIRE_PRIORITY_SERVER_MAINT
@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(server_maint)
 			var/cmob = C.mob
 			if (!isnewplayer(cmob) || !SSticker.queued_players.Find(cmob))
 				log_access("AFK: [key_name(C)]")
-				to_chat(C, span_userdanger("You have been inactive for more than [DisplayTimeText(afk_period)] and have been disconnected.</span><br><span class='danger'>You may reconnect via the button in the file menu or by <b><u><a href='byond://winset?command=.reconnect'>clicking here to reconnect</a></u></b>."))
+				to_chat(C, span_userdanger("你已超过[DisplayTimeText(afk_period)]未进行操作，因此被断开连接。</span><br><span class='danger'>你可以使用文件菜单中的按钮，或<b><u><a href='byond://winset?command=.reconnect'>点击此处重新连接</a></u></b>。"))
 				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
 				continue
 
@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(server_maint)
 /datum/controller/subsystem/server_maint/Shutdown()
 	if (fexists("tmp/"))
 		fdel("tmp/")
-	kick_clients_in_lobby(span_boldannounce("The round came to an end with you in the lobby."), TRUE) //second parameter ensures only afk clients are kicked
+	kick_clients_in_lobby(span_boldannounce("回合结束时，你仍停留在大厅中。"), TRUE) //second parameter ensures only afk clients are kicked
 	var/server = CONFIG_GET(string/server)
 	for(var/thing in GLOB.clients)
 		if(!thing)

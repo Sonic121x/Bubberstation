@@ -236,7 +236,7 @@
 
 	var/final_force = CALCULATE_FORCE(src, attack_modifiers)
 	if(damtype != STAMINA && final_force && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
+		to_chat(user, span_warning("你不愿伤害其他生物！"))
 		return FALSE
 
 	if(!LAZYACCESS(attack_modifiers, SILENCE_HITSOUND))
@@ -307,8 +307,8 @@
 
 	var/damage = take_damage(final_force, attacking_item.damtype, MELEE, 1, get_dir(src, user))
 	//only witnesses close by and the victim see a hit message.
-	user.visible_message(span_danger("[user] hits [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), \
-		span_danger("You hit [src] with [attacking_item][damage ? "." : ", without leaving a mark!"]"), null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger("[user]用[attacking_item]击中了[src][damage ? "。" : "，却没有留下任何痕迹！"]"), \
+		span_danger("你用[attacking_item]击中了[src][damage ? "。" : "，却没有留下任何痕迹！"]"), null, COMBAT_MESSAGE_RANGE)
 	log_combat(user, src, "attacked", attacking_item)
 	return damage
 
@@ -332,8 +332,8 @@
 	var/armor_block = min(run_armor_check(
 			def_zone = targeting,
 			attack_flag = MELEE,
-			absorb_text = span_notice("Your armor has protected your [targeting_human_readable]!"),
-			soften_text = span_warning("Your armor has softened a hit to your [targeting_human_readable]!"),
+			absorb_text = span_notice("你的护甲保护了你的[targeting_human_readable]！"),
+			soften_text = span_warning("你的护甲减轻了对你[targeting_human_readable]的打击！"),
 			armour_penetration = attacking_item.armour_penetration,
 			weak_against_armour = attacking_item.weak_against_armour,
 		), ARMOR_MAX_BLOCK)
@@ -430,8 +430,8 @@
 					adjust_organ_loss(ORGAN_SLOT_BRAIN, 20)
 					if(!IS_UNCONSCIOUS_OR_CRIT(src))
 						visible_message(
-							span_danger("[src] is knocked senseless!"),
-							span_userdanger("You're knocked senseless!"),
+							span_danger("[src]被打得失去了知觉！"),
+							span_userdanger("你被打得失去了知觉！"),
 						)
 						set_confusion_if_lower(20 SECONDS)
 						adjust_eye_blur(20 SECONDS)
@@ -453,8 +453,8 @@
 			if(!IS_UNCONSCIOUS_OR_CRIT(src) && !attacking_item.get_sharpness() && !HAS_TRAIT(src, TRAIT_BRAWLING_KNOCKDOWN_BLOCKED) && attacking_item.damtype == BRUTE)
 				if(prob(damage_done))
 					visible_message(
-						span_danger("[src] is knocked down!"),
-						span_userdanger("You're knocked down!"),
+						span_danger("[src]被击倒了！"),
+						span_userdanger("你被击倒了！"),
 					)
 					apply_effect(6 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 
@@ -496,8 +496,8 @@
 	// Sanity in case one is null for some reason
 	var/picked_index = rand(max(length(weapon.attack_verb_simple), length(weapon.attack_verb_continuous)))
 
-	var/message_verb_continuous = "attacks"
-	var/message_verb_simple = "attack"
+	var/message_verb_continuous = "攻击"
+	var/message_verb_simple = "攻击"
 	var/message_hit_area = get_hit_area_message(hit_area)
 	// Sanity in case one is... longer than the other?
 	if (picked_index && length(weapon.attack_verb_continuous) >= picked_index)
@@ -505,24 +505,24 @@
 	if (picked_index && length(weapon.attack_verb_simple) >= picked_index)
 		message_verb_simple = weapon.attack_verb_simple[picked_index]
 
-	var/attack_message_spectator = "[src] [message_verb_continuous][message_hit_area] with [weapon]!"
-	var/attack_message_victim = "Something [message_verb_continuous] you[message_hit_area] with [weapon]!"
-	var/attack_message_attacker = "You [message_verb_simple] [src][message_hit_area] with [weapon]!"
+	var/attack_message_spectator = "[src][message_hit_area]遭到[weapon]的[message_verb_continuous]！"
+	var/attack_message_victim = "某个东西用[weapon][message_verb_continuous]了你[message_hit_area]！"
+	var/attack_message_attacker = "你用[weapon][message_verb_simple]了[src][message_hit_area]！"
 	if(user in viewers(src, null))
-		attack_message_spectator = "[user] [message_verb_continuous] [src][message_hit_area] with [weapon]!"
-		attack_message_victim = "[user] [message_verb_continuous] you[message_hit_area] with [weapon]!"
+		attack_message_spectator = "[user]用[weapon][message_verb_continuous]了[src][message_hit_area]！"
+		attack_message_victim = "[user]用[weapon][message_verb_continuous]了你[message_hit_area]！"
 	if(user == src)
-		attack_message_victim = "You [message_verb_simple] yourself[message_hit_area] with [weapon]."
+		attack_message_victim = "你用[weapon][message_verb_simple]了自己[message_hit_area]。"
 	visible_message(span_danger("[attack_message_spectator]"),\
 		span_userdanger("[attack_message_victim]"), null, COMBAT_MESSAGE_RANGE, user)
 	if(is_blind())
-		to_chat(src, span_danger("Someone hits you[message_hit_area]!"))
+		to_chat(src, span_danger("有人击中了你[message_hit_area]！"))
 	to_chat(user, span_danger("[attack_message_attacker]"))
 	return 1
 
 /// Overridable proc so subtypes can have unique targetted strike zone messages, return a string.
 /mob/living/proc/get_hit_area_message(input_area)
 	if(input_area)
-		return " in the [input_area]"
+		return "的[input_area]"
 
 	return ""

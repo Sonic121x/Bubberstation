@@ -7,5 +7,5 @@
 #define ANNOUNCEMENT_TYPE_SYNDICATE "Syndicate"
 
 //Defines for newscaster news stations, the defined thing is what it'll be called in the Newscaster.
-#define NEWSCASTER_STATION_ANNOUNCEMENTS "Station Announcements"
-#define NEWSCASTER_SPACE_BETTING "SpaceBet"
+#define NEWSCASTER_STATION_ANNOUNCEMENTS "空间站公告"
+#define NEWSCASTER_SPACE_BETTING "太空博彩"

@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(dynamic)
-	name = "Dynamic"
+	name = "动态模式"
 	ss_flags = SS_NO_INIT
 	wait = 5 MINUTES
 
@@ -123,14 +123,14 @@ SUBSYSTEM_DEF(dynamic)
 		for(var/job in job_prefs)
 			var/priority = job_prefs[job]
 			job_data += "[job]: [SSjob.job_priority_level_to_string(priority)]"
-		to_chat(player, span_danger("You were unable to qualify for any roundstart antagonist role this round \
-			because your job preferences presented a high chance of all of your selected jobs being unavailable, \
-			along with 'return to lobby if job is unavailable' enabled. \
-			Increase the number of roles set to medium or low priority to reduce the chances of this happening."))
-		log_admin("[player.ckey] failed to qualify for any roundstart antagonist role \
-			because their job preferences presented a high chance of all of their selected jobs being unavailable, \
-			along with 'return to lobby if job is unavailable' enabled and has [player.client.prefs.be_special.len] antag preferences enabled. \
-			They will be unable to qualify for any roundstart antagonist role. These are their job preferences - [job_data.Join(" | ")]")
+		to_chat(player, span_danger("本回合你无法获得任何开局反派角色资格， \
+			因为你的职业偏好可能导致所有已选职业都无法分配， \
+			并且你启用了“职业不可用时返回大厅”。 \
+			增加中优先级或低优先级的职业选择，可以减少这种情况。"))
+		log_admin("[player.ckey]未能获得任何开局反派角色资格， \
+			因为其职业偏好可能导致所有已选职业都无法分配， \
+			且启用了“职业不可用时返回大厅”；该玩家启用了 [player.client.prefs.be_special.len] 项反派偏好。 \
+			该玩家无法获得任何开局反派角色资格。职业偏好如下：[job_data.Join(" | ")]")
 
 	var/num_real_players = length(antag_candidates)
 	// now select a tier (if admins didn't)
@@ -150,14 +150,14 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/datum/dynamic_ruleset/roundstart/ruleset in queued_rulesets)
 		// NOTE: !! THIS CAN SLEEP !!
 		if(!ruleset.prepare_execution( num_real_players, antag_candidates ))
-			log_dynamic("Roundstart: Selected ruleset [ruleset.config_tag], but preparation failed! [ruleset.log_data]")
+			log_dynamic("回合开始：已选择规则组[ruleset.config_tag]，但准备失败！[ruleset.log_data]")
 			unqueue_ruleset(ruleset)
 			qdel(ruleset)
 			continue
 
 		// Just logs who was selected at roundstart
 		for(var/datum/mind/selected as anything in ruleset.selected_minds)
-			log_dynamic("Roundstart: [key_name(selected)] has been selected for [ruleset.config_tag].")
+			log_dynamic("回合开始：[key_name(selected)]已被选中参与[ruleset.config_tag]。")
 
 		rulesets_to_spawn[ROUNDSTART] -= 1
 	// and start ticking
@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(dynamic)
 	var/config_file = "[global.config.directory]/dynamic.toml"
 	var/list/result = rustg_raw_read_toml_file(config_file)
 	if(!result["success"])
-		log_dynamic("Failed to load config file! ([config_file] - [result["content"]])")
+		log_dynamic("配置文件加载失败！（[config_file] - [result["content"]]）")
 		return
 
 	dynamic_config = json_decode(result["content"])
@@ -221,12 +221,12 @@ SUBSYSTEM_DEF(dynamic)
 	var/heavy_midround_spawn = rulesets_to_spawn[HEAVY_MIDROUND]
 	var/latejoin_spawn = rulesets_to_spawn[LATEJOIN]
 
-	log_dynamic("Selected tier: [current_tier.tier]")
-	log_dynamic("- Roundstart population: [roundstart_population]")
-	log_dynamic("- Roundstart ruleset count: [roundstart_spawn]")
-	log_dynamic("- Light midround ruleset count: [light_midround_spawn]")
-	log_dynamic("- Heavy midround ruleset count: [heavy_midround_spawn]")
-	log_dynamic("- Latejoin ruleset count: [latejoin_spawn]")
+	log_dynamic("已选择等级：[current_tier.tier]")
+	log_dynamic("- 开局人数：[roundstart_population]")
+	log_dynamic("- 开局规则组数量：[roundstart_spawn]")
+	log_dynamic("- 轻度回合中途规则组数量：[light_midround_spawn]")
+	log_dynamic("- 重度回合中途规则组数量：[heavy_midround_spawn]")
+	log_dynamic("- 中途加入规则组数量：[latejoin_spawn]")
 	SSblackbox.record_feedback(
 		"associative",
 		"dynamic_tier",
@@ -265,19 +265,19 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/ruleset in rulesets_weighted)
 		total_weight += rulesets_weighted[ruleset]
 	if(total_weight <= 0)
-		log_dynamic("Roundstart: No rulesets to pick from!")
+		log_dynamic("回合开始：没有可选的规则组！")
 		return list()
 
 	var/list/picked_rulesets = list()
 	while(rulesets_to_spawn[ROUNDSTART] > 0)
 		if(!length(rulesets_weighted) || total_weight <= 0)
-			log_dynamic("Roundstart: No more rulesets to pick from with [rulesets_to_spawn[ROUNDSTART]] left!")
+			log_dynamic("回合开始：还需生成 [rulesets_to_spawn[ROUNDSTART]] 个规则组，但已无规则组可选！")
 			break
 		rulesets_to_spawn[ROUNDSTART] -= 1
 		var/datum/dynamic_ruleset/roundstart/picked_ruleset = pick_weight(rulesets_weighted)
-		log_dynamic("Roundstart: Ruleset [picked_ruleset.config_tag] (Chance: [round(rulesets_weighted[picked_ruleset] / total_weight * 100, 0.01)]%)")
+		log_dynamic("回合开始：规则组[picked_ruleset.config_tag]（概率：[round(rulesets_weighted[picked_ruleset] / total_weight * 100, 0.01)]%）")
 		if(picked_ruleset.solo)
-			log_dynamic("Roundstart: Ruleset is a solo ruleset. Cancelling other picks.")
+			log_dynamic("回合开始：此规则组要求独占回合。正在取消其他选择。")
 			picked_rulesets.Cut()
 			rulesets_weighted -= picked_ruleset
 			picked_rulesets += picked_ruleset.type
@@ -329,7 +329,7 @@ SUBSYSTEM_DEF(dynamic)
 		return FALSE
 	var/midround_chance = get_midround_chance(range)
 	if(!prob(midround_chance))
-		log_dynamic("Midround ([range]): Ruleset chance failed ([midround_chance]% chance)")
+		log_dynamic("回合中途（[range]）：规则组未通过概率判定（概率为 [midround_chance]%）")
 		return FALSE
 
 	midround_admin_cancel = FALSE
@@ -340,9 +340,9 @@ SUBSYSTEM_DEF(dynamic)
 	var/list/rulesets_weighted = get_midround_rulesets(player_count, range)
 	var/datum/dynamic_ruleset/midround/picked_ruleset = pick_weight(rulesets_weighted)
 	if(isnull(picked_ruleset))
-		log_dynamic("Midround ([range]): No rulesets to pick from!")
+		log_dynamic("回合中途（[range]）：没有可选的规则组！")
 		return FALSE
-	message_admins("Midround ([range]): Executing [picked_ruleset.config_tag] \
+	message_admins("回合中途（[range]）：正在执行[picked_ruleset.config_tag] \
 		[MIDROUND_CANCEL_HREF()] [MIDROUND_REROLL_HREF(rulesets_weighted)]")
 	// if we have admins online, we have a waiting period before execution to allow them to cancel or reroll
 	if(length(GLOB.admins))
@@ -359,17 +359,17 @@ SUBSYSTEM_DEF(dynamic)
 				qdel(picked_ruleset)
 				picked_ruleset = pick_weight(rulesets_weighted)
 				if(isnull(picked_ruleset))
-					log_dynamic("Midround ([range]): No rulesets to pick from!")
-					message_admins("Rerolling Midround ([range]): Failed to pick a new ruleset, cancelling instead!")
+					log_dynamic("回合中途（[range]）：没有可选的规则组！")
+					message_admins("重选回合中途事件（[range]）：未能选出新的规则组，已取消！")
 					midround_admin_cancel = TRUE
 					continue
-				message_admins("Rerolling Midround ([range]): Executing [picked_ruleset.config_tag] - \
-					[length(rulesets_weighted) - 1] remaining rulesets in pool. [MIDROUND_CANCEL_HREF()] [MIDROUND_REROLL_HREF(rulesets_weighted)]")
+				message_admins("重选回合中途事件（[range]）：正在执行[picked_ruleset.config_tag]—— \
+					候选池中剩余 [length(rulesets_weighted) - 1] 个规则组。[MIDROUND_CANCEL_HREF()] [MIDROUND_REROLL_HREF(rulesets_weighted)]")
 			stoplag()
 
 	// NOTE: !! THIS CAN SLEEP !!
 	if(!picked_ruleset.prepare_execution(player_count, picked_ruleset.collect_candidates()))
-		log_dynamic("Midround ([range]): Selected ruleset [picked_ruleset.config_tag], but preparation failed! [picked_ruleset.log_data]")
+		log_dynamic("回合中途（[range]）：已选择规则组[picked_ruleset.config_tag]，但准备失败！[picked_ruleset.log_data]")
 		QDEL_LIST(rulesets_weighted)
 		return FALSE
 	// Run the thing
@@ -378,9 +378,9 @@ SUBSYSTEM_DEF(dynamic)
 	picked_ruleset.execute()
 	// Post execute logging
 	for(var/datum/mind/selected as anything in picked_ruleset.selected_minds)
-		message_admins("Midround ([range]): [ADMIN_LOOKUPFLW(selected.current)] has been selected for [picked_ruleset.config_tag].")
-		log_dynamic("Midround ([range]): [key_name(selected.current)] has been selected for [picked_ruleset.config_tag].")
-		notify_ghosts("[selected.name] has been picked for [picked_ruleset.config_tag]!", source = selected.current)
+		message_admins("回合中途（[range]）：[ADMIN_LOOKUPFLW(selected.current)]已被选中参与[picked_ruleset.config_tag]。")
+		log_dynamic("回合中途（[range]）：[key_name(selected.current)]已被选中参与[picked_ruleset.config_tag]。")
+		notify_ghosts("[selected.name]已被选中参与[picked_ruleset.config_tag]！", source = selected.current)
 	// Clean up unused rulesets
 	QDEL_LIST(rulesets_weighted)
 	rulesets_to_spawn[range] -= 1
@@ -431,8 +431,8 @@ SUBSYSTEM_DEF(dynamic)
 	// NOTE: !! THIS CAN SLEEP !!
 	if(!running.prepare_execution(get_active_player_count(afk_check = TRUE), running.collect_candidates()))
 		if(alert_admins_on_fail)
-			message_admins("Midround (forced): Forced ruleset [running.config_tag], but preparation failed! [running.log_data]")
-		log_dynamic("Midround (forced): Forced ruleset [running.config_tag], but preparation failed! [running.log_data]")
+			message_admins("回合中途（强制）：已强制选择规则组[running.config_tag]，但准备失败！[running.log_data]")
+		log_dynamic("回合中途（强制）：已强制选择规则组[running.config_tag]，但准备失败！[running.log_data]")
 		qdel(running)
 		return FALSE
 
@@ -440,9 +440,9 @@ SUBSYSTEM_DEF(dynamic)
 	running.execute()
 	// Post execute logging
 	for(var/datum/mind/selected as anything in running.selected_minds)
-		message_admins("Midround (forced): [ADMIN_LOOKUPFLW(selected.current)] has been selected for [running.config_tag].")
-		log_dynamic("Midround (forced): [key_name(selected.current)] has been selected for [running.config_tag].")
-		notify_ghosts("[selected.name] has been picked for [running.config_tag]!", source = selected.current)
+		message_admins("回合中途（强制）：[ADMIN_LOOKUPFLW(selected.current)]已被选中参与[running.config_tag]。")
+		log_dynamic("回合中途（强制）：[key_name(selected.current)]已被选中参与[running.config_tag]。")
+		notify_ghosts("[selected.name]已被选中参与[running.config_tag]！", source = selected.current)
 	return TRUE
 
 /**
@@ -455,11 +455,11 @@ SUBSYSTEM_DEF(dynamic)
 	for(var/datum/dynamic_ruleset/latejoin/queued in queued_rulesets)
 		// NOTE: !! THIS CAN SLEEP !!
 		if(!queued.prepare_execution(get_active_player_count(afk_check = TRUE), list(latejoiner)))
-			message_admins("Latejoin (forced): Queued ruleset [queued.config_tag] failed to prepare! It remains queued for next latejoin. (<a href='byond://?src=[REF(src)];admin_dequeue=[REF(queued)]'>REMOVE FROM QUEUE</a>)")
-			log_dynamic("Latejoin (forced): Queued ruleset [queued.config_tag] failed to prepare! It remains queued for next latejoin.")
+			message_admins("中途加入（强制）：队列中的规则组[queued.config_tag]准备失败！将继续排队，等待下一位中途加入的玩家。（<a href='byond://?src=[REF(src)];admin_dequeue=[REF(queued)]'>移出队列</a>）")
+			log_dynamic("中途加入（强制）：队列中的规则组[queued.config_tag]准备失败！将继续排队，等待下一位中途加入的玩家。")
 			continue
-		message_admins("Latejoin (forced): [ADMIN_LOOKUPFLW(latejoiner)] has been selected for [queued.config_tag].")
-		log_dynamic("Latejoin (forced): [key_name(latejoiner)] has been selected for [queued.config_tag].")
+		message_admins("中途加入（强制）：[ADMIN_LOOKUPFLW(latejoiner)]已被选中参与[queued.config_tag]。")
+		log_dynamic("中途加入（强制）：[key_name(latejoiner)]已被选中参与[queued.config_tag]。")
 		unqueue_ruleset(queued)
 		executed_rulesets += queued
 		queued.execute()
@@ -481,7 +481,7 @@ SUBSYSTEM_DEF(dynamic)
 		return FALSE
 	var/latejoin_chance = get_latejoin_chance()
 	if(!prob(latejoin_chance))
-		log_dynamic("Latejoin: Ruleset chance failed ([latejoin_chance]% chance)")
+		log_dynamic("中途加入：规则组未通过概率判定（概率为 [latejoin_chance]%）")
 		return FALSE
 
 	var/player_count = get_active_player_count(afk_check = TRUE)
@@ -490,11 +490,11 @@ SUBSYSTEM_DEF(dynamic)
 	// We pick a ruleset, and they player might not even have that antag selected. And that's fine
 	var/datum/dynamic_ruleset/latejoin/picked_ruleset = pick_weight(rulesets_weighted)
 	if(isnull(picked_ruleset))
-		log_dynamic("Latejoin: No rulesets to pick from!")
+		log_dynamic("中途加入：没有可选的规则组！")
 		return FALSE
 	// NOTE: !! THIS CAN SLEEP !!
 	if(!picked_ruleset.prepare_execution(player_count, list(latejoiner)))
-		log_dynamic("Latejoin: Selected ruleset [picked_ruleset.name] for [key_name(latejoiner)], but preparation failed! Latejoin chance has increased. [picked_ruleset.log_data]")
+		log_dynamic("中途加入：已为[key_name(latejoiner)]选择规则组[picked_ruleset.name]，但准备失败！中途加入反派概率已提高。[picked_ruleset.log_data]")
 		QDEL_LIST(rulesets_weighted)
 		failed_latejoins++
 		return FALSE
@@ -505,8 +505,8 @@ SUBSYSTEM_DEF(dynamic)
 	// Post execute logging
 	if(!(latejoiner.mind in picked_ruleset.selected_minds))
 		stack_trace("Dynamic: Latejoin [picked_ruleset.type] executed, but the latejoiner was not in its selected minds list!")
-	message_admins("Latejoin: [ADMIN_LOOKUPFLW(latejoiner)] has been selected for [picked_ruleset.config_tag].")
-	log_dynamic("Latejoin: [key_name(latejoiner)] has been selected for [picked_ruleset.config_tag].")
+	message_admins("中途加入：[ADMIN_LOOKUPFLW(latejoiner)]已被选中参与[picked_ruleset.config_tag]。")
+	log_dynamic("中途加入：[key_name(latejoiner)]已被选中参与[picked_ruleset.config_tag]。")
 	// Clean up unused rulesets
 	QDEL_LIST(rulesets_weighted)
 	rulesets_to_spawn[LATEJOIN] -= 1
@@ -650,30 +650,30 @@ SUBSYSTEM_DEF(dynamic)
 			return
 		unqueue_ruleset(to_remove)
 		qdel(to_remove)
-		message_admins(span_adminnotice("[key_name_admin(usr)] [to_remove.config_tag] from the latejoin queue."))
-		log_admin("[key_name(usr)] removed [to_remove.config_tag] from the latejoin queue.")
+		message_admins(span_adminnotice("[key_name_admin(usr)]将[to_remove.config_tag]移出了中途加入队列。"))
+		log_admin("[key_name(usr)]将[to_remove.config_tag]移出了中途加入队列。")
 		return
 
 	if(href_list["admin_reroll"])
 		if(!check_rights(R_ADMIN) || midround_admin_reroll)
 			return
 		if(COOLDOWN_FINISHED(src, midround_admin_cancel_period))
-			to_chat(usr, span_alert("Too late!"))
+			to_chat(usr, span_alert("太迟了！"))
 			return
 		midround_admin_reroll = TRUE
-		message_admins(span_adminnotice("[key_name_admin(usr)] rerolled the queued midround ruleset."))
-		log_admin("[key_name(usr)] rerolled the queued midround ruleset.")
+		message_admins(span_adminnotice("[key_name_admin(usr)]重新选择了队列中的回合中途规则组。"))
+		log_admin("[key_name(usr)]重新选择了队列中的回合中途规则组。")
 		return
 
 	if(href_list["admin_cancel_midround"])
 		if(!check_rights(R_ADMIN) || midround_admin_cancel)
 			return
 		if(COOLDOWN_FINISHED(src, midround_admin_cancel_period))
-			to_chat(usr, span_alert("Too late!"))
+			to_chat(usr, span_alert("太迟了！"))
 			return
 		midround_admin_cancel = TRUE
-		message_admins(span_adminnotice("[key_name_admin(usr)] cancelled the queued midround ruleset."))
-		log_admin("[key_name(usr)] cancelled the queued midround ruleset.")
+		message_admins(span_adminnotice("[key_name_admin(usr)]取消了队列中的回合中途规则组。"))
+		log_admin("[key_name(usr)]取消了队列中的回合中途规则组。")
 		return
 
 #ifdef TESTING

@@ -61,9 +61,9 @@
 #define HONORIFIC_POSITION_LAST_FULL (1<<4)
 
 #define HONORIFIC_POSITION_BITFIELDS(...) list( \
-	"Honorific + First Name" = HONORIFIC_POSITION_FIRST, \
-	"Honorific + Last Name" = HONORIFIC_POSITION_LAST, \
-	"Honorific + Full Name" = HONORIFIC_POSITION_FIRST_FULL, \
-	"Full Name + Honorific" = HONORIFIC_POSITION_LAST_FULL, \
-	"Disable Honorific" = HONORIFIC_POSITION_NONE, \
+	"敬称 + 名字" = HONORIFIC_POSITION_FIRST, \
+	"敬称 + 姓氏" = HONORIFIC_POSITION_LAST, \
+	"敬称 + 全名" = HONORIFIC_POSITION_FIRST_FULL, \
+	"全名 + 敬称" = HONORIFIC_POSITION_LAST_FULL, \
+	"禁用敬称" = HONORIFIC_POSITION_NONE, \
 )
