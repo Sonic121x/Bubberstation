@@ -26,13 +26,13 @@
 /datum/bt_node/ai_behavior/hunt_target/proc/target_caught(mob/living/hunter, atom/hunted)
 	if(isliving(hunted))
 		var/mob/living/living_target = hunted
-		hunter.manual_emote("chomps [living_target]!")
-		living_target.investigate_log("has been killed by [key_name(hunter)].", INVESTIGATE_DEATHS)
+		hunter.manual_emote("一口咬住[living_target]！")
+		living_target.investigate_log("已被[key_name(hunter)]杀死。", INVESTIGATE_DEATHS)
 		living_target.death()
 	else if(IS_EDIBLE(hunted))
 		hunted.attack_animal(hunter)
 	else
-		hunter.manual_emote("chomps [hunted]!")
+		hunter.manual_emote("一口咬住[hunted]！")
 		qdel(hunted)
 
 /datum/bt_node/ai_behavior/hunt_target/finish_action(datum/ai_controller/controller, succeeded)
@@ -115,7 +115,7 @@
 	always_reset_target = TRUE
 
 /datum/bt_node/ai_behavior/hunt_target/snail_people/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote("Celebrates around [hunted]!")
+	hunter.manual_emote("围着[hunted]欢呼庆祝！")
 	hunter.SpinAnimation(speed = 1, loops = 3)
 
 /// Starts pulling the target item toward the hunter.
@@ -148,14 +148,14 @@
 	always_reset_target = TRUE
 
 /datum/bt_node/ai_behavior/hunt_target/sniff_flora/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote("Enjoys the sweet scent eminating from [hunted::name]!")
+	hunter.manual_emote("享受着[hunted::name]散发的芬芳！")
 
 /// Playfully headbutts the target's legs.
 /datum/bt_node/ai_behavior/hunt_target/headbutt_leg
 	always_reset_target = TRUE
 
 /datum/bt_node/ai_behavior/hunt_target/headbutt_leg/target_caught(mob/living/hunter, atom/hunted)
-	hunter.manual_emote("playfully headbutts [hunted]'s legs!")
+	hunter.manual_emote("调皮地用头顶着[hunted]的腿！")
 
 /// Attempts to buckle (latch onto) the target mob.
 /datum/bt_node/ai_behavior/hunt_target/latch_onto
@@ -171,7 +171,7 @@
 		return FALSE
 	if(!hunted.buckle_mob(hunter, force = TRUE))
 		return FALSE
-	hunted.visible_message(span_notice("[hunted] has been latched onto by [hunter]!"))
+	hunted.visible_message(span_notice("[hunter]紧紧扒住了[hunted]！"))
 	return TRUE
 
 
@@ -180,5 +180,5 @@
 
 /datum/bt_node/ai_behavior/hunt_target/play_with_owner/target_caught(mob/living/hunter, atom/hunted)
 	var/list/interactions_list = hunter.ai_controller.blackboard[BB_INTERACTIONS_WITH_OWNER]
-	var/interaction_message = length(interactions_list) ? pick(interactions_list) : "Plays with"
+	var/interaction_message = length(interactions_list) ? pick(interactions_list) : "嬉戏的伙伴是"
 	hunter.manual_emote("[interaction_message] [hunted]!")

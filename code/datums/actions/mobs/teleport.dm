@@ -1,8 +1,8 @@
 /datum/action/cooldown/mob_cooldown/teleport
-	name = "Teleport"
+	name = "传送"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	desc = "Allows you to teleport a certain distance away from a position in a random direction."
+	desc = "让你传送到距指定位置一定距离、方向随机的地方。"
 	cooldown_time = 10 SECONDS
 	/// The distance from the target
 	var/radius = 6

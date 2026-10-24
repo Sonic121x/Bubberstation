@@ -18,7 +18,7 @@ GLOBAL_DATUM_INIT(bt_viewer, /datum/bt_viewer, new())
 /datum/bt_viewer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BehaviorTreeViewer", "Behavior Tree Viewer")
+		ui = new(user, src, "BehaviorTreeViewer", "行为树查看器")
 		ui.open()
 
 /datum/bt_viewer/ui_close(mob/user)

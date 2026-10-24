@@ -30,8 +30,8 @@
 	if(!can_give_item(living_target, held_item))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 	living_target.visible_message(
-		span_info("[pawn] starts trying to give [held_item] to [living_target]!"),
-		span_warning("[pawn] tries to give you [held_item]!")
+		span_info("[pawn]开始尝试将[held_item]递给[living_target]！"),
+		span_warning("[pawn]想把[held_item]递给你！")
 	)
 	give_target = living_target
 	give_held_item = held_item

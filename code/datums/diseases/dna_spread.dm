@@ -1,18 +1,18 @@
 /datum/disease/dnaspread
-	name = "Space Retrovirus"
+	name = "太空逆转录病毒"
 	max_stages = 4
-	spread_text = "Skin contact"
+	spread_text = "皮肤接触"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = /datum/reagent/medicine/mutadone::name
 	cures = list(/datum/reagent/medicine/mutadone)
 	disease_flags = CAN_CARRY|CAN_RESIST|CURABLE
-	agent = "S4E1 Retrovirus"
+	agent = "S4E1 逆转录病毒"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	var/datum/dna/original_dna = null
 	var/transformed = 0
-	desc = "A disease which transplants the genetic code of the initial vector into new hosts. \
-		While patient zero will be asymptomatic, all subsequent hosts will shows symptoms similar to that of a common cold or flu \
-		- until eventually transforming into a genetic copy of patient zero."
+	desc = "一种将最初携带者的遗传密码移植到新宿主体内的疾病。 \
+		零号病人没有症状，但后续感染者都会表现出类似普通感冒或流感的症状， \
+		最终变成零号病人的基因复制体。"
 	severity = DISEASE_SEVERITY_MEDIUM
 	bypasses_immunity = TRUE
 
@@ -46,11 +46,11 @@
 			if(SPT_PROB(4, seconds_per_tick))
 				affected_mob.emote("cough")
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your muscles ache."))
+				to_chat(affected_mob, span_danger("你的肌肉酸痛。"))
 				if(prob(20))
 					affected_mob.take_bodypart_damage(1, updating_health = FALSE)
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your stomach hurts."))
+				to_chat(affected_mob, span_danger("你的胃很痛。"))
 				if(prob(20))
 					affected_mob.adjust_tox_loss(2, FALSE)
 		if(4)
@@ -59,7 +59,7 @@
 				original_dna = new affected_mob.dna.type
 				affected_mob.dna.copy_dna(original_dna)
 
-				to_chat(affected_mob, span_danger("You don't feel like yourself.."))
+				to_chat(affected_mob, span_danger("你感觉自己变得不像自己了……"))
 				var/datum/dna/transform_dna = strain_data["dna"]
 
 				transform_dna.copy_dna(affected_mob.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
@@ -78,5 +78,5 @@
 		affected_mob.updateappearance(mutcolor_update=1)
 		affected_mob.domutcheck()
 
-		to_chat(affected_mob, span_notice("You feel more like yourself."))
+		to_chat(affected_mob, span_notice("你感觉更像原来的自己了。"))
 	return ..()

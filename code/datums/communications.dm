@@ -43,7 +43,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 	if(!can_announce(user, is_silicon))
 		return FALSE
 	if(is_silicon)
-		minor_announce(html_decode(input),"[user.name] announces:", players = players)
+		minor_announce(html_decode(input),"[user.name]宣布：", players = players)
 		COOLDOWN_START(src, silicon_message_cooldown, COMMUNICATION_COOLDOWN_AI)
 	else
 		var/list/message_data = user.treat_message(input)
@@ -53,7 +53,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 			priority_announce(html_decode(message_data["message"]), null, ANNOUNCER_CAPTAIN, ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players) // SKYRAT EDIT CHANGE - 'sound/misc/announce.ogg' to ANNOUNCER_CAPTAIN
 		COOLDOWN_START(src, nonsilicon_message_cooldown, COMMUNICATION_COOLDOWN)
 	user.log_talk(input, LOG_SAY, tag="priority announcement")
-	message_admins("[ADMIN_LOOKUPFLW(user)] has made a priority announcement.")
+	message_admins("[ADMIN_LOOKUPFLW(user)]发布了一条优先公告。")
 
 /datum/communciations_controller/proc/send_message(datum/comm_message/sending,print = TRUE,unique = FALSE, contains_advanced_html = FALSE)
 	for(var/obj/machinery/computer/communications/C in GLOB.shuttle_caller_list)
@@ -65,7 +65,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 				C.add_message(M)
 			if(print)
 				var/obj/item/paper/printed_paper = new /obj/item/paper(C.loc)
-				printed_paper.name = "paper - '[sending.title]'"
+				printed_paper.name = "纸张——《[sending.title]》"
 				printed_paper.add_raw_text("</center>[sending.content]", advanced_html = contains_advanced_html)
 				printed_paper.color = "#deebff"
 				printed_paper.update_appearance()
@@ -91,15 +91,15 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 		if(isnull(greenshift)) // if we're not forced to be greenshift or not - check if we are an actual greenshift
 			greenshift = SSdynamic.current_tier.tier == 0 && dynamic_report == /datum/dynamic_tier/greenshift::advisory_report
 
-		. += "<hr><h3>Nanotrasen Department of Intelligence Threat Advisory, Spinward Sector:</h3>"
+		. += "<hr><h3>纳米传讯情报部威胁通报，顺旋星区：</h3>"
 		. += dynamic_report
 
 	SSstation.generate_station_goals(greenshift ? INFINITY : CONFIG_GET(number/station_goal_budget))
 
 	var/list/station_goal_strings = list()
 	if(greenshift)
-		station_goal_strings += "All special orders have been authorized for the shift. \
-			Feel free to pick one your crew wishes to specialize in - you are not expected to complete them all."
+		station_goal_strings += "本班次的所有特别指令均已获批。\
+			请自由选择船员希望专注完成的一项，无需全部完成。"
 		announced_greenshift = TRUE
 
 	else
@@ -108,7 +108,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 			station_goal_strings += station_goal.get_report()
 
 	if(length(station_goal_strings) > 0) // if we have any special orders to report, add them in
-		. += "<hr><h4>Special Orders for [station_name()]:</h4>"
+		. += "<hr><h4>给[station_name()]的特别指令：</h4>"
 		. += station_goal_strings.Join("<hr>")
 
 	var/list/trait_list_strings = list()
@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 			continue
 		trait_list_strings += "[station_trait.get_report()]<BR>"
 	if(trait_list_strings.len > 0)
-		. += "<hr><h4>Identified shift divergencies:</h4>" + trait_list_strings.Join()
+		. += "<hr><h4>已知班次异常：</h4>" + trait_list_strings.Join()
 
 	if(length(command_report_footnotes))
 		var/footnote_pile = ""
@@ -127,16 +127,16 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 			footnote_pile += "~ <i>[footnote.signature]</i><BR>"
 			footnote_pile += "<BR>"
 
-		. += "<hr><h4>Additional Notes: </h4>" + footnote_pile
+		. += "<hr><h4>附加说明：</h4>" + footnote_pile
 
 #ifndef MAP_TEST
-	print_command_report(., "[command_name()] Status Summary", announce = FALSE, contains_advanced_html = TRUE)
+	print_command_report(., "[command_name()]状况摘要", announce = FALSE, contains_advanced_html = TRUE)
 	if(greenshift)
 		priority_announce(
-			"Thanks to the tireless efforts of our security and intelligence divisions, \
-				there are currently no credible threats to [station_name()]. \
-				All station construction projects have been authorized. Have a secure shift!",
-			"Security Report",
+			"得益于安保与情报部门的不懈努力，\
+				目前没有证据表明[station_name()]面临威胁。\
+				所有空间站建设项目均已获批。祝各位本班次平安！",
+			"安全报告",
 			SSstation.announcer.get_rand_report_sound(),
 			color_override = "green",
 		)
@@ -145,15 +145,15 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 			SSsecurity_level.set_level(SEC_LEVEL_BLUE, announce = FALSE)
 		priority_announce(
 			"[SSsecurity_level.current_security_level.elevating_to_announcement]\n\n\
-				A summary has been copied and printed to all communications consoles.",
-			"Security level elevated.",
+				摘要已发送至所有通讯控制台并打印。",
+			"安全等级提升。",
 			ANNOUNCER_INTERCEPT,
 			color_override = SSsecurity_level.current_security_level.announcement_color,
 		)
 	else
 		priority_announce(
-			"A summary of the station's situation has been copied and printed to all communications consoles.",
-			"Security Report",
+			"空间站状况摘要已发送至所有通讯控制台并打印。",
+			"安全报告",
 			SSstation.announcer.get_rand_report_sound(),
 		)
 

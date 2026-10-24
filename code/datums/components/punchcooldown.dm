@@ -5,7 +5,7 @@
 	proctype = PROC_REF(reducecooldown)
 	valid_slots = ITEM_SLOT_GLOVES
 	///The warcry this generates
-	var/warcry = "AT"
+	var/warcry = "啊哒"
 
 /datum/component/wearertargeting/punchcooldown/Initialize()
 	. = ..()
@@ -27,7 +27,7 @@
 	INVOKE_ASYNC(src, PROC_REF(do_changewarcry), user)
 
 /datum/component/wearertargeting/punchcooldown/proc/do_changewarcry(mob/user)
-	var/input = tgui_input_text(user, "What do you want your battlecry to be?", "Battle Cry", max_length = 6)
+	var/input = tgui_input_text(user, "你想使用什么战吼？", "战吼", max_length = 6)
 	if(!QDELETED(src) && !QDELETED(user) && !user.Adjacent(parent))
 		return
 	if(input)

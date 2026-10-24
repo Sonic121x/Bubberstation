@@ -6,8 +6,8 @@
  * Critical level
 */
 /datum/symptom/mind_restoration
-	name = "Mind Restoration"
-	desc = "The virus strengthens the bonds between neurons, reducing the duration of any ailments of the mind."
+	name = "心智修复"
+	desc = "病毒加强神经元之间的连接，缩短各种精神异常的持续时间。"
 	stealth = -1
 	resistance = -2
 	stage_speed = 1
@@ -18,9 +18,9 @@
 	var/trauma_heal_mild = FALSE
 	var/trauma_heal_severe = FALSE
 	threshold_descs = list(
-		"Resistance 6" = "Heals minor brain traumas.",
-		"Resistance 9" = "Heals severe brain traumas.",
-		"Transmission 8" = "Purges alcohol in the bloodstream.",
+		"抗性 6" = "治愈轻度脑创伤。",
+		"抗性 9" = "治愈重度脑创伤。",
+		"传染性 8" = "清除血液中的酒精。",
 	)
 
 /datum/symptom/mind_restoration/Start(datum/disease/advance/A)
@@ -75,8 +75,8 @@
 
 
 /datum/symptom/sensory_restoration
-	name = "Sensory Restoration"
-	desc = "The virus stimulates the production and replacement of sensory tissues, causing the host to regenerate eyes and ears when damaged."
+	name = "感官修复"
+	desc = "病毒刺激感觉组织的生成和更新，使宿主受损的眼睛和耳朵能够再生。"
 	stealth = 0
 	resistance = 1
 	stage_speed = -2
@@ -108,13 +108,13 @@
 			eyes.apply_organ_damage(-2)
 			if(prob(20))
 				if(infected_mob.is_blind_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_warning("Your vision slowly returns..."))
+					to_chat(infected_mob, span_warning("你的视力慢慢恢复了……"))
 					infected_mob.adjust_eye_blur(20 SECONDS)
 
 				else if(infected_mob.is_nearsighted_from(EYE_DAMAGE))
-					to_chat(infected_mob, span_warning("The blackness in your peripheral vision begins to fade."))
+					to_chat(infected_mob, span_warning("你视野边缘的黑暗开始消退。"))
 					infected_mob.adjust_eye_blur(5 SECONDS)
 
 		else
 			if(prob(base_message_chance))
-				to_chat(infected_mob, span_notice("[pick("Your eyes feel great.","You feel like your eyes can focus more clearly.", "You don't feel the need to blink.","Your ears feel great.","Your hearing feels more acute.")]"))
+				to_chat(infected_mob, span_notice("[pick("你的眼睛感觉非常舒适。","你感觉双眼能看得更清楚了。", "你觉得自己无需眨眼。","你的耳朵感觉非常舒适。","你感觉听觉更加敏锐了。")]"))

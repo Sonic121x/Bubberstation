@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		return ELEMENT_INCOMPATIBLE
 
 	ADD_TRAIT(target_obj, TRAIT_FROZEN, ELEMENT_TRAIT(type))
-	target_obj.name = "frozen [target_obj.name]"
+	target_obj.name = "冰冻的[target_obj.name]"
 	target_obj.add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 	target_obj.alpha -= 25
 
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	var/obj/obj_source = source
 	REMOVE_TRAIT(obj_source, TRAIT_FROZEN, ELEMENT_TRAIT(type))
 	UnregisterSignal(obj_source, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_THROW_LANDED, COMSIG_MOVABLE_IMPACT, COMSIG_OBJ_UNFREEZE))
-	obj_source.name = replacetext(obj_source.name, "frozen ", "")
+	obj_source.name = replacetext(obj_source.name, "冰冻的", "")
 	obj_source.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, GLOB.freon_color_matrix)
 	obj_source.alpha += 25
 
@@ -64,10 +64,10 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	SIGNAL_HANDLER
 	var/obj/obj_target = target
 	if(ismob(throwingdatum.thrower))
-		log_combat(throwingdatum.thrower, target, "shattered", addition = "from being thrown due to [target] being frozen.")
+		log_combat(throwingdatum.thrower, target, "摔碎了", addition = "由于[target]已被冻结，投掷导致其破碎。")
 	else
-		log_combat(throwingdatum.thrower, target, "launched", addition = "shattering it due to being frozen.")
-	obj_target.visible_message(span_danger("[obj_target] shatters into a million pieces!"))
+		log_combat(throwingdatum.thrower, target, "抛出了", addition = "使其因冻结而破碎。")
+	obj_target.visible_message(span_danger("[obj_target]摔得粉碎！"))
 	obj_target.obj_flags |= NO_DEBRIS_AFTER_DECONSTRUCTION	// disable item spawning
 	obj_target.deconstruct(FALSE)			// call pre-deletion specialized code -- internals release gas etc
 

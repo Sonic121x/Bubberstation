@@ -41,10 +41,10 @@
 	if (user.combat_mode || !HAS_TRAIT(target, TRAIT_ROCK_EATER))
 		return
 	if (extra_validation && !extra_validation.Invoke())
-		source.balloon_alert(user, "not edible!")
+		source.balloon_alert(user, "不能食用！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (!snack_type.can_consume(target))
-		source.balloon_alert(user, "can't consume!")
+		source.balloon_alert(user, "无法吃下！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if (isnull(golem_snack))
 		create_golem_snack(source)
@@ -76,8 +76,8 @@
 
 /// Abstract food item used to feed golems
 /obj/item/food/golem_food
-	name = "temporary golem material snack item"
-	desc = "You shouldn't be able to see this. This is an abstract item which exists to allow you to eat rocks."
+	name = "魔像材质零食临时物品"
+	desc = "你本不应该看见这个。它是一个让你能够吃石头的抽象物品。"
 	bite_consumption = 2
 	food_reagents = list(/datum/reagent/consumable/nutriment/mineral = INFINITY) // Destroyed when stack runs out, not when reagents do
 	foodtypes = STONE

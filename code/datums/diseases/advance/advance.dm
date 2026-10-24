@@ -17,12 +17,12 @@
  */
 
 /datum/disease/advance
-	name = "Unknown" // We will always let our creator name our disease.
-	desc = "An engineered disease which can contain a multitude of symptoms."
-	form = "Advanced Disease" // Will let med-scanners know that this disease was engineered.
-	agent = "advance microbes"
+	name = "未知" // We will always let our creator name our disease.
+	desc = "一种可包含多种症状的人工改造疾病。"
+	form = "高级疾病" // Will let med-scanners know that this disease was engineered.
+	agent = "高级微生物"
 	max_stages = 5
-	spread_text = "Unknown"
+	spread_text = "未知"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cures = null
 	visibility_flags = HIDDEN_BOOK // we have unique handling for advance diseases in the book
@@ -235,7 +235,7 @@
 		cure_chance = clamp(10 * (0.94 ** properties["resistance"]), 3.5, 12) // Capped at between -3 and 17 resistance
 		stage_prob = max(0.2 * properties["stage_rate"], 0) + 1.5
 		set_severity(round(properties["severity"]), 1)
-		cure_text = "If you can see this, something has gone wrong."
+		cure_text = "如果你看到这段文字，说明出现了错误。"
 	else
 		CRASH("Our properties were empty or null!")
 
@@ -245,22 +245,22 @@
 	switch(spread_id)
 		if(DISEASE_SPREAD_NON_CONTAGIOUS)
 			update_spread_flags(DISEASE_SPREAD_NON_CONTAGIOUS)
-			spread_text = "None"
+			spread_text = "无"
 		if(DISEASE_SPREAD_SPECIAL)
 			update_spread_flags(DISEASE_SPREAD_SPECIAL)
-			spread_text = "None"
+			spread_text = "无"
 		if(DISEASE_SPREAD_BLOOD)
 			update_spread_flags(DISEASE_SPREAD_BLOOD)
-			spread_text = "Blood"
+			spread_text = "血液传播"
 		if(DISEASE_SPREAD_CONTACT_FLUIDS)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS)
-			spread_text = "Fluids"
+			spread_text = "体液传播"
 		if(DISEASE_SPREAD_CONTACT_SKIN)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN)
-			spread_text = "Skin contact"
+			spread_text = "皮肤接触"
 		if(DISEASE_SPREAD_AIRBORNE)
 			update_spread_flags(DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_AIRBORNE)
-			spread_text = "Respiration"
+			spread_text = "呼吸传播"
 
 /datum/disease/advance/proc/set_severity(level_sev)
 
@@ -314,7 +314,7 @@
 			Refresh(TRUE)
 
 // Name the disease.
-/datum/disease/advance/proc/AssignName(name = "Unknown")
+/datum/disease/advance/proc/AssignName(name = "未知")
 	var/datum/disease/advance/A = SSdisease.archive_diseases[GetDiseaseID()]
 	A.name = name
 
@@ -351,7 +351,7 @@
 /datum/disease/advance/proc/NeuterSymptom(datum/symptom/S)
 	if(!S.neutered)
 		S.neutered = TRUE
-		S.name += " (neutered)"
+		S.name += "（已抑制）"
 		S.OnRemove(src)
 
 /*
@@ -410,11 +410,11 @@
 	D.symptoms = list()
 
 	var/list/symptoms = list()
-	symptoms += "Done"
+	symptoms += "完成"
 	symptoms += SSdisease.list_symptoms.Copy()
 	do
 		if(user)
-			var/symptom = tgui_input_list(user, "Choose a symptom to add ([i] remaining)", "Choose a Symptom", sort_list(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+			var/symptom = tgui_input_list(user, "选择要添加的症状（还可添加[i]个）", "选择症状", sort_list(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))
@@ -428,20 +428,20 @@
 
 	if(D.symptoms.len > 0)
 
-		var/new_name = tgui_input_text(user, "Name your new disease", "New Name", max_length = MAX_NAME_LEN)
+		var/new_name = tgui_input_text(user, "为新疾病命名", "新名称", max_length = MAX_NAME_LEN)
 		if(!new_name)
 			return
 		D.Refresh()
 		D.AssignName(new_name) //Updates the master copy
 		D.name = new_name //Updates our copy
 
-		var/list/targets = list("Random")
+		var/list/targets = list("随机")
 		targets += sort_names(GLOB.human_list)
-		var/target = tgui_input_list(user, "Viable human target", "Disease Target", targets)
+		var/target = tgui_input_list(user, "选择可感染的人类目标", "疾病目标", targets)
 		if(isnull(target))
 			return
 		var/mob/living/carbon/human/H
-		if(target == "Random")
+		if(target == "随机")
 			for(var/human in shuffle(GLOB.human_list))
 				H = human
 				var/found = FALSE
@@ -451,16 +451,16 @@
 					found = H.ForceContractDisease(D)
 					break
 				if(!found)
-					to_chat(user, "Could not find a valid target for the disease.")
+					to_chat(user, "未找到可感染此疾病的有效目标。")
 		else
 			H = target
 			if(istype(H) && D.infectable_biotypes & H.mob_biotypes)
 				H.ForceContractDisease(D)
 			else
-				to_chat(user, "Target could not be infected. Check mob biotype compatibility or resistances.")
+				to_chat(user, "无法感染目标。请检查生物类型兼容性或免疫能力。")
 				return
 
-		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.admin_details()] in [ADMIN_LOOKUPFLW(H)]")
+		message_admins("[key_name_admin(user)]在[ADMIN_LOOKUPFLW(H)]身上触发了自定义病毒感染：[D.admin_details()]")
 		log_virus("[key_name(user)] has triggered a custom virus outbreak of [D.admin_details()] in [H]!")
 
 
@@ -530,4 +530,4 @@
 		var/datum/reagent/each_cure = each_symptom.symptom_cure
 		if(!each_symptom.neutered && !(each_cure::name in remedies))
 			remedies += each_cure::name
-	return english_list(remedies, nothing_text = "Nothing")
+	return english_list(remedies, nothing_text = "无")

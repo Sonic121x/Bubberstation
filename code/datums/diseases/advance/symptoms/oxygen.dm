@@ -7,8 +7,8 @@
  * Bonus: Gives the carrier TRAIT_NOBREATH, preventing suffocation and CPR
 */
 /datum/symptom/oxygen
-	name = "Self-Respiration"
-	desc = "The virus rapidly synthesizes oxygen, effectively removing the need for breathing."
+	name = "自给呼吸"
+	desc = "病毒迅速合成氧气，使宿主实际上无需呼吸。"
 	stealth = 1
 	resistance = -3
 	stage_speed = -3
@@ -19,7 +19,7 @@
 	delay_variation = 0
 	required_organ = ORGAN_SLOT_LUNGS
 	threshold_descs = list(
-		"Resistance 8" = "Additionally regenerates lost blood."
+		"抗性 8" = "还会再生流失的血液。"
 	)
 	var/regenerate_blood = FALSE
 
@@ -41,12 +41,12 @@
 			infected_mob.losebreath = max(0, infected_mob.losebreath - 4)
 			infected_mob.adjust_oxy_loss(-7)
 			if(prob(base_message_chance))
-				to_chat(infected_mob, span_notice("You realize you haven't been breathing."))
+				to_chat(infected_mob, span_notice("你意识到自己一直没有呼吸。"))
 			if(regenerate_blood)
 				infected_mob.adjust_blood_volume(1, maximum = BLOOD_VOLUME_NORMAL)
 		else
 			if(prob(base_message_chance))
-				to_chat(infected_mob, span_notice("Your lungs feel great."))
+				to_chat(infected_mob, span_notice("你的肺感觉非常舒畅。"))
 	return
 
 /datum/symptom/oxygen/on_stage_change(datum/disease/advance/advanced_disease)
@@ -57,11 +57,11 @@
 	if(advanced_disease.stage >= 4)
 		ADD_TRAIT(infected_mob, TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(advanced_disease.stage == 4)
-			to_chat(infected_mob, span_notice("You don't feel the need to breathe anymore."))
+			to_chat(infected_mob, span_notice("你觉得自己再也无需呼吸了。"))
 	else
 		REMOVE_TRAIT(infected_mob, TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(advanced_disease.stage_peaked && advanced_disease.stage == 3)
-			to_chat(infected_mob, span_notice("You feel the need to breathe again."))
+			to_chat(infected_mob, span_notice("你又感到了呼吸的需要。"))
 	return TRUE
 
 /datum/symptom/oxygen/End(datum/disease/advance/advanced_disease)

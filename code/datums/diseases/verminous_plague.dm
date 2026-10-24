@@ -28,11 +28,11 @@ GLOBAL_LIST_INIT(cursed_vermin_by_stage, list(
 
 /// Makes you cough out rats, bugs, etc
 /datum/disease/verminous_plague
-	name = "Verminous Plague"
-	desc = "You can't stop germinating small animals."
-	form = "Affliction"
-	agent = "Wizard's Curse"
-	cure_text = "Exorcism"
+	name = "虫鼠瘟疫"
+	desc = "你的身体不停地滋生小动物。"
+	form = "灾厄"
+	agent = "巫师诅咒"
+	cure_text = "驱魔"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cures = list(/datum/reagent/consumable/salt, /datum/reagent/water/holywater)
 	spread_flags = DISEASE_SPREAD_CONTACT_SKIN
@@ -57,11 +57,11 @@ GLOBAL_LIST_INIT(cursed_vermin_by_stage, list(
 
 	var/obj/item/organ/lungs = affected_mob.get_organ_slot(ORGAN_SLOT_LUNGS)
 	if (lungs && affected_mob.emote("cough"))
-		affected_mob.visible_message(span_warning("[affected_mob] coughs out [created]!"))
+		affected_mob.visible_message(span_warning("[affected_mob]咳出了[created]！"))
 		lungs.apply_organ_damage(stage * 2)
 	else
 		affected_mob.vomit(VOMIT_CATEGORY_BLOOD_STUNLESS | MOB_VOMIT_FORCE)
-		affected_mob.visible_message(span_warning("[affected_mob] vomits out [created]!"))
+		affected_mob.visible_message(span_warning("[affected_mob]吐出了[created]！"))
 
 	if (stage == 1 || !created.ai_controller)
 		return

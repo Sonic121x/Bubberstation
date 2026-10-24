@@ -8,8 +8,8 @@
 */
 
 /datum/symptom/bleeding
-	name = "Anticoagulant"
-	desc = "The virus prevents the body from clotting blood. Unnoticable unless the host is bleeding."
+	name = "抗凝血"
+	desc = "病毒阻碍身体凝血。除非宿主正在流血，否则无法察觉。"
 	stealth = 1
 	resistance = -1
 	stage_speed = -3
@@ -19,8 +19,8 @@
 	symptom_cure = /datum/reagent/acetaldehyde
 	cure_color = "orange"
 	threshold_descs = list(
-		"Stage Speed 9" = "The host becomes more vulnerable to bleeding wounds.",
-		"Stealth 3" = "The symptom remains hidden even while active."
+		"阶段速度 9" = "宿主更容易受到出血伤口的影响。",
+		"隐蔽性 3" = "即使发作，症状也不会显露。"
 	)
 	var/easybleed = FALSE
 	var/hidden = FALSE
@@ -42,9 +42,9 @@
 	for(var/datum/wound/possible_bleeding_wound as anything in carbon_host.all_wounds)
 		if(possible_bleeding_wound.blood_flow && !hidden)
 			if(4 > A.stage >= 2)
-				to_chat(carbon_host, span_warning("Your bleeding wounds start to itch."))
+				to_chat(carbon_host, span_warning("你流血的伤口开始发痒。"))
 			if(A.stage >= 4)
-				to_chat(carbon_host, span_warning("Your bleeding wounds itch like crazy as more blood leaves your body."))
+				to_chat(carbon_host, span_warning("你的伤口流出了更多鲜血，痒得难以忍受。"))
 			return
 
 /datum/symptom/bleeding/on_stage_change(datum/disease/advance/A)

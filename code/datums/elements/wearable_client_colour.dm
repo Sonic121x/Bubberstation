@@ -13,7 +13,7 @@
 	///if forced is false, we check that the user has the TRAIT_SEE_WORN_COLOURS before adding the colour.
 	var/forced = FALSE
 	///On examine, it'll tell which you have to press to toggle TRAIT_SEE_WORN_COLOURS.
-	var/key_info = "Figure it out yourself how"
+	var/key_info = "自行摸索操作方式"
 
 /datum/element/wearable_client_colour/Attach(obj/item/target, colour_type, equip_slots, colour_source, custom_colour, forced = FALSE, comsig_toggle = COMSIG_CLICK_ALT)
 	. = ..()
@@ -32,16 +32,16 @@
 	if(!forced)
 		switch(comsig_toggle)
 			if(COMSIG_CLICK_ALT)
-				key_info = EXAMINE_HINT("Alt-Click")
+				key_info = EXAMINE_HINT("Alt+左键")
 			if(COMSIG_CLICK_ALT_SECONDARY)
-				key_info = EXAMINE_HINT("Right-Alt-Click")
+				key_info = EXAMINE_HINT("Alt+右键")
 			if(COMSIG_CLICK_CTRL)
-				key_info = EXAMINE_HINT("Ctrl-Click")
+				key_info = EXAMINE_HINT("Ctrl+左键")
 			if(COMSIG_CLICK_CTRL_SHIFT)
-				key_info = EXAMINE_HINT("Ctrl-Shift-Click")
+				key_info = EXAMINE_HINT("Ctrl+Shift+左键")
 			else
 				stack_trace("Unsupported comsig_toggle arg value ([comsig_toggle]) for [type], defaulting to [COMSIG_CLICK_ALT]")
-				key_info = EXAMINE_HINT("Alt-Click")
+				key_info = EXAMINE_HINT("Alt+左键")
 				comsig_toggle = COMSIG_CLICK_ALT
 		RegisterSignal(target, comsig_toggle, PROC_REF(toggle_see_worn_colors))
 		RegisterSignal(target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
@@ -113,12 +113,12 @@
 		return
 	if(HAS_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS))
 		REMOVE_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS, CLOTHING_TRAIT)
-		clicker.balloon_alert(clicker, "glasses colors disabled")
+		clicker.balloon_alert(clicker, "已关闭眼镜滤色")
 	else
 		ADD_TRAIT(clicker, TRAIT_SEE_WORN_COLOURS, CLOTHING_TRAIT)
-		clicker.balloon_alert(clicker, "glasses colors enabled")
+		clicker.balloon_alert(clicker, "已开启眼镜滤色")
 	return CLICK_ACTION_SUCCESS
 
 /datum/element/wearable_client_colour/proc/on_examine(obj/item/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
-	examine_texts += span_info("While holding or wearing it, [key_info] to toggle on/off the screen color from glasses and such.")
+	examine_texts += span_info("手持或佩戴时，使用[key_info]可开启或关闭眼镜等物品的屏幕滤色效果。")

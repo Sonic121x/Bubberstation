@@ -8,9 +8,9 @@
 */
 
 /datum/symptom/voice_change
-	name = "Voice Change"
-	desc = "The virus alters the pitch and tone of the host's vocal cords, changing how their voice sounds."
-	illness = "Mime Crisis"
+	name = "变声"
+	desc = "病毒改变宿主声带的音高和音色，使其声音发生变化。"
+	illness = "默剧危机"
 	stealth = 2
 	resistance = -1
 	stage_speed = -2
@@ -22,9 +22,9 @@
 	required_organ = ORGAN_SLOT_TONGUE
 	symptom_cure = /datum/reagent/inverse/healing/convermol
 	threshold_descs = list(
-		"Transmission 14" = "The host's language center of the brain is damaged, leading to complete inability to speak or understand any language.",
-		"Stage Speed 7" = "Changes voice more often.",
-		"Stealth 3" = "The symptom remains hidden until active."
+		"传染性 14" = "损伤宿主大脑的语言中枢，使其完全无法说出或理解任何语言。",
+		"阶段速度 7" = "更频繁地改变声音。",
+		"隐蔽性 3" = "症状在发作前不会显露。"
 	)
 	var/scramble_language = FALSE
 	var/datum/language/current_language
@@ -50,7 +50,7 @@
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, span_warning("[pick("Your throat hurts.", "You clear your throat.")]"))
+				to_chat(M, span_warning("[pick("你的喉咙很痛。", "你清了清嗓子。")]"))
 		else
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M

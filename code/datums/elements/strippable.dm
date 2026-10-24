@@ -94,7 +94,7 @@
 		return FALSE
 
 	if (HAS_TRAIT(equipping, TRAIT_NODROP))
-		to_chat(user, span_warning("You can't put [equipping] on [source], it's stuck to your hand!"))
+		to_chat(user, span_warning("你无法给[source]穿戴[equipping]，它粘在你的手上了！"))
 		return FALSE
 
 	if (equipping.item_flags & ABSTRACT)
@@ -149,27 +149,27 @@
 	var/is_silent = can_be_silent && HAS_TRAIT(user, TRAIT_STICKY_FINGERS)
 	if (!is_silent)
 		source.visible_message(
-			span_warning("[user] tries to remove [source]'s [item.name]."),
-			span_userdanger("[user] tries to remove your [item.name]."),
-			blind_message = span_hear("You hear rustling."),
+			span_warning("[user]试图取下[source]的[item.name]。"),
+			span_userdanger("[user]试图取下你的[item.name]。"),
+			blind_message = span_hear("你听见窸窣声。"),
 			ignored_mobs = user,
 		)
 	//SKYRAT EDIT CHANGE END
 
-	to_chat(user, span_danger("You try to remove [source]'s [item.name]..."))
-	user.log_message("is stripping [key_name(source)] of [item].", LOG_ATTACK, color="red")
-	source.log_message("is being stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
+	to_chat(user, span_danger("你试图取下[source]的[item.name]……"))
+	user.log_message("正在取下[key_name(source)]的[item]。", LOG_ATTACK, color="red")
+	source.log_message("的[item]正被[key_name(user)]取下。", LOG_VICTIM, color="orange", log_globally=FALSE)
 	item.add_fingerprint(src)
 
 	if(ishuman(source) && !is_silent) //SKYRAT EDIT ADDITION - THIEVING GLOVES ORIGINAL if(ishuman(source))
 		var/mob/living/carbon/human/victim_human = source
 		if(victim_human.key && !victim_human.client) // AKA braindead
 			if(!IS_UNCONSCIOUS(victim_human) && LAZYLEN(victim_human.afk_thefts) <= AFK_THEFT_MAX_MESSAGES)
-				var/list/new_entry = list(list(user.name, "tried unequipping your [item.name]", world.time))
+				var/list/new_entry = list(list(user.name, "试图取下你的[item.name]", world.time))
 				LAZYADD(victim_human.afk_thefts, new_entry)
 
 		else if(victim_human.is_blind())
-			to_chat(source, span_userdanger("You feel someone fumble with your belongings."))
+			to_chat(source, span_userdanger("你感觉有人正在摸索你的随身物品。"))
 
 	return TRUE
 
@@ -233,7 +233,7 @@
 		return FALSE
 
 	if (!equipping.mob_can_equip(source, item_slot, disable_warning = TRUE, bypass_equip_delay_self = TRUE))
-		to_chat(user, span_warning("\The [equipping] doesn't fit in that place!"))
+		to_chat(user, span_warning("[equipping]不适合放在那里！"))
 		return FALSE
 
 	return TRUE
@@ -302,8 +302,8 @@
 
 /// A utility function for `/datum/strippable_item`s to finish equipping an item to a mob.
 /proc/finish_equip_mob(obj/item/item, mob/source, mob/user)
-	user.log_message("has put [item] on [key_name(source)].", LOG_ATTACK, color="red")
-	source.log_message("had [item] put on them by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
+	user.log_message("给[key_name(source)]穿戴了[item]。", LOG_ATTACK, color="red")
+	source.log_message("被[key_name(user)]穿戴上了[item]。", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
 /proc/start_unequip_mob(obj/item/item, mob/source, mob/user, strip_delay, hidden = FALSE)
@@ -317,8 +317,8 @@
 	if (!item.doStrip(user, source))
 		return FALSE
 
-	user.log_message("has stripped [key_name(source)] of [item].", LOG_ATTACK, color="red")
-	source.log_message("has been stripped of [item] by [key_name(user)].", LOG_VICTIM, color="orange", log_globally=FALSE)
+	user.log_message("取下了[key_name(source)]的[item]。", LOG_ATTACK, color="red")
+	source.log_message("的[item]被[key_name(user)]取下了。", LOG_VICTIM, color="orange", log_globally=FALSE)
 
 /// A representation of the stripping UI
 /datum/strip_menu

@@ -87,9 +87,9 @@
 		var/name_to_use = filled_name || initial(source.name)
 		var/list/unique_list = unique_list(scoops)
 		if(scoops_len > 1 && length(unique_list) == 1) // multiple flavours, and all of the same type
-			source.name = "[make_tuple(scoops_len)] [scoops[1]] [name_to_use]" // "double vanilla" sounds cooler than just "vanilla"
+			source.name = "[scoops_len]球[chinese_icecream_display(scoops[1])] [name_to_use]" // "double vanilla" sounds cooler than just "vanilla"
 		else
-			source.name = "[english_list(unique_list)] [name_to_use]"
+			source.name = "[chinese_icecream_list_display(unique_list)] [name_to_use]"
 
 /datum/component/ice_cream_holder/proc/on_update_desc(atom/source, updates)
 	SIGNAL_HANDLER
@@ -106,12 +106,12 @@
 		else
 			source.desc = replacetext(replacetext("[flavour.desc_prefix] [flavour.desc]", "$CONE_NAME", initial(source.name)), "$CUSTOM_NAME", key)
 	else /// Many flavours.
-		source.desc = "A delicious [initial(source.name)] filled with scoops of [english_list(scoops)] ice cream. That's as many as [scoops_len] scoops!"
+		source.desc = "美味的[initial(source.name)]，装满了[chinese_icecream_list_display(scoops)]冰淇淋。足足有[scoops_len]球！"
 
 /datum/component/ice_cream_holder/proc/on_examine(atom/source, mob/mob, list/examine_list)
 	SIGNAL_HANDLER
 	if(length(scoops) < max_scoops)
-		examine_list += span_tinynoticeital("you could use a ice cream vat to fill it with yummy ice cream...")
+		examine_list += span_tinynoticeital("可以用冰淇淋机给它装上美味的冰淇淋……")
 
 /datum/component/ice_cream_holder/proc/on_examine_more(atom/source, mob/mob, list/examine_list)
 	SIGNAL_HANDLER
@@ -122,11 +122,11 @@
 		var/key = scoops[1]
 		var/datum/ice_cream_flavour/flavour = GLOB.ice_cream_flavours[LAZYACCESS(special_scoops, key) || key]
 		if(flavour?.desc) //I scream.
-			examine_list += "[source.p_Theyre()] filled with scoops of [flavour ? flavour.name : "broken, unhappy"] ice cream."
+			examine_list += "里面装满了[flavour ? chinese_icecream_display(flavour.name) : "损坏而忧伤的"]冰淇淋。"
 		else
-			examine_list += replacetext(replacetext("[source.p_Theyre()] [flavour.desc]", "$CONE_NAME", initial(source.name)), "$CUSTOM_NAME", key)
+			examine_list += replacetext(replacetext("它[flavour.desc]", "$CONE_NAME", initial(source.name)), "$CUSTOM_NAME", key)
 	else /// Many flavours.
-		examine_list += "[source.p_Theyre()] filled with scoops of [english_list(scoops)] ice cream. That's as many as [scoops_len] scoops!"
+		examine_list += "里面装满了[chinese_icecream_list_display(scoops)]冰淇淋。足足有[scoops_len]球！"
 
 /datum/component/ice_cream_holder/proc/on_update_overlays(atom/source, list/new_overlays)
 	SIGNAL_HANDLER
@@ -148,7 +148,7 @@
 	if(!istype(target, /obj/machinery/icecream_vat))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(length(scoops) >= max_scoops)
-		target.balloon_alert(user, "too many scoops!")
+		target.balloon_alert(user, "冰淇淋球太多了！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	var/obj/machinery/icecream_vat/dispenser = target
 	dispenser.add_flavor_to_cone(src, user, source)
@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 	 * Depending on the value of the [/datum/component/ice_cream/var/change_desc] bool, 'desc' may effectively be the description
 	 * or a text string shown on [/atom/proc/examine_more]. In the former case, the desc is joined with this prefix.
 	 */
-	var/desc_prefix = "A delicious $CONE_NAME"
+	var/desc_prefix = "美味的$CONE_NAME，"
 	/// The ingredients required to produce a unit with the ice cream vat, these are multiplied by 3.
 	var/list/ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/vanilla)
 	/// The same as above, but in a readable text generated on New() that can also contain fluff ingredients such as "lot of love" or "optional flavorings".
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 
 /datum/ice_cream_flavour/New()
 	if(ingredients)
-		ingredients_text = "Requires: [reagent_paths_list_to_text(ingredients, ingredients_text)]"
+		ingredients_text = "需要：[reagent_paths_list_to_text(ingredients, ingredients_text)]"
 
 /// Adds a new flavour to the ice cream cone.
 /datum/ice_cream_flavour/proc/add_flavour(datum/component/ice_cream_holder/target, datum/reagents/custom_ingredients)
@@ -256,98 +256,98 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 
 /datum/ice_cream_flavour/vanilla
 	name = ICE_CREAM_VANILLA
-	desc = "filled with vanilla ice cream. All the other ice creams take content from it."
+	desc = "装满了香草冰淇淋。其他冰淇淋都借用了它的配料。"
 	reagent_type = /datum/reagent/consumable/vanilla
 
 /datum/ice_cream_flavour/chocolate
 	name = ICE_CREAM_CHOCOLATE
 	color = COLOR_ICECREAM_CHOCOLATE
-	desc = "filled with chocolate ice cream. Surprisingly, made with real cocoa."
+	desc = "装满了巧克力冰淇淋。令人惊讶的是，它竟然用了真正的可可。"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/coco)
 	reagent_type = /datum/reagent/consumable/coco
 
 /datum/ice_cream_flavour/strawberry
 	name = ICE_CREAM_STRAWBERRY
 	color = COLOR_ICECREAM_STRAWBERRY
-	desc = "filled with strawberry ice cream. Definitely not made with real strawberries."
+	desc = "装满了草莓冰淇淋。肯定没用真正的草莓。"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/berryjuice)
 	reagent_type = /datum/reagent/consumable/berryjuice
 
 /datum/ice_cream_flavour/blue
 	name = ICE_CREAM_BLUE
 	color = COLOR_ICECREAM_BLUE
-	desc = "filled with blue ice cream. Made with real... blue?"
+	desc = "装满了蓝色冰淇淋。原料是真正的……蓝色？"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/ethanol/singulo)
 	reagent_type = /datum/reagent/consumable/ethanol/singulo
 
 /datum/ice_cream_flavour/lemon
 	name = ICE_CREAM_LEMON
 	color = COLOR_ICECREAM_LEMON
-	desc = "filled with lemon sorbet. Like frozen lemonade in a cone."
+	desc = "装满了柠檬雪芭。就像装在蛋筒里的冰冻柠檬水。"
 	ingredients = list(/datum/reagent/consumable/ice, /datum/reagent/consumable/lemonjuice) //contains no milk
 	reagent_type = /datum/reagent/consumable/lemonjuice
 
 /datum/ice_cream_flavour/caramel
 	name = ICE_CREAM_CARAMEL
 	color = COLOR_ICECREAM_CARAMEL
-	desc = "filled with caramel ice cream. It is deliciously sweet."
+	desc = "装满了焦糖冰淇淋。香甜可口。"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/caramel)
 	reagent_type = /datum/reagent/consumable/caramel
 
 /datum/ice_cream_flavour/banana
 	name = ICE_CREAM_BANANA
 	color = COLOR_YELLOW
-	desc = "filled with banana ice cream. Honk!"
+	desc = "装满了香蕉冰淇淋。嘟嘟！"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/banana)
 	reagent_type = /datum/reagent/consumable/banana
 
 /datum/ice_cream_flavour/orange_cream
 	name = ICE_CREAM_ORANGE_CREAM
 	color = COLOR_ICECREAM_ORANGESICLE
-	desc = "filled with orange creamsicle. Not quite the same off the stick..."
+	desc = "装满了香橙奶油冰淇淋。少了冰棒棍，感觉有点不一样……"
 	ingredients = list(/datum/reagent/consumable/cream, /datum/reagent/consumable/ice, /datum/reagent/consumable/orangejuice)
 	reagent_type = /datum/reagent/consumable/orangejuice
 
 /datum/ice_cream_flavour/peach
 	name = ICE_CREAM_PEACH
 	color = COLOR_ICECREAM_PEACH
-	desc = "filled with limited edition peach flavour. Enjoy it while it lasts!"
+	desc = "装满了限量桃子味冰淇淋。趁还有，赶紧享用吧！"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/peachjuice)
 	reagent_type = /datum/reagent/consumable/peachjuice
 
 /datum/ice_cream_flavour/vanilla/korta
 	name = ICE_CREAM_KORTA_VANILLA
-	desc = "filled with vanilla ice cream made with korta milk. Lizards love it!"
+	desc = "装满了用科塔奶制作的香草冰淇淋。蜥蜴人最爱！"
 	ingredients = list(/datum/reagent/consumable/korta_milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/vanilla)
 
 /datum/ice_cream_flavour/cherry_chocolate
 	name = ICE_CREAM_CHERRY_CHOCOLATE
 	color = COLOR_ICECREAM_CHERRY_CHOCOLATE
-	desc = "filled with cherry chocolate chip ice cream. It is wonderfully tangy and sweet."
+	desc = "装满了樱桃巧克力碎冰淇淋。酸甜滋味妙不可言。"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice, /datum/reagent/consumable/coco, /datum/reagent/consumable/cherryjelly)
 	reagent_type = /datum/reagent/consumable/cherryjelly
 
 /datum/ice_cream_flavour/mob
 	name = ICE_CREAM_MOB
 	color = COLOR_ICECREAM_STRAWBERRY
-	desc = "filled with bright red ice cream. That's probably not strawberry..."
-	desc_prefix = "A suspicious $CONE_NAME"
+	desc = "装满了鲜红色的冰淇淋。那大概不是草莓……"
+	desc_prefix = "可疑的$CONE_NAME，"
 	reagent_type = /datum/reagent/consumable/liquidgibs
 	hidden = TRUE
 
 /datum/ice_cream_flavour/custom
 	name = ICE_CREAM_CUSTOM
 	color = COLOR_STARLIGHT //has its own mutable appearance overlay it will be overwritten with anyways.
-	desc = "filled with artisanal ice cream. Made with real $CUSTOM_NAME. Ain't that something."
+	desc = "装满了手工冰淇淋。用了真正的$CUSTOM_NAME。可真不一般。"
 	ingredients = list(/datum/reagent/consumable/milk, /datum/reagent/consumable/ice)
-	ingredients_text = "optional flavorings"
+	ingredients_text = "可选调味料"
 	takes_custom_ingredients = TRUE
 
 /datum/ice_cream_flavour/custom/korta
 	name = ICE_CREAM_KORTA_CUSTOM
-	desc = "filled with artisanal lizard-friendly ice cream. Made with real $CUSTOM_NAME. Ain't that something."
+	desc = "装满了适合蜥蜴人的手工冰淇淋。用了真正的$CUSTOM_NAME。可真不一般。"
 	ingredients = list(/datum/reagent/consumable/korta_milk, /datum/reagent/consumable/ice)
-	ingredients_text = "optional flavorings"
+	ingredients_text = "可选调味料"
 
 /datum/ice_cream_flavour/custom/add_flavour(datum/component/ice_cream_holder/target, datum/reagents/custom_ingredients)
 	if(!custom_ingredients || custom_ingredients.total_volume < 4) //consumable reagents have stronger taste so higher volume are required to allow non-food flavourings to break through better.
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT_TYPED(ice_cream_flavours, /datum/ice_cream_flavour, init_ice_cr
 /datum/ice_cream_flavour/bland
 	name = ICE_CREAM_BLAND
 	color = COLOR_ICECREAM_CUSTOM
-	desc = "filled with anemic, flavorless ice cream. You wonder why this was ever scooped..."
+	desc = "装满了苍白无味的冰淇淋。你不明白为什么还要把它舀出来……"
 	hidden = TRUE
 
 #undef SWEETENER_PER_SCOOP

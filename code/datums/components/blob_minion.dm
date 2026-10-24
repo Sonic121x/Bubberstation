@@ -135,7 +135,7 @@
 	SIGNAL_HANDLER
 	if (isnull(overmind))
 		return
-	status_items += "Blobs to Win: [length(overmind.blobs_legit)]/[overmind.blobwincount]"
+	status_items += "胜利所需菌块：[length(overmind.blobs_legit)]/[overmind.blobwincount]"
 
 /// If we feel the gentle caress of a blob, we feel better
 /datum/component/blob_minion/proc/on_blob_touched(mob/living/minion)
@@ -181,7 +181,7 @@
 	var/adjusted_message = minion.check_for_custom_say_emote(message, message_mods)
 	minion.log_sayverb_talk(message, message_mods, tag = "blob hivemind telepathy")
 	var/spanned_message = minion.generate_messagepart(adjusted_message, message_mods = message_mods)
-	var/rendered = span_blob("<b>\[Blob Telepathy\] [minion.real_name]</b> [spanned_message]")
+	var/rendered = span_blob("<b>\[变形菌心灵感应\] [minion.real_name]</b> [spanned_message]")
 	relay_to_list_and_observers(rendered, GLOB.blob_telepathy_mobs, minion, MESSAGE_TYPE_RADIO)
 
 /// Called when a blob minion is transformed into something else, hopefully a spore into a zombie

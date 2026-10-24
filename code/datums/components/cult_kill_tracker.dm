@@ -51,15 +51,15 @@
 		return
 
 	var/num_slain = LAZYLEN(cultists_slain)
-	examine_list += span_cult_italic("It has the blood of [num_slain] fallen cultist[num_slain == 1 ? "" : "s"] on it. \
-		<b>Offering</b> it to Nar'sie will transform it into a [num_slain >= 3 ? "powerful" : "standard"] cult weapon.")
+	examine_list += span_cult_italic("它沾着[num_slain]名阵亡教徒的鲜血。\
+		将其<b>献祭</b>给纳尔西，会使它变成一件[num_slain >= 3 ? "强大的" : "普通的"]血教武器。")
 
 /datum/component/cult_kill_tracker/proc/on_sacrificed(obj/item/source, obj/effect/rune/convert/rune)
 	SIGNAL_HANDLER
 	var/num_slain = LAZYLEN(cultists_slain)
-	var/displayed_message = "[source] glows an unholy red and begins to transform..."
+	var/displayed_message = "[source]发出邪恶的红光，开始变形……"
 	if(num_slain && GET_ATOM_BLOOD_DNA_LENGTH(source))
-		displayed_message += " The blood of [num_slain] fallen cultist[num_slain == 1 ? "":"s"] is absorbed into [source]!"
+		displayed_message += "[num_slain]名阵亡教徒的鲜血被[source]吸收！"
 
 	source.visible_message(span_cult_italic(displayed_message))
 	switch(num_slain)

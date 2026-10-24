@@ -110,7 +110,7 @@
 				var/static/logged_to_admins = FALSE
 				log_game("[new_track.song_path] track data seems to be using the legacy format; we will attempt to make it work.")
 				if(!logged_to_admins)
-					message_admins("The jukebox has tracks uploaded in a legacy format. Length is now fetched programmatically, with title and beats being the only required fields.")
+					message_admins("点唱机中有以旧格式上传的曲目。时长现在会由程序自动获取，只需填写标题和节拍字段。")
 					logged_to_admins = TRUE
 				new_track.song_beat_deciseconds = text2num(track_data[3])
 			else if(track_data.len >= 2)
@@ -138,7 +138,7 @@
 		UNTYPED_LIST_ADD(songs_data, list( \
 			"name" = song_name, \
 			"length" = DisplayTimeText(one_song.song_length), \
-			"beat" = one_song.song_beat_deciseconds || "Unknown", \
+			"beat" = one_song.song_beat_deciseconds || "未知", \
 		))
 
 	data["active"] = !!active_song_sound
@@ -402,7 +402,7 @@
 /// Track datums, used in jukeboxes
 /datum/track
 	/// Readable name, used in the jukebox menu
-	var/song_name = "generic"
+	var/song_name = "通用曲目"
 	/// Filepath of the song
 	var/song_path = null
 	/// How long is the song in deciseconds
@@ -415,6 +415,6 @@
 // Default track supplied for testing and also because it's a banger
 /datum/track/default
 	song_path = 'sound/music/lobby_music/title3.ogg'
-	song_name = "Tintin on the Moon"
+	song_name = "丁丁登月"
 	song_length = 3 MINUTES + 52 SECONDS
 	song_beat_deciseconds = 1 SECONDS

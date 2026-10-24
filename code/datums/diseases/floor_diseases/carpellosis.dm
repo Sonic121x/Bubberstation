@@ -2,13 +2,13 @@
 
 /// Caused by dirty food. Makes you growl at people and bite them spontaneously.
 /datum/disease/carpellosis
-	name = "Carpellosis"
-	desc = "An angry space carp inside has infested the host's stomach, \
-		leading to an uncontrollable urge to gnash at people and wag your tail."
-	form = "Parasite"
-	agent = "Carp Ella"
+	name = "鲤鱼寄生症"
+	desc = "一条愤怒的太空鲤鱼寄生在宿主胃里， \
+		使其无法抑制地想对人龇牙并摇尾巴。"
+	form = "寄生虫"
+	agent = "鲤鱼埃拉"
 	cure_text = /datum/reagent/chlorine::name
-	spread_text = "None"
+	spread_text = "无"
 	cures = list(/datum/reagent/chlorine)
 	viable_mobtypes = list(/mob/living/carbon/human)
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
@@ -33,25 +33,25 @@
 	switch(stage)
 		if(2)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob) && affected_mob.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL))
-				to_chat(affected_mob, span_warning("You want to wag your tail..."))
+				to_chat(affected_mob, span_warning("你想摇摇尾巴……"))
 				affected_mob.emote("wag")
 		if(3)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				to_chat(affected_mob, span_warning("You suddenly feel like swimming in space..."))
+				to_chat(affected_mob, span_warning("你突然想在太空中游泳……"))
 			else if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message("gnashes.", visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message("龇牙咧嘴。", visible_message_flags = EMOTE_MESSAGE)
 		if(4)
 			if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 				gnash_someone()
 			else if(SPT_PROB(1, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message("gnashes.", visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message("龇牙咧嘴。", visible_message_flags = EMOTE_MESSAGE)
 		if(5)
 			max_stage_reached = TRUE
 			grant_ability()
 			if(SPT_PROB(2, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
 				gnash_someone()
 			else if(SPT_PROB(2, seconds_per_tick) && !IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-				affected_mob.visible_message("gnashes.", visible_message_flags = EMOTE_MESSAGE)
+				affected_mob.visible_message("龇牙咧嘴。", visible_message_flags = EMOTE_MESSAGE)
 
 /datum/disease/carpellosis/Destroy()
 	if(ability_granted)
@@ -62,7 +62,7 @@
 	if(ability_granted)
 		rift_ability.Remove(affected_mob)
 	if(max_stage_reached && prob(ella_spawn_chance))
-		to_chat(affected_mob, span_warning("Something comes out of you!"))
+		to_chat(affected_mob, span_warning("有什么东西从你体内钻了出来！"))
 		new /mob/living/basic/carp/ella(affected_mob.loc)
 	return ..()
 
@@ -83,9 +83,9 @@
 /datum/disease/carpellosis/proc/gnash_someone()
 	var/mob/living/carbon/human/target = find_nearby_human()
 	if(isnull(target) || !affected_mob.get_bodypart(BODY_ZONE_HEAD)) // Need mouth to gnash
-		to_chat(affected_mob, span_warning("You want to gnash at someone..."))
+		to_chat(affected_mob, span_warning("你想对某个人龇牙……"))
 		return
-	to_chat(affected_mob, span_warning("[target.name] makes you angry for some reason..."))
+	to_chat(affected_mob, span_warning("不知为何，[target.name]让你很生气……"))
 	if(ability_granted && !affected_mob.Adjacent(target))
 		rift_ability.Trigger(target = target)
 	affected_mob.face_atom(target)
@@ -93,6 +93,6 @@
 		affected_mob.set_combat_mode(TRUE)
 		target.attack_paw(affected_mob)
 	else
-		affected_mob.visible_message("gnashes at [target.name].", visible_message_flags = EMOTE_MESSAGE)
+		affected_mob.visible_message("对着[target.name]龇牙咧嘴。", visible_message_flags = EMOTE_MESSAGE)
 
 #undef GNASHING_RANGE

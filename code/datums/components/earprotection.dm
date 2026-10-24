@@ -19,6 +19,6 @@
 /datum/component/wearertargeting/earprotection/proc/get_examine_tags(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(protection_amount == EAR_PROTECTION_NORMAL)
-		examine_list["sound-proof"] = "It protects the ears from flashbangs and other loud noises."
+		examine_list["sound-proof"] = "它能保护耳朵免受闪光震撼弹及其他强噪声的伤害。"
 	else if(protection_amount >= EAR_PROTECTION_HEAVY)
-		examine_list["sound-proof"] = "It provides [protection_amount == EAR_PROTECTION_FULL ? "full" : "heavy"] protection against flashbangs and other loud noises."
+		examine_list["sound-proof"] = "它能对闪光震撼弹及其他强噪声提供[protection_amount == EAR_PROTECTION_FULL ? "完全" : "强力"]防护。"

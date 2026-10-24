@@ -55,7 +55,7 @@
 
 /datum/component/limb_applicable/proc/add_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(isliving(target))
-		context[SCREENTIP_CONTEXT_LMB] = "Apply [source.name]"
+		context[SCREENTIP_CONTEXT_LMB] = "贴上[source.name]"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -69,17 +69,17 @@
 	var/obj/item/bodypart/applying_to = target.get_bodypart(deprecise_zone(user.zone_selected))
 
 	if(isnull(applying_to))
-		target.balloon_alert(user, "no bodypart!")
+		target.balloon_alert(user, "没有该身体部位！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!(applying_to.body_zone in valid_zones))
-		target.balloon_alert(user, "can't be applied there!")
+		target.balloon_alert(user, "无法贴在那里！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!override_existing)
 		var/obj/item/existing = LAZYACCESS(applying_to.applied_items, apply_category)
 		if(!isnull(existing))
-			target.balloon_alert(user, "something is already there!")
+			target.balloon_alert(user, "那里已经有东西了！")
 			return ITEM_INTERACT_BLOCKING
 
 	if(can_apply)
@@ -99,7 +99,7 @@
 		applying = stack_parent.split_stack(1)
 
 	else if(!user.temporarilyRemoveItemFromInventory(applying))
-		target.balloon_alert(user, "can't part with [applying.name]!")
+		target.balloon_alert(user, "无法放开[applying.name]！")
 		return
 
 	applying_to.apply_item(applying, apply_category, override_existing)

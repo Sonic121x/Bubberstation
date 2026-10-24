@@ -330,7 +330,7 @@
 /// Logs to admins that a singularity was created
 /datum/component/singularity/proc/admin_investigate_setup()
 	var/turf/spawned_turf = get_turf(parent)
-	message_admins("A singulo has been created at [ADMIN_VERBOSEJMP(spawned_turf)].")
+	message_admins("在[ADMIN_VERBOSEJMP(spawned_turf)]生成了一个奇点。")
 	var/atom/atom_parent = parent
 	atom_parent.investigate_log("was made into a singularity at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINE)
 

@@ -10,7 +10,7 @@
 	if(controller.blackboard_key_exists(BB_BASIC_MOB_RETALIATE_LIST))
 		var/deaggro_chance = controller.blackboard[BB_RANDOM_DEAGGRO_CHANCE] || 10
 		if(prob(deaggro_chance)) //Chance to chill the fuck out. This prob() should be matched with the frequency of calling.
-			pawn.visible_message(span_notice("[pawn] calms down."))
+			pawn.visible_message(span_notice("[pawn]冷静了下来。"))
 			controller.clear_blackboard_key(BB_BASIC_MOB_RETALIATE_LIST)
 			controller.clear_blackboard_key(BB_CURRENT_TARGET)
 			return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED // De-aggroed
@@ -45,11 +45,11 @@
 
 	// Add to shitlist  set_blackboard_key_assoc_lazylist calls post_blackboard_key_set, waking the combat branch
 	controller.set_blackboard_key_assoc_lazylist(BB_BASIC_MOB_RETALIATE_LIST, final_target, world.time)
-	pawn.visible_message(span_warning("[pawn] glares grumpily at [final_target]!"))
+	pawn.visible_message(span_warning("[pawn]气恼地瞪着[final_target]！"))
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/bt_node/ai_behavior/capricious_retaliate/proc/failed_targeting(atom/pawn)
-	pawn.visible_message(span_notice("[pawn] grumbles."))
+	pawn.visible_message(span_notice("[pawn]嘟囔着。"))
 
 /datum/bt_node/ai_behavior/capricious_retaliate/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()

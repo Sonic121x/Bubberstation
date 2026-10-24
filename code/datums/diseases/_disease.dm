@@ -7,13 +7,13 @@
 	//Fluff
 
 	/// What type of disease this is
-	var/form = "Virus"
+	var/form = "病毒"
 	/// The name of the disease (this one's kind of important)
-	var/name = "No disease"
+	var/name = "无疾病"
 	/// The description of what the disease is and does
 	var/desc = ""
 	/// The agent that causes the disease, for example "virus", "bacteria", "parasite", "curse"
-	var/agent = "Unknown"
+	var/agent = "未知"
 	/// A string describing how the disease spreads, for example "Airborne", "Blood", "Skin contact", "Magic"
 	/// (Keep this strictly for how it spreads BETWEEN hosts, NOT how it affected the initial host. Use agent var for that)
 	var/spread_text = ""
@@ -160,7 +160,7 @@
 			cure_mod = cure_mod * 2 * cure_status // Advanced diseases can be cured up to 2x as fast if all symptoms are remedied
 		if(disease_flags & CHRONIC && SPT_PROB(cure_mod, seconds_per_tick))
 			update_stage(1)
-			to_chat(affected_mob, span_notice("Your chronic illness is alleviated a little, though it can't be cured!"))
+			to_chat(affected_mob, span_notice("你的慢性病稍有缓解，但仍无法治愈！"))
 			return
 		if(disease_flags & CURABLE && SPT_PROB(cure_mod, seconds_per_tick))
 			if(disease_flags & INCREMENTAL_CURE)
@@ -484,13 +484,13 @@
 
 /proc/get_disease_spread_text(spread_flags)
 	if(spread_flags & DISEASE_SPREAD_AIRBORNE)
-		return "Airborne"
+		return "空气传播"
 	if(spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
-		return "Skin contact"
+		return "皮肤接触"
 	if(spread_flags & DISEASE_SPREAD_CONTACT_FLUIDS)
-		return "Fluid contact"
+		return "体液接触"
 	if(spread_flags & DISEASE_SPREAD_BLOOD)
-		return "Blood"
+		return "血液传播"
 	if(spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS)
-		return "None"
-	return "Unknown"
+		return "无"
+	return "未知"

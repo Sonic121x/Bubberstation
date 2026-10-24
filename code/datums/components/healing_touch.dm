@@ -61,8 +61,8 @@
 	valid_biotypes = MOB_ORGANIC | MOB_MINERAL,
 	required_bodytype = BODYTYPE_ORGANIC,
 	self_targeting = HEALING_TOUCH_NOT_SELF,
-	action_text = "%SOURCE% begins healing %TARGET%",
-	complete_text = "%SOURCE% finishes healing %TARGET%",
+	action_text = "%SOURCE%开始为%TARGET%治疗",
+	complete_text = "%SOURCE%完成了对%TARGET%的治疗",
 	show_health = FALSE,
 	heal_color = COLOR_HEALING_CYAN,
 	required_modifier = null,
@@ -131,30 +131,30 @@
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (DOING_INTERACTION(healer, interaction_key))
-		healer.balloon_alert(healer, "busy!")
+		healer.balloon_alert(healer, "正忙着！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	switch (self_targeting)
 		if (HEALING_TOUCH_NOT_SELF)
 			if (target == healer)
-				healer.balloon_alert(healer, "can't heal yourself!")
+				healer.balloon_alert(healer, "无法治疗自己！")
 				return COMPONENT_CANCEL_ATTACK_CHAIN
 		if (HEALING_TOUCH_SELF_ONLY)
 			if (target != healer)
-				healer.balloon_alert(healer, "can only heal yourself!")
+				healer.balloon_alert(healer, "只能治疗自己！")
 				return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	var/mob/living/living_target = target
 	if (living_target.health >= living_target.maxHealth)
-		target.balloon_alert(healer, "not hurt!")
+		target.balloon_alert(healer, "没有受伤！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (!has_healable_damage(living_target))
-		target.balloon_alert(healer, "can't heal that!")
+		target.balloon_alert(healer, "无法治疗该目标！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (living_target.stat == DEAD)
-		target.balloon_alert(healer, "they're dead!")
+		target.balloon_alert(healer, "目标已经死亡！")
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	INVOKE_ASYNC(src, PROC_REF(heal_target), healer, target)
@@ -188,7 +188,7 @@
 		healer.visible_message(span_notice("[format_string(action_text, healer, target)]"))
 
 	if (heal_time && !do_after(healer, heal_time, target = target, interaction_key = interaction_key))
-		healer.balloon_alert(healer, "interrupted!")
+		healer.balloon_alert(healer, "被打断了！")
 		return
 
 	if (complete_text)
@@ -218,7 +218,7 @@
 
 	if(!show_health)
 		return
-	var/formatted_string = format_string("%TARGET% now has <b>[health_percentage(target)] health.</b>", healer, target)
+	var/formatted_string = format_string("%TARGET%目前的<b>生命值为[health_percentage(target)]。</b>", healer, target)
 	to_chat(healer, span_danger(formatted_string))
 
 /// Reformats the passed string with the replacetext keys

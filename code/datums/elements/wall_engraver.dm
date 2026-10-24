@@ -18,7 +18,7 @@
 ///signal called on parent being examined
 /datum/element/wall_engraver/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("You can engrave some walls with your secondary attack if you can think of something interesting to engrave.")
+	examine_list += span_notice("只要能想到值得刻下的趣事，你就可以用次要攻击在某些墙壁上雕刻。")
 
 ///signal called on parent being used to right click attack something
 /datum/element/wall_engraver/proc/on_item_pre_attack_secondary(datum/source, atom/target, mob/living/user)
@@ -32,15 +32,15 @@
 	if(!istype(wall) || !user.mind)
 		return
 	if(HAS_TRAIT_FROM(wall, TRAIT_NOT_ENGRAVABLE, ENGRAVED_TRAIT))
-		user.balloon_alert(user, "wall has already been engraved!")
+		user.balloon_alert(user, "墙上已有雕刻！")
 		return
 	if(HAS_TRAIT(wall, TRAIT_NOT_ENGRAVABLE))
-		user.balloon_alert(user, "wall cannot be engraved!")
+		user.balloon_alert(user, "这面墙无法雕刻！")
 		return
 	if(!length(user.mind?.memories))
-		user.balloon_alert(user, "nothing memorable to engrave!")
+		user.balloon_alert(user, "没有值得刻下的回忆！")
 		return
-	var/datum/memory/memory_to_engrave = user.mind.select_memory("engrave")
+	var/datum/memory/memory_to_engrave = user.mind.select_memory("雕刻")
 	if(!memory_to_engrave)
 		return
 	if(!user.Adjacent(wall))
@@ -48,10 +48,10 @@
 	item.add_fingerprint(user)
 	playsound(item, item.hitsound, 30, TRUE, -1)
 	user.do_attack_animation(wall)
-	user.balloon_alert(user, "engraving wall...")
+	user.balloon_alert(user, "正在雕刻墙壁……")
 	if(!do_after(user, 5 SECONDS, target = wall))
 		return
-	user.balloon_alert(user, "wall engraved")
+	user.balloon_alert(user, "墙壁雕刻完成")
 	user.do_attack_animation(wall)
 
 	var/do_persistent_save = !(memory_to_engrave.memory_flags & MEMORY_FLAG_NOPERSISTENCE)

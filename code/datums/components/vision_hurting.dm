@@ -5,7 +5,7 @@
 	/// Do people looking at us make a fuss?
 	var/silent
 
-/datum/component/vision_hurting/Initialize(damage_per_second=1, message="Your eyes burn as you look at", silent = FALSE)
+/datum/component/vision_hurting/Initialize(damage_per_second=1, message="你的双眼被灼痛了，因为你正看着", silent = FALSE)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 

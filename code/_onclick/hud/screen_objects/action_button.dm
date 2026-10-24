@@ -154,20 +154,20 @@
 		if(SCRN_OBJ_IN_PALETTE)
 			position_info = SCRN_OBJ_IN_PALETTE
 
-	user.client.prefs.action_buttons_screen_locs["[name]_[id]"] = position_info
+	user.client.prefs.action_buttons_screen_locs["[chinese_action_storage_name(name, linked_action?.type)]_[id]"] = position_info
 
 /atom/movable/screen/movable/action_button/proc/load_position()
 	var/mob/user = our_hud.mymob
 	if(!user)
 		return
-	var/position_info = user.client?.prefs?.action_buttons_screen_locs["[name]_[id]"] || SCRN_OBJ_DEFAULT
+	var/position_info = user.client?.prefs?.action_buttons_screen_locs["[chinese_action_storage_name(name, linked_action?.type)]_[id]"] || SCRN_OBJ_DEFAULT
 	user.hud_used.position_action(src, position_info)
 
 /atom/movable/screen/movable/action_button/proc/dump_save()
 	var/mob/user = our_hud.mymob
 	if(!user?.client)
 		return
-	user.client.prefs.action_buttons_screen_locs -= "[name]_[id]"
+	user.client.prefs.action_buttons_screen_locs -= "[chinese_action_storage_name(name, linked_action?.type)]_[id]"
 
 /atom/movable/screen/movable/action_button/proc/update_keybind_maptext(key)
 	cut_overlay(keybind_maptext)

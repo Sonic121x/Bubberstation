@@ -24,7 +24,7 @@
 	var/mob/item_holder = item_pawn.loc
 	if(!ismob(item_holder))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	item_pawn.visible_message(span_warning("[item_pawn] slips out of the hands of [item_holder]!"))
+	item_pawn.visible_message(span_warning("[item_pawn]从[item_holder]手中滑脱了！"))
 	item_holder.dropItemToGround(item_pawn, TRUE)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

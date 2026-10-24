@@ -19,12 +19,12 @@
 	var/seen_message
 	var/self_message
 	if(prob(75) && savior)
-		var/text = pick("imploringly", "pleadingly", "with a resigned expression")
-		seen_message = "[controller.pawn] looks at [savior] [text]."
-		self_message = "You look at [savior] [text]."
+		var/text = pick("恳求地", "哀求地", "带着认命的神情")
+		seen_message = "[controller.pawn][text]看着[savior]。"
+		self_message = "你[text]看着[savior]。"
 	else
-		seen_message = "[controller.pawn] seems resigned to its fate."
-		self_message = "You resign yourself to your fate."
+		seen_message = "[controller.pawn]似乎已经认命了。"
+		self_message = "你认命了。"
 	controller.pawn.visible_message(span_notice("[seen_message]"), span_notice("[self_message]"))
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 

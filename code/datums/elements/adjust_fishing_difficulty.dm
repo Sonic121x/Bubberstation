@@ -57,18 +57,18 @@
 	SIGNAL_HANDLER
 	if(!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))
 		return
-	var/method = "[(slots || item.slot_flags) & ITEM_SLOT_HANDS ? "Holding" : "Wearing"] [item.p_them()]"
+	var/method = "[(slots || item.slot_flags) & ITEM_SLOT_HANDS ? "手持" : "穿戴"]此物品"
 	add_examine_line(user, examine_text, method)
 
 /datum/element/adjust_fishing_difficulty/proc/on_buckle_examine(atom/movable/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 	if(!HAS_MIND_TRAIT(user, TRAIT_EXAMINE_FISH))
 		return
-	add_examine_line(user, examine_text, "Buckling to [source.p_them()]")
+	add_examine_line(user, examine_text, "将自己固定在其上")
 
 /datum/element/adjust_fishing_difficulty/proc/add_examine_line(mob/user, list/examine_text, method)
 	var/percent = HAS_MIND_TRAIT(user, TRAIT_EXAMINE_DEEPER_FISH) ? "[abs(modifier)]% " : ""
-	var/text = "[method] will make fishing [percent][modifier < 0 ? "easier" : "harder"]."
+	var/text = "[method]会使钓鱼难度[modifier < 0 ? "降低" : "增加"][percent]。"
 	if(modifier < 0)
 		examine_text += span_nicegreen(text)
 	else

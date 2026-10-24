@@ -75,19 +75,19 @@
 	if(LAZYACCESS(attacker.do_afters, weapon))
 		return
 
-	attacker.visible_message(span_warning("[attacker] carefully aims [attacker.p_their()] [weapon] for a swing at [target]'s kneecaps!"), span_danger("You carefully aim \the [weapon] for a swing at [target]'s kneecaps!"))
-	log_combat(attacker, target, "started aiming a swing to break the kneecaps of", weapon)
+	attacker.visible_message(span_warning("[attacker]仔细瞄准[target]的膝盖，准备挥动[weapon]！"), span_danger("你用[weapon]仔细瞄准[target]的膝盖，准备挥击！"))
+	log_combat(attacker, target, "开始瞄准膝盖以将其打碎", weapon)
 
 	if(!do_after(attacker, 3 SECONDS, target, interaction_key = weapon))
 		return
 
-	attacker.visible_message(span_warning("[attacker] swings [attacker.p_their()] [weapon] at [target]'s kneecaps!"), span_danger("You swing \the [weapon] at [target]'s kneecaps!"))
+	attacker.visible_message(span_warning("[attacker]挥动[weapon]砸向[target]的膝盖！"), span_danger("你挥动[weapon]砸向[target]的膝盖！"))
 
 	var/min_wound = leg.get_wound_threshold_of_wound_type(WOUND_BLUNT, WOUND_SEVERITY_SEVERE, return_value_if_no_wound = 30, wound_source = weapon)
 	var/max_wound = leg.get_wound_threshold_of_wound_type(WOUND_BLUNT, WOUND_SEVERITY_CRITICAL, return_value_if_no_wound = 50, wound_source = weapon)
 
 	target.apply_damage(weapon.force, weapon.damtype, leg, wound_bonus = rand(min_wound, max_wound + 10), attacking_item = weapon)
 	target.emote("scream")
-	log_combat(attacker, target, "broke the kneecaps of", weapon)
+	log_combat(attacker, target, "打碎了膝盖", weapon)
 	attacker.do_attack_animation(target, used_item = weapon)
 	playsound(source = weapon, soundin = weapon.hitsound, vol = weapon.get_clamped_volume(), vary = TRUE)

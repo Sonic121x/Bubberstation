@@ -7,7 +7,7 @@
  */
 /datum/component/mind_linker
 	/// The name of our network, displayed to all users.
-	var/network_name = "Mind Link"
+	var/network_name = "心灵链接"
 	/// The color of the network when talking in chat
 	var/chat_color
 	/// A list of all signals that will call qdel() on our component if triggered. Optional.
@@ -31,7 +31,7 @@
 
 /datum/component/mind_linker/Initialize(
 	// Customization related settings
-	network_name = "Mind Link",
+	network_name = "心灵链接",
 	chat_color = "#008CA2",
 	speech_action_icon = 'icons/mob/actions/actions_slime.dmi',
 	speech_action_icon_state = "link_speech",
@@ -151,7 +151,7 @@
 
 	if(isliving(source))
 		var/mob/living/owner = source
-		to_chat(owner, span_boldwarning("Your [network_name] breaks!"))
+		to_chat(owner, span_boldwarning("你的[network_name]断开了！"))
 
 	qdel(src)
 
@@ -167,7 +167,7 @@
 
 /datum/component/mind_linker/active_linking/Initialize(
 	// Customization related settings
-	network_name = "Mind Link",
+	network_name = "心灵链接",
 	chat_color = "#008CA2",
 	speech_action_icon = 'icons/mob/actions/actions_slime.dmi',
 	speech_action_icon_state = "link_speech",
@@ -189,8 +189,8 @@
 		return
 
 	var/mob/living/owner = parent
-	src.link_message = link_message || "You are now connected to [owner.real_name]'s [network_name]."
-	src.unlink_message = unlink_message || "You are no longer connected to [owner.real_name]'s [network_name]."
+	src.link_message = link_message || "你已连接至[owner.real_name]的[network_name]。"
+	src.unlink_message = unlink_message || "你已断开与[owner.real_name]的[network_name]的连接。"
 
 	if(ispath(linker_action_path))
 		linker_action = new linker_action_path(src)
@@ -198,7 +198,7 @@
 	else
 		stack_trace("[type] was created without a valid linker_action_path. No one will be able to link to it.")
 
-	to_chat(owner, span_boldnotice("You establish a [network_name], allowing you to link minds to communicate telepathically."))
+	to_chat(owner, span_boldnotice("你建立了[network_name]，可以连接心灵进行心灵感应交流。"))
 
 /datum/component/mind_linker/active_linking/Destroy()
 	QDEL_NULL(linker_action)
@@ -217,9 +217,9 @@
 	RegisterSignal(to_link, COMSIG_MINDSHIELD_IMPLANTED, PROC_REF(sig_unlink_mob))
 	var/mob/living/owner = parent
 	to_chat(to_link, span_notice(link_message))
-	to_chat(owner, span_notice("You connect [to_link]'s mind to your [network_name]."))
+	to_chat(owner, span_notice("你将[to_link]的心灵连接到了你的[network_name]。"))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_notice("You feel a new presence within [owner.real_name]'s [network_name]."))
+		to_chat(other_link, span_notice("你感觉到一个新的意识加入了[owner.real_name]的[network_name]。"))
 
 /datum/component/mind_linker/active_linking/unlink_mob(mob/living/to_unlink)
 	. = ..()
@@ -229,14 +229,14 @@
 	UnregisterSignal(to_unlink, COMSIG_MINDSHIELD_IMPLANTED)
 	var/mob/living/owner = parent
 	to_chat(to_unlink, span_warning(unlink_message))
-	to_chat(owner, span_warning("You feel someone disconnect from your [network_name]."))
+	to_chat(owner, span_warning("你感觉到有人断开了与你的[network_name]的连接。"))
 	for(var/mob/living/other_link as anything in linked_mobs)
-		to_chat(other_link, span_warning("You feel a pressence disappear from [owner.real_name]'s [network_name]."))
+		to_chat(other_link, span_warning("你感觉到一个意识从[owner.real_name]的[network_name]中消失了。"))
 
 // Used in mind linker to talk to everyone in the network.
 /datum/action/innate/linked_speech
-	name = "Mind Link Speech"
-	desc = "Send a psychic message to everyone connected to your Link."
+	name = "心灵链接传话"
+	desc = "向与你的心灵链接相连的所有人发送心灵讯息。"
 	button_icon_state = "link_speech"
 	button_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
@@ -250,8 +250,8 @@
 		return
 
 	var/datum/component/mind_linker/linker = Target
-	name = "[linker.network_name] Speech"
-	desc = "Send a psychic message to everyone connected to your [linker.network_name]."
+	name = "[linker.network_name]传话"
+	desc = "向与你的[linker.network_name]相连的所有人发送心灵讯息。"
 	button_icon = linker.speech_action_icon
 	button_icon_state = linker.speech_action_icon_state
 	background_icon_state = linker.speech_action_background_icon_state
@@ -263,15 +263,15 @@
 	var/datum/component/mind_linker/linker = target
 	var/mob/living/linker_parent = linker.parent
 
-	var/message = tgui_input_text(owner, "Enter a message to transmit.", "[linker.network_name] Telepathy", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(owner, "输入要传递的讯息。", "[linker.network_name]心灵感应", max_length = MAX_MESSAGE_LEN)
 	if(!message || QDELETED(src) || QDELETED(owner) || owner.stat == DEAD)
 		return
 
 	if(QDELETED(linker))
-		to_chat(owner, span_warning("The link seems to have been severed."))
+		to_chat(owner, span_warning("链接似乎已被切断。"))
 		return
 
-	var/formatted_message = "<i><font color=[linker.chat_color]>\[[linker_parent.real_name]'s [linker.network_name]\] <b>[owner]:</b> [message]</font></i>"
+	var/formatted_message = "<i><font color=[linker.chat_color]>\[[linker_parent.real_name]的[linker.network_name]\] <b>[owner]：</b> [message]</font></i>"
 	log_directed_talk(owner, linker_parent, message, LOG_SAY, "mind link ([linker.network_name])")
 
 	var/list/all_who_can_hear = assoc_to_keys(linker.linked_mobs) + linker_parent
@@ -280,7 +280,7 @@
 		var/avoid_highlighting = (recipient == owner) || (recipient == linker_parent)
 		to_chat(recipient, formatted_message, type = MESSAGE_TYPE_RADIO, avoid_highlighting = avoid_highlighting)
 		if(linker.show_balloon_alert && recipient != owner)
-			recipient.balloon_alert(recipient, "you hear a voice from your [linker.network_name]")
+			recipient.balloon_alert(recipient, "你听到了[linker.network_name]传来的声音")
 
 	for(var/mob/recipient as anything in GLOB.dead_mob_list)
 		to_chat(recipient, "[FOLLOW_LINK(recipient, owner)] [formatted_message]", type = MESSAGE_TYPE_RADIO)

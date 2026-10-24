@@ -1,13 +1,13 @@
 /datum/disease/gbs
 	name = "GBS"
-	desc = "An extremely rare and dangerous disease that has been researched little due to its potentially apocalyptic nature."
+	desc = "一种极其罕见且危险的疾病，因其可能造成末日灾难，对它的研究极少。"
 	max_stages = 4
-	spread_text = "Skin contact"
+	spread_text = "皮肤接触"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
 	cure_text = /datum/reagent/medicine/synaptizine::name + " & " + /datum/reagent/sulfur::name
 	cures = list(/datum/reagent/medicine/synaptizine,/datum/reagent/sulfur)
 	cure_chance = 7.5 //higher chance to cure, since two reagents are required
-	agent = "Gravitokinetic Bipotential SADS+"
+	agent = "重力动能双势 SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CAN_CARRY|CAN_RESIST|CURABLE
 	spreading_modifier = 1
@@ -27,16 +27,16 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("gasp")
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your body hurts all over!"))
+				to_chat(affected_mob, span_danger("你全身都在疼！"))
 		if(4)
-			to_chat(affected_mob, span_userdanger("Your body feels as if it's trying to rip itself apart!"))
+			to_chat(affected_mob, span_userdanger("你感觉自己的身体正试图把自己撕成碎片！"))
 			if(SPT_PROB(30, seconds_per_tick))
 				affected_mob.investigate_log("has been gibbed by GBS.", INVESTIGATE_DEATHS)
 				affected_mob.gib(DROP_ALL_REMAINS)
 				return FALSE
 
 /datum/disease/gbs/no_transmission
-	name = "Non-Transmissible GBS"
-	spread_text = "Skin contact"
+	name = "非传染性 GBS"
+	spread_text = "皮肤接触"
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	spreading_modifier = 0

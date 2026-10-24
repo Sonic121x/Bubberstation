@@ -33,13 +33,13 @@
 /datum/component/profound_fisher/proc/on_requesting_context_from_item(datum/source, list/context, obj/item/held_item, mob/living/user)
 	SIGNAL_HANDLER
 	if(isnull(held_item) && user.contains(parent))
-		context[SCREENTIP_CONTEXT_RMB] = "Open rod UI"
+		context[SCREENTIP_CONTEXT_RMB] = "打开钓竿界面"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /datum/component/profound_fisher/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_info("When [EXAMINE_HINT("held")] or [EXAMINE_HINT("equipped")], [EXAMINE_HINT("right-click")] with a empty hand to open the integrated fishing rod interface.")
-	examine_list += span_tinynoticeital("To fish, you need to turn combat mode off.")
+	examine_list += span_info("[EXAMINE_HINT("手持")]或[EXAMINE_HINT("装备")]时，用空手[EXAMINE_HINT("右键点击")]可打开集成钓竿界面。")
+	examine_list += span_tinynoticeital("钓鱼前需要关闭战斗模式。")
 
 ///Handles replacing the fishing rod if somehow removed from the parent movable if delete_rod_when_deleted is TRUE, otherwise delete the component.
 /datum/component/profound_fisher/proc/on_rod_moved(datum/source)

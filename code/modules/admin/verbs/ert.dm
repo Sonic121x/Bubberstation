@@ -265,7 +265,7 @@
 	message_admins("[capitalize(ertemplate.polldesc)] has spawned with the mission: [ertemplate.mission]")
 	// BUBBER EDIT ADDITION BEGIN
 	if(ertemplate.notify_players)
-		priority_announce("Central command has responded to your request for a CODE [uppertext(ertemplate.code)] Emergency Response Team and have confirmed one to be enroute.", "ERT Request", ANNOUNCER_ERTYES)
+		priority_announce("中央指挥部已回应你们对[chinese_ert_code_display(ertemplate.code)]级紧急响应小队的请求，并确认小队正在赶来。", "紧急响应小队请求", ANNOUNCER_ERTYES)
 		// shitcode begin!
 		if(istype(ertemplate, /datum/ert/deathsquad))
 			SSsecurity_level.set_level(SEC_LEVEL_EPSILON)

@@ -26,7 +26,7 @@
 
 /datum/component/revenant_prison/proc/on_parent_break(obj/source, damage_flags)
 	SIGNAL_HANDLER
-	source.visible_message(span_revenwarning("The revenant cackles as it escapes from [source]!"))
+	source.visible_message(span_revenwarning("亡魂怪笑着从[source]中逃脱了！"))
 	playsound(source.loc, 'sound/effects/chemistry/ahaha.ogg', 100, TRUE)
 	release_revenant(source, cause = "[parent] breaking")
 
@@ -37,9 +37,9 @@
 	if(!revenant)
 		qdel(src)
 		return
-	message_admins("[revenant] [ADMIN_FLW(revenant)] has been released from [source] [ADMIN_JMP(source)]. Cause: [cause]")
+	message_admins("[revenant] [ADMIN_FLW(revenant)]已从[source] [ADMIN_JMP(source)]中释放。原因：[cause]")
 	if(!revenant.reform(old_ckey))
-		message_admins("Couldn't reform revenant upon release.")
+		message_admins("释放时无法重塑亡魂。")
 	revenant = null
 	qdel(src)
 
@@ -49,7 +49,7 @@
 
 /datum/component/revenant_prison/proc/on_parent_examine(datum/source, mob/user, list/examine_list)
 	if(istype(parent, /obj/structure/mirror))
-		examine_list += span_revenwarning("The reflection is shifting and distorted.")
+		examine_list += span_revenwarning("倒影正不断变化、扭曲。")
 
 /datum/component/revenant_prison/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_parent_examine))

@@ -50,7 +50,7 @@
 	SIGNAL_HANDLER
 
 	if(check_area_hazardous(get_area(exit_ladder)))
-		entrance_ladder.balloon_alert(parent, "the path is too dangerous for you!")
+		entrance_ladder.balloon_alert(parent, "这条路对你来说太危险了！")
 		return LADDER_TRAVEL_BLOCK
 
 /**
@@ -62,7 +62,7 @@
 	if(!check_area_hazardous(last_parent_area))
 		return
 
-	vehicle.balloon_alert(parent, "you slip and fall off!")
+	vehicle.balloon_alert(parent, "你脚下一滑，摔了下来！")
 	if(isliving(parent)) // We don't know for certain if we are a mob/living subtype
 		var/mob/living/parent_living = parent
 		parent_living.Stun(0.5 SECONDS)
@@ -125,7 +125,7 @@
 	if(should_have_status_effect && !effect) // Should have the status - and doesnt
 		parent_living.apply_status_effect(/datum/status_effect/hazard_area)
 		if(parent_living.buckled)
-			parent_living.buckled.balloon_alert(parent, "you fall off!")
+			parent_living.buckled.balloon_alert(parent, "你摔了下来！")
 			parent_living.buckled.unbuckle_mob(parent_living, force=TRUE)
 		return
 
@@ -164,10 +164,10 @@
 	owner.remove_actionspeed_modifier(/datum/actionspeed_modifier/status_effect/hazard_area, update=TRUE)
 
 /datum/status_effect/hazard_area/get_examine_text()
-	return span_notice("[owner.p_They()] appear[owner.p_s()] to be largely immobilized through unknown means.")
+	return span_notice("[owner]似乎因不明原因而几乎无法动弹。")
 
 /atom/movable/screen/alert/status_effect/hazard_area
-	name = "Hazardous Area"
-	desc = "The area you are currently within is incredibly hazardous to you. Check your surroundings and vacate as soon as possible."
+	name = "危险区域"
+	desc = "你所在的区域对你极其危险。检查周围环境，尽快撤离。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "hazard_area"

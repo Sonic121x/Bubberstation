@@ -1,10 +1,10 @@
 //surf_ss13
 /datum/action/item_action/bhop
-	name = "Activate Jump Boots"
-	desc = "Activates the jump boot's internal propulsion system, allowing the user to dash over 4-wide gaps."
+	name = "启动跳跃靴"
+	desc = "启动跳跃靴内置的推进系统，使穿戴者能够冲过四格宽的间隙。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "jetboot"
 
 /datum/action/item_action/bhop/brocket
-	name = "Activate Rocket Boots"
-	desc = "Activates the boot's rocket propulsion system, allowing the user to hurl themselves great distances."
+	name = "启动火箭靴"
+	desc = "启动靴子的火箭推进系统，让穿戴者能飞跃很远的距离。"

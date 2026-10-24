@@ -1065,19 +1065,19 @@ multiple modular subtrees with behaviors
 	var/list/tree_lines = list()
 	for(var/datum/bt_node/root_node as anything in behavior_nodes)
 		root_node.append_full_tree_state(tree_lines, "")
-	EVLOG_TRACK_INFO_ENTRY(track_info, "Behaviors", "Full Tree State", length(tree_lines) ? jointext(tree_lines, "\n") : "(none)")
+	EVLOG_TRACK_INFO_ENTRY(track_info, "行为", "完整行为树状态", length(tree_lines) ? jointext(tree_lines, "\n") : "（无）")
 
 	// Add execution context section
-	var/active_node_label = "(none)"
+	var/active_node_label = "（无）"
 	if(active_execution_index)
 		for(var/datum/bt_node/root_node as anything in behavior_nodes)
 			var/datum/bt_node/found = root_node.find_by_index(active_execution_index)
 			if(found)
 				active_node_label = found.label
 				break
-	EVLOG_TRACK_INFO_ENTRY(track_info, "Execution Context", "Active Execution Index", "[active_execution_index] ([active_node_label])")
-	EVLOG_TRACK_INFO_ENTRY(track_info, "Execution Context", "AI Status", ai_status)
-	EVLOG_TRACK_INFO_ENTRY(track_info, "Execution Context", "Able to Run", able_to_run ? "TRUE" : "FALSE")
+	EVLOG_TRACK_INFO_ENTRY(track_info, "执行上下文", "当前执行索引", "[active_execution_index] ([active_node_label])")
+	EVLOG_TRACK_INFO_ENTRY(track_info, "执行上下文", "AI 状态", ai_status)
+	EVLOG_TRACK_INFO_ENTRY(track_info, "执行上下文", "是否可运行", able_to_run ? "是" : "否")
 
 	// Blackboard snapshot
 	for(var/blackboard_key_name, blackboard_value in blackboard)
@@ -1086,12 +1086,12 @@ multiple modular subtrees with behaviors
 			value_string = "[blackboard_value]"
 		else if(islist(blackboard_value))
 			var/list/blackboard_list = blackboard_value
-			value_string = length(blackboard_list) ? jointext(blackboard_list, "\n") : "Empty List"
+			value_string = length(blackboard_list) ? jointext(blackboard_list, "\n") : "空列表"
 		else if(isnull(blackboard_value))
 			value_string = "null"
 		else // I think I covered all cases?
 			value_string = "[blackboard_value]"
-		EVLOG_TRACK_INFO_ENTRY(track_info, "Blackboard", blackboard_key_name, value_string)
+		EVLOG_TRACK_INFO_ENTRY(track_info, "黑板", blackboard_key_name, value_string)
 
 	event_data["track_info"] = track_info
 

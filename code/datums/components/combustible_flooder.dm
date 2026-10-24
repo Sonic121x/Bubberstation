@@ -45,14 +45,14 @@
 	flooded_turf.atmos_spawn_air("[gas_id]=[gas_amount];[TURF_TEMPERATURE((temp_amount || trigger_temperature))]")
 
 	// Logging-related
-	var/admin_message = "[flooded_turf] ignited in [ADMIN_VERBOSEJMP(flooded_turf)]"
+	var/admin_message = "[flooded_turf]在[ADMIN_VERBOSEJMP(flooded_turf)]被点燃"
 	var/log_message = "ignited [flooded_turf] at [AREACOORD(flooded_turf)]"
 	if(user)
-		admin_message += " by [ADMIN_LOOKUPFLW(user)] at [ADMIN_COORDJMP(flooded_turf)]"
+		admin_message += "，操作者为[ADMIN_LOOKUPFLW(user)]，位置：[ADMIN_COORDJMP(flooded_turf)]"
 		user.log_message(log_message, LOG_ATTACK, log_globally = FALSE)//only individual log
 	else
 		log_message = "[key_name(user)] " + log_message + " by fire at [AREACOORD(flooded_turf)]"
-		admin_message += " by fire at [ADMIN_COORDJMP(flooded_turf)]"
+		admin_message += "，由火焰引燃，位置：[ADMIN_COORDJMP(flooded_turf)]"
 		log_attack(log_message)
 	message_admins(admin_message)
 

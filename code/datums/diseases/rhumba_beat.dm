@@ -1,12 +1,12 @@
 /datum/disease/rhumba_beat
-	name = "The Rhumba Beat"
-	desc = "They call me Cuban Pete - I'm the king of the Rumba Beat - When I play the maracas I go chick-chicky-boom, chick-chicky-boom."
+	name = "伦巴节拍"
+	desc = "他们叫我古巴皮特——我是伦巴节拍之王——摇起沙锤，我就唱：奇奇嘣，奇奇嘣。"
 	max_stages = 5
-	spread_text = "Skin contact"
+	spread_text = "皮肤接触"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS
-	cure_text = "Chick Chicky Boom!"
+	cure_text = "奇奇嘣！"
 	cures = list(/datum/reagent/toxin/plasma)
-	agent = "Unknown"
+	agent = "未知"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	spreading_modifier = 1
 	severity = DISEASE_SEVERITY_BIOHAZARD
@@ -23,14 +23,14 @@
 			if(SPT_PROB(26, seconds_per_tick))
 				affected_mob.adjust_fire_loss(5)
 			if(SPT_PROB(0.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel strange..."))
+				to_chat(affected_mob, span_danger("你感觉怪怪的……"))
 		if(3)
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel the urge to dance..."))
+				to_chat(affected_mob, span_danger("你有种跳舞的冲动……"))
 			else if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("gasp")
 			else if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel the need to chick chicky boom..."))
+				to_chat(affected_mob, span_danger("你想来一段奇奇嘣……"))
 		if(4)
 			if(SPT_PROB(10, seconds_per_tick))
 				if(prob(50))
@@ -38,8 +38,8 @@
 					affected_mob.ignite_mob()
 				else
 					affected_mob.emote("gasp")
-					to_chat(affected_mob, span_danger("You feel a burning beat inside..."))
+					to_chat(affected_mob, span_danger("你感觉体内有炽热的节拍在跳动……"))
 		if(5)
-			to_chat(affected_mob, span_danger("Your body is unable to contain the Rhumba Beat..."))
+			to_chat(affected_mob, span_danger("你的身体已经容不下这伦巴节拍……"))
 			if(SPT_PROB(29, seconds_per_tick))
 				explosion(affected_mob, devastation_range = -1, light_impact_range = 2, flame_range = 2, flash_range = 3, adminlog = FALSE, explosion_cause = src) // This is equivalent to a lvl 1 fireball

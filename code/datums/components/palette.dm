@@ -46,8 +46,8 @@
 /datum/component/palette/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("<b>Right-Click</b> this item while it's in your active hand to open/close its color picker menu.")
-	examine_list += span_notice("In the color picker, <b>Left-Click</b> a color button to pick it or <b>Right-Click</b> to remove it.")
+	examine_list += span_notice("将此物品拿在当前手中时，<b>右键点击</b>即可打开或关闭调色菜单。")
+	examine_list += span_notice("在调色菜单中，<b>左键点击</b>颜色按钮可选取颜色，<b>右键点击</b>则可移除颜色。")
 
 /datum/component/palette/proc/on_attack_self_secondary(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -81,7 +81,7 @@
 		plus.appearance_flags = /image::appearance_flags | RESET_COLOR
 		element.add_overlay(plus)
 		add_option.image = element
-		add_option.name = "Add Color ([selected_color])"
+		add_option.name = "添加颜色（[selected_color]）"
 		radial_list["add"] = add_option
 	for(var/index in 1 to length(colors))
 		var/hexcolor = colors[index]

@@ -65,16 +65,16 @@
 		return NONE
 
 	if(inserted_item.w_class > minimum_weight_class)
-		to_chat(user, span_warning("[inserted_item] won't fit in [parent]."))
+		to_chat(user, span_warning("[parent]里放不下[inserted_item]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!QDELETED(stored_item))
-		to_chat(user, span_warning("There's something in [parent]."))
+		to_chat(user, span_warning("[parent]里已经有东西了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] begins inserting [inserted_item] into [parent]."),
-		span_notice("You start to insert the [inserted_item] into [parent]."),
+		span_notice("[user]开始把[inserted_item]塞进[parent]里。"),
+		span_notice("你开始把[inserted_item]塞进[parent]里。"),
 	)
 
 	INVOKE_ASYNC(src, PROC_REF(insert_item), inserted_item, user)
@@ -95,8 +95,8 @@
 	if(!food.can_interact(user))
 		return CLICK_ACTION_BLOCKING
 
-	user.visible_message(span_notice("[user] begins tearing at [parent]."), \
-					span_notice("You start to rip into [parent]."))
+	user.visible_message(span_notice("[user]开始撕开[parent]。"), \
+					span_notice("你开始撕开[parent]。"))
 
 	INVOKE_ASYNC(src, PROC_REF(begin_remove_item), user)
 	return CLICK_ACTION_SUCCESS
@@ -111,13 +111,13 @@
 	if(!do_after(user, 1.5 SECONDS, target = parent))
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserted_item))
-		to_chat(user, span_warning("You can't seem to insert [inserted_item] into [parent]."))
+		to_chat(user, span_warning("你似乎无法把[inserted_item]塞进[parent]里。"))
 		return
 
 	var/atom/food = parent
-	to_chat(user, span_notice("You slip [inserted_item] inside [parent]."))
+	to_chat(user, span_notice("你把[inserted_item]塞进了[parent]里。"))
 	inserted_item.forceMove(food)
-	user.log_message("inserted [inserted_item] into [parent].", LOG_ATTACK)
+	user.log_message("将[inserted_item]塞进了[parent]里。", LOG_ATTACK)
 	food.add_fingerprint(user)
 	inserted_item.add_fingerprint(user)
 
@@ -132,7 +132,7 @@
 	if(!do_after(user, 10 SECONDS, target = parent))
 		return
 	if(QDELETED(stored_item))
-		to_chat(user, span_warning("There's nothing in [parent]."))
+		to_chat(user, span_warning("[parent]里没有东西。"))
 		return
 	remove_item(user)
 
@@ -141,10 +141,10 @@
  */
 /datum/component/food_storage/proc/remove_item(mob/user)
 	if(user.put_in_hands(stored_item))
-		user.visible_message(span_warning("[user] slowly pulls [stored_item] out of [parent]."), \
-							span_warning("You slowly pull [stored_item] out of [parent]."))
+		user.visible_message(span_warning("[user]慢慢从[parent]里抽出了[stored_item]。"), \
+							span_warning("你慢慢从[parent]里抽出了[stored_item]。"))
 	else
-		stored_item.visible_message(span_warning("[stored_item] falls out of [parent]."))
+		stored_item.visible_message(span_warning("[stored_item]从[parent]里掉了出来。"))
 
 	update_stored_item()
 
@@ -176,10 +176,10 @@
 	var/discovered = FALSE
 	if(prob(good_chance_of_discovery)) //finding the item, without biting it
 		discovered = TRUE
-		to_chat(target, span_warning("It feels like there's something in [parent]...!"))
+		to_chat(target, span_warning("感觉[parent]里好像有什么东西……！"))
 
 	else if(prob(bad_chance_of_discovery)) //finding the item, BY biting it
-		user.log_message("just fed [key_name(target)] \a [stored_item] which was hidden in [parent].", LOG_ATTACK)
+		user.log_message("刚将藏在[parent]里的[stored_item]喂给了[key_name(target)]。", LOG_ATTACK)
 		discovered = stored_item.on_accidental_consumption(target, user, parent)
 		update_stored_item() //make sure if the item was changed, the reference changes as well
 
@@ -235,11 +235,11 @@
 	. = NONE
 
 	if(isnull(held_item) || held_item == source)
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Remove embedded item (if any)"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "取出藏入的物品（如果有）"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item) && held_item.w_class <= WEIGHT_CLASS_SMALL && held_item != source && !IS_EDIBLE(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Embed item"
+		context[SCREENTIP_CONTEXT_RMB] = "藏入物品"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return .

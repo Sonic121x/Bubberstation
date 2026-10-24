@@ -75,7 +75,7 @@
 	if (explode_timer)
 		return
 	explode_timer = addtimer(CALLBACK(src, PROC_REF(explode), source), 0.5 SECONDS)
-	source.balloon_alert_to_hearers("*beep*")
+	source.balloon_alert_to_hearers("*哔*")
 	playsound(parent, triggered_sound, 50, FALSE)
 	return
 
@@ -98,5 +98,5 @@
 /// Give people a little hint
 /datum/component/interaction_booby_trap/proc/on_examine(atom/source, mob/examiner, list/examine_list)
 	SIGNAL_HANDLER
-	var/defuse_hint = (defuse_tool) ? "Perhaps [tool_behaviour_name(defuse_tool)] could help..." : ""
-	examine_list += span_warning("There's a light flashing red inside the maintenance panel. [defuse_hint]")
+	var/defuse_hint = (defuse_tool) ? "也许[tool_behaviour_name(defuse_tool)]能派上用场……" : ""
+	examine_list += span_warning("维护面板内有一盏灯正闪着红光。[defuse_hint]")

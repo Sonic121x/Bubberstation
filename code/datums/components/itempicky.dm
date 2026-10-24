@@ -4,7 +4,7 @@
 	/// Typecache of items you can hold
 	var/whitelist
 	/// Message shown if you try to pick up an item not in the whitelist
-	var/message = "You don't like %TARGET, why would you hold it?"
+	var/message = "你不喜欢%TARGET，为什么要拿着它？"
 	/// An optional callback we check for overriding our whitelist
 	var/datum/callback/tertiary_condition = null
 

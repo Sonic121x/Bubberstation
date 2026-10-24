@@ -1,15 +1,15 @@
 /datum/disease/asthma_attack
-	form = "Bronchitis"
-	name = "Asthma attack"
-	desc = "Subject is undergoing a autoimmune response which threatens to close the esophagus and halt all respiration, leading to death. \
-	Minor asthma attacks may disappear on their own, but all are dangerous."
-	cure_text = /datum/reagent/medicine/albuterol::name + " or surgical intervention"
+	form = "支气管炎"
+	name = "哮喘发作"
+	desc = "患者正发生自身免疫反应，可能导致食管闭合、呼吸完全停止并最终死亡。 \
+	轻微的哮喘发作可能自行消退，但任何程度的发作都有危险。"
+	cure_text = /datum/reagent/medicine/albuterol::name + "或手术干预"
 	cures = list(/datum/reagent/medicine/albuterol)
-	agent = "Inflammatory"
+	agent = "炎症"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CURABLE
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
-	spread_text = "None"
+	spread_text = "无"
 	visibility_flags = HIDDEN_PANDEMIC|HIDDEN_BOOK
 	bypasses_immunity = TRUE
 	disease_flags = CURABLE|INCREMENTAL_CURE
@@ -39,10 +39,10 @@
 
 	/// A assoc list of (severity -> string), where string will be suffixed to our name in (suffix) format.
 	var/static/list/severity_to_suffix = list(
-		DISEASE_SEVERITY_MEDIUM = "Minor",
-		DISEASE_SEVERITY_HARMFUL = "Moderate",
-		DISEASE_SEVERITY_DANGEROUS = "Severe",
-		DISEASE_SEVERITY_BIOHAZARD = "EXTREME",
+		DISEASE_SEVERITY_MEDIUM = "轻度",
+		DISEASE_SEVERITY_HARMFUL = "中度",
+		DISEASE_SEVERITY_DANGEROUS = "重度",
+		DISEASE_SEVERITY_BIOHAZARD = "极重度",
 	)
 	/// A assoc list of (stringified number -> number), where the key is the stage and the number is how much inflammation we will cause the asthmatic per second.
 	var/list/stage_to_inflammation_per_second
@@ -92,8 +92,8 @@
 	if (!in_remission)
 		in_remission = TRUE
 		stage_prob = 0
-		name += " (Remission)"
-		desc += " <i>The attack has entered remission. It will slowly decrease in intensity before vanishing.</i>"
+		name += "（缓解期）"
+		desc += " <i>此次发作已进入缓解期。症状会逐渐减轻直至消失。</i>"
 	progress_to_stage_demotion += (progress_to_demotion_per_second * seconds_per_tick)
 	if (progress_to_stage_demotion >= progress_needed_to_demote)
 		progress_to_stage_demotion = 0
@@ -122,7 +122,7 @@
 		return FALSE
 
 	if (SPT_PROB(5, seconds_per_tick))
-		to_chat(affected_mob, span_warning(pick("Mucous runs down the back of your throat.", "You swallow excess mucus.")))
+		to_chat(affected_mob, span_warning(pick("黏液沿着你的喉咙后壁流下。", "你咽下了多余的黏液。")))
 
 /datum/disease/asthma_attack/moderate
 	severity = DISEASE_SEVERITY_HARMFUL
@@ -146,11 +146,11 @@
 		return FALSE
 
 	if (SPT_PROB(15, seconds_per_tick))
-		to_chat(affected_mob, span_warning(pick("Mucous runs down the back of your throat.", "You swallow excess mucus.")))
+		to_chat(affected_mob, span_warning(pick("黏液沿着你的喉咙后壁流下。", "你咽下了多余的黏液。")))
 
 	if (stage < 4 || !SPT_PROB(10, seconds_per_tick))
 		return
-	to_chat(affected_mob, span_warning("You briefly choke on the mucus piling in your throat!"))
+	to_chat(affected_mob, span_warning("喉咙里堆积的黏液让你短暂地喘不过气！"))
 	affected_mob.losebreath++
 
 
@@ -183,13 +183,13 @@
 		visibility_flags &= ~HIDDEN_SCANNER // revealed
 
 	if (SPT_PROB(15, seconds_per_tick))
-		to_chat(affected_mob, span_warning(pick("Mucous runs down the back of your throat.", "You swallow excess mucus.")))
+		to_chat(affected_mob, span_warning(pick("黏液沿着你的喉咙后壁流下。", "你咽下了多余的黏液。")))
 	else if (SPT_PROB(20, seconds_per_tick))
 		affected_mob.emote("cough")
 
 	if (stage < 4 || !SPT_PROB(15, seconds_per_tick))
 		return
-	to_chat(affected_mob, span_warning("You briefly choke on the mucus piling in your throat!"))
+	to_chat(affected_mob, span_warning("喉咙里堆积的黏液让你短暂地喘不过气！"))
 	affected_mob.losebreath++
 
 /datum/disease/asthma_attack/critical
@@ -223,11 +223,11 @@
 
 	if (stage < 5)
 		if (SPT_PROB(75, seconds_per_tick))
-			to_chat(affected_mob, span_warning(pick("Mucous runs down the back of your throat.", "You swallow excess mucus.")))
+			to_chat(affected_mob, span_warning(pick("黏液沿着你的喉咙后壁流下。", "你咽下了多余的黏液。")))
 
 	var/wheeze_chance
 	if (!warned_user && stage >= 5)
-		to_chat(affected_mob, span_userdanger("You feel like your lungs are filling with fluid! It's getting incredibly hard to breathe!"))
+		to_chat(affected_mob, span_userdanger("你感觉肺里正在灌满液体！呼吸变得极其困难！"))
 		warned_user = TRUE
 
 	switch (stage)
@@ -246,7 +246,7 @@
 		if (6)
 			if (!max_stage_reached)
 				max_stage_reached = TRUE
-				to_chat(affected_mob, span_userdanger("You feel your windpipe squeeze shut!"))
+				to_chat(affected_mob, span_userdanger("你感觉气管被挤得闭合了！"))
 			wheeze_chance = 0
 			if (SPT_PROB(10, seconds_per_tick))
 				affected_mob.emote("gag")
@@ -258,5 +258,5 @@
 
 	if (stage < 4 || !SPT_PROB(15, seconds_per_tick))
 		return
-	to_chat(affected_mob, span_warning("You briefly choke on the mucus piling in your throat!"))
+	to_chat(affected_mob, span_warning("喉咙里堆积的黏液让你短暂地喘不过气！"))
 	affected_mob.losebreath++

@@ -3,97 +3,97 @@
 //
 
 /datum/greyscale_config/sombrero
-	name = "Sombrero"
+	name = "墨西哥宽边帽"
 	icon_file = 'icons/obj/clothing/head/sombrero.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sombrero.json'
 
 /datum/greyscale_config/sombrero/worn
-	name = "Sombrero (Worn)"
+	name = "墨西哥宽边帽（穿戴）"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_worn.json'
 
 /datum/greyscale_config/sombrero/lefthand
-	name = "Sombrero (Held, Left)"
+	name = "墨西哥宽边帽（左手持握）"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_lefthand.json'
 
 /datum/greyscale_config/sombrero/righthand
-	name = "Sombrero (Held, Right)"
+	name = "墨西哥宽边帽（右手持握）"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_righthand.json'
 
 /datum/greyscale_config/sombrero/base
-	name = "Base Sombrero Style"
+	name = "基础墨西哥宽边帽样式"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_base.json'
 
 /datum/greyscale_config/sombrero/base_worn
-	name = "Base Worn Sombrero Style"
+	name = "基础墨西哥宽边帽样式（穿戴）"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_base_worn.json'
 
 /datum/greyscale_config/sombrero/base_lefthand
-	name = "Base Sombrero Style (Held, Left)"
+	name = "基础墨西哥宽边帽样式（左手持握）"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_base_lefthand.json'
 
 /datum/greyscale_config/sombrero/base_righthand
-	name = "Held Sombrero Style (Held, Right)"
+	name = "墨西哥宽边帽样式（右手持握）"
 	json_config = 'code/datums/greyscale/json_configs/sombrero_base_righthand.json'
 
 /* SKYRAT EDIT START - Beret-lliant (moved to modular_skyrat/modules/berets/code/datums/config_types)
 /datum/greyscale_config/beret/worn
-	name = "Beret Worn"
-	name = "Beret (Worn)"
+	name = "贝雷帽（穿戴）"
+	name = "贝雷帽（穿戴）"
 	json_config = 'code/datums/greyscale/json_configs/beret_worn.json'
 
 /datum/greyscale_config/beret_badge
-	name = "Badged Beret"
+	name = "徽章贝雷帽"
 	icon_file = 'icons/obj/clothing/head/beret.dmi'
 	json_config = 'code/datums/greyscale/json_configs/beret_badge.json'
 
 /datum/greyscale_config/beret_badge/worn
-	name = "Badged Beret (Worn)"
+	name = "徽章贝雷帽（穿戴）"
 	json_config = 'code/datums/greyscale/json_configs/beret_badge_worn.json'
 SKYRAT EDIT END */
 
 /datum/greyscale_config/beanie
-	name = "Beanie"
+	name = "针织帽"
 	icon_file = 'icons/obj/clothing/head/beanie.dmi'
 	json_config = 'code/datums/greyscale/json_configs/beanie.json'
 
 /datum/greyscale_config/beanie/worn
-	name = "Beanie (Worn)"
+	name = "针织帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/beanie.dmi'
 
 /datum/greyscale_config/festive_hat
-	name = "Festive Hat"
+	name = "节庆帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/festive_hat.json'
 
 /datum/greyscale_config/festive_hat/worn
-	name = "Festive Hat (Worn)"
+	name = "节庆帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/party_hat
-	name = "Party Hat"
+	name = "派对帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/party_hat.json'
 
 /datum/greyscale_config/party_hat/worn
-	name = "Party Hat (Worn)"
+	name = "派对帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/santa_hat
-	name = "Santa Hat"
+	name = "圣诞帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/santa_hat.json'
 
 /datum/greyscale_config/santa_hat/worn
-	name = "Santa Hat (Worn)"
+	name = "圣诞帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/ushanka
-	name = "Ushanka"
+	name = "护耳绒帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/ushanka.json'
 
 /datum/greyscale_config/ushanka/worn
-	name = "Ushanka (Worn)"
+	name = "护耳绒帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 //
@@ -101,97 +101,97 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/bandana
-	name = "Bandana"
+	name = "头巾"
 	icon_file = 'icons/obj/clothing/masks.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandana.json'
 
 /datum/greyscale_config/bandana/worn
-	name = "Bandana (Worn)"
+	name = "头巾（穿戴）"
 	icon_file = 'icons/mob/clothing/mask.dmi'
 
 /datum/greyscale_config/bandana/inhands_left
-	name = "Bandana (Held, Left)"
+	name = "头巾（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandana_inhands.json'
 
 /datum/greyscale_config/bandana/inhands_right
-	name = "Bandana (Held, Right)"
+	name = "头巾（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandana_inhands.json'
 
 /datum/greyscale_config/bandana/striped
-	name = "Striped Bandana"
+	name = "条纹头巾"
 	icon_file = 'icons/obj/clothing/masks.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandstriped.json'
 
 /datum/greyscale_config/bandana/striped/worn
-	name = "Striped Bandana (Worn)"
+	name = "条纹头巾（穿戴）"
 	icon_file = 'icons/mob/clothing/mask.dmi'
 
 /datum/greyscale_config/bandana/striped/inhands_left
-	name = "Striped Bandana (Held, Left)"
+	name = "条纹头巾（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandanastriped_inhands.json'
 
 /datum/greyscale_config/bandana/striped/inhands_right
-	name = "Striped Bandana (Held, Right)"
+	name = "条纹头巾（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandanastriped_inhands.json'
 
 /datum/greyscale_config/bandana/skull
-	name = "Skull Bandana"
+	name = "骷髅头巾"
 	icon_file = 'icons/obj/clothing/masks.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandskull.json'
 
 /datum/greyscale_config/bandana/skull/worn
-	name = "Skull Bandana (Worn)"
+	name = "骷髅头巾（穿戴）"
 	icon_file = 'icons/mob/clothing/mask.dmi'
 
 /datum/greyscale_config/bandana/skull/inhands_left
-	name = "Skull Bandana (Held, Left)"
+	name = "骷髅头巾（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandanaskull_inhands.json'
 
 /datum/greyscale_config/bandana/skull/inhands_right
-	name = "Skull Bandana (Held, Right)"
+	name = "骷髅头巾（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/bandanaskull_inhands.json'
 
 /datum/greyscale_config/facescarf
-	name = "Facescarf"
+	name = "蒙面巾"
 	icon_file = 'icons/obj/clothing/masks.dmi'
 	json_config = 'code/datums/greyscale/json_configs/facescarf.json'
 
 /datum/greyscale_config/facescarf/worn
-	name = "Facescarf (Worn)"
+	name = "蒙面巾（穿戴）"
 	icon_file = 'icons/mob/clothing/mask.dmi'
 
 /datum/greyscale_config/facescarf/inhands_left
-	name = "Facescarf (Held, Left)"
+	name = "蒙面巾（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/facescarf_inhands.json'
 
 /datum/greyscale_config/facescarf/inhands_right
-	name = "Facescarf (Held, Right)"
+	name = "蒙面巾（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/masks_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/facescarf_inhands.json'
 
 /datum/greyscale_config/kitsune
-	name = "Kitsune mask"
+	name = "狐面"
 	icon_file = 'icons/obj/clothing/masks.dmi'
 	json_config = 'code/datums/greyscale/json_configs/kitsune.json'
 
 /datum/greyscale_config/kitsune/worn
-	name = "Kitsune mask (Worn)"
+	name = "狐面（穿戴）"
 	icon_file = 'icons/mob/clothing/mask.dmi'
 
 /datum/greyscale_config/rebellion_mask
-	name = "Rebellion mask"
+	name = "反抗面具"
 	icon_file = 'icons/obj/clothing/masks.dmi'
 	json_config = 'code/datums/greyscale/json_configs/rebellion_mask.json'
 
 /datum/greyscale_config/rebellion_mask/worn
-	name = "Rebellion mask (Worn)"
+	name = "反抗面具（穿戴）"
 	icon_file = 'icons/mob/clothing/mask.dmi'
 
 //
@@ -199,39 +199,39 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/ties
-	name = "Ties"
+	name = "领带"
 	icon_file = 'icons/obj/clothing/neck.dmi'
 	json_config = 'code/datums/greyscale/json_configs/ties.json'
 
 /datum/greyscale_config/ties/worn
-	name = "Ties (Worn)"
+	name = "领带（穿戴）"
 	icon_file = 'icons/mob/clothing/neck.dmi'
 
 /datum/greyscale_config/scarf
-	name = "Scarf"
+	name = "围巾"
 	icon_file = 'icons/obj/clothing/neck.dmi'
 	json_config = 'code/datums/greyscale/json_configs/scarf.json'
 
 /datum/greyscale_config/scarf/worn
-	name = "Scarf (Worn)"
+	name = "围巾（穿戴）"
 	icon_file = 'icons/mob/clothing/neck.dmi'
 
 /datum/greyscale_config/infinity_scarf
-	name = "Infinity Scarf"
+	name = "环形围巾"
 	icon_file = 'icons/obj/clothing/neck.dmi'
 	json_config = 'code/datums/greyscale/json_configs/infinity_scarf.json'
 
 /datum/greyscale_config/infinity_scarf/worn
-	name = "Infinity Scarf (Worn)"
+	name = "环形围巾（穿戴）"
 	icon_file = 'icons/mob/clothing/neck.dmi'
 
 /datum/greyscale_config/robe_cape
-	name = "Robe Cape"
+	name = "长袍披肩"
 	icon_file = 'icons/obj/clothing/neck.dmi'
 	json_config = 'code/datums/greyscale/json_configs/robe_cape.json'
 
 /datum/greyscale_config/robe_cape/worn
-	name = "Robe Cape"
+	name = "长袍披肩"
 	icon_file = 'icons/mob/clothing/neck.dmi'
 	json_config = 'code/datums/greyscale/json_configs/robe_cape_worn.json'
 //
@@ -239,12 +239,12 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/gloves_inhand_left
-	name = "Gloves (Held, Left)"
+	name = "手套（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/gloves_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gloves_inhand.json'
 
 /datum/greyscale_config/gloves_inhand_right
-	name = "Gloves (Held, Right)"
+	name = "手套（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/gloves_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gloves_inhand.json'
 
@@ -253,224 +253,224 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/jumpsuit
-	name = "Jumpsuit"
+	name = "连体服"
 	icon_file = 'icons/obj/clothing/under/color.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit.json'
 
 /datum/greyscale_config/jumpsuit/worn
-	name = "Jumpsuit (Worn)"
+	name = "连体服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/color.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_worn.json' //Needs separate config for toggle states
 
 /datum/greyscale_config/jumpsuit/inhand_left
-	name = "Jumpsuit (Held, Left)"
+	name = "连体服（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_inhand.json'
 
 /datum/greyscale_config/jumpsuit/inhand_right
-	name = "Jumpsuit (Held, Right)"
+	name = "连体服（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_inhand.json'
 
 /datum/greyscale_config/jumpsuit/prison
-	name = "Prison Jumpsuit"
+	name = "囚犯连体服"
 	icon_file = 'icons/obj/clothing/under/color.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_prison.json'
 
 /datum/greyscale_config/jumpsuit/prison/worn
-	name = "Prison Jumpsuit (Worn)"
+	name = "囚犯连体服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/color.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_prison_worn.json' //Needs separate config for toggle states
 
 /datum/greyscale_config/jumpsuit/prison/inhand_left
-	name = "Prison Jumpsuit (Held, Left)"
+	name = "囚犯连体服（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_prison_inhand.json'
 
 /datum/greyscale_config/jumpsuit/prison/inhand_right
-	name = "Prison Jumpsuit (Held, Right)"
+	name = "囚犯连体服（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jumpsuit_prison_inhand.json'
 
 /datum/greyscale_config/eth_tunic
-	name = "Ethereal Tunic"
+	name = "以太人长衫"
 	icon_file = 'icons/obj/clothing/under/ethereal.dmi'
 	json_config = 'code/datums/greyscale/json_configs/eth_tunic.json'
 
 /datum/greyscale_config/eth_tunic/worn
-	name = "Ethereal Tunic (Worn)"
+	name = "以太人长衫（穿戴）"
 	icon_file = 'icons/mob/clothing/under/ethereal.dmi'
 
 /datum/greyscale_config/trek
-	name = "Trek Uniform"
+	name = "星际迷航制服"
 	icon_file = 'icons/obj/clothing/under/trek.dmi'
 	json_config = 'code/datums/greyscale/json_configs/trek.json'
 	//All Trek uniforms are different icon_states in the same json so we dont have seperate jsons for all the different types
 
 /datum/greyscale_config/trek/worn
-	name = "Trek Uniform (Worn)"
+	name = "星际迷航制服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/trek.dmi'
 
 // DRESSES AND SKIRTS
 /datum/greyscale_config/plaidskirt
-	name = "Plaid Skirt"
+	name = "格纹裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/plaidskirt.json'
 
 /datum/greyscale_config/plaidskirt/worn
-	name = "Plaid Skirt (Worn)"
+	name = "格纹裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/plaidskirt_worn.json' //Needs separate config for toggle states
 
 /datum/greyscale_config/turtleskirt
-	name = "Skirtleneck"
+	name = "高领连衣裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/turtleskirt.json'
 
 /datum/greyscale_config/turtleskirt/worn
-	name = "Skirtleneck (Worn)"
+	name = "高领连衣裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/tango
-	name = "Tango Dress"
+	name = "探戈舞裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/tango.json'
 
 /datum/greyscale_config/tango/worn
-	name = "Tango Dress (Worn)"
+	name = "探戈舞裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/sundress
-	name = "Sundress"
+	name = "夏日连衣裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sundress.json'
 
 /datum/greyscale_config/sundress/worn
-	name = "Sundress (Worn)"
+	name = "夏日连衣裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/striped_dress
-	name = "Striped dress"
+	name = "条纹连衣裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/striped_dress.json'
 
 /datum/greyscale_config/striped_dress/worn
-	name = "Striped dress (Worn)"
+	name = "条纹连衣裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/evening_dress
-	name = "Evening gown"
+	name = "晚礼服"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/eveningdress.json'
 
 /datum/greyscale_config/evening_dress/worn
-	name = "Evening gown (Worn)"
+	name = "晚礼服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/cardiganskirt
-	name = "Cardigan Skirt"
+	name = "开衫配裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/cardiganskirt.json'
 
 /datum/greyscale_config/cardiganskirt/worn
-	name = "Cardigan Skirt(Worn)"
+	name = "开衫配裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/sailor_dress
-	name = "Sailor Dress"
+	name = "水手连衣裙"
 	icon_file = 'icons/obj/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sailor_dress.json'
 
 /datum/greyscale_config/sailor_dress/worn
-	name = "Sailor Dress(Worn)"
+	name = "水手连衣裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 
 /datum/greyscale_config/seifuku
-	name = "Seifuku"
+	name = "日式校服"
 	icon_file = 'icons/obj/clothing/under/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/seifuku.json'
 
 /datum/greyscale_config/seifuku/worn
-	name = "Seifuku (Worn)"
+	name = "日式校服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/seifuku_worn.json'
 
 /datum/greyscale_config/seifuku_inhands_left
-	name = "Seifuku Inhands Left"
+	name = "日式校服（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/seifuku_inhands.json'
 
 /datum/greyscale_config/seifuku_inhands_right
-	name = "Seifuku Inhands Right"
+	name = "日式校服（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/seifuku_inhands.json'
 
 // SHIRTS, PANTS AND SHORTS
 /datum/greyscale_config/slacks
-	name = "Slacks"
+	name = "休闲长裤"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/slacks.json'
 
 /datum/greyscale_config/slacks/worn
-	name = "Slacks (Worn)"
+	name = "休闲长裤（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/slacks_worn.json'
 
 /datum/greyscale_config/shorts
-	name = "Shorts"
+	name = "短裤"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/shorts.json'
 
 /datum/greyscale_config/shorts/worn
-	name = "Shorts (Worn)"
+	name = "短裤（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/jeans
-	name = "Jeans"
+	name = "牛仔裤"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jeans.json'
 
 /datum/greyscale_config/jeans/worn
-	name = "Jeans (Worn)"
+	name = "牛仔裤（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jeans_worn.json'
 
 /datum/greyscale_config/jeanshorts
-	name = "Jean Shorts"
+	name = "牛仔短裤"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jeanshorts.json'
 
 /datum/greyscale_config/jeanshorts/worn
-	name = "Jean Shorts (Worn)"
+	name = "牛仔短裤（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 
 /datum/greyscale_config/buttondown_slacks
-	name = "Buttondown with Slacks"
+	name = "衬衫配长裤"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_slacks.json'
 
 /datum/greyscale_config/buttondown_slacks/worn
-	name = "Buttondown with Slacks (Worn)"
+	name = "衬衫配长裤（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_slacks_worn.json' //Needed a unique object .json to fix height issues, so the worn is separate
 
 /datum/greyscale_config/buttondown_shorts
-	name = "Buttondown with Shorts"
+	name = "衬衫配短裤"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_shorts.json'
 
 /datum/greyscale_config/buttondown_shorts/worn
-	name = "Buttondown with Shorts (Worn)"
+	name = "衬衫配短裤（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_shorts_worn.json' //Ditto
 
 /datum/greyscale_config/buttondown_skirt
-	name = "Buttondown with Skirt"
+	name = "衬衫配裙"
 	icon_file = 'icons/obj/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_skirt.json'
 
 /datum/greyscale_config/buttondown_skirt/worn
-	name = "Buttondown with Skirt (Worn)"
+	name = "衬衫配裙（穿戴）"
 	icon_file = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/buttondown_skirt_worn.json'
 
@@ -479,12 +479,12 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/labcoat
-	name = "Labcoat"
+	name = "实验服"
 	icon_file = 'icons/obj/clothing/suits/labcoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/labcoat.json'
 
 /datum/greyscale_config/labcoat/worn
-	name = "Labcoat (Worn)"
+	name = "实验服（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/labcoat.dmi'
 
 //
@@ -492,103 +492,103 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/ctf_standard
-	name = "CTF Standard Vest"
+	name = "夺旗战标准背心"
 	icon_file = 'icons/obj/clothing/suits/ctf.dmi'
 	json_config = 'code/datums/greyscale/json_configs/ctf_standard.json'
 
 /datum/greyscale_config/ctf_standard/worn
-	name = "Worn CTF Standard Vest (Worn)"
+	name = "夺旗战标准背心（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/ctf.dmi'
 
 /datum/greyscale_config/ctf_light
-	name = "CTF Light Vest"
+	name = "夺旗战轻型背心"
 	icon_file = 'icons/obj/clothing/suits/ctf.dmi'
 	json_config = 'code/datums/greyscale/json_configs/ctf_light.json'
 
 /datum/greyscale_config/ctf_light/worn
-	name = "CTF Light Vest (Worn)"
+	name = "夺旗战轻型背心（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/ctf.dmi'
 
 /datum/greyscale_config/mothcoat
-	name = "Moth Coat"
+	name = "蛾人大衣"
 	icon_file = 'icons/obj/clothing/suits/moth.dmi'
 	json_config = 'code/datums/greyscale/json_configs/moth_coat.json'
 
 /datum/greyscale_config/mothcoat/worn
-	name = "Moth Coat (Worn)"
+	name = "蛾人大衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/moth.dmi'
 
 /datum/greyscale_config/mothcoat_winter
-	name = "Moth Winter Coat"
+	name = "蛾人冬衣"
 	icon_file = 'icons/obj/clothing/suits/moth.dmi'
 	json_config = 'code/datums/greyscale/json_configs/moth_coat_winter.json'
 
 /datum/greyscale_config/mothcoat_winter/worn
-	name = "Moth Winter Coat (Worn)"
+	name = "蛾人冬衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/moth.dmi'
 
 /datum/greyscale_config/eth_raincoat
-	name = "Ethereal Raincoat"
+	name = "以太人雨衣"
 	icon_file = 'icons/obj/clothing/suits/ethereal.dmi'
 	json_config = 'code/datums/greyscale/json_configs/eth_raincoat.json'
 
 /datum/greyscale_config/eth_raincoat/worn
-	name = "Ethereal Raincoat (Worn)"
+	name = "以太人雨衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/ethereal.dmi'
 	json_config = 'code/datums/greyscale/json_configs/eth_raincoat_worn.json' //Needs separate config for toggle states
 
 /datum/greyscale_config/sweater
-	name = "Sweater"
+	name = "毛衣"
 	icon_file = 'icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sweater.json'
 
 /datum/greyscale_config/sweater/worn
-	name = "Sweater (Worn)"
+	name = "毛衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/jacket.dmi'
 
 /datum/greyscale_config/blazer
-	name = "Blazer"
+	name = "西装外套"
 	icon_file = 'icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'code/datums/greyscale/json_configs/blazer.json'
 
 /datum/greyscale_config/blazer/worn
-	name = "Blazer (Worn)"
+	name = "西装外套（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/jacket.dmi'
 
 /datum/greyscale_config/trenchcoat
-	name = "Trenchcoat"
+	name = "风衣"
 	icon_file = 'icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'code/datums/greyscale/json_configs/trenchcoat.json'
 
 /datum/greyscale_config/trenchcoat/worn
-	name = "Trenchcoat (Worn)"
+	name = "风衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/jacket.dmi'
 
 /datum/greyscale_config/jacket_oversized
-	name = "Oversized Jacket"
+	name = "宽大夹克"
 	icon_file = 'icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jacket_oversized.json'
 
 /datum/greyscale_config/jacket_oversized/worn
-	name = "Oversized Jacket (Worn)"
+	name = "宽大夹克（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/jacket.dmi'
 
 /datum/greyscale_config/jacket_lawyer
-	name = "Formal Suit Jacket"
+	name = "正式西装上衣"
 	icon_file = 'icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jacket_lawyer.json'
 
 /datum/greyscale_config/jacket_lawyer/worn
-	name = "Formal Suit Jacket (Worn)"
+	name = "正式西装上衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/jacket.dmi'
 
 /datum/greyscale_config/overalls
-	name = "Overalls"
+	name = "背带工装裤"
 	icon_file = 'icons/obj/clothing/suits/utility.dmi'
 	json_config = 'code/datums/greyscale/json_configs/overalls.json'
 
 /datum/greyscale_config/overalls/worn
-	name = "Overalls (Worn)"
+	name = "背带工装裤（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/utility.dmi'
 
 //
@@ -596,73 +596,73 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/sneakers
-	name = "Sneakers"
+	name = "运动鞋"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers.json'
 
 /datum/greyscale_config/sneakers/worn
-	name = "Sneakers (Worn)"
+	name = "运动鞋（穿戴）"
 	icon_file = 'icons/mob/clothing/feet.dmi'
 
 /datum/greyscale_config/sneakers/inhand_left
-	name = "Sneakers (Held, Left)"
+	name = "运动鞋（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_inhand.json'
 
 /datum/greyscale_config/sneakers/inhand_right
-	name = "Sneakers (Held, Right)"
+	name = "运动鞋（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_inhand.json'
 
 /datum/greyscale_config/sneakers_orange
-	name = "Orange Sneakers"
+	name = "橙色运动鞋"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_orange.json'
 
 /datum/greyscale_config/sneakers_orange/worn
-	name = "Orange Sneakers (Worn)"
+	name = "橙色运动鞋（穿戴）"
 	icon_file = 'icons/mob/clothing/feet.dmi'
 
 /datum/greyscale_config/sneakers_orange/inhand_left
-	name = "Orange Sneakers (Held, Left)"
+	name = "橙色运动鞋（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_orange_inhand.json'
 
 /datum/greyscale_config/sneakers_orange/inhand_right
-	name = "Orange Sneakers (Held, Right)"
+	name = "橙色运动鞋（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_orange_inhand.json'
 
 /datum/greyscale_config/sneakers_wheelys
-	name = "Wheeled Sneakers"
+	name = "滑轮运动鞋"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_wheelys.json'
 
 /datum/greyscale_config/sneakers_marisa
-	name = "Marisa Sneakers"
+	name = "魔理沙运动鞋"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sneakers_marisa.json'
 
 /datum/greyscale_config/sneakers_marisa/worn
-	name = "Worn Marisa Sneakers (Worn)"
+	name = "魔理沙运动鞋（穿戴）"
 	icon_file = 'icons/mob/clothing/feet.dmi'
 
 /datum/greyscale_config/glow_shoes
-	name = "Glow Shoes"
+	name = "发光鞋"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/glow_shoes.json'
 
 /datum/greyscale_config/glow_shoes/worn
-	name = "Glow Shoes (Worn)"
+	name = "发光鞋（穿戴）"
 	icon_file = 'icons/mob/clothing/feet.dmi'
 
 /datum/greyscale_config/lizard_shoes
-	name = "Lizardskin Boots"
+	name = "蜥蜴皮靴"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/lizard_shoes.json'
 
 /datum/greyscale_config/lizard_shoes/worn
-	name = "Lizardskin Boots (Worn)"
+	name = "蜥蜴皮靴（穿戴）"
 	icon_file = 'icons/mob/clothing/feet.dmi'
 
 //
@@ -670,41 +670,41 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/suspenders
-	name = "Suspenders"
+	name = "背带"
 	icon_file = 'icons/obj/clothing/belts.dmi'
 	json_config = 'code/datums/greyscale/json_configs/suspenders.json'
 
 /datum/greyscale_config/suspenders/worn
-	name = "Suspenders (Worn)"
+	name = "背带（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/utility.dmi'
 
 /datum/greyscale_config/waistcoat
-	name = "Waistcoat"
+	name = "马甲"
 	icon_file = 'icons/obj/clothing/accessories.dmi'
 	json_config = 'code/datums/greyscale/json_configs/waistcoat.json'
 
 /datum/greyscale_config/waistcoat/worn
-	name = "Waistcoat (Worn)"
+	name = "马甲（穿戴）"
 	icon_file = 'icons/mob/clothing/accessories.dmi'
 
 /datum/greyscale_config/sweatervest
-	name = "Sweater Vest"
+	name = "针织背心"
 	icon_file = 'icons/obj/clothing/accessories.dmi'
 	json_config = 'code/datums/greyscale/json_configs/sweatervest.json'
 
 /datum/greyscale_config/sweatervest/worn
-	name = "Sweater Vest (Worn)"
+	name = "针织背心（穿戴）"
 	icon_file = 'icons/mob/clothing/accessories.dmi'
 
 // Digi Stuff
 
 /datum/greyscale_config/digitigrade
-	name = "Digitigrade Clothes"
+	name = "趾行型服装"
 	icon_file = 'icons/mob/clothing/digi_template_equipment.dmi'
 	json_config = 'code/datums/greyscale/json_configs/digitigrade.json'
 
 /datum/greyscale_config/digitigrade_underwear
-	name = "Digitigrade Underwear"
+	name = "趾行型内衣"
 	icon_file = 'icons/mob/clothing/digi_template_underwear.dmi'
 	json_config = 'code/datums/greyscale/json_configs/digitigrade_underwear.json'
 
@@ -714,79 +714,79 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/winter_coats
-	name = "Winter Coat"
+	name = "冬衣"
 	icon_file = 'icons/obj/clothing/suits/wintercoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wintercoats.json'
 
 /datum/greyscale_config/winter_coats/worn
-	name = "Winter Coat (Worn)"
+	name = "冬衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/wintercoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wintercoats_worn.json' //Needs separate config for toggle states
 
 /datum/greyscale_config/winter_hoods
-	name = "Winter Coat Hood"
+	name = "冬衣兜帽"
 	icon_file = 'icons/obj/clothing/head/winterhood.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wintercoats_hood.json'
 
 /datum/greyscale_config/winter_hoods/worn
-	name = "Winter Coat Hood (Worn)"
+	name = "冬衣兜帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/winterhood.dmi'
 
 /datum/greyscale_config/heck_suit
-	name = "H.E.C.K. Suit"
+	name = "H.E.C.K. 防护服"
 	icon_file = 'icons/obj/clothing/suits/armor.dmi'
 	json_config = 'code/datums/greyscale/json_configs/heck_suit.json'
 
 /datum/greyscale_config/heck_suit/worn
-	name = "H.E.C.K. Suit (Worn)"
+	name = "H.E.C.K. 防护服（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/armor.dmi'
 
 /datum/greyscale_config/heck_helmet
-	name = "H.E.C.K. Helmet"
+	name = "H.E.C.K. 头盔"
 	icon_file = 'icons/obj/clothing/head/helmet.dmi'
 	json_config = 'code/datums/greyscale/json_configs/heck_helmet.json'
 
 /datum/greyscale_config/heck_helmet/worn
-	name = "H.E.C.K. Helmet (Worn)"
+	name = "H.E.C.K. 头盔（穿戴）"
 	icon_file = 'icons/mob/clothing/head/helmet.dmi'
 
 /datum/greyscale_config/hoodie_pullover
-	name = "Pullover Hoodie"
+	name = "套头连帽衫"
 	icon_file = 'icons/obj/clothing/suits/wintercoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pullover.json'
 
 /datum/greyscale_config/hoodie_pullover/worn
-	name = "Pullover Hoodie (Worn)"
+	name = "套头连帽衫（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/wintercoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pullover_worn.json'
 
 /datum/greyscale_config/hoodie_pullover_hood
-	name = "Pullover Hood"
+	name = "套头衫兜帽"
 	icon_file = 'icons/obj/clothing/head/winterhood.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pullover_hood.json'
 
 /datum/greyscale_config/hoodie_pullover_hood/worn
-	name = "Pullover Hood (Worn)"
+	name = "套头衫兜帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/winterhood.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pullover_hood_worn.json'
 
 /datum/greyscale_config/hoodie_zipup
-	name = "Zipup Hoodie"
+	name = "拉链连帽衫"
 	icon_file = 'icons/obj/clothing/suits/wintercoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/zipup.json'
 
 /datum/greyscale_config/hoodie_zipup/worn
-	name = "Zipup Hoodie (Worn)"
+	name = "拉链连帽衫（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/wintercoat.dmi'
 	json_config = 'code/datums/greyscale/json_configs/zipup_worn.json'
 
 /datum/greyscale_config/hoodie_zipup_hood
-	name = "Zipup Hood"
+	name = "拉链衫兜帽"
 	icon_file = 'icons/obj/clothing/head/winterhood.dmi'
 	json_config = 'code/datums/greyscale/json_configs/zipup_hood.json'
 
 /datum/greyscale_config/hoodie_zipup_hood/worn
-	name = "Zipup Hood (Worn)"
+	name = "拉链衫兜帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/winterhood.dmi'
 	json_config = 'code/datums/greyscale/json_configs/zipup_hood_worn.json'
 
@@ -796,231 +796,231 @@ SKYRAT EDIT END */
 //
 
 /datum/greyscale_config/football_helmet
-	name = "Football Helmet"
+	name = "橄榄球头盔"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/football_helmet.json'
 
 /datum/greyscale_config/football_helmet/worn
-	name = "Football Helmet (Worn)"
+	name = "橄榄球头盔（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/football_suit
-	name = "Football Suit"
+	name = "橄榄球服"
 	icon_file = 'icons/obj/clothing/under/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/football_suit.json'
 
 /datum/greyscale_config/football_suit/worn
-	name = "Football Suit (Worn)"
+	name = "橄榄球服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/football_armor
-	name = "Football Armor"
+	name = "橄榄球护具"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/football_armor.json'
 
 /datum/greyscale_config/football_armor/worn
-	name = "Football Armor (Worn)"
+	name = "橄榄球护具（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/fancy_hat
-	name = "Fancy Hat"
+	name = "华丽礼帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/fancy_hat.json'
 
 /datum/greyscale_config/fancy_hat/worn
-	name = "Fancy Hat (Worn)"
+	name = "华丽礼帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/fancy_coat
-	name = "Fancy Coat"
+	name = "华丽大衣"
 	icon_file = 'icons/obj/clothing/suits/jacket.dmi'
 	json_config = 'code/datums/greyscale/json_configs/fancy_coat.json'
 
 /datum/greyscale_config/fancy_coat/worn
-	name = "Fancy Coat (Worn)"
+	name = "华丽大衣（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/jacket.dmi'
 
 /datum/greyscale_config/hawaiian_shirt
-	name = "Hawaiian Overshirt"
+	name = "夏威夷衬衫外套"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/hawaiian_shirt.json'
 
 /datum/greyscale_config/hawaiian_shirt/worn
-	name = "Hawaiian Overshirt (Worn)"
+	name = "夏威夷衬衫外套（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/witch_hat
-	name = "Witch Hat"
+	name = "女巫帽"
 	icon_file = 'icons/obj/clothing/head/wizard.dmi'
 	json_config = 'code/datums/greyscale/json_configs/witch_hat.json'
 
 /datum/greyscale_config/witch_hat/worn
-	name = "Witch Hat (Worn)"
+	name = "女巫帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/wizard.dmi'
 
 /datum/greyscale_config/wellworn_shirt
-	name = "Well-Worn Shirt"
+	name = "旧衬衫"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wellworn_shirt.json'
 
 /datum/greyscale_config/wellworn_shirt/worn
-	name = "Well-Worn Shirt (Worn)"
+	name = "旧衬衫（穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/wellworn_shirt_skub
-	name = "Well-Worn Shirt (Skub)"
+	name = "旧衬衫（斯库布）"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wellworn_shirt_skub.json'
 
 /datum/greyscale_config/wellworn_shirt_skub/worn
-	name = "Well-Worn Shirt (Skub)(Worn)"
+	name = "旧衬衫（斯库布，穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/wellworn_shirt_graphic
-	name = "Well-Worn Shirt (Graphic)"
+	name = "旧衬衫（印花）"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wellworn_shirt_graphic.json'
 
 /datum/greyscale_config/wellworn_shirt_graphic/worn
-	name = "Well-Worn Shirt (Graphic)(Worn)"
+	name = "旧衬衫（印花，穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/wellworn_shirt/wornout
-	name = "Worn-Out Shirt"
+	name = "破旧衬衫"
 
 /datum/greyscale_config/wellworn_shirt/worn/wornout
-	name = "Worn-Out Shirt (Worn)"
+	name = "破旧衬衫（穿戴）"
 
 /datum/greyscale_config/wornout_shirt_graphic
-	name = "Worn-Out Shirt (Graphic)"
+	name = "破旧衬衫（印花）"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/wornout_shirt_graphic.json'
 
 /datum/greyscale_config/wornout_shirt_graphic/worn
-	name = "Worn-Out Shirt (Graphic)(Worn)"
+	name = "破旧衬衫（印花，穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/wellworn_shirt/messy
-	name = "Messy Worn Shirt"
+	name = "凌乱旧衬衫"
 
 /datum/greyscale_config/wellworn_shirt/worn/messy
-	name = "Messy Worn Shirt (Worn)"
+	name = "凌乱旧衬衫（穿戴）"
 
 /datum/greyscale_config/messyworn_shirt_graphic
-	name = "Messy Shirt (Graphic)"
+	name = "凌乱衬衫（印花）"
 	icon_file = 'icons/obj/clothing/suits/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/messyworn_shirt_graphic.json'
 
 /datum/greyscale_config/messyworn_shirt_graphic/worn
-	name = "Messy Shirt (Graphic (Worn)"
+	name = "凌乱衬衫（印花，穿戴）"
 	icon_file = 'icons/mob/clothing/suits/costume.dmi'
 
 /datum/greyscale_config/gi
-	name = "Gi"
+	name = "武道服"
 	icon_file = 'icons/obj/clothing/under/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/gi.json'
 
 /datum/greyscale_config/gi/worn
-	name = "Gi (Worn)"
+	name = "武道服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/jester_hat
-	name = "Jester Hat"
+	name = "弄臣帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jester_hat.json'
 
 /datum/greyscale_config/jester_hat/worn
-	name = "Jester Hat (Worn)"
+	name = "弄臣帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/jester_suit
-	name = "Jester Suit"
+	name = "弄臣服"
 	icon_file = 'icons/obj/clothing/under/civilian.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jester_suit.json'
 
 /datum/greyscale_config/jester_suit/worn
-	name = "Jester Suit (Worn)"
+	name = "弄臣服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/civilian.dmi'
 
 /datum/greyscale_config/jester_shoes
-	name = "Jester Shoes"
+	name = "弄臣鞋"
 	icon_file = 'icons/obj/clothing/shoes.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jester_shoes.json'
 
 /datum/greyscale_config/jester_shoes/worn
-	name = "Jester Shoes (Worn)"
+	name = "弄臣鞋（穿戴）"
 	icon_file = 'icons/mob/clothing/feet.dmi'
 
 /datum/greyscale_config/jester_hat_alt
-	name = "Jester Hat (Alt)"
+	name = "弄臣帽（另一款式）"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jester_hat_alt.json'
 
 /datum/greyscale_config/jester_hat_alt/worn
-	name = "Jester Hat (Alt, Worn)"
+	name = "弄臣帽（另一款式，穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/jester_suit_alt
-	name = "Jester Suit (Alt)"
+	name = "弄臣服（另一款式）"
 	icon_file = 'icons/obj/clothing/under/civilian.dmi'
 	json_config = 'code/datums/greyscale/json_configs/jester_suit_alt.json'
 
 /datum/greyscale_config/jester_suit_alt/worn
-	name = "Jester Suit (Alt, Worn)"
+	name = "弄臣服（另一款式，穿戴）"
 	icon_file = 'icons/mob/clothing/under/civilian.dmi'
 
 /datum/greyscale_config/lizard_hat
-	name = "Lizardskin Cloche Hat"
+	name = "蜥蜴皮钟形帽"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/lizard_hat.json'
 
 /datum/greyscale_config/lizard_hat/worn
-	name = "Lizardskin Cloche Hat (Worn)"
+	name = "蜥蜴皮钟形帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/fedora
-	name = "Fedora"
+	name = "软呢帽"
 	icon_file = 'icons/obj/clothing/head/hats.dmi'
 	json_config = 'code/datums/greyscale/json_configs/fedora.json'
 
 /datum/greyscale_config/fedora/worn
-	name = "Fedora (Worn)"
+	name = "软呢帽（穿戴）"
 	icon_file = 'icons/mob/clothing/head/hats.dmi'
 
 /datum/greyscale_config/maid
-	name = "Maid Uniform"
+	name = "女仆制服"
 	icon_file = 'icons/obj/clothing/under/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/maid.json'
 
 /datum/greyscale_config/maid/worn
-	name = "Maid Uniform(Worn)"
+	name = "女仆制服（穿戴）"
 	icon_file = 'icons/mob/clothing/under/costume.dmi'
 
 /datum/greyscale_config/maid_inhands_left
-	name = "Maid Uniform Inhands Left"
+	name = "女仆制服（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/maid.json'
 
 /datum/greyscale_config/maid_inhands_right
-	name = "Maid Uniform Inhands Right"
+	name = "女仆制服（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/suits_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/maid.json'
 
 /datum/greyscale_config/maid_headband
-	name = "Maid Headband"
+	name = "女仆发箍"
 	icon_file = 'icons/obj/clothing/head/costume.dmi'
 	json_config = 'code/datums/greyscale/json_configs/maid.json'
 
 /datum/greyscale_config/maid_headband/worn
-	name = "Maid Headband(Worn)"
+	name = "女仆发箍（穿戴）"
 	icon_file = 'icons/mob/clothing/head/costume.dmi'
 
 /datum/greyscale_config/maid_headband_inhands_left
-	name = "Maid Headband Inhands Left"
+	name = "女仆发箍（左手持握）"
 	icon_file = 'icons/mob/inhands/clothing/hats_lefthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/maid.json'
 
 /datum/greyscale_config/maid_headband_inhands_right
-	name = "Maid Headband Inhands Right"
+	name = "女仆发箍（右手持握）"
 	icon_file = 'icons/mob/inhands/clothing/hats_righthand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/maid.json'

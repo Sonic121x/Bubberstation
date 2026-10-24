@@ -21,19 +21,19 @@
 	switch(impress)
 		if(GREAT_ART to INFINITY)
 			user.add_mood_event("artgreat", /datum/mood_event/artgreat)
-			msg = "What \a [pick("masterpiece", "chef-d'oeuvre")]. So [pick("trascended", "awe-inspiring", "bewitching", "impeccable")]!"
+			msg = "真是一件[pick("杰作", "传世之作")]。简直[pick("超凡脱俗", "令人叹服", "令人着迷", "无可挑剔")]！"
 		if (GOOD_ART to GREAT_ART)
 			user.add_mood_event("artgood", /datum/mood_event/artgood)
-			msg = "[source.p_Theyre()] a [pick("respectable", "commendable", "laudable")] art piece, easy on the keen eye."
+			msg = "这是一件[pick("可圈可点", "值得称赞", "值得赞赏")]的艺术品，令人赏心悦目。"
 		if (BAD_ART to GOOD_ART)
 			user.add_mood_event("artok", /datum/mood_event/artok)
-			msg = "[source.p_Theyre()] fair to middling, enough to be called an \"art object\"."
+			msg = "这件作品平平无奇，勉强能被称为“艺术品”。"
 		if (0 to BAD_ART)
 			user.add_mood_event("artbad", /datum/mood_event/artbad)
-			msg = "Wow, [source.p_they()] suck[source.p_s()]."
+			msg = "哇，真是烂透了。"
 
-	user.visible_message(span_notice("[user] stops and looks intently at [source]."), \
-		span_notice("You appraise [source]... [msg]"))
+	user.visible_message(span_notice("[user]停下脚步，仔细端详[source]。"), \
+		span_notice("你鉴赏着[source]……[msg]"))
 
 /datum/element/art/proc/on_examine(atom/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
@@ -43,7 +43,7 @@
 		INVOKE_ASYNC(src, PROC_REF(appraise), source, user) //Do not sleep the proc.
 
 /datum/element/art/proc/appraise(atom/source, mob/user)
-	to_chat(user, span_notice("You start appraising [source]..."))
+	to_chat(user, span_notice("你开始鉴赏[source]……"))
 	if(!do_after(user, 2 SECONDS, target = source))
 		return
 	var/mult = 1
@@ -57,13 +57,13 @@
 	var/msg
 	if(user.mind?.has_antag_datum(/datum/antagonist/rev))
 		user.add_mood_event("artgreat", /datum/mood_event/artgreat)
-		msg = "What \a [pick("masterpiece", "chef-d'oeuvre")] [source.p_theyre()]. So [pick("subversive", "revolutionary", "unitizing", "egalitarian")]!"
+		msg = "真是一件[pick("杰作", "传世之作")]。如此[pick("颠覆传统", "富有革命精神", "凝聚人心", "体现平等")]！"
 	else
 		user.add_mood_event("artbad", /datum/mood_event/artbad)
-		msg = "Wow, [source.p_they()] suck[source.p_s()]."
+		msg = "哇，真是烂透了。"
 
-	user.visible_message(span_notice("[user] stops to inspect [source]."), \
-		span_notice("You appraise [source], inspecting the fine craftsmanship of the proletariat... [msg]"))
+	user.visible_message(span_notice("[user]停下来仔细查看[source]。"), \
+		span_notice("你鉴赏[source]，审视着无产阶级的精湛工艺……[msg]"))
 
 /datum/element/art/commoner
 
@@ -81,10 +81,10 @@
 
 	if(!(user.mind.assigned_role.title in haters))
 		user.add_mood_event("artgreat", /datum/mood_event/artgreat)
-		msg = "What \a [pick("masterpiece", "chef-d'oeuvre")] [source.p_theyre()]. So [pick("relatable", "down to earth", "true", "real")]!"
+		msg = "真是一件[pick("杰作", "传世之作")]。如此[pick("引人共鸣", "贴近生活", "真诚", "真实")]！"
 	else
 		user.add_mood_event("artbad", /datum/mood_event/artbad)
-		msg = "Wow, [source.p_they()] suck[source.p_s()]."
+		msg = "哇，真是烂透了。"
 
-	user.visible_message(span_notice("[user] stops to inspect [source]."), \
-		span_notice("You appraise [source], inspecting the fine craftsmanship of the proletariat... [msg]"))
+	user.visible_message(span_notice("[user]停下来仔细查看[source]。"), \
+		span_notice("你鉴赏[source]，审视着无产阶级的精湛工艺……[msg]"))

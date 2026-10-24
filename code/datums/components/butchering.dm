@@ -74,7 +74,7 @@
 		return
 
 	if (HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
+		to_chat(user, span_warning("你不愿伤害其他生物！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if (victim.has_status_effect(/datum/status_effect/neck_slice))
@@ -106,7 +106,7 @@
 		return NONE
 
 	if (isbodypart(target))
-		context[SCREENTIP_CONTEXT_LMB] = "(Combat Mode) Butcher limb"
+		context[SCREENTIP_CONTEXT_LMB] = "（战斗模式）肢解肢体"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if (!isliving(target))
@@ -114,11 +114,11 @@
 
 	var/mob/living/victim = target
 	if (victim.stat != DEAD && (victim.butcher_results || victim.guaranteed_butcher_results))
-		context[SCREENTIP_CONTEXT_LMB] = "(Combat Mode) Butcher"
+		context[SCREENTIP_CONTEXT_LMB] = "（战斗模式）屠宰"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if (ishuman(victim))
-		context[SCREENTIP_CONTEXT_RMB] = "(Combat Mode) Butcher"
+		context[SCREENTIP_CONTEXT_RMB] = "（战斗模式）屠宰"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -126,13 +126,13 @@
 /datum/component/butchering/proc/butcher_limb(obj/item/source, obj/item/bodypart/target, mob/living/user)
 	target.add_fingerprint(user)
 	if (LIMB_HAS_SKIN(target) && !HAS_ANY_SURGERY_STATE(target.surgery_state, SURGERY_SKIN_CUT | SURGERY_SKIN_OPEN))
-		to_chat(user, span_warning("[target]'s skin is still intact!"))
+		to_chat(user, span_warning("[target]的皮肤仍然完好！"))
 		return
 
 	if (LIMB_HAS_BONES(target) && !HAS_ANY_SURGERY_STATE(target.surgery_state, SURGERY_BONE_DRILLED | SURGERY_BONE_SAWED))
 		// We need to gut the limb before turning it into meat, otherwise just cut around the bone I guess
 		if (length(target.contents))
-			to_chat(user, span_warning("[target]'s bones are still intact!"))
+			to_chat(user, span_warning("[target]的骨骼仍然完好！"))
 			return
 
 	var/speed_modifier = 1
@@ -141,7 +141,7 @@
 	else if (!IS_UNCONSCIOUS(target))
 		speed_modifier = 1.5 // yeowch
 
-	var/limb_descriptor = (target.owner ? "[target.owner]'s [target.plaintext_zone]" : target)
+	var/limb_descriptor = (target.owner ? "[target.owner]的[chinese_body_zone_display(target.plaintext_zone)]" : target)
 	// Okay *hopefully* they're already dead at this point
 	if (target.body_zone == BODY_ZONE_CHEST && target.owner)
 		// Butchering the chest gibs the victim
@@ -151,9 +151,9 @@
 		log_combat(user, target.owner, "attempted to butcher", source)
 
 	if (length(target.contents))
-		user.visible_message(span_warning("[user] begins to gut [limb_descriptor]!"), span_notice("You begin to gut [limb_descriptor]..."), ignored_mobs = target.owner)
+		user.visible_message(span_warning("[user]开始取出[limb_descriptor]内的器官！"), span_notice("你开始取出[limb_descriptor]内的器官……"), ignored_mobs = target.owner)
 		if (target.owner)
-			to_chat(target.owner, span_warning("[user] begins to gut your [target.plaintext_zone]!"))
+			to_chat(target.owner, span_warning("[user]开始取出你[chinese_body_zone_display(target.plaintext_zone)]内的器官！"))
 
 		playsound(target.loc, butcher_sound, 50, TRUE, -1)
 		if (!do_after(user, speed * speed_modifier, target.owner || target))
@@ -163,7 +163,7 @@
 
 	var/list/target_butcher_drops = target.get_butcher_drops()
 	if (!LAZYLEN(target_butcher_drops))
-		to_chat(user, span_warning("There is nothing left inside [limb_descriptor]!"))
+		to_chat(user, span_warning("[limb_descriptor]内部已经空了！"))
 		return
 
 	if (target.body_zone == BODY_ZONE_CHEST && target.owner)
@@ -172,12 +172,12 @@
 			if(limb == target)
 				continue
 			if (LAZYLEN(limb.get_butcher_drops()) && limb.butcher_replacement)
-				to_chat(user, span_warning("You need to butcher all other limbs first!"))
+				to_chat(user, span_warning("你需要先肢解其他所有肢体！"))
 				return
 
-	user.visible_message(span_warning("[user] begins to cut [limb_descriptor] apart!"), span_notice("You begin to cut [limb_descriptor] apart..."), ignored_mobs = target.owner)
+	user.visible_message(span_warning("[user]开始切开[limb_descriptor]！"), span_notice("你开始切开[limb_descriptor]……"), ignored_mobs = target.owner)
 	if (target.owner)
-		to_chat(target.owner, span_warning("[user] begins to cut your [target.plaintext_zone] apart!"))
+		to_chat(target.owner, span_warning("[user]开始切开你的[chinese_body_zone_display(target.plaintext_zone)]！"))
 
 	playsound(target.loc, butcher_sound, 50, TRUE, -1)
 	if (!do_after(user, speed * speed_modifier, target.owner || target))
@@ -268,12 +268,12 @@
 					result.AddComponent(/datum/component/infective, diseases_to_add)
 
 		for (var/obj/item/food/meat/meat in results)
-			meat.name = "[target.owner.real_name]'s [meat.name]"
+			meat.name = "[target.owner.real_name]的[meat.name]"
 			meat.set_custom_materials(list(SSmaterials.get_material(/datum/material/meat/mob_meat, target.owner) = 4 * SHEET_MATERIAL_AMOUNT))
 			meat.subjectname = target.owner.real_name
 			meat.subjectjob = target.owner.job
 
-	user.visible_message(span_warning("[user] butchers [limb_descriptor]!"), span_notice("You butcher [limb_descriptor]."), ignored_mobs = target.owner)
+	user.visible_message(span_warning("[user]肢解了[limb_descriptor]！"), span_notice("你肢解了[limb_descriptor]。"), ignored_mobs = target.owner)
 	if (!target.owner)
 		target.drop_organs(violent_removal = TRUE) // Should not happen, but just in case
 		create_replacement_limb(target, drop_loc)
@@ -292,7 +292,7 @@
 			else
 				wound_type = WOUND_BLUNT
 
-	to_chat(target.owner, span_userdanger("[user] hacks the meat off your [target.plaintext_zone]!"))
+	to_chat(target.owner, span_userdanger("[user]砍下了你[chinese_body_zone_display(target.plaintext_zone)]上的肉！"))
 	var/mob/living/carbon/victim = target.owner
 
 	if (!target.butcher_replacement)
@@ -325,14 +325,14 @@
 	return replacement
 
 /datum/component/butchering/proc/start_butcher(obj/item/source, mob/living/target, mob/living/user)
-	to_chat(user, span_notice("You begin to butcher [target]..."))
+	to_chat(user, span_notice("你开始屠宰[target]……"))
 	playsound(target.loc, butcher_sound, 50, TRUE, -1)
 	if (do_after(user, speed, target) && target.Adjacent(source))
 		on_butchering(user, target)
 
 /datum/component/butchering/proc/butcher_human(obj/item/source, mob/living/carbon/human/victim, mob/living/user)
 	if (DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, span_warning("You're already interacting with [victim]!"))
+		to_chat(user, span_warning("你已经在与[victim]互动了！"))
 		return
 
 	var/static/list/butcher_spots = typecacheof(list(
@@ -349,26 +349,26 @@
 			break
 
 	if (!found_spot)
-		to_chat(user, span_warning("You need a better spot to butcher [victim]!"))
+		to_chat(user, span_warning("你需要找个更合适的地方屠宰[victim]！"))
 		return
 
 	var/obj/item/bodypart/limb = victim.get_bodypart(deprecise_zone(user.zone_selected))
 	if (!limb)
-		to_chat(user, span_warning("[victim] doesn't have a [parse_zone(deprecise_zone(user.zone_selected))]!"))
+		to_chat(user, span_warning("[victim]没有[parse_zone(deprecise_zone(user.zone_selected))]！"))
 		return
 
 	butcher_limb(source, limb, user)
 
 /datum/component/butchering/proc/start_neck_slice(obj/item/source, mob/living/carbon/human/victim, mob/living/user)
 	if (DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, span_warning("You're already interacting with [victim]!"))
+		to_chat(user, span_warning("你已经在与[victim]互动了！"))
 		return
 
-	user.visible_message(span_danger("[user] is slitting [victim]'s throat!"), \
-					span_danger("You start slicing [victim]'s throat!"), \
-					span_hear("You hear a cutting noise!"), ignored_mobs = victim)
-	victim.show_message(span_userdanger("Your throat is being slit by [user]!"), MSG_VISUAL, \
-					span_userdanger("Something is cutting into your neck!"), NONE)
+	user.visible_message(span_danger("[user]正在割开[victim]的喉咙！"), \
+					span_danger("你开始割开[victim]的喉咙！"), \
+					span_hear("你听见切割声！"), ignored_mobs = victim)
+	victim.show_message(span_userdanger("[user]正在割开你的喉咙！"), MSG_VISUAL, \
+					span_userdanger("有什么东西正在割入你的脖子！"), NONE)
 	log_combat(user, victim, "attempted throat slitting", source)
 
 	playsound(victim.loc, butcher_sound, 50, TRUE, -1)
@@ -376,12 +376,12 @@
 		return
 
 	if (victim.has_status_effect(/datum/status_effect/neck_slice))
-		user.show_message(span_warning("[victim]'s neck has already been already cut, you can't make the bleeding any worse!"), MSG_VISUAL, \
-						span_warning("Their neck has already been already cut, you can't make the bleeding any worse!"))
+		user.show_message(span_warning("[victim]的脖子已经被割开，无法进一步加重出血！"), MSG_VISUAL, \
+						span_warning("对方的脖子已经被割开，无法进一步加重出血！"))
 		return
 
-	victim.visible_message(span_danger("[user] slits [victim]'s throat!"), \
-				span_userdanger("[user] slits your throat..."))
+	victim.visible_message(span_danger("[user]割开了[victim]的喉咙！"), \
+				span_userdanger("[user]割开了你的喉咙……"))
 	log_combat(user, victim, "wounded via throat slitting", source)
 	victim.apply_damage(source.force, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND) // easy tiger, we'll get to that in a sec
 	var/obj/item/bodypart/slit_throat = victim.get_bodypart(BODY_ZONE_HEAD)
@@ -402,8 +402,8 @@
 	var/bonus_chance = max(0, (final_effectiveness - 100) + bonus_modifier) //so 125 total effectiveness = 25% extra chance
 
 	if (target.flags_1 & HOLOGRAM_1)
-		butcher.visible_message(span_notice("[butcher] tries to butcher [target], but it vanishes."), \
-			span_notice("You try to butcher [target], but it vanishes."))
+		butcher.visible_message(span_notice("[butcher]试图屠宰[target]，但它消失了。"), \
+			span_notice("你试图屠宰[target]，但它消失了。"))
 		qdel(target)
 		return
 
@@ -435,9 +435,9 @@
 
 	if (butcher)
 		if (length(failures))
-			to_chat(butcher, span_warning("You fail to harvest some of the [english_list(failures)] from [target]."))
+			to_chat(butcher, span_warning("你未能从[target]身上获取部分[jointext(failures, "、")]。"))
 		if (length(bonuses))
-			to_chat(butcher, span_info("You harvest some extra [english_list(bonuses)] from [target]!"))
+			to_chat(butcher, span_info("你从[target]身上额外获取了一些[jointext(bonuses, "、")]！"))
 
 	for (var/obj/guaranteed_remains as anything in target.guaranteed_butcher_results)
 		var/amount = target.guaranteed_butcher_results[guaranteed_remains]
@@ -480,8 +480,8 @@
 					diseased_remains.AddComponent(/datum/component/infective, diseases_to_add)
 
 	if (butcher)
-		butcher.visible_message(span_notice("[butcher] butchers [target]."), \
-			span_notice("You butcher [target]."))
+		butcher.visible_message(span_notice("[butcher]屠宰了[target]。"), \
+			span_notice("你屠宰了[target]。"))
 	butcher_callback?.Invoke(butcher, target)
 	target.harvest(butcher)
 	target.log_message("has been butchered by [key_name(butcher)]", LOG_ATTACK)

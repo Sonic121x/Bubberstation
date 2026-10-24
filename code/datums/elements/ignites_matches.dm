@@ -15,25 +15,25 @@
 		return NONE
 	if(SHOULD_SKIP_INTERACTION(source, match, user))
 		return NONE
-	var/over_what_tp = source.loc == user ? "[user.p_their()] [source.name]" : source
-	var/over_what_fp = source.loc == user ? "your [source.name]" : source
+	var/over_what_tp = source.loc == user ? "自己的[source.name]" : source
+	var/over_what_fp = source.loc == user ? "你的[source.name]" : source
 	if(prob(10))
 		user.visible_message(
-			span_warning("[user] swipes [match] over [over_what_tp], but nothing happens."),
-			span_warning("You swipe [match] over [over_what_fp], but it fails to ignite."),
+			span_warning("[user]在[over_what_tp]上划过[match]，但什么也没发生。"),
+			span_warning("你在[over_what_fp]上划过[match]，但没能点燃。"),
 		)
 		return ITEM_INTERACT_SUCCESS
 	if(prob((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_HULK)) ? 33 : 2))
 		user.visible_message(
-			span_warning("[user] swipes [match] over [over_what_tp], accidentally snapping it."),
-			span_warning("You swipe [match] over [over_what_fp] too fast, snapping it in half."),
+			span_warning("[user]在[over_what_tp]上划过[match]，不小心折断了火柴。"),
+			span_warning("你在[over_what_fp]上划[match]时用力过猛，将火柴折成了两截。"),
 		)
 		match.snap()
 		return ITEM_INTERACT_SUCCESS
 
 	user.visible_message(
-		span_rose("[user] swipes [match] over [over_what_tp], igniting it."),
-		span_rose("You swipe [match] over [over_what_fp], igniting it."),
+		span_rose("[user]在[over_what_tp]上划过[match]，将其点燃。"),
+		span_rose("你在[over_what_fp]上划过[match]，将其点燃。"),
 	)
 	match.matchignite()
 	return ITEM_INTERACT_SUCCESS

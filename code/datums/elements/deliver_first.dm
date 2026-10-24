@@ -46,8 +46,8 @@
 ///signal sent from examining target
 /datum/element/deliver_first/proc/on_examine(obj/structure/closet/target, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_warning("An electronic delivery lock prevents this from opening until it reaches its destination, [GLOB.areas_by_type[goal_area_type]].")
-	examine_list += span_warning("This crate cannot be sold until it is opened.")
+	examine_list += span_warning("电子配送锁会阻止开箱，直到它抵达目的地[GLOB.areas_by_type[goal_area_type]]。")
+	examine_list += span_warning("此货箱必须打开后才能出售。")
 
 ///registers the signal that blocks target from opening when outside of the valid area, returns if it is now unlocked
 /datum/element/deliver_first/proc/area_check(obj/structure/closet/target)
@@ -65,7 +65,7 @@
 
 /datum/element/deliver_first/proc/on_emag(obj/structure/closet/target, mob/emagger)
 	SIGNAL_HANDLER
-	emagger.balloon_alert(emagger, "delivery lock bypassed")
+	emagger.balloon_alert(emagger, "已绕过配送锁")
 	remove_lock(target)
 
 ///signal called before opening target, blocks opening
@@ -78,7 +78,7 @@
 		if(opening_crate.manifest) //we don't want to send feedback if they're just tearing off the manifest
 			return BLOCK_OPEN
 	if(user)
-		target.balloon_alert(user, "access denied until delivery!")
+		target.balloon_alert(user, "送达前禁止开启！")
 	if(COOLDOWN_FINISHED(src, deny_cooldown))
 		playsound(target, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		COOLDOWN_START(src, deny_cooldown, DENY_SOUND_COOLDOWN)
@@ -96,7 +96,7 @@
 
 ///called to remove the element in a flavorful way, either from delivery or from emagging/breaking open the crate
 /datum/element/deliver_first/proc/remove_lock(obj/structure/closet/target)
-	target.visible_message(span_notice("[target]'s delivery lock self destructs, spewing sparks from the mechanism!"))
+	target.visible_message(span_notice("[target]的配送锁自毁了，机构中迸出火花！"))
 	var/datum/effect_system/basic/spark_spread/spark_system = new(target.loc, 4, 0)
 	spark_system.start()
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

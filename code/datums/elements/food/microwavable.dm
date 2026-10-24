@@ -97,6 +97,6 @@
 	SIGNAL_HANDLER
 
 	if(initial(result_typepath.gender) == PLURAL)
-		examine_list += span_notice("[source] can be [span_bold("microwaved")] into some [initial(result_typepath.name)].")
+		examine_list += span_notice("[source]可以通过[span_bold("微波加热")]制成一些[initial(result_typepath.name)]。")
 	else
-		examine_list += span_notice("[source] can be [span_bold("microwaved")] into \a [initial(result_typepath.name)].")
+		examine_list += span_notice("[source]可以通过[span_bold("微波加热")]制成[initial(result_typepath.name)]。")

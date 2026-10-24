@@ -20,6 +20,6 @@
 	var/mob/living/basic/pawn = controller.pawn
 	if(QDELETED(pawn) || pawn.stat)
 		return
-	pawn.visible_message(span_notice("[pawn] miraculously springs back to life!"))
+	pawn.visible_message(span_notice("[pawn]奇迹般地活了过来！"))
 	REMOVE_TRAIT(pawn, TRAIT_FAKEDEATH, BASIC_MOB_DEATH_TRAIT)
 	pawn.look_alive()

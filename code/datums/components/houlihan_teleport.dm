@@ -2,7 +2,7 @@
 /datum/component/houlihan_teleport
 	dupe_mode = COMPONENT_DUPE_HIGHLANDER
 	/// Text that will appear in the alert prompt.
-	var/question = "Travel back?"
+	var/question = "返回吗？"
 	/// List of z-levels that the user can teleport to. By default, this is station z-levels.
 	var/list/zlevels
 
@@ -34,27 +34,27 @@
 	))
 
 /datum/component/houlihan_teleport/proc/get_me_outta_here(obj/structure/source, mob/living/user)
-	var/said_yes = (tgui_alert(user, question, source.name, list("Yes", "No")) == "Yes")
+	var/said_yes = (tgui_alert(user, question, source.name, list("是", "否")) == "是")
 	if(!said_yes || !source.Adjacent(user))
 		return
 
 	var/turf/destination_turf = zlevels ? find_safe_turf(zlevels) : get_safe_random_station_turf_equal_weight()
 	if(!destination_turf)
-		source.balloon_alert(user, "uh oh...")
-		to_chat(user, span_warning("Nothing happens. You feel like this is a bad sign."))
+		source.balloon_alert(user, "糟了……")
+		to_chat(user, span_warning("什么也没发生。你觉得这不是个好兆头。"))
 		return
 
 	var/turf/user_turf = get_turf(user)
 	var/atom/movable/dragged = user.pulling
 	user.forceMove(destination_turf)
-	user_turf.balloon_alert_to_hearers("*pop*")
+	user_turf.balloon_alert_to_hearers("*啵*")
 	if(dragged)
 		var/turf/dragged_turf = get_turf(dragged)
 		dragged.forceMove(destination_turf)
 		user.start_pulling(dragged, force = TRUE)
-		dragged_turf.balloon_alert_to_hearers("*pop*")
+		dragged_turf.balloon_alert_to_hearers("*啵*")
 
-	to_chat(list(user, dragged), span_notice("You blink and find yourself in <b>[get_area_name(destination_turf)]</b>."))
+	to_chat(list(user, dragged), span_notice("一眨眼，你发现自己已经身处<b>[get_area_name(destination_turf)]</b>。"))
 	user.emote("blink")
 	astype(dragged, /mob)?.emote("blink") // shhhhh just let it happen
 

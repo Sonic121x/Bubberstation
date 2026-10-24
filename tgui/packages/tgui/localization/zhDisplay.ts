@@ -3,6 +3,14 @@ import type { Dropdown } from 'tgui-core/components';
 
 // Display labels only. Never use translated labels as protocol or saved values.
 const displayNames: Readonly<Record<string, string>> = {
+  Blood: '血液',
+  Items: '物品',
+  'Floor Objects': '地板上的物体',
+  Clear: '平稳',
+  Incoming: '即将到来',
+  'Imminent or Active': '即刻到来或正在发生',
+  Safe: '安全',
+  Message: '公告',
   Disabled: '禁用',
   Enabled: '启用',
   Calm: '平静',

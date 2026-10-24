@@ -168,12 +168,12 @@
 
 	var/obj/item/bodypart/affected_limb = human_parent.get_bodypart(human_parent.get_random_valid_zone())
 	human_parent.visible_message(
-		span_boldwarning("[human_parent]'s [affected_limb.plaintext_zone] bubbles unnaturally, then bursts into blisters!"),
-		span_boldwarning("Your [affected_limb.plaintext_zone] bubbles unnaturally, then bursts into blisters!"),
+		span_boldwarning("[human_parent]的[chinese_body_zone_display(affected_limb.plaintext_zone)]诡异地鼓起，随即冒出了大片水疱！"),
+		span_boldwarning("你的[chinese_body_zone_display(affected_limb.plaintext_zone)]诡异地鼓起，随即冒出了大片水疱！"),
 	)
 
 	if(human_parent.is_blind())
-		to_chat(human_parent, span_boldwarning("Your [affected_limb.plaintext_zone] feels like it's bubbling, then burns like hell!"))
+		to_chat(human_parent, span_boldwarning("你感觉[chinese_body_zone_display(affected_limb.plaintext_zone)]似乎鼓了起来，随后传来剧烈的灼痛！"))
 
 	human_parent.apply_damage(RADIATION_BURN_SPLOTCH_DAMAGE, BURN, affected_limb, wound_clothing = FALSE)
 	playsound(
@@ -216,10 +216,10 @@
 
 	if (isliving(source))
 		var/mob/living/living_source = source
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Subject is irradiated. Contamination traces back to roughly [DisplayTimeText(world.time - beginning_of_irradiation, 5)] ago. Current toxin levels: [living_source.get_tox_loss()]."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] 受检者遭受辐射污染。污染始于约[DisplayTimeText(world.time - beginning_of_irradiation, 5)]前。目前毒素损伤：[living_source.get_tox_loss()]。"))
 	else
 		// In case the green wasn't obvious enough...
-		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] Target is irradiated."))
+		to_chat(user, span_bolddanger("[icon2html(geiger_counter, user)] 目标遭受辐射污染。"))
 
 	return COMSIG_GEIGER_COUNTER_SCAN_SUCCESSFUL
 
@@ -227,12 +227,12 @@
 	SIGNAL_HANDLER
 
 	render_list += "<span class='alert ml-1'>"
-	render_list += conditional_tooltip("Subject is irradiated.", "Supply antiradiation or antitoxin, such as [/datum/reagent/medicine/potass_iodide::name] or [/datum/reagent/medicine/pen_acid::name].", tochat)
+	render_list += conditional_tooltip("受检者遭受辐射污染。", "提供抗辐射或抗毒药物，例如[/datum/reagent/medicine/potass_iodide::name]或[/datum/reagent/medicine/pen_acid::name]。", tochat)
 	render_list += "</span><br>"
 
 /atom/movable/screen/alert/irradiated
-	name = "Irradiated"
-	desc = "You're irradiated! Heal your toxins quick, and stand under a shower to halt the incoming damage."
+	name = "辐射污染"
+	desc = "你遭受了辐射污染！尽快治疗毒素损伤，并站到淋浴下冲洗，以阻止持续伤害。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "irradiated"
 

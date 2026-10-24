@@ -97,12 +97,12 @@
 
 		if(armless)
 			if(!user.pulling || !iscash(user.pulling) && !istype(user.pulling, /obj/item/card/id))
-				to_chat(user, span_notice("Try pulling a valid ID, space cash, holochip or coin while using \the [parent]!"))
+				to_chat(user, span_notice("使用[parent]时，请拿着有效的 ID 卡、太空现金、全息芯片或硬币！"))
 				return FALSE
 		return FALSE
 
 	if(physical_cash_total < total_cost)
-		to_chat(user, span_warning("Insufficient funds. Aborting."))
+		to_chat(user, span_warning("余额不足。操作中止。"))
 		return FALSE
 	for(var/obj/cash_object in counted_money)
 		qdel(cash_object)
@@ -110,7 +110,7 @@
 
 	if(physical_cash_total > 0)
 		var/obj/item/holochip/holochange = new /obj/item/holochip(user.loc, physical_cash_total) //Change is made in holocredits exclusively.
-		holochange.name = "[holochange.credits] [MONEY_NAME_SINGULAR] holochip"
+		holochange.name = "[holochange.credits][MONEY_NAME_SINGULAR]全息芯片"
 		if(ishuman(user))
 			var/mob/living/carbon/human/paying_customer = user
 			var/successfully_put_in_hands
@@ -121,7 +121,7 @@
 		else
 			user.pulling = holochange
 	log_econ("[total_cost] [MONEY_NAME] were spent on [parent] by [user].")
-	to_chat(user, span_notice("Purchase completed with held [MONEY_NAME]."))
+	to_chat(user, span_notice("已使用手持的[MONEY_NAME]完成购买。"))
 	playsound(user, 'sound/effects/cashregister.ogg', 20, TRUE)
 	return TRUE
 
@@ -133,40 +133,40 @@
 
 	if(!idcard)
 		if(transaction_style == PAYMENT_VENDING)
-			to_chat(user, span_warning("No card found."))
+			to_chat(user, span_warning("未找到卡片。"))
 		return FALSE
 	if(!idcard?.registered_account)
 		switch(transaction_style)
 			if(PAYMENT_FRIENDLY)
-				to_chat(user, span_warning("There's no account detected on your ID, how mysterious!"))
+				to_chat(user, span_warning("你的 ID 卡上没有检测到账户，真奇怪！"))
 			if(PAYMENT_ANGRY)
-				to_chat(user, span_warning("ARE YOU JOKING. YOU DON'T HAVE A BANK ACCOUNT ON YOUR ID YOU IDIOT."))
+				to_chat(user, span_warning("开什么玩笑！你的 ID 卡根本没有银行账户，你这个白痴！"))
 			if(PAYMENT_CLINICAL)
-				to_chat(user, span_warning("ID Card lacks a bank account. Advancing."))
+				to_chat(user, span_warning("ID 卡未关联银行账户。继续处理。"))
 			if(PAYMENT_VENDING)
-				to_chat(user, span_warning("No account found."))
+				to_chat(user, span_warning("未找到账户。"))
 
 		return FALSE
 
 	if(!idcard.can_be_used_in_payment(user))
-		atom_parent.say("Departmental accounts have been blacklisted from personal expenses due to embezzlement.")
+		atom_parent.say("由于公款挪用问题，部门账户已被禁止用于个人消费。")
 		return FALSE
 
 	if(!(idcard.registered_account.has_money(total_cost)))
 		switch(transaction_style)
 			if(PAYMENT_FRIENDLY)
-				to_chat(user, span_warning("I'm so sorry... You don't seem to have enough money."))
+				to_chat(user, span_warning("非常抱歉……你的钱似乎不够。"))
 			if(PAYMENT_ANGRY)
-				to_chat(user, span_warning("YOU MORON. YOU ABSOLUTE BAFOON. YOU INSUFFERABLE TOOL. YOU ARE POOR."))
+				to_chat(user, span_warning("你这个蠢货！彻头彻尾的笨蛋！无可救药的废物！你就是个穷鬼！"))
 			if(PAYMENT_CLINICAL)
-				to_chat(user, span_warning("ID Card lacks funds. Aborting."))
+				to_chat(user, span_warning("ID 卡余额不足。操作中止。"))
 			if(PAYMENT_VENDING)
-				to_chat(user, span_warning("You do not possess the funds to purchase that."))
-		atom_parent.balloon_alert(user, "needs [total_cost] [MONEY_NAME_AUTOPURAL(total_cost)]!")
+				to_chat(user, span_warning("你的资金不足以购买此物。"))
+		atom_parent.balloon_alert(user, "需要[total_cost][MONEY_NAME_AUTOPURAL(total_cost)]！")
 		return FALSE
-	target_acc.transfer_money(idcard.registered_account, total_cost, "Nanotrasen: Usage of Corporate Machinery")
+	target_acc.transfer_money(idcard.registered_account, total_cost, "纳米传讯：公司设备使用费")
 	log_econ("[total_cost] [MONEY_NAME] were spent on [parent] by [user] via [idcard.registered_account.account_holder]'s card.")
-	idcard.registered_account.bank_card_talk("[total_cost] [MONEY_NAME] deducted from your account.")
+	idcard.registered_account.bank_card_talk("已从你的账户扣除[total_cost][MONEY_NAME]。")
 	playsound(src, 'sound/effects/cashregister.ogg', 20, TRUE)
 	SSeconomy.add_audit_entry(idcard.registered_account, total_cost, parent)
 	return TRUE

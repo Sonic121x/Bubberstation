@@ -9,9 +9,9 @@
  */
 
 /datum/symptom/fever
-	name = "Fever"
-	desc = "The virus causes a febrile response from the host, raising its body temperature."
-	illness = "Burning Desire"
+	name = "发热"
+	desc = "病毒引发宿主的发热反应，使体温升高。"
+	illness = "欲火焚身"
 	stealth = 0
 	resistance = 3
 	stage_speed = 3
@@ -22,8 +22,8 @@
 	symptom_delay = 20
 	symptom_cure = /datum/reagent/medicine/leporazine
 	threshold_descs = list(
-		"Resistance 5" = "Increases fever intensity, fever can overheat and harm the host.",
-		"Resistance 10" = "Further increases fever intensity.",
+		"抗性 5" = "加重发热程度，可能使宿主过热并受伤。",
+		"抗性 10" = "进一步加重发热程度。",
 	)
 	var/unsafe = FALSE //over the heat threshold
 
@@ -43,9 +43,9 @@
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(!unsafe || A.stage < 4)
-		to_chat(M, span_warning("[pick("You feel hot.", "You feel like you're burning.")]"))
+		to_chat(M, span_warning("[pick("你感到很热。", "你感觉自己在燃烧。")]"))
 	else
-		to_chat(M, span_userdanger("[pick("You feel too hot.", "You feel like your blood is boiling.")]"))
+		to_chat(M, span_userdanger("[pick("你感到热得难以忍受。", "你感觉血液在沸腾。")]"))
 	set_body_temp(A.affected_mob, A)
 
 /**

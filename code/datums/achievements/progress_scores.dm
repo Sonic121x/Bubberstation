@@ -1,7 +1,7 @@
 
 /datum/award/score/progress/fish
-	name = "Fish Species Caught"
-	desc = "How many different species of fish you've caught so far. Gotta fish 'em all."
+	name = "已钓获的鱼类品种"
+	desc = "目前你钓到过多少种不同的鱼。把它们全钓上来吧。"
 	database_id = FISH_SCORE
 	var/list/early_entries_to_validate = list()
 
@@ -42,9 +42,9 @@
 
 /datum/award/score/progress/fish/get_progress(datum/achievement_data/holder)
 	var/list/data = list(
-		"name" = "Fishdex",
+		"name" = "鱼类图鉴",
 		"percent" = 0,
-		"value_text" = "Subsystems still initializing...",
+		"value_text" = "子系统仍在初始化……",
 		"entries" = list(),
 	)
 	if(!SSfishing.initialized)
@@ -71,11 +71,11 @@
 	return data
 
 /datum/award/score/progress/fish/get_progress_string(progress_string)
-	return span_greenannounce("This is the first time you've caught a <B>[progress_string]</B>!")
+	return span_greenannounce("这是你第一次钓到<B>[progress_string]</B>！")
 
 /datum/award/score/progress/pda_themes
-	name = "Unlocked PDA Themes"
-	desc = "Any special PDA theme that you've installed on your PDA, which will then be added to your roundstart PDA on future rounds as well."
+	name = "已解锁的 PDA 主题"
+	desc = "你曾在 PDA 上安装过的特殊主题。它们也会添加到你在后续回合开局时获得的 PDA 上。"
 	database_id = PDA_THEMES_SCORE
 	track_high_scores = FALSE //This is purely personal progress
 	var/list/cheevo_icons
@@ -93,11 +93,11 @@
 	return "pda_themes_progress"
 
 /datum/award/score/progress/pda_themes/get_progress_string(progress_string)
-	return span_greenannounce(span_tooltip("You can now select it on future rounds without having to install it again", "New PDA theme unlocked : <B>[progress_string]!</B>"))
+	return span_greenannounce(span_tooltip("今后的回合中，你可以直接选择该主题，无需再次安装", "已解锁新的 PDA 主题：<B>[progress_string]！</B>"))
 
 /datum/award/score/progress/pda_themes/get_progress(datum/achievement_data/holder)
 	var/list/data = list(
-		"name" = "PDA Themes",
+		"name" = "PDA 主题",
 		"entries" = list(),
 	)
 

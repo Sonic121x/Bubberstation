@@ -23,8 +23,8 @@
 		controller.set_blackboard_key(BB_VENT_ENTRY_TIME, world.time)
 		if(prob(50))
 			cached_pawn.visible_message(
-				span_warning("[cached_pawn] scrambles into the ventilation ducts!"),
-				span_hear("You hear something scampering through the ventilation ducts."),
+				span_warning("[cached_pawn]钻进了通风管道！"),
+				span_hear("你听见有什么东西在通风管道中窜动。"),
 			)
 		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 

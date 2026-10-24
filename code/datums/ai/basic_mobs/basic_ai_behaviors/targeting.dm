@@ -116,8 +116,8 @@ GLOBAL_LIST_INIT(target_interested_atoms, typecacheof(list(/mob, /obj/machinery/
 	var/datum/target_priority_strategy/priority_strategy = get_target_priority_strategy(controller)
 	var/atom/current_target = controller.blackboard[target_key]
 	var/atom/target = pick_final_target(controller, accepted_targets, priority_strategy, current_target)
-	EVLOG_MAPTEXT(controller, EVLOG_CATEGORY_AI_TARGETING, "[controller.pawn] has selected [target] as a target for blackboard key [target_key]! Behavior: [src]", get_turf(target), "Target: [target]")
-	EVLOG_LINES(controller, EVLOG_CATEGORY_AI_TARGETING, "Line to target", get_turf(controller.pawn), get_turf(target))
+	EVLOG_MAPTEXT(controller, EVLOG_CATEGORY_AI_TARGETING, "[controller.pawn] 已为黑板键 [target_key] 选择目标 [target]！行为：[src]", get_turf(target), "目标：[target]")
+	EVLOG_LINES(controller, EVLOG_CATEGORY_AI_TARGETING, "通向目标的连线", get_turf(controller.pawn), get_turf(target))
 	if(target != current_target)
 		controller.set_blackboard_key(target_key, target)
 	on_target_found(controller, target, targeting_strategy)

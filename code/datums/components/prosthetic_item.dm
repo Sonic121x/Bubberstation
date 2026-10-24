@@ -42,12 +42,12 @@
 	// ensures the item is in the proper place
 	switch(bodyparent.body_zone)
 		if(BODY_ZONE_R_ARM)
-			bodyparent.name = "right [prosthetic_item.name]"
-			bodyparent.plaintext_zone = "right [prosthetic_item.name]"
+			bodyparent.name = "右侧[prosthetic_item.name]"
+			bodyparent.plaintext_zone = "右侧[prosthetic_item.name]"
 			bodyparent.owner.put_in_r_hand(prosthetic_item)
 		if(BODY_ZONE_L_ARM)
-			bodyparent.name = "left [prosthetic_item.name]"
-			bodyparent.plaintext_zone = "left [prosthetic_item.name]"
+			bodyparent.name = "左侧[prosthetic_item.name]"
+			bodyparent.plaintext_zone = "左侧[prosthetic_item.name]"
 			bodyparent.owner.put_in_l_hand(prosthetic_item)
 	SEND_SIGNAL(prosthetic_item, COMSIG_ITEM_POST_USED_AS_PROSTHETIC, parent)
 
@@ -124,8 +124,8 @@
 
 	var/obj/item/bodypart/bodyparent = parent
 	source.visible_message(
-		span_warning("As [source] attempts to swing with [source.p_their()] [bodyparent.name], it falls right off!"),
-		span_warning("As you attempt to swing with [source.p_their()] [bodyparent.name], it falls right off!"),
+		span_warning("[source]试着挥动[bodyparent.name]时，它直接掉了下来！"),
+		span_warning("你试着挥动[bodyparent.name]时，它直接掉了下来！"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	bodyparent.dismember(silent = TRUE) // which removes the limb, which qdels us (which nulls all the references and signals)

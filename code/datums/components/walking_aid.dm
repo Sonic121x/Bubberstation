@@ -69,7 +69,7 @@
 /datum/component/walking_aid/proc/get_examine_tags(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list["walking-aid"] = "It can help lessen the slowdown caused from a missing or injured leg, when held on the same side as the injury."
+	examine_list["walking-aid"] = "用受伤侧的手握住它，可以减轻腿部缺失或受伤造成的行动迟缓。"
 
 // Updates our leg status when wielded/unwielded a two handed walking aid like a spear
 /datum/component/walking_aid/proc/update_legs(atom/source)

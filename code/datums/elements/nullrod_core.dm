@@ -5,16 +5,16 @@
  * Called when the element is added to a datum. If the 'chaplain_spawnable' arg is TRUE and unit testing is enabled,
  * we check that the target is actually in the nullrod_variants global list
  */
-/datum/element/nullrod_core/Attach(obj/item/target, chaplain_spawnable = TRUE, rune_remove_line = "BEGONE FOUL MAGIKS!!")
+/datum/element/nullrod_core/Attach(obj/item/target, chaplain_spawnable = TRUE, rune_remove_line = "邪恶魔法，退散！！")
 	. = ..()
 	if(!istype(target))
 		return ELEMENT_INCOMPATIBLE
 
 	target.AddComponent(/datum/component/anti_magic, MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY)
 	target.AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You disrupt the magic of %THEEFFECT with %THEWEAPON.", \
+		success_feedback = "你用%THEWEAPON破除了%THEEFFECT的魔法。", \
 		success_forcesay = rune_remove_line, \
-		tip_text = "Clear rune", \
+		tip_text = "清除符文", \
 		on_clear_callback = CALLBACK(src, PROC_REF(on_cult_rune_removed), target), \
 		effects_we_clear = list(/obj/effect/rune, /obj/effect/heretic_rune, /obj/effect/cosmic_rune), \
 	)
@@ -35,5 +35,5 @@
 
 	var/obj/effect/rune/target_rune = target
 	if(target_rune.log_when_erased)
-		user.log_message("erased [target_rune.cultist_name] rune using [nullrod]", LOG_GAME)
+		user.log_message("使用[nullrod]抹除了[target_rune.cultist_name]符文", LOG_GAME)
 	SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_NARNAR] = TRUE

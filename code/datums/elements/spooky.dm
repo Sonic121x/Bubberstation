@@ -26,12 +26,12 @@
 
 	if(!HAS_TRAIT(user, TRAIT_SPOOKY_INSTRUMENT_PLAYER)) //this weapon wasn't meant for mortals.
 		if(rattle_bones(user, stam_dam_mult = stam_damage_mult * 2))
-			to_chat(user, span_userdanger("Your ears weren't meant for this spectral sound."))
+			to_chat(user, span_userdanger("你的耳朵承受不了这种幽灵之音。"))
 			if(ishuman(user))
 				INVOKE_ASYNC(src, PROC_REF(spectral_change), user, user, source)
 		return
 
-	to_chat(target, span_userdanger("<b>DOOT</b"))
+	to_chat(target, span_userdanger("<b>嘟——</b"))
 
 	if(rattle_bones(target))
 		INVOKE_ASYNC(src, PROC_REF(spectral_change), target, user, source)
@@ -67,17 +67,17 @@
 		return
 
 	if(single_use)
-		to_chat(user, span_warning("You feel like [source] has lost its spookiness..."))
+		to_chat(user, span_warning("你觉得[source]已经失去了那股阴森劲儿……"))
 		Detach(source)
 
 	human.Paralyze(2 SECONDS)
 	human.set_species(/datum/species/skeleton)
-	human.visible_message(span_warning("[human] has given up on life as a mortal."))
-	to_chat(human, span_boldnotice("You are a spooky skeleton!"))
+	human.visible_message(span_warning("[human]放弃了凡人的生活。"))
+	to_chat(human, span_boldnotice("你成了一具吓人的骷髅！"))
 	to_chat(human,
-		span_boldnotice("A new life and identity has begun.\
-		[too_spooky ? "Help your fellow skeletons into bringing out the spooky-pocalypse." : ""] \
-		You haven't forgotten your past life, and are still beholden to past loyalties.")
+		span_boldnotice("全新的生活和身份已经开始。\
+		[too_spooky ? "帮助骷髅同伴带来惊魂末日。" : ""] \
+		你并未忘记过去的生活，依旧受原有的忠诚约束。")
 	)
 	INVOKE_ASYNC(src, PROC_REF(change_name), human) //time for a new name!
 
@@ -85,7 +85,7 @@
 		return
 	var/turf/turf = get_turf(human)
 	if(!prob(90))
-		to_chat(human, span_boldwarning("The spooky gods forgot to ship your instrument. Better luck next unlife."))
+		to_chat(human, span_boldwarning("惊魂诸神忘了寄来你的乐器。祝你下次不死生涯好运。"))
 		return
 	var/obj/item/instrument = pick(
 		/obj/item/instrument/saxophone/spectral,
@@ -95,7 +95,7 @@
 	new instrument(turf)
 
 /datum/element/spooky/proc/change_name(mob/living/carbon/human/spooked)
-	var/skeleton_name = spooked.client ? sanitize_name(tgui_input_text(spooked, "Enter your new skeleton name", "Spookifier", spooked.real_name, MAX_NAME_LEN)) : null
+	var/skeleton_name = spooked.client ? sanitize_name(tgui_input_text(spooked, "输入你的新骷髅名字", "骷髅转化器", spooked.real_name, MAX_NAME_LEN)) : null
 	if(!skeleton_name)
-		skeleton_name = "\improper spooky skeleton"
+		skeleton_name = "\improper 惊魂骷髅"
 	spooked.fully_replace_character_name(null, skeleton_name, log_new_name = TRUE)

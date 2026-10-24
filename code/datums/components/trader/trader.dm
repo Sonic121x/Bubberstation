@@ -8,14 +8,14 @@
 #define TRADER_RADIAL_DISCUSS_BUY "TRADER_RADIAL_DISCUSS_BUY"
 #define TRADER_RADIAL_DISCUSS_SELL "TRADER_RADIAL_DISCUSS_SELL"
 
-#define TRADER_OPTION_BUY "Buy"
-#define TRADER_OPTION_SELL "Sell"
-#define TRADER_OPTION_TALK "Talk"
-#define TRADER_OPTION_LORE "Lore"
-#define TRADER_OPTION_NO "No"
-#define TRADER_OPTION_YES "Yes"
-#define TRADER_OPTION_BUYING "Buying?"
-#define TRADER_OPTION_SELLING "Selling?"
+#define TRADER_OPTION_BUY "购买"
+#define TRADER_OPTION_SELL "出售"
+#define TRADER_OPTION_TALK "交谈"
+#define TRADER_OPTION_LORE "背景故事"
+#define TRADER_OPTION_NO "否"
+#define TRADER_OPTION_YES "是"
+#define TRADER_OPTION_BUYING "收购什么？"
+#define TRADER_OPTION_SELLING "出售什么？"
 
 //The defines below show the index the info is located in the product_info entry list
 
@@ -194,10 +194,10 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 	product_info = products[item_to_buy]
 
 	if(!product_info[TRADER_PRODUCT_INFO_QUANTITY])
-		trader.say("[initial(item_to_buy.name)] appears to be out of stock.")
+		trader.say("[initial(item_to_buy.name)]似乎已经售罄。")
 		return
 
-	trader.say("It will cost you [product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name] to buy \the [initial(item_to_buy.name)]. Are you sure you want to buy it?")
+	trader.say("购买[initial(item_to_buy.name)]需要[product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name]。确定要买吗？")
 	var/list/npc_options = list(
 		TRADER_OPTION_YES = radial_icons_cache[TRADER_RADIAL_YES],
 		TRADER_OPTION_NO = radial_icons_cache[TRADER_RADIAL_NO],
@@ -291,7 +291,7 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 		return FALSE
 
 	trader.say(trader_data.return_trader_phrase(INTERESTED_PHRASE))
-	trader.say("You will receive [cost] [trader_data.currency_name] for the [selling].")
+	trader.say("出售[selling]可获得[cost] [trader_data.currency_name]。")
 	var/list/npc_options = list(
 		TRADER_OPTION_YES = radial_icons_cache[TRADER_RADIAL_YES],
 		TRADER_OPTION_NO = radial_icons_cache[TRADER_RADIAL_NO],
@@ -383,16 +383,16 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 		trader.say(trader_data.return_trader_phrase(TRADER_NOT_BUYING_ANYTHING))
 		return
 
-	var/list/buy_info = list(span_green("I'm willing to buy the following:"))
+	var/list/buy_info = list(span_green("我愿意收购以下物品："))
 
 	var/list/product_info
 	for(var/obj/item/thing as anything in wanted_items)
 		product_info = wanted_items[thing]
-		var/tern_op_result = (product_info[TRADER_PRODUCT_INFO_QUANTITY] == INFINITY ? "as many as I can." : "[product_info[TRADER_PRODUCT_INFO_QUANTITY]]") //Coder friendly string concat
+		var/tern_op_result = (product_info[TRADER_PRODUCT_INFO_QUANTITY] == INFINITY ? "不限数量" : "[product_info[TRADER_PRODUCT_INFO_QUANTITY]]") //Coder friendly string concat
 		if(product_info[TRADER_PRODUCT_INFO_QUANTITY] <= 0) //Zero demand
-			buy_info += span_notice("&bull; [span_red("(DOESN'T WANT MORE)")] [initial(thing.name)] for [product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name][product_info[TRADER_PRODUCT_INFO_PRICE_MOD_DESCRIPTION]]; willing to buy [span_red("[tern_op_result]")] more.")
+			buy_info += span_notice("&bull; [span_red("（已停止收购）")] [initial(thing.name)]，收购价[product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name][product_info[TRADER_PRODUCT_INFO_PRICE_MOD_DESCRIPTION]]；剩余收购数量：[span_red("[tern_op_result]")]。")
 		else
-			buy_info += span_notice("&bull; [initial(thing.name)] for [product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name][product_info[TRADER_PRODUCT_INFO_PRICE_MOD_DESCRIPTION]]; willing to buy [span_green("[tern_op_result]")]")
+			buy_info += span_notice("&bull; [initial(thing.name)]，收购价[product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name][product_info[TRADER_PRODUCT_INFO_PRICE_MOD_DESCRIPTION]]；剩余收购数量：[span_green("[tern_op_result]")]")
 
 	to_chat(customer, boxed_message(buy_info.Join("\n")))
 
@@ -404,15 +404,15 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 	if(!length(products))
 		trader.say(trader_data.return_trader_phrase(TRADER_NOT_SELLING_ANYTHING))
 		return
-	var/list/sell_info = list(span_green("I'm currently selling the following:"))
+	var/list/sell_info = list(span_green("我目前出售以下物品："))
 	var/list/product_info
 	for(var/obj/item/thing as anything in products)
 		product_info = products[thing]
-		var/tern_op_result = (product_info[TRADER_PRODUCT_INFO_QUANTITY] == INFINITY ? "an infinite amount" : "[product_info[TRADER_PRODUCT_INFO_QUANTITY]]") //Coder friendly string concat
+		var/tern_op_result = (product_info[TRADER_PRODUCT_INFO_QUANTITY] == INFINITY ? "无限" : "[product_info[TRADER_PRODUCT_INFO_QUANTITY]]") //Coder friendly string concat
 		if(product_info[TRADER_PRODUCT_INFO_QUANTITY] <= 0) //Out of stock
-			sell_info += span_notice("&bull; [span_red("(OUT OF STOCK)")] [initial(thing.name)] for [product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name]; [span_red("[tern_op_result]")] left in stock")
+			sell_info += span_notice("&bull; [span_red("（已售罄）")] [initial(thing.name)]，售价[product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name]；剩余库存：[span_red("[tern_op_result]")]")
 		else
-			sell_info += span_notice("&bull; [initial(thing.name)] for [product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name]; [span_green("[tern_op_result]")] left in stock")
+			sell_info += span_notice("&bull; [initial(thing.name)]，售价[product_info[TRADER_PRODUCT_INFO_PRICE]] [trader_data.currency_name]；剩余库存：[span_green("[tern_op_result]")]")
 	to_chat(customer, boxed_message(sell_info.Join("\n")))
 
 ///Sets quantity of all products to initial(quanity); this proc is currently called during initialize
@@ -427,10 +427,10 @@ Can accept both a type path, and an instance of a datum. Type path has priority.
 /datum/component/trader/proc/can_trade(mob/customer)
 	var/mob/living/trader = parent
 	if(trader.combat_mode)
-		trader.balloon_alert(customer, "in combat!")
+		trader.balloon_alert(customer, "正在战斗！")
 		return FALSE
 	if(trader.incapacitated)
-		trader.balloon_alert(customer, "indisposed!")
+		trader.balloon_alert(customer, "暂时无法交易！")
 		return FALSE
 	return TRUE
 

@@ -120,3 +120,106 @@
 		"Binary" = "二进制",
 	)
 	return display_names[channel_name] || channel_name
+
+/proc/chinese_phobia_display(phobia_type)
+	var/static/list/display_names = list(
+		"aliens" = "外星人",
+		"anime" = "动漫",
+		"authority" = "权威",
+		"birds" = "鸟类",
+		"blood" = "血液",
+		"clowns" = "小丑",
+		"conspiracies" = "阴谋",
+		"doctors" = "医生",
+		"falling" = "坠落",
+		"fish" = "鱼类",
+		"greytide" = "灰潮",
+		"guns" = "枪械",
+		"insects" = "昆虫",
+		"lizards" = "蜥蜴",
+		"ocky icky" = "超游信息",
+		"robots" = "机器人",
+		"security" = "安保",
+		"skeletons" = "骷髅",
+		"snakes" = "蛇",
+		"space" = "太空",
+		"spiders" = "蜘蛛",
+		"strangers" = "陌生人",
+		"the supernatural" = "超自然事物",
+		"mouse traps" = "捕鼠夹",
+	)
+	return display_names[phobia_type] || phobia_type
+
+/proc/chinese_ui_choice_display(value)
+	var/static/list/display_names = list("Ok" = "确定", "OK" = "确定", "Yes" = "是", "No" = "否", "Cancel" = "取消", "Save" = "保存", "Close" = "关闭", "Continue" = "继续", "Confirm" = "确认", "Delete" = "删除", "Retry" = "重试", "none" = "无")
+	if(!istext(value))
+		return value
+	return display_names[value] || value
+
+/proc/chinese_ckey_choice(mob/user, description)
+	var/list/choices = list("无" = "none")
+	for(var/player_ckey in GLOB.directory)
+		choices[player_ckey] = player_ckey
+	var/choice = input(user, "[description]？") in choices
+	return choices[choice]
+
+/proc/chinese_ert_code_display(code)
+	var/static/list/display_names = list(
+		"Blue" = "蓝色",
+		"Amber" = "琥珀色",
+		"Red" = "红色",
+		"Delta" = "德尔塔",
+		"Green" = "绿色",
+		"Rainbow" = "彩虹",
+		"Violet" = "紫罗兰色",
+		"Military Green" = "军绿色",
+		"Gold" = "金色",
+		"Unexpected" = "意料之外",
+		"Purple" = "紫色",
+		"Unpaid" = "无薪",
+		"Bounty Orange" = "赏金橙色",
+		"Brown" = "棕色",
+		"Goldstar" = "金星",
+		"UNKNOWN" = "未知",
+	)
+	return display_names[code] || code
+
+/proc/chinese_aquarium_fluid_display(fluid_type)
+	var/static/list/display_names = list("Freshwater" = "淡水", "Saltwater" = "海水", "Sulfuric Water" = "含硫水", "Air" = "空气", "Anadromous" = "洄游适应型", "Any Fluid" = "任意液体")
+	return display_names[fluid_type] || fluid_type
+
+/proc/chinese_biotypes_display(list/biotypes)
+	var/static/list/display_names = list("organic" = "有机", "mineral" = "矿物", "robotic" = "机械", "undead" = "不死", "humanoid" = "人形", "insectoid" = "昆虫", "beast" = "野兽", "monstrous" = "怪物", "reptile" = "爬行", "spirit" = "灵体", "plant" = "植物", "slime" = "史莱姆", "aquatic" = "水生", "mining" = "矿区", "crustacean" = "甲壳", "skeletal" = "骷髅")
+	var/list/displayed = list()
+	for(var/biotype in biotypes)
+		displayed += display_names[biotype] || biotype
+	return displayed
+
+/proc/chinese_eat_verb_display(eatverb)
+	var/static/list/display_names = list("bite" = "咬着", "chew" = "咀嚼着", "nibble" = "小口啃着", "gnaw" = "啃咬着", "gobble" = "大口吞食着", "chomp" = "大口嚼着", "slurp" = "吸溜着", "sip" = "小口喝着", "inhale" = "猛吸着", "drink" = "喝着", "devour" = "狼吞虎咽地吃着", "swallow" = "吞咽着", "deep throat" = "往喉咙深处塞着", "gulp down" = "大口吞下", "taste" = "品尝着", "MEAT" = "以血肉吞噬着", "absorb" = "吸收着", "consume" = "食用着")
+	return display_names[eatverb] || eatverb
+
+/proc/chinese_icecream_display(flavour)
+	var/static/list/display_names = list("vanilla" = "香草", "chocolate" = "巧克力", "strawberry" = "草莓", "blue" = "蓝色", "lemon sorbet" = "柠檬雪芭", "caramel" = "焦糖", "banana" = "香蕉", "orangesicle" = "香橙奶油", "peach" = "桃子", "cherry chocolate chip" = "樱桃巧克力碎", "korta vanilla" = "科塔奶香草", "mob" = "生物", "custom" = "自定义", "korta custom" = "科塔奶自定义", "bland" = "寡淡", "Coderlicious Gourmet Double Deluxe Undefined" = "程序员特供双重豪华未定义美味")
+	return display_names[flavour] || flavour
+
+/proc/chinese_icecream_list_display(list/flavours)
+	var/list/displayed = list()
+	for(var/flavour in flavours)
+		displayed += chinese_icecream_display(flavour)
+	return jointext(displayed, "、")
+
+/proc/chinese_faction_display(faction)
+	return faction == FACTION_CARP ? "太空鲤鱼" : faction
+
+/proc/chinese_body_zone_display(zone)
+	var/static/list/display_names = list("head" = "头部", "chest" = "胸部", "left arm" = "左臂", "right arm" = "右臂", "left leg" = "左腿", "right leg" = "右腿", "neck stump" = "颈部残端", "left leg stump" = "左腿残肢", "right leg stump" = "右腿残肢", "left arm stump" = "左臂残肢", "right arm stump" = "右臂残肢", "eyes" = "眼睛", "mouth" = "嘴部", "groin" = "腹股沟")
+	return display_names[zone] || zone
+
+/proc/chinese_combo_steps_display(list/steps)
+	var/list/displayed = list()
+	for(var/step in steps)
+		displayed += step == LEFT_ATTACK ? "左键攻击" : step == RIGHT_ATTACK ? "右键攻击" : step
+	return jointext(displayed, "、")
+
+#include "chinese_action_display.dm"

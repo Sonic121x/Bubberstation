@@ -6,9 +6,9 @@
  * Bonus: Drains nutrition from the host
 */
 /datum/symptom/weight_loss
-	name = "Weight Loss"
-	desc = "The virus mutates the host's metabolism, making it almost unable to gain nutrition from food."
-	illness = "Placid Reflux"
+	name = "体重下降"
+	desc = "病毒改变宿主的新陈代谢，使其几乎无法从食物中获取营养。"
+	illness = "静默反流症"
 	stealth = 0
 	resistance = 2
 	stage_speed = -2
@@ -21,7 +21,7 @@
 	symptom_cure = /datum/reagent/medicine/diphenhydramine // It's good with terrible stats, it should be harder to cure
 	cure_color = "orange"
 	threshold_descs = list(
-		"Stealth 4" = "The symptom is less noticeable."
+		"隐蔽性 4" = "症状更不易察觉。"
 	)
 
 /datum/symptom/weight_loss/Start(datum/disease/advance/A)
@@ -39,8 +39,8 @@
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance))
-				to_chat(M, span_warning("[pick("You feel hungry.", "You crave for food.")]"))
+				to_chat(M, span_warning("[pick("你感到饥饿。", "你渴望吃东西。")]"))
 		else
-			to_chat(M, span_warning("<i>[pick("So hungry...", "You'd kill someone for a bite of food...", "Hunger cramps seize you...")]</i>"))
+			to_chat(M, span_warning("<i>[pick("好饿……", "为了吃上一口，你甚至愿意杀人……", "饥饿的痉挛折磨着你……")]</i>"))
 			M.overeatduration = max(M.overeatduration - 200 SECONDS, 0)
 			M.adjust_nutrition(-100)

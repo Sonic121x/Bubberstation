@@ -9,7 +9,7 @@
 	/// Commands to give this mob on conversion
 	var/list/pet_commands
 
-/datum/element/regal_rat_minion/Attach(datum/target, converted_path, success_balloon = "squeak", list/pet_commands)
+/datum/element/regal_rat_minion/Attach(datum/target, converted_path, success_balloon = "吱吱", list/pet_commands)
 	. = ..()
 	if (!isliving(target))
 		return ELEMENT_INCOMPATIBLE

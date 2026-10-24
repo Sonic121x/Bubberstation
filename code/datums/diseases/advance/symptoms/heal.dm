@@ -1,7 +1,7 @@
 /datum/symptom/heal
 	abstract_type = /datum/symptom/heal
-	name = "Basic Healing (does nothing)" //warning for adminspawn viruses
-	desc = "You should not be seeing this."
+	name = "基础治疗（无效果）" //warning for adminspawn viruses
+	desc = "你不应该看到这个。"
 	stealth = 0
 	resistance = 0
 	stage_speed = 0
@@ -52,18 +52,18 @@
 */
 
 /datum/symptom/heal/starlight
-	name = "Starlight Condensation"
-	desc = "The virus reacts to direct starlight, producing regenerative chemicals. Works best against toxin-based damage."
+	name = "星光凝聚"
+	desc = "病毒在星光直射下产生反应，生成促进再生的化学物质。对毒素伤害的治疗效果最佳。"
 	stealth = -1
 	resistance = -2
 	stage_speed = 0
 	transmittable = 1
 	level = 6
-	passive_message = span_notice("You miss the feeling of starlight on your skin.")
+	passive_message = span_notice("你怀念星光照在皮肤上的感觉。")
 	var/nearspace_penalty = 0.3
 	threshold_descs = list(
-		"Stage Speed 6" = "Increases healing speed.",
-		"Transmission 6" = "Removes penalty for only being close to space.",
+		"阶段速度 6" = "提高治疗速度。",
+		"传染性 6" = "仅靠近太空时，治疗效果不再降低。",
 	)
 
 #define STARLIGHT_CAN_HEAL 2
@@ -159,7 +159,7 @@
 /datum/symptom/heal/starlight/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
 	var/heal_amt = actual_power
 	if(carbon_host.get_tox_loss() && prob(5))
-		to_chat(carbon_host, span_notice("Your skin tingles as the starlight seems to heal you."))
+		to_chat(carbon_host, span_notice("你的皮肤微微发麻，星光似乎正在治愈你。"))
 	var/needs_update = FALSE
 	needs_update += carbon_host.adjust_tox_loss(-4 * heal_amt, updating_health = FALSE, required_biotype = healable_bodytypes) // Most effective on toxins
 	needs_update += carbon_host.heal_overall_damage(heal_amt, heal_amt, required_bodytype = healable_bodytypes, updating_health = FALSE)
@@ -180,8 +180,8 @@
  * Bonus: Removes all reagents from the host
 */
 /datum/symptom/heal/chem
-	name = "Toxolysis"
-	desc = "The virus rapidly breaks down any foreign chemicals in the bloodstream."
+	name = "毒素分解"
+	desc = "病毒迅速分解血液中的外来化学物质。"
 	stealth = 0
 	resistance = -2
 	stage_speed = 2
@@ -189,8 +189,8 @@
 	level = 7
 	required_organ = ORGAN_SLOT_HEART
 	threshold_descs = list(
-		"Resistance 7" = "Increases chem removal speed.",
-		"Stage Speed 6" = "Consumed chemicals nourish the host.",
+		"抗性 7" = "提高化学物质清除速度。",
+		"阶段速度 6" = "消耗的化学物质会为宿主提供营养。",
 	)
 	var/food_conversion = FALSE
 
@@ -209,7 +209,7 @@
 		if(food_conversion)
 			living_host.adjust_nutrition(0.3 * food)
 		if(prob(2))
-			to_chat(living_host, span_notice("You feel a mild warmth as your blood purifies itself."))
+			to_chat(living_host, span_notice("血液自行净化时，你感到一阵温暖。"))
 	return TRUE
 
 
@@ -222,9 +222,9 @@
  * Increases nutrition loss rate
 */
 /datum/symptom/heal/metabolism
-	name = "Metabolic Boost"
-	desc = "The virus causes the host's metabolism to accelerate rapidly, making them process chemicals twice as fast,\
-		but also causing increased hunger."
+	name = "代谢加速"
+	desc = "病毒使宿主的新陈代谢大幅加速，将化学物质的代谢速度提升至两倍，\
+		但也会加剧饥饿。"
 	stealth = -1
 	resistance = -2
 	stage_speed = 2
@@ -232,8 +232,8 @@
 	level = 7
 	required_organ = ORGAN_SLOT_STOMACH
 	threshold_descs = list(
-		"Stealth 3" = "Reduces hunger rate.",
-		"Stage Speed 10" = "Chemical metabolization is tripled instead of doubled.",
+		"隐蔽性 3" = "降低饥饿速度。",
+		"阶段速度 10" = "化学物质的代谢速度由两倍提升至三倍。",
 	)
 	var/triple_metabolism = FALSE
 	var/reduced_hunger = FALSE
@@ -254,7 +254,7 @@
 	var/lost_nutrition = 9 - (reduced_hunger * 5)
 	carbon_host.adjust_nutrition(-lost_nutrition * HUNGER_FACTOR) //Hunger depletes at 10x the normal speed
 	if(prob(2))
-		to_chat(carbon_host, span_notice("You feel an odd gurgle in your stomach, as if it was working much faster than normal."))
+		to_chat(carbon_host, span_notice("你的胃发出奇怪的咕噜声，仿佛运转得比平时快得多。"))
 	return TRUE
 
 /*Nocturnal Regeneration
@@ -265,16 +265,16 @@
  * Bonus: Heals brute damage when in the dark
 */
 /datum/symptom/heal/darkness
-	name = "Nocturnal Regeneration"
-	desc = "The virus is able to mend the host's flesh when in conditions of low light, repairing physical damage. More effective against brute damage."
+	name = "暗夜再生"
+	desc = "病毒能在弱光环境中修复宿主的血肉，治疗物理伤害。对蛮力伤害更有效。"
 	stealth = 2
 	resistance = -1
 	stage_speed = -2
 	transmittable = -1
 	level = 6
-	passive_message = span_notice("You feel tingling on your skin as light passes over it.")
+	passive_message = span_notice("光线扫过皮肤时，你感到阵阵刺麻。")
 	threshold_descs = list(
-		"Stage Speed 7" = "Doubles healing speed.", //SKYRAT EDIT: Brings Noc regen into line with the rest of the healing symptoms.
+		"阶段速度 7" = "治疗速度翻倍。", //SKYRAT EDIT: Brings Noc regen into line with the rest of the healing symptoms.
 	)
 
 /datum/symptom/heal/darkness/Start(datum/disease/advance/our_disease)
@@ -297,7 +297,7 @@
 	var/heal_amt = 2 * actual_power
 	carbon_host.heal_overall_damage(heal_amt, heal_amt * 0.5, required_bodytype = healable_bodytypes)
 	if(prob(5))
-		to_chat(carbon_host, span_notice("The darkness soothes and mends your wounds."))
+		to_chat(carbon_host, span_notice("黑暗抚慰并修复着你的伤口。"))
 	return TRUE
 
 /datum/symptom/heal/darkness/passive_message_condition(mob/living/living_host)
@@ -313,21 +313,21 @@
  * Bonus: Puts the host into a coma when severely hurt, healing them
 */
 /datum/symptom/heal/coma
-	name = "Regenerative Coma"
-	desc = "The virus causes the host to fall into a death-like coma when severely damaged, then rapidly fixes the damage."
+	name = "再生昏迷"
+	desc = "病毒使重伤的宿主陷入类似死亡的昏迷，随后迅速修复伤势。"
 	stealth = 0
 	resistance = 2
 	stage_speed = -3
 	transmittable = -2
 	level = 8
-	passive_message = span_notice("The pain from your wounds makes you feel oddly sleepy...")
+	passive_message = span_notice("伤口的疼痛让你莫名地困倦……")
 	var/deathgasp = FALSE
 	var/stabilize = FALSE
 	var/active_coma = FALSE //to prevent multiple coma procs
 	threshold_descs = list(
-		"Stealth 2" = "Host appears to die when falling into a coma.",
-		"Resistance 4" = "The virus also stabilizes the host while they are in critical condition.",
-		"Stage Speed 7" = "Increases healing speed.",
+		"隐蔽性 2" = "宿主陷入昏迷时看起来如同死亡。",
+		"抗性 4" = "病毒还会稳定危重宿主的生命体征。",
+		"阶段速度 7" = "提高治疗速度。",
 	)
 
 /datum/symptom/heal/coma/Start(datum/disease/advance/our_disease)
@@ -371,7 +371,7 @@
 		if(SOFT_CRIT)
 			return power * 0.5
 	if(living_host.get_brute_loss() + living_host.get_fire_loss() >= living_host.maxHealth * 0.7 && !active_coma && !(HAS_TRAIT(living_host, TRAIT_NOSOFTCRIT)))
-		to_chat(living_host, span_warning("You feel yourself slip into a regenerative coma..."))
+		to_chat(living_host, span_warning("你感觉自己正陷入再生昏迷……"))
 		active_coma = TRUE
 		addtimer(CALLBACK(src, PROC_REF(coma), living_host), 6 SECONDS)
 
@@ -402,18 +402,18 @@
 	return FALSE
 
 /datum/symptom/heal/water
-	name = "Tissue Hydration"
-	desc = "The virus uses excess water inside and outside the body to repair damaged tissue cells. More effective when using holy water and against burns."
+	name = "组织水合"
+	desc = "病毒利用体内外多余的水分修复受损组织细胞。使用圣水时，以及治疗烧伤时，效果更佳。"
 	stealth = 0
 	resistance = -1
 	stage_speed = 0
 	transmittable = 1
 	level = 6
-	passive_message = span_notice("Your skin feels oddly dry...")
+	passive_message = span_notice("你的皮肤感觉异常干燥……")
 	required_organ = ORGAN_SLOT_LIVER
 	threshold_descs = list(
-		"Resistance 5" = "Water is consumed at a much slower rate.",
-		"Stage Speed 7" = "Increases healing speed.",
+		"抗性 5" = "大幅降低水分消耗速度。",
+		"阶段速度 7" = "提高治疗速度。",
 	)
 	var/absorption_coeff = 1
 
@@ -443,7 +443,7 @@
 /datum/symptom/heal/water/Heal(mob/living/carbon/carbon_host, datum/disease/advance/our_disease, actual_power)
 	var/heal_amt = 2 * actual_power
 	if(carbon_host.heal_overall_damage(heal_amt * 0.5, heal_amt, required_bodytype = healable_bodytypes) && prob(5))
-		to_chat(carbon_host, span_notice("You feel yourself absorbing the water around you to soothe your damaged skin."))
+		to_chat(carbon_host, span_notice("你感觉自己正在吸收周围的水分，舒缓受损的皮肤。"))
 	return TRUE
 
 /datum/symptom/heal/water/passive_message_condition(mob/living/carbon/carbon_host)
@@ -466,18 +466,18 @@
 #define BASE_HEAL_PLASMA_FIXATION 4
 
 /datum/symptom/heal/plasma
-	name = "Plasma Fixation"
-	desc = "The virus draws plasma from the atmosphere and from inside the body to heal and stabilize body temperature."
+	name = "等离子体固化"
+	desc = "病毒从大气和体内吸收等离子体，用于治疗并稳定体温。"
 	stealth = 0
 	resistance = 3
 	stage_speed = -2
 	transmittable = -2
 	level = 8
-	passive_message = span_notice("You feel an odd attraction to plasma.")
+	passive_message = span_notice("你莫名地被等离子体吸引。")
 	required_organ = ORGAN_SLOT_LIVER
 	threshold_descs = list(
-		"Transmission 6" = "Increases temperature adjustment rate.",
-		"Stage Speed 7" = "Increases healing speed.",
+		"传染性 6" = "提高体温调节速度。",
+		"阶段速度 7" = "提高治疗速度。",
 	)
 	var/temp_rate = 1
 
@@ -540,21 +540,21 @@
 	var/heal_amt = BASE_HEAL_PLASMA_FIXATION * actual_power
 
 	if(prob(5))
-		to_chat(carbon_host, span_notice("You feel yourself absorbing plasma inside and around you..."))
+		to_chat(carbon_host, span_notice("你感觉自己正在吸收体内和周围的等离子体……"))
 
 	var/difference = carbon_host.get_body_temp_normal() - carbon_host.bodytemperature
 	if(prob(5))
 		if(difference > -1) // Yes, it's supposed to be -1 and not 0. Probably so you keep getting passive messages even at normal temperature.
-			to_chat(carbon_host, span_notice("You feel warmer."))
+			to_chat(carbon_host, span_notice("你感到暖和了一些。"))
 		if(difference < 0)
-			to_chat(carbon_host, span_notice("You feel less hot."))
+			to_chat(carbon_host, span_notice("你感到没那么热了。"))
 	carbon_host.adjust_bodytemperature(clamp(difference, -20 * temp_rate, 20 * temp_rate))
 	var/needs_update = FALSE
 	needs_update += carbon_host.adjust_tox_loss(-heal_amt, updating_health = FALSE, required_biotype = healable_bodytypes)
 	var/brute_burn_heal = carbon_host.heal_overall_damage(heal_amt, heal_amt, required_bodytype = healable_bodytypes, updating_health = FALSE)
 	needs_update += brute_burn_heal
 	if(brute_burn_heal && prob(5))
-		to_chat(carbon_host, span_notice("The pain from your wounds fades rapidly."))
+		to_chat(carbon_host, span_notice("伤口的疼痛迅速消退。"))
 	if(needs_update)
 		carbon_host.updatehealth()
 	return TRUE
@@ -568,16 +568,16 @@
 #undef BASE_HEAL_PLASMA_FIXATION
 
 /datum/symptom/heal/radiation
-	name = "Radioactive Resonance"
-	desc = "The virus uses radiation to fix damage through dna mutations."
+	name = "放射性共振"
+	desc = "病毒利用辐射诱发 DNA 突变，以修复伤势。"
 	stealth = -1
 	resistance = -2
 	stage_speed = 2
 	transmittable = -3
 	level = 6
-	passive_message = span_notice("Your skin glows faintly for a moment.")
+	passive_message = span_notice("你的皮肤短暂地发出微光。")
 	threshold_descs = list(
-		"Resistance 7" = "Increases healing speed.",
+		"抗性 7" = "提高治疗速度。",
 	)
 
 /datum/symptom/heal/radiation/Start(datum/disease/advance/our_disease)
@@ -599,15 +599,15 @@
 	if(needs_update)
 		carbon_host.updatehealth()
 	if(brute_burn_heal && prob(4))
-		to_chat(carbon_host, span_notice("Your skin glows faintly, and you feel your wounds mending themselves."))
+		to_chat(carbon_host, span_notice("你的皮肤泛起微光，你感觉伤口正在自行愈合。"))
 	return TRUE
 
 /datum/symptom/heal/radiation/can_generate_randomly()
 	return ..() && !HAS_TRAIT(SSstation, STATION_TRAIT_RADIOACTIVE_NEBULA) // Because people can never really suffer enough
 
 /datum/symptom/heal/aggressive_healing
-	name = "Aggressive Healing"
-	desc = "The virus heals damaged tissues in a way that appears threatening to the immune system."
+	name = "侵袭性治疗"
+	desc = "病毒以一种会被免疫系统视为威胁的方式修复受损组织。"
 	severity = 1
 	stealth = -4
 	resistance = 1
@@ -619,7 +619,7 @@
 	power = 2
 
 	threshold_descs = list(
-		"Severity > 1" = "For each point of severity, the healing provided by the virus increases.",
+		"严重性 > 1" = "严重性每增加一点，病毒提供的治疗效果就会增强。",
 	)
 	///Increases the healing effect (if active) of the virus by this amount for each severity level above 1
 	var/severity_heal_bonus = 0.25

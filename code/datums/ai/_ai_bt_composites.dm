@@ -60,7 +60,7 @@
  */
 /datum/bt_node/composite/sequence
 	node_type = BT_NODE_SEQUENCE
-	label = "SEQUENCE"
+	label = "顺序"
 	/// Index of the child that last returned BT_RUNNING.
 	var/running_child_index = 0
 
@@ -97,8 +97,8 @@
 			child.append_active_nodes(lines, indent)
 
 /datum/bt_node/composite/sequence/append_full_tree_state(list/lines, indent)
-	var/child_info = running_child_index ? " (child [running_child_index]/[length(children)])" : ""
-	lines += "[indent][get_status_marker()] SEQUENCE[child_info]"
+	var/child_info = running_child_index ? "（子节点 [running_child_index]/[length(children)]）" : ""
+	lines += "[indent][get_status_marker()] 顺序[child_info]"
 	for(var/datum/bt_node/child as anything in children)
 		child.append_full_tree_state(lines, "[indent]  ")
 
@@ -112,7 +112,7 @@
  */
 /datum/bt_node/composite/selector
 	node_type = BT_NODE_SELECTOR
-	label = "SELECTOR"
+	label = "选择"
 	/// Index of the child that last returned BT_RUNNING.
 	var/running_child_index = 0
 
@@ -146,8 +146,8 @@
 			return
 
 /datum/bt_node/composite/selector/append_full_tree_state(list/lines, indent)
-	var/child_info = running_child_index ? " (child [running_child_index]/[length(children)])" : ""
-	lines += "[indent][get_status_marker()] SELECTOR[child_info]"
+	var/child_info = running_child_index ? "（子节点 [running_child_index]/[length(children)]）" : ""
+	lines += "[indent][get_status_marker()] 选择[child_info]"
 	for(var/datum/bt_node/child as anything in children)
 		child.append_full_tree_state(lines, "[indent]  ")
 
@@ -228,7 +228,7 @@
  */
 /datum/bt_node/composite/parallel
 	node_type = BT_NODE_PARALLEL
-	label = "PARALLEL"
+	label = "并行"
 	/// BT_PARALLEL_SUCCESS_CHILD_ONE: succeed when child 1 succeeds (default).
 	/// BT_PARALLEL_SUCCESS_ALL: succeed only when all children succeed.
 	var/success_policy = BT_PARALLEL_SUCCESS_CHILD_ONE
@@ -302,6 +302,6 @@
 			child.append_active_nodes(lines, indent)
 
 /datum/bt_node/composite/parallel/append_full_tree_state(list/lines, indent)
-	lines += "[indent][get_status_marker()] PARALLEL"
+	lines += "[indent][get_status_marker()] 并行"
 	for(var/datum/bt_node/child as anything in children)
 		child.append_full_tree_state(lines, "[indent]  ")

@@ -67,7 +67,7 @@
 		return NONE
 
 	if(HAS_TRAIT(target, TRAIT_ILLUSORY_EFFECT))
-		to_chat(user, span_notice("You pass [parent] through the [target], but nothing seems to happen. Is it really even there?"))
+		to_chat(user, span_notice("你让[parent]穿过[target]，但似乎什么也没发生。它真的存在吗？"))
 		return NONE
 
 	if(is_type_in_typecache(target, effects_we_clear)) // Make sure we get all subtypes and everything
@@ -85,8 +85,8 @@
 	if(success_forcesay)
 		user.say(success_forcesay, forced = item_parent.name)
 	if(success_feedback)
-		var/real_feedback = replacetext(success_feedback, "%THEEFFECT", "\the [target]")
-		real_feedback = replacetext(real_feedback, "%THEWEAPON", "\the [item_parent]")
+		var/real_feedback = replacetext(success_feedback, "%THEEFFECT", "[target]")
+		real_feedback = replacetext(real_feedback, "%THEWEAPON", "[item_parent]")
 		to_chat(user, span_notice(real_feedback))
 	on_clear_callback?.Invoke(target, user)
 

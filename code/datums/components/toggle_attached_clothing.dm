@@ -37,7 +37,7 @@
 /datum/component/toggle_attached_clothing/Initialize(
 	deployable_type,
 	equipped_slot,
-	action_name = "Toggle",
+	action_name = "切换",
 	destroy_on_removal = FALSE,
 	parent_icon_state_suffix = "",
 	down_overlay_state_suffix = "",
@@ -127,10 +127,10 @@
 		return
 	var/mob/living/carbon/human/wearer = parent_gear.loc
 	if (wearer.is_holding(parent_gear))
-		parent_gear.balloon_alert(wearer, "wear it first!")
+		parent_gear.balloon_alert(wearer, "请先穿戴！")
 		return
 	if (wearer.get_item_by_slot(equipped_slot))
-		parent_gear.balloon_alert(wearer, "slot occupied!")
+		parent_gear.balloon_alert(wearer, "穿戴位置已被占用！")
 		return
 	if (!deployable && !create_deployable())
 		return

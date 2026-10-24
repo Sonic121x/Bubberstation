@@ -1,13 +1,13 @@
 /datum/disease/death_sandwich_poisoning
-	name = "Death Sandwich Poisoning"
-	desc = "If left untreated the subject will ultimately perish."
-	form = "Condition"
+	name = "死亡三明治中毒"
+	desc = "若不治疗，患者最终将会死亡。"
+	form = "病症"
 	max_stages = 3
 	cure_text = /datum/reagent/toxin/anacea::name // I ain't about to make a second sandwich to counteract the first one, so closest thing I'm going for is this.
 	cures = list(/datum/reagent/toxin/anacea)
 	cure_chance = 4
-	agent = "Eating the Death Sandwich wrong"
-	spread_text = "None"
+	agent = "错误食用死亡三明治"
+	spread_text = "无"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	severity = DISEASE_SEVERITY_DANGEROUS
 	disease_flags = CURABLE
@@ -35,7 +35,7 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.emote("gag")
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your body feels hot!"))
+				to_chat(affected_mob, span_danger("你感到全身发烫！"))
 				if(prob(20))
 					affected_mob.take_bodypart_damage(burn = 1)
 			if(SPT_PROB(3, seconds_per_tick))
@@ -49,11 +49,11 @@
 			if(SPT_PROB(2.5, seconds_per_tick))
 				affected_mob.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 20)
 			if(SPT_PROB(2.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("Your body feels hot!"))
+				to_chat(affected_mob, span_danger("你感到全身发烫！"))
 				if(prob(60))
 					affected_mob.take_bodypart_damage(burn = 2)
 			if(SPT_PROB(6, seconds_per_tick))
 				affected_mob.adjust_tox_loss(15)
 			if(SPT_PROB(1.5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You try to scream, but nothing comes out!"))
+				to_chat(affected_mob, span_danger("你试图尖叫，却发不出任何声音！"))
 				affected_mob.set_silence_if_lower(5 SECONDS)

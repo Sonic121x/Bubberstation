@@ -27,17 +27,17 @@
 		return
 
 	if((flags & EMP_PROTECT_ALL) == EMP_PROTECT_ALL)
-		examine_list["EMP proof"] = "[source.p_They()] [source.p_are()] unaffected by electromagnetic pulses, and shields [source.p_their()] contents and wiring from them."
+		examine_list["EMP proof"] = "它不受电磁脉冲影响，并能保护内部物品和电路免受电磁脉冲侵害。"
 		return
 
 	if(flags & EMP_PROTECT_SELF)
-		examine_list["EMP resilient"] = "[source.p_They()] [source.p_are()] unaffected by electromagnetic pulses."
+		examine_list["EMP resilient"] = "它不受电磁脉冲影响。"
 
 	if((flags & (EMP_PROTECT_CONTENTS|EMP_PROTECT_WIRES)) == (EMP_PROTECT_CONTENTS|EMP_PROTECT_WIRES))
-		examine_list["partially EMP blocking"] = "[source.p_They()] protects [source.p_their()] wiring and contents from electromagnetic pulses."
+		examine_list["partially EMP blocking"] = "它能保护电路和内部物品免受电磁脉冲侵害。"
 
 	else if(flags & EMP_PROTECT_CONTENTS)
-		examine_list["partially EMP blocking"] = "[source.p_They()] protects [source.p_their()] contents from electromagnetic pulses."
+		examine_list["partially EMP blocking"] = "它能保护内部物品免受电磁脉冲侵害。"
 
 	else if(flags & EMP_PROTECT_WIRES)
-		examine_list["partially EMP blocking"] = "[source.p_They()] protects [source.p_their()] wiring from electromagnetic pulses."
+		examine_list["partially EMP blocking"] = "它能保护电路免受电磁脉冲侵害。"

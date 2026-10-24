@@ -59,7 +59,7 @@
 
 /datum/component/jousting/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_notice("It can be used on a vehicle for jousting, dealing potential knockdowns and additional damage.")
+	examine_list += span_notice("骑乘载具时可用它进行冲锋攻击，有机会击倒目标并造成额外伤害。")
 
 /datum/component/jousting/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
@@ -106,10 +106,10 @@
 	if(target in range(1, target_turf))
 		var/obj/item/parent_item = parent
 		var/sharp = parent_item.get_sharpness()
-		var/msg = "[user] [sharp ? "impales" : "slams into"] [target] [sharp ? "on" : "with"] their [parent]"
+		var/msg = "[user]用[parent][sharp ? "刺穿" : "猛击"]了[target]"
 		target.apply_damage((damage_boost_per_tile * usable_charge), BRUTE, user.zone_selected, 0)
 		if(prob(knockdown_chance_per_tile * usable_charge))
-			msg += " and knocks [target] [target.buckled ? "off of [target.buckled]" : "down"]"
+			msg += "，并将[target][target.buckled ? "从[target.buckled]上击落" : "击倒"]"
 			if(target.buckled)
 				target.buckled.unbuckle_mob(target)
 			target.Paralyze(knockdown_time)

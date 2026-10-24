@@ -11,7 +11,7 @@
 /datum/bt_node/decorator/can_see_target/check_condition(datum/ai_controller/controller)
 	var/atom/target = controller.blackboard[key]
 	if(QDELETED(target) || !can_see(controller.pawn, target, range))
-		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_DECISIONMAKING, "[controller.pawn] can_see_target([key]): target lost")
+		EVLOG_TEXT(controller, EVLOG_CATEGORY_AI_DECISIONMAKING, "[controller.pawn] can_see_target([key])：丢失目标")
 		controller.clear_blackboard_key(key)
 		return FALSE
 	return TRUE

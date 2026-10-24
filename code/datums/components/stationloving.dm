@@ -66,7 +66,7 @@
 
 	var/mob/holder = get(movable_parent, /mob)
 	if(holder)
-		to_chat(holder, span_danger("You can't help but feel that you just lost something back there..."))
+		to_chat(holder, span_danger("你总觉得刚才把什么东西落在了后面……"))
 		holder.temporarilyRemoveItemFromInventory(parent, TRUE) // prevents ghost diskie
 
 	movable_parent.forceMove(target_turf)
@@ -89,8 +89,8 @@
 			Moving it to [loc_name(new_destination)].")
 
 		if(inform_admins)
-			message_admins("[parent] moved out of bounds at [ADMIN_VERBOSEJMP(current_turf)], becoming inaccessible / secluded. \
-				Moving it to [ADMIN_VERBOSEJMP(new_destination)].")
+			message_admins("[parent]在[ADMIN_VERBOSEJMP(current_turf)]越界，变得无法接近或与外界隔绝。\
+				现将其移至[ADMIN_VERBOSEJMP(new_destination)]。")
 
 	// Our locs changes, we did in fact move somewhere
 	else
@@ -98,8 +98,8 @@
 			to [loc_name(current_turf)]. Moving it to [loc_name(new_destination)].")
 
 		if(inform_admins)
-			message_admins("[parent] attempted to be moved out of bounds from [ADMIN_VERBOSEJMP(old_turf)] \
-				to [ADMIN_VERBOSEJMP(current_turf)]. Moving it to [ADMIN_VERBOSEJMP(new_destination)].")
+			message_admins("[parent]试图从[ADMIN_VERBOSEJMP(old_turf)]\
+				移动到边界外的[ADMIN_VERBOSEJMP(current_turf)]。现将其移至[ADMIN_VERBOSEJMP(new_destination)]。")
 
 /// Signal proc for [SIGNAL_ADDTRAIT], via [TRAIT_SECLUDED_LOCATION] on our locs, to ensure nothing funky happens
 /datum/component/stationloving/proc/on_loc_secluded(atom/movable/source)
@@ -110,8 +110,8 @@
 		Moving it to [loc_name(new_destination)].")
 
 	if(inform_admins)
-		message_admins("[parent] moved out of bounds at [ADMIN_VERBOSEJMP(source)], becoming inaccessible / secluded. \
-			Moving it to [ADMIN_VERBOSEJMP(new_destination)].")
+		message_admins("[parent]在[ADMIN_VERBOSEJMP(source)]越界，变得无法接近或与外界隔绝。\
+			现将其移至[ADMIN_VERBOSEJMP(new_destination)]。")
 
 /datum/component/stationloving/proc/check_soul_imbue(datum/source)
 	SIGNAL_HANDLER
@@ -171,7 +171,7 @@
 	var/turf/current_turf = get_turf(parent)
 
 	if(force && inform_admins)
-		message_admins("[parent] has been !!force deleted!! in [ADMIN_VERBOSEJMP(current_turf)].")
+		message_admins("[parent]在[ADMIN_VERBOSEJMP(current_turf)]被！！强制删除！！")
 		log_game("[parent] has been !!force deleted!! in [loc_name(current_turf)].")
 
 	if(force || allow_item_destruction)
@@ -181,6 +181,6 @@
 	log_game("[parent] has been destroyed in [loc_name(current_turf)]. \
 		Preventing destruction and moving it to [loc_name(new_turf)].")
 	if(inform_admins)
-		message_admins("[parent] has been destroyed in [ADMIN_VERBOSEJMP(current_turf)]. \
-			Preventing destruction and moving it to [ADMIN_VERBOSEJMP(new_turf)].")
+		message_admins("[parent]在[ADMIN_VERBOSEJMP(current_turf)]被摧毁。\
+			已阻止其销毁，并将其移至[ADMIN_VERBOSEJMP(new_turf)]。")
 	return TRUE

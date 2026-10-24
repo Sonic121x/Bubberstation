@@ -71,7 +71,7 @@
 	if(we_ate_heart == previous_heart)
 		return
 	if (!HAS_TRAIT(we_ate_heart, TRAIT_ORGAN_USED_BY_PLAYER))
-		to_chat(eater, span_warning("This heart is utterly lifeless, you won't receive any boons from consuming it!"))
+		to_chat(eater, span_warning("这颗心脏毫无生机，吃下它不会带来任何增益！"))
 		return
 	bites_taken = 0
 
@@ -92,7 +92,7 @@
 	eater.dna?.species?.damage_modifier += 10
 	remember_modifier += 10
 	healing_heart(eater)
-	to_chat(eater, span_warning("This heart is perfect. You feel a surge of vital energy."))
+	to_chat(eater, span_warning("这颗心脏完美无缺。你感到一股生命能量涌入体内。"))
 
 ///Not Perfect heart give random mutation.
 /datum/component/heart_eater/proc/not_perfect_heart(mob/living/carbon/human/eater)
@@ -108,7 +108,7 @@
 		return
 	eater.dna.add_mutation(new_mutation, MUTATION_SOURCE_HEART_EATER)
 	healing_heart(eater)
-	to_chat(eater, span_warning("This heart is not right for you. You now have [new_mutation.name] mutation."))
+	to_chat(eater, span_warning("这颗心脏不适合你。你现在获得了[new_mutation.name]突变。"))
 
 ///Heart eater give also strong healing from hearts.
 /datum/component/heart_eater/proc/healing_heart(mob/living/carbon/human/eater)
@@ -161,20 +161,20 @@
 		interaction_key = "[DOAFTER_SOURCE_RIP_HEART]_[hand_index]",
 		max_interact_count = 1,
 		))
-		user.balloon_alert(user, "interrupted!")
+		user.balloon_alert(user, "被打断了！")
 		return
 	var/obj/item/bodypart/chest = target.get_bodypart(BODY_ZONE_CHEST)
 	chest.force_wound_upwards(/datum/wound/blunt/bone/critical, wound_source = "heart ripped")
 	var/obj/item/organ/heart = target.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!heart)
-		target.balloon_alert(user, "no heart!?")
+		target.balloon_alert(user, "没有心脏！？")
 		return
 	heart.Remove(target)
-	to_chat(user, span_warning("You rip [target]'s [heart.name] out of [target.p_their()] chest!"))
+	to_chat(user, span_warning("你从[target]的胸膛里扯出了[heart.name]！"))
 	target.visible_message(
-		span_warning("[user] rips [target]'s [heart.name] out of [target.p_their()] chest!"),
-		span_userdanger("[user] rips your [heart.name] out of your chest!"),
-		span_userdanger("You feel something being torn out of your chest!"),
+		span_warning("[user]从[target]的胸膛里扯出了[heart.name]！"),
+		span_userdanger("[user]从你的胸膛里扯出了你的[heart.name]！"),
+		span_userdanger("你感到有什么东西被从胸膛里扯了出来！"),
 		ignored_mobs = list(user),
 		)
 	if(!user.put_in_hand(heart, hand_index))

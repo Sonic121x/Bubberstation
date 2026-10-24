@@ -7,9 +7,9 @@
  * Bonus: Displays an annoying message! Should be used for buffing your disease.
 */
 /datum/symptom/headache
-	name = "Headache"
-	desc = "The virus causes inflammation inside the brain, causing constant headaches."
-	illness = "Brain Freeze"
+	name = "头痛"
+	desc = "病毒使脑内发炎，导致持续头痛。"
+	illness = "脑冻症"
 	stealth = -1
 	resistance = 4
 	stage_speed = 2
@@ -20,9 +20,9 @@
 	symptom_delay = 22.5
 	symptom_cure = /datum/reagent/drug/space_drugs
 	threshold_descs = list(
-		"Stage Speed 6" = "Headaches will cause severe pain, that weakens the host.",
-		"Stage Speed 9" = "Headaches become less frequent but far more intense, preventing any action from the host.",
-		"Stealth 4" = "Reduces headache frequency until later stages.",
+		"阶段速度 6" = "头痛将造成剧痛，使宿主虚弱。",
+		"阶段速度 9" = "头痛频率降低，但强度大幅增加，使宿主无法采取任何行动。",
+		"隐蔽性 4" = "在病程后期之前降低头痛频率。",
 	)
 
 /datum/symptom/headache/Start(datum/disease/advance/A)
@@ -46,10 +46,10 @@
 		return
 	if(power < 2)
 		if(prob(base_message_chance) || A.stage >= 4)
-			to_chat(M, span_warning("[pick("Your head hurts.", "Your head pounds.")]"))
+			to_chat(M, span_warning("[pick("你的头很痛。", "你的头一阵阵作痛。")]"))
 	if(power >= 2 && A.stage >= 4)
-		to_chat(M, span_warning("[pick("Your head hurts a lot.", "Your head pounds incessantly.")]"))
+		to_chat(M, span_warning("[pick("你的头疼得厉害。", "你的头不停地抽痛。")]"))
 		M.adjust_stamina_loss(25)
 	if(power >= 3 && A.stage >= 5)
-		to_chat(M, span_userdanger("[pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")]"))
+		to_chat(M, span_userdanger("[pick("你的头好痛！", "你感觉脑子里插着一把烧红的刀！", "一阵剧痛充斥着你的脑袋！")]"))
 		M.Stun(35)

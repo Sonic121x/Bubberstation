@@ -36,8 +36,8 @@
 	if (user.combat_mode)
 		return // We'll deal with this later
 	if (owner.stat == DEAD)
-		var/additional_text = HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "It looks like [owner.p_theyre()] sleeping." : "[owner.p_They()] seem[owner.p_s()] to be dead."
-		to_chat(user, span_warning("[owner] feels cold to the touch. [additional_text]"))
+		var/additional_text = HAS_MIND_TRAIT(user, TRAIT_NAIVE) ? "看起来像是睡着了。" : "似乎已经死了。"
+		to_chat(user, span_warning("[owner]摸起来冷冰冰的。[additional_text]"))
 		return
 	if (IS_UNCONSCIOUS(owner))
 		return

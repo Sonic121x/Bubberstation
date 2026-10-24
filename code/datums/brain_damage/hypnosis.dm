@@ -1,9 +1,9 @@
 /datum/brain_trauma/hypnosis
-	name = "Hypnosis"
-	desc = "Patient's unconscious is completely enthralled by a word or sentence, focusing their thoughts and actions on it."
-	scan_desc = "looping thought pattern"
-	symptoms = "Fixates on a specific word or phrase. This fixation can lead to altered behavior, \
-		such as prioritizing actions related to the phrase over other tasks while neglecting work, needs, or social interactions."
+	name = "催眠"
+	desc = "患者的潜意识完全受某个词语或句子支配，思想和行动都围绕着它。"
+	scan_desc = "循环思维模式"
+	symptoms = "执着于某个特定词语或短句。这种执着可能改变其行为，\
+		例如优先采取与该短句有关的行动，而忽略工作、自身需求或社交。"
 	gain_text = ""
 	lose_text = ""
 	resilience = TRAUMA_RESILIENCE_SURGERY
@@ -25,18 +25,18 @@
 	..()
 
 /datum/brain_trauma/hypnosis/on_gain()
-	message_admins("[ADMIN_LOOKUPFLW(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
+	message_admins("[ADMIN_LOOKUPFLW(owner)]被短句“[hypnotic_phrase]”催眠了。")
 	owner.log_message("was hypnotized with the phrase '[hypnotic_phrase]'.", LOG_GAME)
 	to_chat(owner, span_reallybig(span_hypnophrase("[hypnotic_phrase]")))
 	to_chat(owner, span_notice("[pick(list(
-			"Something about this sounds... right, for some reason. You feel like you should follow these words.",
-			"These words keep echoing in your mind. You find yourself completely fascinated by them.",
-			"You feel a part of your mind repeating this over and over. You need to follow these words.",
-			"You feel your thoughts focusing on this phrase... you can't seem to get it out of your head.",
-			"Your head hurts, but this is all you can think of. It must be vitally important.",
+			"不知为何，这些话听起来……很有道理。你觉得自己应该照做。",
+			"这些话在你脑海中不断回响。你完全被它们吸引住了。",
+			"你感觉脑海中的一部分在反复念着这些话。你必须照做。",
+			"你感觉自己的思绪都集中到了这句话上……似乎怎么也挥之不去。",
+			"你的头很痛，但脑中只有这句话。它一定至关重要。",
 	))]"))
-	to_chat(owner, span_boldwarning("You've been hypnotized by this sentence. You must follow these words. \
-		If it isn't a clear order, you can freely interpret how to do so, as long as you act like the words are your highest priority."))
+	to_chat(owner, span_boldwarning("你已被这句话催眠。你必须遵从这些话。\
+		如果它不是明确的命令，你可以自行解释具体做法，但必须将这些话视为最高优先事项。"))
 	var/atom/movable/screen/alert/hypnosis/hypno_alert = owner.throw_alert(ALERT_HYPNOSIS, /atom/movable/screen/alert/hypnosis)
 	owner.mind.add_antag_datum(/datum/antagonist/hypnotized)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/hypnotized)
@@ -48,13 +48,13 @@
 	fixation.completed = TRUE
 	antagonist.objectives = list(fixation)
 
-	hypno_alert.desc = "\"[hypnotic_phrase]\"... your mind seems to be fixated on this concept."
+	hypno_alert.desc = "\"[hypnotic_phrase]\"……你的思绪似乎执着于这个念头。"
 	. = ..()
 
 /datum/brain_trauma/hypnosis/on_lose()
-	message_admins("[ADMIN_LOOKUPFLW(owner)] is no longer hypnotized with the phrase '[hypnotic_phrase]'.")
+	message_admins("[ADMIN_LOOKUPFLW(owner)]不再受短句“[hypnotic_phrase]”催眠。")
 	owner.log_message("is no longer hypnotized with the phrase '[hypnotic_phrase]'.", LOG_GAME)
-	to_chat(owner, span_userdanger("You suddenly snap out of your hypnosis. The phrase '[hypnotic_phrase]' no longer feels important to you."))
+	to_chat(owner, span_userdanger("你突然从催眠中清醒过来。“[hypnotic_phrase]”这句话对你而言不再重要了。"))
 	owner.clear_alert(ALERT_HYPNOSIS)
 	..()
 	if (!isnull(antagonist))

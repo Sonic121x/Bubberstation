@@ -40,7 +40,7 @@
 	RegisterSignals(parent, triggering_signals, PROC_REF(explode))
 	if (!isnull(saboteur))
 		RegisterSignal(saboteur, COMSIG_QDELETING, PROC_REF(on_bomber_deleted))
-	log_bomber(saboteur, "has set a direct_explosive_trap with severity [explosive_force] on", parent, "to detonate on the signals [english_list(triggering_signals)]", message_admins = (!isnull(saboteur)))
+	log_bomber(saboteur, "设置了强度为[explosive_force]的直接爆炸陷阱，目标：", parent, "触发信号：[jointext(triggering_signals, "、")]", message_admins = (!isnull(saboteur)))
 
 /datum/component/direct_explosive_trap/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE) + triggering_signals)
@@ -57,13 +57,13 @@
 /// Called if we sit too long without going off
 /datum/component/direct_explosive_trap/proc/bomb_expired()
 	if (!isnull(saboteur))
-		to_chat(saboteur, span_bolddanger("Failure! Your trap didn't catch anyone this time..."))
+		to_chat(saboteur, span_bolddanger("失败！你的陷阱这次没有抓到任何人……"))
 	qdel(src)
 
 /// Let people know something is up
 /datum/component/direct_explosive_trap/proc/on_examined(datum/source, mob/user, text)
 	SIGNAL_HANDLER
-	text += span_holoparasite("It glows with a strange <font color=\"[glow_colour]\">light</font>...")
+	text += span_holoparasite("它散发着奇怪的<font color=\"[glow_colour]\">光芒</font>……")
 
 /// Blow up
 /datum/component/direct_explosive_trap/proc/explode(atom/source, mob/living/victim)
@@ -72,11 +72,11 @@
 		return
 	if (!isnull(explosive_checks) && !explosive_checks.Invoke(victim))
 		return
-	to_chat(victim, span_bolddanger("[source] was boobytrapped!"))
+	to_chat(victim, span_bolddanger("[source]被设下了诡雷！"))
 	if (!isnull(saboteur))
-		to_chat(saboteur, span_bolddanger("Success! Your trap on [source] caught [victim.name]!"))
+		to_chat(saboteur, span_bolddanger("成功！你在[source]上设置的陷阱抓到了[victim.name]！"))
 	var/atom/parent_atom = parent
-	message_admins("Direct EX_ACT explosion with severity [explosive_force] on [ADMIN_LOOKUPFLW(victim)]. Caused by direct_explosive_trap on: [ADMIN_VERBOSEJMP(parent_atom)]. Set by: [key_name(saboteur)].")
+	message_admins("[ADMIN_LOOKUPFLW(victim)]受到强度为[explosive_force]的直接EX_ACT爆炸影响。原因：[ADMIN_VERBOSEJMP(parent_atom)]上的direct_explosive_trap。设置者：[key_name(saboteur)]。")
 	log_game("Direct EX_ACT explosion with severity [explosive_force] on [key_name(victim)]. Caused by direct_explosive_trap on: [parent_atom.name] at [AREACOORD(parent_atom)]. Set by: [key_name(saboteur)].")
 	playsound(source, 'sound/effects/explosion/explosion2.ogg', 200, TRUE)
 	new /obj/effect/temp_visual/explosion(get_turf(source))

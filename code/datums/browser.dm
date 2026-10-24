@@ -120,7 +120,7 @@
 /datum/browser/proc/open(use_on_close = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on GitHub!"))
+		to_chat(user, span_userdanger("你试图打开的[title]浏览器未通过有效性检查！请在GitHub上报告此问题！"))
 		return
 
 	var/window_size = ""
@@ -166,13 +166,13 @@
 	var/list/display_list = list()
 	display_list += {"<center><b>[message]</b></center><br />
 		<div style="text-align:center">
-		<a style="font-size:large;float:[( button_2 ? "left" : "right" )]" href='byond://?src=[REF(src)];button=1'>[button_1]</a>"}
+		<a style="font-size:large;float:[( button_2 ? "left" : "right" )]" href='byond://?src=[REF(src)];button=1'>[chinese_ui_choice_display(button_1)]</a>"}
 
 	if (button_2)
-		display_list += {"<a style="font-size:large;[( button_3 ? "" : "float:right" )]" href='byond://?src=[REF(src)];button=2'>[button_2]</a>"}
+		display_list += {"<a style="font-size:large;[( button_3 ? "" : "float:right" )]" href='byond://?src=[REF(src)];button=2'>[chinese_ui_choice_display(button_2)]</a>"}
 
 	if (button_3)
-		display_list += {"<a style="font-size:large;float:right" href='byond://?src=[REF(src)];button=3'>[button_3]</a>"}
+		display_list += {"<a style="font-size:large;float:right" href='byond://?src=[REF(src)];button=3'>[chinese_ui_choice_display(button_3)]</a>"}
 
 	display_list += {"</div>"}
 
@@ -295,13 +295,13 @@
 			display_list += {"<li><input id="name="[option["name"]]"" style="width: 50px" type="[type]" name="[option["name"]]" value="[option["value"]]">
 			<label for="[option["name"]]">[option["name"]]</label></li>"}
 	display_list += {"</ul><div style="text-align:center">
-		<button type="submit" name="button" value="1" style="font-size:large;float:[( button_2 ? "left" : "right" )]">[button_1]</button>"}
+		<button type="submit" name="button" value="1" style="font-size:large;float:[( button_2 ? "left" : "right" )]">[chinese_ui_choice_display(button_1)]</button>"}
 
 	if (button_2)
-		display_list += {"<button type="submit" name="button" value="2" style="font-size:large;[( button_3 ? "" : "float:right" )]">[button_2]</button>"}
+		display_list += {"<button type="submit" name="button" value="2" style="font-size:large;[( button_3 ? "" : "float:right" )]">[chinese_ui_choice_display(button_2)]</button>"}
 
 	if (button_3)
-		display_list += {"<button type="submit" name="button" value="3" style="font-size:large;float:right">[button_3]</button>"}
+		display_list += {"<button type="submit" name="button" value="3" style="font-size:large;float:right">[chinese_ui_choice_display(button_3)]</button>"}
 
 	display_list += {"</form></div>"}
 	..(user, ckey("[user]-[message]-[title]-[world.time]-[rand(1,10000)]"), title, width, height, src, steal_focus, timeout)
@@ -344,7 +344,7 @@
 		var/enabled = !!(current_value & bit_value)
 		picker_list += list(list("checked" = enabled, "value" = bit_value, "name" = bit_name, "allowed_edit" = can_edit))
 
-	var/list/result = present_picker(user, "", title, button_1 = "Save", button_2 = "Cancel", timeout = FALSE, values = picker_list, width = width, height = height, slide_color = slide_color)
+	var/list/result = present_picker(user, "", title, button_1 = "保存", button_2 = "取消", timeout = FALSE, values = picker_list, width = width, height = height, slide_color = slide_color)
 	if (!islist(result))
 		return
 	if (result["button"] == 2) // If the user pressed the cancel button
@@ -384,7 +384,7 @@
 			else
 				display_list += "<b>[setting["desc"]]:</b> <a href='byond://?src=[REF(src)];setting=[name];task=input;type=datum;path=[setting["path"]]'>[setting["value"]]</a><BR>"
 		else
-			display_list += "<b>[setting["desc"]]:</b> <a href='byond://?src=[REF(src)];setting=[name];task=input;type=[setting["type"]]'>[setting["value"]]</a><BR>"
+			display_list += "<b>[setting["desc"]]:</b> <a href='byond://?src=[REF(src)];setting=[name];task=input;type=[setting["type"]]'>[(setting["type"] in list("boolean", "ckey")) ? chinese_ui_choice_display(setting["value"]) : setting["value"]]</a><BR>"
 
 	if (preview_icon)
 		display_list += "<td valign='center'>"
@@ -392,7 +392,7 @@
 		display_list += "</td>"
 
 	display_list += "</tr></table>"
-	display_list += "<hr><center><a href='byond://?src=[REF(src)];button=1'>Ok</a> "
+	display_list += "<hr><center><a href='byond://?src=[REF(src)];button=1'>确定</a> "
 	display_list += "</center>"
 
 	return display_list.Join()
@@ -419,15 +419,15 @@
 					setting["value"] = new_value
 
 			if ("string")
-				setting["value"] = stripped_input(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]", setting["value"])
+				setting["value"] = stripped_input(user, "请输入[setting["desc"]]的新值", "修改[setting["desc"]]", setting["value"])
 			if ("number")
-				setting["value"] = input(user, "Enter new value for [setting["desc"]]", "Enter new value for [setting["desc"]]") as num
+				setting["value"] = input(user, "请输入[setting["desc"]]的新值", "修改[setting["desc"]]") as num
 			if ("color")
-				settings["mainsettings"][setting]["value"] = tgui_color_picker(user, "Enter new value for [settings["mainsettings"][setting]["desc"]]", "Enter new value for [settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])	// BUBBERSTATION EDIT: TGUI COLOR PICKER
+				settings["mainsettings"][setting]["value"] = tgui_color_picker(user, "请输入[settings["mainsettings"][setting]["desc"]]的新值", "修改[settings["mainsettings"][setting]["desc"]]", settings["mainsettings"][setting]["value"])	// BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if ("boolean")
 				setting["value"] = (setting["value"] == "Yes") ? "No" : "Yes"
 			if ("ckey")
-				setting["value"] = input(user, "[setting["desc"]]?") in (list("none") + GLOB.directory)
+				setting["value"] = chinese_ckey_choice(user, setting["desc"])
 		if (setting["callback"])
 			var/datum/callback/callback = setting["callback"]
 			settings = callback.Invoke(settings)

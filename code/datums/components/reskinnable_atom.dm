@@ -227,13 +227,13 @@
 /datum/component/reskinable_item/proc/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	SIGNAL_HANDLER
 
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Reskin"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "更换外观"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /datum/component/reskinable_item/proc/add_tags(atom/source, mob/user, list/tags)
 	SIGNAL_HANDLER
 
-	tags["reskinnable"] = "This item is able to be reskinned! Alt-Click to do so!"
+	tags["reskinnable"] = "此物品可以更换外观！按住 Alt 点击即可！"
 
 /// Called when alt clicked and the item has unique reskin options
 /datum/component/reskinable_item/proc/on_click_alt_reskin(datum/source, mob/user)
@@ -267,7 +267,7 @@
 		return
 
 	set_skin_by_name(pick, user)
-	to_chat(user, span_info("[parent] is now skinned as '[pick].'"))
+	to_chat(user, span_info("[parent]的外观已更换为“[pick]”。"))
 
 	if(!infinite_reskin)
 		qdel(src)
