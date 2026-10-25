@@ -9,7 +9,7 @@
 	///J/(K*mol)
 	var/specific_heat = SPECIFIC_HEAT_DEFAULT
 	/// used by taste messages
-	var/taste_description = "metaphorical salt"
+	var/taste_description = "隐喻中的盐"
 	///how this taste compares to others. Higher values means it is more noticable
 	var/taste_mult = 1
 	/// reagent holder this belongs to
@@ -276,7 +276,7 @@
 
 /// Called when an overdose starts. Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
 /datum/reagent/proc/overdose_start(mob/living/affected_mob, metabolization_ratio)
-	to_chat(affected_mob, span_userdanger("You feel like you took too much of [name]!"))
+	to_chat(affected_mob, span_userdanger("你感觉自己摄入了太多 [name]！"))
 	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 	return
 
@@ -355,7 +355,7 @@
 	for (var/datum/reagent/reagent as anything in reagent_list)
 		reagents_left--
 		if(final_and && intial_list_length > 1 && reagents_left == 0)
-			reagent_strings += "and [capitalize_names ? capitalize(reagent.name) : reagent.name][names_only ? null : ", [reagent.volume]"]"
+			reagent_strings += "和 [capitalize_names ? capitalize(reagent.name) : reagent.name][names_only ? null : ", [reagent.volume]"]"
 		else
 			reagent_strings += "[capitalize_names ? capitalize(reagent.name) : reagent.name][names_only ? null : ", [reagent.volume]"]"
 

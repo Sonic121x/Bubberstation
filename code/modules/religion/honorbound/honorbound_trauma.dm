@@ -1,17 +1,17 @@
 /// one reason for declaring guilty is specifically checked for, keeping it as a define to avoid future mistakes
-#define GUILT_REASON_DECLARATION "from your declaration."
+#define GUILT_REASON_DECLARATION "因你的宣告。"
 
 ///Honorbound prevents you from attacking the unready, the just, or the innocent
 /datum/brain_trauma/special/honorbound
-	name = "Dogmatic Compulsions"
-	desc = "Patient feels compelled to follow supposed \"rules of combat\"."
-	scan_desc = "damaged frontal lobe"
-	symptoms = "Gains a strict code of honor that governs their behavior, \
-		forbidding them from attacking those who are unready, just, or innocent. \
-		This code often leads to strife, both external and internal, \
-		as the patient struggles to reconcile their beliefs with the realities of combat and survival."
-	gain_text = span_notice("You feel honorbound!")
-	lose_text = span_warning("You feel unshackled from your code of honor!")
+	name = "教条强迫症"
+	desc = "患者感到被强迫遵循所谓的“战斗规则”。"
+	scan_desc = "额叶受损"
+	symptoms = "获得一套严格约束其行为的荣誉准则，\
+		禁止其攻击未准备好者、正义者或无辜者。\
+		这套准则常引发内外冲突，\
+		因为患者挣扎着将自己的信念与战斗和生存的现实相调和。"
+	gain_text = span_notice("你感到荣誉准则的束缚！")
+	lose_text = span_warning("你感到从荣誉准则中解脱了！")
 	random_gain = FALSE
 	/// list of guilty people
 	var/list/guilty = list()
@@ -105,25 +105,25 @@
 /datum/brain_trauma/special/honorbound/proc/check_visible_guilt(mob/living/attacked_mob)
 	//will most likely just hit nuke ops but good catch-all. WON'T hit traitors
 	if(attacked_mob.has_faction(ROLE_SYNDICATE))
-		guilty(attacked_mob, "for their misaligned association with the Syndicate!")
+		guilty(attacked_mob, "因为他们与辛迪加的不当关联！")
 	//not an antag datum check so it applies to wizard minions as well
 	if(attacked_mob.has_faction(ROLE_WIZARD))
-		guilty(attacked_mob, "for blasphemous magicks!")
+		guilty(attacked_mob, "因为他们使用亵渎魔法！")
 	if(HAS_TRAIT(attacked_mob, TRAIT_CULT_HALO))
-		guilty(attacked_mob, "for blasphemous worship!")
+		guilty(attacked_mob, "因为他们进行亵渎崇拜！")
 	if(HAS_TRAIT(attacked_mob, TRAIT_EVIL))
-		guilty(attacked_mob, "for an almost fanatical commitment to EEEEVIL!")
+		guilty(attacked_mob, "因为他们对邪恶近乎狂热的执着！")
 	if(attacked_mob.mind)
 		var/datum/mind/guilty_conscience = attacked_mob.mind
 		if(guilty_conscience.has_antag_datum(/datum/antagonist/abductor))
-			guilty(attacked_mob, "for their blatant surgical malice...")
+			guilty(attacked_mob, "因为他们赤裸裸的手术恶意……")
 		if(guilty_conscience.has_antag_datum(/datum/antagonist/nightmare))
-			guilty(attacked_mob, "for being a light-consuming nightmare!")
+			guilty(attacked_mob, "因为他们是吞噬光明的梦魇！")
 		if(guilty_conscience.has_antag_datum(/datum/antagonist/ninja))
-			guilty(attacked_mob, "for their misaligned association with the Spider Clan!")
+			guilty(attacked_mob, "因为他们与蜘蛛氏族的不当关联！")
 		var/datum/antagonist/heretic/heretic_datum = guilty_conscience.has_antag_datum(/datum/antagonist/heretic)
 		if(heretic_datum?.ascended)
-			guilty(attacked_mob, "for blasphemous, heretical, out of control worship!")
+			guilty(attacked_mob, "因为他们进行亵渎、异端且失控的崇拜！")
 
 /**
  * Called by hooked signals whenever someone attacks the person with this trauma
@@ -133,7 +133,7 @@
  * * user: person who attacked the honorbound
  * * reason: why this person is now guilty (future pr idea: letting honorbound print a receipt for why someone is guilty? lol)
  */
-/datum/brain_trauma/special/honorbound/proc/guilty(mob/living/user, reason = "for no particular reason!")
+/datum/brain_trauma/special/honorbound/proc/guilty(mob/living/user, reason = "原因不明！")
 	if(user in guilty)
 		return
 	var/datum/mind/guilty_conscience = user.mind
@@ -141,15 +141,15 @@
 		var/datum/job/job = guilty_conscience.assigned_role
 		if(job.departments_bitflags & (DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SECURITY))
 			return
-	to_chat(owner, span_notice("[user] is now considered guilty by [GLOB.deity] [reason]"))
-	to_chat(user, span_danger("[GLOB.deity] no longer considers you innocent!"))
+	to_chat(owner, span_notice("[user] 现在被 [GLOB.deity] 视为有罪，[reason]"))
+	to_chat(user, span_danger("[GLOB.deity] 不再认为你无辜！"))
 	guilty += user
 
 ///Signal sent by the relay_attackers element. It makes the attacker guilty unless the damage was stamina or it was a shove.
 /datum/brain_trauma/special/honorbound/proc/on_attacked(mob/source, mob/attacker, attack_flags)
 	SIGNAL_HANDLER
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
-		guilty(attacker, "for attacking [source] first.")
+		guilty(attacker, "因为他们先攻击了 [source]。")
 
 /**
  * Called by attack_honor signal to check whether an attack should be allowed or not
@@ -165,7 +165,7 @@
 	if(honorbound_human == target_creature)
 		return TRUE //oh come on now
 	if(IS_UNCONSCIOUS(target_creature) || HAS_TRAIT(target_creature, TRAIT_RESTRAINED))
-		to_chat(honorbound_human, span_warning("There is no honor in attacking the <b>unready</b>."))
+		to_chat(honorbound_human, span_warning("攻击<b>未准备好者</b>毫无荣誉可言。"))
 		return FALSE
 	//THE JUST (Applies over guilt except for med, so you best be careful!)
 	if(is_human)
@@ -173,14 +173,14 @@
 		var/datum/job/job = target_human.mind?.assigned_role
 		var/is_holy = target_human.mind?.holy_role
 		if(is_holy || (job?.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY))
-			to_chat(honorbound_human, span_warning("There is nothing righteous in attacking the <b>just</b>."))
+			to_chat(honorbound_human, span_warning("攻击<b>正义者</b>毫无正义可言。"))
 			return FALSE
 		if(job?.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL && !is_guilty)
-			to_chat(honorbound_human, span_warning("If you truly think this healer is not <b>innocent</b>, declare them guilty."))
+			to_chat(honorbound_human, span_warning("如果你真的认为这名治疗者并非<b>无辜</b>，就宣告其有罪。"))
 			return FALSE
 	//THE INNOCENT (human and borg exclusive)
 	if(!is_guilty && (is_human || issilicon(target_creature)))
-		to_chat(target_creature, span_warning("There is nothing righteous in attacking the <b>innocent</b>."))
+		to_chat(target_creature, span_warning("攻击<b>无辜者</b>毫无正义可言。"))
 		return FALSE
 	return TRUE
 
@@ -208,43 +208,43 @@
 		if(SCHOOL_HOLY, SCHOOL_MIME, SCHOOL_RESTORATION, SCHOOL_PSYCHIC)
 			return
 		if(SCHOOL_NECROMANCY, SCHOOL_FORBIDDEN, SCHOOL_SANGUINE)
-			to_chat(user, span_userdanger("[GLOB.deity] is enraged by your use of forbidden magic!"))
+			to_chat(user, span_userdanger("[GLOB.deity] 对你使用禁忌魔法感到震怒！"))
 			lightningbolt(user)
 			user.mind.set_holy_role(NONE)
 			qdel(src)
 			owner.add_mood_event("honorbound", /datum/mood_event/banished) //add mood event after we already cleared our events
-			to_chat(user, span_userdanger("You have been excommunicated! You are no longer holy!"))
+			to_chat(user, span_userdanger("你已被逐出教会！你不再神圣！"))
 		else
-			to_chat(user, span_userdanger("[GLOB.deity] is angered by your use of [school == SCHOOL_UNSET ? "strange" : school] magic!"))
+			to_chat(user, span_userdanger("[GLOB.deity] 对你使用[school == SCHOOL_UNSET ? "古怪" : school]魔法感到愤怒！"))
 			lightningbolt(user)
 			owner.add_mood_event("honorbound", /datum/mood_event/holy_smite)//permanently lose your moodlet after this
 
 /datum/action/cooldown/spell/pointed/declare_evil
-	name = "Declare Evil"
-	desc = "If someone is so obviously an evil of this world then you can spend a huge amount of favor to declare them guilty."
+	name = "宣告邪恶"
+	desc = "如果某人明显是此世的邪恶，你可以消耗大量恩宠宣告其有罪。"
 	button_icon_state = "declaration"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/honorbound.dmi'
 
 	school = SCHOOL_HOLY
 	cooldown_time = 0
 
-	invocation = "This is an error!"
+	invocation = "这是一个错误！"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = SPELL_REQUIRES_HUMAN
 
-	active_msg = "You prepare to declare a sinner..."
-	deactive_msg = "You decide against a declaration."
+	active_msg = "你准备宣告一名罪人……"
+	deactive_msg = "你决定不作宣告。"
 
 	/// The amount of favor required to declare on someone
 	var/required_favor = 150
 	/// A ref to our owner's honorbound trauma
 	var/datum/brain_trauma/special/honorbound/honor_trauma
 	/// The declaration that's shouted in invocation. Set in New()
-	var/declaration = "By the divine light of my deity, you are an evil of this world that must be wrought low!"
+	var/declaration = "以我神祇的神圣之光，你是此世的邪恶，必须被击倒！"
 
 /datum/action/cooldown/spell/pointed/declare_evil/New()
 	. = ..()
-	declaration = "By the divine light of [GLOB.deity], you are an evil of this world that must be wrought low!"
+	declaration = "以 [GLOB.deity] 的神圣之光，你是此世的邪恶，必须被击倒！"
 
 /datum/action/cooldown/spell/pointed/declare_evil/Grant(mob/grant_to)
 	if(!ishuman(grant_to))
@@ -277,12 +277,12 @@
 
 	if(!GLOB.religious_sect)
 		if(feedback)
-			to_chat(owner, span_warning("There are no deities around to approve your declaration!"))
+			to_chat(owner, span_warning("周围没有神祇能批准你的宣告！"))
 		return FALSE
 
 	if(GLOB.religious_sect.favor < required_favor)
 		if(feedback)
-			to_chat(owner, span_warning("You need at least 150 favor to declare someone evil!"))
+			to_chat(owner, span_warning("你至少需要 150 点恩宠才能宣告某人有罪！"))
 		return FALSE
 
 	return TRUE
@@ -292,28 +292,28 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning("You can only declare living beings evil!"))
+		to_chat(owner, span_warning("你只能宣告活物有罪！"))
 		return FALSE
 
 	var/mob/living/living_cast_on = cast_on
 	if(living_cast_on.stat == DEAD)
-		to_chat(owner, span_warning("Declaration on the dead? Really?"))
+		to_chat(owner, span_warning("对死者宣告？认真的吗？"))
 		return FALSE
 
 	// sec and medical are immune to becoming guilty through attack
 	// (we don't check holy, because holy shouldn't be able to attack eachother anyways)
 	if(!living_cast_on.key || !living_cast_on.mind)
-		to_chat(owner, span_warning("There is no evil a vacant mind can do."))
+		to_chat(owner, span_warning("空洞的心智做不出什么邪恶之事。"))
 		return FALSE
 
 	// also handles any kind of issues with self declarations
 	if(living_cast_on.mind.holy_role)
-		to_chat(owner, span_warning("Followers of [GLOB.deity] cannot be evil!"))
+		to_chat(owner, span_warning("[GLOB.deity] 的追随者不可能是邪恶的！"))
 		return FALSE
 
 	// cannot declare security as evil
 	if(living_cast_on.mind.assigned_role.departments_bitflags & DEPARTMENT_BITFLAG_SECURITY)
-		to_chat(owner, span_warning("Members of security are uncorruptable! You cannot declare one evil!"))
+		to_chat(owner, span_warning("安保部成员不可腐蚀！你不能宣告其有罪！"))
 		return FALSE
 
 	return TRUE
@@ -323,7 +323,7 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
-	invocation = "[cast_on]! [declaration]"
+	invocation = "[cast_on]！[declaration]"
 
 /datum/action/cooldown/spell/pointed/declare_evil/cast(mob/living/cast_on)
 	. = ..()

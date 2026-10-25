@@ -1,7 +1,7 @@
 /datum/religion_rites/dream_protection
-	name = "Dream Protection"
-	desc = "Bless you and all of your followers with protection in their slumber, \
-		granting resistance to damage while asleep, which is further increased while dreaming."
+	name = "梦境守护"
+	desc = "祝福你和你所有追随者的睡眠，\
+		使其在睡眠时获得伤害抗性，做梦时抗性还会进一步提高。"
 	favor_cost = 200
 	rite_flags = RITE_ONE_TIME_USE | RITE_AUTO_DELETE
 	ritual_length = 15 SECONDS
@@ -9,9 +9,9 @@
 /datum/religion_rites/dream_protection/New()
 	. = ..()
 	ritual_invocations = list(
-		"Protect our flock from harm, great shepherd [GLOB.deity]!..",
-		"Grant us peaceful slumber, free from nightmares and those who would do us harm!..",
-		"Our sleepers shall be safe to dream to their heart's desire!..",
+		"伟大的牧者 [GLOB.deity]，请保护我们的羊群免受伤害！……",
+		"请赐予我们安宁的睡眠，远离噩梦与那些想伤害我们的人！……",
+		"愿我们的沉睡者能安心地尽情做梦！……",
 	)
 
 /datum/religion_rites/dream_protection/post_invoke_effects(mob/living/user, atom/religious_tool)
@@ -84,7 +84,7 @@
 
 /datum/status_effect/dream_protection/get_examine_text()
 	if(IS_UNCONSCIOUS_AND_ALIVE(owner) || HAS_TRAIT(owner, TRAIT_DREAMING))
-		return "A soft cyan glow envelops [owner.p_them()], reflecting light."
+		return "一层柔和的青色光芒笼罩着此人，反射着光亮。"
 
 // Version that only lasts until they wake up (with a set duration backup)
 /datum/status_effect/dream_protection/temporary

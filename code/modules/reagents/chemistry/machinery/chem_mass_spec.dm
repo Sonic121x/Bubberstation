@@ -1,6 +1,6 @@
 /obj/machinery/chem_mass_spec
-	name = "high-performance liquid chromatography machine"
-	desc = "Allows you to purify reagents & separate out inverse reagents"
+	name = "高效液相色谱仪"
+	desc = "可用于提纯试剂并分离出反转试剂。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "HPLC"
 	base_icon_state = "HPLC"
@@ -52,10 +52,10 @@
 	. = NONE
 
 	if(!QDELETED(beaker1))
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Eject input beaker"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "取出输入烧杯"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(!QDELETED(beaker2))
-		context[SCREENTIP_CONTEXT_ALT_RMB] = "Eject output beaker"
+		context[SCREENTIP_CONTEXT_ALT_RMB] = "取出输出烧杯"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(isnull(held_item) || (held_item.item_flags & ABSTRACT) || (held_item.flags_1 & HOLOGRAM_1))
@@ -63,48 +63,48 @@
 
 	if(held_item.is_chem_container())
 		if(QDELETED(beaker1))
-			context[SCREENTIP_CONTEXT_LMB] = "Insert input beaker"
+			context[SCREENTIP_CONTEXT_LMB] = "放入输入烧杯"
 		else
-			context[SCREENTIP_CONTEXT_LMB] = "Replace input beaker"
+			context[SCREENTIP_CONTEXT_LMB] = "更换输入烧杯"
 
 		if(QDELETED(beaker2))
-			context[SCREENTIP_CONTEXT_RMB] = "Insert output beaker"
+			context[SCREENTIP_CONTEXT_RMB] = "放入输出烧杯"
 		else
-			context[SCREENTIP_CONTEXT_RMB] = "Replace output beaker"
+			context[SCREENTIP_CONTEXT_RMB] = "更换输出烧杯"
 
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/chem_mass_spec/examine(mob/user)
 	. = ..()
 
 	if(!QDELETED(beaker1))
-		. += span_notice("Input beaker of [beaker1.reagents.maximum_volume]u capacity is inserted.")
-		. += span_notice("Its Input beaker Can be ejected with [EXAMINE_HINT("LMB Alt")] click.")
+		. += span_notice("已插入容量为 [beaker1.reagents.maximum_volume]u 的输入烧杯。")
+		. += span_notice("其输入烧杯可用 [EXAMINE_HINT("左键 Alt")] 点击取出。")
 	else
-		. += span_warning("Its missing an input beaker. insert with [EXAMINE_HINT("Left Click")].")
+		. += span_warning("缺少输入烧杯。用 [EXAMINE_HINT("左键")] 放入。")
 	if(!QDELETED(beaker2))
-		. += span_notice("Output beaker of [beaker2.reagents.maximum_volume]u capacity is inserted.")
-		. += span_notice("Its Output beaker can be ejected with [EXAMINE_HINT("RMB Alt")] click.")
+		. += span_notice("已插入容量为 [beaker2.reagents.maximum_volume]u 的输出烧杯。")
+		. += span_notice("其输出烧杯可用 [EXAMINE_HINT("右键 Alt")] 点击取出。")
 	else
-		. += span_warning("Its missing an output beaker, insert with [EXAMINE_HINT("Right Click")].")
+		. += span_warning("缺少输出烧杯，用 [EXAMINE_HINT("右键")] 放入。")
 
 	if(anchored)
-		. += span_notice("Its [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("它已[EXAMINE_HINT("固定")]到位。")
 	else
-		. += span_warning("Needs to be [EXAMINE_HINT("wrenched")] to use.")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+		. += span_warning("需要用扳手[EXAMINE_HINT("拧紧")]后才能使用。")
+	. += span_notice("用螺丝刀[EXAMINE_HINT("拧")]可[panel_open ? "关闭" : "打开"]其维修面板。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("可以[EXAMINE_HINT("撬开")]拆解。")
 
 /obj/machinery/chem_mass_spec/update_overlays()
 	. = ..()
@@ -147,7 +147,7 @@
 
 /obj/machinery/chem_mass_spec/item_interaction(mob/living/user, obj/item/item, list/modifiers)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!item.can_insert_container(user, src))
@@ -157,7 +157,7 @@
 	if(!replace_beaker(user, !is_right_clicking, item))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You add [item] to [is_right_clicking ? "output" : "input"] slot."))
+	to_chat(user, span_notice("你将 [item] 放入[is_right_clicking ? "输出" : "输入"]槽。"))
 	update_appearance()
 	ui_interact(user)
 
@@ -166,7 +166,7 @@
 /obj/machinery/chem_mass_spec/wrench_act(mob/living/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return .
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -174,14 +174,14 @@
 
 /obj/machinery/chem_mass_spec/screwdriver_act(mob/living/user, obj/item/tool)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_mass_spec/crowbar_act(mob/living/user, obj/item/tool)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -302,7 +302,7 @@
 		beaker1Data["maxVolume"] = beaker_1_reagents.maximum_volume
 		var/list/beakerContents = list()
 		for(var/datum/reagent/reagent as anything in beaker_1_reagents.reagent_list)
-			var/log = "Ready"
+			var/log = "就绪"
 			var/datum/reagent/target = reagent
 			var/purity = target.purity
 			var/is_inverse = FALSE
@@ -314,7 +314,7 @@
 			else
 				var/initial_purity = initial(reagent.purity)
 				if((initial_purity - reagent.purity) <= 0) //already at max purity
-					log = "Cannot purify above [round(initial_purity * 100)]%"
+					log = "纯度无法超过 [round(initial_purity * 100)]%"
 
 			beakerContents += list(list(
 				"name" = target.name,
@@ -359,17 +359,17 @@
 	switch(action)
 		if("activate")
 			if(QDELETED(beaker1))
-				say("Missing input beaker!")
+				say("缺少输入烧杯！")
 				return
 			if(QDELETED(beaker2))
-				say("Missing output beaker!")
+				say("缺少输出烧杯！")
 				return
 
 			//adjust timer for purification
 			progress_time = 0
 			estimate_time()
 			if(delay_time <= 0)
-				say("No work to be done!")
+				say("没有需要处理的内容！")
 				return
 
 			//start the purification process
@@ -447,14 +447,14 @@
 
 /obj/machinery/chem_mass_spec/click_alt(mob/living/user)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return CLICK_ACTION_BLOCKING
 	replace_beaker(user, TRUE)
 	return CLICK_ACTION_SUCCESS
 
 /obj/machinery/chem_mass_spec/click_alt_secondary(mob/living/user)
 	if(processing_reagents)
-		balloon_alert(user, "still processing!")
+		balloon_alert(user, "仍在处理中！")
 		return
 	replace_beaker(user, FALSE)
 
@@ -483,7 +483,7 @@
 					continue
 				input_reagents.remove_reagent(reagent.type, product_vol)
 				output_reagents.add_reagent(reagent.inverse_chem, product_vol, reagtemp = input_reagents.chem_temp, added_purity = reagent.get_inverse_purity(), added_ph = reagent.ph)
-				log[reagent.type] = "Purified to [reagent.get_inverse_purity() * 100]%"
+				log[reagent.type] = "已提纯至 [reagent.get_inverse_purity() * 100]%"
 				continue
 
 			//out of our selected range
@@ -498,7 +498,7 @@
 			//add the purified reagent. More impure reagents will yield smaller amounts
 			beaker1.reagents.remove_reagent(reagent.type, product_vol)
 			beaker2.reagents.add_reagent(reagent.type, product_vol * (1 - delta_purity), reagtemp = beaker1.reagents.chem_temp, added_purity = initial(reagent.purity), added_ph = reagent.ph)
-			log[reagent.type] = "Purified to [initial(reagent.purity) * 100]%"
+			log[reagent.type] = "已提纯至 [initial(reagent.purity) * 100]%"
 
 		//recompute everything
 		lower_mass_range = calculate_mass(smallest = TRUE)

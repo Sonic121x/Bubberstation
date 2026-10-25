@@ -2,7 +2,7 @@
 /datum/chemical_reaction/catalyst_precursor_temp
 	results = list(/datum/reagent/catalyst_precursor_temp = 5)
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/toxin/mutagen = 3, /datum/reagent/toxin/plasma = 1)
-	mix_message = "The solution steams and froths."
+	mix_message = "溶液冒出蒸汽并泛起泡沫。"
 	is_cold_recipe = TRUE
 	required_temp = 800
 	optimal_temp = 300
@@ -21,7 +21,7 @@
 /datum/chemical_reaction/catalyst_precursor_ph
 	results = list(/datum/reagent/catalyst_precursor_ph = 5)
 	required_reagents = list(/datum/reagent/catalyst_precursor_temp = 5)
-	mix_message = "The solution congeals."
+	mix_message = "溶液凝结了。"
 	required_temp = 50
 	optimal_temp = 500
 	overheat_temp = 500
@@ -75,7 +75,7 @@
 /datum/chemical_reaction/medical_speed_catalyst
 	results = list(/datum/reagent/catalyst_agent/speed/medicine = 2)
 	required_reagents = list(/datum/reagent/medicine/c2/libital = 3, /datum/reagent/medicine/c2/probital = 4, /datum/reagent/toxin/plasma = 2)
-	mix_message = "The reaction evaporates slightly as the mixture solidifies"
+	mix_message = "随着混合物凝固，反应物有少量蒸发。"
 	mix_sound = 'sound/effects/chemistry/catalyst.ogg'
 	reaction_tags = REACTION_TAG_MODERATE | REACTION_TAG_UNIQUE | REACTION_TAG_CHEMICAL
 	required_temp = 200

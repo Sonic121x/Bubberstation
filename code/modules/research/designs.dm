@@ -22,7 +22,7 @@ other types of metals and chemistry for reagents).
 
 /datum/design //Datum for object designs, used in construction
 	/// Name of the created object
-	var/name = "Name"
+	var/name = "名称"
 	/// Description of the created object
 	var/desc = null
 	/// The ID of the design. Used for quick reference. Alphanumeric, lower-case, no symbols
@@ -95,8 +95,8 @@ other types of metals and chemistry for reagents).
 	var/list/transfered_materials
 
 /datum/design/error_design
-	name = "ERROR"
-	desc = "This usually means something in the database has corrupted. If this doesn't go away automatically, inform Central Command so their techs can fix this ASAP(tm)"
+	name = "错误"
+	desc = "这通常意味着数据库中有内容损坏了。如果这种情况没有自动消失，请通知中央指挥部，以便他们的技术人员尽快修复（tm）"
 
 /datum/design/Destroy()
 	SSresearch.techweb_designs -= id
@@ -186,8 +186,8 @@ other types of metals and chemistry for reagents).
 ////////////////////////////////////////
 
 /obj/item/disk/design_disk
-	name = "Component Design Disk"
-	desc = "A disk for storing device design data for construction in lathes."
+	name = "组件设计磁盘"
+	desc = "一张用于存储设备设计数据、以便在车床上建造的磁盘。"
 	icon_state = "datadisk1"
 	custom_materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
 
@@ -209,8 +209,8 @@ other types of metals and chemistry for reagents).
 	return
 
 /obj/item/disk/design_disk/bepis
-	name = "Old experimental technology disk"
-	desc = "A disk containing some long-forgotten technology from a past age. You hope it still works after all these years. Upload the disk to an R&D Console to redeem the tech."
+	name = "旧实验技术磁盘"
+	desc = "一张存有某个久远时代遗落技术的磁盘。你希望它历经这么多年仍然可用。将磁盘上传至研发控制台即可解锁该技术。"
 	icon_state = "rndmajordisk"
 
 	///The bepis node we have the design id's of
@@ -235,10 +235,10 @@ other types of metals and chemistry for reagents).
  * Removes the tech disk that's held on it from the experimental node list, making them not show up in future disks.
  */
 /obj/item/disk/design_disk/bepis/remove_tech
-	name = "Reformatted technology disk"
-	desc = "A disk containing a new, completed tech from the B.E.P.I.S. Upload the disk to an R&D Console to redeem the tech."
+	name = "重新格式化的技术磁盘"
+	desc = "一张存有 B.E.P.I.S. 某项全新完整技术的磁盘。将磁盘上传至研发控制台即可兑换该技术。"
 
 /obj/item/disk/design_disk/bepis/remove_tech/Initialize(mapload)
 	. = ..()
 	SSresearch.techweb_nodes_experimental -= bepis_node.id
-	log_research("[bepis_node.display_name] has been removed from experimental nodes through the BEPIS techweb's \"remove tech\" feature.")
+	log_research("[bepis_node.display_name] 已通过 BEPIS 科技网的“移除技术”功能从实验节点中移除。")

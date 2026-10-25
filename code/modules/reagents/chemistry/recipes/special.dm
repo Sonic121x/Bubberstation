@@ -42,9 +42,9 @@
 	. = ..()
 
 	if(!recipe_data || !load_recipe(recipe_data))
-		log_game("Generating recipe for [src]")
+		log_game("正在为 [src] 生成配方")
 		if(!generate_recipe())
-			log_game("Couldn't generate recipe for [src]")
+			log_game("无法为 [src] 生成配方")
 			qdel(src)
 
 
@@ -53,23 +53,23 @@
 	// Timestamp
 	created = text2num(recipe_data["timestamp"])
 	if(daysSince(created) > persistence_period)
-		log_game("Recipe [src] expired.")
+		log_game("配方 [src] 已过期。")
 		return FALSE
 	//ingredients and catalysts
 	required_reagents = unwrap_reagent_list(recipe_data["required_reagents"])
 	if(!required_reagents)
-		log_game("Couldn't load reagents for [src]")
+		log_game("无法为 [src] 加载试剂")
 		return FALSE
 	required_catalysts = unwrap_reagent_list(recipe_data["required_catalysts"])
 	if(!required_catalysts)
-		log_game("Couldn't load catalysts for [src]")
+		log_game("无法为 [src] 加载催化剂")
 		return FALSE
 
 	//container
 	if(possible_containers)
 		var/container = recipe_data["required_container"] ? text2path(recipe_data["required_container"]) : null
 		if(!container)
-			log_game("Couldn't load container for [src]")
+			log_game("无法为 [src] 加载容器")
 			return FALSE
 		required_container = container
 
@@ -104,7 +104,7 @@
 		remaining_possible_reagents -= reagent_type
 
 	if(remaining_possible_reagents.len < min_input_reagents)
-		log_game("Couldn't find enough reagents for [src]")
+		log_game("无法为 [src] 找到足够的试剂")
 		return FALSE
 
 	required_reagents = list()
@@ -115,7 +115,7 @@
 		remaining_possible_catalysts -= r_id //Can't have same reagents both as catalyst and reagent. Or can we ?
 
 	if(remaining_possible_catalysts.len < min_catalysts)
-		log_game("Couldn't find enough catalysts for [src]")
+		log_game("无法为 [src] 找到足够的催化剂")
 		return FALSE
 
 	required_catalysts = list()
@@ -228,7 +228,7 @@
 	return possible_ingredients
 
 /obj/item/paper/secretrecipe
-	name = "Old Recipe"
+	name = "旧配方"
 	/// The recipes we can spawn with
 	var/list/possible_recipes = list(/datum/chemical_reaction/randomized/metalgen, /datum/chemical_reaction/randomized/secret_sauce)
 
@@ -257,45 +257,45 @@
 
 	var/datum/chemical_reaction/recipe = GLOB.chemical_reactions_list[pick(possible_recipes)]
 	if(!recipe)
-		add_raw_text("This recipe is illegible.")
+		add_raw_text("这份配方字迹无法辨认。")
 		update_appearance()
 		return
 	var/list/dat = list("<ul>")
 	for(var/datum/reagent/R as anything in recipe.required_reagents)
-		dat += "<li>[recipe.required_reagents[R]]u of [R::name]</li>"
+		dat += "<li>[recipe.required_reagents[R]] 单位的 [R::name]</li>"
 	dat += "</ul>"
 	if(recipe.required_catalysts.len)
-		dat += "With following present: <ul>"
+		dat += "需同时存在以下物质：<ul>"
 		for(var/datum/reagent/R as anything in recipe.required_catalysts)
-			dat += "<li>[recipe.required_catalysts[R]]u of [R::name]</li>"
+			dat += "<li>[recipe.required_catalysts[R]] 单位的 [R::name]</li>"
 		dat += "</ul>"
-	dat += "</ul>Mix slowly<ul>"
+	dat += "</ul>缓慢混合<ul>"
 	if(recipe.required_container)
 		var/obj/item/I = recipe.required_container
-		dat += "<li> in a [initial(I.name)]</li>"
+		dat += "<li> 在 [initial(I.name)] 中</li>"
 	if(recipe.required_temp != 0)
 		if(recipe.is_cold_recipe)
-			dat += " <li>cooling it below [recipe.required_temp] degrees"
-			dat += " but not below [recipe.overheat_temp] degrees</li>"
+			dat += " <li>将其冷却至 [recipe.required_temp] 度以下"
+			dat += " 但不得低于 [recipe.overheat_temp] 度</li>"
 		else
-			dat += " <li>heating it above [recipe.required_temp] degrees"
-			dat += " but not above [recipe.overheat_temp] degrees"
+			dat += " <li>将其加热至 [recipe.required_temp] 度以上"
+			dat += " 但不得高于 [recipe.overheat_temp] 度"
 		if(recipe.thermic_constant > 0)
-			dat += "<li> taking care of its exothermic nature</li>"
+			dat += "<li> 注意其放热特性</li>"
 		else if(recipe.thermic_constant < 0)
-			dat += "<li> taking care of its endothermic nature</li>"
+			dat += "<li> 注意其吸热特性</li>"
 	var/datum/chemical_reaction/randomized/random_recipe = recipe
 	if(random_recipe)
-		dat += "<li> keeping your pH between [recipe.optimal_ph_min] and [recipe.optimal_ph_max]</li>"
-		dat += "<li> and your purity above [recipe.purity_min]</li>"
+		dat += "<li> 保持 pH 在 [recipe.optimal_ph_min] 与 [recipe.optimal_ph_max] 之间</li>"
+		dat += "<li> 并保持纯度高于 [recipe.purity_min]</li>"
 	dat += "</ul>"
-	dat += "."
+	dat += "。"
 	add_raw_text(dat.Join(""))
 	update_appearance()
 
 /// Paper that spawns a recipe for the petrification serum
 /obj/item/paper/secretrecipe/gorgium
-	name = "paper" //gets affixed by rock
+	name = "纸张" //gets affixed by rock
 	possible_recipes = list(/datum/chemical_reaction/randomized/gorgium)
 
 /obj/item/paper/secretrecipe/gorgium/Initialize(mapload)
@@ -305,7 +305,7 @@
 
 /// Recipe that always has metalgen
 /obj/item/paper/secretrecipe/metalgen
-	name = "paper" //gets affixed by uranium
+	name = "纸张" //gets affixed by uranium
 	possible_recipes = list(/datum/chemical_reaction/randomized/metalgen)
 
 /obj/item/paper/secretrecipe/metalgen/Initialize(mapload)

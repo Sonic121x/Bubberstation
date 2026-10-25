@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		return NONE
 	toggle_panel_open()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You [panel_open ? "remove":"attach"] the screws around the power connection."))
+	to_chat(user, span_notice("你[panel_open ? "卸下":"拧上"]电源连接处的螺丝。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/disposal/welder_act(mob/living/user, obj/item/tool)
@@ -142,16 +142,16 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		return NONE
 	if(!tool.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You start slicing the floorweld off \the [src]..."))
+	to_chat(user, span_notice("你开始从\the [src] 上切下地面焊点……"))
 	if(!tool.use_tool(src, user, 20, volume=SMALL_MATERIAL_AMOUNT) || !panel_open)
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You slice the floorweld off \the [src]."))
+	to_chat(user, span_notice("你从\the [src] 上切下了地面焊点。"))
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
 /// The regal rat spawns ratty treasures from the disposal
 /obj/machinery/disposal/proc/rat_rummage(mob/living/basic/regal_rat/king)
-	king.visible_message(span_warning("[king] starts rummaging through [src]."),span_notice("You rummage through [src]..."))
+	king.visible_message(span_warning("[king] 开始在 [src] 里翻找。"),span_notice("你在 [src] 里翻找……"))
 	if (!do_after(king, 2 SECONDS, src, interaction_key = "regalrat"))
 		return
 
@@ -159,18 +159,18 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
-			to_chat(king, span_notice("You find some leftover coins. More for the royal treasury!"))
+			to_chat(king, span_notice("你找到了一些遗落的硬币。皇家金库又充实了一点！"))
 			var/pickedcoin = pick(GLOB.ratking_coins)
 			for(var/i = 1 to rand(1,3))
 				new pickedcoin(king.drop_location())
 		if(6 to 33)
 			cheese = TRUE
-			king.say(pick("Treasure!","Our precious!","Cheese!"), ignore_spam = TRUE, forced = "regal rat rummaging")
-			to_chat(king, span_notice("Score! You find some cheese!"))
+			king.say(pick("宝藏！","我们的宝贝！","奶酪！"), ignore_spam = TRUE, forced = "regal rat rummaging")
+			to_chat(king, span_notice("得手了！你找到了一些奶酪！"))
 			new /obj/item/food/cheese/wedge(king.drop_location())
 		else
 			var/pickedtrash = pick(GLOB.ratking_trash)
-			to_chat(king, span_notice("You just find more garbage and dirt. Lovely, but beneath you now."))
+			to_chat(king, span_notice("你只找到更多垃圾和污垢。虽然不错，但如今的你已看不上这些了。"))
 			new pickedtrash(king.drop_location())
 
 	if (cheese)
@@ -180,15 +180,15 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		var/mob/living/basic/mouse/new_subject = new(king.drop_location())
 		ADD_TRAIT(new_subject, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
 		playsound(new_subject, 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg', 100)
-		visible_message(span_warning("[new_subject] climbs out of [src]!"))
+		visible_message(span_warning("[new_subject] 从 [src] 里爬了出来！"))
 
 /// Moves an item into the diposal bin
 /obj/machinery/disposal/proc/place_item_in_disposal(obj/item/disposing_item, mob/user)
 	if(!user.transferItemToLoc(disposing_item, newloc = src))
 		return FALSE
 	user.visible_message(
-		span_notice("[user.name] places \the [disposing_item] into \the [src]."),
-		span_notice("You place \the [disposing_item] into \the [src]."),
+		span_notice("[user.name] 把\the [disposing_item] 放进了\the [src]。"),
+		span_notice("你把\the [disposing_item] 放进了\the [src]。"),
 	)
 	return TRUE
 
@@ -215,21 +215,21 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	if(target.buckled || target.has_buckled_mobs())
 		return FALSE
 	if(target.mob_size > MOB_SIZE_HUMAN)
-		to_chat(user, span_warning("[target] doesn't fit inside [src]!"))
+		to_chat(user, span_warning("[target] 塞不进 [src]！"))
 		return FALSE
 	add_fingerprint(user)
 	if(user == target)
-		user.visible_message(span_warning("[user] starts climbing into [src]."), span_notice("You start climbing into [src]..."))
+		user.visible_message(span_warning("[user] 开始爬进 [src]。"), span_notice("你开始爬进 [src]……"))
 	else
-		target.visible_message(span_danger("[user] starts putting [target] into [src]."), span_userdanger("[user] starts putting you into [src]!"))
+		target.visible_message(span_danger("[user] 开始把 [target] 塞进 [src]。"), span_userdanger("[user] 开始把你塞进 [src]！"))
 	if(!do_after(user, 2 SECONDS, target) || QDELETED(src))
 		return FALSE
 	target.forceMove(src)
 	if(user == target)
-		user.visible_message(span_warning("[user] climbs into [src]."), span_notice("You climb into [src]."))
+		user.visible_message(span_warning("[user] 爬进了 [src]。"), span_notice("你爬进了 [src]。"))
 	else
-		target.visible_message(span_danger("[user] places [target] in [src]."), span_userdanger("[user] places you in [src]."))
-		log_combat(user, target, "stuffed", addition="into [src]")
+		target.visible_message(span_danger("[user] 把 [target] 放进了 [src]。"), span_userdanger("[user] 把你放进了 [src]。"))
+		log_combat(user, target, "塞入", addition="塞进 [src]")
 	update_appearance()
 	return TRUE
 
@@ -238,22 +238,22 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		bag.undeploy_bodybag(src)
 		qdel(bag)
 		user.visible_message(
-			span_warning("[user] stuffs the empty [bag.name] into [src]."),
-			span_notice("You stuff the empty [bag.name] into [src].")
+			span_warning("[user] 把空 [bag.name] 塞进了 [src]。"),
+			span_notice("你把空 [bag.name] 塞进了 [src]。")
 		)
 		return TRUE
 
 	user.visible_message(
-		span_warning("[user] starts putting [bag] into [src]."),
-		span_notice("You start putting [bag] into [src]...")
+		span_warning("[user] 开始把 [bag] 放进 [src]。"),
+		span_notice("你开始把 [bag] 放进 [src]……")
 	)
 
 	if(!do_after(user, 4 SECONDS, bag) || QDELETED(src))
 		return FALSE
 
 	user.visible_message(
-		span_warning("[user] places [bag] in [src]."),
-		span_notice("You place [bag] in [src].")
+		span_warning("[user] 把 [bag] 放进了 [src]。"),
+		span_notice("你把 [bag] 放进了 [src]。")
 	)
 
 	if(!length(bag.contents))
@@ -360,7 +360,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 
 	. = STORAGE_DUMP_HANDLED
 
-	to_chat(user, span_notice("You dump out [storage.parent] into [src]."))
+	to_chat(user, span_notice("你把 [storage.parent] 里的东西倒进了 [src]。"))
 
 	for(var/obj/item/to_dump in storage.real_location)
 		if(user.active_storage != storage && to_dump.on_found(user))
@@ -374,12 +374,12 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 
 /obj/machinery/disposal/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	. = ..()
-	visible_message(span_warning("[src] is ripped free from the floor!"))
+	visible_message(span_warning("[src] 被从地板上扯了下来！"))
 	deconstruct()
 
 /obj/machinery/disposal/move_crushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	. = ..()
-	visible_message(span_warning("[src] is ripped free from the floor!"))
+	visible_message(span_warning("[src] 被从地板上扯了下来！"))
 	deconstruct()
 
 
@@ -405,10 +405,10 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	density = cur_density
 	target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
 	target.forceMove(src)
-	target.visible_message(span_danger("[shover.name] shoves [target.name] into \the [src]!"),
-		span_userdanger("You're shoved into \the [src] by [target.name]!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, shover)
-	to_chat(src, span_danger("You shove [target.name] into \the [src]!"))
-	log_combat(shover, target, "shoved", "into [src] (disposal bin)[weapon ? " with [weapon]" : ""]")
+	target.visible_message(span_danger("[shover.name] 把 [target.name] 推进了\the [src]！"),
+		span_userdanger("你被 [target.name] 推进了\the [src]！"), span_hear("你听到一阵激烈的推搡，随后是砰的一声巨响！"), COMBAT_MESSAGE_RANGE, shover)
+	to_chat(src, span_danger("你把 [target.name] 推进了\the [src]！"))
+	log_combat(shover, target, "推入", "推进 [src]（垃圾处理单元）[weapon ? "，使用 [weapon]" : ""]")
 	return COMSIG_LIVING_SHOVE_HANDLED
 
 ///Called when a push broom is trying to sweep items onto the turf this object is standing on. Garbage will be moved inside.
@@ -422,7 +422,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	items_to_sweep.Cut()
 
 	update_appearance()
-	to_chat(user, span_notice("You sweep the pile of garbage into [src]."))
+	to_chat(user, span_notice("你把那堆垃圾扫进了 [src]。"))
 	playsound(broom.loc, 'sound/items/weapons/thudswoosh.ogg', 30, TRUE, -1)
 
 
@@ -434,8 +434,8 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 // Can hold items and human size things, no other draggables
 
 /obj/machinery/disposal/bin
-	name = "disposal unit"
-	desc = "A pneumatic waste disposal unit."
+	name = "垃圾处理单元"
+	desc = "一套气动式垃圾处理装置。"
 	icon_state = "disposal"
 	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_IGNORE_MOBILITY
 	/// Reference to the mounted destination tagger for disposal bins with one mounted.
@@ -457,7 +457,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	if(!istype(tool, /obj/item/storage/bag/trash))
 		return ..()
 	var/obj/item/storage/bag/trash/bag = tool
-	to_chat(user, span_warning("You empty the bag."))
+	to_chat(user, span_warning("你清空了垃圾袋。"))
 	bag.atom_storage.remove_all(src)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -466,14 +466,14 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	if(!istype(tool, /obj/item/dest_tagger))
 		return ..()
 	if(mounted_tagger)
-		balloon_alert(user, "already has a tagger!")
+		balloon_alert(user, "已经装了标签器！")
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(tool, TRAIT_NODROP) || !user.transferItemToLoc(tool, src))
-		balloon_alert(user, "stuck to your hand!")
+		balloon_alert(user, "粘在你手上了！")
 		return ITEM_INTERACT_BLOCKING
 	tool.moveToNullspace()
-	user.visible_message(span_notice("[user] snaps \the [tool] onto [src]!"))
-	balloon_alert(user, "tagger returned")
+	user.visible_message(span_notice("[user] 把\the [tool] 咔哒一声扣到了 [src] 上！"))
+	balloon_alert(user, "标签器已装回")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	mounted_tagger = tool
 	update_appearance()
@@ -482,14 +482,14 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 /obj/machinery/disposal/bin/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(!mounted_tagger)
-		balloon_alert(user, "no destination tagger!")
+		balloon_alert(user, "没有目的地标签器！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!user.put_in_hands(mounted_tagger))
-		balloon_alert(user, "destination tagger falls!")
+		balloon_alert(user, "目的地标签器掉了！")
 		mounted_tagger = null
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	user.visible_message(span_notice("[user] unhooks the [mounted_tagger] from [src]."))
-	balloon_alert(user, "tagger pulled")
+	user.visible_message(span_notice("[user] 从 [src] 上取下了 [mounted_tagger]。"))
+	balloon_alert(user, "标签器已取下")
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 	mounted_tagger = null
 	update_appearance(UPDATE_OVERLAYS)
@@ -498,9 +498,9 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 /obj/machinery/disposal/bin/examine(mob/user)
 	. = ..()
 	if(isnull(mounted_tagger))
-		. += span_notice("The destination tagger mount is empty.")
+		. += span_notice("目的地标签器挂架是空的。")
 	else
-		. += span_notice("\The [mounted_tagger] is hanging on the side. Right Click to remove.")
+		. += span_notice("\The [mounted_tagger] 挂在侧面。右键点击可取下。")
 
 /obj/machinery/disposal/bin/Destroy()
 	if(!isnull(mounted_tagger))
@@ -569,10 +569,10 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 		var/mob/thrower = throwingdatum?.get_thrower()
 		if((istype(thrower) && HAS_TRAIT(thrower, TRAIT_THROWINGARM)) || prob(75))
 			AM.forceMove(src)
-			visible_message(span_notice("[AM] lands in [src]."))
+			visible_message(span_notice("[AM] 落进了 [src]。"))
 			update_appearance()
 		else
-			visible_message(span_notice("[AM] bounces off of [src]'s rim!"))
+			visible_message(span_notice("[AM] 从 [src] 的边缘弹开了！"))
 			return ..()
 	else
 		return ..()
@@ -630,7 +630,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	var/turf/final_turf = length(open_turfs) ? pick(open_turfs) : drop_location()
 	var/mob/living/startled_animal = new contained_animal(drop_location())
 	startled_animal.Move(final_turf)
-	visible_message(span_notice("A startled [startled_animal] jumps out of [src]."))
+	visible_message(span_notice("一只受惊的 [startled_animal] 从 [src] 里跳了出来。"))
 	contained_animal = null
 
 /// Initiates flushing
@@ -702,8 +702,8 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 /// Delivery Chute
 
 /obj/machinery/disposal/delivery_chute
-	name = "delivery chute"
-	desc = "A chute for big and small packages alike!"
+	name = "投递滑槽"
+	desc = "大小包裹都能投进去的滑槽！"
 	density = TRUE
 	icon_state = "intake"
 	pressure_charging = FALSE // the chute doesn't need charging and always works
@@ -736,7 +736,7 @@ GLOBAL_VAR_INIT(disposals_animals_spawned, 0)
 	else if(ismob(AM))
 		var/mob/M = AM
 		if(prob(2)) // to prevent mobs being stuck in infinite loops
-			to_chat(M, span_warning("You hit the edge of the chute."))
+			to_chat(M, span_warning("你撞上了滑槽的边缘。"))
 			return
 		M.forceMove(src)
 	flush()

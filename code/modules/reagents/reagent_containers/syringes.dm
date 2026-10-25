@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/syringe
-	name = "syringe"
-	desc = "A syringe that can hold up to 15 units."
+	name = "注射器"
+	desc = "一支注射器，最多可容纳 15 单位。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	base_icon_state = "syringe"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -55,26 +55,26 @@
 	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE_INJECT, user)
 
 	var/contained = reagents.get_reagent_log_string()
-	log_combat(user, target, "attempted to inject", src, addition="which had [contained]")
+	log_combat(user, target, "试图注射", src, addition="其中含有 [contained]")
 
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty! Right-click to draw."))
+		to_chat(user, span_warning("[src] 是空的！右键点击抽取。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!isliving(target) && !target.is_injectable(user))
-		to_chat(user, span_warning("You cannot directly fill [target]!"))
+		to_chat(user, span_warning("你无法直接向 [target] 装填！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target.reagents.holder_full())
-		to_chat(user, span_notice("[target] is full."))
+		to_chat(user, span_notice("[target] 是满的。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target != user)
 			living_target.visible_message(
-				span_danger("[user] is trying to inject [living_target]!"),
-				span_userdanger("[user] is trying to inject you!"),
+				span_danger("[user] 正试图给 [living_target] 注射！"),
+				span_userdanger("[user] 正试图给你注射！"),
 			)
 			if(!do_after(user, CHEM_INTERACT_DELAY(3 SECONDS, user), living_target, extra_checks = CALLBACK(src, PROC_REF(try_syringe), living_target, user)))
 				return ITEM_INTERACT_BLOCKING
@@ -83,17 +83,17 @@
 			if(living_target.reagents.holder_full())
 				return ITEM_INTERACT_BLOCKING
 			living_target.visible_message(
-				span_danger("[user] injects [living_target] with the syringe!"),
-				span_userdanger("[user] injects you with the syringe!"),
+				span_danger("[user] 用注射器给 [living_target] 注射！"),
+				span_userdanger("[user] 用注射器给你注射！"),
 			)
 
 		if(living_target == user)
-			living_target.log_message("injected themselves ([contained]) with [name]", LOG_ATTACK, color="orange")
+			living_target.log_message("给自己注射了 [name]（[contained]）", LOG_ATTACK, color="orange")
 		else
-			log_combat(user, living_target, "injected", src, addition="which had [contained]")
+			log_combat(user, living_target, "注射了", src, addition="其中含有 [contained]")
 
 	if(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user, methods = INJECT))
-		to_chat(user, span_notice("You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units."))
+		to_chat(user, span_notice("你注射了 [amount_per_transfer_from_this] 单位溶液。注射器现在含有 [reagents.total_volume] 单位。"))
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
 

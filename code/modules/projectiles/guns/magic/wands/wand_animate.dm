@@ -1,8 +1,8 @@
 
 /// Wand of making objects alive
 /obj/item/gun/magic/wand/animate
-	name = "wand of animation"
-	desc = "This wand is attuned to life and will animate effected objects into destructive servants."
+	name = "活化之杖"
+	desc = "这根短杖与生命共鸣，会将受影响的物体活化成破坏性的仆从。"
 	school = SCHOOL_EVOCATION
 	ammo_type = /obj/item/ammo_casing/magic/animate
 	icon_state = "animatewand"
@@ -12,11 +12,11 @@
 
 /obj/item/gun/magic/wand/animate/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	to_chat(user, span_warning("You animate one of your own possessions!"))
+	to_chat(user, span_warning("你把自己的一件随身物品活化了！"))
 	charges--
 	var/list/possessions = user.get_equipped_items()
 	if (!length(possessions))
-		to_chat(user, span_notice("...but you don't have any."))
+		to_chat(user, span_notice("……但你身上什么也没有。"))
 		return
 
 	var/obj/some_item = pick(possessions)
@@ -26,7 +26,7 @@
 /obj/item/gun/magic/wand/animate/do_suicide(mob/living/user)
 	charges--
 	if (!iscarbon(user))
-		user.visible_message(span_suicide("... but [user] is already animate!"))
+		user.visible_message(span_suicide("……但 [user] 本来就活得好好的！"))
 		return SHAME
 	var/mob/living/carbon/suicider = user
 	var/obj/item/animate_part = suicider.get_organ_slot(ORGAN_SLOT_BRAIN) || suicider.get_bodypart(BODY_ZONE_HEAD)

@@ -21,7 +21,7 @@
 	///Determines if a chemical reaction can occur inside a mob
 	var/mob_react = TRUE
 	///The message shown to nearby people upon mixing, if applicable
-	var/mix_message = "The solution begins to bubble."
+	var/mix_message = "溶液开始冒泡。"
 	///The sound played upon mixing, if applicable
 	var/mix_sound = 'sound/effects/bubbles/bubbles.ogg'
 
@@ -186,17 +186,17 @@
 	if(holder?.my_atom)
 		var/atom/A = holder.my_atom
 		var/turf/T = get_turf(A)
-		var/message = "Mobs have been spawned in [ADMIN_VERBOSEJMP(T)] by a [reaction_name] reaction."
+		var/message = "在 [ADMIN_VERBOSEJMP(T)] 处通过 [reaction_name] 反应生成了生物。"
 		message += " (<A href='byond://?_src_=vars;Vars=[REF(A)]'>VV</A>)"
 
 		var/mob/M = get(A, /mob)
 		if(M)
-			message += " - Carried By: [ADMIN_LOOKUPFLW(M)]"
+			message += " —— 携带者：[ADMIN_LOOKUPFLW(M)]"
 		else
-			message += " - Last Fingerprint: [(A.fingerprintslast ? A.fingerprintslast : "N/A")]"
+			message += " —— 最后指纹：[(A.fingerprintslast ? A.fingerprintslast : "N/A")]"
 
 		message_admins(message, 0, 1)
-		log_game("[reaction_name] chemical mob spawn reaction occuring at [AREACOORD(T)] carried by [key_name(M)] with last fingerprint [A.fingerprintslast? A.fingerprintslast : "N/A"]")
+		log_game("[reaction_name] 化学生物生成反应发生于 [AREACOORD(T)]，携带者 [key_name(M)]，最后指纹 [A.fingerprintslast? A.fingerprintslast : "N/A"]")
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, TRUE)
 
@@ -276,15 +276,15 @@
 		var/inside_msg
 		if (ismob(holder.my_atom))
 			var/mob/owner = holder.my_atom
-			inside_msg = " inside [ADMIN_LOOKUPFLW(owner)]"
+			inside_msg = " 位于 [ADMIN_LOOKUPFLW(owner)] 体内"
 		var/lastkey = holder.my_atom.fingerprintslast //This can runtime (null.fingerprintslast) - due to plumbing?
 		var/touch_msg = "N/A"
 		if (lastkey)
 			var/mob/toucher = get_mob_by_key(lastkey)
 			touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
 		if (!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(our_turf)][inside_msg]. Last Fingerprint: [touch_msg].")
-		log_game("Reagent explosion reaction occurred at [AREACOORD(our_turf)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
+			message_admins("试剂爆炸反应发生于 [ADMIN_VERBOSEJMP(our_turf)][inside_msg]。最后指纹：[touch_msg]。")
+		log_game("试剂爆炸反应发生于 [AREACOORD(our_turf)]。最后指纹：[lastkey ? lastkey : "N/A"]。" )
 		var/datum/effect_system/reagents_explosion/explosion_system = new(our_turf, power, flash_fact = flash_factor, flame_fact = flame_factor)
 		explosion_system.start(holder.my_atom)
 
@@ -330,7 +330,7 @@
 	var/turf/location = get_turf(holder.my_atom)
 	for(var/mob/living/living_mob in viewers(range, location))
 		living_mob.flash_act(length = length)
-	holder.my_atom.visible_message("The [holder.my_atom] suddenly lets out a bright flash!")
+	holder.my_atom.visible_message("[holder.my_atom] 突然爆发出一道明亮的闪光！")
 
 /*
  *Deafens those in range causing ear damage and muting sound
@@ -365,7 +365,7 @@
 		force_range = (sum_volume/6) + 3
 	if(invert_reagents.reagent_list)
 		do_chem_smoke(force_range, holder.my_atom, holder.my_atom, carry = invert_reagents, log = TRUE)
-	holder.my_atom.audible_message("The [holder.my_atom] suddenly explodes, launching the aerosolized reagents into the air!")
+	holder.my_atom.audible_message("[holder.my_atom] 突然爆炸，将雾化的试剂抛向空中！")
 	if(clear_reactants)
 		clear_reactants(holder)
 	if(clear_products)
@@ -384,7 +384,7 @@
 		force_range = (sum_volume/6) + 3
 	if(reagents.reagent_list)
 		do_chem_smoke(force_range, holder = holder.my_atom, location = holder.my_atom, carry = reagents, log = TRUE)
-	holder.my_atom.audible_message("The [holder.my_atom] suddenly explodes, launching the aerosolized reagents into the air!")
+	holder.my_atom.audible_message("[holder.my_atom] 突然爆炸，将雾化的试剂抛向空中！")
 	if(clear_reactants)
 		clear_reactants(holder)
 	if(clear_products)
@@ -394,7 +394,7 @@
 /datum/chemical_reaction/proc/explode_shockwave(datum/reagents/holder, datum/equilibrium/equilibrium, range = 3, damage = 5, sound_and_text = TRUE, implosion = FALSE)
 	var/turf/this_turf = get_turf(holder.my_atom)
 	if(sound_and_text)
-		holder.my_atom.audible_message("The [holder.my_atom] suddenly explodes, sending a shockwave rippling through the air!")
+		holder.my_atom.audible_message("[holder.my_atom] 突然爆炸，一道冲击波震荡着空气扩散开来！")
 		playsound(this_turf, 'sound/effects/chemistry/shockwave_explosion.ogg', 80, TRUE)
 	//Modified goonvortex
 	for(var/atom/movable/movey in orange(range, this_turf))
@@ -421,7 +421,7 @@
 //Calls the default explosion subsystem handiler to explode with fire (random firespots and noise)
 /datum/chemical_reaction/proc/explode_fire(datum/reagents/holder, datum/equilibrium/equilibrium, range = 3)
 	explosion(holder.my_atom, flame_range = range, explosion_cause = src)
-	holder.my_atom.audible_message("The [holder.my_atom] suddenly errupts in flames!")
+	holder.my_atom.audible_message("[holder.my_atom] 突然燃起熊熊火焰！")
 
 //Creates a ring of fire in a set range around the beaker location
 /datum/chemical_reaction/proc/explode_fire_vortex(datum/reagents/holder, datum/equilibrium/equilibrium, x_offset = 1, y_offset = 1, reverse = FALSE, id = "f_vortex", )
@@ -535,7 +535,7 @@
 			continue
 		if(target.get_eye_protection() && !ignore_eyes)
 			continue
-		to_chat(target, "The [holder.my_atom.name] launches some of [holder.p_their()] contents at you!")
+		to_chat(target, "[holder.my_atom.name] 把 [holder.p_their()] 一部分内容物喷向了你！")
 		target.reagents.add_reagent(reagent, vol)
 
 

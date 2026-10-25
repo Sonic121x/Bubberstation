@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/blood
-	name = "blood pack"
-	desc = "Contains blood used for transfusion. Must be attached to an IV drip."
+	name = "血袋"
+	desc = "装有可用于输血的血液。必须接在输液架上。"
 	icon = 'icons/obj/medical/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 200
@@ -26,7 +26,7 @@
 /obj/item/reagent_containers/blood/update_name(updates)
 	. = ..()
 	if(!labeled)
-		name = "blood pack[blood_type ? " - [blood_type]" : ""]"
+		name = "血袋[blood_type ? " - [blood_type]" : ""]"
 
 /obj/item/reagent_containers/blood/random
 	icon_state = "random_bloodpack"
@@ -65,14 +65,14 @@
 
 /obj/item/reagent_containers/blood/snail/examine()
 	. = ..()
-	. += span_notice("It's a bit slimy... The label indicates that this is meant for snails.")
+	. += span_notice("摸起来有点黏滑……标签说明这是给蜗牛用的。")
 
 /obj/item/reagent_containers/blood/podperson
 	blood_type = BLOOD_TYPE_H2O
 
 /obj/item/reagent_containers/blood/podperson/examine()
 	. = ..()
-	. += span_notice("This appears to be some very overpriced water.")
+	. += span_notice("这看起来是一些贵得离谱的水。")
 
 // for slimepeople
 /obj/item/reagent_containers/blood/toxin
@@ -80,7 +80,7 @@
 
 /obj/item/reagent_containers/blood/toxin/examine()
 	. = ..()
-	. += span_notice("There is a toxin warning on the label. This is for slimepeople.")
+	. += span_notice("标签上印有毒素警示。这是给史莱姆人用的。")
 
 /obj/item/reagent_containers/blood/universal
 	blood_type = BLOOD_TYPE_UNIVERSAL
@@ -88,4 +88,4 @@
 /obj/item/reagent_containers/blood/nameformat(input, user)
 	playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 	labeled = TRUE
-	return "blood pack[input? " - [input]" : null]"
+	return "血袋[input? " - [input]" : null]"

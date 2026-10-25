@@ -1,7 +1,7 @@
 /datum/reagent/reaction_agent
 	abstract_type = /datum/reagent/reaction_agent
-	name = "Reaction Agent"
-	description = "Hello! I am a bugged reagent. Please report me for my crimes. Thank you!!"
+	name = "反应剂"
+	description = "你好！我是一个出了 bug 的试剂。请举报我的罪行。谢谢！！"
 
 /datum/reagent/reaction_agent/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
 	if(!target)
@@ -18,8 +18,8 @@
 	return TRUE
 
 /datum/reagent/reaction_agent/acidic_buffer
-	name = "Strong Acidic Buffer"
-	description = "This reagent will consume itself and move the pH of a beaker towards acidity when added to another."
+	name = "强酸性缓冲液"
+	description = "这种试剂会消耗自身，并使加入它的烧杯中的 pH 值向酸性移动。"
 	color = "#fbc314"
 	ph = 0
 	inverse_chem = null
@@ -36,9 +36,9 @@
 	//do the ph change
 	var/message
 	if(target.ph <= ph)
-		message = "The beaker froths as the buffer is added, to no effect."
+		message = "加入缓冲液后烧杯泛起泡沫，但没有任何效果。"
 	else
-		message = "The beaker froths as the pH changes!"
+		message = "加入缓冲液后烧杯泛起泡沫，pH 值发生了变化！"
 		target.adjust_all_reagents_ph((-(amount / target.total_volume) * BUFFER_IONIZING_STRENGTH))
 		target.update_total()
 
@@ -50,8 +50,8 @@
 		holder.update_total()
 
 /datum/reagent/reaction_agent/basic_buffer
-	name = "Strong Basic Buffer"
-	description = "This reagent will consume itself and move the pH of a beaker towards alkalinity when added to another."
+	name = "强碱性缓冲液"
+	description = "这种试剂会消耗自身，并使加入它的烧杯中的 pH 值向碱性移动。"
 	color = "#3853a4"
 	ph = 14
 	inverse_chem = null
@@ -67,9 +67,9 @@
 	//do the ph change
 	var/message
 	if(target.ph >= ph)
-		message = "The beaker froths as the buffer is added, to no effect."
+		message = "加入缓冲液后烧杯泛起泡沫，但没有任何效果。"
 	else
-		message = "The beaker froths as the pH changes!"
+		message = "加入缓冲液后烧杯泛起泡沫，pH 值发生了变化！"
 		target.adjust_all_reagents_ph(((amount / target.total_volume) * BUFFER_IONIZING_STRENGTH))
 		target.update_total()
 
@@ -83,18 +83,18 @@
 //purity testor/reaction agent prefactors
 
 /datum/reagent/prefactor_a
-	name = "Interim Product Alpha"
-	description = "This reagent is a prefactor to the purity tester reagent, and will react with stable plasma to create it"
+	name = "中间产物 α"
+	description = "这种试剂是纯度检测试剂的前体，会与稳定等离子体反应生成它"
 	color = "#bafa69"
 
 /datum/reagent/prefactor_b
-	name = "Interim Product Beta"
-	description = "This reagent is a prefactor to the reaction speed agent reagent, and will react with stable plasma to create it"
+	name = "中间产物 β"
+	description = "这种试剂是反应加速试剂的前体，会与稳定等离子体反应生成它"
 	color = "#8a3aa9"
 
 /datum/reagent/reaction_agent/purity_tester
-	name = "Purity Tester"
-	description = "This reagent will consume itself and violently react if there is a highly impure reagent in the beaker."
+	name = "纯度检测剂"
+	description = "这种试剂会消耗自身，如果烧杯中存在纯度极低的试剂，它会剧烈反应。"
 	ph = 3
 	color = "#ffffff"
 
@@ -108,10 +108,10 @@
 		if(reagent.purity <= reagent.inverse_chem_val)
 			is_inverse = TRUE
 	if(is_inverse)
-		target.my_atom.audible_message(span_warning("The beaker bubbles violently as the reagent is added!"))
+		target.my_atom.audible_message(span_warning("加入试剂后烧杯剧烈冒泡！"))
 		playsound(target.my_atom, 'sound/effects/chemistry/bufferadd.ogg', 50, TRUE)
 	else
-		target.my_atom.audible_message(span_warning("The added reagent doesn't seem to do much."))
+		target.my_atom.audible_message(span_warning("加入的试剂似乎没什么作用。"))
 	if(!copy_only)
 		volume -= amount
 		holder.update_total()
@@ -120,8 +120,8 @@
 #define SPEED_REAGENT_STRENGTH 20
 
 /datum/reagent/reaction_agent/speed_agent
-	name = "Tempomyocin"
-	description = "This reagent will consume itself and speed up an ongoing reaction, modifying the current reaction's purity by its own."
+	name = "速霉素"
+	description = "这种试剂会消耗自身并加速正在进行的反应，并以自身纯度改变当前反应的纯度。"
 	ph = 10
 	color = "#e61f82"
 
@@ -147,8 +147,8 @@
 #undef SPEED_REAGENT_STRENGTH
 
 /datum/reagent/reaction_agent/inversing_buffer
-	name = "Chiral Inversing Buffer"
-	description = "This reagent will consume itself and convert impure reagents into their inversed counterparts. Amount varies based on volume of added buffer."
+	name = "手性反转缓冲液"
+	description = "这种试剂会消耗自身，并将不纯的试剂转化为其反转对应物。转化量取决于所加入缓冲液的体积。"
 	ph = 7
 	color = "#b60046"
 
@@ -176,10 +176,10 @@
 
 	//audible feedback
 	if(conversion_buffer < amount * 10)
-		target.my_atom.audible_message(span_warning("The beaker goes into a rolling boil as the contents begin inversing!"))
+		target.my_atom.audible_message(span_warning("烧杯中的内容物开始反转，剧烈沸腾起来！"))
 		playsound(target.my_atom, 'sound/effects/chemistry/catalyst.ogg', 50, TRUE)
 	else
-		target.my_atom.audible_message(span_warning("The buffer fizzles with no effect."))
+		target.my_atom.audible_message(span_warning("缓冲液嘶嘶作响，没有任何效果。"))
 
 	//remove inversening reagent based on total buffer removed
 	var/volume_to_transfer = amount - (amount * (1 - (conversion_buffer / (amount * 10))))

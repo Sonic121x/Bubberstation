@@ -1,6 +1,6 @@
 /obj/structure/altar
-	name = "\improper Altar"
-	desc = "A religious structure. You could lie on it if you wanted to."
+	name = "\improper 祭坛"
+	desc = "一座宗教建筑。如果你愿意，可以躺上去。"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "convertaltar"
 	density = TRUE
@@ -35,9 +35,9 @@
 		return ..()
 	var/mob/living/pushed_mob = user.pulling
 	if(pushed_mob.buckled)
-		to_chat(user, span_warning("[pushed_mob] is buckled to [pushed_mob.buckled]!"))
+		to_chat(user, span_warning("[pushed_mob] 已被绑在 [pushed_mob.buckled] 上！"))
 		return ..()
-	to_chat(user, span_notice("You try to coax [pushed_mob] onto [src]..."))
+	to_chat(user, span_notice("你试着把 [pushed_mob] 劝上 [src]……"))
 	if(!do_after(user,(5 SECONDS),target = pushed_mob))
 		return ..()
 	pushed_mob.forceMove(loc)
@@ -45,8 +45,8 @@
 
 /// This one actually has relevance to chaplains
 /obj/structure/altar/of_gods
-	name = "\improper Altar of the Gods"
-	desc = "An altar which allows the head of the church to choose a sect of religious teachings as well as provide sacrifices to earn favor."
+	name = "\improper 众神祭坛"
+	desc = "一座祭坛，教会领袖可在此选择宗教教派，并献上祭品以获取恩宠。"
 	///Avoids having to check global everytime by referencing it locally.
 	var/datum/religion_sect/sect_to_altar
 
@@ -63,17 +63,17 @@
 /obj/structure/altar/of_gods/examine_more(mob/user)
 	if(!isobserver(user))
 		return ..()
-	. = list(span_notice("<i>You examine [src] closer, and note the following...</i>"))
+	. = list(span_notice("<i>你更仔细地检查 [src]，注意到以下信息……</i>"))
 	if(GLOB.religion)
-		. += list(span_notice("Deity: [GLOB.deity]."))
-		. += list(span_notice("Religion: [GLOB.religion]."))
-		. += list(span_notice("Bible: [GLOB.bible_name]."))
+		. += list(span_notice("神祇：[GLOB.deity]。"))
+		. += list(span_notice("宗教：[GLOB.religion]。"))
+		. += list(span_notice("圣经：[GLOB.bible_name]。"))
 	if(GLOB.religious_sect)
-		. += list(span_notice("Sect: [GLOB.religious_sect]."))
-		. += list(span_notice("Favor: [GLOB.religious_sect.favor]."))
+		. += list(span_notice("教派：[GLOB.religious_sect]。"))
+		. += list(span_notice("恩宠：[GLOB.religious_sect.favor]。"))
 	var/chaplains = get_chaplains()
 	if(isAdminObserver(user) && chaplains)
-		. += list(span_notice("Chaplains: [chaplains]."))
+		. += list(span_notice("牧师：[chaplains]。"))
 
 /obj/structure/altar/of_gods/proc/reflect_sect_in_icons()
 	if(isnull(GLOB.religious_sect))
@@ -102,8 +102,8 @@
 	return chaplain_string
 
 /obj/item/ritual_totem
-	name = "ritual totem"
-	desc = "A wooden totem with strange carvings on it."
+	name = "仪式图腾"
+	desc = "一根刻有奇怪纹样的木制图腾。"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "ritual_totem"
 	inhand_icon_state = "sheet-wood"
@@ -124,7 +124,7 @@
 
 /// When the ritual totem is depleted of antimagic
 /obj/item/ritual_totem/proc/expire(mob/user)
-	to_chat(user, span_warning("[src] consumes the magic within itself and quickly decays into rot!"))
+	to_chat(user, span_warning("[src] 吞噬了自身内部的魔法，随即迅速腐朽成灰！"))
 	new /obj/effect/decal/cleanable/ash(drop_location())
 	qdel(src)
 
@@ -136,18 +136,18 @@
 	. = ..()
 	var/is_holy = user.mind?.holy_role
 	if(is_holy)
-		. += span_notice("[src] can only be moved by important followers of [GLOB.deity].")
+		. += span_notice("[src] 只能由 [GLOB.deity] 的重要追随者移动。")
 
 /obj/item/ritual_totem/pickup(mob/taker)
 	var/initial_loc = loc
 	var/holiness = taker.mind?.holy_role
 	var/no_take = FALSE
 	if(holiness == NONE)
-		to_chat(taker, span_warning("Try as you may, you're seemingly unable to pick [src] up!"))
+		to_chat(taker, span_warning("尽管你努力尝试，似乎就是无法拾起 [src]！"))
 		no_take = TRUE
 	else if(holiness == HOLY_ROLE_DEACON) //deacons cannot pick them up either
 		no_take = TRUE
-		to_chat(taker, span_warning("You cannot pick [src] up. It seems you aren't important enough to [GLOB.deity] to do that."))
+		to_chat(taker, span_warning("你无法拾起 [src]。看来你对 [GLOB.deity] 而言还不够重要。"))
 	..()
 	if(no_take)
 		taker.dropItemToGround(src)

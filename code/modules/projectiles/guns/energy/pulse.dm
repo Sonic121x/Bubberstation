@@ -1,6 +1,6 @@
 /obj/item/gun/energy/pulse
-	name = "pulse rifle"
-	desc = "A heavy-duty, multifaceted energy rifle with three modes. Preferred by front-line combat personnel."
+	name = "脉冲步枪"
+	desc = "一把重型多面能量步枪，拥有三种模式。前线作战人员的最爱。"
 	icon_state = "pulse"
 	inhand_icon_state = null
 	worn_icon_state = null
@@ -25,21 +25,21 @@
 	SSpoints_of_interest.make_point_of_interest(src)
 	var/turf/T = get_turf(src)
 
-	message_admins("A pulse rifle prize has been created at [ADMIN_VERBOSEJMP(T)]")
-	log_game("A pulse rifle prize has been created at [AREACOORD(T)]")
+	message_admins("一把脉冲步枪奖品已在 [ADMIN_VERBOSEJMP(T)] 生成")
+	log_game("一把脉冲步枪奖品已在 [AREACOORD(T)] 生成")
 
 	notify_ghosts(
-		"Someone won a pulse rifle as a prize!",
+		"有人赢得了一把脉冲步枪作为奖品！",
 		source = src,
-		header = "Pulse rifle prize",
+		header = "脉冲步枪奖品",
 	)
 
 /obj/item/gun/energy/pulse/loyalpin
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/carbine
-	name = "pulse carbine"
-	desc = "A compact variant of the pulse rifle with less firepower but easier storage."
+	name = "脉冲卡宾枪"
+	desc = "脉冲步枪的紧凑型号，火力较弱但更易收纳。"
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "pulse_carbine"
@@ -64,18 +64,18 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/pulse/destroyer
-	name = "pulse destroyer"
-	desc = "A heavy-duty energy rifle built for pure destruction."
+	name = "脉冲毁灭者"
+	desc = "一把专为纯粹毁灭而生的重型能量步枪。"
 	worn_icon_state = "pulse"
 	cell_type = /obj/item/stock_parts/power_store/cell/infinite
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse)
 
 /obj/item/gun/energy/pulse/destroyer/attack_self(mob/living/user)
-	to_chat(user, span_danger("[src.name] has three settings, and they are all DESTROY."))
+	to_chat(user, span_danger("[src.name] 有三种模式，而它们全都是“毁灭”。"))
 
 /obj/item/gun/energy/pulse/pistol
-	name = "pulse pistol"
-	desc = "A pulse rifle in an easily concealed handgun package with low capacity."
+	name = "脉冲手枪"
+	desc = "手枪外形、便于隐藏、容量较低的脉冲步枪。"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	icon_state = "pulse_pistol"
@@ -91,7 +91,7 @@
 
 /obj/item/gun/energy/pulse/pistol/m1911
 	name = "\improper M1911-P"
-	desc = "A compact pulse core in a classic handgun frame for Nanotrasen officers. It's not the size of the gun, it's the size of the hole it puts through people."
+	desc = "经典手枪框架中装入紧凑脉冲核心，专为纳米传讯军官打造。重要的不是枪的尺寸，而是它在人身上打出的洞有多大。"
 	icon_state = "m1911"
 	inhand_icon_state = "gun"
 	cell_type = /obj/item/stock_parts/power_store/cell/infinite

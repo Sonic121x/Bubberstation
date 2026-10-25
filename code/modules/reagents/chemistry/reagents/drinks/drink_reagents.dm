@@ -1,8 +1,8 @@
 /datum/reagent/consumable/orangejuice
-	name = "Orange Juice"
-	description = "Both delicious AND rich in Vitamin C, what more do you need?"
+	name = "橙汁"
+	description = "既美味又富含维生素 C，你还想要什么？"
 	color = "#E78108" // rgb: 231, 129, 8
-	taste_description = "oranges"
+	taste_description = "橙子"
 	ph = 3.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -15,10 +15,10 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/tomatojuice
-	name = "Tomato Juice"
-	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
+	name = "番茄汁"
+	description = "把番茄做成了汁。多汁的大番茄就这么浪费了，唉。"
 	color = "#731008" // rgb: 115, 16, 8
-	taste_description = "tomatoes"
+	taste_description = "番茄"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/tomatojuice
@@ -30,10 +30,10 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/limejuice
-	name = "Lime Juice"
-	description = "The sweet-sour juice of limes."
+	name = "青柠汁"
+	description = "青柠酸甜的汁水。"
 	color = "#a6f19a" // rgb: 166, 241, 154
-	taste_description = "unbearable sourness"
+	taste_description = "难以忍受的酸味"
 	ph = 2.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -46,10 +46,10 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/carrotjuice
-	name = "Carrot Juice"
-	description = "It is just like a carrot but without crunching."
+	name = "胡萝卜汁"
+	description = "就像一根胡萝卜，只是不用嚼。"
 	color = "#973800" // rgb: 151, 56, 0
-	taste_description = "carrots"
+	taste_description = "胡萝卜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -68,25 +68,25 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/berryjuice
-	name = "Berry Juice"
-	description = "A delicious blend of several different kinds of berries."
+	name = "浆果汁"
+	description = "几种不同浆果调制而成的美味混合汁。"
 	color = "#863333" // rgb: 134, 51, 51
-	taste_description = "berries"
+	taste_description = "浆果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/applejuice
-	name = "Apple Juice"
-	description = "The sweet juice of an apple, fit for all ages."
+	name = "苹果汁"
+	description = "苹果的甜美汁液，男女老少皆宜。"
 	color = "#fff06b" // rgb: 255, 240, 107
-	taste_description = "apples"
+	taste_description = "苹果"
 	ph = 3.2 // ~ 2.7 -> 3.7
 
 /datum/reagent/consumable/poisonberryjuice
-	name = "Poison Berry Juice"
-	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
+	name = "毒浆果汁"
+	description = "由多种剧毒浆果调制而成的美味果汁。"
 	color = "#792b49" // rgb: 121, 43, 73
-	taste_description = "berries"
+	taste_description = "浆果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -96,28 +96,28 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/watermelonjuice
-	name = "Watermelon Juice"
-	description = "Delicious juice made from watermelon."
+	name = "西瓜汁"
+	description = "用西瓜制成的美味果汁。"
 	color = "#af5e5e" // rgb: 175, 94, 94
-	taste_description = "juicy watermelon"
+	taste_description = "多汁的西瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/lemonjuice
-	name = "Lemon Juice"
-	description = "This juice is VERY sour."
+	name = "柠檬汁"
+	description = "这果汁非常酸。"
 	color = "#ebeb9e" // rgb: 235, 235, 158
-	taste_description = "sourness"
+	taste_description = "酸味"
 	ph = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/lemonjuice
 
 /datum/reagent/consumable/banana
-	name = "Banana Juice"
-	description = "The raw essence of a banana. HONK"
+	name = "香蕉汁"
+	description = "香蕉的原始精华。HONK"
 	color = "#FFFCB9" // rgb: 255, 252, 185
-	taste_description = "banana"
+	taste_description = "香蕉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -129,9 +129,9 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/nothing
-	name = "Nothing"
-	description = "Absolutely nothing."
-	taste_description = "nothing"
+	name = "虚无"
+	description = "绝对空无一物。"
+	taste_description = "虚无"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -147,11 +147,11 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/laughter
-	name = "Laughter"
-	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
+	name = "欢笑"
+	description = "有人说这是最好的药，但近期研究证明并非如此。"
 	metabolization_rate = INFINITY
 	color = "#FF4DD2"
-	taste_description = "laughter"
+	taste_description = "欢笑"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -161,36 +161,36 @@
 	affected_mob.add_mood_event("chemical_laughter", /datum/mood_event/chemical_laughter)
 
 /datum/reagent/consumable/superlaughter
-	name = "Super Laughter"
-	description = "Funny until you're the one laughing."
+	name = "超级欢笑"
+	description = "在轮到你自己笑之前都很好笑。"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	color = "#FF4DD2"
-	taste_description = "laughter"
+	taste_description = "欢笑"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/superlaughter/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(16, seconds_per_tick))
-		affected_mob.visible_message(span_danger("[affected_mob] bursts out into a fit of uncontrollable laughter!"), span_userdanger("You burst out in a fit of uncontrollable laughter!"))
+		affected_mob.visible_message(span_danger("[affected_mob] 爆发出一阵无法抑制的大笑！"), span_userdanger("你爆发出一阵无法抑制的大笑！"))
 		affected_mob.Stun(5)
 		affected_mob.add_mood_event("chemical_laughter", /datum/mood_event/chemical_superlaughter)
 
 /datum/reagent/consumable/potato_juice
-	name = "Potato Juice"
-	description = "Juice of the potato. Bleh."
+	name = "土豆汁"
+	description = "土豆榨的汁。呃。"
 	nutriment_factor = 2
 	color = "#E8A856" // rgb: 234, 157, 58
-	taste_description = "irish sadness"
+	taste_description = "爱尔兰式的悲伤"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/pickle
-	name = "Pickle Juice"
-	description = "More accurately, this is the brine the pickle was floating in"
+	name = "腌黄瓜汁"
+	description = "更准确地说，这是腌黄瓜泡着的卤水"
 	nutriment_factor = 2
 	color = "#cde65e" // rgb: 205, 230, 94
-	taste_description = "vinegar brine"
+	taste_description = "醋卤"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -202,26 +202,26 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/grapejuice
-	name = "Grape Juice"
-	description = "The juice of a bunch of grapes. Guaranteed non-alcoholic."
+	name = "葡萄汁"
+	description = "一串葡萄榨成的汁。保证不含酒精。"
 	color = "#290029" // dark purple
-	taste_description = "grape soda"
+	taste_description = "葡萄汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/plumjuice
-	name = "Plum Juice"
-	description = "Refreshing and slightly acidic beverage."
+	name = "李子汁"
+	description = "清爽且略带酸味的饮品。"
 	color = "#b6062c"
-	taste_description = "plums"
+	taste_description = "李子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/milk
-	name = "Milk"
-	description = "An opaque white liquid produced by the mammary glands of mammals."
+	name = "牛奶"
+	description = "哺乳动物乳腺分泌的不透明白色液体。"
 	color = "#DFDFDF" // rgb: 223, 223, 223
-	taste_description = "milk"
+	taste_description = "牛奶"
 	ph = 6.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -251,10 +251,10 @@
 		return TRUE
 
 /datum/reagent/consumable/soymilk
-	name = "Soy Milk"
-	description = "An opaque white liquid made from soybeans."
+	name = "豆奶"
+	description = "用大豆制成的不透明白色液体。"
 	color = "#DFDFC7" // rgb: 223, 223, 199
-	taste_description = "soy milk"
+	taste_description = "豆奶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/condiment/soymilk
@@ -266,10 +266,10 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/cream
-	name = "Cream"
-	description = "The fatty, still liquid part of milk. Why don't you mix this with sum scotch, eh?"
+	name = "奶油"
+	description = "牛奶中富含脂肪、仍呈液态的部分。何不把它和点苏格兰威士忌混一混？"
 	color = "#DFD7AF" // rgb: 223, 215, 175
-	taste_description = "creamy milk"
+	taste_description = "浓稠的牛奶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/cream
@@ -280,12 +280,12 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/coffee
-	name = "Coffee"
-	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
+	name = "咖啡"
+	description = "咖啡是用咖啡树烘烤过的种子（通常称为咖啡豆）冲泡而成的饮品。"
 	color = "#482000" // rgb: 72, 32, 0
 	nutriment_factor = 0
 	overdose_threshold = 80
-	taste_description = "bitterness"
+	taste_description = "苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
@@ -306,11 +306,11 @@
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 2.5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/tea
-	name = "Tea"
-	description = "Tasty black tea, it has antioxidants, it's good for you!"
+	name = "茶"
+	description = "美味的红茶，含有抗氧化剂，对身体有益！"
 	color = "#101000" // rgb: 16, 16, 0
 	nutriment_factor = 0
-	taste_description = "tart black tea"
+	taste_description = "微涩的红茶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_STOCK
@@ -333,7 +333,7 @@
 		if(SPT_PROB(10, seconds_per_tick))
 			var/helped = iter_wound.tea_life_process()
 			if(!to_chatted && helped)
-				to_chat(affected_mob, span_notice("A calm, relaxed feeling suffuses you. Your wounds feel a little healthier."))
+				to_chat(affected_mob, span_notice("一股平静放松的感觉涌遍全身。你的伤口似乎好了一点。"))
 			to_chatted = TRUE
 
 // Different handling, different name.
@@ -359,37 +359,37 @@
 	return TRUE
 
 /datum/reagent/consumable/lemonade
-	name = "Lemonade"
-	description = "Sweet, tangy lemonade. Good for the soul."
+	name = "柠檬水"
+	description = "酸甜爽口的柠檬水。对灵魂有益。"
 	color = "#FFE978"
 	quality = DRINK_NICE
-	taste_description = "sunshine and summertime"
+	taste_description = "阳光与夏日"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
 
 /datum/reagent/consumable/tea/arnold_palmer
-	name = "Arnold Palmer"
-	description = "Encourages the patient to go golfing."
+	name = "阿诺德·帕尔默"
+	description = "能鼓励病人去打高尔夫。"
 	color = "#FFB766"
 	quality = DRINK_NICE
 	nutriment_factor = 10
-	taste_description = "bitter tea"
+	taste_description = "苦涩的茶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/tea/arnold_palmer/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(2.5, seconds_per_tick))
-		to_chat(affected_mob, span_notice("[pick("You remember to square your shoulders.","You remember to keep your head down.","You can't decide between squaring your shoulders and keeping your head down.","You remember to relax.","You think about how someday you'll get two strokes off your golf game.")]"))
+		to_chat(affected_mob, span_notice("[pick("你想起要挺直肩膀。","你想起要低着头。","你在挺直肩膀和低头之间拿不定主意。","你想起要放松。","你想著有朝一日能把高尔夫成绩减少两杆。")]"))
 
 /datum/reagent/consumable/icecoffee
-	name = "Iced Coffee"
-	description = "Coffee and ice, refreshing and cool."
+	name = "冰咖啡"
+	description = "咖啡加冰，清爽凉快。"
 	color = "#462b15" // rgb: 70, 43, 21
 	nutriment_factor = 0
 	overdose_threshold = 80
-	taste_description = "bitter coldness"
+	taste_description = "苦中带凉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -406,12 +406,12 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/hot_ice_coffee
-	name = "Hot Ice Coffee"
-	description = "Coffee with pulsing ice shards"
+	name = "热冰咖啡"
+	description = "带着脉动冰片的咖啡"
 	color = "#462b15" // rgb: 70, 43, 21
 	nutriment_factor = 0
 	overdose_threshold = 80
-	taste_description = "bitter coldness and a hint of smoke"
+	taste_description = "苦中带凉，还有一丝烟熏味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -430,11 +430,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/icetea
-	name = "Iced Tea"
-	description = "No relation to a certain rap artist/actor."
+	name = "冰茶"
+	description = "与某位说唱歌手兼演员毫无关系。"
 	color = "#104038" // rgb: 16, 64, 56
 	nutriment_factor = 0
-	taste_description = "sweet tea"
+	taste_description = "甜茶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -450,10 +450,10 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/space_cola
-	name = "Cola"
-	description = "A refreshing beverage."
+	name = "可乐"
+	description = "一款清爽的饮品。"
 	color = "#100800" // rgb: 16, 8, 0
-	taste_description = "cola"
+	taste_description = "可乐"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -463,11 +463,11 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/roy_rogers
-	name = "Roy Rogers"
-	description = "A sweet fizzy drink."
+	name = "罗伊·罗杰斯"
+	description = "甜味气泡饮品。"
 	color = "#53090B"
 	quality = DRINK_GOOD
-	taste_description = "fruity overlysweet cola"
+	taste_description = "果味过甜的可乐"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -478,11 +478,11 @@
 	return ..()
 
 /datum/reagent/consumable/nuka_cola
-	name = "Nuka Cola"
-	description = "Cola, cola never changes."
+	name = "核子可乐"
+	description = "可乐，可乐永不改变。"
 	color = "#100800" // rgb: 16, 8, 0
 	quality = DRINK_VERYGOOD
-	taste_description = "the future"
+	taste_description = "未来"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -506,13 +506,13 @@
 		affected_mob.AddComponent(/datum/component/irradiated)
 
 /datum/reagent/consumable/rootbeer
-	name = "Root Beer"
-	description = "A delightfully bubbly root beer, filled with so much sugar that it can actually speed up the user's trigger finger."
+	name = "根汁汽水"
+	description = "一杯气泡怡人的根汁汽水，糖多到真能让你扣扳机的手指更快。"
 	color = "#181008" // rgb: 24, 16, 8
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 10
 	metabolization_rate = 2 * REAGENTS_METABOLISM
-	taste_description = "a monstrous sugar rush"
+	taste_description = "猛烈的糖分冲击"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	/// If we activated the effect
@@ -522,14 +522,14 @@
 	. = ..()
 	REMOVE_TRAIT(affected_mob, TRAIT_DOUBLE_TAP, type)
 	if(current_cycle > 10)
-		to_chat(affected_mob, span_warning("You feel kinda tired as your sugar rush wears off..."))
+		to_chat(affected_mob, span_warning("糖分冲击退去，你觉得有点累了……"))
 		affected_mob.adjust_stamina_loss(min(80, current_cycle * 3), required_biotype = affected_biotype)
 		affected_mob.adjust_drowsiness((current_cycle-1) * 2 SECONDS)
 
 /datum/reagent/consumable/rootbeer/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(current_cycle > 3 && !effect_enabled) // takes a few seconds for the bonus to kick in to prevent microdosing
-		to_chat(affected_mob, span_notice("You feel your trigger finger getting itchy..."))
+		to_chat(affected_mob, span_notice("你觉得扣扳机的手指开始发痒……"))
 		ADD_TRAIT(affected_mob, TRAIT_DOUBLE_TAP, type)
 		effect_enabled = TRUE
 
@@ -540,11 +540,11 @@
 		affected_mob.adjust_dizzy(0.75 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/grey_bull
-	name = "Grey Bull"
-	description = "Grey Bull, it gives you gloves!"
+	name = "灰牛"
+	description = "灰牛，它会给你手套！"
 	color = "#EEFF00" // rgb: 238, 255, 0
 	quality = DRINK_VERYGOOD
-	taste_description = "carbonated oil"
+	taste_description = "碳酸油"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_SHOCKIMMUNE)
@@ -565,10 +565,10 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/spacemountainwind
-	name = "SM Wind"
-	description = "Blows right through you like a space wind."
+	name = "太空山风"
+	description = "像太空风一样直接吹透你。"
 	color = "#102000" // rgb: 16, 32, 0
-	taste_description = "sweet citrus soda"
+	taste_description = "甜柑橘汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -581,10 +581,10 @@
 	affected_mob.set_jitter_if_lower(5 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/dr_gibb
-	name = "Dr. Gibb"
-	description = "A delicious blend of 42 different flavours."
+	name = "吉布博士"
+	description = "42 种不同风味的绝妙混合。"
 	color = "#102000" // rgb: 16, 32, 0
-	taste_description = "cherry soda" // FALSE ADVERTISING
+	taste_description = "樱桃汽水" // FALSE ADVERTISING
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -594,10 +594,10 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/space_up
-	name = "Space-Up"
-	description = "Tastes like a hull breach in your mouth."
+	name = "太空七喜"
+	description = "喝起来像嘴里发生了船体破裂。"
 	color = COLOR_VIBRANT_LIME // rgb: 0, 255, 0
-	taste_description = "cherry soda"
+	taste_description = "樱桃汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -606,10 +606,10 @@
 	affected_mob.adjust_bodytemperature(-4 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/lemon_lime
-	name = "Lemon Lime"
-	description = "A tangy substance made of 0.5% natural citrus!"
+	name = "柠檬青柠"
+	description = "由 0.5% 天然柑橘制成的酸爽物质！"
 	color = "#8CFF00" // rgb: 135, 255, 0
-	taste_description = "tangy lime and lemon soda"
+	taste_description = "酸爽的青柠柠檬汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -618,10 +618,10 @@
 	affected_mob.adjust_bodytemperature(-4 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/pwr_game
-	name = "Pwr Game"
-	description = "The only drink with the PWR that true gamers crave."
+	name = "电玩能量"
+	description = "唯一含有真正玩家渴望的那股 PWR 的饮品。"
 	color = "#9385bf" // rgb: 58, 52, 75
-	taste_description = "sweet and salty tang"
+	taste_description = "咸甜交织的酸爽"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -629,8 +629,8 @@
 	. = ..()
 	if(exposed_mob?.mind?.get_skill_level(/datum/skill/gaming) >= SKILL_LEVEL_LEGENDARY && (methods & INGEST) && !HAS_TRAIT(exposed_mob, TRAIT_GAMERGOD))
 		ADD_TRAIT(exposed_mob, TRAIT_GAMERGOD, "pwr_game")
-		to_chat(exposed_mob, span_nicegreen("As you imbibe the Pwr Game, your gamer third eye opens... \
-		You feel as though a great secret of the universe has been made known to you..."))
+		to_chat(exposed_mob, span_nicegreen("当你饮下电玩能量时，你的玩家第三只眼睁开了…… \
+		你感觉仿佛宇宙的一大秘密已展现在你面前……"))
 
 /datum/reagent/consumable/pwr_game/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -639,10 +639,10 @@
 		affected_mob.mind?.adjust_experience(/datum/skill/gaming, 5)
 
 /datum/reagent/consumable/shamblers
-	name = "Shambler's Juice"
-	description = "~Shake me up some of that Shambler's Juice!~"
+	name = "蹒跚者果汁"
+	description = "~给我摇一杯那蹒跚者果汁来！~"
 	color = "#f00060" // rgb: 94, 0, 38
-	taste_description = "carbonated metallic soda"
+	taste_description = "带金属味的碳酸汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -651,10 +651,10 @@
 	affected_mob.adjust_bodytemperature(-4 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/sodawater
-	name = "Soda Water"
-	description = "A can of club soda. Why not make a scotch and soda?"
+	name = "苏打水"
+	description = "一罐苏打水。何不调一杯威士忌苏打？"
 	color = "#619494" // rgb: 97, 148, 148
-	taste_description = "carbonated water"
+	taste_description = "碳酸水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -671,10 +671,10 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/tonic
-	name = "Tonic Water"
-	description = "It tastes strange but at least the quinine keeps the Space Malaria at bay."
+	name = "汤力水"
+	description = "味道是有点怪，但至少奎宁能挡住太空疟疾。"
 	color = "#0064C8" // rgb: 0, 100, 200
-	taste_description = "tart and fresh"
+	taste_description = "酸爽清新"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -686,10 +686,10 @@
 	affected_mob.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/wellcheers
-	name = "Wellcheers"
-	description = "A strange purple drink, smelling of saltwater. Somewhere in the distance, you hear seagulls."
+	name = "威尔奇"
+	description = "一杯奇怪的紫色饮品，闻起来有海水味。远处某处，你听见了海鸥的叫声。"
 	color = "#762399" // rgb: 118, 35, 153
-	taste_description = "grapes and the fresh open sea"
+	taste_description = "葡萄与清新的开阔海面"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -708,11 +708,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/monkey_energy
-	name = "Monkey Energy"
-	description = "The only drink that will make you unleash the ape."
+	name = "猴子能量"
+	description = "唯一能让你释放猿力的饮品。"
 	color = "#f39b03" // rgb: 243, 155, 3
 	overdose_threshold = 60
-	taste_description = "barbecue and nostalgia"
+	taste_description = "烧烤与怀旧"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -740,10 +740,10 @@
 		affected_mob.say(pick_list_replacements(BOOMER_FILE, "boomer"), forced = /datum/reagent/consumable/monkey_energy)
 
 /datum/reagent/consumable/ice
-	name = "Ice"
-	description = "Frozen water, your dentist wouldn't like you chewing this."
+	name = "冰"
+	description = "冻结的水，你的牙医不会赞成你嚼这个。"
 	color = "#619494" // rgb: 97, 148, 148
-	taste_description = "ice"
+	taste_description = "冰"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/ice
@@ -754,12 +754,12 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/soy_latte
-	name = "Soy Latte"
-	description = "A nice and tasty beverage while you are reading your hippie books."
+	name = "豆奶拿铁"
+	description = "读你的嬉皮士书籍时的美味饮品。"
 	color = "#cc6404" // rgb: 204,100,4
 	overdose_threshold = 80
 	quality = DRINK_NICE
-	taste_description = "creamy coffee"
+	taste_description = "香浓咖啡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
@@ -782,12 +782,12 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/cafe_latte
-	name = "Cafe Latte"
-	description = "A nice, strong and tasty beverage while you are reading."
+	name = "咖啡拿铁"
+	description = "读书时醇厚又美味的饮品。"
 	color = "#cc6404" // rgb: 204,100,4
 	overdose_threshold = 80
 	quality = DRINK_NICE
-	taste_description = "bitter cream"
+	taste_description = "苦奶油"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_EASY
@@ -810,11 +810,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/doctor_delight
-	name = "The Doctor's Delight"
-	description = "A gulp a day keeps the Medibot away! A mixture of juices that heals most damage types fairly quickly at the cost of hunger."
+	name = "医生的喜悦"
+	description = "每天一大口，医疗机器人绕道走！一种混合果汁，能较快治愈大多数伤害类型，代价是消耗饥饿度。"
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	quality = DRINK_VERYGOOD
-	taste_description = "homely fruit"
+	taste_description = "家常水果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -834,11 +834,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/cinderella
-	name = "Cinderella"
-	description = "Most definitely a fruity alcohol cocktail to have while partying with your friends."
+	name = "灰姑娘"
+	description = "绝对是和朋友聚会时喝的水果鸡尾酒。"
 	color = "#FF6A50"
 	quality = DRINK_VERYGOOD
-	taste_description = "sweet tangy fruit"
+	taste_description = "酸甜水果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -847,89 +847,89 @@
 	affected_mob.adjust_disgust(-2.5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/cherryshake
-	name = "Cherry Shake"
-	description = "A cherry flavored milkshake."
+	name = "樱桃奶昔"
+	description = "樱桃味的奶昔。"
 	color = "#FFB6C1"
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 8
-	taste_description = "creamy tart cherry"
+	taste_description = "香浓酸樱桃"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/bluecherryshake
-	name = "Blue Cherry Shake"
-	description = "An exotic milkshake."
+	name = "蓝樱桃奶昔"
+	description = "异域风情的奶昔。"
 	color = "#00F1FF"
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 8
-	taste_description = "creamy blue cherry"
+	taste_description = "香浓蓝樱桃"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/vanillashake
-	name = "Vanilla Shake"
-	description = "A vanilla flavored milkshake. The basics are still good."
+	name = "香草奶昔"
+	description = "香草味的奶昔。经典依然出色。"
 	color = "#E9D2B2"
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 8
-	taste_description = "sweet creamy vanilla"
+	taste_description = "香甜奶油香草"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/caramelshake
-	name = "Caramel Shake"
-	description = "A caramel flavored milkshake. Your teeth hurt looking at it."
+	name = "焦糖奶昔"
+	description = "焦糖味的奶昔。光是看着就牙疼。"
 	color = "#E17C00"
 	quality = DRINK_GOOD
 	nutriment_factor = 10
-	taste_description = "sweet rich creamy caramel"
+	taste_description = "香甜浓郁奶油焦糖"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/choccyshake
-	name = "Chocolate Shake"
-	description = "A frosty chocolate milkshake."
+	name = "巧克力奶昔"
+	description = "冰凉透心的巧克力奶昔。"
 	color = "#541B00"
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 8
-	taste_description = "sweet creamy chocolate"
+	taste_description = "香甜奶油巧克力"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/strawberryshake
-	name = "Strawberry Shake"
-	description = "A strawberry milkshake."
+	name = "草莓奶昔"
+	description = "草莓奶昔。"
 	color = "#ff7b7b"
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 8
-	taste_description = "sweet strawberries and milk"
+	taste_description = "香甜草莓与牛奶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/bananashake
-	name = "Banana Shake"
-	description = "A banana milkshake. Stuff that clowns drink at their honkday parties."
+	name = "香蕉奶昔"
+	description = "香蕉奶昔。小丑们在洪克生日派对上喝的东西。"
 	color = "#f2d554"
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 8
-	taste_description = "thick banana"
+	taste_description = "浓稠香蕉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_MEDIUM
 
 /datum/reagent/consumable/pumpkin_latte
-	name = "Pumpkin Latte"
-	description = "A mix of pumpkin juice and coffee."
+	name = "南瓜拿铁"
+	description = "南瓜汁与咖啡的混合。"
 	color = "#F4A460"
 	overdose_threshold = 80
 	quality = DRINK_VERYGOOD
 	nutriment_factor = 3
-	taste_description = "creamy pumpkin"
+	taste_description = "香浓南瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -951,45 +951,45 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/gibbfloats
-	name = "Gibb Floats"
-	description = "Ice cream on top of a Dr. Gibb glass."
+	name = "吉布浮冰"
+	description = "吉布博士汽水上加了一球冰淇淋。"
 	color = "#B22222"
 	quality = DRINK_NICE
 	nutriment_factor = 3
-	taste_description = "creamy cherry"
+	taste_description = "香浓樱桃"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/pumpkinjuice
-	name = "Pumpkin Juice"
-	description = "Juiced from real pumpkin."
+	name = "南瓜汁"
+	description = "由真正的南瓜榨成。"
 	color = "#FFA500"
-	taste_description = "pumpkin"
+	taste_description = "南瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/blumpkinjuice
-	name = "Blumpkin Juice"
-	description = "Juiced from real blumpkin."
+	name = "布伦普金汁"
+	description = "由真正的布伦普金榨成。"
 	color = "#00BFFF"
-	taste_description = "a mouthful of pool water"
+	taste_description = "满嘴的泳池水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/triple_citrus
-	name = "Triple Citrus"
-	description = "A solution."
+	name = "三倍柑橘"
+	description = "一种溶液。"
 	color = "#EEFF00"
 	quality = DRINK_NICE
-	taste_description = "extreme bitterness"
+	taste_description = "极度苦涩"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/grape_soda
-	name = "Grape Soda"
-	description = "Beloved by children and teetotalers."
+	name = "葡萄汽水"
+	description = "孩子和滴酒不沾者的最爱。"
 	color = "#E6CDFF"
-	taste_description = "grape soda"
+	taste_description = "葡萄汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -998,20 +998,20 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/milk/chocolate_milk
-	name = "Chocolate Milk"
-	description = "Milk for cool kids."
+	name = "巧克力奶"
+	description = "给酷小孩准备的奶。"
 	color = "#7D4E29"
 	quality = DRINK_NICE
-	taste_description = "chocolate milk"
+	taste_description = "巧克力奶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/hot_coco
-	name = "Hot Coco"
-	description = "Made with love! And coco beans."
+	name = "热可可"
+	description = "用爱制成！还有可可豆。"
 	nutriment_factor = 4
 	color = "#3b240e" // rgb: 59, 36, 14
-	taste_description = "creamy chocolate"
+	taste_description = "香浓巧克力"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1025,12 +1025,12 @@
 	return ..() || .
 
 /datum/reagent/consumable/italian_coco
-	name = "Italian Hot Chocolate"
-	description = "Made with love! You can just imagine a happy Nonna from the smell."
+	name = "意式热巧克力"
+	description = "用爱制成！光闻味道你就能想象出一位开心的意大利奶奶。"
 	nutriment_factor = 8
 	color = "#57372A"
 	quality = DRINK_VERYGOOD
-	taste_description = "thick creamy chocolate"
+	taste_description = "浓稠香滑的巧克力"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1039,10 +1039,10 @@
 	affected_mob.adjust_bodytemperature(2.5 * TEMPERATURE_DAMAGE_COEFFICIENT * metabolization_ratio * seconds_per_tick, 0, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/menthol
-	name = "Menthol"
-	description = "Alleviates coughing symptoms one might have."
+	name = "薄荷醇"
+	description = "缓解可能出现的咳嗽症状。"
 	color = "#80AF9C"
-	taste_description = "mint"
+	taste_description = "薄荷"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/menthol
@@ -1052,17 +1052,17 @@
 	affected_mob.apply_status_effect(/datum/status_effect/throat_soothed)
 
 /datum/reagent/consumable/grenadine
-	name = "Grenadine"
-	description = "Not cherry flavored!"
+	name = "石榴糖浆"
+	description = "不是樱桃味的！"
 	color = "#EA1D26"
-	taste_description = "sweet pomegranates"
+	taste_description = "甜石榴"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/grenadine/on_mob_metabolize(mob/living/drinker)
 	. = ..()
 	if(IS_REVOLUTIONARY(drinker))
-		to_chat(drinker, span_warning("Antioxidants are weakening your radical spirit!"))
+		to_chat(drinker, span_warning("抗氧化剂正在削弱你的激进精神！"))
 
 /datum/reagent/consumable/grenadine/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1072,36 +1072,36 @@
 			drinker.adjust_stamina_loss(12, required_biotype = affected_biotype) //The pomegranate stops free radicals! Har har.
 
 /datum/reagent/consumable/parsnipjuice
-	name = "Parsnip Juice"
-	description = "Why..."
+	name = "欧防风汁"
+	description = "为什么……"
 	color = "#FFA500"
-	taste_description = "parsnip"
+	taste_description = "欧防风"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/pineapplejuice
-	name = "Pineapple Juice"
-	description = "Tart, tropical, and hotly debated."
+	name = "菠萝汁"
+	description = "酸爽、热带，争议不断。"
 	color = "#F7D435"
-	taste_description = "pineapple"
+	taste_description = "菠萝"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	default_container = /obj/item/reagent_containers/cup/glass/bottle/juice/pineapplejuice
 
 /datum/reagent/consumable/peachjuice //Intended to be extremely rare due to being the limiting ingredients in the blazaam drink
-	name = "Peach Juice"
-	description = "Just peachy."
+	name = "桃子汁"
+	description = "好得很。"
 	color = "#E78108"
-	taste_description = "peaches"
+	taste_description = "桃子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/cream_soda
-	name = "Cream Soda"
-	description = "A classic space-American vanilla flavored soft drink."
+	name = "奶油苏打"
+	description = "经典太空美式香草味汽水。"
 	color = "#dcb137"
 	quality = DRINK_VERYGOOD
-	taste_description = "fizzy vanilla"
+	taste_description = "气泡香草"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1110,11 +1110,11 @@
 	affected_mob.adjust_bodytemperature(-2.5 * metabolization_ratio * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick, affected_mob.get_body_temp_normal())
 
 /datum/reagent/consumable/sol_dry
-	name = "Sol Dry"
-	description = "A soothing, mellow drink made from ginger."
+	name = "太阳干姜"
+	description = "由生姜制成的舒缓柔和饮品。"
 	color = "#f7d26a"
 	quality = DRINK_NICE
-	taste_description = "sweet ginger spice"
+	taste_description = "甜姜香料"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1123,11 +1123,11 @@
 	affected_mob.adjust_disgust(-2.5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/shirley_temple
-	name = "Shirley Temple"
-	description = "Here you go little girl, now you can drink like the adults."
+	name = "秀兰·邓波儿"
+	description = "给你，小姑娘，现在你可以像大人一样喝酒了。"
 	color = "#F43724"
 	quality = DRINK_GOOD
-	taste_description = "sweet cherry syrup and ginger spice"
+	taste_description = "甜樱桃糖浆与姜香料"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1136,11 +1136,11 @@
 	return ..()
 
 /datum/reagent/consumable/red_queen
-	name = "Red Queen"
-	description = "DRINK ME."
+	name = "红皇后"
+	description = "喝掉我。"
 	color = "#e6ddc3"
 	quality = DRINK_GOOD
-	taste_description = "wonder"
+	taste_description = "惊奇"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	var/current_size = RESIZE_DEFAULT_SIZE
@@ -1163,26 +1163,26 @@
 	current_size = RESIZE_DEFAULT_SIZE
 
 /datum/reagent/consumable/bungojuice
-	name = "Bungo Juice"
+	name = "邦戈果汁"
 	color = "#F9E43D"
-	description = "Exotic! You feel like you are on vacation already."
-	taste_description = "succulent bungo"
+	description = "异域风味！你感觉自己已经在度假了。"
+	taste_description = "多汁邦戈果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/prunomix
-	name = "Pruno Mixture"
+	name = "普鲁诺混合液"
 	color = "#E78108"
-	description = "Fruit, sugar, yeast, and water pulped together into a pungent slurry."
-	taste_description = "garbage"
+	description = "水果、糖、酵母和水搅成的一团刺鼻浆液。"
+	taste_description = "垃圾"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/aloejuice
-	name = "Aloe Juice"
+	name = "芦荟汁"
 	color = "#b3c5a7" // rgb: 179, 197, 167
-	description = "A healthy and refreshing juice."
-	taste_description = "vegetable"
+	description = "健康又清爽的果汁。"
+	taste_description = "蔬菜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1193,11 +1193,11 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/agua_fresca
-	name = "Agua Fresca"
-	description = "A refreshing watermelon agua fresca. Perfect on a day at the holodeck."
+	name = "阿瓜弗雷斯卡"
+	description = "清爽的西瓜阿瓜弗雷斯卡。全息甲板消遣日的完美选择。"
 	color = "#D25B66"
 	quality = DRINK_VERYGOOD
-	taste_description = "cool refreshing watermelon"
+	taste_description = "清凉西瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1209,11 +1209,11 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/mushroom_tea
-	name = "Mushroom Tea"
-	description = "A savoury glass of tea made from polypore mushroom shavings, originally native to Tizira."
+	name = "蘑菇茶"
+	description = "一杯用多孔菌刨片泡成的鲜香茶，这种菌原本产于提兹拉。"
 	color = "#674945" // rgb: 16, 16, 0
 	nutriment_factor = 0
-	taste_description = "mushrooms"
+	taste_description = "蘑菇"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1225,91 +1225,91 @@
 
 //Moth Stuff
 /datum/reagent/consumable/toechtauese_juice
-	name = "Töchtaüse Juice"
-	description = "An unpleasant juice made from töchtaüse berries. Best made into a syrup, unless you enjoy pain."
+	name = "托赫陶瑟汁"
+	description = "用托赫陶瑟浆果制成的难喝果汁。最好熬成糖浆，除非你喜欢疼痛。"
 	color = "#554862" // rgb: 85, 72, 98
 	nutriment_factor = 0
-	taste_description = "fiery itchy pain"
+	taste_description = "火辣刺痒的疼痛"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/toechtauese_syrup
-	name = "Töchtaüse Syrup"
-	description = "A harsh spicy and bitter syrup, made from töchtaüse berries. Useful as an ingredient, both for food and cocktails."
+	name = "托赫陶瑟糖浆"
+	description = "一种辛辣又苦涩的糖浆，由托赫陶瑟浆果制成。无论做菜还是调鸡尾酒都是有用的配料。"
 	color = "#554862" // rgb: 85, 72, 98
 	nutriment_factor = 0
-	taste_description = "sugar, spice, and nothing nice"
+	taste_description = "糖、香料，一点也不好"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/strawberry_banana
-	name = "Strawberry Banana Smoothie"
-	description = "A classic smoothie made from strawberries and bananas."
+	name = "草莓香蕉冰沙"
+	description = "用草莓和香蕉制成的经典冰沙。"
 	color = "#FF9999"
 	nutriment_factor = 0
-	taste_description = "strawberry and banana"
+	taste_description = "草莓与香蕉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/berry_blast
-	name = "Berry Blast Smoothie"
-	description = "A classic smoothie made from mixed berries."
+	name = "浆果爆裂冰沙"
+	description = "用混合浆果制成的经典冰沙。"
 	color = "#A76DC5"
 	nutriment_factor = 0
-	taste_description = "mixed berry"
+	taste_description = "混合浆果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/funky_monkey
-	name = "Funky Monkey Smoothie"
-	description = "A classic smoothie made from chocolate and bananas."
+	name = "怪趣猴子冰沙"
+	description = "用巧克力和香蕉制成的经典冰沙。"
 	color = COLOR_BROWNER_BROWN
 	nutriment_factor = 0
-	taste_description = "chocolate and banana"
+	taste_description = "巧克力与香蕉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/green_giant
-	name = "Green Giant Smoothie"
-	description = "A green vegetable smoothie, made without vegetables."
+	name = "绿巨人冰沙"
+	description = "一款绿色蔬菜冰沙，却没放蔬菜。"
 	color = COLOR_VERY_DARK_LIME_GREEN
 	nutriment_factor = 0
-	taste_description = "green, just green"
+	taste_description = "绿色，只是绿色"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/melon_baller
-	name = "Melon Baller Smoothie"
-	description = "A classic smoothie made from melons."
+	name = "甜瓜挖球冰沙"
+	description = "用甜瓜制成的经典冰沙。"
 	color = "#D22F55"
 	nutriment_factor = 0
-	taste_description = "fresh melon"
+	taste_description = "新鲜甜瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/vanilla_dream
-	name = "Vanilla Dream Smoothie"
-	description = "A classic smoothie made from vanilla and fresh cream."
+	name = "香草之梦冰沙"
+	description = "用香草和鲜奶油制成的经典冰沙。"
 	color = "#FFF3DD"
 	nutriment_factor = 0
-	taste_description = "creamy vanilla"
+	taste_description = "香浓香草"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/cucumberjuice
-	name = "Cucumber Juice"
-	description = "Ordinary cucumber juice, nothing from the fantasy world."
+	name = "黄瓜汁"
+	description = "普通的黄瓜汁，没有任何幻想世界的东西。"
 	color = "#B1D861" // rgb: 177, 216, 97
-	taste_description = "light cucumber"
+	taste_description = "清淡黄瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/cucumberlemonade
-	name = "Cucumber Lemonade"
-	description = "Cucumber juice, sugar, and soda; what else do I need?"
+	name = "黄瓜柠檬水"
+	description = "黄瓜汁、糖和苏打水；我还需要什么？"
 	color = "#cbe248" // rgb: 203, 226, 72
 	quality = DRINK_GOOD
-	taste_description = "citrus soda with cucumber"
+	taste_description = "黄瓜柑橘汽水"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	glass_price = DRINK_PRICE_HIGH
@@ -1322,10 +1322,10 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/mississippi_queen
-	name = "Mississippi Queen"
-	description = "If you think you're so hot, how about a victory drink?"
+	name = "密西西比女王"
+	description = "如果你觉得自己这么厉害，来一杯庆功酒如何？"
 	color = "#d4422f" // rgb: 212,66,47
-	taste_description = "sludge seeping down your throat"
+	taste_description = "淤泥顺着喉咙往下渗"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1342,9 +1342,9 @@
 
 /datum/reagent/consumable/t_letter
 	name = "T"
-	description = "You expected to find this in a soup, but this is fine too."
+	description = "你以为会在汤里找到它，不过这样也不错。"
 	color = "#583d09" // rgb: 88, 61, 9
-	taste_description = "one of your 26 favorite letters"
+	taste_description = "你二十六个最爱的字母之一"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -1361,34 +1361,34 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/consumable/hakka_mate
-	name = "Hakka-Mate"
-	description = "A Martian-made yerba mate soda, dragged straight out of the pits of a hacking convention."
+	name = "黑客马黛茶"
+	description = "火星制造的马黛汽水，直接从黑客大会的深渊里拽出来的。"
 	color = "#c4b000"
-	taste_description = "bubbly yerba mate"
+	taste_description = "气泡马黛茶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/coconut_milk
-	name = "Coconut Milk"
-	description = "A versatile milk substitute that's perfect for everything from cooking to making cocktails."
+	name = "椰奶"
+	description = "用途广泛的牛奶替代品，从烹饪到调鸡尾酒都完美适用。"
 	color = "#DFDFDF"
-	taste_description = "milky coconut"
+	taste_description = "奶香椰子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/melon_soda
-	name = "Melon Soda"
-	description = "A neon green hit of nostalgia."
+	name = "甜瓜苏打"
+	description = "一口霓虹绿色的怀旧。"
 	color = "#6FEB48"
-	taste_description = "fizzy melon"
+	taste_description = "气泡甜瓜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/consumable/volt_energy
-	name = "24-Volt Energy"
-	description = "An artificially coloured and flavoured electric energy drink, in lanternfruit flavour. Made for ethereals, by ethereals."
+	name = "24 伏特能量"
+	description = "人工调色调味的电能饮料，灯笼果口味。以太人为以太人打造。"
 	color = "#99E550"
-	taste_description = "sour pear"
+	taste_description = "酸梨"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -1404,11 +1404,11 @@
 		stomach.adjust_charge(reac_volume * 20 * ETHEREAL_DISCHARGE_RATE)
 
 /datum/reagent/consumable/fruit_punch
-	name = "fruit punch"
-	description = "Impossibly sweet fruit punch. Nobody knows what fruits were used to make it, not even it's creators... \
-		It's unique recipe heals and rejuvinates the drinker, but is unsafe to consume without the support of a nearby watercooler."
+	name = "水果潘趣"
+	description = "甜得不可思议的水果潘趣。没人知道它用了哪些水果，连它的创造者也不知道…… \
+		它独特的配方能治愈并让饮者恢复活力，但若没有附近饮水机的支持，饮用并不安全。"
 	color = "#f7b2e3"
-	taste_description = "dangerously sweet fruit"
+	taste_description = "危险地甜的水果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	quality = DRINK_VERYGOOD
@@ -1438,7 +1438,7 @@
 		affected_mob.add_movespeed_modifier(/datum/movespeed_modifier/punch_punishment)
 		if(SPT_PROB(10, seconds_per_tick))
 			affected_mob.Knockdown(3 SECONDS, 6 SECONDS) //Gives daze effect. Using the cooler is a commitment and if you get jumped during it or have to run away to fight something, you should be vulnerable.
-			to_chat(affected_mob, span_warning("The overwhelming sweetness of the fruit punch disorients and confounds you!"))
+			to_chat(affected_mob, span_warning("水果潘趣铺天盖地的甜味让你晕头转向、不知所措！"))
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
@@ -1452,24 +1452,24 @@
 	affected_mob.remove_movespeed_modifier(/datum/movespeed_modifier/punch_punishment)
 
 /atom/movable/screen/alert/fruit_punch_good
-	name = "Fruit Punch Blessing"
-	desc = "The sweetness of the fruit punch and the friendly company of the liquid cooler are slowly restoring your health..."
+	name = "水果潘趣祝福"
+	desc = "水果潘趣的甜味和液体冷却机的友好陪伴正在慢慢恢复你的健康……"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "punch_blessing"
 
 /atom/movable/screen/alert/fruit_punch_bad
-	name = "Fruit Punishment"
-	desc = "The unbearable sweetness of the fruit punch is too much to bear without the soothing aura of a liquid cooler! Your body is going into shock!"
+	name = "水果惩罚"
+	desc = "没有液体冷却机那抚慰的光环，水果潘趣难以忍受的甜味实在扛不住了！你的身体正在陷入休克！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "punch_punishment"
 
 /datum/reagent/consumable/ethanol/bitters_soda
-	name = "Bitters and Soda"
-	description = "A simple beverage of soda water flavored with aromatic bitters. Soothes upset stomachs."
+	name = "苦精苏打"
+	description = "苏打水加芳香苦精调味的简单饮品。能安抚不适的肠胃。"
 	boozepwr = 0
 	color = "#f1c1b3"
 	quality = DRINK_NICE
-	taste_description = "mild aromatics"
+	taste_description = "淡雅芳香"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1478,11 +1478,11 @@
 	affected_mob.adjust_disgust(-2.5 * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/consumable/lean
-	name = "Lean"
-	description = "The drank that makes you go wheezy."
+	name = "紫饮"
+	description = "喝一口就让你气喘吁吁的饮料。"
 	color = "#DE55ED"
 	quality = DRINK_GOOD
-	taste_description = "purple and a hint of opioid."
+	taste_description = "紫色，还有一丝阿片味。"
 	addiction_types = list(/datum/addiction/opioids = 200)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS

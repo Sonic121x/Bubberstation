@@ -1,8 +1,8 @@
 /datum/religion_rites/dream_portent
-	name = "Dream Portent"
-	desc = "Immediately fall into a slumber and receive a portent of the future. \
-		The vision may be difficult to interpret, but will likely come true in some form. \
-		Any form of harm will awaken you and disrupt the vision."
+	name = "梦境预兆"
+	desc = "立刻陷入沉睡，并接收未来的预兆。\
+		景象可能难以解读，但多半会以某种形式成真。\
+		任何伤害都会唤醒你并打断景象。"
 	favor_cost = 50
 	rite_flags = NONE
 	ritual_length = 6 SECONDS
@@ -10,24 +10,24 @@
 /datum/religion_rites/dream_portent/New()
 	. = ..()
 	ritual_invocations = list(
-		"O great shepherd [GLOB.deity], grant me a vision of the future!..",
-		"That our flock may persevere through the trials to come...",
+		"伟大的牧者 [GLOB.deity]，请赐予我未来之景！……",
+		"愿我们的羊群能挺过即将到来的考验……",
 	)
 
 /datum/religion_rites/dream_portent/can_afford(mob/living/user)
 	if(!..())
 		return FALSE
 	if(!iscarbon(user))
-		to_chat(user, span_warning("You are not the sort of creature that can receive a portent."))
+		to_chat(user, span_warning("你不是能接收预兆的那种生物。"))
 		return FALSE
 	return TRUE
 
 /datum/religion_rites/dream_portent/invoke_effect(mob/living/user, atom/religious_tool)
 	if(!user.SetSleeping(10 SECONDS))
-		to_chat(user, span_warning("You fail to fall asleep."))
+		to_chat(user, span_warning("你没能入睡。"))
 		return FALSE
 
-	user.visible_message(span_notice("[user] suddenly falls into a deep slumber, [user.p_their()] eyes fluttering..."))
+	user.visible_message(span_notice("[user] 突然陷入沉睡，双眼微微颤动……"))
 	user.adjust_drowsiness(30 SECONDS)
 	return ..()
 
@@ -59,7 +59,7 @@
 	if(istype(current_dream, /datum/dream/specific_portent))
 		return
 
-	to_chat(dreamer, span_cyan("Your mind wanders, yet you receive no clear vision... You must try again later."))
+	to_chat(dreamer, span_cyan("你的思绪游移，却没有得到清晰的景象……你必须稍后再试。"))
 	refund(0.8)
 	dreamer.adjust_drowsiness(10 SECONDS)
 	dreamer.add_mood_event("dream_failed", /datum/mood_event/dream_failed)
@@ -70,7 +70,7 @@
 	if(!prob(damage_amount * 10)) // higher damage = higher chance to interrupt
 		return
 
-	to_chat(dreamer, span_warning("Your dream is interrupted as you are harmed!"))
+	to_chat(dreamer, span_warning("你受到伤害，梦境被打断了！"))
 	dreamer.SetSleeping(0)
 	dreamer.adjust_drowsiness(10 SECONDS)
 	dreamer.add_mood_event("dream_interrupted", /datum/mood_event/dream_interrupted)
@@ -82,12 +82,12 @@
 
 /datum/mood_event/dream_interrupted
 	mood_change = -2
-	description = "I was rudely awakened from my dreams!"
+	description = "我被人粗暴地从梦中惊醒！"
 	timeout = 5 MINUTES
 
 /datum/mood_event/dream_failed
 	mood_change = -2
-	description = "I couldn't receive a clear vision from my dreams!"
+	description = "我无法从梦中得到清晰的景象！"
 	timeout = 5 MINUTES
 
 /datum/dream/specific_portent
@@ -96,21 +96,21 @@
 
 /datum/dream/specific_portent/GenerateDream(mob/living/carbon/dreamer)
 	. = list()
-	. += span_cyan("a portent of the future")
+	. += span_cyan("未来的预兆")
 
 	var/list/portent_types = list(
-		"[GLOB.deity] greets you warmly" = "[GLOB.deity] bids you farewell, though you feel their presence watch over you",
-		"a crystal ball reveals a vision of the future" = "ultimately, the crystal ball returns to its normal, opaque state",
-		"a divine light blinds you, revealing glimpses of what is to come" = "finally, the light fades, leaving you with a lingering warmth",
-		"a full moon illuminates the sky" = "the moon crosses the horizon, bringing forth a new dawn",
-		"a mysterious figure appears, cloaked in shadow" = "they depart, leaving you with a sense of [pick("wonder", "dread", "curiosity", "foreboding")]",
-		"an incomprehensible entity envelops you, showing you visions of the past, present, and future" = "the entity releases you, leaving you with a sense of awe and fear",
-		"an old [pick("man", "woman", "prophet", "oracle")] approaches you, offering cryptic advice" = "they vanish before you can ask any questions",
-		"the stars align in a way you've never seen before" = "finally, the stars return to their normal constellations",
-		"the trees ahead parts to reveal a hidden path" = "ultimately, you lose the path as the trees sway back into place",
-		"walking through a featureless landscape, shapes begin to form" = "finally, the shapes fade away, leaving you alone in the void",
-		"you see yourself sleeping peacefully" = "finally, you see yourself waking up calmly",
-		"your third eye opens to reveal a hidden truth" = "finally, your third eye closes, but the vision lingers in your mind",
+		"[GLOB.deity] 热情地问候你" = "[GLOB.deity] 向你告别，但你仍能感到其存在注视着你",
+		"一颗水晶球显现出未来之景" = "最终，水晶球恢复了平常的不透明状态",
+		"一道神圣之光令你目盲，显现出即将发生之事的片段" = "最后，光芒消退，只留下挥之不去的温暖",
+		"一轮满月照亮天空" = "月亮越过地平线，带来新的黎明",
+		"一个笼罩在阴影中的神秘身影出现" = "他们离去，留给你一种[pick("惊奇", "恐惧", "好奇", "不祥")]的感觉",
+		"一个不可理解的实体将你包裹，向你展示过去、现在与未来的景象" = "实体放开了你，留下敬畏与恐惧",
+		"一位年老的[pick("男人", "女人", "先知", "神谕者")]走近你，给出隐晦的建议" = "你还没来得及发问，他们就消失了",
+		"群星以你从未见过的方式排列" = "最后，群星恢复了平常的星座排列",
+		"前方的树木分开，露出一条隐秘的小径" = "最终，树木摇回原位，你失去了那条小径",
+		"你行走在毫无特征的大地上，形状开始成形" = "最后，那些形状消逝，只留你独自处于虚空",
+		"你看见自己安详地睡着" = "最后，你看见自己平静地醒来",
+		"你的第三只眼睁开，揭示出一个隐藏的真相" = "最后，你的第三只眼闭上，但景象仍萦绕在脑海中",
 	)
 	var/picked_portent = pick(portent_types)
 
@@ -123,71 +123,71 @@
 	if(prob(1))
 		GLOB.religious_sect.adjust_favor(25, dreamer)
 		return pick(list(
-			list("reply hazy", "try again later"),
-			list("ask again later"),
-			list("better not tell you now"),
-			list("cannot predict now"),
-			list("concentrate and ask again"),
+			list("答复模糊", "请稍后再试"),
+			list("请稍后再问"),
+			list("现在最好别告诉你"),
+			list("现在无法预测"),
+			list("集中精神再问一次"),
 		))
 
 	for(var/datum/antagonist/nightmare/nightmare in GLOB.antagonists)
 		if(nightmare.owner?.current?.stat == STABLE)
 			return pick(list(
-				list("you have a terrible nightmare", "filled with indescribable horrors", "leaving you with a lingering sense of dread"),
-				list("you have a terrible nightmare", "filled with visions of your own death", "leaving you with a lingering sense of doom"),
-				list("you have a terrible nightmare", "filled with horrible memories of your past", "leaving you with a lingering sense of sadness"),
-				list("you have a terrible nightmare", "filled with the influence of an uncertain presence", "leaving you with a lingering sense of anxiety"),
-				list("you have a terrible nightmare", "filled with stabbing pain and suffocating darkness", "leaving you with a lingering sense of panic"),
+				list("你做了一个可怕的噩梦", "其中充满难以形容的恐怖", "留下挥之不去的恐惧感"),
+				list("你做了一个可怕的噩梦", "其中充满你自己死亡的景象", "留下挥之不去的厄运感"),
+				list("你做了一个可怕的噩梦", "其中充满你过去的可怕记忆", "留下挥之不去的悲伤"),
+				list("你做了一个可怕的噩梦", "其中充满某个不确定存在的影响", "留下挥之不去的不安"),
+				list("你做了一个可怕的噩梦", "其中充满刺痛与令人窒息的黑暗", "留下挥之不去的恐慌"),
 			))
 
 	for(var/datum/team/cult/cult in GLOB.antagonist_teams)
 		if(cult.cult_ascendent)
-			return list("the Blood Geometer, Nar'sie, invades your dream", "her pressence overwhelming and suffocating", "she eyes you greedily")
+			return list("鲜血几何之神纳尔西侵入了你的梦境", "她的存在令人压抑窒息", "她贪婪地注视着你")
 
 	for(var/datum/antagonist/heretic/heretic in GLOB.antagonists)
 		if(!heretic.ascended || isnull(heretic.owner?.current))
 			continue
 		if(IS_UNCONSCIOUS_OR_CRIT(heretic.owner.current))
 			return list(
-				"the doors of the Mansus loom ahead of you",
-				"intricately decorated - but cracked, broken, and sealed shut",
-				"a great [IS_HERETIC(dreamer) ? "force" : "evil"] locked away for good",
+				"漫宿之门在你面前隐现",
+				"装饰繁复——却已开裂、破损，并被封死",
+				"一股强大的[IS_HERETIC(dreamer) ? "力量" : "邪恶"]被永久封锁在内",
 			)
 
-		var/list/heretic_text = list("the doors of the Mansus loom ahead of you", "intricately decorated and ajar", "you look through the crack")
+		var/list/heretic_text = list("漫宿之门在你面前隐现", "装饰繁复，微微敞开", "你从缝隙中望去")
 		switch(prob(75) ? heretic.heretic_path.route : null)
 			if(PATH_ASH)
-				heretic_text += "beyond it, you see a barren wasteland"
-				heretic_text += "all life long gone, scorched to ash and dust"
-				heretic_text += "you can hardly breathe through the smog"
+				heretic_text += "门后是一片荒芜的废土"
+				heretic_text += "所有生命早已消逝，被烧成灰烬与尘土"
+				heretic_text += "烟雾弥漫，你几乎无法呼吸"
 			if(PATH_FLESH)
-				heretic_text += "beyond it, you see a vast sea of blood"
-				heretic_text += "the screams of the drowning fill the air"
-				heretic_text += "the blood laps at your feet"
+				heretic_text += "门后是一片浩瀚的血海"
+				heretic_text += "溺水者的惨叫充斥空气"
+				heretic_text += "血液拍打着你的双脚"
 			if(PATH_VOID)
-				heretic_text += "beyond it, a vast emptiness stretches out in all directions"
-				heretic_text += "the silence is deafening"
-				heretic_text += "you know you are not alone"
+				heretic_text += "门后，无边的空虚向四面八方延展"
+				heretic_text += "寂静震耳欲聋"
+				heretic_text += "你知道自己并不孤单"
 			if(PATH_COSMIC)
-				heretic_text += "beyond it, you see the birth and death of stars, galaxies colliding in a cosmic dance"
-				heretic_text += "the beauty of it all is overwhelming"
-				heretic_text += "you feel insignificant"
+				heretic_text += "门后，你看见星辰的诞生与死亡，星系在宇宙之舞中碰撞"
+				heretic_text += "这一切的美令人无法承受"
+				heretic_text += "你感到自己微不足道"
 			if(PATH_BLADE)
-				heretic_text += "beyond it, you see a great battle unfolding"
-				heretic_text += "countless warriors grappling in an endless war"
-				heretic_text += "the sound of clashing steel and cries of the fallen fill the air"
+				heretic_text += "门后，一场宏大的战役正在展开"
+				heretic_text += "无数战士在无尽的战争中厮杀"
+				heretic_text += "钢铁交击声与阵亡者的哀嚎充斥空气"
 			if(PATH_LOCK)
-				heretic_text += "beyond it, you see an endless labyrinth"
-				heretic_text += "the walls shifting and changing as you navigate it"
-				heretic_text += "no matter which turn you take, you cannot find an exit"
+				heretic_text += "门后是一座无尽的迷宫"
+				heretic_text += "你在其中穿行时，墙壁不断移动变幻"
+				heretic_text += "无论你转向哪边，都找不到出口"
 			if(PATH_MOON)
-				heretic_text += "beyond it, you bear witness to a grand carnival"
-				heretic_text += "filled with strange sights and smells, but endless joy and laughter"
-				heretic_text += "you can't shake the feeling something is wrong"
+				heretic_text += "门后，你目睹一场盛大的狂欢"
+				heretic_text += "满是奇异的景象与气味，还有无尽的欢乐与笑声"
+				heretic_text += "你始终无法摆脱某种不对劲的感觉"
 			else
-				heretic_text += "what lies beyond cannot be comprehended"
-				heretic_text += "the sheer magnitude of it overwhelms you"
-				heretic_text += "you feel a strange mix of awe and terror"
+				heretic_text += "门后的景象无法被理解"
+				heretic_text += "其庞大的规模令你难以承受"
+				heretic_text += "你感到敬畏与恐惧交织"
 
 		return heretic_text
 
@@ -197,72 +197,72 @@
 		if(wizard.ritual?.times_completed < GRAND_RITUAL_RUNES_WARNING_POTENCY)
 			if(prob(1))
 				return list(
-					"a garish fool puts on a show",
-					"many lament their antics, but some are amused",
-					"they seem to have no sense of right or wrong",
-					"what an asshole",
+					"一个花哨的傻瓜正在表演",
+					"许多人为其滑稽举动哀叹，但也有人被逗乐",
+					"他们似乎毫无是非观念",
+					"真是个混蛋",
 				)
 			return
 
 		if(wizard.ritual.times_completed == GRAND_RITUAL_FINALE_COUNT)
 			return list(
-				"the magician appears once more",
-				"they ignore you, bowing to an unseen audience",
-				"you hear a crowd cheering and applause",
-				"a bright light envelops you, blinding you",
-				"when your vision returns, the magician is gone",
+				"魔术师再次出现",
+				"他们无视你，向看不见的观众鞠躬",
+				"你听到人群的欢呼与掌声",
+				"一道强光将你笼罩，使你目盲",
+				"当视力恢复时，魔术师已经不见了",
 			)
 
 		if(wizard.ritual.times_completed == GRAND_RITUAL_IMMINENT_FINALE_POTENCY)
 			return list(
-				"the magician greets you once more, grinning",
-				"they tell you the grand finale is near",
-				"you can feel the air around you crackling with magical energy",
-				"they magician winks, promising an unforgettable show",
-				"before you can question, they vanish once again",
+				"魔术师再次向你问候，咧嘴笑着",
+				"他们告诉你大结局即将到来",
+				"你能感到周围的空气迸发着魔法能量",
+				"魔术师眨了眨眼，承诺献上一场难忘的演出",
+				"你还没来得及发问，他们又消失了",
 			)
 
 		return list(
-			"a robed figure manifests in your dream",
-			"they introduce themselves as the magician",
-			"a demonstration of their powers leaves you in awe",
-			"they depart as suddenly as they arrived",
+			"一个身披长袍的身影在你的梦中显现",
+			"他们自称魔术师",
+			"他们展示力量，令你惊叹",
+			"他们来得突然，去得也突然",
 		)
 
 	for(var/obj/machinery/nuclearbomb/bomb as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
 			return pick(list(
-				list("you see", "a supernova", "bright and blinding", "consuming everything in an instant"),
-				list("you see", "a mushroom cloud on the horizon", "a sign of devastation and ruin"),
-				list("you see", "a ticking clock", "counting down to an inevitable disaster"),
-				list("you see", "a looming tower atop a rocky mountain", "lightning strikes, bringing it down", "this reads as active calamity"),
+				list("你看见", "一颗超新星", "明亮而刺眼", "转瞬之间吞噬一切"),
+				list("你看见", "地平线上升起的蘑菇云", "毁灭与破败的征兆"),
+				list("你看见", "一只滴答作响的钟", "正倒数着一场不可避免的灾难"),
+				list("你看见", "岩石山顶上一座高耸的塔", "闪电击中，将它击倒", "这预示着正在发生的灾祸"),
 			))
 
 	for(var/obj/item/disk/nuclear/nuke_disk as anything in SSpoints_of_interest.real_nuclear_disks)
 		var/area/disk_loc = get_area(nuke_disk)
 		if(!istype(disk_loc, /area/station) && !istype(disk_loc, /area/space))
 			return pick(list(
-				list("you see", "a dying star", "slowly dimming", "on the verge of collapse"),
-				list("you see", "a fool, dancing aimlessly", "they hold a ticking bomb", "a sign of recklessness"),
-				list("you see", "an inverted man", "swaying gently by one ankle", "this reads as suspense"),
-				list("you see", "a looming tower atop a rocky mountain", "it rains heavily, there is distant thunder", "this reads as imminent calamity"),
+				list("你看见", "一颗垂死的恒星", "正缓缓变暗", "濒临崩塌"),
+				list("你看见", "一个漫无目的跳舞的傻瓜", "手里拿着一枚滴答作响的炸弹", "鲁莽的征兆"),
+				list("你看见", "一个倒吊的人", "被一只脚踝轻轻摇晃", "这预示着悬而未决"),
+				list("你看见", "岩石山顶上一座高耸的塔", "大雨倾盆，远处雷声滚滚", "这预示着灾祸将至"),
 			))
 
 	for(var/mob/living/carbon/human/clone as anything in GLOB.human_list)
 		if(clone != dreamer && clone.real_name == dreamer.real_name && !IS_UNCONSCIOUS_OR_CRIT(clone) && prob(50))
 			return list(
-				"you see yourself",
-				"in a foggy mirror",
-				"the reflection is warped and distorted",
-				"but unquestionably you",
+				"你看见自己",
+				"在一面雾气弥漫的镜中",
+				"倒影扭曲变形",
+				"但毫无疑问是你",
 			)
 
 	if(prob(length(dreamer.get_all_orbiters()) * 20))
 		return list(
-			"you feel a ghostly [pick("presence", "entity", "figure")]",
-			"it seems to be trying to communicate with you",
-			"yet you can't comprehend its message",
-			"a sense of sadness and longing washes over you",
+			"你感到一个幽灵般的[pick("存在", "实体", "身影")]",
+			"它似乎正试图与你交流",
+			"但你无法理解它的讯息",
+			"一阵悲伤与渴望涌上心头",
 		)
 
 	if(IS_HERETIC(dreamer) && prob(50))
@@ -270,23 +270,23 @@
 		if(prob(75) && !heretic.feast_of_owls)
 			switch(heretic.heretic_path?.route)
 				if(PATH_START)
-					return list("you see", "a fork in the road ahead", "the path before you uncertain and full of potential")
+					return list("你看见", "前方道路出现岔口", "眼前的路充满未知与可能")
 				if(PATH_ASH)
-					return list("you see", "a barren wasteland ahead", "burned trees line the horizon", "the air thick with smoke and ash", "a bleak and desolate sight")
+					return list("你看见", "前方是一片荒芜的废土", "烧焦的树木排列在地平线上", "空气中弥漫着浓重的烟雾与灰烬", "景象凄凉而荒芜")
 				if(PATH_FLESH)
-					return list("you see", "a legion of amalgamations ahead", "twisted and grotesque", "marching in unison towards an unknown destination")
+					return list("你看见", "前方是一支由融合体组成的军团", "扭曲而怪诞", "整齐地朝未知的目的地行进")
 				if(PATH_VOID)
-					return list("you see", "nothing", "a void that seems to swallow all light and hope", "the silence deafening and oppressive")
+					return list("你看见", "空无一物", "一个仿佛吞噬所有光明与希望的虚空", "寂静震耳而压抑")
 				if(PATH_COSMIC)
-					return list("you see", "the birth of a new star", "radiant and reaching out", "you are not alone")
+					return list("你看见", "一颗新星的诞生", "光芒四射，向外伸展", "你并不孤单")
 				if(PATH_BLADE)
-					return list("you see", "a towering fortress ahead", "its walls lined with stalwart defenders", "each and every one bowing in respect to you")
+					return list("你看见", "前方是一座高耸的堡垒", "城墙边排列着坚定的守卫", "他们每一个人都向你鞠躬致敬")
 				if(PATH_LOCK)
-					return list("you see", "and endless labyrinth", "the walls shifting and changing as you navigate it", "a test of your resolve and cunning")
+					return list("你看见", "一座无尽的迷宫", "你在其中穿行时，墙壁不断移动变幻", "这是对你决心与机敏的考验")
 				if(PATH_MOON)
-					return list("you see", "an everlasting carnival", "the air filled with joy and laughter", "but with an undercurrent of melancholy and longing")
+					return list("你看见", "一场永不落幕的狂欢", "空气中充满欢乐与笑声", "但底下涌动着忧郁与渴望")
 
-		return list("you see", "a large door ahead", "intricately decorated and emanating a powerful aura", "but never opening", "no matter how long you wait")
+		return list("你看见", "前方有一扇巨大的门", "装饰繁复，散发着强大的气场", "但始终没有打开", "无论你等多久")
 
 	var/dead = 0
 	for(var/mob/deceased as anything in GLOB.player_list)
@@ -296,23 +296,23 @@
 	switch(dead / length(GLOB.joined_player_list))
 		if(0.25 to 0.5)
 			return pick(list(
-				list("you find yourself", "in a small graveyard", "humble in size but lovingly maintained", "with fresh flowers on the graves"),
-				list("you see", "a vision of spirits", "floating throughout the station"),
+				list("你发现自己", "身处一座小墓地", "规模不大，却打理得十分用心", "墓上放着新鲜的花"),
+				list("你看见", "幽灵的幻象", "在空间站中四处飘荡"),
 			))
 		if(0.5 to 0.75)
 			return pick(list(
-				list("you find yourself", "in a dimly lit hallway", "with a sense of dread in the air"),
-				list("you see", "a vision of an encroaching darkness", "threatening you eerily"),
+				list("你发现自己", "身处一条昏暗的走廊", "空气中弥漫着恐惧"),
+				list("你看见", "逼近的黑暗幻象", "诡异地威胁着你"),
 			))
 		if(0.75 to 0.9)
 			return pick(list(
-				list("you find yourself", "in a lonely ballroom", "barely lit with flickering lights"),
-				list("you see", "a picture of a silent battlefield", "no clear victor, but heavy losses on all sides"),
+				list("你发现自己", "身处一间空荡的舞厅", "只有闪烁的灯光勉强照明"),
+				list("你看见", "一片寂静战场的画面", "没有明确的胜者，各方都损失惨重"),
 			))
 		if(0.9 to 1)
 			return pick(list(
-				list("you find yourself", "alone", "no sight but your darkness", "no sound but your heartbeat", "a bleak and hopeless vision"),
-				list("you see", "a vision of yourself, alone", "in a desolate wasteland", "with no signs of life or hope in sight"),
+				list("你发现自己", "孤身一人", "除了自身的黑暗什么也看不见", "除了心跳什么也听不见", "一幅凄凉而绝望的景象"),
+				list("你看见", "你自己孤身一人的幻象", "身处荒凉的废土", "看不到任何生命或希望的迹象"),
 			))
 
 	var/max_law_changes = 0
@@ -321,41 +321,41 @@
 
 	if(prob(clamp((max_law_changes - 10) * 10, 0, 50)))
 		return pick(list(
-			list("you see", "a twisted and sickly tree", "with branches that seem to reach into every aspect of the station", "its roots drip with a inky black liquid"),
-			list("you see", "a corrupt political figure", "surrounded by sycophants and puppets", "pulling the strings from behind the scenes"),
-			list("you see", "buzzing electronics", "wires that seem to snake off into the distance", "it bathes you in red light and static"),
+			list("你看见", "一棵扭曲病态的树", "其枝条似乎伸入空间站的每一个角落", "树根滴落着墨黑的液体"),
+			list("你看见", "一个腐败的政客", "被谄媚者与傀儡包围", "在幕后操纵一切"),
+			list("你看见", "嗡鸣的电子设备", "电线仿佛蜿蜒伸向远方", "红光与静电将你笼罩"),
 		))
 
 	if(EMERGENCY_ESCAPED_OR_ENDGAMED)
-		return list("you see", "a new beginning on the horizon", "it feels warm")
+		return list("你看见", "地平线上新的开始", "让人感到温暖")
 
 	if(EMERGENCY_PAST_POINT_OF_NO_RETURN)
-		return list("you see", "salvation just out of reach")
+		return list("你看见", "近在咫尺却无法触及的救赎")
 
 	if(prob(75) || GLOB.communications_controller.announced_greenshift)
 		if(length(GLOB.admins) >= 5)
-			return list("you see", "a gathering of powerful beings in the distance", "their intentions unclear")
+			return list("你看见", "远处一群强大存在的聚会", "他们的意图不明")
 
 		switch(SSdynamic.current_tier.tier)
 			if(0)
-				return list("you see", "a flourishing field", "teeming with life and vitality", "a symbol of hope for the future")
+				return list("你看见", "一片繁茂的田野", "充满生命与活力", "象征未来的希望")
 			if(1)
 				return pick(list(
-					list("you see", "a lone figure in the distance", "shrouded in mystery"),
-					list("you see", "a [pick("beast", "monster", "animal")] stalking through the shadows", "its intentions unknown"),
-					list("you see", "a [pick("fog", "haze", "cloud")] rolling in", "obscuring everything in its path"),
+					list("你看见", "远处一个孤独的身影", "笼罩在神秘之中"),
+					list("你看见", "一头[pick("野兽", "怪物", "动物")]在阴影中潜行", "意图不明"),
+					list("你看见", "一片[pick("雾", "薄雾", "云")]席卷而来", "遮蔽了沿途的一切"),
 				))
 			if(2)
 				return pick(list(
-					list("you find yourself", "in a branching forest", "dark and with many potential paths"),
-					list("you find yourself", "in an old city", "still bustling with activity", "but with an omnipresent feel of decay"),
+					list("你发现自己", "身处一片枝杈交错的森林", "幽暗，且有许多潜在的道路"),
+					list("你发现自己", "身处一座古城", "依然熙熙攘攘", "但处处透着衰败的气息"),
 				))
 			if(3)
-				return list("you find yourself", "in a burning city", "flames reaching high", "but with everyone doing their best to survive")
+				return list("你发现自己", "身处一座燃烧的城市", "火焰高高窜起", "但所有人都在竭力求生")
 			if(4)
-				return list("you find yourself", "in a chaotic battlefield", "with no clear sides or victors", "only endless conflict and suffering")
+				return list("你发现自己", "身处混乱的战场", "没有明确的阵营或胜者", "只有无尽的冲突与苦难")
 
-	return list("you see", "nothing of note", "but have a lingering feeling of unease about the future")
+	return list("你看见", "没有什么值得注意的东西", "但对未来仍有一种挥之不去的不安")
 
 /datum/dream/random/vague_portent
 	weight = 0

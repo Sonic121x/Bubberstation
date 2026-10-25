@@ -1,6 +1,6 @@
 /obj/item/storage/portable_chem_mixer
-	name = "portable chemical mixer"
-	desc = "A portable device that dispenses and mixes chemicals using the beakers inserted inside."
+	name = "便携式化学混合器"
+	desc = "一种便携设备，可用内置的烧杯分配并混合化学物质。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "portablechemicalmixer_open"
 	worn_icon_state = "portable_chem_mixer"
@@ -32,9 +32,9 @@
 	return ..()
 
 /obj/item/storage/portable_chem_mixer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "[atom_storage.locked ? "Un" : ""]Lock storage"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "[atom_storage.locked ? "解锁" : "锁定"]储物"
 	if(atom_storage.locked && !QDELETED(beaker))
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Eject beaker"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "取出烧杯"
 
 	if(!isnull(held_item))
 		if (!atom_storage.locked  || \
@@ -44,21 +44,21 @@
 			!held_item.is_open_container() \
 		)
 			return CONTEXTUAL_SCREENTIP_SET
-		context[SCREENTIP_CONTEXT_LMB] = "Insert beaker"
+		context[SCREENTIP_CONTEXT_LMB] = "放入烧杯"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/storage/portable_chem_mixer/examine(mob/user)
 	. = ..()
 	if(!atom_storage.locked)
-		. += span_notice("Use [EXAMINE_HINT("Ctrl Click")] to lock in order to use its interface.")
+		. += span_notice("使用 [EXAMINE_HINT("Ctrl 点击")] 锁定后才能使用其界面。")
 	else
-		. += span_notice("Its storage is locked, use [EXAMINE_HINT("Ctrl Click")] to unlock it.")
+		. += span_notice("其储物已锁定，使用 [EXAMINE_HINT("Ctrl 点击")] 解锁。")
 	if(QDELETED(beaker))
-		. += span_notice("A beaker can be inserted to dispense reagents after it is locked.")
+		. += span_notice("锁定后可放入烧杯以分配试剂。")
 	else
-		. += span_notice("A beaker of [beaker.reagents.maximum_volume]u capacity is inserted.")
-		. += span_notice("It can be ejected with [EXAMINE_HINT("Alt Click")].")
+		. += span_notice("已放入容量为 [beaker.reagents.maximum_volume]u 的烧杯。")
+		. += span_notice("可用 [EXAMINE_HINT("Alt 点击")] 取出。")
 
 /obj/item/storage/portable_chem_mixer/update_icon_state()
 	if(!atom_storage.locked)
@@ -140,7 +140,7 @@
 
 /obj/item/storage/portable_chem_mixer/ui_interact(mob/user, datum/tgui/ui)
 	if(!atom_storage.locked)
-		balloon_alert(user, "lock it first!")
+		balloon_alert(user, "请先锁定！")
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -242,7 +242,7 @@
 
 /obj/item/storage/portable_chem_mixer/click_alt(mob/living/user)
 	if(!atom_storage.locked)
-		balloon_alert(user, "lock first to use alt eject!")
+		balloon_alert(user, "请先锁定才能使用 Alt 取出！")
 		return CLICK_ACTION_BLOCKING
 
 	replace_beaker(user)

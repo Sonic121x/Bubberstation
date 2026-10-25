@@ -1,8 +1,8 @@
 /datum/religion_rites/slumber_party
-	name = "Slumber Party"
-	desc = "Put all nearby creatures to sleep. \
-		All affected creatures share the same dream and heal rapidly while sleeping. \
-		You and your followers heal even faster during the ritual."
+	name = "睡衣派对"
+	desc = "让附近所有生物入睡。\
+		所有受影响的生物会共享同一个梦境，并在睡眠中快速愈合。\
+		你和你的追随者在仪式期间愈合得更快。"
 	favor_cost = 200
 	rite_flags = RITE_AUTO_DELETE
 	ritual_length = 20 SECONDS
@@ -10,9 +10,9 @@
 /datum/religion_rites/slumber_party/New()
 	. = ..()
 	ritual_invocations = list(
-		"Sleep now, flock of [GLOB.deity], and share in each other's dreams...",
-		"Our slumber shall rejuvenate us for the trials ahead...",
-		"May we all wake up refreshed and renewed!",
+		"入睡吧，[GLOB.deity] 的羊群，共享彼此的梦境……",
+		"我们的睡眠将使我们在未来的考验前恢复活力……",
+		"愿我们醒来时都神清气爽、焕然一新！",
 	)
 
 /datum/religion_rites/slumber_party/post_invoke_effects(mob/living/user, atom/religious_tool)

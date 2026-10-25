@@ -25,8 +25,8 @@
  * Even if they don't, several of these are minor stuns anyway
  */
 /obj/item/gun/magic/wand/hallucination
-	name = "wand of chaos"
-	desc = "A wand which spits bolts of hallucinogenic magic which can do almost anything, or at least make the victim think so."
+	name = "混沌之杖"
+	desc = "一根能射出致幻魔法弹的短杖，几乎无所不能，至少能让受害者这么以为。"
 	school = SCHOOL_FORBIDDEN
 	ammo_type = /obj/item/ammo_casing/magic/hallucination
 	icon_state = "chaoswand"
@@ -63,7 +63,7 @@
 
 /obj/projectile/magic/hallucination
 	// Eagle eyed players may be aware that there's no such thing as a real bolt of chaos projectile
-	name = "bolt of chaos"
+	name = "混沌之弹"
 	icon_state = "ice_1"
 
 /obj/projectile/magic/hallucination/on_hit(atom/target, blocked = 0, pierce_hit)

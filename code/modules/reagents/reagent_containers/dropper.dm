@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/dropper
-	name = "dropper"
-	desc = "A dropper. Holds up to 5 units."
+	name = "滴管"
+	desc = "一个滴管。最多可容纳 5 单位。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "dropper0"
 	inhand_icon_state = "dropper"
@@ -18,11 +18,11 @@
 
 	if(reagents.total_volume > 0)
 		if(target.reagents.holder_full())
-			to_chat(user, span_notice("[target] is full."))
+			to_chat(user, span_notice("[target] 是满的。"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!target.is_injectable(user))
-			to_chat(user, span_warning("You cannot transfer reagents to [target]!"))
+			to_chat(user, span_warning("你无法把试剂转移到 [target] 里！"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = 0
@@ -40,44 +40,44 @@
 
 					trans = round(reagents.trans_to(safe_thing, amount_per_transfer_from_this, transferred_by = user, methods = TOUCH), CHEMICAL_VOLUME_ROUNDING)
 
-					target.visible_message(span_danger("[user] tries to squirt something into [target]'s eyes, but fails!"), \
-											span_userdanger("[user] tries to squirt something into your eyes, but fails!"))
+					target.visible_message(span_danger("[user] 想把什么东西挤进 [target] 的眼睛里，但失败了！"), \
+											span_userdanger("[user] 想把什么东西挤进你的眼睛里，但失败了！"))
 					if(trans)
-						to_chat(user, span_notice("You transfer [trans] unit\s of the solution."))
+						to_chat(user, span_notice("你转移了 [trans] 单位溶液。"))
 					update_appearance()
 					return ITEM_INTERACT_BLOCKING
 
 			else if(isalien(target)) //hiss-hiss has no eyes!
-				to_chat(target, span_danger("[target] does not seem to have any eyes!"))
+				to_chat(target, span_danger("[target] 似乎没有眼睛！"))
 				return ITEM_INTERACT_BLOCKING
 
 			target.visible_message(
-				span_danger("[user] squirts something into [target]'s eyes!"),
-				span_userdanger("[user] squirts something into your eyes!"),
+				span_danger("[user] 把什么东西挤进了 [target] 的眼睛里！"),
+				span_userdanger("[user] 把什么东西挤进了你的眼睛里！"),
 			)
 			SEND_SIGNAL(target, COMSIG_MOB_REAGENTS_DROPPED_INTO_EYES, user, src, reagents, fraction)
 			reagents.expose(target, TOUCH, fraction)
 			var/mob/M = target
-			log_combat(user, M, "squirted", reagents.get_reagent_log_string())
+			log_combat(user, M, "挤入", reagents.get_reagent_log_string())
 
 		trans = round(reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 		if(trans)
-			to_chat(user, span_notice("You transfer [trans] unit\s of the solution."))
+			to_chat(user, span_notice("你转移了 [trans] 单位溶液。"))
 		update_appearance()
 		target.update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
 	if(!target.is_drawable(user, FALSE)) //No drawing from mobs here
-		to_chat(user, span_warning("You cannot directly remove reagents from [target]!"))
+		to_chat(user, span_warning("你无法直接从 [target] 中取出试剂！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty!"))
+		to_chat(user, span_warning("[target] 是空的！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = round(target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user), CHEMICAL_VOLUME_ROUNDING)
 	if(trans)
-		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the solution."))
+		to_chat(user, span_notice("你往 [src] 里装了 [trans] 单位溶液。"))
 
 	update_appearance()
 	target.update_appearance()

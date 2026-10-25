@@ -1,8 +1,8 @@
 #define MAX_CONTAINER_PRINT_AMOUNT 50
 
 /obj/machinery/chem_master
-	name = "\improper ChemMaster 3000"
-	desc = "Used to separate chemicals and distribute them in a variety of forms."
+	name = "\improper 化学大师 3000"
+	desc = "用于分离化学物质，并可将它们分装成多种形式。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "chemmaster"
 	base_icon_state = "chemmaster"
@@ -59,41 +59,41 @@
 	. = NONE
 	if(isnull(held_item) || (held_item.item_flags & ABSTRACT) || (held_item.flags_1 & HOLOGRAM_1))
 		if(isnull(held_item))
-			context[SCREENTIP_CONTEXT_RMB] = "Remove beaker"
+			context[SCREENTIP_CONTEXT_RMB] = "取出烧杯"
 			. = CONTEXTUAL_SCREENTIP_SET
 		return .
 
 	if(held_item.is_chem_container())
 		if(!QDELETED(beaker))
-			context[SCREENTIP_CONTEXT_LMB] = "Replace beaker"
+			context[SCREENTIP_CONTEXT_LMB] = "更换烧杯"
 		else
-			context[SCREENTIP_CONTEXT_LMB] = "Insert beaker"
+			context[SCREENTIP_CONTEXT_LMB] = "放入烧杯"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/chem_master/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:<br>Reagent buffer capacity: <b>[reagents.maximum_volume]</b> units.<br>Printing speed: <b>[0.75 SECONDS / printing_speed * 100]%</b>.")
+		. += span_notice("状态显示屏显示：<br>试剂缓冲区容量：<b>[reagents.maximum_volume]</b> 单位。<br>打印速度：<b>[0.75 SECONDS / printing_speed * 100]%</b>。")
 		if(!QDELETED(beaker))
-			. += span_notice("[beaker] of <b>[beaker.reagents.maximum_volume]u</b> capacity inserted.")
-			. += span_notice("Right click with empty hand to remove beaker.")
+			. += span_notice("已插入容量为 <b>[beaker.reagents.maximum_volume]u</b> 的 [beaker]。")
+			. += span_notice("空手右键点击可取出烧杯。")
 		else
-			. += span_warning("Missing input beaker.")
+			. += span_warning("缺少输入烧杯。")
 
-		. += span_notice("It can be [EXAMINE_HINT("wrenched")] [anchored ? "loose" : "in place"].")
-		. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+		. += span_notice("可以用扳手[EXAMINE_HINT("拧")]使其[anchored ? "松动" : "固定到位"]。")
+		. += span_notice("用螺丝刀[EXAMINE_HINT("拧")]可[panel_open ? "关闭" : "打开"]其维修面板。")
 		if(panel_open)
-			. += span_notice("The machine can be [EXAMINE_HINT("pried")] apart.")
+			. += span_notice("可以[EXAMINE_HINT("撬开")]拆解这台机器。")
 
 /obj/machinery/chem_master/update_appearance(updates)
 	. = ..()
@@ -191,7 +191,7 @@
 
 /obj/machinery/chem_master/wrench_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, "still printing!")
+		balloon_alert(user, "仍在打印中！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
@@ -200,14 +200,14 @@
 
 /obj/machinery/chem_master/screwdriver_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, "still printing!")
+		balloon_alert(user, "仍在打印中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_screwdriver(user, tool)
 
 /obj/machinery/chem_master/crowbar_act(mob/living/user, obj/item/tool)
 	if(is_printing)
-		balloon_alert(user, "still printing!")
+		balloon_alert(user, "仍在打印中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return default_deconstruction_crowbar(user, tool)
@@ -414,7 +414,7 @@
 	switch(action)
 		if("eject")
 			if(is_printing)
-				say("The buffer is locked while printing.")
+				say("打印期间缓冲区已锁定。")
 				return
 
 			replace_beaker(ui.user)
@@ -441,7 +441,7 @@
 
 		if("transfer")
 			if(is_printing)
-				say("The buffer is locked while printing.")
+				say("打印期间缓冲区已锁定。")
 				return
 
 			var/reagent_ref = params["reagentRef"]
@@ -450,13 +450,13 @@
 
 			if(amount == -1) // Set custom amount
 				var/mob/user = ui.user //Hold a reference of the user if the UI is closed
-				amount = round(tgui_input_number(user, "Enter amount to transfer", "Transfer amount", round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
+				amount = round(tgui_input_number(user, "输入要转移的量", "转移量", round_value = FALSE), CHEMICAL_VOLUME_ROUNDING)
 				if(!amount || !user.can_perform_action(src))
 					return FALSE
 
 			var/should_transfer = is_transfering || (target == "buffer") // we should always transfer if target is the buffer
 			if(should_transfer && isnull(beaker)) // if there's no beaker, we cannot transfer
-				say("No reagent container is inserted.")
+				say("未插入试剂容器。")
 				return FALSE
 
 			var/reagents_from
@@ -536,8 +536,8 @@
 			// BUBBER EDIT END
 			var/item_name = tgui_input_text(
 				usr,
-				"Container name",
-				"Name",
+				"容器名称",
+				"名称",
 				item_name_default,
 				max_length = MAX_NAME_LEN,
 			)
@@ -597,8 +597,8 @@
 		update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/chem_master/condimaster
-	name = "CondiMaster 3000"
-	desc = "Used to create condiments and other cooking supplies."
+	name = "调味大师 3000"
+	desc = "用于制作调味品及其他烹饪用品。"
 	icon_state = "condimaster"
 
 /obj/machinery/chem_master/condimaster/load_printable_containers()

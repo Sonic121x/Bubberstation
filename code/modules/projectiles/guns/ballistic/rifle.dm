@@ -1,11 +1,11 @@
 /obj/item/gun/ballistic/rifle
-	name = "Bolt Rifle"
-	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
+	name = "栓动步枪"
+	desc = "某种栓动步枪。你总觉得这东西不该在你手上。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "sakhno"
 	w_class = WEIGHT_CLASS_BULKY
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction
-	bolt_wording = "bolt"
+	bolt_wording = "枪机"
 	bolt_type = BOLT_TYPE_LOCKING
 	semi_auto = FALSE
 	internal_magazine = TRUE
@@ -21,7 +21,7 @@
 
 /obj/item/gun/ballistic/rifle/rack(mob/user = null)
 	if (bolt_locked == FALSE)
-		balloon_alert(user, "bolt opened")
+		balloon_alert(user, "枪机已打开")
 		playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 		process_chamber(FALSE, FALSE, FALSE)
 		bolt_locked = TRUE
@@ -32,7 +32,7 @@
 
 /obj/item/gun/ballistic/rifle/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(need_bolt_lock_to_interact && !bolt_locked && !istype(tool, /obj/item/knife))
-		balloon_alert(user, "bolt closed!")
+		balloon_alert(user, "枪机是关着的！")
 		return
 
 	return ..()
@@ -44,19 +44,19 @@
 
 /obj/item/gun/ballistic/rifle/examine(mob/user)
 	. = ..()
-	. += "The bolt is [bolt_locked ? "open" : "closed"]."
+	. += "枪机处于[bolt_locked ? "打开" : "关闭"]状态。"
 
 ///////////////////////
 // BOLT ACTION RIFLE //
 ///////////////////////
 
 /obj/item/gun/ballistic/rifle/boltaction
-	name = "\improper Sakhno Precision Rifle"
-	desc = "A bolt-action rifle that was - and certainly still is - popular with \
-		frontiersmen, cargo runners, private security forces, explorers, and other unsavoury types."
-	sawn_desc = "A sawn-off bolt-action rifle, popularly known as an \"Obrez\". \
-		There's probably a reason it wasn't manufactured this short to begin with. \
-		Despite the terrible nature of the modification, the weapon seems otherwise in good condition."
+	name = "\improper 萨赫诺精确步枪"
+	desc = "一款栓动步枪，过去——现在显然也依然——深受 \
+		边疆居民、货运跑腿、私人保安部队、探险家以及其他不怎么光彩的家伙喜爱。"
+	sawn_desc = "一把被锯短的栓动步枪，俗称“奥布雷兹”。 \
+		它最初不造得这么短，大概是有原因的。 \
+		尽管这项改装糟糕透顶，武器在其他方面看起来状况良好。"
 
 	icon_state = "sakhno"
 	inhand_icon_state = "sakhno"
@@ -77,19 +77,19 @@
 
 /obj/item/gun/ballistic/rifle/boltaction/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "The Sakhno Precision Rifle's origins are closely tied to the Sakhno Concern, one of the Third Soviet Union's \
-			state-ran weapons manufacturing concerns before the Union's collapse in the February Revolution, and subsequently \
-			one of the Spinward Stellar Coalition's favored industrial concerns.<br>\
+		lore = "萨赫诺精确步枪的起源与萨赫诺集团密切相关。该集团是第三苏联在二月革命中解体之前 \
+			国有的武器制造集团之一，随后又成为 \
+			顺旋星际联盟青睐的工业集团之一。<br>\
 			<br>\
-			Designed to be easily manufactured with the tooling and equipment that the nascent TSU had on-hand, \
-			and with enough reliability and stopping power for all sorts of purposes, from hunting to home defense, \
-			the Sakhno became a mainstay for Soviet citizens since 2440... \
-			and, subsequently, a mainstay when those citizens became conspirators and combatants against dictatorship.<br>\
+			它的设计目标是能用新生的第三苏联手头现有的工装设备轻松制造， \
+			同时具备足够的可靠性与停止作用，足以胜任从狩猎到居家防卫的各种用途， \
+			因此自 2440 年起，萨赫诺便成了苏联公民的主要装备…… \
+			后来，当这些公民成为反独裁的密谋者与战斗者时，它又成了他们的主要装备。<br>\
 			<br>\
-			Even to this day, though, Sakhnos in various conditions and states of modification end up all around the Spinward Sector. \
-			Many are manufactured or refurbished with new internals, with reliability to match their history, \
-			while others are from stockpiles of surplus or salvage, scavenged and refurbished time and time again... \
-			which typically isn't great for reliability." \
+			然而，直到今天，各种状态、各种改装程度的萨赫诺仍散布在顺旋星区各处。 \
+			许多是重新制造或更换新内部件的翻修品，可靠性也与其来历相称， \
+			另一些则来自剩余物资或打捞堆，被一遍遍拆解翻修…… \
+			这对可靠性通常没什么好处。" \
 		)
 
 /obj/item/gun/ballistic/rifle/boltaction/add_bayonet_point()
@@ -109,7 +109,7 @@
 			unjam_chance = initial(unjam_chance)
 		else
 			unjam_chance += 10
-			balloon_alert(user, "jammed!")
+			balloon_alert(user, "卡壳了！")
 			playsound(user,'sound/items/weapons/jammed.ogg', 75, TRUE)
 			return FALSE
 	return ..()
@@ -130,8 +130,8 @@
 		. = TRUE
 
 /obj/item/gun/ballistic/rifle/boltaction/harpoon
-	name = "ballistic harpoon gun"
-	desc = "A weapon favored by carp hunters, but just as infamously employed by agents of the Animal Rights Consortium against human aggressors, because it's ironic."
+	name = "弹道鱼叉枪"
+	desc = "鲤鱼猎手钟爱的武器，但同样出名的是，动物权利联盟的特工会用它对付人类侵略者，因为这样很有讽刺意味。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "speargun"
 	inhand_icon_state = "speargun"
@@ -144,27 +144,27 @@
 
 /obj/item/gun/ballistic/rifle/boltaction/harpoon/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "Breech-loaded spearguns aren't a common sight around Nanotrasen stations, because \
-			everything you could reasonably need a speargun for, like carp hunting, is better served \
-			by more available options, such as laser guns or toolboxes.<br>\
+		lore = "后装式鱼叉枪在纳米传讯的空间站周边并不常见，因为 \
+			凡是你会想到要用鱼叉枪的场合——比如猎鲤鱼——都有更容易到手的替代品， \
+			比如激光枪或者工具箱。<br>\
 			<br>\
-			However, the Animal Rights Consortium intentionally sends some \"lucky\" operatives \
-			out with such weapons, as their uncommon nature makes it very unambiguous who sent the madmen \
-			who willingly use such weapons, and what drives them. \
-			Or, equally as likely, some other cell of the Syndicate pilfered it to paint the Consortium as \
-			responsible for whatever attack could be committed with a speargun.<br>\
+			然而，动物权利联盟会故意派一些“幸运”特工 \
+			带着这种武器出去，因为这种武器不常见，所以是谁派出了这些乐于使用此类武器的疯子、 \
+			又是为了什么，都会一目了然。 \
+			或者同样可能的是，辛迪加的另一个小组偷走了它，好让动物权利联盟为 \
+			任何能用鱼叉枪犯下的袭击背锅。<br>\
 			<br>\
-			Either way, having a ballistic harpoon stuck in a limb is widely regarded as being a drag." \
+			无论如何，四肢上插着一支弹道鱼叉，普遍被认为是一件很烦人的事。" \
 	)
 
 /obj/item/gun/ballistic/rifle/boltaction/surplus
-	name = "\improper Sakhno M2442 Army"
-	desc = "A bolt-action rifle with \"Sakhno M2442 Army\" stamped into the side. \
-		It's unknown what army this rifle was made for, or if it was ever used by one, but it's obvious the previous owner did not treat it well. \
-		For some reason, there's moisture all through the internals."
-	sawn_desc = "A sawn-off bolt-action rifle, popularly known as an \"Obrez\", with \"Sakhno M2442 Army\" stamped into the side. \
-		There's probably a reason it wasn't manufactured this short to begin with. \
-		Cutting the weapon down has not helped with the moisture problem."
+	name = "\improper 萨赫诺 M2442 军用型"
+	desc = "一把侧面冲压着“Sakhno M2442 Army”字样的栓动步枪。 \
+		不清楚这支步枪是为哪支军队制造的，也不清楚它是否真被军队用过，但显然前任主人没好好待它。 \
+		不知为何，它内部到处都是潮气。"
+	sawn_desc = "一把被锯短的栓动步枪，俗称“奥布雷兹”，侧面冲压着“Sakhno M2442 Army”字样。 \
+		它最初不造得这么短，大概是有原因的。 \
+		把武器锯短并没有改善潮气问题。"
 	icon_state = "sakhno_tactifucked"
 	inhand_icon_state = "slopno"
 	worn_icon_state = "slopno"
@@ -175,19 +175,19 @@
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 41, offset_y = 14, bayonet_overlay = "bayonet_thin_surplus")
 
 /obj/item/gun/ballistic/rifle/boltaction/prime
-	name = "\improper Sakhno-Zhihao Sporting Rifle"
-	desc = "An upgrade and modernisation of the original Sakhno rifle, made with such wonders as \
-		modern materials, a scope, and other impressive technological advancements that, to be honest, \
-		were already around when the original weapon was designed. Surprisingly, for a rifle of this type, \
-		the scope actually has magnification, rather than being decorative."
+	name = "\improper 萨赫诺-希豪运动步枪"
+	desc = "对原版萨赫诺步枪的升级与现代化改装，用上了现代材料、瞄准镜之类 \
+		令人惊叹的东西，以及其它一些说来尴尬、其实在原版武器设计时就已存在的 \
+		技术进展。对这类步枪来说出人意料的是， \
+		它的瞄准镜竟然真有放大倍率，而不只是装饰。"
 	icon_state = "zhihao"
 	inhand_icon_state = "zhihao"
 	worn_icon_state = "zhihao"
 	can_be_sawn_off = TRUE
-	sawn_desc = "A sawn-off Sakhno-Zhihao Sporting Rifle... Doing this was a sin, I hope you're happy. \
-		You are now probably one of the few people in the universe to ever hold an \"Obrez Moderna\". \
-		All you had to do was take an allen wrench to the stock to take it off, but no - \
-		you just had to go for the saw."
+	sawn_desc = "一把被锯短的萨赫诺-希豪运动步枪……这么做是种罪过，希望你满意。 \
+		你现在大概是宇宙中少数几个握过“现代奥布雷兹”的人之一了。 \
+		你本来只要拿内六角扳手把枪托卸下来就行，可你偏不—— \
+		你非要去拿锯子。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/phasic
 
 /obj/item/gun/ballistic/rifle/boltaction/prime/Initialize(mapload)
@@ -197,13 +197,13 @@
 /obj/item/gun/ballistic/rifle/boltaction/prime/sawoff(mob/user)
 	. = ..()
 	if(.)
-		name = "\improper Obrez Moderna" // wear it loud and proud
+		name = "\improper 现代奥布雷兹" // wear it loud and proud
 
 /obj/item/gun/ballistic/rifle/boltaction/donkrifle
-	name = "\improper Donk Co. Jezail"
-	desc = "A mass-manufactured bolt-action sporting rifle with a distinctively long barrel. \
-		Powerful enough to take down a space bear from a thousand paces. \
-		The lengthened barrel gives it good accuracy and power, even at range."
+	name = "\improper 咚克公司杰扎伊尔步枪"
+	desc = "一款量产型栓动运动步枪，枪管特别长。 \
+		威力大到能在一千步外放倒一头太空熊。 \
+		加长的枪管让它在远距离也能保持不错的精度与威力。"
 	w_class = WEIGHT_CLASS_HUGE
 	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
@@ -214,20 +214,20 @@
 	worn_icon_state = "jezail"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/jezail
 	can_be_sawn_off = TRUE
-	sawn_desc = "A mass-manufactured bolt-action sporting rifle with a formerly-distinctively long barrel. \
-		Powerful enough to take down a space bear from... less than a thousand paces. \
-		Its barrel has been cut off, so its power and accuracy have been impaired."
+	sawn_desc = "一款量产型栓动运动步枪，枪管曾经特别长。 \
+		威力大到能在……不到一千步外放倒一头太空熊。 \
+		它的枪管被截短了，因此威力与精度都受到了影响。"
 
 /obj/item/gun/ballistic/rifle/boltaction/donkrifle/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "Donk Co.'s Jezail line of bolt-action sporting rifles is, admittedly, a strange, almost archaic design, \
-			coming from an even stranger place, as most people would not expect a logistics and food processing company to \
-			create, market, and distribute bolt-action rifles.<br>\
+		lore = "平心而论，咚克公司的杰扎伊尔系列栓动运动步枪是个奇怪、近乎古旧的设计， \
+			出自一个更奇怪的地方——毕竟大多数人不会想到一家物流与食品加工公司会 \
+			创造、营销并分销栓动步枪。<br>\
 			<br>\
-			For better or for worse, though, they're pretty good as rifles - \
-			though they're not nearly as ubiquitous as the Sakhno, especially in the Spinward Sector, \
-			they still share the same chambering in .310 Strilka, and thus, the stopping power of the cartridge, with \
-			no risk of receiving a refurbished, poorly-kept surplus arm that jams more than it shoots." \
+			但不管好坏，它们作为步枪相当不错—— \
+			虽然远不如萨赫诺那样普及，尤其是在顺旋星区， \
+			但它们同样使用 .310 斯特里尔卡口径，因此也具备该弹药的停止作用， \
+			而且不会有拿到一把翻修过、保养糟糕、卡壳比射击还频繁的剩余军械的风险。" \
 	)
 
 /obj/item/gun/ballistic/rifle/boltaction/donkrifle/sawoff(mob/user) //the heavy price one pays for fitting this in a backpack
@@ -237,10 +237,10 @@
 		spread = 50
 
 /obj/item/gun/ballistic/rifle/rebarxbow
-	name = "heated rebar crossbow"
-	desc = "A handcrafted crossbow. Aside from conventional sharpened iron rods, it can also fire specialty rods made from crystallized gases. \
-		Very slow to reload, and probably worth pairing with a quiver. \
-		Further modifications for increased capacity are... possible, if unwise."
+	name = "加热钢筋弩"
+	desc = "一把手工制作的弩。除了常规的磨尖铁杆之外，它还能发射由结晶气体制成的特殊杆件。 \
+		装填非常慢，大概值得配一个箭袋。 \
+		为进一步提高容量而做的改装……是可能的，但并不明智。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "rebarxbow"
 	inhand_icon_state = "rebarxbow"
@@ -253,9 +253,9 @@
 	internal_magazine = TRUE
 	can_modify_ammo = FALSE
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_SUITSTORE
-	bolt_wording = "bowstring"
-	magazine_wording = "rod"
-	cartridge_wording = "rod"
+	bolt_wording = "弓弦"
+	magazine_wording = "杆件"
+	cartridge_wording = "杆件"
 	weapon_weight = WEAPON_HEAVY
 	initial_caliber = CALIBER_REBAR
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
@@ -272,7 +272,7 @@
 	if (bolt_locked)
 		drop_bolt(user)
 		return
-	balloon_alert(user, "bowstring loosened")
+	balloon_alert(user, "弓弦已松开")
 	playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	handle_chamber(empty_chamber =  FALSE, from_firing = FALSE, chamber_next_round = FALSE)
 	bolt_locked = TRUE
@@ -282,7 +282,7 @@
 	if(!do_after(user, draw_time, target = src,timed_action_flags = src.doafter_flags))
 		return
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
-	balloon_alert(user, "bowstring drawn")
+	balloon_alert(user, "弓弦已拉满")
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -303,7 +303,7 @@
 
 /obj/item/gun/ballistic/rifle/rebarxbow/examine(mob/user)
 	. = ..()
-	. += "The crossbow is [bolt_locked ? "not ready" : "ready"] to fire."
+	. += "这把弩[bolt_locked ? "尚未" : "已经"]准备好可以发射。"
 
 /obj/item/gun/ballistic/rifle/rebarxbow/update_overlays()
 	. = ..()
@@ -313,8 +313,8 @@
 		. += "[initial(icon_state)]" + "_bolt_locked"
 
 /obj/item/gun/ballistic/rifle/rebarxbow/forced
-	name = "stressed rebar crossbow"
-	desc = "Some idiot decided that they would risk shooting themselves in the face if it meant they could rack and reload the crossbow faster. Hopefully it was worth it."
+	name = "超载钢筋弩"
+	desc = "某个白痴觉得，只要能更快地拉弦装填，就算有朝自己脸开枪的风险也值得。希望这一切是值得的。"
 	// Feel free to add a recipe to allow you to change it back if you would like, I just wasn't sure if you could have two recipes for the same thing.
 	can_misfire = TRUE
 	draw_time = 0.5 SECONDS
@@ -324,10 +324,10 @@
 	misfire_probability = 25
 
 /obj/item/gun/ballistic/rifle/rebarxbow/syndie
-	name = "syndicate rebar crossbow"
-	desc = "The Syndicate liked the bootleg rebar crossbow NT engineers made, and decided to one-up them by properly manufacturing a rebar \
-		crossbow that's significantly less prone to maiming the user. \
-		Automatically reloads from a backpack quiver when pulling the string."
+	name = "辛迪加钢筋弩"
+	desc = "辛迪加很喜欢 NT 工程师搞出的那款山寨钢筋弩，于是决定玩得更大：正经制造一款 \
+		不容易把使用者弄残的钢筋弩。 \
+		拉弦时会自动从背包箭袋中装填。"
 	icon_state = "rebarxbowsyndie"
 	inhand_icon_state = "rebarxbowsyndie"
 	worn_icon_state = "rebarxbowsyndie"
@@ -345,8 +345,8 @@
 /// PIPE GUNS ///
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun
-	name = "pipegun"
-	desc = "A symbol that the true masters of this place are not those who merely inhabit it, but the one willing to twist it towards a killing intent."
+	name = "管道枪"
+	desc = "它象征着：这地方真正的主人不是那些只是栖身于此的人，而是愿意把它扭曲成杀意的人。"
 	icon_state = "pipegun"
 	inhand_icon_state = "pipegun"
 	worn_icon_state = "pipegun"
@@ -364,16 +364,16 @@
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to recall a tale about [src]."), \
-		lore = "<b>You were told this story, in hushed tones, from a wizened man in a grey jumpsuit...</b><br><br>\
-			It is said that the first slaying committed on a Nanotrasen space station was by an assistant.<br><br>\
-			That this act, done by toolbox, maybe spear, was what consigned their kind to a life of destitution, rejection and violence.<br><br>\
-			They carry the weight of this act visibly; the grey jumpsuit. Breathing deeply filtered air. And with bloodsoaked yellow hands clenched into fists.<br><br>\
-			Eyes, sharp and waiting. Hunters in the dark.<br><br>\
-			Eventually, these killing spirits sought to stake a claim on the metal tombs they were trapped within. Rejecting their status. Determined to be something more.<br><br>\
-			This weapon is one such tool. And it is a grim one indeed - wrought from scrap, pulled from the station's walls and floors and the very nails holding it together.<br>\
+		lore_hint = span_notice("你可以[EXAMINE_HINT("仔细查看")]来回想一段关于 [src] 的故事。"), \
+		lore = "<b>这个故事，是一位身穿灰色连体服的干瘦老人压低声音讲给你听的……</b><br><br>\
+			据说，纳米传讯空间站上发生的第一起凶杀，凶手是一名助手。<br><br>\
+			正是这桩用工具箱、也许还用长矛犯下的行为，让他们这一类人从此注定过上穷困、遭排斥、充满暴力的生活。<br><br>\
+			他们身上处处可见这桩行为的重量：灰色连体服。呼吸着深度过滤的空气。还有浸血发黄的双手攥成的拳头。<br><br>\
+			目光锐利，静静等待。黑暗中的猎手。<br><br>\
+			最终，这些杀戮之魂想要在他们被困住的金属坟墓里宣示主权。拒绝自己的身份。决意成为更重要的存在。<br><br>\
+			这件武器就是他们的工具之一。而且确实是一件冷酷的工具——由废料锻成，从空间站的墙壁、地板，乃至把空间站固定在一起的钉子中拆出。<br>\
 			<br>\
-			It is a symbol that the true masters of this place are not those who merely inhabit it, but the one willing to twist it towards a killing intent." \
+			它象征着：这地方真正的主人不是那些只是栖身于此的人，而是愿意把它扭曲成杀意的人。" \
 	)
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/add_bayonet_point()
@@ -387,8 +387,8 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/pipegun/empty
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/pistol
-	name = "pipe pistol"
-	desc = "It is foolish to think that anyone wearing the grey is incapable of hurting you, simply because they are not baring their teeth."
+	name = "管道手枪"
+	desc = "如果只因为穿灰衣服的人没有龇牙，就以为他们伤不了你，那就太愚蠢了。"
 	icon_state = "pipepistol"
 	inhand_icon_state = "pipepistol"
 	worn_icon_state = "gun"
@@ -413,9 +413,9 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/pipegun/pistol/empty
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/prime
-	name = "regal pipegun"
-	desc = "To call this 'regal' is a cruel irony, for the only noteworthy quality of nobility is in how it is wielded to kill. \
-		All monarchs deserve to be crowned. But none will remember the dead tyrant for the red stain they left on the carpet."
+	name = "皇家管道枪"
+	desc = "把它称作“皇家”是一种残酷的讽刺，因为所谓高贵唯一值得一提的特质，就在于它如何被用来杀戮。 \
+		所有君王都理应加冕。但没有人会记得那位死去的暴君，只记得他在地毯上留下的那滩红渍。"
 	icon_state = "regal_pipegun"
 	inhand_icon_state = "regal_pipegun"
 	worn_icon_state = "regal_pipegun"
@@ -434,9 +434,9 @@
 	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/pipegun/prime/empty
 
 /obj/item/gun/ballistic/rifle/boltaction/pipegun/pistol/prime
-	name = "regal pipe pistol"
-	desc = "What value is there in honesty towards the dishonest? So that they might twist the arm and slit the wrist? \
-		The open palm is no sign of weakness; it is to draw the eyes away from the other hand, lying in wait."
+	name = "皇家管道手枪"
+	desc = "对不诚实的人讲诚实，又有什么价值？好让他们扭住你的胳膊、割开你的手腕吗？ \
+		摊开的手掌并非示弱；那是为了把视线从另一只埋伏着的手上引开。"
 	icon_state = "regal_pipepistol"
 	inhand_icon_state = "regal_pipepistol"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/boltaction/pipegun/pistol/prime
@@ -447,8 +447,8 @@
 /// MAGICAL BOLT ACTIONS ///
 
 /obj/item/gun/ballistic/rifle/enchanted
-	name = "enchanted bolt action rifle"
-	desc = "Careful not to lose your head."
+	name = "附魔栓动步枪"
+	desc = "小心别丢了脑袋。"
 	icon_state = "enchanted_rifle"
 	inhand_icon_state = "enchanted"
 	worn_icon_state = "enchanted_rifle"
@@ -487,10 +487,10 @@
 // SNIPER //
 
 /obj/item/gun/ballistic/rifle/sniper_rifle
-	name = "anti-materiel sniper rifle"
-	desc = "A surprisingly compact bolt-action anti-materiel rifle, utilizing .50 BMG cartridges. \
-		While technically outdated in modern arms markets, it still works exceptionally well \
-		in anti-personnel and light anti-armor roles. Also, somehow, capable of fitting a suppressor."
+	name = "反器材狙击步枪"
+	desc = "一款出人意料地紧凑的栓动反器材步枪，使用 .50 BMG 弹药。 \
+		尽管在现代军火市场上已算过时，它在杀伤人员与对付轻型装甲方面依然表现极佳。 \
+		而且不知怎么，它还能装上消音器。"
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "sniper"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -520,7 +520,7 @@
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/examine(mob/user)
 	. = ..()
-	. += span_warning("<b>It seems to have a warning label:</b> Do NOT, under any circumstances, attempt to 'quickscope' with this rifle.")
+	. += span_warning("<b>它似乎贴着一张警告标签：</b>在任何情况下都不要试图用这把步枪“瞬狙”。")
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/Initialize(mapload)
 	. = ..()
@@ -528,17 +528,17 @@
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "Modern arms and armor technology has come a long way since man's first strides into space, \
-			from high-throughput directed energy weaponry to advanced energy shielding and everything in between. \
-			Such advancements in technology, then, should have put the role of the anti-materiel rifle to rest, \
-			as other solutions to the armor problems it solves would have become more accessible - in theory, anyway.<br>\
+		lore = "自人类首次迈向太空以来，现代武器与装甲技术已经走了很远， \
+			从高吞吐量的定向能武器到先进的能量护盾，以及介于两者之间的一切。 \
+			按理说，这些技术进步本该让反器材步枪退出历史舞台， \
+			因为解决它所针对的装甲问题的其他方案本应变得更易获得——至少在理论上如此。<br>\
 			<br>\
-			In practice, the problem with advanced armor is that it's expensive and/or heavy - \
-			both of which are constraints that limit the usage of such defensive solutions, \
-			especially on smaller targets such as station-ready exosuits or human-scale MODsuits.<br>\
+			但实际上，先进装甲的问题在于它昂贵且/或沉重—— \
+			这两项限制都制约了这类防御方案的使用， \
+			尤其是在空间站制式外骨骼或人体尺寸的 MOD 外骨骼这类较小的目标上。<br>\
 			<br>\
-			These constraints gave the anti-materiel rifle concept a new lease on life, \
-			which Scarborough Arms is happy to provide to prospective buyers." \
+			这些限制让反器材步枪这一概念重获新生， \
+			而斯卡伯勒军火公司很乐意为有意向的买家提供这样的产品。" \
 	)
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/reset_fire_cd()
@@ -549,16 +549,16 @@
 		playsound(src, 'sound/machines/eject.ogg', 50, TRUE)
 
 /obj/item/gun/ballistic/rifle/sniper_rifle/syndicate
-	desc = parent_type::desc + " This one seems to have a little picture of someone in a Gorlex Marauders blood-red MODsuit stenciled on it, \
-		pointing at a green floppy disk. Who knows what that might mean."
+	desc = parent_type::desc + " 这一把上似乎用模板印着一个小图案：一个穿着戈尔莱克斯掠夺者血红 MOD 外骨骼的人， \
+		正指着一张绿色软盘。谁知道那是什么意思。"
 	pin = /obj/item/firing_pin/implant/pindicate
 
 // SKS semi-automatic rifle //
 
 /obj/item/gun/ballistic/rifle/sks
-	name = "\improper Sakhno SKS semi-automatic rifle"
-	desc = "A revival of the ancient SKS semi-automatic rifle, redesigned to utilize .310 Strilka rounds. \
-		Loses some per-cartridge stopping power due to quirks in the gas-operation system."
+	name = "\improper 萨赫诺 SKS 半自动步枪"
+	desc = "对古老 SKS 半自动步枪的复兴之作，经重新设计以使用 .310 斯特里尔卡弹药。 \
+		由于导气系统的一些特殊之处，单发停止作用有所下降。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "sks"
 	worn_icon_state = "sks"
@@ -579,25 +579,25 @@
 
 /obj/item/gun/ballistic/rifle/sks/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore = "The Sakhno Concern's modernized reproductions of the SKS were commissioned by the \
-			leadership of the Third Soviet Union to celebrate their establishment in the Spinward Sector.<br>\
+		lore = "萨赫诺集团对 SKS 的现代化复刻品，是应 \
+			第三苏联领导层之委托而制造的，用以庆祝他们在顺旋星区立足。<br>\
 			<br>\
-			In the wake of the Union's collapse, however, these weapons now hold a unique place in history \
-			amongst the populace of the sector as a reminder of what came before - and, possibly, the hope of what may come after. \
-			However, both parts kits and completed rifles are, strangely, rarer than the Sakhno M2442 Army.<br>\
+			然而在苏联解体之后，这些武器在本星区民众心中占据了独特的历史地位， \
+			既是对过往的提醒——也可能寄托着对未来的希望。 \
+			但奇怪的是，无论零件套件还是成品步枪，都比萨赫诺 M2442 军用型更罕见。<br>\
 			<br>\
-			Frontier settlers are known to own these for hunting purposes, or fighting off annoying tax collectors. \
-			Some argue that these are the same activity." \
+			众所周知，边疆定居者会拥有它们用于狩猎，或击退烦人的税务员。 \
+			有人主张这两件事其实是同一回事。" \
 	)
 
 /obj/item/gun/ballistic/rifle/sks/add_bayonet_point()
 	AddComponent(/datum/component/bayonet_attachable, offset_x = 38, offset_y = 12)
 
 /obj/item/gun/ballistic/rifle/sks/chekhov
-	name = "\improper Chekhov's SKS semi-automatic rifle"
-	desc = parent_type::desc + " The name 'Chekhov' is engraved in the side of the stock. \
-		You feel like this had some kind of significance at one point, but you cannot be sure as to what that might have been, \
-		or whether that true meaning has yet to reveal itself."
+	name = "\improper 契诃夫的 SKS 半自动步枪"
+	desc = parent_type::desc + " 枪托侧面刻着“契诃夫”这个名字。 \
+		你觉得这名字在某个时候曾有过某种意义，但你不确定那究竟是什么， \
+		也不确定那真正的含义是否尚未揭晓。"
 
 /obj/item/gun/ballistic/rifle/sks/empty
 	spawn_magazine_type = /obj/item/ammo_box/magazine/internal/sks/empty
@@ -605,10 +605,10 @@
 // lahti-l39 anti material rifle //
 
 /obj/item/gun/ballistic/automatic/lahti
-	name = "anti-tank rifle"
-	desc = "A reproduction of an ancient anti-tank rifle, manufactured in space with lighter, stronger materials, making it more portable and reliable. \
-		Chambered for a concerningly large 20x138mm cartridge, which, too, has received a modern facelift, \
-		making it terrifyingly effective, especially against exosuits."
+	name = "反坦克步枪"
+	desc = "一支古老反坦克步枪的复刻品，在太空中用更轻、更强的材料制造，因此更便于携带、也更加可靠。 \
+		它发射一型大得令人不安的 20x138mm 弹药，这种弹药同样经过了现代化改良， \
+		使其杀伤效果骇人，对付外骨骼尤其如此。"
 	icon = 'icons/obj/weapons/guns/lahtil39.dmi'
 	icon_state = "lahtil"
 	inhand_icon_state = "sniper"

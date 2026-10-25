@@ -1,19 +1,19 @@
 /datum/religion_rites/dream_projection
-	name = "Dream Projection"
-	desc = "Astrally project your dream consciousness into the mind of one of your followers. \
-		While projecting, you are asleep, and can see through the eyes of the chosen follower. \
-		They alone can hear you, and you cannot interact with the world in any way. \
-		The projection can be ended at any time, but it will end early if you are woken up, if you are attacked, \
-		or if the follower dies."
+	name = "梦境投射"
+	desc = "将你的梦境意识星体投射到你的一名追随者心中。\
+		投射期间，你处于睡眠状态，并能通过选定追随者的双眼观察。\
+		只有他们能听见你，你无法以任何方式与世界互动。\
+		投射可随时结束，但若你被唤醒、受到攻击，\
+		或追随者死亡，投射会提前终止。"
 	favor_cost = 100
 	ritual_length = 15 SECONDS
 
 /datum/religion_rites/dream_projection/New()
 	. = ..()
 	ritual_invocations = list(
-		"A member of our flock has gone astray, lost in the waking world...",
-		"It is the duty of the shepherd to guide those who cannot find their way...",
-		"Let me walk through their waking dream, and show them the way back...",
+		"我们羊群中的一员迷失了，在清醒的世界中走失……",
+		"牧者的职责，就是引导那些找不到路的人……",
+		"让我走入他们的清醒梦境，为他们指明归途……",
 	)
 
 /datum/religion_rites/dream_projection/perform_rite(mob/living/user, atom/religious_tool)
@@ -23,7 +23,7 @@
 			followers += follower
 
 	if(!length(followers))
-		to_chat(user, span_warning("You have no followers to project into!"))
+		to_chat(user, span_warning("你没有可投射的追随者！"))
 		return FALSE
 
 	return ..()
@@ -39,13 +39,13 @@
 		refund(0.8)
 		return
 
-	var/mob/living/carbon/human/target = tgui_input_list(user, "Choose a follower to project into:", "Dream Projection", followers)
+	var/mob/living/carbon/human/target = tgui_input_list(user, "选择一名要投射进入的追随者：", "梦境投射", followers)
 	if(QDELETED(target) || target.stat == DEAD || isnull(target.mind?.holy_role))
 		refund(0.8)
 		return
 
 	if(!user.apply_status_effect(/datum/status_effect/dream_projection, target))
-		to_chat(user, span_warning("You fail to fall asleep."))
+		to_chat(user, span_warning("你没能入睡。"))
 		refund(0.8)
 		return
 
@@ -70,11 +70,11 @@
 	return ..()
 
 /datum/status_effect/dream_projection/get_examine_text()
-	return "[owner.p_They()] [owner.p_are()] in a deep slumber, yet [owner.p_their()] eyes show a distant look, as if [owner.p_they()] [owner.p_are()] somewhere far away..."
+	return "正处于沉睡，但双眼目光遥远，仿佛身在远方……"
 
 /datum/status_effect/dream_projection/on_apply()
 	if(!owner.SetSleeping(20 SECONDS))
-		to_chat(owner, span_warning("You fail to fall asleep."))
+		to_chat(owner, span_warning("你没能入睡。"))
 		return FALSE
 
 	. = ..()
@@ -134,25 +134,25 @@
 
 /datum/status_effect/dream_projection/proc/end_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("Your dream projection ends as your target is no longer valid."))
+	to_chat(owner, span_warning("你的目标已不再有效，梦境投射结束了。"))
 	owner.SetSleeping(10 SECONDS)
 	qdel(src)
 
 /datum/status_effect/dream_projection/proc/interrupt_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("Your dream projection is interrupted!"))
+	to_chat(owner, span_warning("你的梦境投射被打断了！"))
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "gasp")
-	owner.visible_message(span_notice("[owner]'s eyes snap open as they are jolted awake!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = owner)
+	owner.visible_message(span_notice("[owner] 猛地睁开双眼，惊醒了！"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = owner)
 	qdel(src)
 
 /datum/status_effect/dream_projection/proc/stop_projection()
 	SIGNAL_HANDLER
-	to_chat(owner, span_warning("You end your dream projection and return to your body."))
+	to_chat(owner, span_warning("你结束了梦境投射，回到了自己的身体。"))
 	owner.SetSleeping(10 SECONDS)
 	qdel(src)
 
 /mob/eye/imaginary_friend/dream_projection
-	name = "dream projection"
+	name = "梦境投射"
 
 /mob/eye/imaginary_friend/dream_projection/Initialize(mapload)
 	. = ..()
@@ -168,7 +168,7 @@
 	return
 
 // The IC tab was removed recently as of commenting. This should probably be adjusted.
-GAME_VERB_DESC(/mob/eye/imaginary_friend/dream_projection, stop_projection, "Stop Projection", "Stop astrally projecting and return to your body.", "IC")
+GAME_VERB_DESC(/mob/eye/imaginary_friend/dream_projection, stop_projection, "停止投射", "停止星体投射并返回自己的身体。", "IC")
 
 	qdel(src)
 
@@ -177,8 +177,8 @@ GAME_VERB_DESC(/mob/eye/imaginary_friend/dream_projection, stop_projection, "Sto
 	client?.eye = owner
 
 /datum/action/innate/stop_projection
-	name = "Stop Projection"
-	desc = "Stop astrally projecting and return to your body."
+	name = "停止投射"
+	desc = "停止星体投射并返回自己的身体。"
 
 /datum/action/innate/stop_projection/Activate()
 	qdel(owner)

@@ -380,8 +380,8 @@
 
 /// Wand of making things small
 /obj/item/gun/magic/wand/shrink
-	name = "wand of shrinking"
-	desc = "Feel the tiny eldritch terror of an itty... bitty... head!"
+	name = "缩小之杖"
+	desc = "感受那小小……小小的脑袋带来的微型邪异恐惧吧！"
 	ammo_type = /obj/item/ammo_casing/magic/shrink/wand
 	icon_state = "shrinkwand"
 	base_icon_state = "shrinkwand"
@@ -391,7 +391,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/gun/magic/wand/shrink/zap_self(mob/living/user, suicide = FALSE)
-	to_chat(user, span_notice("The world grows large..."))
+	to_chat(user, span_notice("世界变大了……"))
 	charges--
 	user.AddComponent(/datum/component/shrink, -1) // small forever
 	return ..()
@@ -399,7 +399,7 @@
 /obj/item/gun/magic/wand/shrink/do_suicide(mob/living/user)
 	playsound(user, fire_sound, 50, TRUE)
 	user.unequip_everything()
-	user.visible_message(span_suicide("[user] shrinks into nothing!"), span_suicide("You shrink into nothing!"))
+	user.visible_message(span_suicide("[user] 缩小至虚无！"), span_suicide("你缩小至虚无！"))
 	user.Stun(20 SECONDS, ignore_canstun = TRUE)
 	user.set_suicide(TRUE)
 	user.ghostize()
@@ -412,8 +412,8 @@
 #ifdef TESTING
 
 /obj/item/gun/magic/wand/antag
-	name = "wand of antag"
-	desc = "This wand uses the powers of bullshit to turn anyone it hits into an antag"
+	name = "反派之杖"
+	desc = "这根短杖运用胡扯之力，把击中的任何人变成反派"
 	school = SCHOOL_FORBIDDEN
 	ammo_type = /obj/item/ammo_casing/magic/antag
 	icon_state = "revivewand"
@@ -434,7 +434,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/antag
-	name = "bolt of antag"
+	name = "反派之弹"
 	icon_state = "ion"
 	var/antag = /datum/antagonist/traitor
 
@@ -453,8 +453,8 @@
 			to_chat(world, "added")
 
 /obj/item/gun/magic/wand/antag/heretic
-	name = "wand of antag heretic"
-	desc = "This wand uses the powers of bullshit to turn anyone it hits into an antag heretic"
+	name = "异教徒反派之杖"
+	desc = "这根短杖运用胡扯之力，把击中的任何人变成异教徒反派"
 	color = COLOR_GREEN
 	ammo_type = /obj/item/ammo_casing/magic/antag/heretic
 
@@ -462,13 +462,13 @@
 	projectile_type = /obj/projectile/magic/antag/heretic
 
 /obj/projectile/magic/antag/heretic
-	name = "bolt of antag heretic"
+	name = "异教徒反派之弹"
 	icon_state = "ion"
 	antag = /datum/antagonist/heretic
 
 /obj/item/gun/magic/wand/antag/cult
-	name = "wand of antag cultist"
-	desc = "This wand uses the powers of bullshit to turn anyone it hits into an antag cultist"
+	name = "血教徒反派之杖"
+	desc = "这根短杖运用胡扯之力，把击中的任何人变成血教徒反派"
 	color = COLOR_CULT_RED
 	ammo_type = /obj/item/ammo_casing/magic/antag/cult
 
@@ -476,7 +476,7 @@
 	projectile_type = /obj/projectile/magic/antag/cult
 
 /obj/projectile/magic/antag/cult
-	name = "bolt of antag cult"
+	name = "血教反派之弹"
 	icon_state = "ion"
 	antag = /datum/antagonist/cult
 

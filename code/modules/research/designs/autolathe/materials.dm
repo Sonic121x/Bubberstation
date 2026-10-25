@@ -8,13 +8,13 @@
 	inherit_materials = DESIGN_DONT_INHERIT_MATS
 
 /datum/design/material/iron
-	name = "Iron"
+	name = "铁"
 	id = "iron"
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/sheet/iron
 
 /datum/design/material/rods
-	name = "Iron Rod"
+	name = "铁棍"
 	id = "rods"
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/stack/rods
@@ -24,7 +24,7 @@
 	)
 
 /datum/design/material/rglass
-	name = "Reinforced Glass"
+	name = "强化玻璃"
 	id = "rglass"
 	build_type = AUTOLATHE | SMELTER | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SHEET_MATERIAL_AMOUNT)

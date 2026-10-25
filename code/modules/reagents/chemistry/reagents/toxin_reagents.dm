@@ -2,10 +2,10 @@
 //////////////////////////Poison stuff (Toxins & Acids)///////////////////////
 
 /datum/reagent/toxin
-	name = "Toxin"
-	description = "A toxic chemical."
+	name = "毒素"
+	description = "一种有毒的化学物质。"
 	color = "#CF3600" // rgb: 207, 54, 0
-	taste_description = "bitterness"
+	taste_description = "苦涩"
 	taste_mult = 1.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -31,23 +31,23 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/amatoxin
-	name = "Amatoxin"
-	description = "A powerful poison derived from certain species of mushroom."
+	name = "鹅膏毒肽"
+	description = "一种提取自某些蘑菇种类的强效毒素。"
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 2.5
-	taste_description = "mushroom"
+	taste_description = "蘑菇"
 	ph = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/toxin/mutagen
-	name = "Unstable Mutagen"
-	description = "Might cause unpredictable mutations. Keep away from children."
+	name = "不稳定诱变剂"
+	description = "可能引起难以预测的突变。请远离儿童。"
 	color = COLOR_VIBRANT_LIME
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
-	taste_description = "slime"
+	taste_description = "史莱姆"
 	taste_mult = 0.9
 	ph = 2.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -88,9 +88,9 @@
 #define LIQUID_PLASMA_VOLUME_POWER_CAP 7
 
 /datum/reagent/toxin/plasma
-	name = "Plasma"
-	description = "Plasma in its liquid form."
-	taste_description = "bitterness"
+	name = "等离子体"
+	description = "液态的等离子体。"
+	taste_description = "苦涩"
 	specific_heat = SPECIFIC_HEAT_PLASMA
 	taste_mult = 1.5
 	color = "#8228A0"
@@ -189,10 +189,10 @@
 #undef LIQUID_PLASMA_VOLUME_POWER_CAP
 
 /datum/reagent/toxin/hot_ice
-	name = "Hot Ice Slush"
-	description = "Frozen plasma, worth its weight in gold, to the right people."
+	name = "热冰浆"
+	description = "冻结的等离子体，在识货的人眼里价值连城。"
 	color = "#724cb8" // rgb: 114, 76, 184
-	taste_description = "thick and smokey"
+	taste_description = "浓稠的烟熏味"
 	specific_heat = SPECIFIC_HEAT_PLASMA
 	toxpwr = 3
 	material = /datum/material/hot_ice
@@ -219,13 +219,13 @@
 	toxpwr = initial(toxpwr)
 
 /datum/reagent/toxin/lexorin
-	name = "Lexorin"
-	description = "A powerful poison used to stop respiration."
+	name = "雷索林"
+	description = "一种用于停止呼吸的强效毒素。"
 	color = "#7DC3A0"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
-	taste_description = "acid"
+	taste_description = "酸味"
 	ph = 1.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -252,11 +252,11 @@
 	return COMSIG_CARBON_BLOCK_BREATH
 
 /datum/reagent/toxin/carnivorousblood
-	name = "Carnivorous Blood"
-	description = "An Interdyne-developed biological agent that consumes any blood similar to the blood it was trained on."
+	name = "食血生物剂"
+	description = "一种由英特戴恩研发的生物制剂，会吞噬与其训练样本相似的所有血液。"
 	color ="#C80000"
 	toxpwr = 0
-	taste_description = "carbonated blood"
+	taste_description = "气泡血液"
 	ph = 7.4
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	chemical_flags = REAGENT_DEAD_PROCESS
@@ -281,7 +281,7 @@
 		multiplier *= 3
 	affected_mob.adjust_blood_volume(-2 * multiplier * seconds_per_tick)
 	if(SPT_PROB(10, seconds_per_tick))
-		to_chat(affected_mob, span_danger("Your blood is writhing in your veins!"))
+		to_chat(affected_mob, span_danger("你的血液在血管中翻涌！"))
 		if(SPT_PROB(25, seconds_per_tick))
 			affected_mob.emote("scream")
 	return UPDATE_MOB_HEALTH
@@ -300,11 +300,11 @@
 		data += dna
 
 /datum/reagent/toxin/slimejelly
-	name = "Slime Jelly"
-	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
+	name = "史莱姆凝胶"
+	description = "由现存最致命的生命体之一产生的黏稠半流体。超真实。"
 	color = "#a6959d"
 	toxpwr = 0
-	taste_description = "slime"
+	taste_description = "史莱姆"
 	taste_mult = 1.3
 	ph = 10
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -313,7 +313,7 @@
 /datum/reagent/toxin/slimejelly/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
 	if(SPT_PROB(5, seconds_per_tick))
-		to_chat(affected_mob, span_danger("Your insides are burning!"))
+		to_chat(affected_mob, span_danger("你的内脏在燃烧！"))
 		if(affected_mob.adjust_tox_loss(rand(20, 60) * metabolization_ratio, updating_health = FALSE, required_biotype = affected_biotype))
 			return UPDATE_MOB_HEALTH
 	else if(SPT_PROB(23, seconds_per_tick))
@@ -321,12 +321,12 @@
 			return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/carpotoxin
-	name = "Carpotoxin"
-	description = "A deadly neurotoxin produced by the dreaded spess carp."
+	name = "鲤鱼毒素"
+	description = "一种由可怕的太空鲤鱼产生的致命神经毒素。"
 	silent_toxin = TRUE
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 1
-	taste_description = "fish"
+	taste_description = "鱼腥味"
 	ph = 12
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -337,14 +337,14 @@
 		toxpwr = 0
 
 /datum/reagent/toxin/zombiepowder
-	name = "Zombie Powder"
-	description = "A strong neurotoxin that puts the patient into a death-like state."
+	name = "僵尸粉"
+	description = "一种强效神经毒素，会使患者进入假死状态。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	color = "#669900" // rgb: 102, 153, 0
 	toxpwr = 0.5
-	taste_description = "death"
+	taste_description = "死亡"
 	penetrates_skin = NONE
 	ph = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -402,13 +402,13 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/ghoulpowder
-	name = "Ghoul Powder"
-	description = "A strong neurotoxin that slows metabolism to a death-like state, while keeping the patient fully active. Causes toxin buildup if used too long."
+	name = "食尸鬼粉"
+	description = "一种强效神经毒素，能将新陈代谢减缓至假死状态，同时让患者保持完全清醒。使用过久会导致毒素蓄积。"
 	color = "#664700" // rgb: 102, 71, 0
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0.8
-	taste_description = "death"
+	taste_description = "死亡"
 	ph = 14.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -420,11 +420,11 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/mindbreaker
-	name = "Mindbreaker Toxin"
-	description = "A powerful hallucinogen, not to be messed with. However, for some mental patients it instead counteracts their symptoms and anchors them to reality."
+	name = "心智破坏毒素"
+	description = "一种强效致幻剂，可别乱碰。不过对某些精神病人来说，它反而能抵消其症状，将他们锚定于现实。"
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
-	taste_description = "sourness"
+	taste_description = "酸味"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	ph = 11
@@ -445,8 +445,8 @@
 		affected_mob.adjust_hallucinations(5 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/toxin/mindbreaker/fish
-	name = "Jellyfish Hallucinogen"
-	description = "A hallucinogen structurally similar to the mindbreaker toxin, but with weaker molecular bonds, making it easily degradeable by heat."
+	name = "水母致幻剂"
+	description = "一种在结构上类似于心智破坏毒素的致幻剂，但其分子键更弱，容易被热量分解。"
 
 /datum/reagent/toxin/mindbreaker/fish/on_new(data)
 	. = ..()
@@ -458,8 +458,8 @@
 	holder.del_reagent(type)
 
 /datum/reagent/toxin/plantbgone
-	name = "Plant-B-Gone"
-	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
+	name = "植物克星"
+	description = "一种用于杀死植物的有害毒性混合剂。切勿摄入！"
 	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
 	taste_mult = 1
@@ -504,8 +504,8 @@
 		exposed_human.adjust_tox_loss(damage, required_biotype = affected_biotype)
 
 /datum/reagent/toxin/plantbgone/weedkiller
-	name = "Weed Killer"
-	description = "A harmful toxic mixture to kill weeds. Do not ingest!"
+	name = "除草剂"
+	description = "一种用于杀死杂草的有害毒性混合剂。切勿摄入！"
 	color = "#4B004B" // rgb: 75, 0, 75
 	ph = 3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -517,8 +517,8 @@
 	mytray.adjust_weedlevel(-rand(1,2))
 
 /datum/reagent/toxin/pestkiller
-	name = "Pest Killer"
-	description = "A harmful toxic mixture to kill pests. Do not ingest!"
+	name = "杀虫剂"
+	description = "一种用于杀死害虫的有害毒性混合剂。切勿摄入！"
 	color = "#4B004B" // rgb: 75, 0, 75
 	toxpwr = 1
 	ph = 3.2
@@ -540,8 +540,8 @@
 	mytray.adjust_pestlevel(-rand(1,2))
 
 /datum/reagent/toxin/pestkiller/organic
-	name = "Natural Pest Killer"
-	description = "An organic mixture used to kill pests, with less of the side effects. Do not ingest!"
+	name = "天然杀虫剂"
+	description = "一种用于杀死害虫的有机混合剂，副作用更少。切勿摄入！"
 	color = "#4b2400" // rgb: 75, 0, 75
 	toxpwr = 1
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -553,13 +553,13 @@
 	mytray.adjust_pestlevel(-rand(1,2))
 
 /datum/reagent/toxin/spore
-	name = "Spore Toxin"
-	description = "A natural toxin produced by blob spores that inhibits vision when ingested."
+	name = "孢子毒素"
+	description = "一种由变形菌孢子产生的天然毒素，摄入后会阻碍视觉。"
 	color = "#9ACD32"
 	toxpwr = 1
 	ph = 11
 	liver_damage_multiplier = 0.7
-	taste_description = "spores"
+	taste_description = "孢子"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -572,7 +572,7 @@
 		return
 
 	if(prob(min(reac_volume * 10, 80)))
-		to_chat(spore_lung_victim, span_danger("[pick("You have a coughing fit!", "You hack and cough!", "Your lungs burn!")]"))
+		to_chat(spore_lung_victim, span_danger("[pick("你一阵猛咳！", "你拼命咳嗽！", "你的肺在燃烧！")]"))
 		spore_lung_victim.Stun(1 SECONDS)
 		spore_lung_victim.emote("cough")
 
@@ -583,11 +583,11 @@
 	affected_mob.set_eye_blur_if_lower(3 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/toxin/spore_burning
-	name = "Burning Spore Toxin"
-	description = "A natural toxin produced by blob spores that induces combustion in its victim."
+	name = "灼烧孢子毒素"
+	description = "一种由变形菌孢子产生的天然毒素，会使其受害者燃烧起来。"
 	color = "#9ACD32"
 	toxpwr = 0.5
-	taste_description = "burning"
+	taste_description = "灼烧感"
 	ph = 13
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -598,8 +598,8 @@
 	affected_mob.ignite_mob()
 
 /datum/reagent/toxin/chloralhydrate
-	name = "Chloral Hydrate"
-	description = "A powerful sedative that induces confusion and drowsiness before putting its target to sleep."
+	name = "水合氯醛"
+	description = "一种强效镇静剂，会先使目标意识混乱并昏昏欲睡，随后令其入睡。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -626,10 +626,10 @@
 
 /datum/reagent/toxin/fakebeer //disguised as normal beer for use by emagged brobots
 	name = "B33r"
-	description = "A specially-engineered sedative disguised as beer. It induces instant sleep in its target."
+	description = "一种伪装成啤酒的特制镇静剂，能让目标瞬间入睡。"
 	color = "#664300" // rgb: 102, 67, 0
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-	taste_description = "piss water"
+	taste_description = "尿液味"
 	ph = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -657,8 +657,8 @@
 				return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/coffeepowder
-	name = "Coffee Grounds"
-	description = "Finely ground coffee beans, used to make coffee."
+	name = "咖啡渣"
+	description = "磨得很细的咖啡豆，用于冲泡咖啡。"
 	color = "#5B2E0D" // rgb: 91, 46, 13
 	toxpwr = 0.5
 	ph = 4.2
@@ -667,35 +667,35 @@
 	metabolized_traits = list(TRAIT_STIMULATED)
 
 /datum/reagent/toxin/teapowder
-	name = "Ground Tea Leaves"
-	description = "Finely shredded tea leaves, used for making tea."
+	name = "茶叶碎"
+	description = "切得很碎的茶叶，用于泡茶。"
 	color = "#7F8400" // rgb: 127, 132, 0
 	toxpwr = 0.1
-	taste_description = "green tea"
+	taste_description = "绿茶"
 	ph = 4.9
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_STIMULATED)
 
 /datum/reagent/toxin/mushroom_powder
-	name = "Mushroom Powder"
-	description = "Finely ground polypore mushrooms, ready to be steeped in water to make mushroom tea."
+	name = "蘑菇粉"
+	description = "磨得很细的多孔菌，可直接用水浸泡制成蘑菇茶。"
 	color = "#67423A" // rgb: 127, 132, 0
 	toxpwr = 0.1
-	taste_description = "mushrooms"
+	taste_description = "蘑菇"
 	ph = 8.0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/toxin/mutetoxin //the new zombie powder.
-	name = "Mute Toxin"
-	description = "A nonlethal poison that inhibits speech in its victim."
+	name = "沉默毒素"
+	description = "一种非致命的毒药，会抑制受害者的语言能力。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	color = "#F0F8FF" // rgb: 240, 248, 255
 	toxpwr = 0
-	taste_description = "silence"
+	taste_description = "寂静"
 	ph = 12.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
@@ -706,8 +706,8 @@
 	affected_mob.set_silence_if_lower(3 SECONDS * metabolization_ratio * normalise_creation_purity() * seconds_per_tick)
 
 /datum/reagent/toxin/staminatoxin
-	name = "Tirizene"
-	description = "A nonlethal poison that causes extreme fatigue and weakness in its victim."
+	name = "提里嗪"
+	description = "一种非致命的毒药，会使受害者极度疲劳与虚弱。"
 	silent_toxin = TRUE
 	color = "#6E2828"
 	data = 15
@@ -722,8 +722,8 @@
 	data = max(data - 1, 3)
 
 /datum/reagent/toxin/polonium
-	name = "Polonium"
-	description = "An extremely radioactive material in liquid form. Ingestion results in fatal irradiation."
+	name = "钋"
+	description = "一种液态的极强放射性物质。摄入会导致致命辐射。"
 	color = "#787878"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 0
@@ -775,8 +775,8 @@
 	)
 
 /datum/reagent/toxin/histamine
-	name = "Histamine"
-	description = "Histamine's effects become more dangerous depending on the dosage amount. They range from mildly annoying to incredibly lethal."
+	name = "组胺"
+	description = "组胺的效果会随剂量增加而变得越发危险，从轻微不适一直到极为致命。"
 	silent_toxin = TRUE
 	color = "#FA6464"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -790,7 +790,7 @@
 	if(SPT_PROB(30, seconds_per_tick))
 		switch(pick(1, 2, 3, 4))
 			if(1)
-				to_chat(affected_mob, span_danger("You can barely see!"))
+				to_chat(affected_mob, span_danger("你几乎看不见东西！"))
 				affected_mob.set_eye_blur_if_lower(6 SECONDS)
 			if(2)
 				affected_mob.emote("cough")
@@ -798,7 +798,7 @@
 				affected_mob.emote("sneeze")
 			if(4)
 				if(prob(75))
-					to_chat(affected_mob, span_danger("You scratch at an itch."))
+					to_chat(affected_mob, span_danger("你挠了挠发痒的地方。"))
 					if(affected_mob.adjust_brute_loss(4 * metabolization_ratio, updating_health = FALSE, required_bodytype = affected_bodytype))
 						return UPDATE_MOB_HEALTH
 
@@ -813,9 +813,9 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/formaldehyde
-	name = "Formaldehyde"
-	description = "A fairly weak toxin that helps prevent organ decay in dead bodies. \
-		It will slowly decay into Histamine over time."
+	name = "甲醛"
+	description = "一种相当弱的毒素，能帮助防止尸体器官腐坏。\
+		它会随时间缓慢分解为组胺。"
 	silent_toxin = TRUE
 	color = "#B4004B"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -839,8 +839,8 @@
 	return ..()
 
 /datum/reagent/toxin/venom
-	name = "Venom"
-	description = "An exotic poison extracted from highly toxic fauna. Causes scaling amounts of toxin damage and bruising depending and dosage. Often decays into Histamine."
+	name = "毒液"
+	description = "一种从剧毒动物身上提取的异域毒素。会造成随剂量递增的毒素伤害和淤伤。经常会分解为组胺。"
 	color = "#F0FFF0"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	toxpwr = 0
@@ -871,8 +871,8 @@
 	current_size = RESIZE_DEFAULT_SIZE
 
 /datum/reagent/toxin/fentanyl
-	name = "Fentanyl"
-	description = "Inhibits brain function and causes toxin damage before eventually knocking out the patient."
+	name = "芬太尼"
+	description = "会抑制大脑功能并造成毒素伤害，最终使患者失去意识。"
 	color = "#64916E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	creation_purity = REAGENT_STANDARD_PURITY
@@ -897,8 +897,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/cyanide
-	name = "Cyanide"
-	description = "An infamous poison known for its use in assassination. Causes small amounts of toxin damage with a small chance of oxygen damage or a stun."
+	name = "氰化物"
+	description = "一种臭名昭著的毒药，常被用于暗杀。会造成少量毒素伤害，并有小概率造成缺氧伤害或击晕。"
 	color = "#00B4FF"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -915,25 +915,25 @@
 		affected_mob.losebreath += 1
 		need_mob_update = TRUE
 	if(SPT_PROB(4, seconds_per_tick))
-		to_chat(affected_mob, span_danger("You feel horrendously weak!"))
+		to_chat(affected_mob, span_danger("你感到虚弱至极！"))
 		affected_mob.Stun(40)
 		need_mob_update += affected_mob.adjust_tox_loss(8 * normalise_creation_purity() * metabolization_ratio, updating_health = FALSE, required_biotype = affected_biotype)
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/bad_food
-	name = "Bad Food"
-	description = "The result of some abomination of cookery, food so bad it's toxic."
+	name = "劣质食物"
+	description = "某次烹饪邪术的产物，难吃到有毒。"
 	color = "#d6d6d8"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	toxpwr = 0.5
-	taste_description = "bad cooking"
+	taste_description = "糟糕的厨艺"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/toxin/itching_powder
-	name = "Itching Powder"
-	description = "A powder that induces itching upon contact with the skin. Causes the victim to scratch at their itches and has a very low chance to decay into Histamine."
+	name = "瘙痒粉"
+	description = "一种接触皮肤后会引起瘙痒的粉末。会使受害者不停抓挠，并有极低概率分解为组胺。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -968,8 +968,8 @@
 		return ..() || .
 
 /datum/reagent/toxin/initropidril
-	name = "Initropidril"
-	description = "A powerful poison with insidious effects. It can cause stuns, lethal breathing failure, and cardiac arrest."
+	name = "伊尼托匹德"
+	description = "一种效果阴险的强效毒药。可能造成击晕、致命的呼吸衰竭和心脏骤停。"
 	silent_toxin = TRUE
 	color = "#7F10C0"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -994,7 +994,7 @@
 			if(!affected_mob.undergoing_cardiac_arrest() && affected_mob.can_heartattack())
 				affected_mob.set_heartattack(TRUE)
 				if(!IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-					affected_mob.visible_message(span_userdanger("[affected_mob] clutches at [affected_mob.p_their()] chest as if [affected_mob.p_their()] heart stopped!"))
+					affected_mob.visible_message(span_userdanger("[affected_mob] 捂住胸口，仿佛 [affected_mob.p_their()] 心脏已经停止了跳动！"))
 			else
 				affected_mob.losebreath += 10
 				need_mob_update = affected_mob.adjust_oxy_loss(rand(5,25), updating_health = FALSE, required_biotype = affected_biotype)
@@ -1002,8 +1002,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/pancuronium
-	name = "Pancuronium"
-	description = "An undetectable toxin that swiftly incapacitates its victim. May also cause breathing failure."
+	name = "泮库溴铵"
+	description = "一种无法被检测到的毒素，能迅速使受害者失去行动能力。还可能造成呼吸衰竭。"
 	silent_toxin = TRUE
 	color = "#195096"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
@@ -1021,8 +1021,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/sodium_thiopental
-	name = "Sodium Thiopental"
-	description = "Sodium Thiopental induces heavy weakness in its target as well as unconsciousness."
+	name = "硫喷妥钠"
+	description = "硫喷妥钠会使目标极度虚弱并陷入昏迷。"
 	silent_toxin = TRUE
 	color = LIGHT_COLOR_BLUE
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
@@ -1039,8 +1039,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/sulfonal
-	name = "Sulfonal"
-	description = "A stealthy poison that deals minor toxin damage and eventually puts the target to sleep."
+	name = "索佛那"
+	description = "一种隐蔽的毒药，会造成轻微毒素伤害，最终使目标入睡。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -1057,8 +1057,8 @@
 		affected_mob.Sleeping(160 * normalise_creation_purity() * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/toxin/amanitin
-	name = "Amanitin"
-	description = "A very powerful delayed toxin. Upon full metabolization, a massive amount of toxin damage will be dealt depending on how long it has been in the victim's bloodstream."
+	name = "鹅膏蕈碱"
+	description = "一种极为强效的延时毒素。完全代谢时，会根据其在受害者血液中停留的时间造成大量毒素伤害。"
 	silent_toxin = TRUE
 	color = COLOR_WHITE
 	toxpwr = 0
@@ -1073,14 +1073,14 @@
 
 /datum/reagent/toxin/amanitin/on_mob_delete(mob/living/affected_mob)
 	. = ..()
-	affected_mob.log_message("has taken [delayed_toxin_damage] toxin damage from amanitin toxin", LOG_ATTACK)
+	affected_mob.log_message("因鹅膏蕈碱毒素受到 [delayed_toxin_damage] 点毒素伤害", LOG_ATTACK)
 	affected_mob.adjust_tox_loss(delayed_toxin_damage, required_biotype = affected_biotype)
 
 /datum/reagent/toxin/lipolicide
-	name = "Lipolicide"
-	description = "A powerful toxin that will destroy fat cells, massively reducing body weight in a short time. Deadly to those without nutriment in their body."
+	name = "溶脂剂"
+	description = "一种强效毒素，会摧毁脂肪细胞，在短时间内大幅降低体重。对体内没有营养的人致命。"
 	silent_toxin = TRUE
-	taste_description = "mothballs"
+	taste_description = "樟脑丸"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	color = "#F0FFF0"
@@ -1100,8 +1100,8 @@
 	affected_mob.overeatduration = 0
 
 /datum/reagent/toxin/coniine
-	name = "Coniine"
-	description = "Coniine metabolizes extremely slowly, but deals high amounts of toxin damage and stops breathing."
+	name = "毒芹碱"
+	description = "毒芹碱代谢极其缓慢，但会造成大量毒素伤害并使人停止呼吸。"
 	color = "#7DC3A0"
 	metabolization_rate = 0.06 * REAGENTS_METABOLISM
 	toxpwr = 1.75
@@ -1115,12 +1115,12 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/spewium
-	name = "Spewium"
-	description = "A powerful emetic, causes uncontrollable vomiting.  May result in vomiting organs at high doses."
+	name = "喷吐素"
+	description = "一种强效催吐剂，会引起无法控制的呕吐。高剂量下可能导致呕出器官。"
 	color = "#2f6617" //A sickly green color
 	overdose_threshold = 29
 	toxpwr = 0
-	taste_description = "vomit"
+	taste_description = "呕吐物"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1143,11 +1143,11 @@
 	if(current_cycle > 33 && SPT_PROB(7.5, seconds_per_tick))
 		affected_mob.spew_organ()
 		affected_mob.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 0, distance = 4)
-		to_chat(affected_mob, span_userdanger("You feel something lumpy come up as you vomit."))
+		to_chat(affected_mob, span_userdanger("你呕吐时感觉有什么成块的东西涌了上来。"))
 
 /datum/reagent/toxin/curare
-	name = "Curare"
-	description = "Causes slight toxin damage followed by chain-stunning and oxygen damage."
+	name = "箭毒"
+	description = "会造成轻微毒素伤害，随后是连环击晕与缺氧伤害。"
 	color = "#191919"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
 	toxpwr = 1
@@ -1162,9 +1162,9 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/heparin //Based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
-	name = "Heparin"
-	description = "A powerful anticoagulant. All open cut wounds on the patient will open up and bleed much faster. \
-		Counters coagulants like Sanguirite, purging them."
+	name = "肝素"
+	description = "一种强效抗凝血剂。患者身上所有开放性伤口都会裂开并大幅加快出血。\
+		会中和桑吉莱特等凝血剂并将其清除。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -1182,8 +1182,8 @@
 	return ..()
 
 /datum/reagent/toxin/rotatium //Rotatium. Fucks up your rotation and is hilarious
-	name = "Rotatium"
-	description = "A constantly swirling, oddly colourful fluid. Causes the patient's sense of direction and hand-eye coordination to become wild."
+	name = "旋转素"
+	description = "一种不断旋转、色彩奇异的流体。会使患者的方向感和手眼协调能力变得混乱失控。"
 	silent_toxin = TRUE
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -1191,7 +1191,7 @@
 	metabolization_rate = 0.6 * REAGENTS_METABOLISM
 	toxpwr = 0.5
 	ph = 6.2
-	taste_description = "spinning"
+	taste_description = "旋转"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1214,8 +1214,8 @@
 			animate(plane, transform = matrix(), time = 5, easing = QUAD_EASING)
 
 /datum/reagent/toxin/anacea
-	name = "Anacea"
-	description = "A toxin that quickly purges medicines and metabolizes very slowly."
+	name = "阿纳塞亚"
+	description = "一种能迅速清除药物、且代谢极慢的毒素。"
 	color = "#3C5133"
 	metabolization_rate = 0.08 * REAGENTS_METABOLISM
 	creation_purity = REAGENT_STANDARD_PURITY
@@ -1237,11 +1237,11 @@
 //ACID
 
 /datum/reagent/toxin/acid
-	name = "Sulfuric Acid"
-	description = "A strong mineral acid with the molecular formula H2SO4."
+	name = "硫酸"
+	description = "一种分子式为 H2SO4 的强无机酸。"
 	color = "#00FF32"
 	toxpwr = 1
-	taste_description = "acid"
+	taste_description = "酸味"
 	self_consuming = TRUE
 	ph = 2.75
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1286,8 +1286,8 @@
 	exposed_turf.acid_act(acidpwr, reac_volume)
 
 /datum/reagent/toxin/acid/fluacid
-	name = "Fluorosulfuric Acid"
-	description = "An extremely corrosive chemical substance."
+	name = "氟硫酸"
+	description = "一种腐蚀性极强的化学物质。"
 	color = "#5050FF"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -1309,8 +1309,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/acid/nitracid
-	name = "Nitric Acid"
-	description = "An extremely corrosive chemical substance that violently reacts with living organic tissue."
+	name = "硝酸"
+	description = "一种腐蚀性极强的化学物质，会与活的有机组织剧烈反应。"
 	color = "#5050FF"
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
@@ -1326,8 +1326,8 @@
 		return UPDATE_MOB_HEALTH
 
 /datum/reagent/toxin/delayed
-	name = "Toxin Microcapsules"
-	description = "Causes heavy toxin damage after a brief time of inactivity."
+	name = "毒素微囊"
+	description = "在短暂静默后造成大量毒素伤害。"
 	metabolization_rate = 0 //stays in the system until active.
 	toxpwr = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
@@ -1345,36 +1345,36 @@
 		affected_mob.Paralyze(20)
 
 /datum/reagent/toxin/mimesbane
-	name = "Mime's Bane"
-	description = "A nonlethal neurotoxin that interferes with the victim's ability to gesture."
+	name = "默剧克星"
+	description = "一种非致命的神经毒素，会干扰受害者做手势的能力。"
 	silent_toxin = TRUE
 	color = "#F0F8FF" // rgb: 240, 248, 255
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
 	ph = 1.7
-	taste_description = "stillness"
+	taste_description = "静止"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 	metabolized_traits = list(TRAIT_EMOTEMUTE)
 
 /datum/reagent/toxin/bonehurtingjuice //oof ouch
-	name = "Bone Hurting Juice"
-	description = "A strange substance that looks a lot like water. Drinking it is oddly tempting. Oof ouch."
+	name = "骨痛果汁"
+	description = "一种看起来很像水的奇怪物质。喝下去有种莫名的诱惑。哎哟好痛。"
 	silent_toxin = TRUE //no point spamming them even more.
 	color = "#AAAAAA77" //RGBA: 170, 170, 170, 77
 	creation_purity = REAGENT_STANDARD_PURITY
 	purity = REAGENT_STANDARD_PURITY
 	toxpwr = 0
 	ph = 3.1
-	taste_description = "bone hurting"
+	taste_description = "骨头疼痛"
 	overdose_threshold = 50
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_add(mob/living/carbon/affected_mob)
 	. = ..()
-	INVOKE_ASYNC(affected_mob, TYPE_PROC_REF(/atom/movable, say), "oof ouch my bones", forced = /datum/reagent/toxin/bonehurtingjuice)
+	INVOKE_ASYNC(affected_mob, TYPE_PROC_REF(/atom/movable, say), "哎哟哎哟我的骨头", forced = /datum/reagent/toxin/bonehurtingjuice)
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1384,11 +1384,11 @@
 		return
 	switch(rand(1, 3))
 		if(1)
-			affected_mob.say(pick("oof.", "ouch.", "my bones.", "oof ouch.", "oof ouch my bones."), forced = /datum/reagent/toxin/bonehurtingjuice)
+			affected_mob.say(pick("哎哟。", "好痛。", "我的骨头。", "哎哟好痛。", "哎哟哎哟我的骨头。"), forced = /datum/reagent/toxin/bonehurtingjuice)
 		if(2)
-			affected_mob.manual_emote(pick("oofs silently.", "looks like [affected_mob.p_their()] bones hurt.", "grimaces, as though [affected_mob.p_their()] bones hurt."))
+			affected_mob.manual_emote(pick("无声地哎哟了一声。", "看起来 [affected_mob.p_their()] 骨头很痛。", "龇牙咧嘴，仿佛 [affected_mob.p_their()] 骨头很痛。"))
 		if(3)
-			to_chat(affected_mob, span_warning("Your bones hurt!"))
+			to_chat(affected_mob, span_warning("你的骨头好痛！"))
 
 /datum/reagent/toxin/bonehurtingjuice/overdose_process(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
 	. = ..()
@@ -1397,13 +1397,13 @@
 		var/obj/item/bodypart/BP = affected_mob.get_bodypart(selected_part)
 		if(BP)
 			playsound(affected_mob, SFX_DESECRATION, 50, TRUE, -1)
-			affected_mob.visible_message(span_warning("[affected_mob]'s bones hurt too much!!"), span_danger("Your bones hurt too much!!"))
-			affected_mob.say("OOF!!", forced = type)
+			affected_mob.visible_message(span_warning("[affected_mob] 的骨头太痛了！！"), span_danger("你的骨头太痛了！！"))
+			affected_mob.say("哎哟！！", forced = type)
 			affected_mob.apply_damage(20, BRUTE, BP, wound_bonus = rand(30, 130))
 
 		else //SUCH A LUST FOR REVENGE!!!
-			to_chat(affected_mob, span_warning("A phantom limb hurts!"))
-			affected_mob.say("Why are we still here, just to suffer?", forced = type)
+			to_chat(affected_mob, span_warning("幻肢在痛！"))
+			affected_mob.say("我们为什么还留在这里，只是为了受苦吗？", forced = type)
 
 /datum/reagent/toxin/bonehurtingjuice/used_on_fish(obj/item/fish/fish)
 	if(HAS_TRAIT(fish, TRAIT_FISH_MADE_OF_BONE))
@@ -1411,13 +1411,13 @@
 		return TRUE
 
 /datum/reagent/toxin/bungotoxin
-	name = "Bungotoxin"
-	description = "A horrible cardiotoxin that protects the humble bungo pit."
+	name = "邦戈毒素"
+	description = "一种可怕的心脏毒素，守护着不起眼的邦戈果核。"
 	silent_toxin = TRUE
 	color = "#EBFF8E"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	toxpwr = 0
-	taste_description = "tannin"
+	taste_description = "单宁"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1433,16 +1433,16 @@
 		affected_mob.set_confusion(mob_dizziness / 2)
 
 	if(current_cycle >= 13 && SPT_PROB(4, seconds_per_tick))
-		var/tox_message = pick("You feel your heart spasm in your chest.", "You feel faint.","You feel you need to catch your breath.","You feel a prickle of pain in your chest.")
+		var/tox_message = pick("你感到心脏在胸腔里抽搐。", "你感到头晕目眩。","你觉得自己需要喘口气。","你感到胸口有一阵刺痛。")
 		to_chat(affected_mob, span_notice("[tox_message]"))
 
 /datum/reagent/toxin/leadacetate
-	name = "Lead Acetate"
-	description = "Used hundreds of years ago as a sweetener, before it was realized that it's incredibly poisonous."
+	name = "醋酸铅"
+	description = "数百年前曾被用作甜味剂，后来人们才发现它有剧毒。"
 	color = "#2b2b2b" // rgb: 127, 132, 0
 	toxpwr = 0.5
 	taste_mult = 1.3
-	taste_description = "sugary sweetness"
+	taste_description = "甜腻的甜味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	randomized_spawns = REAGENT_SPAWN_ALL_RANDOM_SPAWNS
 
@@ -1454,19 +1454,19 @@
 	if(need_mob_update)
 		. = UPDATE_MOB_HEALTH
 	if(SPT_PROB(0.5, seconds_per_tick))
-		to_chat(affected_mob, span_notice("Ah, what was that? You thought you heard something..."))
+		to_chat(affected_mob, span_notice("啊，那是什么？你觉得自己听到了什么……"))
 		affected_mob.adjust_confusion(5 SECONDS)
 
 /datum/reagent/toxin/hunterspider
-	name = "Spider Toxin"
-	description = "A toxic chemical produced by spiders to weaken prey."
+	name = "蜘蛛毒素"
+	description = "一种由蜘蛛产生的有毒化学物质，用于削弱猎物。"
 	health_required = 40
 	liver_damage_multiplier = 0
 
 /datum/reagent/toxin/viperspider
-	name = "Viper Spider Toxin"
+	name = "蝰蛛毒素"
 	toxpwr = 5
-	description = "An extremely toxic chemical produced by the rare viper spider. Brings their prey to the brink of death and causes hallucinations."
+	description = "一种由稀有的蝰蛛产生的剧毒化学物质。会将猎物推向死亡边缘并引发幻觉。"
 	health_required = 10
 	liver_damage_multiplier = 0
 
@@ -1475,8 +1475,8 @@
 	affected_mob.adjust_hallucinations(5 SECONDS * metabolization_ratio * seconds_per_tick)
 
 /datum/reagent/toxin/tetrodotoxin
-	name = "Tetrodotoxin"
-	description = "A colorless, odorless, tasteless neurotoxin usually carried by livers of animals of the Tetraodontiformes order."
+	name = "河豚毒素"
+	description = "一种无色、无味、无臭的神经毒素，通常存在于鲀形目动物的肝脏中。"
 	silent_toxin = TRUE
 	color = COLOR_VERY_LIGHT_GRAY
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
@@ -1519,7 +1519,7 @@
 			if(SPT_PROB(5, seconds_per_tick))
 				var/obj/item/organ/tongue/tongue = affected_mob.get_organ_slot(ORGAN_SLOT_TONGUE)
 				if(tongue)
-					to_chat(affected_mob, span_warning("Your [tongue.name] feels numb..."))
+					to_chat(affected_mob, span_warning("你的 [tongue.name] 发麻……"))
 				affected_mob.set_slurring_if_lower(25 SECONDS * metabolization_ratio)
 			affected_mob.adjust_disgust(17.5 * metabolization_ratio * seconds_per_tick)
 		if(13 to 21)
@@ -1549,7 +1549,7 @@
 			affected_mob.adjust_disgust(15 * metabolization_ratio * seconds_per_tick)
 			affected_mob.set_slurring_if_lower(15 SECONDS * metabolization_ratio * seconds_per_tick)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(affected_mob, span_danger("You feel horribly weak."))
+				to_chat(affected_mob, span_danger("你感到虚弱至极。"))
 			need_mob_update += affected_mob.adjust_stamina_loss(25 * metabolization_ratio * seconds_per_tick, updating_stamina = FALSE)
 			if(SPT_PROB(8, seconds_per_tick))
 				paralyze_limb(affected_mob)
@@ -1571,7 +1571,7 @@
 
 	if(current_cycle > 38 && !length(traits_not_applied) && SPT_PROB(5, seconds_per_tick) && !affected_mob.undergoing_cardiac_arrest())
 		affected_mob.set_heartattack(TRUE)
-		to_chat(affected_mob, span_bolddanger("You feel a burning pain spread throughout your chest!"))
+		to_chat(affected_mob, span_bolddanger("你感到一阵灼痛在胸腔中蔓延！"))
 
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
@@ -1613,16 +1613,16 @@
 		return COMSIG_CARBON_BLOCK_BREATH
 
 /datum/reagent/toxin/gatfruit
-	name = "Phytotoxin"
-	description = "A poison produced by the rare and elusive gatfruit plant."
+	name = "植物毒素"
+	description = "一种由稀有而神秘的加特果植物产生的毒素。"
 	liver_damage_multiplier = 0
 	toxpwr = 1
 
 #define CRITICAL_CAPACITY 45
 
 /datum/reagent/toxin/acid/industrial_waste
-	name = "Industrial Waste"
-	description = "Industrial Waste produced as a side effect of efficient boulder refining. Highly toxic, corrosive, and hard to get rid of."
+	name = "工业废液"
+	description = "高效精炼巨石时产生的副产物。剧毒、腐蚀性强，且极难处理。"
 	color = "#1eff00"
 	penetrates_skin = TOUCH|VAPOR
 	creation_purity = REAGENT_STANDARD_PURITY
@@ -1662,7 +1662,7 @@
 		return // There's too little waste to do anything.
 	if(istype(exposed_obj, /obj/effect/decal/cleanable/greenglow/waste))
 		var/obj/effect/decal/cleanable/greenglow/waste/goo = exposed_obj
-		goo.visible_message(span_warning("The new waste reactivates [goo]!"))
+		goo.visible_message(span_warning("新的废液重新激活了 [goo]！"))
 		goo.pre_dissolve(FALSE)
 	return ..()
 
@@ -1689,7 +1689,7 @@
 	if(!disaster_zone)
 		return
 	if(prob(10))
-		disaster_zone.balloon_alert_to_viewers("hissssssss!")
+		disaster_zone.balloon_alert_to_viewers("嘶嘶嘶嘶嘶！")
 	spew_waste(5) //You can't just dump the industrial waste down the kitchen sink. High range to disincentivize using the chem disposaler.
 
 /**
@@ -1722,13 +1722,13 @@
 
 /// Gibs you (lol), after an easily curable disease because WERE COWARDS
 /datum/reagent/toxin/gibbium
-	name = "Gibbium"
-	description = "Guess what this does."
+	name = "肉酱素"
+	description = "猜猜它是干什么的。"
 	silent_toxin = TRUE
 	color = "#ff0000"
 	metabolization_rate = 4 * REAGENTS_METABOLISM
 	toxpwr = 0
-	taste_description = "regret"
+	taste_description = "后悔"
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_MAINTENANCE_PILL
 	/// On what cycle to gib the person
@@ -1741,10 +1741,10 @@
 		affected_mob.ForceContractDisease(new /datum/disease/gbs/no_transmission ())
 
 /datum/reagent/toxin/spider_serum
-	name = "Spider Serum"
-	description = "A horrible mutagen that transmutes flesh into spiders."
+	name = "蜘蛛血清"
+	description = "一种可怕的诱变剂，能将血肉转化为蜘蛛。"
 	color = "#000000"
-	taste_description = "unending nightmares"
+	taste_description = "无尽的噩梦"
 	chemical_flags = REAGENT_NO_RANDOM_RECIPE
 	randomized_spawns = REAGENT_SPAWN_MAINTENANCE_PILL
 	toxpwr = 0
@@ -1757,7 +1757,7 @@
 	if(prob(10))
 		new /mob/living/basic/spider/growing/spiderling (get_turf(affected_mob))
 		affected_mob.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 20)
-		to_chat(affected_mob, span_warning("You feel tiny legs climbing up your throat."))
+		to_chat(affected_mob, span_warning("你感到细小的腿正沿着喉咙往上爬。"))
 
 	if(current_cycle >= transformation_cycle)
 		affected_mob.mind?.add_antag_datum(/datum/antagonist/spider)

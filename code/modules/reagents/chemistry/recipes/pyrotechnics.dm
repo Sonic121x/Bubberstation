@@ -182,14 +182,14 @@
 			if(GLOB.deity)
 				deity = GLOB.deity
 			else
-				deity = "Christ"
-			to_chat(ghostie, span_userdanger("The power of [deity] compels you!"))
+				deity = "基督"
+			to_chat(ghostie, span_userdanger("[deity] 的力量在驱使你！"))
 			ghostie.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 			ghostie.apply_status_effect(/datum/status_effect/revenant/revealed, 10 SECONDS)
 			ghostie.adjust_health(50)
 		for(var/mob/living/carbon/evil_motherfucker in get_hearers_in_view(effective_size,T))
 			if(IS_CULTIST(evil_motherfucker) || HAS_TRAIT(evil_motherfucker, TRAIT_EVIL))
-				to_chat(evil_motherfucker, span_userdanger("The divine explosion sears you!"))
+				to_chat(evil_motherfucker, span_userdanger("神圣的爆炸灼烧着你！"))
 				evil_motherfucker.Paralyze(40)
 				evil_motherfucker.adjust_fire_stacks(5)
 				evil_motherfucker.ignite_mob()
@@ -205,7 +205,7 @@
 	required_temp = 474
 	strengthdiv = 10
 	modifier = 5
-	mix_message = span_boldnotice("Sparks start flying around the gunpowder!")
+	mix_message = span_boldnotice("火花开始在火药周围飞溅！")
 
 /datum/chemical_reaction/reagent_explosion/gunpowder_explosion/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	do_sparks(2, TRUE, get_turf(holder.my_atom))
@@ -232,7 +232,7 @@
 	holder.clear_reagents()
 	if(lastkey)
 		var/mob/toucher = get_mob_by_key(lastkey)
-		toucher.log_message("triggered EMP reaction at [AREACOORD(turf)].", LOG_GAME, log_globally = FALSE)
+		toucher.log_message("在 [AREACOORD(turf)] 触发了电磁脉冲反应。", LOG_GAME, log_globally = FALSE)
 	..()
 
 
@@ -401,7 +401,7 @@
 		return
 	var/mob/living/carbon/victim = holder.my_atom
 	if (victim.stat != DEAD)
-		victim.visible_message(span_warning("[victim] starts violently coughing up smoke!"))
+		victim.visible_message(span_warning("[victim] 开始剧烈地咳出烟雾！"))
 	victim.adjust_organ_loss(ORGAN_SLOT_LUNGS, created_volume / 5)
 
 /datum/chemical_reaction/smoke_powder_smoke
@@ -423,7 +423,7 @@
 		return
 	var/mob/living/carbon/victim = holder.my_atom
 	if (victim.stat != DEAD)
-		victim.visible_message(span_warning("[victim] starts violently coughing up smoke!"))
+		victim.visible_message(span_warning("[victim] 开始剧烈地咳出烟雾！"))
 	victim.adjust_organ_loss(ORGAN_SLOT_LUNGS, created_volume / 10)
 
 /datum/chemical_reaction/sonic_powder
@@ -522,7 +522,7 @@
 		return ..()
 	var/turf/local_turf = get_turf(holder.my_atom)
 	playsound(local_turf, 'sound/effects/magic/ethereal_exit.ogg', 50, 1)
-	local_turf.visible_message("The reaction frosts over, releasing its chilly contents!")
+	local_turf.visible_message("反应物表面结起了霜，释放出冰冷的内容物！")
 	freeze_radius(holder, null, holder.chem_temp*2, clamp(cryostylane.volume/30, 2, 6), 120 SECONDS, 2)
 	clear_reactants(holder, 15)
 	holder.chem_temp += 100
@@ -532,7 +532,7 @@
 	var/datum/reagent/cryostylane/cryostylane = holder.has_reagent(/datum/reagent/cryostylane)
 	var/turf/local_turf = get_turf(holder.my_atom)
 	playsound(local_turf, 'sound/effects/magic/ethereal_exit.ogg', 50, 1)
-	local_turf.visible_message("The reaction furiously freezes up as a snowman suddenly rises out of \the [holder.my_atom]!")
+	local_turf.visible_message("反应猛烈冻结，一个雪人突然从 \the [holder.my_atom] 中升起！")
 	freeze_radius(holder, equilibrium, holder.chem_temp, clamp(cryostylane.volume/15, 3, 10), 180 SECONDS, 5)
 	new /obj/structure/statue/snow/snowman(local_turf)
 	clear_reactants(holder)
@@ -587,21 +587,21 @@
 /datum/chemical_reaction/teslium
 	results = list(/datum/reagent/teslium = 3)
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/silver = 1, /datum/reagent/gunpowder = 1)
-	mix_message = span_danger("A jet of sparks flies from the mixture as it merges into a flickering slurry.")
+	mix_message = span_danger("混合物合并成闪烁的浆液时，喷出一股火花。")
 	required_temp = 400
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_EXPLOSIVE
 
 /datum/chemical_reaction/energized_jelly
 	results = list(/datum/reagent/teslium/energized_jelly = 2)
 	required_reagents = list(/datum/reagent/toxin/slimejelly = 1, /datum/reagent/teslium = 1)
-	mix_message = span_danger("The slime jelly starts glowing intermittently.")
+	mix_message = span_danger("史莱姆凝胶开始断断续续地发光。")
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DANGEROUS | REACTION_TAG_HEALING | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/reagent_explosion/teslium_lightning
 	required_reagents = list(/datum/reagent/teslium = 1, /datum/reagent/water = 1)
 	strengthdiv = 100
 	modifier = -100
-	mix_message = span_bolddanger("The teslium starts to spark as electricity arcs away from it!")
+	mix_message = span_bolddanger("特斯拉素开始迸出火花，电流从它表面弧射而出！")
 	mix_sound = 'sound/machines/defib/defib_zap.ogg'
 	var/zap_flags = ZAP_MOB_DAMAGE | ZAP_OBJ_DAMAGE | ZAP_MOB_STUN | ZAP_LOW_POWER_GEN
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_EXPLOSIVE | REACTION_TAG_DANGEROUS
@@ -663,4 +663,4 @@
 /datum/chemical_reaction/reagent_explosion/patriotism_overload
 	required_reagents = list(/datum/reagent/consumable/ethanol/planet_cracker = 1, /datum/reagent/consumable/ethanol/triumphal_arch = 1)
 	strengthdiv = 20
-	mix_message = span_bolddanger("The two patriotic drinks instantly reject each other!")
+	mix_message = span_bolddanger("两种爱国饮品瞬间相互排斥！")

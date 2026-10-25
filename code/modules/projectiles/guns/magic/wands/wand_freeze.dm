@@ -2,8 +2,8 @@
  * Freezing wand places you in an ice cube and creates ice turfs
  */
 /obj/item/gun/magic/wand/freeze
-	name = "wand of ice"
-	desc = "The chilling power of this wand will stop your enemies in their tracks."
+	name = "寒冰之杖"
+	desc = "这根短杖的寒气之力能让你的敌人当场僵住。"
 	school = SCHOOL_EVOCATION
 	ammo_type = /obj/item/ammo_casing/magic/freeze
 	icon_state = "icewand"
@@ -13,7 +13,7 @@
 
 /obj/item/gun/magic/wand/freeze/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	to_chat(user, span_warning("You freeze yourself in a block of ice!"))
+	to_chat(user, span_warning("你把自己冻在了一块冰里！"))
 	var/obj/projectile/magic/freeze/ice = new(user.drop_location())
 	ice.firer = user
 	user.projectile_hit(ice, BODY_ZONE_CHEST)
@@ -39,7 +39,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/freeze
-	name = "bolt of freezing"
+	name = "冻结之弹"
 	icon_state = "ice_1"
 	/// Temperature change to apply to hit mob
 	var/temperature = -350

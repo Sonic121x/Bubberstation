@@ -1,14 +1,14 @@
 ///Burdened grants some mutations upon injuring yourself sufficiently
 /datum/brain_trauma/special/burdened
-	name = "Flagellating Compulsions"
-	desc = "Patient feels compelled to injure themselves in various incapacitating and horrific ways. \
-		There seems to be an odd genetic \"sequence\" gradually expressed upon following these compulsions."
-	scan_desc = "damaged frontal lobe"
-	symptoms = "Experiences an overwhelming compulsion to self-harm, often engaging in behaviors that lead to significant physical injury. \
-		This compulsion is driven by an intense psychological need to feel pain and suffering, \
-		believing that through this self-inflicted harm, they can achieve a deeper understanding of universal truths and the nature of existence."
-	gain_text = span_notice("You feel burdened!")
-	lose_text = span_warning("You no longer feel the need to burden yourself!")
+	name = "自笞强迫症"
+	desc = "患者感到被强迫以各种致残而骇人的方式伤害自己。\
+		在顺从这些强迫行为的过程中，似乎有一种奇特的基因“序列”正逐渐表达出来。"
+	scan_desc = "额叶受损"
+	symptoms = "会经历难以抑制的自残冲动，常做出导致严重身体伤害的行为。\
+		这种冲动源于一种强烈的心理需求——渴望感受痛苦与折磨，\
+		并相信通过这种自我伤害，自己能更深刻地理解宇宙真理与存在的本质。"
+	gain_text = span_notice("你感到负担加身！")
+	lose_text = span_warning("你不再有加负于自己的冲动！")
 	random_gain = FALSE
 	/// goes from 0 to 9 (but can be beyond 9, just does nothing) and gives rewards. increased by disabling yourself with debuffs
 	var/burden_level = 0
@@ -98,73 +98,73 @@
 	switch(burden_level)
 		if(0)
 			if (!silent)
-				to_chat(owner, span_warning("You feel no weight on your shoulders. You are not feeling [GLOB.deity]'s suffering."))
+				to_chat(owner, span_warning("你感觉肩上毫无重量。你感受不到 [GLOB.deity] 的苦难。"))
 		if(1)
 			if (!silent)
 				if(increase)
-					to_chat(owner, span_notice("You begin to feel the scars on [GLOB.deity]. You must continue to burden yourself."))
+					to_chat(owner, span_notice("你开始感觉到 [GLOB.deity] 身上的伤疤。你必须继续给自己加负。"))
 				else
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You are barely feeling [GLOB.deity]'s suffering."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你几乎感受不到 [GLOB.deity] 的苦难了。"))
 		if(2)
 			if(increase)
 				if (!silent)
-					to_chat(owner, span_notice("You have done well to understand [GLOB.deity]. You are almost at a breakthrough."))
+					to_chat(owner, span_notice("你对 [GLOB.deity] 的理解已经颇有进展。你即将迎来一次突破。"))
 			else
 				if (!silent)
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You have lost some universal truths."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你失去了一些宇宙真理。"))
 				dna.remove_mutation(/datum/mutation/telepathy, MUTATION_SOURCE_BURDENED_TRAUMA)
 				dna.remove_mutation(/datum/mutation/unintelligible, MUTATION_SOURCE_BURDENED_TRAUMA)
 				owner.remove_filter("burden_outline")
 		if(3)
 			if(increase)
 				if (!silent)
-					to_chat(owner, span_notice("Your suffering is only a fraction of [GLOB.deity]'s, and yet the universal truths are coming to you."))
+					to_chat(owner, span_notice("你的苦难只是 [GLOB.deity] 的一小部分，然而宇宙真理正逐渐向你显现。"))
 				dna.add_mutation(/datum/mutation/telepathy, MUTATION_SOURCE_BURDENED_TRAUMA)
 				dna.add_mutation(/datum/mutation/unintelligible, MUTATION_SOURCE_BURDENED_TRAUMA)
 				owner.add_filter("burden_outline", 9, list("type" = "outline", "color" = "#6c6eff"))
 			else
 				if (!silent)
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You feel like you're about to forget."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你觉得自己快要忘记了。"))
 		if(4)
 			if (!silent)
 				if(increase)
-					to_chat(owner, span_notice("It hurts, each ounce of pain a lesson told. How does [GLOB.deity] bear this weight?"))
+					to_chat(owner, span_notice("很痛，每一分痛苦都是一则教诲。[GLOB.deity] 是如何承受这份重量的？"))
 				else
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You're growing further from your goal."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你离目标越来越远了。"))
 		if(5)
 			if(increase)
 				if (!silent)
-					to_chat(owner, span_notice("Your body is a canvas of loss. You are almost at a breakthrough."))
+					to_chat(owner, span_notice("你的身体是一幅写满失去的画布。你即将迎来一次突破。"))
 			else
 				if (!silent)
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You have lost some universal truths."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你失去了一些宇宙真理。"))
 				dna.remove_mutation(/datum/mutation/telekinesis, MUTATION_SOURCE_BURDENED_TRAUMA)
 				dna.remove_mutation(/datum/mutation/mindreader, MUTATION_SOURCE_BURDENED_TRAUMA)
 		if(6)
 			if(increase)
 				if (!silent)
-					to_chat(owner, span_notice("Your suffering is respectful, your scars immaculate. More universal truths are clear, but you do not fully understand yet."))
+					to_chat(owner, span_notice("你的苦难充满敬意，你的伤疤完美无瑕。更多宇宙真理变得清晰，但你仍未完全理解。"))
 				dna.add_mutation(/datum/mutation/telekinesis, MUTATION_SOURCE_BURDENED_TRAUMA)
 				dna.add_mutation(/datum/mutation/mindreader, MUTATION_SOURCE_BURDENED_TRAUMA)
 			else
 				if (!silent)
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You feel like you're about to forget."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你觉得自己快要忘记了。"))
 		if(7)
 			if (!silent)
 				if(increase)
-					to_chat(owner, span_notice("The weight on your shoulders is immense. [GLOB.deity] is shattered across the cosmos."))
+					to_chat(owner, span_notice("你肩上的重量无比巨大。[GLOB.deity] 已碎裂散落于宇宙各处。"))
 				else
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You're growing further from your goal."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你离目标越来越远了。"))
 		if(8)
 			if (!silent)
 				if(increase)
-					to_chat(owner, span_notice("You're on the cusp of another breakthrough. [GLOB.deity] lost everything."))
+					to_chat(owner, span_notice("你正处在又一次突破的边缘。[GLOB.deity] 失去了一切。"))
 				else
-					to_chat(owner, span_warning("The weight on your shoulders feels lighter. You have lost some universal truths."))
+					to_chat(owner, span_warning("肩上的重量似乎轻了些。你失去了一些宇宙真理。"))
 		if(9)
 			if(increase)
 				if (!silent)
-					to_chat(owner, span_notice("You have finally broken yourself enough to understand [GLOB.deity]. It's all so clear to you."))
+					to_chat(owner, span_notice("你终于把自己折磨得足够彻底，从而理解了 [GLOB.deity]。一切都变得如此清晰。"))
 				var/mob/living/carbon/human/knower = owner
 				if(!istype(knower))
 					return

@@ -103,7 +103,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	ui_interact(user)
-	balloon_alert(user, "beaker added")
+	balloon_alert(user, "已放入烧杯")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -361,14 +361,14 @@
 
 	//no beaker
 	if(QDELETED(beaker))
-		say("No beaker found!")
+		say("未找到烧杯！")
 		return FALSE
 
 	//trying to absorb buffer from currently inserted beaker
 	if(volume < 0)
 		if(!beaker.reagents.has_reagent(buffer_type))
 			var/name = initial(buffer_type.name)
-			say("Unable to find [name] in beaker to draw from! Please insert a beaker containing [name].")
+			say("无法在烧杯中找到可抽取的 [name]！请插入装有 [name] 的烧杯。")
 			return FALSE
 		beaker.reagents.trans_to(src, (reagents.maximum_volume / 2) - reagents.get_reagent_amount(buffer_type), target_id = buffer_type)
 		return TRUE
@@ -379,8 +379,8 @@
 
 //Has a lot of buffer and is upgraded
 /obj/machinery/chem_heater/debug
-	name = "Debug Reaction Chamber"
-	desc = "Now with even more buffers!"
+	name = "调试反应室"
+	desc = "现在含有更多缓冲液！"
 
 /obj/machinery/chem_heater/debug/Initialize(mapload)
 	. = ..()
@@ -391,9 +391,9 @@
 
 //map load types
 /obj/machinery/chem_heater/withbuffer
-	desc = "This Reaction Chamber comes with a bit of buffer to help get you started."
+	desc = "这台反应室附带少量缓冲液，方便你上手。"
 
 /obj/machinery/chem_heater/withbuffer/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(/datum/reagent/reaction_agent/basic_buffer, 20)
-	reagents.add_reagent(/datum/reagent/reaction_agent/acidic
+	reagents.add_reagent(/datum/reagent/reaction_agent/acidic_buffer, 20)

@@ -1,6 +1,6 @@
 /obj/machinery/chem_dispenser/chem_synthesizer //formerly SCP-294 made by mrty, but now only for testing purposes
-	name = "\improper debug chemical synthesizer"
-	desc = "If you see this, yell at adminbus."
+	name = "\improper 调试化学合成器"
+	desc = "如果你看到这个东西，就去冲着管理员巴士大声抱怨吧。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "dispenser"
 	base_icon_state = "dispenser"
@@ -40,7 +40,7 @@
 			if(QDELETED(beaker))
 				return FALSE
 
-			var/selected_reagent = tgui_input_list(ui.user, "Select reagent", "Reagent", GLOB.name2reagent)
+			var/selected_reagent = tgui_input_list(ui.user, "选择试剂", "试剂", GLOB.name2reagent)
 			if(!selected_reagent)
 				return FALSE
 
@@ -56,7 +56,7 @@
 			if(beaker)
 				return
 			beaker = new /obj/item/reagent_containers/cup/beaker/bluespace(src)
-			visible_message(span_notice("[src] dispenses a bluespace beaker."))
+			visible_message(span_notice("[src] 分配出一个蓝空间烧杯。"))
 			return TRUE
 
 		if("amount")
