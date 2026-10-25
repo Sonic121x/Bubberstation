@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	/// A list of stuff that's currently waiting to be readded to fish_counts
 	var/list/currently_on_regen
 	/// Text shown as baloon alert when you roll a dud in the table
-	var/duds = list("it was nothing", "the hook is empty")
+	var/duds = list("什么都没有", "鱼钩是空的")
 	/// Baseline difficulty for fishing in this spot. THIS IS ADDED TO THE DEFAULT DIFFICULTY OF THE MINIGAME (15)
 	var/fishing_difficulty = FISHING_DEFAULT_DIFFICULTY
 	/// How the spot type is described in fish catalog section about fish sources, will be skipped if null
@@ -298,16 +298,16 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	if(isitem(reward)) //Try to put it in hand
 		INVOKE_ASYNC(fisherman, TYPE_PROC_REF(/mob, put_in_hands), reward)
 	else if(istype(reward, /obj/effect/spawner)) // Do not attempt to forceMove() a spawner. It will break things, and the spawned item should already be at the mob's turf by now.
-		fisherman.balloon_alert(fisherman, "caught something!")
+		fisherman.balloon_alert(fisherman, "钓到东西了！")
 		return
-	fisherman.balloon_alert(fisherman, "caught [reward]!")
+	fisherman.balloon_alert(fisherman, "钓到了 [reward]！")
 
 	var/list/fishing_data
 	if (isfish(reward))
 		ADD_TRAIT(reward, TRAIT_NO_FISHING_ACHIEVEMENT, TRAIT_GENERIC)
 		var/obj/item/fish/caught_fish = reward
 		fishing_data = list(caught_fish.size, caught_fish.weight, caught_fish.custom_materials)
-	log_fish("[fisherman] has caught a [reward] at [fishing_spot] using [rod].", fishing_data)
+	log_fish("[fisherman] 在 [fishing_spot] 使用 [rod] 钓到了 [reward]。", fishing_data)
 	return reward
 
 ///Simplified version of dispense_reward that doesn't need a fisherman.
@@ -524,10 +524,10 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 	if(!length(known_fishes))
 		return
 
-	var/info = "You can catch the following fish here"
+	var/info = "你可以在这里钓到以下鱼类"
 
 	if(rod)
-		info = span_tooltip("In bold are fish you're more likely to catch with the current setup. The opposite is true for the smaller font", info)
+		info = span_tooltip("粗体表示在当前配置下你更有可能钓到的鱼。字体更小的则相反", info)
 	examine_text += span_info("[info]: [english_list(known_fishes)].")
 
 ///How much the explosive_fishing_score impacts explosive fishing. The higher the value, the stronger the malus for repeated calls
@@ -656,17 +656,17 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 			FISH_SOURCE_AUTOWIKI_NAME = FISH_SOURCE_AUTOWIKI_DUD,
 			FISH_SOURCE_AUTOWIKI_ICON = "",
 			FISH_SOURCE_AUTOWIKI_WEIGHT = PERCENT(fish_table[FISHING_DUD]/total_weight_without_bait),
-			FISH_SOURCE_AUTOWIKI_WEIGHT_SUFFIX = "WITHOUT A BAIT",
-			FISH_SOURCE_AUTOWIKI_NOTES = "Unless you have a magnet or rescue hook or you know what you're doing, always use a bait",
+			FISH_SOURCE_AUTOWIKI_WEIGHT_SUFFIX = "未使用鱼饵时",
+			FISH_SOURCE_AUTOWIKI_NOTES = "除非你有磁铁或救援钩，或者清楚自己在做什么，否则务必使用鱼饵",
 		))
 
 	for(var/obj/item/fish/fish as anything in only_fish)
 		var/weight = fish_table[fish]
-		var/deets = "Can be caught indefinitely"
+		var/deets = "可以无限次钓到"
 		if(fish in fish_counts)
-			deets = "It's quite rare and can only be caught up to [fish_counts[fish]] times"
+			deets = "相当稀有，最多只能钓到 [fish_counts[fish]] 次"
 			if(fish in fish_count_regen)
-				deets += " every [DisplayTimeText(fish::breeding_timeout)]"
+				deets += "，每 [DisplayTimeText(fish::breeding_timeout)] 补充一次"
 		var/list/weight_deets = list()
 		for(var/trait in tables_by_quality)
 			weight_deets += "[round(PERCENT(tables_by_quality[trait][fish]/total_weight_by_quality[trait]), 0.1)]%"
@@ -689,7 +689,7 @@ GLOBAL_LIST_INIT(specific_fish_icons, generate_specific_fish_icons())
 			FISH_SOURCE_AUTOWIKI_ICON = FISH_SOURCE_AUTOWIKI_QUESTIONMARK,
 			FISH_SOURCE_AUTOWIKI_WEIGHT = PERCENT(total_weight_no_fish/total_weight),
 			FISH_SOURCE_AUTOWIKI_WEIGHT_SUFFIX = weight_suffix,
-			FISH_SOURCE_AUTOWIKI_NOTES = "Who knows what it may be. Try and find out",
+			FISH_SOURCE_AUTOWIKI_NOTES = "谁知道会是什么呢。试试看吧",
 		))
 
 	return data

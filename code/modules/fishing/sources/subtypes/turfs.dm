@@ -36,14 +36,14 @@
 	associated_safe_turfs = list(/turf/open/water/deep_beach, /turf/open/water/beach)
 
 /datum/fish_source/ocean/beach
-	catalog_description = "Beach shore water"
+	catalog_description = "海滩岸边水域"
 	radial_state = "palm_beach"
 	overlay_state = "portal_beach"
 	associated_safe_turfs = list(/turf/open/water/beach)
 
 /datum/fish_source/ice_fishing
 	background = "background_ice"
-	catalog_description = "Ice-covered water"
+	catalog_description = "冰封水域"
 	radial_state = "ice"
 	overlay_state = "portal_ocean"
 	fish_table = list(
@@ -58,7 +58,7 @@
 	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach)
 
 /datum/fish_source/river
-	catalog_description = "River water"
+	catalog_description = "河水"
 	radial_state = "river"
 	overlay_state = "portal_river"
 	fish_table = list(
@@ -87,7 +87,7 @@
 	safe_turfs_blacklist = list(/turf/open/water/hot_spring, /turf/open/water/beach)
 
 /datum/fish_source/sand
-	catalog_description = "Sand"
+	catalog_description = "沙地"
 	radial_state = "palm_beach"
 	fish_table = list(
 		FISHING_DUD = 8,
@@ -100,7 +100,7 @@
 	fish_source_flags = FISH_SOURCE_FLAG_EXPLOSIVE_MALUS
 
 /datum/fish_source/hot_spring
-	catalog_description = "Hot Springs"
+	catalog_description = "温泉"
 	radial_state = "onsen"
 	overlay_state = "portal_ocean"
 	fish_table = list(
@@ -122,7 +122,7 @@
 	associated_safe_turfs = list(/turf/open/water/hot_spring)
 
 /datum/fish_source/tizira
-	catalog_description = "Tiziran Sea"
+	catalog_description = "提兹拉海"
 	radial_state = "planet"
 	overlay_state = "portal_beach"
 	fish_table = list(

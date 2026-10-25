@@ -71,12 +71,12 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 	if(required_temperature_min > 0 || required_temperature_max < INFINITY)
 		var/temp_reqs = ""
 		if(required_temperature_min == 0)
-			temp_reqs = "below [required_temperature_max]"
+			temp_reqs = "低于 [required_temperature_max]K"
 		else if(required_temperature_max == INFINITY)
-			temp_reqs = "above [required_temperature_min]"
+			temp_reqs = "高于 [required_temperature_min]K"
 		else
-			temp_reqs = "of [required_temperature_min] to [required_temperature_max]"
-		. = "An aquarium temperature [temp_reqs]K is required."
+			temp_reqs = "介于 [required_temperature_min]K 与 [required_temperature_max]K 之间"
+		. = "需要水族箱温度[temp_reqs]。"
 
 	if(conditions_note)
 		. += " [conditions_note]"
@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 	probability = 25
 	new_fish_type = /obj/item/fish/clownfish/lube
 	new_traits = list(/datum/fish_trait/lubed)
-	conditions_note = "The fish must be fed lube beforehand."
+	conditions_note = "必须事先给鱼喂食润滑剂。"
 
 /datum/fish_evolution/lubefish/check_conditions(obj/item/fish/source, obj/item/fish/mate, atom/movable/aquarium)
 	if(!HAS_TRAIT(source, TRAIT_FISH_FED_LUBE))
@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 	probability = 40
 	new_fish_type = /obj/item/fish/mastodon
 	new_traits = list(/datum/fish_trait/heavy, /datum/fish_trait/amphibious, /datum/fish_trait/predator, /datum/fish_trait/territorial)
-	conditions_note = "The fish (and its mate) needs to be unusually big both in size and weight."
+	conditions_note = "这条鱼（及其配偶）在体型和重量上都必须异常巨大。"
 	show_result_on_wiki = FALSE
 
 /datum/fish_evolution/mastodon/check_conditions(obj/item/fish/source, obj/item/fish/mate, atom/movable/aquarium)
@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 	probability = 30
 	new_fish_type = /obj/item/fish/chainsawfish
 	new_traits = list(/datum/fish_trait/predator, /datum/fish_trait/territorial)
-	conditions_note = "The fish needs to be unusually big and territorial"
+	conditions_note = "这条鱼必须异常巨大且具有领地性"
 
 /datum/fish_evolution/chainsawfish/check_conditions(obj/item/fish/source, obj/item/fish/mate, atom/movable/aquarium)
 	var/double_avg_size = /obj/item/fish/goldfish::average_size * 2
@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 /datum/fish_evolution/armored_pike
 	probability = 75
 	new_fish_type = /obj/item/fish/pike/armored
-	conditions_note = "The fish needs to have the stinger trait"
+	conditions_note = "这条鱼必须拥有螫刺特性"
 
 /datum/fish_evolution/armored_pike/check_conditions(obj/item/fish/source, obj/item/fish/mate, atom/movable/aquarium)
 	if(HAS_TRAIT(source, TRAIT_FISH_STINGER))
@@ -155,12 +155,12 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 /datum/fish_evolution/fritterish
 	new_fish_type = /obj/item/fish/fryish/fritterish
 	removed_traits = list(/datum/fish_trait/no_mating)
-	conditions_note = "Fryish will grow into it over time."
+	conditions_note = "鱼苗会随着时间成长为此形态。"
 
 /datum/fish_evolution/nessie
 	name = "???"
 	new_fish_type = /obj/item/fish/fryish/nessie
-	conditions_note = "The final stage of fritterfish growth. It gotta be big!"
+	conditions_note = "炸鱼饼鱼成长的最终阶段。它必须足够巨大！"
 	show_result_on_wiki = FALSE
 
 /datum/fish_evolution/nessiefish/check_conditions(obj/item/fish/source, obj/item/fish/mate, atom/movable/aquarium)
@@ -171,7 +171,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 /datum/fish_evolution/moonfish
 	probability = 200 //guaranteed if the conditions are met
 	new_fish_type = /obj/item/fish/moonfish
-	conditions_note = "Requires the dwarf moonfish to be big enough."
+	conditions_note = "需要矮月鱼足够大。"
 
 /datum/fish_evolution/moonfish/check_conditions(obj/item/fish/source, obj/item/fish/mate, obj/structure/aquarium/aquarium)
 	if(source.size < (/obj/item/fish/moonfish/dwarf::average_size * 1.5) && source.size < (/obj/item/fish/moonfish/dwarf::average_weight * 1.5))
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(fishes_by_fish_evolution)
 /datum/fish_evolution/dwarf_moonfish
 	probability = 200 //guaranteed if the conditions are met
 	new_fish_type = /obj/item/fish/moonfish/dwarf
-	conditions_note = "Requires the moonfish to be small enough."
+	conditions_note = "需要月鱼足够小。"
 
 /datum/fish_evolution/dwarf_moonfish/check_conditions(obj/item/fish/source, obj/item/fish/mate, obj/structure/aquarium/aquarium)
 	if(source.size > (/obj/item/fish/moonfish::average_size * 0.66) && source.size > (/obj/item/fish/moonfish::average_weight * 0.66))

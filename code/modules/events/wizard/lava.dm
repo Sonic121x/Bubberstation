@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/lava //THE LEGEND NEVER DIES
-	name = "The Floor Is LAVA!"
+	name = "地板是岩浆！"
 	weight = 2
 	typepath = /datum/round_event/wizard/lava
 	max_occurrences = 3
 	earliest_start = 0 MINUTES
-	description = "Turns the floor into hot lava."
+	description = "把地板变成滚烫的岩浆。"
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 

@@ -89,9 +89,9 @@
 	///Date that this account was first seen in the server
 	var/player_join_date = null
 	///So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
-	var/related_accounts_ip = "Requires database"
+	var/related_accounts_ip = "需要数据库"
 	///So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
-	var/related_accounts_cid = "Requires database"
+	var/related_accounts_cid = "需要数据库"
 	///Date of byond account creation in ISO 8601 format
 	var/account_join_date = null
 	///Age of byond account in days
@@ -109,7 +109,7 @@
 	var/mouse_override_icon = null
 
 	///Used for ip intel checking to identify evaders, disabled because of issues with traffic
-	var/ip_intel = "Disabled"
+	var/ip_intel = "已禁用"
 
 	///datum that controls the displaying and hiding of tooltips
 	var/datum/tooltip/tooltips

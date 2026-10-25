@@ -4,8 +4,8 @@ GLOBAL_LIST_INIT(atmos_components, typecacheof(list(/obj/machinery/atmospherics)
 	icon = 'icons/obj/pipes_n_cables/simple.dmi'
 	icon_state = "pipe11-3"
 
-	name = "pipe"
-	desc = "A one meter section of regular pipe."
+	name = "管道"
+	desc = "一段一米长的普通管道。"
 
 	device_type = QUATERNARY
 	construction_type = /obj/item/pipe/quaternary

@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/gondola
-	name = "gondola mask"
-	desc = "Genuine gondola fur."
+	name = "贡多拉面具"
+	desc = "正宗的贡多拉毛皮。"
 	icon_state = "gondola"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT

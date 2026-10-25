@@ -1,8 +1,8 @@
 /obj/machinery/byteforge
-	name = "byteforge"
+	name = "字节锻造机"
 
 	circuit = /obj/item/circuitboard/machine/byteforge
-	desc = "A machine used by the quantum server. Quantum code converges here, materializing decrypted assets from the virtual abyss."
+	desc = "一台由量子服务器使用的机器。量子代码在此汇聚，从虚拟深渊中实体化出解密后的资产。"
 	icon = 'icons/obj/machines/bitrunning.dmi'
 	icon_state = "byteforge"
 	base_icon_state = "byteforge"
@@ -26,20 +26,20 @@
 		return
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/byteforge/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Must be within 4 tiles of the quantum server.")
+	. += span_notice("必须位于量子服务器 4 格范围内。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "close" : "open"].")
+	. += span_notice("其维护面板可被 [EXAMINE_HINT("用螺丝刀")] [panel_open ? "关闭" : "打开"]。")
 	if(panel_open)
-		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("可以用 [EXAMINE_HINT("撬棍")] 将其拆开。")
 
 /obj/machinery/byteforge/update_appearance(updates)
 	. = ..()

@@ -1,9 +1,9 @@
 /// Helmet which can turn you into a BEAST!! once an anomaly core is inserted
 /obj/item/clothing/head/helmet/perceptomatrix
-	name = "perceptomatrix helm"
-	desc = "This piece of headgear harnesses the energies of a hallucinatory anomaly to create a safe audiovisual replica of -all- external stimuli directly into the cerebral cortex, \
-		granting the user effective immunity to both psychic threats, and anything that would affect their perception - be it ear, eye, or even brain damage. \
-		It can also violently discharge said energy, inducing hallucinations in others."
+	name = "感知矩阵头盔"
+	desc = "这件头盔利用致幻异常的能量，将 -所有- 外部刺激直接在大脑皮层中重建为安全的视听副本，\
+		使佩戴者能有效免疫精神威胁，以及任何会影响其感知的事物——无论是耳、眼，甚至是脑损伤。\
+		它还能猛烈释放这种能量，使他人产生幻觉。"
 	icon_state = "perceptomatrix_helmet_inactive"
 	worn_icon_state = "perceptomatrix_helmet_inactive"
 	base_icon_state = "perceptomatrix_helmet"
@@ -88,7 +88,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/proc/pre_cast_core_check(mob/caster, datum/action/cooldown/spell/spell)
 	SIGNAL_HANDLER
 	if((!core_installed) && spell.school == SCHOOL_PSYCHIC)
-		to_chat(caster, span_warning("You can't zap minds through [src]'s shielding without a core installed!"))
+		to_chat(caster, span_warning("没有安装核心时，你无法透过 [src] 的屏蔽电击心智！"))
 		return SPELL_CANCEL_CAST
 
 /obj/item/clothing/head/helmet/perceptomatrix/proc/update_anomaly_state()
@@ -127,7 +127,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/examine(mob/user)
 	. = ..()
 	if (!core_installed)
-		. += span_warning("It requires a hallucination anomaly core in order to function.")
+		. += span_warning("它需要一颗致幻异常核心才能运作。")
 
 /obj/item/clothing/head/helmet/perceptomatrix/update_icon_state()
 	icon_state = base_icon_state + (core_installed ? "" : "_inactive")
@@ -137,7 +137,7 @@
 /obj/item/clothing/head/helmet/perceptomatrix/item_interaction(mob/user, obj/item/weapon, params)
 	if (!istype(weapon, /obj/item/assembly/signaler/anomaly/hallucination))
 		return NONE
-	balloon_alert(user, "inserting...")
+	balloon_alert(user, "正在插入……")
 	if (!do_after(user, delay = 3 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 	qdel(weapon)
@@ -151,8 +151,8 @@
 	core_installed = TRUE
 
 /datum/action/cooldown/spell/pointed/percept_hallucination
-	name = "Hallucinate"
-	desc = "Redirect perceptual energies towards a target, staggering them."
+	name = "致幻"
+	desc = "将感知能量导向目标，使其踉跄。"
 	button_icon_state = "blind"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/blind_target.dmi'
 
@@ -164,7 +164,7 @@
 	spell_requirements = NONE
 	antimagic_flags = MAGIC_RESISTANCE_MIND
 
-	active_msg = "You prepare to zap a target with hallucinations..."
+	active_msg = "你准备用幻觉电击一个目标……"
 
 	/// The amount of blurriness to apply
 	var/eye_blur_duration = 7 SECONDS
@@ -187,8 +187,8 @@
 /datum/action/cooldown/spell/pointed/percept_hallucination/proc/blows_up_pancakes_with_mind(obj/item/food/pancakes/pancakes)
 
 	owner.visible_message(
-		span_userdanger("[owner] blows up [pancakes] with [owner.p_their()] mind!"),
-		span_userdanger("You blow up [pancakes] with your mind!")
+		span_userdanger("[owner] 用念力炸掉了 [pancakes]！"),
+		span_userdanger("你用念力炸掉了 [pancakes]！")
 	)
 
 	for(var/mob/chef in get_hearers_in_view(7, pancakes))
@@ -196,7 +196,7 @@
 			continue
 		// if cooked by chef, or if EITHER 5% chance OR its april fools. a || (b || c)
 		if(HAS_TRAIT_FROM(pancakes, TRAIT_HANDMADE, REF(chef.mind)) || (prob(5) || check_holidays(APRIL_FOOLS)))
-			chef.say("Ma fuckin' pancakes!")
+			chef.say("我他妈的煎饼！")
 
 	playsound(pancakes, 'sound/effects/fuse.ogg', 80)
 	animate(pancakes, time = 1, pixel_z = 12, easing = ELASTIC_EASING)
@@ -226,11 +226,11 @@
 		return
 
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_notice("You feel psychic energies reflecting off you."))
-		to_chat(owner, span_warning("[cast_on] deflects the energy!"))
+		to_chat(cast_on, span_notice("你感到精神能量从你身上反射开。"))
+		to_chat(owner, span_warning("[cast_on] 弹开了这股能量！"))
 		return
 
-	to_chat(cast_on, span_warning("Your brain feels like it's on fire!"))
+	to_chat(cast_on, span_warning("你的大脑像着了火一样！"))
 	cast_on.emote("scream")
 	cast_on.set_eye_blur_if_lower(eye_blur_duration)
 	cast_on.adjust_staggered(stagger_duration)

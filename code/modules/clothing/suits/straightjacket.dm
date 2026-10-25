@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/jacket/straight_jacket
-	name = "straight jacket"
-	desc = "A suit that completely restrains the wearer. Manufactured by Antyphun Corp." //Straight jacket is antifun
+	name = "拘束衣"
+	desc = "一套能完全束缚穿戴者的服装，由反乐趣公司制造。" //Straight jacket is antifun
 	icon_state = "straight_jacket"
 	inhand_icon_state = "straight_jacket"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|HANDS

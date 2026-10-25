@@ -1,6 +1,6 @@
 /obj/item/circuit_component/air_alarm_general
-	display_name = "Air Alarm"
-	desc = "Outputs basic information that the air alarm has recorded"
+	display_name = "空气警报器"
+	desc = "输出空气警报器已记录的基本信息"
 
 	var/obj/machinery/airalarm/connected_alarm
 
@@ -27,7 +27,7 @@
 		for(var/mode_path in GLOB.air_alarm_modes)
 			var/datum/air_alarm_mode/mode = GLOB.air_alarm_modes[mode_path]
 			if(!mode.emag)
-				options_map[mode.name] = mode.type
+				options_map[chinese_atmos_protocol_name(mode.name)] = mode.type
 
 /obj/item/circuit_component/air_alarm_general/populate_ports()
 	mode = add_option_port("Mode", options_map, order = 1)
@@ -45,7 +45,7 @@
 		RegisterSignal(connected_alarm.alarm_manager, COMSIG_ALARM_TRIGGERED, PROC_REF(on_alarm_triggered))
 		RegisterSignal(connected_alarm.alarm_manager, COMSIG_ALARM_CLEARED, PROC_REF(on_alarm_cleared))
 		RegisterSignal(shell, COMSIG_AIRALARM_UPDATE_MODE, PROC_REF(on_mode_updated))
-		current_mode.set_value(connected_alarm.selected_mode.name)
+		current_mode.set_value(chinese_atmos_protocol_name(connected_alarm.selected_mode.name))
 
 /obj/item/circuit_component/air_alarm_general/unregister_usb_parent(atom/movable/shell)
 	if(connected_alarm)
@@ -62,7 +62,7 @@
 
 /obj/item/circuit_component/air_alarm_general/proc/on_mode_updated(obj/machinery/airalarm/alarm, datum/signal_source)
 	SIGNAL_HANDLER
-	current_mode.set_value(alarm.selected_mode.name)
+	current_mode.set_value(chinese_atmos_protocol_name(alarm.selected_mode.name))
 
 /obj/item/circuit_component/air_alarm_general/proc/on_alarm_triggered(datum/source, alarm_type, area/location)
 	SIGNAL_HANDLER
@@ -99,8 +99,8 @@
 	connected_alarm.investigate_log("was turned to [connected_alarm.selected_mode.name] by [parent.get_creator()]", INVESTIGATE_ATMOS)
 
 /obj/item/circuit_component/air_alarm
-	display_name = "Air Alarm Core Control"
-	desc = "Controls levels of gases and their temperature as well as all vents and scrubbers in the room."
+	display_name = "空气警报器核心控制"
+	desc = "控制室内气体含量及其温度，以及房间内所有通风口和气体净化器。"
 
 	var/datum/port/input/option/air_alarm_options
 
@@ -166,13 +166,13 @@
 
 		var/cached_gas_info = GLOB.meta_gas_info
 		for(var/gas_id in cached_gas_info[META_GAS_ID])
-			component_options[cached_gas_info[META_GAS_NAME][gas_id]] = gas_id2path(gas_id)
+			component_options[chinese_atmos_protocol_name(cached_gas_info[META_GAS_NAME][gas_id])] = gas_id2path(gas_id)
 
 	air_alarm_options = add_option_port("Air Alarm Options", component_options)
 	options_map = component_options
 
 /obj/item/circuit_component/air_alarm/duplicate
-	display_name = "Air Alarm Control"
+	display_name = "空气警报器控制"
 
 	circuit_size = 0
 	ui_buttons = list()
@@ -236,8 +236,8 @@
 	update_received.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_scrubbers
-	display_name = "Air Alarm Scrubber Core Control"
-	desc = "Controls the scrubbers in the room."
+	display_name = "空气警报器净化器核心控制"
+	desc = "控制房间内的气体净化器。"
 
 	var/datum/port/input/option/scrubbers
 
@@ -318,7 +318,7 @@
 	update_received = add_output_port("Update Received", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_scrubbers/duplicate
-	display_name = "Air Alarm Scrubber Control"
+	display_name = "空气警报器净化器控制"
 	circuit_size = 0
 	ui_buttons = list()
 
@@ -355,7 +355,7 @@
 		var/cached_gas_info = GLOB.meta_gas_info
 		for(var/typepath in cached_gas_info[META_GAS_ID])
 			meta_data += cached_gas_info[META_GAS_ID][typepath]
-	. += create_table_notices(meta_data, column_name = "Gas", column_name_plural = "Gases")
+	. += create_table_notices(meta_data, column_name = "气体", column_name_plural = "气体")
 
 /obj/item/circuit_component/air_alarm_scrubbers/proc/set_gas_to_filter(datum/port/input/port)
 	CIRCUIT_TRIGGER
@@ -446,8 +446,8 @@
 	update_received.set_value(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_vents
-	display_name = "Air Alarm Vent Core Control"
-	desc = "Controls the vents in the room."
+	display_name = "空气警报器通风口核心控制"
+	desc = "控制房间内的通风口。"
 
 	var/datum/port/input/option/vents
 
@@ -545,7 +545,7 @@
 	update_received = add_output_port("Update Received", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_vents/duplicate
-	display_name = "Air Alarm Vent Control"
+	display_name = "空气警报器通风口控制"
 
 	circuit_size = 0
 	ui_buttons = list()

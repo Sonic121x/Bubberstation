@@ -1,6 +1,6 @@
 /datum/bounty/item/atmospherics
-	name = "Gas Parent"
-	description = "Shit's broken if you see this."
+	name = "气体母类"
+	description = "如果你看到这个，说明出问题了。"
 	reward = CARGO_CRATE_VALUE * 15
 	wanted_types = list(/obj/item/tank = TRUE)
 	/// How many moles are needed to fufill the bounty?
@@ -23,32 +23,32 @@
 	return our_mix.moles[gas_type]
 
 /datum/bounty/item/atmospherics/pluox_tank
-	name = "Full Tank of Pluoxium"
-	description = "CentCom RnD is researching extra compact internals. Ship us a tank full of Pluoxium and you'll be compensated. (20 Moles)"
+	name = "满满一罐富氧气"
+	description = "中央指挥部研发部正在研究超紧凑型内置气罐。给我们运一罐满满的富氧气来，你会得到补偿。（20 摩尔）"
 	gas_type = /datum/gas/pluoxium
 
 /datum/bounty/item/atmospherics/nitrium_tank
-	name = "Full Tank of Nitrium"
-	description = "The prisoners of MegaStation 62 have been volunteered to test performance enhancing drugs. Ship them a tank full of Nitrium so they can get started. (20 Moles)"
+	name = "满满一罐氮素气"
+	description = "巨型站 62 的囚犯们已被自愿报名测试性能增强药物。给他们运一罐满满的氮素气，好让他们开始。（20 摩尔）"
 	gas_type = /datum/gas/nitrium
 
 /datum/bounty/item/atmospherics/freon_tank
-	name = "Full Tank of Freon"
-	description = "The Supermatter of station 33 has started the delamination process. Deliver a tank of Freon gas to help them stop it! (20 Moles)"
+	name = "满满一罐氟利昂"
+	description = "33 号站的超物质已开始分层过程。送一罐氟利昂气体去帮他们阻止它！（20 摩尔）"
 	gas_type = /datum/gas/freon
 
 /datum/bounty/item/atmospherics/tritium_tank
-	name = "Full Tank of Tritium"
-	description = "Station 49 is looking to kickstart their research program. Ship them a tank full of Tritium. (20 Moles)"
+	name = "满满一罐氚气"
+	description = "49 号站正打算启动他们的研究项目。给他们运一罐满满的氚气。（20 摩尔）"
 	gas_type = /datum/gas/tritium
 
 /datum/bounty/item/atmospherics/hydrogen_tank
-	name = "Full Tank of Hydrogen"
-	description = "Our R&D department is working on the development of more efficient electrical batteries using hydrogen as a catalyst. Ship us a tank full of it. (20 Moles)"
+	name = "满满一罐氢气"
+	description = "我们的研发部正在开发以氢气为催化剂的高效电池。给我们运一罐满满的氢气来。（20 摩尔）"
 	gas_type = /datum/gas/hydrogen
 
 /datum/bounty/item/atmospherics/zauker_tank
-	name = "Full Tank of Zauker"
-	description = "The main planet of \[REDACTED] has been chosen as testing grounds for the new weapon that uses Zauker gas. Ship us a tank full of it. (20 Moles)"
+	name = "满满一罐灼蚀气"
+	description = "\[REDACTED] 的主行星已被选为使用灼蚀气的新型武器的试验场。给我们运一罐满满的灼蚀气来。（20 摩尔）"
 	reward = CARGO_CRATE_VALUE * 20
 	gas_type = /datum/gas/zauker

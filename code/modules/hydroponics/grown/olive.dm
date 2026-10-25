@@ -1,10 +1,10 @@
 // Olive
 /obj/item/seeds/olive
-	name = "olive seed pack"
-	desc = "These seeds grow into olive trees."
+	name = "橄榄种子包"
+	desc = "这些种子会长成橄榄树。"
 	icon_state = "seed-olive"
 	species = "olive"
-	plantname = "Olive Tree"
+	plantname = "橄榄树"
 	product = /obj/item/food/grown/olive
 	lifespan = 150
 	endurance = 35
@@ -18,11 +18,11 @@
 
 /obj/item/food/grown/olive
 	seed = /obj/item/seeds/olive
-	name = "olive"
-	desc = "A small cylindrical salty fruit closely related to mangoes. Can be ground into a paste and mixed with water to make quality oil."
+	name = "橄榄"
+	desc = "一颗小而呈圆柱形、带咸味的果实，与芒果亲缘相近。可以磨成糊状并与水混合，制成优质油脂。"
 	icon_state = "olive"
 	foodtypes = FRUIT
-	tastes = list("olive" = 1)
+	tastes = list("橄榄" = 1)
 
 /obj/item/food/grown/olive/grind_results()
 	return list(/datum/reagent/consumable/olivepaste = 0)

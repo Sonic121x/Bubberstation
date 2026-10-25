@@ -42,8 +42,8 @@
 	return seeds
 
 /obj/machinery/seed_extractor
-	name = "seed extractor"
-	desc = "Extracts and bags seeds from produce."
+	name = "种子提取机"
+	desc = "从农产品中提取种子并装袋。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "sextractor"
 	base_icon_state = "sextractor"
@@ -67,12 +67,12 @@
 )
 
 	if(held_item?.get_plant_seed())
-		context[SCREENTIP_CONTEXT_LMB] = "Make seeds"
-		context[SCREENTIP_CONTEXT_RMB] = "Make & Store seeds"
+		context[SCREENTIP_CONTEXT_LMB] = "制作种子"
+		context[SCREENTIP_CONTEXT_RMB] = "制作并储存种子"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/storage/bag/plants) && (locate(/obj/item/seeds) in held_item.contents))
-		context[SCREENTIP_CONTEXT_LMB] = "Store seeds"
+		context[SCREENTIP_CONTEXT_LMB] = "储存种子"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -87,7 +87,7 @@
 /obj/machinery/seed_extractor/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Extracting <b>[seed_multiplier] to [seed_multiplier * 4]</b> seed(s) per piece of produce.<br>Machine can store up to <b>[max_seeds]</b> seeds.")
+		. += span_notice("状态显示屏显示：每份农产品可提取 <b>[seed_multiplier] 至 [seed_multiplier * 4]</b> 颗种子。<br>机器最多可储存 <b>[max_seeds]</b> 颗种子。")
 
 /obj/machinery/seed_extractor/update_icon_state()
 	. = ..()
@@ -109,16 +109,16 @@
 		var/loaded = 0
 		for(var/obj/item/seeds/to_store in tool.contents)
 			if(contents.len >= max_seeds)
-				to_chat(user, span_warning("[src] is full."))
+				to_chat(user, span_warning("[src] 已满。"))
 				break
 			if(!add_seed(to_store, tool))
 				continue
 			loaded += 1
 
 		if(loaded)
-			to_chat(user, span_notice("You put as many seeds from [tool] into [src] as you can."))
+			to_chat(user, span_notice("你把 [tool] 里能装的种子都放进了 [src]。"))
 			return ITEM_INTERACT_SUCCESS
-		to_chat(user, span_warning("There are no seeds in [tool]."))
+		to_chat(user, span_warning("[tool] 里没有种子。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/generated_seeds = seedify(tool, -1, src, user)
@@ -128,27 +128,27 @@
 			for(var/obj/item/seeds/seed as anything in generated_seeds)
 				//machine is full
 				if(contents.len >= max_seeds)
-					to_chat(user, span_warning("[src] is full."))
+					to_chat(user, span_warning("[src] 已满。"))
 					break
 				//add seed to machine. second argument is null which means just force move into the machine
 				add_seed(seed)
-		to_chat(user, span_notice("You extract some seeds."))
+		to_chat(user, span_notice("你提取出了一些种子。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/seeds))
 		if(contents.len >= max_seeds)
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src] 已满。"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(add_seed(tool, user))
-			to_chat(user, span_notice("You add [tool] to [src]."))
+			to_chat(user, span_notice("你把 [tool] 放入 [src]。"))
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, span_warning("You can't seem to add [tool] to [src]."))
+		to_chat(user, span_warning("你似乎无法把 [tool] 放进 [src]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_behaviour || !user.combat_mode) // Using the wrong tool shouldn't assume you want to turn it into seeds.
-		to_chat(user, span_warning("You can't extract any seeds from [tool]!"))
+		to_chat(user, span_warning("你无法从 [tool] 中提取任何种子！"))
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
@@ -268,10 +268,10 @@
 				if(usr)
 					var/mob/user = usr
 					if(user.put_in_hands(found_seed))
-						to_chat(user, span_notice("You take [found_seed] out of the slot."))
+						to_chat(user, span_notice("你从槽位中取出了 [found_seed]。"))
 					else
-						to_chat(user, span_notice("[found_seed] falls onto the floor."))
+						to_chat(user, span_notice("[found_seed] 掉到了地板上。"))
 				else
 					found_seed.forceMove(drop_location())
-					visible_message(span_notice("[found_seed] falls onto the floor."), null, span_hear("You hear a soft clatter."), COMBAT_MESSAGE_RANGE)
+					visible_message(span_notice("[found_seed] 掉到了地板上。"), null, span_hear("你听到一声轻柔的碰撞声。"), COMBAT_MESSAGE_RANGE)
 				. = TRUE

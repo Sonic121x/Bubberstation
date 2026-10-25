@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/cowboy
-	name = "cowboy boots"
-	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
+	name = "牛仔靴"
+	desc = "一张小贴纸告诉你，这双靴子已经过防蛇检查，只是不清楚检查是多久以前做的……"
 	icon_state = "cowboy_brown"
 	armor_type = /datum/armor/shoes_cowboy
 	custom_price = PAYCHECK_CREW
@@ -34,7 +34,7 @@
 			if(!target_zone) //we broke their legs right on off!
 				break
 			occupant.forceMove(user.drop_location())
-			user.visible_message(span_warning("[user] recoils as something slithers out of [src]."), span_userdanger("You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!"))
+			user.visible_message(span_warning("[user] 猛地一缩，有东西从 [src] 里滑了出来。"), span_userdanger("你感到[pick("脚", "脚趾", "脚踝")]传来一阵突如其来的刺痛！"))
 			user.Knockdown(20) //Is one second paralyze better here? I feel you would fall on your ass in some fashion.
 			occupant.UnarmedAttack(user, proximity_flag = TRUE)
 
@@ -47,7 +47,7 @@
 	INVOKE_ASYNC(src, PROC_REF(handle_table_slam), source)
 
 /obj/item/clothing/shoes/cowboy/proc/handle_table_slam(mob/living/user)
-	user.say(pick("Hot damn!", "Hoo-wee!", "Got-dang!"), spans = list(SPAN_YELL), forced=TRUE)
+	user.say(pick("天哪！", "好家伙！", "见鬼！"), spans = list(SPAN_YELL), forced=TRUE)
 	user.client?.give_award(/datum/award/achievement/misc/hot_damn, user)
 
 /obj/item/clothing/shoes/cowboy/mouse_drop_receive(mob/living/target, mob/living/user, params)
@@ -55,11 +55,11 @@
 	if(!(user.mobility_flags & MOBILITY_USE) || !isliving(target))
 		return
 	if(contents.len >= max_occupants)
-		to_chat(user, span_warning("[src] are full!"))
+		to_chat(user, span_warning("[src] 已经装满了！"))
 		return
 	if(istype(target, /mob/living/basic/snake) || istype(target, /mob/living/basic/headslug) || islarva(target))
 		target.forceMove(src)
-		to_chat(user, span_notice("[target] slithers into [src]."))
+		to_chat(user, span_notice("[target] 滑进了 [src]。"))
 
 /obj/item/clothing/shoes/cowboy/container_resist_act(mob/living/user)
 	if(!do_after(user, 1 SECONDS, target = user))
@@ -67,17 +67,17 @@
 	user.forceMove(drop_location())
 
 /obj/item/clothing/shoes/cowboy/white
-	name = "white cowboy boots"
+	name = "白色牛仔靴"
 	icon_state = "cowboy_white"
 
 /obj/item/clothing/shoes/cowboy/black
-	name = "black cowboy boots"
-	desc = "You get the feeling someone might have been hanged in these boots."
+	name = "黑色牛仔靴"
+	desc = "你总觉得有人可能是穿着这双靴子被吊死的。"
 	icon_state = "cowboy_black"
 
 /obj/item/clothing/shoes/cowboy/fancy
-	name = "bilton wrangler boots"
-	desc = "A pair of authentic haute couture boots from Japanifornia. You doubt they have ever been close to cattle."
+	name = "比尔顿牧马人靴"
+	desc = "一双来自日本福尼亚的正宗高级定制靴子。你很怀疑它们有没有靠近过牛。"
 	icon_state = "cowboy_fancy"
 	armor_type = /datum/armor/cowboy_fancy
 
@@ -85,8 +85,8 @@
 	bio = 95
 
 /obj/item/clothing/shoes/cowboy/lizard
-	name = "lizardskin boots"
-	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
+	name = "蜥蜴皮靴"
+	desc = "你能听见靴子里面传来微弱的嘶嘶声；你希望那只是一只哀伤的幽灵。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/cowboy/lizard"
 	post_init_icon_state = "lizardboots"
@@ -107,14 +107,14 @@
 	return ..()
 
 /obj/item/clothing/shoes/cowboy/lizard/masterwork
-	name = "\improper Hugs-The-Feet lizardskin boots"
-	desc = "A pair of masterfully crafted lizard skin boots. Finally a good application for the station's most bothersome inhabitants."
+	name = "\improper 拥足者蜥蜴皮靴"
+	desc = "一双工艺精湛的蜥蜴皮靴。终于给站上最恼人的居民找了个好用途。"
 	greyscale_colors = "#3e76a7"
 
 /// Shoes for the nuke-ops cowboy fit
 /obj/item/clothing/shoes/cowboy/black/syndicate
-	name = "black spurred cowboy boots"
-	desc = "And they sing, oh, ain't you glad you're single? And that song ain't so very far from wrong."
+	name = "黑色带马刺牛仔靴"
+	desc = "它们唱道，哦，你不为单身感到庆幸吗？而那首歌倒也没说错多少。"
 	armor_type = /datum/armor/shoes_combat
 	has_spurs = TRUE
 	body_parts_covered = FEET|LEGS

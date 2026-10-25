@@ -112,7 +112,7 @@
 				SSeconomy.bank_accounts_by_id -= "[account_id]"
 				SSeconomy.bank_accounts_by_job[account_job.type] -= src
 		if(NAMEOF(src, account_balance))
-			add_log_to_history(var_value - old_balance, "Nanotrasen: Moderator Action")
+			add_log_to_history(var_value - old_balance, "纳米传讯：管理员操作")
 
 /**
  * Sets the bank_account to behave as though a CRAB-17 event is happening.
@@ -167,10 +167,10 @@
 /datum/bank_account/proc/pay_debt(amount, is_payment = TRUE)
 	var/amount_to_pay = min(amount, account_debt)
 	if(is_payment)
-		if(!adjust_money(-amount, "Other: Debt Payment"))
+		if(!adjust_money(-amount, "其他：债务偿还"))
 			return 0
 	else
-		add_log_to_history(-amount, "Other: Debt Collection")
+		add_log_to_history(-amount, "其他：债务追收")
 	log_econ("[amount_to_pay] [MONEY_NAME] were removed from [account_holder]'s bank account to pay a debt of [account_debt]")
 	account_debt -= amount_to_pay
 	SEND_SIGNAL(src, COMSIG_BANK_ACCOUNT_DEBT_PAID)
@@ -185,11 +185,11 @@
  */
 /datum/bank_account/proc/transfer_money(datum/bank_account/from, amount, transfer_reason)
 	if(from.has_money(amount))
-		var/reason_to = "Transfer: From [from.account_holder]"
-		var/reason_from = "Transfer: To [account_holder]"
+		var/reason_to = "转账：来自 [from.account_holder]"
+		var/reason_from = "转账：转给 [account_holder]"
 
 		if(IS_DEPARTMENTAL_ACCOUNT(from))
-			reason_to = "Nanotrasen: Salary"
+			reason_to = "纳米传讯：薪金"
 			reason_from = ""
 
 		if(transfer_reason)
@@ -212,7 +212,7 @@
  * * skippable - if TRUE, this proc may pay out nothing if the account has paydays_to_skip
  * * event - the name of the event that is being processed, used for bank card messages.
  */
-/datum/bank_account/proc/payday(amount_of_paychecks, free = FALSE, skippable = FALSE, event = "Payday")
+/datum/bank_account/proc/payday(amount_of_paychecks, free = FALSE, skippable = FALSE, event = "发薪日")
 	if(!account_job)
 		return FALSE
 
@@ -228,19 +228,19 @@
 	if(amount_of_paychecks == 1)
 		money_to_transfer = clamp(money_to_transfer, 0, PAYCHECK_CREW) //We want to limit single, passive paychecks to regular crew income.
 	if(free)
-		adjust_money(money_to_transfer, "Nanotrasen: Shift Payment")
+		adjust_money(money_to_transfer, "纳米传讯：班次薪资")
 		SSblackbox.record_feedback("amount", "free_income", money_to_transfer)
 		SSeconomy.station_target += money_to_transfer
 		log_econ("[money_to_transfer] [MONEY_NAME] were given to [src.account_holder]'s account from income.")
 		return TRUE
 	var/datum/bank_account/department_account = SSeconomy.get_dep_account(account_job.paycheck_department)
 	if(isnull(department_account))
-		bank_card_talk("ERROR: [event] aborted, unable to contact departmental account.")
+		bank_card_talk("错误：[event] 已中止，无法联系部门账户。")
 		return FALSE
 	if(!transfer_money(department_account, money_to_transfer))
-		bank_card_talk("ERROR: [event] aborted, departmental funds insufficient.")
+		bank_card_talk("错误：[event] 已中止，部门资金不足。")
 		return FALSE
-	bank_card_talk("[event] processed, account now holds [account_balance] [MONEY_SYMBOL].")
+	bank_card_talk("[event] 已处理，账户现有 [account_balance] [MONEY_SYMBOL]。")
 	return TRUE
 
 /**
@@ -298,7 +298,7 @@
  * Returns the required item count, or required chemical units required to submit a bounty.
  */
 /datum/bank_account/proc/bounty_num()
-	return civilian_bounty?.print_required() || "N/A"
+	return civilian_bounty?.print_required() || "不适用"
 
 /**
  * Produces the value of the account's civilian bounty reward, if able.
@@ -324,7 +324,7 @@
 	COOLDOWN_RESET(src, bounty_timer)
 
 /datum/bank_account/department
-	account_holder = "Guild Credit Agency"
+	account_holder = "公会信用机构"
 	var/department_id = "REPLACE_ME"
 	add_to_accounts = FALSE
 

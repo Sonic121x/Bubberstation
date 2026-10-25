@@ -11,7 +11,7 @@
 	resistance_flags = FLAMMABLE
 	obj_flags = UNIQUE_RENAME
 	/// Name of plant when planted.
-	var/plantname = "Plants"
+	var/plantname = "植物"
 	/// A type path. The thing that is created when the plant is harvested.
 	var/obj/item/product
 	///Describes the product on the product path.
@@ -108,8 +108,8 @@
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/plant_analyzer = list(
-			SCREENTIP_CONTEXT_LMB = "Scan seed stats",
-			SCREENTIP_CONTEXT_RMB = "Scan seed chemicals"
+			SCREENTIP_CONTEXT_LMB = "扫描种子数据",
+			SCREENTIP_CONTEXT_RMB = "扫描种子化学成分"
 		),
 	)
 
@@ -126,9 +126,9 @@
 
 /obj/item/seeds/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a pen on it to rename it or change its description.")
+	. += span_notice("用笔在上面书写可以为其重命名或更改描述。")
 	if(reagents_add && user.can_see_reagents())
-		. += span_notice("- Plant Reagents -")
+		. += span_notice("- 植物试剂 -")
 		for(var/datum/plant_gene/reagent/reagent_gene in genes)
 			. += span_notice("- [reagent_gene.get_name()] -")
 
@@ -479,7 +479,7 @@
 	. = input
 	if(product && !productdesc)
 		productdesc = initial(product.desc)
-	var/newproductdesc = tgui_input_text(user, "Write a new product description", "Product Description", productdesc, max_length = MAX_DESC_LEN)
+	var/newproductdesc = tgui_input_text(user, "写入新的产物描述", "产物描述", productdesc, max_length = MAX_DESC_LEN)
 	if(isnull(newproductdesc))
 		return
 	if(!user.can_perform_action(src))

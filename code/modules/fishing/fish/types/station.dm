@@ -1,7 +1,7 @@
 /obj/item/fish/ratfish
-	name = "ratfish"
+	name = "鼠鱼"
 	fish_id = "ratfish"
-	desc = "A rat exposed to the murky waters of maintenance too long. Any higher power, if it revealed itself, would state that the ratfish's continued existence is extremely unwelcome."
+	desc = "一只在维护管道浑浊的水中浸泡太久的鼠。任何更高存在若肯现身，都会表示鼠鱼的继续存在极不受欢迎。"
 	icon_state = "ratfish"
 	sprite_width = 7
 	sprite_height = 5
@@ -22,10 +22,10 @@
 	beauty = FISH_BEAUTY_DISGUSTING
 
 /obj/item/fish/ratfish/get_fish_taste()
-	return list("vermin" = 2, "maintenance" = 1)
+	return list("害鼠味" = 2, "维修管道味" = 1)
 
 /obj/item/fish/ratfish/get_fish_taste_cooked()
-	return list("cooked vermin" = 2, "burned fur" = 0.5)
+	return list("熟害鼠味" = 2, "焦毛味" = 0.5)
 
 /obj/item/fish/ratfish/get_food_types()
 	return MEAT|RAW|GORE //Not-so-quite-seafood
@@ -41,9 +41,9 @@
 	stable_population = CONFIG_GET(number/mice_roundstart)
 
 /obj/item/fish/sludgefish
-	name = "sludgefish"
+	name = "污泥鱼"
 	fish_id = "sludgefish"
-	desc = "A misshapen, fragile, loosely fish-like living goop, the only thing that'd ever thrive in the acidic and claustrophobic cavities of the station's organic waste disposal system."
+	desc = "一团畸形的、脆弱的、勉强像鱼的活体黏浆，是唯一能在空间站有机废弃物处理系统那酸性又幽闭的腔室里繁盛的东西。"
 	icon_state = "sludgefish"
 	sprite_width = 7
 	sprite_height = 6
@@ -60,20 +60,20 @@
 	beauty = FISH_BEAUTY_NULL
 
 /obj/item/fish/sludgefish/get_fish_taste()
-	return list("raw fish" = 2, "eau de toilet" = 1)
+	return list("生鱼味" = 2, "厕所香水味" = 1)
 
 /obj/item/fish/sludgefish/purple
-	name = "purple sludgefish"
+	name = "紫色污泥鱼"
 	fish_id = "purple_sludgefish"
-	desc = "A misshapen, fragile, loosely fish-like living goop. This one has developed sexual reproduction mechanisms, and a purple tint to boot."
+	desc = "一团畸形的、脆弱的、勉强像鱼的活体黏浆。这一只进化出了有性繁殖机制，还顺带染上了紫色调。"
 	icon_state = "sludgefish_purple"
 	random_case_rarity = FISH_RARITY_NOPE
 	fish_traits = list(/datum/fish_trait/parthenogenesis)
 
 /obj/item/fish/slimefish
-	name = "aquatic slime"
+	name = "水生史莱姆"
 	fish_id = "slimefish"
-	desc = "Kids, this is what happens when a slime overcomes its hydrophobic nature. It goes glug glug."
+	desc = "孩子们，这就是史莱姆克服其厌水天性后的样子。它会咕噜咕噜。"
 	icon_state = "slimefish"
 	icon_state_dead = "slimefish_dead"
 	sprite_width = 7
@@ -106,9 +106,9 @@
 	return list(/datum/reagent/toxin/slimejelly = 5)
 
 /obj/item/fish/fryish
-	name = "fryish"
+	name = "煎鱼苗"
 	fish_id = "fryish"
-	desc = "A youngling of the Fritterish family of <u>delicious</u> extremophile, piscine lifeforms. Just don't tell 'Mankind for Ethical Animal Treatment' you ate it."
+	desc = "嗜极鱼类中“油煎鱼”家族里<u>美味</u>的幼体。只是别告诉“人类动物伦理对待协会”你把它吃了。"
 	icon_state = "fryish"
 	sprite_width = 3
 	sprite_height = 3
@@ -152,8 +152,8 @@
 	ADD_TRAIT(src, TRAIT_FISH_SURVIVE_COOKING, INNATE_TRAIT)
 
 /obj/item/fish/fryish/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src] whole! It looks like [user.p_theyre()] trying to commit suicide!"))
-	user.say("Mmmm! Delicious!", forced = "fryfish suicide")
+	user.visible_message(span_suicide("[user] 把 [src] 整个吞了下去！看来是想自杀！"))
+	user.say("嗯——！真好吃！", forced = "fryfish suicide")
 	qdel(src)
 	return OXYLOSS
 
@@ -166,10 +166,10 @@
 	AddComponent(/datum/component/fish_growth, next_type, growth_time * multiplier, use_drop_loc = FALSE)
 
 /obj/item/fish/fryish/get_fish_taste()
-	return list("fried fish" = 1)
+	return list("炸鱼味" = 1)
 
 /obj/item/fish/fryish/get_fish_taste_cooked()
-	return list("extra-fried fish" = 1)
+	return list("炸得更透的鱼味" = 1)
 
 /obj/item/fish/fryish/get_food_types()
 	return FRIED|MEAT|SEAFOOD
@@ -186,9 +186,9 @@
 #define FISH_MATTHEW "matthew"
 
 /obj/item/fish/fryish/fritterish
-	name = "fritterish"
+	name = "油煎鱼"
 	fish_id = "fritterish"
-	desc = "A <u>deliciously</u> extremophile alien fish. This one looks like a taiyaki."
+	desc = "一种<u>极其美味</u>的嗜极外星鱼。这一条看起来像鲷鱼烧。"
 	icon_state = "fritterish"
 	average_size = 50
 	average_weight = 1000
@@ -234,17 +234,17 @@
 /obj/item/fish/fryish/fritterish/update_name()
 	switch(variant)
 		if(FISH_BERNARD)
-			name = "bernard-fish"
+			name = "伯纳德鱼"
 		if(FISH_MATTHEW)
-			name = "matthew-fish"
+			name = "马修鱼"
 	return ..()
 
 /obj/item/fish/fryish/fritterish/update_desc()
 	switch(variant)
 		if(FISH_BERNARD)
-			desc = "A <u>deliciously</u> extremophile alien fish shaped like a dinosaur. Children love it."
+			desc = "一种<u>极其美味</u>的嗜极外星鱼，形状像恐龙。孩子们很喜欢。"
 		if(FISH_MATTHEW)
-			desc = "A <u>deliciously</u> extremophile alien fish shaped like a pterodactyl. Children love it."
+			desc = "一种<u>极其美味</u>的嗜极外星鱼，形状像翼龙。孩子们很喜欢。"
 	return ..()
 
 #undef FISH_FRITTERISH
@@ -252,9 +252,9 @@
 #undef FISH_MATTHEW
 
 /obj/item/fish/fryish/nessie
-	name = "nessie-fish"
+	name = "尼斯鱼"
 	fish_id = "nessie"
-	desc = "A <u>deliciously</u> extremophile alien fish. This one is so big, you could write legends about it."
+	desc = "一种<u>极其美味</u>的嗜极外星鱼。这一条大到足以让人为它写下传说。"
 	icon = 'icons/obj/aquarium/wide.dmi'
 	icon_state = "nessiefish"
 	base_pixel_w = -16

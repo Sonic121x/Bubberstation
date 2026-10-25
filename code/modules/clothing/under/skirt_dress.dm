@@ -13,8 +13,8 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/under/dress/striped
-	name = "striped dress"
-	desc = "Fashion in space."
+	name = "条纹连衣裙"
+	desc = "太空时尚。"
 	inhand_icon_state = null
 	female_sprite_flags = FEMALE_UNIFORM_FULL
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
@@ -26,8 +26,8 @@
 	greyscale_colors = "#003284#000000#ffffff"
 
 /obj/item/clothing/under/dress/sailor
-	name = "sailor dress"
-	desc = "Formal wear for a leading lady."
+	name = "水手裙"
+	desc = "女主角的正装。"
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/sailor"
@@ -39,8 +39,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/wedding_dress
-	name = "wedding dress"
-	desc = "A luxurious gown for once-in-a-lifetime occasions."
+	name = "婚纱"
+	desc = "用于一生一次场合的奢华礼服。"
 	icon_state = "wedding_dress"
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	inhand_icon_state = null
@@ -52,8 +52,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, 4) //You aren't going to fish with this are you?
 
 /obj/item/clothing/under/dress/eveninggown
-	name = "evening gown"
-	desc = "Fancy dress for space bar singers."
+	name = "晚礼服"
+	desc = "太空酒吧歌手的华丽礼服。"
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	inhand_icon_state = null
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
@@ -69,8 +69,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, 4) //You aren't going to fish with this are you?
 
 /obj/item/clothing/under/dress/skirt
-	name = "cardigan skirt"
-	desc = "A nice skirt with a cute cardigan, very fancy!"
+	name = "开衫短裙"
+	desc = "一条漂亮的短裙配一件可爱的开衫，非常时髦！"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt"
 	post_init_icon_state = "cardiganskirt"
@@ -81,8 +81,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skirt/plaid
-	name = "plaid skirt"
-	desc = "A preppy plaid skirt with a white blouse."
+	name = "格纹短裙"
+	desc = "一条学院风格纹短裙配一件白色衬衫。"
 	icon_state = "/obj/item/clothing/under/dress/skirt/plaid"
 	post_init_icon_state = "plaidskirt"
 	can_adjust = TRUE
@@ -95,8 +95,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skirt/turtleskirt
-	name = "turtleneck skirt"
-	desc = "A casual turtleneck skirt."
+	name = "高领短裙"
+	desc = "一条休闲的高领短裙。"
 	custom_price = PAYCHECK_CREW
 	greyscale_colors = "#cc0000#5f5f5f"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
@@ -107,8 +107,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/tango
-	name = "tango dress"
-	desc = "Filled with Latin fire."
+	name = "探戈裙"
+	desc = "充满拉丁式的火热。"
 	alternate_worn_layer = UNDER_SUIT_LAYER
 	custom_price = PAYCHECK_CREW
 	greyscale_colors = "#ff0000#1c1c1c"
@@ -120,8 +120,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/sundress
-	name = "sundress"
-	desc = "Makes you want to frolic in a field of daisies."
+	name = "太阳裙"
+	desc = "让人想在雏菊田野里撒欢。"
 	custom_price = PAYCHECK_CREW
 	greyscale_colors = "#FFE60F#9194A5#1F243C"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'

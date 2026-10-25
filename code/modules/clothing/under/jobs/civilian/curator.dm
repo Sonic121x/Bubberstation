@@ -1,6 +1,6 @@
 /obj/item/clothing/under/rank/civilian/curator
-	name = "sensible suit"
-	desc = "It's very... sensible."
+	name = "得体的西装"
+	desc = "这非常……得体。"
 	icon = 'icons/obj/clothing/under/suits.dmi'
 	icon_state = "red_suit"
 	inhand_icon_state = null
@@ -8,8 +8,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/curator/skirt
-	name = "sensible suitskirt"
-	desc = "It's very... sensible."
+	name = "得体的西装裙"
+	desc = "这非常……得体。"
 	icon = 'icons/obj/clothing/under/suits.dmi'
 	icon_state = "red_suit_skirt"
 	inhand_icon_state = null
@@ -22,8 +22,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/civilian/curator/treasure_hunter
-	name = "treasure hunter uniform"
-	desc = "A rugged uniform suitable for treasure hunting."
+	name = "寻宝猎人制服"
+	desc = "一套适合寻宝的耐磨制服。"
 	icon = 'icons/obj/clothing/under/civilian.dmi'
 	icon_state = "curator"
 	inhand_icon_state = null
@@ -34,8 +34,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -5)
 
 /obj/item/clothing/under/rank/civilian/curator/nasa
-	name = "\improper NASA jumpsuit"
-	desc = "It has a NASA logo on it and is made of space-proofed materials."
+	name = "\improper NASA 宇航服"
+	desc = "上面印有 NASA 标志，由耐太空环境材料制成。"
 	icon = 'icons/map_icons/clothing/under/color.dmi'
 	icon_state = "/obj/item/clothing/under/color"
 	post_init_icon_state = "jumpsuit"

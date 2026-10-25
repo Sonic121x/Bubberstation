@@ -7,8 +7,8 @@
 	equip_sound = SFX_HARD_HAT_EQUIP
 
 /obj/item/clothing/head/utility/hardhat
-	name = "hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight."
+	name = "安全帽"
+	desc = "一种在危险作业环境中保护头部的头具。附有内置手电筒。"
 	icon_state = "hardhat0_yellow"
 	inhand_icon_state = null
 	armor_type = /datum/armor/utility_hardhat
@@ -84,7 +84,7 @@
 	inhand_icon_state = null
 	hat_type = "red"
 	dog_fashion = null
-	name = "firefighter helmet"
+	name = "消防员头盔"
 	clothing_flags = STOPSPRESSUREDAMAGE | STACKABLE_HELMET_EXEMPT
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
@@ -92,8 +92,8 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/head/utility/hardhat/red/upgraded
-	name = "workplace-ready firefighter helmet"
-	desc = "By applying state of the art lighting technology to a fire helmet, and using photo-chemical hardening methods, this hardhat will protect you from robust workplace hazards."
+	name = "工作场所专用消防员头盔"
+	desc = "通过将最先进的照明技术应用于消防头盔，并采用光化学硬化工艺，这顶安全帽能保护你免受严苛的工作场所危害。"
 	icon_state = "hardhat0_purple"
 	inhand_icon_state = null
 	light_range = 5
@@ -119,11 +119,11 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/utility/hardhat/welding
-	name = "welding hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield! The bulb seems a little smaller though."
+	name = "焊接安全帽"
+	desc = "一种在危险作业环境中保护头部的头具。附有内置手电筒和焊接面罩！不过灯泡似乎小了一点。"
 	light_range = 3 //Needs a little bit of tradeoff
-	toggle_message = "You pull the visor down."
-	alt_toggle_message = "You push the visor up."
+	toggle_message = "你拉下面罩。"
+	alt_toggle_message = "你推上面罩。"
 	dog_fashion = null
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
 	flash_protect = FLASH_PROTECTION_WELDER
@@ -178,7 +178,7 @@
 	hat_type = "orange"
 
 /obj/item/clothing/head/utility/hardhat/welding/white
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield!" //This bulb is not smaller
+	desc = "一种在危险作业环境中保护头部的头具。附有内置手电筒和焊接面罩！" //This bulb is not smaller
 	icon_state = "hardhat0_white"
 	inhand_icon_state = null
 	light_range = 4 //Boss always takes the best stuff
@@ -207,8 +207,8 @@
 	inhand_icon_state = null
 	hat_type = "atmos"
 	dog_fashion = null
-	name = "atmospheric firefighter helmet"
-	desc = "A firefighter's helmet, able to keep the user cool in any situation. Comes with a light and a welding visor."
+	name = "大气消防员头盔"
+	desc = "消防员头盔，能在任何情况下让佩戴者保持凉爽。附有灯和焊接面罩。"
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | STACKABLE_HELMET_EXEMPT | HEADINTERNALS
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -228,8 +228,8 @@
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
 
 /obj/item/clothing/head/utility/hardhat/pumpkinhead
-	name = "carved pumpkin"
-	desc = "A jack o' lantern! Believed to ward off evil spirits."
+	name = "雕刻南瓜"
+	desc = "一个南瓜灯！据说能驱退恶灵。"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hardhat0_pumpkin"
@@ -283,8 +283,8 @@
 	dog_fashion = /datum/dog_fashion/head/pumpkin/unlit
 
 /obj/item/clothing/head/utility/hardhat/pumpkinhead/blumpkin
-	name = "carved blumpkin"
-	desc = "A very blue jack o' lantern! Believed to ward off vengeful chemists."
+	name = "雕刻蓝南瓜"
+	desc = "一个非常蓝的南瓜灯！据说能驱退心怀怨恨的化学家。"
 	icon_state = "hardhat0_blumpkin"
 	inhand_icon_state = null
 	hat_type = "blumpkin"
@@ -300,8 +300,8 @@
 	dog_fashion = /datum/dog_fashion/head/blumpkin/unlit
 
 /obj/item/clothing/head/utility/hardhat/reindeer
-	name = "novelty reindeer hat"
-	desc = "Some fake antlers and a very fake red nose."
+	name = "新奇驯鹿帽"
+	desc = "一些假鹿角和一只非常假的红色鼻子。"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hardhat0_reindeer"

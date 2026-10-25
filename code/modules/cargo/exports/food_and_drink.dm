@@ -4,8 +4,8 @@
  */
 /datum/export/food
 	cost = 10
-	unit_name = "serving"
-	message = "of food"
+	unit_name = "份"
+	message = "食物"
 	export_types = list(/obj/item/food)
 	include_subtypes = TRUE
 	exclude_types = list(/obj/item/food/grown)

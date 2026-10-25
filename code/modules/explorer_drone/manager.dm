@@ -16,7 +16,7 @@
 /// Handles finishing adventure
 /datum/adventure_browser/proc/resolve_adventure(datum/source,result)
 	SIGNAL_HANDLER
-	feedback_message = "Adventure ended with result : [result]"
+	feedback_message = "冒险已结束，结果：[result]"
 	QDEL_NULL(temp_adventure)
 
 /datum/adventure_browser/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -33,11 +33,11 @@
 				QDEL_NULL(temp_adventure)
 			temp_adventure = target.create_adventure()
 			if(!temp_adventure)
-				feedback_message = "Instantiating adventure failed. Check runtime logs for details."
+				feedback_message = "实例化冒险失败。请查看运行时日志了解详情。"
 				return TRUE
 			RegisterSignal(temp_adventure,COMSIG_ADVENTURE_FINISHED, PROC_REF(resolve_adventure))
 			temp_adventure.start_adventure()
-			feedback_message = "Adventure started"
+			feedback_message = "冒险已开始"
 			return TRUE
 		if("adventure_choice")
 			temp_adventure?.select_choice(params["choice"])
@@ -45,7 +45,7 @@
 		if("end_play")
 			if(temp_adventure)
 				QDEL_NULL(temp_adventure)
-			feedback_message = "Adventure stopped"
+			feedback_message = "冒险已停止"
 			return TRUE
 
 /datum/adventure_browser/ui_data(mob/user)
@@ -59,7 +59,7 @@
 			"version" = db_entry.version,
 			"uploader" = db_entry.uploader,
 			"approved" = db_entry.approved,
-			"json_status" = db_entry.raw_json ? "Valid JSON" : "Empty"
+			"json_status" = db_entry.raw_json ? "有效 JSON" : "空"
 		))
 	.["adventures"] = adventure_data
 	.["feedback_message"] = feedback_message
@@ -83,6 +83,6 @@
 	. = ..()
 	QDEL_NULL(temp_adventure)
 
-ADMIN_VERB(adventure_manager, R_DEBUG, "Adventure Manager", "View and edit adventures.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(adventure_manager, R_DEBUG, "冒险管理器", "查看并编辑冒险。", ADMIN_CATEGORY_DEBUG)
 	var/datum/adventure_browser/browser = new()
 	browser.ui_interact(user.mob)

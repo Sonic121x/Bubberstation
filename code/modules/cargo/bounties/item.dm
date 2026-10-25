@@ -46,8 +46,8 @@
  * Debug item because it took less time to code this than it did to roll ONE toolbox bounty.
  */
 /obj/item/bounty_voucher
-	name = "bounty voucher"
-	desc = "A certificate for ONE FREE BOUNTY of your choice! Wow!"
+	name = "悬赏凭证"
+	desc = "一张可兑换你自选的一次免费悬赏的证书！哇！"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paperslip_words"
 
@@ -59,17 +59,17 @@
 	var/obj/item/card/id/id = living_user.get_idcard()
 	if(!id?.registered_account)
 		return
-	var/choice = tgui_input_list(living_user, "Choose a bounty.", "New Bounty", subtypesof(/datum/bounty))
+	var/choice = tgui_input_list(living_user, "选择一项悬赏。", "新悬赏", subtypesof(/datum/bounty))
 	var/datum/bounty/new_chore = text2path("[choice]")
 	id.registered_account.set_bounty(new new_chore, id)
-	balloon_alert(user, "new bounty acquired!")
+	balloon_alert(user, "已获得新悬赏！")
 	playsound(src, 'sound/effects/coin2.ogg', 30, TRUE)
 	qdel(src)
 
 /// As above, but it spawns a global bounty for testing.
 /obj/item/bounty_voucher/stationwide
-	name = "stationwide bounty voucher"
-	desc = "A certificate for ONE FREE BOUNTY of your choice! For everyone! Wowzers!"
+	name = "全站悬赏凭证"
+	desc = "一张可兑换你自选的一次免费悬赏的证书！全体共享！哇塞！"
 	color = "#ff8800"
 
 /obj/item/bounty_voucher/stationwide/attack_self(mob/user, modifiers)
@@ -77,12 +77,12 @@
 	if(!isliving(user))
 		return
 	var/mob/living/living_user = user
-	var/choice = tgui_input_list(living_user, "Choose a bounty.", "New Bounty", subtypesof(/datum/bounty))
+	var/choice = tgui_input_list(living_user, "选择一项悬赏。", "新悬赏", subtypesof(/datum/bounty))
 	var/datum/bounty/new_chore = text2path("[choice]")
 	if(new_chore.global_exempt)
-		to_chat(user, span_warning("Can't use that one, try another!"))
+		to_chat(user, span_warning("不能用那个，换一个吧！"))
 		return
 	GLOB.shared_crew_bounties += new_chore
-	balloon_alert(user, "new bounty provided to the crew!")
+	balloon_alert(user, "已向全体船员提供新悬赏！")
 	playsound(src, 'sound/effects/coin2.ogg', 30, TRUE)
 	qdel(src)

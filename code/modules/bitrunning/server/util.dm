@@ -9,7 +9,7 @@
 	//If the dauntless map is removed, remove this hack!
 	var/area/curr = get_area(src)
 	if(istype(curr, /area/ruin/space/has_grav/bubbers/dauntless) || istype(curr, /area/ruin/space/has_grav/bubbers/dauntless_space))
-		balloon_alert_to_viewers("cooldown has completed")
+		balloon_alert_to_viewers("冷却已完成")
 		return
 	//BUBBER ADDITION END
 	aas_config_announce(/datum/aas_config_entry/bitrunning_QS_ready_announcement, list(), src, list(RADIO_CHANNEL_SUPPLY))

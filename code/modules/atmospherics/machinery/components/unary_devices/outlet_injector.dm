@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector
 	icon_state = "inje_map-3"
 
-	name = "air injector"
-	desc = "Has a valve and pump attached to it."
+	name = "空气注入器"
+	desc = "附有阀门和泵。"
 
 	use_power = IDLE_POWER_USE
 	can_unwrench = TRUE
@@ -27,7 +27,7 @@
 	if(!tool_screentips)
 		tool_screentips = string_assoc_nested_list(list(
 			TOOL_MULTITOOL = list(
-				SCREENTIP_CONTEXT_LMB = "Log to link later with air sensor",
+				SCREENTIP_CONTEXT_LMB = "记录，以便稍后与空气传感器链接",
 			)
 		))
 	AddElement(/datum/element/contextual_screentip_tools, tool_screentips)
@@ -35,13 +35,13 @@
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Maximize transfer rate"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "切换为[on ? "关闭" : "开启"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "将传输速率设为最大"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/examine(mob/user)
 	. = ..()
-	. += span_notice("You can link it with an air sensor using a multitool.")
+	. += span_notice("你可以用多功能工具将其与空气传感器链接。")
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(istype(multi_tool.buffer, /obj/machinery/air_sensor))
@@ -50,15 +50,15 @@
 		sensor.multitool_act(user, multi_tool)
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "injector saved in buffer")
+	balloon_alert(user, "注入器已保存到缓冲区")
 	multi_tool.set_buffer(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
+		balloon_alert(user, "已[on ? "开启" : "关闭"]")
+		investigate_log("被 [key_name(user)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_BLOCKING
 	return CLICK_ACTION_SUCCESS
 
@@ -67,8 +67,8 @@
 		return CLICK_ACTION_BLOCKING
 
 	volume_rate = MAX_TRANSFER_RATE
-	investigate_log("was set to [volume_rate] L/s by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "volume output set to [volume_rate] L/s")
+	investigate_log("被 [key_name(user)] 设为 [volume_rate] L/s", INVESTIGATE_ATMOS)
+	balloon_alert(user, "输出体积速率已设为 [volume_rate] L/s")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -131,7 +131,7 @@
 	switch(action)
 		if("power")
 			set_on(!on)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(usr)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("rate")
 			var/rate = params["rate"]
@@ -143,13 +143,13 @@
 				. = TRUE
 			if(.)
 				volume_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
-				investigate_log("was set to [volume_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("被 [key_name(usr)] 设为 [volume_rate] L/s", INVESTIGATE_ATMOS)
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法用扳手拆下 [src]，请先将其关闭！"))
 		return FALSE
 
 // mapping

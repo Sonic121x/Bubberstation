@@ -4,8 +4,8 @@
  * Placed machine that handles destructive experiments (but can also do the normal ones)
  */
 /obj/machinery/destructive_scanner
-	name = "experimental destructive scanner"
-	desc = "A much larger version of the hand-held scanner. A charred label warns about its destructive capabilities."
+	name = "实验性破坏性扫描仪"
+	desc = "手持扫描仪的放大版本。一张被烧焦的标签警告着它的破坏性能力。"
 	icon = 'icons/obj/machines/destructive_scanner.dmi'
 	icon_state = "tube_open"
 	circuit = /obj/item/circuitboard/machine/destructive_scanner
@@ -34,7 +34,7 @@
 	for(var/mob/living/living_mob in pickup_zone)
 		if(!(obj_flags & EMAGGED) && ishuman(living_mob)) //Can only kill humans when emagged.
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 25)
-			say("Cannot scan with humans inside.")
+			say("内部有人类，无法扫描。")
 			return
 		aggressive = TRUE
 	start_closing(aggressive)
@@ -86,7 +86,7 @@
 		movable_atom.forceMove(this_turf)
 		if(isliving(movable_atom))
 			var/mob/living/fucked_up_thing = movable_atom
-			fucked_up_thing.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
+			fucked_up_thing.investigate_log("已被 [src] 碾成碎块。", INVESTIGATE_DEATHS)
 			fucked_up_thing.gib(DROP_ALL_REMAINS)
 
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DESTRUCTIVE_SCAN, scanned_atoms)
@@ -97,7 +97,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, "safety sensor BIOS disabled")
+	balloon_alert(user, "安全传感器 BIOS 已禁用")
 	return TRUE
 
 /obj/machinery/destructive_scanner/update_icon_state()

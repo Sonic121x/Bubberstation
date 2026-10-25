@@ -11,7 +11,7 @@
 		var/list/input_info = list()
 		for(var/datum/port/input/port as anything in circuit_info.input_ports)
 			input_info += list(list(
-				"name" = port.name,
+				"name" = chinese_batch_five_circuit_port_display(port.name),
 				"type" = port.datatype,
 				"color" = port.color,
 				"datatype_data" = port.datatype_ui_data(),
@@ -19,7 +19,7 @@
 		var/list/output_info = list()
 		for(var/datum/port/output/port as anything in circuit_info.output_ports)
 			output_info += list(list(
-				"name" = port.name,
+				"name" = chinese_batch_five_circuit_port_display(port.name),
 				"type" = port.datatype,
 				"color" = port.color,
 				"datatype_data" = port.datatype_ui_data(),

@@ -3,8 +3,8 @@
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/emergency/bio
-	name = "Biological Emergency Crate"
-	desc = "This crate includes 2 complete bio suits, along with a box containing sterile masks and latex gloves, providing effective protection against viruses."
+	name = "生物应急板条箱"
+	desc = "这个板条箱包含 2 套完整的生物防护服，外加一盒无菌口罩和乳胶手套，可有效防护病毒。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/bio_hood/general = 2,
 					/obj/item/clothing/suit/bio_suit/general = 2,
@@ -14,13 +14,13 @@
 					/obj/item/storage/box/masks,
 					/obj/item/storage/box/gloves,
 				)
-	crate_name = "bio suit crate"
+	crate_name = "生物防护服箱"
 
 /datum/supply_pack/emergency/equipment
-	name = "Emergency Bot/Internals Crate"
-	desc = "Explosions got you down? These supplies are guaranteed to patch up holes, \
-		in stations and people alike! Comes with two floorbots, two medbots, five oxygen \
-		masks and five small oxygen tanks."
+	name = "应急机器人/呼吸装备板条箱"
+	desc = "被爆炸搞得心情低落？这些物资保证能补好破洞， \
+		无论是在空间站上还是在人身上！随附两台地板机器人、两台医疗机器人、五个氧气 \
+		面罩和五个小型氧气罐。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/mob/living/basic/bot/medbot = 2,
@@ -28,13 +28,13 @@
 		/obj/item/tank/internals/emergency_oxygen = 5,
 		/obj/item/clothing/mask/breath = 5,
 	)
-	crate_name = "emergency crate"
+	crate_name = "应急箱"
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/emergency/bomb
-	name = "Explosive Emergency Crate"
-	desc = "Science gone bonkers? Beeping behind the airlock? Buy now and be the hero the station des... \
-		I mean needs! (time not included). Contains one bomb suit and hood, gas mask, and bomb defusal tools."
+	name = "爆炸应急板条箱"
+	desc = "科研部门发疯了？气闸后面有滴滴声？现在就购买，成为空间站应得…… \
+		我是说需要的英雄！（不含时间）。包含一套防爆服与头罩、防毒面具和拆弹工具。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/utility/bomb_hood,
 					/obj/item/clothing/suit/utility/bomb_suit,
@@ -43,12 +43,12 @@
 					/obj/item/wirecutters,
 					/obj/item/multitool,
 				)
-	crate_name = "bomb suit crate"
+	crate_name = "防爆服箱"
 
 /datum/supply_pack/emergency/firefighting
-	name = "Firefighting Crate"
-	desc = "Only you can prevent station fires. Partner up with two firefighter suits, gas masks, \
-		flashlights, large oxygen tanks, extinguishers, and hardhats!"
+	name = "消防板条箱"
+	desc = "只有你能预防空间站火灾。与两套消防服、防毒面具、 \
+		手电筒、大型氧气罐、灭火器和安全帽搭档吧！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/suit/utility/fire/firefighter = 2,
 					/obj/item/clothing/mask/gas = 2,
@@ -57,66 +57,66 @@
 					/obj/item/extinguisher/advanced = 2,
 					/obj/item/clothing/head/utility/hardhat/red = 2,
 				)
-	crate_name = "firefighting crate"
+	crate_name = "消防箱"
 
 /datum/supply_pack/emergency/atmostank
-	name = "Firefighting Tank Backpack"
-	desc = "Mow down fires with this high-capacity fire fighting tank backpack."
+	name = "消防水箱背包"
+	desc = "用这个大容量消防水箱背包扫灭火焰。"
 	cost = CARGO_CRATE_VALUE * 1.8
 	access = ACCESS_ATMOSPHERICS
 	contains = list(/obj/item/watertank/atmos)
-	crate_name = "firefighting backpack crate"
+	crate_name = "消防背包箱"
 	crate_type = /obj/structure/closet/crate/secure/engineering/atmos
 
 /datum/supply_pack/emergency/internals
-	name = "Internals Crate"
-	desc = "Master your life energy and control your breathing with three breath masks, \
-		three emergency oxygen tanks and three large air tanks." // IS THAT A
+	name = "呼吸装备板条箱"
+	desc = "用三个呼吸面罩、 \
+		三个应急氧气罐和三个大型空气罐，掌控你的生命能量，控制你的呼吸。" // IS THAT A
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/mask/gas = 3,
 					/obj/item/clothing/mask/breath = 3,
 					/obj/item/tank/internals/emergency_oxygen = 3,
 					/obj/item/tank/internals/oxygen = 3,
 				)
-	crate_name = "internals crate"
+	crate_name = "呼吸装备箱"
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/emergency/metalfoam
-	name = "Metal Foam Grenade Crate"
-	desc = "Seal up those pesky hull breaches with seven metal foam grenades."
+	name = "金属泡沫手榴弹板条箱"
+	desc = "用七枚金属泡沫手榴弹封住那些讨厌的船体破洞。"
 	cost = CARGO_CRATE_VALUE * 2.4
 	contains = list(/obj/item/storage/box/metalfoam)
-	crate_name = "metal foam grenade crate"
+	crate_name = "金属泡沫手榴弹箱"
 
 /datum/supply_pack/emergency/plasma_spacesuit
-	name = "Plasmaman Space Envirosuits"
-	desc = "Contains two space-worthy envirosuits for Plasmamen. \
-		Order now and we'll throw in two free helmets!"
+	name = "等离子人太空环境服"
+	desc = "包含两套可供等离子人使用的太空环境服。 \
+		现在下单，我们还附赠两顶免费头盔！"
 	cost = CARGO_CRATE_VALUE * 3.5
 	access = ACCESS_EVA
 	contains = list(/obj/item/clothing/suit/space/eva/plasmaman = 2,
 					/obj/item/clothing/head/helmet/space/plasmaman = 2,
 				)
-	crate_name = "plasmaman EVA crate"
+	crate_name = "等离子人舱外活动箱"
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/emergency/plasmaman
-	name = "Plasmaman Supply Kit"
-	desc = "Keep those Plasmamen alive with two sets of Plasmaman outfits. \
-		Each set contains a plasmaman jumpsuit, gloves, internals tank, and helmet."
+	name = "等离子人补给套件"
+	desc = "用两套等离子人服装让等离子人活下去。 \
+		每套包含一件等离子人连体服、手套、呼吸罐和头盔。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/under/plasmaman = 2,
 					/obj/item/tank/internals/plasmaman/belt/full = 2,
 					/obj/item/clothing/head/helmet/space/plasmaman = 2,
 					/obj/item/clothing/gloves/color/plasmaman = 2,
 				)
-	crate_name = "plasmaman supply kit"
+	crate_name = "等离子人补给套件"
 
 /datum/supply_pack/emergency/radiation
-	name = "Radiation Protection Crate"
-	desc = "Survive the Nuclear Apocalypse and Supermatter Engine alike with two sets of radiation suits. \
-		Each set contains a helmet, suit, and Geiger counter. We'll even throw in a bottle of vodka and some glasses too, \
-		considering the life-expectancy of people who order this."
+	name = "辐射防护板条箱"
+	desc = "无论是核末日还是超物质反应堆，两套辐射防护服都能让你活下来。 \
+		每套包含一顶头盔、一件防护服和一个盖革计数器。考虑到订购此物之人的预期寿命， \
+		我们甚至还附赠一瓶伏特加和几个杯子。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/clothing/head/utility/radiation = 2,
 					/obj/item/clothing/suit/utility/radiation = 2,
@@ -124,12 +124,12 @@
 					/obj/item/reagent_containers/cup/glass/bottle/vodka,
 					/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass = 2,
 				)
-	crate_name = "radiation protection crate"
+	crate_name = "辐射防护箱"
 	crate_type = /obj/structure/closet/crate/radiation
 
 /datum/supply_pack/emergency/spacesuit
-	name = "Space Suit Crate"
-	desc = "Contains one aging suit from Space-Goodwill and a jetpack."
+	name = "太空服板条箱"
+	desc = "包含一套来自太空慈善商店的旧太空服和一个喷气背包。"
 	cost = CARGO_CRATE_VALUE * 3
 	access = ACCESS_EVA
 	contains = list(/obj/item/clothing/suit/space,
@@ -137,13 +137,13 @@
 					/obj/item/clothing/mask/breath,
 					/obj/item/tank/jetpack/carbondioxide,
 				)
-	crate_name = "space suit crate"
+	crate_name = "太空服箱"
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/emergency/weedcontrol
-	name = "Weed Control Crate"
-	desc = "Keep those invasive species OUT. Contains a scythe, leather gloves, gasmask, and two anti-weed chemical grenades. \
-		Warranty void if used on ambrosia."
+	name = "除草板条箱"
+	desc = "把那些入侵物种挡在外面。包含一把镰刀、皮革手套、防毒面具和两枚除草化学手榴弹。 \
+		用于仙草时保修失效。"
 	cost = CARGO_CRATE_VALUE * 2.5
 	access = ACCESS_HYDROPONICS
 	contains = list(/obj/item/scythe,
@@ -151,14 +151,14 @@
 					/obj/item/clothing/mask/gas,
 					/obj/item/grenade/chem_grenade/antiweed = 2,
 				)
-	crate_name = "weed control crate"
+	crate_name = "除草箱"
 	crate_type = /obj/structure/closet/crate/secure/hydroponics
 
 /datum/supply_pack/emergency/mothic_rations
-	name = "Surplus Mothic Rations Triple-Pak"
-	desc = "Crew starving? Chef slacking off? Keep everyone fed on the barest minimum of what can be considered food \
-		with surplus ration packs, directly from the Mothic Fleet! Pack includes 3 packs of 3 bars each."
+	name = "蛾族盈余配给三连包"
+	desc = "船员在挨饿？厨师在偷懒？用直接来自蛾族舰队的盈余配给包， \
+		以勉强算得上食物的最低限度喂饱所有人！每包内含 3 小包，每小包 3 根。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/mothic_rations = 3)
-	crate_name = "surplus rations box"
+	crate_name = "盈余配给箱"
 	crate_type = /obj/structure/closet/crate/cardboard/mothic

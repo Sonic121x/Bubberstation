@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet
-	name = "helmet"
-	desc = "Standard Security gear. Protects the head from impacts."
+	name = "头盔"
+	desc = "标准安保装备。保护头部免受冲击。"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "helmet"
@@ -53,14 +53,14 @@
 	// There's a flashlight in us. Remove it first, or it'll be lost forever!
 	var/obj/item/flashlight/seclite/blocking_us = locate() in src
 	if(blocking_us)
-		to_chat(user, span_warning("[blocking_us] is in the way, remove it first!"))
+		to_chat(user, span_warning("[blocking_us] 挡住了，先把它取下来！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!attached_signaler.secured)
-		to_chat(user, span_warning("Secure [attached_signaler] first!"))
+		to_chat(user, span_warning("先把 [attached_signaler] 固定好！"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You add [attached_signaler] to [src]."))
+	to_chat(user, span_notice("你把 [attached_signaler] 装到了 [src] 上。"))
 
 	qdel(attached_signaler)
 	var/obj/item/bot_assembly/secbot/secbot_frame = new(drop_location())
@@ -74,16 +74,16 @@
 	. = ..()
 	if(.)
 		return
-	balloon_alert(user, "[flags_inv & HIDEHAIR ? "loosening" : "tightening"] straps...")
+	balloon_alert(user, "[flags_inv & HIDEHAIR ? "松开" : "收紧"]带子……")
 	if(!do_after(user, 3 SECONDS, src))
 		return
 	flags_inv ^= HIDEHAIR
-	balloon_alert(user, "[flags_inv & HIDEHAIR ? "tightened" : "loosened"] straps")
+	balloon_alert(user, "[flags_inv & HIDEHAIR ? "已收紧" : "已松开"]带子")
 	return TRUE
 
 /obj/item/clothing/head/helmet/sec/click_alt(mob/user)
 	flipped_visor = !flipped_visor
-	balloon_alert(user, "visor flipped")
+	balloon_alert(user, "面罩已翻起")
 	// base_icon_state is modified for seclight attachment component
 	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
 	icon_state = base_icon_state
@@ -97,8 +97,8 @@
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/clothing/head/helmet/press
-	name = "press helmet"
-	desc = "A blue helmet used to distinguish <i>non-combatant</i> \"PRESS\" members, like anyone cares."
+	name = "记者头盔"
+	desc = "一顶蓝色头盔，用于区分<i>非战斗人员</i>“记者”成员——就好像有人在乎似的。"
 	icon_state = "helmet_press"
 	base_icon_state = "helmet_press"
 	sound_vary = TRUE
@@ -116,8 +116,8 @@
 		. += emissive_appearance(icon_file, "[icon_state]-emissive", src, alpha = src.alpha, effect_type = EMISSIVE_SPECULAR)
 
 /obj/item/clothing/head/helmet/alt
-	name = "bulletproof helmet"
-	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "防弹头盔"
+	desc = "一顶防弹战斗头盔，擅长保护佩戴者抵御传统射弹武器，对爆炸也有一定防护。"
 	icon_state = "helmetalt"
 	base_icon_state = "helmetalt"
 	inhand_icon_state = "helmet"
@@ -143,8 +143,8 @@
 	AddComponent(/datum/component/seclite_attachable, light_icon_state = "flight")
 
 /obj/item/clothing/head/helmet/marine
-	name = "tactical combat helmet"
-	desc = "A tactical black helmet, sealed from outside hazards with a plate of glass and not much else."
+	name = "战术战斗头盔"
+	desc = "一顶黑色战术头盔，用一块玻璃和除此之外不多的东西隔绝外部危险。"
 	icon_state = "marine_command"
 	base_icon_state = "marine_command"
 	inhand_icon_state = "marine_helmet"
@@ -174,31 +174,31 @@
 	AddComponent(/datum/component/seclite_attachable, starting_light = new /obj/item/flashlight/seclite(src), light_icon_state = "flight")
 
 /obj/item/clothing/head/helmet/marine/security
-	name = "marine heavy helmet"
+	name = "陆战重型头盔"
 	icon_state = "marine_security"
 	base_icon_state = "marine_security"
 
 /obj/item/clothing/head/helmet/marine/engineer
-	name = "marine utility helmet"
+	name = "陆战通用头盔"
 	icon_state = "marine_engineer"
 	base_icon_state = "marine_engineer"
 
 /obj/item/clothing/head/helmet/marine/medic
-	name = "marine medic helmet"
+	name = "陆战医疗头盔"
 	icon_state = "marine_medic"
 	base_icon_state = "marine_medic"
 
 /obj/item/clothing/head/helmet/marine/pmc
 	icon_state = "marine"
-	desc = "A tactical black helmet, designed to protect one's head from various injuries sustained in operations. Its stellar survivability makes up for its lack of space worthiness"
+	desc = "一顶黑色战术头盔，用于保护头部免受行动中受到的各种伤害。其出色的生存能力弥补了它不适合太空环境的缺陷。"
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	clothing_flags = null
 	armor_type = /datum/armor/pmc
 
 /obj/item/clothing/head/helmet/old
-	name = "degrading helmet"
-	desc = "Standard issue security helmet. Due to degradation the helmet's visor obstructs the users ability to see long distances."
+	name = "老化头盔"
+	desc = "标准配发的安保头盔。由于老化，头盔面罩会妨碍使用者看清远处。"
 	tint = 2
 	sound_vary = TRUE
 	equip_sound = 'sound/items/handling/helmet/helmet_equip1.ogg'
@@ -206,8 +206,8 @@
 	drop_sound = 'sound/items/handling/helmet/helmet_drop1.ogg'
 
 /obj/item/clothing/head/helmet/blueshirt
-	name = "blue helmet"
-	desc = "A reliable, blue tinted helmet reminding you that you <i>still</i> owe that engineer a beer."
+	name = "蓝色头盔"
+	desc = "一顶可靠的蓝色头盔，提醒你<i>还</i>欠那位工程师一杯啤酒。"
 	icon_state = "blueshift"
 	inhand_icon_state = "blueshift_helmet"
 	custom_premium_price = PAYCHECK_COMMAND
@@ -235,13 +235,13 @@
 		icon_state = base_icon_state
 
 /obj/item/clothing/head/helmet/toggleable/riot
-	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	name = "防暴头盔"
+	desc = "一顶专门用来抵御近距离攻击的头盔。"
 	icon_state = "riot"
 	base_icon_state = "riot"
 	inhand_icon_state = "riot_helmet"
-	toggle_message = "You pull the visor down."
-	alt_toggle_message = "You push the visor up."
+	toggle_message = "你拉下面罩。"
+	alt_toggle_message = "你推上面罩。"
 	armor_type = /datum/armor/toggleable_riot
 	flags_inv = HIDEHAIR|HIDEEARS|HIDEFACE|HIDESNOUT
 	strip_delay = 8 SECONDS
@@ -275,8 +275,8 @@
 	wound = 15
 
 /obj/item/clothing/head/helmet/balloon
-	name = "balloon helmet"
-	desc = "A helmet made out of balloons. The like saw great usage in the Great Clown - Mime War. Surprisingly resistant to fire. Mimes were doing unspeakable things."
+	name = "气球头盔"
+	desc = "一顶用气球制成的头盔。这种头盔在伟大的小丑—默剧战争中大放异彩。出乎意料地耐火。默剧演员当时在做些难以言说的事。"
 	icon_state = "helmet_balloon"
 	inhand_icon_state = "helmet_balloon"
 	armor_type = /datum/armor/balloon
@@ -291,13 +291,13 @@
 	acid = 50
 
 /obj/item/clothing/head/helmet/toggleable/justice
-	name = "helmet of justice"
+	name = "正义头盔"
 	desc = "WEEEEOOO. WEEEEEOOO. WEEEEOOOO."
 	icon_state = "justice"
 	base_icon_state = "justice"
 	inhand_icon_state = "justice_helmet"
-	toggle_message = "You turn off the lights."
-	alt_toggle_message = "You turn on the lights."
+	toggle_message = "你关掉了灯。"
+	alt_toggle_message = "你打开了灯。"
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	///Cooldown for toggling the visor.
 	COOLDOWN_DECLARE(visor_toggle_cooldown)
@@ -332,14 +332,14 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/toggleable/justice/escape
-	name = "alarm helmet"
-	desc = "WEEEEOOO. WEEEEEOOO. STOP THAT MONKEY. WEEEOOOO."
+	name = "警报头盔"
+	desc = "WEEEEOOO. WEEEEEOOO. 拦住那只猴子。WEEEOOOO."
 	icon_state = "justice2"
 	base_icon_state = "justice2"
 
 /obj/item/clothing/head/helmet/swat
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet in a nefarious red and black stripe pattern."
+	name = "\improper SWAT 头盔"
+	desc = "一顶极其坚固、适合太空环境的头盔，涂着邪恶的红黑条纹。"
 	icon_state = "swatsyndie"
 	inhand_icon_state = "swatsyndie_helmet"
 	armor_type = /datum/armor/helmet_swat
@@ -373,8 +373,8 @@
 	wound = 15
 
 /obj/item/clothing/head/helmet/swat/nanotrasen
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust helmet with the Nanotrasen logo emblazoned on the top."
+	name = "\improper SWAT 头盔"
+	desc = "一顶极其坚固的头盔，顶部印有纳米传讯标志。"
 	icon_state = "swat"
 	base_icon_state = "swat"
 	inhand_icon_state = "swat_helmet"
@@ -390,8 +390,8 @@
 	AddComponent(/datum/component/seclite_attachable, light_icon_state = "flight")
 
 /obj/item/clothing/head/helmet/thunderdome
-	name = "\improper Thunderdome helmet"
-	desc = "<i>'Let the battle commence!'</i>"
+	name = "\improper 雷霆竞技场头盔"
+	desc = "<i>“让战斗开始吧！”</i>"
 	flags_inv = HIDEEARS|HIDEHAIR
 	icon_state = "thunderdome"
 	inhand_icon_state = "thunderdome_helmet"
@@ -423,8 +423,8 @@
 	bullet = 10
 
 /obj/item/clothing/head/helmet/roman
-	name = "\improper Roman helmet"
-	desc = "An ancient helmet made of bronze and leather."
+	name = "\improper 罗马头盔"
+	desc = "一顶由青铜和皮革制成的古代头盔。"
 	flags_inv = HIDEEARS|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
 	armor_type = /datum/armor/helmet_roman
@@ -444,21 +444,21 @@
 	wound = 5
 
 /obj/item/clothing/head/helmet/roman/fake
-	desc = "An ancient helmet made of plastic and leather."
+	desc = "一顶由塑料和皮革制成的古代头盔。"
 	armor_type = /datum/armor/none
 
 /obj/item/clothing/head/helmet/roman/legionnaire
-	name = "\improper Roman legionnaire helmet"
-	desc = "An ancient helmet made of bronze and leather. Has a red crest on top of it."
+	name = "\improper 罗马军团头盔"
+	desc = "一顶由青铜和皮革制成的古代头盔。顶部有红色盔冠。"
 	icon_state = "roman_c"
 
 /obj/item/clothing/head/helmet/roman/legionnaire/fake
-	desc = "An ancient helmet made of plastic and leather. Has a red crest on top of it."
+	desc = "一顶由塑料和皮革制成的古代头盔。顶部有红色盔冠。"
 	armor_type = /datum/armor/none
 
 /obj/item/clothing/head/helmet/gladiator
-	name = "gladiator helmet"
-	desc = "Ave, Imperator, morituri te salutant."
+	name = "角斗士头盔"
+	desc = "致敬，皇帝，将死之人向你致意。"
 	icon_state = "gladiator"
 	inhand_icon_state = "gladiator_helmet"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEHAIR
@@ -484,20 +484,20 @@
 	acid = 50
 
 /obj/item/clothing/head/helmet/taghelm/red
-	name = "red laser tag helmet"
-	desc = "They have chosen their own end."
+	name = "红色激光对抗头盔"
+	desc = "他们选择了自己的结局。"
 	icon_state = "redtaghelm"
 	inhand_icon_state = "redtag_helmet"
 
 /obj/item/clothing/head/helmet/taghelm/blue
-	name = "blue laser tag helmet"
-	desc = "They'll need more men."
+	name = "蓝色激光对抗头盔"
+	desc = "他们还需要更多的人手。"
 	icon_state = "bluetaghelm"
 	inhand_icon_state = "bluetag_helmet"
 
 /obj/item/clothing/head/helmet/knight
-	name = "medieval helmet"
-	desc = "A classic metal helmet."
+	name = "中世纪头盔"
+	desc = "一顶经典的金属头盔。"
 	icon_state = "knight_green"
 	inhand_icon_state = "knight_helmet"
 	armor_type = /datum/armor/helmet_knight
@@ -530,16 +530,16 @@
 	icon_state = "knight_red"
 
 /obj/item/clothing/head/helmet/knight/greyscale
-	name = "knight helmet"
-	desc = "A classic medieval helmet, if you hold it upside down you could see that it's actually a bucket."
+	name = "骑士头盔"
+	desc = "一顶经典的中世纪头盔，倒过来看会发现它其实是个水桶。"
 	icon_state = "knight_greyscale"
 	inhand_icon_state = null
 	armor_type = /datum/armor/knight_greyscale
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS //Can change color and add prefix
 
 /obj/item/clothing/head/helmet/durathread
-	name = "durathread helmet"
-	desc = "A helmet made from durathread and leather."
+	name = "耐久纤维头盔"
+	desc = "一顶由耐久纤维和皮革制成的头盔。"
 	icon_state = "durathread"
 	inhand_icon_state = "durathread_helmet"
 	resistance_flags = FLAMMABLE
@@ -557,8 +557,8 @@
 	wound = 5
 
 /obj/item/clothing/head/helmet/rus_helmet
-	name = "russian helmet"
-	desc = "It can hold a bottle of vodka."
+	name = "俄式头盔"
+	desc = "它能装下一瓶伏特加。"
 	icon_state = "rus_helmet"
 	inhand_icon_state = "rus_helmet"
 	armor_type = /datum/armor/helmet_rus_helmet
@@ -582,8 +582,8 @@
 	create_storage(storage_type = /datum/storage/pockets/helmet)
 
 /obj/item/clothing/head/helmet/rus_ushanka
-	name = "battle ushanka"
-	desc = "100% bear."
+	name = "战斗护耳帽"
+	desc = "百分之百熊。"
 	icon_state = "rus_ushanka"
 	inhand_icon_state = "rus_ushanka"
 	body_parts_covered = HEAD
@@ -603,8 +603,8 @@
 	wound = 5
 
 /obj/item/clothing/head/helmet/elder_atmosian
-	name = "\improper Elder Atmosian Helmet"
-	desc = "A superb helmet made with the toughest and rarest materials available to man."
+	name = "\improper 长老大气师头盔"
+	desc = "一顶用人类所能获得的最坚韧、最稀有材料制成的绝佳头盔。"
 	icon_state = "h2helmet"
 	inhand_icon_state = "h2_helmet"
 	armor_type = /datum/armor/helmet_elder_atmosian
@@ -624,8 +624,8 @@
 	wound = 15
 
 /obj/item/clothing/head/helmet/military
-	name = "Crude Helmet"
-	desc = "A cheaply made kettle helmet with an added faceplate to protect the eyes and mouth."
+	name = "粗制头盔"
+	desc = "一顶廉价的水壶盔，额外加装了面甲以保护眼睛和嘴部。"
 	icon_state = "military"
 	inhand_icon_state = "knight_helmet"
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDESNOUT
@@ -650,8 +650,8 @@
 	wound = 20
 
 /obj/item/clothing/head/helmet/knight/warlord
-	name = "golden barbute helmet"
-	desc = "There is no man behind the helmet, only a terrible thought."
+	name = "金色巴布特头盔"
+	desc = "头盔后面没有别人，只有一个可怕的念头。"
 	icon_state = "warlord"
 	inhand_icon_state = null
 	armor_type = /datum/armor/helmet_warlord
@@ -674,8 +674,8 @@
 	take_damage(1, BRUTE, 0, 0)
 
 /obj/item/clothing/head/helmet/durability/watermelon
-	name = "watermelon helmet"
-	desc = "A helmet cut out from a watermelon. Might take a few hits, but don't expect it to withstand much."
+	name = "西瓜头盔"
+	desc = "用西瓜切成的头盔。也许能挨几下，但别指望它能撑多久。"
 	icon_state = "watermelon"
 	inhand_icon_state = "watermelon"
 	flags_inv = HIDEEARS
@@ -706,8 +706,8 @@
 	wound = 5
 
 /obj/item/clothing/head/helmet/durability/holymelon
-	name = "holymelon helmet"
-	desc = "A helmet from a hollowed out holymelon. Might take a few hits, but don't expect it to withstand much."
+	name = "圣瓜头盔"
+	desc = "用挖空的圣瓜制成的头盔。也许能挨几下，但别指望它能撑多久。"
 	icon_state = "holymelon"
 	inhand_icon_state = "holymelon"
 	flags_inv = HIDEEARS
@@ -732,14 +732,14 @@
 	)
 
 /obj/item/clothing/head/helmet/durability/holymelon/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning("[src] looses a bit of its shimmer and glossiness..."))
+	to_chat(user, span_warning("[src] 失去了一点光泽与亮面……"))
 
 /obj/item/clothing/head/helmet/durability/holymelon/proc/decay()
 	take_damage(8, BRUTE, 0, 0)
 
 /obj/item/clothing/head/helmet/durability/barrelmelon
-	name = "barrelmelon helmet"
-	desc = "A helmet made from a hollowed out barrelmelon. As sturdy as actual wood, though its rigid structure makes it break quicker."
+	name = "桶瓜头盔"
+	desc = "用挖空的桶瓜制成的头盔。和真正的木头一样结实，不过坚硬的构造让它更容易破裂。"
 	icon_state = "barrelmelon"
 	inhand_icon_state = "barrelmelon"
 	flags_inv = HIDEEARS
@@ -770,8 +770,8 @@
 	wound = 10
 
 /obj/item/clothing/head/helmet/dragoon
-	name = "drachen helmet"
-	desc = "A chainmail helmet with dragon scales attached to the skeleton, with ash-covered mythril plate reinforcement covering it."
+	name = "龙鳞头盔"
+	desc = "一顶锁子甲头盔，骨架上附有龙鳞，外面覆盖着蒙灰的秘银板甲加固层。"
 	icon_state = "dragoonhelm"
 	base_icon_state = "dragoonhelm"
 	inhand_icon_state = "dragoonhelm"

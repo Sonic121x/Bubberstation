@@ -1,6 +1,6 @@
 /obj/item/clothing/under/plasmaman/engineering
-	name = "engineering plasma envirosuit"
-	desc = "An airtight suit designed to be used by plasmamen employed as engineers, the usual purple stripes being replaced by engineering's orange. It protects the user from fire and acid damage."
+	name = "工程等离子环境服"
+	desc = "为担任工程师的等离子人设计的密闭服装，原本的紫色条纹被工程的橙色取代。可保护使用者免受火焰和酸液伤害。"
 	icon_state = "engineer_envirosuit"
 	inhand_icon_state = null
 	armor_type = /datum/armor/clothing_under/plasmaman_engineering
@@ -11,8 +11,8 @@
 	acid = 95
 
 /obj/item/clothing/under/plasmaman/atmospherics
-	name = "atmospherics plasma envirosuit"
-	desc = "An airtight suit designed to be used by plasmamen employed as atmos technicians, the usual purple stripes being replaced by atmos' blue."
+	name = "大气等离子环境服"
+	desc = "为担任大气技师的等离子人设计的密闭服装，原本的紫色条纹被大气部门的蓝色取代。"
 	icon_state = "atmos_envirosuit"
 	inhand_icon_state = null
 	armor_type = /datum/armor/clothing_under/plasmaman_atmospherics

@@ -1,9 +1,9 @@
 /datum/antagonist/domain_ghost_actor
-	name = "Virtual Domain Actor"
+	name = "虚拟域角色"
 	antagpanel_category = ANTAG_GROUP_GLITCH
 	pref_flag = ROLE_GLITCH
 	show_to_ghosts = TRUE
-	suicide_cry = "FATAL ERROR"
+	suicide_cry = "致命错误"
 	ui_name = "AntagInfoGlitch"
 
 /datum/antagonist/domain_ghost_actor/on_gain()
@@ -19,4 +19,4 @@
 /datum/objective/bitrunner_ghost_fluff
 
 /datum/objective/bitrunner_ghost_fluff/New()
-	explanation_text = "Defend your domain from the intruders!"
+	explanation_text = "保卫你的虚拟域，击退入侵者！"

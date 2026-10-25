@@ -3,8 +3,8 @@
 	abstract_path = /datum/market_item/weapon
 
 /datum/market_item/weapon/bear_trap
-	name = "Bear Trap"
-	desc = "Get the janitor back at his own game with this affordable prank kit."
+	name = "捕熊陷阱"
+	desc = "用这套价格实惠的恶作剧套装，以其人之道还治其人之身地对付清洁工。"
 	item = /obj/item/restraints/legcuffs/beartrap
 
 	price_min = CARGO_CRATE_VALUE * 1.5
@@ -13,10 +13,10 @@
 	availability_prob = 40
 
 /datum/market_item/weapon/shotgun_dart
-	name = "Box of XL Shotgun Darts"
-	desc = "These handy darts can be filled up with any chemical and be shot with a shotgun! \
-		Prank your friends by shooting them with laughter! \
-		Not recommended for commercial use."
+	name = "XL 霰弹枪飞镖盒"
+	desc = "这些方便的飞镖可以装入任何化学物质，并用霰弹枪发射！ \
+		想捉弄朋友，就用它把笑气射进他们体内！ \
+		不建议用于商业用途。"
 	item = /obj/item/storage/box/large_dart
 
 	price_min = CARGO_CRATE_VALUE * 1.375
@@ -25,9 +25,9 @@
 	availability_prob = 40
 
 /datum/market_item/weapon/buckshot
-	name = "Box of Buckshot Shells"
-	desc = "It wasn't easy since buckshot is so heavily taxed nowadays, but we managed to find \
-		a large cache of it... somewhere. A word of caution, the stuff may be a tad old."
+	name = "鹿弹弹壳盒"
+	desc = "如今鹿弹被课以重税，想弄到可不容易，但我们还是在 \
+		某处找到了一批存货。提醒一句，这批货可能有点旧了。"
 	stock_max = 7
 	availability_prob = 35
 	item = /obj/effect/spawner/random/armory/buckshot/sketchy
@@ -35,10 +35,10 @@
 	price_max = CARGO_CRATE_VALUE * 3
 
 /datum/market_item/weapon/strilka
-	name = "Ammobox of .310 Strilka"
-	desc = "Listen, .310 Strilka isn't exactly rare, but if you want it to come through \
-		any source that isn't the Third Soviet diehards, then you get what you get. \
-		Some of this is the good stuff. Some of it is surplus. We make no promises, okay?"
+	name = ".310 斯特里尔卡弹药箱"
+	desc = "听着，.310 斯特里尔卡并不算稀有，但如果你想让它来自 \
+		第三苏维埃死硬派以外的任何渠道，那就只能拿到什么算什么。 \
+		有些是好货，有些是剩余物资。我们可不做任何保证，明白吧？"
 	stock_max = 7
 	availability_prob = 35
 	item = /obj/effect/spawner/random/armory/strilka
@@ -46,11 +46,11 @@
 	price_max = CARGO_CRATE_VALUE * 2
 
 /datum/market_item/weapon/sks_kit
-	name = "Sakhno SKS semi-automatic rifle"
-	desc = "That's right baby, it's a SKS parts kit! Okay, not one of those ancient originals, but it \
-		may as well be ancient at this point. Just slap it together in some corner in maint and you've \
-		got yourself a fully constructed SKS! It doesn't even jam! Why the fuck did they make those Third \
-		Soviet soldiers use the Sakhno M2442 Army anyway? This thing is the shit! That means good. BUY IT."
+	name = "萨赫诺 SKS 半自动步枪"
+	desc = "没错宝贝，这就是一套 SKS 零件包！好吧，它不是那种上古原版，但放到 \
+		现在也已经够古老了。只要在维修通道的某个角落把它拼起来，你就 \
+		拥有一把完整的 SKS 了！而且它根本不会卡壳！说起来，他们到底为什么让第三 \
+		苏维埃的士兵去用萨赫诺 M2442 军用型？这东西简直牛爆了！这是夸它。快买！"
 	item = /obj/item/weaponcrafting/gunkit/sks
 	price_min = CARGO_CRATE_VALUE * 1
 	price_max = CARGO_CRATE_VALUE * 3
@@ -58,8 +58,8 @@
 	availability_prob = 90
 
 /datum/market_item/weapon/bone_spear
-	name = "Bone Spear"
-	desc = "Authentic tribal spear, made from real bones! A steal at any price, especially if you're a caveman."
+	name = "骨质长矛"
+	desc = "正宗的部落长矛，用真正的骨头制成！无论什么价格都超值，尤其是如果你是个穴居人的话。"
 	item = /obj/item/spear/bonespear
 
 	price_min = CARGO_CRATE_VALUE
@@ -68,8 +68,8 @@
 	availability_prob = 60
 
 /datum/market_item/weapon/chainsaw
-	name = "Chainsaw"
-	desc = "A lumberjack's best friend, perfect for cutting trees or limbs efficiently."
+	name = "电锯"
+	desc = "伐木工最好的朋友，非常适合高效地切割树木或肢体。"
 	item = /obj/item/chainsaw
 
 	price_min = CARGO_CRATE_VALUE * 1.75
@@ -78,8 +78,8 @@
 	availability_prob = 35
 
 /datum/market_item/weapon/switchblade
-	name = "Switchblade"
-	desc = "Tunnel Snakes rule!"
+	name = "弹簧刀"
+	desc = "隧道蛇帮最棒！"
 	item = /obj/item/switchblade
 
 	price_min = CARGO_CRATE_VALUE * 1.25
@@ -88,8 +88,8 @@
 	availability_prob = 45
 
 /datum/market_item/weapon/carpenter_hammer
-	name = "Carpenter hammer"
-	desc = "When you really want to look like a psycho..."
+	name = "木工锤"
+	desc = "当你真的很想看起来像个精神病时……"
 	item = /obj/item/carpenter_hammer
 
 	price_min = CARGO_CRATE_VALUE * 1
@@ -98,8 +98,8 @@
 	availability_prob = 65
 
 /datum/market_item/weapon/emp_grenade
-	name = "EMP Grenade"
-	desc = "Use this grenade for SHOCKING results!"
+	name = "EMP 手榴弹"
+	desc = "使用这枚手榴弹，收获令人震惊的结果！"
 	item = /obj/item/grenade/empgrenade
 
 	price_min = CARGO_CRATE_VALUE * 0.5
@@ -108,8 +108,8 @@
 	availability_prob = 50
 
 /datum/market_item/weapon/fisher
-	name = "SC/FISHER Saboteur Handgun"
-	desc = "A self-recharging, compact pistol that disrupts lights, cameras, APCs, turrets and more, if only temporarily. Also usable in melee."
+	name = "SC/FISHER 破坏者手枪"
+	desc = "一把可自行充能的紧凑型手枪，能暂时干扰灯光、摄像头、APC、炮塔等设备。也可用于近战。"
 	item = /obj/item/gun/energy/recharge/fisher
 
 	price_min = CARGO_CRATE_VALUE * 2
@@ -118,8 +118,8 @@
 	availability_prob = 75
 
 /datum/market_item/weapon/dimensional_bomb
-	name = "Multi-Dimensional Bomb Core"
-	desc = "A special bomb core, one of a kind, for all your 'terraforming gone wrong' purposes."
+	name = "多维炸弹核心"
+	desc = "一枚独一无二的特殊炸弹核心，专为你的各种‘地球化改造出了岔子’用途而生。"
 	item = /obj/item/bombcore/dimensional
 	price_min = CARGO_CRATE_VALUE * 40
 	price_max = CARGO_CRATE_VALUE * 50
@@ -127,8 +127,8 @@
 	availability_prob = 15
 
 /datum/market_item/weapon/giant_wrench_parts
-	name = "Big Slappy parts"
-	desc = "Cheap illegal Big Slappy parts. The fastest and statistically most dangerous wrench."
+	name = "‘大巴掌’零件"
+	desc = "廉价非法的‘大巴掌’零件。速度最快、从统计上看也最危险的扳手。"
 	item = /obj/item/weaponcrafting/giant_wrench
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 5
@@ -136,8 +136,8 @@
 	availability_prob = 25
 
 /datum/market_item/weapon/liberator
-	name = "illegal 3D printer designs"
-	desc = "Designs for a dirt cheap 3D printable gun, well known for exploding in unfortunate assistants' hands."
+	name = "非法 3D 打印机设计图"
+	desc = "一种极其廉价的 3D 打印枪械的设计图，以在倒霉的助手手中爆炸而闻名。"
 	item = /obj/item/disk/design_disk/liberator
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 5
@@ -145,9 +145,9 @@
 	availability_prob = 35
 
 /datum/market_item/weapon/surplus_esword
-	name = "Pattern I 'Iaito' Energy Sword"
-	desc = "A mass-produced energy sword. It is functionally worse than a milspec energy sword commonly found amongst paramilitary organizations. \
-		But hey, better than nothing. Does have some power supply problems, but nothing that a bit of percussive maintenance can't fix."
+	name = "I 型‘居合’能量剑"
+	desc = "一把量产型能量剑。性能上不如准军事组织常见的军规能量剑。 \
+		但总比没有强。它确实有些供电问题，不过敲打几下就能解决。"
 	item = /obj/item/melee/energy/sword/surplus
 	price_min = CARGO_CRATE_VALUE * 2
 	price_max = CARGO_CRATE_VALUE * 5
@@ -155,9 +155,9 @@
 	availability_prob = 80
 
 /datum/market_item/weapon/earthcracker
-	name = "E-1 Earthcracker"
-	desc = "Surplus mining equipment from one of the many, nameless asteroid mining companies bought out by Nanotrasen in this sector.\
-		While they were decent enough at mining asteroids, these things really shine at leaving large cracks on station-class hulls when deployed these days."
+	name = "E-1 裂地器"
+	desc = "本区域众多被纳米传讯收购的无名小行星采矿公司之一的剩余采矿设备。\
+		虽然它们在开采小行星方面表现尚可，但如今部署后，它们在给空间站级船体留下巨大裂缝方面才真正大放异彩。"
 	item = /obj/item/earthcracker/small
 	price_min = CARGO_CRATE_VALUE
 	price_max = CARGO_CRATE_VALUE * 3

@@ -1,6 +1,6 @@
 /datum/action/item_action/chameleon/change/neck
 	chameleon_type = /obj/item/clothing/neck
-	chameleon_name = "Neck Accessory"
+	chameleon_name = "颈部配饰"
 	active_type = /obj/item/clothing/neck/tie/black
 
 /datum/action/item_action/chameleon/change/neck/initialize_blacklist()
@@ -9,11 +9,11 @@
 
 /datum/action/item_action/chameleon/change/stamp
 	chameleon_type = /obj/item/stamp
-	chameleon_name = "Stamp"
+	chameleon_name = "印章"
 
 /datum/action/item_action/chameleon/change/tablet
 	chameleon_type = /obj/item/modular_computer/pda
-	chameleon_name = "Tablet"
+	chameleon_name = "平板电脑"
 
 /datum/action/item_action/chameleon/change/tablet/initialize_blacklist()
 	. = ..()
@@ -33,22 +33,22 @@
 
 /datum/action/item_action/chameleon/change/headset
 	chameleon_type = /obj/item/radio/headset
-	chameleon_name = "Headset"
+	chameleon_name = "耳机"
 	active_type = /obj/item/radio/headset
 
 /datum/action/item_action/chameleon/change/belt
 	chameleon_type = /obj/item/storage/belt
-	chameleon_name = "Belt"
+	chameleon_name = "腰带"
 	active_type = /obj/item/storage/belt/utility
 
 /datum/action/item_action/chameleon/change/backpack
 	chameleon_type = /obj/item/storage/backpack
-	chameleon_name = "Backpack"
+	chameleon_name = "背包"
 	active_type = /obj/item/storage/backpack
 
 /datum/action/item_action/chameleon/change/shoes
 	chameleon_type = /obj/item/clothing/shoes
-	chameleon_name = "Shoes"
+	chameleon_name = "鞋子"
 	active_type = /obj/item/clothing/shoes/sneakers/black
 
 /datum/action/item_action/chameleon/change/shoes/initialize_blacklist()
@@ -57,7 +57,7 @@
 
 /datum/action/item_action/chameleon/change/mask
 	chameleon_type = /obj/item/clothing/mask
-	chameleon_name = "Mask"
+	chameleon_name = "面罩"
 	active_type = /obj/item/clothing/mask/gas
 
 /datum/action/item_action/chameleon/change/mask/initialize_blacklist()
@@ -79,7 +79,7 @@
 
 /datum/action/item_action/chameleon/change/hat
 	chameleon_type = /obj/item/clothing/head
-	chameleon_name = "Hat"
+	chameleon_name = "帽子"
 	active_type = /obj/item/clothing/head/soft/black
 
 /datum/action/item_action/chameleon/change/hat/initialize_blacklist()
@@ -88,7 +88,7 @@
 
 /datum/action/item_action/chameleon/change/gloves
 	chameleon_type = /obj/item/clothing/gloves
-	chameleon_name = "Gloves"
+	chameleon_name = "手套"
 	active_type = /obj/item/clothing/gloves/color/yellow
 
 /datum/action/item_action/chameleon/change/gloves/initialize_blacklist()
@@ -97,7 +97,7 @@
 
 /datum/action/item_action/chameleon/change/glasses
 	chameleon_type = /obj/item/clothing/glasses
-	chameleon_name = "Glasses"
+	chameleon_name = "眼镜"
 	active_type = /obj/item/clothing/glasses/meson
 
 /datum/action/item_action/chameleon/change/glasses/initialize_blacklist()
@@ -109,7 +109,7 @@
 
 /datum/action/item_action/chameleon/change/suit
 	chameleon_type = /obj/item/clothing/suit
-	chameleon_name = "Suit"
+	chameleon_name = "外套"
 	active_type = /obj/item/clothing/suit/armor/vest
 
 /datum/action/item_action/chameleon/change/suit/initialize_blacklist()
@@ -127,7 +127,7 @@
 
 /datum/action/item_action/chameleon/change/jumpsuit
 	chameleon_type = /obj/item/clothing/under
-	chameleon_name = "Jumpsuit"
+	chameleon_name = "连体服"
 	active_type = /obj/item/clothing/under/color/black
 
 /datum/action/item_action/chameleon/change/jumpsuit/initialize_blacklist()
@@ -136,7 +136,7 @@
 
 /datum/action/item_action/chameleon/change/id
 	chameleon_type = /obj/item/card/id/advanced
-	chameleon_name = "ID Card"
+	chameleon_name = "ID 卡"
 
 /datum/action/item_action/chameleon/change/id/New(Target)
 	. = ..()
@@ -155,7 +155,7 @@
 		if(assignedsplit_state[1] == "assigned") // kind of evil, but so is making icon state user visible
 			assignedsplit_state.Cut(1, 2)
 
-		var/final_state_string = "[jointext(basesplit_state, " ")], [jointext(assignedsplit_state, " ") || "unassigned"]"
+		var/final_state_string = "[jointext(basesplit_state, " ")], [jointext(assignedsplit_state, " ") || "未分配"]"
 
 		return "[format_card::name] ([final_state_string])"
 
@@ -242,7 +242,7 @@
 
 /datum/action/item_action/chameleon/change/id_trim
 	chameleon_type = /datum/id_trim
-	chameleon_name = "ID Trim"
+	chameleon_name = "ID 卡饰条"
 
 /datum/action/item_action/chameleon/change/id_trim/New(Target)
 	. = ..()
@@ -296,7 +296,7 @@
 
 /datum/action/item_action/chameleon/change/gun
 	chameleon_type = /obj/item/gun
-	chameleon_name = "Gun"
+	chameleon_name = "枪械"
 
 /datum/action/item_action/chameleon/change/gun/New(Target)
 	. = ..()
@@ -315,7 +315,7 @@
 
 /datum/action/item_action/chameleon/change/scanner
 	chameleon_type = /obj/item/pen
-	chameleon_name = "Chameleon Scanner"
+	chameleon_name = "变色龙扫描器"
 	active_type = /obj/item/storage/fancy/cigarettes/cigpack_robustgold
 	/// Other types the chameleon scanner can swap into in addition to the chameleon type
 	var/static/list/other_cham_types = list(
@@ -364,4 +364,4 @@
 
 /datum/action/item_action/chameleon/change/gun/ballistic
 	chameleon_type = /obj/item/gun/ballistic
-	chameleon_name = "Gun"
+	chameleon_name = "枪械"

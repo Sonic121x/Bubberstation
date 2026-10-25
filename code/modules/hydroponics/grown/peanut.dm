@@ -1,10 +1,10 @@
 // Peanuts!
 /obj/item/seeds/peanut
-	name = "peanut seed pack"
-	desc = "These seeds grow into peanut plants."
+	name = "花生种子包"
+	desc = "这些种子会长成花生植株。"
 	icon_state = "seed-peanut"
 	species = "peanut"
-	plantname = "Peanut Plant"
+	plantname = "花生植株"
 	product = /obj/item/food/grown/peanut
 	lifespan = 55
 	endurance = 35
@@ -17,11 +17,11 @@
 
 /obj/item/food/grown/peanut
 	seed = /obj/item/seeds/peanut
-	name = "peanut"
-	desc = "A tasty pair of groundnuts concealed in a tough shell."
+	name = "花生"
+	desc = "一对藏在坚硬外壳里的美味坚果。"
 	icon_state = "peanut"
 	foodtypes = NUTS
-	tastes = list("peanuts" = 1)
+	tastes = list("花生" = 1)
 
 /obj/item/food/grown/peanut/grind_results()
 	return list(/datum/reagent/consumable/peanut_butter = 0)

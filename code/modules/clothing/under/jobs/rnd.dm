@@ -8,8 +8,8 @@
 	bio = 40
 
 /obj/item/clothing/under/rank/rnd/research_director
-	desc = "It's a suit worn by those with the know-how to achieve the position of \"Research Director\". Its fabric provides minor protection from biological contaminants."
-	name = "research director's vest suit"
+	desc = "这是那些有本事爬上“科研主管”之位的人所穿的套装。其面料能提供轻微的生化污染物防护。"
+	name = "科研主管马甲套装"
 	icon_state = "director"
 	inhand_icon_state = "lb_suit"
 	armor_type = /datum/armor/clothing_under/rnd_research_director
@@ -21,13 +21,13 @@
 	acid = 35
 
 /obj/item/clothing/under/rank/rnd/research_director/doctor_hilbert
-	desc = "A Research Director jumpsuit belonging to the late and great Doctor Hilbert. The suit sensors have long since fizzled out from the stress of the Hilbert's Hotel."
+	desc = "一件属于已故伟大的希尔伯特博士的科研主管连体服。由于希尔伯特旅馆的压力，这件衣服的传感器早已失灵。"
 	has_sensor = NO_SENSORS
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/rnd/research_director/skirt
-	name = "research director's vest suitskirt"
-	desc = "It's a suitskirt worn by those with the know-how to achieve the position of \"Research Director\". Its fabric provides minor protection from biological contaminants."
+	name = "科研主管马甲裙装"
+	desc = "这是那些有本事爬上“科研主管”之位的人所穿的裙装。其面料能提供轻微的生化污染物防护。"
 	icon_state = "director_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -36,8 +36,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/rnd/research_director/alt
-	name = "research director's tan suit"
-	desc = "Maybe you'll engineer your own half-man, half-pig creature some day. Its fabric provides minor protection from biological contaminants."
+	name = "科研主管棕褐套装"
+	desc = "也许有一天你也能造出自己的一半人一半猪生物。其面料能提供轻微的生化污染物防护。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	worn_icon = 'icons/mob/clothing/under/shorts_pants_shirts.dmi'
 	icon_state = "/obj/item/clothing/under/rank/rnd/research_director/alt"
@@ -49,7 +49,7 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/research_director/alt/skirt
-	name = "research director's tan suitskirt"
+	name = "科研主管棕褐裙装"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/rnd/research_director/alt/skirt"
 	post_init_icon_state = "buttondown_skirt"
@@ -61,16 +61,16 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/rnd/research_director/turtleneck
-	desc = "A Nanotrasen-purple turtleneck and black jeans, for a director with a superior sense of style."
-	name = "research director's turtleneck"
+	desc = "纳米传讯紫色的高领毛衣配黑色牛仔裤，献给品味出众的主管。"
+	name = "科研主管高领毛衣"
 	icon_state = "rdturtle"
 	inhand_icon_state = "p_suit"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/rnd/research_director/turtleneck/skirt
-	name = "research director's turtleneck skirt"
-	desc = "A Nanotrasen-purple turtleneck and a black skirt, for a director with a superior sense of style."
+	name = "科研主管高领毛衣裙"
+	desc = "纳米传讯紫色的高领毛衣配黑色短裙，献给品味出众的主管。"
 	icon_state = "rdturtle_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -79,14 +79,14 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/rnd/scientist
-	name = "scientist's jumpsuit"
-	desc = "It's made of a special fiber that provides minor protection against explosives. It has markings that denote the wearer as a scientist."
+	name = "科学家连体服"
+	desc = "它由一种特殊纤维制成，能提供轻微的爆炸防护。上面的标识表明穿着者是科学家。"
 	icon_state = "science"
 	inhand_icon_state = "w_suit"
 	armor_type = /datum/armor/clothing_under/science
 
 /obj/item/clothing/under/rank/rnd/scientist/skirt
-	name = "scientist's jumpskirt"
+	name = "科学家连体裙"
 	icon_state = "science_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT
@@ -95,15 +95,15 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/rnd/roboticist
-	desc = "It's a slimming black with reinforced seams; great for industrial work."
-	name = "roboticist's jumpsuit"
+	desc = "修身黑色，缝线加固；非常适合工业作业。"
+	name = "机器人学家连体服"
 	icon_state = "robotics"
 	inhand_icon_state = null
 	resistance_flags = NONE
 
 /obj/item/clothing/under/rank/rnd/roboticist/skirt
-	name = "roboticist's jumpskirt"
-	desc = "It's a slimming black with reinforced seams; great for industrial work."
+	name = "机器人学家连体裙"
+	desc = "修身黑色，缝线加固；非常适合工业作业。"
 	icon_state = "robotics_skirt"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -113,13 +113,13 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/rnd/geneticist
-	name = "geneticist's jumpsuit"
-	desc = "It's made of a special fiber that gives special protection against biohazards. It has a genetics rank stripe on it."
+	name = "遗传学家连体服"
+	desc = "它由一种特殊纤维制成，能提供特殊的生物危害防护。上面带有遗传学级别的条纹。"
 	icon_state = "genetics"
 	inhand_icon_state = "w_suit"
 
 /obj/item/clothing/under/rank/rnd/geneticist/skirt
-	name = "geneticist's jumpskirt"
+	name = "遗传学家连体裙"
 	icon_state = "genetics_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT

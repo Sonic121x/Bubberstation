@@ -17,7 +17,7 @@
 	associated_safe_turfs = list(/turf/open/water/hot_spring)
 
 /datum/fish_source/chasm
-	catalog_description = "Chasm depths"
+	catalog_description = "裂隙深处"
 	background = "background_chasm"
 	radial_state = "ground_hole"
 	overlay_state = "portal_chasm"
@@ -32,9 +32,9 @@
 /datum/fish_source/chasm/on_start_fishing(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(istype(rod.hook, /obj/item/fishing_hook/rescue))
-		to_chat(fisherman, span_notice("The rescue hook falls straight down the chasm! Hopefully it catches a corpse."))
+		to_chat(fisherman, span_notice("救援钩笔直地落入裂隙深处！但愿它能钩到一具尸体。"))
 		return
-	to_chat(fisherman, span_danger("Your fishing hook makes a soft 'thud' noise as it gets stuck on the wall of the chasm. It doesn't look like it's going to catch much of anything, except maybe some detritus."))
+	to_chat(fisherman, span_danger("你的鱼钩发出一声轻柔的“咚”，卡在了裂隙的岩壁上。看起来它钓不到什么像样的东西，也许只能钓上些碎屑。"))
 
 /datum/fish_source/chasm/roll_reward(obj/item/fishing_rod/rod, mob/fisherman)
 	var/rolled_reward = ..()
@@ -45,7 +45,7 @@
 	return rod.hook.chasm_detritus_type
 
 /datum/fish_source/lavaland
-	catalog_description = "Lava vents"
+	catalog_description = "熔岩喷口"
 	background = "background_lavaland"
 	radial_state = "lava"
 	overlay_state = "portal_lava"
@@ -82,11 +82,11 @@
 /datum/fish_source/lavaland/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(!HAS_TRAIT(rod, TRAIT_ROD_LAVA_USABLE))
-		return "You'll need reinforced fishing line to fish in there."
+		return "在那里钓鱼需要强化鱼线。"
 
 /datum/fish_source/lavaland/icemoon
 	background = "background_plasma"
-	catalog_description = "Liquid plasma vents"
+	catalog_description = "液态等离子体喷口"
 	radial_state = "plasma"
 	fish_table = list(
 		FISHING_DUD = 5,
@@ -119,7 +119,7 @@
 
 /datum/fish_source/oil_well
 	background = "background_oil_well"
-	catalog_description = "Oil wells"
+	catalog_description = "油井"
 	radial_state = "oil"
 	overlay_state = "portal_chasm" //close enough to pitch black
 	fish_table = list(

@@ -23,4 +23,4 @@
 		return "Powered Counterattack"
 	if(value == "接入船员监视器" && ispath(action_type, /datum/action/item_action/crew_monitor))
 		return "Interface With Crew Monitor"
-	return chinese_batch_four_antag_action_storage(chinese_batch_four_admin_action_storage(chinese_batch_four_items_action_storage(value, action_type), action_type), action_type)
+	return chinese_batch_five_action_storage_name(chinese_batch_four_antag_action_storage(chinese_batch_four_admin_action_storage(chinese_batch_four_items_action_storage(value, action_type), action_type), action_type), action_type)

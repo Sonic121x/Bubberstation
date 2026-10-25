@@ -1,6 +1,6 @@
 /obj/machinery/deployable_turret/naval_cannon
-	name = "Bofors Naval Cannon"
-	desc = "A naval cannon of some variety, it probably won't feel good to be on the other end of this thing."
+	name = "博福斯舰炮"
+	desc = "某种舰炮，站在它另一端大概不会好受。"
 	icon = 'icons/obj/weapons/naval_cannon.dmi'
 	icon_state = "turret_bofors"
 	max_integrity = 5000 //its a naval cannon, but its not unbreakable
@@ -13,8 +13,8 @@
 	always_anchored = TRUE
 
 /obj/item/ammo_casing/mm40
-	name = "40mm shell"
-	desc = "A 40mm shell."
+	name = "40 毫米炮弹"
+	desc = "一发 40 毫米炮弹。"
 	caliber = CALIBER_40MM_SHELL
 	projectile_type = /obj/projectile/bullet/mm40
 	icon_state = "40mm-shell"
@@ -22,7 +22,7 @@
 	slowdown = 2 //tank shells weigh a lot
 
 /obj/projectile/bullet/mm40
-	name ="40mm shell"
+	name ="40 毫米炮弹"
 	icon_state = "40mm"
 	speed = 2
 	range = 400

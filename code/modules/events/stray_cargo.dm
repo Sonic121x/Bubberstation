@@ -1,30 +1,30 @@
 ///Spawns a cargo pod containing a random cargo supply pack on a random area of the station
 /datum/round_event_control/stray_cargo
-	name = "Stray Cargo Pod"
+	name = "失控货运舱"
 	typepath = /datum/round_event/stray_cargo
 	weight = 20
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "A pod containing a random supply crate lands on the station."
+	description = "一个装有随机补给箱的货运舱降落到空间站上。"
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo, /datum/event_admin_setup/listed_options/stray_cargo)
 
 /datum/event_admin_setup/set_location/stray_cargo
-	input_text = "Aim pod at turf we're on?"
+	input_text = "把货运舱瞄准我们所在的地块？"
 
 /datum/event_admin_setup/set_location/stray_cargo/apply_to_event(datum/round_event/stray_cargo/event)
 	event.admin_override_turf = chosen_turf
 
 /datum/event_admin_setup/listed_options/stray_cargo
-	input_text = "Choose a cargo crate to drop."
-	normal_run_option = "Random Crate"
+	input_text = "选择要投放的货运板条箱。"
+	normal_run_option = "随机板条箱"
 
 /datum/event_admin_setup/listed_options/stray_cargo/get_list()
 	return sort_list(subtypesof(/datum/supply_pack), /proc/cmp_typepaths_asc)
 
 /datum/event_admin_setup/listed_options/stray_cargo/apply_to_event(datum/round_event/stray_cargo/event)
 	event.admin_override_contents = chosen
-	var/log_message = "[key_name_admin(usr)] has aimed a stray cargo pod at [event.admin_override_turf ? AREACOORD(event.admin_override_turf) : "a random location"]. The pod contents are [chosen ? chosen : "random"]."
+	var/log_message = "[key_name_admin(usr)] 将失控货运舱瞄准了 [event.admin_override_turf ? AREACOORD(event.admin_override_turf) : "随机地点"]。货运舱内容为 [chosen ? chosen : "随机"]。"
 	message_admins(log_message)
 	log_admin(log_message)
 
@@ -50,7 +50,7 @@
 /datum/round_event/stray_cargo/announce(fake)
 	if(fake)
 		impact_area = find_event_area()
-	priority_announce("Stray cargo pod detected on long-range scanners. Expected location of impact: [impact_area.name].", "Collision Alert")
+	priority_announce("远程扫描仪探测到失控货运舱。预计撞击地点：[impact_area.name]。", "碰撞警报")
 
 /**
 * Tries to find a valid area, throws an error if none are found
@@ -144,7 +144,7 @@
 
 /datum/round_event/stray_cargo/proc/create_ghost_notification(landing_marker)
 	var/static/mutable_appearance/target_appearance = mutable_appearance('icons/obj/supplypods_32x32.dmi', "LZ")
-	notify_ghosts("[control.name] has summoned a supply crate!", source = get_turf(landing_marker), header = "Cargo Inbound", alert_overlay = target_appearance)
+	notify_ghosts("[control.name] 召唤了一个补给箱！", source = get_turf(landing_marker), header = "货运抵达", alert_overlay = target_appearance)
 
 ///Picks an area that wouldn't risk critical damage if hit by a pod explosion
 /datum/round_event/stray_cargo/proc/find_event_area()
@@ -167,12 +167,12 @@
 
 ///A rare variant that drops a crate containing syndicate uplink items
 /datum/round_event_control/stray_cargo/syndicate
-	name = "Stray Syndicate Cargo Pod"
+	name = "失控辛迪加货运舱"
 	typepath = /datum/round_event/stray_cargo/syndicate
 	weight = 6
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
-	description = "A pod containing syndicate gear lands on the station."
+	description = "一个装有辛迪加装备的货运舱降落到空间站上。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 6
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo, /datum/event_admin_setup/syndicate_cargo_pod)
@@ -182,7 +182,7 @@
 	var/pack_type_override
 
 /datum/event_admin_setup/syndicate_cargo_pod/prompt_admins()
-	var/admin_selected_pack = tgui_alert(usr,"Customize Pod contents?", "Pod Contents", list("Yes", "No", "Cancel"))
+	var/admin_selected_pack = tgui_alert(usr,"自定义货运舱内容？", "货运舱内容", list("Yes", "No", "Cancel"))
 	switch(admin_selected_pack)
 		if("Yes")
 			return override_contents()
@@ -194,17 +194,17 @@
 ///This proc prompts admins to set a TC value and uplink type for the crate, those values are then passed to a new syndicate pack's setup_contents() to generate the contents before spawning it.
 /datum/event_admin_setup/syndicate_cargo_pod/proc/override_contents()
 	var/datum/supply_pack/misc/syndicate/custom_value/syndicate_pack = new
-	var/pack_telecrystals = tgui_input_number(usr, "Please input crate's value in telecrystals.", "Set Telecrystals.", 30)
+	var/pack_telecrystals = tgui_input_number(usr, "请输入板条箱的传送水晶价值。", "设置传送水晶。", 30)
 	if(isnull(pack_telecrystals))
 		return ADMIN_CANCEL_EVENT
 	var/list/possible_uplinks = list(
-		"Traitor" = UPLINK_TRAITORS,
-		"Nuke Op" = UPLINK_NUKE_OPS,
-		"Clown Op" = UPLINK_CLOWN_OPS,
-		"Lone Op" = UPLINK_LONE_OP,
-		"Spy" = UPLINK_SPY
+		"叛徒" = UPLINK_TRAITORS,
+		"核爆特工" = UPLINK_NUKE_OPS,
+		"小丑特工" = UPLINK_CLOWN_OPS,
+		"孤身特工" = UPLINK_LONE_OP,
+		"间谍" = UPLINK_SPY
 		)
-	var/uplink_type = tgui_input_list(usr, "Choose uplink to draw items from.", "Choose uplink type.", possible_uplinks)
+	var/uplink_type = tgui_input_list(usr, "选择要从中提取物品的上行链路。", "选择上行链路类型。", possible_uplinks)
 	var/selection
 	if(!isnull(uplink_type))
 		selection = possible_uplinks[uplink_type]
@@ -215,7 +215,7 @@
 
 /datum/event_admin_setup/syndicate_cargo_pod/apply_to_event(datum/round_event/stray_cargo/syndicate/event)
 	event.admin_override_contents = pack_type_override
-	var/log_message = "[key_name_admin(usr)] has aimed a stray syndicate cargo pod at [event.admin_override_turf ? AREACOORD(event.admin_override_turf) : "a random location"]. The pod contents are [pack_type_override ? pack_type_override : "random"]."
+	var/log_message = "[key_name_admin(usr)] 将失控辛迪加货运舱瞄准了 [event.admin_override_turf ? AREACOORD(event.admin_override_turf) : "随机地点"]。货运舱内容为 [pack_type_override ? pack_type_override : "随机"]。"
 	message_admins(log_message)
 	log_admin(log_message)
 

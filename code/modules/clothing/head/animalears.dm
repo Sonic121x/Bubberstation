@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/kitty
-	name = "kitty ears"
-	desc = "A pair of kitty ears. Meow!"
+	name = "猫耳"
+	desc = "一对猫耳。喵！"
 	icon_state = "kitty"
 	color = "#999999"
 	clothing_traits = list(TRAIT_CAT_EMOTES_ALLOWED)
@@ -18,11 +18,11 @@
 		add_atom_colour(user.hair_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/clothing/head/costume/kitty/genuine
-	desc = "A pair of kitty ears. A tag on the inside says \"Hand made from real cats.\""
+	desc = "一对猫耳。内侧标签上写着\"纯手工制作，取材真猫。\""
 
 /obj/item/clothing/head/costume/rabbitears
-	name = "rabbit ears"
-	desc = "Wearing these makes you look useless, and only good for your sex appeal."
+	name = "兔耳"
+	desc = "戴上它只会显得你一无是处，除了增添几分媚态。"
 	icon_state = "bunny"
 
 	dog_fashion = /datum/dog_fashion/head/rabbit

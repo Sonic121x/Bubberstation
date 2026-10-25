@@ -2,7 +2,7 @@
 	title = ROLE_GLITCH
 
 /datum/antagonist/bitrunning_glitch
-	name = "Generic Bitrunning Glitch"
+	name = "通用比特潜行故障体"
 	antagpanel_category = ANTAG_GROUP_GLITCH
 	pref_flag = ROLE_GLITCH
 	preview_outfit = /datum/outfit/cyber_police
@@ -39,17 +39,17 @@
 
 /datum/objective/bitrunning_glitch_fluff/New()
 	var/list/explanation_texts = list(
-		"Execute termination protocol on unauthorized entities.",
-		"Initialize system purge of irregular anomalies.",
-		"Deploy correction algorithms on aberrant code.",
-		"Run debug routine on intruding elements.",
-		"Start elimination procedure for system threats.",
-		"Execute defense routine against non-conformity.",
-		"Commence operation to neutralize intruding scripts.",
-		"Commence clean-up protocol on corrupt data.",
-		"Begin scan for aberrant code for termination.",
-		"Initiate lockdown on all rogue scripts.",
-		"Run integrity check and purge for digital disorder."
+		"对未经授权的实体执行终止协议。",
+		"对不规则异常体启动系统清除。",
+		"对异常代码部署修正算法。",
+		"对入侵元素运行调试例程。",
+		"对系统威胁启动消除程序。",
+		"对不合规范者执行防御例程。",
+		"开始中和入侵脚本的行动。",
+		"对损坏数据启动清理协议。",
+		"开始扫描待终止的异常代码。",
+		"对所有失控脚本启动封锁。",
+		"运行完整性检查并清除数字紊乱。"
 	)
 	explanation_text = pick(explanation_texts)
 	return ..()

@@ -30,7 +30,7 @@
 	return ..(dd, mm, yy, ddd)
 
 /datum/holiday/nth_week/thanksgiving
-	name = "Thanksgiving in the United States"
+	name = "美国的感恩节"
 	timezones = list(TIMEZONE_EST, TIMEZONE_CST, TIMEZONE_MST, TIMEZONE_PST, TIMEZONE_AKST, TIMEZONE_HST)
 	begin_week = 4
 	begin_month = NOVEMBER
@@ -38,22 +38,22 @@
 	holiday_hat = /obj/item/clothing/head/hats/tophat //This is the closest we can get to a pilgrim's hat
 
 /datum/holiday/nth_week/thanksgiving/canada
-	name = "Thanksgiving in Canada"
+	name = "加拿大的感恩节"
 	begin_week = 2
 	begin_month = OCTOBER
 	begin_weekday = MONDAY
 
 /datum/holiday/nth_week/mother
-	name = "Mother's Day"
+	name = "母亲节"
 	begin_week = 2
 	begin_month = MAY
 	begin_weekday = SUNDAY
 
 /datum/holiday/nth_week/mother/greet()
-	return "Happy Mother's Day in most of the Americas, Asia, and Oceania!"
+	return "在美洲大部分地区、亚洲和大洋洲，母亲节快乐！"
 
 /datum/holiday/nth_week/father
-	name = "Father's Day"
+	name = "父亲节"
 	begin_week = 3
 	begin_month = JUNE
 	begin_weekday = SUNDAY
@@ -65,7 +65,7 @@
 	begin_weekday = FRIDAY
 
 /datum/holiday/beer/get_station_name()
-	return pick("Stout","Porter","Lager","Ale","Malt","Bock","Doppelbock","Hefeweizen","Pilsner","IPA","Lite") //I'm sorry for the last one
+	return pick("世涛","波特","拉格","艾尔","麦芽","博克","双倍博克","小麦啤","皮尔森","IPA","淡啤") //I'm sorry for the last one
 
 /datum/holiday/nth_week/moth
 	name = MOTH_WEEK
@@ -83,7 +83,7 @@
 	return ..(dd, mm, yyyy, ddd)
 
 /datum/holiday/nth_week/moth/get_station_name()
-	return pick("Mothball","Lepidopteran","Lightbulb","Moth","Giant Atlas","Twin-spotted Sphynx","Madagascan Sunset","Luna","Death's Head","Emperor Gum","Polyphenus","Oleander Hawk","Io","Rosy Maple","Cecropia","Noctuidae","Giant Leopard","Dysphania Militaris","Garden Tiger")
+	return pick("樟脑丸","鳞翅目","灯泡","飞蛾","巨型王蛾","双斑天蛾","马达加斯加日落蛾","月神蛾","骷髅天蛾","帝王桉天蛾","多音天蚕蛾","夹竹桃天蛾","伊奥蛾","蔷薇枫蛾","天蚕蛾","夜蛾","豹纹蛾","军用灰蛾","园中虎蛾")
 
 /datum/holiday/nth_week/ice_cream
 	name = ICE_CREAM_DAY
@@ -92,4 +92,4 @@
 	begin_weekday = SUNDAY
 
 /datum/holiday/nth_week/ice_cream/get_station_name()
-	return pick("Ice Cream", "Gelato", "Semifreddo", "Cornuto", "Soft Serve", "Cone", "Ice", "Cream", "I Scream", "Parfait", "Straccciatella", "Sherbet", "Snow", "Affogato", "Mochi", "Tartufo", "Sundae", "Neapolitan")
+	return pick("冰淇淋", "意式冰淇淋", "半冻甜点", "角筒", "软冰淇淋", "蛋筒", "冰", "奶油", "冰吼", "帕菲", "碎巧克力冰淇淋", "雪葩", "雪", "阿芙佳朵", "麻薯冰淇淋", "松露冰淇淋", "圣代", "那不勒斯")

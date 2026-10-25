@@ -1,20 +1,20 @@
 /datum/round_event_control/processor_overload
-	name = "Processor Overload"
+	name = "处理器过载"
 	typepath = /datum/round_event/processor_overload
 	weight = 15
 	min_players = 20
 	category = EVENT_CATEGORY_ENGINEERING
-	description = "Emps the telecomm processors, scrambling radio speech. Might blow up a few."
+	description = "对通信处理器施放电磁脉冲，扰乱无线电语音。可能会炸掉几台。"
 
 /datum/round_event/processor_overload
 	announce_when = 1
 
 /datum/round_event/processor_overload/announce(fake)
-	var/alert = pick("Exospheric bubble inbound. Processor overload is likely. Please contact you*%xp25)`6cq-BZZT",
-		"Exospheric bubble inbound. Processor overload is likel*1eta;c5;'1v¬-BZZZT",
-		"Exospheric bubble inbound. Processor ov#MCi46:5.;@63-BZZZZT",
-		"Exospheric bubble inbo'Fz\\k55_@-BZZZZZT",
-		"Exospheri:%£ QCbyj^j</.3-BZZZZZZT",
+	var/alert = pick("外层大气气泡即将抵达。处理器很可能过载。请联系你*%xp25)`6cq-BZZT",
+		"外层大气气泡即将抵达。处理器很可*1eta;c5;'1v¬-BZZZT",
+		"外层大气气泡即将抵达。处理器过#MCi46:5.;@63-BZZZZT",
+		"外层大气气泡即将'Fz\\k55_@-BZZZZZT",
+		"外层大气:%£ QCbyj^j</.3-BZZZZZZT",
 		"!!hy%;f3l7e,<$^-BZZZZZZZT",
 	)
 
@@ -26,7 +26,7 @@
 	// whether it's, say, a tesla zapping tcomms, or some selective
 	// modification of the tcomms bus
 	if(prob(80) || fake)
-		priority_announce(alert, "Anomaly Alert")
+		priority_announce(alert, "异常警报")
 
 /datum/round_event/processor_overload/start()
 	for(var/obj/machinery/telecomms/processor/spinny_thing in GLOB.telecomm_machines)

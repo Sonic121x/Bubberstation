@@ -1,6 +1,6 @@
 /obj/item/clothing/under/ethereal_tunic
-	name = "ethereal tunic"
-	desc = "A simple sleeveless tunic worn over an undersuit, it glows in the dark!"
+	name = "以太人束腰外衣"
+	desc = "一件穿在贴身衣外的简约无袖外衣，在黑暗中会发光！"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	worn_icon = 'icons/mob/clothing/under/ethereal.dmi'
 	icon_state = "/obj/item/clothing/under/ethereal_tunic"
@@ -25,8 +25,8 @@
 	. += emissive_appearance('icons/obj/clothing/under/ethereal.dmi', "eth_tunic_emissive", offset_spokesman = src, alpha = src.alpha)
 
 /obj/item/clothing/under/ethereal_tunic/trailwarden
-	name = "trailwarden tunic"
-	desc = "Farmers and pilgrims would commonly find their clothes permanently stained from years of wading through the mud and bioluminescent flora of Sprout, eventually it became customary to dye clothes to replicate this effect purposefully."
+	name = "守径者外衣"
+	desc = "农夫与朝圣者常会发现，多年涉行于斯普劳特的泥泞与发光植物之间，衣物会被永久染色；久而久之，特意将衣物染成这种效果便成了习俗。"
 	icon_state = "/obj/item/clothing/under/ethereal_tunic/trailwarden"
 	greyscale_colors = "#32a87d"
 
@@ -34,6 +34,6 @@
 	. = ..()
 	if(isethereal(user) && (slot & ITEM_SLOT_ICLOTHING))
 		var/mob/living/carbon/human/ethereal = user
-		to_chat(ethereal, span_notice("[src] gently quivers for a moment as you put it on."))
+		to_chat(ethereal, span_notice("[src] 在你穿上时轻轻颤动了一下。"))
 		set_greyscale(ethereal.dna.species.fixed_mut_color)
 		ethereal.update_worn_undersuit()

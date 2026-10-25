@@ -1,5 +1,5 @@
 /obj/item/clothing/neck
-	name = "necklace"
+	name = "项链"
 	icon = 'icons/obj/clothing/neck.dmi'
 	abstract_type = /obj/item/clothing/neck
 	body_parts_covered = NECK
@@ -31,8 +31,8 @@
 		. += blood_overlay
 
 /obj/item/clothing/neck/bowtie
-	name = "bow tie"
-	desc = "A small neosilk bowtie."
+	name = "蝶结领带"
+	desc = "一条小巧的新丝蝶结领带。"
 	inhand_icon_state = "" //no inhands
 	w_class = WEIGHT_CLASS_SMALL
 	custom_price = PAYCHECK_CREW
@@ -45,8 +45,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/bowtie/rainbow
-	name = "rainbow bow tie"
-	desc = "An extremely large neosilk rainbow-colored bowtie."
+	name = "彩虹蝶结领带"
+	desc = "一条极大的新丝彩虹色蝶结领带。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bowtie_rainbow"
 	post_init_icon_state = null
@@ -55,8 +55,8 @@
 	greyscale_colors = null
 
 /obj/item/clothing/neck/tie
-	name = "slick tie"
-	desc = "A neosilk tie."
+	name = "光面领带"
+	desc = "一条新丝领带。"
 	inhand_icon_state = "" //no inhands
 	alternate_worn_layer = LOW_NECK_LAYER // So that it renders below suit jackets, MODsuits, etc
 	w_class = WEIGHT_CLASS_SMALL
@@ -83,18 +83,18 @@
 
 /obj/item/clothing/neck/tie/examine(mob/user)
 	. = ..()
-	. += span_notice("The tie can be worn above or below your suit. Alt-Right-click to toggle.")
+	. += span_notice("领带可以戴在西装外面或里面。按住 Alt 右键切换。")
 	if(clip_on)
-		. += span_notice("Looking closely, you can see that it's actually a cleverly disguised clip-on.")
+		. += span_notice("仔细一看，你会发现这其实是一条伪装巧妙的夹式领带。")
 	else if(!is_tied)
-		. += span_notice("The tie can be tied with Alt-Click.")
+		. += span_notice("按住 Alt 左键可以系好领带。")
 	else
-		. += span_notice("The tie can be untied with Alt-Click.")
+		. += span_notice("按住 Alt 左键可以解开领带。")
 
 /obj/item/clothing/neck/tie/click_alt(mob/user)
 	if(clip_on)
 		return NONE
-	to_chat(user, span_notice("You concentrate as you begin [is_tied ? "untying" : "tying"] [src]..."))
+	to_chat(user, span_notice("你集中注意力，开始[is_tied ? "解开" : "系好"] [src]……"))
 	var/tie_timer_actual = tie_timer
 	// Mirrors give you a boost to your tying speed. I realize this stacks and I think that's hilarious.
 	for(var/obj/structure/mirror/reflection in view(2, user))
@@ -104,17 +104,17 @@
 		tie_timer_actual *= 0.5
 	// Tie/Untie our tie
 	if(!do_after(user, tie_timer_actual))
-		to_chat(user, span_notice("Your fingers fumble away from [src] as your concentration breaks."))
+		to_chat(user, span_notice("你的注意力一断，手指便从 [src] 上滑开了。"))
 		return CLICK_ACTION_BLOCKING
 	// Clumsy & Dumb people have trouble tying their ties.
 	if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))
-		to_chat(user, span_notice("You just can't seem to get a proper grip on [src]!"))
+		to_chat(user, span_notice("你就是没法好好抓住 [src]！"))
 		return CLICK_ACTION_BLOCKING
 	// Success!
 	is_tied = !is_tied
 	user.visible_message(
-		span_notice("[user] adjusts [user.p_their()] tie[HAS_TRAIT(user, TRAIT_BALD) ? "" : " and runs a hand across [user.p_their()] head"]."),
-		span_notice("You successfully [is_tied ? "tied" : "untied"] [src]!"),
+		span_notice("[user] 整理了一下领带[HAS_TRAIT(user, TRAIT_BALD) ? "" : "，并用手抚过自己的头顶"]。"),
+		span_notice("你成功地[is_tied ? "系好" : "解开"]了 [src]！"),
 	)
 	update_appearance(UPDATE_ICON)
 	user.update_clothing(ITEM_SLOT_NECK)
@@ -123,7 +123,7 @@
 /obj/item/clothing/neck/tie/click_alt_secondary(mob/user)
 	alternate_worn_layer = (alternate_worn_layer == initial(alternate_worn_layer) ? NONE : initial(alternate_worn_layer))
 	user.update_clothing(ITEM_SLOT_NECK)
-	balloon_alert(user, "wearing [alternate_worn_layer == initial(alternate_worn_layer) ? "below" : "above"] suits")
+	balloon_alert(user, "戴在西装[alternate_worn_layer == initial(alternate_worn_layer) ? "里面" : "外面"]")
 
 /obj/item/clothing/neck/tie/update_icon()
 	. = ..()
@@ -143,13 +143,13 @@
 
 /obj/item/clothing/neck/tie/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_RMB] = "Wear [alternate_worn_layer == initial(alternate_worn_layer) ? "above" : "below"] suit"
+	context[SCREENTIP_CONTEXT_ALT_RMB] = "戴在西装[alternate_worn_layer == initial(alternate_worn_layer) ? "外面" : "里面"]"
 	if(clip_on)
 		return CONTEXTUAL_SCREENTIP_SET
 	if(is_tied)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Untie"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "解开"
 	else
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Tie"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "系好"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/clothing/neck/tie/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
@@ -164,13 +164,13 @@
 		. += undershirt.get_accessory_overlays()
 
 /obj/item/clothing/neck/tie/blue
-	name = "blue tie"
+	name = "蓝色领带"
 	icon_state = "/obj/item/clothing/neck/tie/blue"
 	post_init_icon_state = "tie_greyscale_untied"
 	greyscale_colors = "#5275b6ff"
 
 /obj/item/clothing/neck/tie/red
-	name = "red tie"
+	name = "红色领带"
 	icon_state = "/obj/item/clothing/neck/tie/red"
 	post_init_icon_state = "tie_greyscale_untied"
 	greyscale_colors = "#c23838ff"
@@ -180,7 +180,7 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/red/hitman
-	desc = "This is a $47,000 custom-tailored Référence Du Tueur À Gages tie. The clot is from neosilkworms raised at a tie microfarm in Cookwell, from a secret pattern passed down by monk tailors since the twenty-first century!"
+	desc = "这是一条价值 47,000 美元的 Référence Du Tueur À Gages 定制领带。料子取自库克韦尔一处领带微型农场饲养的新丝蚕，花纹则是自二十一世纪起由僧侣裁缝代代相传的秘密织法！"
 	tie_timer = 1 SECONDS // You're a professional.
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
@@ -189,7 +189,7 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/black
-	name = "black tie"
+	name = "黑色领带"
 	icon_state = "/obj/item/clothing/neck/tie/black"
 	post_init_icon_state = "tie_greyscale_untied"
 	greyscale_colors = "#151516ff"
@@ -199,8 +199,8 @@
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/neck/tie/horrible
-	name = "horrible tie"
-	desc = "A neosilk tie. This one is disgusting."
+	name = "糟糕领带"
+	desc = "一条新丝领带。这一条真恶心。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "horribletie"
 	post_init_icon_state = null
@@ -210,8 +210,8 @@
 	greyscale_colors = null
 
 /obj/item/clothing/neck/robe_cape
-	name = "robe cape"
-	desc = "A comfortable cape, draped down your back and held around your neck with a brooch."
+	name = "长袍披风"
+	desc = "一件舒适的披风，从背后垂下，用胸针固定在颈间。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/robe_cape"
 	post_init_icon_state = "robe_cape"
@@ -228,8 +228,8 @@
 	AddElement(/datum/element/surgery_aid, "cape")
 
 /obj/item/clothing/neck/tie/detective
-	name = "loose tie"
-	desc = "A loosely tied necktie, a perfect accessory for the over-worked detective."
+	name = "松垮领带"
+	desc = "一条松松系着的领带，对过度劳累的侦探来说再合适不过。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "detective"
 	post_init_icon_state = null
@@ -239,8 +239,8 @@
 	greyscale_colors = null
 
 /obj/item/clothing/neck/stethoscope
-	name = "stethoscope"
-	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	name = "听诊器"
+	desc = "一台过时的医疗器械，用于聆听人体的声音。它还能让你看起来像是个内行。"
 	icon_state = "stethoscope"
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 
@@ -249,7 +249,7 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -3) //FISH DOCTOR?!
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] puts \the [src] to [user.p_their()] chest! It looks like [user.p_they()] won't hear much!"))
+	user.visible_message(span_suicide("[user] 把 [src] 贴在自己胸口！看来是什么也听不到了！"))
 	return OXYLOSS
 
 /obj/item/clothing/neck/stethoscope/attack(mob/living/target, mob/living/user)
@@ -277,12 +277,12 @@
 	//determine what specific action we're taking
 	switch (body_part)
 		if(BODY_ZONE_CHEST)//Listening to the chest
-			user.visible_message(span_notice("[user] places [src] against [carbon_patient]'s [body_part] and listens attentively."), ignored_mobs = user)
+			user.visible_message(span_notice("[user] 把 [src] 贴在 [carbon_patient] 的 [body_part] 处，专注地听着。"), ignored_mobs = user)
 			if(HAS_TRAIT(user, TRAIT_DEAF))
-				to_chat(user, span_notice("You place [src] against [carbon_patient]'s [body_part]. Fat load of good it does you though, since you can't hear."))
+				to_chat(user, span_notice("你把 [src] 贴在 [carbon_patient] 的 [body_part] 处。可惜你听不见，这么做毫无用处。"))
 				return
 			else
-				render_list += span_info("You place [src] against [carbon_patient]'s [body_part]:\n")
+				render_list += span_info("你把 [src] 贴在 [carbon_patient] 的 [body_part] 处：\n")
 
 			//assess breathing
 			var/lung_noises = TRUE
@@ -292,91 +292,91 @@
 				|| (HAS_TRAIT(carbon_patient, TRAIT_NOBREATH))\
 				|| carbon_patient.failed_last_breath \
 				|| carbon_patient.losebreath)//If pt is dead or otherwise not breathing
-				render_list += "<span class='danger ml-1'>[target.p_Theyre()] not breathing!</span>\n"
+				render_list += "<span class='danger ml-1'>对方没有呼吸了！</span>\n"
 				lung_noises = FALSE
 
 			else if(lungs.damage > 10)//if breathing, check for lung damage
-				render_list += "<span class='danger ml-1'>You hear fluid in [target.p_their()] lungs!</span>\n"
+				render_list += "<span class='danger ml-1'>你听到对方肺里有液体声！</span>\n"
 			else if(oxy_loss > 10)//if they have suffocation damage
-				render_list += "<span class='danger ml-1'>[target.p_Theyre()] breathing heavily!</span>\n"
+				render_list += "<span class='danger ml-1'>对方呼吸急促！</span>\n"
 			else
-				render_list += "<span class='notice ml-1'>[target.p_Theyre()] breathing normally.</span>\n"//they're okay :D
+				render_list += "<span class='notice ml-1'>对方呼吸正常。</span>\n"//they're okay :D
 			if(lung_noises)
 				render_list += "<span class='notice ml-1'>[lungs.hear_breath_noise(user)]</span>\n"
 			//assess heart
 			if(body_part == BODY_ZONE_CHEST)//if we're listening to the chest
 				if(isnull(heart) || !heart.is_beating() || carbon_patient.stat == DEAD)
-					render_list += "<span class='danger ml-1'>You don't hear a heartbeat!</span>\n"//they're dead or their heart isn't beating
+					render_list += "<span class='danger ml-1'>你听不到心跳！</span>\n"//they're dead or their heart isn't beating
 					heart_noises = FALSE
 				else if(having_heart_attack)
-					render_list += "<span class='danger ml-1'>You hear a rapid, irregular heartbeat.</span>\n"
+					render_list += "<span class='danger ml-1'>你听到急促而不规律的心跳。</span>\n"
 				else if(heart.damage > 10 || carbon_patient.get_blood_volume(apply_modifiers = TRUE) <= BLOOD_VOLUME_OKAY)
-					render_list += "<span class='danger ml-1'>You hear a weak heartbeat.</span>\n"//their heart is damaged, or they have critical blood
+					render_list += "<span class='danger ml-1'>你听到微弱的心跳。</span>\n"//their heart is damaged, or they have critical blood
 				else
-					render_list += "<span class='notice ml-1'>You hear a healthy heartbeat.</span>\n"//they're okay :D
+					render_list += "<span class='notice ml-1'>你听到健康的心跳。</span>\n"//they're okay :D
 				if(heart_noises)
 					render_list += "<span class='notice ml-1'>[heart.hear_beat_noise(user)]</span>\n"
 
 		if(BODY_ZONE_PRECISE_GROIN)//If we're targeting the groin
-			render_list += span_info("You carefully press down on [carbon_patient]'s abdomen:\n")
-			user.visible_message(span_notice("[user] presses their hands against [carbon_patient]'s abdomen."), ignored_mobs = user)
+			render_list += span_info("你小心翼翼地按压 [carbon_patient] 的腹部：\n")
+			user.visible_message(span_notice("[user] 把双手按在 [carbon_patient] 的腹部。"), ignored_mobs = user)
 
 			//assess abdominal organs
 			var/appendix_okay = TRUE
 			var/liver_okay = TRUE
 			if(!liver)//sanity check, ensure the patient actually has a liver
-				render_list += "<span class='danger ml-1'>You can't feel anything where [target.p_their()] liver would be.</span>\n"
+				render_list += "<span class='danger ml-1'>你在对方肝脏所在的位置摸不到任何东西。</span>\n"
 				liver_okay = FALSE
 			else
 				if(liver.damage > 10)
-					render_list += "<span class='danger ml-1'>[target.p_Their()] liver feels firm.</span>\n"//their liver is damaged
+					render_list += "<span class='danger ml-1'>对方的肝脏摸起来很硬。</span>\n"//their liver is damaged
 					liver_okay = FALSE
 			if(!appendix)//sanity check, ensure the patient actually has an appendix
-				render_list += "<span class='danger ml-1'>You can't feel anything where [target.p_their()] appendix would be.</span>\n"
+				render_list += "<span class='danger ml-1'>你在对方阑尾所在的位置摸不到任何东西。</span>\n"
 				appendix_okay = FALSE
 			else
 				if(appendix.damage > 10 && !IS_UNCONSCIOUS_OR_CRIT(carbon_patient))
-					render_list += "<span class='danger ml-1'>[target] screams when you lift your hand from [target.p_their()] appendix!</span>\n"//scream if their appendix is damaged and they're awake
+					render_list += "<span class='danger ml-1'>你把手从 [target] 的阑尾处移开时，[target] 尖叫起来！</span>\n"//scream if their appendix is damaged and they're awake
 					target.emote("scream")
 					appendix_okay = FALSE
 			if(liver_okay && appendix_okay)//if they have all their organs and have no detectable damage
-				render_list += "<span class='notice ml-1'>You don't find anything abnormal.</span>\n"//they're okay :D
+				render_list += "<span class='notice ml-1'>你没有发现任何异常。</span>\n"//they're okay :D
 
 		if(BODY_ZONE_PRECISE_EYES)
-			balloon_alert(user, "can't do that!")
+			balloon_alert(user, "不能这么做！")
 			return
 
 		if(BODY_ZONE_PRECISE_MOUTH)
-			balloon_alert(user, "can't do that!")
+			balloon_alert(user, "不能这么做！")
 			return
 
 		else//targeting an extremity or the head
 			if(body_part ==  BODY_ZONE_HEAD)
-				render_list += span_info("You carefully press your fingers to [carbon_patient]'s neck:\n")
-				user.visible_message(span_notice("[user] presses their fingers against [carbon_patient]'s neck."), ignored_mobs = user)
+				render_list += span_info("你小心地把手指按在 [carbon_patient] 的颈部：\n")
+				user.visible_message(span_notice("[user] 把手指按在 [carbon_patient] 的颈部。"), ignored_mobs = user)
 			else
-				render_list += span_info("You carefully press your fingers to [carbon_patient]'s [body_part]:\n")
-				user.visible_message(span_notice("[user] presses their fingers against [carbon_patient]'s [body_part]."), ignored_mobs = user)
+				render_list += span_info("你小心地把手指按在 [carbon_patient] 的 [body_part] 处：\n")
+				user.visible_message(span_notice("[user] 把手指按在 [carbon_patient] 的 [body_part] 处。"), ignored_mobs = user)
 
 			var/cached_blood_volume = carbon_patient.get_blood_volume(apply_modifiers = TRUE)
 
 			//assess pulse (heart & blood level)
 			if(isnull(heart) || !heart.is_beating() || cached_blood_volume <= BLOOD_VOLUME_OKAY || carbon_patient.stat == DEAD)
-				render_list += "<span class='danger ml-1'>You can't find a pulse!</span>\n"//they're dead, their heart isn't beating, or they have critical blood
+				render_list += "<span class='danger ml-1'>你找不到脉搏！</span>\n"//they're dead, their heart isn't beating, or they have critical blood
 			else
 				if(having_heart_attack)
-					heart_strength = span_danger("irregular")
+					heart_strength = span_danger("不规律")
 				else if(heart.damage > 10)
-					heart_strength = span_danger("weak")//their heart is damaged
+					heart_strength = span_danger("微弱")//their heart is damaged
 				else
-					heart_strength = span_notice("regular")//they're okay :D
+					heart_strength = span_notice("规律")//they're okay :D
 
 				if((cached_blood_volume <= BLOOD_VOLUME_SAFE && cached_blood_volume > BLOOD_VOLUME_OKAY) || having_heart_attack)
-					pulse_pressure = span_danger("thready")//low blood
+					pulse_pressure = span_danger("细弱")//low blood
 				else
-					pulse_pressure = span_notice("strong")//they're okay :D
+					pulse_pressure = span_notice("有力")//they're okay :D
 
-				render_list += "<span class='notice ml-1'>[target.p_Their()] pulse is [pulse_pressure] and [heart_strength].</span>\n"
+				render_list += "<span class='notice ml-1'>对方的脉搏[heart_strength]，[pulse_pressure]。</span>\n"
 
 	//display our packaged information in an examine block for easy reading
 	to_chat(user, boxed_message(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
@@ -386,8 +386,8 @@
 ///////////
 
 /obj/item/clothing/neck/scarf
-	name = "scarf"
-	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
+	name = "围巾"
+	desc = "一条时尚的围巾。对于有敏锐时尚感的人，以及那些受不了脖子被冷风吹的人来说，都是完美的冬季配饰。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/scarf"
 	post_init_icon_state = "scarf"
@@ -399,62 +399,62 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/scarf/black
-	name = "black scarf"
+	name = "黑色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/black"
 	greyscale_colors = "#4A4A4B#4A4A4B"
 
 /obj/item/clothing/neck/scarf/pink
-	name = "pink scarf"
+	name = "粉色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/pink"
 	greyscale_colors = "#F699CD#F699CD"
 
 /obj/item/clothing/neck/scarf/red
-	name = "red scarf"
+	name = "红色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/red"
 	greyscale_colors = "#D91414#D91414"
 
 /obj/item/clothing/neck/scarf/green
-	name = "green scarf"
+	name = "绿色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/green"
 	greyscale_colors = "#5C9E54#5C9E54"
 
 /obj/item/clothing/neck/scarf/darkblue
-	name = "dark blue scarf"
+	name = "深蓝色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/darkblue"
 	greyscale_colors = "#1E85BC#1E85BC"
 
 /obj/item/clothing/neck/scarf/purple
-	name = "purple scarf"
+	name = "紫色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/purple"
 	greyscale_colors = "#9557C5#9557C5"
 
 /obj/item/clothing/neck/scarf/yellow
-	name = "yellow scarf"
+	name = "黄色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/yellow"
 	greyscale_colors = "#E0C14F#E0C14F"
 
 /obj/item/clothing/neck/scarf/orange
-	name = "orange scarf"
+	name = "橙色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/orange"
 	greyscale_colors = "#C67A4B#C67A4B"
 
 /obj/item/clothing/neck/scarf/cyan
-	name = "cyan scarf"
+	name = "青色围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/cyan"
 	greyscale_colors = "#54A3CE#54A3CE"
 
 /obj/item/clothing/neck/scarf/zebra
-	name = "zebra scarf"
+	name = "斑马纹围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/zebra"
 	greyscale_colors = "#333333#EEEEEE"
 
 /obj/item/clothing/neck/scarf/christmas
-	name = "christmas scarf"
+	name = "圣诞围巾"
 	icon_state = "/obj/item/clothing/neck/scarf/christmas"
 	greyscale_colors = "#038000#960000"
 
 /obj/item/clothing/neck/large_scarf
-	name = "large scarf"
+	name = "大围巾"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/large_scarf"
 	post_init_icon_state = "large_scarf"
@@ -466,29 +466,29 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/large_scarf/red
-	name = "large red scarf"
+	name = "红色大围巾"
 	icon_state = "/obj/item/clothing/neck/large_scarf/red"
 	greyscale_colors = "#8A2908#A06D66"
 
 /obj/item/clothing/neck/large_scarf/green
-	name = "large green scarf"
+	name = "绿色大围巾"
 	icon_state = "/obj/item/clothing/neck/large_scarf/green"
 	greyscale_colors = "#525629#888674"
 
 /obj/item/clothing/neck/large_scarf/blue
-	name = "large blue scarf"
+	name = "蓝色大围巾"
 	icon_state = "/obj/item/clothing/neck/large_scarf/blue"
 	greyscale_colors = "#20396C#6F7F91"
 
 /obj/item/clothing/neck/large_scarf/syndie
-	name = "suspicious looking striped scarf"
-	desc = "Ready to operate."
+	name = "可疑的条纹围巾"
+	desc = "随时可以行动。"
 	icon_state = "/obj/item/clothing/neck/large_scarf/syndie"
 	greyscale_colors = "#B40000#545350"
 	armor_type = /datum/armor/large_scarf_syndie
 
 /obj/item/clothing/neck/infinity_scarf
-	name = "infinity scarf"
+	name = "无限围巾"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/infinity_scarf"
 	post_init_icon_state = "infinity_scarf"
@@ -500,8 +500,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/neck/petcollar
-	name = "pet collar"
-	desc = "It's for pets."
+	name = "宠物项圈"
+	desc = "这是给宠物用的。"
 	icon_state = "petcollar"
 	var/tagname = null
 	var/human_wearable = FALSE
@@ -521,7 +521,7 @@
 	human_wearable = TRUE
 
 /obj/item/clothing/neck/petcollar/attack_self(mob/user)
-	tagname = sanitize_name(tgui_input_text(user, "Would you like to change the name on the tag?", "Pet Naming", "Spot", MAX_NAME_LEN))
+	tagname = sanitize_name(tgui_input_text(user, "你想更改牌子上的名字吗？", "宠物命名", "点点", MAX_NAME_LEN))
 	if (!tagname || !length(tagname))
 		name = initial(name)
 		tagname = null
@@ -529,7 +529,7 @@
 	name = "[initial(name)] - [tagname]"
 
 /obj/item/clothing/neck/petcollar/wearable/cyber
-	desc = "You wear the tie, or you wear this. Your choice."
+	desc = "要么戴领带，要么戴这个。你自己选。"
 	icon_state = "petcollar_cyber"
 
 //////////////
@@ -537,13 +537,13 @@
 //////////////
 
 /obj/item/clothing/neck/necklace/dope
-	name = "gold necklace"
-	desc = "Damn, it feels good to be a gangster."
+	name = "金项链"
+	desc = "靠，当黑帮的感觉真好。"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
 
 /obj/item/clothing/neck/necklace/dope/merchant
-	desc = "Don't ask how it works, the proof is in the holochips!"
+	desc = "别问它怎么运作的，全息芯片就是证明！"
 	/// scales the amount received in case an admin wants to emulate taxes/fees.
 	var/profit_scaling = 1
 	/// toggles between sell (TRUE) and get price post-fees (FALSE)
@@ -552,7 +552,7 @@
 /obj/item/clothing/neck/necklace/dope/merchant/attack_self(mob/user)
 	. = ..()
 	selling = !selling
-	to_chat(user, span_notice("[src] has been set to [selling ? "'Sell'" : "'Get Price'"] mode."))
+	to_chat(user, span_notice("[src] 已设置为[selling ? "“出售”" : "“查价”"]模式。"))
 
 /obj/item/clothing/neck/necklace/dope/merchant/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/datum/export_report/ex = export_item_and_contents(interacting_with, delete_unsold = selling, dry_run = !selling)
@@ -563,17 +563,17 @@
 	if(price)
 		var/true_price = round(price*profit_scaling)
 		var/fee_display = round(price-true_price)
-		to_chat(user, span_notice("[selling ? "Sold" : "Getting the price of"] [interacting_with], value: <b>[true_price]</b> [MONEY_NAME][interacting_with.contents.len ? " (exportable contents included)" : ""].[profit_scaling < 1 && selling ? "<b>[fee_display]</b> [MONEY_NAME_AUTOPURAL(fee_display)] taken as processing fee\s." : ""]"))
+		to_chat(user, span_notice("[selling ? "已出售" : "正在查询价格："] [interacting_with]，价值：<b>[true_price]</b> [MONEY_NAME][interacting_with.contents.len ? "（含可出口内容物）" : ""]。[profit_scaling < 1 && selling ? "已收取 <b>[fee_display]</b> [MONEY_NAME_AUTOPURAL(fee_display)] 作为处理费。" : ""]"))
 		if(selling)
 			new /obj/item/holochip(get_turf(user), true_price)
 	else
-		to_chat(user, span_warning("There is no export value for [interacting_with] or any items within it."))
+		to_chat(user, span_warning("[interacting_with] 及其内部的任何物品都没有出口价值。"))
 
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/clothing/neck/beads
-	name = "plastic bead necklace"
-	desc = "A cheap, plastic bead necklace. Show team spirit! Collect them! Throw them away! The possibilities are endless!"
+	name = "塑料珠项链"
+	desc = "一条廉价的塑料珠项链。展现团队精神！收集它们！扔掉它们！可能性无穷无尽！"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "beads"
 	color = "#ffffff"
@@ -585,8 +585,8 @@
 	color = color = pick("#ff0077","#d400ff","#2600ff","#00ccff","#00ff2a","#e5ff00","#ffae00","#ff0000", "#ffffff")
 
 /obj/item/clothing/neck/wreath
-	name = "\improper watcher wreath"
-	desc = "An elaborate crown made from the twisted flesh and sinew of a watcher. Wearing it makes you feel like you have eyes in the back of your head."
+	name = "\improper 守望者花环"
+	desc = "一顶用守望者扭曲的血肉与筋腱制成的精致王冠。戴上它，你会觉得自己后脑勺长了眼睛。"
 	icon_state = "watcher_wreath"
 	worn_y_offset = 10
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER
@@ -599,13 +599,13 @@
 		. += emissive_appearance(icon_file, "wreath_emissive", src, alpha = src.alpha)
 
 /obj/item/clothing/neck/wreath/icewing
-	name = "\improper icewing wreath"
-	desc = "An elaborate crown made from the twisted flesh and sinew of an icewing watcher. You feel shivers down your spine just from being near it."
+	name = "\improper 冰翼花环"
+	desc = "一顶用冰翼守望者扭曲的血肉与筋腱制成的精致王冠。光是靠近它，你就感到脊背发凉。"
 	icon_state = "icewing_wreath"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/clothing/neck/wreath/magmawing
-	name = "\improper magmawing wreath"
-	desc = "An elaborate crown made from the twisted flesh and sinew of an magmawing watcher. Wearing it sets your heart and skin ablaze."
+	name = "\improper 熔岩翼花环"
+	desc = "一顶用熔岩翼守望者扭曲的血肉与筋腱制成的精致王冠。戴上它，你的心脏与皮肤都会燃烧起来。"
 	icon_state = "magmawing_wreath"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 2)

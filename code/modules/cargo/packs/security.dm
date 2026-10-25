@@ -4,9 +4,9 @@
 	crate_type = /obj/structure/closet/crate/secure/gear
 
 /datum/supply_pack/security/ammo
-	name = "Ammo Crate"
-	desc = "Contains three boxes of beanbag shotgun shells, three boxes \
-		of rubbershot shotgun shells and one of each special .38 speedloaders."
+	name = "弹药板条箱"
+	desc = "内含三盒豆袋弹霰弹、三盒橡胶弹霰弹，\
+		以及各一枚特制 .38 快速装弹器。"
 	cost = CARGO_CRATE_VALUE * 8
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/beanbag = 3,
@@ -15,37 +15,37 @@
 					/obj/item/ammo_box/speedloader/c38/hotshot,
 					/obj/item/ammo_box/speedloader/c38/iceblox,
 				)
-	crate_name = "ammo crate"
+	crate_name = "弹药板条箱"
 
 /datum/supply_pack/security/armor
-	name = "Armor Crate"
-	desc = "Three vests of well-rounded, decently-protective armor."
+	name = "护甲板条箱"
+	desc = "三件防护全面、防护性尚可的护甲背心。"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/clothing/suit/armor/vest = 3)
-	crate_name = "armor crate"
+	crate_name = "护甲板条箱"
 
 /datum/supply_pack/security/modsuit_plating
-	name = "Security MOD plating"
-	desc = "A single security MOD suit plating"
+	name = "安保型 MOD 装甲板"
+	desc = "一套安保型 MOD 外骨骼装甲板。"
 	cost = CARGO_CRATE_VALUE
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/mod/construction/plating/security)
-	crate_name = "MOD plating crate"
+	crate_name = "MOD 装甲板板条箱"
 
 /datum/supply_pack/security/disabler
-	name = "Disabler Crate"
-	desc = "Three stamina-draining disabler weapons."
+	name = "瘫痪枪板条箱"
+	desc = "三把消耗体力的瘫痪枪。"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/gun/energy/disabler = 3)
-	crate_name = "disabler crate"
+	crate_name = "瘫痪枪板条箱"
 
 /datum/supply_pack/security/forensics
-	name = "Forensics Crate"
-	desc = "Stay hot on the criminal's heels with Nanotrasen's Detective Essentials™. \
-		Contains a forensics scanner, six evidence bags, camera, special board for evidences, tape recorder, stick of chalk, \
-		and of course, a fedora."
+	name = "法证板条箱"
+	desc = "用纳米传讯的侦探必备套装™ 紧追罪犯不放。内含法证扫描仪、六个证物袋、\
+		相机、专用证物板、录音机、粉笔，\
+		当然还有一顶软呢帽。"
 	cost = CARGO_CRATE_VALUE * 2.5
 	access_view = ACCESS_MORGUE
 	contains = list(/obj/item/detective_scanner,
@@ -56,28 +56,28 @@
 					/obj/item/clothing/head/fedora/det_hat,
 					/obj/item/wallframe/detectiveboard
 				)
-	crate_name = "forensics crate"
+	crate_name = "法证板条箱"
 
 /datum/supply_pack/security/helmets
-	name = "Helmets Crate"
-	desc = "Contains three standard-issue brain buckets."
+	name = "头盔板条箱"
+	desc = "内含三顶标准配发的头盔。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/head/helmet/sec = 3)
-	crate_name = "helmet crate"
+	crate_name = "头盔板条箱"
 
 /datum/supply_pack/security/securitybarriers
-	name = "Security Barrier Grenades"
-	desc = "Stem the tide with four Security Barrier grenades."
+	name = "安保屏障手榴弹"
+	desc = "用四枚安保屏障手榴弹挡住人潮。"
 	access_view = ACCESS_BRIG
 	contains = list(/obj/item/grenade/barrier = 4)
 	cost = CARGO_CRATE_VALUE * 2
-	crate_name = "security barriers crate"
+	crate_name = "安保屏障板条箱"
 
 /datum/supply_pack/security/securityclothes
-	name = "Security Clothing Crate"
-	desc = "Contains appropriate outfits for the station's private security force. \
-		Contains outfits for the Warden, Head of Security, and two Security Officers. \
-		Each outfit comes with a rank-appropriate jumpsuit, suit, and beret."
+	name = "安保服装板条箱"
+	desc = "内含适合空间站私人安保部队的服装。\
+		包括典狱长、安保主管和两名安保官的服装。\
+		每套服装都配有与其军衔相称的连体服、外套和贝雷帽。"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/clothing/under/rank/security/officer/formal = 2,
@@ -90,20 +90,20 @@
 					/obj/item/clothing/suit/jacket/hos/blue,
 					/obj/item/clothing/head/hats/hos/beret/navyhos,
 				)
-	crate_name = "security clothing crate"
+	crate_name = "安保服装板条箱"
 
 /datum/supply_pack/security/stingpack
-	name = "Stingbang Grenade Pack"
-	desc = "Contains five \"stingbang\" grenades, perfect for stopping \
-		riots and playing morally unthinkable pranks."
+	name = "刺痛弹包"
+	desc = "内含五枚“刺痛弹”，非常适合制止暴乱，\
+		以及进行道德上难以想象的恶作剧。"
 	cost = CARGO_CRATE_VALUE * 5
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/stingbangs)
-	crate_name = "stingbang grenade pack crate"
+	crate_name = "刺痛弹包板条箱"
 
 /datum/supply_pack/security/supplies
-	name = "Security Supplies Crate"
-	desc = "Contains seven flashbangs, seven teargas grenades, six flashes, and seven handcuffs."
+	name = "安保补给板条箱"
+	desc = "内含七枚闪光弹、七枚催泪瓦斯手榴弹、六支闪光棒和七副手铐。"
 	cost = CARGO_CRATE_VALUE * 3.5
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/flashbangs,
@@ -111,65 +111,65 @@
 					/obj/item/storage/box/flashes,
 					/obj/item/storage/box/handcuffs,
 				)
-	crate_name = "security supply crate"
+	crate_name = "安保补给板条箱"
 
 /datum/supply_pack/security/maintenance_kits
-	name = "Gun Maintenance Kits"
-	desc = "Three gun maintenance kits for the repair and maintenance of a firearm."
+	name = "枪械保养套件"
+	desc = "三套用于修理和保养枪械的枪械保养套件。"
 	access_view = ACCESS_BRIG
 	contains = list(/obj/item/gun_maintenance_supplies = 3)
 	cost = CARGO_CRATE_VALUE * 2
-	crate_name = "gun maintenance kit crate"
+	crate_name = "枪械保养套件板条箱"
 
 /datum/supply_pack/security/firingpins
-	name = "Standard Firing Pins Crate"
-	desc = "Upgrade your arsenal with 10 standard firing pins."
+	name = "标准击发撞针板条箱"
+	desc = "用十枚标准击发撞针升级你的武库。"
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/firingpins = 2)
-	crate_name = "firing pins crate"
+	crate_name = "击发撞针板条箱"
 
 /datum/supply_pack/security/firingpins/paywall
-	name = "Paywall Firing Pins Crate"
-	desc = "Specialized firing pins with a built-in configurable paywall."
+	name = "付费墙击发撞针板条箱"
+	desc = "内置可配置付费墙的专用击发撞针。"
 	cost = CARGO_CRATE_VALUE * 2
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/firingpins/paywall = 2)
-	crate_name = "paywall firing pins crate"
+	crate_name = "付费墙击发撞针板条箱"
 
 /datum/supply_pack/security/justiceinbound
-	name = "Standard Justice Enforcer Crate"
-	desc = "This is it. The Bee's Knees. The Creme of the Crop. The Pick of the Litter. \
-		The best of the best of the best. The Crown Jewel of Nanotrasen. \
-		The Alpha and the Omega of security headwear. Guaranteed to strike fear into the hearts \
-		of each and every criminal aboard the station. Also comes with a security gasmask."
+	name = "标准正义执法者板条箱"
+	desc = "就是它。无与伦比。出类拔萃。百里挑一。\
+		精英中的精英中的精英。纳米传讯的皇冠明珠。\
+		安保头饰的阿尔法与欧米伽。保证能让空间站上每一名罪犯心生恐惧。\
+		另附一具安保防毒面具。"
 	cost = CARGO_CRATE_VALUE * 6 //justice comes at a price. An expensive, noisy price.
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/clothing/head/helmet/toggleable/justice,
 					/obj/item/clothing/mask/gas/sechailer,
 				)
-	crate_name = "security clothing crate"
+	crate_name = "安保服装板条箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/security/baton
-	name = "Stun Batons Crate"
-	desc = "Arm the Civil Protection Forces with three stun batons. Batteries included."
+	name = "电击棍板条箱"
+	desc = "用三根电击棍武装公民保护部队。含电池。"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/melee/baton/security/loaded = 3)
-	crate_name = "stun baton crate"
+	crate_name = "电击棍板条箱"
 
 /datum/supply_pack/security/wall_flash
-	name = "Wall-Mounted Flash Crate"
-	desc = "Contains four wall-mounted flashes."
+	name = "壁挂式闪光灯板条箱"
+	desc = "内含四支壁挂式闪光灯。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/box/wall_flash = 4)
-	crate_name = "wall-mounted flash crate"
+	crate_name = "壁挂式闪光灯板条箱"
 
 /datum/supply_pack/security/constable
-	name = "Traditional Equipment Crate"
-	desc = "Spare equipment found in a warehouse. Contains a constable's outfit, \
-		whistle, and conversion kit."
+	name = "传统装备板条箱"
+	desc = "在仓库里找到的备用装备。内含一套巡警制服、\
+		一只哨子和一套改装套件。"
 	cost = CARGO_CRATE_VALUE * 2.2
 	order_flags = ORDER_CONTRABAND
 	contains = list(/obj/item/clothing/under/rank/security/constable,
@@ -178,7 +178,7 @@
 					/obj/item/clothing/mask/whistle,
 					/obj/item/conversion_kit,
 				)
-	crate_name = "traditional equipment crate"
+	crate_name = "传统装备板条箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /// Armory packs
@@ -190,180 +190,180 @@
 	crate_type = /obj/structure/closet/crate/secure/weapon
 
 /datum/supply_pack/security/armory/bulletarmor
-	name = "Bulletproof Armor Crate"
-	desc = "Contains three sets of bulletproof armor. Guaranteed to reduce a bullet's \
-		stopping power by over half."
+	name = "防弹护甲板条箱"
+	desc = "内含三套防弹护甲。\
+		保证将子弹的停止作用削减一半以上。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/suit/armor/bulletproof = 3)
-	crate_name = "bulletproof armor crate"
+	crate_name = "防弹护甲板条箱"
 
 /datum/supply_pack/security/armory/bullethelmets
-	name = "Bulletproof Helmets Crate"
-	desc = "Contains three bulletproof helmets."
+	name = "防弹头盔板条箱"
+	desc = "内含三顶防弹头盔。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/head/helmet/alt = 3)
-	crate_name = "bulletproof helmets crate"
+	crate_name = "防弹头盔板条箱"
 
 /datum/supply_pack/security/armory/chemimp
-	name = "Chemical Implants Crate"
-	desc = "Contains five Remote Chemical implants."
+	name = "化学植入体板条箱"
+	desc = "内含五个远程化学植入体。"
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/storage/box/chemimp)
-	crate_name = "chemical implant crate"
+	crate_name = "化学植入体板条箱"
 
 /datum/supply_pack/security/armory/ballistic
-	name = "Combat Shotguns Crate"
-	desc = "For when the enemy absolutely needs to be replaced with lead. \
-		Contains three Aussec-designed Combat Shotguns, and three Shotgun Bandoliers."
+	name = "战斗霰弹枪板条箱"
+	desc = "适用于必须以铅弹彻底替换敌人的场合。\
+		内含三把奥斯克设计的战斗霰弹枪，以及三条霰弹枪弹药带。"
 	cost = CARGO_CRATE_VALUE * 17.5
 	contains = list(/obj/item/gun/ballistic/shotgun/automatic/combat = 3,
 					/obj/item/storage/belt/bandolier = 3)
-	crate_name = "combat shotguns crate"
+	crate_name = "战斗霰弹枪板条箱"
 
 /datum/supply_pack/security/armory/dragnet
-	name = "DRAGnet Translocation Shotgun Crate"
-	desc = "Contains two \"Dynamic Rapid-Apprehension of the Guilty Network\" translocation shotguns, \
-		a recent breakthrough in law enforcement prisoner management technology. Includes a DRAGnet beacon."
+	name = "DRAGnet 传送霰弹枪板条箱"
+	desc = "内含两把“有罪者动态快速抓捕网络”传送霰弹枪，\
+		这是执法部门囚犯管理技术的最新突破。附赠一枚 DRAGnet 信标。"
 	cost = CARGO_CRATE_VALUE * 18
 	contains = list(
 		/obj/item/gun/energy/e_gun/dragnet = 2,
 		/obj/item/dragnet_beacon = 1
 	)
-	crate_name = "\improper DRAGnet crate"
+	crate_name = "\improper DRAGnet 板条箱"
 
 /datum/supply_pack/security/armory/energy
-	name = "Energy Guns Crate"
-	desc = "Contains three Energy Guns, capable of firing both nonlethal and lethal \
-		blasts of light."
+	name = "能量枪板条箱"
+	desc = "内含三把能量枪，\
+		可发射非致命与致命的光束。"
 	cost = CARGO_CRATE_VALUE * 18
 	contains = list(/obj/item/gun/energy/e_gun = 3)
-	crate_name = "energy gun crate"
+	crate_name = "能量枪板条箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/laser
-	name = "Type 5 Laser Gun Crate"
-	desc = "Contains three Type 5 laser guns, developed by Nanotrasen. For when the going gets tough, you get going with the \
-		Type 5 Heat Delivery System. As developed by Nanotrasen."
+	name = "5 型激光枪板条箱"
+	desc = "内含三把由纳米传讯研发的 5 型激光枪。当形势变得艰难时，\
+		就用 5 型热能投送系统迎难而上。同样由纳米传讯研发。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/gun/energy/laser = 3)
-	crate_name = "\improper Type 5 laser crate"
+	crate_name = "\improper 5 型激光枪板条箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/laser_carbine
-	name = "Type 5/R Laser Carbine Crate"
-	desc = "Contains three Type 5R laser carbines, developed by Nanotrasen. Fires a rapid burst of slightly weaker laser projectiles."
+	name = "5/R 型激光卡宾枪板条箱"
+	desc = "内含三把由纳米传讯研发的 5R 型激光卡宾枪。可快速连发威力略弱的激光弹。"
 	cost = CARGO_CRATE_VALUE * 9
 	contains = list(/obj/item/gun/energy/laser/carbine = 3)
-	crate_name = "\improper Type 5R laser carbine crate"
+	crate_name = "\improper 5R 型激光卡宾枪板条箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/disabler_smg
-	name = "Disabler SMG Crate"
-	desc = "Contains three disabler SMGs, capable of rapidly firing weak disabler beams."
+	name = "瘫痪冲锋枪板条箱"
+	desc = "内含三把瘫痪冲锋枪，可快速发射较弱的瘫痪光束。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/gun/energy/disabler/smg = 3)
-	crate_name = "disabler smg crate"
+	crate_name = "瘫痪冲锋枪板条箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/battle_rifle
-	name = "NT BR-38 Crate"
-	desc = "An experimental energy-based ballistic battle rifle, as developed by Nanotrasen. \
-		Only available to Nanotrasen stations for security purposes. DO NOT RESELL TO OUTSIDE \
-		COMPANIES. Contains three NT BR-38 rifles and 6 magazines containing .38 Standard."
+	name = "NT BR-38 板条箱"
+	desc = "由纳米传讯研发的实验型能量式弹道战斗步枪。\
+		仅供纳米传讯旗下的空间站用于安保目的。\
+		严禁转售给外部公司。内含三把 NT BR-38 步枪和六个装填 .38 标准弹的弹匣。"
 	cost = CARGO_CRATE_VALUE * 100
 	contains = list(
 		/obj/item/gun/ballistic/automatic/battle_rifle = 3,
 		/obj/item/ammo_box/magazine/m38 = 6,
 	)
-	crate_name = "battle rifle crate"
+	crate_name = "战斗步枪板条箱"
 
 /datum/supply_pack/security/armory/br_mag
-	name = "NT BR-38 Magazine Crate"
-	desc = "Six .38 magazines, able to fit into the NT BR-38. Contains \
-		two standard magazines, two Hot Shot magazines and two Iceblox magazines."
+	name = "NT BR-38 弹匣板条箱"
+	desc = "六个 .38 弹匣，可装入 NT BR-38。\
+		内含两个标准弹匣、两个热射弹匣和两个冰封弹匣。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(
 		/obj/item/ammo_box/magazine/m38 = 2,
 		/obj/item/ammo_box/magazine/m38/hotshot = 2,
 		/obj/item/ammo_box/magazine/m38/iceblox =2,
 	)
-	crate_name = ".38 magazine crate"
+	crate_name = ".38 弹匣板条箱"
 
 /datum/supply_pack/security/armory/exileimp
-	name = "Exile Implants Crate"
-	desc = "Contains five Exile implants."
+	name = "放逐植入体板条箱"
+	desc = "内含五个放逐植入体。"
 	cost = CARGO_CRATE_VALUE * 3.5
 	contains = list(/obj/item/storage/box/exileimp)
-	crate_name = "exile implant crate"
+	crate_name = "放逐植入体板条箱"
 
 /datum/supply_pack/security/armory/fire
-	name = "Incendiary Weapons Crate"
-	desc = "Burn, baby burn. Contains three incendiary grenades, three plasma canisters, \
-		and a flamethrower."
+	name = "燃烧武器板条箱"
+	desc = "烧吧，尽情地烧。\
+		内含三枚燃烧手榴弹、三个等离子气罐和一把火焰喷射器。"
 	cost = CARGO_CRATE_VALUE * 7
 	access = ACCESS_COMMAND
 	contains = list(/obj/item/flamethrower/full,
 					/obj/item/tank/internals/plasma = 3,
 					/obj/item/grenade/chem_grenade/incendiary = 3,
 				)
-	crate_name = "incendiary weapons crate"
+	crate_name = "燃烧武器板条箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	order_flags = ORDER_DANGEROUS
 
 /datum/supply_pack/security/armory/mindshield
-	name = "Mindshield Implants Crate"
-	desc = "Prevent against radical thoughts with three Mindshield implants."
+	name = "心智护盾植入体板条箱"
+	desc = "用三个心智护盾植入体防范激进思想。"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/storage/lockbox/loyalty)
-	crate_name = "mindshield implant crate"
+	crate_name = "心智护盾植入体板条箱"
 
 /datum/supply_pack/security/armory/trackingimp
-	name = "Tracking Implants Crate"
-	desc = "Contains four tracking implants and three tracking speedloaders of tracing .38 ammo."
+	name = "追踪植入体板条箱"
+	desc = "内含四个追踪植入体和三个装填追踪 .38 弹药的追踪快速装弹器。"
 	cost = CARGO_CRATE_VALUE * 4.5
 	contains = list(/obj/item/storage/box/trackimp,
 					/obj/item/ammo_box/speedloader/c38/trac = 3,
 				)
-	crate_name = "tracking implant crate"
+	crate_name = "追踪植入体板条箱"
 
 /datum/supply_pack/security/armory/laserarmor
-	name = "Reflector Vest Crate"
-	desc = "Contains two vests of highly reflective material. Each armor piece \
-		diffuses a laser's energy by over half, as well as offering a good chance \
-		to reflect the laser entirely."
+	name = "反射护甲背心板条箱"
+	desc = "内含两件高反射材料制成的背心。\
+		每件护甲都能将激光能量扩散一半以上，\
+		还有很高几率将激光完全反射。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/clothing/suit/armor/laserproof = 2)
-	crate_name = "reflector vest crate"
+	crate_name = "反射背心板条箱"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
 /datum/supply_pack/security/armory/riotarmor
-	name = "Riot Armor Crate"
-	desc = "Contains three sets of heavy body armor. Advanced padding protects \
-		against close-ranged weaponry, making melee attacks feel only half as \
-		potent to the user."
+	name = "防暴护甲板条箱"
+	desc = "内含三套重型护甲。\
+		先进的衬垫可抵御近程武器，\
+		让近战攻击对使用者而言威力只有一半。"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/clothing/suit/armor/riot = 3)
-	crate_name = "riot armor crate"
+	crate_name = "防暴护甲板条箱"
 
 /datum/supply_pack/security/armory/riothelmets
-	name = "Riot Helmets Crate"
-	desc = "Contains three riot helmets."
+	name = "防暴头盔板条箱"
+	desc = "内含三顶防暴头盔。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/clothing/head/helmet/toggleable/riot = 3)
-	crate_name = "riot helmets crate"
+	crate_name = "防暴头盔板条箱"
 
 /datum/supply_pack/security/armory/riotshields
-	name = "Riot Shields Crate"
-	desc = "For when the greytide gets really uppity. Contains three riot shields."
+	name = "防暴盾牌板条箱"
+	desc = "适用于灰潮暴民格外嚣张的时候。内含三面防暴盾牌。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/shield/riot = 3)
-	crate_name = "riot shields crate"
+	crate_name = "防暴盾牌板条箱"
 
 /datum/supply_pack/security/armory/swat
-	name = "SWAT Crate"
-	desc = "Contains two fullbody sets of tough, fireproof suits designed in a joint \
-		effort by IS-ERI and Nanotrasen. Each set contains a suit, helmet, mask, combat belt, \
-		and gorilla gloves."
+	name = "特警板条箱"
+	desc = "内含两套由 IS-ERI 与纳米传讯联合设计的坚固防火全身服。\
+		每套包含外套、头盔、面罩、战斗腰带、\
+		和猩猩手套。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/clothing/head/helmet/swat/nanotrasen = 2,
 					/obj/item/clothing/suit/armor/swat = 2,
@@ -371,42 +371,42 @@
 					/obj/item/storage/belt/military/assault = 2,
 					/obj/item/clothing/gloves/tackler/combat = 2,
 				)
-	crate_name = "swat crate"
+	crate_name = "特警板条箱"
 
 /datum/supply_pack/security/armory/thermal
-	name = "Thermal Pistol Crate"
-	desc = "Contains a pair of holsters each with two experimental thermal pistols, \
-		using nanites as the basis for their ammo. Can be shaken to reload."
+	name = "热能手枪板条箱"
+	desc = "内含一对枪套，每个枪套各配两把实验型热能手枪，\
+		以纳米机器人作为弹药基础。摇晃即可重新装填。"
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(/obj/item/storage/belt/holster/energy/thermal = 2)
-	crate_name = "thermal pistol crate"
+	crate_name = "热能手枪板条箱"
 
 /datum/supply_pack/security/sunglasses
-	name = "Sunglasses Crate"
-	desc = "A single pair of flash-proof sunglasses."
+	name = "墨镜板条箱"
+	desc = "一副防闪光墨镜。"
 	cost = CARGO_CRATE_VALUE * 2
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/clothing/glasses/sunglasses = 1)
-	crate_name = "sunglasses crate"
+	crate_name = "墨镜板条箱"
 
 /datum/supply_pack/security/armory/mechthermal
-	name = "Heavy Thermal Guns Crate"
-	desc = "Contains two experimental thermal cannons for use by mechs. \
-		When used simultaneously, their excess power used to heat and cool the opposing weapon, \
-		increasing the reload speed."
+	name = "重型热能炮板条箱"
+	desc = "内含两门供机甲使用的实验型热能炮。\
+		同时使用时，其过剩功率会用于加热与冷却另一门武器，\
+		从而提高装填速度。"
 	cost = CARGO_CRATE_VALUE * 25
 	contains = list(
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/cryo,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/thermal/inferno,
 	)
-	crate_name = "thermal cannons crate"
+	crate_name = "热能炮板条箱"
 
 /datum/supply_pack/security/blood_worm_testers
-	name = "Hemoparasite Testing Crate"
-	desc = "Contains four single-use hemoparasite testing tools. \
-		These devices accurately report whether a patient is inhabited by a hemoparasite, such as the infamous space-faring blood worm. \
-		The DeForest Medical Corporation claims no liability for any mental and/or physical trauma caused to patients from the improper use of these devices."
+	name = "血寄生虫检测板条箱"
+	desc = "内含四个一次性血寄生虫检测工具。\
+		这些设备可准确报告患者体内是否寄宿着血寄生虫，例如臭名昭著的太空血虫。\
+		德福雷斯特医疗公司对因不当使用这些设备而对患者造成的任何精神及/或身体创伤概不负责。"
 	cost = CARGO_CRATE_VALUE * 50 // These aren't meant to be bought en-masse.
 	access_view = ACCESS_SECURITY
 	contains = list(/obj/item/blood_worm_tester = 4)
-	crate_name = "hemoparasite testing crate"
+	crate_name = "血寄生虫检测板条箱"

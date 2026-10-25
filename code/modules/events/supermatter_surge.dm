@@ -24,13 +24,13 @@
  */
 
 /datum/round_event_control/supermatter_surge
-	name = "Supermatter Surge"
+	name = "超物质涌流"
 	typepath = /datum/round_event/supermatter_surge
 	category = EVENT_CATEGORY_ENGINEERING
 	weight = 15
 	max_occurrences = 1
 	earliest_start = 20 MINUTES
-	description = "The supermatter will increase in power and heat by a random amount, and announce it."
+	description = "超物质晶体的功率与热量将随机上升，并会对此发布公告。"
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 	admin_setup = list(
@@ -54,7 +54,7 @@
 	var/datum/sm_gas/nitrogen/sm_gas
 
 /datum/event_admin_setup/input_number/surge_spiciness
-	input_text = "Set surge intensity. (Higher is more severe.)"
+	input_text = "设置涌流强度。（数值越高越严重。）"
 	min_value = SURGE_SEVERITY_MIN
 	max_value = SURGE_SEVERITY_MAX
 
@@ -92,7 +92,7 @@
 
 /datum/round_event/supermatter_surge/announce(fake)
 	var/class_to_announce = fake ? pick(1, 2, 3, 4) : surge_class
-	priority_announce("The Crystal Integrity Monitoring System has detected unusual atmospheric properties in the supermatter chamber, energy output from the supermatter crystal has increased significantly. Engineering intervention is required to stabilize the engine.", "Class [class_to_announce] Supermatter Surge Alert", 'sound/machines/engine_alert/engine_alert3.ogg')
+	priority_announce("晶体完整性监测系统检测到超物质腔室内出现异常大气属性，超物质晶体的能量输出已显著增加。需要工程部介入以稳定引擎。", "[class_to_announce] 级超物质涌流警报", 'sound/machines/engine_alert/engine_alert3.ogg')
 
 /datum/round_event/supermatter_surge/start()
 	engine.bullet_energy = surge_class + SURGE_BULLET_ENERGY_ADDITION
@@ -105,17 +105,17 @@
 	sm_gas.powerloss_inhibition = initial(sm_gas.powerloss_inhibition)
 	sm_gas.heat_power_generation = initial(sm_gas.heat_power_generation)
 	sm_gas.heat_modifier = initial(sm_gas.heat_modifier)
-	priority_announce("The supermatter surge has dissipated, crystal output readings have normalized.", "Anomaly Cleared")
+	priority_announce("超物质涌流已消散，晶体输出读数已恢复正常。", "异常已清除")
 	engine = null
 	sm_gas = null
 
 /datum/round_event_control/supermatter_surge/poly
-	name = "Supermatter Surge: Poly's Revenge"
+	name = "超物质涌流：Poly 的复仇"
 	typepath = /datum/round_event/supermatter_surge/poly
 	category = EVENT_CATEGORY_ENGINEERING
 	weight = 0
 	max_occurrences = 0
-	description = "For when Poly is sacrificed to the SM. Not really useful to run manually."
+	description = "当 Poly 被献祭给超物质时使用。手动运行其实没什么用。"
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	admin_setup = null
@@ -126,7 +126,7 @@
 	fakeable = FALSE
 
 /datum/round_event/supermatter_surge/poly/announce(fake)
-	priority_announce("The Crystal Integrity Monitoring System has detected unusual parrot type resonance in the supermatter chamber, energy output from the supermatter crystal has increased significantly. Engineering intervention is required to stabilize the engine.", "Class P Supermatter Surge Alert", 'sound/machines/engine_alert/engine_alert3.ogg')
+	priority_announce("晶体完整性监测系统检测到超物质腔室内出现异常的鹦鹉型共振，超物质晶体的能量输出已显著增加。需要工程部介入以稳定引擎。", "P 级超物质涌流警报", 'sound/machines/engine_alert/engine_alert3.ogg')
 
 #undef SURGE_DURATION_MIN
 #undef SURGE_DURATION_MAX

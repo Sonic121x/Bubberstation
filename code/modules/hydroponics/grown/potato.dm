@@ -1,10 +1,10 @@
 // Potato
 /obj/item/seeds/potato
-	name = "potato seed pack"
-	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
+	name = "马铃薯种子包"
+	desc = "煮了它！捣了它！丢进炖锅里！"
 	icon_state = "seed-potato"
 	species = "potato"
-	plantname = "Potato Plants"
+	plantname = "马铃薯植株"
 	product = /obj/item/food/grown/potato
 	lifespan = 30
 	maturation = 10
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/potato
 	seed = /obj/item/seeds/potato
-	name = "potato"
-	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
+	name = "马铃薯"
+	desc = "煮了它！捣了它！丢进炖锅里！"
 	icon_state = "potato"
 	foodtypes = VEGETABLES
 	distill_reagent = /datum/reagent/consumable/ethanol/vodka
@@ -34,15 +34,15 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/baked_potato, rand(15 SECONDS, 25 SECONDS), TRUE, TRUE)
 
 /obj/item/food/grown/potato/wedges
-	name = "potato wedges"
-	desc = "Slices of neatly cut potato."
+	name = "马铃薯角"
+	desc = "切得整整齐齐的马铃薯块。"
 	icon_state = "potato_wedges"
 	bite_consumption_mod = 100
 
 /obj/item/food/grown/potato/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!tool.get_sharpness())
 		return NONE
-	to_chat(user, span_notice("You cut the potato into wedges with [tool]."))
+	to_chat(user, span_notice("你用 [tool] 把马铃薯切成了角。"))
 	var/obj/item/food/grown/potato/wedges/slices = new /obj/item/food/grown/potato/wedges
 	remove_item_from_storage(user)
 	qdel(src)
@@ -52,19 +52,19 @@
 
 // Sweet Potato
 /obj/item/seeds/potato/sweet
-	name = "sweet potato seed pack"
-	desc = "These seeds grow into sweet potato plants."
+	name = "红薯种子包"
+	desc = "这些种子会长成红薯植株。"
 	icon_state = "seed-sweetpotato"
 	species = "sweetpotato"
-	plantname = "Sweet Potato Plants"
+	plantname = "红薯植株"
 	product = /obj/item/food/grown/potato/sweet
 	mutatelist = null
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/potato/sweet
 	seed = /obj/item/seeds/potato/sweet
-	name = "sweet potato"
-	desc = "It's sweet."
+	name = "红薯"
+	desc = "很甜。"
 	icon_state = "sweetpotato"
 	distill_reagent = /datum/reagent/consumable/ethanol/sbiten
 

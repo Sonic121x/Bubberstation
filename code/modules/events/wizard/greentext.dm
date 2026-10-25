@@ -1,10 +1,10 @@
 /datum/round_event_control/wizard/greentext //Gotta have it!
-	name = "Greentext"
+	name = "绿字"
 	weight = 4
 	typepath = /datum/round_event/wizard/greentext
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
-	description = "The Green Text appears on the station, tempting people to try and pick it up."
+	description = "绿色文字出现在空间站上，诱惑人们去把它捡起来。"
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 
@@ -19,12 +19,12 @@
 
 	var/mob/living/carbon/human/H = pick(holder_canadates)
 	new /obj/item/greentext(H.loc)
-	to_chat(H, "<font color='green'>The mythical greentext appear at your feet! Pick it up if you dare...</font>")
+	to_chat(H, "<font color='green'>传说中的绿字出现在你脚边！有胆量就把它捡起来……</font>")
 
 
 /obj/item/greentext
-	name = "greentext"
-	desc = "No one knows what this massive tome does, but it feels <i><font color='green'>desirable</font></i> all the same..."
+	name = "绿字"
+	desc = "没人知道这本厚重的典籍有什么用，但它依然让人感到<i><font color='green'>渴望</font></i>……"
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "greentext"
@@ -49,9 +49,9 @@
 
 /obj/item/greentext/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	to_chat(user, span_green("So long as you leave this place with greentext in hand you know will be happy..."))
+	to_chat(user, span_green("只要你手捧绿字离开这里，你知道自己就会心满意足……"))
 	if(user.mind && length(user.mind.get_all_objectives()) > 0)
-		to_chat(user, span_warning("... so long as you still perform your other objectives that is!"))
+		to_chat(user, span_warning("……前提是你仍然完成了自己的其他目标！"))
 	holder = user
 	if(!HAS_TRAIT(user, TRAIT_GREENTEXT_CURSED))
 		LAZYOR(color_altered_mobs, WEAKREF(user))
@@ -60,7 +60,7 @@
 
 /obj/item/greentext/dropped(mob/user, silent = FALSE)
 	if(HAS_TRAIT(user, TRAIT_GREENTEXT_CURSED))
-		to_chat(user, span_warning("A sudden wave of failure washes over you..."))
+		to_chat(user, span_warning("一阵突如其来的失败感席卷了你……"))
 		user.add_atom_colour("#ff0000", ADMIN_COLOUR_PRIORITY) //ya blew it
 	holder = null
 	return ..()
@@ -81,9 +81,9 @@
 
 	var/list/announce_list = quiet ? victims : GLOB.player_list
 	for(var/mob/player as anything in announce_list)
-		var/list/messages = list(span_warning("A dark temptation has passed from this world!"))
+		var/list/messages = list(span_warning("一股黑暗的诱惑已从这个世界消失！"))
 		if(HAS_TRAIT(player, TRAIT_GREENTEXT_CURSED))
-			messages += span_green("You're finally able to forgive yourself...")
+			messages += span_green("你终于能够原谅自己了……")
 		to_chat(player, messages.Join("\n"))
 	for(var/mob/player as anything in victims)
 		REMOVE_TRAIT(player, TRAIT_GREENTEXT_CURSED, REF(src))
@@ -100,8 +100,8 @@
 
 	REMOVE_TRAIT(holder, TRAIT_GREENTEXT_CURSED, REF(src))
 	release_victims()
-	to_chat(holder, span_green("At last it feels like victory is assured!"))
+	to_chat(holder, span_green("终于，胜利似乎已经十拿九稳！"))
 	holder.mind.add_antag_datum(/datum/antagonist/greentext)
-	holder.log_message("won with greentext!!!", LOG_ATTACK, color = "green")
+	holder.log_message("带着绿字获胜！！！", LOG_ATTACK, color = "green")
 	resistance_flags |= ON_FIRE
 	qdel(src)

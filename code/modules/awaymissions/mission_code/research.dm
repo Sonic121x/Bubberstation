@@ -1,69 +1,69 @@
 //Research Base Areas//--
 
 /area/awaymission/research
-	name = "Research Outpost"
+	name = "研究前哨站"
 	icon_state = "away"
 	static_lighting = TRUE
 
 /area/awaymission/research/interior
-	name = "Research Inside"
+	name = "研究站内部"
 	requires_power = TRUE
 	icon_state = "away2"
 
 /area/awaymission/research/interior/cryo
-	name = "Research Cryostasis Room"
+	name = "研究站低温休眠室"
 	icon_state = "medbay"
 
 /area/awaymission/research/interior/clonestorage
-	name = "Research Clone Storage"
+	name = "研究站克隆体储藏室"
 	icon_state = "cloning"
 
 /area/awaymission/research/interior/genetics
-	name = "Research Genetics Research"
+	name = "研究站基因研究区"
 	icon_state = "genetics"
 
 /area/awaymission/research/interior/engineering
-	name = "Research Engineering"
+	name = "研究站工程区"
 	icon_state = "engine"
 
 /area/awaymission/research/interior/security
-	name = "Research Security"
+	name = "研究站安保区"
 	icon_state = "security"
 
 /area/awaymission/research/interior/secure
-	name = "Research Secure Vault"
+	name = "研究站安全金库"
 
 /area/awaymission/research/interior/maint
-	name = "Research Maintenance"
+	name = "研究站维护区"
 	icon_state = "maintcentral"
 
 /area/awaymission/research/interior/dorm
-	name = "Research Dorms"
+	name = "研究站宿舍"
 	icon_state = "Sleep"
 
 /area/awaymission/research/interior/escapepods
-	name = "Research Escape Wing"
+	name = "研究站逃生区"
 	icon_state = "exit"
 
 /area/awaymission/research/interior/gateway
-	name = "Research Gateway"
+	name = "研究站传送门"
 	icon_state = "start"
 
 /area/awaymission/research/interior/bathroom
-	name = "Research Bathrooms"
+	name = "研究站盥洗室"
 	icon_state = "restrooms"
 
 /area/awaymission/research/interior/medbay
-	name = "Research Medbay"
+	name = "研究站医疗室"
 	icon_state = "medbay"
 
 /area/awaymission/research/exterior
-	name = "Research Exterior"
+	name = "研究站外部"
 	icon_state = "unknown"
 
 
 //research papers
 
 /obj/item/paper/crumpled/awaymissions/research/sensitive_info
-	default_raw_text = "Theres a lot of sensitive info on these disks, try and keep them secure! If these backup copies get into the wrong hands, god knows what they could do with the genetic research on these disk.."
+	default_raw_text = "这些磁盘上有很多敏感信息，务必妥善保管！如果这些备份副本落入错误的人手中，天知道他们会拿磁盘上的基因研究做出什么事来……"
 

@@ -1,6 +1,6 @@
 /obj/item/toy/singlecard
-	name = "card"
-	desc = "A playing card used to play card games like poker."
+	name = "纸牌"
+	desc = "一种用于玩扑克等纸牌游戏的纸牌。"
 	icon = 'icons/obj/toys/playing_cards.dmi'
 	icon_state = "sc_Ace of Spades_nanotrasen"
 	w_class = WEIGHT_CLASS_TINY
@@ -12,8 +12,8 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	attack_verb_continuous = list("attacks")
-	attack_verb_simple = list("attack")
+	attack_verb_continuous = list("攻击")
+	attack_verb_simple = list("攻击")
 	interaction_flags_click = NEED_DEXTERITY|FORBID_TELEKINESIS_REACH|ALLOW_RESTING
 	/// Artistic style of the deck
 	var/deckstyle = "nanotrasen"
@@ -59,50 +59,50 @@
 		return
 
 	if(user.is_holding(src))
-		user.visible_message(span_notice("[user] checks [user.p_their()] card."), span_notice("The card reads: [cardname]."))
+		user.visible_message(span_notice("[user]看了看自己的纸牌。"), span_notice("纸牌上写着：[cardname]。"))
 		if(blank)
-			. += span_notice("The card is blank. Write on it with a pen.")
+			. += span_notice("这是一张空白纸牌。可以用笔在上面书写。")
 	else if(HAS_TRAIT(user, TRAIT_XRAY_VISION))
-		. += span_notice("You scan the card with your x-ray vision and it reads: [cardname].")
+		. += span_notice("你用 X 光视觉扫视了纸牌，上面写着：[cardname]。")
 	else
-		. += span_warning("You need to have the card in your hand to check it!")
+		. += span_warning("你需要把纸牌拿在手里才能查看！")
 
 	var/marked_color = getMarkedColor(user)
 	if(marked_color)
-		. += span_notice("The card has a [marked_color] mark on the corner!")
+		. += span_notice("纸牌角上有一个[marked_color]标记！")
 
 /obj/item/toy/singlecard/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item) || src == held_item)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Rotate counter-clockwise" // add a ALT_RMB screentip to rotate clockwise
-		context[SCREENTIP_CONTEXT_RMB] = "Flip card"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "逆时针旋转" // add a ALT_RMB screentip to rotate clockwise
+		context[SCREENTIP_CONTEXT_RMB] = "翻面"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/toy/cards/deck))
 		var/obj/item/toy/cards/deck/dealer_deck = held_item
 		if(HAS_TRAIT(dealer_deck, TRAIT_WIELDED))
-			context[SCREENTIP_CONTEXT_LMB] = "Deal card"
-			context[SCREENTIP_CONTEXT_RMB] = "Deal card faceup"
+			context[SCREENTIP_CONTEXT_LMB] = "发牌"
+			context[SCREENTIP_CONTEXT_RMB] = "正面发牌"
 			return CONTEXTUAL_SCREENTIP_SET
-		context[SCREENTIP_CONTEXT_LMB] = "Recycle card"
+		context[SCREENTIP_CONTEXT_LMB] = "收回纸牌"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/toy/singlecard))
-		context[SCREENTIP_CONTEXT_LMB] = "Combine cards"
-		context[SCREENTIP_CONTEXT_RMB] = "Combine cards faceup"
+		context[SCREENTIP_CONTEXT_LMB] = "合并纸牌"
+		context[SCREENTIP_CONTEXT_RMB] = "正面合并纸牌"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/toy/cards/cardhand))
-		context[SCREENTIP_CONTEXT_LMB] = "Combine cards"
+		context[SCREENTIP_CONTEXT_LMB] = "合并纸牌"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(IS_WRITING_UTENSIL(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = blank ? "Write on card" : "Mark card"
+		context[SCREENTIP_CONTEXT_LMB] = blank ? "在纸牌上书写" : "给纸牌做标记"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
 
 /obj/item/toy/singlecard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is slitting [user.p_their()] wrists with \the [src]! It looks like [user.p_they()] [user.p_have()] an unlucky card!"))
+	user.visible_message(span_suicide("[user]正用[src]割开自己的手腕！看来抽到了一张倒霉的纸牌！"))
 	playsound(src, 'sound/items/weapons/bladeslice.ogg', 50, TRUE)
 	return BRUTELOSS
 
@@ -118,7 +118,7 @@
 	else
 		flipped = !flipped
 
-	name = flipped ? cardname : "card"
+	name = flipped ? cardname : "纸牌"
 	update_appearance()
 
 /**
@@ -144,7 +144,7 @@
 	return ..()
 
 /obj/item/toy/singlecard/update_name()
-	name = flipped ? cardname : "card"
+	name = flipped ? cardname : "纸牌"
 	return ..()
 
 /obj/item/toy/singlecard/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -154,10 +154,10 @@
 		var/obj/item/toy/cards/deck/dealer_deck = tool
 		if(!HAS_TRAIT(dealer_deck, TRAIT_WIELDED)) // recycle card into deck (if unwielded)
 			if(dealer_deck.insert(src))
-				user.balloon_alert_to_viewers("puts card in deck")
+				user.balloon_alert_to_viewers("把纸牌放回牌堆")
 				return ITEM_INTERACT_SUCCESS
 
-			to_chat(user, span_warning("\The [dealer_deck] is stacked too high!"))
+			to_chat(user, span_warning("[dealer_deck]堆得太高了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		card = dealer_deck.draw(user)
@@ -171,7 +171,7 @@
 
 		if(istype(tool, /obj/item/toy/cards/deck))
 			// only decks cause a balloon alert
-			user.balloon_alert_to_viewers("deals a card")
+			user.balloon_alert_to_viewers("发了一张牌")
 
 		var/obj/item/toy/cards/cardhand/new_cardhand = new (drop_location())
 		new_cardhand.pixel_x = pixel_x
@@ -200,13 +200,13 @@
 
 	if(marked_cheating_color && !blank && IS_WRITING_UTENSIL(tool)) // You cheated not only the game, but yourself
 		marked_color = marked_cheating_color
-		to_chat(user, span_notice("You put a [marked_color] mark in the corner of [src] with the [tool]. Cheat to win!"))
+		to_chat(user, span_notice("你用[tool]在[src]的角上做了一个[marked_color]标记。作弊取胜！"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!user.can_write(tool))
 		return NONE
 
-	var/cardtext = stripped_input(user, "What do you wish to write on the card?", "Card Writing", "", 50)
+	var/cardtext = stripped_input(user, "你想在纸牌上写些什么？", "纸牌书写", "", 50)
 	if(!cardtext || !user.can_perform_action(src))
 		return ITEM_INTERACT_BLOCKING
 
@@ -225,7 +225,7 @@
 
 	Flip()
 	if(isturf(src.loc)) // only display this message when flipping in a visible spot like on a table
-		user.balloon_alert_to_viewers("flips a card")
+		user.balloon_alert_to_viewers("翻开了一张纸牌")
 
 /obj/item/toy/singlecard/click_alt(mob/living/carbon/human/user)
 	transform = turn(transform, 90)

@@ -47,12 +47,12 @@
 	reaction = /datum/chemical_reaction/food/soup/wingfangchu
 
 /datum/crafting_recipe/food/reaction/soup/hotchili
-	name = "Chili Con Carne (Meat Chili)"
+	name = "辣肉酱（肉辣酱）"
 	reaction = /datum/chemical_reaction/food/soup/hotchili
 	cuisine_category = CUISINE_MEXICAN
 
 /datum/crafting_recipe/food/reaction/soup/hotchili/ghost
-	name = "Ghost Chili Con Carne (Meat Chili)"
+	name = "幽灵辣肉酱（肉辣酱）"
 	reaction = /datum/chemical_reaction/food/soup/hotchili/ghost
 
 /datum/crafting_recipe/food/reaction/soup/coldchili
@@ -67,8 +67,8 @@
 	reaction = /datum/chemical_reaction/food/soup/tomatosoup
 
 /datum/crafting_recipe/food/reaction/soup/bloodsoup
-	name = "Blood Soup"
-	desc = "Smells like copper."
+	name = "血汤"
+	desc = "闻起来有股铜味。"
 	reaction = /datum/chemical_reaction/food/soup/bloodsoup
 	// Uses tomato soup's icon
 	result = /datum/reagent/consumable/nutriment/soup/tomato
@@ -145,18 +145,18 @@
 	reaction = /datum/chemical_reaction/food/soup/corn_chowder
 
 /datum/crafting_recipe/food/reaction/soup/chili_sin_carne
-	name = "Chili Sin Carne (Vegetarian Chili)"
+	name = "无肉辣肉酱（素食辣酱）"
 	reaction = /datum/chemical_reaction/food/soup/chili_sin_carne
 	cuisine_category = CUISINE_MEXICAN
 
 /datum/crafting_recipe/food/reaction/soup/chili_sin_carne/ghost
-	name = "Ghost Chili Sin Carne (Vegetarian Chili)"
+	name = "幽灵无肉辣肉酱（素食辣酱）"
 	reaction = /datum/chemical_reaction/food/soup/chili_sin_carne/ghost
 
 // Other
 
 /datum/crafting_recipe/food/wishsoup
-	name = "Wish soup"
+	name = "许愿汤"
 	reqs = list(
 		/datum/reagent/water = 20,
 		/obj/item/reagent_containers/cup/bowl = 1

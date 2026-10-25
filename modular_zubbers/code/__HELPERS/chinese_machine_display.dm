@@ -15,4 +15,4 @@
 		var/list/status_names = list("Possible" = "可行", "Impossible" = "不可行", "Husked" = "焦尸化", "Damaged" = "损伤过重", "Heart Failure" = "心脏衰竭", "Brain Failure" = "脑功能衰竭")
 		if(status_names[value])
 			value = "[status_names[value]]（[value]）"
-	return "[labels[port_name] || port_name]的值：[value]"
+	return "[labels[port_name] || chinese_batch_five_circuit_port_display(port_name)]的值：[value]"

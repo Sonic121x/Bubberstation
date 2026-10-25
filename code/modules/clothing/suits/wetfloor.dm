@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/caution
-	name = "wet floor sign"
-	desc = "Caution! Wet Floor!"
+	name = "小心地滑标志牌"
+	desc = "小心！地面湿滑！"
 	icon = 'icons/obj/clothing/suits/utility.dmi'
 	icon_state = "caution"
 	worn_icon = 'icons/mob/clothing/suits/utility.dmi'
@@ -12,8 +12,8 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST|GROIN
-	attack_verb_continuous = list("warns", "cautions", "smashes")
-	attack_verb_simple = list("warn", "caution", "smash")
+	attack_verb_continuous = list("警告", "提醒", "砸")
+	attack_verb_simple = list("警告", "提醒", "砸")
 	pickup_sound = 'sound/items/handling/materials/plastic_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/plastic_drop.ogg'
 	armor_type = /datum/armor/suit_caution

@@ -111,7 +111,7 @@
 
 ///The line the robot says when ordering
 /datum/venue/proc/order_food_line(order)
-	return "broken venue pls call a coder"
+	return "场所损坏，请呼叫程序员"
 
 ///Effects for when a customer receives their order at this venue
 /datum/venue/proc/on_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
@@ -159,8 +159,8 @@
 		robot_customer.ai_controller.set_blackboard_key(BB_CUSTOMER_LEAVING, TRUE) //LEAVEEEEEE
 
 /obj/machinery/restaurant_portal
-	name = "restaurant portal"
-	desc = "A robot-only gate into the wonders of Space Station cuisine!"
+	name = "餐厅传送门"
+	desc = "一扇只允许机器人通行的门，通向空间站美食的奇妙世界！"
 	icon = 'icons/obj/machines/restaurant_portal.dmi'
 	icon_state = "portal"
 	base_icon_state = "portal"
@@ -221,7 +221,7 @@
 		return ..()
 
 	if(!(linked_venue.req_access in used_id.GetAccess()))
-		to_chat(user, span_warning("This card lacks the access to change this venue's status."))
+		to_chat(user, span_warning("这张卡没有更改该场所营业状态的权限。"))
 		return
 
 	linked_venue.toggle_open()
@@ -232,7 +232,7 @@
 		return NONE
 
 	if(!allowed(user))
-		balloon_alert(user, "insufficient access!")
+		balloon_alert(user, "权限不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/list/radial_items = list()
@@ -255,7 +255,7 @@
 
 	turned_on_portal = WEAKREF(user)
 
-	balloon_alert(user, "venue changed to [chosen_venue.name]")
+	balloon_alert(user, "场所已更改为 [chosen_venue.name]")
 
 	if(linked_venue && (src in linked_venue.restaurant_portals)) //We're already linked, unlink us.
 		linked_venue.restaurant_portals -= src
@@ -275,7 +275,7 @@
 
 /obj/machinery/restaurant_portal/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (default_unfasten_wrench(user, tool))
@@ -288,27 +288,27 @@
 		return
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "固定"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(isidcard(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Change Venue"
+		context[SCREENTIP_CONTEXT_LMB] = "更换场所"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/holosign_creator/robot_seat
-	name = "seating indicator placer"
+	name = "座位指示器生成器"
 	icon_state = "signmaker_service"
 	creation_time = 1 SECONDS
 	holosign_type = /obj/structure/holosign/robot_seat
-	desc = "Use this to place seats for your restaurant guests!"
+	desc = "用它为你的餐厅客人放置座位！"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT)
 
@@ -317,7 +317,7 @@
 
 /obj/structure/holosign/robot_seat
 	density = FALSE
-	desc = "Used to indicate a place to sit for a robot tourist. I better be careful."
+	desc = "用于为机器人游客指示就座位置。我最好小心点。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "eating_zone"
 	layer = BELOW_MOB_LAYER

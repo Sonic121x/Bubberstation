@@ -2,11 +2,11 @@
 
 // Yes, i'm talking about cabbage, baby! No, just kidding, but cabbages are the precursor to replica pods, so they are here as well.
 /obj/item/seeds/cabbage
-	name = "cabbage seed pack"
-	desc = "These seeds grow into cabbages."
+	name = "卷心菜种子包"
+	desc = "这些种子会长成卷心菜。"
 	icon_state = "seed-cabbage"
 	species = "cabbage"
-	plantname = "Cabbages"
+	plantname = "卷心菜"
 	product = /obj/item/food/grown/cabbage
 	lifespan = 50
 	endurance = 25
@@ -23,20 +23,20 @@
 
 /obj/item/food/grown/cabbage
 	seed = /obj/item/seeds/cabbage
-	name = "cabbage"
-	desc = "Ewwwwwwwwww. Cabbage."
+	name = "卷心菜"
+	desc = "呕……卷心菜。"
 	icon_state = "cabbage"
 	foodtypes = VEGETABLES
 	wine_power = 20
 
 ///The actual replica pods themselves!
 /obj/item/seeds/replicapod
-	name = "replica pod seed pack"
-	desc = "These seeds grow into replica pods. They say these are used to harvest humans."
+	name = "复制荚种子包"
+	desc = "这些种子会长成复制荚。据说它们被用来收获人类。"
 	icon_state = "seed-replicapod"
 	plant_icon_offset = 2
 	species = "replicapod"
-	plantname = "Replica Pod"
+	plantname = "复制荚"
 	product = null // the human mob is spawned in harvest()
 	lifespan = 50
 	endurance = 8
@@ -74,7 +74,7 @@
 		return
 
 	if(!blood.data["mind"] || !blood.data["cloneable"])
-		visible_message(span_warning("The [src] rejects the sample!"))
+		visible_message(span_warning("[src] 拒绝了这份样本！"))
 		return
 
 	mind = blood.data["mind"]
@@ -87,8 +87,8 @@
 	quirks = blood.data["quirks"]
 	sampleDNA = blood.data[BLOOD_DATA_DNA]
 	contains_sample = TRUE
-	visible_message(span_notice("The [src] is injected with a fresh blood sample."))
-	investigate_log("[key_name(mind)]'s cloning record was added to [src]", INVESTIGATE_BOTANY)
+	visible_message(span_notice("[src] 被注入了一份新鲜血液样本。"))
+	investigate_log("[key_name(mind)] 的克隆记录已被添加到 [src]", INVESTIGATE_BOTANY)
 
 /// Handles reagents being deleted from these seeds.
 /obj/item/seeds/replicapod/proc/on_reagent_del(changetype)
@@ -108,7 +108,7 @@
 
 /obj/item/seeds/replicapod/get_unique_analyzer_data()
 	if(contains_sample)
-		return list("Blood DNA" = sampleDNA)
+		return list("血液 DNA" = sampleDNA)
 	return null
 
 /obj/item/seeds/replicapod/harvest(mob/user) //now that one is fun -- Urist
@@ -156,19 +156,19 @@
 	if(!make_podman)
 		// Prevent accidental harvesting. Make sure the user REALLY wants to do this if there's a chance of this coming from a living creature.
 		if(user.client && (mind || ckey))
-			var/choice = tgui_alert(user, "The pod is currently devoid of soul. There is a possibility that a soul could claim this creature, or you could harvest it for seeds.", "Harvest Seeds?", list("Harvest Seeds", "Cancel"))
+			var/choice = tgui_alert(user, "这个荚目前没有灵魂。有可能会有灵魂接管这具躯体，或者你也可以采收它以获取种子。", "采收种子？", list("Harvest Seeds", "Cancel"))
 			if(choice != "Harvest Seeds")
 				return result
 
 		// If this plant has already been harvested, return early.
 		// parent.update_tray() qdels this seed.
 		if(QDELETED(src))
-			to_chat(user, text = "This pod has already had its seeds harvested!", type = MESSAGE_TYPE_INFO)
+			to_chat(user, text = "这个荚的种子已经被采收过了！", type = MESSAGE_TYPE_INFO)
 			return result
 
 		// Make sure they can still interact with the parent hydroponics tray.
 		if(!user.can_perform_action(parent))
-			to_chat(user, text = "You are no longer able to harvest the seeds from [parent]!", type = MESSAGE_TYPE_INFO)
+			to_chat(user, text = "你已经无法再从 [parent] 采收种子了！", type = MESSAGE_TYPE_INFO)
 			return result
 
 		var/seed_count = 1
@@ -188,7 +188,7 @@
 	if(realName)
 		podman.real_name = realName
 	else
-		podman.real_name = "Pod Person ([rand(1,999)])"
+		podman.real_name = "荚人（[rand(1,999)]）"
 
 	mind.transfer_to(podman)
 	if(ckey)
@@ -221,6 +221,6 @@
 		GLOB.blood_types[new_blood_type::id] = new_blood_type
 	podman.set_blood_type(new_blood_type)
 
-	investigate_log("[key_name(mind)] cloned as a podman via [src] in [parent]", INVESTIGATE_BOTANY)
+	investigate_log("[key_name(mind)] 通过 [parent] 中的 [src] 被克隆为荚人", INVESTIGATE_BOTANY)
 	parent.update_tray(user, 1)
 	return result

@@ -1,5 +1,5 @@
 /datum/outfit/santa //ho ho ho!
-	name = "Santa Claus"
+	name = "圣诞老人"
 
 	uniform = /obj/item/clothing/under/color/red
 	suit = /obj/item/clothing/suit/space/santa
@@ -17,7 +17,7 @@
 /datum/outfit/santa/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
 	if(visuals_only)
 		return
-	user.fully_replace_character_name(user.real_name, "Santa Claus")
+	user.fully_replace_character_name(user.real_name, "圣诞老人")
 	user.mind.set_assigned_role(SSjob.get_job_type(/datum/job/santa))
 
 	user.hairstyle = "Long Hair 3"

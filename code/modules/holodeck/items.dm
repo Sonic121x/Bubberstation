@@ -8,8 +8,8 @@
 //
 
 /obj/item/melee/energy/sword/holographic
-	name = "holographic energy sword"
-	desc = "May the force be with you. Sorta."
+	name = "全息能量剑"
+	desc = "愿原力与你同在。差不多吧。"
 	damtype = STAMINA
 	throw_speed = 2
 	block_chance = 0
@@ -33,7 +33,7 @@
 	sword_color_icon = "red"
 
 /obj/item/toy/cards/deck/syndicate/holographic
-	desc = "A deck of holographic playing cards."
+	desc = "一副全息纸牌。"
 
 /obj/item/toy/cards/deck/syndicate/holographic/Initialize(mapload, obj/machinery/computer/holodeck/holodeck)
 	src.holodeck = holodeck
@@ -51,11 +51,11 @@
 		card.forceMove(drop_location())
 
 /obj/item/toy/dodgeball
-	name = "dodgeball"
+	name = "躲球"
 	icon = 'icons/obj/toys/balls.dmi'
 	icon_state = "dodgeball"
 	inhand_icon_state = "dodgeball"
-	desc = "Used for playing the most violent and degrading of childhood games."
+	desc = "用于玩那种最暴力、最有失体面的童年游戏。"
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
 /obj/item/toy/dodgeball/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -66,15 +66,15 @@
 		M.apply_damage(10, STAMINA)
 		if(prob(5))
 			M.Paralyze(60)
-			visible_message(span_danger("[M] is knocked right off [M.p_their()] feet!"))
+			visible_message(span_danger("[M] 被直接打翻在地！"))
 
 //
 // Machines
 //
 
 /obj/machinery/readybutton
-	name = "ready declaration device"
-	desc = "This device is used to declare ready. If all devices in an area are ready, the event will begin!"
+	name = "就绪宣告装置"
+	desc = "这个装置用于宣告就绪。当一个区域内的所有装置都已就绪，活动就会开始！"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "auth_off"
 	var/ready = 0
@@ -86,22 +86,22 @@
 	power_channel = AREA_USAGE_ENVIRON
 
 /obj/machinery/readybutton/attack_ai(mob/user)
-	to_chat(user, span_warning("The station AI is not to interact with these devices!"))
+	to_chat(user, span_warning("空间站 AI 不得操作这些装置！"))
 	return
 
 /obj/machinery/readybutton/attack_paw(mob/user, list/modifiers)
-	to_chat(user, span_warning("You are too primitive to use this device!"))
+	to_chat(user, span_warning("你太原始了，用不了这个装置！"))
 	return
 
 /obj/machinery/readybutton/attackby(obj/item/W, mob/user, list/modifiers, list/attack_modifiers)
-	to_chat(user, span_warning("The device is a solid button, there's nothing you can do with it!"))
+	to_chat(user, span_warning("这个装置就是一个实心按钮，你对它做不了什么的！"))
 
 /obj/machinery/readybutton/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, span_warning("This device is not powered!"))
+		to_chat(user, span_warning("这个装置没有供电！"))
 		return
 
 	currentarea = get_area(src)
@@ -110,7 +110,7 @@
 		return
 
 	if(eventstarted)
-		to_chat(usr, span_warning("The event has already begun!"))
+		to_chat(usr, span_warning("活动已经开始了！"))
 		return
 
 	ready = !ready
@@ -147,7 +147,7 @@
 					qdel(barrier)
 
 			for(var/mob/contestant in area_turf)
-				to_chat(contestant, span_userdanger("FIGHT!"))
+				to_chat(contestant, span_userdanger("开打！"))
 
 /obj/machinery/conveyor/holodeck
 
@@ -158,16 +158,16 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/paper/fluff/holodeck/trek_diploma
-	name = "paper - Starfleet Academy Diploma"
-	default_raw_text = {"<h2>Starfleet Academy</h2></br><p>Official Diploma</p></br>"}
+	name = "纸张——星际舰队学院毕业证书"
+	default_raw_text = {"<h2>星际舰队学院</h2></br><p>正式毕业证书</p></br>"}
 
 /obj/item/paper/fluff/holodeck/disclaimer
-	name = "Holodeck Disclaimer"
-	default_raw_text = "Bruises sustained in the holodeck can be healed simply by sleeping."
+	name = "全息甲板免责声明"
+	default_raw_text = "在全息甲板上受的淤伤，只要睡一觉就能痊愈。"
 
 /obj/vehicle/ridden/scooter/skateboard/pro/holodeck
-	name = "holographic skateboard"
-	desc = "A holographic copy of the EightO brand professional skateboard."
+	name = "全息滑板"
+	desc = "EightO 品牌专业滑板的全息复制品。"
 	instability = 6
 
 /obj/vehicle/ridden/scooter/skateboard/pro/holodeck/pick_up_board() //picking up normal skateboards spawned in the holodeck gets rid of the holo flag, now you cant pick them up.

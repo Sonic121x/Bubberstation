@@ -3,7 +3,7 @@
 	cost = 5 // Cost per SHEET_MATERIAL_AMOUNT, which is 100cm3 as of May 2023.
 	k_hit_percentile = 0.2 / MAX_STACK_SIZE //Meaning selling 1 full stack of materials will decrease subsequent sales by 20%
 	k_recovery_time = 8 MINUTES
-	message = "cm3 of developer's tears. Please, report this on github"
+	message = "立方厘米的开发者的眼泪。请在 github 上报告此问题"
 	amount_report_multiplier = SHEET_MATERIAL_AMOUNT
 	export_types = list(
 		/obj/item/stack/sheet/mineral,
@@ -70,43 +70,43 @@
 	cost = CARGO_CRATE_VALUE * 0.4
 	k_elasticity = 0
 	material_id = /datum/material/plasma
-	message = "cm3 of plasma"
+	message = "立方厘米等离子体"
 
 /datum/export/material/bananium
 	cost = CARGO_CRATE_VALUE * 2
 	material_id = /datum/material/bananium
-	message = "cm3 of bananium"
+	message = "立方厘米香蕉矿"
 
 /datum/export/material/adamantine
 	cost = CARGO_CRATE_VALUE
 	material_id = /datum/material/adamantine
-	message = "cm3 of adamantine"
+	message = "立方厘米精金"
 
 /datum/export/material/mythril
 	cost = CARGO_CRATE_VALUE * 3
 	material_id = /datum/material/mythril
-	message = "cm3 of mythril"
+	message = "立方厘米秘银"
 
 /datum/export/material/plastic
 	cost = CARGO_CRATE_VALUE * 0.05
-	message = "cm3 of plastic"
+	message = "立方厘米塑料"
 	material_id = /datum/material/plastic
 
 /datum/export/material/runite
 	cost = CARGO_CRATE_VALUE * 1.2
-	message = "cm3 of runite"
+	message = "立方厘米符文矿"
 	material_id = /datum/material/runite
 
 /datum/export/material/hot_ice
 	cost = CARGO_CRATE_VALUE * 0.8
-	message = "cm3 of Hot Ice"
+	message = "立方厘米热冰"
 	material_id = /datum/material/hot_ice
 	export_types = /obj/item/stack/sheet/hot_ice
 	use_shared_exports = FALSE
 
 /datum/export/material/metal_hydrogen
 	cost = CARGO_CRATE_VALUE * 1.05
-	message = "cm3 of metallic hydrogen"
+	message = "立方厘米金属氢"
 	material_id = /datum/material/metalhydrogen
 	export_types = /obj/item/stack/sheet/mineral/metal_hydrogen
 	use_shared_exports = FALSE
@@ -145,26 +145,26 @@
 
 /datum/export/material/market/diamond
 	material_id = /datum/material/diamond
-	message = "cm3 of diamonds"
+	message = "立方厘米钻石"
 
 /datum/export/material/market/uranium
 	material_id = /datum/material/uranium
-	message = "cm3 of uranium"
+	message = "立方厘米铀"
 
 /datum/export/material/market/gold
 	material_id = /datum/material/gold
-	message = "cm3 of gold"
+	message = "立方厘米金"
 
 /datum/export/material/market/silver
 	material_id = /datum/material/silver
-	message = "cm3 of silver"
+	message = "立方厘米银"
 
 /datum/export/material/market/titanium
 	material_id = /datum/material/titanium
-	message = "cm3 of titanium"
+	message = "立方厘米钛"
 
 /datum/export/material/market/bscrystal
-	message = "of bluespace crystals"
+	message = "蓝空间水晶"
 	material_id = /datum/material/bluespace
 	export_types = list(
 		/obj/item/stack/sheet/bluespace_crystal,
@@ -173,7 +173,7 @@
 	use_shared_exports = FALSE
 
 /datum/export/material/market/iron
-	message = "cm3 of iron"
+	message = "立方厘米铁"
 	material_id = /datum/material/iron
 	export_types = list(
 		/obj/item/stack/sheet/iron,
@@ -185,7 +185,7 @@
 	use_shared_exports = FALSE
 
 /datum/export/material/market/glass
-	message = "cm3 of glass"
+	message = "立方厘米玻璃"
 	material_id = /datum/material/glass
 	export_types = list(
 		/obj/item/stack/sheet/glass,

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/fedora
-	name = "fedora"
-	desc = "A really cool hat if you're a mobster. A really lame hat if you're not."
+	name = "软呢帽"
+	desc = "如果你是个黑帮分子，这帽子超酷。如果你不是，那它就土得掉渣。"
 	icon_state = "fedora"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
@@ -12,12 +12,12 @@
 	create_storage(storage_type = /datum/storage/pockets/small/fedora)
 
 /obj/item/clothing/head/fedora/white
-	name = "white fedora"
+	name = "白色软呢帽"
 	icon_state = "fedora_white"
 	inhand_icon_state = null
 
 /obj/item/clothing/head/fedora/beige
-	name = "beige fedora"
+	name = "米色软呢帽"
 	icon_state = "fedora_beige"
 	inhand_icon_state = null
 
@@ -25,14 +25,14 @@
 	if(user.gender == FEMALE)
 		return
 	var/mob/living/carbon/human/H = user
-	user.visible_message(span_suicide("[user] is donning [src]! It looks like [user.p_theyre()] trying to be nice to girls."))
-	user.say("M'lady.", forced = "fedora suicide")
+	user.visible_message(span_suicide("[user] 正在戴上 [src]！看来是想对女孩子献殷勤。"))
+	user.say("我的女士。", forced = "fedora suicide")
 	sleep(1 SECONDS)
 	H.facial_hairstyle = "Neckbeard"
 	return BRUTELOSS
 
 /obj/item/clothing/head/fedora/carpskin
-	name = "carpskin fedora"
+	name = "鲤鱼皮软呢帽"
 	icon_state = "fedora_carpskin"
 	inhand_icon_state = null
 
@@ -41,8 +41,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -6)
 
 /obj/item/clothing/head/fedora/beige/press
-	name = "press fedora"
-	desc = "A beige fedora with a piece of paper saying \"PRESS\" stuck in its rim."
+	name = "记者软呢帽"
+	desc = "一顶米色软呢帽，帽檐上别着一张写着 \"PRESS\" 的纸条。"
 	icon_state = "fedora_press"
 	inhand_icon_state = null
 

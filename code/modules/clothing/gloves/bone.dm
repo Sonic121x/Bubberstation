@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/bracer
-	name = "bone bracers"
-	desc = "For when you're expecting to get slapped on the wrist. Offers modest protection to your arms."
+	name = "骨质护腕"
+	desc = "适合你预料自己会被人打手腕的时候。为你的双臂提供适度的防护。"
 	icon_state = "bracers"
 	inhand_icon_state = null
 	strip_delay = 4 SECONDS

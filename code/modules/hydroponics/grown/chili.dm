@@ -1,10 +1,10 @@
 // Chili
 /obj/item/seeds/chili
-	name = "chili seed pack"
-	desc = "These seeds grow into chili plants. HOT! HOT! HOT!"
+	name = "辣椒种子包"
+	desc = "这些种子会长成辣椒植株。辣！辣！辣！"
 	icon_state = "seed-chili"
 	species = "chili"
-	plantname = "Chili Plants"
+	plantname = "辣椒植株"
 	product = /obj/item/food/grown/chili
 	lifespan = 20
 	maturation = 5
@@ -21,8 +21,8 @@
 
 /obj/item/food/grown/chili
 	seed = /obj/item/seeds/chili
-	name = "chili"
-	desc = "It's spicy! Wait... IT'S BURNING ME!!"
+	name = "辣椒"
+	desc = "好辣！等等……它把我烧起来了！！"
 	icon_state = "chilipepper"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
@@ -30,11 +30,11 @@
 
 // Ice Chili
 /obj/item/seeds/chili/ice
-	name = "chilly pepper seed pack"
-	desc = "These seeds grow into chilly pepper plants."
+	name = "冰凉椒种子包"
+	desc = "这些种子会长成冰凉椒植株。"
 	icon_state = "seed-icepepper"
 	species = "chiliice"
-	plantname = "Chilly Pepper Plants"
+	plantname = "冰凉椒植株"
 	product = /obj/item/food/grown/icepepper
 	lifespan = 25
 	maturation = 4
@@ -47,8 +47,8 @@
 
 /obj/item/food/grown/icepepper
 	seed = /obj/item/seeds/chili/ice
-	name = "chilly pepper"
-	desc = "It's a mutant strain of chili."
+	name = "冰凉椒"
+	desc = "这是辣椒的一个突变品种。"
 	icon_state = "icepepper"
 	bite_consumption_mod = 5
 	foodtypes = VEGETABLES
@@ -56,11 +56,11 @@
 
 // Ghost Chili
 /obj/item/seeds/chili/ghost
-	name = "ghost chili seed pack"
-	desc = "These seeds grow into a chili said to be the hottest in the galaxy."
+	name = "幽灵辣椒种子包"
+	desc = "这些种子会长成据说是银河系中最辣的辣椒。"
 	icon_state = "seed-chilighost"
 	species = "chilighost"
-	plantname = "Ghost Chili Plants"
+	plantname = "幽灵辣椒植株"
 	product = /obj/item/food/grown/ghost_chili
 	endurance = 10
 	maturation = 10
@@ -74,8 +74,8 @@
 
 /obj/item/food/grown/ghost_chili
 	seed = /obj/item/seeds/chili/ghost
-	name = "ghost chili"
-	desc = "It seems to be vibrating gently."
+	name = "幽灵辣椒"
+	desc = "它似乎在轻轻颤动。"
 	icon_state = "ghostchilipepper"
 	bite_consumption_mod = 5
 	foodtypes = VEGETABLES
@@ -83,11 +83,11 @@
 
 // Bell Pepper
 /obj/item/seeds/chili/bell_pepper
-	name = "bell pepper seed pack"
-	desc = "These seeds grow into bell pepper plants. MILD! MILD! MILD!"
+	name = "甜椒种子包"
+	desc = "这些种子会长成甜椒植株。温和！温和！温和！"
 	icon_state = "seed-bell-pepper"
 	species = "bellpepper"
-	plantname = "Bell Pepper Plants"
+	plantname = "甜椒植株"
 	product = /obj/item/food/grown/bell_pepper
 	endurance = 10
 	maturation = 10
@@ -100,8 +100,8 @@
 
 /obj/item/food/grown/bell_pepper
 	seed = /obj/item/seeds/chili/bell_pepper
-	name = "bell pepper"
-	desc = "A big mild pepper that's good for many things."
+	name = "甜椒"
+	desc = "一种温和的大甜椒，用途广泛。"
 	icon_state = "bell_pepper"
 	foodtypes = VEGETABLES
 

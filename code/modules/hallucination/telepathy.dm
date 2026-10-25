@@ -4,16 +4,16 @@
 
 /datum/hallucination/telepathy/start()
 	var/datum/action/cooldown/spell/list_target/telepathy/mimiced_type = pick(typesof(/datum/action/cooldown/spell/list_target/telepathy))
-	hallucinator.balloon_alert(hallucinator, "you hear a voice")
+	hallucinator.balloon_alert(hallucinator, "你听见一个声音")
 	to_chat(hallucinator, "\
-		<span class='[initial(mimiced_type.bold_telepathy_span)]'>You hear a voice in your head...</span>\
+		<span class='[initial(mimiced_type.bold_telepathy_span)]'>你脑海中响起一个声音……</span>\
 		<span class='[initial(mimiced_type.telepathy_span)]'> [get_telepath_message()]</span>\
 	")
 	return TRUE
 
 /datum/hallucination/telepathy/proc/get_telepath_message()
 	if(prob(0.001))
-		return "horse"
+		return "马"
 
 	var/memo = pick(
 		pick_list_replacements(HALLUCINATION_FILE, "advice"),

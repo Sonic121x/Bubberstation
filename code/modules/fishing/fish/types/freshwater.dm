@@ -1,8 +1,8 @@
 /obj/item/fish/goldfish
-	name = "goldfish"
+	name = "金鱼"
 	fish_id = "goldfish"
-	desc = "Despite common belief, goldfish do not have three-second memories. \
-		They can actually remember things that happened up to three months ago."
+	desc = "与普遍看法相反，金鱼并没有三秒钟的记忆。\
+		它们其实能记住最多三个月前发生的事情。"
 	icon_state = "goldfish"
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#D8540D"
@@ -23,8 +23,8 @@
 	add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GOOD_QUALITY_BAIT), INNATE_TRAIT)
 
 /obj/item/fish/goldfish/gill
-	name = "McGill"
-	desc = "A great rubber duck tool for Lawyers who can't get a grasp over their case."
+	name = "麦吉尔"
+	desc = "一件上好的橡皮鸭工具，专为那些抓不住案件头绪的律师准备。"
 	fish_id_redirect_path = /obj/item/fish/goldfish
 	stable_population = 1
 	random_case_rarity = FISH_RARITY_NOPE
@@ -34,12 +34,12 @@
 	fish_traits = list(/datum/fish_trait/recessive)
 
 /obj/item/fish/goldfish/gill/get_fish_taste()
-	return list("raw fish" = 2.5, "objection" = 1)
+	return list("生鱼肉" = 2.5, "异议" = 1)
 
 /obj/item/fish/goldfish/three_eyes
-	name = "three-eyed goldfish"
+	name = "三眼金鱼"
 	fish_id = "three_eyes"
-	desc = "A goldfish with an extra half a pair of eyes. You wonder what it's been feeding on lately..."
+	desc = "一条多出半对眼睛的金鱼。你不禁好奇它最近都吃了些什么……"
 	icon_state = "three_eyes"
 	stable_population = 4
 	fish_traits = list(/datum/fish_trait/recessive, /datum/fish_trait/shiny_lover)
@@ -57,11 +57,11 @@
 	)
 
 /obj/item/fish/goldfish/three_eyes/get_fish_taste()
-	return list("raw fish" = 2.5, "chemical waste" = 0.5)
+	return list("生鱼肉" = 2.5, "化学废料" = 0.5)
 
 /obj/item/fish/goldfish/three_eyes/gill
-	name = "McGill"
-	desc = "A great rubber duck tool for Lawyers who can't get a grasp over their case. It looks kinda different today..."
+	name = "麦吉尔"
+	desc = "一件上好的橡皮鸭工具，专为那些抓不住案件头绪的律师准备。它今天看起来有点不一样……"
 	fish_id_redirect_path = /obj/item/fish/goldfish/three_eyes
 	compatible_types = list(/obj/item/fish/goldfish, /obj/item/fish/goldfish/three_eyes)
 	beauty = FISH_BEAUTY_GREAT
@@ -70,12 +70,12 @@
 	random_case_rarity = FISH_RARITY_NOPE
 
 /obj/item/fish/goldfish/three_eyes/gill/get_fish_taste()
-	return list("raw fish" = 2.5, "objection" = 1)
+	return list("生鱼肉" = 2.5, "异议" = 1)
 
 /obj/item/fish/angelfish
-	name = "angelfish"
+	name = "神仙鱼"
 	fish_id = "angelfish"
-	desc = "Young Angelfish often live in groups, while adults prefer solitary life. They become territorial and aggressive toward other fish when they reach adulthood."
+	desc = "年幼的神仙鱼常成群生活，成年后则更偏爱独居。成年后它们会变得具有领地意识，并对其他鱼表现出攻击性。"
 	icon_state = "angelfish"
 	sprite_width = 4
 	sprite_height = 7
@@ -87,9 +87,9 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+30
 
 /obj/item/fish/guppy
-	name = "guppy"
+	name = "孔雀鱼"
 	fish_id = "guppy"
-	desc = "Guppy is also known as rainbow fish because of the brightly colored body and fins."
+	desc = "孔雀鱼因身体与鱼鳍色彩鲜艳，也被称作彩虹鱼。"
 	icon_state = "guppy"
 	sprite_width = 5
 	sprite_height = 2
@@ -102,9 +102,9 @@
 	required_temperature_max = MIN_AQUARIUM_TEMP+28
 
 /obj/item/fish/plasmatetra
-	name = "plasma tetra"
+	name = "等离子脂鲤"
 	fish_id = "plasmatetra"
-	desc = "Due to their small size, tetras are prey to many predators in their watery world, including eels, crustaceans, and invertebrates."
+	desc = "由于体型微小，脂鲤在它们的水中世界是众多捕食者的猎物，包括鳗鱼、甲壳类和各类无脊椎动物。"
 	icon_state = "plastetra"
 	sprite_width = 4
 	sprite_height = 2
@@ -119,9 +119,9 @@
 	add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GOOD_QUALITY_BAIT), INNATE_TRAIT)
 
 /obj/item/fish/catfish
-	name = "catfish"
+	name = "鲶鱼"
 	fish_id = "catfish"
-	desc = "A catfish has about 100,000 taste buds, and their bodies are covered with them to help detect chemicals present in the water and also to respond to touch."
+	desc = "鲶鱼约有 10 万个味蕾，遍布全身，帮助它们探测水中的化学物质，并对触碰做出反应。"
 	icon_state = "catfish"
 	sprite_width = 8
 	sprite_height = 4
@@ -140,9 +140,9 @@
 	beauty = FISH_BEAUTY_GOOD
 
 /obj/item/fish/zipzap
-	name = "anxious zipzap"
+	name = "焦虑噼啪鱼"
 	fish_id = "zipzap"
-	desc = "A fish overflowing with crippling anxiety and electric potential. Worried about the walls of its tank closing in constantly. Both literally and as a general metaphorical unease about life's direction."
+	desc = "一条充满严重焦虑与电势能的鱼。它总是担心水箱的墙壁不断向自己逼近——无论是字面意义上，还是对人生方向的那种泛泛不安。"
 	icon_state = "zipzap"
 	icon_state_dead = "zipzap_dead"
 	sprite_width = 6
@@ -163,14 +163,14 @@
 	//anxiety naturally limits the amount of zipzaps per tank, so they are stronger alone
 	electrogenesis_power = 6.7 MEGA JOULES
 	beauty = FISH_BEAUTY_GOOD
-	suicide_slap_text = "*ZAP!*"
+	suicide_slap_text = "*噼啪！*"
 
 /obj/item/fish/zipzap/get_fish_taste()
-	return list("raw fish" = 2, "anxiety" = 1)
+	return list("生鱼肉" = 2, "焦虑" = 1)
 
 /obj/item/fish/zipzap/suicide_act(mob/living/user)
 	if(!electrocute_mob(user, power_source = get_area(src), source = src, siemens_coeff = 1, dist_check = FALSE))
-		user.visible_message(span_suicide("[user] tries to slap [user.p_them()]self with [src], but they're immune to electricity!"))
+		user.visible_message(span_suicide("[user] 试图用 [src] 拍打自己，但自己免疫电流！"))
 		return SHAME
 	return ..()
 
@@ -180,9 +180,9 @@
 	return ..()
 
 /obj/item/fish/tadpole
-	name = "tadpole"
+	name = "蝌蚪"
 	fish_id = "tadpole"
-	desc = "The larval spawn of an amphibian. A very miniscule, round creature with a long tail it uses to swim around."
+	desc = "两栖动物的幼体。一种非常微小的圆滚生物，靠一条长尾巴四处游动。"
 	icon_state = "tadpole"
 	average_size = 3
 	average_weight = 10
@@ -239,11 +239,11 @@
 	return 2 //two credits. Tadpoles aren't really that valueable.
 
 /obj/item/fish/tadpole/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swallows [src] whole!"))
+	user.visible_message(span_suicide("[user] 把 [src] 整个吞了下去！"))
 	src.forceMove(user)
 	if(status == FISH_DEAD)
 		user.emote("gasp")
-		user.visible_message(span_suicide("[user] croaks!"))
+		user.visible_message(span_suicide("[user] 发出了呱呱声！"))
 		return OXYLOSS
 
 	// the frogg grows
@@ -253,7 +253,7 @@
 /obj/item/fish/tadpole/proc/gestation(mob/living/user)
 	if(QDELETED(user) || QDELETED(src))
 		return
-	user.visible_message(span_suicide("A live frog bursts out of [user]!"))
+	user.visible_message(span_suicide("一只活青蛙从 [user] 体内爆出！"))
 	new /obj/effect/spawner/random/frog(user.drop_location())
 
 	var/obj/item/bodypart/chest = user.get_bodypart(BODY_ZONE_CHEST)
@@ -267,9 +267,9 @@
 	qdel(src)
 
 /obj/item/fish/perch
-	name = "perch"
+	name = "河鲈"
 	fish_id = "perch"
-	desc = "An all around popular panfish, game fish and unfortunate prey to other, bigger predators."
+	desc = "一种广受欢迎的食用小鱼与垂钓鱼，也是其他更大捕食者不幸的猎物。"
 	icon_state = "perch"
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	aquarium_vc_color = "#9D8C64"
@@ -291,9 +291,9 @@
 
 ///Memetic fish from a paleontologically inaccurate, goofy replica of a specimen. Sells decently for its size.
 /obj/item/fish/sacabambaspis
-	name = "sacabambaspis"
+	name = "萨卡班甲鱼"
 	fish_id = "sacabambaspis"
-	desc = "A jawless fish ought to be extinct by the end of the Ordovician period. Some speculate alien intervention may have been behind its survival and inevitable evolution as a dweller of hot springs."
+	desc = "一种无颌鱼本应在奥陶纪末期就已灭绝。有人猜测是外星干预让它们得以幸存，并不可避免地演化成了温泉中的居民。"
 	icon_state = "sacabambaspis"
 	sprite_width = 5
 	sprite_height = 3

@@ -12,8 +12,8 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump
 	icon_state = "volpump_map-3"
-	name = "volumetric gas pump"
-	desc = "A pump that moves gas by volume."
+	name = "容积式气体泵"
+	desc = "一种按体积输送气体的泵。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
@@ -38,8 +38,8 @@
 /obj/machinery/atmospherics/components/binary/volume_pump/click_ctrl(mob/user)
 	if(can_interact(user))
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
+		balloon_alert(user, "[on ? "已开启" : "已关闭"]")
+		investigate_log("被 [key_name(user)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -48,8 +48,8 @@
 		return CLICK_ACTION_BLOCKING
 
 	transfer_rate = MAX_TRANSFER_RATE
-	investigate_log("was set to [transfer_rate] L/s by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "volume output set to [transfer_rate] L/s")
+	investigate_log("传输速率被 [key_name(user)] 设为 [transfer_rate] L/s", INVESTIGATE_ATMOS)
+	balloon_alert(user, "体积输出已设为 [transfer_rate] L/s")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -106,16 +106,16 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump/examine(mob/user)
 	. = ..()
-	. += span_notice("Its pressure limits could be [overclocked ? "en" : "dis"]abled with a <b>multitool</b>.")
+	. += span_notice("可用<b>多功能工具</b>[overclocked ? "启用" : "禁用"]它的压力限制。")
 	if(overclocked)
-		. += "Its warning light is on[on ? " and it's spewing gas!" : "."]"
+		. += "它的警示灯亮着[on ? "，而且正在喷气！" : "。" ]"
 
 /obj/machinery/atmospherics/components/binary/volume_pump/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Maximize transfer rate"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "[on ? "关闭" : "开启"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "最大化传输速率"
 	if(held_item && held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "[overclocked ? "En" : "Dis"]able pressure limits"
+		context[SCREENTIP_CONTEXT_LMB] = "[overclocked ? "禁用" : "启用"]压力限制"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/binary/volume_pump/ui_interact(mob/user, datum/tgui/ui)
@@ -138,7 +138,7 @@
 	switch(action)
 		if("power")
 			set_on(!on)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(usr)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("rate")
 			var/rate = params["rate"]
@@ -150,22 +150,22 @@
 				. = TRUE
 			if(.)
 				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
-				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("传输速率被 [key_name(usr)] 设为 [transfer_rate] L/s", INVESTIGATE_ATMOS)
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/volume_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法拧松 [src]，请先将其关闭！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/binary/volume_pump/multitool_act(mob/living/user, obj/item/I)
 	if(!overclocked)
 		overclocked = TRUE
-		to_chat(user, "The pump makes a grinding noise and air starts to hiss out as you disable its pressure limits.")
+		to_chat(user, "当你禁用泵的压力限制时，它发出刺耳的摩擦声，空气开始嘶嘶外泄。")
 	else
 		overclocked = FALSE
-		to_chat(user, "The pump quiets down as you turn its limiters back on.")
+		to_chat(user, "当你重新开启限压器后，泵安静了下来。")
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
@@ -192,8 +192,8 @@
 	icon_state = "volpump_on_map-4"
 
 /obj/item/circuit_component/atmos_volume_pump
-	display_name = "Atmospheric Volume Pump"
-	desc = "The interface for communicating with a volume pump."
+	display_name = "大气容积式气体泵"
+	desc = "用于与容积式气体泵通信的接口。"
 
 	///Set the transfer rate of the pump
 	var/datum/port/input/transfer_rate

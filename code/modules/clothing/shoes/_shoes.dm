@@ -1,10 +1,10 @@
 /obj/item/clothing/shoes
-	name = "shoes"
+	name = "鞋子"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'
 	abstract_type = /obj/item/clothing/shoes
-	desc = "Comfortable-looking shoes."
+	desc = "看起来穿着很舒服的鞋子。"
 	pickup_sound = 'sound/items/handling/shoes/sneakers_pickup1.ogg'
 	drop_sound = 'sound/items/handling/shoes/sneakers_drop1.ogg'
 	equip_sound = 'sound/items/equip/sneakers_equip1.ogg'
@@ -36,14 +36,14 @@
 
 /obj/item/clothing/shoes/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_RMB] = "Toggle shoes under uniforms"
+	context[SCREENTIP_CONTEXT_ALT_RMB] = "切换鞋子在制服下的穿法"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/clothing/shoes/click_alt_secondary(mob/user)
 	alternate_worn_layer = (alternate_worn_layer == UNDER_UNIFORM_LAYER) ? NONE : UNDER_UNIFORM_LAYER
 
 	update_slot_icon()
-	balloon_alert(user, "wearing [alternate_worn_layer == UNDER_UNIFORM_LAYER ? "under" : "over"] uniforms")
+	balloon_alert(user, "穿在制服[alternate_worn_layer == UNDER_UNIFORM_LAYER ? "下" : "上"]面")
 	return CLICK_ACTION_SUCCESS
 
 /datum/armor/clothing_shoes
@@ -51,7 +51,7 @@
 
 /obj/item/clothing/shoes/suicide_act(mob/living/user)
 	if(prob(50))
-		user.visible_message(span_suicide("[user] begins fastening \the [src] up waaay too tightly! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user] 开始把 [src] 系得紧到离谱！看来是想自杀了！"))
 		var/obj/item/bodypart/leg/left = user.get_bodypart(BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/leg/right = user.get_bodypart(BODY_ZONE_R_LEG)
 		if(left)
@@ -61,7 +61,7 @@
 		playsound(user, SFX_DESECRATION, 50, TRUE, -1)
 		return BRUTELOSS
 	else//didnt realize this suicide act existed (was in miscellaneous.dm) and didnt want to remove it, so made it a 50/50 chance. Why not!
-		user.visible_message(span_suicide("[user] is bashing [user.p_their()] own head in with [src]! Ain't that a kick in the head?"))
+		user.visible_message(span_suicide("[user] 正用 [src] 使劲砸自己的脑袋！这算不算脑袋上挨了一脚？"))
 		for(var/i in 1 to 3)
 			sleep(0.3 SECONDS)
 			playsound(user, 'sound/items/weapons/genhit2.ogg', 50, TRUE)
@@ -96,9 +96,9 @@
 		return
 
 	if(tied == SHOES_UNTIED)
-		. += "The [fastening_type] are [untied_adjective()]."
+		. += "[fastening_type]是[untied_adjective()]。"
 	else if(tied == SHOES_KNOTTED)
-		. += "The [fastening_type] are all knotted together."
+		. += "[fastening_type]全都缠成一团了。"
 
 /obj/item/clothing/shoes/visual_equipped(mob/user, slot)
 	. = ..()
@@ -186,17 +186,17 @@
 		return
 
 	if(!in_range(user, our_guy))
-		to_chat(user, span_warning("You aren't close enough to interact with [src]'s [fastening_type]!"))
+		to_chat(user, span_warning("你离得太远，没法处理 [src] 的[fastening_type]！"))
 		return
 
 	if(user == loc && tied != SHOES_TIED) // if they're our own shoes, go tie-wards
 		if(DOING_INTERACTION_WITH_TARGET(user, our_guy))
-			to_chat(user, span_warning("You're already interacting with [src]!"))
+			to_chat(user, span_warning("你已经在处理 [src] 了！"))
 			return
-		user.visible_message(span_notice("[user] begins [tied ? "unknotting" : "[fastening_verb()]"] the [fastening_type] of [user.p_their()] [src.name]."), span_notice("You begin [tied ? "unknotting" : "[fastening_verb()]"] the [fastening_type] of your [src.name]..."))
+		user.visible_message(span_notice("[user] 开始[tied ? "解开" : "[fastening_verb()]"]自己 [src.name] 的[fastening_type]。"), span_notice("你开始[tied ? "解开" : "[fastening_verb()]"]自己 [src.name] 的[fastening_type]……"))
 
 		if(do_after(user, lace_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy)))
-			to_chat(user, span_notice("You [tied ? "unknot" : "[fasten_verb()]"] the [fastening_type] of your [src.name]."))
+			to_chat(user, span_notice("你[tied ? "解开" : "[fasten_verb()]"]了自己 [src.name] 的[fastening_type]。"))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_TIED, user)
 			else
@@ -204,17 +204,17 @@
 
 	else // if they're someone else's shoes, go knot-wards
 		if(user.body_position == STANDING_UP)
-			to_chat(user, span_warning("You must be on the floor to interact with [src]!"))
+			to_chat(user, span_warning("你必须先倒在地上才能处理 [src]！"))
 			return
 		if(tied == SHOES_KNOTTED)
-			to_chat(user, span_warning("The [fastening_type] on [loc]'s [src.name] are already a hopelessly tangled mess!"))
+			to_chat(user, span_warning("[loc] 的 [src.name] 上的[fastening_type]已经缠成一团死结了！"))
 			return
 		if(DOING_INTERACTION_WITH_TARGET(user, our_guy))
-			to_chat(user, span_warning("You're already interacting with [src]!"))
+			to_chat(user, span_warning("你已经在处理 [src] 了！"))
 			return
 
 		var/mod_time = lace_time
-		to_chat(user, span_notice("You quietly set to work [tied ? "un[fastening_verb()]" : "knotting"] [loc]'s [src.name]..."))
+		to_chat(user, span_notice("你悄悄开始[tied ? "解开" : "打结"] [loc] 的 [src.name]……"))
 		if(HAS_TRAIT(user, TRAIT_CLUMSY)) // based clowns trained their whole lives for this
 			mod_time *= 0.75
 		// SKYRAT EDIT ADDITION START
@@ -222,14 +222,14 @@
 			mod_time *= 0.5
 		// SKYRAT EDIT ADDITION END
 		if(do_after(user, mod_time, target = our_guy, extra_checks = CALLBACK(src, PROC_REF(still_shoed), our_guy), cog_icon = null))
-			to_chat(user, span_notice("You [tied ? "un[fasten_verb()]" : "knot"] the [fastening_type] on [loc]'s [src.name]."))
+			to_chat(user, span_notice("你[tied ? "解开" : "打上结"]了 [loc] 的 [src.name] 上的[fastening_type]。"))
 			if(tied == SHOES_UNTIED)
 				adjust_laces(SHOES_KNOTTED, user)
 			else
 				adjust_laces(SHOES_UNTIED, user)
 		else // if one of us moved
-			user.visible_message(span_danger("[our_guy] stamps on [user]'s hand, mid-[tied ? "knotting" : "un[fastening_verb()]"]!"), span_userdanger("Ow! [our_guy] stamps on your hand!"), list(our_guy))
-			to_chat(our_guy, span_userdanger("You stamp on [user]'s hand! What the- [user.p_they()] [user.p_were()] [tied ? "knotting" : "un[fastening_verb()]"] your [fastening_type]!"))
+			user.visible_message(span_danger("[our_guy] 一把踩住了 [user] 的手——[tied ? "解开" : "打结"]的活儿才做到一半！"), span_userdanger("啊！[our_guy] 踩住了你的手！"), list(our_guy))
+			to_chat(our_guy, span_userdanger("你踩住了 [user] 的手！搞什么——[user] 刚才正在[tied ? "解开" : "打结"]你的[fastening_type]！"))
 			user.emote("scream")
 			user.apply_damage(10, BRUTE, user.get_active_hand(), wound_bonus = CANT_WOUND)
 			user.apply_damage(40, STAMINA)
@@ -249,7 +249,7 @@
 	if(tied == SHOES_KNOTTED)
 		our_guy.Paralyze(5)
 		our_guy.Knockdown(10)
-		our_guy.visible_message(span_danger("[our_guy] trips on [our_guy.p_their()] knotted [fastening_type] and falls! What a klutz!"), span_userdanger("You trip on your knotted [fastening_type] and fall over!"))
+		our_guy.visible_message(span_danger("[our_guy] 被自己打成结的[fastening_type]绊倒，摔了个跟头！真笨手笨脚！"), span_userdanger("你被自己打成结的[fastening_type]绊倒，摔了一跤！"))
 		our_guy.add_mood_event("trip", /datum/mood_event/tripped) // well we realized they're knotted now!
 		our_alert_ref = WEAKREF(our_guy.throw_alert(ALERT_SHOES_KNOT, /atom/movable/screen/alert/shoes/knotted))
 
@@ -260,21 +260,21 @@
 				our_guy.Paralyze(5)
 				our_guy.Knockdown(10)
 				our_guy.add_mood_event("trip", /datum/mood_event/tripped) // well we realized they're knotted now!
-				our_guy.visible_message(span_danger("[our_guy] trips on [our_guy.p_their()] [untied_adjective()] [fastening_type] and falls! What a klutz!"), span_userdanger("You trip on your [untied_adjective()] [fastening_type] and fall over!"))
+				our_guy.visible_message(span_danger("[our_guy] 被自己[untied_adjective()] [fastening_type]绊倒，摔了个跟头！真笨手笨脚！"), span_userdanger("你被自己[untied_adjective()] [fastening_type]绊倒，摔了一跤！"))
 
 			if(2 to 5) // .4% chance to stumble and lurch forward
 				our_guy.throw_at(get_step(our_guy, our_guy.dir), 3, 2)
-				to_chat(our_guy, span_danger("You stumble on your [untied_adjective()] [fastening_type] and lurch forward!"))
+				to_chat(our_guy, span_danger("你被自己[untied_adjective()] [fastening_type]绊了一下，向前踉跄！"))
 
 			if(6 to 13) // .7% chance to stumble and fling what we're holding
 				var/have_anything = FALSE
 				for(var/obj/item/I in our_guy.held_items)
 					have_anything = TRUE
 					our_guy.accident(I)
-				to_chat(our_guy, span_danger("You trip on your [fastening_type] a bit[have_anything ? ", flinging what you were holding" : ""]!"))
+				to_chat(our_guy, span_danger("你的[fastening_type]让你绊了一下[have_anything ? "，手里的东西也飞了出去" : ""]！"))
 
 			if(14 to 25) // 1.3ish% chance to stumble and be a bit off balance (like being disarmed)
-				to_chat(our_guy, span_danger("You stumble a bit on your [untied_adjective()] [fastening_type]!"))
+				to_chat(our_guy, span_danger("你在[untied_adjective()] [fastening_type]上踉跄了一下！"))
 				our_guy.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 10 SECONDS)
 
 			if(26 to 1000)
@@ -299,13 +299,13 @@
 		return
 
 	if(DOING_INTERACTION_WITH_TARGET(user, src))
-		to_chat(user, span_warning("You're already interacting with [src]!"))
+		to_chat(user, span_warning("你已经在处理 [src] 了！"))
 		return
 
-	to_chat(user, span_notice("You begin [tied ? "un" : ""][fastening_verb()] the [fastening_type] on [src]..."))
+	to_chat(user, span_notice("你开始[tied ? "解开" : "系紧"] [src] 上的[fastening_type]……"))
 
 	if(do_after(user, lace_time, target = src,extra_checks = CALLBACK(src, PROC_REF(still_shoed), user)))
-		to_chat(user, span_notice("You [tied ? "un" : ""][fasten_verb()] the [fastening_type] on [src]."))
+		to_chat(user, span_notice("你[tied ? "解开" : "系好"]了 [src] 上的[fastening_type]。"))
 		adjust_laces(tied ? SHOES_UNTIED : SHOES_TIED, user)
 
 /obj/item/clothing/shoes/apply_fantasy_bonuses(bonus)
@@ -326,28 +326,28 @@
 /obj/item/clothing/shoes/proc/untied_adjective()
 	switch(fastening_type)
 		if (SHOES_LACED)
-			return "untied"
+			return "松脱的"
 		if (SHOES_VELCRO, SHOES_STRAPS)
-			return "loose"
+			return "松脱的"
 
-	return "nonexistant"
+	return "不复存在的"
 
 /// Returns appropriate verb for how to fasten shoes
 /obj/item/clothing/shoes/proc/fasten_verb()
 	switch(fastening_type)
 		if (SHOES_LACED)
-			return "tie"
+			return "系好"
 		if (SHOES_VELCRO, SHOES_STRAPS)
-			return "fasten"
+			return "扣好"
 
-	return "do something mysterious to"
+	return "做出某种神秘举动"
 
 /// Returns appropriate verb for fastening shoes
 /obj/item/clothing/shoes/proc/fastening_verb()
 	switch(fastening_type)
 		if (SHOES_LACED)
-			return "tying"
+			return "系紧"
 		if (SHOES_VELCRO, SHOES_STRAPS)
-			return "fastening"
+			return "扣紧"
 
-	return "doing something mysterious to"
+	return "做出某种神秘举动"

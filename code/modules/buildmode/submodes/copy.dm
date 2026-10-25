@@ -8,8 +8,8 @@
 
 /datum/buildmode_mode/copy/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		"[span_bold("Spawn a copy of selected target")] -> Left Mouse Button on obj/turf/mob\n\
-		[span_bold("Select target to copy")] -> Right Mouse Button on obj/mob"))
+		"[span_bold("生成所选目标的副本")] -> 在 obj/turf/mob 上按鼠标左键\n\
+		[span_bold("选择要复制的目标")] -> 在 obj/mob 上按鼠标右键"))
 	)
 
 /datum/buildmode_mode/copy/handle_click(client/c, params, obj/object)
@@ -19,8 +19,8 @@
 		var/turf/T = get_turf(object)
 		if(stored)
 			duplicate_object(stored, spawning_location = T)
-			log_admin("Build Mode: [key_name(c)] copied [stored] to [AREACOORD(object)]")
+			log_admin("建造模式：[key_name(c)] 将 [stored] 复制到了 [AREACOORD(object)]")
 	else if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(ismovable(object)) // No copying turfs for now.
-			to_chat(c, span_notice("[object] set as template."))
+			to_chat(c, span_notice("[object] 已设为模板。"))
 			stored = object

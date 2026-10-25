@@ -26,7 +26,7 @@
 	hallucinator.apply_status_effect(/datum/status_effect/grouped/screwy_hud/fake_dead, REF(src))
 	hallucinator.add_traits(list(TRAIT_MUTE, TRAIT_EMOTEMUTE), REF(src))
 
-	to_chat(hallucinator, span_deadsay("<b>[hallucinator.real_name]</b> has died at <b>[get_area_name(hallucinator)]</b>."))
+	to_chat(hallucinator, span_deadsay("<b>[hallucinator.real_name]</b> 已在 <b>[get_area_name(hallucinator)]</b> 死亡。"))
 
 	var/delay = 0
 
@@ -39,42 +39,42 @@
 			delay = rand(2 SECONDS, 5 SECONDS)
 
 			var/static/list/things_to_hate = list(
-				"admins",
-				"batons",
-				"blood cult",
-				"coders",
-				"heretics",
-				"myself",
-				"revenants",
-				"revs",
-				"sec",
-				"ss13",
-				"this game",
-				"this round",
-				"this shift",
-				"this shit",
-				"this",
-				"wizards",
-				"you",
+				"管理员",
+				"警棍",
+				"血教",
+				"码农",
+				"异教徒",
+				"我自己",
+				"亡魂",
+				"革命党",
+				"安保",
+				"SS13",
+				"这游戏",
+				"这一局",
+				"这一班",
+				"这破玩意",
+				"这个",
+				"巫师",
+				"你",
 			)
 
 			var/list/dead_chat_salt = list(
-				"...",
-				"FUCK",
-				"git gud",
-				"god damn it",
-				"hey [first_name(hallucinator.name)]",
-				"i[prob(50) ? " fucking" : ""] hate [pick(things_to_hate)]",
-				"is the AI rogue?",
-				"rip",
-				"shitsec",
-				"why did i just drop dead?",
-				"why was i gibbed",
-				"wizard?",
-				"you too?",
+				"……",
+				"操",
+				"练练再来",
+				"该死的",
+				"嘿 [first_name(hallucinator.name)]",
+				"我[prob(50) ? "他妈" : ""]讨厌[pick(things_to_hate)]",
+				"AI 叛变了吗？",
+				"安息",
+				"狗屎安保",
+				"我怎么突然就死了？",
+				"我怎么被碎尸了",
+				"巫师？",
+				"你也是？",
 			)
 
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), hallucinator, span_deadsay("<b>DEAD: [who_is_salting.name]</b> says, \"[pick(dead_chat_salt)]\"")), delay)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), hallucinator, span_deadsay("<b>DEAD: [who_is_salting.name]</b> 说：\"[pick(dead_chat_salt)]\"")), delay)
 
 	addtimer(CALLBACK(src, PROC_REF(wake_up)), delay + rand(7 SECONDS, 9 SECONDS))
 	return TRUE

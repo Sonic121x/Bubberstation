@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/boxing
-	name = "boxing gloves"
-	desc = "Because you really needed another excuse to punch your crewmates."
+	name = "拳击手套"
+	desc = "因为你确实还需要另一个揍同事的借口。"
 	icon_state = "boxing"
 	greyscale_colors = "#f32110"
 	equip_delay_other = 6 SECONDS
@@ -27,7 +27,7 @@
 
 /obj/item/clothing/gloves/boxing/proc/on_mail_unwrap(atom/source, mob/user, obj/item/mail/traitor/letter)
 	SIGNAL_HANDLER
-	to_chat(user, span_danger("As you open [letter], boxing gloves spring out and deliver you a swift uppercut!"))
+	to_chat(user, span_danger("当你打开 [letter] 时，拳击手套弹了出来，狠狠地给了你一记上勾拳！"))
 	var/mob/living/userasliving = user
 	playsound(user, SFX_PUNCH, 25, TRUE)
 	userasliving.Knockdown((extrapower ? 2 : 4) SECONDS, (extrapower ? 4 : 6) SECONDS)
@@ -36,8 +36,8 @@
 	return COMPONENT_TRAITOR_MAIL_HANDLED
 
 /obj/item/clothing/gloves/boxing/evil
-	name = "evil boxing gloves"
-	desc = "These strange gloves radiate an unusually evil aura."
+	name = "邪恶拳击手套"
+	desc = "这副奇怪的手套散发着异常邪恶的气息。"
 	greyscale_colors = "#21211f"
 	style_to_give = /datum/martial_art/boxing/evil
 	extrapower = TRUE
@@ -55,8 +55,8 @@
 	greyscale_colors = "#d2a800"
 
 /obj/item/clothing/gloves/boxing/golden
-	name = "golden gloves"
-	desc = "The reigning champ of the station!"
+	name = "黄金手套"
+	desc = "站内现任冠军！"
 	icon_state = "boxinggold"
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT*1)  //LITERALLY GOLD
 	material_flags = MATERIAL_EFFECTS | MATERIAL_AFFECT_STATISTICS

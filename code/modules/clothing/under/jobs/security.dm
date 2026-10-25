@@ -25,20 +25,20 @@
 	wound = 10
 
 /obj/item/clothing/under/rank/security/officer
-	name = "security uniform"
-	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
+	name = "安保制服"
+	desc = "一套为安保官配发的战术连体服，配有纳米传讯皮带扣。"
 	icon_state = "rsecurity"
 	inhand_icon_state = "r_suit"
 
 /obj/item/clothing/under/rank/security/officer/grey
-	name = "grey security jumpsuit"
-	desc = "A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	name = "灰色安保连体服"
+	desc = "数年前的战术遗物，那时纳米传讯发现把制服染红比洗掉血迹更便宜。"
 	icon_state = "security"
 	inhand_icon_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/officer/skirt
-	name = "security skirt"
-	desc = "A \"tactical\" security uniform with the legs replaced by a skirt."
+	name = "安保短裙"
+	desc = "一套“战术”安保制服，只是裤腿换成了裙子。"
 	icon_state = "secskirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -48,22 +48,22 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/security/officer/blueshirt
-	name = "blue shirt and tie"
-	desc = "I'm a little busy right now, Calhoun."
+	name = "蓝衬衫与领带"
+	desc = "我现在有点忙，卡尔霍恩。"
 	icon_state = "blueshift"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/formal
-	name = "security officer's formal uniform"
-	desc = "The latest in fashionable security outfits."
+	name = "安保官礼服"
+	desc = "最新款的时尚安保服装。"
 	icon_state = "officerblueclothes"
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/constable
-	name = "constable outfit"
-	desc = "A British-looking outfit."
+	name = "警员制服"
+	desc = "一套看上去很英式的制服。"
 	icon_state = "constable"
 	inhand_icon_state = null
 	can_adjust = FALSE
@@ -71,20 +71,20 @@
 
 
 /obj/item/clothing/under/rank/security/warden
-	name = "security suit"
-	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
+	name = "安保西装"
+	desc = "一套为安保官配发的正式西装，配有纳米传讯皮带扣。"
 	icon_state = "rwarden"
 	inhand_icon_state = "r_suit"
 
 /obj/item/clothing/under/rank/security/warden/grey
-	name = "grey security suit"
-	desc = "A formal relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	name = "灰色安保西装"
+	desc = "数年前的正式遗物，那时纳米传讯发现把西装染红比洗掉血迹更便宜。"
 	icon_state = "warden"
 	inhand_icon_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/warden/skirt
-	name = "warden's suitskirt"
-	desc = "A formal security suitskirt for officers complete with Nanotrasen belt buckle."
+	name = "典狱长西装裙"
+	desc = "一套为安保官配发的正式安保西装裙，配有纳米传讯皮带扣。"
 	icon_state = "rwarden_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -94,8 +94,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/security/warden/formal
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
-	name = "warden's formal uniform"
+	desc = "这套制服上的徽记表明它属于典狱长。"
+	name = "典狱长礼服"
 	icon_state = "wardenblueclothes"
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
@@ -104,15 +104,15 @@
  * Detective
  */
 /obj/item/clothing/under/rank/security/detective
-	name = "hard-worn suit"
-	desc = "Someone who wears this means business."
+	name = "饱经风霜的西装"
+	desc = "穿它的人可不是闹着玩的。"
 	icon_state = "detective"
 	inhand_icon_state = "det"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/detective/skirt
-	name = "detective's suitskirt"
-	desc = "Someone who wears this means business."
+	name = "侦探西装裙"
+	desc = "穿它的人可不是闹着玩的。"
 	icon_state = "detective_skirt"
 	inhand_icon_state = "det"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -123,15 +123,15 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/security/detective/noir
-	name = "noir suit"
-	desc = "A hard-boiled private investigator's dark suit, complete with tie clip."
+	name = "暗调西装"
+	desc = "一名硬派私家侦探的深色西装，还配有领带夹。"
 	icon_state = "noirdet"
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/detective/noir/skirt
-	name = "noir suitskirt"
-	desc = "A hard-boiled private investigator's grey suitskirt, complete with tie clip."
+	name = "暗调西装裙"
+	desc = "一名硬派私家侦探的灰色西装裙，还配有领带夹。"
 	icon_state = "noirdet_skirt"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -145,8 +145,8 @@
  * Head of Security
  */
 /obj/item/clothing/under/rank/security/head_of_security
-	name = "head of security's uniform"
-	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "安保主管制服"
+	desc = "一套为少数有奉献精神、得以晋升安保主管之职的人所装饰的安保连体服。"
 	icon_state = "rhos"
 	inhand_icon_state = "r_suit"
 	armor_type = /datum/armor/clothing_under/security_head_of_security
@@ -159,8 +159,8 @@
 	wound = 10
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
-	name = "head of security's skirt"
-	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "安保主管短裙"
+	desc = "一条为少数有奉献精神、得以晋升安保主管之职的人所装饰的安保连体裙。"
 	icon_state = "rhos_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -170,21 +170,21 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/security/head_of_security/grey
-	name = "head of security's grey jumpsuit"
-	desc = "There are old men, and there are bold men, but there are very few old, bold men."
+	name = "安保主管灰色连体服"
+	desc = "有老人，也有勇者，但既老又勇的人极其稀少。"
 	icon_state = "hos"
 	inhand_icon_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
-	name = "head of security's turtleneck"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with tactical pants."
+	name = "安保主管高领衫"
+	desc = "一款替代常规安保主管连体服的时尚选择，配有战术长裤。"
 	icon_state = "hosalt"
 	inhand_icon_state = "bl_suit"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
-	name = "head of security's turtleneck skirt"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with a tactical skirt."
+	name = "安保主管高领短裙"
+	desc = "一款替代常规安保主管连体服的时尚选择，配有战术短裙。"
 	icon_state = "hosalt_skirt"
 	inhand_icon_state = "bl_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -195,23 +195,23 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/security/head_of_security/parade
-	name = "head of security's parade uniform"
-	desc = "A male head of security's luxury-wear, for special occasions."
+	name = "安保主管阅兵礼服"
+	desc = "一件供男性安保主管穿着的奢华礼服，适合特殊场合。"
 	icon_state = "hos_parade_male"
 	inhand_icon_state = "r_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female
-	name = "head of security's formal uniform"
-	desc = "A female head of security's luxury-wear, for special occasions."
+	name = "安保主管礼服"
+	desc = "一件供女性安保主管穿着的奢华礼服，适合特殊场合。"
 	icon_state = "hos_parade_fem"
 	inhand_icon_state = "r_suit"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/head_of_security/formal
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's formal uniform"
+	desc = "这套制服上的徽记表明它属于安保主管。"
+	name = "安保主管礼服"
 	icon_state = "hosblueclothes"
 	inhand_icon_state = null
 	alt_covers_chest = TRUE
@@ -221,8 +221,8 @@
  */
 
 /obj/item/clothing/under/rank/security/officer/spacepol
-	name = "police uniform"
-	desc = "Space not controlled by megacorporations, planets, or pirates is under the jurisdiction of Spacepol."
+	name = "警察制服"
+	desc = "不受巨型企业、行星或海盗控制的太空，都归太空警署管辖。"
 	icon_state = "spacepol"
 	inhand_icon_state = null
 	can_adjust = FALSE
@@ -235,8 +235,8 @@
 	wound = 10
 
 /obj/item/clothing/under/rank/prisoner
-	name = "prison jumpsuit"
-	desc = "Standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "囚犯连体服"
+	desc = "标准化的纳米传讯囚服。其服装传感器卡在“完全开启”档位。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/prisoner"
 	post_init_icon_state = "jumpsuit"
@@ -252,14 +252,14 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/prisoner/nosensor
-	desc = "Standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"OFF\" position."
+	desc = "标准化的纳米传讯囚服。其服装传感器卡在“关闭”档位。"
 	has_sensor = NO_SENSORS
 	sensor_mode = SENSOR_OFF
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/under/rank/prisoner/skirt
-	name = "prison jumpskirt"
-	desc = "Standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "囚犯连体裙"
+	desc = "标准化的纳米传讯囚服。其服装传感器卡在“完全开启”档位。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt"
 	post_init_icon_state = "jumpskirt"
@@ -276,22 +276,22 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/security/officer/beatcop
-	name = "space police uniform"
-	desc = "A police uniform often found in the lines at donut shops."
+	name = "太空警署制服"
+	desc = "一套常见于甜甜圈店排队人群中的警察制服。"
 	icon_state = "spacepolice_families"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/detective/disco
-	name = "superstar cop uniform"
-	desc = "Flare cut trousers and a dirty shirt that might have been classy before someone took a piss in the armpits. It's the dress of a superstar."
+	name = "超级明星警探制服"
+	desc = "喇叭裤腿长裤和一件脏衬衫——在有人往腋下撒过尿之前，它或许还算体面。这是超级明星的行头。"
 	icon_state = "jamrock_suit"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/detective/kim
-	name = "aerostatic suit"
-	desc = "A crisp and well-pressed suit; professional, comfortable and curiously authoritative."
+	name = "浮空西装"
+	desc = "一套平整挺括的西装；专业、舒适，还带着一种奇特的权威感。"
 	icon_state = "aerostatic_suit"
 	inhand_icon_state = null
 	can_adjust = FALSE

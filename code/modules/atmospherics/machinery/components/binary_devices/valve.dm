@@ -6,8 +6,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 /obj/machinery/atmospherics/components/binary/valve
 	icon_state = "mvalve_map-3"
-	name = "manual valve"
-	desc = "A pipe with a valve that can be used to disable flow of gas through it."
+	name = "手动阀门"
+	desc = "带有阀门的管道，可用于切断流经其中的气体。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_OPEN //Intentionally no allow_silicon flag
@@ -42,12 +42,12 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		update_parents()
 		var/datum/pipeline/parent1 = parents[1]
 		parent1.reconcile_air()
-		investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
-		balloon_alert_to_viewers("valve opened")
+		investigate_log("被 [usr ? key_name(usr) : "远程信号"] 打开", INVESTIGATE_ATMOS)
+		balloon_alert_to_viewers("阀门已打开")
 		vent_movement |= VENTCRAWL_ALLOWED
 	else
-		investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
-		balloon_alert_to_viewers("valve closed")
+		investigate_log("被 [usr ? key_name(usr) : "远程信号"] 关闭", INVESTIGATE_ATMOS)
+		balloon_alert_to_viewers("阀门已关闭")
 		vent_movement &= ~VENTCRAWL_ALLOWED
 
 
@@ -78,8 +78,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 /obj/machinery/atmospherics/components/binary/valve/digital // can be controlled by AI
 	icon_state = "dvalve_map-3"
 
-	name = "digital valve"
-	desc = "A digitally controlled valve."
+	name = "数字阀门"
+	desc = "数字控制的阀门。"
 	valve_type = DIGITAL_VALVE
 	pipe_state = "dvalve"
 
@@ -90,8 +90,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/digital_valve), only_root_path = TRUE))
 
 /obj/item/circuit_component/digital_valve
-	display_name = "Digital Valve"
-	desc = "The interface for communicating with a digital valve."
+	display_name = "数字阀门"
+	desc = "用于与数字阀门通信的接口。"
 
 	var/obj/machinery/atmospherics/components/binary/valve/digital/attached_valve
 

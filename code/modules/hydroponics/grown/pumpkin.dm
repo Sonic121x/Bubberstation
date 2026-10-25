@@ -1,11 +1,11 @@
 // Pumpkin
 /obj/item/seeds/pumpkin
-	name = "pumpkin seed pack"
-	desc = "These seeds grow into pumpkin vines."
+	name = "南瓜种子包"
+	desc = "这些种子会长成南瓜藤。"
 	icon_state = "seed-pumpkin"
 	plant_icon_offset = 4
 	species = "pumpkin"
-	plantname = "Pumpkin Vines"
+	plantname = "南瓜藤"
 	product = /obj/item/food/grown/pumpkin
 	lifespan = 50
 	endurance = 40
@@ -19,8 +19,8 @@
 
 /obj/item/food/grown/pumpkin
 	seed = /obj/item/seeds/pumpkin
-	name = "pumpkin"
-	desc = "It's large and scary."
+	name = "南瓜"
+	desc = "它又大又吓人。"
 	icon_state = "pumpkin"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
@@ -35,18 +35,18 @@
 	if(!tool.get_sharpness())
 		return NONE
 
-	to_chat(user, span_notice("You carve a face into [src]!"))
+	to_chat(user, span_notice("你在 [src] 上刻出一张脸！"))
 	new carved_type(user.loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 // Blumpkin
 /obj/item/seeds/pumpkin/blumpkin
-	name = "blumpkin seed pack"
-	desc = "These seeds grow into blumpkin vines."
+	name = "蓝瓜种子包"
+	desc = "这些种子会长成蓝瓜藤。"
 	icon_state = "seed-blumpkin"
 	species = "blumpkin"
-	plantname = "Blumpkin Vines"
+	plantname = "蓝瓜藤"
 	product = /obj/item/food/grown/pumpkin/blumpkin
 	mutatelist = null
 	reagents_add = list(/datum/reagent/ammonia = 0.2, /datum/reagent/chlorine = 0.1, /datum/reagent/consumable/nutriment = 0.2)
@@ -54,8 +54,8 @@
 
 /obj/item/food/grown/pumpkin/blumpkin
 	seed = /obj/item/seeds/pumpkin/blumpkin
-	name = "blumpkin"
-	desc = "The pumpkin's toxic sibling."
+	name = "蓝瓜"
+	desc = "南瓜的有毒兄弟。"
 	icon_state = "blumpkin"
 	bite_consumption_mod = 3
 	wine_power = 50

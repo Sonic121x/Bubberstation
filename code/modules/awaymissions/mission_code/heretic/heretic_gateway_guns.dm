@@ -1,17 +1,17 @@
 /obj/item/gun/energy/shrink_ray/one_shot
-	name = "shrink ray blaster"
-	desc = "This is a piece of frightening alien tech that enhances the magnetic pull of atoms in a localized space to temporarily make an object shrink. \
-		That or it's just space magic. Either way, it shrinks stuff, This one is jerry-rigged to work with a non alien cell. It still recharges though."
+	name = "缩小射线爆破枪"
+	desc = "这是一件骇人的外星科技，能在局部空间增强原子的磁引力，使物体暂时缩小。 \
+		也可能只是太空魔法。不管怎样，它能把东西缩小，这一把被临时改装成可使用非外星电池。不过它仍然能充能。"
 	ammo_type = list(/obj/item/ammo_casing/energy/shrink/worse)
 
 /obj/item/ammo_casing/energy/shrink/worse
 	projectile_type = /obj/projectile/magic/shrink/alien
-	select_name = "shrink ray"
+	select_name = "缩小射线"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE)
 
 /obj/item/gun/ballistic/automatic/napad
-	name = "\improper 'Napad' Submachine Gun"
-	desc = "A 9mm submachine gun with a sizeable magazine, there are no other markings on it, why is it so big?"
+	name = "\improper “纳帕德”冲锋枪"
+	desc = "一把配备大容量弹匣的 9 毫米冲锋枪，其上没有任何其他标记，为什么它这么大？"
 	icon = 'icons/obj/weapons/guns/ninemmsmg/napad_item.dmi'
 	icon_state = "napad"
 	worn_icon = 'icons/obj/weapons/guns/ninemmsmg/napad_worn.dmi'
@@ -38,8 +38,8 @@
 	spawnwithmagazine = FALSE
 
 /obj/item/ammo_box/magazine/napad
-	name = "\improper Napad submachinegun magazine"
-	desc = "A magazine for a submachine gun. Holds twenty five rounds of 9mm ammunition."
+	name = "\improper 纳帕德冲锋枪弹匣"
+	desc = "冲锋枪用的弹匣，可装填二十五发 9 毫米弹药。"
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	icon_state = "napad_mag"
 	w_class = WEIGHT_CLASS_NORMAL

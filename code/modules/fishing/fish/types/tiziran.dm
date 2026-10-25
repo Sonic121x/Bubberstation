@@ -1,9 +1,9 @@
 //Tiziran Fish.
 
 /obj/item/fish/moonfish
-	name = "zagoskian moonfish"
+	name = "扎戈斯凯尔德月鱼"
 	fish_id = "moonfish"
-	desc = "A disc-shaped fish native of the less shallow areas of Tizira's oceans, roughly the size of a tuna. Highly prized in lizard cuisine for their large eggs."
+	desc = "一种原产于提兹拉海洋较浅水域的圆盘状鱼类，大小与金枪鱼相仿。因其鱼卵硕大，在蜥蜴人料理中备受珍视。"
 	icon_state = "tizira_moonfish"
 	sprite_height = 7
 	sprite_width = 7
@@ -46,9 +46,9 @@
 			return COMPONENT_DONT_GROW
 
 /obj/item/fish/moonfish/dwarf
-	name = "dwarf moonfish"
+	name = "侏儒月鱼"
 	fish_id = "dwarf_moonfish"
-	desc = "Ordinarily in the wild, the Zagoskian moonfish is around the size of a tuna, however through selective breeding a smaller breed suitable for being kept as an aquarium pet has been created."
+	desc = "在野外，扎戈斯凯尔德月鱼通常有金枪鱼那么大；不过通过选择性繁育，人们培育出了一种体型更小、适合作为水族宠物饲养的品种。"
 	icon_state = "dwarf_moonfish"
 	sprite_height = 6
 	sprite_width = 6
@@ -68,9 +68,9 @@
 	AddComponent(/datum/component/fish_growth, /datum/fish_evolution/moonfish, 2.5 MINUTES * multiplier, use_drop_loc = FALSE)
 
 /obj/item/fish/gunner_jellyfish
-	name = "gunner jellyfish"
+	name = "炮手水母"
 	fish_id = "gunner_jellyfish"
-	desc = "So called due to their resemblance to an artillery shell, the gunner jellyfish is native to Tizira, where it is enjoyed as a delicacy. Produces a mild hallucinogen that is destroyed by cooking."
+	desc = "因其外形酷似炮弹而得名，炮手水母原产于提兹拉，在当地被当作美味享用。它会产生一种温和的致幻物质，但烹饪后便会被破坏。"
 	icon_state = "gunner_jellyfish"
 	sprite_height = 4
 	sprite_width = 5
@@ -91,15 +91,15 @@
 	AddElement(/datum/element/quality_food_ingredient, FOOD_COMPLEXITY_2)
 
 /obj/item/fish/gunner_jellyfish/get_fish_taste()
-	return list("cold jelly" = 2)
+	return list("冰凉胶质" = 2)
 
 /obj/item/fish/gunner_jellyfish/get_fish_taste_cooked()
-	return list("crunchy tenderness" = 2)
+	return list("外脆里嫩" = 2)
 
 /obj/item/fish/needlefish
-	name = "needlefish"
+	name = "针鱼"
 	fish_id = "needlefish"
-	desc = "A tiny, transparent fish which resides in large schools in the oceans of Tizira. A common food for other, larger fish."
+	desc = "一种微小透明的鱼，在提兹拉的海洋中成群结队地生活。是其他大型鱼类常见的食物。"
 	icon_state = "needlefish"
 	sprite_height = 3
 	sprite_width = 7
@@ -118,9 +118,9 @@
 	add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GOOD_QUALITY_BAIT), INNATE_TRAIT)
 
 /obj/item/fish/armorfish
-	name = "armorfish"
+	name = "甲鱼"
 	fish_id = "armorfish"
-	desc = "A small shellfish native to Tizira's oceans, known for its exceptionally hard shell. Consumed similarly to prawns."
+	desc = "一种原产于提兹拉海洋的小型甲壳类，以异常坚硬的外壳著称，吃法类似对虾。"
 	icon_state = "armorfish"
 	sprite_height = 5
 	sprite_width = 6
@@ -139,7 +139,7 @@
 	add_traits(list(TRAIT_FISHING_BAIT, TRAIT_GOOD_QUALITY_BAIT), INNATE_TRAIT)
 
 /obj/item/fish/armorfish/get_fish_taste()
-	return list("raw prawn" = 2)
+	return list("生对虾" = 2)
 
 /obj/item/fish/armorfish/get_fish_taste_cooked()
-	return list("cooked prawn" = 2)
+	return list("熟对虾" = 2)

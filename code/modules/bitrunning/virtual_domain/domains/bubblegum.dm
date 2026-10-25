@@ -1,7 +1,7 @@
 /datum/lazy_template/virtual_domain/bubblegum
-	name = "Blood-Soaked Lair"
+	name = "浸血巢穴"
 	cost = BITRUNNER_COST_HIGH
-	desc = "King of the slaughter demons. Bubblegum is a massive, hulking beast with a penchant for violence."
+	desc = "屠戮恶魔之王。泡泡糖是一头庞大魁梧的野兽，生性嗜好暴力。"
 	difficulty = BITRUNNER_DIFFICULTY_HIGH
 	completion_loot = list(/obj/item/toy/plush/bubbleplush = 1)
 	forced_outfit = /datum/outfit/job/miner

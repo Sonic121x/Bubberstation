@@ -2,14 +2,14 @@
 #define BEACON_PRINT_COOLDOWN 10 SECONDS
 
 /obj/machinery/computer/cargo/express
-	name = "express supply console"
-	desc = "This console allows the user to purchase a package \
-		with 1/40th of the delivery time: made possible by Nanotrasen's new \"1500mm Orbital Railgun\".\
-		All sales are near instantaneous - please choose carefully"
+	name = "特快补给控制台"
+	desc = "这台控制台允许用户以 1/40 的配送时间购买包裹 \
+		这要归功于纳米传讯新型的 \"1500 毫米轨道炮\"。\
+		所有销售几乎瞬间完成——请谨慎选择"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/cargo/express")
 	icon_screen = "supply_express"
 	circuit = /obj/item/circuitboard/computer/cargo/express
-	blockade_warning = "Bluespace instability detected. Delivery impossible."
+	blockade_warning = "检测到蓝空间不稳定。无法配送。"
 	req_access = list(ACCESS_CARGO)
 	is_express = TRUE
 	interface_type = "CargoExpress"
@@ -44,17 +44,17 @@
 /obj/machinery/computer/cargo/express/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (tool.GetID() && allowed(user))
 		locked = !locked
-		to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the interface."))
+		to_chat(user, span_notice("你[locked ? "锁定" : "解锁"]了界面。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if (istype(tool, /obj/item/disk/cargo/bluespace_pod))
 		if (pod_type == /obj/structure/closet/supplypod/bluespacepod)
-			balloon_alert(user, "already upgraded!")
+			balloon_alert(user, "已升级过了！")
 			return ITEM_INTERACT_FAILURE
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_FAILURE
 		pod_type = /obj/structure/closet/supplypod/bluespacepod // doesnt affect our circuit board, making reversal possible
-		to_chat(user, span_notice("You insert the disk into [src], allowing for advanced supply delivery vehicles."))
+		to_chat(user, span_notice("你把磁盘插入[src]，从而可以使用先进的补给配送载具。"))
 		tool.forceMove(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -64,7 +64,7 @@
 			beacon.link_console(src, user)
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, span_alert("[src] is already linked to [beacon]."))
+		to_chat(user, span_alert("[src] 已经与 [beacon] 链接。"))
 		return ITEM_INTERACT_FAILURE
 
 	return NONE
@@ -74,8 +74,8 @@
 		return FALSE
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning("[user] swipes [emag_card] through [src]!"))
-		to_chat(user, span_notice("You change the routing protocols, allowing the Supply Pod to land anywhere on the station."))
+			user.visible_message(span_warning("[user] 用 [emag_card] 刷过 [src]！"))
+		to_chat(user, span_notice("你更改了路由协议，使补给舱可以降落在空间站的任何地方。"))
 	obj_flags |= EMAGGED
 	contraband = TRUE
 	// This also sets this on the circuit board
@@ -100,17 +100,17 @@
 	data["using_beacon"] = using_beacon //is the mode set to deliver to the beacon or the cargobay?
 	data["canBeacon"] = !using_beacon || canBeacon //is the mode set to beacon delivery, and is the beacon in a valid location?
 	data["canBuyBeacon"] = COOLDOWN_FINISHED(src, beacon_print_cooldown) && account.account_balance >= BEACON_COST
-	data["beaconError"] = using_beacon && !canBeacon ? "(BEACON ERROR)" : ""//changes button text to include an error alert if necessary
+	data["beaconError"] = using_beacon && !canBeacon ? "(信标错误)" : ""//changes button text to include an error alert if necessary
 	data["hasBeacon"] = beacon != null//is there a linked beacon?
-	data["beaconName"] = beacon ? beacon.name : "No Beacon Found"
-	data["printMsg"] = COOLDOWN_FINISHED(src, beacon_print_cooldown) ? "Print Beacon for [BEACON_COST] [MONEY_NAME]" : "Print Beacon for [BEACON_COST] [MONEY_NAME] ([COOLDOWN_TIMELEFT(src, beacon_print_cooldown)])" //buttontext for printing beacons
-	message = "Sales are near-instantaneous - please choose carefully."
+	data["beaconName"] = beacon ? beacon.name : "未找到信标"
+	data["printMsg"] = COOLDOWN_FINISHED(src, beacon_print_cooldown) ? "打印信标（[BEACON_COST] [MONEY_NAME]）" : "打印信标（[BEACON_COST] [MONEY_NAME]，[COOLDOWN_TIMELEFT(src, beacon_print_cooldown)]）" //buttontext for printing beacons
+	message = "销售几乎瞬间完成——请谨慎选择。"
 	if(SSshuttle.supply_blocked)
 		message = blockade_warning
 	if(using_beacon && !beacon)
-		message = "BEACON ERROR: BEACON MISSING"//beacon was destroyed
+		message = "信标错误：信标缺失"//beacon was destroyed
 	else if (using_beacon && !canBeacon)
-		message = "BEACON ERROR: MUST BE EXPOSED"//beacon's loc/user's loc must be a turf
+		message = "信标错误：必须暴露在外"//beacon's loc/user's loc must be a turf
 	if(obj_flags & EMAGGED)
 		message = "(&!#@ERROR: R0UTING_#PRO7O&OL MALF(*CT#ON. $UG%ESTE@ ACT#0N: !^/PULS3-%E)ET CIR*)ITB%ARD."
 	data["message"] = message
@@ -144,11 +144,11 @@
 			var/obj/item/supplypod_beacon/new_beacon = new /obj/item/supplypod_beacon(drop_location())
 			new_beacon.link_console(src, user) //rather than in beacon's Initialize(), we can assign the computer to the beacon by reusing this proc)
 			printed_beacons++ //printed_beacons starts at 0, so the first one out will be called beacon # 1
-			beacon.name = "Supply Pod Beacon #[printed_beacons]"
+			beacon.name = "补给舱信标 #[printed_beacons]"
 
 		if("add")//Generate Supply Order first
 			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_EXPRESSPOD_CONSOLE))
-				say("Railgun recalibrating. Stand by.")
+				say("轨道炮正在重新校准。请稍候。")
 				return
 			var/id = params["id"]
 			id = text2path(id) || id
@@ -158,7 +158,7 @@
 				CRASH("Unknown supply pack id given by express order console ui. ID: [params["id"]]")
 
 			if((pack.order_flags & ORDER_GOODY) && !self_paid && !pack.allow_non_private_purchase && !(obj_flags & EMAGGED)) // BUBBER EDIT
-				say("ERROR: Small crates may only be purchased by private accounts.")
+				say("错误：小型板条箱只能由私人账户购买。")
 				return
 
 			var/name = "*None Provided*"
@@ -180,20 +180,20 @@
 
 					paying_account = id_card?.registered_account
 					if(!istype(id_card))
-						say("No ID card detected.")
+						say("未检测到 ID 卡。")
 						return
 					if(IS_DEPARTMENTAL_CARD(id_card))
-						say("The [src] rejects [id_card].")
+						say("[src] 拒绝了 [id_card]。")
 						return
 					if(!istype(paying_account))
-						say("Invalid bank account.")
+						say("无效的银行账户。")
 						return
 					var/list/access = id_card.GetAccess()
 					if((pack.access_view && !(pack.access_view in access)) && !bypass)
-						say("[id_card] lacks the requisite access for this purchase.")
+						say("[id_card] 缺少此次购买所需的权限。")
 						return
 				else
-					say("Invalid user.")
+					say("无效用户。")
 					return
 			// BUBBER EDIT END
 

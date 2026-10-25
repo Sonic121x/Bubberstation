@@ -33,9 +33,9 @@ GLOBAL_LIST_INIT(prisoner_crimes, init_prisoner_crimes())
 
 /datum/prisoner_crime
 	/// crime name
-	var/name = "Bugged the Game"
+	var/name = "把游戏搞出了 Bug"
 	/// what the record will say about the crime
-	var/desc = "Engaged in widespread gamebreaking, didn't report on Github. By the way, report this on Github!"
+	var/desc = "参与了大规模破坏游戏的行为，且未在 Github 上报告。顺便一提，请在 Github 上报告此事！"
 	/// how many tattoos come from the crime. People who committed murder have more than tax evaders!
 	var/tattoos = -1
 
@@ -47,105 +47,105 @@ GLOBAL_LIST_INIT(prisoner_crimes, init_prisoner_crimes())
 
 /datum/prisoner_crime/negligence
 	name = "Abhorrent Criminal Negligence"
-	desc = "Incompetently risked numerous lives."
+	desc = "因无能而使众多生命陷入危险。"
 	tattoos = 0
 
 /datum/prisoner_crime/cloning
 	name = "Attempted Development of Cloning"
-	desc = "Attempted illegal research in the cloning sphere. Cloning, cloning construction, and cloning-related R&D was outlawed in 2560."
+	desc = "在克隆领域从事非法研究。克隆、克隆设施建造及相关研发已于 2560 年被取缔。"
 	tattoos = 0
 
 /datum/prisoner_crime/attempted_murder
 	name = "Attempted Murder"
-	desc = "Attempted to maliciously kill someone."
+	desc = "企图恶意杀害他人。"
 	tattoos = 2
 
 /datum/prisoner_crime/bio_terrorism
 	name = "Biological Terrorism"
-	desc = "Created and or released a lethal biological agent/lifeform."
+	desc = "制造和/或释放了致命的生物制剂/生物体。"
 	tattoos = 3
 
 /datum/prisoner_crime/classified
 	name = "Classified"
-	desc = "Consult Legal."
+	desc = "请咨询法务部门。"
 	tattoos = 0
 
 /datum/prisoner_crime/espionage
 	name = "Corporate Espionage"
-	desc = "Conducted espionage against Nanotrasen for commercial purposes."
+	desc = "为商业目的对纳米传讯实施间谍活动。"
 	tattoos = 1
 
 /datum/prisoner_crime/counterfeiting
 	name = "Counterfeiting"
-	desc = "Engaged in widespread fraud."
+	desc = "参与了大规模欺诈。"
 	tattoos = 1
 
 /datum/prisoner_crime/enemy_of_the_corp
 	name = "Enemy of the Corporation"
-	desc = "Acted as, or knowingly aided, an enemy of Nanotrasen."
+	desc = "充当纳米传讯的敌人，或明知故犯地协助敌人。"
 	tattoos = 1
 
 /datum/prisoner_crime/grand_sabo
 	name = "Grand Sabotage"
-	desc = "Engaged in malicious destructive actions, seriously threatening Nanotrasen employees and or infrastructure."
+	desc = "实施恶意破坏行为，严重威胁纳米传讯员工和/或基础设施。"
 	tattoos = 2
 
 /datum/prisoner_crime/grand_theft
 	name = "Grand Theft"
-	desc = "Stole items of high value or sensitive nature."
+	desc = "窃取高价值或敏感物品。"
 	tattoos = 1
 
 /datum/prisoner_crime/identity_theft
 	name = "Identity Theft of High-Ranking Figure"
-	desc = "Impersonated a high-ranking figure."
+	desc = "冒充高级别要员。"
 	tattoos = 0 //well, obviously can't impersonate people with tats. if they want to go back to doing that
 
 /datum/prisoner_crime/jaywalker
 	name = "Jaywalker"
-	desc = "Jaywalked across non-green tram crossings, shuttle docking zones, and/or through space."
+	desc = "在非绿色电车通道、穿梭机停靠区和/或太空中乱穿马路。"
 	tattoos = 0 // Or should it be 6?
 
 /datum/prisoner_crime/kidnapping
 	name = "Kidnapping"
-	desc = "Planned and executed a kidnapping."
+	desc = "策划并实施了绑架。"
 	tattoos = 1
 
 /datum/prisoner_crime/mass_murder
 	name = "Mass Murder"
-	desc = "Maliciously planned and executed the slaughter of many people."
+	desc = "恶意策划并实施了对多人的屠杀。"
 	tattoos = 6
 
 /datum/prisoner_crime/malpractice
 	name = "Medical Malpractice"
-	desc = "Engaged in organ harvesting, limb theft, or other malicious medical procedures."
+	desc = "从事器官摘取、肢体窃取或其他恶意医疗操作。"
 	tattoos = 2
 
 /datum/prisoner_crime/murder
 	name = "Murder"
-	desc = "Maliciously killed someone."
+	desc = "恶意杀害他人。"
 	tattoos = 3
 
 /datum/prisoner_crime/mutiny
 	name = "Mutiny"
-	desc = "Attempted to overthrow/subvert Chain of Command."
+	desc = "企图推翻或破坏指挥链。"
 	tattoos = 5 //+rep for trying
 
 /datum/prisoner_crime/other
 	name = "Other"
-	desc = "Consult Legal."
+	desc = "请咨询法务部门。"
 	tattoos = 1
 
 /datum/prisoner_crime/ai_tampering
 	name = "Tampering of Artificial Intelligence"
-	desc = "Uploaded malicious, negligent, or otherwise blacklisted directives to an Artificial Intelligence."
+	desc = "向人工智能上传恶意、疏忽或其他被列入黑名单的指令。"
 	tattoos = 3
 
 /datum/prisoner_crime/tax_evasion
 	name = "Tax Evasion"
-	desc = "Outstanding amount of tax evasion."
+	desc = "存在大量未结清的逃税行为。"
 	tattoos = 1
 
 /datum/prisoner_crime/cultist
 	name = "Worship of Blacklisted Deities"
-	desc = "Practiced worship of blacklisted deities."
+	desc = "信奉被列入黑名单的神祇。"
 	tattoos = 1

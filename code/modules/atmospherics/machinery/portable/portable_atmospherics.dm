@@ -1,7 +1,7 @@
 #define PORTABLE_ATMOS_IGNORE_ATMOS_LIMIT 0
 
 /obj/machinery/portable_atmospherics
-	name = "portable_atmospherics"
+	name = "便携大气设备"
 	icon = 'icons/obj/pipes_n_cables/atmos.dmi'
 	use_power = NO_POWER_USE
 	max_integrity = 250
@@ -86,9 +86,9 @@
 /obj/machinery/portable_atmospherics/examine(mob/user)
 	. = ..()
 	if(nob_crystal_inserted)
-		. += "There is a hypernoblium crystal inside it that allows for reactions inside to be suppressed."
+		. += "里面有一颗超惰性气体晶体，可抑制内部反应。"
 	if(suppress_reactions)
-		. += "The hypernoblium crystal inside is glowing with a faint blue colour, indicating reactions inside are currently being suppressed."
+		. += "内部的超惰性气体晶体散发着微弱的蓝光，表明内部反应当前正被抑制。"
 
 /obj/machinery/portable_atmospherics/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
@@ -112,13 +112,13 @@
 		return ITEM_INTERACT_SKIP_TO_ATTACK
 	if(atom_integrity >= max_integrity || (machine_stat & BROKEN) || !tool.tool_start_check(user, amount = 1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "正在维修……")
 	while(tool.use_tool(src, user, 2.5 SECONDS, volume=40))
 		atom_integrity = min(atom_integrity + 25, max_integrity)
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, "repaired")
+			balloon_alert(user, "已修复")
 			return ITEM_INTERACT_SUCCESS
-		balloon_alert(user, "partially repaired...")
+		balloon_alert(user, "部分修复……")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -127,7 +127,7 @@
 	if(!isliving(user) || !Adjacent(user))
 		return .
 	if(held_item?.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "Repair"
+		context[SCREENTIP_CONTEXT_LMB] = "维修"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /// Take damage if a variable is exceeded. Damage is equal to temp/limit * heat/limit.
@@ -215,7 +215,7 @@
 /obj/machinery/portable_atmospherics/click_alt(mob/living/user)
 	if(!holding)
 		return CLICK_ACTION_BLOCKING
-	to_chat(user, span_notice("You remove [holding] from [src]."))
+	to_chat(user, span_notice("你从 [src] 中取出了 [holding]。"))
 	replace_tank(user, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -223,8 +223,8 @@
 	. = ..()
 	if(!holding)
 		return
-	. += span_notice("\The [src] contains [holding]. Alt-click [src] to remove it.")+\
-		span_notice("Click [src] with another gas tank to hot swap [holding].")
+	. += span_notice("[src] 内装有 [holding]。按住 Alt 点击 [src] 可将其取出。")+\
+		span_notice("用另一个气罐点击 [src] 可热切换 [holding]。")
 
 /**
  * Allow the player to place a tank inside the machine.
@@ -242,8 +242,8 @@
 		return FALSE
 
 	if(holding && new_tank)//for when we are actually switching tanks
-		investigate_log("had its internal [holding] swapped with [new_tank] by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("In one smooth motion you pop [holding] out of [src]'s connector and replace it with [new_tank]."))
+		investigate_log("内部的 [holding] 被 [key_name(user)] 换成了 [new_tank]。", INVESTIGATE_ATMOS)
+		to_chat(user, span_notice("你一气呵成地将 [holding] 从 [src] 的连接口中弹出，并换上了 [new_tank]。"))
 		user.put_in_hands(holding)
 		UnregisterSignal(holding, COMSIG_QDELETING)
 		holding = new_tank
@@ -251,8 +251,8 @@
 		playsound(src, insert_sound, sound_vol)
 		playsound(src, remove_sound, sound_vol)
 	else if(holding)//we remove a tank
-		investigate_log("had its internal [holding] removed by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("You remove [holding] from [src]."))
+		investigate_log("内部的 [holding] 被 [key_name(user)] 取出。", INVESTIGATE_ATMOS)
+		to_chat(user, span_notice("你从 [src] 中取出了 [holding]。"))
 		if(Adjacent(user))
 			user.put_in_hands(holding)
 		else
@@ -261,8 +261,8 @@
 		UnregisterSignal(holding, COMSIG_QDELETING)
 		holding = null
 	else if(new_tank)//we insert the tank
-		investigate_log("had [new_tank] inserted into it by [key_name(user)].", INVESTIGATE_ATMOS)
-		to_chat(user, span_notice("You insert [new_tank] into [src]."))
+		investigate_log("被 [key_name(user)] 插入了 [new_tank]。", INVESTIGATE_ATMOS)
+		to_chat(user, span_notice("你将 [new_tank] 插入 [src]。"))
 		holding = new_tank
 		playsound(src, insert_sound, sound_vol)
 		RegisterSignal(holding, COMSIG_QDELETING, PROC_REF(unregister_holding))
@@ -284,29 +284,29 @@
 	if(machine_stat & BROKEN)
 		return FALSE
 	if(connected_port)
-		investigate_log("was disconnected from [connected_port] by [key_name(user)].", INVESTIGATE_ATMOS)
+		investigate_log("被 [key_name(user)] 从 [connected_port] 断开。", INVESTIGATE_ATMOS)
 		disconnect()
 		wrench.play_tool_sound(src)
 		user.visible_message( \
-			"[user] disconnects [src].", \
-			span_notice("You unfasten [src] from the port."), \
-			span_hear("You hear a ratchet."))
+			"[user] 断开了 [src]。", \
+			span_notice("你将 [src] 从接口上松开。"), \
+			span_hear("你听见棘轮声。"))
 		update_appearance()
 		return TRUE
 	var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/components/unary/portables_connector) in loc
 	if(!possible_port)
-		to_chat(user, span_notice("Nothing happens."))
+		to_chat(user, span_notice("什么也没有发生。"))
 		return FALSE
 	if(!connect(possible_port))
-		to_chat(user, span_notice("[name] failed to connect to the port."))
+		to_chat(user, span_notice("[name] 未能连接到接口。"))
 		return FALSE
 	wrench.play_tool_sound(src)
 	user.visible_message( \
-		"[user] connects [src].", \
-		span_notice("You fasten [src] to the port."), \
-		span_hear("You hear a ratchet."))
+		"[user] 连接了 [src]。", \
+		span_notice("你将 [src] 固定到接口上。"), \
+		span_hear("你听见棘轮声。"))
 	update_appearance()
-	investigate_log("was connected to [possible_port] by [key_name(user)].", INVESTIGATE_ATMOS)
+	investigate_log("被 [key_name(user)] 连接到 [possible_port]。", INVESTIGATE_ATMOS)
 	return TRUE
 
 /obj/machinery/portable_atmospherics/atom_break(damage_flag)
@@ -321,7 +321,7 @@
 	. = ..()
 	if(. <= 0)
 		return
-	investigate_log("was smacked with \a [item] by [key_name(user)].", INVESTIGATE_ATMOS)
+	investigate_log("被 [key_name(user)] 用 [item] 敲击。", INVESTIGATE_ATMOS)
 	add_hiddenprint(user)
 
 /// Holding tanks can get to zero integrity and be destroyed without other warnings due to pressure change.

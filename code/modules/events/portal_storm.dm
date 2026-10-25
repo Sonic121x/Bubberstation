@@ -1,11 +1,11 @@
 /datum/round_event_control/portal_storm_syndicate
-	name = "Portal Storm: Syndicate Shocktroops"
+	name = "传送门风暴：辛迪加突击队"
 	typepath = /datum/round_event/portal_storm/syndicate_shocktroop
 	weight = 2
 	min_players = 15
 	earliest_start = 30 MINUTES
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Syndicate troops pour out of portals."
+	description = "辛迪加部队从传送门中涌出。"
 
 /datum/round_event/portal_storm/syndicate_shocktroop
 	boss_types = list(/mob/living/basic/trooper/syndicate/melee/space/stormtrooper = 2)
@@ -15,12 +15,12 @@
 	)
 
 /datum/round_event_control/portal_storm_narsie
-	name = "Portal Storm: Constructs"
+	name = "传送门风暴：构装体"
 	typepath = /datum/round_event/portal_storm/portal_storm_narsie
 	weight = 0
 	max_occurrences = 0
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Nar'sie constructs pour out of portals."
+	description = "纳尔西的构装体从传送门中涌出。"
 	min_wizard_trigger_potency = 5
 	max_wizard_trigger_potency = 7
 
@@ -74,7 +74,7 @@
 	set waitfor = 0
 	sound_to_playing_players('sound/effects/magic/lightning_chargeup.ogg')
 	sleep(8 SECONDS)
-	priority_announce("Massive bluespace anomaly detected en route to [station_name()]. Brace for impact.")
+	priority_announce("检测到巨型蓝空间异常正在接近 [station_name()]。请做好撞击准备。")
 	sleep(2 SECONDS)
 	sound_to_playing_players('sound/effects/magic/lightningbolt.ogg')
 
@@ -108,7 +108,7 @@
 
 /datum/round_event/portal_storm/proc/spawn_effects(turf/T)
 	if(!T)
-		log_game("Portal Storm failed to spawn effect due to an invalid location.")
+		log_game("传送门风暴因位置无效而未能生成特效。")
 		return
 	T = get_step(T, SOUTHWEST) //align center of image with turf
 	T.flick_overlay_static(storm_appearances[GET_TURF_PLANE_OFFSET(T) + 1], 15)

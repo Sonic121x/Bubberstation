@@ -1,10 +1,10 @@
 /obj/item/seeds/nettle
-	name = "nettle seed pack"
-	desc = "These seeds grow into nettles."
+	name = "荨麻种子包"
+	desc = "这些种子会长成荨麻。"
 	icon_state = "seed-nettle"
 	plant_icon_offset = 0
 	species = "nettle"
-	plantname = "Nettles"
+	plantname = "荨麻"
 	product = /obj/item/food/grown/nettle
 	lifespan = 30
 	endurance = 40 // tuff like a toiger
@@ -17,11 +17,11 @@
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
 
 /obj/item/seeds/nettle/death
-	name = "death-nettle seed pack"
-	desc = "These seeds grow into death-nettles."
+	name = "死亡荨麻种子包"
+	desc = "这些种子会长成死亡荨麻。"
 	icon_state = "seed-deathnettle"
 	species = "deathnettle"
-	plantname = "Death Nettles"
+	plantname = "死亡荨麻"
 	product = /obj/item/food/grown/nettle/death
 	endurance = 25
 	maturation = 8
@@ -34,8 +34,8 @@
 
 /obj/item/food/grown/nettle // "snack"
 	seed = /obj/item/seeds/nettle
-	name = "\improper nettle"
-	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
+	name = "\improper 荨麻"
+	desc = "用赤手去碰它大概<B>不</B>太明智……"
 	icon_state = "nettle"
 	inhand_icon_state = "nettle"
 	bite_consumption_mod = 2
@@ -48,17 +48,17 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 1
 	throw_range = 3
-	attack_verb_continuous = list("stings")
-	attack_verb_simple = list("sting")
+	attack_verb_continuous = list("蜇刺")
+	attack_verb_simple = list("蜇刺")
 
 /obj/item/food/grown/nettle/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is eating some of [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在吃 [src]！看来是想寻短见！"))
 	return (BRUTELOSS|TOXLOSS)
 
 /obj/item/food/grown/nettle/death
 	seed = /obj/item/seeds/nettle/death
-	name = "\improper deathnettle"
-	desc = "The <span class='danger'>glowing</span> nettle incites <span class='bolddanger'>rage</span> in you just from looking at it!"
+	name = "\improper 死亡荨麻"
+	desc = "仅仅看着这株<span class='danger'>发光的</span>荨麻，就让你心生<span class='bolddanger'>怒火</span>！"
 	icon_state = "deathnettle"
 	inhand_icon_state = "deathnettle"
 	bite_consumption_mod = 4 // I guess if you really wanted to

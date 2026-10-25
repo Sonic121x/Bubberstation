@@ -75,17 +75,17 @@
 /datum/chemical_reaction/drink/lemonade
 	results = list(/datum/reagent/consumable/lemonade = 5)
 	required_reagents = list(/datum/reagent/consumable/lemonjuice = 2, /datum/reagent/water = 2, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/ice = 1)
-	mix_message = "You're suddenly reminded of home."
+	mix_message = "你突然想起了家。"
 
 /datum/chemical_reaction/drink/arnold_palmer
 	results = list(/datum/reagent/consumable/tea/arnold_palmer = 2)
 	required_reagents = list(/datum/reagent/consumable/icetea = 1, /datum/reagent/consumable/lemonade = 1)
-	mix_message = "The smells of fresh green grass and sand traps waft through the air as the mixture turns a friendly yellow-orange."
+	mix_message = "青草与沙坑的气息飘散在空气中，混合物变成友善的黄橙色。"
 
 /datum/chemical_reaction/drink/chocolate_milk
 	results = list(/datum/reagent/consumable/milk/chocolate_milk = 5)
 	required_reagents = list(/datum/reagent/consumable/hot_coco = 3, /datum/reagent/consumable/coco = 2)
-	mix_message = "The color changes as the mixture blends smoothly."
+	mix_message = "混合物顺滑融合，颜色随之改变。"
 	required_temp = 300
 	is_cold_recipe = TRUE
 	optimal_temp = 280

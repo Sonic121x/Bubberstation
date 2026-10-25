@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/heretic_gateway
-	name = "random heretic keycard spawn"
-	desc = "Spawns a random keycard, but probably trash."
+	name = "随机异教徒钥匙卡生成点"
+	desc = "生成一张随机钥匙卡，不过大概率是垃圾。"
 	loot = list(
 		/obj/item/keycard/cbrn_area = 5,
 		/obj/item/keycard/biological_anomalies = 20,
@@ -10,8 +10,8 @@
 	)
 
 /obj/effect/spawner/random/heretic_gateway_low
-	name = "random heretic keycard spawn"
-	desc = "Spawns a random keycard, but definitely just trash."
+	name = "随机异教徒钥匙卡生成点"
+	desc = "生成一张随机钥匙卡，但肯定只是垃圾。"
 	loot = list(
 		/obj/item/keycard/cbrn_area = 0.5,
 		/obj/item/keycard/biological_anomalies = 5,

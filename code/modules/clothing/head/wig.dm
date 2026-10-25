@@ -1,6 +1,6 @@
 /obj/item/clothing/head/wig
-	name = "wig"
-	desc = "A bunch of hair without a head attached."
+	name = "假发"
+	desc = "一堆没有脑袋的头发。"
 	icon = 'icons/mob/human/human_face.dmi'   // default icon for all hairs
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "hair_vlong"
@@ -51,7 +51,7 @@
 
 /obj/item/clothing/head/wig/attack_self(mob/user)
 	var/new_style = chinese_accessory_choice(user, "选择发型", "假发造型", SSaccessories.hairstyles_list - "Bald")
-	var/newcolor = adjustablecolor ? tgui_color_picker(usr,"","Choose Color",color) : null
+	var/newcolor = adjustablecolor ? tgui_color_picker(usr,"","选择颜色",color) : null
 	if(!user.can_perform_action(src))
 		return
 	if(new_style && new_style != hairstyle)
@@ -71,11 +71,11 @@
 	if(target.head)
 		var/obj/item/clothing/head = target.head
 		if((head.flags_inv & HIDEHAIR) && !istype(head, /obj/item/clothing/head/wig))
-			to_chat(user, span_warning("You can't get a good look at [target.p_their()] hair!"))
+			to_chat(user, span_warning("你没法看清[target]的头发！"))
 			return ITEM_INTERACT_BLOCKING
 	var/obj/item/bodypart/head/noggin = target.get_bodypart(BODY_ZONE_HEAD)
 	if(!noggin)
-		to_chat(user, span_warning("[target.p_They()] have no head!"))
+		to_chat(user, span_warning("[target]没有脑袋！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/selected_hairstyle = null
@@ -101,8 +101,8 @@
 	. = ..()
 
 /obj/item/clothing/head/wig/natural
-	name = "natural wig"
-	desc = "A bunch of hair without a head attached. This one changes color to match the hair of the wearer. Nothing natural about that."
+	name = "自然假发"
+	desc = "一堆没有脑袋的头发。这一顶会变色以匹配佩戴者的头发。这可一点都不自然。"
 	color = COLOR_WHITE
 	adjustablecolor = FALSE
 	custom_price = PAYCHECK_COMMAND

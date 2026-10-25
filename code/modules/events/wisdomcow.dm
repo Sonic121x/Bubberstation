@@ -1,10 +1,10 @@
 /datum/round_event_control/wisdomcow
-	name = "Wisdom Cow"
+	name = "智慧奶牛"
 	typepath = /datum/round_event/wisdomcow
 	max_occurrences = 1
 	weight = 20
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "A cow appears to tell you wise words."
+	description = "一头奶牛出现，向你传授智慧箴言。"
 	admin_setup = list(
 		/datum/event_admin_setup/set_location/wisdom_cow,
 		/datum/event_admin_setup/listed_options/wisdom_cow_wisdom,
@@ -23,7 +23,7 @@
 	var/datum/reagent/forced_reagent_type
 
 /datum/round_event/wisdomcow/announce(fake)
-	priority_announce("A wise cow has been spotted in the area. Be sure to ask for her advice.", "Nanotrasen Cow Ranching Agency")
+	priority_announce("该区域发现了一头智慧奶牛。记得向她请教。", "纳米传讯奶牛养殖局")
 
 /datum/round_event/wisdomcow/start()
 	var/turf/targetloc
@@ -36,14 +36,14 @@
 	announce_to_ghosts(wise)
 
 /datum/event_admin_setup/set_location/wisdom_cow
-	input_text = "Spawn on current turf?"
+	input_text = "在当前地块生成？"
 
 /datum/event_admin_setup/set_location/wisdom_cow/apply_to_event(datum/round_event/wisdomcow/event)
 	event.spawn_location = chosen_turf
 
 /datum/event_admin_setup/listed_options/wisdom_cow_wisdom
-	input_text = "Select a specific wisdom type?"
-	normal_run_option = "Random Wisdom"
+	input_text = "选择特定的智慧类型？"
+	normal_run_option = "随机智慧"
 
 /datum/event_admin_setup/listed_options/wisdom_cow_wisdom/get_list()
 	return subtypesof(/datum/skill)
@@ -52,7 +52,7 @@
 	event.selected_wisdom = chosen
 
 /datum/event_admin_setup/input_number/wisdom_cow
-	input_text = "How much experience should this cow grant?"
+	input_text = "这头奶牛应该给予多少经验？"
 	default_value = 500
 	max_value = 2500
 	min_value = -2500
@@ -61,8 +61,8 @@
 	event.selected_experience = chosen_value
 
 /datum/event_admin_setup/listed_options/wisdom_cow_milk
-	input_text = "Select a kind of milk?"
-	normal_run_option = "Random Reagent"
+	input_text = "选择一种乳汁？"
+	normal_run_option = "随机试剂"
 
 /datum/event_admin_setup/listed_options/wisdom_cow_milk/get_list()
 	return sort_list(subtypesof(/datum/reagent), /proc/cmp_typepaths_asc)

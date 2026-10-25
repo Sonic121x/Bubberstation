@@ -1,6 +1,6 @@
 /obj/machinery/computer/exodrone_control_console
-	name = "exploration drone control console"
-	desc = "Control exploration drones from interstellar distances. Communication lag not included."
+	name = "探索无人机控制台"
+	desc = "在星际距离外控制探索无人机。不含通信延迟。"
 	circuit = /obj/item/circuitboard/computer/exodrone_console
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/piratepad_control")
 	//Currently controlled drone
@@ -136,7 +136,7 @@
 					if(!target_site)
 						return TRUE
 					if(!controlled_drone.check_blacklist())
-						say("Error - An unauthorized object was found inside the cargo!")
+						say("错误——货物内发现未授权物体！")
 						return TRUE
 				controlled_drone.launch_for(target_site)
 			return TRUE
@@ -169,7 +169,7 @@
 			if(controlled_drone)
 				var/obj/thing_to_jettison = locate(params["target_ref"]) in controlled_drone.contents
 				if(thing_to_jettison)
-					controlled_drone.drone_log("Jettisoned [thing_to_jettison]")
+					controlled_drone.drone_log("已抛弃 [thing_to_jettison]")
 					if(controlled_drone.drone_status == EXODRONE_IDLE)
 						thing_to_jettison.forceMove(controlled_drone.drop_location())
 					else

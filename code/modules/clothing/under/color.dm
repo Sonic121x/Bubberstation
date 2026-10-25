@@ -1,6 +1,6 @@
 /obj/item/clothing/under/color
-	name = "jumpsuit"
-	desc = "A standard issue colored jumpsuit. Variety is the spice of life!"
+	name = "连体服"
+	desc = "标准配发的彩色连体服。丰富多彩才是生活的调味剂！"
 	icon = 'icons/map_icons/clothing/under/color.dmi'
 	icon_state = "/obj/item/clothing/under/color"
 	post_init_icon_state = "jumpsuit"
@@ -76,12 +76,12 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/clothing/under/color/black
-	name = "black jumpsuit"
+	name = "黑色连体服"
 	resistance_flags = NONE
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/under/color/jumpskirt/black
-	name = "black jumpskirt"
+	name = "黑色连体裙"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
 /obj/item/clothing/under/color/black/ghost
@@ -92,20 +92,20 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/under/color/grey
-	name = "grey jumpsuit"
-	desc = "A tasteful grey jumpsuit that reminds you of the good old days."
+	name = "灰色连体服"
+	desc = "一件很有品味的灰色连体服，让你想起过去的美好时光。"
 	icon_state = "/obj/item/clothing/under/color/grey"
 	greyscale_colors = "#b3b3b3"
 
 /obj/item/clothing/under/color/jumpskirt/grey
-	name = "grey jumpskirt"
-	desc = "A tasteful grey jumpskirt that reminds you of the good old days."
+	name = "灰色连体裙"
+	desc = "一件很有品味的灰色连体裙，让你想起过去的美好时光。"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/grey"
 	greyscale_colors = "#b3b3b3"
 
 /obj/item/clothing/under/color/grey/ancient
-	name = "ancient jumpsuit"
-	desc = "A terribly ragged and frayed grey jumpsuit. It looks like it hasn't been washed in over a decade."
+	name = "古老连体服"
+	desc = "一件破旧不堪、磨损严重的灰色连体服。看起来已经十多年没洗过了。"
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "grey_ancient"
 	post_init_icon_state = null
@@ -117,150 +117,150 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/color/blue
-	name = "blue jumpsuit"
+	name = "蓝色连体服"
 	icon_state = "/obj/item/clothing/under/color/blue"
 	greyscale_colors = "#52aecc"
 
 /obj/item/clothing/under/color/jumpskirt/blue
-	name = "blue jumpskirt"
+	name = "蓝色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/blue"
 	greyscale_colors = "#52aecc"
 
 /obj/item/clothing/under/color/green
-	name = "green jumpsuit"
+	name = "绿色连体服"
 	icon_state = "/obj/item/clothing/under/color/green"
 	greyscale_colors = "#9ed63a"
 
 /obj/item/clothing/under/color/jumpskirt/green
-	name = "green jumpskirt"
+	name = "绿色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/green"
 	greyscale_colors = "#9ed63a"
 
 /obj/item/clothing/under/color/orange
-	name = "orange jumpsuit"
-	desc = "Don't wear this near paranoid security officers."
+	name = "橙色连体服"
+	desc = "别在多疑的安保人员附近穿这个。"
 	icon_state = "/obj/item/clothing/under/color/orange"
 	greyscale_colors = "#ff8c19"
 
 /obj/item/clothing/under/color/jumpskirt/orange
-	name = "orange jumpskirt"
+	name = "橙色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/orange"
 	greyscale_colors = "#ff8c19"
 
 /obj/item/clothing/under/color/pink
-	name = "pink jumpsuit"
-	desc = "Just looking at this makes you feel <i>fabulous</i>."
+	name = "粉色连体服"
+	desc = "光是看着它，就让你觉得自己<i>美极了</i>。"
 	icon_state = "/obj/item/clothing/under/color/pink"
 	greyscale_colors = "#ffa69b"
 
 /obj/item/clothing/under/color/jumpskirt/pink
-	name = "pink jumpskirt"
+	name = "粉色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/pink"
 	greyscale_colors = "#ffa69b"
 
 /obj/item/clothing/under/color/red
-	name = "red jumpsuit"
+	name = "红色连体服"
 	icon_state = "/obj/item/clothing/under/color/red"
 	greyscale_colors = "#eb0c07"
 
 /obj/item/clothing/under/color/jumpskirt/red
-	name = "red jumpskirt"
+	name = "红色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/red"
 	greyscale_colors = "#eb0c07"
 
 /obj/item/clothing/under/color/white
-	name = "white jumpsuit"
+	name = "白色连体服"
 	icon_state = "/obj/item/clothing/under/color/white"
 	greyscale_colors = "#ffffff"
 
 /obj/item/clothing/under/color/jumpskirt/white
-	name = "white jumpskirt"
+	name = "白色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/white"
 	greyscale_colors = "#ffffff"
 
 /obj/item/clothing/under/color/yellow
-	name = "yellow jumpsuit"
+	name = "黄色连体服"
 	icon_state = "/obj/item/clothing/under/color/yellow"
 	greyscale_colors = "#ffe14d"
 
 /obj/item/clothing/under/color/jumpskirt/yellow
-	name = "yellow jumpskirt"
+	name = "黄色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/yellow"
 	greyscale_colors = "#ffe14d"
 
 /obj/item/clothing/under/color/darkblue
-	name = "dark blue jumpsuit"
+	name = "深蓝色连体服"
 	icon_state = "/obj/item/clothing/under/color/darkblue"
 	greyscale_colors = "#3285ba"
 
 /obj/item/clothing/under/color/jumpskirt/darkblue
-	name = "dark blue jumpskirt"
+	name = "深蓝色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/darkblue"
 	greyscale_colors = "#3285ba"
 
 /obj/item/clothing/under/color/teal
-	name = "teal jumpsuit"
+	name = "青绿色连体服"
 	icon_state = "/obj/item/clothing/under/color/teal"
 	greyscale_colors = "#77f3b7"
 
 /obj/item/clothing/under/color/jumpskirt/teal
-	name = "teal jumpskirt"
+	name = "青绿色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/teal"
 	greyscale_colors = "#77f3b7"
 
 /obj/item/clothing/under/color/lightpurple
-	name = "light purple jumpsuit"
+	name = "浅紫色连体服"
 	icon_state = "/obj/item/clothing/under/color/lightpurple"
 	greyscale_colors = "#9f70cc"
 
 /obj/item/clothing/under/color/jumpskirt/lightpurple
-	name = "light purple jumpskirt"
+	name = "浅紫色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/lightpurple"
 	greyscale_colors = "#9f70cc"
 
 /obj/item/clothing/under/color/darkgreen
-	name = "dark green jumpsuit"
+	name = "深绿色连体服"
 	icon_state = "/obj/item/clothing/under/color/darkgreen"
 	greyscale_colors = "#6fbc22"
 
 /obj/item/clothing/under/color/jumpskirt/darkgreen
-	name = "dark green jumpskirt"
+	name = "深绿色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/darkgreen"
 	greyscale_colors = "#6fbc22"
 
 /obj/item/clothing/under/color/lightbrown
-	name = "light brown jumpsuit"
+	name = "浅棕色连体服"
 	icon_state = "/obj/item/clothing/under/color/lightbrown"
 	greyscale_colors = "#c59431"
 
 /obj/item/clothing/under/color/jumpskirt/lightbrown
-	name = "light brown jumpskirt"
+	name = "浅棕色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/lightbrown"
 	greyscale_colors = "#c59431"
 
 /obj/item/clothing/under/color/brown
-	name = "brown jumpsuit"
+	name = "棕色连体服"
 	icon_state = "/obj/item/clothing/under/color/brown"
 	greyscale_colors = "#a17229"
 
 /obj/item/clothing/under/color/jumpskirt/brown
-	name = "brown jumpskirt"
+	name = "棕色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/brown"
 	greyscale_colors = "#a17229"
 
 /obj/item/clothing/under/color/maroon
-	name = "maroon jumpsuit"
+	name = "褐红色连体服"
 	icon_state = "/obj/item/clothing/under/color/maroon"
 	greyscale_colors = "#cc295f"
 
 /obj/item/clothing/under/color/jumpskirt/maroon
-	name = "maroon jumpskirt"
+	name = "褐红色连体裙"
 	icon_state = "/obj/item/clothing/under/color/jumpskirt/maroon"
 	greyscale_colors = "#cc295f"
 
 /obj/item/clothing/under/color/rainbow
-	name = "rainbow jumpsuit"
-	desc = "A multi-colored jumpsuit!"
+	name = "彩虹连体服"
+	desc = "一件多彩的连体服！"
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "rainbow"
 	post_init_icon_state = null
@@ -276,8 +276,8 @@
 	return "#3f3f3f"
 
 /obj/item/clothing/under/color/jumpskirt/rainbow
-	name = "rainbow jumpskirt"
-	desc = "A multi-colored jumpskirt!"
+	name = "彩虹连体裙"
+	desc = "一件多彩的连体裙！"
 	icon = 'icons/obj/clothing/under/color.dmi'
 	icon_state = "rainbow_skirt"
 	post_init_icon_state = null

@@ -2,8 +2,8 @@
  * This section contain the hfr core with all the variables and the Initialize() and Destroy() procs
  */
 /obj/machinery/atmospherics/components/unary/hypertorus/core
-	name = "HFR core"
-	desc = "This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases."
+	name = "HFR 核心"
+	desc = "这是超环面聚变反应堆的核心，一套能够精细调控机内反应的先进装置。它配有用于冷却气体的输入输出接口。"
 	icon = 'icons/obj/machines/atmospherics/hypertorus.dmi'
 	icon_state = "core"
 	base_icon_state = "core"
@@ -112,15 +112,15 @@
 	///Store the integrity for calculations
 	var/critical_threshold_proximity_archived = 0
 	///Our "Shit is no longer fucked" message. We send it when critical_threshold_proximity is less then critical_threshold_proximity_archived
-	var/safe_alert = "Main containment field returning to safe operating parameters."
+	var/safe_alert = "主约束场正在恢复至安全运行参数。"
 	///The point at which we should start sending messeges about the critical_threshold_proximity to the engi channels.
 	var/warning_point = 50
 	///The alert we send when we've reached warning_point
-	var/warning_alert = "Danger! Magnetic containment field faltering!"
+	var/warning_alert = "危险！磁约束场正在失效！"
 	///The point at which we start sending messages to the common channel
 	var/emergency_point = 700
 	///The alert we send when we've reached emergency_point
-	var/emergency_alert = "HYPERTORUS MELTDOWN IMMINENT."
+	var/emergency_alert = "超环面反应堆即将熔毁。"
 	///The point at which we melt
 	var/melting_point = 900
 	///Boolean used for logging if we've passed the emergency point
@@ -209,5 +209,5 @@
 /obj/machinery/atmospherics/components/unary/hypertorus/core/crowbar_deconstruction_act(mob/living/user, obj/item/tool, internal_pressure = 0)
 	internal_pressure = max(internal_fusion.return_pressure(), moderator_internal.return_pressure())
 	if(internal_pressure)
-		say("WARNING - Core can contain hazardous gases, deconstruct with caution!")
+		say("警告——核心内可能含有危险气体，拆卸时请小心！")
 	return ..(user, tool, internal_pressure)

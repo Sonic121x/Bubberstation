@@ -1,10 +1,10 @@
 // Wheat
 /obj/item/seeds/wheat
-	name = "wheat seed pack"
-	desc = "These may, or may not, grow into wheat."
+	name = "小麦种子包"
+	desc = "它们也许能，也许不能，长成小麦。"
 	icon_state = "seed-wheat"
 	species = "wheat"
-	plantname = "Wheat Stalks"
+	plantname = "小麦秆"
 	product = /obj/item/food/grown/wheat
 	production = 1
 	yield = 4
@@ -16,13 +16,13 @@
 
 /obj/item/food/grown/wheat
 	seed = /obj/item/seeds/wheat
-	name = "wheat"
-	desc = "Sigh... wheat... a-grain?"
+	name = "小麦"
+	desc = "唉……小麦……不就是谷子吗？"
 	gender = PLURAL
 	icon_state = "wheat"
 	bite_consumption_mod = 0.5 // Chewing on wheat grains?
 	foodtypes = GRAIN
-	tastes = list("wheat" = 1)
+	tastes = list("小麦" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/beer
 	slot_flags = ITEM_SLOT_MASK
 	worn_icon = 'icons/mob/clothing/head/hydroponics.dmi'
@@ -32,23 +32,23 @@
 
 // Oat
 /obj/item/seeds/wheat/oat
-	name = "oat seed pack"
-	desc = "These may, or may not, grow into oat."
+	name = "燕麦种子包"
+	desc = "它们也许能，也许不能，长成燕麦。"
 	icon_state = "seed-oat"
 	species = "oat"
-	plantname = "Oat Stalks"
+	plantname = "燕麦秆"
 	product = /obj/item/food/grown/oat
 	mutatelist = null
 
 /obj/item/food/grown/oat
 	seed = /obj/item/seeds/wheat/oat
-	name = "oat"
-	desc = "Eat oats, do squats."
+	name = "燕麦"
+	desc = "吃燕麦，做深蹲。"
 	gender = PLURAL
 	icon_state = "oat"
 	bite_consumption_mod = 0.5
 	foodtypes = GRAIN
-	tastes = list("oat" = 1)
+	tastes = list("燕麦" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/ale
 
 /obj/item/food/grown/oat/grind_results()
@@ -56,11 +56,11 @@
 
 // Rice
 /obj/item/seeds/wheat/rice
-	name = "rice seed pack"
-	desc = "These may, or may not, grow into rice."
+	name = "水稻种子包"
+	desc = "它们也许能，也许不能，长成水稻。"
 	icon_state = "seed-rice"
 	species = "rice"
-	plantname = "Rice Stalks"
+	plantname = "水稻秆"
 	instability = 1
 	product = /obj/item/food/grown/rice
 	mutatelist = null
@@ -70,13 +70,13 @@
 
 /obj/item/food/grown/rice
 	seed = /obj/item/seeds/wheat/rice
-	name = "rice"
-	desc = "Rice to meet you."
+	name = "大米"
+	desc = "米很高兴见到你。"
 	gender = PLURAL
 	icon_state = "rice"
 	bite_consumption_mod = 0.5
 	foodtypes = GRAIN
-	tastes = list("rice" = 1)
+	tastes = list("大米" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/sake
 
 /obj/item/food/grown/rice/grind_results()
@@ -84,23 +84,23 @@
 
 //Meatwheat - grows into synthetic meat
 /obj/item/seeds/wheat/meat
-	name = "meatwheat seed pack"
-	desc = "If you ever wanted to drive a vegetarian to insanity, here's how."
+	name = "肉麦种子包"
+	desc = "如果你曾想把一个素食主义者逼疯，这就是方法。"
 	icon_state = "seed-meatwheat"
 	species = "meatwheat"
-	plantname = "Meatwheat"
+	plantname = "肉麦"
 	product = /obj/item/food/grown/meatwheat
 	mutatelist = null
 
 /obj/item/food/grown/meatwheat
-	name = "meatwheat"
-	desc = "Some blood-drenched wheat stalks. You can crush them into what passes for meat if you squint hard enough."
+	name = "肉麦"
+	desc = "一些浸满血的麦秆。只要你眯起眼睛使劲看，就能把它们压成勉强算肉的东西。"
 	icon_state = "meatwheat"
 	gender = PLURAL
 	bite_consumption_mod = 0.5
 	seed = /obj/item/seeds/wheat/meat
 	foodtypes = MEAT
-	tastes = list("meatwheat" = 1)
+	tastes = list("肉麦" = 1)
 	can_distill = FALSE
 	slot_flags = ITEM_SLOT_MASK
 	worn_icon = 'icons/mob/clothing/head/hydroponics.dmi'
@@ -109,7 +109,7 @@
 	return list(/datum/reagent/consumable/flour = 0, /datum/reagent/blood = 0)
 
 /obj/item/food/grown/meatwheat/attack_self(mob/living/user)
-	user.visible_message(span_notice("[user] crushes [src] into meat."), span_notice("You crush [src] into something that resembles meat."))
+	user.visible_message(span_notice("[user] 把 [src] 压成了肉。"), span_notice("你把 [src] 压成了某种类似肉的东西。"))
 	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
 	var/obj/item/food/meat/slab/meatwheat/meaties = new(null)
 	meaties.reagents.set_all_reagents_purity(seed.get_reagent_purity())

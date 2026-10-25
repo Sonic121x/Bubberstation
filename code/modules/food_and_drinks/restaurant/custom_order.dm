@@ -26,7 +26,7 @@
 /// Returns the order line shout by the mob and also shown to the player when examining it.
 /datum/custom_order/proc/get_order_line()
 	stack_trace("[type]/get_order_line() not set")
-	return  "broken custom order pls call a coder"
+	return  "自定义订单出错了，请呼叫程序员"
 
 /**
  * Handles what the bot does with the order when it gets it
@@ -107,13 +107,13 @@
 
 	var/list/unique_list = unique_list(wanted_flavors)
 	if(wanted_flavors.len > 1 && length(unique_list) == 1)
-		icecream_name = "[make_tuple(wanted_flavors.len)] [wanted_flavors[1]] ice cream ([initial(cone_type.name)])"
+		icecream_name = "[make_tuple(wanted_flavors.len)] [wanted_flavors[1]] 冰淇淋（[initial(cone_type.name)]）"
 	else
 		sortTim(wanted_flavors, cmp = GLOBAL_PROC_REF(cmp_text_asc))
-		icecream_name = "[english_list(wanted_flavors)] ice cream ([initial(cone_type.name)])"
+		icecream_name = "[english_list(wanted_flavors)] 冰淇淋（[initial(cone_type.name)]）"
 
 /datum/custom_order/icecream/get_order_line(datum/venue/our_venue)
-	return "I'll take \a [icecream_name]"
+	return "我要一份 [icecream_name]"
 
 /datum/custom_order/icecream/get_order_appearance(datum/venue/our_venue)
 	var/image/food_image = image(icon = 'icons/effects/effects.dmi' , icon_state = "thought_bubble")
@@ -143,7 +143,7 @@
 	src.reagent_type = reagent_type
 
 /datum/custom_order/reagent/get_order_line(datum/venue/our_venue)
-	return "I'll take [reagents_needed]u of [initial(reagent_type.name)]"
+	return "我要 [reagents_needed]u 的 [initial(reagent_type.name)]"
 
 /datum/custom_order/reagent/get_order_appearance(datum/venue/our_venue)
 	var/image/food_image = image(icon = 'icons/effects/effects.dmi' , icon_state = "thought_bubble")
@@ -189,8 +189,8 @@
 
 /datum/custom_order/reagent/drink/handle_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	customer_pawn.visible_message(
-		span_danger("[customer_pawn] slurps up [order_item] in one go!"),
-		span_danger("You slurp up [order_item] in one go."),
+		span_danger("[customer_pawn] 一口气喝光了 [order_item]！"),
+		span_danger("你一口气喝光了 [order_item]。"),
 	)
 	return ..()
 
@@ -203,19 +203,19 @@
 /datum/custom_order/reagent/soup/New(mob/living/basic/robot_customer/customer, reagent_type)
 	. = ..()
 	var/list/serving_sizes = list(
-		"small serving (15u)" = 15,
-		"medium serving (20u)" = 20,
-		"large serving (25u)" = 25,
+		"小份（15u）" = 15,
+		"中份（20u）" = 20,
+		"大份（25u）" = 25,
 	)
 	picked_serving = pick(serving_sizes)
 	reagents_needed = serving_sizes[picked_serving]
 
 /datum/custom_order/reagent/soup/get_order_line(datum/venue/our_venue)
-	return "I'll take a [picked_serving] of [initial(reagent_type.name)]"
+	return "我要一份 [picked_serving] 的 [initial(reagent_type.name)]"
 
 /datum/custom_order/reagent/soup/handle_get_order(mob/living/basic/robot_customer/customer_pawn, obj/item/order_item)
 	customer_pawn.visible_message(
-		span_danger("[customer_pawn] pours [order_item] right down [customer_pawn.p_their()] hatch!"),
-		span_danger("You pour [order_item] down your hatch in one go."),
+		span_danger("[customer_pawn] 把 [order_item] 直接倒进了自己的舱口！"),
+		span_danger("你一口气把 [order_item] 倒进了自己的舱口。"),
 	)
 	return ..()

@@ -65,9 +65,9 @@
 		// -- Compiles a list of required reagents and food items --
 		var/list/all_needs_text = list()
 		for(var/datum/reagent/reagent_type as anything in soup_recipe.required_reagents)
-			all_needs_text += "[soup_recipe.required_reagents[reagent_type]] units [initial(reagent_type.name)]"
+			all_needs_text += "[soup_recipe.required_reagents[reagent_type]] 单位 [initial(reagent_type.name)]"
 		for(var/datum/reagent/reagent_type as anything in soup_recipe.required_catalysts)
-			all_needs_text += "[soup_recipe.required_catalysts[reagent_type]] units [initial(reagent_type.name)] (not consumed)"
+			all_needs_text += "[soup_recipe.required_catalysts[reagent_type]] 单位 [initial(reagent_type.name)]（未消耗）"
 
 		for(var/obj/item/food_type as anything in soup_recipe.required_ingredients)
 			var/num_needed = soup_recipe.required_ingredients[food_type]
@@ -75,7 +75,7 @@
 			all_needs_text += "[num_needed] [food_type::gender == PLURAL ? food_type::name : "[food_type::name]\s"]"
 
 		all_needs_text += soup_recipe.describe_recipe_details()
-		all_needs_text += "At temperature [soup_recipe.required_temp]K"
+		all_needs_text += "温度 [soup_recipe.required_temp]K"
 		var/compiled_requirements = ""
 		for(var/req_text in all_needs_text)
 			if(length(req_text))
@@ -87,7 +87,7 @@
 		var/list/all_results_text = list()
 		for(var/datum/reagent/reagent_type as anything in soup_recipe.results)
 			var/num_given = soup_recipe.results[reagent_type]
-			all_results_text += "[num_given] units [initial(reagent_type.name)]"
+			all_results_text += "[num_given] 单位 [initial(reagent_type.name)]"
 		if(soup_recipe.resulting_food_path)
 			all_results_text += "1 [initial(soup_recipe.resulting_food_path.name)]"
 
@@ -104,15 +104,15 @@
 		if(istype(soup_recipe, /datum/chemical_reaction/food/soup/custom))
 			// Painful snowflaking here for custom recipes,
 			// but because they default to "bowl of water" we can't let it generate fully on its own.
-			template_list["name"] = "Custom Soup"
-			template_list["taste"] = "Whatever you use."
-			template_list["foodtypes"] = "Whatever you use."
-			template_list["description"] = "A custom soup recipe, allowing you to throw whatever you want in the pot."
+			template_list["name"] = "自定义汤"
+			template_list["taste"] = "随你所用。"
+			template_list["foodtypes"] = "随你所用。"
+			template_list["description"] = "自定义汤配方，你可以把任何东西扔进锅里。"
 
 		else
-			var/foodtypes_readable = jointext(bitfield_to_list(soup_food_types, FOOD_FLAGS_IC), ", ") || "None"
+			var/foodtypes_readable = jointext(bitfield_to_list(soup_food_types, FOOD_FLAGS_IC), ", ") || "无"
 			template_list["name"] = escape_value(result_name)
-			template_list["taste"] = escape_value(length(result_tastes) ? capitalize(jointext(result_tastes, ", ")) : "No taste")
+			template_list["taste"] = escape_value(length(result_tastes) ? capitalize(jointext(result_tastes, ", ")) : "无味")
 			template_list["foodtypes"] = escape_value(foodtypes_readable)
 			template_list["description"] = escape_value(result_desc)
 

@@ -19,8 +19,8 @@
  */
 /// A vent, scrubber and a sensor in a single device meant specifically for cycling airlocks. Ideal for airlocks of up to 3x3 tiles in size to avoid wind and timing out.
 /obj/machinery/atmospherics/components/unary/airlock_pump
-	name = "external airlock pump"
-	desc = "A pump for cycling an external airlock controlled by the connected doors."
+	name = "外部气闸泵"
+	desc = "一台用于为外部气闸循环空气的泵，由相连的气闸门控制。"
 	icon = 'icons/obj/machines/atmospherics/unary_devices.dmi'
 	icon_state = "airlock_pump"
 	pipe_state = "airlock_pump"
@@ -166,10 +166,10 @@
 /obj/machinery/atmospherics/components/unary/airlock_pump/can_unwrench(mob/user)
 	. = ..()
 	if(!.)
-		to_chat(user, span_warning("You cannot unwrench [src], it is secured firmly in place!"))
+		to_chat(user, span_warning("你无法卸下 [src]，它被牢牢固定住了！"))
 		return FALSE
 	if(. && on)
-		to_chat(user, span_warning("You cannot unwrench [src], wait for the cycle completion!"))
+		to_chat(user, span_warning("你无法卸下 [src]，请等待循环完成！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/set_on(active)
@@ -201,7 +201,7 @@
 
 	if(pump_direction == ATMOS_DIRECTION_RELEASING) //distro node -> tile
 		var/pressure_delta = cycle_pressure_target - tile_air_pressure
-		if(pressure_delta <= allowed_pressure_error && stop_cycle("Pressurization complete."))
+		if(pressure_delta <= allowed_pressure_error && stop_cycle("加压完成。"))
 			return //Internal target pressure reached
 
 		var/available_moles = distro_air.total_moles()
@@ -213,7 +213,7 @@
 			fill_tile(tile, split_moles, pressure_delta)
 	else //tile -> waste node
 		var/pressure_delta = tile_air_pressure - cycle_pressure_target
-		if(pressure_delta <= allowed_pressure_error && stop_cycle("Decompression complete."))
+		if(pressure_delta <= allowed_pressure_error && stop_cycle("减压完成。"))
 			return //External target pressure reached
 
 		siphon_tile(loc)
@@ -260,7 +260,7 @@
 		airlock.run_animation(DOOR_DENY_ANIMATION) // Already cycling
 		return
 	if(!cycling_set_up)
-		airlock.say("Airlock pair not found.")
+		airlock.say("未找到气闸对。")
 		return
 	if(airlock in external_airlocks)
 		// If it's not null - we shuttledocked
@@ -287,7 +287,7 @@
 	if(!on || airlocks_animating || !is_operational)
 		return // Already done
 
-	stop_cycle("Cycling timed out, bolts unlocked.", unbolt_only = TRUE)
+	stop_cycle("循环超时，门栓已解锁。", unbolt_only = TRUE)
 
 ///Start decompression or pressurization cycle depending on the passed direction
 /obj/machinery/atmospherics/components/unary/airlock_pump/proc/start_cycle(cycle_direction, obj/machinery/door/airlock/source_airlock = null)
@@ -313,29 +313,29 @@
 		cycle_pressure_target = internal_pressure_target
 		var/pressure_delta = cycle_pressure_target - tile_air_pressure
 		if(pressure_delta <= allowed_pressure_error)
-			stop_cycle("Pressure nominal, cycle skipped.")
+			stop_cycle("压力正常，跳过循环。")
 			return TRUE
 
 		var/datum/gas_mixture/distro_air = airs[1]
 		if(distro_air.return_pressure() < min_distro_pressure)
-			stop_cycle("Low pipe pressure, cycle skipped. Proceed with caution.", unbolt_only = TRUE)
+			stop_cycle("管道压力过低，跳过循环。请谨慎前进。", unbolt_only = TRUE)
 			return TRUE
 
 		if(!source_airlock)
 			source_airlock = internal_airlocks[1]
 		if(is_cycling_audible)
-			source_airlock.say("Pressurizing airlock.")
+			source_airlock.say("正在为气闸加压。")
 	else
 		cycle_pressure_target = docked_side_pressure != null ? docked_side_pressure : external_pressure_target
 		var/pressure_delta = tile_air_pressure - cycle_pressure_target
 		if(pressure_delta <= allowed_pressure_error)
-			stop_cycle("Pressure nominal, cycle skipped.")
+			stop_cycle("压力正常，跳过循环。")
 			return TRUE
 
 		if(!source_airlock)
 			source_airlock = external_airlocks[1]
 		if(is_cycling_audible)
-			source_airlock.say("Decompressing airlock.")
+			source_airlock.say("正在为气闸减压。")
 
 	return TRUE
 
@@ -378,16 +378,16 @@
 
 	// We just finishing previous cycle
 	if (airlocks_animating)
-		say("Docking request queued.")
+		say("对接请求已排队。")
 		stoplag(1.1 SECONDS) // Wait for opening animation
 		if (airlocks_animating)	// Should (almost) never happened
-			say("ERROR: D11. Please re-initiate docking sequence.")
+			say("错误：D11。请重新启动对接序列。")
 			return
 
 	if (on)
 		// You can't go there, there is a shuttle now
 		if (pump_direction == ATMOS_DIRECTION_SIPHONING)
-			stop_cycle("Cycling sequence overriden by docking sequence.", TRUE)
+			stop_cycle("循环序列已被对接序列覆盖。", TRUE)
 			start_cycle(ATMOS_DIRECTION_RELEASING)
 		// If cycling inside, docking will be handled by stop_cycle proc
 		return
@@ -401,7 +401,7 @@
 		safe_dock()
 	else
 		var/obj/machinery/door/airlock/source_airlock = pick(internal_airlocks)
-		source_airlock.say("Docking sequence initiated")
+		source_airlock.say("对接序列已启动")
 		start_cycle(ATMOS_DIRECTION_RELEASING)
 
 
@@ -448,7 +448,7 @@
 	stoplag(1 SECONDS) // Wait for closing animation
 	airlocks_animating = FALSE
 	update_appearance(UPDATE_ICON)
-	say("Docking complete.")
+	say("对接完成。")
 	return TRUE
 
 
@@ -462,7 +462,7 @@
 	for(var/obj/machinery/door/airlock/airlock as anything in external_airlocks)
 		INVOKE_ASYNC(airlock, TYPE_PROC_REF(/obj/machinery/door/airlock, secure_close), TRUE)
 
-	say("Docking connection terminated.")
+	say("对接连接已终止。")
 	airlocks_animating = TRUE
 	stoplag(1 SECONDS) // Wait for closing animation
 	airlocks_animating = FALSE
@@ -499,7 +499,7 @@
 			CRASH("[type] couldn't find airlocks to cycle with!")
 		internal_airlocks.Cut()
 		external_airlocks.Cut()
-		say("Cycling setup failed. No opposite airlocks found.")
+		say("循环设置失败。未找到对侧气闸。")
 		return
 
 	for(var/obj/machinery/door/airlock/airlock as anything in (internal_airlocks + external_airlocks))
@@ -512,7 +512,7 @@
 
 	cycling_set_up = TRUE
 	if(can_unwrench)
-		say("Cycling setup complete.")
+		say("循环设置完成。")
 
 
 ///Get the turf of the first found airlock or an airtight structure (walls) within the allowed range
@@ -598,14 +598,14 @@
 		user.ventcrawl_layer = clamp(user.ventcrawl_layer + 2, PIPING_LAYER_DEFAULT - 1, PIPING_LAYER_DEFAULT + 1)
 	if((SOUTH|WEST) & direction)
 		user.ventcrawl_layer = clamp(user.ventcrawl_layer - 2, PIPING_LAYER_DEFAULT - 1, PIPING_LAYER_DEFAULT + 1)
-	to_chat(user, "You align yourself with the [user.ventcrawl_layer == 2 ? 1 : 2]\th output.")
+	to_chat(user, "你调整身位，对准了第 [user.ventcrawl_layer == 2 ? 1 : 2] 号输出口。")
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/on_set_is_operational(was_operational)
 	if(was_operational && !is_operational)
 		// unbolt all the doors but don't open them
 		for(var/obj/machinery/door/airlock/airlock as anything in (internal_airlocks + external_airlocks))
 			airlock.unbolt()
-		audible_message(span_notice("[src] whirrs as [p_they()] lose[p_s()] power, disengaging airlock bolts."))
+		audible_message(span_notice("[src] 嗡鸣起来，随着电力中断，气闸的门栓松开了。"))
 		deltimer(emergency_stop_timer)
 		set_on(FALSE)
 
@@ -616,7 +616,7 @@
 		for(var/obj/machinery/door/airlock/airlock as anything in internal_airlocks)
 			if(open_airlock_on_cycle)
 				INVOKE_ASYNC(airlock, TYPE_PROC_REF(/obj/machinery/door/airlock, secure_open))
-		audible_message(span_notice("[src] whirrs as [p_they()] regain[p_s()] power, re-engaging airlock bolts."))
+		audible_message(span_notice("[src] 嗡鸣起来，随着电力恢复，气闸的门栓重新锁上了。"))
 
 /obj/machinery/atmospherics/components/unary/airlock_pump/unbolt_only
 	open_airlock_on_cycle = FALSE

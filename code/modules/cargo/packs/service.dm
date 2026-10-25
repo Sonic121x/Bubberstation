@@ -2,10 +2,10 @@
 	group = "Service"
 
 /datum/supply_pack/service/cargo_supples
-	name = "Cargo Supplies Crate"
-	desc = "Sold everything that wasn't bolted down? You can get right \
-		back to work with this crate containing stamps, an export scanner, \
-		destination tagger, hand labeler and some package wrapping."
+	name = "货运用品箱"
+	desc = "把没焊死的东西都卖光了？这箱补给能让你立刻复工：\
+		内有印章、出口扫描仪、目的地标签器、手持贴标机\
+		和一些包裹包装纸。"
 	cost = CARGO_CRATE_VALUE * 1.75
 	contains = list(/obj/item/stamp/granted,
 					/obj/item/stamp/denied,
@@ -14,21 +14,21 @@
 					/obj/item/hand_labeler,
 					/obj/item/stack/package_wrap,
 				)
-	crate_name = "cargo supplies crate"
+	crate_name = "货运用品箱"
 
 /datum/supply_pack/service/noslipfloor
-	name = "High-traction Floor Tiles"
-	desc = "Make slipping a thing of the past with thirty industrial-grade anti-slip floor tiles!"
+	name = "高摩擦地砖"
+	desc = "三十块工业级防滑地砖，让滑倒成为过去式！"
 	cost = CARGO_CRATE_VALUE * 4
 	access_view = ACCESS_JANITOR
 	contains = list(/obj/item/stack/tile/noslip/thirty)
-	crate_name = "high-traction floor tiles crate"
+	crate_name = "高摩擦地砖箱"
 
 /datum/supply_pack/service/janitor
-	name = "Janitorial Supplies Crate"
-	desc = "Fight back against dirt and grime with Nanotrasen's Janitorial Essentials™! \
-		Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, \
-		broom, spray cleaner, rag, and trash bag."
+	name = "清洁用品箱"
+	desc = "用纳米传讯清洁必需品™ 击退污垢与油渍！\
+		内含三个水桶、警示牌和清洁手榴弹。另有一把拖把、\
+		扫帚、喷雾清洁剂、抹布和垃圾袋。"
 	cost = CARGO_CRATE_VALUE * 2
 	access_view = ACCESS_JANITOR
 	contains = list(/obj/item/reagent_containers/cup/bucket = 3,
@@ -40,43 +40,43 @@
 					/obj/item/rag,
 					/obj/item/grenade/chem_grenade/cleaner = 3,
 				)
-	crate_name = "janitorial supplies crate"
+	crate_name = "清洁用品箱"
 
 /datum/supply_pack/service/janitor/janicart
-	name = "Janitorial Cart and Galoshes Crate"
-	desc = "The keystone to any successful janitor. As long as you have feet, this pair \
-		of galoshes will keep them firmly planted on the ground. Also contains a janitorial cart."
+	name = "清洁推车与橡胶靴箱"
+	desc = "任何成功清洁工的基石。只要你有脚，这双\
+		橡胶靴就能让它们牢牢钉在地面上。另含一辆清洁推车。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/structure/mop_bucket/janitorialcart,
 					/obj/item/clothing/shoes/galoshes,
 				)
-	crate_name = "janitorial cart crate"
+	crate_name = "清洁推车箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/janitor/janitank
-	name = "Janitor Backpack Crate"
-	desc = "Call forth divine judgement upon dirt and grime with this high capacity janitor \
-		backpack. Contains 500 units of station-cleansing cleaner."
+	name = "清洁工背包箱"
+	desc = "用这款大容量清洁工背包对污垢与油渍降下神罚。\
+		内含 500 单位净化空间站的清洁剂。"
 	cost = CARGO_CRATE_VALUE * 2
 	access = ACCESS_JANITOR
 	contains = list(/obj/item/watertank/janitor)
-	crate_name = "janitor backpack crate"
+	crate_name = "清洁工背包箱"
 	crate_type = /obj/structure/closet/crate/secure
 
 /datum/supply_pack/service/mule
-	name = "MULEbot Crate"
-	desc = "Pink-haired Quartermaster not doing her job? Replace her with this tireless worker, today! \
-		Contains one MULEbot."
+	name = "MULE 机器人箱"
+	desc = "粉头发的货运主管不干活？今天就用这个不知疲倦的劳工替换她！\
+		内含一台 MULE 机器人。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/basic/bot/mulebot)
-	crate_name = "\improper MULEbot Crate"
+	crate_name = "\improper MULE 机器人箱"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/service/party
-	name = "Party Equipment"
-	desc = "Celebrate both life and death on the station with Nanotrasen's Party Essentials™! \
-		Contains seven colored glowsticks, six beers, six sodas, two ales, and a bottle of patron, \
-		goldschlager, and shaker!"
+	name = "派对装备"
+	desc = "用纳米传讯派对必需品™ 在空间站上庆祝生与死！\
+		内含七支彩色荧光棒、六罐啤酒、六罐汽水、两瓶艾尔啤酒，以及一瓶培恩龙舌兰、\
+		一瓶金箔力娇酒和一个摇酒壶！"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/storage/box/drinkingglasses,
 					/obj/item/reagent_containers/cup/glass/shaker,
@@ -93,22 +93,22 @@
 					/obj/item/flashlight/glowstick/yellow,
 					/obj/item/flashlight/glowstick/pink,
 				)
-	crate_name = "party equipment crate"
+	crate_name = "派对装备箱"
 
 /datum/supply_pack/service/carpet
-	name = "Premium Carpet Crate"
-	desc = "Iron floor tiles getting on your nerves? These stacks of extra soft carpet \
-		will tie any room together. Contains 100 tiles each of regular and black carpet."
+	name = "高级地毯箱"
+	desc = "铁地砖让你心烦？这些超柔软地毯\
+		能装点任何房间。内含普通地毯与黑色地毯各 100 块。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/stack/tile/carpet/fifty = 2,
 					/obj/item/stack/tile/carpet/black/fifty = 2)
-	crate_name = "premium carpet crate"
+	crate_name = "高级地毯箱"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/service/carpet_exotic
-	name = "Exotic Carpet Crate"
-	desc = "Exotic carpets straight from Space Russia, for all your decorating needs. \
-		Contains 100 tiles each of 8 different flooring patterns."
+	name = "异域地毯箱"
+	desc = "直接来自太空俄罗斯的异域地毯，满足你一切装修需求。\
+		内含 8 种不同花色地砖各 100 块。"
 	cost = CARGO_CRATE_VALUE * 8
 	contains = list(/obj/item/stack/tile/carpet/blue/fifty = 2,
 					/obj/item/stack/tile/carpet/cyan/fifty = 2,
@@ -119,13 +119,13 @@
 					/obj/item/stack/tile/carpet/royalblue/fifty = 2,
 					/obj/item/stack/tile/carpet/royalblack/fifty = 2,
 				)
-	crate_name = "exotic carpet crate"
+	crate_name = "异域地毯箱"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/service/carpet_neon
-	name = "Simple Neon Carpet Crate"
-	desc = "Simple rubbery mats with phosphorescent lining. Contains 120 tiles \
-		each of 13 color variants. Limited edition release."
+	name = "简约霓虹地毯箱"
+	desc = "简约橡胶地垫，带磷光镶边。内含 13 种颜色各 120 块。\
+		限量发行。"
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/obj/item/stack/tile/carpet/neon/simple/white/sixty = 2,
 					/obj/item/stack/tile/carpet/neon/simple/black/sixty = 2,
@@ -141,44 +141,44 @@
 					/obj/item/stack/tile/carpet/neon/simple/violet/sixty = 2,
 					/obj/item/stack/tile/carpet/neon/simple/pink/sixty = 2,
 				)
-	crate_name = "neon carpet crate"
+	crate_name = "霓虹地毯箱"
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/service/lightbulbs
-	name = "Replacement Lights"
-	desc = "May the light of Aether shine upon this station! Or at least, the light of \
-		forty-two light tubes and twenty one light bulbs."
+	name = "替换灯具"
+	desc = "愿以太之光照耀这座空间站！或者，至少，\
+		四十二根灯管和二十一个灯泡的光可以。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/box/lights/mixed = 3)
-	crate_name = "replacement lights"
+	crate_name = "替换灯具"
 
 /datum/supply_pack/service/minerkit
-	name = "Shaft Miner Starter Kit"
-	desc = "All the miners died too fast? Assistant wants to get a taste of life off-station? \
-		Either way, this kit is the best way to turn a regular crewman into an ore-producing, \
-		monster-slaying machine. Contains meson goggles, a pickaxe, advanced mining scanner, \
-		cargo headset, ore bag, gasmask, an explorer suit and a miner ID upgrade."
+	name = "矿工入门套装"
+	desc = "矿工都死得太快了？助理想体验站外生活？\
+		无论如何，这套装备都是把普通船员变成产矿、\
+		屠怪机器的最佳途径。内含介子护目镜、十字镐、高级采矿扫描仪、\
+		货运耳机、矿石袋、防毒面具、探索者套装和矿工 ID 升级。"
 	cost = CARGO_CRATE_VALUE * 4
 	access = ACCESS_QM
 	access_view = ACCESS_MINING_STATION
 	contains = list(/obj/item/storage/backpack/duffelbag/mining_conscript)
-	crate_name = "shaft miner starter kit"
+	crate_name = "矿工入门套装"
 	crate_type = /obj/structure/closet/crate/secure/cargo/mining
 
 /datum/supply_pack/service/survivalknives
-	name = "Survival Knives Crate"
-	desc = "Contains three sharpened survival knives. Each knife guaranteed to fit snugly \
-		inside any Nanotrasen-standard boot."
+	name = "生存刀箱"
+	desc = "内含三把开刃生存刀。每把都保证能稳妥地\
+		插进任何纳米传讯标准靴中。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/knife/combat/survival = 3)
-	crate_name = "survival knife crate"
+	crate_name = "生存刀箱"
 	crate_type = /obj/structure/closet/crate/cargo/mining
 
 /datum/supply_pack/service/wedding
-	name = "Wedding Crate"
-	desc = "Everything you need to host a wedding! Now you just need an officiant. \
-		Contains a wedding dress, tuxedo, cummerbund, wedding veil, three bouquets, \
-		and a bottle of champagne."
+	name = "婚礼箱"
+	desc = "举办婚礼所需的一切！现在你只缺一位主婚人了。\
+		内含婚纱、燕尾服、腰封、婚礼头纱、三束花，\
+		以及一瓶香槟。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/clothing/under/dress/wedding_dress,
 					/obj/item/clothing/under/suit/tuxedo,
@@ -189,37 +189,37 @@
 					/obj/item/bouquet/poppy,
 					/obj/item/reagent_containers/cup/glass/bottle/champagne,
 				)
-	crate_name = "wedding crate"
+	crate_name = "婚礼箱"
 
 /// Box of 7 grey IDs.
 /datum/supply_pack/service/greyidbox
-	name = "Grey ID Card Multipack Crate"
-	desc = "A convenient crate containing a box of seven cheap ID cards in a handy wallet-sized form factor. \
-		Cards come in every colour you can imagine, as long as it's grey."
+	name = "灰色 ID 卡多联包箱"
+	desc = "一个方便的箱子，内含一盒七张廉价 ID 卡，尺寸恰好能放进钱包。\
+		卡片的颜色应有尽有——只要是你想得到的灰色。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/storage/box/ids)
-	crate_name = "basic id card crate"
+	crate_name = "基础 ID 卡箱"
 
 /// Single silver ID.
 /datum/supply_pack/service/silverid
-	name = "Silver ID Card Crate"
-	desc = "Did we forget to hire any Heads of Staff? Recruit your own with this high value ID card \
-		capable of holding advanced levels of access in a handy wallet-sized form factor."
+	name = "银色 ID 卡箱"
+	desc = "是不是忘了招任何部门主管？用这张高价值 ID 卡\
+		自行招募吧，它能保存高级权限，尺寸还能放进钱包。"
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(/obj/item/card/id/advanced/silver)
-	crate_name = "silver id card crate"
+	crate_name = "银色 ID 卡箱"
 
 /datum/supply_pack/service/emptycrate
-	name = "Empty Crate"
-	desc = "It's an empty crate, for all your storage needs."
+	name = "空板条箱"
+	desc = "一个空板条箱，满足你一切收纳需求。"
 	cost = CARGO_CRATE_VALUE * 1.4 //Net Zero Profit.
 	contains = list()
-	crate_name = "crate"
+	crate_name = "板条箱"
 
 /datum/supply_pack/service/randomized/donkpockets
-	name = "Donk Pocket Variety Crate"
-	desc = "Featuring a line up of Donk Co.'s most popular pastry! Contains \
-		a random assortment of Donk Pocket boxes."
+	name = "咚克口袋饼混合箱"
+	desc = "收录咚克公司最受欢迎的糕点阵容！内含 \
+		随机搭配的咚克口袋饼盒。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
 					/obj/item/storage/box/donkpockets/donkpocketteriyaki,
@@ -227,7 +227,7 @@
 					/obj/item/storage/box/donkpockets/donkpocketberry,
 					/obj/item/storage/box/donkpockets/donkpockethonk,
 				)
-	crate_name = "donk pocket crate"
+	crate_name = "咚克口袋饼箱"
 	crate_type = /obj/structure/closet/crate/freezer/food
 
 /datum/supply_pack/service/randomized/donkpockets/fill(obj/container)
@@ -236,9 +236,9 @@
 		new item(container)
 
 /datum/supply_pack/service/randomized/ready_donk
-	name = "Ready-Donk Variety Crate"
-	desc = "Featuring a line up of Donk Co.'s fan-favourite microwave meal! Contains \
-		a random assortment of Ready Donk products."
+	name = "咚克即食餐混合箱"
+	desc = "收录咚克公司最受粉丝欢迎的微波餐阵容！内含 \
+		随机搭配的咚克即食餐产品。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(/obj/item/food/ready_donk,
 					/obj/item/food/ready_donk/mac_n_cheese,
@@ -248,7 +248,7 @@
 					/obj/item/food/ready_donk/salisbury_steak,
 					/obj/item/food/ready_donk/country_chicken,
 				)
-	crate_name = "\improper Ready-Donk crate"
+	crate_name = "\improper 咚克即食餐箱"
 	crate_type = /obj/structure/closet/crate/freezer/donk
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
@@ -258,8 +258,8 @@
 		new item(container)
 
 /datum/supply_pack/service/coffeekit
-	name = "Coffee Equipment Crate"
-	desc = "A complete kit to setup your own cozy coffee shop, the coffeemaker is for some reason not included."
+	name = "咖啡设备箱"
+	desc = "用来开设你自己温馨咖啡店的整套装备，但出于某种原因不含咖啡机。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
 		/obj/item/storage/box/coffeepack/robusta,
@@ -272,45 +272,45 @@
 		/obj/item/reagent_containers/condiment/sugar,
 		/obj/item/reagent_containers/cup/bottle/syrup_bottle/caramel, //one extra syrup as a treat
 	)
-	crate_name = "coffee equipment crate"
+	crate_name = "咖啡设备箱"
 	crate_type = /obj/structure/closet/crate/robust
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/service/coffeemaker
-	name = "Impressa Coffeemaker Crate"
-	desc = "An assembled Impressa model coffeemaker."
+	name = "印普瑞莎咖啡机箱"
+	desc = "一台组装好的印普瑞莎型号咖啡机。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/obj/machinery/coffeemaker/impressa)
-	crate_name = "coffeemaker crate"
+	crate_name = "咖啡机箱"
 	crate_type = /obj/structure/closet/crate/large
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /// Spare bar sign wallmount
 /datum/supply_pack/service/bar_sign
-	name = "Bar Sign Replacement Kit"
-	desc = "A replacement bar sign, perfect for drawing in customers to your bar, tavern, inn, nightclub, or even coffeehouse!"
+	name = "酒吧招牌替换套件"
+	desc = "一块替换用酒吧招牌，完美吸引顾客光顾你的酒吧、酒馆、旅店、夜总会，甚至咖啡馆！"
 	cost = CARGO_CRATE_VALUE * 14
 	contains = list(/obj/item/wallframe/barsign/all_access)
-	crate_name = "bar sign crate"
+	crate_name = "酒吧招牌箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/service/bowmaking
-	name = "Fletching and Bow-Making Starter Kit"
-	desc = "A fairly outdated copy of 'Whittle Me This: Fletching for the Modern Spacer', along with some useful materials. \
-		For those looking to get into bow-making, or give their LARPing a little more edge, you can't go wrong. Also has \
-		instructions for making violins."
+	name = "制箭与制弓入门套装"
+	desc = "一本相当过时的《削出个名堂：现代太空人的制箭指南》，外加一些实用材料。\
+		想入门制弓，或让自己的实演角色扮演更锋利一点，选它准没错。书中还附有 \
+		小提琴制作说明。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/item/book/granter/crafting_recipe/fletching = 1,
 		/obj/item/stack/sheet/mineral/wood = 10,
 		/obj/item/stack/sheet/cloth = 10,
 	)
-	crate_name = "bowmaking starter kit crate"
+	crate_name = "制弓入门套装箱"
 	crate_type = /obj/structure/closet/crate/wooden
 
 /datum/supply_pack/service/mousetraps
-	name = "Pest-B-Gon Mousetraps"
-	desc = "Three boxes of handy little spring-loaded traps for catching pesty rodents. Keep out of reach of children!"
+	name = "灭虫灵捕鼠夹"
+	desc = "三盒便捷的小型弹簧夹，用来捕捉恼人的鼠类。请置于儿童接触不到的地方！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/storage/box/mousetraps = 3)
-	crate_name = "mousetraps crate"
+	crate_name = "捕鼠夹箱"

@@ -15,10 +15,10 @@
 
 /// Self-destructs the component, allowing free-roam by all entities with this restriction.
 /datum/component/virtual_entity/proc/jailbreak_mobs()
-	to_chat(parent, span_bolddanger("You shiver for a moment with a sense of clarity you haven't felt before."))
-	to_chat(parent, span_notice("You could go <i>anywhere</i>, do <i>anything</i>! You could leave this simulation right now if you wanted!"))
-	to_chat(parent, span_danger("But be warned, quantum entanglement will interfere with any previous lives."))
-	to_chat(parent, span_notice("You'll have just one chance to go nova, and there's no turning back."))
+	to_chat(parent, span_bolddanger("你一阵战栗，忽然感到前所未有的清明。"))
+	to_chat(parent, span_notice("你可以去<i>任何地方</i>，做<i>任何事</i>！只要你想，现在就能离开这个模拟！"))
+	to_chat(parent, span_danger("但要注意，量子纠缠会干扰你此前的一切过往。"))
+	to_chat(parent, span_notice("你只有一次爆发自我的机会，而且无法回头。"))
 
 
 /// Remove any restrictions AFTER the mob has spawned
@@ -39,7 +39,7 @@
 		return
 
 	if(location_area.area_flags_mapping & VIRTUAL_SAFE_AREA)
-		source.balloon_alert(source, "out of bounds!")
+		source.balloon_alert(source, "超出边界！")
 		COOLDOWN_START(src, OOB_cooldown, 2 SECONDS)
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 

@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/components/binary/temperature_pump
 	icon_state = "tpump_map-3"
-	name = "temperature pump"
-	desc = "A pump that moves heat from one pipeline to another. The input will get cooler, and the output will get hotter."
+	name = "温度泵"
+	desc = "将热量从一条管道输送到另一条管道的泵。输入端会变冷，输出端会变热。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
@@ -19,15 +19,15 @@
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Maximize transfer rate"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "[on ? "关闭" : "开启"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "将传输速率设为最大"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/binary/temperature_pump/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
+		balloon_alert(user, "已[on ? "开启" : "关闭"]")
+		investigate_log("被 [key_name(user)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -36,8 +36,8 @@
 		return CLICK_ACTION_BLOCKING
 
 	heat_transfer_rate = max_heat_transfer_rate
-	investigate_log("was set to [heat_transfer_rate]% by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "transfer rate set to [heat_transfer_rate]%")
+	investigate_log("被 [key_name(user)] 设为 [heat_transfer_rate]%", INVESTIGATE_ATMOS)
+	balloon_alert(user, "传输速率已设为 [heat_transfer_rate]%")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
@@ -95,7 +95,7 @@
 	switch(action)
 		if("power")
 			set_on(!on)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(usr)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("rate")
 			var/rate = params["rate"]
@@ -107,7 +107,7 @@
 				. = TRUE
 			if(.)
 				heat_transfer_rate = clamp(rate, 0, max_heat_transfer_rate)
-				investigate_log("was set to [heat_transfer_rate]% by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("被 [key_name(usr)] 设为 [heat_transfer_rate]%", INVESTIGATE_ATMOS)
 	update_appearance(UPDATE_ICON)
 
 //mapping

@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/crown
-	name = "crown"
-	desc = "A crown fit for a king, a petty king maybe."
+	name = "王冠"
+	desc = "一顶配得上国王的王冠，也许只是个小小国王。"
 	icon_state = "crown"
 	armor_type = /datum/armor/costume_crown
 	resistance_flags = FIRE_PROOF
@@ -14,6 +14,6 @@
 	wound = 5
 
 /obj/item/clothing/head/costume/crown/fancy
-	name = "magnificent crown"
-	desc = "A crown worn by only the highest emperors of the <s>land</s> space."
+	name = "华丽王冠"
+	desc = "只有 <s>陆地</s> 太空 的至高皇帝才会佩戴的王冠。"
 	icon_state = "fancycrown"

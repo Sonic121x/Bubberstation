@@ -1,11 +1,11 @@
 /datum/round_event_control/heart_attack
-	name = "Random Heart Attack"
+	name = "随机心脏病发作"
 	typepath = /datum/round_event/heart_attack
 	weight = 20
 	max_occurrences = 2
 	min_players = 40 // To avoid shafting lowpop
 	category = EVENT_CATEGORY_HEALTH
-	description = "A random crewmember's heart gives out."
+	description = "一名随机船员的心脏突然衰竭。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/minimum_candidate_requirement/heart_attack, /datum/event_admin_setup/input_number/heart_attack)
@@ -72,13 +72,13 @@
 	var/fitness_protection_probability = winner.mind?.get_skill_modifier(/datum/skill/athletics, SKILL_RANDS_MODIFIER)
 
 	if(prob(fitness_protection_probability * 2)) //Stuff that should "block" a heart attack rather than just deny eligibility for one goes here.
-		winner.visible_message(span_warning("[winner] grunts and clutches their chest for a moment, catching [winner.p_their()] breath."), span_medal("Your chest lurches in pain for a brief moment, which quickly fades. \
-								You feel like you've just avoided a serious health disaster."), span_hear("You hear someone's breathing sharpen for a moment, followed by a sigh of relief."), 4)
+		winner.visible_message(span_warning("[winner] 咕哝一声，捂住胸口，缓了口气。"), span_medal("你的胸口猛地一阵剧痛，随即很快消退。 \
+								你觉得自己刚刚躲过了一场严重的健康灾难。"), span_hear("你听到某人的呼吸急促了一下，随后传来一声如释重负的叹息。"), 4)
 		winner.playsound_local(get_turf(winner), 'sound/effects/health/slowbeat.ogg', 40, 0, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
 		winner.Stun(3 SECONDS)
 		if(winner.client)
 			winner.client.give_award(/datum/award/achievement/misc/healthy, winner)
-		message_admins("[winner] has just survived a random heart attack!") //time to spawn them a trophy :)
+		message_admins("[winner] 刚刚在一次随机心脏病发作中幸存了下来！") //time to spawn them a trophy :)
 		victims -= winner
 	else
 		winner.apply_status_effect(/datum/status_effect/heart_attack)
@@ -88,7 +88,7 @@
 	return FALSE
 
 /datum/event_admin_setup/minimum_candidate_requirement/heart_attack
-	output_text = "There are no candidates eligible to receive a heart attack!"
+	output_text = "没有符合条件、可被随机心脏病发作选中的候选者！"
 
 /datum/event_admin_setup/minimum_candidate_requirement/heart_attack/count_candidates()
 	var/datum/round_event_control/heart_attack/heart_control = event_control
@@ -96,7 +96,7 @@
 	return length(heart_control.heart_attack_candidates)
 
 /datum/event_admin_setup/input_number/heart_attack
-	input_text = "Please select how many people's days you wish to ruin."
+	input_text = "请选择你想毁掉多少人的一天。"
 	default_value = 0
 	max_value = 90 //Will be overridden
 	min_value = 0

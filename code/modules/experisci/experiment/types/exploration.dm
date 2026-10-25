@@ -1,8 +1,8 @@
 /datum/experiment/exploration_scan
-	name = "Exploration Experiment"
-	description = "An experiment requiring drone exploration to progress"
+	name = "探索实验"
+	description = "一项需要通过无人机探索来推进的实验"
 	exp_tag = "Exploration"
-	performance_hint = "Find a site with specific characteristics and perform the scan."
+	performance_hint = "找到具有特定特征的站点并进行扫描。"
 	// Site type, scan needs to be of that type
 	var/required_site_type
 	// Condition type, scan needs to be of site with this condition
@@ -33,20 +33,20 @@
 	return !is_complete()
 
 /datum/experiment/exploration_scan/asteroid_belt
-	name = "Scan Asteroid Belt"
-	description = "We're looking for a site to test our asteroid blasting caps. Perform point scan of one."
+	name = "扫描小行星带"
+	description = "我们在找一处站点来测试爆破雷管。对其中一处进行点扫描。"
 	required_site_type = /datum/exploration_site/asteroid_belt
 	required_scan_type = EXOSCAN_POINT
 
 /datum/experiment/exploration_scan/black_hole
-	name = "Deep scan a black hole"
-	description = "We require more research data on black holes, perform deep scan of a system affected by one."
+	name = "深度扫描黑洞"
+	description = "我们需要更多关于黑洞的研究数据，请对受黑洞影响的星系进行深度扫描。"
 	required_condition = /datum/scan_condition/black_hole
 	required_scan_type = EXOSCAN_DEEP
 
 /datum/experiment/exploration_scan/random
-	name = "Random Exoscan Experiment"
-	description = "We need scan data of specific site type"
+	name = "随机外部扫描实验"
+	description = "我们需要特定类型站点的扫描数据"
 	/// If not null the required_site_type will be picked from this list
 	var/list/possible_random_conditions
 	/// If not null the required_condition will be picked from this list
@@ -59,15 +59,15 @@
 	if(length(possible_random_conditions))
 		required_condition = pick(possible_random_conditions)
 	var/list/name_parts = list()
-	name_parts += "[required_scan_type] scan of"
+	name_parts += "[required_scan_type] 扫描："
 	if(required_site_type)
 		var/datum/exploration_site/site = required_site_type
 		name_parts += initial(site.name)
 	else
-		name_parts += "site"
+		name_parts += "站点"
 	if(required_condition)
 		var/datum/scan_condition/condition = required_condition
-		name_parts += "affected by \the [initial(condition.name)]"
+		name_parts += "（受[initial(condition.name)]影响）"
 	name = capitalize(name_parts.Join(""))
 	description = name
 

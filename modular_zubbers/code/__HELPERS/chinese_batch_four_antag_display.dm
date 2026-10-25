@@ -20,7 +20,7 @@
 	var/static/list/names
 	if(!names)
 		names = list(
-			"敌对角色" = "Antagonist", "被绑架者" = "Abductee", "绑架者" = "Abductor",
+			"敌对角色" = "Antagonist", "被绑架者" = "Abductee", "绑架者" = "Abductor", "通用比特潜行故障体" = "Generic Bitrunning Glitch", "虚拟域角色" = "Virtual Domain Actor",
 			"绑架者特工" = "Abductor Agent", "绑架者科学家" = "Abductor Scientist", "单人绑架者" = "Abductor Solo",
 			"灰行者" = "Ash Walker", "战列巡洋舰船员" = "Battlecruiser Crewmember", "战列巡洋舰盟友" = "Battlecruiser Ally", "战列巡洋舰舰长" = "Battlecruiser Captain",
 			"变形菌" = "Blob", "变形菌感染" = "Blob Infection", "变形菌仆从" = "Blob Minion", "血虫" = "Blood Worm",

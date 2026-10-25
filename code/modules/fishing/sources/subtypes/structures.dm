@@ -2,7 +2,7 @@
 
 /datum/fish_source/moisture_trap
 	background = "background_dank"
-	catalog_description = "Moisture trap basins"
+	catalog_description = "湿气捕集盆"
 	radial_state = "garbage"
 	overlay_state = "portal_river" // placeholder
 	fish_table = list(
@@ -14,9 +14,9 @@
 
 /datum/fish_source/toilet
 	background = "background_dank"
-	catalog_description = "Station toilets"
+	catalog_description = "空间站马桶"
 	radial_state = "toilet"
-	duds = list("ewww... nothing", "it was nothing", "it was toilet paper", "it was flushed away", "the hook is empty", "where's the damn money?!")
+	duds = list("呃呃……什么都没有", "什么都没有", "是厕纸", "被冲走了", "鱼钩是空的", "钱到底去哪了？！")
 	overlay_state = "portal_river" // placeholder
 	fish_table = list(
 		FISHING_DUD = 18,
@@ -32,7 +32,7 @@
 	fishing_difficulty = FISHING_EASY_DIFFICULTY + 10
 
 /datum/fish_source/holographic
-	catalog_description = "Holographic water"
+	catalog_description = "全息水体"
 	fish_table = list(
 		/obj/item/fish/holo = 10,
 		/obj/item/fish/holo/crab = 10,
@@ -55,16 +55,16 @@
 /datum/fish_source/holographic/generate_wiki_contents(datum/autowiki/fish_sources/wiki)
 	var/obj/item/fish/prototype = /obj/item/fish/holo/checkered
 	return LIST_VALUE_WRAP_LISTS(list(
-		FISH_SOURCE_AUTOWIKI_NAME = "Holographic Fish",
+		FISH_SOURCE_AUTOWIKI_NAME = "全息鱼",
 		FISH_SOURCE_AUTOWIKI_ICON = FISH_AUTOWIKI_FILENAME(prototype),
 		FISH_SOURCE_AUTOWIKI_WEIGHT = 100,
-		FISH_SOURCE_AUTOWIKI_NOTES = "Holographic fish disappears outside the Holodeck",
+		FISH_SOURCE_AUTOWIKI_NOTES = "全息鱼离开全息甲板后就会消失",
 	))
 
 /datum/fish_source/holographic/reason_we_cant_fish(obj/item/fishing_rod/rod, mob/fisherman, atom/parent)
 	. = ..()
 	if(!istype(get_area(fisherman), /area/station/holodeck))
-		return "You need to be inside the Holodeck to catch holographic fish."
+		return "你必须在全息甲板内才能钓到全息鱼。"
 
 /datum/fish_source/holographic/pre_challenge_started(obj/item/fishing_rod/rod, mob/user, datum/fishing_challenge/challenge)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_area))
@@ -72,7 +72,7 @@
 /datum/fish_source/holographic/proc/check_area(mob/user)
 	SIGNAL_HANDLER
 	if(!istype(get_area(user), /area/station/holodeck))
-		interrupt_challenge("exited holodeck")
+		interrupt_challenge("已离开全息甲板")
 
 /datum/fish_source/holographic/on_challenge_completed(datum/fishing_challenge/source, mob/user, success)
 	. = ..()
@@ -80,7 +80,7 @@
 
 /datum/fish_source/hydro_tray
 	background = "background_tray"
-	catalog_description = "Hydroponics trays"
+	catalog_description = "水培槽"
 	radial_state = "hydro"
 	overlay_state = "portal_tray"
 	fish_table = list(
@@ -124,23 +124,23 @@
 		FISH_SOURCE_AUTOWIKI_NAME = FISH_SOURCE_AUTOWIKI_DUD,
 		FISH_SOURCE_AUTOWIKI_DUD = "",
 		FISH_SOURCE_AUTOWIKI_WEIGHT = PERCENT(dud_weight/total_weight),
-		FISH_SOURCE_AUTOWIKI_WEIGHT_SUFFIX = "WITHOUT A BAIT",
+		FISH_SOURCE_AUTOWIKI_WEIGHT_SUFFIX = "无鱼饵",
 		FISH_SOURCE_AUTOWIKI_NOTES = "",
 	))
 
 	data += LIST_VALUE_WRAP_LISTS(list(
-		FISH_SOURCE_AUTOWIKI_NAME = "Critter",
+		FISH_SOURCE_AUTOWIKI_NAME = "小生物",
 		FISH_SOURCE_AUTOWIKI_DUD = "",
 		FISH_SOURCE_AUTOWIKI_WEIGHT = PERCENT(critter_weight/total_weight),
-		FISH_SOURCE_AUTOWIKI_NOTES = "A small creature, usually a frog or an axolotl",
+		FISH_SOURCE_AUTOWIKI_NOTES = "一种小生物，通常是青蛙或美西螈",
 	))
 
 	if(other_weight)
 		data += LIST_VALUE_WRAP_LISTS(list(
-			FISH_SOURCE_AUTOWIKI_NAME = "Other Stuff",
+			FISH_SOURCE_AUTOWIKI_NAME = "其他杂物",
 			FISH_SOURCE_AUTOWIKI_DUD = "",
 			FISH_SOURCE_AUTOWIKI_WEIGHT = PERCENT(other_weight/total_weight),
-			FISH_SOURCE_AUTOWIKI_NOTES = "Other stuff, who knows...",
+			FISH_SOURCE_AUTOWIKI_NOTES = "其他杂物，谁知道呢……",
 		))
 
 	return data
@@ -151,9 +151,9 @@
 
 	var/obj/machinery/hydroponics/constructable/basin = parent
 	if(basin.waterlevel <= 0)
-		return "There's no water in [parent] to fish in."
+		return "[parent] 里没有水，无法垂钓。"
 	if(basin.myseed)
-		return "There's a plant growing in [parent]."
+		return "[parent] 里正长着一株植物。"
 
 	return ..()
 
@@ -170,7 +170,7 @@
 	if(reward_path != FISHING_RANDOM_SEED)
 		var/mob/living/created_reward = ..()
 		if(istype(created_reward))
-			created_reward.name = "small [created_reward.name]"
+			created_reward.name = "小[created_reward.name]"
 			created_reward.update_transform(0.75)
 		return created_reward
 
@@ -191,7 +191,7 @@
 
 /datum/fish_source/deepfryer
 	background = "background_lavaland"
-	catalog_description = "Deep Fryers"
+	catalog_description = "油炸锅"
 	radial_state = "fryer"
 	overlay_state = "portal_fry" // literally resprited lava. better than nothing
 	fish_table = list(
@@ -216,7 +216,7 @@
 #define RANDOM_AQUARIUM_FISH "random_aquarium_fish"
 
 /datum/fish_source/aquarium
-	catalog_description = "Aquariums"
+	catalog_description = "水族箱"
 	radial_state = "fish_tank"
 	fish_table = list(
 		FISHING_DUD = 10,
@@ -243,17 +243,17 @@
 	var/list/data = list()
 
 	data += LIST_VALUE_WRAP_LISTS(list(
-		FISH_SOURCE_AUTOWIKI_NAME = "Fish",
+		FISH_SOURCE_AUTOWIKI_NAME = "鱼类",
 		FISH_SOURCE_AUTOWIKI_DUD = "",
 		FISH_SOURCE_AUTOWIKI_WEIGHT = 100,
-		FISH_SOURCE_AUTOWIKI_NOTES = "Any fish currently inside the aquarium, be they alive or dead.",
+		FISH_SOURCE_AUTOWIKI_NOTES = "水族箱内当前存在的任何鱼，无论死活。",
 	))
 
 	return data
 
 /datum/fish_source/vending
 	background = "background_chasm"
-	catalog_description = "Vending Machines"
+	catalog_description = "售货机"
 	radial_state = "vending"
 	overlay_state = "portal_randomizer"
 	fish_table = list(
@@ -266,10 +266,10 @@
 	var/list/data = list()
 
 	data += LIST_VALUE_WRAP_LISTS(list(
-		FISH_SOURCE_AUTOWIKI_NAME = "Vending Products",
+		FISH_SOURCE_AUTOWIKI_NAME = "售货机商品",
 		FISH_SOURCE_AUTOWIKI_DUD = "",
 		FISH_SOURCE_AUTOWIKI_WEIGHT = 100,
-		FISH_SOURCE_AUTOWIKI_NOTES = "Use chips, bills or coins as bait to get a semi-random vending product, depending on both its and the bait's monetary values",
+		FISH_SOURCE_AUTOWIKI_NOTES = "使用筹码、纸币或硬币作为鱼饵，可获得半随机的售货商品，具体取决于商品与鱼饵的货币价值",
 	))
 
 	return data

@@ -35,10 +35,10 @@
 	return "buildmode_[key]"
 
 /datum/buildmode_mode/proc/show_help(client/c)
-	CRASH("No help defined, yell at a coder")
+	CRASH("未定义帮助信息，去骂程序员吧")
 
 /datum/buildmode_mode/proc/change_settings(client/c)
-	to_chat(c, span_warning("There is no configuration available for this mode"))
+	to_chat(c, span_warning("此模式没有可用的配置"))
 	return
 
 /datum/buildmode_mode/proc/Reset()
@@ -82,12 +82,12 @@
 				return
 			if(cornerA && !cornerB)
 				cornerB = select_tile(get_turf(object), AREASELECT_CORNERB)
-				to_chat(c, span_boldwarning("Region selected, if you're happy with your selection left click again, otherwise right click."))
+				to_chat(c, span_boldwarning("区域已选定，如果对选择满意请再次左键点击，否则右键点击。"))
 				return
 			handle_selected_area(c, params)
 			deselect_region()
 		else
-			to_chat(c, span_notice("Region selection canceled!"))
+			to_chat(c, span_notice("区域选择已取消！"))
 			deselect_region()
 	return
 

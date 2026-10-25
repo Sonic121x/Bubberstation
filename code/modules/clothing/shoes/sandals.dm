@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/sandal
-	desc = "A pair of rather plain wooden sandals."
-	name = "sandals"
+	desc = "一双相当朴素的木制凉鞋。"
+	name = "凉鞋"
 	icon_state = "wizard"
 	inhand_icon_state = "wizshoe"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT)
@@ -14,8 +14,8 @@
 	clothing_flags = parent_type::clothing_flags | CARP_STYLE_FACTOR
 
 /obj/item/clothing/shoes/sandal/alt
-	name = "black sandals"
-	desc = "A pair of shiny black wooden sandals."
+	name = "黑色凉鞋"
+	desc = "一双闪亮的黑色木制凉鞋。"
 	icon_state = "blacksandals"
 	inhand_icon_state = "blacksandals"
 
@@ -23,20 +23,20 @@
 	bio = 10
 
 /obj/item/clothing/shoes/sandal/magic
-	name = "magical sandals"
-	desc = "A pair of sandals imbued with magic."
+	name = "魔法凉鞋"
+	desc = "一双被施了魔法的凉鞋。"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/sandal/beach
-	name = "flip-flops"
-	desc = "A very fashionable pair of flip-flops."
+	name = "人字拖"
+	desc = "一双非常时尚的人字拖。"
 
 /obj/item/clothing/shoes/sandal/velcro
-	name = "velcro sandals"
-	desc = "A pair of wooden sandals that have been 'upgraded' with velcro straps in order to comply with corporate uniform policy."
+	name = "尼龙搭扣凉鞋"
+	desc = "一双木制凉鞋，为了符合公司制服规定，被“升级”上了尼龙搭扣带。"
 	fastening_type = SHOES_VELCRO
 
 /obj/item/clothing/shoes/sandal/alt/velcro
-	name = "black velcro sandals"
-	desc = "A pair of shiny black sandals that have been 'upgraded' with velcro straps in order to comply with corporate uniform policy."
+	name = "黑色尼龙搭扣凉鞋"
+	desc = "一双闪亮的黑色凉鞋，为了符合公司制服规定，被“升级”上了尼龙搭扣带。"
 	fastening_type = SHOES_VELCRO

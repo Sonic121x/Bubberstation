@@ -1,10 +1,10 @@
 // Tea
 /obj/item/seeds/tea
-	name = "tea aspera seed pack"
-	desc = "These seeds grow into tea plants."
+	name = "苦茶种子包"
+	desc = "这些种子会长成茶树。"
 	icon_state = "seed-teaaspera"
 	species = "teaaspera"
-	plantname = "Tea Aspera Plant"
+	plantname = "苦茶植株"
 	product = /obj/item/food/grown/tea
 	lifespan = 20
 	maturation = 5
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/tea
 	seed = /obj/item/seeds/tea
-	name = "Tea Aspera tips"
-	desc = "These aromatic tips of the tea plant can be dried to make tea."
+	name = "苦茶嫩叶"
+	desc = "这些芳香的茶树嫩叶晒干后可以制成茶。"
 	icon_state = "tea_aspera_leaves"
 	dry_grind = TRUE
 	can_distill = FALSE
@@ -29,10 +29,10 @@
 
 // Tea Astra
 /obj/item/seeds/tea/astra
-	name = "tea astra seed pack"
+	name = "星茶种子包"
 	icon_state = "seed-teaastra"
 	species = "teaastra"
-	plantname = "Tea Astra Plant"
+	plantname = "星茶植株"
 	product = /obj/item/food/grown/tea/astra
 	mutatelist = null
 	reagents_add = list(/datum/reagent/medicine/synaptizine = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/toxin/teapowder = 0.1)
@@ -40,7 +40,7 @@
 
 /obj/item/food/grown/tea/astra
 	seed = /obj/item/seeds/tea/astra
-	name = "Tea Astra tips"
+	name = "星茶嫩叶"
 	icon_state = "tea_astra_leaves"
 	bite_consumption_mod = 2
 
@@ -49,11 +49,11 @@
 
 // Coffee
 /obj/item/seeds/coffee
-	name = "coffee arabica seed pack"
-	desc = "These seeds grow into coffee arabica bushes."
+	name = "阿拉比卡咖啡种子包"
+	desc = "这些种子会长成阿拉比卡咖啡灌木。"
 	icon_state = "seed-coffeea"
 	species = "coffeea"
-	plantname = "Coffee Arabica Bush"
+	plantname = "阿拉比卡咖啡灌木"
 	product = /obj/item/food/grown/coffee
 	lifespan = 30
 	endurance = 20
@@ -69,8 +69,8 @@
 
 /obj/item/food/grown/coffee
 	seed = /obj/item/seeds/coffee
-	name = "coffee arabica beans"
-	desc = "Dry them out to make coffee."
+	name = "阿拉比卡咖啡豆"
+	desc = "把它们晒干就能制成咖啡。"
 	icon_state = "coffee_arabica"
 	dry_grind = TRUE
 	distill_reagent = /datum/reagent/consumable/ethanol/kahlua
@@ -80,11 +80,11 @@
 
 // Coffee Robusta
 /obj/item/seeds/coffee/robusta
-	name = "coffee robusta seed pack"
-	desc = "These seeds grow into coffee robusta bushes."
+	name = "罗布斯塔咖啡种子包"
+	desc = "这些种子会长成罗布斯塔咖啡灌木。"
 	icon_state = "seed-coffeer"
 	species = "coffeer"
-	plantname = "Coffee Robusta Bush"
+	plantname = "罗布斯塔咖啡灌木"
 	product = /obj/item/food/grown/coffee/robusta
 	mutatelist = null
 	reagents_add = list(/datum/reagent/medicine/ephedrine = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/toxin/coffeepowder = 0.1)
@@ -92,8 +92,8 @@
 
 /obj/item/food/grown/coffee/robusta
 	seed = /obj/item/seeds/coffee/robusta
-	name = "coffee robusta beans"
-	desc = "Increases robustness by 37 percent!"
+	name = "罗布斯塔咖啡豆"
+	desc = "使强悍程度提升 37%！"
 	icon_state = "coffee_robusta"
 
 /obj/item/food/grown/coffee/robusta/grind_results()

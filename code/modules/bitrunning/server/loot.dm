@@ -60,7 +60,7 @@
 
 	var/obj/item/paper/certificate = new()
 	certificate.add_raw_text(get_completion_certificate(time_difference, grade))
-	certificate.name = "certificate of domain completion"
+	certificate.name = "域完成证书"
 	certificate.update_appearance()
 
 	var/obj/structure/closet/crate/secure/bitrunning/decrypted/reward_cache = new(src, generated_domain, bonus)
@@ -102,42 +102,42 @@
 
 	var/domain_threats = length(spawned_threat_refs)
 
-	var/completion_time = "### Completion Time: [DisplayTimeText(time_difference)]\n"
+	var/completion_time = "### 完成时间：[DisplayTimeText(time_difference)]\n"
 
-	var/completion_grade = "\n---\n\n# Rating: [grade]"
+	var/completion_grade = "\n---\n\n# 评级：[grade]"
 
-	var/text = "# Certificate of Domain Completion\n\n---\n\n"
+	var/text = "# 域完成证书\n\n---\n\n"
 
-	text += "### [generated_domain.name][domain_randomized ? " (Randomized)" : ""]\n"
-	text += "- **Difficulty:** [generated_domain.difficulty]\n"
-	text += "- **Threats:** [domain_threats]\n"
-	text += "- **Base Reward:** [base_points][domain_randomized ? " +1" : ""]\n\n"
-	text += "- **Total Bonus:** [bonuses]x\n\n"
+	text += "### [generated_domain.name][domain_randomized ? "（随机化）" : ""]\n"
+	text += "- **难度：** [generated_domain.difficulty]\n"
+	text += "- **威胁数量：** [domain_threats]\n"
+	text += "- **基础奖励：** [base_points][domain_randomized ? " +1" : ""]\n\n"
+	text += "- **总加成：** [bonuses]x\n\n"
 
 	if(bonuses <= 1)
 		text += completion_time
 		text += completion_grade
 		return text
 
-	text += "### Bonuses\n"
+	text += "### 加成\n"
 	if(domain_randomized)
-		text += "- **Randomized:** + 0.2\n"
+		text += "- **随机化：** + 0.2\n"
 
 	var/mp_bonus = get_multiplayer_bonus()
 	if(mp_bonus)
-		text += "- **Multiplayer:** + [mp_bonus]\n"
+		text += "- **多人：** + [mp_bonus]\n"
 
 	var/nohit_bonus = get_nohit_bouns()
 	if(nohit_bonus)
-		text += "- **No hit:** + [nohit_bonus]\n"
+		text += "- **无伤：** + [nohit_bonus]\n"
 
 	if(domain_threats > 0)
-		text += "- **Threats:** + [domain_threats * 2]\n"
+		text += "- **威胁数量：** + [domain_threats * 2]\n"
 
 	var/servo_rating = servo_bonus
 
 	if(servo_rating > 0.2)
-		text += "- **Components:** + [servo_rating]\n"
+		text += "- **组件：** + [servo_rating]\n"
 
 	text += completion_time
 	text += completion_grade

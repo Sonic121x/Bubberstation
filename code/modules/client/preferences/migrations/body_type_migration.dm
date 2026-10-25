@@ -23,4 +23,4 @@
 
 	// spawn b/c we need this to run during init but can't immediately because parent may still be initializing
 	spawn(1)
-		tgui_alert(parent, "The physique for [save_data["real_name"]] was previously set to \"Use gender\" but they have a non-binary gender. Non-binary physiques currently do not exist, so this character's physique has defaulted to female.", "Physique Migration for [save_data["real_name"]]")
+		tgui_alert(parent, "此前 [save_data["real_name"]] 的体格被设为 \"Use gender\"，但该角色为非二元性别。目前尚不存在非二元体格，因此该角色的体格已默认设为女性。", "体格迁移：[save_data["real_name"]]")

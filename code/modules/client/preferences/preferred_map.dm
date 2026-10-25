@@ -26,9 +26,9 @@
 	var/display_names = list()
 
 	if (config.defaultmap)
-		display_names[""] = "Default ([config.defaultmap.map_name])"
+		display_names[""] = "默认（[config.defaultmap.map_name]）"
 	else
-		display_names[""] = "Default"
+		display_names[""] = "默认"
 
 	for (var/choice in get_choices())
 		if (choice == "")
@@ -38,7 +38,7 @@
 
 		var/map_name = map_config.map_name
 		if (map_config.voteweight <= 0)
-			map_name += " (disabled)"
+			map_name += "（已禁用）"
 		display_names[choice] = map_name
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = display_names

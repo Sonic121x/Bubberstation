@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = "clothing"
+	name = "衣物"
 	abstract_type = /obj/item/clothing
 	resistance_flags = FLAMMABLE
 	max_integrity = 200
@@ -80,15 +80,15 @@
 		item_flags |= ABSTRACT
 
 /obj/item/food/clothing
-	name = "temporary moth clothing snack item"
-	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object. <--- stinky idiot wrote this"
+	name = "临时蛾类衣物零食"
+	desc = "如果你看到这句话，说明我搞砸了。这与蛾子吃衣服有关，我想不到比新建一个食物对象更好的办法。<--- 臭傻瓜写的"
 	spawn_blacklisted = TRUE
 	bite_consumption = 1
 	// sigh, ok, so it's not ACTUALLY infinite nutrition. this is so you can eat clothes more than...once.
 	// bite_consumption limits how much you actually get, and the take_damage in after eat makes sure you can't abuse this.
 	// ...maybe this was a mistake after all.
 	food_reagents = list(/datum/reagent/consumable/nutriment/cloth_fibers = INFINITY)
-	tastes = list("dust" = 1, "lint" = 1)
+	tastes = list("灰尘" = 1, "线头" = 1)
 	foodtypes = CLOTH
 
 	/// A weak reference to the clothing that created us
@@ -138,9 +138,9 @@
 		if(CLOTHING_SHREDDED)
 			var/obj/item/stack/cloth_repair = weapon
 			if(cloth_repair.amount < 3)
-				to_chat(user, span_warning("You require 3 [cloth_repair.name] to repair [src]."))
+				to_chat(user, span_warning("你需要 3 份 [cloth_repair.name] 才能修复 [src]。"))
 				return ITEM_INTERACT_BLOCKING
-			to_chat(user, span_notice("You begin fixing the damage to [src] with [cloth_repair]..."))
+			to_chat(user, span_notice("你开始用 [cloth_repair] 修复 [src] 上的损伤……"))
 			if(!do_after(user, 6 SECONDS, src) || !cloth_repair.use(3))
 				return ITEM_INTERACT_BLOCKING
 			repair(user)
@@ -156,7 +156,7 @@
 	damage_by_parts = null
 	if(user)
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		to_chat(user, span_notice("You fix the damage on [src]."))
+		to_chat(user, span_notice("你修复了 [src] 上的损伤。"))
 	update_appearance()
 
 /**
@@ -202,12 +202,12 @@
 		return
 
 	var/zone_name
-	var/break_verb = ((damage_type == BRUTE) ? "torn" : "burned")
+	var/break_verb = ((damage_type == BRUTE) ? "被撕裂" : "被烧毁")
 
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon_loc = loc
 		zone_name = carbon_loc.parse_zone_with_bodypart(def_zone)
-		carbon_loc.visible_message(span_danger("The [zone_name] on [carbon_loc]'s [src.name] is [break_verb] away!"), span_userdanger("The [zone_name] on your [src.name] is [break_verb] away!"), vision_distance = COMBAT_MESSAGE_RANGE)
+		carbon_loc.visible_message(span_danger("[carbon_loc] 的 [src.name] 上的[zone_name][break_verb]了！"), span_userdanger("你的 [src.name] 上的[zone_name][break_verb]了！"), vision_distance = COMBAT_MESSAGE_RANGE)
 		RegisterSignal(carbon_loc, COMSIG_MOVABLE_MOVED, PROC_REF(bristle), override = TRUE)
 	else
 		zone_name = parse_zone(def_zone)
@@ -222,11 +222,11 @@
 
 	switch(zones_disabled)
 		if(1)
-			name = "damaged [initial(name)]"
+			name = "受损的[initial(name)]"
 		if(2)
-			name = "mangy [initial(name)]"
+			name = "破烂的[initial(name)]"
 		if(3 to INFINITY) // take better care of your shit, dude
-			name = "tattered [initial(name)]"
+			name = "褴褛的[initial(name)]"
 
 	update_clothes_damaged_state(CLOTHING_DAMAGED)
 	update_appearance()
@@ -327,7 +327,7 @@
 /obj/item/clothing/examine(mob/user)
 	. = ..()
 	if(damaged_clothes == CLOTHING_SHREDDED)
-		. += span_warning("<b>[p_Theyre()] completely shredded and require[p_s()] mending before [p_they()] can be worn again!</b>")
+		. += span_warning("<b>它已完全破烂，需要修补后才能再次穿戴！</b>")
 		return
 
 	for(var/zone in damage_by_parts)
@@ -335,74 +335,74 @@
 		var/zone_name = parse_zone(zone)
 		switch(pct_damage_part)
 			if(100 to INFINITY)
-				. += span_warning("<b>The [zone_name] is useless and requires mending!</b>")
+				. += span_warning("<b>[zone_name]已彻底损坏，需要修补！</b>")
 			if(60 to 99)
-				. += span_warning("The [zone_name] is heavily shredded!")
+				. += span_warning("[zone_name]已严重破损！")
 			if(30 to 59)
-				. += span_danger("The [zone_name] is partially shredded.")
+				. += span_danger("[zone_name]已部分破损。")
 
 	if(atom_storage)
 		var/list/how_cool_are_your_threads = list("<span class='notice'>")
 		if(atom_storage.attack_hand_interact)
-			how_cool_are_your_threads += "[src]'s storage opens when clicked.\n"
+			how_cool_are_your_threads += "[src] 的储物空间可通过点击打开。\n"
 		else
-			how_cool_are_your_threads += "[src]'s storage opens when dragged to yourself.\n"
+			how_cool_are_your_threads += "[src] 的储物空间在拖到自己身上时打开。\n"
 		if (atom_storage.can_hold?.len) // If pocket type can hold anything, vs only specific items
-			how_cool_are_your_threads += "[src] can store [atom_storage.max_slots] <a href='byond://?src=[REF(src)];show_valid_pocket_items=1'>item\s</a>.\n"
+			how_cool_are_your_threads += "[src] 可存放 [atom_storage.max_slots] 件<a href='byond://?src=[REF(src)];show_valid_pocket_items=1'>物品</a>。\n"
 		else
-			how_cool_are_your_threads += "[src] can store [atom_storage.max_slots] item\s that are [weight_class_to_text(atom_storage.max_specific_storage)] or smaller.\n"
+			how_cool_are_your_threads += "[src] 可存放 [atom_storage.max_slots] 件 [weight_class_to_text(atom_storage.max_specific_storage)] 或更小的物品。\n"
 		if(atom_storage.quickdraw)
-			how_cool_are_your_threads += "You can quickly remove an item from [src] using Right-Click.\n"
+			how_cool_are_your_threads += "你可以用右键快速从 [src] 中取出物品。\n"
 		if(atom_storage.silent)
-			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
+			how_cool_are_your_threads += "向 [src] 添加或取出物品不会发出声音。\n"
 		how_cool_are_your_threads += "</span>"
 		. += how_cool_are_your_threads.Join()
 
 	if(get_armor().has_any_armor() || (flags_cover & (HEADCOVERSMOUTH|PEPPERPROOF)) || (clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
-		. += span_notice("It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.")
+		. += span_notice("它有一个列出防护等级的<a href='byond://?src=[REF(src)];list_armor=1'>标签</a>。")
 
 	if(is_laundered)
-		. += "[src] looks crisp and pristine."
+		. += "[src] 看起来干净如新。"
 
 /obj/item/clothing/examine_tags(mob/user)
 	. = ..()
 	if (clothing_flags & THICKMATERIAL)
-		.["thick"] = "Protects from most injections and sprays."
+		.["thick"] = "可防护大多数注射与喷雾。"
 	if (HAS_TRAIT(src, TRAIT_CASTING_CLOTHING))
-		.["magical"] = "Allows magical beings to cast spells when wearing [src]."
+		.["magical"] = "使魔法生物在穿戴 [src] 时能够施法。"
 	if((clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
-		.["pressure-proof"] = "Protects the wearer from extremely low or high pressure, such as vacuum of space."
+		.["pressure-proof"] = "保护穿戴者免受极高或极低气压的伤害，例如太空真空。"
 	if(flags_cover & PEPPERPROOF)
-		.["pepper-proof"] = "Protects the wearer from the effects of pepperspray."
+		.["pepper-proof"] = "保护穿戴者免受防狼喷雾的影响。"
 	if(heat_protection || cold_protection)
 		var/heat_desc
 		var/cold_desc
 		switch (max_heat_protection_temperature)
 			if (400 to 1000)
-				heat_desc = "high"
+				heat_desc = "高温"
 			if (1001 to 1600)
-				heat_desc = "very high"
+				heat_desc = "极高温"
 			if (1601 to 35000)
-				heat_desc = "extremely high"
+				heat_desc = "超高温"
 		switch (min_cold_protection_temperature)
 			if (160 to 272)
-				cold_desc = "low"
+				cold_desc = "低温"
 			if (72 to 159)
-				cold_desc = "very low"
+				cold_desc = "极低温"
 			if (0 to 71)
-				cold_desc = "extremely low"
-		.["thermally insulated"] = "Protects the wearer from [jointext(list(heat_desc, cold_desc) - null, " and ")] temperatures."
+				cold_desc = "超低温"
+		.["thermally insulated"] = "保护穿戴者免受[jointext(list(heat_desc, cold_desc) - null, "与")]环境的影响。"
 	if((TRAIT_QUICK_CARRY in clothing_traits) || (TRAIT_QUICKER_CARRY in clothing_traits))
-		.["tactile"] = "Decreases the time it takes to pick up creatures by [(TRAIT_QUICKER_CARRY in clothing_traits) ? "2 seconds" : "1 second"]."
+		.["tactile"] = "减少拾起生物所需的时间，缩短 [(TRAIT_QUICKER_CARRY in clothing_traits) ? "2 秒" : "1 秒"]。"
 	if(TRAIT_FASTMED in clothing_traits)
-		.["sterile"] = "Increases the speed at which reagents are administered to others by [round((1/NITRILE_GLOVES_MULTIPLIER-1)*100, 1)]%."
+		.["sterile"] = "为他人施用试剂的速度提高 [round((1/NITRILE_GLOVES_MULTIPLIER-1)*100, 1)]%。"
 	if(TRAIT_FAST_CUFFING in clothing_traits)
-		.["secure"] = "Increases the speed at which you apply restraints."
+		.["secure"] = "提高你施加束缚具的速度。"
 	if(emp_protection > EMP_PROTECTION_NONE)
-		.["emp resistant"] = "Reduces the effects of incoming electromagnetic pulses on the wearer."
+		.["emp resistant"] = "降低来袭电磁脉冲对穿戴者的影响。"
 
 /obj/item/clothing/examine_descriptor(mob/user)
-	return "clothing"
+	return "衣物"
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
@@ -417,7 +417,7 @@
 			if(!rating)
 				continue
 			if(!added_damage_header)
-				readout += "<b><u>ARMOR (I-X)</u></b>"
+				readout += "<b><u>护甲（I-X）</u></b>"
 				added_damage_header = TRUE
 			readout += "[armor_to_protection_name(damage_key)] [armor_to_protection_class(rating)]"
 
@@ -427,56 +427,56 @@
 			if(!rating)
 				continue
 			if(!added_durability_header)
-				readout += "<b><u>DURABILITY (I-X)</u></b>"
+				readout += "<b><u>耐久（I-X）</u></b>"
 				added_durability_header = TRUE
 			readout += "[armor_to_protection_name(durability_key)] [armor_to_protection_class(rating)]"
 
 		if((flags_cover & HEADCOVERSMOUTH) || (flags_cover & PEPPERPROOF))
 			var/list/things_blocked = list()
 			if(flags_cover & HEADCOVERSMOUTH)
-				things_blocked += span_tooltip("Because this item is worn on the head and is covering the mouth, it will block facehugger proboscides, killing facehuggers.", "facehuggers")
+				things_blocked += span_tooltip("因为该物品戴在头部并遮住嘴部，它会挡住抱脸虫的吻部，从而杀死抱脸虫。", "抱脸虫")
 			if(flags_cover & PEPPERPROOF)
-				things_blocked += "pepperspray"
+				things_blocked += "防狼喷雾"
 			if(length(things_blocked))
-				readout += "<b><u>COVERAGE</u></b>"
-				readout += "It will block [english_list(things_blocked)]."
+				readout += "<b><u>覆盖范围</u></b>"
+				readout += "它可以阻挡[english_list(things_blocked)]。"
 
 		var/list/parts_covered = list()
 		if(body_parts_covered & HEAD)
-			parts_covered += "head"
+			parts_covered += "头部"
 		if(body_parts_covered & CHEST)
-			parts_covered += "torso"
+			parts_covered += "躯干"
 		if(body_parts_covered & (ARMS|HANDS))
-			parts_covered += "arms"
+			parts_covered += "手臂"
 		if(body_parts_covered & (LEGS|FEET))
-			parts_covered += "legs"
+			parts_covered += "双腿"
 		if(length(parts_covered))
-			readout += "It covers the wearer's [english_list(parts_covered)]."
+			readout += "它覆盖穿戴者的[english_list(parts_covered)]。"
 
 		if((clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
-			var/output_string = "It"
+			var/output_string = "它"
 			if(!(clothing_flags & STOPSPRESSUREDAMAGE))
-				output_string = "When sealed, it"
-			readout += "[output_string] will protect the wearer's bodyparts that it covers from [span_tooltip("The extremely low pressure is the biggest danger posed by the vacuum of space.", "low pressure")]."
+				output_string = "密封时，它"
+			readout += "[output_string]会保护穿戴者被其覆盖的身体部位免受[span_tooltip("极低气压是太空真空带来的最大危险。", "低气压")]。"
 
 		var/heat_prot
 		switch (max_heat_protection_temperature)
 			if (400 to 1000)
-				heat_prot = "minor"
+				heat_prot = "轻微"
 			if (1001 to 1600)
-				heat_prot = "some"
+				heat_prot = "一定"
 			if (1601 to 35000)
-				heat_prot = "extreme"
+				heat_prot = "极强"
 		if (heat_prot)
-			. += "[src] offers the wearer [heat_protection] protection from heat, up to [max_heat_protection_temperature] kelvin."
+			. += "[src] 为穿戴者提供 [heat_protection] 的耐热防护，最高可耐受 [max_heat_protection_temperature] 开尔文。"
 
 		if(min_cold_protection_temperature)
-			readout += "It will insulate the wearer from [min_cold_protection_temperature <= SPACE_SUIT_MIN_TEMP_PROTECT ? span_tooltip("While not as dangerous as the lack of pressure, the extremely low temperature of space is also a hazard.", "the cold of space, down to [min_cold_protection_temperature] kelvin") : "cold, down to [min_cold_protection_temperature] kelvin"]."
+			readout += "它可为穿戴者隔绝[min_cold_protection_temperature <= SPACE_SUIT_MIN_TEMP_PROTECT ? span_tooltip("虽然不如失压那样危险，但太空中的极低温同样是一种危害。", "太空的寒冷，最低可至 [min_cold_protection_temperature] 开尔文") : "寒冷，最低可至 [min_cold_protection_temperature] 开尔文"]。"
 
 		if(!length(readout))
-			readout += "No armor or durability information available."
+			readout += "没有可用的护甲或耐久信息。"
 
-		var/formatted_readout = span_notice("<b>PROTECTION CLASSES</b><hr>[jointext(readout, "\n")]")
+		var/formatted_readout = span_notice("<b>防护等级</b><hr>[jointext(readout, "\n")]")
 		to_chat(usr, boxed_message(formatted_readout))
 
 /**
@@ -498,9 +498,9 @@
 	if(isliving(loc)) //It's not important enough to warrant a message if it's not on someone
 		var/mob/living/M = loc
 		if(src in M.get_equipped_items())
-			to_chat(M, span_warning("Your [name] start[p_s()] to fall apart!"))
+			to_chat(M, span_warning("你的[name]开始散架了！"))
 		else
-			to_chat(M, span_warning("[src] start[p_s()] to fall apart!"))
+			to_chat(M, span_warning("[src] 开始散架了！"))
 
 // you just dont get the same feeling with handwashed clothes
 /obj/item/clothing/machine_wash()
@@ -558,9 +558,9 @@ BLIND     // can't see anything
 
 	var/message
 	if(up)
-		message = src.alt_toggle_message || "You push [src] out of the way."
+		message = src.alt_toggle_message || "你把 [src] 推到一边。"
 	else
-		message = src.toggle_message || "You push [src] back into place."
+		message = src.toggle_message || "你把 [src] 推回原位。"
 
 	to_chat(user, span_notice("[message]"))
 
@@ -617,7 +617,7 @@ BLIND     // can't see anything
 		new /obj/effect/decal/cleanable/shreds(current_position, name)
 		if(isliving(loc))
 			var/mob/living/possessing_mob = loc
-			possessing_mob.visible_message(span_danger("[src] is consumed until naught but shreds remains!"), span_boldwarning("[src] falls apart into little bits!"))
+			possessing_mob.visible_message(span_danger("[src] 被吃得只剩碎布！"), span_boldwarning("[src] 碎成了小块！"))
 		deconstruct(FALSE)
 	else
 		body_parts_covered = NONE
@@ -626,11 +626,11 @@ BLIND     // can't see anything
 		if(isliving(loc))
 			var/mob/living/M = loc
 			if(src in M.get_equipped_items()) //make sure they were wearing it and not attacking the item in their hands
-				M.visible_message(span_danger("[M]'s [src.name] fall[p_s()] off, [p_theyre()] completely shredded!"), span_warning("<b>Your [src.name] fall[p_s()] off, [p_theyre()] completely shredded!</b>"), vision_distance = COMBAT_MESSAGE_RANGE)
+				M.visible_message(span_danger("[M] 的 [src.name] 掉了下来，已完全破烂！"), span_warning("<b>你的 [src.name] 掉了下来，已完全破烂！</b>"), vision_distance = COMBAT_MESSAGE_RANGE)
 				M.dropItemToGround(src)
 			else
-				M.visible_message(span_danger("[src] fall[p_s()] apart, completely shredded!"), vision_distance = COMBAT_MESSAGE_RANGE)
-		name = "shredded [initial(name)]" // change the name -after- the message, not before.
+				M.visible_message(span_danger("[src] 散架了，已完全破烂！"), vision_distance = COMBAT_MESSAGE_RANGE)
+		name = "破烂的[initial(name)]" // change the name -after- the message, not before.
 		update_appearance()
 	SEND_SIGNAL(src, COMSIG_ATOM_DESTRUCTION, damage_flag)
 
@@ -641,7 +641,7 @@ BLIND     // can't see anything
 	if(!istype(L))
 		return
 	if(prob(0.2))
-		to_chat(L, span_warning("The damaged threads on your [src.name] chafe!"))
+		to_chat(L, span_warning("你 [src.name] 上破损的线头磨得难受！"))
 
 /obj/item/clothing/apply_fantasy_bonuses(bonus)
 	. = ..()

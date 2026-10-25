@@ -1,7 +1,7 @@
 /datum/export/seed
 	cost = CARGO_CRATE_VALUE * 0.25 // Gets multiplied by potency
 	k_elasticity = 0 //price inelastic/quantity elastic, only need to export a few samples
-	unit_name = "new plant species sample"
+	unit_name = "新植物物种样本"
 	export_types = list(/obj/item/seeds)
 	/// Only for undiscovered species
 	var/needs_discovery = FALSE
@@ -31,7 +31,7 @@
 
 /datum/export/seed/potency
 	cost = CARGO_CRATE_VALUE * 0.0125 // Gets multiplied by potency and rarity.
-	unit_name = "improved plant sample"
+	unit_name = "改良植物样本"
 	needs_discovery = TRUE // Only for already discovered species
 
 /datum/export/seed/potency/get_base_cost(obj/item/seeds/S)

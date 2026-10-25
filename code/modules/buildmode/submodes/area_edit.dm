@@ -10,10 +10,10 @@
 
 /datum/buildmode_mode/area_edit/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		"[span_bold("Select corner")] -> Left Mouse Button on obj/turf/mob\n\
-		[span_bold("Paint area")] -> Left Mouse Button + Alt on turf/obj/mob\n\
-		[span_bold("Select area to paint")] -> Right Mouse Button on obj/turf/mob\n\
-		[span_bold("Create new area")] -> Right Mouse Button on buildmode button"))
+		"[span_bold("选择角落")] -> 左键点击 obj/turf/mob\n\
+		[span_bold("涂刷区域")] -> 左键 + Alt 点击 turf/obj/mob\n\
+		[span_bold("选择要涂刷的区域")] -> 右键点击 obj/turf/mob\n\
+		[span_bold("创建新区域")] -> 右键点击建造模式按钮"))
 	)
 
 /datum/buildmode_mode/area_edit/enter_mode(datum/buildmode/BM)
@@ -30,10 +30,10 @@
 	return ..()
 
 /datum/buildmode_mode/area_edit/change_settings(client/c)
-	var/target_path = input(c, "Enter typepath:", "Typepath", "/area")
+	var/target_path = input(c, "输入类型路径：", "类型路径", "/area")
 	var/areatype = text2path(target_path)
 	if(ispath(areatype,/area))
-		var/areaname = input(c, "Enter area name:", "Area name", "Area")
+		var/areaname = input(c, "输入区域名称：", "区域名称", "区域")
 		if(!areaname || !length(areaname))
 			return
 		storedarea = new areatype
@@ -49,7 +49,7 @@
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(!storedarea)
-			to_chat(c, span_warning("Configure or select the area you want to paint first!"))
+			to_chat(c, span_warning("请先配置或选择你要涂刷的区域！"))
 			return
 		if(LAZYACCESS(modifiers, ALT_CLICK))
 			var/turf/T = get_turf(object)
@@ -67,7 +67,7 @@
 	var/list/modifiers = params2list(params)
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
-		var/choice = alert("Are you sure you want to fill area?", "Area Fill Confirmation", "Yes", "No")
+		var/choice = alert("你确定要填充区域吗？", "区域填充确认", "Yes", "No")
 		if(choice != "Yes")
 			return
 		for(var/turf/T in block(get_turf(cornerA),get_turf(cornerB)))

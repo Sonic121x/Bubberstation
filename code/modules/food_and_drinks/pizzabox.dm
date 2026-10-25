@@ -1,14 +1,14 @@
 /obj/item/bombcore/miniature/pizza
-	name = "pizza bomb"
-	desc = "Special delivery!"
+	name = "披萨炸弹"
+	desc = "特快专递！"
 	icon_state = "pizzabomb_inactive"
 	inhand_icon_state = "eshield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 
 /obj/item/pizzabox
-	name = "pizza box"
-	desc = "A box suited for pizzas."
+	name = "披萨盒"
+	desc = "适合装披萨的盒子。"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "pizzabox"
 	base_icon_state = "pizzabox"
@@ -70,19 +70,19 @@
 		boxtag_set = TRUE
 	if(open)
 		if(pizza)
-			desc = "[desc] It appears to have \a [pizza] inside[pizza.sliced ? ". It is sliced" : ""]. Use your other hand to take it out."
+			desc = "[desc] 里面似乎装着一份[pizza][pizza.sliced ? "，已经切好了" : ""]。用另一只手把它拿出来。"
 		if(bomb)
-			desc = "[desc] Wait, what?! It has \a [bomb] inside!"
+			desc = "[desc] 等等，什么？！里面有一个[bomb]！"
 			if(bomb_defused)
-				desc = "[desc] The bomb seems inert. Use your other hand to activate it."
+				desc = "[desc] 炸弹似乎未启动。用另一只手启动它。"
 			if(bomb_active)
-				desc = "[desc] It looks like it's about to go off!"
+				desc = "[desc] 看起来它马上就要爆炸了！"
 	else
 		var/obj/item/pizzabox/box = length(boxes) ? boxes[length(boxes)] : src
 		if(length(boxes))
-			desc = "A pile of boxes suited for pizzas. There appear to be [length(boxes) + 1] boxes in the pile."
+			desc = "一堆适合装披萨的盒子。这堆里似乎有 [length(boxes) + 1] 个盒子。"
 		if(box.boxtag != "")
-			desc = "[desc] The [length(boxes) ? "top box" : "box"]'s tag reads: [box.boxtag]."
+			desc = "[desc] [length(boxes) ? "最上面的盒子" : "盒子"]上的标签写着：[box.boxtag]。"
 
 /obj/item/pizzabox/update_icon_state()
 	if(!open)
@@ -139,7 +139,7 @@
 		return
 	open = !open
 	if(open && !bomb_defused)
-		audible_message(span_warning("[icon2html(src, hearers(src))] *beep*"))
+		audible_message(span_warning("[icon2html(src, hearers(src))] *哔*"))
 		bomb_active = TRUE
 		START_PROCESSING(SSobj, src)
 	update_appearance()
@@ -170,18 +170,18 @@
 		else if(bomb)
 			if(wires.is_all_cut() && bomb_defused)
 				user.put_in_hands(bomb)
-				balloon_alert(user, "removed bomb")
+				balloon_alert(user, "已取出炸弹")
 				clear_bomb()
 				update_appearance()
 				return
 			else
-				bomb_timer = tgui_input_number(user, "Set the bomb timer", "Pizza Bomb", bomb_timer, bomb_timer_max, bomb_timer_min)
+				bomb_timer = tgui_input_number(user, "设置炸弹倒计时", "披萨炸弹", bomb_timer, bomb_timer_max, bomb_timer_min)
 				if(!bomb_timer || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return
 				bomb_defused = FALSE
-				log_bomber(user, "has trapped a", src, "with [bomb] set to [bomb_timer] seconds")
-				bomb.adminlog = "\The [bomb] in [src.name] that [key_name(user)] activated has detonated!"
-				balloon_alert(user, "bomb set")
+				log_bomber(user, "设置了", src, "内含 [bomb]，倒计时 [bomb_timer] 秒")
+				bomb.adminlog = "[src.name] 中由 [key_name(user)] 启动的 [bomb] 已经爆炸！"
+				balloon_alert(user, "炸弹已设定")
 				update_appearance()
 	else if(length(boxes))
 		var/obj/item/pizzabox/topbox = boxes[length(boxes)]
@@ -208,18 +208,18 @@
 			user.regenerate_icons()
 			if(length(boxes) >= 5)
 				if(prob(10 * length(boxes)))
-					user.balloon_alert_to_viewers("oops!")
+					user.balloon_alert_to_viewers("糟糕！")
 					disperse_pizzas()
 				else
-					balloon_alert(user, "looks unstable...")
+					balloon_alert(user, "看起来不太稳……")
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, "close it first!")
+			balloon_alert(user, "请先把它盖上！")
 			return ITEM_INTERACT_FAILURE
 	else if(istype(used_item, /obj/item/food/pizza))
 		if(open)
 			if(pizza)
-				balloon_alert(user, "it's full!")
+				balloon_alert(user, "已经装满了！")
 				return ITEM_INTERACT_FAILURE
 			if(!user.transferItemToLoc(used_item, src))
 				return ITEM_INTERACT_FAILURE
@@ -232,11 +232,11 @@
 				return ITEM_INTERACT_FAILURE
 			set_wires(new /datum/wires/explosive/pizza(src))
 			register_bomb(used_item)
-			balloon_alert(user, "bomb placed")
+			balloon_alert(user, "炸弹已放置")
 			update_appearance()
 			return ITEM_INTERACT_SUCCESS
 		else if(bomb)
-			balloon_alert(user, "already rigged!")
+			balloon_alert(user, "已经装上炸弹了！")
 			return ITEM_INTERACT_FAILURE
 	else if(IS_WRITING_UTENSIL(used_item))
 		if(open)
@@ -244,10 +244,10 @@
 		if(!user.can_write(used_item))
 			return ITEM_INTERACT_FAILURE
 		var/obj/item/pizzabox/box = length(boxes) ? boxes[length(boxes)] : src
-		box.boxtag += tgui_input_text(user, "Write on [box]'s tag:", box, max_length = 30)
+		box.boxtag += tgui_input_text(user, "在[box]的标签上写字：", box, max_length = 30)
 		if(!user.can_perform_action(src))
 			return ITEM_INTERACT_FAILURE
-		balloon_alert(user, "writing box tag...")
+		balloon_alert(user, "正在书写盒子标签……")
 		playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
 		boxtag_set = TRUE
 		update_appearance()
@@ -289,12 +289,12 @@
 	. = ..()
 	if(isobserver(user))
 		if(bomb)
-			. += span_deadsay("This pizza box contains [bomb_defused ? "an unarmed bomb" : "an armed bomb"].")
+			. += span_deadsay("这个披萨盒里装着[bomb_defused ? "一枚未启动的炸弹" : "一枚已启动的炸弹"]。")
 		if(pizza && istype(pizza, /obj/item/food/pizza/margherita/robo))
-			. += span_deadsay("The pizza in this pizza box contains nanomachines.")
+			. += span_deadsay("这个披萨盒里的披萨含有纳米机器人。")
 
 /obj/item/pizzabox/proc/disperse_pizzas()
-	visible_message(span_warning("The pizzas fall everywhere!"))
+	visible_message(span_warning("披萨撒得到处都是！"))
 	for(var/V in boxes)
 		var/obj/item/pizzabox/P = V
 		var/fall_dir = pick(GLOB.alldirs)
@@ -337,7 +337,7 @@
 /obj/item/pizzabox/bomb/armed
 	bomb_timer = 5
 	bomb_defused = FALSE
-	boxtag = "Meat Explosion"
+	boxtag = "肉类爆炸"
 	boxtag_set = TRUE
 	pizza = /obj/item/food/pizza/meat
 
@@ -364,7 +364,7 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF | ACID_PROOF //hard to destroy
 	can_open_on_fall = FALSE
 	foldable = FALSE
-	boxtag = "Your Favourite" //used to give it a tag overlay, shouldn't be seen by players
+	boxtag = "你的最爱" //used to give it a tag overlay, shouldn't be seen by players
 	///List of pizzas this box can spawn. Weighted by chance to be someone's favorite.
 	var/list/pizza_types = list(
 		/obj/item/food/pizza/meat = 10,
@@ -389,12 +389,12 @@
 		attune_pizza(user) //pizza tag changes based on examiner
 	. = ..()
 	if(isobserver(user))
-		. += span_deadsay("This pizza box is anomalous, and will produce infinite pizza.")
+		. += span_deadsay("这个披萨盒是异常的，会不断产生无限的披萨。")
 
 /obj/item/pizzabox/infinite/attack_self(mob/living/user)
 	if(ishuman(user))
 		attune_pizza(user)
-		to_chat(user, span_notice("Another pizza immediately appears in the box, what the hell?"))
+		to_chat(user, span_notice("另一份披萨立刻出现在盒子里，搞什么鬼？"))
 	return ..()
 
 /obj/item/pizzabox/infinite/proc/attune_pizza(mob/living/carbon/human/nommer) //tonight on "proc names I never thought I'd type"
@@ -435,43 +435,43 @@
 			return NONE
 		if(open)
 			if(pizza)
-				context[SCREENTIP_CONTEXT_LMB] = "Remove pizza"
+				context[SCREENTIP_CONTEXT_LMB] = "取出披萨"
 			else if(bomb && wires.is_all_cut() && bomb_defused)
-				context[SCREENTIP_CONTEXT_LMB] = "Remove bomb"
+				context[SCREENTIP_CONTEXT_LMB] = "取出炸弹"
 		else
 			if(length(boxes) > 0)
-				context[SCREENTIP_CONTEXT_LMB] = "Remove pizza box"
+				context[SCREENTIP_CONTEXT_LMB] = "取下披萨盒"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item == src)
 		if(length(boxes) > 0)
 			return NONE
-		context[SCREENTIP_CONTEXT_LMB] = open ? "Close" : "Open"
+		context[SCREENTIP_CONTEXT_LMB] = open ? "盖上" : "打开"
 		if(!pizza && !bomb && foldable)
-			context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+			context[SCREENTIP_CONTEXT_RMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/pizzabox))
 		if(!open)
-			context[SCREENTIP_CONTEXT_LMB] = "Stack pizza box"
+			context[SCREENTIP_CONTEXT_LMB] = "堆叠披萨盒"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/food/pizza))
 		if(open && !pizza)
-			context[SCREENTIP_CONTEXT_LMB] = "Place pizza"
+			context[SCREENTIP_CONTEXT_LMB] = "放入披萨"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/pen))
 		if(!open)
-			context[SCREENTIP_CONTEXT_LMB] = "Write boxtag"
+			context[SCREENTIP_CONTEXT_LMB] = "书写盒子标签"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/bombcore/miniature/pizza))
 		if(open && !bomb)
-			context[SCREENTIP_CONTEXT_LMB] = "Place bomb"
+			context[SCREENTIP_CONTEXT_LMB] = "放入炸弹"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(is_wire_tool(held_item))
 		if(open && bomb)
-			context[SCREENTIP_CONTEXT_LMB] = "Access wires"
+			context[SCREENTIP_CONTEXT_LMB] = "接触电线"
 		return CONTEXTUAL_SCREENTIP_SET

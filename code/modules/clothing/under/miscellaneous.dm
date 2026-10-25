@@ -4,8 +4,8 @@
 	abstract_type = /obj/item/clothing/under/misc
 
 /obj/item/clothing/under/misc/pj
-	name = "\improper PJs"
-	desc = "A comfy set of sleepwear, for taking naps or being lazy instead of working."
+	name = "\improper 睡衣"
+	desc = "一套舒适的睡衣，适合打盹，或者干脆偷懒不工作。"
 	can_adjust = FALSE
 	inhand_icon_state = "w_suit"
 
@@ -16,23 +16,23 @@
 	icon_state = "blue_pyjamas"
 
 /obj/item/clothing/under/misc/patriotsuit
-	name = "patriotic suit"
-	desc = "Motorcycle not included."
+	name = "爱国套装"
+	desc = "不含摩托车。"
 	icon_state = "ek"
 	inhand_icon_state = null
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/mailman
-	name = "mailman's jumpsuit"
-	desc = "<i>'Special delivery!'</i>"
+	name = "邮差连体服"
+	desc = "<i>‘特快专递！’</i>"
 	icon_state = "mailman"
 	inhand_icon_state = "b_suit"
 	clothing_traits = list(TRAIT_HATED_BY_DOGS)
 	custom_premium_price = PAYCHECK_CREW
 
 /obj/item/clothing/under/misc/psyche
-	name = "psychedelic jumpsuit"
-	desc = "Groovy!"
+	name = "迷幻连体服"
+	desc = "太带感了！"
 	icon_state = "psyche"
 	inhand_icon_state = "p_suit"
 
@@ -40,19 +40,19 @@
 	return "#3f3f3f"
 
 /obj/item/clothing/under/misc/vice_officer
-	name = "vice officer's jumpsuit"
-	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
+	name = "副警官连体服"
+	desc = "这是标准配发的帅哥制服，正如全息视讯里所见。"
 	icon_state = "vice"
 	inhand_icon_state = "gy_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/adminsuit
-	name = "administrative cybernetic jumpsuit"
+	name = "行政赛博连体服"
 	icon = 'icons/obj/clothing/under/syndicate.dmi'
 	icon_state = "syndicate"
 	inhand_icon_state = "bl_suit"
 	worn_icon = 'icons/mob/clothing/under/syndicate.dmi'
-	desc = "A cybernetically enhanced jumpsuit used for administrative duties."
+	desc = "一件经过赛博强化的连体服，用于履行行政职责。"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor_type = /datum/armor/clothing_under/adminsuit
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
@@ -78,31 +78,31 @@
 	wound = 100
 
 /obj/item/clothing/under/misc/burial
-	name = "burial garments"
-	desc = "Traditional burial garments from the early 22nd century."
+	name = "殓服"
+	desc = "22 世纪初的传统殓服。"
 	icon_state = "burial"
 	inhand_icon_state = null
 	can_adjust = FALSE
 	has_sensor = NO_SENSORS
 
 /obj/item/clothing/under/misc/overalls
-	name = "laborer's overalls"
-	desc = "A set of durable overalls for getting the job done."
+	name = "工人背带裤"
+	desc = "一套耐用的背带裤，专为把活儿干完而准备。"
 	icon_state = "overalls"
 	inhand_icon_state = "lb_suit"
 	can_adjust = FALSE
 	custom_price = PAYCHECK_CREW
 
 /obj/item/clothing/under/misc/assistantformal
-	name = "assistant's formal uniform"
-	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
+	name = "助手的正装制服"
+	desc = "助手的正装。至于助手为什么需要正装，至今仍是个谜。"
 	icon_state = "assistant_formal"
 	inhand_icon_state = "gy_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/durathread
-	name = "durathread jumpsuit"
-	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
+	name = "耐久纤维连体服"
+	desc = "用耐久纤维制成的连体服，其坚韧的纤维能为穿着者提供一些防护。"
 	icon_state = "durathread"
 	inhand_icon_state = null
 	can_adjust = FALSE
@@ -117,8 +117,8 @@
 	wound = 10
 
 /obj/item/clothing/under/misc/bouncer
-	name = "bouncer uniform"
-	desc = "A uniform made from a little bit more resistant fibers, makes you seem like a cool guy."
+	name = "夜店保安制服"
+	desc = "一件用稍更耐磨的纤维制成的制服，让你看上去像个酷哥。"
 	icon_state = "bouncer"
 	inhand_icon_state = null
 	can_adjust = FALSE
@@ -130,8 +130,8 @@
 	acid = 30
 
 /obj/item/clothing/under/misc/coordinator
-	name = "coordinator jumpsuit"
-	desc = "A jumpsuit made by party people, from party people, for party people."
+	name = "协调员连体服"
+	desc = "由派对爱好者制作、来自派对爱好者、献给派对爱好者的连体服。"
 	icon = 'icons/obj/clothing/under/captain.dmi'
 	worn_icon = 'icons/mob/clothing/under/captain.dmi'
 	icon_state = "captain_parade"
@@ -139,8 +139,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/syndicate_souvenir
-	name = "syndicate souvenir tee"
-	desc = "I got kidnapped by a Syndicate operative and all I got was this lousy t-shirt!"
+	name = "辛迪加纪念 T 恤"
+	desc = "我被辛迪加特工绑架了，结果只拿到这件破 T 恤！"
 	icon = 'icons/obj/clothing/under/syndicate_souvenir.dmi'
 	worn_icon = 'icons/mob/clothing/under/syndicate_souvenir.dmi'
 	icon_state = "syndicate_souvenir"

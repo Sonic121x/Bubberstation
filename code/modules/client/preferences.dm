@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if(SSlag_switch.measures[DISABLE_CREATOR] && action != "change_slot")
-		to_chat(usr, "The creator has been disabled. Please do not ahelp.")
+		to_chat(usr, "角色创建器已被禁用。请不要为此向管理员求助。")
 		return
 
 	log_creator("[key_name(usr)] ACTED [action] | PREFERENCE: [params["preference"]] | VALUE: [params["value"]]")
@@ -268,13 +268,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/list/character_list = create_character_profiles()
 			var/list/slot_choices = list()
 			for(var/i = 1, i <= character_list.len, i++)
-				slot_choices += "Slot [i]: [character_list[i]]"
-			var/target_slot = tgui_input_list(ui.user, "Pick a slot to copy to.", "Duplicate Character", slot_choices, null)
+				slot_choices += "槽位 [i]：[character_list[i]]"
+			var/target_slot = tgui_input_list(ui.user, "选择要复制到的槽位。", "复制角色", slot_choices, null)
 			if(!isnull(target_slot))
 				duplicate_current_slot(slot_choices.Find(target_slot))
 				tainted_character_profiles = TRUE
 			else
-				tgui_alert(ui.user, "Cancelled Duplication", "Duplicate Character")
+				tgui_alert(ui.user, "已取消复制", "复制角色")
 			return TRUE //BUBBER ADDITION END - Character duplication
 		if ("rotate")
 			/* SKYRAT EDIT - Bi-directional prefs menu rotation - ORIGINAL:
@@ -325,7 +325,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			// Yielding
 			var/new_color = tgui_color_picker(
 				usr,
-				"Select new color",
+				"选择新颜色",
 				null,
 				default_value || COLOR_WHITE,
 			)
@@ -373,7 +373,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			// BUBBERSTATION EDIT START: TGUI COLOR PICKER
 			var/new_color = tgui_color_picker(
 				usr,
-				"Select new color",
+				"选择新颜色",
 				null,
 				default_value || COLOR_WHITE,
 			) // BUBBERSTATION EDIT END: TGUI COLOR PICKER
@@ -616,10 +616,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			LAZYADD(quirks_removed, quirk_name)
 	var/list/feedback
 	if(LAZYLEN(quirks_removed))
-		LAZYADD(feedback, "The following quirks are incompatible with your species:")
+		LAZYADD(feedback, "以下特质与你的种族不兼容：")
 		LAZYADD(feedback, quirks_removed)
 	if(SSquirks.points_enabled && GetQuirkBalance() < 0)
-		LAZYADD(feedback, "Your quirks have been reset.")
+		LAZYADD(feedback, "你的特质已被重置。")
 		all_quirks = list()
 	if(LAZYLEN(feedback))
 		to_chat(parent, boxed_message(span_greentext(feedback.Join("\n"))))
@@ -752,14 +752,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/static/admins_warned = FALSE
 		if(!admins_warned)
 			admins_warned = TRUE
-			message_admins("BYOND membership lookup had a connection failure for a user. This is most likely an issue on the BYOND side but if this consistently happens you should bother your server operator to look into it.")
+			message_admins("有用户的 BYOND 会员资格查询出现了连接失败。这很可能是 BYOND 一侧的问题，但如果这种情况持续发生，你应该请服务器运营者去查一下。")
 		if(isnull(byond_member)) // Retrying didn't work, warn the user
-			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error.")
+			log_game("由于连接错误，[parent.ckey] 的 BYOND 会员资格查询失败。")
 		else
-			log_game("BYOND membership lookup for [parent.ckey] failed due to a connection error but succeeded after retry.")
+			log_game("由于连接错误，[parent.ckey] 的 BYOND 会员资格查询失败，但重试后成功了。")
 
 	if(isnull(byond_member))
-		to_chat(parent, span_warning("There's been a connection failure while trying to check the status of your BYOND membership. Reconnecting may fix the issue, or BYOND could be experiencing downtime."))
+		to_chat(parent, span_warning("在尝试检查你的 BYOND 会员资格状态时发生了连接失败。重新连接也许能解决问题，也可能是 BYOND 正在停机维护。"))
 
 	unlock_content = !!byond_member
 	if(unlock_content)

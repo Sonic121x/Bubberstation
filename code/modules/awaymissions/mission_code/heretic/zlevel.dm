@@ -1,3 +1,3 @@
 /obj/effect/landmark/awaystart/heretic
-	name = "Heretic"
+	name = "异教徒"
 	id = AWAYSTART_HERETIC

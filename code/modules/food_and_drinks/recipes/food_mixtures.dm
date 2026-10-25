@@ -201,7 +201,7 @@
 /datum/chemical_reaction/food/imitationcarpmeat
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5)
 	required_container = /obj/item/food/tofu
-	mix_message = "The mixture becomes similar to carp meat."
+	mix_message = "混合物变得类似鲤鱼肉的质地。"
 	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/imitationcarpmeat/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
@@ -212,19 +212,19 @@
 
 /datum/chemical_reaction/food/dough
 	required_reagents = list(/datum/reagent/water = 10, /datum/reagent/consumable/flour = 15)
-	mix_message = "The ingredients form a dough."
+	mix_message = "各种原料揉成了一团面团。"
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/dough
 
 /datum/chemical_reaction/food/rice_dough
 	required_reagents = list(/datum/reagent/consumable/rice_flour = 20,/datum/reagent/water = 10)
-	mix_message = "The ingredients form a rice dough."
+	mix_message = "各种原料揉成了一团米面团。"
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/rice_dough
 
 /datum/chemical_reaction/food/cakebatter
 	required_reagents = list(/datum/reagent/consumable/eggyolk = 6, /datum/reagent/consumable/eggwhite = 12, /datum/reagent/consumable/flour = 15, /datum/reagent/consumable/sugar = 5)
-	mix_message = "The ingredients form a cake batter."
+	mix_message = "各种原料搅成了蛋糕面糊。"
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/cakebatter
 
@@ -238,7 +238,7 @@
 
 /datum/chemical_reaction/food/uncooked_rice
 	required_reagents = list(/datum/reagent/consumable/rice = 10, /datum/reagent/water = 10)
-	mix_message = "The rice absorbs the water."
+	mix_message = "米饭吸收了水分。"
 	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/uncooked_rice/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
@@ -278,13 +278,13 @@
 
 /datum/chemical_reaction/food/mothic_pizza_dough
 	required_reagents = list(/datum/reagent/consumable/milk = 5, /datum/reagent/consumable/nutriment/fat/oil/olive = 2, /datum/reagent/medicine/salglu_solution = 5, /datum/reagent/consumable/cornmeal = 10, /datum/reagent/consumable/flour = 5)
-	mix_message = "The ingredients form a pizza dough."
+	mix_message = "各种原料揉成了一团披萨面团。"
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/mothic_pizza_dough
 
 /datum/chemical_reaction/food/curd_cheese
 	required_reagents = list(/datum/reagent/consumable/milk = 15, /datum/reagent/consumable/vinegar = 5, /datum/reagent/consumable/cream = 5)
-	mix_message = "The milk curdles into cheese."
+	mix_message = "牛奶凝结成了奶酪。"
 	required_temp = 353
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/cheese/curd_cheese
@@ -292,7 +292,7 @@
 /datum/chemical_reaction/food/mozzarella
 	required_reagents = list(/datum/reagent/consumable/milk = 10, /datum/reagent/consumable/cream = 10)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 1)
-	mix_message = "Fine ribbons of curd form in the milk."
+	mix_message = "牛奶中形成了细丝状的凝乳。"
 	required_temp = 353
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/cheese/mozzarella
@@ -300,11 +300,11 @@
 /datum/chemical_reaction/food/cornmeal_batter
 	results = list(/datum/reagent/consumable/cornmeal_batter = 35)
 	required_reagents = list(/datum/reagent/consumable/cornmeal = 20, /datum/reagent/consumable/yoghurt = 10, /datum/reagent/consumable/eggyolk = 5)
-	mix_message = "A silky batter forms."
+	mix_message = "形成丝滑的面糊。"
 
 /datum/chemical_reaction/food/cornbread
 	required_reagents = list(/datum/reagent/consumable/cornmeal_batter = 25)
-	mix_message = "The batter bakes into cornbread- somehow!"
+	mix_message = "面糊竟然烤成了玉米面包！"
 	required_temp = 473
 	reaction_flags = REACTION_INSTANT
 	resulting_food_path = /obj/item/food/bread/corn
@@ -312,14 +312,14 @@
 /datum/chemical_reaction/food/yoghurt
 	required_reagents = list(/datum/reagent/consumable/cream = 10, /datum/reagent/consumable/virus_food = 2)
 	results = list(/datum/reagent/consumable/yoghurt = 10)
-	mix_message = "The mixture thickens into yoghurt."
+	mix_message = "混合物变稠，成了酸奶。"
 	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/olive_oil_upconvert
 	required_catalysts = list(/datum/reagent/consumable/nutriment/fat/oil/olive = 1)
 	required_reagents = list( /datum/reagent/consumable/nutriment/fat/oil = 2)
 	results = list(/datum/reagent/consumable/nutriment/fat/oil/olive = 2)
-	mix_message = "The cooking oil dilutes the quality oil- how delightfully devilish..."
+	mix_message = "普通食用油稀释了优质油——真是妙不可言的邪恶……"
 	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/olive_oil
@@ -338,7 +338,7 @@
 		/datum/reagent/consumable/liquidelectricity = 2,
 		/datum/reagent/consumable/grounding_solution = 1,
 	)
-	mix_message = "The mixture lets off a sharp snap as the electricity discharges."
+	mix_message = "电流释放时，混合物发出一声尖锐的爆响。"
 	mix_sound = 'sound/items/weapons/taser.ogg'
 	reaction_flags = REACTION_INSTANT | REACTION_TAG_ACTIVE
 
@@ -352,14 +352,14 @@
 /datum/chemical_reaction/food/martian_batter
 	results = list(/datum/reagent/consumable/martian_batter = 10)
 	required_reagents = list(/datum/reagent/consumable/flour = 5, /datum/reagent/consumable/nutriment/soup/dashi = 5)
-	mix_message = "A smooth batter forms."
+	mix_message = "形成顺滑的面糊。"
 	reaction_flags = REACTION_INSTANT
 
 /datum/chemical_reaction/food/grape_vinegar
 	results = list(/datum/reagent/consumable/vinegar = 5)
 	required_reagents = list(/datum/reagent/consumable/grapejuice = 5)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-	mix_message = "The smell of the mixture reminds you of how you lost access to the country club..."
+	mix_message = "混合物的气味让你想起自己是怎么失去乡村俱乐部会员资格的……"
 
 /datum/chemical_reaction/food/spore_detoxification
 	results = list(/datum/reagent/consumable/nutriment/vitamin = 1)

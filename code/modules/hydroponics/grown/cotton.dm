@@ -1,9 +1,9 @@
 /obj/item/seeds/cotton
-	name = "cotton seed pack"
-	desc = "A pack of seeds that'll grow into a cotton plant."
+	name = "棉花种子包"
+	desc = "一包会生长成棉花植株的种子。"
 	icon_state = "seed-cotton"
 	species = "cotton"
-	plantname = "Cotton"
+	plantname = "棉花"
 	icon_harvest = "cotton-harvest"
 	product = /obj/item/grown/cotton
 	lifespan = 35
@@ -20,8 +20,8 @@
 
 /obj/item/grown/cotton
 	seed = /obj/item/seeds/cotton
-	name = "cotton bundle"
-	desc = "A fluffy bundle of cotton."
+	name = "棉花捆"
+	desc = "一捆蓬松的棉花。"
 	icon_state = "cotton"
 	force = 0
 	throwforce = 0
@@ -31,25 +31,25 @@
 	attack_verb_continuous = list("pomfs")
 	attack_verb_simple = list("pomf")
 	var/cotton_type = /obj/item/stack/sheet/cotton
-	var/cotton_name = "raw cotton"
+	var/cotton_name = "原棉"
 
 /obj/item/grown/cotton/attack_self(mob/user)
 	var/cotton_count = 1
 	if(seed)
 		cotton_count += round(seed.potency / 25)
 
-	user.balloon_alert(user, "pulled [cotton_count] piece\s")
+	user.balloon_alert(user, "采下了 [cotton_count] 团棉花")
 	new cotton_type(user.drop_location(), cotton_count)
 	qdel(src)
 
 
 //reinforced mutated variant
 /obj/item/seeds/cotton/durathread
-	name = "durathread seed pack"
-	desc = "A pack of seeds that'll grow into an extremely durable thread that could easily rival plasteel if woven properly."
+	name = "耐久纤维种子包"
+	desc = "一包会生长成极其坚韧纤维的种子，若纺织得当，其强度足以媲美塑钢。"
 	icon_state = "seed-durathread"
 	species = "durathread"
-	plantname = "Durathread"
+	plantname = "耐久纤维"
 	icon_harvest = "durathread-harvest"
 	product = /obj/item/grown/cotton/durathread
 	lifespan = 80
@@ -65,15 +65,15 @@
 
 /obj/item/grown/cotton/durathread
 	seed = /obj/item/seeds/cotton/durathread
-	name = "durathread bundle"
-	desc = "A tough bundle of durathread, good luck unraveling this."
+	name = "耐久纤维捆"
+	desc = "一捆结实的耐久纤维，祝你顺利把它拆开。"
 	icon_state = "durathread"
 	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 3
-	attack_verb_continuous = list("bashes", "batters", "bludgeons", "whacks")
-	attack_verb_simple = list("bash", "batter", "bludgeon", "whack")
+	attack_verb_continuous = list("猛击", "重捶", "狠砸", "狠抽")
+	attack_verb_simple = list("猛击", "重捶", "狠砸", "狠抽")
 	cotton_type = /obj/item/stack/sheet/cotton/durathread
-	cotton_name = "raw durathread"
+	cotton_name = "原始耐久纤维"

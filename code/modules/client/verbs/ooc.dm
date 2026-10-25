@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 GAME_VERB(/client, ooc, VERB_OOC, null)
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言目前已被管理员禁用。"))
 		return
 
 	var/client_initalized = VALIDATE_CLIENT_INITIALIZATION(src)
@@ -13,21 +13,21 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 		if(!client_initalized)
 			unvalidated_client_error() // we only want to throw this warning message when it's directly related to client failure.
 
-		to_chat(usr, span_warning("Failed to send your OOC message. You attempted to send the following message:\n[span_big(msg)]"))
+		to_chat(usr, span_warning("你的 OOC 消息发送失败。你尝试发送的内容如下：\n[span_big(msg)]"))
 		return
 
 	if(isnull(holder))
 		if(!GLOB.ooc_allowed)
-			to_chat(src, span_danger("OOC is globally muted."))
+			to_chat(src, span_danger("OOC 已被全局静音。"))
 			return
 		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
+			to_chat(usr, span_danger("死亡角色的 OOC 已被关闭。"))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("你无法使用 OOC（已被静音）。"))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger("You have been banned from OOC."))
+		to_chat(src, span_danger("你已被禁止使用 OOC。"))
 		return
 	if(QDELETED(src))
 		return
@@ -46,10 +46,10 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 	var/list/soft_filter_result = filter_result || is_soft_ooc_filtered(msg)
 
 	if (soft_filter_result)
-		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,"你的消息含有 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"。\"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\"，你确定要发送吗？", "软屏蔽词", list("Yes", "No")) != "Yes")
 			return
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[html_encode(msg)]\"")
-		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 通过了软过滤词 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"，可能在使用不被允许的词语。消息：\"[html_encode(msg)]\"")
+		log_admin_private("[key_name(usr)] 通过了软过滤词 \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\"，可能在使用不被允许的词语。消息：\"[msg]\"")
 
 	if(!msg)
 		return
@@ -57,20 +57,20 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 	msg = emoji_parse(msg)
 
 	if(SSticker.HasRoundStarted() && ((msg[1] in list(".",";",":","#")) || findtext_char(msg, "say", 1, 5)))
-		if(tgui_alert(usr,"Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,"你的消息 \"[raw_msg]\" 看起来是想在游戏内说的话，要在 OOC 里说吗？", "本来想发在 OOC？", list("Yes", "No")) != "Yes")
 			return
 
 	if(!holder)
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, span_boldannounce("Advertising other servers is not allowed."))
-			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			to_chat(src, span_boldannounce("不允许为其他服务器做广告。"))
+			log_admin("[key_name(src)] 试图在 OOC 中做广告：[msg]")
+			message_admins("[key_name_admin(src)] 试图在 OOC 中做广告：[msg]")
 			return
 
 	if(!(get_chat_toggles(src) & CHAT_OOC))
-		to_chat(src, span_danger("You have OOC muted."))
+		to_chat(src, span_danger("你已静音 OOC。"))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC)
@@ -140,7 +140,7 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 			return
 	else //otherwise just toggle it
 		GLOB.ooc_allowed = !GLOB.ooc_allowed
-	to_chat(world, "<span class='oocplain'><B>The OOC channel has been globally [GLOB.ooc_allowed ? "enabled" : "disabled"].</B></span>")
+	to_chat(world, "<span class='oocplain'><B>OOC 频道已在全局范围内[GLOB.ooc_allowed ? "启用" : "禁用"]。</B></span>")
 
 /proc/toggle_dooc(toggle = null)
 	if(toggle != null)
@@ -151,54 +151,54 @@ GAME_VERB(/client, ooc, VERB_OOC, null)
 	else
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-ADMIN_VERB(set_ooc_color, R_FUN, "Set Player OOC Color", "Modifies the global OOC color.", ADMIN_CATEGORY_SERVER)
-	var/newColor = tgui_color_picker(user, "Please select the new player OOC color.", "OOC color")
+ADMIN_VERB(set_ooc_color, R_FUN, "设置玩家 OOC 颜色", "修改全局 OOC 颜色。", ADMIN_CATEGORY_SERVER)
+	var/newColor = tgui_color_picker(user, "请选择新的玩家 OOC 颜色。", "OOC 颜色")
 	if(isnull(newColor))
 		return
 	var/new_color = sanitize_color(newColor)
-	message_admins("[key_name_admin(user)] has set the players' ooc color to [new_color].")
-	log_admin("[key_name_admin(user)] has set the player ooc color to [new_color].")
+	message_admins("[key_name_admin(user)] 已将玩家 OOC 颜色设为 [new_color]。")
+	log_admin("[key_name_admin(user)] 已将玩家 OOC 颜色设为 [new_color]。")
 	GLOB.OOC_COLOR = new_color
 
-ADMIN_VERB(reset_ooc_color, R_FUN, "Reset Player OOC Color", "Returns player OOC color to default.", ADMIN_CATEGORY_SERVER)
-	if(tgui_alert(user, "Are you sure you want to reset the OOC color of all players?", "Reset Player OOC Color", list("Yes", "No")) != "Yes")
+ADMIN_VERB(reset_ooc_color, R_FUN, "重置玩家 OOC 颜色", "将玩家 OOC 颜色恢复为默认值。", ADMIN_CATEGORY_SERVER)
+	if(tgui_alert(user, "你确定要重置所有玩家的 OOC 颜色吗？", "重置玩家 OOC 颜色", list("Yes", "No")) != "Yes")
 		return
-	message_admins("[key_name_admin(user)] has reset the players' ooc color.")
-	log_admin("[key_name_admin(user)] has reset player ooc color.")
+	message_admins("[key_name_admin(user)] 已重置玩家的 OOC 颜色。")
+	log_admin("[key_name_admin(user)] 已重置玩家的 OOC 颜色。")
 	GLOB.OOC_COLOR = null
 
 //Checks admin notice
-GAME_VERB_DESC(/client, admin_notice, "Adminnotice", "Check the admin notice if it has been set", "Admin")
+GAME_VERB_DESC(/client, admin_notice, "管理员通告", "查看已设置的管理员通告", "Admin")
 	if(GLOB.admin_notice)
-		to_chat(src, "[span_boldnotice("Admin Notice:")]\n \t [GLOB.admin_notice]")
+		to_chat(src, "[span_boldnotice("管理员通告：")]\n \t [GLOB.admin_notice]")
 	else
-		to_chat(src, span_notice("There are no admin notices at the moment."))
+		to_chat(src, span_notice("目前没有管理员通告。"))
 
-GAME_VERB_DESC(/client, motd, "MOTD", "Check the Message of the Day", "OOC")
+GAME_VERB_DESC(/client, motd, "每日公告", "查看每日公告", "OOC")
 	var/motd = global.config.motd
 	if(motd)
 		to_chat(src, "<span class='infoplain'><div class=\"motd\">[motd]</div></span>", handle_whitespace=FALSE)
 	else
-		to_chat(src, span_notice("The Message of the Day has not been set."))
+		to_chat(src, span_notice("尚未设置每日公告。"))
 
-GAME_VERB_PROC_DESC(/client, self_notes, "View Admin Remarks", "View the notes that admins have written about you", "OOC")
+GAME_VERB_PROC_DESC(/client, self_notes, "查看管理员备注", "查看管理员记录的关于你的备注", "OOC")
 
 	if(!CONFIG_GET(flag/see_own_notes))
-		to_chat(usr, span_notice("Sorry, that function is not enabled on this server."))
+		to_chat(usr, span_notice("抱歉，此服务器未启用该功能。"))
 		return
 
 	browse_messages(null, usr.ckey, null, TRUE)
 
-GAME_VERB_PROC_DESC(/client, self_playtime, "View tracked playtime", "View the amount of playtime for roles the server has tracked.", "OOC")
+GAME_VERB_PROC_DESC(/client, self_playtime, "查看记录的游戏时长", "查看服务器已记录的各职业游戏时长。", "OOC")
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, span_notice("Sorry, tracking is currently disabled."))
+		to_chat(usr, span_notice("抱歉，时长追踪当前已禁用。"))
 		return
 
 	new /datum/job_report_menu(src, usr)
 
 // Ignore verb
-GAME_VERB_DESC(/client, select_ignore, "Ignore", "Ignore a player's messages on the OOC channel", "OOC")
+GAME_VERB_DESC(/client, select_ignore, "忽略", "在 OOC 频道忽略某位玩家的消息", "OOC")
 	// Make a list to choose players from
 	var/list/players = list()
 
@@ -231,7 +231,7 @@ GAME_VERB_DESC(/client, select_ignore, "Ignore", "Ignore a player's messages on 
 		if(isobserver(mob) && isobserver(C.mob) && !C.holder?.fakekey)
 			// Show us if the player is a ghost or not after their displayed key
 			// Add the player's displayed key to the list
-			players["[displayed_key](ghost)"] = displayed_key
+			players["[displayed_key]（幽灵）"] = displayed_key
 
 		// Add the player's displayed key to the list if we or the player aren't a ghost or they're using a fakekey
 		else
@@ -240,7 +240,7 @@ GAME_VERB_DESC(/client, select_ignore, "Ignore", "Ignore a player's messages on 
 	// Check if the list is empty
 	if(!length(players))
 		// Express that there are no players we can ignore in chat
-		to_chat(src, span_infoplain("There are no other players you can ignore!"))
+		to_chat(src, span_infoplain("没有其他可以忽略的玩家！"))
 
 		// Stop running
 		return
@@ -249,7 +249,7 @@ GAME_VERB_DESC(/client, select_ignore, "Ignore", "Ignore a player's messages on 
 	players = sort_list(players)
 
 	// Request the player to ignore
-	var/selection = tgui_input_list(src, "Select a player", "Ignore", players)
+	var/selection = tgui_input_list(src, "选择一位玩家", "忽略", players)
 
 	// Stop running if we didn't receieve a valid selection
 	if(isnull(selection) || !(selection in players))
@@ -261,7 +261,7 @@ GAME_VERB_DESC(/client, select_ignore, "Ignore", "Ignore a player's messages on 
 	// Check if the selected player is on our ignore list
 	if(selection in prefs.ignoring)
 		// Express that the selected player is already on our ignore list in chat
-		to_chat(src, span_infoplain("You are already ignoring [selection]!"))
+		to_chat(src, span_infoplain("你已经在忽略 [selection] 了！"))
 
 		// Stop running
 		return
@@ -273,20 +273,20 @@ GAME_VERB_DESC(/client, select_ignore, "Ignore", "Ignore a player's messages on 
 	prefs.save_preferences()
 
 	// Express that we've ignored the selected player in chat
-	to_chat(src, span_infoplain("You are now ignoring [selection] on the OOC channel."))
+	to_chat(src, span_infoplain("你现在会在 OOC 频道中忽略 [selection]。"))
 
 // Unignore verb
-GAME_VERB_DESC(/client, select_unignore, "Unignore", "Stop ignoring a player's messages on the OOC channel", "OOC")
+GAME_VERB_DESC(/client, select_unignore, "取消忽略", "停止在 OOC 频道忽略某位玩家的消息", "OOC")
 	// Check if we've ignored any players
 	if(!length(prefs.ignoring))
 		// Express that we haven't ignored any players in chat
-		to_chat(src, span_infoplain("You haven't ignored any players!"))
+		to_chat(src, span_infoplain("你还没有忽略任何玩家！"))
 
 		// Stop running
 		return
 
 	// Request the player to unignore
-	var/selection = tgui_input_list(src, "Select a player", "Unignore", prefs.ignoring)
+	var/selection = tgui_input_list(src, "选择一位玩家", "取消忽略", prefs.ignoring)
 
 	// Stop running if we didn't receive a selection
 	if(isnull(selection))
@@ -295,7 +295,7 @@ GAME_VERB_DESC(/client, select_unignore, "Unignore", "Stop ignoring a player's m
 	// Check if the selected player is not on our ignore list
 	if(!(selection in prefs.ignoring))
 		// Express that the selected player is not on our ignore list in chat
-		to_chat(src, span_infoplain("You are not ignoring [selection]!"))
+		to_chat(src, span_infoplain("你并没有忽略 [selection]！"))
 
 		// Stop running
 		return
@@ -307,17 +307,17 @@ GAME_VERB_DESC(/client, select_unignore, "Unignore", "Stop ignoring a player's m
 	prefs.save_preferences()
 
 	// Express that we've unignored the selected player in chat
-	to_chat(src, span_infoplain("You are no longer ignoring [selection] on the OOC channel."))
+	to_chat(src, span_infoplain("你不再在 OOC 频道中忽略 [selection] 了。"))
 
-GAME_VERB_PROC_DESC(/client, show_previous_roundend_report, "Your Last Round", "View the last round end report you've seen", "OOC")
+GAME_VERB_PROC_DESC(/client, show_previous_roundend_report, "你的上一回合", "查看你上次看到的回合结束报告", "OOC")
 
 	SSticker.show_roundend_report(src, report_type = PERSONAL_LAST_ROUND)
 
-GAME_VERB_PROC_DESC(/client, show_servers_last_roundend_report, "Server's Last Round", "View the last round end report from this server", "OOC")
+GAME_VERB_PROC_DESC(/client, show_servers_last_roundend_report, "服务器的上一回合", "查看本服务器上次的回合结束报告", "OOC")
 
 	SSticker.show_roundend_report(src, report_type = SERVER_LAST_ROUND)
 
-GAME_VERB_DESC(/client, fit_viewport, "Fit Viewport", "Fit the width of the map window to match the viewport", "OOC")
+GAME_VERB_DESC(/client, fit_viewport, "适应视口", "让地图窗口宽度与视口匹配", "OOC")
 	// Fetch aspect ratio
 	var/view_size = getviewsize(view)
 	var/aspect_ratio = view_size[1] / view_size[2]
@@ -396,7 +396,7 @@ GAME_VERB_DESC(/client, fit_viewport, "Fit Viewport", "Fit the width of the map 
 	if(fully_created)
 		INVOKE_ASYNC(src, VERB_REF(fit_viewport))
 
-GAME_VERB_DESC(/client, policy, "Show Policy", "Show special server rules related to your current character.", "OOC")
+GAME_VERB_DESC(/client, policy, "显示规则", "显示与你当前角色相关的特殊服务器规则。", "OOC")
 	//Collect keywords
 	var/list/keywords = mob.get_policy_keywords()
 	var/header = get_policy(POLICY_VERB_HEADER)
@@ -409,50 +409,50 @@ GAME_VERB_DESC(/client, policy, "Show Policy", "Show special server rules relate
 			policytext += "<hr>"
 			anything = TRUE
 	if(!anything)
-		policytext += "No related rules found."
+		policytext += "未找到相关规则。"
 
-	var/datum/browser/browser = new(usr, "policy", "Server Policy", 600, 500)
+	var/datum/browser/browser = new(usr, "policy", "服务器规则", 600, 500)
 	browser.set_content(policytext.Join(""))
 	browser.open()
 
 GAME_VERB_HIDDEN(/client, fix_stat_panel, "Fix Stat Panel")
 	init_verbs()
 
-GAME_VERB_PROC_DESC(/client, export_preferences, "Export Preferences", "Export your current preferences to a file.", "OOC")
+GAME_VERB_PROC_DESC(/client, export_preferences, "导出偏好设置", "将你当前的偏好设置导出到文件。", "OOC")
 
 	ASSERT(prefs, "User attempted to export preferences while preferences were null!") // what the fuck
 
 	prefs.savefile.export_json_to_client(usr, ckey)
 
-GAME_VERB_DESC(/client, map_vote_tally_count, "Show Map Vote Tallies", "View the current map vote tally counts.", "OOC")
+GAME_VERB_DESC(/client, map_vote_tally_count, "显示地图投票统计", "查看当前地图投票的统计数字。", "OOC")
 	to_chat(mob, SSmap_vote.tally_printout)
 
 
-GAME_VERB_DESC(/client, linkforumaccount, "Link Forum Account", "Validates your byond account to your forum account. Required to post on the forums.", "OOC")
+GAME_VERB_DESC(/client, linkforumaccount, "关联论坛账号", "将你的 BYOND 账号与论坛账号验证关联。在论坛发帖需要此操作。", "OOC")
 	var/uri = CONFIG_GET(string/forum_link_uri)
 	if(!uri)
-		to_chat(src, span_warning("This feature is disabled."))
+		to_chat(src, span_warning("该功能已禁用。"))
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(src, span_danger("No connection to the database."))
+		to_chat(src, span_danger("无法连接到数据库。"))
 		return
 
 	if  (is_guest_key(ckey))
-		to_chat(src, span_danger("Guests can not link accounts."))
+		to_chat(src, span_danger("访客无法关联账号。"))
 		return
 
 	var/token = generate_account_link_token()
 
 	var/datum/db_query/query_set_token = SSdbcore.NewQuery("INSERT INTO phpbb.tg_byond_oauth_tokens (`token`, `key`) VALUES (:token, :key)", list("token" = token, "key" = key))
 	if(!query_set_token.Execute())
-		to_chat(src, span_danger("Failed to insert account link token into database, please try again later."))
+		to_chat(src, span_danger("无法将账号关联令牌写入数据库，请稍后重试。"))
 		qdel(query_set_token)
 		return
 
 	qdel(query_set_token)
 
-	to_chat(src, "Now opening a window to login to your forum account, your account will automatically be linked the moment you log in. If this window doesn't load, Please go to <a href=\"[uri]?token=[token]\">[uri]?token=[token]</a> - This link will expire in 30 minutes.")
+	to_chat(src, "现在会打开一个窗口供你登录论坛账号，你登录的那一刻账号就会自动完成关联。如果该窗口没有加载出来，请前往 <a href=\"[uri]?token=[token]\">[uri]?token=[token]</a> —— 此链接将在 30 分钟后失效。")
 	src << link("[uri]?token=[token]")
 
 /client/proc/generate_account_link_token()
@@ -468,12 +468,12 @@ GAME_VERB_DESC(/client, linkforumaccount, "Link Forum Account", "Validates your 
 	var/datum/db_query/query_get_token = SSdbcore.NewQuery("SELECT [random_string()], [random_string()]", list(random_string_args(entropychain), random_string_args(entropychain)))
 
 	if(!query_get_token.Execute())
-		to_chat(src, span_danger("Failed to get random string token from database. (Error #1)"))
+		to_chat(src, span_danger("无法从数据库获取随机字符串令牌。（错误 #1）"))
 		qdel(query_get_token)
 		return
 
 	if(!query_get_token.NextRow())
-		to_chat(src, span_danger("Could not locate your token in the database. (Error #2)"))
+		to_chat(src, span_danger("无法在数据库中找到你的令牌。（错误 #2）"))
 		qdel(query_get_token)
 		return
 

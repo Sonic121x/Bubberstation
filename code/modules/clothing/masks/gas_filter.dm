@@ -12,8 +12,8 @@
 #define FILTERS_CONSTANT_WEAR 0.025
 
 /obj/item/gas_filter
-	name = "atmospheric gas filter"
-	desc = "A piece of filtering cloth to be used with atmospheric gas masks and emergency gas masks."
+	name = "大气气体过滤器"
+	desc = "一块与大气防毒面具和应急防毒面具配合使用的过滤布。"
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "gas_atmos_filter"
 	w_class = WEIGHT_CLASS_TINY
@@ -54,7 +54,7 @@
 
 /obj/item/gas_filter/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] is at <b>[filter_status]%</b> durability.")
+	. += span_notice("[src] 的耐久度为 <b>[filter_status]%</b>。")
 
 /**
  * called by the gas mask where the filter is installed, lower the filter_status depending on the breath gas composition and by the strength of the filter
@@ -98,8 +98,8 @@
 	return breath
 
 /obj/item/gas_filter/damaged
-	name = "damaged gas filter"
-	desc = "A piece of filtering cloth to be used with atmospheric gas masks and emergency gas masks, it seems damaged."
+	name = "损坏的气体过滤器"
+	desc = "一块与大气防毒面具和应急防毒面具配合使用的过滤布，看起来已经损坏了。"
 	filter_status = 50 //override on initialize
 
 /obj/item/gas_filter/damaged/Initialize(mapload)
@@ -107,7 +107,7 @@
 	filter_status = rand(35, 65)
 
 /obj/item/gas_filter/plasmaman
-	name = "plasmaman atmospheric gas filter"
+	name = "等离子人大气气体过滤器"
 	high_filtering_gases = list(
 		/datum/gas/oxygen,
 		/datum/gas/carbon_dioxide,

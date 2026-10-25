@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/kindle_kicks
-	name = "Kindle Kicks"
-	desc = "They'll sure kindle something in you, and it's not childhood nostalgia..."
+	name = "闪光鞋"
+	desc = "它们肯定会在你心中点燃些什么，而且绝不是童年的怀旧之情……"
 	icon_state = "kindleKicks"
 	inhand_icon_state = null
 	actions_types = list(/datum/action/item_action/kindle_kicks)

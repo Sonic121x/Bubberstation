@@ -1,9 +1,9 @@
 /obj/item/clothing/neck/tie/disco
-	name = "horrific necktie"
+	name = "恐怖领带"
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "eldritch_tie"
 	post_init_icon_state = null
-	desc = "The necktie is adorned with a garish pattern. It's disturbingly vivid. Somehow you feel as if it would be wrong to ever take it off. It's your friend now. You will betray it if you change it for some boring scarf."
+	desc = "这条领带装饰着俗艳至极的图案，鲜艳得令人不安。不知怎的，你总觉得把它摘下来是错误的。它现在是你的朋友了。如果你把它换成某条无聊的围巾，那就是背叛了它。"
 	clip_on = TRUE
 	greyscale_config = null
 	greyscale_config_worn = null
@@ -26,7 +26,7 @@
 /obj/item/clothing/neck/tie/disco/examine(mob/user)
 	. = ..()
 	if(!length(possessed_souls))
-		. += span_notice("It may be given sentience by [EXAMINE_HINT("using it in hand")].")
+		. += span_notice("在手中[EXAMINE_HINT("使用")]它，或许能赋予其感知。")
 
 /obj/item/clothing/neck/tie/disco/equipped(mob/living/user, slot)
 	. = ..()
@@ -47,19 +47,19 @@
 		return ..()
 
 	using = TRUE
-	to_chat(user, span_notice("You plumb the depths of your Inland Empire. Whispers seem to emaninate from [src], as though it had somehow come to life; could it be?"))
+	to_chat(user, span_notice("你潜入自己内心帝国的深处。低语似乎从 [src] 中传来，仿佛它不知怎地活了过来；会是真的吗？"))
 
 	var/list/candidates = SSpolling.poll_ghost_candidates(
-		question = "Do you want to play as the spirit of [span_danger("[user.real_name]'s")] [span_notice("horrific necktie")]?",
+		question = "你想扮演 [span_danger("[user.real_name] 的")] [span_notice("恐怖领带")]之灵吗？",
 		check_jobban = ROLE_PAI,
 		poll_time = 20 SECONDS,
 		alert_pic = user,
 		jump_target = user,
-		role_name_text = "Necktie of [user.real_name]",
+		role_name_text = "[user.real_name] 的领带",
 		ignore_category = POLL_IGNORE_HORRIFIC_NECKTIE,
 	)
 	if(!length(candidates))
-		to_chat(user, span_warning("The whispers coming from [src] fade and are silent again... Was it all your imagination? Maybe you can try again later."))
+		to_chat(user, span_warning("从 [src] 传来的低语逐渐消散，重归寂静……这一切只是你的想象吗？也许你可以稍后再试。"))
 		using = FALSE
 		return
 	hears_us = user.mind
@@ -73,10 +73,10 @@
 /obj/item/clothing/neck/tie/disco/attack_ghost(mob/hopeful_ghost)
 	. = ..()
 	if (!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
-		to_chat(hopeful_ghost, span_warning("Ghost roles have been temporarily disabled!"))
+		to_chat(hopeful_ghost, span_warning("幽灵角色已被暂时禁用！"))
 		return
 	if (!SSticker.HasRoundStarted())
-		to_chat(hopeful_ghost, span_warning("You cannot assume control of this until after the round has started!"))
+		to_chat(hopeful_ghost, span_warning("在回合开始之前，你无法控制此物！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	became_player_controlled(hopeful_ghost)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -94,7 +94,7 @@
 /obj/item/clothing/neck/tie/disco/proc/on_deleting(datum/source, force)
 	SIGNAL_HANDLER
 	possessed_souls -= source
-	to_chat(hears_us.current, span_notice("You feel like a voice just exited your mind."))
+	to_chat(hears_us.current, span_notice("你感觉有一个声音刚刚离开了你的脑海。"))
 
 ///Creates the ghost itself and adds them to the list of possessed souls in the tie.
 /obj/item/clothing/neck/tie/disco/proc/create_ghost(mob/new_ghost)
@@ -103,7 +103,7 @@
 	RegisterSignal(new_soul, COMSIG_LIVING_SEND_SPEECH, PROC_REF(on_speech_sent))
 	RegisterSignal(new_soul, COMSIG_QDELETING, PROC_REF(on_deleting))
 	possessed_souls += new_soul
-	to_chat(hears_us.current, span_notice("You look down at [src] and feel like there's another thought process entering your mind."))
+	to_chat(hears_us.current, span_notice("你低头看向 [src]，感觉另一个思维过程正进入你的脑海。"))
 
 ///Called when a voice in the tie speaks, we use this to remove all listeners except the voices and creator.
 /obj/item/clothing/neck/tie/disco/proc/on_speech_sent(atom/source, list/listeners)
@@ -114,7 +114,7 @@
 
 ///The mob that inhabits the tie when posessed.
 /mob/living/basic/tie
-	name = "horrific necktie"
+	name = "恐怖领带"
 	gender = NEUTER
 	mob_biotypes = MOB_SPIRIT
 	unsuitable_cold_damage = 0
@@ -127,9 +127,9 @@
 
 /mob/living/basic/tie/Login()
 	. = ..()
-	to_chat(src, span_notice("You are the horrific necktie of the person who summoned you, \
-		the only person who is able to hear you. Like a voice in their head, you are their reasoning, \
-		their second-in-command. Take good care of them."))
+	to_chat(src, span_notice("你是召唤你之人身上的恐怖领带，\
+		也是唯一能听见你的人。如同他脑海中的声音，你是他的理性，\
+		他的副手。好好照顾他。"))
 
 /mob/living/basic/tie/Logout()
 	. = ..()

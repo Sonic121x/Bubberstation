@@ -16,8 +16,8 @@ do { \
 	wound = 10
 
 /obj/item/clothing/under/chameleon
-	name = "black jumpsuit"
-	desc = "It's a plain jumpsuit. It has a small dial on the wrist."
+	name = "黑色连体服"
+	desc = "这是一件朴素的连体服。手腕处有一个小旋钮。"
 	icon = 'icons/map_icons/clothing/under/color.dmi'
 	icon_state = "/obj/item/clothing/under/color"
 	post_init_icon_state = "jumpsuit"
@@ -51,8 +51,8 @@ do { \
 	acid = 50
 
 /obj/item/clothing/suit/chameleon
-	name = "armor"
-	desc = "A slim armored vest that protects against most types of damage."
+	name = "护甲"
+	desc = "一件轻薄的装甲背心，可抵御大多数类型的伤害。"
 	icon_state = "armor"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
@@ -83,9 +83,9 @@ do { \
 	acid = 50
 
 /obj/item/clothing/glasses/chameleon
-	name = "Optical Meson Scanner"
+	name = "光学介子扫描仪"
 	flags_cover = GLASSESCOVERSEYES
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
+	desc = "供工程与采矿人员使用，可透过墙壁看清基本的结构与地形布局，不受光照条件影响。"
 	icon_state = "meson"
 	inhand_icon_state = "meson"
 	resistance_flags = NONE
@@ -109,8 +109,8 @@ do { \
 	acid = 50
 
 /obj/item/clothing/gloves/chameleon
-	name = "insulated gloves"
-	desc = "These gloves provide protection against electric shock."
+	name = "绝缘手套"
+	desc = "这副手套可提供电击防护。"
 	icon_state = "yellow"
 	inhand_icon_state = "ygloves"
 	greyscale_colors = null
@@ -138,8 +138,8 @@ do { \
 	acid = 50
 
 /obj/item/clothing/head/chameleon
-	name = "grey cap"
-	desc = "It's a baseball hat in a tasteful grey colour."
+	name = "灰色棒球帽"
+	desc = "一顶配色雅致的灰色棒球帽。"
 	icon = 'icons/obj/clothing/head/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "greysoft"
@@ -178,8 +178,8 @@ do { \
 	acid = 50
 
 /obj/item/clothing/mask/chameleon
-	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. While good for concealing your identity, it isn't good for blocking gas flow." //More accurate
+	name = "防毒面具"
+	desc = "可连接供气装置的全脸面罩。它很适合隐藏身份，但并不擅长阻挡气流。" //More accurate
 	icon_state = "gas_alt"
 	inhand_icon_state = "gas_alt"
 	resistance_flags = NONE
@@ -204,7 +204,7 @@ do { \
 		detach_clothing_traits(TRAIT_VOICE_MATCHES_ID)
 	else
 		if(SStts.tts_enabled)
-			var/popup_input = tgui_input_list(user, "Choose Action", "Chameleon Mask", list("Spoof Crew Manifest Voice", "Spoof Any Voice", "Cancel"))
+			var/popup_input = tgui_input_list(user, "选择操作", "变色龙面具", list("Spoof Crew Manifest Voice", "Spoof Any Voice", "Cancel"))
 			if(!popup_input || !after_input_check(user))
 				return
 			switch(popup_input)
@@ -214,9 +214,9 @@ do { \
 						if(target.voice && (target.voice in SStts.available_speakers))
 							possible_voices += target.name
 						CHECK_TICK
-					var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", possible_voices)
+					var/voice_choice = tgui_input_list(user, "选择用作伪装的声音", "声音选择", possible_voices)
 					if(isnull(voice_choice) || !after_input_check(user))
-						to_chat(user, span_warning("No choice selected, audible voice changing disabled."))
+						to_chat(user, span_warning("未选择任何选项，可听语音变换已禁用。"))
 						voice_override = null
 						return
 					var/datum/record/crew/crew_record = find_record(voice_choice)
@@ -224,12 +224,12 @@ do { \
 						voice_override = voice_choice
 						return
 					else
-						to_chat(user, span_warning("Crewmember's record's voice has been changed, please select another."))
+						to_chat(user, span_warning("该船员档案中的语音已变更，请另选一位。"))
 						return
 				if("Spoof Any Voice")
-					var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", SStts.available_speakers)
+					var/voice_choice = tgui_input_list(user, "选择用作伪装的声音", "声音选择", SStts.available_speakers)
 					if(isnull(voice_choice) || !after_input_check(user))
-						to_chat(user, span_warning("No choice selected, audible voice changing disabled."))
+						to_chat(user, span_warning("未选择任何选项，可听语音变换已禁用。"))
 						voice_override = null
 						return
 					voice_override = voice_choice
@@ -238,7 +238,7 @@ do { \
 			voice_override = null
 		attach_clothing_traits(TRAIT_VOICE_MATCHES_ID)
 	on = !on
-	to_chat(user, span_notice("The voice changer is now [on ? "on" : "off"]!"))
+	to_chat(user, span_notice("变声器现在已[on ? "开启" : "关闭"]！"))
 
 /obj/item/clothing/mask/chameleon/broken
 
@@ -260,7 +260,7 @@ do { \
 	mask?.random_look()
 
 /obj/item/clothing/mask/chameleon/drone/attack_self(mob/user)
-	to_chat(user, span_notice("[src] does not have a voice changer."))
+	to_chat(user, span_notice("[src] 没有变声器。"))
 
 // Cham shoes, including chameleon noslips
 /datum/armor/shoes_chameleon
@@ -272,8 +272,8 @@ do { \
 	acid = 50
 
 /obj/item/clothing/shoes/chameleon
-	name = "black shoes"
-	desc = "A pair of black shoes."
+	name = "黑色鞋子"
+	desc = "一双黑色鞋子。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/chameleon"
 	post_init_icon_state = "sneakers"
@@ -314,7 +314,7 @@ do { \
 
 // Cham backpack
 /obj/item/storage/backpack/chameleon
-	name = "backpack"
+	name = "背包"
 	actions_types = list(/datum/action/item_action/chameleon/change/backpack)
 
 /obj/item/storage/backpack/chameleon/Initialize(mapload)
@@ -330,8 +330,8 @@ do { \
 
 // Cham belt (bonus: is silent)
 /obj/item/storage/belt/chameleon
-	name = "toolbelt"
-	desc = "Holds tools."
+	name = "工具腰带"
+	desc = "用于存放工具。"
 	actions_types = list(/datum/action/item_action/chameleon/change/belt)
 
 /obj/item/storage/belt/chameleon/Initialize(mapload)
@@ -346,7 +346,7 @@ do { \
 
 // Cham headset
 /obj/item/radio/headset/chameleon
-	name = "radio headset"
+	name = "无线电耳机"
 	actions_types = list(/datum/action/item_action/chameleon/change/headset)
 	action_slots = ALL
 
@@ -358,7 +358,7 @@ do { \
 
 // Cham PDA
 /obj/item/modular_computer/pda/chameleon
-	name = "tablet"
+	name = "平板电脑"
 	actions_types = list(/datum/action/item_action/chameleon/change/tablet)
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 
@@ -387,8 +387,8 @@ do { \
 	acid = 50
 
 /obj/item/clothing/neck/chameleon
-	name = "black tie"
-	desc = "A neosilk clip-on tie."
+	name = "黑色领带"
+	desc = "一条新丝质地的夹式领带。"
 	icon_state = "detective" //we use this icon_state since the other ones are all generated by GAGS.
 	resistance_flags = NONE
 	armor_type = /datum/armor/neck_chameleon

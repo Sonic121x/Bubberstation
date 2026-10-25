@@ -8,85 +8,85 @@
 
 /datum/supply_pack/imports
 	group = "Imports"
-	crate_name = "emergency crate"
+	crate_name = "应急板条箱"
 	crate_type = /obj/structure/closet/crate/internals
 
 /datum/supply_pack/imports/foamforce
-	name = "Foam Force Crate"
-	desc = "Break out the big guns with eight Foam Force shotguns!"
+	name = "泡沫特勤板条箱"
+	desc = "拿出大杀器：八把泡沫特勤霰弹枪！"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/gun/ballistic/shotgun/toy = 8)
-	crate_name = "foam force crate"
+	crate_name = "泡沫特勤板条箱"
 	crate_type = /obj/structure/closet/crate/freezer/donk
 	discountable = SUPPLY_PACK_STD_DISCOUNTABLE
 
 /datum/supply_pack/imports/foamforce/bonus
-	name = "Foam Force Pistols Crate"
-	desc = "Psst.. hey bud... remember those old foam force pistols that got discontinued for being too cool? \
-		Well I got two of those right here with your name on em. I'll even throw in a spare mag for each, waddya say?"
+	name = "泡沫特勤手枪板条箱"
+	desc = "嘘……嘿兄弟……还记得那些因为太酷而停产的老款泡沫特勤手枪吗？ \
+		我这儿正好有两把，上面还刻着你的名字。我甚至给每把再送一个备用弹匣，怎么样？"
 	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/gun/ballistic/automatic/pistol/toy = 2,
 		/obj/item/ammo_box/magazine/toy/pistol = 2,
 	)
-	crate_name = "foam force crate"
+	crate_name = "泡沫特勤板条箱"
 	crate_type = /obj/structure/closet/crate/freezer/donk
 
 /datum/supply_pack/imports/meatmeatmeatmeat // MEAT MEAT MEAT MEAT
-	name = "MEAT MEAT MEAT MEAT MEAT"
-	desc = "MEAT MEAT MEAT MEAT MEAT MEAT"
+	name = "肉 肉 肉 肉 肉"
+	desc = "肉 肉 肉 肉 肉 肉"
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/storage/backpack/meat)
-	crate_name = "MEAT MEAT MEAT MEAT MEAT"
+	crate_name = "肉 肉 肉 肉 肉"
 	crate_type = /obj/structure/closet/crate/necropolis
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/duct_spider
-	name = "Duct Spider Crate"
-	desc = "Awww! Straight from the Australicus sector to your station's ventilation system!"
+	name = "管道蜘蛛板条箱"
+	desc = "哇！直接从澳斯特拉利库斯星区送到你空间站的通风系统！"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/basic/spider/maintenance)
-	crate_name = "duct spider crate"
+	crate_name = "管道蜘蛛板条箱"
 	crate_type = /obj/structure/closet/crate/critter
 	discountable = SUPPLY_PACK_UNCOMMON_DISCOUNTABLE
 
 /datum/supply_pack/imports/duct_spider/dangerous
-	name = "Duct Spider Crate?"
-	desc = "Wait, is this the right crate? It has a frowny face, what does that mean?"
+	name = "管道蜘蛛板条箱？"
+	desc = "等等，这是对的箱子吗？上面有个苦脸，那是什么意思？"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(/mob/living/basic/spider/giant/hunter)
 	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/bamboo50
-	name = "50 Bamboo Cuttings"
-	desc = "You have no idea how many pandas we had to kill to get this bamboo."
+	name = "50 根竹插条"
+	desc = "你根本不知道我们为了弄到这些竹子杀了多少只熊猫。"
 	cost = CARGO_CRATE_VALUE * 15
 	contains = list(/obj/item/stack/sheet/mineral/bamboo/fifty)
-	crate_name = "bamboo cuttings crate"
+	crate_name = "竹插条板条箱"
 
 /datum/supply_pack/imports/wind_turbine
-	name = "Wind Turbine Crate"
-	desc = "Includes a portable wind turbine for charging small devices and appliances. Considered obsolete in the frontier, \
-		but perfect for officers who think walking laps around the station is 'innovative engineering'."
+	name = "风力涡轮机板条箱"
+	desc = "内含一台便携式风力涡轮机，可为小型设备和电器充电。在边区被视为过时， \
+		但对于那些认为绕站走路就是“创新工程”的军官来说再合适不过。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/portable_wind_turbine/loaded)
-	crate_name = "wind turbine crate"
+	crate_name = "风力涡轮机板条箱"
 
 /datum/supply_pack/imports/bananium
-	name = "A Single Sheet of Bananium"
-	desc = "Don't let the clown know that he can order this. It costs a fortune even for this much."
+	name = "单张香蕉矿"
+	desc = "别让小丑知道他能订购这个。就这么点也要花一大笔钱。"
 	cost = CARGO_CRATE_VALUE * 100
 	contains = list(/obj/item/stack/sheet/mineral/bananium)
-	crate_name = "bananium sheet crate"
+	crate_name = "香蕉矿板条箱"
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/dumpstercorpse
-	name = "A....Dumpster?"
-	desc = "Why does it smell so bad...."
+	name = "一个……垃圾箱？"
+	desc = "为什么它这么臭……"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/mob/living/carbon/human)
-	crate_name = "putrid dumpster"
+	crate_name = "腐臭垃圾箱"
 	crate_type = /obj/structure/closet/crate/trashcart
 
 /datum/supply_pack/imports/dumpstercorpse/generate(atom/A, datum/bank_account/paying_account, crate_override)
@@ -95,42 +95,42 @@
 	corpse.death()
 
 /datum/supply_pack/imports/dumpsterloot
-	name = "A....Dumpster"
-	desc = "I'm not sure why you bothered to buy this...and why does it cost so much?"
+	name = "一个……垃圾箱"
+	desc = "我不确定你为什么要费心买这个……还有它为什么这么贵？"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(
 		/obj/effect/spawner/random/maintenance/dumpster,
 		/obj/effect/spawner/random/trash/garbage = 5,
 	)
-	crate_name = "putrid dumpster"
+	crate_name = "腐臭垃圾箱"
 	crate_type = /obj/structure/closet/crate/trashcart
 	test_ignored = TRUE
 
 /datum/supply_pack/imports/shells
-	name = "Lethal Shotgun Shell Box Crate"
-	desc = "Contains three boxes of buckshot shotgun shells. \
-		Due to Nanotrasen's failure to secure exclusive manufacturing rights \
-		during the Spinward Hunting and Shooting policy hearings, this import \
-		is heavily taxed, despite being 'legal'. I hope the price tag is worth it."
+	name = "致命霰弹盒板条箱"
+	desc = "内含三盒鹿弹霰弹。 \
+		由于纳米传讯在顺旋狩猎与射击政策听证会期间 \
+		未能取得独家生产权，这批进口货 \
+		尽管“合法”，却被课以重税。希望这个价签值这个钱。"
 	cost = CARGO_CRATE_VALUE * 10
 	access = ACCESS_ARMORY
 	access_view = ACCESS_ARMORY
 	contains = list(
 		/obj/item/storage/box/lethalshot = 3,
 	)
-	crate_name = "shotgun shell crate"
+	crate_name = "霰弹板条箱"
 	crate_type = /obj/structure/closet/crate/secure/weapon
 
 /datum/supply_pack/imports/error
 	name = "NULL_ENTRY"
-	desc = "(*!&@#OKAY, OPERATIVE, WE SEE HOW MUCH MONEY YOU'RE FLAUNTING. FINE. HAVE THIS, AND GOOD LUCK PUTTING IT TOGETHER!#@*$"
+	desc = "(*!&@#好吧，特工，我们看到你在炫富了。行。拿去这个吧，祝你能把它拼装起来！#@*$"
 	cost = CARGO_CRATE_VALUE * 100
 	order_flags = ORDER_EMAG_ONLY
 	contains = list(/obj/item/book/granter/crafting_recipe/regal_condor)
 
 /datum/supply_pack/imports/mafia
-	name = "Cosa Nostra Starter Pack"
-	desc = "This crate contains everything you need to set up your own ethnicity-based racketeering operation."
+	name = "黑手党入门包"
+	desc = "这个板条箱里有你开展自己的族裔式敲诈勒索生意所需的一切。"
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list()
 	order_flags = ORDER_CONTRABAND
@@ -145,23 +145,23 @@
 		new /obj/item/switchblade(our_crate)
 
 /datum/supply_pack/imports/contraband
-	name = "'Contraband' Crate"
-	desc = "Psst.. bud... want some contraband? I can get you a poster, some nice cigs, dank, even some \
-		sponsored items...you know, the good stuff. Just keep it away from the cops, kay?"
+	name = "“违禁品”板条箱"
+	desc = "嘘……兄弟……想要点违禁品吗？我能给你弄到海报、好烟、大麻，甚至一些 \
+		赞助商品……你懂的，好东西。只要别让警察看见，行吗？"
 	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 20
 	contains = list(
 		/obj/effect/spawner/random/contraband = 5,
 	)
-	crate_name = "crate"
+	crate_name = "板条箱"
 	test_ignored = TRUE
 
 /datum/supply_pack/imports/wt550
-	name = "Smuggled WT-550 Autorifle Crate"
-	desc = "(*!&@#GOOD NEWS, OPERATIVE! WE CAN'T GET YOU THE BIG LEAGUE AUTOMATIC WEAPONS. BUT, BY \
-		SMUGGLING THIS CRATE THROUGH A FEW OUTDATED CUSTOMS CHECKPOINTS, WE'VE THE NEXT BEST THING! \
-		SERVICE AUTORIFLES. DON'T WORRY, THE RUMORS ABOUT THE GUN MELTING YOU ARE JUST THAT! RUMORS! \
-		THESE THINGS WORK FINE! MIGHT BE SLIGHTLY DIRTY.!#@*$"
+	name = "走私 WT-550 自动步枪板条箱"
+	desc = "(*!&@#好消息，特工！我们搞不到顶级自动武器。但是，\
+		通过把这只箱子走私过几个过时的海关检查站，我们弄到了次优选择！ \
+		制式自动步枪。别担心，那些枪会把你熔化的传闻就只是传闻！ \
+		这些东西好用得很！可能稍微有点脏。！#@*$"
 	order_flags = ORDER_EMAG_ONLY
 	cost = CARGO_CRATE_VALUE * 7
 	contains = list(
@@ -171,8 +171,8 @@
 	crate_type = /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock
 
 /datum/supply_pack/imports/wt550ammo
-	name = "Smuggled WT-550 Ammo Crate"
-	desc = "(*!&@#OPERATIVE, YOU LIKE THAT WT-550? THEN WHY NOT EQUIP YOURSELF WITH SOME MORE AMMO!!#@*$"
+	name = "走私 WT-550 弹药板条箱"
+	desc = "(*!&@#特工，你喜欢那把 WT-550 吗？那为什么不给自己配上更多弹药！！#@*$"
 	order_flags = ORDER_EMAG_ONLY
 	cost = CARGO_CRATE_VALUE * 4
 	contains = list(
@@ -180,13 +180,13 @@
 		/obj/item/ammo_box/magazine/wt550m9/wtap = 2,
 		/obj/item/ammo_box/magazine/wt550m9/wtic = 2,
 	)
-	crate_name = "emergency crate"
+	crate_name = "应急板条箱"
 	crate_type = /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock
 
 /datum/supply_pack/imports/shocktrooper
-	name = "Shocktrooper Crate"
-	desc = "(*!&@#WANT TO PUT THE FEAR OF DEATH INTO YOUR ENEMIES? THIS CRATE OF GOODIES CAN HELP MAKE THAT A REALITY. \
-		CONTAINS AN ARMOR VEST AND HELMET, A BOX OF FIVE EMP GRENADES, THREE SMOKEBOMBS, TWO GLUON GRENADES AND TWO FRAG GRENADES!#@*$"
+	name = "突击兵板条箱"
+	desc = "(*!&@#想让敌人对死亡心生恐惧吗？这箱好东西能帮你实现。\
+		内含一件护甲背心和头盔、一盒五枚 EMP 手榴弹、三枚烟雾弹、两枚胶子手榴弹和两枚破片手榴弹！#@*$"
 	order_flags = ORDER_EMAG_ONLY
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
@@ -200,9 +200,9 @@
 	crate_type = /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock
 
 /datum/supply_pack/imports/specialops
-	name = "Special Ops Crate"
-	desc = "(*!&@#THE PIGS ON YOUR TAIL? MAYBE YOU CAN BUY SOME TIME WITH THIS CRATE! \
-		CONTAINS A CHAMELEON MASK, BELT AND JUMPSUIT, MIRAGE GRENADES AND AN AGENT CARD! AND A KNIFE!!#@*$"
+	name = "特种作战板条箱"
+	desc = "(*!&@#条子在追你？也许这箱东西能帮你争取点时间！ \
+		内含变色龙面具、腰带和连体服、幻影手榴弹和一张特工卡！还有一把刀！！#@*$"
 	order_flags = ORDER_EMAG_ONLY
 	cost = CARGO_CRATE_VALUE * 10
 	contains = list(
@@ -216,10 +216,10 @@
 	crate_type = /obj/structure/closet/crate/secure/syndicate/gorlex/weapons/bustedlock
 
 /datum/supply_pack/imports/russian
-	name = "Russian Surplus Military Gear Crate"
-	desc = "Hello <;~insert appropriate greeting here: 'Comrade'|'Imperalist Scum'|'Quartermaster of Reputable Station'~;>, \
-		we have the most modern russian military equipment the black market can offer, for the right price of course. \
-		No lock, best price."
+	name = "俄式剩余军装备板条箱"
+	desc = "你好 <;~在此插入合适的问候语：‘同志’|‘帝国主义败类’|‘信誉良好空间站的货运主管’~;>， \
+		我们有黑市能提供的最现代化的俄式军事装备，当然，要合适的价格。 \
+		无锁，最优价。"
 	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 12
 	contains = list(
@@ -247,19 +247,19 @@
 		new item(our_crate)
 
 /datum/supply_pack/imports/moistnuggets
-	name = "Refurbished Sakhno Precision Rifle Crate"
-	desc = "Hello Comrade Operative. You need gun? You hate garbage we sell to station normally? \
-		Then we have the perfect weapon for you! Special price for good friends! \
-		We don't have enough spare ammo, so you'll have to pick up the weapon of \
-		dead comrade when you run out."
+	name = "翻新萨赫诺精准步枪板条箱"
+	desc = "你好，特工同志。你需要枪？你讨厌我们平时卖给空间站的垃圾？ \
+		那我们就有最适合你的武器！给好朋友的特别价！ \
+		我们没有足够的备用弹药，所以打光时你得去捡 \
+		死掉同志的武器。"
 	order_flags = ORDER_EMAG_ONLY
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(/obj/item/gun/ballistic/rifle/boltaction = 6)
 
 /datum/supply_pack/imports/vehicle
-	name = "Biker Gang Kit" //TUNNEL SNAKES OWN THIS TOWN
-	desc = "TUNNEL SNAKES OWN THIS TOWN. Contains an unbranded All Terrain Vehicle, and a \
-		complete gang outfit -- consists of black gloves, a menacing skull bandanna, and a SWEET leather overcoat!"
+	name = "飞车党套件" //TUNNEL SNAKES OWN THIS TOWN
+	desc = "隧道蛇拥有这座城。内含一辆无品牌全地形车，以及一套 \
+		完整的帮派服装——包括黑手套、吓人的骷髅头巾，还有一件超帅的皮大衣！"
 	cost = CARGO_CRATE_VALUE * 4
 	order_flags = ORDER_CONTRABAND
 	contains = list(
@@ -270,42 +270,42 @@
 		/obj/item/clothing/head/soft,
 		/obj/item/clothing/mask/bandana/skull/black,
 	)//so you can properly #cargoniabikergang
-	crate_name = "biker kit"
+	crate_name = "飞车党套件"
 	crate_type = /obj/structure/closet/crate/large
 
 /datum/supply_pack/imports/abandoned
-	name = "Abandoned Crate"
-	desc = "...wait, how did this get here?"
+	name = "废弃板条箱"
+	desc = "……等等，这东西怎么到这儿来的？"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list()
 	crate_type = /obj/structure/closet/crate/secure/loot
-	crate_name = "abandoned crate"
+	crate_name = "废弃板条箱"
 	order_flags = ORDER_CONTRABAND | ORDER_DANGEROUS //these are literally bombs so....
 	discountable = SUPPLY_PACK_RARE_DISCOUNTABLE
 
 /datum/supply_pack/imports/shambler_evil
-	name = "Shamber's Juice Eldritch Energy! Crate"
+	name = "蹒跚者果汁邪异能量！板条箱"
 	desc = "~J'I'CE!~"
 	cost = CARGO_CRATE_VALUE * 50
 	contains = list(/obj/item/reagent_containers/cup/soda_cans/shamblers/eldritch = 1)
-	crate_name = "illegal shambler's juice crate"
+	crate_name = "非法蹒跚者果汁板条箱"
 	order_flags = ORDER_CONTRABAND
 
 /datum/supply_pack/imports/hide
-	name = "Animal Hide Crate"
-	desc = "Want to not bother slaughtering a bunch of innocent creatures? Here, have some animal pelts! \
-		Just don't ask where they came from..."
+	name = "兽皮板条箱"
+	desc = "不想费劲去屠杀一堆无辜生物？拿去，这些兽皮给你！ \
+		只是别问它们是从哪来的……"
 	cost = CARGO_CRATE_VALUE * 30
 	contains = list(/obj/effect/spawner/random/animalhide = 5)
-	crate_name = "animal hide crate"
+	crate_name = "兽皮板条箱"
 	test_ignored = TRUE
 
 /datum/supply_pack/imports/dreadnog
-	name = "Dreadnog Carton Crate"
-	desc = "I have eggnog and I must soda."
+	name = "恐怖蛋奶酒纸盒板条箱"
+	desc = "我有蛋奶酒，而我必须加苏打。"
 	cost = CARGO_CRATE_VALUE * 5
 	contains = list(/obj/item/reagent_containers/cup/glass/bottle/juice/dreadnog = 3)
-	crate_name = "dreadnog crate"
+	crate_name = "恐怖蛋奶酒板条箱"
 
 /* BUBBER EDIT - Removal Start
 /datum/supply_pack/imports/giant_wrench_parts
@@ -318,8 +318,8 @@
 Removal End */
 
 /datum/supply_pack/imports/materials_market
-	name = "Galactic Materials Market Crate"
-	desc = "A circuit board to build your own materials market for use by certified market traders. Warning: Losses are not covered by insurance."
+	name = "银河材料市场板条箱"
+	desc = "一块用于建造你自己的材料市场、供持证市场交易员使用的电路板。警告：亏损不在保险范围内。"
 	cost = CARGO_CRATE_VALUE * 3
 	contains = list(
 		/obj/item/circuitboard/machine/materials_market = 1,
@@ -328,16 +328,16 @@ Removal End */
 		/obj/item/stock_parts/scanning_module = 1,
 		/obj/item/stock_parts/card_reader = 1
 	)
-	crate_name = "materials market crate"
+	crate_name = "材料市场板条箱"
 	crate_type = /obj/structure/closet/crate/cargo
 
 /datum/supply_pack/imports/floortilecamo
-	name = "Floor-tile Camouflage Uniform"
-	desc = "Hey there, looking to surprise somebody? Spy? Steal? Then you're lucky, meet our newest \
-		floor-tile 'NT SCUM' styled camouflage fatigues. This is the ultimate \
-		espionage uniform used by the very best. Providing the best \
-		flexibility, with our latest Camo-tech threads. Perfect for \
-		risky espionage hallway operations. Enjoy our product!"
+	name = "地砖迷彩制服"
+	desc = "嘿，想给谁一个惊喜吗？当间谍？偷东西？那你运气不错，来认识我们最新的 \
+		地砖“纳米渣滓”风格迷彩作训服。这是最顶尖的 \
+		特工所穿的终极间谍制服。以我们最新的迷彩科技布料 \
+		提供最佳灵活性。非常适合 \
+		危险的走廊间谍行动。祝您使用愉快！"
 	order_flags = ORDER_CONTRABAND
 	cost = CARGO_CRATE_VALUE * 6
 	contains = list(
@@ -347,7 +347,7 @@ Removal End */
 		/obj/item/clothing/shoes/jackboots/floortile = 3,
 		/obj/item/storage/backpack/floortile = 3
 	)
-	crate_name = "floortile camouflauge crate"
+	crate_name = "地砖迷彩板条箱"
 	crate_type = /obj/structure/closet/crate/secure/weapon
 
 /**
@@ -355,10 +355,10 @@ Removal End */
  * It can also be used to restock it, if you hit it with enough credits.
  */
 /datum/supply_pack/imports/blackmarket_telepad
-	name = "Black Market LTSRBT"
-	desc = "Need a faster and better way of transporting your illegal goods from and to the \
-		station? Fear not, the Long-To-Short-Range-Bluespace-Transceiver (LTSRBT for short) \
-		is here to help. Contains a LTSRBT circuit, two bluespace crystals, and one ansible."
+	name = "黑市 LTSRBT"
+	desc = "需要更快更好的方法把你的非法货物运进运出 \
+		空间站？别怕，远近程蓝空间收发器（简称 LTSRBT） \
+		来帮忙了。内含一块 LTSRBT 电路、两颗蓝空间水晶和一个安塞波。"
 	cost = CARGO_CRATE_VALUE * 10
 	order_flags = ORDER_CONTRABAND
 	contains = list(
@@ -368,9 +368,9 @@ Removal End */
 	)
 
 /datum/supply_pack/imports/fan_upgrade
-	name = "Cargo Shuttle Upgrade: Air Renewal"
-	desc = "Do you or your coworkers have a bad habit of leaving your cargo shuttle shutter doors open to the cold, cold, vaccuum of space? \
-		With this handy engineering retrofit, your shuttle will now be equip with a few handy plastic flaps and a subscription for air refills."
+	name = "货运穿梭机升级：空气更新"
+	desc = "你或你的同事是不是有个坏习惯，总把货运穿梭机的卷帘门敞向寒冷、寒冷的太空真空？\
+		有了这项便捷的工程改装，你的穿梭机将配备几片便利的塑料门帘，并附赠空气补充订阅。"
 	cost = CARGO_CRATE_VALUE * 40 // HELLA expensive.
 	order_flags = ORDER_NOT_DEPARTMENTAL
 	access_view = ACCESS_CARGO
@@ -390,21 +390,21 @@ Removal End */
 	return ..()
 
 /obj/item/paper/fluff/certificate
-	name = "Certificate of Shuttle Upgrade"
+	name = "穿梭机升级证书"
 	color = COLOR_LIGHT_ORANGE
-	desc = "A note from the Nanotrasen Mechanics Society detailing your new shuttle upgrade."
-	default_raw_text = "Hey boss. We got those flaps installed for ya, nothing to it really. You'll find 'em over the blast doors or the exits, \
-		whichever the mechanics were able to get to. They're all set to go without any tweaking, so don't futz with them. Otherwise, you let us know \
-		if anything seems out of place."
+	desc = "一封来自纳米传讯机械师协会的便条，详细说明你的新穿梭机升级。"
+	default_raw_text = "嘿老板。那些门帘我们给你装好了，真没什么难的。你会在防爆门上或出口处找到它们， \
+		就看机械师先够到哪个了。它们都调好了，不用再动，所以别乱碰。除此之外，要是有哪里看起来不对， \
+		你告诉我们。"
 
 /datum/supply_pack/imports/jet_boots
-	name = "Jet Boots"
-	desc = "These days, it's hard enough to get yourself access to a personal cruiser, let alone your own personal hyperspace tunnel.\
-		Why not travel in style? Introducing the all new, nuVoid Jet Boots. Sleek, off white finish. Self-propelling mini-ion thrusters.\
-		Genuine carbo-fuel microjets for that old-world finish. Don't just arrive, arrive in style. No financing required or available."
+	name = "喷射靴"
+	desc = "如今，光是弄到一艘私人巡洋舰就已经够难了，更别说你自己的超空间隧道。\
+		为什么不潇洒出行？全新 nuVoid 喷射靴登场。流线型米白表面。自推进微型离子推进器。\
+		真正的碳燃料微型喷流，带来旧时代的质感。别只是抵达，要潇洒地抵达。无需融资，也不提供融资。"
 	order_flags = ORDER_NOT_DEPARTMENTAL
 	access_view = ACCESS_CARGO
 	cost = CARGO_CRATE_VALUE * 200 // One pair of these boots are really gosh darn expensive.
 	contains = list(/obj/item/clothing/shoes/bhop/rocket/jet)
-	crate_name = "nuVoid Jet Boots Crate"
+	crate_name = "nuVoid 喷射靴板条箱"
 	crate_type = /obj/structure/closet/crate/goldcrate

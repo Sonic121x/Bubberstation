@@ -3,7 +3,7 @@
 ///////////////// Booze & Bottles ///////////////////
 
 /datum/crafting_recipe/lizardwine
-	name = "Lizard Wine"
+	name = "蜥蜴酒"
 	time = 4 SECONDS
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -14,7 +14,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/moonshinejug
-	name = "Moonshine Jug"
+	name = "私酿酒罐"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -24,7 +24,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/hoochbottle
-	name = "Hooch Bottle"
+	name = "私酒瓶"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -36,7 +36,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/blazaambottle
-	name = "Blazaam Bottle"
+	name = "布拉赞瓶"
 	time = 2 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -46,7 +46,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/champagnebottle
-	name = "Champagne Bottle"
+	name = "香槟瓶"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -56,7 +56,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/trappistbottle
-	name = "Trappist Bottle"
+	name = "特拉比斯特瓶"
 	time = 1.5 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle/small = 1,
@@ -66,7 +66,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/goldschlagerbottle
-	name = "Goldschlager Bottle"
+	name = "金箔酒瓶"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -76,7 +76,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/patronbottle
-	name = "Patron Bottle"
+	name = "培恩瓶"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -88,7 +88,7 @@
 ////////////////////// Non-alcoholic recipes ///////////////////
 
 /datum/crafting_recipe/holybottle
-	name = "Holy Water Flask"
+	name = "圣水壶"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -100,7 +100,7 @@
 //flask of unholy water is a beaker for some reason, I will try making it a bottle and add it here once the antag freeze is over. t. kryson
 
 /datum/crafting_recipe/nothingbottle
-	name = "Nothing Bottle"
+	name = "虚无瓶"
 	time = 3 SECONDS
 	reqs = list(
 		/obj/item/reagent_containers/cup/glass/bottle = 1,
@@ -110,14 +110,14 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/smallcarton
-	name = "Small Carton"
+	name = "小纸盒"
 	result = /obj/item/reagent_containers/cup/glass/bottle/juice/smallcarton
 	time = 1 SECONDS
 	reqs = list(/obj/item/stack/sheet/cardboard = 1)
 	category = CAT_CONTAINERS
 
 /datum/crafting_recipe/candycornliquor
-	name = "candy corn liquor"
+	name = "玉米糖利口酒"
 	result = /obj/item/reagent_containers/cup/glass/bottle/candycornliquor
 	time = 3 SECONDS
 	reqs = list(/datum/reagent/consumable/ethanol/whiskey = 100,
@@ -126,7 +126,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/kong
-	name = "Kong"
+	name = "金刚"
 	result = /obj/item/reagent_containers/cup/glass/bottle/kong
 	time = 3 SECONDS
 	reqs = list(/datum/reagent/consumable/ethanol/whiskey = 100,
@@ -135,7 +135,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/pruno
-	name = "pruno mix"
+	name = "私酿果酒混合料"
 	result = /obj/item/reagent_containers/cup/glass/bottle/pruno
 	time = 3 SECONDS
 	reqs = list(/obj/item/storage/bag/trash = 1,
@@ -149,7 +149,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/lean
-	name = "lean"
+	name = "紫水"
 	result = /obj/item/reagent_containers/cup/glass/colocup/lean
 	time = 1 SECONDS
 	reqs = list(/obj/item/reagent_containers/cup/glass/colocup = 1,

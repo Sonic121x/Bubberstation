@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 			for(var/datum/port/output/output as anything in port.connected_ports)
 				connected_to += REF(output)
 			component_data["input_ports"] += list(list(
-				"name" = port.name,
+				"name" = chinese_batch_five_circuit_port_display(port.name),
 				"type" = port.datatype,
 				"ref" = REF(port), // The ref is the identifier to work out what it is connected to
 				"connected_to" = connected_to,
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 		component_data["output_ports"] = list()
 		for(var/datum/port/output/port as anything in component.output_ports)
 			component_data["output_ports"] += list(list(
-				"name" = port.name,
+				"name" = chinese_batch_five_circuit_port_display(port.name),
 				"type" = port.datatype,
 				"ref" = REF(port),
 				"color" = port.color,

@@ -1,6 +1,6 @@
 /datum/experiment/scanning/random
-	name = "Base random scanning experiment"
-	description = "This experiment's contents will be randomized. Good luck!"
+	name = "基础随机扫描实验"
+	description = "该实验的内容将随机生成。祝你好运！"
 	///list of types which that can be included in the experiment. Randomly picked from on New
 	var/list/possible_types = list()
 	/// The total desired number of atoms to have scanned
@@ -24,7 +24,7 @@
 	. = ..()
 	damage_percent = rand(15, 95)
 	//updating the description with the damage_percent var set
-	description = "Your exosuit fabricators allow for rapid production on a small scale, but the structural integrity of created parts is inferior to those made with more traditional means. Damage a few exosuits to around [damage_percent]% integrity and scan them to help us determine how the armor fails under stress."
+	description = "你的外骨骼制造机能够进行小规模快速生产，但所制部件的结构完整性不如以更传统手段制造的部件。将几台外骨骼损坏至约 [damage_percent]% 完整度后扫描它们，以帮助我们确定护甲在应力下如何失效。"
 
 /datum/experiment/scanning/random/mecha_damage_scan/final_contributing_index_checks(datum/component/experiment_handler/experiment_handler, atom/target, typepath)
 	var/found_percent = round((target.get_integrity() / target.max_integrity) * 100)
@@ -35,9 +35,9 @@
 	if(!istype(stompy))
 		return FALSE //Not a mech
 	if(!HAS_TRAIT(stompy,TRAIT_MECHA_CREATED_NORMALLY))
-		experiment_handler.announce_message("Scanned mech was not made by crew. There is nothing to learn here.")
+		experiment_handler.announce_message("被扫描的机甲并非船员制造。在这里没什么可学的。")
 		return FALSE //Not hand-crafted
 	if(!(stompy.equip_by_category[MECHA_L_ARM] && stompy.equip_by_category[MECHA_R_ARM]))
-		experiment_handler.announce_message("Scanned mech is missing equipment on their arms to proceed this experiment.")
+		experiment_handler.announce_message("被扫描的机甲臂部缺少装备，无法继续进行该实验。")
 		return FALSE //Both arms need be filled
 	return ..()

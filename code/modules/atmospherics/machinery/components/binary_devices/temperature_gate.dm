@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/components/binary/temperature_gate
 	icon_state = "tgate_map-3"
-	name = "temperature gate"
-	desc = "An activable gate that compares the input temperature with the interface set temperature to check if the gas can flow from the input side to the output side or not."
+	name = "温度闸门"
+	desc = "一种可启用的闸门，会对比输入温度与界面设定温度，以判断气体能否从输入端流向输出端。"
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 	construction_type = /obj/item/pipe/directional
@@ -23,15 +23,15 @@
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Turn [on ? "off" : "on"]"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Maximize target temperature"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "切换为[on ? "关闭" : "开启"]"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "将目标温度设为最大"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/click_ctrl(mob/user)
 	if(is_operational)
 		set_on(!on)
-		balloon_alert(user, "turned [on ? "on" : "off"]")
-		investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
+		balloon_alert(user, "已[on ? "开启" : "关闭"]")
+		investigate_log("被 [key_name(user)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 		return CLICK_ACTION_SUCCESS
 	return CLICK_ACTION_BLOCKING
 
@@ -40,19 +40,19 @@
 		return CLICK_ACTION_BLOCKING
 
 	target_temperature = max_temperature
-	investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
-	balloon_alert(user, "target temperature set to [target_temperature] K")
+	investigate_log("被 [key_name(user)] 设为 [target_temperature] K", INVESTIGATE_ATMOS)
+	balloon_alert(user, "目标温度已设为 [target_temperature] K")
 	update_appearance(UPDATE_ICON)
 	return CLICK_ACTION_SUCCESS
 
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/examine(mob/user)
 	. = ..()
-	. += "This device will let gas flow if the temperature of the gas in the input is [inverted ? "higher" : "lower"] than the temperature set in the interface."
+	. += "当输入气体的温度[inverted ? "高于" : "低于"]界面设定温度时，该设备会允许气体通过。"
 	if(inverted)
-		. += "The device settings can be restored if a multitool is used on it."
+		. += "使用多功能工具作用于该设备，可恢复设备的设置。"
 	else
-		. += "The sensor's settings can be changed by using a multitool on the device."
+		. += "使用多功能工具作用于该设备，可更改传感器的设置。"
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/update_icon_nopipes()
 	if(on && is_operational && is_gas_flowing)
@@ -113,7 +113,7 @@
 	switch(action)
 		if("power")
 			set_on(!on)
-			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
+			investigate_log("被 [key_name(usr)] [on ? "开启" : "关闭"]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("temperature")
 			var/temperature = params["temperature"]
@@ -125,13 +125,13 @@
 				. = TRUE
 			if(.)
 				target_temperature = clamp(minimum_temperature, temperature, max_temperature)
-				investigate_log("was set to [target_temperature] K by [key_name(usr)]", INVESTIGATE_ATMOS)
+				investigate_log("被 [key_name(usr)] 设为 [target_temperature] K", INVESTIGATE_ATMOS)
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法用扳手拆下 [src]，请先将其关闭！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/binary/temperature_gate/multitool_act(mob/living/user, obj/item/multitool/I)
@@ -139,9 +139,9 @@
 	if (istype(I))
 		inverted = !inverted
 		if(inverted)
-			to_chat(user, span_notice("You set the [src]'s sensors to release gases when the temperature is higher than the setted one."))
+			to_chat(user, span_notice("你将 [src] 的传感器设置为：当温度高于设定值时释放气体。"))
 		else
-			to_chat(user, span_notice("You set the [src]'s sensors to the default settings."))
+			to_chat(user, span_notice("你将 [src] 的传感器恢复为默认设置。"))
 	return TRUE
 
 //mapping

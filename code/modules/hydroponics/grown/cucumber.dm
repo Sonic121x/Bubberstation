@@ -1,10 +1,10 @@
 // CUCUMBERS YEAH
 /obj/item/seeds/cucumber
-	name = "cucumber seed pack"
-	desc = "These seeds grow into cucumber plants."
+	name = "黄瓜种子包"
+	desc = "这些种子会长成黄瓜植株。"
 	icon_state = "seed-cucumber"
 	species = "cucumber"
-	plantname = "Cucumber Plant"
+	plantname = "黄瓜植株"
 	product = /obj/item/food/grown/cucumber
 	maturation = 10
 	production = 1
@@ -18,11 +18,11 @@
 
 /obj/item/food/grown/cucumber
 	seed = /obj/item/seeds/cucumber
-	name = "cucumber"
-	desc = "Oblong and green, with pimples, the standard of salads."
+	name = "黄瓜"
+	desc = "长圆形、绿色、带小疙瘩，是沙拉的标配。"
 	icon_state = "cucumber"
 	foodtypes = VEGETABLES
-	tastes = list("cucumber" = 1)
+	tastes = list("黄瓜" = 1)
 
 /obj/item/food/grown/cucumber/juice_typepath()
 	return /datum/reagent/consumable/cucumberjuice

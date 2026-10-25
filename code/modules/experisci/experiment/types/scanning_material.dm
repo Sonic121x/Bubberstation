@@ -1,6 +1,6 @@
 /datum/experiment/scanning/random/material
-	name = "Material Scanning Experiment"
-	description = "Base experiment for scanning atoms with materials"
+	name = "材料扫描实验"
+	description = "用于扫描带材料物体的基础实验"
 	exp_tag = "Material Scan"
 	total_requirement = 8
 	possible_types = list(/obj/structure/chair, /obj/structure/toilet, /obj/structure/table, /turf/closed/wall, /turf/open/floor)
@@ -20,5 +20,5 @@
 
 /datum/experiment/scanning/random/material/serialize_progress_stage(atom/target, list/seen_instances)
 	var/datum/material/required_material = SSmaterials.get_material(required_materials[target])
-	return EXPERIMENT_PROG_INT("Scan samples of \a [required_material.name] [initial(target.name)]", \
+	return EXPERIMENT_PROG_INT("扫描 [required_material.name] [initial(target.name)] 的样本", \
 		traits & EXPERIMENT_TRAIT_DESTRUCTIVE ? scanned[target] : seen_instances.len, required_atoms[target])

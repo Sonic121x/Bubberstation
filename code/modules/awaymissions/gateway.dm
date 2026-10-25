@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
  * Will NOT be added automatically to GLOB.gateway_destinations list.
  */
 /datum/gateway_destination
-	var/name = "Unknown Destination"
+	var/name = "未知目的地"
 	var/wait = 0 /// How long after roundstart this destination becomes active
 	var/enabled = TRUE /// If disabled, the destination won't be available
 	var/hidden = FALSE /// Will not show on gateway controls at all.
@@ -20,10 +20,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /* Returns user-friendly description why you can't connect to this destination, displayed in UI */
 /datum/gateway_destination/proc/get_available_reason()
-	. = "Unreachable"
+	. = "无法抵达"
 	if(world.time - SSticker.round_start_time < wait)
 		playsound(src, 'sound/machines/gateway/gateway_calibrating.ogg', 80, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-		. = "Connection desynchronized. Recalibration in progress."
+		. = "连接失去同步。正在重新校准。"
 
 /* Check if the movable is allowed to arrive at this destination (exile implants mostly) */
 /datum/gateway_destination/proc/incoming_pass_check(atom/movable/AM)
@@ -79,11 +79,11 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 /datum/gateway_destination/gateway/get_available_reason()
 	. = ..()
 	if(!target_gateway.calibrated)
-		. = "Exit gateway malfunction. Manual recalibration required."
+		. = "出口传送门故障。需要手动重新校准。"
 	if(target_gateway.target)
-		. = "Exit gateway in use."
+		. = "出口传送门正在使用中。"
 	if(!target_gateway.powered())
-		. = "Exit gateway unpowered."
+		. = "出口传送门未通电。"
 
 /datum/gateway_destination/gateway/get_target_turf()
 	return get_step(target_gateway.portal, target_gateway.dir)
@@ -102,18 +102,18 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	else
 		for(var/mob/living/L in AM.contents)
 			if(check_exile_implant(L))
-				target_gateway.say("Rejecting [AM]: Exile implant detected in contained lifeform.")
+				target_gateway.say("拒绝 [AM]：在内部生命体中检测到流放植入体。")
 				return FALSE
 	if(AM.has_buckled_mobs())
 		for(var/mob/living/L in AM.buckled_mobs)
 			if(check_exile_implant(L))
-				target_gateway.say("Rejecting [AM]: Exile implant detected in close proximity lifeform.")
+				target_gateway.say("拒绝 [AM]：在紧邻的生命体中检测到流放植入体。")
 				return FALSE
 	return TRUE
 
 /datum/gateway_destination/gateway/home/proc/check_exile_implant(mob/living/L)
 	for(var/obj/item/implant/exile/E in L.implants)//Checking that there is an exile implant
-		to_chat(L, span_userdanger("The station gate has detected your exile implant and is blocking your entry."))
+		to_chat(L, span_userdanger("空间站传送门检测到了你的流放植入体，正在阻止你进入。"))
 		return TRUE
 	return FALSE
 
@@ -143,8 +143,8 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	gateway = null
 
 /obj/machinery/gateway
-	name = "gateway"
-	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	name = "传送门"
+	desc = "一座由未知之手建造的神秘传送门，它能让人们以超光速前往遥远的地方。"
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "portal_frame"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	/// Type of instanced gateway destination, needs to be subtype of /datum/gateway_destination/gateway
 	var/destination_type = /datum/gateway_destination/gateway
 	/// Name of the generated destination
-	var/destination_name = "Unknown Gateway"
+	var/destination_name = "未知传送门"
 	/// This is our own destination, pointing at this gateway
 	var/datum/gateway_destination/gateway/destination
 	/// This is current active destination
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 /obj/machinery/gateway/attacked_by(obj/item/I, mob/living/user)
 	. = ..()
 	if(istype(I, /obj/item/key/gateway) && requires_key)
-		to_chat(user, "<span class='notice'>You insert [src] into the keyway, unlocking the gateway!</span>")
+		to_chat(user, "<span class='notice'>你把[src]插入钥匙孔，解开了传送门的锁！</span>")
 		key_used = TRUE
 		qdel(I)
 		return
@@ -297,17 +297,17 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 		return
 	var/turf/tar_turf = target?.get_target_turf()
 	if(isnull(tar_turf))
-		to_chat(user, span_warning("There's no active destination for the gateway... or it's broken. Maybe try again later?"))
+		to_chat(user, span_warning("传送门没有已激活的目的地……或者它坏了。也许稍后再试试？"))
 		return
 	if(is_secret_level(tar_turf.z) && !user.client?.holder)
-		to_chat(user, span_warning("The gateway destination is secret."))
+		to_chat(user, span_warning("该传送门目的地是保密的。"))
 		return
 	Transfer(user)
 
 /* Station's primary gateway */
 /obj/machinery/gateway/centerstation
 	destination_type = /datum/gateway_destination/gateway/home
-	destination_name = "Home Gateway"
+	destination_name = "主站传送门"
 
 /obj/machinery/gateway/centerstation/Initialize(mapload)
 	. = ..()
@@ -321,10 +321,10 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /obj/machinery/gateway/multitool_act(mob/living/user, obj/item/I)
 	if(calibrated)
-		to_chat(user, span_alert("The gate is already calibrated, there is no work for you to do here."))
+		to_chat(user, span_alert("这道门已经校准过了，这里没有需要你做的工作。"))
 	else
 		playsound(src, 'sound/machines/gateway/gateway_calibrated.ogg', 80, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-		to_chat(user, "[span_boldnotice("Recalibration successful!")]: \black This gate's systems have been fine tuned. Travel to this gate will now be on target.")
+		to_chat(user, "[span_boldnotice("重新校准成功！")]: \black 这道门的系统已经过精细调整。传送至这道门现在会准确到位。")
 		calibrated = TRUE
 	return TRUE
 
@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	. = ..()
 	if(!target)
 		if(!GLOB.the_gateway)
-			to_chat(user,span_warning("Home gateway is not responding!"))
+			to_chat(user,span_warning("主站传送门没有响应！"))
 		if(GLOB.the_gateway.target)
 			GLOB.the_gateway.deactivate() //this will turn the home gateway off so that it's free for us to connect to
 		activate(GLOB.the_gateway.destination)
@@ -346,8 +346,8 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 
 /* Gateway control computer */
 /obj/machinery/computer/gateway_control
-	name = "Gateway Control"
-	desc = "Human friendly interface to the mysterious gate next to it."
+	name = "传送门控制台"
+	desc = "对旁边那座神秘传送门的、人类友好的操作界面。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/piratepad_control")
 	var/obj/machinery/gateway/G
 
@@ -390,7 +390,7 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 			if(ishuman(usr))
 				var/mob/living/carbon/human/interacting_human = usr
 				if(!allowed(interacting_human))
-					to_chat(interacting_human, "<span class='notice'>Error, you do not have the required access to link up the gateway.</span>")
+					to_chat(interacting_human, "<span class='notice'>错误，你没有链接传送门所需的权限。</span>")
 					return FALSE
 			//SKYRAT EDIT END
 			var/datum/gateway_destination/D = locate(params["destination"]) in GLOB.gateway_destinations
@@ -416,8 +416,8 @@ GLOBAL_LIST_EMPTY(gateway_destinations)
 	G.activate(D)
 
 /obj/item/paper/fluff/gateway
-	default_raw_text = "Congratulations,<br><br>Your station has been selected to carry out the Gateway Project.<br><br>The equipment will be shipped to you at the start of the next quarter.<br> You are to prepare a secure location to house the equipment as outlined in the attached documents.<br><br>--Nanotrasen Bluespace Research"
-	name = "Confidential Correspondence, Pg 1"
+	default_raw_text = "恭喜，<br><br>你的空间站已被选中执行传送门项目。<br><br>设备将在下个季度开始时运抵你处。<br> 你需要按照附件文件所述，准备一个安全地点来存放这些设备。<br><br>——纳米传讯蓝空间研究部"
+	name = "机密信件，第 1 页"
 
 /atom/movable/screen/map_view/gateway_port
 	var/datum/gateway_destination/our_destination

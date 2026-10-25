@@ -1,6 +1,6 @@
 /// Adventure wrapper event
 /datum/exploration_event/adventure
-	discovery_log = "Encountered something unexpected"
+	discovery_log = "遇到了意想不到的东西"
 	var/datum/adventure/adventure
 	abstract_type = /datum/exploration_event/adventure
 

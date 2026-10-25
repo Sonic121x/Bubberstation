@@ -1,10 +1,10 @@
 // Finally, peas. Base plant.
 /obj/item/seeds/peas
-	name = "pea pod pack"
-	desc = "These seeds grows into vitamin rich peas!"
+	name = "豌豆荚种子包"
+	desc = "这些种子会长成富含维生素的豌豆！"
 	icon_state = "seed-peas"
 	species = "peas"
-	plantname = "Pea Vines"
+	plantname = "豌豆藤"
 	product = /obj/item/food/grown/peas
 	maturation = 3
 	potency = 25
@@ -19,21 +19,21 @@
 
 /obj/item/food/grown/peas
 	seed = /obj/item/seeds/peas
-	name = "peapod"
-	desc = "Finally... peas."
+	name = "豌豆荚"
+	desc = "终于……豌豆。"
 	icon_state = "peas"
 	foodtypes = VEGETABLES
-	tastes = list ("peas" = 1, "chalky saltiness" = 1)
+	tastes = list ("豌豆" = 1, "粉笔般的咸味" = 1)
 	wine_power = 50
-	wine_flavor = "what is, distressingly, fermented peas."
+	wine_flavor = "令人不安的是，这是发酵的豌豆。"
 
 // Laughin' Peas
 /obj/item/seeds/peas/laugh
-	name = "laughin' pea pack"
-	desc = "These seeds give off a very soft purple glow.. they should grow into Laughin' Peas."
+	name = "欢笑豌豆种子包"
+	desc = "这些种子散发着非常柔和的紫色微光……它们应该会长成欢笑豌豆。"
 	icon_state = "seed-laughpeas"
 	species = "laughpeas"
-	plantname = "Laughin' Peas"
+	plantname = "欢笑豌豆"
 	product = /obj/item/food/grown/laugh
 	maturation = 7
 	potency = 10
@@ -50,24 +50,24 @@
 
 /obj/item/food/grown/laugh
 	seed = /obj/item/seeds/peas/laugh
-	name = "pod of laughin' peas"
-	desc = "Ridens Cicer, guaranteed to improve your mood dramatically upon consumption!"
+	name = "欢笑豌豆荚"
+	desc = "Ridens Cicer，保证食用后能大幅改善你的心情！"
 	icon_state = "laughpeas"
 	foodtypes = VEGETABLES
-	tastes = list ("a prancing rabbit" = 1) //Vib Ribbon sends her regards.. wherever she is.
+	tastes = list ("一只蹦跳的兔子" = 1) //Vib Ribbon sends her regards.. wherever she is.
 	wine_power = 90
-	wine_flavor = "a vector-graphic rabbit dancing on your tongue"
+	wine_flavor = "一只矢量图形兔子在你舌上起舞"
 
 /obj/item/food/grown/laugh/juice_typepath()
 	return /datum/reagent/consumable/laughsyrup
 
 // World Peas - Peace at last, peace at last...
 /obj/item/seeds/peas/laugh/peace
-	name = "world pea pack"
-	desc = "These rather large seeds give off a soothing blue glow..."
+	name = "世界豌豆种子包"
+	desc = "这些相当大的种子散发着令人平静的蓝色微光……"
 	icon_state = "seed-worldpeas"
 	species = "worldpeas"
-	plantname = "World Peas"
+	plantname = "世界豌豆"
 	product = /obj/item/food/grown/peace
 	maturation = 20
 	potency = 75
@@ -85,11 +85,11 @@
 
 /obj/item/food/grown/peace
 	seed = /obj/item/seeds/peas/laugh/peace
-	name = "cluster of world peas"
-	desc = "A plant discovered through extensive genetic engineering, and iterative graft work. It's rumored to bring peace to any who consume it. In the wider AgSci community, it's attained the nickname of 'Pax Mundi'." //at last... world peas. I'm not sorry.
+	name = "世界豌豆串"
+	desc = "一种通过大量基因工程和反复嫁接培育出的植物。据传任何食用它的人都会获得和平。在更广泛的农业科研圈里，它得到了“Pax Mundi”的绰号。" //at last... world peas. I'm not sorry.
 	icon_state = "worldpeas"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES
-	tastes = list ("numbing tranquility" = 2, "warmth" = 1)
+	tastes = list ("麻木的宁静" = 2, "温暖" = 1)
 	wine_power = 100
-	wine_flavor = "mind-numbing peace and warmth"
+	wine_flavor = "令人头脑麻木的和平与温暖"

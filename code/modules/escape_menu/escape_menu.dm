@@ -69,7 +69,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 /datum/escape_menu/process(seconds_per_tick)
 	send_update(list(
 		"serverTime" = server_timestamp(format = "hh:mm:ss"),
-		"shiftTime" = (SSticker.round_start_time == 0) ? "Pre-Game" : round_timestamp(),
+		"shiftTime" = (SSticker.round_start_time == 0) ? "开局前" : round_timestamp(),
 		"timeDilation" = "[round(SStime_track.time_dilation_current, 1)]",
 		"admins" = build_admin_list(),
 		"players" = build_player_list(),
@@ -111,34 +111,34 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
-		resources += list(list("id" = "bug", "label" = "Report Bug", "tooltip" = "Report a bug/issue"))
-		resources += list(list("id" = "github", "label" = "Github", "tooltip" = "Open the repository for the game"))
+		resources += list(list("id" = "bug", "label" = "报告缺陷", "tooltip" = "报告缺陷或问题"))
+		resources += list(list("id" = "github", "label" = "Github", "tooltip" = "打开本游戏的代码仓库"))
 
 	var/forumurl = CONFIG_GET(string/forumurl)
 	if(forumurl)
-		resources += list(list("id" = "forums", "label" = "Forums", "tooltip" = "Visit the server's forums"))
+		resources += list(list("id" = "forums", "label" = "论坛", "tooltip" = "访问服务器论坛"))
 
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
-		resources += list(list("id" = "rules", "label" = "Rules", "tooltip" = "View the server rules"))
+		resources += list(list("id" = "rules", "label" = "规则", "tooltip" = "查看服务器规则"))
 
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
-		resources += list(list("id" = "wiki", "label" = "Wiki", "tooltip" = "See the wiki for the game"))
+		resources += list(list("id" = "wiki", "label" = "Wiki", "tooltip" = "查看本游戏的 Wiki"))
 
 	var/configurl = CONFIG_GET(string/configurl)
 	if(configurl)
-		resources += list(list("id" = "config", "label" = "Config", "tooltip" = "View the server configuration files"))
+		resources += list(list("id" = "config", "label" = "配置", "tooltip" = "查看服务器配置文件"))
 
-	resources += list(list("id" = "changelog", "label" = "Change Log", "tooltip" = "See all changes to the server"))
+	resources += list(list("id" = "changelog", "label" = "更新日志", "tooltip" = "查看服务器的所有改动"))
 
 	window.send_message("init", list(
 		"stationName" = station_name(),
-		"roundId" = GLOB.round_id || "Unset",
+		"roundId" = GLOB.round_id || "未设置",
 		"serverTime" = server_timestamp(format = "hh:mm:ss"),
-		"shiftTime" = (SSticker.round_start_time == 0) ? "Pre-Game" : round_timestamp(),
+		"shiftTime" = (SSticker.round_start_time == 0) ? "开局前" : round_timestamp(),
 		"timeDilation" = "[round(SStime_track.time_dilation_current, 1)]",
-		"mapName" = SSmapping.current_map?.map_name || "Loading...",
+		"mapName" = SSmapping.current_map?.map_name || "加载中……",
 		"mapFeedbackLink" = SSmapping.current_map?.feedback_link,
 		"canLeaveBody" = isliving(client?.mob),
 		"canAdminHelp" = (/client/verb/adminhelp in client?.verbs),
@@ -200,7 +200,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 	switch(action)
 		if("opened")
 			if(!version_warned && client.byond_build < 1680)
-				to_chat(client, span_warning("Your BYOND version is not up-to-date enough to render the escape menu, please update to 516.1680 or higher."))
+				to_chat(client, span_warning("你的 BYOND 版本过旧，无法渲染退出菜单，请更新到 516.1680 或更高版本。"))
 				version_warned = TRUE
 
 			START_PROCESSING(SSescape_menu, src)
@@ -225,7 +225,7 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 			pray_verb.down(client)
 		if("see_notes")
 			if(!CONFIG_GET(flag/see_own_notes))
-				to_chat(client.mob, span_notice("Seeing notes has been disabled on this server."))
+				to_chat(client.mob, span_notice("本服务器已禁用查看备注功能。"))
 				return TRUE
 			browse_messages(null, client.ckey, null, TRUE)
 		if("ghost")
@@ -261,6 +261,6 @@ GAME_VERB_HIDDEN(/client, reset_held_keys_verb, "Reset Held Keys")
 			else
 				LAZYADD(client.prefs.ignoring, ckey)
 			client.prefs.save_preferences()
-			to_chat(client, span_notice("[ckey] has been [(ckey in client.prefs.ignoring) ? "" : "un"]ignored in OOC."))
+			to_chat(client, span_notice("[ckey] 已在 OOC 中被[(ckey in client.prefs.ignoring) ? "" : "取消"]忽略。"))
 
 	return TRUE

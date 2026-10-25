@@ -2,8 +2,8 @@
 	bio = 90
 
 /obj/item/clothing/shoes/magboots
-	name = "magboots"
-	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle."
+	name = "磁力靴"
+	desc = "磁性靴子，常用于舱外活动，以确保使用者安全地附着在载具上。"
 	icon_state = "magboots0"
 	base_icon_state = "magboots"
 	inhand_icon_state = "magboots"
@@ -46,7 +46,7 @@
 			AddElement(/datum/element/adjust_fishing_difficulty, fishing_modifier)
 	magpulse_fishing_modifier = fishing_modifier
 
-GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "Toggle Magboots", null)
+GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "切换磁力靴", null)
 
 	if(!can_use(usr))
 		return
@@ -70,21 +70,21 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "Toggle Magboots",
 		slowdown -= slowdown_active
 
 	update_appearance()
-	balloon_alert(user, "mag-pulse [magpulse ? "enabled" : "disabled"]")
+	balloon_alert(user, "磁脉冲[magpulse ? "已启用" : "已禁用"]")
 	//we want to update our speed so we arent running at max speed in regular magboots
 	user.update_equipment_speed_mods()
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()
-	. += "Its mag-pulse traction system appears to be [magpulse ? "enabled" : "disabled"]."
+	. += "它的磁脉冲牵引系统似乎[magpulse ? "已启用" : "已禁用"]。"
 
 /obj/item/clothing/shoes/magboots/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state][magpulse]"
 
 /obj/item/clothing/shoes/magboots/advance
-	name = "advanced magboots"
-	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
+	name = "高级磁力靴"
+	desc = "先进的磁性靴子，磁吸力更轻，对穿着者的负担更小。"
 	icon_state = "advmag0"
 	base_icon_state = "advmag"
 	slowdown_active = 0 // ZERO active slowdown
@@ -93,8 +93,8 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/magboots, toggle, usr, "Toggle Magboots",
 	fishing_modifier = 0
 
 /obj/item/clothing/shoes/magboots/syndie
-	name = "blood-red magboots"
-	desc = "Reverse-engineered magnetic boots that have a heavy magnetic pull. Property of Gorlex Marauders."
+	name = "血红色磁力靴"
+	desc = "逆向工程制造的磁性靴子，磁吸力极强。戈尔莱克斯掠夺者的财产。"
 	icon_state = "syndiemag0"
 	base_icon_state = "syndiemag"
 	magpulse_fishing_modifier = 6

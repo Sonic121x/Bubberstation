@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/scrubber
-	name = "portable air scrubber"
-	desc = "A portable variant of the station scrubbers, capable of filtering gas from the air around it or inserted tank. May also be wrenched into a port."
+	name = "便携式空气洗涤器"
+	desc = "固定式空气洗涤器的便携型号，可过滤周围空气或插入储罐中的气体。也可以用扳手将其接入接口。"
 	icon_state = "scrubber"
 	density = TRUE
 	max_integrity = 250
@@ -164,7 +164,7 @@
 			on = FALSE
 			update_appearance()
 	else if(on && holding)
-		user.investigate_log("started a transfer into [holding].", INVESTIGATE_ATMOS)
+		user.investigate_log("开始向 [holding] 转移气体。", INVESTIGATE_ATMOS)
 
 /obj/machinery/portable_atmospherics/scrubber/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -185,12 +185,12 @@
 			. = TRUE
 		if("reaction_suppression")
 			if(!nob_crystal_inserted)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] tried to toggle reaction suppression on a scrubber without a noblium crystal inside, possible href exploit attempt.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] 试图在没有超惰性晶体的情况下切换洗涤器的反应抑制，可能是 href 利用尝试。")
 				return
 			suppress_reactions = !suppress_reactions
 			SSair.start_processing_machine(src)
-			message_admins("[ADMIN_LOOKUPFLW(usr)] turned [suppress_reactions ? "on" : "off"] the [src] reaction suppression.")
-			usr.investigate_log("turned [suppress_reactions ? "on" : "off"] the [src] reaction suppression.", INVESTIGATE_ATMOS)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] 将 [src] 的反应抑制[suppress_reactions ? "开启" : "关闭"]了。")
+			usr.investigate_log("将 [src] 的反应抑制[suppress_reactions ? "开启" : "关闭"]。", INVESTIGATE_ATMOS)
 			. = TRUE
 	update_appearance()
 
@@ -199,7 +199,7 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/scrubber/huge
-	name = "huge air scrubber"
+	name = "大型空气洗涤器"
 	icon_state = "hugescrubber"
 	anchored = TRUE
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.5

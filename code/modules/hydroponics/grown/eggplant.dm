@@ -1,10 +1,10 @@
 // Eggplant
 /obj/item/seeds/eggplant
-	name = "eggplant seed pack"
-	desc = "These seeds grow to produce berries that look nothing like eggs."
+	name = "茄子种子包"
+	desc = "这些种子会长出完全不像鸡蛋的浆果。"
 	icon_state = "seed-eggplant"
 	species = "eggplant"
-	plantname = "Eggplants"
+	plantname = "茄子"
 	product = /obj/item/food/grown/eggplant
 	yield = 2
 	potency = 20
@@ -17,19 +17,19 @@
 
 /obj/item/food/grown/eggplant
 	seed = /obj/item/seeds/eggplant
-	name = "eggplant"
-	desc = "Maybe there's a chicken inside?"
+	name = "茄子"
+	desc = "说不定里面藏着一只鸡？"
 	icon_state = "eggplant"
 	foodtypes = VEGETABLES
 	wine_power = 20
 
 // Egg-Plant
 /obj/item/seeds/eggplant/eggy
-	name = "egg-plant seed pack"
-	desc = "These seeds grow to produce berries that look a lot like eggs."
+	name = "蛋茄种子包"
+	desc = "这些种子会长出非常像鸡蛋的浆果。"
 	icon_state = "seed-eggy"
 	species = "eggy"
-	plantname = "Egg-Plants"
+	plantname = "蛋茄"
 	product = /obj/item/food/grown/eggy
 	lifespan = 75
 	production = 12
@@ -38,8 +38,8 @@
 
 /obj/item/food/grown/eggy
 	seed = /obj/item/seeds/eggplant/eggy
-	name = "egg-plant"
-	desc = "There MUST be a chicken inside."
+	name = "蛋茄"
+	desc = "里面一定有只鸡。"
 	icon_state = "eggyplant"
 	trash_type = /obj/item/food/egg
 	foodtypes = MEAT

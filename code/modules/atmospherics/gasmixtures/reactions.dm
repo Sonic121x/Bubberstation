@@ -51,7 +51,7 @@
 	var/exclude = FALSE //do it this way to allow for addition/removal of reactions midmatch in the future
 	///The priority group this reaction is a part of. You can think of these as processing in batches, put your reaction into the one that's most fitting
 	var/priority_group
-	var/name = "reaction"
+	var/name = "反应"
 	var/id = "r"
 	/// Whether the presence of our reaction should make fires bigger or not.
 	var/expands_hotspot = FALSE
@@ -90,9 +90,9 @@
  */
 /datum/gas_reaction/water_vapor
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Water Vapor Condensation"
+	name = "水蒸气冷凝"
 	id = "vapor"
-	desc = "Water vapor condensation that can make things slippery."
+	desc = "水蒸气冷凝，会使物体表面变得湿滑。"
 
 /datum/gas_reaction/water_vapor/init_reqs()
 	requirements = list(
@@ -132,9 +132,9 @@
  */
 /datum/gas_reaction/miaster
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Dry Heat Sterilization"
+	name = "干热灭菌"
 	id = "sterilization"
-	desc = "Pathogens cannot survive in a hot environment. Miasma decomposes on high temperature."
+	desc = "病原体无法在高温环境中存活。高温下瘴气会分解。"
 
 /datum/gas_reaction/miaster/init_reqs()
 	requirements = list(
@@ -173,10 +173,10 @@
  */
 /datum/gas_reaction/plasmafire
 	priority_group = PRIORITY_FIRE
-	name = "Plasma Combustion"
+	name = "等离子燃烧"
 	id = "plasmafire"
 	expands_hotspot = TRUE
-	desc = "Combustion of oxygen and plasma. Able to produce tritium or carbon dioxide and water vapor."
+	desc = "氧气与等离子体的燃烧反应。可生成氚，或生成二氧化碳与水蒸气。"
 
 /datum/gas_reaction/plasmafire/init_reqs()
 	requirements = list(
@@ -251,10 +251,10 @@
  */
 /datum/gas_reaction/h2fire
 	priority_group = PRIORITY_FIRE
-	name = "Hydrogen Combustion"
+	name = "氢气燃烧"
 	id = "h2fire"
 	expands_hotspot = TRUE
-	desc = "Combustion of hydrogen with oxygen. Can be extremely fast and energetic if a few conditions are fulfilled."
+	desc = "氢气与氧气的燃烧反应。在满足若干条件时可能极为迅速且剧烈。"
 
 /datum/gas_reaction/h2fire/init_reqs()
 	requirements = list(
@@ -307,10 +307,10 @@
  */
 /datum/gas_reaction/tritfire
 	priority_group = PRIORITY_FIRE
-	name = "Tritium Combustion"
+	name = "氚燃烧"
 	id = "tritfire"
 	expands_hotspot = TRUE
-	desc = "Combustion of tritium with oxygen. Can be extremely fast and energetic if a few conditions are fulfilled."
+	desc = "氚与氧气的燃烧反应。在满足若干条件时可能极为迅速且剧烈。"
 
 /datum/gas_reaction/tritfire/init_reqs()
 	requirements = list(
@@ -371,10 +371,10 @@
  */
 /datum/gas_reaction/freonfire
 	priority_group = PRIORITY_FIRE
-	name = "Freon Combustion"
+	name = "氟利昂燃烧"
 	id = "freonfire"
 	expands_hotspot = TRUE
-	desc = "Reaction between oxygen and freon that consumes a huge amount of energy and can cool things significantly. Also able to produce hot ice."
+	desc = "氧气与氟利昂之间的反应，会消耗大量能量并显著降低温度。还可生成热冰。"
 
 /datum/gas_reaction/freonfire/init_reqs()
 	requirements = list(
@@ -445,9 +445,9 @@
  */
 /datum/gas_reaction/nitrousformation //formation of n2o, exothermic, requires bz as catalyst
 	priority_group = PRIORITY_FORMATION
-	name = "Nitrous Oxide Formation"
+	name = "一氧化二氮生成"
 	id = "nitrousformation"
-	desc = "Production of nitrous oxide with BZ as a catalyst."
+	desc = "以 BZ 气体为催化剂生成一氧化二氮。"
 
 /datum/gas_reaction/nitrousformation/init_reqs()
 	requirements = list(
@@ -487,9 +487,9 @@
  */
 /datum/gas_reaction/nitrous_decomp
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Nitrous Oxide Decomposition"
+	name = "一氧化二氮分解"
 	id = "nitrous_decomp"
-	desc = "Decomposition of nitrous oxide under high temperature."
+	desc = "高温下一氧化二氮的分解。"
 
 /datum/gas_reaction/nitrous_decomp/init_reqs()
 	requirements = list(
@@ -529,9 +529,9 @@
  */
 /datum/gas_reaction/bzformation
 	priority_group = PRIORITY_FORMATION
-	name = "BZ Gas Formation"
+	name = "BZ 气体生成"
 	id = "bzformation"
-	desc = "Production of BZ using plasma and nitrous oxide."
+	desc = "利用等离子体与一氧化二氮生成 BZ 气体。"
 
 /datum/gas_reaction/bzformation/init_reqs()
 	requirements = list(
@@ -589,9 +589,9 @@
  */
 /datum/gas_reaction/pluox_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Pluoxium Formation"
+	name = "富氧气生成"
 	id = "pluox_formation"
-	desc = "Alternate production for pluoxium which uses tritium."
+	desc = "使用氚生成富氧气的替代制法。"
 
 /datum/gas_reaction/pluox_formation/init_reqs()
 	requirements = list(
@@ -637,9 +637,9 @@
  */
 /datum/gas_reaction/nitrium_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Nitrium Formation"
+	name = "氮素气生成"
 	id = "nitrium_formation"
-	desc = "Production of nitrium from BZ, tritium, and nitrogen."
+	desc = "利用 BZ、氚与氮气生成氮素气。"
 
 /datum/gas_reaction/nitrium_formation/init_reqs()
 	requirements = list(
@@ -684,9 +684,9 @@
  */
 /datum/gas_reaction/nitrium_decomposition
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Nitrium Decomposition"
+	name = "氮素气分解"
 	id = "nitrium_decomp"
-	desc = "Decomposition of nitrium when exposed to oxygen under normal temperatures."
+	desc = "常温下氮素气接触氧气时发生的分解。"
 
 /datum/gas_reaction/nitrium_decomposition/init_reqs()
 	requirements = list(
@@ -728,9 +728,9 @@
  */
 /datum/gas_reaction/freonformation
 	priority_group = PRIORITY_FORMATION
-	name = "Freon Formation"
+	name = "氟利昂生成"
 	id = "freonformation"
-	desc = "Production of freon using plasma, carbon dioxide, and BZ under high temperature."
+	desc = "高温下利用等离子体、二氧化碳与 BZ 生成氟利昂。"
 
 /datum/gas_reaction/freonformation/init_reqs() //minimum requirements for freon formation
 	requirements = list(
@@ -781,9 +781,9 @@
  */
 /datum/gas_reaction/nobliumformation
 	priority_group = PRIORITY_FORMATION
-	name = "Hyper-Noblium Condensation"
+	name = "超惰性气体凝析"
 	id = "nobformation"
-	desc = "Production of hyper-noblium from nitrogen and tritium under very low temperatures. Extremely energetic."
+	desc = "在极低温下由氮气与氚生成超惰性气体。释放能量极强。"
 
 /datum/gas_reaction/nobliumformation/init_reqs()
 	requirements = list(
@@ -834,9 +834,9 @@
  */
 /datum/gas_reaction/halon_o2removal
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Halon Oxygen Absorption"
+	name = "哈龙吸氧"
 	id = "halon_o2removal"
-	desc = "Halon interaction with oxygen that can be used to snuff fires out."
+	desc = "哈龙与氧气的反应，可用于扑灭火焰。"
 
 /datum/gas_reaction/halon_o2removal/init_reqs()
 	requirements = list(
@@ -887,9 +887,9 @@
  */
 /datum/gas_reaction/healium_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Healium Formation"
+	name = "愈合气生成"
 	id = "healium_formation"
-	desc = "Production of healium using BZ and freon."
+	desc = "利用 BZ 与氟利昂生成愈合气。"
 
 /datum/gas_reaction/healium_formation/init_reqs()
 	requirements = list(
@@ -928,9 +928,9 @@
  */
 /datum/gas_reaction/zauker_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Zauker Formation"
+	name = "灼蚀气生成"
 	id = "zauker_formation"
-	desc = "Production of zauker using hyper-noblium and nitrium under very high temperatures."
+	desc = "在极高温下利用超惰性气体与氮素气生成灼蚀气。"
 
 /datum/gas_reaction/zauker_formation/init_reqs()
 	requirements = list(
@@ -971,9 +971,9 @@
  */
 /datum/gas_reaction/zauker_decomp
 	priority_group = PRIORITY_POST_FORMATION
-	name = "Zauker Decomposition"
+	name = "灼蚀气分解"
 	id = "zauker_decomp"
-	desc = "Decomposition of zauker when exposed to nitrogen."
+	desc = "灼蚀气接触氮气时发生的分解。"
 
 /datum/gas_reaction/zauker_decomp/init_reqs()
 	requirements = list(
@@ -1011,9 +1011,9 @@
  */
 /datum/gas_reaction/proto_nitrate_formation
 	priority_group = PRIORITY_FORMATION
-	name = "Proto Nitrate Formation"
+	name = "原硝气生成"
 	id = "proto_nitrate_formation"
-	desc = "Production of proto-nitrate from pluoxium and hydrogen under high temperatures."
+	desc = "高温下由富氧气与氢气生成原硝气。"
 
 /datum/gas_reaction/proto_nitrate_formation/init_reqs()
 	requirements = list(
@@ -1053,9 +1053,9 @@
  */
 /datum/gas_reaction/proto_nitrate_hydrogen_response
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Proto Nitrate Hydrogen Response"
+	name = "原硝气氢响应"
 	id = "proto_nitrate_hydrogen_response"
-	desc = "Conversion of hydrogen into proto nitrate."
+	desc = "将氢气转化为原硝气。"
 
 /datum/gas_reaction/proto_nitrate_hydrogen_response/init_reqs()
 	requirements = list(
@@ -1091,9 +1091,9 @@
  */
 /datum/gas_reaction/proto_nitrate_tritium_response
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Proto Nitrate Tritium Response"
+	name = "原硝气氚响应"
 	id = "proto_nitrate_tritium_response"
-	desc = "Conversion of tritium into hydrogen that consumes a small amount of proto-nitrate."
+	desc = "将氚转化为氢气，同时消耗少量原硝气。"
 
 /datum/gas_reaction/proto_nitrate_tritium_response/init_reqs()
 	requirements = list(
@@ -1144,9 +1144,9 @@
  */
 /datum/gas_reaction/proto_nitrate_bz_response
 	priority_group = PRIORITY_PRE_FORMATION
-	name = "Proto Nitrate BZ Response"
+	name = "原硝气 BZ 响应"
 	id = "proto_nitrate_bz_response"
-	desc = "Breakdown of BZ into nitrogen, helium, and plasma by proto-nitrate under low temperatures."
+	desc = "低温下原硝气将 BZ 分解为氮气、氦气与等离子体。"
 
 /datum/gas_reaction/proto_nitrate_bz_response/init_reqs()
 	requirements = list(
@@ -1196,9 +1196,9 @@
 
 /datum/gas_reaction/antinoblium_replication
 	priority_group = PRIORITY_FORMATION
-	name = "Antinoblium Replication"
+	name = "反惰性气体增殖"
 	id = "antinoblium_replication"
-	desc = "Antinoblium breaks down all gases into more of itself."
+	desc = "反惰性气体会将所有气体分解转化为更多自身。"
 
 /datum/gas_reaction/antinoblium_replication/init_reqs()
 	requirements = list(

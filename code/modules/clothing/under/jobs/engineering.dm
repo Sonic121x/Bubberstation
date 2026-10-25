@@ -12,8 +12,8 @@
 	acid = 20
 
 /obj/item/clothing/under/rank/engineering/chief_engineer
-	desc = "It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of \"Chief Engineer\". Made from fire resistant materials."
-	name = "chief engineer's jumpsuit"
+	desc = "这是发给那些疯狂到能坐上“总工程师”职位的工程师的高可视度连体服。由耐火材料制成。"
+	name = "总工程师连体服"
 	icon_state = "chiefengineer"
 	inhand_icon_state = "gy_suit"
 	armor_type = /datum/armor/clothing_under/engineering_chief_engineer
@@ -23,8 +23,8 @@
 	acid = 40
 
 /obj/item/clothing/under/rank/engineering/chief_engineer/skirt
-	name = "chief engineer's jumpskirt"
-	desc = "It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of \"Chief Engineer\". Made from fire resistant materials."
+	name = "总工程师连体裙"
+	desc = "这是发给那些疯狂到能坐上“总工程师”职位的工程师的高可视度连体裙。由耐火材料制成。"
 	icon_state = "chief_skirt"
 	inhand_icon_state = "gy_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -34,8 +34,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/engineering/chief_engineer/turtleneck
-	name = "chief engineer's turtleneck"
-	desc = "A yellow turtleneck and white khakis, for a chief engineer with a superior sense of style."
+	name = "总工程师高领衫"
+	desc = "一件黄色高领衫配白色卡其裤，献给品味出众的总工程师。"
 	icon_state = "ceturtle"
 	inhand_icon_state = "y_suit"
 	can_adjust = TRUE
@@ -43,8 +43,8 @@
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/rank/engineering/chief_engineer/turtleneck/skirt
-	name = "chief engineer's turtleneck skirt"
-	desc = "A yellow turtleneck and white khaki skirt, for a chief engineer with a superior sense of style."
+	name = "总工程师高领衫裙"
+	desc = "一件黄色高领衫配白色卡其短裙，献给品味出众的总工程师。"
 	icon_state = "ceturtle_skirt"
 	inhand_icon_state = "y_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -54,14 +54,14 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/engineering/atmospheric_technician
-	desc = "It's a jumpsuit worn by atmospheric technicians. Made from fire resistant materials."
-	name = "atmospheric technician's jumpsuit"
+	desc = "大气技术员穿的连体服。由耐火材料制成。"
+	name = "大气技术员连体服"
 	icon_state = "atmos"
 	inhand_icon_state = "atmos_suit"
 
 /obj/item/clothing/under/rank/engineering/atmospheric_technician/skirt
-	name = "atmospheric technician's jumpskirt"
-	desc = "It's a jumpskirt worn by atmospheric technicians. Made from fire resistant materials."
+	name = "大气技术员连体裙"
+	desc = "大气技术员穿的连体裙。由耐火材料制成。"
 	icon_state = "atmos_skirt"
 	inhand_icon_state = "atmos_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -71,21 +71,21 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/engineering/engineer
-	desc = "It's an orange high visibility jumpsuit worn by engineers. Made from fire resistant materials."
-	name = "engineer's jumpsuit"
+	desc = "工程师穿的橙色高可视度连体服。由耐火材料制成。"
+	name = "工程师连体服"
 	icon_state = "engine"
 	inhand_icon_state = "engi_suit"
 
 /obj/item/clothing/under/rank/engineering/engineer/hazard
-	name = "engineer's hazard jumpsuit"
-	desc = "A high visibility jumpsuit. Made from fire resistant materials."
+	name = "工程师危险作业连体服"
+	desc = "一件高可视度连体服。由耐火材料制成。"
 	icon_state = "hazard"
 	inhand_icon_state = "syndicate-orange"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/engineering/engineer/skirt
-	name = "engineer's jumpskirt"
-	desc = "It's an orange high visibility jumpskirt worn by engineers. Made from fire resistant materials."
+	name = "工程师连体裙"
+	desc = "工程师穿的橙色高可视度连体裙。由耐火材料制成。"
 	icon_state = "engine_skirt"
 	inhand_icon_state = "engi_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

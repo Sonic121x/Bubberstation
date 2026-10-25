@@ -3,9 +3,9 @@
 // *************************************
 
 /obj/item/reagent_containers/spray/weedspray // -- Skie
-	desc = "It's a toxic mixture, in spray form, to kill small weeds."
+	desc = "一种有毒的混合液，以喷雾形式用于杀死小杂草。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
-	name = "weed spray"
+	name = "除草喷雾"
 	icon_state = "weedspray"
 	inhand_icon_state = "spraycan"
 	worn_icon_state = "spraycan"
@@ -15,13 +15,13 @@
 	list_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 100)
 
 /obj/item/reagent_containers/spray/weedspray/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is huffing [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在猛吸[src]！看样子是想自杀！"))
 	return TOXLOSS
 
 /obj/item/reagent_containers/spray/pestspray // -- Skie
-	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
+	desc = "这是某种害虫清除喷雾！<I>请勿吸入！</I>"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
-	name = "pest spray"
+	name = "杀虫喷雾"
 	icon_state = "pestspray"
 	inhand_icon_state = "plantbgone"
 	worn_icon_state = "spraycan"
@@ -31,12 +31,12 @@
 	list_reagents = list(/datum/reagent/toxin/pestkiller = 100)
 
 /obj/item/reagent_containers/spray/pestspray/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is huffing [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正在猛吸[src]！看样子是想自杀！"))
 	return TOXLOSS
 
 /obj/item/cultivator
-	name = "cultivator"
-	desc = "It's used for removing weeds or scratching your back."
+	name = "松土铲"
+	desc = "用于清除杂草，或者挠挠你的背。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "cultivator"
 	inhand_icon_state = "cultivator"
@@ -48,21 +48,21 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.5)
-	attack_verb_continuous = list("slashes", "slices", "cuts", "claws")
-	attack_verb_simple = list("slash", "slice", "cut", "claw")
+	attack_verb_continuous = list("挥砍", "切片", "切割", "抓挠")
+	attack_verb_simple = list("挥砍", "切片", "切割", "抓挠")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 
 /obj/item/cultivator/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is scratching [user.p_their()] back as hard as [user.p_they()] can with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正拿着[src]拼命挠自己的背！看样子是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/cultivator/rake
-	name = "rake"
+	name = "耙子"
 	icon_state = "rake"
 	icon_angle = -45
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("slashes", "slices", "bashes", "claws")
-	attack_verb_simple = list("slash", "slice", "bash", "claw")
+	attack_verb_continuous = list("挥砍", "切片", "猛击", "抓挠")
+	attack_verb_simple = list("挥砍", "切片", "猛击", "抓挠")
 	hitsound = null
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 	resistance_flags = FLAMMABLE
@@ -84,18 +84,18 @@
 		H.set_confusion_if_lower(10 SECONDS)
 		H.Stun(20)
 		playsound(src, 'sound/items/weapons/punch4.ogg', 50, TRUE)
-		H.visible_message(span_warning("[H] steps on [src] causing the handle to hit [H.p_them()] right in the face!"), \
-						  span_userdanger("You step on [src] causing the handle to hit you right in the face!"))
+		H.visible_message(span_warning("[H] 踩到了[src]上，柄正好砸在自己脸上！"), \
+						  span_userdanger("你踩到了[src]上，柄正好砸在你脸上！"))
 
 /obj/item/cultivator/cyborg
-	name = "cyborg cultivator"
+	name = "半机械人松土铲"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili_cultivator"
 	icon_angle = 0
 
 /obj/item/hatchet
-	name = "hatchet"
-	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	name = "短柄斧"
+	desc = "短纤维金属柄上装着一片非常锋利的斧刃。它有着悠久的砍伐历史，不过如今主要用来劈柴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "hatchet"
 	inhand_icon_state = "hatchet"
@@ -111,8 +111,8 @@
 	throw_range = 7
 	embed_type = /datum/embedding/hatchet
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5)
-	attack_verb_continuous = list("chops", "tears", "lacerates", "cuts")
-	attack_verb_simple = list("chop", "tear", "lacerate", "cut")
+	attack_verb_continuous = list("劈砍", "撕裂", "割裂", "切割")
+	attack_verb_simple = list("劈砍", "撕裂", "割裂", "切割")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
@@ -129,19 +129,19 @@
 	)
 
 /obj/item/hatchet/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is chopping at [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正用[src]砍自己！看样子是想自杀！"))
 	playsound(src, 'sound/items/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
 /obj/item/hatchet/wooden
-	desc = "A crude axe blade upon a short wooden handle."
+	desc = "短木柄上装着一片粗糙的斧刃。"
 	icon_state = "woodhatchet"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 1)
 	resistance_flags = FLAMMABLE
 	flags_1 = NONE
 
 /obj/item/hatchet/cyborg
-	name = "cyborg hatchet"
+	name = "半机械人短柄斧"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili_hatchet"
 	icon_angle = 0
@@ -211,9 +211,9 @@
 */
 
 /obj/item/secateurs
-	name = "secateurs"
-	desc = "It's a tool for cutting grafts off plants or changing podperson looks."
-	desc_controls = "Right-click to stylize podperson hair or other plant features!"
+	name = "修枝剪"
+	desc = "用于剪下植物上的嫁接枝，或改变豆荚人的外貌。"
+	desc_controls = "右键点击可为豆荚人发型或其他植物特征造型！"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "secateurs"
 	inhand_icon_state = null
@@ -227,8 +227,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT*2)
-	attack_verb_continuous = list("slashes", "slices", "cuts", "claws")
-	attack_verb_simple = list("slash", "slice", "cut", "claw")
+	attack_verb_continuous = list("挥砍", "切片", "切割", "抓挠")
+	attack_verb_simple = list("挥砍", "切片", "切割", "抓挠")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 
 ///Catch right clicks so we can stylize!
@@ -244,14 +244,14 @@
 	SEND_SIGNAL(target, COMSIG_ATOM_RESTYLE, user, target, user.zone_selected, EXTERNAL_RESTYLE_PLANT, 6 SECONDS)
 
 /obj/item/secateurs/cyborg
-	name = "cyborg secateurs"
+	name = "半机械人修枝剪"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "sili_secateur"
 	icon_angle = 0
 
 /obj/item/geneshears
-	name = "botanogenetic plant shears"
-	desc = "A high tech, high fidelity pair of plant shears, capable of cutting genetic traits out of a plant."
+	name = "植物基因剪"
+	desc = "一对高科技、高保真的植物剪，能够从植物中剪取基因性状。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "genesheers"
 	inhand_icon_state = null
@@ -264,8 +264,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 0.75, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
-	attack_verb_continuous = list("slashes", "slices", "cuts")
-	attack_verb_simple = list("slash", "slice", "cut")
+	attack_verb_continuous = list("挥砍", "切片", "切割")
+	attack_verb_simple = list("挥砍", "切片", "切割")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 
 // *************************************
@@ -274,7 +274,7 @@
 
 
 /obj/item/reagent_containers/cup/bottle/nutrient
-	name = "bottle of nutrient"
+	name = "营养液瓶"
 	volume = 50
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
@@ -286,22 +286,22 @@
 
 
 /obj/item/reagent_containers/cup/bottle/nutrient/ez
-	name = "bottle of E-Z-Nutrient"
-	desc = "Contains a fertilizer that causes mild mutations and gradual plant growth with each harvest."
+	name = "E-Z 营养液瓶"
+	desc = "含有一种肥料，每次收获时都会引起轻微突变并让植物逐步生长。"
 	list_reagents = list(/datum/reagent/plantnutriment/eznutriment = 50)
 
 /obj/item/reagent_containers/cup/bottle/nutrient/l4z
-	name = "bottle of Left 4 Zed"
-	desc = "Contains a fertilizer that lightly heals the plant but causes significant mutations in plants over generations."
+	name = "Left 4 Zed 营养液瓶"
+	desc = "含有一种肥料，能轻微治疗植物，但会使植物在数代之后产生显著突变。"
 	list_reagents = list(/datum/reagent/plantnutriment/left4zednutriment = 50)
 
 /obj/item/reagent_containers/cup/bottle/nutrient/rh
-	name = "bottle of Robust Harvest"
-	desc = "Contains a fertilizer that increases the yield of a plant while gradually preventing mutations."
+	name = "健壮丰收营养液瓶"
+	desc = "含有一种肥料，能提高植物产量，同时逐渐防止突变。"
 	list_reagents = list(/datum/reagent/plantnutriment/robustharvestnutriment = 50)
 
 /obj/item/reagent_containers/cup/bottle/nutrient/empty
-	name = "bottle"
+	name = "瓶子"
 
 /obj/item/reagent_containers/cup/bottle/killer
 	volume = 30
@@ -309,11 +309,11 @@
 	possible_transfer_amounts = list(1,2,5)
 
 /obj/item/reagent_containers/cup/bottle/killer/weedkiller
-	name = "bottle of weed killer"
-	desc = "Contains a herbicide."
+	name = "除草剂瓶"
+	desc = "含有一种除草剂。"
 	list_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 30)
 
 /obj/item/reagent_containers/cup/bottle/killer/pestkiller
-	name = "bottle of pest spray"
-	desc = "Contains a pesticide."
+	name = "杀虫喷雾瓶"
+	desc = "含有一种杀虫剂。"
 	list_reagents = list(/datum/reagent/toxin/pestkiller = 30)

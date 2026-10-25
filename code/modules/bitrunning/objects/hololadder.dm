@@ -1,8 +1,8 @@
 /obj/structure/hololadder
-	name = "hololadder"
+	name = "全息梯"
 
 	anchored = TRUE
-	desc = "An abstract representation of the means to disconnect from the virtual domain."
+	desc = "脱离虚拟域之手段的抽象具象。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	obj_flags = BLOCK_Z_OUT_DOWN
@@ -23,21 +23,21 @@
 /obj/structure/hololadder/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
-	context[SCREENTIP_CONTEXT_LMB] = "Disconnect"
+	context[SCREENTIP_CONTEXT_LMB] = "断开连接"
 
 
 /obj/structure/hololadder/examine(mob/user)
 	. = ..()
 
 	if(isnull(server_ref.resolve()))
-		. += span_infoplain("It's not connected to anything.")
+		. += span_infoplain("它没有连接到任何东西。")
 		return
 
 	if(isobserver(user))
-		. += span_notice("Left click to view the server that this ladder is connected to.")
+		. += span_notice("左键点击以查看此梯子所连接的服务器。")
 		return
 
-	. += span_infoplain("This ladder is connected to a server. You can click on it or walk over it to disconnect.")
+	. += span_infoplain("此梯子已连接至服务器。你可以点击它或走过它以断开连接。")
 
 
 /obj/structure/hololadder/attack_hand(mob/user, list/modifiers)
@@ -69,14 +69,14 @@
 		for(var/datum/weakref/ghostrole_weakref as anything in our_server.spawned_threat_refs)
 			var/mob/living/ghostrole = ghostrole_weakref.resolve()
 			if(ghostrole?.stat == STABLE && ghostrole.client && ghostrole.mind.has_antag_datum(/datum/antagonist/bitrunning_glitch))
-				to_chat(user, span_danger("A being in the simulation is preventing your retreat. You must either complete your mission or remove the obstacle before safe exit will be possible."))
+				to_chat(user, span_danger("模拟中的某个存在正在阻碍你撤退。你必须完成任务或清除障碍，才能安全退出。"))
 				return
 
 	if(!HAS_TRAIT(user, TRAIT_TEMPORARY_BODY))
-		balloon_alert(user, "no connection detected")
+		balloon_alert(user, "未检测到连接")
 		return
 
-	balloon_alert(user, "disconnecting...")
+	balloon_alert(user, "正在断开连接……")
 	if(do_after(user, travel_time, src))
 		SEND_SIGNAL(user, COMSIG_BITRUNNER_LADDER_SEVER)
 

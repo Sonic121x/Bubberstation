@@ -1,8 +1,8 @@
 /obj/item/clothing/head/hooded/ablative
-	name = "ablative hood"
+	name = "烧蚀兜帽"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
-	desc = "Hood hopefully belonging to an ablative trenchcoat. Includes a visor for cool-o-vision."
+	desc = "但愿是属于某件烧蚀风衣的兜帽。附有护目镜，可提供酷炫视觉。"
 	icon_state = "ablativehood"
 	flags_inv = HIDEHAIR|HIDEEARS
 	armor_type = /datum/armor/hooded_ablative
@@ -25,8 +25,8 @@
 		return TRUE
 
 /obj/item/clothing/suit/hooded/ablative
-	name = "ablative trenchcoat"
-	desc = "Experimental trenchcoat specially crafted to reflect and absorb laser and disabler shots. Don't expect it to do all that much against an axe or a shotgun, however."
+	name = "烧蚀风衣"
+	desc = "实验性风衣，专门用于反射和吸收激光与解除者射击。不过别指望它对付斧头或霰弹枪能有多大用处。"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	icon_state = "ablativecoat"
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
@@ -51,9 +51,9 @@
 /obj/item/clothing/suit/hooded/ablative/on_hood_up(obj/item/clothing/head/hooded/hood)
 	. = ..()
 	var/mob/living/carbon/user = loc
-	balloon_alert(user, "hud enabled")
+	balloon_alert(user, "HUD 已启用")
 
 /obj/item/clothing/suit/hooded/ablative/on_hood_down(obj/item/clothing/head/hooded/hood)
 	var/mob/living/carbon/user = loc
-	balloon_alert(user, "hud disabled")
+	balloon_alert(user, "HUD 已停用")
 	return ..()

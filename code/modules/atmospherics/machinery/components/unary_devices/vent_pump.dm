@@ -3,8 +3,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump
 	icon_state = "vent_map-3"
 
-	name = "air vent"
-	desc = "Has a valve and pump attached to it."
+	name = "通风口"
+	desc = "上面附有一个阀门和一台泵。"
 	construction_type = /obj/item/pipe/directional/vent
 	use_power = IDLE_POWER_USE
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.15
@@ -54,10 +54,10 @@
 		if(!tool_screentips)
 			tool_screentips = string_assoc_nested_list(list(
 				TOOL_MULTITOOL = list(
-					SCREENTIP_CONTEXT_LMB = "Log to link later with air sensor",
+					SCREENTIP_CONTEXT_LMB = "记录以便之后与空气传感器连接",
 				),
 				TOOL_SCREWDRIVER = list(
-					SCREENTIP_CONTEXT_LMB = "Repair",
+					SCREENTIP_CONTEXT_LMB = "维修",
 				),
 			))
 		AddElement(/datum/element/contextual_screentip_tools, tool_screentips)
@@ -70,28 +70,28 @@
 	var/condition_string
 	switch(get_integrity_percentage())
 		if(1)
-			condition_string = "perfect"
+			condition_string = "完美"
 		if(0.75 to 0.99)
-			condition_string = "good"
+			condition_string = "良好"
 		if(0.50 to 0.74)
-			condition_string = "okay"
+			condition_string = "尚可"
 		if(0.25 to 0.49)
-			condition_string = "bad"
+			condition_string = "较差"
 		else
-			condition_string = "terrible"
-	examine_condition = "The fan is in [condition_string] condition."
+			condition_string = "糟糕"
+	examine_condition = "风扇处于[condition_string]状态。"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)
 	. = ..()
-	. += span_notice("You can link it with an air sensor using a multitool.")
+	. += span_notice("你可以用多功能工具将其与空气传感器连接。")
 
 	if(fan_overclocked)
-		. += span_warning("It is currently overclocked causing it to take damage over time.")
+		. += span_warning("它当前处于超频状态，会持续受到损伤。")
 
 	if(get_integrity() > 0)
 		. += span_notice(examine_condition)
 	else
-		. += span_warning("The fan is broken.")
+		. += span_warning("风扇已损坏。")
 
 /obj/machinery/atmospherics/components/unary/vent_pump/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	if(istype(multi_tool.buffer, /obj/machinery/air_sensor))
@@ -100,7 +100,7 @@
 		sensor.multitool_act(user, multi_tool)
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "vent saved in buffer")
+	balloon_alert(user, "通风口已存入缓冲区")
 	multi_tool.set_buffer(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -109,13 +109,13 @@
 	if(!time_to_repair)
 		return FALSE
 
-	balloon_alert(user, "repairing vent...")
+	balloon_alert(user, "正在维修通风口……")
 	if(do_after(user, time_to_repair, src))
-		balloon_alert(user, "vent repaired")
+		balloon_alert(user, "通风口已修复")
 		repair_damage(max_integrity)
 
 	else
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/atmospherics/components/unary/vent_pump/atom_fix()
@@ -235,7 +235,7 @@
 	else
 		sound_loop.stop()
 
-	investigate_log("had its overlock setting [fan_overclocked ? "enabled" : "disabled"] by [source]", INVESTIGATE_ATMOS)
+	investigate_log("的超频设置被 [source] [fan_overclocked ? "启用" : "禁用"]", INVESTIGATE_ATMOS)
 
 	update_appearance(UPDATE_ICON)
 
@@ -253,7 +253,7 @@
 	if(fan_overclocked)
 		take_damage(fan_damage_rate, sound_effect=FALSE)
 		if(get_integrity() == 0)
-			investigate_log("was destroyed as a result of overclocking", INVESTIGATE_ATMOS)
+			investigate_log("因超频而损毁", INVESTIGATE_ATMOS)
 			return
 
 	var/percent_integrity = get_integrity_percentage()
@@ -319,31 +319,31 @@
 	..()
 	if(!welder.tool_start_check(user, amount=1))
 		return TRUE
-	to_chat(user, span_notice("You begin welding the vent..."))
+	to_chat(user, span_notice("你开始焊接通风口……"))
 	if(welder.use_tool(src, user, 20, volume=50))
 		if(!welded)
-			user.visible_message(span_notice("[user] welds the vent shut."), span_notice("You weld the vent shut."), span_hear("You hear welding."))
+			user.visible_message(span_notice("[user] 将通风口焊死。"), span_notice("你将通风口焊死。"), span_hear("你听见焊接声。"))
 			welded = TRUE
 		else
-			user.visible_message(span_notice("[user] unwelded the vent."), span_notice("You unweld the vent."), span_hear("You hear welding."))
+			user.visible_message(span_notice("[user] 解开了通风口的焊接。"), span_notice("你解开通风口的焊接。"), span_hear("你听见焊接声。"))
 			welded = FALSE
 		update_appearance(UPDATE_ICON)
 		pipe_vision_img = image(src, loc, dir = dir)
 		SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
-		investigate_log("was [welded ? "welded shut" : "unwelded"] by [key_name(user)]", INVESTIGATE_ATMOS)
+		investigate_log("被 [key_name(user)] [welded ? "焊死" : "解开焊接"]", INVESTIGATE_ATMOS)
 		add_fingerprint(user)
 	return TRUE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, span_warning("你无法用扳手卸下 [src]，请先将其关闭！"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)
 	. = ..()
 	if(welded)
-		. += "It seems welded shut."
+		. += "它似乎被焊死了。"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/power_change()
 	. = ..()
@@ -352,7 +352,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/attack_alien(mob/user, list/modifiers)
 	if(!welded || !(do_after(user, 2 SECONDS, target = src)))
 		return
-	user.visible_message(span_warning("[user] furiously claws at [src]!"), span_notice("You manage to clear away the stuff blocking the vent."), span_hear("You hear loud scraping noises."))
+	user.visible_message(span_warning("[user] 疯狂地抓挠 [src]！"), span_notice("你设法清除了堵住通风口的东西。"), span_hear("你听见刺耳的刮擦声。"))
 	welded = FALSE
 	update_appearance(UPDATE_ICON)
 	pipe_vision_img = image(src, loc, dir = dir)
@@ -360,7 +360,7 @@
 	playsound(loc, 'sound/items/weapons/bladeslice.ogg', 100, TRUE)
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume
-	name = "large air vent"
+	name = "大型通风口"
 	power_channel = AREA_USAGE_EQUIP
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/Initialize(mapload)

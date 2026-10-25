@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/foilhat
-	name = "tinfoil hat"
-	desc = "Thought control rays, psychotronic scanning. Don't mind that, I'm protected cause I made this hat."
+	name = "锡箔帽"
+	desc = "思想控制射线、精神电子扫描。别管那个，我戴着自己做的这顶帽子，所以有防护。"
 	icon_state = "foilhat"
 	inhand_icon_state = null
 	armor_type = /datum/armor/costume_foilhat
@@ -46,12 +46,12 @@
 	RegisterSignal(user, COMSIG_LIVING_SUICIDE_ACT, PROC_REF(call_suicide))
 
 	// user.gain_trauma(paranoia, TRAUMA_RESILIENCE_MAGIC ) BUBBERSTATION CHANGE: REMOVES PARANOIA
-	to_chat(user, span_warning("As you don the foiled hat, an entire world of conspiracy theories and seemingly insane ideas suddenly rush into your mind. What you once thought unbelievable suddenly seems.. undeniable. Everything is connected and nothing happens just by accident. You know too much and now they're out to get you. "))
+	to_chat(user, span_warning("当你戴上这顶锡箔帽时，一整个阴谋论与看似疯狂想法的世界突然涌入你的脑海。你曾认为难以置信的事，忽然变得……无可辩驳。万物皆有联系，没有什么是偶然发生的。你知道得太多了，现在他们要来抓你了。 "))
 
 /obj/item/clothing/head/costume/foilhat/mouse_drop_dragged(atom/over_object, mob/user)
 	//God Im sorry
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+		to_chat(user, span_userdanger("你为什么要摘下它？你想让他们进入你的大脑吗？！"))
 		return
 	return ..()
 
@@ -65,11 +65,11 @@
 
 /// When the foilhat is drained an anti-magic charge.
 /obj/item/clothing/head/costume/foilhat/proc/drain_antimagic(mob/user)
-	to_chat(user, span_warning("[src] crumples slightly. Something is trying to get inside your mind!"))
+	to_chat(user, span_warning("[src] 微微皱缩。有什么东西正试图钻进你的脑海！"))
 
 /obj/item/clothing/head/costume/foilhat/proc/warp_up()
-	name = "scorched tinfoil hat"
-	desc = "A badly warped up hat. Quite unlikely this will still work against any of the fictional or real dangers it used to."
+	name = "烧焦的锡箔帽"
+	desc = "一顶严重变形的帽子。对于它过去能抵挡的那些虚构或真实的危险，这顶帽子恐怕已经无能为力了。"
 	warped = TRUE
 	clothing_flags &= ~ANTI_TINFOIL_MANEUVER
 	if(!isliving(loc)) //BUBBERSTATION CHANGE, REMOVES PARANOIA
@@ -80,11 +80,11 @@
 		return
 	// QDEL_NULL(paranoia) BUBBERSTATION CHANGE, REMOVES PARANOIA
 	if(!IS_UNCONSCIOUS(target))
-		to_chat(target, span_warning("Your zealous conspirationism rapidly dissipates as the donned hat warps up into a ruined mess. All those theories starting to sound like nothing but a ridicolous fanfare."))
+		to_chat(target, span_warning("随着头上那顶帽子扭曲成一团废料，你狂热的阴谋论信仰迅速消散。那些理论听起来不过是荒唐的吹奏。"))
 
 /obj/item/clothing/head/costume/foilhat/attack_hand(mob/user, list/modifiers)
 	if(!warped && user.get_item_by_slot(ITEM_SLOT_HEAD) == src)
-		to_chat(user, span_userdanger("Why would you want to take this off? Do you want them to get into your mind?!"))
+		to_chat(user, span_userdanger("你为什么要摘下它？你想让他们进入你的大脑吗？！"))
 		return
 	return ..()
 
@@ -102,14 +102,14 @@
 	return OXYLOSS
 
 /obj/item/clothing/head/costume/foilhat/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] gets a crazed look in [user.p_their()] eyes! [capitalize(user.p_they())] [user.p_have()] witnessed the truth, and try to commit suicide!"))
+	user.visible_message(span_suicide("[user] 眼中露出疯狂的神色！亲眼目睹真相的 [user] 正试图自杀！"))
 	var/static/list/conspiracy_line = list(
-		";THEY'RE HIDING CAMERAS IN THE CEILINGS! THEY WITNESS EVERYTHING WE DO!!",
-		";HOW CAN I LIVE IN A WORLD WHERE MY FATE AND EXISTENCE IS DECIDED BY A GROUP OF INDIVIDUALS?!!",
-		";THEY'RE TOYING WITH ALL OF YOUR MINDS AND TREATING YOU AS EXPERIMENTS!!",
-		";THEY HIRE ASSISTANTS WITHOUT DOING BACKGROUND CHECKS!!",
-		";WE LIVE IN A ZOO AND WE ARE THE ONES BEING OBSERVED!!",
-		";WE REPEAT OUR LIVES DAILY WITHOUT FURTHER QUESTIONS!!"
+		";他们在天花板里藏了摄像头！我们做的一切都被他们看着！！",
+		";我怎么能活在一个由一小撮人决定我命运和存在的世界里？！！",
+		";他们在玩弄你们所有人的心智，把你们当成实验品！！",
+		";他们招助理的时候连背景调查都不做！！",
+		";我们住在一个动物园里，而我们才是被观察的对象！！",
+		";我们每天重复着同样的生活，却不再追问！！"
 	)
 	user.say(pick(conspiracy_line), forced=type)
 	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)

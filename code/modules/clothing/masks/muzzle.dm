@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/muzzle
-	name = "muzzle"
-	desc = "To stop that awful noise."
+	name = "口套"
+	desc = "用来堵住那可怕的噪音。"
 	icon_state = "muzzle"
 	inhand_icon_state = "blindfold"
 	lefthand_file = 'icons/mob/inhands/clothing/glasses_lefthand.dmi'
@@ -15,13 +15,13 @@
 
 /obj/item/clothing/mask/muzzle/attack_paw(mob/user, list/modifiers)
 	if(user.get_item_by_slot(ITEM_SLOT_MASK) == src)
-		to_chat(user, span_warning("You need help taking this off!"))
+		to_chat(user, span_warning("你需要别人帮忙才能把它取下来！"))
 		return
 	return ..()
 
 /obj/item/clothing/mask/muzzle/tape
-	name = "tape piece"
-	desc = "A piece of tape that can be put over someone's mouth."
+	name = "胶带片"
+	desc = "一段可以贴在别人嘴上的胶带。"
 	worn_icon_state = "tape_piece_worn"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_TINY
@@ -41,7 +41,7 @@
 
 /obj/item/clothing/mask/muzzle/tape/examine(mob/user)
 	. = ..()
-	. += "[span_notice("Use it on someone while not in combat mode to tape their mouth closed!")]"
+	. += "[span_notice("在非战斗模式下对某人使用，就能把他的嘴封上！")]"
 
 /obj/item/clothing/mask/muzzle/tape/dropped(mob/living/user)
 	. = ..()
@@ -51,42 +51,42 @@
 	if(harmful_strip)
 		user.apply_damage(stripping_damage, BRUTE, BODY_ZONE_HEAD)
 		INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, emote), "scream")
-		to_chat(user, span_userdanger("You feel a massive pain as hundreds of tiny spikes tear free from your face!"))
+		to_chat(user, span_userdanger("数百根细小尖刺从你脸上撕裂而出，你感到一阵剧痛！"))
 
 /obj/item/clothing/mask/muzzle/tape/attack(mob/living/carbon/victim, mob/living/carbon/attacker, list/modifiers, list/attack_modifiers)
 	if(attacker.combat_mode)
 		return ..()
 	if(victim.is_mouth_covered(ITEM_SLOT_HEAD))
-		to_chat(attacker, span_notice("[victim]'s mouth is covered."))
+		to_chat(attacker, span_notice("[victim] 的嘴已被遮住。"))
 		return
 	if(!mob_can_equip(victim, ITEM_SLOT_MASK))
-		to_chat(attacker, span_notice("[victim] is already wearing somthing on their face."))
+		to_chat(attacker, span_notice("[victim] 脸上已经戴着东西了。"))
 		return
-	balloon_alert(attacker, "taping mouth...")
-	to_chat(victim, span_userdanger("[attacker] is attempting to tape your mouth closed!"))
+	balloon_alert(attacker, "正在封口……")
+	to_chat(victim, span_userdanger("[attacker] 正试图把你的嘴封上！"))
 	if(!do_after(attacker, equip_delay_other, target = victim))
 		return
 	victim.equip_to_slot_if_possible(src, ITEM_SLOT_MASK)
 	update_appearance()
 
 /obj/item/clothing/mask/muzzle/tape/super
-	name = "super tape piece"
-	desc = "A piece of tape that can be put over someone's mouth. This one has extra strength."
+	name = "超级胶带片"
+	desc = "一段可以贴在别人嘴上的胶带。这一段格外结实。"
 	icon_state = "/obj/item/clothing/mask/muzzle/tape/super"
 	greyscale_colors = "#4D4D4D"
 	strip_delay = 8 SECONDS
 
 /obj/item/clothing/mask/muzzle/tape/surgical
-	name = "surgical tape piece"
-	desc = "A piece of tape that can be put over someone's mouth. As long as you apply this to your patient, you won't hear their screams of pain!"
+	name = "医用胶带片"
+	desc = "一段可以贴在别人嘴上的胶带。只要把它贴到你的病人身上，你就再也听不到他们痛苦的尖叫了！"
 	icon_state = "/obj/item/clothing/mask/muzzle/tape/surgical"
 	greyscale_colors = "#70BAE7"
 	equip_delay_other = 3 SECONDS
 	strip_delay = 3 SECONDS
 
 /obj/item/clothing/mask/muzzle/tape/pointy
-	name = "pointy tape piece"
-	desc = "A piece of tape that can be put over someone's mouth. Looks like it will hurt if this is ripped off."
+	name = "尖刺胶带片"
+	desc = "一段可以贴在别人嘴上的胶带。看样子把它撕下来会很疼。"
 	worn_icon_state = "tape_piece_spikes_worn"
 	icon = 'icons/map_icons/clothing/mask.dmi'
 	icon_state = "/obj/item/clothing/mask/muzzle/tape/pointy"
@@ -98,8 +98,8 @@
 	stripping_damage = 10
 
 /obj/item/clothing/mask/muzzle/tape/pointy/super
-	name = "super pointy tape piece"
-	desc = "A piece of tape that can be put over someone's mouth. This thing could rip your face into a thousand pieces if ripped off."
+	name = "超级尖刺胶带片"
+	desc = "一段可以贴在别人嘴上的胶带。这东西要是被撕下来，能把你的脸撕成一千片。"
 	icon_state = "/obj/item/clothing/mask/muzzle/tape/pointy/super"
 	greyscale_colors = "#8C0A00#300008"
 	strip_delay = 6 SECONDS

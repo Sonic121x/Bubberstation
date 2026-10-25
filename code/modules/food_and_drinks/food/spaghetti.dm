@@ -13,17 +13,17 @@
 // Why are you putting cooked spaghetti in your pockets?
 /obj/item/food/spaghetti/make_microwaveable()
 	var/list/display_message = list(
-		span_notice("Something wet falls out of their pocket and hits the ground. Is that... [name]?"),
-		span_warning("Oh shit! All your pocket [name] fell out!"))
+		span_notice("有什么湿乎乎的东西从他们口袋里掉出来落在地上。那是……[name]？"),
+		span_warning("我操！你口袋里所有的 [name] 都掉出来了！"))
 	AddComponent(/datum/component/spill, display_message, 'sound/effects/splat.ogg', /datum/memory/lost_spaghetti)
 
 	return ..()
 
 /obj/item/food/spaghetti/raw
-	name = "spaghetti"
-	desc = "Now that's a nic'e pasta!"
+	name = "意大利面"
+	desc = "这才叫好吃的意面！"
 	icon_state = "spaghetti"
-	tastes = list("pasta" = 1)
+	tastes = list("意面" = 1)
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/spaghetti/raw/make_bakeable()
@@ -33,8 +33,8 @@
 	AddElement(/datum/element/microwavable, /obj/item/food/spaghetti/boiledspaghetti)
 
 /obj/item/food/spaghetti/boiledspaghetti
-	name = "boiled spaghetti"
-	desc = "A plain dish of noodles, this needs more ingredients."
+	name = "煮意面"
+	desc = "一盘朴素的面条，还需要更多配料。"
 	icon_state = "spaghettiboiled"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -47,8 +47,8 @@
 	AddComponent(/datum/component/ingredients_holder, null, CUSTOM_INGREDIENT_ICON_SCATTER, max_ingredients = 6)
 
 /obj/item/food/spaghetti/pastatomato
-	name = "spaghetti"
-	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
+	name = "意大利面"
+	desc = "意大利面配碎番茄。就像你那个家暴老爹以前做的一样！"
 	icon_state = "pastatomato"
 	bite_consumption = 4
 	food_reagents = list(
@@ -56,13 +56,13 @@
 		/datum/reagent/consumable/tomatojuice = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
-	tastes = list("pasta" = 1, "tomato" = 1)
+	tastes = list("意面" = 1, "番茄" = 1)
 	foodtypes = GRAIN | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/pastatomato/soulful
-	name = "soul food"
-	desc = "Just how mom used to make it."
+	name = "灵魂食物"
+	desc = "就是妈妈以前做的那个味道。"
 	food_reagents = list(
 		// same as normal pasghetti
 		/datum/reagent/consumable/nutriment = 6,
@@ -73,11 +73,11 @@
 		/datum/reagent/medicine/psicodine = 10,
 		/datum/reagent/medicine/morphine = 5,
 	)
-	tastes = list("nostalgia" = 1, "happiness" = 1)
+	tastes = list("怀旧" = 1, "幸福" = 1)
 
 /obj/item/food/spaghetti/copypasta
-	name = "copypasta"
-	desc = "You probably shouldn't try this, you always hear people talking about how bad it is..."
+	name = "复制粘贴面"
+	desc = "你大概不该尝试这个，你总听人说起它有多糟糕……"
 	icon_state = "copypasta"
 	bite_consumption = 4
 	food_reagents = list(
@@ -85,55 +85,55 @@
 		/datum/reagent/consumable/tomatojuice = 20,
 		/datum/reagent/consumable/nutriment/vitamin = 8,
 	)
-	tastes = list("pasta" = 1, "tomato" = 1)
+	tastes = list("意面" = 1, "番茄" = 1)
 	foodtypes = GRAIN | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/meatballspaghetti
-	name = "spaghetti and meatballs"
-	desc = "Now that's a nic'e meatball!"
+	name = "意大利面配肉丸"
+	desc = "这才叫好吃的肉丸！"
 	icon_state = "meatballspaghetti"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/nutriment/protein = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("pasta" = 1, "meat" = 1)
+	tastes = list("意面" = 1, "肉" = 1)
 	foodtypes = GRAIN | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_2
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/spaghetti/spesslaw
-	name = "spesslaw"
-	desc = "A lawyers favourite."
+	name = "太空律师面"
+	desc = "律师的最爱。"
 	icon_state = "spesslaw"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
 		/datum/reagent/consumable/nutriment/protein = 20,
 		/datum/reagent/consumable/nutriment/vitamin = 3,
 	)
-	tastes = list("pasta" = 1, "meat" = 1)
+	tastes = list("意面" = 1, "肉" = 1)
 	foodtypes = GRAIN | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_2
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 4)
 
 /obj/item/food/spaghetti/chowmein
-	name = "chow mein"
-	desc = "A nice mix of noodles and fried vegetables."
+	name = "炒面"
+	desc = "面条与炒蔬菜的美妙搭配。"
 	icon_state = "chowmein"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 	)
-	tastes = list("noodle" = 1, "meat" = 1, "fried vegetables" = 1)
+	tastes = list("面条" = 1, "肉" = 1, "炒蔬菜" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/spaghetti/beefnoodle
-	name = "beef noodle"
-	desc = "Nutritious, beefy and noodly."
+	name = "牛肉面"
+	desc = "营养丰富，牛肉十足，面条筋道。"
 	icon_state = "beefnoodle"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -142,38 +142,38 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 		/datum/reagent/consumable/liquidgibs = 3,
 	)
-	tastes = list("noodles" = 1, "meat" = 1)
+	tastes = list("面条" = 1, "肉" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_3
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/spaghetti/butternoodles
-	name = "butter noodles"
-	desc = "Noodles covered in savory butter. Simple and slippery, but delicious."
+	name = "黄油面条"
+	desc = "裹满咸香黄油的面条。简单顺滑，却十分美味。"
 	icon_state = "butternoodles"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("noodles" = 1, "butter" = 1)
+	tastes = list("面条" = 1, "黄油" = 1)
 	foodtypes = GRAIN | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/mac_n_cheese
-	name = "mac n' cheese"
-	desc = "Made the proper way with only the finest cheese and breadcrumbs. And yet, it can't scratch the same itch as Ready-Donk."
+	name = "芝士通心粉"
+	desc = "用最上等的芝士和面包糠按正经做法做成。可它就是挠不到咚克即食餐能挠的那处痒。"
 	icon_state = "mac_n_cheese"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
 		/datum/reagent/consumable/nutriment/vitamin = 2,
 	)
-	tastes = list("cheese" = 1, "breadcrumbs" = 1, "pasta" = 1)
+	tastes = list("芝士" = 1, "面包糠" = 1, "意面" = 1)
 	foodtypes = GRAIN | DAIRY
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/spaghetti/shoyu_tonkotsu_ramen
-	name = "shoyu tonkotsu ramen"
-	desc = "A simple ramen made of meat, egg, onion, and a sheet of seaweed."
+	name = "酱油豚骨拉面"
+	desc = "一碗简单的拉面，配肉、鸡蛋、洋葱和一片海苔。"
 	icon_state = "shoyu_tonkotsu_ramen"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -181,14 +181,14 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 		/datum/reagent/consumable/nutriment/protein = 6,
 	)
-	tastes = list("noodles" = 5, "meat" = 3, "egg" = 4, "dried seaweed" = 2)
+	tastes = list("面条" = 5, "肉" = 3, "鸡蛋" = 4, "干海苔" = 2)
 	foodtypes = GRAIN | MEAT | VEGETABLES | EGG
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/spaghetti/kitakata_ramen
-	name = "kitakata ramen"
-	desc = "A hearty ramen composed of meat, mushrooms, onion, and garlic. Often given to the sick to comfort them"
+	name = "喜多方拉面"
+	desc = "一碗丰盛的拉面，由肉、蘑菇、洋葱和大蒜组成。常给病人吃以安抚他们。"
 	icon_state = "kitakata_ramen"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -196,14 +196,14 @@
 		/datum/reagent/consumable/nutriment/vitamin = 6,
 		/datum/reagent/consumable/nutriment/protein = 8,
 	)
-	tastes = list("noodles" = 5, "meat" = 4, "mushrooms" = 3, "onion" = 2)
+	tastes = list("面条" = 5, "肉" = 4, "蘑菇" = 3, "洋葱" = 2)
 	foodtypes = GRAIN | MEAT | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/spaghetti/kitsune_udon
-	name = "kitsune udon"
-	desc = "A vegetarian udon made of fried tofu and onions, made sweet and savory with sugar and soy sauce. The name comes from an old folktale about a fox enjoying fried tofu."
+	name = "狐狸乌冬"
+	desc = "一种素食乌冬，用炸豆腐和洋葱做成，以糖和酱油调出甜咸风味。这个名字来自一则关于狐狸爱吃炸豆腐的古老民间故事。"
 	icon_state = "kitsune_udon"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -211,13 +211,13 @@
 		/datum/reagent/consumable/nutriment/vitamin = 10,
 		/datum/reagent/consumable/nutriment/protein = 4,
 	)
-	tastes = list("noodles" = 5, "tofu" = 4, "sugar" = 3, "soy sauce" = 2)
+	tastes = list("面条" = 5, "豆腐" = 4, "糖" = 3, "酱油" = 2)
 	foodtypes = GRAIN | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/spaghetti/nikujaga
-	name = "nikujaga"
-	desc = "A delightful Japanese stew of noodles, onions, potatoes, and meat with mixed vegetables."
+	name = "土豆炖肉"
+	desc = "一道令人愉快的日式炖菜，包含面条、洋葱、土豆、肉和混合蔬菜。"
 	icon_state = "nikujaga"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -225,14 +225,14 @@
 		/datum/reagent/consumable/nutriment/vitamin = 12,
 		/datum/reagent/consumable/nutriment/protein = 8,
 	)
-	tastes = list("noodles" = 5, "meat" = 4, "potato" = 3, "onion" = 2, "mixed veggies" = 2)
+	tastes = list("面条" = 5, "肉" = 4, "土豆" = 3, "洋葱" = 2, "混合蔬菜" = 2)
 	foodtypes = GRAIN | VEGETABLES | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT * 2)
 
 /obj/item/food/spaghetti/pho
-	name = "pho"
-	desc = "A Vietnamese dish made of noodles, vegetables, herbs, and meat. Makes for a very popular street food."
+	name = "越南河粉"
+	desc = "一道越南菜，由面条、蔬菜、香草和肉做成。是很受欢迎的街头小吃。"
 	icon_state = "pho"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -240,14 +240,14 @@
 		/datum/reagent/consumable/nutriment/vitamin = 8,
 		/datum/reagent/consumable/nutriment/protein = 8,
 	)
-	tastes = list("noodles" = 5, "meat" = 4, "cabbage" = 3, "onion" = 2, "herbs" = 2)
+	tastes = list("面条" = 5, "肉" = 4, "卷心菜" = 3, "洋葱" = 2, "香草" = 2)
 	foodtypes = GRAIN | VEGETABLES | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)
 
 /obj/item/food/spaghetti/pad_thai
-	name = "pad thai"
-	desc = "A stir-fried noodle dish popular in Thailand made of peanuts, tofu, lime, and onions."
+	name = "泰式炒河粉"
+	desc = "在泰国很受欢迎的炒面菜，由花生、豆腐、青柠和洋葱做成。"
 	icon_state = "pad_thai"
 	trash_type = /obj/item/reagent_containers/cup/bowl
 	food_reagents = list(
@@ -255,20 +255,20 @@
 		/datum/reagent/consumable/nutriment/vitamin = 10,
 		/datum/reagent/consumable/nutriment/protein = 4,
 	)
-	tastes = list("noodles" = 5, "fried tofu" = 4, "lime" = 2, "peanut" = 3, "onion" = 2)
+	tastes = list("面条" = 5, "炸豆腐" = 4, "青柠" = 2, "花生" = 3, "洋葱" = 2)
 	foodtypes = GRAIN | VEGETABLES | NUTS | FRUIT
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/spaghetti/carbonara
-	name = "spaghetti carbonara"
-	desc = "Silky eggs, crispy pork, cheesy bliss. Mamma mia!"
+	name = "卡邦尼意面"
+	desc = "丝滑的鸡蛋、酥脆的猪肉、芝士的极致享受。妈妈咪呀！"
 	icon_state = "carbonara"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/nutriment/protein = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
 	)
-	tastes = list("spaghetti" = 1, "parmigiano reggiano" = 1,  "guanciale" = 1)
+	tastes = list("意大利面" = 1, "帕马森雷佳诺芝士" = 1,  "猪颊肉" = 1)
 	foodtypes = GRAIN | MEAT | DAIRY | EGG
 	crafting_complexity = FOOD_COMPLEXITY_4
 	custom_materials = list(/datum/material/meat = MEATDISH_MATERIAL_AMOUNT)

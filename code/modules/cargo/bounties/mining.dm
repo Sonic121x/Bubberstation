@@ -1,19 +1,19 @@
 /datum/bounty/item/mining/goliath_steaks
-	name = "Lava-Cooked Goliath Steaks"
-	description = "Admiral Pavlov has gone on hunger strike ever since the canteen started serving only monkey and monkey byproducts. She is demanding lava-cooked goliath steaks."
+	name = "熔岩烤歌利亚牛排"
+	description = "自从食堂开始只供应猴子和猴子副产品以来，帕夫洛夫海军上将就一直在绝食抗议。她要求得到熔岩烤歌利亚牛排。"
 	reward = CARGO_CRATE_VALUE * 10
 	required_count = 3
 	wanted_types = list(/obj/item/food/meat/steak/goliath = TRUE)
 
 /datum/bounty/item/mining/goliath_boat
-	name = "Goliath Hide Boat"
-	description = "Commander Menkov wants to participate in the annual Lavaland Regatta. He is asking your shipwrights to build the swiftest boat known to man."
+	name = "歌利亚皮艇"
+	description = "门科夫指挥官想参加一年一度的熔岩地帆船赛。他请你们的船匠建造一艘人类已知最快的船。"
 	reward = CARGO_CRATE_VALUE * 20
 	wanted_types = list(/obj/vehicle/ridden/lavaboat = TRUE)
 
 /datum/bounty/item/mining/bone_oar
-	name = "Bone Oars"
-	description = "Commander Menkov requires oars to participate in the annual Lavaland Regatta. Ship a pair over."
+	name = "骨制船桨"
+	description = "门科夫指挥官需要船桨来参加一年一度的熔岩地帆船赛。运一对过去。"
 	reward = CARGO_CRATE_VALUE * 8
 	required_count = 2
 	wanted_types = list(/obj/item/oar = TRUE)
@@ -29,34 +29,34 @@
 //END SKYRAT EDIT REMOVAL
 
 /datum/bounty/item/mining/bone_armor
-	name = "Bone Armor"
-	description = "Station 14 has volunteered their lizard crew for ballistic armor testing. Ship over some bone armor."
+	name = "骨制护甲"
+	description = "14 号空间站自愿让他们的蜥蜴人船员参与防弹护甲测试。运送一些骨制护甲过去。"
 	reward = CARGO_CRATE_VALUE * 10
 	wanted_types = list(/obj/item/clothing/suit/armor/bone = TRUE)
 
 /datum/bounty/item/mining/skull_helmet
-	name = "Skull Helmet"
-	description = "Station 42's Head of Security has her birthday tomorrow! We want to surprise her with a fashionable skull helmet."
+	name = "骷髅头盔"
+	description = "42 号空间站的安保主管明天过生日！我们想用一顶时尚的骷髅头盔给她一个惊喜。"
 	reward = CARGO_CRATE_VALUE * 8
 	wanted_types = list(/obj/item/clothing/head/helmet/skull = TRUE)
 
 /datum/bounty/item/mining/bone_talisman
-	name = "Bone Talismans"
-	description = "Station 14's Research Director claims that pagan bone talismans protect their wearer. Ship them a few so they can start testing."
+	name = "骨制护符"
+	description = "14 号空间站的科研主管声称异教骨制护符能保护佩戴者。运送几个过去，好让他们开始测试。"
 	reward = CARGO_CRATE_VALUE * 15
 	required_count = 3
 	wanted_types = list(/obj/item/clothing/accessory/talisman = TRUE)
 /datum/bounty/item/mining/watcher_wreath
-	name = "Watcher Wreaths"
-	description = "Station 14's Research Director thinks they're onto a break-through on the cultural icons of some pagan beliefs. Ship them a few watcher wreaths for analysis."
+	name = "守望者花环"
+	description = "14 号空间站的科研主管认为他们在某些异教信仰的文化符号上即将取得突破。运送几个守望者花环过去供分析。"
 	include_subtypes = FALSE
 	reward = CARGO_CRATE_VALUE * 15
 	required_count = 3
 	wanted_types = list(/obj/item/clothing/neck/wreath = TRUE)
 
 /datum/bounty/item/mining/icewing_wreath
-	name = "Icewing Wreath"
-	description = "We're getting some....weird messages from Station 14's Research Director. And most of what they said was incoherent. But they apparently want an icewing wreath. Could you send them one?"
+	name = "冰翼花环"
+	description = "我们从 14 号空间站的科研主管那里收到了一些……奇怪的消息。而且他们说的话大部分都不连贯。但显然他们想要一个冰翼花环。你能寄一个过去吗？"
 	reward = CARGO_CRATE_VALUE * 30
 	required_count = 1
 	wanted_types = list(/obj/item/clothing/neck/wreath/icewing = TRUE)
@@ -73,21 +73,21 @@
 //END SKYRAT EDIT REMOVAL
 
 /datum/bounty/item/mining/polypore_mushroom
-	name = "Mushroom Bowl"
-	description = "Lieutenant Jeb dropped his favorite mushroom bowl. Cheer him up by shipping a new one, will you?"
+	name = "蘑菇碗"
+	description = "杰布中尉打碎了他最喜欢的蘑菇碗。寄一个新的过去让他开心一下吧，好吗？"
 	reward = CARGO_CRATE_VALUE * 15 //5x mushroom shavings
 	wanted_types = list(/obj/item/reagent_containers/cup/bowl/mushroom_bowl = TRUE)
 
 /datum/bounty/item/mining/inocybe_mushroom
-	name = "Mushroom Caps"
-	description = "Our botanist claims that he can distill tasty liquor from absolutely any plant. Let's see what he'll do with Inocybe mushroom caps."
+	name = "蘑菇伞盖"
+	description = "我们的植物学家声称他能从任何植物中蒸馏出美味的烈酒。让我们看看他会用伊诺西贝蘑菇伞盖做出什么。"
 	reward = CARGO_CRATE_VALUE * 9
 	required_count = 3
 	wanted_types = list(/obj/item/food/grown/ash_flora/mushroom_cap = TRUE)
 
 /datum/bounty/item/mining/porcini_mushroom
-	name = "Mushroom Leaves"
-	description = "Porcini mushroom leaves are rumored to have healing properties. Our researchers want to put that claim to the test."
+	name = "蘑菇叶"
+	description = "据说牛肝菌蘑菇叶具有治疗功效。我们的研究人员想验证这一说法。"
 	reward = CARGO_CRATE_VALUE * 9
 	required_count = 3
 	wanted_types = list(/obj/item/food/grown/ash_flora/mushroom_leaf = TRUE)

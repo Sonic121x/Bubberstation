@@ -4,28 +4,28 @@
 	change_base_icon_state = TRUE
 
 /datum/atom_skin/joy_mask/joy
-	preview_name = "Joy"
+	preview_name = "开心"
 	new_icon_state = "joy"
 
 /datum/atom_skin/joy_mask/flushed
-	preview_name = "Flushed"
+	preview_name = "脸红"
 	new_icon_state = "flushed"
 
 /datum/atom_skin/joy_mask/pensive
-	preview_name = "Pensive"
+	preview_name = "沉思"
 	new_icon_state = "pensive"
 
 /datum/atom_skin/joy_mask/angry
-	preview_name = "Angry"
+	preview_name = "愤怒"
 	new_icon_state = "angry"
 
 /datum/atom_skin/joy_mask/pleading
-	preview_name = "Pleading"
+	preview_name = "恳求"
 	new_icon_state = "pleading"
 
 /obj/item/clothing/mask/joy
-	name = "emotion mask"
-	desc = "Express your happiness or hide your sorrows with this cultured cutout."
+	name = "表情面具"
+	desc = "用这张有格调的镂空面具表达你的快乐，或掩饰你的悲伤。"
 	icon_state = "joy"
 	base_icon_state = "joy"
 	clothing_flags = MASKINTERNALS
@@ -35,22 +35,22 @@
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/joy_mask, infinite = TRUE)
 
 /obj/item/clothing/mask/mummy
-	name = "mummy mask"
-	desc = "Ancient bandages."
+	name = "木乃伊面具"
+	desc = "古老的绷带。"
 	icon_state = "mummy_mask"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/scarecrow
-	name = "sack mask"
-	desc = "A burlap sack with eyeholes."
+	name = "麻袋面具"
+	desc = "一个挖了眼洞的麻布袋。"
 	icon_state = "scarecrow_sack"
 	inhand_icon_state = null
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/kitsune
-	name = "kitsune mask"
-	desc = "Porcelain mask made in the style of the Sol-3 region. It is painted to look like a kitsune."
+	name = "狐妖面具"
+	desc = "以太阳系第三行星地区风格制作的瓷面具，彩绘成狐妖的模样。"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
 	adjusted_flags = ITEM_SLOT_HEAD
@@ -67,10 +67,10 @@
 /obj/item/clothing/mask/kitsune/examine(mob/user)
 	. = ..()
 	if(up)
-		. += "Use in-hand to wear as a mask!"
+		. += "在手中使用可当作面具佩戴！"
 		return
 	else
-		. += "Use in-hand to wear as a hat!"
+		. += "在手中使用可当作帽子佩戴！"
 
 /obj/item/clothing/mask/kitsune/attack_self(mob/user)
 	adjust_visor(user)
@@ -78,8 +78,8 @@
 	flags_inv = up ? NONE : (HIDEFACE|HIDEFACIALHAIR)
 
 /obj/item/clothing/mask/rebellion
-	name = "rebellion mask"
-	desc = "Mask that is usually used during rebellions by insurgents. It covers the entire face and makes you unrecognizable."
+	name = "叛军面具"
+	desc = "叛乱分子在起义时常用的面具。它覆盖整张脸，让你无法被认出。"
 	inhand_icon_state = null
 	w_class = WEIGHT_CLASS_SMALL
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT

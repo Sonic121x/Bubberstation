@@ -106,18 +106,18 @@
 /datum/supply_order/proc/generateRequisition(turf/T)
 	var/obj/item/paper/requisition/requisition_paper = new(T)
 
-	requisition_paper.name = "requisition form - #[id] ([pack.name])"
-	var/requisition_text = "<h2>[station_name()] Supply Requisition</h2>"
+	requisition_paper.name = "申购单 - #[id] ([pack.name])"
+	var/requisition_text = "<h2>[station_name()] 后勤申购单</h2>"
 	requisition_text += "<hr/>"
-	requisition_text += "Order #[id]<br/>"
-	requisition_text += "Time of Order: [UNDERLINED_HTML_TEXT("[server_timestamp(ic_time = TRUE)]", "Shift Time: [round_timestamp()]")]<br/>"
-	requisition_text += "Item: [pack.name]<br/>"
-	requisition_text += "Access Restrictions: [SSid_access.get_access_desc(pack.access)]<br/>"
-	requisition_text += "Requested by: [orderer]<br/>"
+	requisition_text += "订单 #[id]<br/>"
+	requisition_text += "下单时间：[UNDERLINED_HTML_TEXT("[server_timestamp(ic_time = TRUE)]", "值班时间：[round_timestamp()]")]<br/>"
+	requisition_text += "物品：[pack.name]<br/>"
+	requisition_text += "通行限制：[SSid_access.get_access_desc(pack.access)]<br/>"
+	requisition_text += "申请人：[orderer]<br/>"
 	if(paying_account)
-		requisition_text += "Paid by: [paying_account.account_holder]<br/>"
-	requisition_text += "Rank: [orderer_rank]<br/>"
-	requisition_text += "Comment: [reason]<br/>"
+		requisition_text += "付款方：[paying_account.account_holder]<br/>"
+	requisition_text += "职位：[orderer_rank]<br/>"
+	requisition_text += "备注：[reason]<br/>"
 
 	requisition_paper.add_raw_text(requisition_text, advanced_html = TRUE)
 	requisition_paper.update_appearance()
@@ -128,18 +128,18 @@
 
 	var/station_name = (manifest_paper.errors & MANIFEST_ERROR_NAME) ? new_station_name() : station_name()
 
-	manifest_paper.name = "shipping manifest - [packname?"#[id] ([pack.name])":"(Grouped Item Crate)"]"
+	manifest_paper.name = "货运清单 - [packname?"#[id] ([pack.name])":"（合并货物板条箱）"]"
 
-	var/manifest_text = "<h2>[command_name()] Shipping Manifest</h2>"
+	var/manifest_text = "<h2>[command_name()] 货运清单</h2>"
 	manifest_text += "<hr/>"
 	if(owner && !(owner == "Cargo"))
-		manifest_text += "Direct purchase from [owner]<br/>"
-		manifest_paper.name += " - Purchased by [owner]"
-	manifest_text += "Order[packname?"":"s"]: [id]<br/>"
-	manifest_text += "Destination: [station_name]<br/>"
+		manifest_text += "由 [owner] 直接购买<br/>"
+		manifest_paper.name += " - 购买者 [owner]"
+	manifest_text += "订单[packname?"":"（合并）"]：[id]<br/>"
+	manifest_text += "目的地：[station_name]<br/>"
 	if(packname)
-		manifest_text += "Item: [packname]<br/>"
-	manifest_text += "Contents: <br/>"
+		manifest_text += "物品：[packname]<br/>"
+	manifest_text += "内容：<br/>"
 	manifest_text += "<ul>"
 	var/container_contents = list() // Associative list with the format (item_name = nº of occurrences, ...)
 	for(var/atom/movable/stuff as anything in container.contents - manifest_paper)
@@ -161,7 +161,7 @@
 	for(var/item in container_contents)
 		manifest_text += "<li> [container_contents[item]] [item][container_contents[item] == 1 ? "" : plural_s(item)]</li>"
 	manifest_text += "</ul>"
-	manifest_text += "<h4>Stamp below to confirm receipt of goods:</h4>"
+	manifest_text += "<h4>请在下方盖章以确认收货：</h4>"
 
 	manifest_paper.add_raw_text(manifest_text)
 

@@ -1,12 +1,12 @@
 /datum/round_event_control/stray_meteor
-	name = "Stray Meteor"
+	name = "游荡陨石"
 	typepath = /datum/round_event/stray_meteor
 	weight = 15 //Number subject to change based on how often meteors actually collide with the station
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 20 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "Throw a random meteor somewhere near the station."
+	description = "在空间站附近的某处投下一颗随机陨石。"
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/listed_options/stray_meteor)
@@ -30,11 +30,11 @@
 	if(length(GLOB.meteor_list))
 		var/obj/effect/meteor/detected_meteor = pick(GLOB.meteor_list) //If we accidentally pick a meteor not spawned by the event, we're still technically not wrong
 		var/sensor_name = detected_meteor.signature
-		priority_announce("Our [sensor_name] sensors have detected an incoming signature approaching [GLOB.station_name]. Please brace for impact.", "Meteor Alert")
+		priority_announce("我们的 [sensor_name] 传感器检测到一个正在接近 [GLOB.station_name] 的信号。请做好撞击准备。", "陨石警报")
 
 /datum/event_admin_setup/listed_options/stray_meteor
-	input_text = "Select a meteor type?"
-	normal_run_option = "Random Meteor"
+	input_text = "选择一种陨石类型？"
+	normal_run_option = "随机陨石"
 
 /datum/event_admin_setup/listed_options/stray_meteor/get_list()
 	return subtypesof(/obj/effect/meteor)

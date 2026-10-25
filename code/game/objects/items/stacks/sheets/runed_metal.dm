@@ -7,8 +7,8 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 		req_amount = 4, \
 		time = 4 SECONDS, \
 		crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_MUST_BE_LEARNED, \
-		desc = span_cult_bold("尖塔：治疗并再生附近血教信徒与构装体的血液，还会将附近地砖 \
-			转化为雕纹地板，使血教信徒能更快地绘制符文。"), \
+		desc = span_cult_bold("尖塔：治疗并再生附近血教徒与构装体的血液，还会将附近地砖 \
+			转化为雕纹地板，使血教徒能更快地绘制符文。"), \
 		required_noun = "符文金属板", \
 		category = CAT_CULT, \
 	), \
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list( \
 		result_type = /obj/machinery/door/airlock/cult, \
 		time = 5 SECONDS, \
 		crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_MUST_BE_LEARNED, \
-		desc = span_cult_bold("符文门：一扇脆弱的门，触碰它的非血教信徒会被电击麻痹。"), \
+		desc = span_cult_bold("符文门：一扇脆弱的门，触碰它的非血教徒会被电击麻痹。"), \
 		required_noun = "符文金属板", \
 		category = CAT_CULT, \
 	), \

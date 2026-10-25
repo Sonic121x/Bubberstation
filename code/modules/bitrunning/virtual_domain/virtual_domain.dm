@@ -21,13 +21,13 @@
 	/// Cost of this map to load
 	var/cost = BITRUNNER_COST_NONE
 	/// The description of the map for the console UI
-	var/desc = "A map."
+	var/desc = "一张地图。"
 	/// Affects the ui and ability to scan info.
 	var/difficulty = BITRUNNER_DIFFICULTY_NONE
 	/// Write these to help complete puzzles and other objectives. Viewed in the domain info ability.
 	var/help_text
 	// Name to show in the UI
-	var/name = "Virtual Domain"
+	var/name = "虚拟领域"
 	/// Points to reward for completion. Used to purchase new domains and calculate ore rewards.
 	var/reward_points = BITRUNNER_REWARD_MIN
 	/// Any additional flags for this domain
@@ -89,7 +89,7 @@
 	/// Current domain mobs being held by ghosts
 	var/list/mob/living/ghost_mobs
 	/// The role that ghosts will get. Only used for poll text.
-	var/spawner_role = "Antagonist"
+	var/spawner_role = "反派"
 
 	/**
 	 * Scorekeeping
@@ -135,7 +135,7 @@
 		LAZYADD(ghost_mobs, new_mob)
 
 		var/ghostname = lucky_ghost.name
-		notify_ghosts("[ghostname] has been selected to be a [ghost_spawner.prompt_name]!", source = new_mob, header = "001010110")
+		notify_ghosts("[ghostname] 被选中成为 [ghost_spawner.prompt_name]！", source = new_mob, header = "001010110")
 
 /// Overridable proc to be called after the map is loaded.
 /datum/lazy_template/virtual_domain/proc/setup_domain(list/created_atoms)

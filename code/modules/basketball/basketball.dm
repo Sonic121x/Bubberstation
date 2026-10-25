@@ -2,11 +2,11 @@
 #define MAX_DISARM_CHANCE 75
 
 /obj/item/toy/basketball
-	name = "basketball"
+	name = "篮球"
 	icon = 'icons/obj/toys/balls.dmi'
 	icon_state = "basketball"
 	inhand_icon_state = "basketball"
-	desc = "Here's your chance, do your dance at the Space Jam."
+	desc = "这是你的机会，在太空大灌篮上尽情起舞吧。"
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 	/// The person dribbling the basketball
 	var/mob/living/wielder
@@ -74,7 +74,7 @@
 		return
 
 	if((user.ckey in pickup_restriction_ckeys) && !COOLDOWN_FINISHED(src, pickup_cooldown))
-		user.balloon_alert(user, "cant pickup for [COOLDOWN_TIMELEFT(src, pickup_cooldown) *0.1] seconds!")
+		user.balloon_alert(user, "[COOLDOWN_TIMELEFT(src, pickup_cooldown) *0.1] 秒内无法捡球！")
 		return
 
 	reset_pickup_restriction()
@@ -119,20 +119,20 @@
 
 	switch(blocking_dir_bonus)
 		if(FACING_EACHOTHER)
-			stealer.balloon_alert_to_viewers("steals the ball")
+			stealer.balloon_alert_to_viewers("抢走了球")
 			INVOKE_ASYNC(stealer, TYPE_PROC_REF(/mob, put_in_hands), src)
 		if(FACING_INIT_FACING_TARGET_TARGET_FACING_PERPENDICULAR)
 			if(prob(50))
 				if(!baller.dropItemToGround(src))
 					return
-				stealer.balloon_alert_to_viewers("bats the ball")
+				stealer.balloon_alert_to_viewers("拍飞了球")
 			else
-				stealer.balloon_alert_to_viewers("steals the ball")
+				stealer.balloon_alert_to_viewers("抢走了球")
 				INVOKE_ASYNC(stealer, TYPE_PROC_REF(/mob, put_in_hands), src)
 		if(FACING_SAME_DIR)
 			if(!baller.dropItemToGround(src))
 				return
-			stealer.balloon_alert_to_viewers("bats the ball")
+			stealer.balloon_alert_to_viewers("拍飞了球")
 
 /obj/item/toy/basketball/proc/on_equipped_mob_knockdown(mob/living/user, amount)
 	SIGNAL_HANDLER
@@ -147,7 +147,7 @@
 	if(!user.dropItemToGround(src))
 		return
 
-	user.balloon_alert_to_viewers("fumbles the ball")
+	user.balloon_alert_to_viewers("失手掉了球")
 
 /obj/item/toy/basketball/attack(mob/living/carbon/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!iscarbon(target) || user.combat_mode)

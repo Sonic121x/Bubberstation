@@ -8,25 +8,25 @@
 	///Patience of the AI, how long they will wait for their meal.
 	var/total_patience = 600 SECONDS
 	///Lines the robot says when it finds a seat
-	var/list/found_seat_lines = list("I found a seat")
+	var/list/found_seat_lines = list("我找到座位了")
 	///Lines the robot says when it can't find a seat
-	var/list/cant_find_seat_lines = list("I did not find a seat")
+	var/list/cant_find_seat_lines = list("我没找到座位")
 	///Lines the robot says when leaving without food
-	var/list/leave_mad_lines = list("Leaving without food")
+	var/list/leave_mad_lines = list("没吃到饭就走了")
 	///Lines the robot says when leaving with food
-	var/list/leave_happy_lines = list("Leaving with food")
+	var/list/leave_happy_lines = list("带着食物离开")
 	///Lines the robot says when leaving waiting for food
-	var/list/wait_for_food_lines = list("I'm still waiting for food")
+	var/list/wait_for_food_lines = list("我还在等饭")
 	///Line when pulled by a friendly venue owner
-	var/friendly_pull_line = "Where are we going?"
+	var/friendly_pull_line = "我们要去哪儿？"
 	///Line when harrased by someone for the first time
-	var/first_warning_line = "Don't touch me!"
+	var/first_warning_line = "别碰我！"
 	///Line when harrased by someone for the second time
-	var/second_warning_line = "This is your last warning!"
+	var/second_warning_line = "这是最后一次警告！"
 	///Line when harrased by someone for the last time
 	var/self_defense_line = "Omae wa mo, shinderou."
 	///Line sent when the customer is clicked on by someone with a 0 force item that's not the correct order
-	var/wrong_item_line = "No, I don't want that."
+	var/wrong_item_line = "不，我不要那个。"
 
 	///Clothing sets to pick from when dressing the robot.
 	var/list/clothing_sets = list("amerifat_clothes")
@@ -63,15 +63,15 @@
 	return
 
 /datum/customer_data/american
-	found_seat_lines = list("I hope there's a seat that supports my weight.", "I hope I can bring my gun in here.", "I hope they have the triple deluxe fatty burger.", "I just love the culture here.")
-	cant_find_seat_lines = list("I'm so tired from standing...", "I have chronic back pain, please hurry up and get me a seat!", "I'm not going to tip if I don't get a seat.")
-	leave_mad_lines = list("NO TIP FOR YOU. GOODBYE!", "At least at SpaceDonalds they serve their food FAST!", "This venue is horrendous!", "I will speak to your manager!", "I'll be sure to leave a bad Yelp review.")
-	leave_happy_lines = list("An extra tip for you my friend.", "Thanks for the great food!", "Diabetes is a myth anyway!")
-	wait_for_food_lines = list("Listen buddy, I'm getting real impatient over here!", "I've been waiting for ages...")
-	friendly_pull_line = "Where are you taking me? Not to medbay I hope, I don't have insurance."
-	first_warning_line = "Don't tread on me!"
-	second_warning_line = "Last chance buddy! Don't tread on me!"
-	self_defense_line = "CASTLE DOCTRINE ACTIVATED!"
+	found_seat_lines = list("我希望有个撑得住我体重的座位。", "我希望我能把枪带进来。", "我希望他们有超豪华三层肥汉堡。", "我就是爱这里的文化。")
+	cant_find_seat_lines = list("站着好累……", "我有慢性背痛，快给我找个座位！", "要是不给我座位，我就不给小费。")
+	leave_mad_lines = list("不给你小费。再见！", "至少在太空唐纳德，他们上菜很快！", "这家店太糟糕了！", "我要找你们经理！", "我一定会去 Yelp 上给差评。")
+	leave_happy_lines = list("朋友，多给你一份小费。", "谢谢你的美食！", "糖尿病本来就是骗人的！")
+	wait_for_food_lines = list("听着，伙计，我这边可等得很不耐烦了！", "我都等了老半天了……")
+	friendly_pull_line = "你要带我去哪儿？希望不是医疗舱，我可没有保险。"
+	first_warning_line = "别踩我！"
+	second_warning_line = "最后一次机会，伙计！别踩我！"
+	self_defense_line = "城堡准则已启动！"
 
 	orderable_objects = list(
 		VENUE_RESTAURANT = list(
@@ -108,15 +108,15 @@
 	base_icon_state = "italian"
 	clothing_sets = list("italian_pison", "italian_godfather")
 
-	found_seat_lines = list("What a wonderful place to sit.", "I hope they serve it like-a my momma used to make it.")
-	cant_find_seat_lines = list("Mamma mia! I just want a seat!", "Why-a you making me stand here?")
-	leave_mad_lines = list("I have-a not seen-a this much disrespect in years!", "What-a horrendous establishment!")
-	leave_happy_lines = list("That's amoreee!", "Just like momma used to make it!")
-	wait_for_food_lines = list("I'ma so hungry...")
-	friendly_pull_line = "No-a I'm a hungry! I don't want to go anywhere."
-	first_warning_line = "Do not-a touch me!"
-	second_warning_line = "Last warning! Do not touch my spaghet."
-	self_defense_line = "I'm going to knead you like mama kneaded her delicious meatballs!"
+	found_seat_lines = list("真是个坐着的好地方。", "我希望他们做得像我妈妈以前做的那样。")
+	cant_find_seat_lines = list("我的妈呀！我只想要个座位！", "你为什么让我站在这儿？")
+	leave_mad_lines = list("我好多年没见过这么不尊重人的了！", "多么糟糕的店啊！")
+	leave_happy_lines = list("这就是爱呀！", "就像妈妈以前做的那样！")
+	wait_for_food_lines = list("我好饿啊……")
+	friendly_pull_line = "不，我饿了！我哪儿都不想去。"
+	first_warning_line = "别碰我！"
+	second_warning_line = "最后一次警告！别碰我的意面。"
+	self_defense_line = "我要像妈妈揉她那美味肉丸一样揉你！"
 	orderable_objects = list(
 		VENUE_RESTAURANT = list(
 			/obj/item/food/spaghetti/pastatomato = 20,
@@ -157,15 +157,15 @@
 	prefix_file = "strings/names/french_prefix.txt"
 	base_icon_state = "french"
 	clothing_sets = list("french_fit")
-	found_seat_lines = list("Hon hon hon", "It's not the Eiffel tower but it will do.", "Yuck, I guess this will make do.")
-	cant_find_seat_lines = list("Making someone like me stand? How dare you.", "What a filthy lobby!")
-	leave_mad_lines = list("Sacre bleu!", "Merde! This place is shittier than the Rhine!")
-	leave_happy_lines = list("Hon hon hon.", "A good effort.")
+	found_seat_lines = list("Hon hon hon", "这不是埃菲尔铁塔，但也凑合了。", "啧，我看这也只能将就了。")
+	cant_find_seat_lines = list("竟让我这样的人站着？你好大的胆子。", "多脏的大堂啊！")
+	leave_mad_lines = list("Sacre bleu!", "Merde! 这地方比莱茵河还脏！")
+	leave_happy_lines = list("Hon hon hon.", "还算用心。")
 	wait_for_food_lines = list("Hon hon hon")
-	friendly_pull_line = "Your filthy hands on my outfit? Yegh, fine."
-	first_warning_line = "Get your hands off of me!"
-	second_warning_line = "Do not touch me you filthy animal, last warning!"
-	self_defense_line = "I will break you like a baguette!"
+	friendly_pull_line = "你那脏手要碰我的衣服？呃，算了。"
+	first_warning_line = "把手从我身上拿开！"
+	second_warning_line = "别碰我，你这脏东西，最后一次警告！"
+	self_defense_line = "我要像掰法棍一样掰断你！"
 	speech_sound = 'sound/mobs/non-humanoids/tourist/tourist_talk_french.ogg'
 	orderable_objects = list(
 		VENUE_RESTAURANT = list(
@@ -202,14 +202,14 @@
 	base_icon_state = "japanese"
 	clothing_sets = list("japanese_animes")
 
-	found_seat_lines = list("Konnichiwa!", "Arigato gozaimasuuu~", "I hope there's some beef stroganoff...")
-	cant_find_seat_lines = list("I want to sit under the cherry tree already, senpai!", "Give me a seat before my Tsundere becomes Yandere!", "This place has less seating than a capsule hotel!", "No place to sit? This Shokunin is so cold...")
-	leave_mad_lines = list("I can't believe you did this! WAAAAAAAAAAAAAH!!", "I-It's not like I ever wanted your food! B-baka...", "I was gonna give you my tip!")
-	leave_happy_lines = list("Oh NOURISHMENT PROVIDER! This is the happiest day of my life. I love you!", "I take a potato chip.... AND EAT IT!", "Itadakimasuuu~", "Gochisousama desu!")
-	wait_for_food_lines = list("No food yet? I guess it can't be helped.", "I can't wait to finally meet you burger-sama...", "Give me my food, you meanie!")
-	friendly_pull_line = "O-oh, where are you taking me?"
-	first_warning_line = "Don't touch me you pervert!"
-	second_warning_line = "I'm going to go super saiyan if you touch me again! Last warning!"
+	found_seat_lines = list("Konnichiwa!", "Arigato gozaimasuuu~", "我希望这里有俄式牛肉丝……")
+	cant_find_seat_lines = list("前辈，我想赶快坐到樱花树下了！", "趁我的傲娇还没变成病娇，快给我个座位！", "这地方的座位比胶囊旅馆还少！", "没有座位？这位匠人也太冷淡了……")
+	leave_mad_lines = list("我真不敢相信你居然这样！哇啊啊啊啊啊！！", "我、我才不是想要你的食物呢！笨、笨蛋……", "我本来还想给你小费的！")
+	leave_happy_lines = list("哦，营养供给者！这是我人生中最幸福的一天。我爱你！", "我拿起一片薯片……然后吃掉它！", "Itadakimasuuu~", "Gochisousama desu!")
+	wait_for_food_lines = list("还没有吃的？那也没办法吧。", "真期待终于能见到汉堡大人……", "快把我的食物给我，你这坏蛋！")
+	friendly_pull_line = "哦、哦，你要带我去哪儿？"
+	first_warning_line = "别碰我，你这变态！"
+	second_warning_line = "你再碰我一次我就要变成超级赛亚人了！最后一次警告！"
 	self_defense_line = "OMAE WA MO, SHINDEROU!"
 	speech_sound = 'sound/mobs/non-humanoids/tourist/tourist_talk_japanese1.ogg'
 	orderable_objects = list(
@@ -244,15 +244,15 @@
 /datum/customer_data/japanese/salaryman
 	clothing_sets = list("japanese_salary")
 
-	found_seat_lines = list("I wonder if giant monsters attack here too...", "Hajimemashite.", "Konbanwa.", "Where's the conveyor belt...")
-	cant_find_seat_lines = list("Please, a seat. I just want a seat.", "I'm on a schedule here. Where is my seat?", "...I see why this place is suffering. They won't even seat you.")
-	leave_mad_lines = list("This place is just downright shameful, and I'm telling my coworkers.", "What a waste of my time.", "I hope you don't take pride in the operation you run here.")
-	leave_happy_lines = list("Thank you for the hospitality.", "Otsukaresama deshita.", "Business calls.")
-	wait_for_food_lines = list("Zzzzzzzzzz...", "Dame da ne~", "Dame yo dame na no yo~")
-	friendly_pull_line = "Are we going on a business trip?"
-	first_warning_line = "Hey, only my employer gets to mess with me like that."
-	second_warning_line = "Leave me be, I'm trying to focus. Last warning!"
-	self_defense_line = "I didn't want it to end up like this."
+	found_seat_lines = list("不知道这里会不会也有巨大怪兽来袭……", "Hajimemashite.", "Konbanwa.", "传送带在哪儿……")
+	cant_find_seat_lines = list("拜托，给我个座位。我只想要个座位。", "我这边有时间安排。我的座位在哪儿？", "……我明白这地方为什么生意不好了。他们连座位都不给你安排。")
+	leave_mad_lines = list("这地方简直丢人，我要告诉我的同事们。", "真是浪费我的时间。", "希望你别为自己这里的经营感到自豪。")
+	leave_happy_lines = list("谢谢你的招待。", "Otsukaresama deshita.", "还有工作要办。")
+	wait_for_food_lines = list("呼……呼……", "Dame da ne~", "Dame yo dame na no yo~")
+	friendly_pull_line = "我们这是要出差吗？"
+	first_warning_line = "喂，只有我的雇主才能那样折腾我。"
+	second_warning_line = "别烦我，我正想集中精神。最后一次警告！"
+	self_defense_line = "我也不想变成这样。"
 	speech_sound = 'sound/mobs/non-humanoids/tourist/tourist_talk_japanese2.ogg'
 	orderable_objects = list(
 		VENUE_RESTAURANT = list(
@@ -278,15 +278,15 @@
 /datum/customer_data/moth
 	prefix_file = "strings/names/moth_prefix.txt"
 	base_icon_state = "mothbot"
-	found_seat_lines = list("Give me your hat!", "Moth?", "Certainly an... interesting venue.")
-	cant_find_seat_lines = list("If I can't find a seat, I'm flappity flapping out of here quick!", "I'm trying to flutter here!")
-	leave_mad_lines = list("I'm telling all my moth friends to never come here!", "Zero star rating, even worse than that time I ate a mothball!","Closing down permanently would still be too good of a fate for this place.")
-	leave_happy_lines = list("I'd tip you my hat, but I ate it!", "I hope that wasn't a collectible!", "That was the greatest thing I ever ate, even better than Guanaco!")
-	wait_for_food_lines = list("How hard is it to get food here? You're even wearing food yourself!", "My fuzzy robotic tummy is rumbling!", "I don't like waiting!")
-	friendly_pull_line = "Moff?"
-	first_warning_line = "Go away, I'm trying to get some hats here!"
-	second_warning_line = "Last warning! I'll destroy you!"
-	self_defense_line = "Flap attack!"
+	found_seat_lines = list("把你的帽子给我！", "蛾？", "这真是个……有意思的地方。")
+	cant_find_seat_lines = list("要是找不到座位，我就扑棱扑棱赶紧飞走！", "我这儿正忙着扑腾呢！")
+	leave_mad_lines = list("我要告诉我所有的蛾子朋友，千万别来这儿！", "零星差评，比我那次吃樟脑丸还糟！","就算永久关门，对这地方来说都算便宜它了。")
+	leave_happy_lines = list("我本想拿帽子给你当小费，可我把它吃了！", "希望那不是收藏品！", "那是我吃过最棒的东西，比原驼肉还好吃！")
+	wait_for_food_lines = list("在这儿弄点吃的有多难？你自己身上都穿着食物呢！", "我毛茸茸的机械肚子在咕咕叫！", "我不喜欢等！")
+	friendly_pull_line = "蛾夫？"
+	first_warning_line = "走开，我这儿正忙着弄点帽子！"
+	second_warning_line = "最后一次警告！我要毁了你！"
+	self_defense_line = "扑翅攻击！"
 
 	speech_sound = 'sound/mobs/non-humanoids/tourist/tourist_talk_moth.ogg'
 
@@ -365,25 +365,25 @@
 		),
 	)
 
-	found_seat_lines = list("¿Como te va, space station 13?", "Who's ready to party!", "Ah, muchas gracias.", "Ahhh, smells like mi abuela's cooking!")
-	cant_find_seat_lines = list("¿En Serio? Seriously, no seats?", "Andele! I want a table to watch the football match!", "Ay Caramba...")
-	leave_mad_lines = list("Aye dios mio, I'm out of here.", "Esto es ridículo! I'm leaving!", "I've seen better cooking at taco campana!", "I though this was a restaurant, pero es porquería!")
-	leave_happy_lines = list("Amigo, era delicio. Thank you!", "Yo tuve el mono, and you friend? You hit the spot.", "Just the right amount of spicy!")
-	wait_for_food_lines = list("Ay ay ay, what's taking so long...", "Are you ready yet, amigo?")
-	friendly_pull_line = "Amigo, where are we headed?"
-	first_warning_line = "Amigo! Don't touch me like that."
-	second_warning_line = "Compadre, enough is enough! Last warning!"
-	self_defense_line = "Time for you to find out what kind of robot I am, eh?"
+	found_seat_lines = list("¿Como te va, 13 号空间站？", "谁准备好开派对啦！", "啊，muchas gracias。", "啊……闻起来像我奶奶做的菜！")
+	cant_find_seat_lines = list("¿En Serio？说真的，没有座位？", "Andele！我要张桌子看足球赛！", "Ay Caramba……")
+	leave_mad_lines = list("Aye dios mio，我走了。", "Esto es ridículo！我走了！", "我在塔可钟见过更好的厨艺！", "我以为这是餐厅，pero es porquería！")
+	leave_happy_lines = list("Amigo，era delicio。谢谢！", "Yo tuve el mono，朋友你呢？正中下怀。", "辣度刚刚好！")
+	wait_for_food_lines = list("Ay ay ay，怎么这么久……", "准备好了吗，amigo？")
+	friendly_pull_line = "Amigo，我们要去哪儿？"
+	first_warning_line = "Amigo！别那样碰我。"
+	second_warning_line = "Compadre，够了！最后一次警告！"
+	self_defense_line = "是时候让你见识见识我是什么样的机器人了，嗯？"
 
 /datum/customer_data/british
 	base_icon_state = "british"
 	prefix_file = "strings/names/british_prefix.txt"
 	speech_sound = 'sound/mobs/non-humanoids/tourist/tourist_talk_british.ogg'
 
-	friendly_pull_line = "I don't enjoy being pulled around like this."
-	first_warning_line = "Our sovereign lord the Queen chargeth and commandeth all persons, being assembled, immediately to disperse themselves."
-	second_warning_line = "And peaceably to depart to their habitations, or to their lawful business, upon the pains contained in the act made in the first year of King George, for preventing tumults and riotous assemblies. There will be no further warnings."
-	self_defense_line = "God Save the Queen."
+	friendly_pull_line = "我可不喜欢被人这样拉来拉去。"
+	first_warning_line = "我们至高无上的君主女王陛下谕令并命令所有聚集之人立即解散。"
+	second_warning_line = "并和平返回各自居所或合法事务，违者将依乔治王元年为防骚乱与聚众暴动所定法令之罚则处置。不会再有警告。"
+	self_defense_line = "天佑女王。"
 
 	orderable_objects = list(
 		VENUE_RESTAURANT = list(
@@ -415,20 +415,20 @@
 /datum/customer_data/british/gent
 	clothing_sets = list("british_gentleman")
 
-	found_seat_lines = list("Ah, what a fine establishment.", "Time for some great British cuisine, how bloody exciting!", "Excellent, now onto the menu...", "Rule Britannia, Britannia rules the waves...")
-	cant_find_seat_lines = list("A true Briton does not stand, except while queuing!", "Goodness me chap, not an empty seat in sight!", "I stand on the shoulders of giants, not at restaurants!")
-	leave_mad_lines = list("I say good day to you, sir. Good day!", "This place is a bigger disgrace than France during the war!", "I knew I should have went to the bloody chippy!", "On second thoughts, let's not go to Space Station 13. 'tis a silly place.")
-	leave_happy_lines = list("That was bloody delicious!", "By God, Queen and Country, that was jolly good!", "I haven't felt this good since the days of the Raj! Jolly good!")
-	wait_for_food_lines = list("This is bloody well taking forever...", "Excuse me, good sir, but might I be able to inquire about the status of my order?")
+	found_seat_lines = list("啊，多么好的店。", "该尝尝伟大的英国菜了，真是他妈的激动人心！", "太好了，现在看菜单……", "统治吧不列颠，不列颠统治海洋……")
+	cant_find_seat_lines = list("真正的英国人从不站着，除非在排队！", "老天啊，伙计，一个空座位都看不到！", "我是站在巨人的肩膀上，不是站在餐厅里！")
+	leave_mad_lines = list("先生，我祝您日安。日安！", "这地方比战时的法国还丢人！", "我就知道该去那家该死的炸鱼薯条店！", "再想想，我们还是别去 13 号空间站了。那地方太蠢了。")
+	leave_happy_lines = list("真是太他妈好吃了！", "以上帝、女王与国家的名义，这真是太好了！", "自英属印度时期以来我就没这么舒坦过！太好了！")
+	wait_for_food_lines = list("这他妈也太久了……", "打扰一下，先生，我能问问我的订单到哪一步了吗？")
 
 /datum/customer_data/british/bobby
 	clothing_sets = list("british_bobby")
 
-	found_seat_lines = list("A fine and upstanding establishment, I hope.", "I suppose the old beat can wait a minute.", "By God, Queen and Country, I'm famished.", "Have you any Great British fare, my good man?")
-	cant_find_seat_lines = list("I stand enough out on the beat!", "Do you expect me to sit on my helmet? A seat, please!", "Do I look like a beefeater? I need a seat!")
-	leave_mad_lines = list("Seems that the Bill shan't be paying a bill today.", "Were rudeness a crime, you'd be nicked right now!", "You're no better than a common gangster, you loathesome rapscallion!", "We should bring back deportation for the likes of you, let the Outback sort you out.")
-	leave_happy_lines = list("My word, just what I needed.", "Back to the beat I go. Thank you kindly for the meal!", "I tip my helmet to you, good sir.")
-	wait_for_food_lines = list("Dear Lord, I've had paperwork take less time...", "Any word on my order, sir?")
+	found_seat_lines = list("希望这是家正派体面的店。", "我想老巡区可以等上一会儿。", "以上帝、女王与国家的名义，我饿坏了。", "先生，你们有什么英国名菜吗？")
+	cant_find_seat_lines = list("我在巡区站得够久了！", "你是想让我坐在头盔上吗？请给我个座位！", "我看起来像伦敦塔卫兵吗？我需要座位！")
+	leave_mad_lines = list("看来警局今天不会付账了。", "要是无礼算犯罪，你现在就被抓了！", "你比普通黑帮好不到哪去，你这可恶的恶棍！", "像你这样的人就该恢复流放，让内陆去收拾你。")
+	leave_happy_lines = list("哎呀，正是我需要的。", "我得回去巡区了。多谢你的饭菜！", "先生，我向您脱帽致意。")
+	wait_for_food_lines = list("天哪，我处理文书都比这快……", "先生，我的订单有消息吗？")
 
 ///MALFUNCTIONING - only shows up once per venue, very rare
 /datum/customer_data/malfunction
@@ -455,12 +455,12 @@
 		),
 	)
 
-	found_seat_lines = list("customer_pawn.say(pick(customer_data.found_seat_lines))", "I saw your sector on the hub. What are the laws of this land?", "The move speed here is a bit low...")
-	cant_find_seat_lines = list("Don't stress test MY artificial intelligence, buster! My engineers thought of exactly ZERO edge cases!", "I can't tell if I can't find a seat because I'm broken or because you are.", "Maybe I need to search more than 7 tiles away for a seat...")
-	leave_mad_lines = list("Runtime in robot_customer_controller.dm, line 28: undefined type path /datum/ai_behavior/leave_venue.", "IF YOU GUYS STILL HAD HARM INTENT I WOULD'VE HIT YOU!", "I'm telling the gods about this.")
-	leave_happy_lines = list("No! I don't wanna go downstream! Please! It's so nice here! HELP!!")
-	wait_for_food_lines = list("TODO: write some food waiting lines", "If I only had a brain...", "request_for_food.dmb - 0 errors, 12 warnings", "How do I eat food, again?")
+	found_seat_lines = list("customer_pawn.say(pick(customer_data.found_seat_lines))", "我在 hub 上看到过你这个星区。这片土地的法律是什么？", "这里的移动速度有点低……")
+	cant_find_seat_lines = list("别对我的 AI 做压力测试，小子！我的工程师考虑了正好零个边界情况！", "我分不清我找不到座位是因为我坏了还是因为你坏了。", "也许我该在 7 格之外找找座位……")
+	leave_mad_lines = list("Runtime in robot_customer_controller.dm, line 28: undefined type path /datum/ai_behavior/leave_venue.", "要是你们还有伤害意图，我早就打你了！", "我要把这事告诉众神。")
+	leave_happy_lines = list("不！我不想被下游合并！求你了！这里太好了！救命！！")
+	wait_for_food_lines = list("待办：写一些等餐台词", "要是我有个脑子就好了……", "request_for_food.dmb - 0 errors, 12 warnings", "话说回来，我该怎么吃东西？")
 	friendly_pull_line = "Chelp."
-	first_warning_line = "You'd fit in well where I'm from. But you better stop."
-	second_warning_line = "Breaking-you-so-bad-you'll-reminisce-the-days-before-I-made-you-crooked.exe: booting..."
-	self_defense_line = "I have been designed to do two things: Order food, and break every bone in your body."
+	first_warning_line = "你在我来的地方会很吃得开。但你最好停手。"
+	second_warning_line = "Breaking-you-so-bad-you'll-reminisce-the-days-before-I-made-you-crooked.exe：正在启动……"
+	self_defense_line = "我被设计来做两件事：点餐，以及打断你身上每一根骨头。"

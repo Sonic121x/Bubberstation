@@ -1,44 +1,44 @@
 	//NASA Voidsuit
 /obj/item/clothing/head/helmet/space/nasavoid
-	name = "\improper NASA void helmet"
-	desc = "An old, NASA CentCom branch designed, dark red space suit helmet."
+	name = "\improper NASA 太空头盔"
+	desc = "一顶老旧的深红色太空头盔，由 NASA 中央指挥部支部设计。"
 	icon_state = "void"
 	inhand_icon_state = "void_helmet"
 
 /obj/item/clothing/suit/space/nasavoid
-	name = "\improper NASA voidsuit"
+	name = "\improper NASA 太空服"
 	icon_state = "void"
 	inhand_icon_state = "void_suit"
-	desc = "An old, NASA CentCom branch designed, dark red space suit."
+	desc = "一套老旧的深红色太空服，由 NASA 中央指挥部支部设计。"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/multitool)
 
 /obj/item/clothing/head/helmet/space/nasavoid/old
-	name = "\improper engineering void helmet"
-	desc = "A CentCom engineering dark red space suit helmet. While old and dusty, it still gets the job done."
+	name = "\improper 工程太空头盔"
+	desc = "一顶中央指挥部工程部使用的深红色太空头盔。虽然老旧积灰，但依然能派上用场。"
 	icon_state = "void"
 	visor_dirt = "void_dirt"
 
 /obj/item/clothing/suit/space/nasavoid/old
-	name = "\improper engineering voidsuit"
+	name = "\improper 工程太空服"
 	icon_state = "void"
 	inhand_icon_state = "void_suit"
-	desc = "A CentCom engineering dark red space suit. Age has degraded the suit making it difficult to move around in."
+	desc = "一套中央指挥部工程部使用的深红色太空服。岁月让它老化，穿在身上行动困难。"
 	slowdown = 4
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/multitool)
 
 	//EVA suit
 /obj/item/clothing/suit/space/eva
-	name = "\improper EVA suit"
+	name = "\improper EVA 宇航服"
 	icon_state = "space"
 	inhand_icon_state = "s_suit"
-	desc = "A lightweight space suit with the basic ability to protect the wearer from the vacuum of space during emergencies."
+	desc = "一套轻型宇航服，具备在紧急情况下保护穿着者免受太空真空伤害的基本能力。"
 	armor_type = /datum/armor/space_eva
 
 /obj/item/clothing/head/helmet/space/eva
-	name = "\improper EVA helmet"
+	name = "\improper EVA 头盔"
 	icon_state = "space"
 	inhand_icon_state = "space_helmet"
-	desc = "A lightweight space helmet with the basic ability to protect the wearer from the vacuum of space during emergencies."
+	desc = "一顶轻型太空头盔，具备在紧急情况下保护佩戴者免受太空真空伤害的基本能力。"
 	flash_protect = FLASH_PROTECTION_NONE
 	armor_type = /datum/armor/space_eva
 	visor_dirt = "space_dirt"
@@ -51,17 +51,17 @@
 
 /obj/item/clothing/head/helmet/space/eva/examine(mob/user)
 	. = ..()
-	. += span_notice("You can start constructing a critter sized mecha with a [span_bold("cyborg leg")].")
+	. += span_notice("你可以用[span_bold("半机械人腿部")]开始组装一台小型机甲。")
 
 /obj/item/clothing/head/helmet/space/eva/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/bodypart/leg/left/robot) && !istype(tool, /obj/item/bodypart/leg/right/robot))
 		return ..()
 
 	if(ismob(loc))
-		user.balloon_alert(user, "drop the helmet first!")
+		user.balloon_alert(user, "先把头盔放下！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.balloon_alert(user, "leg attached")
+	user.balloon_alert(user, "已装接腿部")
 	new /obj/item/bot_assembly/vim(loc)
 	qdel(tool)
 	qdel(src)
@@ -69,16 +69,16 @@
 
 	//Emergency suit
 /obj/item/clothing/head/helmet/space/fragile
-	name = "emergency space helmet"
-	desc = "A bulky, airtight helmet meant to protect the user during emergency situations. It doesn't look very durable."
+	name = "应急太空头盔"
+	desc = "一顶笨重、气密的头盔，用于在紧急情况下保护使用者。看起来并不怎么耐用。"
 	icon_state = "syndicate-helm-orange"
 	inhand_icon_state = "syndicate-helm-orange" //resprite?
 	armor_type = /datum/armor/space_fragile
 	strip_delay = 6.5 SECONDS
 
 /obj/item/clothing/suit/space/fragile
-	name = "emergency space suit"
-	desc = "A bulky, airtight suit meant to protect the user during emergency situations. It doesn't look very durable."
+	name = "应急太空服"
+	desc = "一套笨重、气密的太空服，用于在紧急情况下保护使用者。看起来并不怎么耐用。"
 	var/torn = FALSE
 	icon_state = "syndicate-orange"
 	inhand_icon_state = "syndicate-orange"
@@ -89,12 +89,12 @@
 /datum/armor/space_fragile
 	melee = 5
 
-/obj/item/clothing/suit/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/clothing/suit/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(!torn && prob(50))
-		to_chat(owner, span_warning("[src] tears from the damage, breaking the airtight seal!"))
+		to_chat(owner, span_warning("[src] 因受损而撕裂，气密性被破坏了！"))
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
-		name = "torn [src]."
-		desc = "A bulky suit meant to protect the user during emergency situations, at least until someone tore a hole in the suit."
+		name = "破损的 [src]"
+		desc = "一套笨重的太空服，用于在紧急情况下保护使用者——至少在被撕出一个洞之前是这样。"
 		torn = TRUE
 		playsound(loc, 'sound/items/weapons/slashmiss.ogg', 50, TRUE)
 		playsound(loc, 'sound/effects/refill.ogg', 50, TRUE)

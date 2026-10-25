@@ -1,12 +1,12 @@
 /datum/lazy_template/virtual_domain/pipedream
-	name = "Disposal Pipe Factory"
+	name = "处理管道工厂"
 	cost = BITRUNNER_COST_LOW
-	desc = "An abandoned and infested factory manufacturing disposal pipes."
+	desc = "一家废弃已久、已被生物占据的处理管道制造厂。"
 	difficulty = BITRUNNER_DIFFICULTY_LOW
 	completion_loot = list(/obj/item/stack/pipe_cleaner_coil/random/five = 1)
-	help_text = "Not long ago, this place was thriving with activity. The workers \
-	seemed to have left in a hurry, and now productivity is in the bin. Something \
-	must have trashed the place, but what?"
+	help_text = "不久前，这里还是一片繁忙景象。工人们 \
+	似乎走得很匆忙，如今产能已经全进了垃圾桶。肯定 \
+	有什么东西把这里砸了个稀烂，但究竟是什么呢？"
 	is_modular = TRUE
 	key = "pipedream"
 	map_name = "pipedream"
@@ -18,7 +18,7 @@
 
 // ID Trims
 /datum/id_trim/factory
-	assignment = "Factory Worker"
+	assignment = "工厂工人"
 	trim_state = "trim_cargotechnician"
 	department_color = COLOR_CARGO_BROWN
 	subdepartment_color = COLOR_CARGO_BROWN
@@ -28,7 +28,7 @@
 		)
 
 /datum/id_trim/factory/qm
-	assignment = "Factory Quartermaster"
+	assignment = "工厂货运主管"
 	trim_state = "trim_quartermaster"
 	department_color = COLOR_COMMAND_BLUE
 	subdepartment_color = COLOR_CARGO_BROWN
@@ -41,16 +41,16 @@
 
 // ID Cards
 /obj/item/card/id/advanced/factory
-	name = "factory worker ID"
+	name = "工厂工人 ID 卡"
 	trim = /datum/id_trim/factory
 
 /obj/item/card/id/advanced/factory/qm
-	name = "factory quartermaster ID"
+	name = "工厂货运主管 ID 卡"
 	trim = /datum/id_trim/factory/qm
 
 //Outfits
 /datum/outfit/factory
-	name = "Factory Worker"
+	name = "工厂工人"
 
 	id_trim = /datum/id_trim/factory
 	id = /obj/item/card/id/advanced/
@@ -63,7 +63,7 @@
 	l_pocket = /obj/item/flashlight/seclite
 
 /datum/outfit/factory/guard
-	name = "Factory Guard"
+	name = "工厂警卫"
 
 	uniform = /obj/item/clothing/under/rank/security/officer/grey
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -75,7 +75,7 @@
 	r_pocket = /obj/item/assembly/flash/handheld
 
 /datum/outfit/factory/qm
-	name = "Factory Quartermaster"
+	name = "工厂货运主管"
 
 	id_trim = /datum/id_trim/factory/qm
 	id = /obj/item/card/id/advanced/silver
@@ -89,16 +89,16 @@
 
 // Corpses
 /obj/effect/mob_spawn/corpse/human/factory
-	name = "Factory Worker"
+	name = "工厂工人"
 	outfit = /datum/outfit/factory
 	icon_state = "corpsecargotech"
 
 /obj/effect/mob_spawn/corpse/human/factory/guard
-	name = "Factory Guard"
+	name = "工厂警卫"
 	outfit = /datum/outfit/factory/guard
 	icon_state = "corpsecargotech"
 
 /obj/effect/mob_spawn/corpse/human/factory/qm
-	name = "Factory Quartermaster"
+	name = "工厂货运主管"
 	outfit = /datum/outfit/factory/qm
 	icon_state = "corpsecargotech"

@@ -1,11 +1,11 @@
 /datum/round_event_control/aurora_caelus
-	name = "Aurora Caelus"
+	name = "天穹极光"
 	typepath = /datum/round_event/aurora_caelus
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
 	category = EVENT_CATEGORY_FRIENDLY
-	description = "A colourful display can be seen through select windows. And the kitchen."
+	description = "透过部分窗户可以看到一场绚丽的表演。厨房里也能看到。"
 
 /datum/round_event_control/aurora_caelus/can_spawn_event(players, allow_magic = FALSE)
 	if(!SSmapping.empty_space)
@@ -18,9 +18,9 @@
 	end_when = 80
 
 /datum/round_event/aurora_caelus/announce(fake)
-	priority_announce("[station_name()]: A harmless cloud of ions is approaching your station, and will exhaust their energy battering the hull. Nanotrasen has approved a short break for all employees to relax and observe this very rare event. During this time, starlight will be bright but gentle, shifting between quiet green and blue colors. Any staff who would like to view these lights for themselves may proceed to the area nearest to them with viewing ports to open space. We hope you enjoy the lights.",
+	priority_announce("[station_name()]：一团无害的离子云正在接近你的空间站，其能量将在冲击船体时消耗殆尽。纳米传讯已批准全体员工短暂休息，以放松并观赏这一极其罕见的现象。在此期间，星光将明亮而柔和，在宁静的绿色与蓝色之间变换。任何想亲眼观看这些光芒的员工，都可以前往附近设有朝向太空观察窗的区域。希望你们喜欢这片光芒。",
 	sound = 'sound/announcer/notice/notice2.ogg',
-	sender_override = "Nanotrasen Meteorology Division")
+	sender_override = "纳米传讯气象部")
 	if (fake)
 		return
 	for(var/V in GLOB.player_list)
@@ -39,18 +39,18 @@
 	for(var/area/station/service/kitchen/affected_area in GLOB.areas)
 		var/obj/machinery/oven/roast_ruiner = locate() in affected_area
 		if(roast_ruiner)
-			roast_ruiner.balloon_alert_to_viewers("oh egads!")
+			roast_ruiner.balloon_alert_to_viewers("哦，天哪！")
 			var/turf/ruined_roast = get_turf(roast_ruiner)
 			ruined_roast.atmos_spawn_air("[GAS_PLASMA]=100;[TURF_TEMPERATURE(1000)]")
-			message_admins("Aurora Caelus event caused an oven to ignite at [ADMIN_VERBOSEJMP(ruined_roast)].")
-			log_game("Aurora Caelus event caused an oven to ignite at [loc_name(ruined_roast)].")
+			message_admins("天穹极光事件导致 [ADMIN_VERBOSEJMP(ruined_roast)] 处的烤箱起火了。")
+			log_game("天穹极光事件导致 [loc_name(ruined_roast)] 处的烤箱起火。")
 			announce_to_ghosts(roast_ruiner)
 			for(var/mob/living/carbon/human/seymour in viewers(7, roast_ruiner))
 				if (seymour in human_blacklist)
 					continue
 				human_blacklist += seymour
 				if(seymour.mind && istype(seymour.mind.assigned_role, /datum/job/cook))
-					seymour.say("My roast is ruined!!!", forced = "ruined roast")
+					seymour.say("我的烤肉全毁了！！！", forced = "ruined roast")
 					seymour.emote("scream")
 
 /datum/round_event/aurora_caelus/tick()
@@ -66,9 +66,9 @@
 /datum/round_event/aurora_caelus/end()
 	fade_space()
 	fade_kitchen()
-	priority_announce("The aurora caelus event is now ending. Starlight conditions will slowly return to normal. When this has concluded, please return to your workplace and continue work as normal. Have a pleasant shift, [station_name()], and thank you for watching with us.",
+	priority_announce("天穹极光现象即将结束。星光条件将逐步恢复正常。待其完全结束后，请返回各自的工作岗位照常工作。祝你们值班愉快，[station_name()]，也感谢你们与我们一起观赏。",
 	sound = 'sound/announcer/notice/notice2.ogg',
-	sender_override = "Nanotrasen Meteorology Division")
+	sender_override = "纳米传讯气象部")
 
 /datum/round_event/aurora_caelus/proc/fade_space(fade_in = FALSE)
 	set waitfor = FALSE

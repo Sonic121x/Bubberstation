@@ -120,7 +120,7 @@
 
 		choices[team_member.current.real_name] = team_member
 
-	var/new_master = tgui_input_list(owner, "选择另一名血教成员，将血教的教主身份传给他。", "传承衣钵", choices)
+	var/new_master = tgui_input_list(owner, "选择另一名血教徒，将血教的教主身份传给他。", "传承衣钵", choices)
 	if (!new_master || !IsAvailable())
 		return
 

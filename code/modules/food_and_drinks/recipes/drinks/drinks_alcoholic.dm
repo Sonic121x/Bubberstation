@@ -343,24 +343,24 @@
 /datum/chemical_reaction/drink/whiskey_sour
 	results = list(/datum/reagent/consumable/ethanol/whiskey_sour = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/sugar = 1)
-	mix_message = "The mixture darkens to a rich gold hue."
+	mix_message = "混合物逐渐加深为浓郁的金色。"
 
 /datum/chemical_reaction/drink/fetching_fizz
 	results = list(/datum/reagent/consumable/ethanol/fetching_fizz = 3)
 	required_reagents = list(/datum/reagent/consumable/nuka_cola = 1, /datum/reagent/iron = 1) //Manufacturable from only the mining station
-	mix_message = "The mixture slightly vibrates before settling."
+	mix_message = "混合物微微震动，随后归于平静。"
 
 /datum/chemical_reaction/drink/hearty_punch
 	results = list(/datum/reagent/consumable/ethanol/hearty_punch = 1)  //Very little, for balance reasons
 	required_reagents = list(/datum/reagent/consumable/ethanol/brave_bull = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5, /datum/reagent/consumable/ethanol/absinthe = 5)
-	mix_message = "The mixture darkens to a healthy crimson."
+	mix_message = "混合物加深为健康的绯红色。"
 	required_temp = 315 //Piping hot!
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_BRUTE | REACTION_TAG_BURN | REACTION_TAG_TOXIN | REACTION_TAG_OXY
 
 /datum/chemical_reaction/drink/bacchus_blessing
 	results = list(/datum/reagent/consumable/ethanol/bacchus_blessing = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/hooch = 1, /datum/reagent/consumable/ethanol/absinthe = 1, /datum/reagent/consumable/ethanol/manly_dorf = 1, /datum/reagent/consumable/ethanol/syndicatebomb = 1)
-	mix_message = span_warning("The mixture turns to a sickening froth.")
+	mix_message = span_warning("混合物变成令人作呕的泡沫。")
 
 /datum/chemical_reaction/drink/eggnog
 	results = list(/datum/reagent/consumable/ethanol/eggnog = 15)
@@ -369,21 +369,21 @@
 /datum/chemical_reaction/drink/narsour
 	results = list(/datum/reagent/consumable/ethanol/narsour = 1)
 	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/demonsblood = 1)
-	mix_message = "The mixture develops a sinister glow."
+	mix_message = "混合物散发出邪恶的微光。"
 	mix_sound = 'sound/effects/singlebeat.ogg'
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/quadruplesec
 	results = list(/datum/reagent/consumable/ethanol/quadruple_sec = 15)
 	required_reagents = list(/datum/reagent/consumable/ethanol/triple_sec = 5, /datum/reagent/consumable/triple_citrus = 5, /datum/reagent/consumable/grenadine = 5)
-	mix_message = "The snap of a taser emanates clearly from the mixture as it settles."
+	mix_message = "混合物静置时，清晰地传出电击枪的啪响。"
 	mix_sound = 'sound/items/weapons/taser.ogg'
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/grasshopper
 	results = list(/datum/reagent/consumable/ethanol/grasshopper = 15)
 	required_reagents = list(/datum/reagent/consumable/cream = 5, /datum/reagent/consumable/ethanol/creme_de_menthe = 5, /datum/reagent/consumable/ethanol/creme_de_cacao = 5)
-	mix_message = "A vibrant green bubbles forth as the mixture emulsifies."
+	mix_message = "混合物乳化时，涌出鲜亮的绿色气泡。"
 
 /datum/chemical_reaction/drink/stinger
 	results = list(/datum/reagent/consumable/ethanol/stinger = 15)
@@ -392,49 +392,49 @@
 /datum/chemical_reaction/drink/quintuplesec
 	results = list(/datum/reagent/consumable/ethanol/quintuple_sec = 15)
 	required_reagents = list(/datum/reagent/consumable/ethanol/quadruple_sec = 5, /datum/reagent/consumable/nutriment/soup/clown_tears = 5, /datum/reagent/consumable/ethanol/syndicatebomb = 5)
-	mix_message = "Judgement is upon you."
+	mix_message = "审判已降临于你。"
 	mix_sound = 'sound/items/airhorn/airhorn2.ogg'
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/bastion_bourbon
 	results = list(/datum/reagent/consumable/ethanol/bastion_bourbon = 2)
 	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/triple_citrus = 1, /datum/reagent/consumable/berryjuice = 1) //herbal and minty, with a hint of citrus and berry
-	mix_message = "You catch an aroma of hot tea and fruits as the mix blends into a blue-green color."
+	mix_message = "当混合物调成蓝绿色时，你闻到热茶与水果的香气。"
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_BRUTE | REACTION_TAG_BURN | REACTION_TAG_TOXIN | REACTION_TAG_OXY
 
 /datum/chemical_reaction/drink/squirt_cider
 	results = list(/datum/reagent/consumable/ethanol/squirt_cider = 4)
 	required_reagents = list(/datum/reagent/water/salt = 2, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/nutriment = 1)
-	mix_message = "The mix swirls and turns a bright red that reminds you of an apple's skin."
+	mix_message = "混合物旋转起来，变成让你想起苹果皮的鲜红色。"
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/fringe_weaver
 	results = list(/datum/reagent/consumable/ethanol/fringe_weaver = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 9, /datum/reagent/consumable/sugar = 1) //9 karmotrine, 1 adelhyde
-	mix_message = "The mix turns a pleasant cream color and foams up."
+	mix_message = "混合物变成宜人的奶油色，并泛起泡沫。"
 
 /datum/chemical_reaction/drink/sugar_rush
 	results = list(/datum/reagent/consumable/ethanol/sugar_rush = 4)
 	required_reagents = list(/datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/lemonjuice = 1, /datum/reagent/consumable/ethanol/wine = 1) //2 adelhyde (sweet), 1 powdered delta (sour), 1 karmotrine (alcohol)
-	mix_message = "The mixture bubbles and brightens into a girly pink."
+	mix_message = "混合物冒泡，并亮成少女般的粉色。"
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/crevice_spike
 	results = list(/datum/reagent/consumable/ethanol/crevice_spike = 6)
 	required_reagents = list(/datum/reagent/consumable/limejuice = 2, /datum/reagent/consumable/capsaicin = 4) //2 powdered delta (sour), 4 flanergide (spicy)
-	mix_message = "The mixture stings your eyes as it settles."
+	mix_message = "混合物静置时刺痛你的双眼。"
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/sake
 	results = list(/datum/reagent/consumable/ethanol/sake = 10)
 	required_reagents = list(/datum/reagent/consumable/rice = 10)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
-	mix_message = "The rice grains ferment into a clear, sweet-smelling liquid."
+	mix_message = "米粒发酵成清澈、带有甜香的液体。"
 
 /datum/chemical_reaction/drink/peppermint_patty
 	results = list(/datum/reagent/consumable/ethanol/peppermint_patty = 10)
 	required_reagents = list(/datum/reagent/consumable/hot_coco = 6, /datum/reagent/consumable/ethanol/creme_de_cacao = 1, /datum/reagent/consumable/ethanol/creme_de_menthe = 1, /datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/menthol = 1)
-	mix_message = "The coco turns mint green just as the strong scent hits your nose."
+	mix_message = "可可变成薄荷绿的同时，浓烈的气味扑鼻而来。"
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/alexander
@@ -479,21 +479,21 @@
 /datum/chemical_reaction/drink/wizz_fizz
 	results = list(/datum/reagent/consumable/ethanol/wizz_fizz = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol/triple_sec = 1, /datum/reagent/consumable/sodawater = 1, /datum/reagent/consumable/ethanol/champagne = 1)
-	mix_message = "The beverage starts to froth with an almost mystical zeal!"
+	mix_message = "饮料开始冒着几乎带有神秘气息的泡沫！"
 	mix_sound = 'sound/effects/bubbles/bubbles2.ogg'
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/bug_spray
 	results = list(/datum/reagent/consumable/ethanol/bug_spray = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/triple_sec = 2, /datum/reagent/consumable/lemon_lime = 1, /datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vodka = 1)
-	mix_message = "The faint aroma of summer camping trips wafts through the air; but what's that buzzing noise?"
+	mix_message = "空气中飘来夏日露营的淡淡气息；可那嗡嗡声是什么？"
 	mix_sound = 'sound/mobs/non-humanoids/bee/bee.ogg'
 	reaction_tags = REACTION_TAG_DRINK | REACTION_TAG_EASY | REACTION_TAG_OTHER
 
 /datum/chemical_reaction/drink/jack_rose
 	results = list(/datum/reagent/consumable/ethanol/jack_rose = 4)
 	required_reagents = list(/datum/reagent/consumable/grenadine = 1, /datum/reagent/consumable/ethanol/applejack = 2, /datum/reagent/consumable/limejuice = 1)
-	mix_message = "As the grenadine incorporates, the beverage takes on a mellow, red-orange glow."
+	mix_message = "随着石榴糖浆融入，饮料呈现出柔和的红橙色光泽。"
 
 /datum/chemical_reaction/drink/turbo
 	results = list(/datum/reagent/consumable/ethanol/turbo = 5)
@@ -527,7 +527,7 @@
 /datum/chemical_reaction/drink/planet_cracker
 	results = list(/datum/reagent/consumable/ethanol/planet_cracker = 20)
 	required_reagents = list(/datum/reagent/consumable/ethanol/champagne = 10, /datum/reagent/consumable/ethanol/lizardwine = 10, /datum/reagent/consumable/eggyolk = 2, /datum/reagent/gold = 5)
-	mix_message = "The liquid's color starts shifting as the nanogold is alternately corroded and redeposited."
+	mix_message = "随着纳米金被交替腐蚀与重新沉积，液体的颜色开始不断变化。"
 
 /datum/chemical_reaction/drink/mauna_loa
 	results = list(/datum/reagent/consumable/ethanol/mauna_loa = 5)
@@ -553,17 +553,17 @@
 /datum/chemical_reaction/drink/the_juice
 	results = list(/datum/reagent/consumable/ethanol/the_juice = 5)
 	required_reagents = list(/datum/reagent/consumable/mushroom_tea = 1, /datum/reagent/bluespace = 1, /datum/reagent/toxin/mindbreaker = 1, /datum/reagent/consumable/ethanol/neurotoxin = 1, /datum/reagent/medicine/morphine = 1)
-	mix_message = "The liquids all swirl together into a deep purple."
+	mix_message = "各种液体旋搅在一起，变成深紫色。"
 
 /datum/chemical_reaction/drink/helianthus
 	results = list(/datum/reagent/consumable/ethanol/helianthus = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/toxin/mindbreaker = 1)
-	mix_message = "The drink lets out a soft enlightening laughter..."
+	mix_message = "这杯饮品发出了一段轻柔而启迪人心的笑声……"
 
 /datum/chemical_reaction/drink/the_hat
 	results = list(/datum/reagent/consumable/ethanol/the_hat = 1)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/water = 1, /datum/reagent/consumable/ethanol/plumwine = 1)
-	mix_message = "The drink starts to smell perfumy..."
+	mix_message = "这杯饮品开始散发出香水般的气味……"
 
 /datum/chemical_reaction/drink/gin_garden
 	results = list(/datum/reagent/consumable/ethanol/gin_garden = 15)
@@ -572,12 +572,12 @@
 /datum/chemical_reaction/drink/telepole
 	results = list(/datum/reagent/consumable/ethanol/telepole = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/wine_voltaic = 1, /datum/reagent/consumable/ethanol/dark_and_stormy = 2, /datum/reagent/consumable/ethanol/sake = 1)
-	mix_message = "You swear you saw a spark fly from the glass..."
+	mix_message = "你发誓你看见玻璃杯里飞出了一颗火花……"
 
 /datum/chemical_reaction/drink/pod_tesla
 	results = list(/datum/reagent/consumable/ethanol/pod_tesla = 15)
 	required_reagents = list(/datum/reagent/consumable/ethanol/telepole = 5, /datum/reagent/consumable/ethanol/brave_bull = 3, /datum/reagent/consumable/ethanol/admiralty = 5)
-	mix_message = "Arcs of lightning fly from the mixture."
+	mix_message = "电弧从混合物中飞射而出。"
 	mix_sound = 'sound/items/weapons/zapbang.ogg'
 
 /datum/chemical_reaction/drink/yuyakita
@@ -659,7 +659,7 @@
 /datum/chemical_reaction/drink/boston_sour
 	results = list(/datum/reagent/consumable/ethanol/boston_sour = 15)
 	required_reagents = list(/datum/reagent/consumable/ethanol/whiskey_sour = 15, /datum/reagent/consumable/eggwhite = 2, /datum/reagent/consumable/ethanol/bitters = 1)
-	mix_message = "A frothy head forms over the mixture."
+	mix_message = "混合物表面浮起一层泡沫。"
 
 /datum/chemical_reaction/drink/star
 	results = list(/datum/reagent/consumable/ethanol/star = 10)
@@ -668,23 +668,23 @@
 /datum/chemical_reaction/drink/old_fashioned
 	results = list(/datum/reagent/consumable/ethanol/old_fashioned = 30)
 	required_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 25, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/ethanol/bitters = 2)
-	mix_message = "The sugar dissolves into the bitters and whiskey."
+	mix_message = "糖溶解在苦精与威士忌之中。"
 
 /datum/chemical_reaction/drink/sazerac
 	results = list(/datum/reagent/consumable/ethanol/sazerac = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/old_fashioned = 10, /datum/reagent/consumable/ethanol/absinthe = 1)
-	mix_message = "The mixture takes on a pleasing pink hue."
+	mix_message = "混合物呈现出悦目的粉色色调。"
 
 /datum/chemical_reaction/drink/amaretto_sour
 	results = list(/datum/reagent/consumable/ethanol/amaretto_sour = 15)
 	required_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 10, /datum/reagent/consumable/lemonjuice = 5, /datum/reagent/consumable/eggwhite = 2)
-	mix_message = "A frothy head forms over the mixture."
+	mix_message = "混合物表面浮起一层泡沫。"
 
 /datum/chemical_reaction/drink/ramos_gin_fizz
 	results = list(/datum/reagent/consumable/ethanol/ramos_gin_fizz = 25)
 	//yes, this is intentionally a pain in the ass
 	required_reagents = list(/datum/reagent/consumable/ethanol/ginfizz = 12, /datum/reagent/consumable/lemonjuice = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/eggwhite = 3, /datum/reagent/consumable/cream = 3, /datum/reagent/consumable/ethanol/triple_sec = 1)
-	mix_message = "The drink forms a rising head of foam that begins to creep out of the top of the glass."
+	mix_message = "饮品升起一层泡沫，开始从杯口漫出。"
 
 /datum/chemical_reaction/drink/french_75
 	results = list(/datum/reagent/consumable/ethanol/french_75 = 10)
@@ -701,7 +701,7 @@
 /datum/chemical_reaction/drink/hot_toddy
 	results = list(/datum/reagent/consumable/ethanol/hot_toddy = 10)
 	required_reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/ethanol/cognac = 3, /datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/lemonjuice = 1)
-	mix_message = "The scent of warm cognac fills the air."
+	mix_message = "温暖干邑的香气弥漫在空气中。"
 	required_temp = 320 //Pour 100c water into other ingredients
 
 /datum/chemical_reaction/drink/tizirian_sour
@@ -715,12 +715,12 @@
 /datum/chemical_reaction/drink/flip_cocktail
 	results=list(/datum/reagent/consumable/ethanol/flip_cocktail = 25)
 	required_reagents = list(/datum/reagent/consumable/ethanol/cognac = 15, /datum/reagent/consumable/sugar = 5, /datum/reagent/consumable/eggwhite = 4, /datum/reagent/consumable/eggyolk = 2)
-	mix_message = "The egg emulsifies into a smooth mixture."
+	mix_message = "蛋液乳化，融入顺滑的混合物。"
 
 /datum/chemical_reaction/drink/blue_blazer
 	results=list(/datum/reagent/consumable/ethanol/blue_blazer = 9)
 	required_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 4, /datum/reagent/water = 4, /datum/reagent/consumable/sugar = 1)
-	mix_message = "The whiskey ignites in a brilliant blue flame!"
+	mix_message = "威士忌燃起明亮的蓝色火焰！"
 	required_temp = 365 //autoignition temp of ethanol
 
 /datum/chemical_reaction/drink/bartenders_handshake
@@ -766,7 +766,7 @@
 /datum/chemical_reaction/drink/nuclear_daiquiri_thermo
 	results=list(/datum/reagent/consumable/ethanol/nuclear_daiquiri_thermo = 10)
 	required_reagents = list(/datum/reagent/consumable/ethanol/nuclear_daiquiri = 10, /datum/reagent/uranium = 1, /datum/reagent/hydrogen = 9)
-	mix_message = "As the mixture begins to combine and glow, an ominous metallic taste fills your mouth."
+	mix_message = "随着混合物开始交融并发光，一股不祥的金属味充满你的口腔。"
 
 /datum/chemical_reaction/drink/poets_dream
 	results=list(/datum/reagent/consumable/ethanol/poets_dream = 4)

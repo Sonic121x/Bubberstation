@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/space/hunter
-	name = "bounty hunting suit"
-	desc = "A custom version of the MK.II SWAT suit, modified to look rugged and tough. Works as a space suit, if you can find a helmet."
+	name = "赏金猎人制服"
+	desc = "MK.II 特警服的定制版本，经过改装，外观粗犷坚固。只要你找得到头盔，它就能当宇航服使用。"
 	icon_state = "hunter"
 	inhand_icon_state = "swat_suit"
 	allowed = list(/obj/item/gun, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/knife/combat)

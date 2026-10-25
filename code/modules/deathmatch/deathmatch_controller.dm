@@ -24,7 +24,7 @@
 
 /datum/deathmatch_controller/proc/create_new_lobby(mob/host)
 	lobbies[host.ckey] = new /datum/deathmatch_lobby(host)
-	deadchat_broadcast(" has opened a new deathmatch lobby. <a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(Join)</a>", "<B>[host]</B>")
+	deadchat_broadcast(" 开启了一个新的死斗大厅。<a href=byond://?src=[REF(lobbies[host.ckey])];join=1>(加入)</a>", "<B>[host]</B>")
 
 /datum/deathmatch_controller/proc/remove_lobby(ckey)
 	var/lobby = lobbies[ckey]
@@ -78,18 +78,18 @@
 	switch (action)
 		if ("host")
 			if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-				tgui_alert(usr, "Deathmatch has been temporarily disabled by admins.")
+				tgui_alert(usr, "死斗模式已被管理员暂时禁用。")
 				return
 			if (lobbies[usr.ckey])
 				return
 			if(!SSticker.HasRoundStarted())
-				tgui_alert(usr, "The round hasn't started yet!")
+				tgui_alert(usr, "本回合尚未开始！")
 				return
 			ui.close()
 			create_new_lobby(usr)
 		if ("join")
 			if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-				tgui_alert(usr, "Deathmatch has been temporarily disabled by admins.")
+				tgui_alert(usr, "死斗模式已被管理员暂时禁用。")
 				return
 			if (!lobbies[params["id"]])
 				return
@@ -99,7 +99,7 @@
 				playing_lobby.leave(usr.ckey)
 
 			if(isnull(playing_lobby))
-				log_game("[usr.ckey] joined deathmatch lobby [params["id"]] as a player.")
+				log_game("[usr.ckey] 以玩家身份加入了死斗大厅 [params["id"]]。")
 				chosen_lobby.join(usr)
 
 			chosen_lobby.ui_interact(usr)
@@ -120,16 +120,16 @@
 				chosen_lobby.ui_interact(usr)
 			else
 				chosen_lobby.spectate(usr)
-			log_game("[usr.ckey] joined deathmatch lobby [params["id"]] as an observer.")
+			log_game("[usr.ckey] 以观察者身份加入了死斗大厅 [params["id"]]。")
 		if ("admin")
 			if (!check_rights(R_ADMIN))
-				message_admins("[usr.key] has attempted to use admin functions in the deathmatch panel!")
-				log_admin("[key_name(usr)] tried to use the deathmatch panel admin functions without authorization.")
+				message_admins("[usr.key] 试图在死斗面板中使用管理员功能！")
+				log_admin("[key_name(usr)] 试图在未授权的情况下使用死斗面板的管理员功能。")
 				return
 			var/lobby = params["id"]
 			switch (params["func"])
 				if ("Close")
 					remove_lobby(lobby)
-					log_admin("[key_name(usr)] removed deathmatch lobby [lobby].")
+					log_admin("[key_name(usr)] 移除了死斗大厅 [lobby]。")
 				if ("View")
 					lobbies[lobby].ui_interact(usr)

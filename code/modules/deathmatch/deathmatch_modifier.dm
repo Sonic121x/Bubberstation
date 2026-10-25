@@ -1,9 +1,9 @@
 ///Deathmatch modifiers are little options the host can choose to spice the match a bit.
 /datum/deathmatch_modifier
 	/// The name of the modifier
-	var/name = "Unnamed Modifier"
+	var/name = "未命名修正"
 	/// A small description/tooltip shown in the UI
-	var/description = "What the heck does this do?"
+	var/description = "这到底有什么用？"
 	/// The color of the button shown in the UI
 	var/color = "blue"
 	/// A lazylist of modifier typepaths this is incompatible with.
@@ -62,8 +62,8 @@
 	return
 
 /datum/deathmatch_modifier/health
-	name = "Double-Health"
-	description = "Doubles your starting health"
+	name = "双倍生命"
+	description = "使你的初始生命翻倍"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/health/half, /datum/deathmatch_modifier/health/triple)
 	var/multiplier = 2
 
@@ -72,49 +72,49 @@
 	player.health *= multiplier
 
 /datum/deathmatch_modifier/health/half
-	name = "Half-Health"
-	description = "It's your funeral"
+	name = "半生命"
+	description = "这是你的葬礼"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/health, /datum/deathmatch_modifier/health/triple)
 	multiplier = 0.5
 
 /datum/deathmatch_modifier/health/triple
-	name = "Triple-Health"
-	description = "When \"Double-Health\" isn't enough..."
+	name = "三倍生命"
+	description = "当“双倍生命”还不够时……"
 	multiplier = 3
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/health, /datum/deathmatch_modifier/health/half)
 
 
 /datum/deathmatch_modifier/tenacity
-	name = "Tenacity"
-	description = "Unaffected by critical condition and pain"
+	name = "坚韧"
+	description = "不受危重状态和疼痛影响"
 
 /datum/deathmatch_modifier/tenacity/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.add_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA, TRAIT_NO_DAMAGE_OVERLAY), DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/no_wounds
-	name = "No Wounds"
-	description = "Ah, the good ol' days when people did't have literal dents in their skulls..."
+	name = "无创伤"
+	description = "啊，那些美好的旧时光，人们脑袋上还没有真正的凹坑……"
 
 /datum/deathmatch_modifier/no_wounds/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	ADD_TRAIT(player, TRAIT_NEVER_WOUNDED, DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/no_knockdown
-	name = "No Knockdowns"
-	description = "I'M FUCKING INVINCIBLE!"
+	name = "免疫击倒"
+	description = "我他妈是无敌的！"
 
 /datum/deathmatch_modifier/no_knockdown/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.add_traits(list(TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE), DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/no_slowdown
-	name = "No Slowdowns"
-	description = "You're too slow!"
+	name = "免疫减速"
+	description = "你太慢了！"
 
 /datum/deathmatch_modifier/no_slowdown/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	ADD_TRAIT(player, TRAIT_IGNORESLOWDOWN, DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/teleport
-	name = "Random Teleports"
-	description = "One moment I'm here, the next I'm there"
+	name = "随机传送"
+	description = "上一秒我在这儿，下一秒我就在那儿"
 	///A lazylist of lobbies that have this modifier enabled
 	var/list/signed_lobbies
 	///The cooldown to the teleportation effect.
@@ -165,61 +165,61 @@
 	COOLDOWN_START(src, teleport_cd, rand(12 SECONDS, 24 SECONDS))
 
 /datum/deathmatch_modifier/snail_crawl
-	name = "Snail Crawl"
-	description = "Lube the floor as you slather it with your body"
+	name = "蜗牛爬行"
+	description = "用身体蹭过地面，把地板涂满润滑剂"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/no_gravity)
 
 /datum/deathmatch_modifier/snail_crawl/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.AddElement(/datum/element/lube_walking, require_resting = TRUE)
 
 /datum/deathmatch_modifier/blinking_and_breathing
-	name = "Manual Blinking/Breathing"
-	description = "Ruin everyone's fun by forcing them to breathe and blink manually"
+	name = "手动眨眼/呼吸"
+	description = "强迫所有人手动呼吸和眨眼，毁掉大家的乐趣"
 
 /datum/deathmatch_modifier/blinking_and_breathing/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.AddComponent(/datum/component/manual_blinking)
 	player.AddComponent(/datum/component/manual_breathing)
 
 /datum/deathmatch_modifier/forcefield_trail
-	name = "Forcefield Trail"
-	description = "You leave short-living unpassable forcefields in your wake"
+	name = "力场轨迹"
+	description = "你身后会留下短暂存在、无法穿过的力场"
 
 /datum/deathmatch_modifier/forcefield_trail/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.AddElement(/datum/element/effect_trail, /obj/effect/forcefield/cosmic_field/extrafast)
 
 /datum/deathmatch_modifier/xray
-	name = "X-Ray Vision"
-	description = "See through the cordons of the deathmatch arena!"
+	name = "X 射线视觉"
+	description = "看穿大乱斗竞技场的封锁线！"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/thermal)
 
 /datum/deathmatch_modifier/xray/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	ADD_TRAIT(player, TRAIT_XRAY_VISION, DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/thermal
-	name = "Thermal Vision"
-	description = "See mobs through walls"
+	name = "热成像视觉"
+	description = "穿墙看见生物"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/xray)
 
 /datum/deathmatch_modifier/thermal/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	ADD_TRAIT(player, TRAIT_THERMAL_VISION, DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/regen
-	name = "Health Regen"
-	description = "The closest thing to free health insurance you can get"
+	name = "生命再生"
+	description = "你能得到的、最接近免费医疗保险的东西"
 
 /datum/deathmatch_modifier/regen/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.AddComponent(/datum/component/regenerator, regeneration_delay = 4 SECONDS, brute_per_second = 2.5, burn_per_second = 2.5, tox_per_second = 2.5)
 
 /datum/deathmatch_modifier/nearsightness
-	name = "Nearsightness"
-	description = "Oops, I forgot my glasses at home"
+	name = "近视"
+	description = "糟糕，我把眼镜忘在家里了"
 
 /datum/deathmatch_modifier/nearsightness/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.become_nearsighted(DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/ocelot
-	name = "Ocelot"
-	description = "Shoot faster, with extra ricochet and less spread. You're pretty good!"
+	name = "山猫"
+	description = "射得更快、跳弹更多、散布更小。你挺厉害的！"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/stormtrooper)
 
 /datum/deathmatch_modifier/ocelot/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
@@ -240,8 +240,8 @@
 	projectile.accuracy_falloff = 0
 
 /datum/deathmatch_modifier/stormtrooper
-	name = "Stormtrooper Aim"
-	description = "Fresh out of the 'I Can't Aim For Shit' School"
+	name = "风暴兵式枪法"
+	description = "刚从“我根本打不中”学校毕业"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/ocelot)
 
 /datum/deathmatch_modifier/stormtrooper/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
@@ -253,15 +253,15 @@
 	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] += 35
 
 /datum/deathmatch_modifier/four_hands
-	name = "Four Hands"
-	description = "When one pair isn't enough..."
+	name = "四只手"
+	description = "当一双手不够用时……"
 
 /datum/deathmatch_modifier/four_hands/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.change_number_of_hands(4)
 
 /datum/deathmatch_modifier/paraplegic
-	name = "Paraplegic"
-	description = "Wheelchairs. For. Everyone."
+	name = "截瘫"
+	description = "轮椅。给。每个人。"
 
 /datum/deathmatch_modifier/paraplegic/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.gain_trauma(/datum/brain_trauma/severe/paralysis/paraplegic, TRAUMA_RESILIENCE_ABSOLUTE)
@@ -273,8 +273,8 @@
 	wheels.buckle_mob(player)
 
 /datum/deathmatch_modifier/mounts
-	name = "Mounts"
-	description = "A horse! A horse! My kingdom for a horse!"
+	name = "坐骑"
+	description = "一匹马！一匹马！我用我的王国换一匹马！"
 
 /datum/deathmatch_modifier/mounts/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	///We do a bit of fun over balance here, some mounts may be better than others.
@@ -298,8 +298,8 @@
 		implant.implant(mount, silent = TRUE, force = TRUE)
 
 /datum/deathmatch_modifier/no_gravity
-	name = "No Gravity"
-	description = "Hone your robusting skills in zero g"
+	name = "无重力"
+	description = "在零重力下磨练你的搏斗技巧"
 	blacklisted_modifiers = list(/datum/deathmatch_modifier/mounts, /datum/deathmatch_modifier/paraplegic, /datum/deathmatch_modifier/minefield)
 
 /datum/deathmatch_modifier/no_gravity/on_start_game(datum/deathmatch_lobby/lobby)
@@ -313,8 +313,8 @@
 		turf.RemoveElement(/datum/element/forced_gravity, 0)
 
 /datum/deathmatch_modifier/drop_pod
-	name = "Drop Pod: Syndies"
-	description = "Steel Rain: Syndicate Edition"
+	name = "空投舱：辛迪加"
+	description = "钢铁之雨：辛迪加版"
 	///A lazylist of lobbies that have this modifier enabled
 	var/list/signed_lobbies
 	///The type of drop pod that'll periodically fall from the sky
@@ -386,8 +386,8 @@
 		contents[typepath] = 1
 
 /datum/deathmatch_modifier/drop_pod/monsters
-	name = "Drop Pod: Monsters"
-	description = "Monsters are raining from the sky!"
+	name = "空投舱：怪物"
+	description = "怪物正从天而降！"
 
 /datum/deathmatch_modifier/drop_pod/monsters/populate_contents()
 	contents = list(
@@ -414,8 +414,8 @@
 	)
 
 /datum/deathmatch_modifier/drop_pod/missiles
-	name = "Drop Pod: Cruise Missiles"
-	description = "You're going to get shelled hard"
+	name = "空投舱：巡航导弹"
+	description = "你将要被猛烈炮击"
 	drop_pod_type = /obj/structure/closet/supplypod/deadmatch_missile
 	interval = list(3 SECONDS, 5 SECONDS)
 	amount = list(1, 3)
@@ -424,8 +424,8 @@
 	return
 
 /datum/deathmatch_modifier/explode_on_death
-	name = "Explosive Death"
-	description = "Everyone gets a microbomb that cannot be manually activated."
+	name = "爆炸死亡"
+	description = "每人都会获得一枚无法手动引爆的微型炸弹。"
 
 /datum/deathmatch_modifier/explode_on_death/on_start_game(datum/deathmatch_lobby/lobby)
 	ADD_TRAIT(lobby, TRAIT_DEATHMATCH_EXPLOSIVE_IMPLANTS, DEATHMATCH_TRAIT)
@@ -435,16 +435,16 @@
 	implant.implant(player, silent = TRUE, force = TRUE)
 
 /datum/deathmatch_modifier/helgrasp
-	name = "Helgrasped"
-	description = "Cursed hands are being thrown at you!"
+	name = "赫尔之握"
+	description = "被诅咒的手正朝你投来！"
 
 /datum/deathmatch_modifier/helgrasp/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	var/metabolism_rate = /datum/reagent/inverse/helgrasp/heretic::metabolization_rate
 	player.reagents.add_reagent(/datum/reagent/inverse/helgrasp/heretic, initial(lobby.map.automatic_gameend_time) / metabolism_rate)
 
 /datum/deathmatch_modifier/wasted
-	name = "Wasted"
-	description = "You've had one drink too many"
+	name = "酩酊大醉"
+	description = "你多喝了一杯"
 
 /datum/deathmatch_modifier/wasted/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.adjust_drunk_effect(rand(30, 35))
@@ -452,23 +452,23 @@
 	player.reagents.add_reagent(/datum/reagent/consumable/ethanol/jack_rose, initial(lobby.map.automatic_gameend_time) * 0.35 / metabolism_rate)
 
 /datum/deathmatch_modifier/monkeys
-	name = "Monkeyfication"
-	description = "Go back, I want to be monkey!"
+	name = "猴子化"
+	description = "退回去，我想当猴子！"
 
 /datum/deathmatch_modifier/monkeys/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	//we don't call monkeyize(), because it'd set the player name to a generic "monkey(number)".
 	player.set_species(/datum/species/monkey)
 
 /datum/deathmatch_modifier/inverted_movement
-	name = "Inverted Movement"
-	description = "Up is down, left is right"
+	name = "反向移动"
+	description = "上是下，左是右"
 
 /datum/deathmatch_modifier/inverted_movement/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.AddElement(/datum/element/inverted_movement)
 
 /datum/deathmatch_modifier/minefield
-	name = "Minefield"
-	description = "Oh, it seems you've trotted on a mine!"
+	name = "雷区"
+	description = "哦，看来你踩到地雷了！"
 
 /datum/deathmatch_modifier/minefield/on_start_game(datum/deathmatch_lobby/lobby)
 	var/list/mines = subtypesof(/obj/effect/mine)
@@ -495,8 +495,8 @@
 		new mine_path (target_turf)
 
 /datum/deathmatch_modifier/random
-	name = "Random Modifiers"
-	description = "Picks 3 to 5 random modifiers as the game is about to start"
+	name = "随机修正"
+	description = "在游戏即将开始时随机挑选 3 到 5 个修正"
 	random_exempted = TRUE
 
 /datum/deathmatch_modifier/random/on_select(datum/deathmatch_lobby/lobby)
@@ -534,8 +534,8 @@
 			return
 
 /datum/deathmatch_modifier/any_loadout
-	name = "Any Loadout Allowed"
-	description = "Watch players pick Instagib everytime"
+	name = "允许任意装备配置"
+	description = "看着玩家每次都选即死模式"
 	random_exempted = TRUE
 
 /datum/deathmatch_modifier/any_loadout/selectable(datum/deathmatch_lobby/lobby)
@@ -557,16 +557,16 @@
 		lobby.loadouts = GLOB.deathmatch_game.loadouts
 
 /datum/deathmatch_modifier/hear_global_chat
-	name = "Heightened Hearing"
-	description = "This lets you hear people through wall, as well as deadchat"
+	name = "强化听觉"
+	description = "这让你能隔着墙听见别人，也能听见死者聊天"
 	random_exempted = TRUE
 
 /datum/deathmatch_modifier/hear_global_chat/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	player.add_traits(list(TRAIT_SIXTHSENSE, TRAIT_XRAY_HEARING), DEATHMATCH_TRAIT)
 
 /datum/deathmatch_modifier/apply_quirks
-	name = "Quirks enabled"
-	description = "Applies selected quirks to all players"
+	name = "启用特质"
+	description = "对所有玩家应用选定的特质"
 
 /datum/deathmatch_modifier/apply_quirks/apply(mob/living/carbon/player, datum/deathmatch_lobby/lobby)
 	if (!player.client)
@@ -575,8 +575,8 @@
 	SSquirks.AssignQuirks(player, player.client)
 
 /datum/deathmatch_modifier/martial_artistry
-	name = "Random martial arts"
-	description = "Everyone learns a random martial art!"
+	name = "随机武术"
+	description = "每个人都会随机学会一门武术！"
 	blacklisted_maps = list(/datum/lazy_template/deathmatch/meatower)
 	// kaza ruk excluded because its too common and too simple, mushpunch excluded because its horrible and not even funny
 	var/static/list/weighted_martial_arts = list(
@@ -602,4 +602,4 @@
 
 	instantiated_art.teach(player)
 
-	to_chat(player, span_revenboldnotice("Your martial art is [uppertext(instantiated_art.name)]!"))
+	to_chat(player, span_revenboldnotice("你的武术是 [uppertext(instantiated_art.name)]！"))

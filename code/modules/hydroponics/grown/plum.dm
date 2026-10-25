@@ -1,10 +1,10 @@
 // Plum
 /obj/item/seeds/plum
-	name = "plum seed pack"
-	desc = "These seeds grow into plum trees."
+	name = "李子种子包"
+	desc = "这些种子会长成李树。"
 	icon_state = "seed-plum"
 	species = "plum"
-	plantname = "Plum Tree"
+	plantname = "李树"
 	product = /obj/item/food/grown/plum
 	lifespan = 55
 	endurance = 35
@@ -18,11 +18,11 @@
 
 /obj/item/food/grown/plum
 	seed = /obj/item/seeds/plum
-	name = "plum"
-	desc = "A poet's favorite fruit. Noice."
+	name = "李子"
+	desc = "诗人最爱的水果。真不错。"
 	icon_state = "plum"
 	foodtypes = FRUIT
-	tastes = list("plum" = 1)
+	tastes = list("李子" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/plumwine
 
 /obj/item/food/grown/plum/juice_typepath()
@@ -30,11 +30,11 @@
 
 // Plumb
 /obj/item/seeds/plum/plumb
-	name = "plumb seed pack"
-	desc = "These seeds grow into plumb trees."
+	name = "铅李种子包"
+	desc = "这些种子会长成铅李树。"
 	icon_state = "seed-plumb"
 	species = "plumb"
-	plantname = "Plumb Tree"
+	plantname = "铅李树"
 	product = /obj/item/food/grown/plum/plumb
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = null
@@ -43,8 +43,8 @@
 
 /obj/item/food/grown/plum/plumb
 	seed = /obj/item/seeds/plum/plumb
-	name = "plumb"
-	desc = "It feels very heavy."
+	name = "铅李"
+	desc = "它摸起来非常沉。"
 	icon_state = "plumb"
 	distill_reagent = null
 	wine_power = 50

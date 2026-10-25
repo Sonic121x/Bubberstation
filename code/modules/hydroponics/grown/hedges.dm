@@ -1,9 +1,9 @@
 /obj/item/seeds/shrub
-	name = "shrub seed pack"
-	desc = "These seeds grow into hedge shrubs."
+	name = "灌木种子包"
+	desc = "这些种子会长成灌木树篱。"
 	icon_state = "seed-shrub"
 	species = "shrub"
-	plantname = "Shrubbery"
+	plantname = "灌木丛"
 	product = /obj/item/grown/shrub
 	lifespan = 40
 	endurance = 30
@@ -17,24 +17,24 @@
 
 /obj/item/grown/shrub
 	seed = /obj/item/seeds/shrub
-	name = "shrub"
-	desc = "A shrubbery, it looks nice and it was only a few credits too. Plant it on the ground to grow a hedge, shrubbing skills not required."
+	name = "灌木"
+	desc = "一丛灌木，看着挺好看，价格也只贵了几个信用点。把它种在地上就能长成一道树篱，完全不需要修剪技巧。"
 	icon_state = "shrub"
 
 /obj/item/grown/shrub/attack_self(mob/user)
 	var/turf/player_turf = get_turf(user)
 	if(player_turf?.is_blocked_turf(TRUE))
 		return FALSE
-	user.visible_message(span_danger("[user] begins to plant \the [src]..."))
+	user.visible_message(span_danger("[user] 开始种植 [src]……"))
 	if(do_after(user, 8 SECONDS, target = user.drop_location()))
 		new /obj/structure/hedge/opaque(user.drop_location())
-		to_chat(user, span_notice("You plant \the [src]."))
+		to_chat(user, span_notice("你种下了 [src]。"))
 		qdel(src)
 
 ///the structure placed by the shrubs
 /obj/structure/hedge
-	name = "hedge"
-	desc = "A large bushy hedge."
+	name = "树篱"
+	desc = "一大片茂密的树篱。"
 	icon = 'icons/obj/smooth_structures/hedge.dmi'
 	icon_state = "hedge-0"
 	base_icon_state = "hedge"
@@ -49,7 +49,7 @@
 /obj/structure/hedge/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!opacity || !HAS_TRAIT(user, TRAIT_BONSAI) || !tool.get_sharpness())
 		return NONE
-	balloon_alert(user, "trimming...")
+	balloon_alert(user, "修剪中……")
 	if(!do_after(user, 3 SECONDS, target=src))
 		return ITEM_INTERACT_BLOCKING
 	opacity = FALSE
@@ -62,11 +62,11 @@
 	opacity = TRUE
 
 /obj/item/seeds/organ_tree
-	name = "organ tree seed pack"
-	desc = "These seeds grow into an organ tree."
+	name = "器官树种子包"
+	desc = "这些种子会长成一棵器官树。"
 	icon_state = "seed-organ"
 	species = "organ"
-	plantname = "Organ Tree"
+	plantname = "器官树"
 	product = null // handled snowflake
 	lifespan = 10 // organs rot fast
 	maturation = 5

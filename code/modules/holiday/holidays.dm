@@ -27,8 +27,8 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	var/no_mail_holiday = FALSE
 	/// The list of items we add to the mail pool. Can either be a weighted list or a normal list. Leave empty for nothing.
 	var/list/holiday_mail = list()
-	var/poster_name = "generic celebration poster"
-	var/poster_desc = "A poster for celebrating some holiday. Unfortunately, its unfinished, so you can't see what the holiday is."
+	var/poster_name = "通用庆典海报"
+	var/poster_desc = "一张用于庆祝某个节日的海报。可惜它还没做完，所以你看不出是哪个节日。"
 	var/poster_icon = "holiday_unfinished"
 	/// Color scheme for this holiday
 	var/list/holiday_colors
@@ -45,7 +45,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 // When the round starts, this proc is ran to get a text message to display to everyone to wish them a happy holiday
 /datum/holiday/proc/greet()
-	return "Have a happy [name]!"
+	return "祝你[chinese_holiday_display(name)]快乐！"
 
 /// Returns special prefix station name on certain days. (See new_station_name())
 /// Turns "Experimental Research City" into "Christmas Research City"
@@ -111,10 +111,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/fleet_day/greet()
-	return "This day commemorates another year of successful survival aboard the Mothic Grand Nomad Fleet. Moths galaxywide are encouraged to eat, drink, and be merry."
+	return "这一天纪念蛾族大游牧舰队又成功存活了一年。全银河的蛾子都受到鼓励，尽情吃喝、尽情欢乐。"
 
 /datum/holiday/fleet_day/get_station_name()
-	return pick("Moth", "Fleet", "Nomadic")
+	return pick("蛾族", "舰队", "游牧")
 
 // FEBRUARY
 
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = FEBRUARY
 
 /datum/holiday/groundhog/get_station_name()
-	return pick("Deja Vu") //I have been to this place before
+	return pick("既视感") //I have been to this place before
 
 /datum/holiday/nz
 	name = "Waitangi Day"
@@ -139,19 +139,19 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/nz/get_station_name()
-	return pick("Aotearoa","Kiwi","Fish 'n' Chips","Kākāpō","Southern Cross")
+	return pick("奥特亚罗瓦","几维鸟","炸鱼薯条","鸮鹦鹉","南十字座")
 
 /datum/holiday/nz/greet()
 	var/nz_age = text2num(time2text(world.timeofday, "YYYY", TIMEZONE_NZST)) - 1840
-	return "On this day [nz_age] years ago, New Zealand's Treaty of Waitangi, the founding document of the nation, was signed!"
+	return "在 [nz_age] 年前的今天，新西兰的建国文件《怀唐伊条约》正式签署！"
 
 /datum/holiday/valentines
 	name = VALENTINES
 	begin_day = 13
 	end_day = 15
 	begin_month = FEBRUARY
-	poster_name = "lovey poster"
-	poster_desc = "A poster celebrating all the relationships built today. Of course, you probably don't have one."
+	poster_name = "爱情海报"
+	poster_desc = "一张庆祝今天建立的所有感情的海报。当然，你多半没有。"
 	poster_icon = "holiday_love"
 	holiday_mail = list(
 		/obj/item/food/bonbon/chocolate_truffle,
@@ -160,15 +160,15 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 		)
 
 /datum/holiday/valentines/get_station_name()
-	return pick("Love","Amore","Single","Smootch","Hug")
+	return pick("爱","阿莫雷","单身","亲吻","拥抱")
 
 /datum/holiday/birthday
 	name = "Birthday of Space Station 13"
 	begin_day = 16
 	begin_month = FEBRUARY
 	holiday_hat = /obj/item/clothing/head/costume/festive
-	poster_name = "station birthday poster"
-	poster_desc = "A poster celebrating another year of the station's operation. Why anyone would be happy to be here is byond you."
+	poster_name = "空间站生日海报"
+	poster_desc = "一张庆祝空间站又运营了一年的海报。为什么有人会乐意待在这里，实在超乎你的理解。"
 	poster_icon = "holiday_cake" // is a lie
 	holiday_mail = list(
 		/obj/item/clothing/mask/party_horn,
@@ -182,38 +182,38 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	var/Fact
 	switch(game_age)
 		if(16)
-			Fact = " SS13 is now old enough to drive!"
+			Fact = " 空间站 13 现在到了能开车的年龄了！"
 		if(18)
-			Fact = " SS13 is now legal!"
+			Fact = " 空间站 13 现在合法了！"
 		if(21)
-			Fact = " SS13 can now drink!"
+			Fact = " 空间站 13 现在可以喝酒了！"
 		if(26)
-			Fact = " SS13 can now rent a car!"
+			Fact = " 空间站 13 现在可以租车了！"
 		if(30)
-			Fact = " SS13 can now go home and be a family man!"
+			Fact = " 空间站 13 现在可以回家当个顾家好男人了！"
 		if(35)
-			Fact = " SS13 can now run for President of the United States!"
+			Fact = " 空间站 13 现在可以竞选美国总统了！"
 		if(40)
-			Fact = " SS13 can now suffer a midlife crisis!"
+			Fact = " 空间站 13 现在可以经历中年危机了！"
 		if(50)
-			Fact = " Happy golden anniversary!"
+			Fact = " 金婚快乐！"
 		if(65)
-			Fact = " SS13 can now start thinking about retirement!"
+			Fact = " 空间站 13 现在可以开始考虑退休了！"
 	if(!Fact)
-		Fact = " SS13 is now [game_age] years old!"
+		Fact = " 空间站 13 现在 [game_age] 岁了！"
 
-	return "Say 'Happy Birthday' to Space Station 13, first publicly playable on February 16th, 2003![Fact]"
+	return "向空间站 13 说声“生日快乐”吧——它于 2003 年 2 月 16 日首次公开可玩！[Fact]"
 
 /datum/holiday/random_kindness
 	name = "Random Acts of Kindness Day"
 	begin_day = 17
 	begin_month = FEBRUARY
-	poster_name = "act of kindness poster"
-	poster_desc = "A poster notifying the reader today is 'Act of Kindness' day. What a nice thing to do."
+	poster_name = "善举海报"
+	poster_desc = "一张提醒读者今天是“善举日”的海报。多好的一件事啊。"
 	poster_icon = "holiday_kind"
 
 /datum/holiday/random_kindness/greet()
-	return "Go do some random acts of kindness for a stranger!" //haha yeah right
+	return "去为陌生人做点随机的善举吧！" //haha yeah right
 
 /datum/holiday/leap
 	name = "Leap Day"
@@ -226,8 +226,8 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	name = "Pi Day"
 	begin_day = 14
 	begin_month = MARCH
-	poster_name = "pi day poster"
-	poster_desc = "A poster celebrating the 3.141529th day of the year. At least theres free pie."
+	poster_name = "圆周率日海报"
+	poster_desc = "一张庆祝一年中第 3.141529 天的海报。至少还有免费的派吃。"
 	poster_icon = "holiday_pi"
 	holiday_mail = list(
 		/obj/item/food/pieslice/apple,
@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/pi/get_station_name()
-	return pick("Sine","Cosine","Tangent","Secant", "Cosecant", "Cotangent")
+	return pick("正弦","余弦","正切","正割","余割","余切")
 
 /datum/holiday/no_this_is_patrick
 	name = ST_PATRICK_DAY
@@ -264,10 +264,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/no_this_is_patrick/get_station_name()
-	return pick("Blarney","Green","Leprechaun","Booze")
+	return pick("布拉尼","绿色","矮精灵","酒")
 
 /datum/holiday/no_this_is_patrick/greet()
-	return "Happy National Inebriation Day!"
+	return "全国醉倒日快乐！"
 
 // APRIL
 
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_hat = /obj/item/clothing/head/syndicatefake
 
 /datum/holiday/spess/greet()
-	return "On this day over 600 years ago, Comrade Yuri Gagarin first ventured into space!"
+	return "在 600 多年前的今天，尤里·加加林同志首次进入太空！"
 
 /datum/holiday/fourtwenty
 	name = "Four-Twenty"
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/cigarette/rollie/cannabis)
 
 /datum/holiday/fourtwenty/get_station_name()
-	return pick("Snoop","Blunt","Toke","Dank","Cheech","Chong")
+	return pick("斯努普","钝烟","一口","醇货","奇奇","钟")
 
 /datum/holiday/tea
 	name = "National Tea Day"
@@ -321,7 +321,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/reagent_containers/cup/glass/mug/tea)
 
 /datum/holiday/tea/get_station_name()
-	return pick("Crumpet","Assam","Oolong","Pu-erh","Sweet Tea","Green","Black")
+	return pick("松饼","阿萨姆","乌龙","普洱","甜茶","绿茶","红茶")
 
 /datum/holiday/earth
 	name = "Earth Day"
@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_hat = /obj/item/food/grown/flower/poppy
 
 /datum/holiday/anz/get_station_name()
-	return pick("Australian","New Zealand","Poppy", "Southern Cross")
+	return pick("澳大利亚","新西兰","罂粟","南十字座")
 
 /datum/holiday/chernobyl
 	name = CHERNOBYL_ANNIVERSARY
@@ -346,13 +346,13 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/chernobyl/get_station_name()
 	if(prob(3))
-		return "Not Great, Not Terrible"
+		return "不算好，也不算糟"
 
-	return pick("Atomic", "Nuclear", "Radiation", "Plutonium", "Uranium", "Corium", "Zirconium", "Graphite", "Scram", "Explosion")
+	return pick("原子","核能","辐射","钚","铀","堆芯熔融物","锆","石墨","紧急停堆","爆炸")
 
 /datum/holiday/chernobyl/greet()
-	return "On this day in 1986, the Chernobyl nuclear power plant melted down, causing one of the worst nuclear disasters in human history. \
-		Today serves as a reminder to the lives lost and to the rigorous safety standards our engineers must adhere to when providing power to the station."
+	return "1986 年的今天，切尔诺贝利核电站发生堆芯熔毁，造成了人类历史上最严重的核灾难之一。 \
+		今天提醒着我们那些逝去的生命，也提醒着我们的工程师在为空间站供电时必须遵守的严格安全标准。"
 
 // MAY
 
@@ -374,10 +374,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/draconic_day/greet()
-	return "On this day, Lizardkind celebrates their language with literature and other cultural works."
+	return "在这一天，蜥蜴人会用文学和其他文化作品来庆祝他们的语言。"
 
 /datum/holiday/draconic_day/get_station_name()
-	return pick("Draconic", "Literature", "Reading")
+	return pick("龙语","文学","阅读")
 
 /datum/holiday/firefighter
 	name = "Firefighter's Day"
@@ -387,7 +387,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/extinguisher/mini)
 
 /datum/holiday/firefighter/get_station_name()
-	return pick("Burning","Blazing","Plasma","Fire")
+	return pick("燃烧","炽焰","等离子","火焰")
 
 /datum/holiday/bee
 	name = BEE_DAY
@@ -401,7 +401,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/bee/get_station_name()
-	return pick("Bee","Honey","Hive","Africanized","Mead","Buzz")
+	return pick("蜜蜂","蜂蜜","蜂巢","非洲化","蜂蜜酒","嗡嗡")
 
 /datum/holiday/goth
 	name = "Goth Day"
@@ -418,7 +418,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/goth/get_station_name()
-	return pick("Goth", "Sanguine", "Tenebris", "Lacrimosa", "Umbra", "Noctis")
+	return pick("哥特", "血色", "幽暗", "落泪", "暗影", "夜行")
 
 // JUNE
 
@@ -434,10 +434,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/atrakor_festival/greet()
-	return "On this day, the Lizards traditionally celebrate the Festival of Atrakor's Might, where they honour the moon god with lavishly adorned clothing, large portions of food, and a massive celebration into the night."
+	return "在这一天，蜥蜴人传统上会庆祝阿特拉科之力节，他们用华美的服饰、大量的食物以及通宵的盛大庆典来向月神致敬。"
 
 /datum/holiday/atrakor_festival/get_station_name()
-	return pick("Moon", "Night Sky", "Celebration")
+	return pick("月亮", "夜空", "庆典")
 
 /// Garbage DAYYYYY
 /// Huh?.... NOOOO
@@ -489,8 +489,8 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/pride_week/get_station_prefix()
 	if(prob(10))
-		return pick("Gay", "Trans", "Bi", "Lesbian", "Pan", "Ace", "Aro", "Nonbinary", "Enby", "Asexual", "Aromantic", "Agender", "Intersex")
-	return pick("Rainbow", "Pride", "Queer")
+		return pick("同性恋", "跨性别", "双性恋", "女同性恋", "泛性恋", "无性恋", "无浪漫", "非二元", "非二元", "无性恋", "无浪漫", "无性别", "间性")
+	return pick("彩虹", "骄傲", "酷儿")
 
 /datum/holiday/pride_week/get_station_name()
 	return ""
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/ufo/get_station_name() //Is such a thing even possible?
-	return pick("Ayy","Truth","Tsoukalos","Mulder","Scully") //Yes it is!
+	return pick("哎","真相","楚卡洛斯","穆德","史卡莉") //Yes it is!
 
 /datum/holiday/usa
 	name = "US Independence Day"
@@ -540,7 +540,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 
 /datum/holiday/usa/get_station_name()
-	return pick("Independent","American","Burger","Bald Eagle","Star-Spangled", "Fireworks")
+	return pick("独立","美国","汉堡","白头海雕","星条","烟花")
 
 /datum/holiday/writer
 	name = "Writer's Day"
@@ -563,10 +563,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_pattern = PATTERN_VERTICAL_STRIPE
 
 /datum/holiday/france/get_station_name()
-	return pick("Francais", "Fromage", "Zut", "Merde", "Sacrebleu")
+	return pick("法兰西", "奶酪", "糟了", "该死", "天哪")
 
 /datum/holiday/france/greet()
-	return "Do you hear the people sing?"
+	return "你听见人民在歌唱吗？"
 
 /datum/holiday/hotdogday
 	name = HOTDOG_DAY
@@ -575,7 +575,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/food/hotdog)
 
 /datum/holiday/hotdogday/greet()
-	return "Happy National Hot Dog Day!"
+	return "全国热狗日快乐！"
 
 //Gary Gygax's birthday, a fitting day for Wizard's Day
 /datum/holiday/wizards_day
@@ -585,7 +585,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_hat = /obj/item/clothing/head/wizard
 
 /datum/holiday/wizards_day/get_station_name()
-	return pick("Dungeon", "Elf", "Magic", "D20", "Edition")
+	return pick("地城", "精灵", "魔法", "D20", "版本")
 
 /datum/holiday/friendship
 	name = "Friendship Day"
@@ -594,7 +594,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/food/grown/apple)
 
 /datum/holiday/friendship/greet()
-	return "Have a magical [name]!"
+	return "祝你过一个充满魔法的[chinese_holiday_display(name)]！"
 
 // AUGUST
 
@@ -604,7 +604,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_day = 9
 
 /datum/holiday/indigenous/get_station_name()
-	return pick("Endangered language", "Word", "Language", "Language revitalization", "Potato", "Corn")
+	return pick("濒危语言", "词语", "语言", "语言复兴", "土豆", "玉米")
 
 // AUGUST
 
@@ -615,7 +615,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_colors = list(COLOR_TRUE_BLUE, COLOR_TANGERINE_YELLOW)
 
 /datum/holiday/ukraine/get_station_name()
-	return pick("Kyiv", "Ukraine")
+	return pick("基辅", "乌克兰")
 
 // SEPTEMBER
 
@@ -628,10 +628,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/toy/plush/lizard_plushie)
 
 /datum/holiday/tiziran_unification/greet()
-	return "On this day over 400 years ago, Lizardkind first united under a single banner, ready to face the stars as one unified people."
+	return "在 400 多年前的今天，蜥蜴人首次统一在同一面旗帜下，准备作为一个统一的民族面对群星。"
 
 /datum/holiday/tiziran_unification/get_station_name()
-	return pick("Tizira", "Lizard", "Imperial")
+	return pick("提兹拉", "蜥蜴", "帝国")
 
 /datum/holiday/ianbirthday
 	name = IAN_HOLIDAY //github.com/tgstation/tgstation/commit/de7e4f0de0d568cd6e1f0d7bcc3fd34700598acb
@@ -650,10 +650,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/ianbirthday/greet()
-	return "Happy birthday, Ian!"
+	return "生日快乐，伊恩！"
 
 /datum/holiday/ianbirthday/get_station_name()
-	return pick("Ian", "Corgi", "Erro")
+	return pick("伊恩", "柯基", "埃罗")
 
 /datum/holiday/pirate
 	name = TALK_LIKE_A_PIRATE_DAY
@@ -666,10 +666,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/pirate/greet()
-	return "Ye be talkin' like a pirate today or else ye'r walkin' tha plank, matey!"
+	return "今天你得像海盗一样说话，不然就给我走跳板，伙计！"
 
 /datum/holiday/pirate/get_station_name()
-	return pick("Yarr","Scurvy","Yo-ho-ho")
+	return pick("呀尔","坏血病","哟吼吼")
 
 /datum/holiday/questions
 	name = "Stupid-Questions Day"
@@ -677,7 +677,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = SEPTEMBER
 
 /datum/holiday/questions/greet()
-	return "Are you having a happy [name]?"
+	return "你的[chinese_holiday_display(name)]过得开心吗？"
 
 // OCTOBER
 
@@ -687,7 +687,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = OCTOBER
 
 /datum/holiday/animal/get_station_name()
-	return pick("Parrot","Corgi","Cat","Pug","Goat","Fox")
+	return pick("鹦鹉","柯基","猫","巴哥犬","山羊","狐狸")
 
 /datum/holiday/smile
 	name = "Smiling Day"
@@ -708,10 +708,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_day = 24
 
 /datum/holiday/un_day/greet()
-	return "On this day in 1945, the United Nations was founded, laying the foundation for humanity's united government!"
+	return "1945 年的今天，联合国成立，为人类联合政府奠定了基础！"
 
 /datum/holiday/un_day/get_station_name()
-	return pick("United", "Cooperation", "Humanitarian")
+	return pick("联合", "合作", "人道")
 
 /datum/holiday/halloween
 	name = HALLOWEEN
@@ -726,10 +726,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 		)
 
 /datum/holiday/halloween/greet()
-	return "Have a spooky Halloween!"
+	return "祝你万圣节惊悚快乐！"
 
 /datum/holiday/halloween/get_station_name()
-	return pick("Bone-Rattling","Mr. Bones' Own","2SPOOKY","Spooky","Scary","Skeletons")
+	return pick("骸骨震响","骨头先生专属","太惊悚了","惊悚","恐怖","骷髅")
 
 // NOVEMBER
 
@@ -740,7 +740,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_mail = list(/obj/item/food/tofu)
 
 /datum/holiday/vegan/get_station_name()
-	return pick("Tofu", "Tempeh", "Seitan", "Tofurkey")
+	return pick("豆腐", "天贝", "面筋", "豆腐火鸡")
 
 /datum/holiday/october_revolution
 	name = "October Revolution"
@@ -754,7 +754,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/october_revolution/get_station_name()
-	return pick("Communist", "Soviet", "Bolshevik", "Socialist", "Red", "Workers'")
+	return pick("共产", "苏维埃", "布尔什维克", "社会主义", "红色", "工人")
 
 /datum/holiday/remembrance_day
 	name = "Remembrance Day"
@@ -768,10 +768,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/remembrance_day/greet()
-	return "Lest we forget."
+	return "永志不忘。"
 
 /datum/holiday/remembrance_day/get_station_name()
-	return pick("Peace", "Armistice", "Poppy")
+	return pick("和平", "停战", "罂粟")
 
 /datum/holiday/lifeday
 	name = "Life Day"
@@ -779,7 +779,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = NOVEMBER
 
 /datum/holiday/lifeday/get_station_name()
-	return pick("Itchy", "Lumpy", "Malla", "Kazook") //he really pronounced it "Kazook", I wish I was making shit up
+	return pick("痒痒", "疙瘩", "玛拉", "卡祖克") //he really pronounced it "Kazook", I wish I was making shit up
 
 /datum/holiday/kindness
 	name = "Kindness Day"
@@ -824,10 +824,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/holy_lights/greet()
-	return "The Festival of Holy Lights is the final day of the Ethereal calendar. It is typically a day of prayer followed by celebration to close out the year in style."
+	return "圣光节是以太人日历的最后一天。通常这一天会先祈祷，再举行庆典，以华丽的方式为一年收尾。"
 
 /datum/holiday/holy_lights/get_station_name()
-	return pick("Ethereal", "Lantern", "Holy")
+	return pick("以太", "灯笼", "神圣")
 
 // DECEMBER
 
@@ -839,7 +839,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	holiday_hat = /obj/item/clothing/head/costume/santa
 
 /datum/holiday/festive_season/greet()
-	return "Have a nice festive season!"
+	return "祝你节日季愉快！"
 
 /datum/holiday/human_rights
 	name = "Human-Rights Day"
@@ -881,26 +881,26 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/xmas/get_station_name()
 	return pick(
-		"Bible",
-		"Birthday",
-		"Chimney",
-		"Claus",
-		"Crucifixion",
-		"Elf",
-		"Fir",
-		"Ho Ho Ho",
-		"Jesus",
-		"Jolly",
-		"Merry",
-		"Present",
-		"Sack",
-		"Santa",
-		"Sleigh",
-		"Yule",
+		"圣经",
+		"生日",
+		"烟囱",
+		"克劳斯",
+		"钉十字架",
+		"精灵",
+		"冷杉",
+		"呵呵呵",
+		"耶稣",
+		"欢乐",
+		"快乐",
+		"礼物",
+		"麻袋",
+		"圣诞老人",
+		"雪橇",
+		"尤尔",
 	)
 
 /datum/holiday/xmas/greet()
-	return "Have a merry Christmas!"
+	return "祝你圣诞快乐！"
 
 /datum/holiday/xmas/celebrate()
 	. = ..()
@@ -944,7 +944,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	no_mail_holiday = TRUE
 
 /datum/holiday/new_year/get_station_name()
-	return pick("Party","New","Hangover","Resolution", "Auld")
+	return pick("派对","新年","宿醉","决心","往昔")
 
 // MOVING DATES
 
@@ -957,7 +957,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return FALSE
 
 /datum/holiday/friday_thirteenth/get_station_name()
-	return pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
+	return pick("迈克","星期五","邪恶","迈尔斯","谋杀","死亡","捅刺")
 
 /datum/holiday/programmers
 	name = "Programmers' Day"
@@ -974,7 +974,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	return FALSE
 
 /datum/holiday/programmers/get_station_name()
-	return pick("span>","DEBUG: ","null","/list","EVENT PREFIX NOT FOUND") //Portability
+	return pick("span>","DEBUG: ","null","/list","未找到事件前缀") //Portability
 
 // ISLAMIC
 
@@ -992,7 +992,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	end_day = 3
 
 /datum/holiday/islamic/ramadan/get_station_name()
-	return pick("Haram","Halaal","Jihad","Muslim", "Al", "Mohammad", "Rashidun", "Umayyad", "Abbasid", "Abdul", "Fatimid", "Ayyubid", "Almohad", "Abu")
+	return pick("哈拉姆","清真","圣战","穆斯林","阿尔","穆罕默德","拉希敦","伍麦叶","阿拔斯","阿卜杜勒","法蒂玛","阿尤布","穆瓦希德","阿布")
 
 /datum/holiday/islamic/ramadan/end
 	name = "End of Ramadan"
@@ -1017,10 +1017,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	end_month = 10
 
 /datum/holiday/hebrew/hanukkah/greet()
-	return "Happy [pick("Hanukkah", "Chanukah")]!"
+	return "[pick("光明节", "哈努卡节")]快乐！"
 
 /datum/holiday/hebrew/hanukkah/get_station_name()
-	return pick("Dreidel", "Menorah", "Latkes", "Gelt")
+	return pick("陀螺", "七枝烛台", "土豆饼", "金币")
 
 /datum/holiday/hebrew/passover
 	name = "Passover"
@@ -1029,7 +1029,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	end_day = 22
 
 /datum/holiday/hebrew/passover/get_station_name()
-	return pick("Matzah", "Moses", "Red Sea")
+	return pick("无酵饼", "摩西", "红海")
 
 // EASTER (this having its own spot should be understandable)
 
@@ -1086,10 +1086,10 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	)
 
 /datum/holiday/easter/greet()
-	return "Greetings! Have a Happy Easter and keep an eye out for Easter Bunnies!"
+	return "问候！复活节快乐，记得留意复活节兔子！"
 
 /datum/holiday/easter/get_station_name()
-	return pick("Fluffy","Bunny","Easter","Egg")
+	return pick("毛茸茸","兔子","复活节","彩蛋")
 
 /// Takes a holiday datum, a starting month, ending month, max amount of days to test in, and min/max year as input
 /// Returns a list in the form list("yyyy/m/d", ...) representing all days the holiday runs on in the tested range
@@ -1106,4 +1106,4 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 /// Does the same as [/proc/poll_holiday], but prints the output to admins instead of returning it
 /proc/print_holiday(datum/holiday/path, min_month, max_month, min_year, max_year, max_day)
 	var/list/deets = poll_holiday(path, min_month, max_month, min_year, max_year, max_day)
-	message_admins("The accepted dates for [path] in the input range [min_year]-[max_year]/[min_month]-[max_month]/1-[max_day] are [deets.Join("\n")]")
+	message_admins("在输入范围 [min_year]-[max_year]/[min_month]-[max_month]/1-[max_day] 内，[path] 被接受的日期为 [deets.Join("\n")]")

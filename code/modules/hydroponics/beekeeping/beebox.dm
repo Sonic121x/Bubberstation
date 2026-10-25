@@ -6,8 +6,8 @@
 #define BEE_RESOURCE_NEW_BEE_COST 50 //The amount of bee_resources for a new bee to be produced, percentage cost 1-100
 
 /obj/structure/beebox
-	name = "apiary"
-	desc = "Dr. Miles Manners is just your average wasp-themed super hero by day, but by night he becomes DR. BEES!"
+	name = "蜂房"
+	desc = "迈尔斯·曼纳斯博士白天只是一位普通的黄蜂主题超级英雄，但到了夜晚，他就变成了蜂博士！"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "beebox"
 	anchored = TRUE
@@ -103,22 +103,22 @@
 	. = ..()
 
 	if(!queen_bee)
-		. += span_warning("There is no queen bee! There won't bee any honeycomb without a queen!")
+		. += span_warning("这里没有蜂王！没有蜂王就不会有任何蜂巢！")
 
 	var/half_bee = get_max_bees()*0.5
 	if(half_bee && (bees.len >= half_bee))
-		. += span_notice("This place is aBUZZ with activity... there are lots of bees!")
+		. += span_notice("这里嗡嗡作响，热闹非凡……蜜蜂可真多！")
 
-	. += span_notice("[bee_resources]/100 resource supply.")
-	. += span_notice("[bee_resources]% towards a new honeycomb.")
-	. += span_notice("[bee_resources*2]% towards a new bee.")
+	. += span_notice("[bee_resources]/100 资源储备。")
+	. += span_notice("新蜂巢进度：[bee_resources]%。")
+	. += span_notice("新蜜蜂进度：[bee_resources*2]%。")
 
 	if(honeycombs.len)
 		var/plural = honeycombs.len > 1
-		. += span_notice("There [plural? "are" : "is"] [honeycombs.len] uncollected honeycomb[plural ? "s":""] in the apiary.")
+		. += span_notice("蜂房里还有 [plural ? "[honeycombs.len] 块" : "一块"]未取走的蜂巢。")
 
 	if(honeycombs.len >= get_max_honeycomb())
-		. += span_warning("There's no room for more honeycomb!")
+		. += span_warning("没有空间容纳更多蜂巢了！")
 
 /obj/structure/beebox/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -129,19 +129,19 @@
 	if(istype(tool, /obj/item/honey_frame))
 		var/obj/item/honey_frame/frame = tool
 		if(honey_frames.len == BEEBOX_MAX_FRAMES)
-			to_chat(user, span_warning("There's no room for any more frames in the apiary!"))
+			to_chat(user, span_warning("蜂房里没有空间放更多蜂框了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(!user.transferItemToLoc(frame, src))
 			return ITEM_INTERACT_BLOCKING
 
-		visible_message(span_notice("[user] adds a frame to the apiary."))
+		visible_message(span_notice("[user] 往蜂房里加了一个蜂框。"))
 		honey_frames += frame
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/queen_bee))
 		if(queen_bee)
-			to_chat(user, span_warning("This hive already has a queen!"))
+			to_chat(user, span_warning("这个蜂巢已经有蜂王了！"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/queen_bee/new_queen = tool
@@ -153,10 +153,10 @@
 		new_queen.queen.forceMove(src)
 
 		if(!queen_bee)
-			to_chat(user, span_warning("The queen bee disappeared! Disappearing bees have been in the news lately..."))
+			to_chat(user, span_warning("蜂王消失了！蜜蜂失踪的事最近可上新闻了……"))
 			return ITEM_INTERACT_BLOCKING
 
-		visible_message(span_notice("[user] sets [queen_bee] down inside the apiary, making it their new home."))
+		visible_message(span_notice("[user] 把 [queen_bee] 放进蜂房里，让它在此安家。"))
 		var/relocated = 0
 		for(var/mob/living/basic/bee/relocating_bee as anything in bees)
 			if(relocating_bee.reagent_incompatible(queen_bee))
@@ -166,7 +166,7 @@
 					relocating_bee.forceMove(drop_location())
 				relocated++
 		if(relocated)
-			to_chat(user, span_warning("This queen has a different reagent to some of the bees who live here, those bees will not return to this apiary!"))
+			to_chat(user, span_warning("这只蜂王与住在这里的部分蜜蜂试剂不同，那些蜜蜂不会再回到这个蜂房！"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -183,24 +183,24 @@
 				worker.forceMove(drop_location())
 			bees_attack = TRUE
 		if(bees_attack)
-			visible_message(span_danger("[user] disturbs the bees!"))
+			visible_message(span_danger("[user] 惊扰了蜜蜂！"))
 		else
-			visible_message(span_danger("[user] disturbs \the [src] to no effect!"))
+			visible_message(span_danger("[user] 惊扰了[src]，但毫无效果！"))
 	else
-		var/option = tgui_alert(user, "Which piece do you wish to remove?", "Apiary Adjustment", list("Honey Frame", "Queen Bee"))
+		var/option = tgui_alert(user, "你想取下哪一部分？", "蜂房调整", list("Honey Frame", "Queen Bee"))
 		if(!option || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 		switch(option)
 			if("Honey Frame")
 				if(!honey_frames.len)
-					to_chat(user, span_warning("There are no honey frames to remove!"))
+					to_chat(user, span_warning("没有可取下的蜂框了！"))
 					return
 
 				var/obj/item/honey_frame/frame = pick_n_take(honey_frames)
 				if(frame)
 					if(!user.put_in_active_hand(frame))
 						frame.forceMove(drop_location())
-					visible_message(span_notice("[user] removes a frame from the apiary."))
+					visible_message(span_notice("[user] 从蜂房里取出了一个蜂框。"))
 
 					var/amtH = frame.honeycomb_capacity
 					var/fallen = 0
@@ -212,11 +212,11 @@
 							fallen++
 					if(fallen)
 						var/multiple = fallen > 1
-						visible_message(span_notice("[user] scrapes [multiple ? "[fallen]" : "a"] honeycomb[multiple ? "s" : ""] off of the frame."))
+						visible_message(span_notice("[user] 从蜂框上刮下了 [multiple ? "[fallen] 块" : "一块"]蜂巢。"))
 
 			if("Queen Bee")
 				if(!queen_bee || queen_bee.loc != src)
-					to_chat(user, span_warning("There is no queen bee to remove!"))
+					to_chat(user, span_warning("没有可取的蜂王！"))
 					return
 				var/obj/item/queen_bee/queen = new()
 				queen_bee.forceMove(queen)
@@ -225,7 +225,7 @@
 				queen.name = queen_bee.name
 				if(!user.put_in_active_hand(queen))
 					queen.forceMove(drop_location())
-				visible_message(span_notice("[user] removes the queen from the apiary."))
+				visible_message(span_notice("[user] 从蜂房里取出了蜂王。"))
 				queen_bee = null
 
 /obj/structure/beebox/atom_deconstruct(disassembled = TRUE)

@@ -18,7 +18,7 @@
 	///How many points a team needs to win.
 	var/points_to_win = 3
 	///The text shown once this CTF match ends.
-	var/victory_rejoin_text = "Teams have been cleared. Click on the machines to vote to begin another round."
+	var/victory_rejoin_text = "队伍已清空。点击机器投票，开始下一局。"
 	///When this CTF match ends should it automatically restart.
 	var/auto_restart = FALSE
 	///Weather or not instagib mode has been enabled.
@@ -48,9 +48,9 @@
 	for(var/team in teams)
 		var/obj/machinery/ctf/spawner/spawner = teams[team].spawner
 		notify_ghosts(
-			"[spawner.name] has been activated!",
+			"[spawner.name] 已启动！",
 			source = spawner,
-			header = "CTF has been activated",
+			header = "CTF 已启动",
 		)
 
 /datum/ctf_controller/proc/stop_ctf()
@@ -70,7 +70,7 @@
 ///Some CTF maps may require alternate rulesets, this proc is called by the medisim spawners and CTF maploading.
 /datum/ctf_controller/proc/setup_rules(
 	points_to_win = 3,
-	victory_rejoin_text = "Teams have been cleared. Click on the machines to vote to begin another round.",
+	victory_rejoin_text = "队伍已清空。点击机器投票，开始下一局。",
 	auto_restart = FALSE,
 )
 	src.points_to_win = points_to_win
@@ -117,17 +117,17 @@
 			continue
 		var/list/enemy_team_members = get_players(team)
 		if(user.ckey in enemy_team_members)
-			to_chat(user, span_warning("No switching teams while the round is going!"))
+			to_chat(user, span_warning("回合进行中无法更换队伍！"))
 			return FALSE
 		else if(friendly_team_members.len > enemy_team_members.len)
-			to_chat(user, span_warning("[team_color] has more team members than [team]! Try joining [team] team to even things up."))
+			to_chat(user, span_warning("[team_color] 的队伍人数比 [team] 多！试着加入 [team] 队来平衡人数。"))
 			return FALSE
 	return TRUE
 
 ///Called when a flag is captured by the provided team. Messages players telling them who scored a point and if points are high enough declares victory.
 /datum/ctf_controller/proc/capture_flag(team_color, mob/living/user, team_span, obj/item/ctf_flag/flag)
 	teams[team_color].score_points(flag.flag_value)
-	message_all_teams("<span class='userdanger [team_span]'>[user.real_name] has captured \the [flag], scoring a point for [team_color] team! They now have [get_points(team_color)]/[points_to_win] points!</span>")
+	message_all_teams("<span class='userdanger [team_span]'>[user.real_name] 夺取了 [flag]，为 [team_color] 队得一分！他们现在有 [get_points(team_color)]/[points_to_win] 分！</span>")
 	if(get_points(team_color) >= points_to_win)
 		victory(team_color)
 
@@ -135,7 +135,7 @@
 /datum/ctf_controller/proc/control_point_scoring(team_color, points)
 	teams[team_color].score_points(points)
 	if(get_points(team_color) == points_to_win/2)
-		message_all_teams("<span class='userdanger [teams[team_color].team_span]'>[team_color] is half way to winning! they only need [points_to_win/2] more points to win!</span>")
+		message_all_teams("<span class='userdanger [teams[team_color].team_span]'>[team_color] 已过半程！他们只需再得 [points_to_win/2] 分即可获胜！</span>")
 	if(get_points(team_color) >= points_to_win)
 		victory(team_color)
 
@@ -151,7 +151,7 @@
 	var/datum/ctf_team/winning_ctf_team = teams[winning_team]
 	for(var/team in teams)
 		var/datum/ctf_team/ctf_team = teams[team]
-		ctf_team.message_team("<span class='narsie [winning_ctf_team.team_span]'>[winning_team] team wins!</span>")
+		ctf_team.message_team("<span class='narsie [winning_ctf_team.team_span]'>[winning_team] 队获胜！</span>")
 		ctf_team.message_team(span_userdanger(victory_rejoin_text))
 		ctf_team.reset_team()
 	if(auto_restart)

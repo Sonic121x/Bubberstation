@@ -1,11 +1,11 @@
 
 // Sugarcane
 /obj/item/seeds/sugarcane
-	name = "sugarcane seed pack"
-	desc = "These seeds grow into sugarcane."
+	name = "甘蔗种子包"
+	desc = "这些种子会长成甘蔗。"
 	icon_state = "seed-sugarcane"
 	species = "sugarcane"
-	plantname = "Sugarcane"
+	plantname = "甘蔗"
 	product = /obj/item/food/grown/sugarcane
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	lifespan = 60
@@ -19,8 +19,8 @@
 
 /obj/item/food/grown/sugarcane
 	seed = /obj/item/seeds/sugarcane
-	name = "sugarcane"
-	desc = "Sickly sweet."
+	name = "甘蔗"
+	desc = "甜得发腻。"
 	icon_state = "sugarcane"
 	bite_consumption_mod = 2
 	foodtypes = VEGETABLES | SUGAR
@@ -28,11 +28,11 @@
 
 ///and bamboo!
 /obj/item/seeds/bamboo
-	name = "bamboo seed pack"
-	desc = "A plant known for its flexible and resistant logs."
+	name = "竹子种子包"
+	desc = "一种以柔韧而结实的茎干著称的植物。"
 	icon_state = "seed-bamboo"
 	species = "bamboo"
-	plantname = "Bamboo"
+	plantname = "竹子"
 	product = /obj/item/grown/log/bamboo
 	lifespan = 80
 	endurance = 70
@@ -48,22 +48,22 @@
 
 /obj/item/grown/log/bamboo
 	seed = /obj/item/seeds/bamboo
-	name = "bamboo log"
-	desc = "A long and resistant bamboo log."
+	name = "竹竿"
+	desc = "一根又长又结实的竹竿。"
 	icon_state = "bamboo"
 	plank_type = /obj/item/stack/sheet/mineral/bamboo
-	plank_name = "bamboo sticks"
+	plank_name = "竹棍"
 
 /obj/item/grown/log/bamboo/CheckAccepted(obj/item/I)
 	return FALSE
 
 //Saltcane - Gross, salty shafts!
 /obj/item/seeds/sugarcane/saltcane
-	name = "saltcane seed pack"
-	desc = "These seeds grow into saltcane."
+	name = "盐蔗种子包"
+	desc = "这些种子会长成盐蔗。"
 	icon_state = "seed-saltcane"
 	species = "saltcane"
-	plantname = "Saltcane"
+	plantname = "盐蔗"
 	product = /obj/item/food/grown/sugarcane/saltcane
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/salt = 0.25)
@@ -71,8 +71,8 @@
 
 /obj/item/food/grown/sugarcane/saltcane
 	seed = /obj/item/seeds/sugarcane/saltcane
-	name = "saltcane"
-	desc = "Ungodly salty, bane of slugs, treasure of horses."
+	name = "盐蔗"
+	desc = "咸得离谱，蛞蝓的克星，马匹的珍宝。"
 	icon_state = "saltcane"
 	foodtypes = VEGETABLES | GROSS
 

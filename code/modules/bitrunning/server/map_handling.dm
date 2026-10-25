@@ -6,17 +6,17 @@
 		return
 
 	if(!length(avatar_connection_refs))
-		balloon_alert_to_viewers("powering down domain...")
+		balloon_alert_to_viewers("正在关闭虚拟域……")
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 40, vary = TRUE)
 		reset()
 		return
 
-	balloon_alert_to_viewers("notifying clients...")
+	balloon_alert_to_viewers("正在通知客户端……")
 	playsound(src, 'sound/machines/terminal/terminal_alert.ogg', 100, vary = TRUE)
 	user.visible_message(
-		span_danger("[user] begins depowering the server!"),
-		span_notice("You start disconnecting clients..."),
-		span_danger("You hear frantic keying on a keyboard."),
+		span_danger("[user] 开始关闭服务器电源！"),
+		span_notice("你开始断开客户端连接……"),
+		span_danger("你听到键盘上急促的敲击声。"),
 	)
 
 	SEND_SIGNAL(src, COMSIG_BITRUNNER_SHUTDOWN_ALERT, user)
@@ -33,15 +33,15 @@
 		return FALSE
 
 	if(isnull(map_key))
-		balloon_alert_to_viewers("no domain specified!")
+		balloon_alert_to_viewers("未指定虚拟域！")
 		return FALSE
 
 	if(generated_domain)
-		balloon_alert_to_viewers("stop the current domain first!")
+		balloon_alert_to_viewers("请先停止当前虚拟域！")
 		return FALSE
 
 	if(length(avatar_connection_refs))
-		balloon_alert_to_viewers("all clients must disconnect!")
+		balloon_alert_to_viewers("所有客户端必须断开连接！")
 		return FALSE
 
 	is_ready = FALSE
@@ -49,7 +49,7 @@
 
 	/// If any one of these fail, it reverts the entire process
 	if(!load_domain(map_key) || !load_map_items() || !load_mob_segments())
-		balloon_alert_to_viewers("initialization failed!")
+		balloon_alert_to_viewers("初始化失败！")
 		scrub_vdom()
 		is_ready = TRUE
 		return FALSE
@@ -75,7 +75,7 @@
 		setup_glitch()
 
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 30, vary = TRUE)
-	balloon_alert_to_viewers("domain loaded.")
+	balloon_alert_to_viewers("虚拟域已加载。")
 	generated_domain.start_time = world.time
 	points -= generated_domain.cost
 	update_use_power(ACTIVE_POWER_USE)
@@ -85,9 +85,9 @@
 		start_broadcasting_network(BITRUNNER_CAMERA_NET)
 
 	if(generated_domain.announce_to_ghosts)
-		notify_ghosts("Bitrunners have loaded a domain that offers ghost interactions. Check the spawners menu for more information.",
+		notify_ghosts("比特潜行者加载了一个允许幽灵互动的虚拟域。查看生成者菜单以了解更多信息。",
 			src,
-			"Matrix Glitch",
+			"矩阵故障",
 		)
 
 	return TRUE
@@ -104,28 +104,28 @@
 		return FALSE
 
 	if(generated_domain.mission_min_candidates && (!COOLDOWN_FINISHED(src, polling_cooldown)))
-		say("Advanced NPC algorithms resetting, please wait [DisplayTimeText(polling_cooldown)] or load a different domain.")
+		say("高级 NPC 算法正在重置，请等待 [DisplayTimeText(polling_cooldown)]，或加载其他虚拟域。")
 		playsound(src, "sound/machines/buzz-[pick("sigh", "two")].ogg", 50, TRUE)
 		return FALSE
 
 	var/list/mob/lucky_ghosts
 	if(generated_domain.mission_min_candidates)
 		playsound(src, 'sound/machines/chime.ogg', 50, TRUE)
-		say("Loading advanced NPCs...")
-		var/list/mob/candidates = SSpolling.poll_ghost_candidates("Do you want to play as a virtual [generated_domain.spawner_role] in a bitrunner domain?", ROLE_GHOST_ROLE, ROLE_GHOST_ROLE, 15 SECONDS, POLL_IGNORE_SHUTTLE_DENIZENS, TRUE)
+		say("正在加载高级 NPC……")
+		var/list/mob/candidates = SSpolling.poll_ghost_candidates("你想在比特潜行者的虚拟域中扮演 [generated_domain.spawner_role] 吗？", ROLE_GHOST_ROLE, ROLE_GHOST_ROLE, 15 SECONDS, POLL_IGNORE_SHUTTLE_DENIZENS, TRUE)
 		for(var/amount in 1 to generated_domain.mission_max_candidates)
 			if(length(candidates)) // If no candidates, fails in code below anyways
 				LAZYADD(lucky_ghosts, pick_n_take(candidates))
 
 		if(length(lucky_ghosts) < generated_domain.mission_min_candidates)
-			notify_ghosts("Not enough candidates for [generated_domain.spawner_role]! Aborting mission!")
+			notify_ghosts("[generated_domain.spawner_role] 的候选人不足！任务中止！")
 			playsound(src, "sound/machines/buzz-[pick("sigh", "two")].ogg", 50, TRUE)
-			say("Error! Unable to load advanced NPCs. Please try again or select different domain.")
+			say("错误！无法加载高级 NPC。请重试或选择其他虚拟域。")
 			COOLDOWN_START(src, polling_cooldown, POLLING_COOLDOWN_TIME)
 			return FALSE
 
 		playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
-		say("Success!")
+		say("成功！")
 
 	generated_domain.load_advanced_npcs(lucky_ghosts)
 	RegisterSignal(generated_domain, COMSIG_LAZY_TEMPLATE_LOADED, PROC_REF(on_template_loaded))

@@ -1,13 +1,13 @@
 
 /obj/item/clothing/under/rank/civilian/mime
-	name = "mime's outfit"
-	desc = "It's not very colourful."
+	name = "默剧演员服装"
+	desc = "颜色不太鲜艳。"
 	icon_state = "mime"
 	inhand_icon_state = null
 
 /obj/item/clothing/under/rank/civilian/mime/skirt
-	name = "mime's skirt"
-	desc = "It's not very colourful."
+	name = "默剧演员短裙"
+	desc = "颜色不太鲜艳。"
 	icon_state = "mime_skirt"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -17,8 +17,8 @@
 	bodyshapes_with_variations = NONE
 
 /obj/item/clothing/under/rank/civilian/mime/sexy
-	name = "sexy mime outfit"
-	desc = "Pretty inappropriate for a circus."
+	name = "性感默剧演员服装"
+	desc = "对马戏团来说相当不合适。"
 	icon_state = "sexymime"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS
@@ -26,8 +26,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown
-	name = "clown suit"
-	desc = "<i>'HONK!'</i>"
+	name = "小丑服"
+	desc = "<i>‘HONK！’</i>"
 	icon_state = "clown"
 	inhand_icon_state = "clown"
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -41,44 +41,44 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CLOWN, CELL_VIRUS_TABLE_GENERIC, rand(2,3), 0)
 
 /obj/item/clothing/under/rank/civilian/clown/blue
-	name = "blue clown suit"
-	desc = "<i>'BLUE HONK!'</i>"
+	name = "蓝色小丑服"
+	desc = "<i>‘蓝色 HONK！’</i>"
 	icon_state = "blueclown"
 	inhand_icon_state = "blueclown"
 
 /obj/item/clothing/under/rank/civilian/clown/green
-	name = "green clown suit"
-	desc = "<i>'GREEN HONK!'</i>"
+	name = "绿色小丑服"
+	desc = "<i>‘绿色 HONK！’</i>"
 	icon_state = "greenclown"
 	inhand_icon_state = "greenclown"
 
 /obj/item/clothing/under/rank/civilian/clown/yellow
-	name = "yellow clown suit"
-	desc = "<i>'YELLOW HONK!'</i>"
+	name = "黄色小丑服"
+	desc = "<i>‘黄色 HONK！’</i>"
 	icon_state = "yellowclown"
 	inhand_icon_state = "yellowclown"
 
 /obj/item/clothing/under/rank/civilian/clown/purple
-	name = "purple clown suit"
-	desc = "<i>'PURPLE HONK!'</i>"
+	name = "紫色小丑服"
+	desc = "<i>‘紫色 HONK！’</i>"
 	icon_state = "purpleclown"
 	inhand_icon_state = "purpleclown"
 
 /obj/item/clothing/under/rank/civilian/clown/orange
-	name = "orange clown suit"
-	desc = "<i>'ORANGE HONK!'</i>"
+	name = "橙色小丑服"
+	desc = "<i>‘橙色 HONK！’</i>"
 	icon_state = "orangeclown"
 	inhand_icon_state = "orangeclown"
 
 /obj/item/clothing/under/rank/civilian/clown/rainbow
-	name = "rainbow clown suit"
-	desc = "<i>'R A I N B O W HONK!'</i>"
+	name = "彩虹小丑服"
+	desc = "<i>‘彩 虹 HONK！’</i>"
 	icon_state = "rainbowclown"
 	inhand_icon_state = "rainbowclown"
 
 /obj/item/clothing/under/rank/civilian/clown/jester
-	name = "jester suit"
-	desc = "A jolly dress, well suited to entertain your master, nuncle."
+	name = "弄臣服"
+	desc = "一件欢快的衣服，很适合用来取悦你的主人，舅父大人。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/civilian/clown/jester"
 	post_init_icon_state = "jester_map"
@@ -88,8 +88,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/rank/civilian/clown/jesteralt
-	name = "jester suit"
-	desc = "A jolly dress, well suited to entertain your master, nuncle."
+	name = "弄臣服"
+	desc = "一件欢快的衣服，很适合用来取悦你的主人，舅父大人。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/rank/civilian/clown/jesteralt"
 	post_init_icon_state = "jester_alt"
@@ -99,7 +99,7 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/rank/civilian/clown/sexy
-	name = "sexy-clown suit"
-	desc = "It makes you look HONKable!"
+	name = "性感小丑服"
+	desc = "它让你看起来 HONK 得诱人！"
 	icon_state = "sexyclown"
 	inhand_icon_state = null

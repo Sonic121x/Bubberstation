@@ -1,12 +1,12 @@
 /// Immovable rod random event.
 /// The rod will spawn at some location outside the station, and travel in a straight line to the opposite side of the station
 /datum/round_event_control/immovable_rod
-	name = "Immovable Rod"
+	name = "不可移动之杆"
 	typepath = /datum/round_event/immovable_rod
 	min_players = 15
 	max_occurrences = 5
 	category = EVENT_CATEGORY_SPACE
-	description = "The station passes through an immovable rod."
+	description = "空间站穿过了一根不可移动之杆。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/set_location/immovable_rod, /datum/event_admin_setup/question/immovable_rod)
@@ -19,7 +19,7 @@
 	var/force_looping = FALSE
 
 /datum/round_event/immovable_rod/announce(fake)
-	priority_announce("What the fuck was that?!", "General Alert")
+	priority_announce("刚才那到底是什么鬼东西？！", "全面警报")
 
 /datum/round_event/immovable_rod/start()
 	var/startside = pick(GLOB.cardinals)
@@ -30,17 +30,17 @@
 
 /// Admins can pick a spot the rod will aim for
 /datum/event_admin_setup/set_location/immovable_rod
-	input_text = "Aimed at current location?"
+	input_text = "瞄准当前位置？"
 
 /datum/event_admin_setup/set_location/immovable_rod/apply_to_event(datum/round_event/immovable_rod/event)
 	event.special_target = chosen_turf
 
 /// Admins can also force it to loop around forever, or at least until the RD gets their hands on it.
 /datum/event_admin_setup/question/immovable_rod
-	input_text = "Would you like this rod to force-loop across space z-levels?"
+	input_text = "你希望这根杆在太空的各个 Z 层之间强制循环穿梭吗？"
 
 /datum/event_admin_setup/question/immovable_rod/apply_to_event(datum/round_event/immovable_rod/event)
 	event.force_looping = chosen
-	var/log_message = "[key_name_admin(usr)] has aimed an immovable rod [event.force_looping ? "(forced looping) " : ""]at [event.special_target ? AREACOORD(event.special_target) : "a random location"]."
+	var/log_message = "[key_name_admin(usr)] 已将一根不可移动之杆[event.force_looping ? "（强制循环）" : ""]瞄准 [event.special_target ? AREACOORD(event.special_target) : "随机位置"]。"
 	message_admins(log_message)
 	log_admin(log_message)

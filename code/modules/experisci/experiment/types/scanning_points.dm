@@ -1,6 +1,6 @@
 /datum/experiment/scanning/points
-	name = "Point Scanning Experiment"
-	description = "Base experiment for scanning experiments tracked by points"
+	name = "积分扫描实验"
+	description = "以积分追踪进度的扫描实验的基础实验"
 	/// The current points gained on this experiment
 	var/points = 0
 	/// The total required points for this experiment
@@ -10,7 +10,7 @@
 	return points >= required_points
 
 /datum/experiment/scanning/points/check_progress()
-	. = EXPERIMENT_PROG_INT("Scan samples of the following objects to accumulate enough points to complete this experiment.", points, required_points)
+	. = EXPERIMENT_PROG_INT("扫描以下物体的样本，以积累足够的积分来完成此实验。", points, required_points)
 	var/complete = is_complete()
 	var/point_val_cache = list()
 	for (var/a_type in required_atoms)
@@ -22,7 +22,7 @@
 	for (var/point_amt in point_val_cache)
 		var/list/types = point_val_cache[point_amt]
 		var/types_joined = types.Join(", ")
-		. += EXPERIMENT_PROG_DETAIL("[text2num(point_amt)] point\s: [types_joined]", complete)
+		. += EXPERIMENT_PROG_DETAIL("[text2num(point_amt)] 分：[types_joined]", complete)
 
 /datum/experiment/scanning/points/experiment_requirements(datum/component/experiment_handler/experiment_handler, atom/target)
 	var/destructive = traits & EXPERIMENT_TRAIT_DESTRUCTIVE

@@ -1,10 +1,10 @@
 // Tomato
 /obj/item/seeds/tomato
-	name = "tomato seed pack"
-	desc = "These seeds grow into tomato plants."
+	name = "番茄种子包"
+	desc = "这些种子会成长为番茄植株。"
 	icon_state = "seed-tomato"
 	species = "tomato"
-	plantname = "Tomato Plants"
+	plantname = "番茄植株"
 	product = /obj/item/food/grown/tomato
 	maturation = 8
 	instability = 25
@@ -18,8 +18,8 @@
 
 /obj/item/food/grown/tomato
 	seed = /obj/item/seeds/tomato
-	name = "tomato"
-	desc = "I say to-mah-to, you say tom-mae-to."
+	name = "番茄"
+	desc = "我说“番茄”，你说“西红柿”。"
 	icon_state = "tomato"
 	splat_type = /obj/effect/decal/cleanable/food/tomato_smudge
 	foodtypes = VEGETABLES
@@ -33,11 +33,11 @@
 
 // Blood Tomato
 /obj/item/seeds/tomato/blood
-	name = "blood-tomato seed pack"
-	desc = "These seeds grow into blood-tomato plants."
+	name = "血番茄种子包"
+	desc = "这些种子会成长为血番茄植株。"
 	icon_state = "seed-bloodtomato"
 	species = "bloodtomato"
-	plantname = "Blood-Tomato Plants"
+	plantname = "血番茄植株"
 	product = /obj/item/food/grown/tomato/blood
 	mutatelist = null
 	reagents_add = list(/datum/reagent/blood = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
@@ -45,8 +45,8 @@
 
 /obj/item/food/grown/tomato/blood
 	seed = /obj/item/seeds/tomato/blood
-	name = "blood-tomato"
-	desc = "So bloody...so...very...bloody....AHHHH!!!!"
+	name = "血番茄"
+	desc = "太血腥了……太……非常……血腥……啊啊啊啊！！！！"
 	icon_state = "bloodtomato"
 	bite_consumption_mod = 3
 	splat_type = /obj/effect/gibspawner/generic
@@ -58,11 +58,11 @@
 
 // Blue Tomato
 /obj/item/seeds/tomato/blue
-	name = "blue-tomato seed pack"
-	desc = "These seeds grow into blue-tomato plants."
+	name = "蓝番茄种子包"
+	desc = "这些种子会成长为蓝番茄植株。"
 	icon_state = "seed-bluetomato"
 	species = "bluetomato"
-	plantname = "Blue-Tomato Plants"
+	plantname = "蓝番茄植株"
 	product = /obj/item/food/grown/tomato/blue
 	yield = 2
 	icon_grow = "bluetomato-grow"
@@ -74,8 +74,8 @@
 
 /obj/item/food/grown/tomato/blue
 	seed = /obj/item/seeds/tomato/blue
-	name = "blue-tomato"
-	desc = "I say blue-mah-to, you say blue-mae-to."
+	name = "蓝番茄"
+	desc = "我说“蓝番茄”，你说“蓝西红柿”。"
 	icon_state = "bluetomato"
 	bite_consumption_mod = 2
 	splat_type = /obj/effect/decal/cleanable/blood/oil
@@ -83,11 +83,11 @@
 
 // Bluespace Tomato
 /obj/item/seeds/tomato/blue/bluespace
-	name = "bluespace tomato seed pack"
-	desc = "These seeds grow into bluespace tomato plants."
+	name = "蓝空间番茄种子包"
+	desc = "这些种子会成长为蓝空间番茄植株。"
 	icon_state = "seed-bluespacetomato"
 	species = "bluespacetomato"
-	plantname = "Bluespace Tomato Plants"
+	plantname = "蓝空间番茄植株"
 	product = /obj/item/food/grown/tomato/blue/bluespace
 	yield = 2
 	mutatelist = null
@@ -98,8 +98,8 @@
 
 /obj/item/food/grown/tomato/blue/bluespace
 	seed = /obj/item/seeds/tomato/blue/bluespace
-	name = "\improper bluespace tomato"
-	desc = "So lubricated, you might slip through space-time."
+	name = "\improper 蓝空间番茄"
+	desc = "润滑得要命，你可能会滑穿时空。"
 	icon_state = "bluespacetomato"
 	bite_consumption_mod = 3
 	distill_reagent = null
@@ -107,11 +107,11 @@
 
 // Killer Tomato
 /obj/item/seeds/tomato/killer
-	name = "killer-tomato seed pack"
-	desc = "These seeds grow into killer-tomato plants."
+	name = "杀手番茄种子包"
+	desc = "这些种子会成长为杀手番茄植株。"
 	icon_state = "seed-killertomato"
 	species = "killertomato"
-	plantname = "Killer-Tomato Plants"
+	plantname = "杀手番茄植株"
 	product = /obj/item/food/grown/tomato/killer
 	yield = 2
 	genes = list(/datum/plant_gene/trait/mob_transformation/tomato)
@@ -124,7 +124,7 @@
 
 /obj/item/food/grown/tomato/killer
 	seed = /obj/item/seeds/tomato/killer
-	name = "\improper killer-tomato"
-	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
+	name = "\improper 杀手番茄"
+	desc = "我说“番茄”，你说“西红柿”……天啊，它在吃我的腿！！"
 	icon_state = "killertomato"
 	distill_reagent = /datum/reagent/consumable/ethanol/demonsblood

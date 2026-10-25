@@ -17,14 +17,14 @@
 
 /datum/buildmode_mode/boom/show_help(client/builder)
 	to_chat(builder, span_purple(boxed_message(
-		"[span_bold("Set explosion destructiveness")] -> Right Mouse Button on buildmode button\n\
-		[span_bold("Kaboom")] -> Mouse Button on obj\n\n\
-		[span_warning("NOTE:")] Using the \"Config/Launch Supplypod\" verb allows you to do this in an IC way (i.e., making a cruise missile come down from the sky and explode wherever you click!)"))
+		"[span_bold("设置爆炸破坏力")] -> 在建造模式按钮上按鼠标右键\n\
+		[span_bold("轰！")] -> 在物体上按鼠标键\n\n\
+		[span_warning("注意：")] 使用 \"Config/Launch Supplypod\" 动词可以以 IC 方式完成此操作（例如让一枚巡航导弹从天而降，并在你点击的位置爆炸！）"))
 	)
 
 /datum/buildmode_mode/boom/change_settings(client/c)
 	for (var/explosion_level in explosions)
-		explosions[explosion_level] = input(c, "Range of total [explosion_level]. 0 to none", "Input") as num|null
+		explosions[explosion_level] = input(c, "总 [explosion_level] 的范围。0 表示无", "输入") as num|null
 		if(explosions[explosion_level] == null || explosions[explosion_level] < 0)
 			explosions[explosion_level] = 0
 

@@ -1,10 +1,10 @@
 /datum/round_event_control/ion_storm
-	name = "Ion Storm"
+	name = "离子风暴"
 	typepath = /datum/round_event/ion_storm
 	weight = 15
 	min_players = 2
 	category = EVENT_CATEGORY_AI
-	description = "Gives the AI a new, randomized law."
+	description = "为 AI 提供一条新的随机法则。"
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 7
 
@@ -38,7 +38,7 @@
 
 /datum/round_event/ion_storm/announce(fake)
 	if(prob(announce_chance) || fake)
-		priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", ANNOUNCER_IONSTORM)
+		priority_announce("空间站附近检测到离子风暴。请检查所有由 AI 控制的设备是否出现故障。", "异常警报", ANNOUNCER_IONSTORM)
 
 
 /datum/round_event/ion_storm/start()
