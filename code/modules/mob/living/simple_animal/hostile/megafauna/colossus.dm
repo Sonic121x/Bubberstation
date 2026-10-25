@@ -21,21 +21,21 @@
  * Intended Difficulty: Very Hard
  */
 /mob/living/simple_animal/hostile/megafauna/colossus
-	name = "colossus"
-	desc = "A monstrous creature protected by heavy shielding."
+	name = "巨像"
+	desc = "一头被厚重护盾保护着的怪物。"
 	health = 2500
 	maxHealth = 2500
-	attack_verb_continuous = "judges"
-	attack_verb_simple = "judge"
+	attack_verb_continuous = "审判"
+	attack_verb_simple = "审判"
 	attack_sound = 'sound/effects/magic/clockwork/ratvar_attack.ogg'
 	icon_state = "eva"
 	icon_living = "eva"
 	icon_dead = ""
 	health_doll_icon = "eva"
-	friendly_verb_continuous = "stares down"
-	friendly_verb_simple = "stare down"
+	friendly_verb_continuous = "瞪视"
+	friendly_verb_simple = "瞪视"
 	icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
-	speak_emote = list("roars")
+	speak_emote = list("咆哮")
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
@@ -47,16 +47,16 @@
 	maptext_height = 96
 	maptext_width = 96
 	del_on_death = TRUE
-	gps_name = "Angelic Signal"
+	gps_name = "天使信号"
 	achievement_type = /datum/award/achievement/boss/colossus_kill
 	crusher_achievement_type = /datum/award/achievement/boss/colossus_crusher
 	score_achievement_type = /datum/award/score/colussus_score
 	loot = list(/obj/structure/closet/crate/necropolis/colossus)
 	crusher_loot = /obj/structure/closet/crate/necropolis/colossus/crusher
 	replace_crusher_drop = TRUE
-	death_message = "disintegrates, leaving a glowing core in its wake."
+	death_message = "崩解消散，只留下一枚发光的核心。"
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
-	summon_line = "Your trial begins now."
+	summon_line = "你的试炼，现在开始。"
 	/// Spiral shots ability
 	var/datum/action/cooldown/mob_cooldown/projectile_attack/spiral_shots/colossus/spiral_shots
 	/// Random shots ablity
@@ -104,7 +104,7 @@
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message(span_colossus("\"<b>You can't dodge.</b>\""))
+			visible_message(span_colossus("“<b>你躲不掉的。</b>”"))
 		ranged_cooldown = world.time + 3 SECONDS
 		telegraph()
 		dir_shots.fire_in_directions(src, target, GLOB.alldirs)
@@ -144,13 +144,13 @@
 		spiral_shots.enraged = COLOSSUS_ENRAGED
 		telegraph()
 		icon_state = "eva_attack"
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Judgement.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "审判。", null, list("colossus", "yell"))
 	else if(activated == random_shots)
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Wrath.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "狂怒。", null, list("colossus", "yell"))
 	else if(activated == shotgun_blast)
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Retribution.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "报应。", null, list("colossus", "yell"))
 	else if(activated == dir_shots)
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Lament.", null, list("colossus", "yell"))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "悲叹。", null, list("colossus", "yell"))
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/finished_attack(mob/living/owner, datum/action/cooldown/finished)
 	SIGNAL_HANDLER
@@ -166,8 +166,8 @@
 	return istype(GET_ACTIVE_MARTIAL_ART(victim), /datum/martial_art/the_sleeping_carp)
 
 /obj/effect/temp_visual/at_shield
-	name = "anti-toolbox field"
-	desc = "A shimmering forcefield protecting the colossus."
+	name = "反工具箱力场"
+	desc = "一层微光闪烁的力场，保护着巨像。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
@@ -185,7 +185,7 @@
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, orbit), target, 0, FALSE, 0, 0, FALSE, TRUE)
 
 /obj/projectile/colossus
-	name = "death bolt"
+	name = "死亡光矢"
 	icon_state = "chronobolt"
 	damage = 25
 	armour_penetration = 100

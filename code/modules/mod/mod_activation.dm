@@ -21,7 +21,7 @@
 	if(!istype(part) || user.incapacitated)
 		return
 	if(activating)
-		balloon_alert(user, "currently [active ? "unsealing" : "sealing"]!")
+		balloon_alert(user, "正在[active ? "解封" : "密封"]！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return
 	var/parts_to_check = parts - part
@@ -47,13 +47,13 @@
 /// Quickly deploys all parts (or retracts if all are on the wearer)
 /obj/item/mod/control/proc/quick_deploy(mob/user)
 	if(activating)
-		balloon_alert(user, "currently [active ? "unsealing" : "sealing"]!")
+		balloon_alert(user, "正在[active ? "解封" : "密封"]！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	var/deploy = check_retracted()
-	wearer.visible_message(span_notice("[wearer]'s [src] [deploy ? "deploys" : "retracts"] its parts with a mechanical hiss."),
-		span_notice("[src] [deploy ? "deploys" : "retracts"] its parts with a mechanical hiss."),
-		span_hear("You hear a mechanical hiss."))
+	wearer.visible_message(span_notice("[wearer] 的 [src] 伴随着机械嘶声[deploy ? "展开" : "收起"]了各部件。"),
+		span_notice("[src] 伴随着机械嘶声[deploy ? "展开" : "收起"]了各部件。"),
+		span_hear("你听到一声机械嘶声。"))
 	playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	for(var/obj/item/part as anything in get_parts())
 		if(deploy && part.loc == src)
@@ -75,7 +75,7 @@
 	if(part.loc != src)
 		if(!user)
 			return FALSE
-		balloon_alert(user, "already deployed!")
+		balloon_alert(user, "已经展开！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	if(part_datum.can_overslot)
 		var/obj/item/overslot = wearer.get_item_by_slot(part.slot_flags)
@@ -88,9 +88,9 @@
 		wearer.update_clothing(slot_flags|part.slot_flags)
 		SEND_SIGNAL(src, COMSIG_MOD_PART_DEPLOYED, user, part_datum)
 		if(user)
-			wearer.visible_message(span_notice("[wearer]'s [part.name] deploy[part.p_s()] with a mechanical hiss."),
-				span_notice("[part] deploy[part.p_s()] with a mechanical hiss."),
-				span_hear("You hear a mechanical hiss."))
+			wearer.visible_message(span_notice("[wearer] 的 [part.name] 伴随着机械嘶声展开。"),
+				span_notice("[part] 伴随着机械嘶声展开。"),
+				span_hear("你听到一声机械嘶声。"))
 			playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		if(!active || part_datum.sealed)
 			return TRUE
@@ -99,7 +99,7 @@
 			return TRUE
 		else if(delayed_seal_part(part))
 			return TRUE
-		balloon_alert(user, "can't seal, retracting!")
+		balloon_alert(user, "无法密封，正在收起！")
 		retract(user, part, instant = TRUE)
 	else
 		if(part_datum.overslotting)
@@ -108,7 +108,7 @@
 				wearer.dropItemToGround(overslot, force = TRUE, silent = TRUE)
 		if(!user)
 			return FALSE
-		balloon_alert(user, "bodypart clothed!")
+		balloon_alert(user, "该部位已有衣物！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return FALSE
 
@@ -139,7 +139,7 @@
 	if(part.loc == src)
 		if(!user)
 			return FALSE
-		balloon_alert(user, "already retracted!")
+		balloon_alert(user, "已经收起！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_MOD_PART_RETRACTING, user, part_datum) & MOD_CANCEL_RETRACTION)
@@ -150,7 +150,7 @@
 		if(instant)
 			seal_part(part, is_sealed = FALSE)
 		else if(!delayed_seal_part(part))
-			balloon_alert(user, "can't unseal!")
+			balloon_alert(user, "无法解封！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return FALSE
 	REMOVE_TRAIT(part, TRAIT_NODROP, MOD_TRAIT)
@@ -163,9 +163,9 @@
 	wearer.update_clothing(slot_flags|part.slot_flags)
 	if(!user)
 		return TRUE
-	wearer.visible_message(span_notice("[wearer]'s [part.name] retract[part.p_s()] back into [src] with a mechanical hiss."),
-		span_notice("[part] retract[part.p_s()] back into [src] with a mechanical hiss."),
-		span_hear("You hear a mechanical hiss."))
+	wearer.visible_message(span_notice("[wearer] 的 [part.name] 伴随着机械嘶声收回到 [src] 中。"),
+		span_notice("[part] 伴随着机械嘶声收回到 [src] 中。"),
+		span_hear("你听到一声机械嘶声。"))
 	if (!unsealing)
 		playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -174,27 +174,27 @@
 /obj/item/mod/control/proc/toggle_activate(mob/user, force_deactivate = FALSE)
 	if(!wearer)
 		if(!force_deactivate)
-			balloon_alert(user, "not equipped!")
+			balloon_alert(user, "未穿戴！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!force_deactivate && (SEND_SIGNAL(src, COMSIG_MOD_ACTIVATE, user) & MOD_CANCEL_ACTIVATE))
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(locked && !active && !allowed(user) && !force_deactivate)
-		balloon_alert(user, "access insufficient!")
+		balloon_alert(user, "权限不足！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(!get_charge() && !force_deactivate)
-		balloon_alert(user, "no power source!")
+		balloon_alert(user, "没有电源！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(open && !force_deactivate)
-		balloon_alert(user, "panel open!")
+		balloon_alert(user, "面板已打开！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	if(activating)
 		if(!force_deactivate)
-			balloon_alert(user, "already [active ? "shutting down" : "starting up"]!")
+			balloon_alert(user, "已在[active ? "关机" : "启动"]中！")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		return FALSE
 	for(var/obj/item/mod/module/module as anything in modules)
@@ -204,12 +204,12 @@
 	activating = TRUE
 	mod_link.end_call()
 	var/original_active_status = active
-	to_chat(wearer, span_notice("MODsuit [active ? "shutting down" : "starting up"]."))
+	to_chat(wearer, span_notice("MOD 外骨骼[active ? "正在关闭" : "正在启动"]。"))
 	//deploy the control unit
 	if(original_active_status)
 		if(delayed_activation())
 			playsound(src, 'sound/machines/synth/synth_no.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, frequency = 6000)
-			to_chat(wearer, span_notice("Control unit offline. Module capability removed."))
+			to_chat(wearer, span_notice("控制单元离线。模块功能已移除。"))
 		else
 			activating = FALSE
 			return
@@ -225,7 +225,7 @@
 				seal_part(sealed_part, is_sealed = !get_part_datum(sealed_part).sealed)
 			if(original_active_status)
 				control_activation(is_on = TRUE)
-			to_chat(wearer, span_notice("Critical error in sealing systems. Reverting process."))
+			to_chat(wearer, span_notice("密封系统出现严重错误。正在回滚流程。"))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 		sealed_parts += part
@@ -239,13 +239,13 @@
 			activating = FALSE
 			for(var/obj/item/sealed_part as anything in sealed_parts)
 				seal_part(sealed_part, is_sealed = !get_part_datum(sealed_part).sealed)
-			to_chat(wearer, span_notice("Critical error in sealing systems. Reverting process."))
+			to_chat(wearer, span_notice("密封系统出现严重错误。正在回滚流程。"))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 			return
 
-	to_chat(wearer, span_notice("Systems [active ? "started up. Parts sealed. Welcome" : "shut down. Parts unsealed. Goodbye"], [wearer]."))
+	to_chat(wearer, span_notice("系统[active ? "已启动。部件已密封。欢迎" : "已关闭。部件已解封。再见"]，[wearer]。"))
 	if(ai_assistant)
-		to_chat(ai_assistant, span_notice("<b>SYSTEMS [active ? "ACTIVATED. WELCOME" : "DEACTIVATED. GOODBYE"]: \"[ai_assistant]\"</b>"))
+		to_chat(ai_assistant, span_notice("<b>系统[active ? "已激活。欢迎" : "已停用。再见"]：“[ai_assistant]”</b>"))
 	activating = FALSE
 	SEND_SIGNAL(src, COMSIG_MOD_TOGGLED, user)
 	return TRUE
@@ -254,7 +254,7 @@
 	. = FALSE
 	var/datum/mod_part/part_datum = get_part_datum(part)
 	if(do_after(wearer, activation_step_time, wearer, MOD_ACTIVATION_STEP_FLAGS, extra_checks = CALLBACK(src, PROC_REF(get_wearer)), cog_icon = null))
-		to_chat(wearer, span_notice("[part] [!part_datum.sealed ? part_datum.sealed_message : part_datum.unsealed_message]."))
+		to_chat(wearer, span_notice("[part] [!part_datum.sealed ? part_datum.sealed_message : part_datum.unsealed_message]。"))
 		playsound(src, 'sound/vehicles/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 		seal_part(part, is_sealed = !part_datum.sealed)
 		return TRUE

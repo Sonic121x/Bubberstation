@@ -22,20 +22,20 @@
 		var/turf/T = get_turf(src)
 		if(!T)
 			move_to_error_room()
-			var/msg = " was found to have no .loc with an attached client, if the cause is unknown it would be wise to ask how this was accomplished."
+			var/msg = " 被发现没有 .loc，却挂有客户端；如果原因不明，最好问问这是怎么做到的。"
 			message_admins(ADMIN_LOOKUPFLW(src) + msg)
 			send2tgs_adminless_only("Mob", key_name_and_tag(src) + msg, R_ADMIN)
-			src.log_message("was found to have no .loc with an attached client.", LOG_GAME)
+			src.log_message("被发现没有 .loc，却挂有客户端。", LOG_GAME)
 
 		// This is a temporary error tracker to make sure we've caught everything
 		else if (registered_z != T.z)
 #ifdef TESTING
-			message_admins("[ADMIN_LOOKUPFLW(src)] has somehow ended up in Z-level [T.z] despite being registered in Z-level [registered_z]. If you could ask them how that happened and notify coderbus, it would be appreciated.")
+			message_admins("[ADMIN_LOOKUPFLW(src)] 不知怎么到了 Z 层 [T.z]，但注册的却是 Z 层 [registered_z]。如果能问问他们这是怎么发生的，并通知程序员巴士，那就太好了。")
 #endif
-			log_game("Z-TRACKING: [src] has somehow ended up in Z-level [T.z] despite being registered in Z-level [registered_z].")
+			log_game("Z-TRACKING：[src] 不知怎么到了 Z 层 [T.z]，但注册的却是 Z 层 [registered_z]。")
 			update_z(T.z)
 	else if (registered_z)
-		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
+		log_game("Z-TRACKING：[src]（类型 [src.type]）有 Z 层注册，却没有客户端。")
 		update_z(null)
 
 	if(isnull(loc) || HAS_TRAIT(src, TRAIT_NO_TRANSFORM))

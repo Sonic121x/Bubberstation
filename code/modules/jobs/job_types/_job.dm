@@ -682,7 +682,7 @@
 
 		mmi.name = "[initial(mmi.name)]: [organic_name]"
 		if(mmi.brain)
-			mmi.brain.name = "[organic_name] 的大脑"
+			mmi.brain.name = "[organic_name]的大脑"
 		if(mmi.brainmob)
 			mmi.brainmob.real_name = organic_name //the name of the brain inside the cyborg is the robotized human's name.
 			mmi.brainmob.name = organic_name

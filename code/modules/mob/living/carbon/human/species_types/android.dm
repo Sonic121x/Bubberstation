@@ -1,5 +1,5 @@
 /datum/species/android
-	name = "Android"
+	name = "仿生人"
 	id = SPECIES_ANDROID
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(
@@ -49,16 +49,16 @@
 	)
 
 /datum/species/android/get_physical_attributes()
-	return "Androids are almost, but not quite, identical to fully augmented humans. \
-	Unlike those, though, they're completely immune to toxin damage, don't have blood or organs (besides their head), don't get hungry, and can reattach their limbs! \
-	That said, an EMP will devastate them and they cannot process any chemicals."
+	return "仿生人几乎与完全义体化的人类一模一样，但又不完全相同。\
+	与那些人不同，他们对毒素伤害完全免疫，没有血液和内脏（除了头部），不会感到饥饿，还能自行接回肢体！\
+	不过，EMP 会重创他们，而且他们无法代谢任何化学物质。"
 
 /datum/species/android/get_species_description()
-	return "Androids are an entirely synthetic species."
+	return "仿生人是一个完全合成的种族。"
 
 /datum/species/android/get_species_lore()
 	return list(
-		"Androids are a synthetic species created by Nanotrasen as an intermediary between humans and cyborgs."
+		"仿生人是纳米传讯创造的合成种族，充当人类与半机械人之间的中间形态。"
 	)
 
 /datum/species/android/create_pref_traits_perks()
@@ -66,22 +66,22 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD_ALT,
-		SPECIES_PERK_NAME = "Android Aptitude",
-		SPECIES_PERK_DESC = "As a synthetic lifeform, Androids are immune to many forms of damage humans are susceptible to. \
-			Fire, cold, heat, pressure, radiation, and toxins are all ineffective against them. \
-			They also can't overdose on drugs, don't need to breathe or eat, can't catch on fire, and are immune to being pierced.",
+		SPECIES_PERK_NAME = "仿生人天赋",
+		SPECIES_PERK_DESC = "作为合成生命体，仿生人对人类易受的多种伤害免疫。\
+			火焰、寒冷、高温、压力、辐射和毒素都对他们无效。\
+			他们也不会药物过量，不需要呼吸或进食，不会着火，并且免疫穿刺。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_COGS,
-		SPECIES_PERK_NAME = "Modular Lifeform",
-		SPECIES_PERK_DESC = "Android limbs are modular, allowing them to easily reattach severed bodyparts.",
+		SPECIES_PERK_NAME = "模块化生命体",
+		SPECIES_PERK_DESC = "仿生人的肢体是模块化的，可以轻松接回断开的身体部位。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_DNA,
-		SPECIES_PERK_NAME = "Not Human After All",
-		SPECIES_PERK_DESC = "There is no humanity behind the eyes of the Android, and as such, they have no DNA to genetically alter.",
+		SPECIES_PERK_NAME = "终究不是人类",
+		SPECIES_PERK_DESC = "仿生人的眼中没有任何人性，因此他们没有可供基因改造的 DNA。",
 	))
 	return perks
 
@@ -90,14 +90,14 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD_HEART,
-		SPECIES_PERK_NAME = "Some Components Optional",
-		SPECIES_PERK_DESC = "Androids have very few internal organs. While they can survive without many of them, \
-			they don't have any benefits from them either.",
+		SPECIES_PERK_NAME = "部分组件可选",
+		SPECIES_PERK_DESC = "仿生人的内部器官极少。虽然缺少许多器官也能存活，\
+			但也无法从这些器官获得任何好处。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_ROBOT,
-		SPECIES_PERK_NAME = "Synthetic",
-		SPECIES_PERK_DESC = "Being synthetic, Androids are vulnernable to EMPs.",
+		SPECIES_PERK_NAME = "合成体",
+		SPECIES_PERK_DESC = "作为合成体，仿生人容易受到 EMP 的影响。",
 	))
 	return perks

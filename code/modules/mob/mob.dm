@@ -206,8 +206,8 @@ GAME_VERB_PROC(/mob, Cell, "Cell", "Admin")
 
 	var/datum/gas_mixture/environment = loc.return_air()
 
-	var/t = "[span_notice("Coordinates: [x],[y] ")]\n"
-	t += "[span_danger("Temperature: [environment.temperature] ")]\n"
+	var/t = "[span_notice("坐标：[x],[y] ")]\n"
+	t += "[span_danger("温度：[environment.temperature] ")]\n"
 	var/list/cached_gas_name = GAS_META[META_GAS_NAME]
 	for(var/gas_id, gas_moles in environment.moles)
 		if(gas_moles)
@@ -219,7 +219,7 @@ GAME_VERB_PROC(/mob, Cell, "Cell", "Admin")
  * Return the desc of this mob for a photo
  */
 /mob/proc/get_photo_description(obj/item/camera/camera)
-	return "a ... thing?"
+	return "一个……不知道什么东西？"
 
 /**
  * Show a message to this mob (visual or audible)
@@ -253,7 +253,7 @@ GAME_VERB_PROC(/mob, Cell, "Cell", "Admin")
 	// voice muffling
 	if(IS_UNCONSCIOUS(src))
 		if(type & MSG_AUDIBLE) //audio
-			to_chat(src, "<I>... You can almost hear something ...</I>")
+			to_chat(src, "<I>……你几乎能听到些什么……</I>")
 		return FALSE
 	to_chat(src, msg, avoid_highlighting = avoid_highlighting)
 	return .
@@ -579,7 +579,7 @@ GAME_VERB_PROC(/mob, Cell, "Cell", "Admin")
  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
  * for why this isn't atom/verb/examine()
  */
-GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
+GAME_VERB_CONTEXT(/mob, examinate, "检查", "", null, /atom)
 	VERB_ARG_TYPED(examinify, VERB_ARG_TYPE_MOB | VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_VIEW, /atom)
 
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
@@ -611,7 +611,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
 		if(force_examinate_more || (examine_time && (world.time - examine_time < EXAMINE_MORE_WINDOW) && !removes_double_click))
 			var/list/result = examinify.examine_more(src)
 			if(!length(result))
-				result += span_notice("<i>You examine [examinify] closer, but find nothing of interest...</i>")
+				result += span_notice("<i>你更仔细地检查了 [examinify]，但没发现任何有趣之处……</i>")
 			result_combined = boxed_message(jointext(result, "<br>"))
 			result_combined = replacetext(result_combined, "<hr><br>", "<hr>") // BUBBER EDIT ADDITION - bit of a hack here to make sure we don't get linebreaks coming after headers
 
@@ -630,7 +630,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
 		if (length(overrides))
 			result = overrides[max(overrides)]
 		if(removes_double_click)
-			result += span_notice("<i>You can <a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>examine</a> [examinify] closer...</i>")
+			result += span_notice("<i>你可以<a href=byond://?src=[REF(src)];run_examinate=[REF(examinify)]>更仔细地检查</a> [examinify]……</i>")
 		if(examine_headshot)
 			result.Insert(1, examine_headshot)
 		if(atom_title)
@@ -664,7 +664,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
 /mob/living/blind_examine_check(atom/examined_thing)
 	//need to be next to something and awake
 	if(!Adjacent(examined_thing) || incapacitated)
-		to_chat(src, span_warning("Something is there, but you can't see it!"))
+		to_chat(src, span_warning("那里确实有东西，但你看不见它！"))
 		return FALSE
 
 	//you can examine things you're holding directly, but you can't examine other things if your hands are full
@@ -675,22 +675,22 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
 		if(HAS_TRAIT(active_item, TRAIT_BLIND_TOOL))
 			boosted = TRUE
 		else if(active_item != examined_thing)
-			to_chat(src, span_warning("Your hands are too full to examine this!"))
+			to_chat(src, span_warning("你双手都占满了，没法检查这个！"))
 			return FALSE
 
 	//you can only initiate exaimines if you have a hand, it's not disabled, and only as many examines as you have hands
 	/// our active hand, to check if it's disabled/detached
 	var/obj/item/bodypart/active_hand = has_active_hand()? get_active_hand() : null
 	if(!active_hand || active_hand.bodypart_disabled || do_after_count() >= usable_hands)
-		to_chat(src, span_warning("You don't have a free hand to examine this!"))
+		to_chat(src, span_warning("你没有空闲的手来检查这个！"))
 		return FALSE
 
 	//you can only queue up one examine on something at a time
 	if(DOING_INTERACTION_WITH_TARGET(src, examined_thing))
 		return FALSE
 
-	to_chat(src, span_notice("You start feeling around for something..."))
-	visible_message(span_notice(" [name] begins feeling around for \the [examined_thing.name]..."))
+	to_chat(src, span_notice("你开始摸索着寻找某个东西……"))
+	visible_message(span_notice(" [name] 开始摸索着寻找 \the [examined_thing.name]……"))
 
 	/// how long it takes for the blind person to find the thing they're examining
 	var/examine_delay_length = rand(1 SECONDS, 2 SECONDS)
@@ -704,7 +704,7 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
 		examine_delay_length *= 2
 
 	if(examine_delay_length > 0 && !do_after(src, examine_delay_length, target = examined_thing))
-		to_chat(src, span_notice("You can't get a good feel for what is there."))
+		to_chat(src, span_notice("你摸不出那里有什么。"))
 		return FALSE
 
 	//now we touch the thing we're examining
@@ -751,13 +751,13 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
 	if(examined_mob.can_eye_contact() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
 		var/obj/item/clothing/eye_cover = examined_mob.is_eyes_covered()
 		if (!eye_cover || (!eye_cover.tint && !eye_cover.flash_protect))
-			var/msg = span_smallnotice("You make eye contact with [examined_mob].")
+			var/msg = span_smallnotice("你和 [examined_mob] 对上了视线。")
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, msg), 0.3 SECONDS) // so the examine signal has time to fire and this will print after
 
 	if(!imagined_eye_contact && can_eye_contact() && !examined_mob.is_blind() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
 		var/obj/item/clothing/eye_cover = is_eyes_covered()
 		if (!eye_cover || (!eye_cover.tint && !eye_cover.flash_protect))
-			var/msg = span_smallnotice("[src] makes eye contact with you.")
+			var/msg = span_smallnotice("[src] 和你对上了视线。")
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), examined_mob, msg), 0.3 SECONDS)
 
 /// Checks if we can make eye contact or someone can make eye contact with us
@@ -850,11 +850,11 @@ GAME_VERB_CONTEXT(/mob, examinate, "Examine", "", null, /atom)
  *
  * Only works if flag/allow_respawn is allowed in config
  */
-GAME_VERB(/mob, abandon_mob, "Respawn", "OOC")
+GAME_VERB(/mob, abandon_mob, "重生", "OOC")
 
 	switch(CONFIG_GET(flag/allow_respawn))
 		if(RESPAWN_FLAG_NEW_CHARACTER)
-			if(tgui_alert(usr, "Note, respawning is only allowed as another character. If you don't have another free slot you may not be able to respawn.", "Respawn", list("Ok", "Nevermind")) != "Ok")
+			if(tgui_alert(usr, "注意，重生只能以另一个角色的身份进行。如果你没有其他空闲的角色槽位，可能无法重生。", "重生", list("Ok", "Nevermind")) != "Ok")
 				return
 
 		if(RESPAWN_FLAG_FREE)
@@ -862,13 +862,13 @@ GAME_VERB(/mob, abandon_mob, "Respawn", "OOC")
 
 		if(RESPAWN_FLAG_DISABLED)
 			if (!check_rights_for(usr.client, R_ADMIN))
-				to_chat(usr, span_boldnotice("Respawning is not enabled!"))
+				to_chat(usr, span_boldnotice("重生功能未开启！"))
 				return
-			if (tgui_alert(usr, "Respawning is currently disabled, do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes")
+			if (tgui_alert(usr, "重生功能当前已禁用，你想使用自己的权限绕过限制吗？", "重生", list("Yes", "No")) != "Yes")
 				return
 
 	if (stat != DEAD)
-		to_chat(usr, span_boldnotice("You must be dead to use this!"))
+		to_chat(usr, span_boldnotice("你必须处于死亡状态才能使用此功能！"))
 		return
 
 	if(!check_respawn_delay())
@@ -877,26 +877,26 @@ GAME_VERB(/mob, abandon_mob, "Respawn", "OOC")
 	//SKYRAT EDIT ADDITION
 	if(ckey)
 		if(is_banned_from(ckey, BAN_RESPAWN))
-			to_chat(usr, "<span class='boldnotice'>You are respawn banned, you can't respawn!</span>")
+			to_chat(usr, "<span class='boldnotice'>你已被禁止重生，无法重生！</span>")
 			return
 	//SKYRAT EDIT END
 
-	usr.log_message("used the respawn button.", LOG_GAME)
+	usr.log_message("使用了重生按钮。", LOG_GAME)
 
-	to_chat(usr, span_boldnotice("Please roleplay correctly!"))
+	to_chat(usr, span_boldnotice("请正确地进行角色扮演！"))
 
 	if(!client)
-		usr.log_message("respawn failed due to disconnect.", LOG_GAME)
+		usr.log_message("因断线而重生失败。", LOG_GAME)
 		return
 	client.screen.Cut()
 	client.screen += client.void
 	if(!client)
-		usr.log_message("respawn failed due to disconnect.", LOG_GAME)
+		usr.log_message("因断线而重生失败。", LOG_GAME)
 		return
 
 	var/mob/dead/new_player/M = new /mob/dead/new_player()
 	if(!client)
-		usr.log_message("respawn failed due to disconnect.", LOG_GAME)
+		usr.log_message("因断线而重生失败。", LOG_GAME)
 		qdel(M)
 		return
 
@@ -918,24 +918,24 @@ GAME_VERB(/mob, abandon_mob, "Respawn", "OOC")
 
 	if(death_time < required_delay)
 		if(!check_rights_for(usr.client, R_ADMIN))
-			to_chat(usr, "You have been dead for [DisplayTimeText(death_time, 1)].")
-			to_chat(usr, span_warning("You must wait [DisplayTimeText(required_delay, 1)] to respawn!"))
+			to_chat(usr, "你已经死亡了 [DisplayTimeText(death_time, 1)]。")
+			to_chat(usr, span_warning("你必须等待 [DisplayTimeText(required_delay, 1)] 才能重生！"))
 			return FALSE
-		if(tgui_alert(usr, "You have been dead for [DisplayTimeText(death_time, 1)] out of required [DisplayTimeText(required_delay, 1)]. Do you want to use your permissions to circumvent it?", "Respawn", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "你已死亡 [DisplayTimeText(death_time, 1)]，而要求为 [DisplayTimeText(required_delay, 1)]。你想使用自己的权限绕过限制吗？", "重生", list("Yes", "No")) != "Yes")
 			return FALSE
 	return TRUE
 
 /**
  * Sometimes helps if the user is stuck in another perspective or camera
  */
-GAME_VERB(/mob, cancel_camera, "Cancel Camera View", "OOC")
+GAME_VERB(/mob, cancel_camera, "取消摄像机视角", "OOC")
 	reset_perspective(null)
 
 /**
  * Helpful for when a players uplink window gets glitched to above their screen.
  * preventing them from moving the UPLINK window.
  */
-GAME_VERB(/mob, reset_ui_positions_for_mob, "Reset UI Positions", "OOC")
+GAME_VERB(/mob, reset_ui_positions_for_mob, "重置 UI 位置", "OOC")
 	SStgui.reset_ui_position(src)
 
 //suppress the .click/dblclick macros so people can't use them to identify the location of items or aimbot
@@ -958,7 +958,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 	var/obj/item/held_item = get_active_held_item()
 	if(SEND_SIGNAL(src, COMSIG_MOB_SWAPPING_HANDS, held_item) & COMPONENT_BLOCK_SWAP)
 		if (!silent)
-			to_chat(src, span_warning("Your other hand is too busy holding [held_item]."))
+			to_chat(src, span_warning("你的另一只手正忙着拿 [held_item]。"))
 		return FALSE
 
 	var/result = perform_hand_swap(held_index)
@@ -1018,7 +1018,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 		return mind.grab_ghost(force = force)
 
 ///Notify a ghost that its body is being revived
-/mob/proc/notify_revival(message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", sound = 'sound/effects/genetics.ogg', atom/source = null, flashwindow = TRUE)
+/mob/proc/notify_revival(message = "有人正试图复活你。如果你想被复活，请重新进入你的尸体！", sound = 'sound/effects/genetics.ogg', atom/source = null, flashwindow = TRUE)
 	var/mob/dead/observer/ghost = get_ghost()
 	if(ghost)
 		ghost.send_revival_notification(message, sound, source, flashwindow)
@@ -1078,8 +1078,8 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	if(magic_flags & MAGIC_RESISTANCE)
 		visible_message(
-			span_warning("[src] pulses red as [ismob(antimagic_source) ? p_they() : antimagic_source] absorbs magic energy!"),
-			span_userdanger("An intense magical aura pulses around [ismob(antimagic_source) ? "you" : antimagic_source] as it dissipates into the air!"),
+			span_warning("[src] 泛着红光，[ismob(antimagic_source) ? p_they() : antimagic_source] 吸收了魔法能量！"),
+			span_userdanger("一股强烈的魔法光环在 [ismob(antimagic_source) ? "你" : antimagic_source] 周围脉动，随后消散在空气中！"),
 		)
 		antimagic_effect = mutable_appearance('icons/effects/effects.dmi', "shield-red", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_BLOOD_MAGIC
@@ -1087,8 +1087,8 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	else if(magic_flags & MAGIC_RESISTANCE_HOLY)
 		visible_message(
-			span_warning("[src] starts to glow as [ismob(antimagic_source) ? p_they() : antimagic_source] emits a halo of light!"),
-			span_userdanger("A feeling of warmth washes over [ismob(antimagic_source) ? "you" : antimagic_source] as rays of light surround your body and protect you!"),
+			span_warning("[src] 开始发光，[ismob(antimagic_source) ? p_they() : antimagic_source] 释放出一圈光环！"),
+			span_userdanger("一股暖意涌上 [ismob(antimagic_source) ? "你" : antimagic_source]，光芒环绕你的身体并保护着你！"),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "servitude", -MUTATIONS_LAYER)
 		antimagic_color = LIGHT_COLOR_HOLY_MAGIC
@@ -1096,8 +1096,8 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	else if(magic_flags & MAGIC_RESISTANCE_MIND)
 		visible_message(
-			span_warning("[src] forehead shines as [ismob(antimagic_source) ? p_they() : antimagic_source] repulses magic from their mind!"),
-			span_userdanger("A feeling of cold splashes on [ismob(antimagic_source) ? "you" : antimagic_source] as your forehead reflects magic usering your mind!"),
+			span_warning("[src] 的额头闪耀着，[ismob(antimagic_source) ? p_they() : antimagic_source] 将魔法从心智中驱离！"),
+			span_userdanger("一股寒意泼洒在 [ismob(antimagic_source) ? "你" : antimagic_source] 身上，你的额头以心智反射了魔法！"),
 		)
 		antimagic_effect = mutable_appearance('icons/mob/effects/genetics.dmi', "telekinesishead", MOB_SHIELD_LAYER)
 		antimagic_color = LIGHT_COLOR_DARK_BLUE
@@ -1210,7 +1210,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 			) //Just in case the mind is unsynced at the moment.
 
 	if(oldname)
-		log_message("[src] name changed from [oldname] to [newname]", LOG_OWNERSHIP)
+		log_message("[src] 的名字由 [oldname] 改为 [newname]", LOG_OWNERSHIP)
 
 		//update the datacore records! This is goig to be a bit costly.
 		replace_records_name(oldname,newname)
@@ -1231,7 +1231,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 		GLOB.chat_colors_by_mob_name[name] = list(chat_color, chat_color_darkened)
 	// SKYRAT EDIT END
 	else if(log_new_name)
-		log_message("[src] name set to [newname]", LOG_OWNERSHIP)
+		log_message("[src] 的名字被设为 [newname]", LOG_OWNERSHIP)
 
 	log_mob_tag("TAG: [tag] RENAMED: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_FULLY_RENAMED, oldname, newname)
@@ -1339,15 +1339,15 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	if(!IS_WRITING_UTENSIL(writing_instrument))
 		if(!silent_if_not_writing_tool)
-			to_chat(src, span_warning("You can't write with \the [writing_instrument]!"))
+			to_chat(src, span_warning("你没法用 \the [writing_instrument] 写字！"))
 		return FALSE
 
 	if(!is_literate())
-		to_chat(src, span_warning("You try to write, but don't know how to spell anything!"))
+		to_chat(src, span_warning("你试着写字，但完全不知道怎么拼！"))
 		return FALSE
 
 	if(!has_light_nearby() && !has_nightvision())
-		to_chat(src, span_warning("It's too dark in here to write anything!"))
+		to_chat(src, span_warning("这里太暗了，什么都写不了！"))
 		return FALSE
 
 	if(has_gravity())
@@ -1356,7 +1356,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 	var/obj/item/pen/pen = writing_instrument
 
 	if(istype(pen) && pen.requires_gravity)
-		to_chat(src, span_warning("You try to write, but \the [writing_instrument] doesn't work in zero gravity!"))
+		to_chat(src, span_warning("你试着写字，但 \the [writing_instrument] 在零重力下不管用！"))
 		return FALSE
 
 	return TRUE
@@ -1384,12 +1384,12 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 /mob/proc/can_read(atom/viewed_atom, reading_check_flags = (READING_CHECK_LITERACY|READING_CHECK_LIGHT), silent = FALSE)
 	if((reading_check_flags & READING_CHECK_LITERACY) && !is_literate())
 		if(!silent)
-			to_chat(src, span_warning("You try to read [viewed_atom], but can't comprehend any of it."))
+			to_chat(src, span_warning("你试着阅读 [viewed_atom]，但完全看不懂。"))
 		return FALSE
 
 	if((reading_check_flags & READING_CHECK_LIGHT) && !has_light_nearby() && !has_nightvision())
 		if(!silent)
-			to_chat(src, span_warning("It's too dark in here to read!"))
+			to_chat(src, span_warning("这里太暗了，无法阅读！"))
 		return FALSE
 
 	return TRUE
@@ -1400,25 +1400,25 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 /mob/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "--- /mob ---")
-	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI, "Give AI Controller")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "Give Random AI Speech")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_MOB_ACTION, "Give Mob Ability")
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOB_ACTION, "Remove Mob Ability")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
-	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
-	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
-	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
-	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS_FULL, "Regenerate Icons & Clear Stuck Overlays")
-	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
-	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
-	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "Give Direct Control")
-	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
-	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
-	VV_DROPDOWN_OPTION(VV_HK_GIVE_ACCESS, "Give Access")
+	VV_DROPDOWN_OPTION(VV_HK_GIB, "碎尸")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI, "赋予 AI 控制器")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_AI_SPEECH, "赋予随机 AI 语音")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "赋予法术")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "移除法术")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_MOB_ACTION, "赋予生物技能")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_MOB_ACTION, "移除生物技能")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "赋予疾病")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "切换无敌模式")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "丢弃所有物品")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "重建图标")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS_FULL, "重建图标并清除卡住的叠加层")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "显示玩家面板")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "切换建造模式")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "直接接管控制")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DIRECT_CONTROL, "交出直接控制")
+	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "向幽灵提供控制权")
+	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "查看/编辑平面")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_ACCESS, "赋予权限")
 
 /mob/vv_do_topic(list/href_list)
 	. = ..()
@@ -1486,7 +1486,7 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 
 	if(href_list[VV_HK_GIVE_ACCESS])
 		AddComponent(/datum/component/simple_access, SSid_access.get_region_access_list(list(REGION_ALL_GLOBAL)))
-		to_chat(usr, span_notice("Access granted."))
+		to_chat(usr, span_notice("权限已授予。"))
 /**
  * extra var handling for the logging var
  */
@@ -1642,9 +1642,9 @@ GAME_VERB_NATIVE(/mob, DisDblClick, ".dblclick", null, argu = null as anything, 
 ///Shows a tgui window with memories
 /mob/proc/open_memory_panel()
 	if(!mind)
-		var/fail_message = "You have no mind!"
+		var/fail_message = "你没有心智！"
 		if(isobserver(src))
-			fail_message += " You have to be in the current round at some point to have one."
+			fail_message += " 你必须至少在本轮游戏中出场过，才会有心智。"
 		to_chat(src, span_warning(fail_message))
 		return
 	if(!mind.memory_panel)

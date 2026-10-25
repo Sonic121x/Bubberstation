@@ -1,7 +1,7 @@
 /mob/living/proc/robot_talk(message, list/spans = list(), list/message_mods = list())
 	log_sayverb_talk(message, message_mods, tag="binary")
 
-	var/designation = "Default Cyborg"
+	var/designation = "默认半机械人"
 	spans |= SPAN_ROBOT
 
 	if(issilicon(src))
@@ -37,7 +37,7 @@
 				to_chat(
 					hearing_mob,
 					span_binarysay("\
-						Robotic Talk, \
+						机械通讯，\
 						<a href='byond://?src=[REF(hearing_mob)];track=[html_encode(namepart)]'>[span_name("[namepart] ([designation])")]</a> \
 						<span class='message'>[messagepart]</span>\
 					"),
@@ -48,7 +48,7 @@
 				to_chat(
 					hearing_mob,
 					span_binarysay("\
-						Robotic Talk, \
+						机械通讯，\
 						[span_name("[namepart]")] <span class='message'>[messagepart]</span>\
 					"),
 					type = MESSAGE_TYPE_RADIO,
@@ -71,7 +71,7 @@
 				hearing_mob,
 				span_binarysay("\
 					[follow_link] \
-					Robotic Talk, \
+					机械通讯，\
 					[span_name("[namepart]")] <span class='message'>[messagepart]</span>\
 				"),
 				type = MESSAGE_TYPE_RADIO,

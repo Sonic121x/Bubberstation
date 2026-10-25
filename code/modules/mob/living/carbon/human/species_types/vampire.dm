@@ -5,7 +5,7 @@
 #define VAMP_DRAIN_AMOUNT 50
 
 /datum/species/human/vampire
-	name = "Vampire"
+	name = "吸血鬼"
 	id = SPECIES_VAMPIRE
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(
@@ -21,7 +21,7 @@
 	mutantheart = /obj/item/organ/heart/vampire
 	mutanttongue = /obj/item/organ/tongue/vampire
 	///some starter text sent to the vampire initially, because vampires have shit to do to stay alive
-	var/info_text = "You are a <span class='danger'>Vampire</span>. You will slowly but constantly lose blood if outside of a coffin. If inside a coffin, you will slowly heal. You may gain more blood by grabbing a live victim and using your drain ability."
+	var/info_text = "你是一名<span class='danger'>吸血鬼</span>。在棺材外时，你会缓慢但持续地失血。待在棺材里时，你会缓慢痊愈。你可以抓住活着的受害者并使用吸血能力来补充血液。"
 
 /datum/species/human/vampire/check_roundstart_eligible()
 	if(check_holidays(HALLOWEEN))
@@ -57,12 +57,12 @@
 		return
 	vampire.adjust_blood_volume(-0.125 * seconds_per_tick)
 	if(vampire.get_blood_volume(apply_modifiers = TRUE) <= BLOOD_VOLUME_SURVIVE)
-		to_chat(vampire, span_danger("You ran out of blood!"))
-		vampire.investigate_log("has been dusted by a lack of blood (vampire).", INVESTIGATE_DEATHS)
+		to_chat(vampire, span_danger("你的血液耗尽了！"))
+		vampire.investigate_log("因失血而化为灰烬（吸血鬼）。", INVESTIGATE_DEATHS)
 		vampire.dust()
 	var/area/A = get_area(vampire)
 	if(istype(A, /area/station/service/chapel))
-		to_chat(vampire, span_warning("You don't belong here!"))
+		to_chat(vampire, span_warning("这里不是你应该来的地方！"))
 		vampire.adjust_fire_loss(10 * seconds_per_tick)
 		vampire.adjust_fire_stacks(3 * seconds_per_tick)
 		vampire.ignite_mob()
@@ -73,17 +73,17 @@
 	source.hud_used.add_screen_object(/atom/movable/screen/blood_level, HUD_MOB_BLOOD_LEVEL, HUD_GROUP_INFO, update_screen = TRUE)
 
 /datum/species/human/vampire/get_physical_attributes()
-	return "Vampires are afflicted with the Thirst, needing to sate it by draining the blood out of another living creature. However, they do not need to breathe or eat normally. \
-		They will instantly turn into dust if they run out of blood or enter a holy area. However, coffins stabilize and heal them, and they can transform into bats!"
+	return "吸血鬼饱受“渴血”之苦，必须吸取其他生物的血来缓解。不过，他们无需正常呼吸或进食。\
+		一旦血液耗尽或进入神圣区域，他们会立刻化为灰烬。不过，棺材能稳定并治愈他们，而且他们还能变成蝙蝠！"
 
 /datum/species/human/vampire/get_species_description()
-	return "A classy Vampire! They descend upon Space Station Thirteen Every year to spook the crew! \"Bleeg!!\""
+	return "一位优雅的吸血鬼！他们每年都会降临十三号空间站，吓唬船员们！“Bleeg！！”"
 
 /datum/species/human/vampire/get_species_lore()
 	return list(
-		"Vampires are unholy beings blessed and cursed with The Thirst. \
-		The Thirst requires them to feast on blood to stay alive, and in return it gives them many bonuses. \
-		Because of this, Vampires have split into two clans, one that embraces their powers as a blessing and one that rejects it.",
+		"吸血鬼是受“渴血”祝福与诅咒的邪恶存在。\
+		“渴血”迫使他们以血液为食才能存活，作为回报，也赋予他们许多增益。\
+		正因如此，吸血鬼分裂为两个氏族，一个将其力量视为祝福而欣然接受，另一个则予以拒绝。",
 	)
 
 /datum/species/human/vampire/create_pref_unique_perks()
@@ -93,22 +93,22 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bed",
-			SPECIES_PERK_NAME = "Coffin Brooding",
-			SPECIES_PERK_DESC = "Vampires can delay The Thirst and heal by resting in a coffin. So THAT'S why they do that!",
+			SPECIES_PERK_NAME = "棺中沉思",
+			SPECIES_PERK_DESC = "吸血鬼可以通过在棺材中休息来延缓“渴血”并治愈自身。原来他们那样做是这个原因！",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "book-dead",
-			SPECIES_PERK_NAME = "Vampire Clans",
-			SPECIES_PERK_DESC = "Vampires belong to one of two clans - the Inoculated, and the Outcast. The Outcast \
-				don't follow many vampiric traditions, while the Inoculated are given unique names and flavor.",
+			SPECIES_PERK_NAME = "吸血鬼氏族",
+			SPECIES_PERK_DESC = "吸血鬼属于两个氏族之一——受礼者与弃族。弃族 \
+				不遵循许多吸血鬼传统，而受礼者则拥有独特的名字与风味。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "cross",
-			SPECIES_PERK_NAME = "Against God and Nature",
-			SPECIES_PERK_DESC = "Almost all higher powers are disgusted by the existence of \
-				Vampires, and entering the Chapel is essentially suicide. Do not do it!",
+			SPECIES_PERK_NAME = "逆神悖理",
+			SPECIES_PERK_DESC = "几乎所有更高存在都厌恶 \
+				吸血鬼的存在，进入教堂无异于自杀。千万别这么做！",
 		),
 	)
 
@@ -121,12 +121,12 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "tint",
-		SPECIES_PERK_NAME = "The Thirst",
-		SPECIES_PERK_DESC = "In place of eating, Vampires suffer from The Thirst. \
-			Thirst of what? Blood! Their tongue allows them to grab people and drink \
-			their blood, and they will die if they run out. As a note, it doesn't \
-			matter whose blood you drink, it will all be converted into your blood \
-			type when consumed.",
+		SPECIES_PERK_NAME = "渴血",
+		SPECIES_PERK_DESC = "吸血鬼不进食，而是饱受“渴血”之苦。\
+			渴的是什么？血！他们的舌头能抓住他人并 \
+			吸食血液，若血液耗尽便会死亡。需要说明的是，喝下谁的 \
+			血都无所谓，被吸收后都会转化为你的血 \
+			型。",
 	))
 
 	return to_add
@@ -138,18 +138,18 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "skull",
-		SPECIES_PERK_NAME = "Minor Undead",
-		SPECIES_PERK_DESC = "[name] are minor undead. \
-			Minor undead enjoy some of the perks of being dead, like \
-			not needing to breathe or eat, but do not get many of the \
-			environmental immunities involved with being fully undead.",
+		SPECIES_PERK_NAME = "次级亡灵",
+		SPECIES_PERK_DESC = "[name]属于次级亡灵。\
+			次级亡灵享有部分死者特权，比如 \
+			无需呼吸或进食，但无法获得完全亡灵所拥有的 \
+			许多环境免疫。",
 	))
 
 	return to_add
 
 /obj/item/organ/tongue/vampire
-	name = "vampire teeth"
-	desc = "The only thing with which it's acceptable to say \"I will suck you dry!\""
+	name = "吸血鬼牙齿"
+	desc = "这是唯一能让你理直气壮说出“我要把你吸干！”的东西。"
 	icon_state = "tongue_vampire"
 	actions_types = list(/datum/action/item_action/organ_action/vampire)
 	organ_traits = list(
@@ -176,13 +176,13 @@
 	if(!istype(used_item, /obj/item/reagent_containers/blood))
 		return NONE
 	if(used_item.reagents?.total_volume <= 0)
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] stabs [used_item] with [user.p_their()] sharp teeth and drains its contents!"),
-		span_notice("You stab [used_item] with your sharp teeth and drain its contents!"),
-		span_hear("You hear a stabbing sound! ... Followed by slurping?"),
+		span_notice("[user] 用 [user.p_their()] 锋利的牙齿刺入 [used_item] 并吸干其中的内容物！"),
+		span_notice("你用锋利的牙齿刺入 [used_item] 并吸干其中的内容物！"),
+		span_hear("你听到刺入的声音！……接着是吸吮声？"),
 		COMBAT_MESSAGE_RANGE,
 	)
 	INVOKE_ASYNC(src, PROC_REF(async_stab_bloodbag), user, used_item)
@@ -192,15 +192,15 @@
 	if(!do_after(user, time, bloodbag))
 		return
 
-	to_chat(user, span_notice("You swallow a gulp of [src]."))
+	to_chat(user, span_notice("你吞下了一大口 [src]。"))
 	playsound(bloodbag, 'sound/items/drink.ogg', 50, TRUE) //slurp
 	bloodbag.reagents.trans_to(user, bloodbag.reagents.maximum_volume * 0.05, transferred_by = user, methods = INGEST)
 	if(bloodbag.reagents.total_volume > 0)
 		async_stab_bloodbag(user, bloodbag, 1 SECONDS)
 
 /datum/action/item_action/organ_action/vampire
-	name = "Drain Victim"
-	desc = "Leech blood from any carbon victim you are passively grabbing."
+	name = "吸取受害者"
+	desc = "从你正被动抓取的任何碳基受害者身上吸取血液。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "drain_victim"
 	background_icon_state = "bg_vampire"
@@ -212,7 +212,7 @@
 	var/mob/living/carbon/user = owner
 	var/obj/item/organ/tongue/vampire/licker_drinker = target
 	if(!COOLDOWN_FINISHED(licker_drinker, drain_cooldown))
-		to_chat(user, span_warning("You just drained blood, wait a few seconds!"))
+		to_chat(user, span_warning("你刚刚吸过血，等几秒钟！"))
 		return FALSE
 
 	if(!iscarbon(user.pulling))
@@ -220,32 +220,32 @@
 
 	var/mob/living/carbon/victim = user.pulling
 	if(user.get_blood_volume() >= BLOOD_VOLUME_MAXIMUM)
-		to_chat(user, span_warning("You're already full!"))
+		to_chat(user, span_warning("你已经饱了！"))
 		return FALSE
 	if(victim.stat == DEAD)
-		to_chat(user, span_warning("You need a living victim!"))
+		to_chat(user, span_warning("你需要一个活着的受害者！"))
 		return FALSE
 	var/blood_name = LOWER_TEXT(user.get_bloodtype()?.get_blood_name())
 	if(!victim.get_blood_volume() || victim.get_blood_reagent() != user.get_blood_reagent())
 		if (blood_name)
-			to_chat(user, span_warning("[victim] doesn't have [blood_name]!"))
+			to_chat(user, span_warning("[victim] 没有 [blood_name]！"))
 		else
-			to_chat(user, span_warning("[victim] doesn't have anything inside of them you could stomach!"))
+			to_chat(user, span_warning("[victim] 体内没有你能咽得下去的东西！"))
 		return FALSE
 	COOLDOWN_START(licker_drinker, drain_cooldown, 3 SECONDS)
 	if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
-		victim.show_message(span_warning("[user] tries to bite you, but stops before touching you!"))
-		to_chat(user, span_warning("[victim] is blessed! You stop just in time to avoid catching fire."))
+		victim.show_message(span_warning("[user] 试图咬你，但在碰到你之前停了下来！"))
+		to_chat(user, span_warning("[victim] 受到祝福！你及时收手，才没有着火。"))
 		return FALSE
 	if(victim.has_reagent(/datum/reagent/consumable/garlic))
-		victim.show_message(span_warning("[user] tries to bite you, but recoils in disgust!"))
-		to_chat(user, span_warning("[victim] reeks of garlic! you can't bring yourself to drain such tainted blood."))
+		victim.show_message(span_warning("[user] 试图咬你，却厌恶地缩了回去！"))
+		to_chat(user, span_warning("[victim] 身上一股大蒜味！你实在下不了口去吸这样被污染的血。"))
 		return FALSE
 	if(!do_after(user, 3 SECONDS, target = victim, cog_icon = null))
 		return FALSE
 
-	victim.show_message(span_danger("[user] is draining your blood!"))
-	to_chat(user, span_notice("You drain some blood!"))
+	victim.show_message(span_danger("[user] 正在吸取你的血液！"))
+	to_chat(user, span_notice("你吸到了一些血液！"))
 	playsound(user, 'sound/items/drink.ogg', 30, TRUE, -2)
 
 	// Since we adjust the user first, we need to take the victim's blood volume into account.
@@ -257,13 +257,13 @@
 	victim.adjust_blood_volume(-amount_drained)
 
 	if(!victim.get_blood_volume())
-		to_chat(user, span_notice("You finish off [victim]'s [blood_name] supply."))
+		to_chat(user, span_notice("你吸干了 [victim] 最后的 [blood_name]。"))
 	return TRUE
 
 /obj/item/organ/heart/vampire
-	name = "vampire heart"
+	name = "吸血鬼心脏"
 	icon_state = "heart_vampire"
-	desc = "Some guy stabbed his brother 6,000 years ago so now you have this."
+	desc = "六千年前有个人捅了自己的兄弟，所以你现在有了这个。"
 	organ_traits = list(TRAIT_UNHOLY_BANEABLE)
 
 #undef VAMPIRES_PER_HOUSE

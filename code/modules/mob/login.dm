@@ -36,7 +36,7 @@
 	add_to_player_list()
 	lastKnownIP = client.address
 	computer_id = client.computer_id
-	log_access("Mob Login: [key_name(src)] was assigned to a [type] ([tag])")
+	log_access("生物登录：[key_name(src)] 被分配到 [type]（[tag]）")
 	world.update_status()
 	client.clear_screen() //remove hud items just in case
 	client.images = list()
@@ -128,7 +128,7 @@
 		//Update the chat panel's job/character info for conditional highlights.
 		client.tgui_panel?.send_player_info()
 
-	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
+	log_message("客户端 [key_name(src)] 已取得生物 [src]（[src.type]）的所有权", LOG_OWNERSHIP)
 	log_mob_tag("TAG: [tag] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
 	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)

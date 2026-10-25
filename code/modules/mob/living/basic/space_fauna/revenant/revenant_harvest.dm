@@ -21,7 +21,7 @@
 	draining = TRUE
 	var/value_to_return = harvest_soul(target)
 	if(!value_to_return)
-		log_combat(src, target, "stopped the harvest of")
+		log_combat(src, target, "中断了收割")
 	draining = FALSE
 
 	return value_to_return
@@ -44,7 +44,7 @@
 			to_chat(target, span_revennotice("你感觉好像有人在注视着你。"))
 		return FALSE
 
-	log_combat(src, target, "started to harvest")
+	log_combat(src, target, "开始收割了")
 	face_atom(target)
 	var/essence_drained = rand(15, 20)
 

@@ -7,8 +7,8 @@
 
 //Elite mining mobs
 /mob/living/simple_animal/hostile/asteroid/elite
-	name = "elite"
-	desc = "An elite monster, found in one of the strange tumors on lavaland."
+	name = "精英"
+	desc = "一头精英怪物，出自熔岩地带的某个奇异肿瘤。"
 	icon = 'icons/mob/simple/lavaland/lavaland_elites.dmi'
 	abstract_type = /mob/living/simple_animal/hostile/asteroid/elite
 	faction = list(FACTION_MINING, FACTION_BOSS)
@@ -44,7 +44,7 @@
 	if(istype(target, /obj/structure/elite_tumor))
 		var/obj/structure/elite_tumor/T = target
 		if(T.mychild == src && T.activity == TUMOR_PASSIVE)
-			var/elite_remove = tgui_alert(usr,"Re-enter the tumor?", "Despawn yourself?", list("Yes", "No"))
+			var/elite_remove = tgui_alert(usr,"要重新进入这颗肿瘤吗？", "要让自己消失吗？", list("Yes", "No"))
 			if(elite_remove == "No" || QDELETED(src) || !Adjacent(T))
 				return
 			T.mychild = null
@@ -68,7 +68,7 @@
 While using this makes the system rely on OnFire, it still gives options for timers not tied to OnFire, and it makes using attacks consistent accross the board for player-controlled elites.*/
 
 /datum/action/innate/elite_attack
-	name = "Elite Attack"
+	name = "精英攻击"
 	button_icon = 'icons/mob/actions/actions_elites.dmi'
 	button_icon_state = ""
 	background_icon_state = "bg_default"
@@ -121,8 +121,8 @@ While using this makes the system rely on OnFire, it still gives options for tim
 //The Pulsing Tumor, the actual "spawn-point" of elites, handles the spawning, arena, and procs for dealing with basic scenarios.
 
 /obj/structure/elite_tumor
-	name = "pulsing tumor"
-	desc = "An odd, pulsing tumor sticking out of the ground.  You feel compelled to reach out and touch it..."
+	name = "搏动肿瘤"
+	desc = "一颗从地面凸出的古怪肿瘤，正不停搏动着。你不由自主地想伸手去摸一摸……"
 	armor_type = /datum/armor/structure_elite_tumor
 	resistance_flags = INDESTRUCTIBLE
 	icon = 'icons/obj/mining_zones/tumor.dmi'
@@ -164,86 +164,86 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		if(TUMOR_PASSIVE)
 			// Prevents the user from being forcemoved back and forth between two elite arenas.
 			if(HAS_TRAIT(user, TRAIT_ELITE_CHALLENGER))
-				user.visible_message(span_warning("[user] reaches for [src] with [user.p_their()] arm, but nothing happens."),
-					span_warning("You reach for [src] with your arm... but nothing happens."))
+				user.visible_message(span_warning("[user] 伸手去碰 [src]，却什么也没有发生。"),
+					span_warning("你伸手去碰 [src]……却什么也没有发生。"))
 				return
 			activity = TUMOR_ACTIVE
-			user.visible_message(span_boldwarning("[src] convulses as [user]'s arm enters its radius.  Uh-oh..."),
-				span_boldwarning("[src] convulses as your arm enters its radius.  Your instincts tell you to step back."))
+			user.visible_message(span_boldwarning("随着 [user] 的手臂伸入 [src] 的范围，它开始抽搐起来。糟了……"),
+				span_boldwarning("随着你的手臂伸入 [src] 的范围，它开始抽搐起来。你的本能告诉你要后退。"))
 			make_activator(user)
 			if(boosted)
 				mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
-				to_chat(mychild, "<b>Someone has activated your tumor.  You will be returned to fight shortly, get ready!</b>")
+				to_chat(mychild, "<b>有人激活了你的肿瘤。你很快就会被送回去战斗，做好准备！</b>")
 			addtimer(CALLBACK(src, PROC_REF(return_elite)), 3 SECONDS)
 			INVOKE_ASYNC(src, PROC_REF(arena_checks))
 		if(TUMOR_INACTIVE)
 			if(HAS_TRAIT(user, TRAIT_ELITE_CHALLENGER))
-				user.visible_message(span_warning("[user] reaches for [src] with [user.p_their()] arm, but nothing happens."),
-					span_warning("You reach for [src] with your arm... but nothing happens."))
+				user.visible_message(span_warning("[user] 伸手去碰 [src]，却什么也没有发生。"),
+					span_warning("你伸手去碰 [src]……却什么也没有发生。"))
 				return
 			activity = TUMOR_ACTIVE
 			var/mob/dead/observer/elitemind = null
-			visible_message(span_boldwarning("[src] begins to convulse.  Your instincts tell you to step back."))
+			visible_message(span_boldwarning("[src] 开始抽搐起来。你的本能告诉你要后退。"))
 			make_activator(user)
 			if(!boosted)
 				addtimer(CALLBACK(src, PROC_REF(spawn_elite)), 3 SECONDS)
 				return
-			visible_message(span_boldwarning("Something within [src] stirs..."))
-			var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 5 SECONDS, checked_target = src, ignore_category = POLL_IGNORE_LAVALAND_ELITE, alert_pic = src, role_name_text = "lavaland elite")
+			visible_message(span_boldwarning("[src] 内部有什么东西在骚动……"))
+			var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_SENTIENCE, role = ROLE_SENTIENCE, poll_time = 5 SECONDS, checked_target = src, ignore_category = POLL_IGNORE_LAVALAND_ELITE, alert_pic = src, role_name_text = "熔岩地带精英")
 			if(chosen_one)
-				audible_message(span_boldwarning("The stirring sounds increase in volume!"))
+				audible_message(span_boldwarning("那搅动的声响变得更大了！"))
 				elitemind = chosen_one
 				elitemind.playsound_local(get_turf(elitemind), 'sound/effects/magic.ogg', 40, 0)
-				to_chat(elitemind, "<b>You have been chosen to play as a Lavaland Elite.\nIn a few seconds, you will be summoned on Lavaland as a monster to fight your activator, in a fight to the death.\n\
-					Your attacks can be switched using the buttons on the top left of the HUD, and used by clicking on targets or tiles similar to a gun.\n\
-					While the opponent might have an upper hand with  powerful mining equipment and tools, you have great power normally limited by AI mobs.\n\
-					If you want to win, you'll have to use your powers in creative ways to ensure the kill. It's suggested you try using them all as soon as possible.\n\
-					Should you win, you'll receive extra information regarding what to do after. Good luck!</b>")
+				to_chat(elitemind, "<b>你被选中扮演一名熔岩地带精英。\n几秒钟后，你将作为怪物被召唤到熔岩地带，与激活你的人进行一场生死决斗。\n\
+					你可以用 HUD 左上角的按钮切换攻击方式，像用枪一样点击目标或地格来发动攻击。\n\
+					对手或许凭借强力的采掘装备与工具占据上风，但你拥有通常被 AI 生物所限制的强大力量。\n\
+					若想取胜，你必须创造性地运用自己的能力来确保击杀。建议尽快把所有能力都试上一遍。\n\
+					若你获胜，你会收到关于后续事项的额外说明。祝你好运！</b>")
 				addtimer(CALLBACK(src, PROC_REF(spawn_elite), elitemind), 10 SECONDS)
 			else
-				visible_message(span_boldwarning("The stirring stops, and nothing emerges.  Perhaps try again later."))
+				visible_message(span_boldwarning("骚动停止了，什么也没有出现。也许该过些时候再来。"))
 				activity = TUMOR_INACTIVE
 				clear_activator(user)
 
 /obj/structure/elite_tumor/proc/spawn_elite(mob/dead/observer/elitemind)
 	var/selectedspawn = pick(potentialspawns)
 	mychild = new selectedspawn(loc)
-	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
+	visible_message(span_boldwarning("[mychild] 从 [src] 中钻了出来！"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	if(boosted)
 		mychild.PossessByPlayer(elitemind.key)
 		mychild.sentience_act()
 		notify_ghosts(
-			"\A [mychild] has been awakened in \the [get_area(src)]!",
+			"\A [mychild] 在 \the [get_area(src)] 中被唤醒了！",
 			source = mychild,
-			header = "Lavaland Elite awakened",
+			header = "熔岩地带精英苏醒",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		)
-	mychild.log_message("has been awakened by [key_name(activator)]!", LOG_GAME, color="#960000")
+	mychild.log_message("已被 [key_name(activator)] 唤醒！", LOG_GAME, color="#960000")
 	icon_state = "tumor_popped"
 	RegisterSignal(mychild, COMSIG_QDELETING, PROC_REF(onEliteLoss))
 	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 /obj/structure/elite_tumor/proc/return_elite()
 	mychild.forceMove(loc)
-	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
+	visible_message(span_boldwarning("[mychild] 从 [src] 中钻了出来！"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	mychild.revive(HEAL_ALL)
 	if(boosted)
 		mychild.maxHealth *= 1 / ELITE_POST_BATTLE_HEALTH_MULTIPLIER //we multiply it back to its original value
 		mychild.health = mychild.maxHealth
 		notify_ghosts(
-			"\A [mychild] has been challenged in \the [get_area(src)]!",
+			"\A [mychild] 在 \the [get_area(src)] 中遭到了挑战！",
 			source = mychild,
-			header = "Lavaland Elite challenged",
+			header = "熔岩地带精英遭挑战",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		)
-	mychild.log_message("has been challenged by [key_name(activator)]!", LOG_GAME, color="#960000")
+	mychild.log_message("遭到了 [key_name(activator)] 的挑战！", LOG_GAME, color="#960000")
 	ADD_TRAIT(mychild, TRAIT_UNCONVERTABLE, INNATE_TRAIT)
 
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/gps, "Menacing Signal")
+	AddComponent(/datum/component/gps, "威胁信号")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/elite_tumor/Destroy()
@@ -258,7 +258,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	activator = user
 	ADD_TRAIT(user, TRAIT_ELITE_CHALLENGER, REF(src))
 	RegisterSignal(user, COMSIG_QDELETING, PROC_REF(clear_activator))
-	user.log_message("has activated an elite tumor!", LOG_GAME, color="#960000")
+	user.log_message("激活了一颗精英肿瘤！", LOG_GAME, color="#960000")
 
 /obj/structure/elite_tumor/proc/clear_activator(mob/source)
 	SIGNAL_HANDLER
@@ -282,11 +282,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	. = NONE
 	if(istype(attacking_item, /obj/item/organ/monster_core/regenerative_core) && activity == TUMOR_INACTIVE && !boosted)
 		var/obj/item/organ/monster_core/regenerative_core/core = attacking_item
-		visible_message(span_boldwarning("As [user] drops the core into [src], [src] appears to swell."))
+		visible_message(span_boldwarning("随着 [user] 把核心丢进 [src]，[src] 似乎膨胀了起来。"))
 		icon_state = "advanced_tumor"
 		boosted = TRUE
 		set_light_range(6)
-		desc = "[desc]  This one seems to glow with a strong intensity."
+		desc = "[desc] 这一颗似乎散发着强烈的光芒。"
 		qdel(core)
 		return ITEM_INTERACT_SUCCESS
 
@@ -324,17 +324,17 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/structure/elite_tumor/proc/border_check()
 	if(activator != null && get_dist(src, activator) >= 12)
 		activator.forceMove(loc)
-		visible_message(span_boldwarning("[activator] suddenly reappears above [src]!"))
+		visible_message(span_boldwarning("[activator] 突然从 [src] 上方重新出现！"))
 		playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 	if(mychild != null && get_dist(src, mychild) >= 12)
 		mychild.forceMove(loc)
-		visible_message(span_boldwarning("[mychild] suddenly reappears above [src]!"))
+		visible_message(span_boldwarning("[mychild] 突然从 [src] 上方重新出现！"))
 		playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
 
 /obj/structure/elite_tumor/proc/onEliteLoss()
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, TRUE, TRUE)
-	visible_message(span_boldwarning("[src] begins to convulse violently before beginning to dissipate."))
-	visible_message(span_boldwarning("As [src] closes, something is forced up from down below."))
+	visible_message(span_boldwarning("[src] 开始剧烈抽搐，随后渐渐消散。"))
+	visible_message(span_boldwarning("就在 [src] 合拢之际，有什么东西从下方被顶了上来。"))
 	var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
 	if(boosted)
 		if(mychild.loot_drop != null && prob(50))
@@ -353,19 +353,19 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		mychild.health = mychild.maxHealth
 	if(times_won == 1)
 		mychild.playsound_local(get_turf(mychild), 'sound/effects/magic.ogg', 40, 0)
-		to_chat(mychild, span_boldwarning("As the life in the activator's eyes fade, the forcefield around you dies out and you feel your power subside.\n\
-			Despite this inferno being your home, you feel as if you aren't welcome here anymore.\n\
-			Without any guidance, your purpose is now for you to decide."))
-		to_chat(mychild, "<b>Your max health has been halved, but can now heal by standing on your tumor. Note, it's your only way to heal.\n\
-			Bear in mind, if anyone interacts with your tumor, you'll be resummoned here to carry out another fight. In such a case, you will regain your full max health.\n\
-			Also, be weary of your fellow inhabitants, they likely won't be happy to see you!</b>")
-		to_chat(mychild, span_boldbig("Note that you are a lavaland monster, and thus not allied to the station. You should not cooperate or act friendly with any station crew unless under extreme circumstances!"))
+		to_chat(mychild, span_boldwarning("随着激活者眼中的生命之光黯淡下去，你周围的力场随之消失，你感到自己的力量正在消退。\n\
+			尽管这片炼狱是你的家园，你却觉得自己已不再受欢迎。\n\
+			没有任何指引，如今你的目的由你自己决定。"))
+		to_chat(mychild, "<b>你的最大生命值已减半，但现在你可以站在自己的肿瘤上治疗。注意，这是你唯一的治疗方式。\n\
+			请记住，如果有人与你的肿瘤互动，你就会被重新召唤到这里再进行一场战斗。在这种情况下，你将恢复全部最大生命值。\n\
+			另外，要提防与你同住的其他生物，它们多半不会乐意看到你！</b>")
+		to_chat(mychild, span_boldbig("请注意，你是熔岩地带的怪物，因此并不属于空间站阵营。除非处于极端情况，否则你不应与任何空间站船员合作或表现得友好！"))
 
 	REMOVE_TRAIT(mychild, TRAIT_UNCONVERTABLE, INNATE_TRAIT)
 
 /obj/item/tumor_shard
-	name = "tumor shard"
-	desc = "A strange, sharp, crystal shard from an odd tumor on Lavaland.  Stabbing the corpse of a lavaland elite with this will revive them, assuming their soul still lingers.  Revived lavaland elites only have half their max health, but are completely loyal to their reviver."
+	name = "肿瘤碎片"
+	desc = "一块来自熔岩地带奇异肿瘤的尖锐水晶碎片。用它刺入熔岩地带精英的尸体，就能将其复活——前提是它的灵魂尚存。复活的熔岩地带精英只有一半最大生命值，但会完全忠于把它复活的人。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "crevice_shard"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -382,25 +382,25 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 	var/mob/living/simple_animal/hostile/asteroid/elite/elite = interacting_with
 	if(elite.stat != DEAD || elite.sentience_type != SENTIENCE_BOSS || !elite.key)
-		user.visible_message(span_notice("It appears [elite] is unable to be revived right now. Perhaps try again later."))
+		user.visible_message(span_notice("看起来 [elite] 现在无法被复活。也许该过些时候再试。"))
 		return ITEM_INTERACT_BLOCKING
 	elite.set_allies(list("[REF(user)]"))
 	elite.set_faction(null)
 	elite.revive(HEAL_ALL)
-	user.visible_message(span_notice("[user] stabs [elite] with [src], reviving it."))
+	user.visible_message(span_notice("[user] 用 [src] 刺入 [elite]，将其复活了。"))
 	elite.playsound_local(get_turf(elite), 'sound/effects/magic.ogg', 40, 0)
-	to_chat(elite, span_userdanger("You have been revived by [user]. While you can't speak to them, you owe [user] a great debt.  Assist [user.p_them()] in achieving [user.p_their()] goals, regardless of risk."))
-	to_chat(elite, span_boldbig("Note that you now share the loyalties of [user].  You are expected not to intentionally sabotage their faction unless commanded to!"))
+	to_chat(elite, span_userdanger("你被 [user] 复活了。虽然你无法与 [user.p_them()] 交谈，但你欠 [user] 一份厚重的恩情。无论风险如何，都要协助 [user.p_them()] 实现 [user.p_their()] 的目标。"))
+	to_chat(elite, span_boldbig("请注意，你现在与 [user] 共享忠诚。除非收到命令，否则你不应蓄意破坏其所属阵营！"))
 	elite.maxHealth *= ELITE_POST_BATTLE_HEALTH_MULTIPLIER
 	elite.health = elite.maxHealth
-	elite.desc = "[elite.desc] However, this one appears to be less wild in nature, and calmer around people."
+	elite.desc = "[elite.desc] 不过，这一头似乎天性没那么野，在人身边也更平静。"
 	elite.sentience_type = SENTIENCE_ORGANIC
 	REMOVE_TRAIT(elite, TRAIT_UNCONVERTABLE, INNATE_TRAIT)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/effect/temp_visual/elite_tumor_wall
-	name = "magic wall"
+	name = "魔法之墙"
 	icon = 'icons/turf/walls/hierophant_wall_temp.dmi'
 	icon_state = "hierophant_wall_temp-0"
 	base_icon_state = "hierophant_wall_temp"

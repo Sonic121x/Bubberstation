@@ -22,19 +22,19 @@
 #define LEGION_SMALL 1
 
 /mob/living/simple_animal/hostile/megafauna/legion
-	name = "Legion"
+	name = "军团"
 	health = 700
 	maxHealth = 700
 	icon_state = "mega_legion"
 	icon_living = "mega_legion"
 	health_doll_icon = "mega_legion"
-	desc = "One of many."
+	desc = "众多之一。"
 	icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "撕咬"
+	attack_verb_simple = "撕咬"
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	speak_emote = list("echoes")
+	speak_emote = list("回声阵阵")
 	armour_penetration = 50
 	melee_damage_lower = 25
 	melee_damage_upper = 25
@@ -45,7 +45,7 @@
 	retreat_distance = 5
 	minimum_distance = 5
 	ranged_cooldown_time = 2 SECONDS
-	gps_name = "Echoing Signal"
+	gps_name = "回响信号"
 	// Achievements not set as they're added only when the last skull is killed
 	crusher_achievement_type = /datum/award/achievement/boss/legion_crusher
 	SET_BASE_PIXEL(-32, -16)

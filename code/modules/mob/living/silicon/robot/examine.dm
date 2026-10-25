@@ -3,50 +3,50 @@
 	if(desc)
 		. += "[desc]"
 
-	var/model_name = model ? "\improper [model.name]" : "\improper Default"
-	. += "[p_Theyre()] currently <b>\a [model_name]-type</b> cyborg."
+	var/model_name = model ? "\improper [model.name]" : "\improper 默认"
+	. += "目前是一具 <b>[model_name] 型</b>半机械人。"
 
 	var/obj/act_module = get_active_held_item()
 	if(act_module)
-		. += "[p_Theyre()] holding [icon2html(act_module, user)] \a [act_module]."
+		. += "正拿着 [icon2html(act_module, user)] [act_module]。"
 	. += get_status_effect_examinations()
 	if (get_brute_loss())
 		if (get_brute_loss() < maxHealth*0.5)
-			. += span_warning("[p_They()] look[p_s()] slightly dented.")
+			. += span_warning("看起来略有凹陷。")
 		else
-			. += span_boldwarning("[p_They()] look[p_s()] severely dented!")
+			. += span_boldwarning("看起来凹陷严重！")
 	if (get_fire_loss() || get_tox_loss())
 		var/overall_fireloss = get_fire_loss() + get_tox_loss()
 		if (overall_fireloss < maxHealth * 0.5)
-			. += span_warning("[p_They()] look[p_s()] slightly charred.")
+			. += span_warning("看起来略有烧焦。")
 		else
-			. += span_boldwarning("[p_They()] look[p_s()] severely burnt and heat-warped!")
+			. += span_boldwarning("看起来严重烧焦，并被高温扭曲！")
 	if (health < -maxHealth*0.5)
-		. += span_warning("[p_They()] look[p_s()] barely operational.")
+		. += span_warning("看起来几乎无法运作。")
 	if (fire_stacks < 0)
-		. += span_warning("[p_Theyre()] covered in water.")
+		. += span_warning("身上沾满了水。")
 	else if (fire_stacks > 0)
-		. += span_warning("[p_Theyre()] coated in something flammable.")
+		. += span_warning("表面覆着一层可燃物。")
 
 	if(opened)
-		. += span_warning("[p_Their()] cover is open and the power cell is [cell ? "installed" : "missing"].")
+		. += span_warning("盖板已打开，电池[cell ? "已安装" : "缺失"]。")
 	else
-		. += "[p_Their()] cover is closed[locked ? "" : ", and looks unlocked"]."
+		. += "盖板已关闭[locked ? "" : "，而且看起来没有上锁"]。"
 
 	if(cell && cell.charge <= 0)
-		. += span_warning("[p_Their()] battery indicator is blinking red!")
+		. += span_warning("电池指示灯正在闪红光！")
 
 	if(IS_UNCONSCIOUS_AND_ALIVE(src))
-		. += span_warning("[p_They()] do[p_es()]n't seem to be responding.")
+		. += span_warning("似乎没有响应。")
 
 	switch(stat)
 		if(STABLE)
 			if(shell)
-				. += "[p_They()] appear[p_s()] to be an [deployed ? "active" : "empty"] AI shell."
+				. += "看起来是一具[deployed ? "已激活" : "空的"] AI 外壳。"
 			else if(!client)
-				. += "[p_They()] appear[p_s()] to be in stand-by mode." //afk
+				. += "看起来处于待机模式。" //afk
 		if(DEAD)
-			. += span_deadsay("[p_They()] look[p_s()] like its system is corrupted and requires a reset.")
+			. += span_deadsay("看起来其系统已损坏，需要重置。")
 	//SKYRAT EDIT ADDITION BEGIN - CUSTOMIZATION
 	. += get_silicon_flavortext()
 	//SKYRAT EDIT ADDITION END
@@ -55,4 +55,4 @@
 	. += ..()
 
 /mob/living/silicon/robot/examine_descriptor(mob/user)
-	return "cyborg"
+	return "半机械人"

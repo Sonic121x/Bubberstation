@@ -31,28 +31,28 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
-		log_message("has died with Round Removal [client?.prefs.read_preference(/datum/preference/toggle/be_round_removed) ? "enabled" : "disabled or unavailable"] (BRUTE: [src.get_brute_loss()], BURN: [src.get_fire_loss()], TOX: [src.get_tox_loss()], OXY: [src.get_oxy_loss()]", LOG_ATTACK) // BUBBER EDIT - Round Removal OPT-IN LOGGING
+		log_message("已死亡，回合移除 [client?.prefs.read_preference(/datum/preference/toggle/be_round_removed) ? "已启用" : "已禁用或不可用"] (BRUTE: [src.get_brute_loss()], BURN: [src.get_fire_loss()], TOX: [src.get_tox_loss()], OXY: [src.get_oxy_loss()]", LOG_ATTACK) // BUBBER EDIT - Round Removal OPT-IN LOGGING
 		if(key) // Prevents log spamming of keyless mob deaths (like xenobio monkeys)
-			investigate_log("has died at [loc_name(src)].<br>\
+			investigate_log("在 [loc_name(src)] 死亡。<br>\
 				BRUTE: [src.get_brute_loss()] BURN: [src.get_fire_loss()] TOX: [src.get_tox_loss()] OXY: [src.get_oxy_loss()] STAM: [src.get_stamina_loss()]<br>\
-				<b>Brain damage</b>: [src.get_organ_loss(ORGAN_SLOT_BRAIN) || "0"]<br>\
-				<b>[get_bloodtype()?.get_blood_name() || "Blood"] volume</b>: [src.get_blood_volume(apply_modifiers = TRUE)]cl ([round((src.get_blood_volume(apply_modifiers = TRUE) / BLOOD_VOLUME_NORMAL) * 100, 0.1)]%)<br>\
-				<b>Reagents</b>:<br>[reagents_readout()]", INVESTIGATE_DEATHS)
-	to_chat(src, span_warning("You have died. Barring complete bodyloss, you can in most cases be revived by other players. \
-		If you do not wish to be brought back, use the \"Do Not Resuscitate\" button at the bottom of your screen."))
+				<b>脑损伤</b>: [src.get_organ_loss(ORGAN_SLOT_BRAIN) || "0"]<br>\
+				<b>[get_bloodtype()?.get_blood_name() || "血液"] 容量</b>: [src.get_blood_volume(apply_modifiers = TRUE)]cl ([round((src.get_blood_volume(apply_modifiers = TRUE) / BLOOD_VOLUME_NORMAL) * 100, 0.1)]%)<br>\
+				<b>试剂</b>:<br>[reagents_readout()]", INVESTIGATE_DEATHS)
+	to_chat(src, span_warning("你已经死亡。除非尸体完全损毁，大多数情况下你都可以被其他玩家复活。\
+		如果你不希望被复活，请使用屏幕底部的“放弃抢救”按钮。"))
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && !client?.holder)
-		to_chat(src, span_warning("Ghost movement is currently disabled by admins. To leave your body use the Ghost verb."))
+		to_chat(src, span_warning("幽灵移动目前已被管理员禁用。要离开你的身体，请使用“幽灵”动词。"))
 
 /mob/living/carbon/human/proc/reagents_readout()
-	var/readout = "[get_bloodtype()?.get_blood_name() || "Blood"]stream:"
+	var/readout = "[get_bloodtype()?.get_blood_name() || "血液"] 血流："
 	for(var/datum/reagent/reagent in reagents?.reagent_list)
-		readout += "<br>[round(reagent.volume, 0.001)] units of [reagent.name]"
+		readout += "<br>[round(reagent.volume, 0.001)] 单位 [reagent.name]"
 
-	readout += "<br>Stomach:"
+	readout += "<br>胃部："
 	var/obj/item/organ/stomach/belly = get_organ_slot(ORGAN_SLOT_STOMACH)
 	for(var/datum/reagent/bile in belly?.reagents?.reagent_list)
 		if(!belly.food_reagents[bile.type])
-			readout += "<br>[round(bile.volume, 0.001)] units of [bile.name]"
+			readout += "<br>[round(bile.volume, 0.001)] 单位 [bile.name]"
 
 	return readout
 

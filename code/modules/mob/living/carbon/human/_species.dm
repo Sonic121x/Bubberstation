@@ -591,7 +591,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服，才能挂上 [I.name]！"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_EYES)
@@ -615,7 +615,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服，才能挂上 [I.name]！"))
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_LPOCKET)
@@ -628,7 +628,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服，才能挂上 [I.name]！"))
 				return FALSE
 			return TRUE
 		if(ITEM_SLOT_RPOCKET)
@@ -641,7 +641,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 			if(!H.w_uniform && !HAS_TRAIT(H, TRAIT_NO_JUMPSUIT) && (!O || IS_ORGANIC_LIMB(O)))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a jumpsuit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上连体服，才能挂上 [I.name]！"))
 				return FALSE
 			return TRUE
 		if(ITEM_SLOT_SUITSTORE)
@@ -650,14 +650,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/obj/item/clothing/suit/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 			if(!istype(suit))
 				if(!disable_warning)
-					to_chat(H, span_warning("You need a suit before you can attach this [I.name]!"))
+					to_chat(H, span_warning("你需要先穿上套装，才能挂上 [I.name]！"))
 				return FALSE
 			var/any_suit_storage = (is_type_in_typecache(I, GLOB.any_suit_storage) || I.w_class == WEIGHT_CLASS_TINY)
 			if(any_suit_storage)
 				return TRUE
 			if(I.w_class > WEIGHT_CLASS_BULKY)
 				if(!disable_warning)
-					to_chat(H, span_warning("\The [I] is too big to attach!")) //should be src?
+					to_chat(H, span_warning("\The [I] 太大了，挂不上去！")) //should be src?
 				return FALSE
 			if(is_type_in_list(I, suit.allowed))
 				return TRUE
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/equip_delay_self_check(obj/item/I, mob/living/carbon/human/H, bypass_equip_delay_self)
 	if(!I.equip_delay_self || bypass_equip_delay_self)
 		return TRUE
-	H.visible_message(span_notice("[H] start putting on [I]..."), span_notice("You start putting on [I]..."))
+	H.visible_message(span_notice("[H] 开始穿上 [I]……"), span_notice("你开始穿上 [I]……"))
 	return do_after(H, I.equip_delay_self, target = H)
 
 
@@ -709,13 +709,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(!source.IsParalyzed())
 			source.emote("collapse")
 		source.Paralyze(RAD_MOB_KNOCKDOWN_AMOUNT)
-		to_chat(source, span_danger("You feel weak."))
+		to_chat(source, span_danger("你感到浑身无力。"))
 
 	if(time_since_irradiated > RAD_MOB_VOMIT && SPT_PROB(RAD_MOB_VOMIT_PROB, seconds_per_tick))
 		source.vomit(VOMIT_CATEGORY_BLOOD, lost_nutrition = 10)
 
 	if(time_since_irradiated > RAD_MOB_MUTATE && SPT_PROB(RAD_MOB_MUTATE_PROB, seconds_per_tick))
-		to_chat(source, span_danger("You mutate!"))
+		to_chat(source, span_danger("你发生了突变！"))
 		source.easy_random_mutate(NEGATIVE + MINOR_NEGATIVE)
 		source.emote("gasp")
 		source.domutcheck()
@@ -723,7 +723,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(time_since_irradiated > RAD_MOB_HAIRLOSS && SPT_PROB(RAD_MOB_HAIRLOSS_PROB, seconds_per_tick))
 		var/obj/item/bodypart/head/head = source.get_bodypart(BODY_ZONE_HEAD)
 		if(!(source.hairstyle == "Bald") && (head?.head_flags & (HEAD_HAIR|HEAD_FACIAL_HAIR)))
-			to_chat(source, span_danger("Your hair starts to fall out in clumps..."))
+			to_chat(source, span_danger("你的头发开始一簇簇地脱落……"))
 			addtimer(CALLBACK(src, PROC_REF(go_bald), source), 5 SECONDS)
 
 /**
@@ -755,13 +755,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	target.help_shake_act(user)
 	if(target != user)
-		log_combat(user, target, "shaken")
+		log_combat(user, target, "摇晃了")
 	return TRUE
 
 ///This proc handles punching damage. IMPORTANT: Our owner is the TARGET and not the USER in this proc. For whatever reason...
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && !attacker_style?.pacifist_style)
-		to_chat(user, span_warning("You don't want to harm [target]!"))
+		to_chat(user, span_warning("你不想伤害 [target]！"))
 		return FALSE
 
 	var/obj/item/organ/brain/brain = user.get_organ_slot(ORGAN_SLOT_BRAIN)
@@ -790,7 +790,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				atk_verb_continuous = attacking_bodypart.unarmed_attack_verbs_continuous[atk_verb_index]
 			atk_effect = attacking_bodypart.unarmed_attack_effect
 		else  //Nothing? Okay. Fail.
-			user.balloon_alert(user, "can't attack!")
+			user.balloon_alert(user, "无法攻击！")
 			return FALSE
 
 	user.do_attack_animation(target, atk_effect)
@@ -838,7 +838,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(HAS_TRAIT(user, TRAIT_DRUNKEN_BRAWLER)) // Drunken brawlers only need to be intoxicated, doesn't matter how much
 			limb_accuracy += clamp(puncher_brute_and_burn / 2, 10, 200)
 			damage += damage * clamp(puncher_brute_and_burn / 100, 0.3, 2) //Basically a multiplier of how much extra damage you get based on how low your health is overall. A floor of about a 30%.
-			var/drunken_martial_descriptor = pick("Drunken", "Intoxicated", "Tipsy", "Inebriated", "Delirious", "Day-Drinker's", "Firegut", "Blackout")
+			var/drunken_martial_descriptor = pick("醉醺醺的", "酩酊大醉的", "微醺的", "烂醉的", "神志不清的", "白日饮酒的", "烈酒烧喉的", "断片儿的")
 			atk_verb = "[drunken_martial_descriptor] [capitalize(atk_verb)]"
 			atk_verb_continuous = "[drunken_martial_descriptor] [capitalize(atk_verb_continuous)]"
 
@@ -863,10 +863,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 		playsound(target.loc, attacking_bodypart.unarmed_miss_sound, 25, TRUE, -1)
-		target.visible_message(span_danger("[user]'s [atk_verb] misses [target]!"), \
-						span_danger("You avoid [user]'s [atk_verb]!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_warning("Your [atk_verb] misses [target]!"))
-		log_combat(user, target, "attempted to punch")
+		target.visible_message(span_danger("[user] 的 [atk_verb] 没能打中 [target]！"), \
+						span_danger("你避开了 [user] 的 [atk_verb]！"), span_hear("你听到咻的一声！"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_warning("你的 [atk_verb] 没能打中 [target]！"))
+		log_combat(user, target, "试图出拳")
 		return FALSE
 
 	var/armor_block = target.run_armor_check(affecting, MELEE)
@@ -893,9 +893,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		atk_verb = attacking_bodypart.grappled_attack_verb
 		atk_verb_continuous = attacking_bodypart.grappled_attack_verb_continuous
 
-	target.visible_message(span_danger("[user] [atk_verb_continuous] [target]!"), \
-					span_userdanger("[user] [atk_verb_continuous] you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, user)
-	to_chat(user, span_danger("You [atk_verb] [target]!"))
+	target.visible_message(span_danger("[user] [atk_verb_continuous] [target]！"), \
+					span_userdanger("[user] [atk_verb_continuous] 你！"), span_hear("你听到皮肉相击的闷响！"), COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("你 [atk_verb] [target]！"))
 
 	target.lastattacker = user.real_name
 	target.lastattackerckey = user.ckey
@@ -910,14 +910,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
 		if(damage >= 12 || (damage >= 9 && prob(66)))
 			target.force_say()
-		log_combat(user, target, grappled ? "grapple punched" : "kicked")
+		log_combat(user, target, grappled ? "擒抱拳击" : "踢击")
 		final_armor_block -= limb_accuracy
 		target.apply_damage(damage, attack_type, affecting, final_armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
 	else // Normal attacks do not gain the benefit of armor penetration.
 		target.apply_damage(damage, attack_type, affecting, armor_block, attack_direction = attack_direction, sharpness = limb_sharpness)
 		if(damage >= 12 || (damage >= 9 && prob(66)))
 			target.force_say()
-		log_combat(user, target, "punched")
+		log_combat(user, target, "拳击")
 
 	if(user != target && biting && (target.mob_biotypes & MOB_ORGANIC)) //Good for you. You probably just ate someone alive.
 		var/datum/reagents/tasty_meal = new()
@@ -939,52 +939,52 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		stagger_combo(user, target, atk_verb, limb_accuracy, armor_block)
 
 /// Handles the stagger combo effect of our punch. Follows the same logic as the above proc, target is our owner, user is our attacker.
-/datum/species/proc/stagger_combo(mob/living/carbon/human/user, mob/living/carbon/human/target, atk_verb = "hit", limb_accuracy = 0, armor_block = 0)
+/datum/species/proc/stagger_combo(mob/living/carbon/human/user, mob/living/carbon/human/target, atk_verb = "击中", limb_accuracy = 0, armor_block = 0)
 	// Randomly determines the effects of our punch. Limb accuracy is a bonus, armor block is a defense, attacker athletics provides a minor to significant bonus.
 	var/roll_them_bones = rand(-20, 20) + limb_accuracy - armor_block + ((user.mind?.get_skill_modifier(/datum/skill/athletics, SKILL_RANDS_MODIFIER) / 2) || 0)
 
 	switch(roll_them_bones)
 		if (-INFINITY to 0) //Mostly a gimmie, this one just keeps them staggered briefly
 			target.adjust_staggered_up_to(1 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] briefly winds [target]!"), \
-				span_warning("You are briefly winded by [user]'s [atk_verb]!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] briefly winds [target]!"))
+			target.visible_message(span_warning("[user] 的 [atk_verb] 让 [target] 一时喘不上气！"), \
+				span_warning("你被 [user] 的 [atk_verb] 打得一时喘不上气！"), span_hear("你听到咚的一声！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的 [atk_verb] 让 [target] 一时喘不上气！"))
 
 		if (1 to 10)
 			target.adjust_eye_blur_up_to(5 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, their eyes water! Ouch!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and your eyes begin to water!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] causes [target] to tear up!"))
+			target.visible_message(span_warning("[user] 的 [atk_verb] 狠狠打中 [target]，打得 [target] 眼泪直流！哎哟！"), \
+				span_warning("你被 [user] 的 [atk_verb] 狠狠击中，眼睛开始流泪！"), span_hear("你听到咚的一声！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的 [atk_verb] 打得 [target] 眼泪直流！"))
 
 		if (11 to 30)
 			target.adjust_dizzy_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_eye_blur_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_confusion_up_to(5 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, they are sent reeling in agony! Damn!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and everything becomes a dizzying blur!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] causes [target] to go stumbling about in a confuzed daze!"))
+			target.visible_message(span_warning("[user] 的 [atk_verb] 重重打中 [target]，疼得 [target] 直打晃！可恶！"), \
+				span_warning("你被 [user] 的 [atk_verb] 狠狠击中，眼前的一切都成了令人眩晕的模糊影像！"), span_hear("你听到咚的一声！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的 [atk_verb] 打得 [target] 晕头转向、踉跄不已！"))
 
 		if(31 to 40)
 			target.adjust_dizzy_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_confusion_up_to(5 SECONDS, 10 SECONDS)
 			target.adjust_temp_blindness_up_to(5 SECONDS, 10 SECONDS)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, they are sent reeling blindly in agony! Goddamn!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and everything becomes a dizzying, blinding blur!"), span_hear("You hear a thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] causes [target] to go stumbling about in a confuzed, blind daze!"))
+			target.visible_message(span_warning("[user] 的 [atk_verb] 重重打中 [target]，疼得 [target] 眼前发黑、直打晃！该死！"), \
+				span_warning("你被 [user] 的 [atk_verb] 狠狠击中，眼前的一切都成了令人眩晕的模糊白光！"), span_hear("你听到咚的一声！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的 [atk_verb] 打得 [target] 晕头转向、眼前发黑！"))
 
 		if (41 to 45)
 			target.apply_effect(4 SECONDS, EFFECT_KNOCKDOWN, armor_block)
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, you knock them off their feet! Holy shit!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb] and sent toppling head over heels!"), span_hear("You hear a sickening thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] lands, and you send [target] sailing off their feet!"))
+			target.visible_message(span_warning("[user] 的 [atk_verb] 重重打中 [target]，直接把 [target] 掀翻在地！我的天！"), \
+				span_warning("你被 [user] 的 [atk_verb] 狠狠击中，整个人翻倒在地！"), span_hear("你听到一声令人作呕的闷响！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的 [atk_verb] 命中，把 [target] 掀得飞了出去！"))
 
 		if (46 to INFINITY)
 			target.apply_effect(4 SECONDS, EFFECT_KNOCKDOWN, armor_block)
 			var/obj/item/bodypart/affecting = target.get_bodypart(target.get_random_valid_zone(user.zone_selected))
 			target.apply_damage(5, BRUTE, affecting, armor_block, wound_bonus = limb_accuracy * 2) //Mostly for the crunchy wounding effect than actually doing damage
-			target.visible_message(span_warning("[user]'s [atk_verb] hits [target] so hard, you hit them off their feet with a loud crunch! Fucking hell!"), \
-				span_warning("You are hit viciously by [user]'s [atk_verb], and suddenly feel an overwhelming pain as you topple head over heels!"), span_hear("You hear a sickening crack and a loud thud!"), COMBAT_MESSAGE_RANGE, user)
-			to_chat(user, span_warning("Your [atk_verb] lands, and [target] is sent crashing to the floor with the immense force! Good god!"))
+			target.visible_message(span_warning("[user] 的 [atk_verb] 重重打中 [target]，伴随着清脆的骨响把 [target] 掀翻在地！见鬼！"), \
+				span_warning("你被 [user] 的 [atk_verb] 狠狠击中，一阵剧痛袭来，整个人翻倒在地！"), span_hear("你听到一声令人作呕的骨裂声和沉闷的撞击声！"), COMBAT_MESSAGE_RANGE, user)
+			to_chat(user, span_warning("你的 [atk_verb] 命中，[target] 被巨大的力量砸倒在地！老天！"))
 
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
@@ -1007,10 +1007,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(owner.mind)
 		attacker_style = GET_ACTIVE_MARTIAL_ART(owner)
 	if((owner != target) && target.check_block(owner, 0, owner.name, attack_type = UNARMED_ATTACK))
-		log_combat(owner, target, "attempted to touch")
-		target.visible_message(span_warning("[owner] attempts to touch [target]!"), \
-						span_danger("[owner] attempts to touch you!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, owner)
-		to_chat(owner, span_warning("You attempt to touch [target]!"))
+		log_combat(owner, target, "试图触碰")
+		target.visible_message(span_warning("[owner] 试图触碰 [target]！"), \
+						span_danger("[owner] 试图触碰你！"), span_hear("你听到咻的一声！"), COMBAT_MESSAGE_RANGE, owner)
+		to_chat(owner, span_warning("你试图触碰 [target]！"))
 		return
 
 	SEND_SIGNAL(owner, COMSIG_MOB_ATTACK_HAND, owner, target, attacker_style, modifiers) //BUBBER EDIT - Original line SEND_SIGNAL(owner, COMSIG_MOB_ATTACK_HAND, owner, target, attacker_style)
@@ -1471,7 +1471,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
  */
 
 /datum/species/proc/get_physical_attributes()
-	return "An unremarkable species."
+	return "一个平平无奇的种族。"
 /**
  * Gets a short description for the specices. Should be relatively succinct.
  * Used in the preference menu.
@@ -1483,7 +1483,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SHOULD_CALL_PARENT(FALSE)
 
 	//stack_trace("Species [name] ([type]) did not have a description set, and is a selectable roundstart race! Override get_species_description.") // SKYRAT EDIT REMOVAL
-	return "No species description set, file a bug report!"
+	return "尚未设置种族描述，请提交错误报告！"
 
 /**
  * Gets the lore behind the type of species. Can be long.
@@ -1497,7 +1497,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	RETURN_TYPE(/list)
 
 	//stack_trace("Species [name] ([type]) did not have lore set, and is a selectable roundstart race! Override get_species_lore.") // SKYRAT EDIT REMOVAL
-	return list("No species lore set, file a bug report!")
+	return list("尚未设置种族背景，请提交错误报告！")
 
 /**
  * Translate the species liked foods from bitfields into strings
@@ -1600,16 +1600,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "band-aid",
-			SPECIES_PERK_NAME = "Brutal Weakness",
-			SPECIES_PERK_DESC = "[plural_form] are weak to brute damage.",
+			SPECIES_PERK_NAME = "钝击弱点",
+			SPECIES_PERK_DESC = "[plural_form] 对钝击伤害较为脆弱。",
 		))
 
 	if(initial(fake_chest.brute_modifier) < 1)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "shield-alt",
-			SPECIES_PERK_NAME = "Brutal Resilience",
-			SPECIES_PERK_DESC = "[plural_form] are resilient to brute damage.",
+			SPECIES_PERK_NAME = "钝击抗性",
+			SPECIES_PERK_DESC = "[plural_form] 对钝击伤害有较强的抗性。",
 		))
 
 	// Burn related
@@ -1617,16 +1617,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "burn",
-			SPECIES_PERK_NAME = "Burn Weakness",
-			SPECIES_PERK_DESC = "[plural_form] are weak to burn damage.",
+			SPECIES_PERK_NAME = "灼伤弱点",
+			SPECIES_PERK_DESC = "[plural_form] 对灼伤伤害较为脆弱。",
 		))
 
 	if(initial(fake_chest.burn_modifier) < 1)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "shield-alt",
-			SPECIES_PERK_NAME = "Burn Resilience",
-			SPECIES_PERK_DESC = "[plural_form] are resilient to burn damage.",
+			SPECIES_PERK_NAME = "灼伤抗性",
+			SPECIES_PERK_DESC = "[plural_form] 对灼伤伤害有较强的抗性。",
 		))
 
 	// Shock damage
@@ -1634,24 +1634,24 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Shock Vulnerability",
-			SPECIES_PERK_DESC = "[plural_form] are vulnerable to being shocked.",
+			SPECIES_PERK_NAME = "电击弱点",
+			SPECIES_PERK_DESC = "[plural_form] 很容易被电击。",
 		))
 
 	if(siemens_coeff < 1)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "shield-alt",
-			SPECIES_PERK_NAME = "Shock Resilience",
-			SPECIES_PERK_DESC = "[plural_form] are resilient to being shocked.",
+			SPECIES_PERK_NAME = "电击抗性",
+			SPECIES_PERK_DESC = "[plural_form] 对电击有较强的抗性。",
 		))
 
 	if(inherent_biotypes & (MOB_ROBOTIC|MOB_MINERAL))
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = FA_ICON_HAMMER,
-			SPECIES_PERK_NAME = "Tough Frame",
-			SPECIES_PERK_DESC = "[plural_form] are more resistant to slashing and stabbing, but more vulnerable to impacts.",
+			SPECIES_PERK_NAME = "坚固躯壳",
+			SPECIES_PERK_DESC = "[plural_form] 对斩击和刺击有更强的抗性，但更容易受到冲击伤害。",
 		))
 
 	return to_add
@@ -1669,16 +1669,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "temperature-high",
-			SPECIES_PERK_NAME = "Heat Vulnerability",
-			SPECIES_PERK_DESC = "[plural_form] are vulnerable to high temperatures.",
+			SPECIES_PERK_NAME = "高温弱点",
+			SPECIES_PERK_DESC = "[plural_form] 对高温环境较为脆弱。",
 		))
 
 	if(heatmod < 1 || bodytemp_heat_damage_limit > BODYTEMP_HEAT_DAMAGE_LIMIT)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "thermometer-empty",
-			SPECIES_PERK_NAME = "Heat Resilience",
-			SPECIES_PERK_DESC = "[plural_form] are resilient to hotter environments.",
+			SPECIES_PERK_NAME = "高温抗性",
+			SPECIES_PERK_DESC = "[plural_form] 对更炎热的环境有较强的抗性。",
 		))
 
 	// Cold temperature tolerance
@@ -1686,16 +1686,16 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "temperature-low",
-			SPECIES_PERK_NAME = "Cold Vulnerability",
-			SPECIES_PERK_DESC = "[plural_form] are vulnerable to cold temperatures.",
+			SPECIES_PERK_NAME = "低温弱点",
+			SPECIES_PERK_DESC = "[plural_form] 对寒冷环境较为脆弱。",
 		))
 
 	if(coldmod < 1 || bodytemp_cold_damage_limit < BODYTEMP_COLD_DAMAGE_LIMIT)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "thermometer-empty",
-			SPECIES_PERK_NAME = "Cold Resilience",
-			SPECIES_PERK_DESC = "[plural_form] are resilient to colder environments.",
+			SPECIES_PERK_NAME = "低温抗性",
+			SPECIES_PERK_DESC = "[plural_form] 对更寒冷的环境有较强的抗性。",
 		))
 
 	return to_add
@@ -1714,8 +1714,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "tint-slash",
-			SPECIES_PERK_NAME = "Bloodletted",
-			SPECIES_PERK_DESC = "[plural_form] do not have blood.",
+			SPECIES_PERK_NAME = "无血之躯",
+			SPECIES_PERK_DESC = "[plural_form] 没有血液。",
 		))
 
 	// Otherwise, check if their exotic blood is a valid typepath
@@ -1724,7 +1724,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "tint",
 			SPECIES_PERK_NAME = initial(blood_type.reagent_type.name),
-			SPECIES_PERK_DESC = "[name] blood is [initial(blood_type.reagent_type.name)], which can make receiving medical treatment harder.",
+			SPECIES_PERK_DESC = "[name] 的血液是 [initial(blood_type.reagent_type.name)]，这会让接受医疗变得更加困难。",
 		))
 
 	// Otherwise otherwise, see if they have an exotic bloodtype set
@@ -1732,8 +1732,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "tint",
-			SPECIES_PERK_NAME = "Exotic Blood",
-			SPECIES_PERK_DESC = "[plural_form] have \"[exotic_bloodtype]\" type blood, which can make receiving medical treatment harder.",
+			SPECIES_PERK_NAME = "异种血液",
+			SPECIES_PERK_DESC = "[plural_form] 的血液为“[exotic_bloodtype]”型，这会让接受医疗变得更加困难。",
 		))
 
 	return to_add
@@ -1750,50 +1750,50 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "user-plus",
-			SPECIES_PERK_NAME = "Limbs Easily Reattached",
-			SPECIES_PERK_DESC = "[plural_form] limbs are easily readded, and as such do not \
-				require surgery to restore. Simply pick it up and pop it back in, champ!",
+			SPECIES_PERK_NAME = "肢体易接",
+			SPECIES_PERK_DESC = "[plural_form] 的肢体很容易重新接上，因此不需要手术就能复原。\
+				捡起来往上一按就行，冠军！",
 		))
 
 	if(TRAIT_EASYDISMEMBER in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "user-times",
-			SPECIES_PERK_NAME = "Limbs Easily Dismembered",
-			SPECIES_PERK_DESC = "[plural_form] limbs are not secured well, and as such they are easily dismembered.",
+			SPECIES_PERK_NAME = "肢体易断",
+			SPECIES_PERK_DESC = "[plural_form] 的肢体连接不够牢固，因此很容易被扯断。",
 		))
 
 	if(TRAIT_EASILY_WOUNDED in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "user-times",
-			SPECIES_PERK_NAME = "Easily Wounded",
-			SPECIES_PERK_DESC = "[plural_form] skin is very weak and fragile. They are much easier to apply serious wounds to.",
+			SPECIES_PERK_NAME = "易受伤",
+			SPECIES_PERK_DESC = "[plural_form] 的皮肤非常脆弱。它们很容易受到严重创伤。",
 		))
 
 	if(TRAIT_TOXINLOVER in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "syringe",
-			SPECIES_PERK_NAME = "Toxins Lover",
-			SPECIES_PERK_DESC = "Toxins damage dealt to [plural_form] are reversed - healing toxins will instead cause harm, and \
-				causing toxins will instead cause healing. Be careful around purging chemicals!",
+			SPECIES_PERK_NAME = "嗜毒者",
+			SPECIES_PERK_DESC = "对 [plural_form] 造成的毒素伤害会被逆转——治疗毒素反而会造成伤害，\
+				造成毒素反而会起到治疗作用。清理化学物质时务必小心！",
 		))
 
 	if (TRAIT_GENELESS in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "dna",
-			SPECIES_PERK_NAME = "No Genes",
-			SPECIES_PERK_DESC = "[plural_form] have no genes, making genetic scrambling a useless weapon, but also locking them out from getting genetic powers.",
+			SPECIES_PERK_NAME = "无基因",
+			SPECIES_PERK_DESC = "[plural_form] 没有基因，基因扰乱对它们毫无作用，但它们也无法获得基因能力。",
 		))
 
 	if (TRAIT_NOBREATH in inherent_traits)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "wind",
-			SPECIES_PERK_NAME = "No Respiration",
-			SPECIES_PERK_DESC = "[plural_form] have no need to breathe!",
+			SPECIES_PERK_NAME = "免呼吸",
+			SPECIES_PERK_DESC = "[plural_form] 不需要呼吸！",
 		))
 
 	return to_add
@@ -1810,9 +1810,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "skull",
-			SPECIES_PERK_NAME = "Undead",
-			SPECIES_PERK_DESC = "[plural_form] are of the undead! The undead do not have the need to eat or breathe, and \
-				most viruses will not be able to infect a walking corpse. Their worries mostly stop at remaining in one piece, really.",
+			SPECIES_PERK_NAME = "亡灵",
+			SPECIES_PERK_DESC = "[plural_form] 属于亡灵！亡灵不需要进食或呼吸，\
+				大多数病毒也无法感染一具行尸走肉。说到底，它们最大的烦恼不过是别散架而已。",
 		))
 
 	return to_add
@@ -1848,31 +1848,31 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 	if (tolerance_difference != 0)
 		var/difference_positive = (tolerance_difference > 0)
-		var/more_or_less = (difference_positive) ? "more" : "less"
+		var/more_or_less = (difference_positive) ? "更容易" : "更不容易"
 		var/perk_type = (difference_positive) ? SPECIES_NEGATIVE_PERK : SPECIES_POSITIVE_PERK
-		var/perk_name = "Alcohol " + ((difference_positive) ? "Weakness" : "Tolerance")
+		var/perk_name = "酒精" + ((difference_positive) ? "耐受性差" : "耐受性")
 		var/percent_difference = (alcohol_tolerance / initial(base_liver.alcohol_tolerance)) * 100
 
 		to_add += list(list(
 			SPECIES_PERK_TYPE = perk_type,
 			SPECIES_PERK_ICON = "wine-glass",
 			SPECIES_PERK_NAME = perk_name,
-			SPECIES_PERK_DESC = "[name] livers are [more_or_less] susceptable to alcohol than human livers, by about [percent_difference]%."
+			SPECIES_PERK_DESC = "[name] 的肝脏比人类肝脏[more_or_less]受酒精影响，差距约为 [percent_difference]%。"
 		))
 
 	var/tox_shrugging = initial(mutantliver.toxTolerance)
 	var/shrugging_difference = tox_shrugging - initial(base_liver.toxTolerance)
 	if (shrugging_difference != 0)
 		var/difference_positive = (shrugging_difference > 0)
-		var/more_or_less = (difference_positive) ? "more" : "less"
+		var/more_or_less = (difference_positive) ? "更多" : "更少"
 		var/perk_type = (difference_positive) ? SPECIES_POSITIVE_PERK : SPECIES_NEGATIVE_PERK
-		var/perk_name = ("Toxin " + ((difference_positive) ? "Resistant" : "Vulnerable")) + " Liver"
+		var/perk_name = ("毒素" + ((difference_positive) ? "抗性" : "易感")) + "肝脏"
 
 		to_add += list(list(
 			SPECIES_PERK_TYPE = perk_type,
 			SPECIES_PERK_ICON = "biohazard",
 			SPECIES_PERK_NAME = perk_name,
-			SPECIES_PERK_DESC = "[name] livers are capable of rapidly shrugging off [tox_shrugging]u of toxins, which is [more_or_less] than humans."
+			SPECIES_PERK_DESC = "[name] 的肝脏能迅速化解 [tox_shrugging]u 的毒素，这个量比人类[more_or_less]。"
 		))
 
 	return to_add
@@ -1890,8 +1890,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "wind",
-			SPECIES_PERK_NAME = "[capitalize(breath_id)] Breathing",
-			SPECIES_PERK_DESC = "[plural_form] must breathe [breath_id] to survive. You receive a tank when you arrive.",
+			SPECIES_PERK_NAME = "[capitalize(breath_id)] 呼吸",
+			SPECIES_PERK_DESC = "[plural_form] 必须呼吸 [breath_id] 才能生存。你抵达时会获得一个气罐。",
 		))
 
 	return to_add
@@ -1923,11 +1923,11 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "comment",
-			SPECIES_PERK_NAME = "Native Speaker",
+			SPECIES_PERK_NAME = "母语者",
 			/* SKYRAT EDIT - Digitigrade customization - ORIGINAL:
 			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] gain the ability to speak [english_list(bonus_languages)].",
 			*/ // ORIGINAL END - SKYRAT EDIT START:
-			SPECIES_PERK_DESC = "Alongside [initial(common_language.name)], [plural_form] commonly speak [english_list(bonus_languages)].",
+			SPECIES_PERK_DESC = "除了 [initial(common_language.name)] 之外，[plural_form] 通常还会说 [english_list(bonus_languages)]。",
 			// SKYRAT EDIT END
 		))
 
@@ -1935,8 +1935,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		to_add += list(list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "comment",
-			SPECIES_PERK_NAME = "Foreign Speaker",
-			SPECIES_PERK_DESC = "[plural_form] may not speak [initial(common_language.name)], but they can speak [english_list(bonus_languages)].",
+			SPECIES_PERK_NAME = "外语者",
+			SPECIES_PERK_DESC = "[plural_form] 可能不会说 [initial(common_language.name)]，但会说 [english_list(bonus_languages)]。",
 		))
 
 	return to_add

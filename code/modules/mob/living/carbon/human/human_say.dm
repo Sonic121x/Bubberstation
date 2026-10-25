@@ -25,13 +25,13 @@
 	var/obj/item/organ/tongue/tongue = get_organ_slot(ORGAN_SLOT_TONGUE)
 	if(isnull(tongue))
 		if(HAS_TRAIT(src, TRAIT_SIGN_LANG))
-			return "signs"
-		return "gurgles"
+			return "打手势"
+		return "发出咕噜声"
 	return  tongue.temp_say_mod || tongue.say_mod || ..()
 
 /mob/living/carbon/human/get_voice(add_id_name = FALSE)
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE))
-		return "Unknown"
+		return "未知"
 	var/id_name = get_id_name("")
 	if(HAS_TRAIT(src, TRAIT_VOICE_MATCHES_ID) && id_name)
 		return id_name
@@ -44,7 +44,7 @@
 /mob/living/carbon/human/get_message_voice(visible_name)
 	. = ..()
 	if(. != name)
-		. += " (as [get_id_name("Unknown", honorifics = TRUE)])"
+		. += "（伪装为 [get_id_name("Unknown", honorifics = TRUE)]）"
 
 /mob/living/carbon/human/binarycheck()
 	if(IS_UNCONSCIOUS_OR_CRIT(src))

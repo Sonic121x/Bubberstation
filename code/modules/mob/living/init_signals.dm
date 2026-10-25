@@ -98,7 +98,7 @@
 	apply_status_effect(/datum/status_effect/knocked_out)
 
 	if(stat <= SOFT_CRIT) // going into hard crit gives a similar log
-		log_combat(src, src, "lost consciousness")
+		log_combat(src, src, "失去意识")
 
 /// Called when [TRAIT_KNOCKEDOUT] is removed from the mob.
 /mob/living/proc/on_knockedout_trait_loss(datum/source)
@@ -107,7 +107,7 @@
 	remove_status_effect(/datum/status_effect/knocked_out)
 
 	if(stat <= SOFT_CRIT) // leaving hard crit gives a similar log
-		log_combat(src, src, "regained consciousness")
+		log_combat(src, src, "恢复意识")
 
 /// Called when [TRAIT_DEATHCOMA] is added to the mob.
 /mob/living/proc/on_deathcoma_trait_gain(datum/source)

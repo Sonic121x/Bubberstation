@@ -1,5 +1,5 @@
 /datum/species/abductor
-	name = "Abductor"
+	name = "绑架者"
 	id = SPECIES_ABDUCTOR
 	sexes = TRUE // BUBBER EDIT: Lets abductors have pronouns. Abductors are asexual/agender, but they still can present however they wish for cosmetic purposes.
 	can_have_genitals = TRUE // BUBBER EDIT: Lets abductors have genitals.
@@ -33,18 +33,18 @@
 	)
 
 /datum/species/abductor/get_physical_attributes()
-	return "Abductors do not need to breathe, eat, do not have blood, a heart, stomach, or lungs and cannot be infected by human viruses. \
-		Their hardy physique prevents their skin from being wounded or dismembered, but their chunky tridactyl hands make it hard to operate human equipment."
+	return "绑架者不需要呼吸、进食，没有血液、心脏、胃和肺，也不会感染人类病毒。\
+		他们强韧的体质使皮肤不会受伤，也不会被截断肢体，但粗大的三指之手让他们难以操作人类的设备。"
 
 /datum/species/abductor/get_species_description()
-	return "Abductors, colloquially known as \"Greys\" (or \"Grays\"), \
-		are, three fingered, pale skinned inquisitive aliens who can't communicate well to the average crew-member."
+	return "绑架者，俗称“灰人”（或“小灰人”），\
+		是三指、肤色苍白、充满好奇的外星人，无法与普通船员顺畅交流。"
 
 /datum/species/abductor/get_species_lore()
 	return list(
-		"Little are known about Abductors. \
-		While they (as a species) have been known to abduct other species of 'lesser intellect' for experimentation, \
-		some have been known to - on rare occasions - work with the very species they abduct, for reasons unknown.",
+		"人们对绑架者知之甚少。\
+		虽然已知他们会绑架其他“智力较低”的种族用于实验，\
+		但偶尔也有记录显示，他们会出于未知的原因与那些被自己绑架的种族合作。",
 	)
 
 /datum/species/abductor/create_pref_traits_perks()
@@ -52,15 +52,15 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_WIND,
-		SPECIES_PERK_NAME = "Lungs Optional",
-		SPECIES_PERK_DESC = "Abductors don't need to breathe, though exposure to a vacuum is still a hazard.",
+		SPECIES_PERK_NAME = "肺脏非必需",
+		SPECIES_PERK_DESC = "绑架者不需要呼吸，但暴露在真空中仍然危险。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD,
-		SPECIES_PERK_NAME = "Resilient Skin",
-		SPECIES_PERK_DESC = "The grey (or gray) skin of an Abductor is tough and resistant. \
-			They cannot be wounded or dismembered by conventional means.",
+		SPECIES_PERK_NAME = "强韧皮肤",
+		SPECIES_PERK_DESC = "绑架者灰白的皮肤坚韧且抗性出众。\
+			常规手段无法使他们受伤或被截断肢体。",
 	))
 	return perks
 
@@ -69,28 +69,28 @@
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SYRINGE,
-		SPECIES_PERK_NAME = "Disease Immunity",
-		SPECIES_PERK_DESC = "Abductors are immune to all viral infections found naturally on the station.",
+		SPECIES_PERK_NAME = "疾病免疫",
+		SPECIES_PERK_DESC = "绑架者对空间站上自然存在的所有病毒感染免疫。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK, // It may be a stretch to call nohunger a neutral perk but the Abductor's tongue describes it as much, so.
 		SPECIES_PERK_ICON = FA_ICON_UTENSILS,
-		SPECIES_PERK_NAME = "Hungry for Knowledge",
-		SPECIES_PERK_DESC = "Abductors have a greater hunger for knowledge than food, and as such don't need to eat. \
-			Which is fortunate, as their speech matrix prevents them from consuming food.",
+		SPECIES_PERK_NAME = "渴求知识",
+		SPECIES_PERK_DESC = "绑架者对知识的渴求远胜于食物，因此无需进食。\
+			这也算幸运，因为他们的言语基质使他们无法进食。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_VOLUME_XMARK,
-		SPECIES_PERK_NAME = "Superlingual Matrix",
-		SPECIES_PERK_DESC = "Abductors cannot physically speak with their natural tongue. \
-			They intead naturally communicate telepathically to other Abductors, a process which all other species cannot hear. \
-			Great for secret conversations, not so great for ordering something from the bar.",
+		SPECIES_PERK_NAME = "超语言基质",
+		SPECIES_PERK_DESC = "绑架者无法用天然的舌头发声说话。\
+			他们天生以心灵感应与其他绑架者交流，其他种族都听不到。\
+			很适合密谈，但从酒吧点单就不太方便了。",
 	))
 	perks += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_HANDSHAKE_SLASH,
-		SPECIES_PERK_NAME = "Tridactyl Hands",
-		SPECIES_PERK_DESC = "Abductor hands are not designed for human equipment. Utilizing the station's equipment is difficult for them.",
+		SPECIES_PERK_NAME = "三指之手",
+		SPECIES_PERK_DESC = "绑架者的手并非为人类设备而设计，使用空间站上的设备对他们来说很困难。",
 	))
 	return perks

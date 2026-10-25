@@ -1,6 +1,6 @@
 /// Animated beings of stone. They have increased defenses, and do not need to breathe. They must eat minerals to live, which give additional buffs.
 /datum/species/golem
-	name = "Golem"
+	name = "魔像"
 	id = SPECIES_GOLEM
 	inherent_traits = list(
 		TRAIT_GENELESS,
@@ -113,8 +113,8 @@
 	if(!IS_DEAD_OR_FAKING(source))
 		return
 
-	examine_text += span_warning("This golem appears to be in a state of disrepair. \
-		It may be possible to rebuild it by adding minerals into its form.")
+	examine_text += span_warning("这个魔像看上去已经破败不堪。\
+		或许可以通过向其躯体中加入矿物来重建它。")
 
 /datum/species/golem/proc/rebuild_check(mob/living/carbon/human/source, mob/living/user, obj/item/tool, ...)
 	SIGNAL_HANDLER
@@ -129,21 +129,21 @@
 	return ITEM_INTERACT_SUCCESS
 
 /datum/species/golem/proc/rebuild(mob/living/carbon/human/source, mob/living/user, obj/item/stack/mats)
-	source.notify_revival("You are being rebuilt by [user.real_name]!")
+	source.notify_revival("你正被 [user.real_name] 重建！")
 	var/brute_ready = source.get_brute_loss() < 50
 	var/burn_ready = source.get_fire_loss() < 50
 	var/nutrition_ready = source.nutrition > NUTRITION_LEVEL_VERY_HUNGRY
 
 	while(check_rebuild(source, user, mats))
 		user.visible_message(
-			span_notice("[user] uses some of [mats] to rebuild [source]'s form."),
-			span_notice("You use some of [mats] to rebuild [source]'s form."),
+			span_notice("[user] 用了一些 [mats] 来重建 [source] 的身躯。"),
+			span_notice("你用了一些 [mats] 来重建 [source] 的身躯。"),
 		)
 
 		var/do_after_time = 2 SECONDS
 		if(brute_ready && burn_ready && nutrition_ready && source.can_be_revived())
 			do_after_time *= 4
-			user.show_message(span_notice("[source] looks almost fully rebuilt, this will take a bit longer..."), MSG_VISUAL)
+			user.show_message(span_notice("[source] 看起来已几乎重建完成，这需要再花一点时间……"), MSG_VISUAL)
 		if(HAS_TRAIT(user, TRAIT_QUICK_BUILD))
 			do_after_time *= 0.75
 
@@ -163,24 +163,24 @@
 		source.adjust_nutrition(mat_power * 20)
 		if(!brute_ready)
 			if(source.get_brute_loss() < 50)
-				user.show_message(span_notice("[source] looks sturdier than ever! It's not long now..."), MSG_VISUAL)
+				user.show_message(span_notice("[source] 看起来比以往更加坚固了！就快好了……"), MSG_VISUAL)
 				brute_ready = TRUE
 			continue
 		if(!burn_ready)
 			if(source.get_fire_loss() < 50)
-				user.show_message(span_notice("[source] seems to be regaining its integrity! Just a bit more..."), MSG_VISUAL)
+				user.show_message(span_notice("[source] 似乎在恢复完整！再加把劲……"), MSG_VISUAL)
 				burn_ready = TRUE
 			continue
 		if(!nutrition_ready)
 			if(source.nutrition > NUTRITION_LEVEL_HUNGRY)
-				user.show_message(span_notice("[source] seems to be stabilizing its form! Almost there..."), MSG_VISUAL)
+				user.show_message(span_notice("[source] 的形态似乎在稳定下来！就快完成了……"), MSG_VISUAL)
 				nutrition_ready = TRUE
 			continue
 
 		if(source.revive(excess_healing = 10)) // give a bit of organ/tox/oxy healing for free
 			source.visible_message(
-				span_notice("[source] stabilizes and reforms into a functional state!"),
-				span_boldnotice("You stabilize and reform into a functional state!"),
+				span_notice("[source] 稳定下来并重组成可用的状态！"),
+				span_boldnotice("你稳定下来并重组成可用的状态！"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 			source.set_resting(FALSE, silent = TRUE, instant = TRUE)
@@ -220,9 +220,9 @@
 	if(source.nutrition < NUTRITION_LEVEL_STARVING)
 		if(!early_warning && COOLDOWN_FINISHED(src, warning_cd) && !IS_UNCONSCIOUS(source))
 			source.visible_message(
-				span_warning("[source] shudders weakly as their form begins to destabilize!"),
-				span_bolddanger("You feel your form destabilizing as you run low on material to sustain yourself! \
-					Find some minerals to eat soon, or you may crumble!"),
+				span_warning("[source] 虚弱地颤抖着，其形态开始失去稳定！"),
+				span_bolddanger("你感到自己的形态正因维持自身的物质不足而失稳！ \
+					快去找些矿物吃吧，否则你可能会崩碎！"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 			early_warning = TRUE
@@ -234,9 +234,9 @@
 	if(source.nutrition < 50)
 		if(!final_warning && COOLDOWN_FINISHED(src, warning_cd) && !IS_UNCONSCIOUS(source))
 			source.visible_message(
-				span_warning("[source] looks like they're on the verge of falling apart!"),
-				span_userdanger("Your form shudders violently as you near complete destabilization! \
-					Eat some minerals quickly, or you may crumble!"),
+				span_warning("[source] 看上去已经濒临解体！"),
+				span_userdanger("你的形态剧烈颤抖，已接近完全失稳！ \
+					快吃些矿物，否则你可能会崩碎！"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 			final_warning = TRUE
@@ -247,25 +247,25 @@
 
 	if(source.nutrition < 2 && source.stat != DEAD)
 		source.visible_message(
-			span_warning("[source] shudders and crumbles into a pile of inert rocks!"),
-			span_userdanger("You run our of material to sustain your animated form, and crumble into a pile of inert rocks!"),
+			span_warning("[source] 一阵颤抖后崩碎成一堆毫无生气的岩石！"),
+			span_userdanger("你耗尽了维持活化形态的物质，崩碎成一堆毫无生气的岩石！"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
-		source.investigate_log("starved to death as a golem", INVESTIGATE_DEATHS)
+		source.investigate_log("作为魔像饿死", INVESTIGATE_DEATHS)
 		source.death()
 
 /datum/species/golem/get_physical_attributes()
-	return "Golems are hardy creatures made out of stone, which are thus naturally resistant to many dangers, including asphyxiation, fire, radiation, electricity, and viruses.\
-		They gain special abilities depending on the type of material consumed, but they need to consume material to keep their body animated."
+	return "魔像是石头制成的坚韧生物，因此天生能抵抗许多危险，包括窒息、火焰、辐射、电击与病毒。\
+		它们会因所食用的材料类型而获得特殊能力，但必须不断消耗材料才能维持身体的活性。"
 
 /datum/species/golem/get_species_description()
-	return "Golems are lithoid creatures who eat rocks and minerals to survive and adapt."
+	return "魔像是靠食用岩石与矿物来生存并适应环境的石质生物。"
 
 /datum/species/golem/get_species_lore()
 	return list(
-		"While Golems have long been commonly found on frontier worlds, peacefully mining and otherwise living in harmony with the environment, \
-		it is believed they were originally constructed in Nanotrasen laboratories as a form of cheap labor. Whatever happened up to this point is unknown, \
-		but they have since gained freedom and are now a rare sight in the galaxy.",
+		"虽然魔像长期以来常见于边疆世界，平静地采矿并与环境和谐共处，\
+		但据信它们最初是在纳米传讯的实验室中作为廉价劳动力被制造出来的。这期间发生了什么已无从知晓，\
+		但它们此后获得了自由，如今在银河中已十分罕见。",
 	)
 
 /datum/species/golem/create_pref_unique_perks()
@@ -274,33 +274,33 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "user-shield",
-		SPECIES_PERK_NAME = "Lithoid",
-		SPECIES_PERK_DESC = "Lithoids are creatures made out of minerals instead of \
-			blood and flesh. They are strong and immune to many environmental and personal dangers \
-			such as fire, radiation, lack of air, lava, viruses, and dismemberment.",
+		SPECIES_PERK_NAME = "石质生物",
+		SPECIES_PERK_DESC = "石质生物是由矿物而非血肉构成的生物。\
+			它们强壮，并免疫许多环境与自身的危险，\
+			例如火焰、辐射、缺氧、熔岩、病毒与断肢。",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "gem",
-		SPECIES_PERK_NAME = "Metamorphic Rock",
-		SPECIES_PERK_DESC = "Consuming minerals can grant Lithoids temporary benefits based on the type consumed.",
+		SPECIES_PERK_NAME = "变质岩",
+		SPECIES_PERK_DESC = "食用矿物会根据所食用的类型为石质生物提供暂时的增益。",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "tools",
-		SPECIES_PERK_NAME = "Natural Miners",
-		SPECIES_PERK_DESC = "Golems can see dimly in the dark, sense minerals, break boulders, and mine stone with their bare hands. \
-			They can even smelt ores in an internal furnace, if their surrounding environment is hot enough.",
+		SPECIES_PERK_NAME = "天生矿工",
+		SPECIES_PERK_DESC = "魔像能在黑暗中模糊视物、感应矿物、击碎巨石，还能徒手开采石头。\
+			只要周围环境足够炎热，它们甚至能用体内的熔炉冶炼矿石。",
 	))
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "bolt",
-		SPECIES_PERK_NAME = "Anima",
-		SPECIES_PERK_DESC = "Maintaining the force animating stone is taxing. Lithoids must eat frequently \
-			in order to avoid returning to inanimate statues, and only derive nutrition from eating minerals.",
+		SPECIES_PERK_NAME = "赋活之力",
+		SPECIES_PERK_DESC = "维持驱动石头的力量十分费力。石质生物必须频繁进食 \
+			以免变回无生命的雕像，且只能从食用矿物中获取营养。",
 	))
 
 	return to_add

@@ -28,21 +28,21 @@ Difficulty: Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
-	name = "bubblegum"
-	desc = "In what passes for a hierarchy among slaughter demons, this one is king."
+	name = "泡泡糖"
+	desc = "在屠戮恶魔那套勉强算得上等级秩序的东西里，这一位便是王。"
 	health = 2500
 	maxHealth = 2500
-	attack_verb_continuous = "rends"
-	attack_verb_simple = "rend"
+	attack_verb_continuous = "撕碎"
+	attack_verb_simple = "撕碎"
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	icon_state = "bubblegum"
 	icon_living = "bubblegum"
 	icon_dead = ""
 	health_doll_icon = "bubblegum"
-	friendly_verb_continuous = "stares down"
-	friendly_verb_simple = "stare down"
+	friendly_verb_continuous = "瞪视"
+	friendly_verb_simple = "瞪视"
 	icon = 'icons/mob/simple/lavaland/96x96megafauna.dmi'
-	speak_emote = list("gurgles")
+	speak_emote = list("咕嘟作响")
 	armour_penetration = 40
 	melee_damage_lower = 40
 	melee_damage_upper = 40
@@ -62,14 +62,14 @@ Difficulty: Hard
 	crusher_loot = /obj/structure/closet/crate/necropolis/bubblegum/crusher
 	replace_crusher_drop = TRUE
 	default_blood_volume = BLOOD_VOLUME_MAXIMUM //BLEED FOR ME
-	gps_name = "Bloody Signal"
+	gps_name = "血腥信号"
 	achievement_type = /datum/award/achievement/boss/bubblegum_kill
 	crusher_achievement_type = /datum/award/achievement/boss/bubblegum_crusher
 	score_achievement_type = /datum/award/score/bubblegum_score
-	death_message = "sinks into a pool of blood, fleeing the battle. You've won, for now... "
+	death_message = "沉入一池鲜血，逃离了这场战斗。你赢了，不过只是暂时……"
 	death_sound = 'sound/effects/magic/enter_blood.ogg'
 	faction = list(FACTION_MINING, FACTION_BOSS, FACTION_HELL)
-	summon_line = "GRAAAAAAAHHHHHHHHH!"
+	summon_line = "嘎啊啊啊啊啊啊啊啊！"
 	/// Check to see if we should spawn blood
 	var/spawn_blood = TRUE
 	/// Actual time where enrage ends
@@ -204,7 +204,7 @@ Difficulty: Hard
 	SLEEP_CHECK_DEATH(4, src)
 	for(var/mob/living/L in T)
 		if(!faction_check_atom(L))
-			to_chat(L, span_userdanger("[src] rends you!"))
+			to_chat(L, span_userdanger("[src] 将你撕碎！"))
 			playsound(T, attack_sound, 100, TRUE, -1)
 			var/limb_to_hit = L.get_bodypart(L.get_random_valid_zone(even_weights = TRUE))
 			L.apply_damage(10, BRUTE, limb_to_hit, L.run_armor_check(limb_to_hit, MELEE, null, null, armour_penetration), wound_bonus = CANT_WOUND)
@@ -221,7 +221,7 @@ Difficulty: Hard
 	for(var/mob/living/L in T)
 		if(!faction_check_atom(L))
 			if(IS_UNCONSCIOUS_OR_CRIT(L))
-				to_chat(L, span_userdanger("[src] drags you through the blood!"))
+				to_chat(L, span_userdanger("[src] 把你拖过血泊！"))
 				playsound(T, 'sound/effects/magic/enter_blood.ogg', 100, TRUE, -1)
 				var/turf/targetturf = get_step(src, dir)
 				L.forceMove(targetturf)
@@ -300,7 +300,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/projectile_hit(obj/projectile/hitting_projectile, def_zone, piercing_hit, blocked)
 	if(BUBBLEGUM_IS_ENRAGED)
-		visible_message(span_danger("[src] deflects the [hitting_projectile]! [p_They()] can't be hit with ranged weapons while enraged!"), span_userdanger("You deflect the projectile!"))
+		visible_message(span_danger("[src] 弹开了 [hitting_projectile]！[p_They()] 在狂暴状态下无法被远程武器命中！"), span_userdanger("你弹开了这发投射物！"))
 		playsound(src, SFX_BULLET_MISS, 300, TRUE)
 		return BULLET_ACT_BLOCK
 	return ..()
@@ -317,8 +317,8 @@ Difficulty: Hard
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination
-	name = "bubblegum's hallucination"
-	desc = "Is that really just a hallucination?"
+	name = "泡泡糖的幻影"
+	desc = "这真的只是幻觉吗？"
 	health = 1
 	maxHealth = 1
 	alpha = 127.5
@@ -327,7 +327,7 @@ Difficulty: Hard
 	achievement_type = null
 	crusher_achievement_type = null
 	score_achievement_type = null
-	death_message = "Explodes into a pool of blood!"
+	death_message = "爆成了一滩血泊！"
 	death_sound = 'sound/effects/splat.ogg'
 	true_spawn = FALSE
 	var/move_through_mob
@@ -363,8 +363,8 @@ Difficulty: Hard
 	return TRUE
 
 /obj/effect/decal/cleanable/blood/gibs/bubblegum
-	name = "thick blood"
-	desc = "Thick, splattered blood."
+	name = "浓稠的血液"
+	desc = "浓稠、四溅的血液。"
 	random_icon_states = list("gib3", "gib5", "gib6")
 	bloodiness = 20
 

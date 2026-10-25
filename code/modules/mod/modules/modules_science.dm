@@ -2,10 +2,10 @@
 
 ///Reagent Scanner - Lets the user scan reagents.
 /obj/item/mod/module/reagent_scanner
-	name = "MOD reagent scanner module"
-	desc = "A module based off research-oriented Nanotrasen HUDs, this is capable of scanning the contents of \
-		containers and projecting the information in an easy-to-read format on the wearer's display. \
-		It cannot detect flavors, so that's up to you."
+	name = "MOD 试剂扫描模块"
+	desc = "一种基于纳米传讯科研型 HUD 的模块，能够扫描\
+		容器内的内容物，并将信息以易读的格式投射到佩戴者的显示屏上。\
+		它无法检测味道，那还得靠你自己。"
 	icon_state = "scanner"
 	module_type = MODULE_TOGGLE
 	complexity = 1

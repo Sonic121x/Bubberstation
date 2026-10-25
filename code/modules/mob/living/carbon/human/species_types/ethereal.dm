@@ -1,5 +1,5 @@
 /datum/species/ethereal
-	name = "\improper Ethereal"
+	name = "\improper 以太人"
 	id = SPECIES_ETHEREAL
 	meat = /obj/item/food/meat/slab/human/mutant/ethereal
 	mutantlungs = /obj/item/organ/lungs/ethereal
@@ -62,20 +62,20 @@
 	return features
 
 /datum/species/ethereal/get_physical_attributes()
-	return "Ethereals process electricity as their power supply, not food, and are somewhat resistant to it.\
-		They do so via their crystal core, their equivalent of a human heart, which will also encase them in a reviving crystal if they die.\
-		However, their skin is very thin and easy to pierce with brute weaponry."
+	return "以太人以电力而非食物作为能量来源，并对电流有一定抗性。\
+		他们依靠自己的水晶核心（相当于人类的心脏）做到这一点；若他们死亡，水晶核心还会将他们封入复苏水晶之中。\
+		然而，他们的皮肤非常薄，很容易被钝击武器刺穿。"
 
 /datum/species/ethereal/get_species_description()
-	return "Coming from the planet of Sprout, the theocratic ethereals are \
-		separated socially by caste, and espouse a dogma of aiding the weak and \
-		downtrodden."
+	return "神权统治的以太人来自斯普劳特星，\
+		其社会按种姓划分阶层，并信奉扶助弱小与 \
+		受压迫者的教义。"
 
 /datum/species/ethereal/get_species_lore()
 	return list(
-		"Ethereals are a species native to the planet Sprout. \
-		When they were originally discovered, they were at a medieval level of technological progression, \
-		but due to their natural acclimation with electricity, they felt easy among the large Nanotrasen installations.",
+		"以太人是原生栖息于斯普劳特星的种族。\
+		最初被发现时，他们的科技水平尚处于中世纪阶段，\
+		但由于天生适应电力，他们在纳米传讯的大型设施中生活得十分自在。",
 	)
 
 /datum/species/ethereal/create_pref_unique_perks()
@@ -85,40 +85,40 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bolt",
-			SPECIES_PERK_NAME = "Shockingly Tasty",
-			SPECIES_PERK_DESC = "Ethereals can feed on electricity from APCs, and do not otherwise need to eat.",
+			SPECIES_PERK_NAME = "电击美味",
+			SPECIES_PERK_DESC = "以太人可以从 APC 汲取电力充饥，除此之外无需进食。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "lightbulb",
-			SPECIES_PERK_NAME = "Disco Ball",
-			SPECIES_PERK_DESC = "Ethereals passively generate their own light.",
+			SPECIES_PERK_NAME = "迪斯科球",
+			SPECIES_PERK_DESC = "以太人会自行发出微光。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "gem",
-			SPECIES_PERK_NAME = "Crystal Core",
-			SPECIES_PERK_DESC = "The Ethereal's heart will encase them in crystal should they die, returning them to life after a time - \
-				at the cost of a permanent brain trauma.",
+			SPECIES_PERK_NAME = "水晶核心",
+			SPECIES_PERK_DESC = "以太人死后，其心脏会将其封入水晶之中，一段时间后令其复活—— \
+				代价是永久性的脑部创伤。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = "fist-raised",
-			SPECIES_PERK_NAME = "Elemental Attacker",
-			SPECIES_PERK_DESC = "Ethereals deal burn damage with their punches instead of brute.",
+			SPECIES_PERK_NAME = "元素打击者",
+			SPECIES_PERK_DESC = "以太人的拳头造成灼烧伤害而非钝击伤害。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "biohazard",
-			SPECIES_PERK_NAME = "Starving Artist",
-			SPECIES_PERK_DESC = "Ethereals take toxin damage while starving.",
+			SPECIES_PERK_NAME = "饥饿艺术家",
+			SPECIES_PERK_DESC = "以太人在饥饿时会受到毒素伤害。",
 		),
 	)
 
 	return to_add
 
 /datum/species/ethereal/lustrous //Ethereal pirates with an inherent bluespace prophet trauma.
-	name = "Lustrous"
+	name = "璀璨者"
 	id = SPECIES_ETHEREAL_LUSTROUS
 	examine_limb_id = SPECIES_ETHEREAL
 	mutantbrain = /obj/item/organ/brain/lustrous
@@ -143,8 +143,8 @@
 	)
 
 /datum/species/ethereal/lustrous/get_physical_attributes()
-	return "Lustrous are what remains of an Ethereal after freebasing esoteric drugs. \
-		They are pressure immune, virus immune, can see bluespace tears in reality, and have a really weird scream. They remain vulnerable to physical damage."
+	return "璀璨者是吸食秘药后残存下来的以太人。\
+		他们免疫压力与病毒，能看见现实中的蓝空间裂痕，尖叫声也极为怪异，但仍会因物理伤害而受伤。"
 
 /datum/species/ethereal/lustrous/randomize_features()
 	var/list/features = ..()

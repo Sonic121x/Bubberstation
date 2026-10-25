@@ -1,6 +1,6 @@
 /datum/species/plasmaman
-	name = "\improper Plasmaman"
-	plural_form = "Plasmamen"
+	name = "\improper 等离子人"
+	plural_form = "等离子人"
 	id = SPECIES_PLASMAMAN
 	sexes = FALSE
 	meat = /obj/item/stack/sheet/mineral/plasma
@@ -72,31 +72,31 @@
 		give_important_for_life(equipping)
 
 /datum/species/plasmaman/get_physical_attributes()
-	return "Plasmamen literally breathe and live plasma. They spontaneously combust on contact with oxygen, and besides all the quirks that go with that, \
-		they're very vulnerable to all kinds of physical damage due to their brittle structure."
+	return "等离子人确实以等离子体呼吸和生存。他们一接触氧气就会自燃，除了随之而来的种种怪癖之外，\
+		由于身体结构脆硬，他们还极易受到各种物理伤害。"
 
 /datum/species/plasmaman/get_species_description()
-	return "Found on the Icemoon of Freyja, plasmamen consist of colonial \
-		fungal organisms which together form a sentient being. In human space, \
-		they're usually attached to skeletons to afford a human touch."
+	return "等离子人发现于弗蕾亚的冰月，由群落的 \
+		真菌生物共同构成一个有知觉的个体。在人类星域，\
+		他们通常附着在骨架上，以增添几分人味。"
 
 /datum/species/plasmaman/get_species_lore()
 	return list(
-		"A confusing species, plasmamen are truly \"a fungus among us\". \
-		What appears to be a singular being is actually a colony of millions of organisms \
-		surrounding a found (or provided) skeletal structure.",
+		"这是个令人困惑的物种，等离子人确实是“我们之中的真菌”。\
+		看似单一的个体，实际上是由数百万生物组成的群落，\
+		包裹着一具捡来（或他人提供）的骨骼结构。",
 
-		"Originally discovered by NT when a researcher \
-		fell into an open tank of liquid plasma, the previously unnoticed fungal colony overtook the body creating \
-		the first \"true\" plasmaman. The process has since been streamlined via generous donations of convict corpses and plasmamen \
-		have been deployed en masse throughout NT to bolster the workforce.",
+		"最初，一名研究员掉进了敞口的液态等离子体储罐，纳米传讯由此发现了他们；\
+		此前无人注意的真菌群落占据了那具身体，创造出了第一个“真正的”等离子人。此后该流程通过 \
+		慷慨捐赠的罪犯尸体得以简化，等离子人 \
+		也被成批部署到纳米传讯各处，以补充劳动力。",
 
-		"New to the galactic stage, plasmamen are a blank slate. \
-		Their appearance, generally regarded as \"ghoulish\", inspires a lot of apprehension in their crewmates. \
-		It might be the whole \"flammable purple skeleton\" thing.",
+		"作为银河舞台上的新面孔，等离子人是一张白纸。\
+		他们的外表通常被认为“阴森可怖”，令船员们颇为不安。\
+		也许是因为那副“易燃的紫色骨架”吧。",
 
-		"The colonids that make up plasmamen require the plasma-rich atmosphere they evolved in. \
-		Their psuedo-nervous system runs with externalized electrical impulses that immediately ignite their plasma-based bodies when oxygen is present.",
+		"构成等离子人的群落生物需要其演化所在的富等离子体大气。\
+		他们的伪神经系统以外部化的电脉冲运作，一旦存在氧气，便会立即点燃他们以等离子体为基础的身体。",
 	)
 
 /datum/species/plasmaman/create_pref_unique_perks()
@@ -106,40 +106,40 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "user-shield",
-			SPECIES_PERK_NAME = "Protected",
-			SPECIES_PERK_DESC = "Plasmamen are immune to radiation, poisons, and most diseases.",
+			SPECIES_PERK_NAME = "受保护",
+			SPECIES_PERK_DESC = "等离子人免疫辐射、毒素与大多数疾病。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "bone",
-			SPECIES_PERK_NAME = "Wound Resistance",
-			SPECIES_PERK_DESC = "Plasmamen have higher tolerance for damage that would wound others.",
+			SPECIES_PERK_NAME = "抗伤性",
+			SPECIES_PERK_DESC = "等离子人对会使他人受伤的伤害有更高的耐受度。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "wind",
-			SPECIES_PERK_NAME = "Plasma Healing",
-			SPECIES_PERK_DESC = "Plasmamen can heal wounds by consuming plasma.",
+			SPECIES_PERK_NAME = "等离子治疗",
+			SPECIES_PERK_DESC = "等离子人可以通过食用等离子体来治疗伤口。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "hard-hat",
-			SPECIES_PERK_NAME = "Protective Helmet",
-			SPECIES_PERK_DESC = "Plasmamen's helmets provide them shielding from the flashes of welding, as well as an inbuilt flashlight.",
+			SPECIES_PERK_NAME = "防护头盔",
+			SPECIES_PERK_DESC = "等离子人的头盔能为其抵挡焊接的闪光，并内置手电筒。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Living Torch",
-			SPECIES_PERK_DESC = "Plasmamen instantly ignite when their body makes contact with oxygen.",
+			SPECIES_PERK_NAME = "活体火炬",
+			SPECIES_PERK_DESC = "等离子人的身体接触氧气时会立即点燃。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "briefcase-medical",
-			SPECIES_PERK_NAME = "Complex Biology",
-			SPECIES_PERK_DESC = "Plasmamen take specialized medical knowledge to be \
-				treated. Do not expect speedy revival, if you are lucky enough to get \
-				one at all.",
+			SPECIES_PERK_NAME = "复杂生物学",
+			SPECIES_PERK_DESC = "治疗等离子人需要专门的医学知识。\
+				别指望能迅速复活，能不能复活 \
+				还得看你运气。",
 		),
 	)
 

@@ -6,7 +6,7 @@
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
-/mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job", hand_first = TRUE)
+/mob/living/carbon/human/proc/get_assignment(if_no_id = "无证件", if_no_job = "无职务", hand_first = TRUE)
 	var/obj/item/card/id/id = get_idcard(hand_first)
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE))
 		return if_no_id
@@ -55,7 +55,7 @@
 	// We need to account for real name
 	if(force_real_name)
 		var/disguse_name = get_visible_name(add_id_name = add_id_name, force_real_name = FALSE)
-		return "[real_name][disguse_name == real_name ? "" : " (as [disguse_name])"]"
+		return "[real_name][disguse_name == real_name ? "" : "（伪装为 [disguse_name]）"]"
 
 	// We're just some unknown guy
 	if(HAS_TRAIT(src, TRAIT_UNKNOWN_APPEARANCE) || HAS_TRAIT(src, TRAIT_INVISIBLE_MAN))
@@ -67,7 +67,7 @@
 		if(normal_id_name == face_name)
 			return id_name // (this turns "John" into "Captain John")
 		if(add_id_name)
-			return "[face_name] (as [id_name])"
+			return "[face_name]（伪装为 [id_name]）"
 
 	// Just go down the list of stuff we recorded
 	return face_name || id_name || "Unknown"
@@ -125,10 +125,10 @@
 	. = ..()
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
 		if(check_chunky_fingers())
-			balloon_alert(src, "fingers are too big!")
+			balloon_alert(src, "手指太粗了！")
 			return FALSE
 	if(HAS_TRAIT(src, TRAIT_NOGUNS))
-		to_chat(src, span_warning("You can't bring yourself to use a ranged weapon!"))
+		to_chat(src, span_warning("你实在没法下手使用远程武器！"))
 		return FALSE
 
 /mob/living/carbon/human/proc/check_chunky_fingers()
@@ -361,7 +361,7 @@
 /mob/living/carbon/human/proc/item_heal(mob/user, brute_heal, burn_heal, heal_message_brute, heal_message_burn, required_bodytype)
 	var/obj/item/bodypart/affecting = src.get_bodypart(check_zone(user.zone_selected))
 	if (!affecting || !(affecting.bodytype & required_bodytype))
-		to_chat(user, span_warning("[affecting] is already in good condition!"))
+		to_chat(user, span_warning("[affecting] 已经完全完好无损了！"))
 		return FALSE
 
 	var/brute_damaged = affecting.brute_dam > 0
@@ -369,20 +369,20 @@
 
 	var/nothing_to_heal = ((brute_heal <= 0 || !brute_damaged) && (burn_heal <= 0 || !burn_damaged))
 	if (nothing_to_heal)
-		to_chat(user, span_notice("[affecting] is already in good condition!"))
+		to_chat(user, span_notice("[affecting] 已经完全完好无损了！"))
 		return FALSE
 
 	src.update_damage_overlays()
 	var/message
 	if ((brute_damaged && brute_heal > 0) && (burn_damaged && burn_heal > 0))
-		message = "[heal_message_brute] and [heal_message_burn] on"
+		message = "[heal_message_brute]和[heal_message_burn]"
 	else if (brute_damaged && brute_heal > 0)
-		message = "[heal_message_brute] on"
+		message = "[heal_message_brute]"
 	else
-		message = "[heal_message_burn] on"
+		message = "[heal_message_burn]"
 	affecting.heal_damage(brute_heal, burn_heal, required_bodytype)
-	user.visible_message(span_notice("[user] fixes some of the [message] [src]'s [affecting.name]."), \
-		span_notice("You fix some of the [message] [src == user ? "your" : "[src]'s"] [affecting.name]."))
+	user.visible_message(span_notice("[user] 修复了 [src] 的 [affecting.name] 上的一些[message]。"), \
+		span_notice("你修复了一些[message]，位置在[src == user ? "你" : "[src]"]的 [affecting.name] 上。"))
 	return TRUE
 
 /// Sets both mob's and eye organ's eye color values

@@ -1,6 +1,6 @@
 /datum/species/snail
-	name = "\improper Snailperson"
-	plural_form = "Snailpeople"
+	name = "\improper 蜗牛人"
+	plural_form = "蜗牛人"
 	id = SPECIES_SNAIL
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
@@ -33,16 +33,16 @@
 	human.update_body(is_creating = TRUE)
 
 /datum/species/snail/get_physical_attributes()
-	return "Snailpeople emit a viscous, slippery ooze when crawling along the ground, which they are somewhat faster at than other species. \
-		They are almost purely made of water, making them extremely susceptible to shocks, and salt will scour them heavily."
+	return "蜗牛人在地面爬行时会分泌黏滑的黏液，他们爬行的速度比其他物种略快一些。\
+		他们的身体几乎完全由水构成，因此极易受到电击，盐分也会对他们造成严重灼伤。"
 
 /datum/species/snail/get_species_description()
-	return "Snailpeople are viscous, slimy beings with a shell on their back."
+	return "蜗牛人是黏稠湿滑的生物，背上长着一只壳。"
 
 /datum/species/snail/get_species_lore()
 	return list(
-		"Normally, Snailpeople are a result of a genetic experiment gone wrong, but they have since become recognized species in their own right, \
-		similar to the Felinid.",
+		"通常来说，蜗牛人是基因实验出错的产物，但他们后来已成为被认可的独立物种，\
+		与猫人类似。",
 	)
 
 /datum/species/snail/create_pref_unique_perks()
@@ -50,27 +50,27 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_RUNNING,
-		SPECIES_PERK_NAME = "Turbo",
-		SPECIES_PERK_DESC = "Snailpeople walk and run very slow, but crawl around very fast. While crawling, they leave a trail of slippery slime behind them.",
+		SPECIES_PERK_NAME = "涡轮加速",
+		SPECIES_PERK_DESC = "蜗牛人走路和奔跑都非常慢，但爬行时速度极快。爬行时他们会在身后留下一道湿滑的黏液痕迹。",
 	))
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHRIMP,
-		SPECIES_PERK_NAME = "Shelled",
-		SPECIES_PERK_DESC = "The back of a Snailperson is covered in an armored shell, which is effectively an unremovable backpack. \
-			Good for keeping your things from being stolen, but bad for needing to wear a MODsuit, or disguising.",
+		SPECIES_PERK_NAME = "有壳",
+		SPECIES_PERK_DESC = "蜗牛人的背上覆盖着带装甲的壳，实际上相当于一个无法卸下的背包。\
+			它有利于防止物品被偷，但不利于穿戴 MOD 外骨骼或进行伪装。",
 	))
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SKULL_CROSSBONES,
-		SPECIES_PERK_NAME = "Salty",
-		SPECIES_PERK_DESC = "Being evolved from Snails, Snailpeople are extremely susceptible to salt, which burns them.",
+		SPECIES_PERK_NAME = "怕盐",
+		SPECIES_PERK_DESC = "蜗牛人由蜗牛进化而来，对盐极为敏感，盐会灼伤他们。",
 	))
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_HAND_FIST,
-		SPECIES_PERK_NAME = "Squishy",
-		SPECIES_PERK_DESC = "Snailpeople are squishy and slimy, making their punches and kicks far less effective than other species.",
+		SPECIES_PERK_NAME = "软塌塌",
+		SPECIES_PERK_DESC = "蜗牛人又软又黏，使他们的拳脚攻击远不如其他物种有效。",
 	))
 	return to_add
 
@@ -89,8 +89,8 @@
 		qdel(bag)
 
 /obj/item/storage/backpack/snail
-	name = "snail shell"
-	desc = "Worn by snails as armor and storage compartment."
+	name = "蜗牛壳"
+	desc = "蜗牛将其穿在身上，作为护甲与储物舱。"
 	icon_state = "snailshell"
 	inhand_icon_state = null
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'

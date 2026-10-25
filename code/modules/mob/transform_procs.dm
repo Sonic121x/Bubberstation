@@ -33,7 +33,7 @@
 	icon = initial(icon)
 	RemoveInvisibility(type)
 	set_species(/datum/species/monkey)
-	to_chat(src, span_boldnotice("You are now \a [dna.species.name]."))
+	to_chat(src, span_boldnotice("你现在是 \a [dna.species.name]。"))
 	name = LOWER_TEXT(dna.species.name)
 	regenerate_icons()
 	set_name()
@@ -74,7 +74,7 @@
 	icon = initial(icon)
 	RemoveInvisibility(type)
 	set_species(species)
-	to_chat(src, span_boldnotice("You are now \a [dna.species.name]."))
+	to_chat(src, span_boldnotice("你现在是 \a [dna.species.name]。"))
 	SEND_SIGNAL(src, COMSIG_MONKEY_HUMANIZE)
 	return src
 
@@ -99,12 +99,12 @@
 				break
 			landmark_loc += sloc.loc
 		if(!length(landmark_loc))
-			to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
+			to_chat(src, "天哪，抱歉，我们找不到空闲的 AI 生成点，所以只能把你生成在别人身上了。")
 			for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
 				landmark_loc += sloc.loc
 
 	if(!length(landmark_loc))
-		message_admins("Could not find ai landmark for [src]. Yell at a mapper! We are spawning them at their current location.")
+		message_admins("找不到 [src] 可用的 AI 地标。快去吼地图制作者！我们将在其当前位置生成。")
 		landmark_loc += loc
 
 	if(client)
@@ -161,7 +161,7 @@
 	if(new_borg.mmi)
 		new_borg.mmi.name = "[initial(new_borg.mmi.name)]: [real_name]"
 		if(new_borg.mmi.brain)
-			new_borg.mmi.brain.name = "[real_name]'s brain"
+			new_borg.mmi.brain.name = "[real_name]的大脑"
 		if(new_borg.mmi.brainmob)
 			new_borg.mmi.brainmob.real_name = real_name //the name of the brain inside the cyborg is the robotized human's name.
 			new_borg.mmi.brainmob.name = real_name
@@ -190,12 +190,12 @@
 	return ..()
 
 /mob/living/silicon/robot/proc/replace_banned_cyborg()
-	to_chat(src, "<b>You are job banned from cyborg! Appeal your job ban if you want to avoid this in the future!</b>")
+	to_chat(src, "<b>你已被禁止担任半机械人！如果想避免今后再发生这种情况，请申诉解除职业封禁！</b>")
 	ghostize(FALSE)
 
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_notice(name)]?", check_jobban = JOB_CYBORG, poll_time = 5 SECONDS, checked_target = src, alert_pic = src, role_name_text = "cyborg")
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你想扮演 [span_notice(name)] 吗？", check_jobban = JOB_CYBORG, poll_time = 5 SECONDS, checked_target = src, alert_pic = src, role_name_text = "半机械人")
 	if(chosen_one)
-		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(src)]) to replace a jobbanned player.")
+		message_admins("[key_name_admin(chosen_one)] 已接管（[key_name_admin(src)]），以替补一名被封禁的玩家。")
 		key = chosen_one.key
 
 //human -> alien
@@ -225,7 +225,7 @@
 	new_xeno.set_combat_mode(TRUE)
 	new_xeno.PossessByPlayer(key)
 
-	to_chat(new_xeno, span_boldnotice("You are now an alien."))
+	to_chat(new_xeno, span_boldnotice("你现在是异形了。"))
 	qdel(src)
 	return new_xeno
 
@@ -257,7 +257,7 @@
 	new_slime.set_combat_mode(TRUE)
 	new_slime.PossessByPlayer(key)
 
-	to_chat(new_slime, span_boldnotice("You are now a slime. Skreee!"))
+	to_chat(new_slime, span_boldnotice("你现在是史莱姆了。嘶嘶——！"))
 	qdel(src)
 	return new_slime
 
@@ -285,7 +285,7 @@
 	new_corgi.set_combat_mode(TRUE)
 	new_corgi.PossessByPlayer(key)
 
-	to_chat(new_corgi, span_boldnotice("You are now a Corgi. Yap Yap!"))
+	to_chat(new_corgi, span_boldnotice("你现在是柯基了。汪汪！"))
 	qdel(src)
 	return new_corgi
 
@@ -308,7 +308,7 @@
 	if(mind)
 		mind.transfer_to(new_crab)
 
-	to_chat(new_crab, span_boldnotice("You have evolved into a crab!"))
+	to_chat(new_crab, span_boldnotice("你进化成了螃蟹！"))
 	qdel(src)
 	return new_crab
 
@@ -335,18 +335,18 @@
 		mind.transfer_to(new_gorilla)
 	else
 		new_gorilla.PossessByPlayer(key)
-	to_chat(new_gorilla, span_boldnotice("You are now a gorilla. Ooga ooga!"))
+	to_chat(new_gorilla, span_boldnotice("你现在是大猩猩了。喔嘎喔嘎！"))
 	qdel(src)
 	return new_gorilla
 
 /mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal) + typesof(/mob/living/basic)
-	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/mobpath = tgui_input_list(usr, "要把 [src] 变成哪种生物？", "选择类型", sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(isnull(mobpath))
 		return
 	if(!safe_animal(mobpath))
-		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
+		to_chat(usr, span_danger("抱歉，该生物类型目前不可用。"))
 		return
 
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM))
@@ -369,25 +369,25 @@
 	new_mob.PossessByPlayer(key)
 	new_mob.set_combat_mode(TRUE)
 
-	to_chat(new_mob, span_boldnotice("You suddenly feel more... animalistic."))
+	to_chat(new_mob, span_boldnotice("你突然感觉自己更……像动物了。"))
 	qdel(src)
 	return new_mob
 
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal) + typesof(/mob/living/basic)
-	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
+	var/mobpath = tgui_input_list(usr, "要把 [src] 变成哪种生物？", "选择类型", sort_list(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc)))
 	if(isnull(mobpath))
 		return
 	if(!safe_animal(mobpath))
-		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
+		to_chat(usr, span_danger("抱歉，该生物类型目前不可用。"))
 		return
 
 	var/mob/living/new_mob = new mobpath(src.loc)
 
 	new_mob.PossessByPlayer(key)
 	new_mob.set_combat_mode(TRUE)
-	to_chat(new_mob, span_boldnotice("You feel more... animalistic."))
+	to_chat(new_mob, span_boldnotice("你感觉自己更……像动物了。"))
 
 	. = new_mob
 	qdel(src)

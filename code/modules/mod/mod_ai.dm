@@ -7,43 +7,43 @@
 		return
 	// SKYRAT EDIT END
 	if(!open) //mod must be open
-		balloon_alert(user, "panel closed!")
+		balloon_alert(user, "面板已关闭！")
 		return
 	switch(interaction)
 		if(AI_TRANS_TO_CARD)
 			if(!ai_assistant)
-				balloon_alert(user, "no ai in unit!")
+				balloon_alert(user, "单元内没有 AI！")
 				return
-			balloon_alert(user, "transferring to card...")
+			balloon_alert(user, "正在转移到卡片……")
 			if(!do_after(user, 5 SECONDS, target = src))
-				balloon_alert(user, "interrupted!")
+				balloon_alert(user, "被打断！")
 				return
 			if(!ai_assistant)
-				balloon_alert(user, "no ai in unit!")
+				balloon_alert(user, "单元内没有 AI！")
 				return
-			balloon_alert(user, "ai transferred to card")
+			balloon_alert(user, "AI 已转移到卡片")
 			ai_exit_mod(card)
 
 		if(AI_TRANS_FROM_CARD) //Using an AI card to upload to the suit.
 			intAI = card.AI
 			if(!intAI)
-				balloon_alert(user, "no ai in card!")
+				balloon_alert(user, "卡片里没有 AI！")
 				return
 			if(ai_assistant)
-				balloon_alert(user, "already has ai!")
+				balloon_alert(user, "已经装有 AI！")
 				return
 			if(intAI.deployed_shell) //Recall AI if shelled so it can be checked for a client
 				intAI.disconnect_shell()
 			if(IS_UNCONSCIOUS_OR_CRIT(intAI) || !intAI.client)
-				balloon_alert(user, "ai unresponsive!")
+				balloon_alert(user, "AI 无响应！")
 				return
-			balloon_alert(user, "transferring to unit...")
+			balloon_alert(user, "正在转移到单元……")
 			if(!do_after(user, 5 SECONDS, target = src))
-				balloon_alert(user, "interrupted!")
+				balloon_alert(user, "被打断！")
 				return
 			if(ai_assistant)
 				return
-			balloon_alert(user, "ai transferred to unit")
+			balloon_alert(user, "AI 已转移到单元")
 			ai_enter_mod(intAI)
 			card.AI = null
 
@@ -73,19 +73,19 @@
 /// Place a pAI in control of your suit functions
 /obj/item/mod/control/proc/insert_pai(mob/user, obj/item/pai_card/card)
 	if (!isnull(ai_assistant))
-		balloon_alert(user, "slot occupied!")
+		balloon_alert(user, "插槽已占用！")
 		return FALSE
 	if (isnull(card.pai?.mind))
-		balloon_alert(user, "pAI unresponsive!")
+		balloon_alert(user, "个人 AI 无响应！")
 		return FALSE
-	balloon_alert(user, "transferring to unit...")
+	balloon_alert(user, "正在转移到单元……")
 	if (!do_after(user, 5 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 		return FALSE
 	if (!user.transferItemToLoc(card, src))
-		balloon_alert(user, "transfer failed!")
+		balloon_alert(user, "转移失败！")
 		return FALSE
-	balloon_alert(user, "pAI transferred to unit")
+	balloon_alert(user, "个人 AI 已转移到单元")
 	var/mob/living/silicon/pai/pai_assistant = card.pai
 	pai_assistant.can_transmit = TRUE
 	pai_assistant.can_receive = TRUE
@@ -103,18 +103,18 @@
 /// Removes pAI control from a modsuit
 /obj/item/mod/control/proc/remove_pai(mob/user, forced = FALSE)
 	if (isnull(ai_assistant))
-		balloon_alert(user, "no pAI!")
+		balloon_alert(user, "没有个人 AI！")
 		return FALSE
 	if (!forced)
 		if (!open)
-			balloon_alert(user, "panel closed!")
+			balloon_alert(user, "面板已关闭！")
 			return FALSE
-		balloon_alert(user, "uninstalling card...")
+		balloon_alert(user, "正在卸载卡片……")
 		if (!do_after(user, 5 SECONDS, target = src))
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断！")
 			return FALSE
 
-	balloon_alert(user, "pAI removed")
+	balloon_alert(user, "个人 AI 已移除")
 	var/mob/living/silicon/pai/pai_helper = ai_assistant
 	pai_helper.can_holo = TRUE
 	pai_helper.card.forceMove(get_turf(src))
@@ -123,7 +123,7 @@
 /// Called when a new ai assistant is inserted
 /obj/item/mod/control/proc/on_gained_assistant(mob/living/silicon/new_helper)
 	ai_assistant = new_helper
-	balloon_alert(new_helper, "transferred to a mod unit")
+	balloon_alert(new_helper, "已转移到 MOD 单元")
 	for(var/datum/action/action as anything in actions)
 		action.Grant(new_helper)
 
@@ -132,7 +132,7 @@
 	for(var/datum/action/action as anything in actions)
 		action.Remove(ai_assistant)
 	ai_assistant.remote_control = null
-	balloon_alert(ai_assistant, "transferred to a card")
+	balloon_alert(ai_assistant, "已转移到卡片")
 	ai_assistant = null
 
 #define MOVE_DELAY 2
@@ -178,8 +178,8 @@
 	REMOVE_TRAIT(wearer, TRAIT_FORCED_STANDING, REF(src))
 
 /obj/item/mod/ai_minicard
-	name = "AI mini-card"
-	desc = "A small card designed to eject dead AIs. You could use an intellicard to recover it."
+	name = "AI 迷你卡"
+	desc = "一张用于弹出死亡 AI 的小卡片。你可以用智能卡将其回收。"
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "minicard"
 	var/datum/weakref/stored_ai
@@ -202,7 +202,7 @@
 
 /obj/item/mod/ai_minicard/examine(mob/user)
 	. = ..()
-	. += span_notice("You see [stored_ai.resolve() || "no AI"] stored inside.")
+	. += span_notice("你看到里面存放着 [stored_ai.resolve() || "没有 AI"]。")
 
 /obj/item/mod/ai_minicard/transfer_ai(interaction, mob/user, mob/living/silicon/ai/intAI, obj/item/aicard/card)
 	. = ..()
@@ -212,17 +212,17 @@
 		return
 	var/mob/living/silicon/ai/ai = stored_ai.resolve()
 	if(!ai)
-		balloon_alert(user, "no ai!")
+		balloon_alert(user, "没有 AI！")
 		return
-	balloon_alert(user, "transferring to card...")
+	balloon_alert(user, "正在转移到卡片……")
 	if(!do_after(user, 5 SECONDS, target = src) || !ai)
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 		return
 	icon_state = "minicard"
 	ai.forceMove(card)
 	card.AI = ai
-	ai.notify_revival("You have been recovered from the wreckage!", source = card)
-	balloon_alert(user, "ai transferred to card")
+	ai.notify_revival("你已从残骸中被回收！", source = card)
+	balloon_alert(user, "AI 已转移到卡片")
 	stored_ai = null
 
 #undef AI_FALL_TIME

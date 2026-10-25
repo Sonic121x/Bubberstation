@@ -109,7 +109,7 @@
 			ADD_TRAIT(living_wrapped, TRAIT_SPIDER_CONSUMED, TRAIT_GENERIC)
 			living_wrapped.investigate_log("因被裹进茧中而死亡。", INVESTIGATE_DEATHS)
 			living_wrapped.death() //you just ate them, they're dead.
-			log_combat(owner, living_wrapped, "被蜘蛛裹入茧中")
+			log_combat(owner, living_wrapped, "用蜘蛛茧包裹了")
 		else
 			to_chat(owner, span_warning("[living_wrapped] 不能食用！"))
 

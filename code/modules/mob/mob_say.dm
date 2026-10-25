@@ -5,7 +5,7 @@ GAME_VERB(/mob, say_verb, VERB_SAY, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("语音目前已被管理员禁用。"))
 		return
 
 	//queue this message because verbs are scheduled to process after SendMaps in the tick and speech is pretty expensive when it happens.
@@ -18,7 +18,7 @@ GAME_VERB(/mob, whisper_verb, VERB_WHISPER, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("语音目前已被管理员禁用。"))
 		return
 
 	if(message)
@@ -39,7 +39,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("语音目前已被管理员禁用。"))
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -57,7 +57,7 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 
 	if(filter_result && !filterproof)
 		//The filter warning message shows the sanitized message though.
-		to_chat(src, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules."))
+		to_chat(src, span_warning("该消息含有 IC 聊天中禁止使用的词汇！请查阅服务器规则。"))
 		to_chat(src, span_warning("\"[message]\""))
 		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
 		log_filter("IC", message, filter_result)
@@ -65,18 +65,18 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 		return FALSE
 
 	if(soft_filter_result && !filterproof)
-		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr,"你的消息包含“[soft_filter_result[CHAT_FILTER_INDEX_WORD]]”。“[soft_filter_result[CHAT_FILTER_INDEX_REASON]]”，你确定还要发送吗？", "软屏蔽词", list("Yes", "No")) != "Yes")
 			SSblackbox.record_feedback("tally", "soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 			log_filter("Soft IC", message, filter_result)
 			return FALSE
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[html_encode(message)]\"")
-		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[message]\"")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 通过了针对“[soft_filter_result[CHAT_FILTER_INDEX_WORD]]”的软屏蔽，其可能正在使用不被允许的词汇。消息：“[html_encode(message)]”")
+		log_admin_private("[key_name(usr)] 通过了针对“[soft_filter_result[CHAT_FILTER_INDEX_WORD]]”的软屏蔽，其可能正在使用不被允许的词汇。消息：“[message]”")
 		SSblackbox.record_feedback("tally", "passed_soft_ic_blocked_words", 1, LOWER_TEXT(config.soft_ic_filter_regex.match))
 		log_filter("Soft IC (Passed)", message, filter_result)
 
 	if(client && !(ignore_spam || forced))
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, span_danger("You cannot speak IC (muted)."))
+			to_chat(src, span_danger("你无法进行 IC 说话（已被禁言）。"))
 			return FALSE
 		if(client.handle_spam_prevention(message, MUTE_IC))
 			return FALSE
@@ -89,9 +89,9 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 
 	if(!..()) // the can_speak check
 		if(HAS_MIND_TRAIT(src, TRAIT_MIMING))
-			to_chat(src, span_green("Your vow of silence prevents you from speaking!"))
+			to_chat(src, span_green("你的缄默誓言让你无法说话！"))
 		else
-			to_chat(src, span_warning("You find yourself unable to speak!"))
+			to_chat(src, span_warning("你发现自己无法说话！"))
 		return FALSE
 
 	return TRUE
@@ -114,12 +114,12 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 	var/alt_name = ""
 
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("语音目前已被管理员禁用。"))
 		return
 
 	//SKYRAT EDIT ADDITION
 	if(!GLOB.dchat_allowed && !check_rights(R_ADMIN, FALSE))
-		to_chat(src, "<span class='danger'>Dead chat is currently muted.</span>")
+		to_chat(src, "<span class='danger'>死者聊天目前已被禁言。</span>")
 		return
 	//SKYRAT EDIT END
 
@@ -128,17 +128,17 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 		return
 
 	if(jb)
-		to_chat(src, span_danger("You have been banned from deadchat."))
+		to_chat(src, span_danger("你已被禁止使用死者聊天。"))
 		return
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, span_danger("You cannot talk in deadchat (muted)."))
+			to_chat(src, span_danger("你无法在死者聊天中发言（已被禁言）。"))
 			return
 
 		if(SSlag_switch.measures[SLOWMODE_SAY] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES) && src == usr)
 			if(!COOLDOWN_FINISHED(client, say_slowmode))
-				to_chat(src, span_warning("Message not sent due to slowmode. Please wait [SSlag_switch.slowmode_cooldown/10] seconds between messages.\n\"[message]\""))
+				to_chat(src, span_warning("由于慢速模式，消息未发送。请在两条消息之间等待 [SSlag_switch.slowmode_cooldown/10] 秒。\n“[message]”"))
 				return
 			COOLDOWN_START(client, say_slowmode, SSlag_switch.slowmode_cooldown)
 
@@ -154,10 +154,10 @@ GAME_VERB(/mob, me_verb, VERB_ME, null)
 		else
 			name = real_name
 		if(name != real_name)
-			alt_name = " (died as [real_name])"
+			alt_name = "（死亡时名为 [real_name]）"
 
 	var/spanned = generate_messagepart(message)
-	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
+	var/source = "<span class='game'><span class='prefix'>死者：</span> <span class='name'>[name]</span>[alt_name]"
 	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
 	log_talk(message, LOG_SAY, tag="DEAD")
 	if(SEND_SIGNAL(src, COMSIG_MOB_DEADSAY, message) & MOB_DEADSAY_SIGNAL_INTERCEPT)

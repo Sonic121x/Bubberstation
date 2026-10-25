@@ -32,8 +32,8 @@
 	data["suit_status"] = suit_status
 	// User information
 	var/user_status = list(
-		"user_name" = wearer ? (wearer.get_authentification_name("Unknown") || "Unknown") : "",
-		"user_assignment" = wearer ? wearer.get_assignment("Unknown", "Unknown", FALSE) : "",
+		"user_name" = wearer ? (wearer.get_authentification_name("未知") || "未知") : "",
+		"user_assignment" = wearer ? wearer.get_assignment("未知", "未知", FALSE) : "",
 	)
 	data["user_status"] = user_status
 	// Module information
@@ -87,15 +87,15 @@
 	if(.)
 		return
 	if(malfunctioning && prob(MOD_MALFUNCTION_PROB))
-		balloon_alert(ui.user, "button malfunctions!")
+		balloon_alert(ui.user, "按钮失灵！")
 		return
 	switch(action)
 		if("lock")
 			if(!locked || allowed(ui.user))
 				locked = !locked
-				balloon_alert(ui.user, "[locked ? "locked" : "unlocked"]")
+				balloon_alert(ui.user, "[locked ? "已锁定" : "已解锁"]")
 			else
-				balloon_alert(ui.user, "access insufficent!")
+				balloon_alert(ui.user, "权限不足！")
 				playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		if("call")
 			if(!mod_link.link_call)

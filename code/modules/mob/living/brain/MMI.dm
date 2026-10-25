@@ -86,7 +86,7 @@
 		user.visible_message(span_notice("[user] 把 [newbrain] 塞进了 [src]。"), span_notice("随着你插入 [newbrain]，[src] 的指示灯变成了红色。它的脑波活动警报嗡嗡作响。"))
 		brain = newbrain
 		brain.organ_flags |= ORGAN_FROZEN
-		name = "[initial(name)]: [copytext(newbrain.name, 1, -8)]"
+		name = "[initial(name)]: [replacetext(replacetext(newbrain.name, "的大脑", ""), "'s brain", "")]"
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -154,7 +154,7 @@
 		new_brain.forceMove(src)
 		brain = new_brain
 		brain.organ_flags |= ORGAN_FROZEN
-		name = "[initial(name)]: [copytext(new_brain.name, 1, -8)]"
+		name = "[initial(name)]: [replacetext(replacetext(new_brain.name, "的大脑", ""), "'s brain", "")]"
 		update_appearance()
 		return TRUE
 

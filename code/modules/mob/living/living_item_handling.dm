@@ -47,9 +47,9 @@
 		return FALSE
 	var/atom/movable/thrown_thing
 	var/obj/item/held_item = get_active_held_item()
-	var/verb_text = pick("throw", "toss", "hurl", "chuck", "fling")
+	var/verb_text = pick("扔出去", "抛出去", "掷出去", "甩出去", "投出去")
 	if(prob(0.5))
-		verb_text = "yeet"
+		verb_text = "猛甩出去"
 	var/neckgrab_throw = FALSE // we can't check for if it's a neckgrab throw when totaling up power_throw since we've already stopped pulling them by then, so get it early
 	var/frequency_number = 1 //We assign a default frequency number for the sound of the throw.
 	if(!held_item)
@@ -61,7 +61,7 @@
 					neckgrab_throw = TRUE
 				stop_pulling()
 				if(HAS_TRAIT(src, TRAIT_PACIFISM) || HAS_TRAIT(src, TRAIT_NO_THROWING))
-					to_chat(src, span_notice("You gently let go of [throwable_mob]."))
+					to_chat(src, span_notice("你轻轻松开了 [throwable_mob]。"))
 					return FALSE
 	else
 		thrown_thing = held_item.on_thrown(src, target)
@@ -71,7 +71,7 @@
 		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 		var/turf/end_T = get_turf(target)
 		if(start_T && end_T)
-			log_combat(src, thrown_thing, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
+			log_combat(src, thrown_thing, "扔出", addition="从 [AREACOORD(start_T)] 处抓起，扔向 [AREACOORD(end_T)] 处")
 	var/power_throw = 0
 	var/extra_throw_range = HAS_TRAIT(src, TRAIT_THROWINGARM) ? 2 : 0
 
@@ -103,19 +103,19 @@
 			verb_text = thrown_item.throw_verb
 	do_attack_animation(target, no_effect = 1)
 	var/sound/throwsound = 'sound/items/weapons/throw.ogg'
-	var/power_throw_text = "."
+	var/power_throw_text = "。"
 	if(power_throw > 0) //If we have anything that boosts our throw power like hulk, we use the rougher heavier variant.
 		throwsound = 'sound/items/weapons/throwhard.ogg'
-		power_throw_text = " really hard!"
+		power_throw_text = "，用尽全力！"
 	if(power_throw < 0) //if we have anything that weakens our throw power like dward, we use a slower variant.
 		throwsound = 'sound/items/weapons/throwsoft.ogg'
-		power_throw_text = " flimsily."
+		power_throw_text = "，软绵绵地。"
 	frequency_number = frequency_number + (rand(-5,5)/100); //Adds a bit of randomness in the frequency to not sound exactly the same.
 	//The volume of the sound takes the minimum between the distance thrown or the max range an item, but no more than 50. Short throws are quieter. A fast throwing speed also makes the noise sharper.
 	playsound(src, throwsound, clamp(8*min(get_dist(loc,target),thrown_thing.throw_range), 10, 50), vary = TRUE, extrarange = -1, frequency = frequency_number)
-	visible_message(span_danger("[src] [verb_text][plural_s(verb_text)] [thrown_thing][power_throw_text]"), \
-					span_danger("You [verb_text] [thrown_thing][power_throw_text]"))
-	log_message("has thrown [thrown_thing] [power_throw_text]", LOG_ATTACK)
+	visible_message(span_danger("[src] 把 [thrown_thing] [verb_text][power_throw_text]"), \
+					span_danger("你把 [thrown_thing] [verb_text][power_throw_text]"))
+	log_message("扔出了 [thrown_thing][power_throw_text]", LOG_ATTACK)
 
 	var/drift_force = max(0.5 NEWTONS, 1 NEWTONS + power_throw)
 	if (isitem(thrown_thing))
@@ -135,52 +135,52 @@
  */
 /mob/living/proc/give(mob/living/offered, obj/item/item_bypass)
 	if(has_status_effect(/datum/status_effect/offering))
-		to_chat(src, span_warning("You're already offering something!"))
+		to_chat(src, span_warning("你已经在递东西了！"))
 		return
 
 	if(src.incapacitated)
-		to_chat(src, span_warning("You're unable to offer anything in your current state!"))
+		to_chat(src, span_warning("你现在这个状态没法递出任何东西！"))
 		return
 
 	var/obj/item/offered_item = item_bypass ? item_bypass : get_active_held_item()
 	// if it's an abstract item, should consider it to be non-existent (unless it's a HAND_ITEM, which means it's an obj/item that is just a representation of our hand)
 	if(!offered_item || ((offered_item.item_flags & ABSTRACT && !HAS_TRAIT(offered_item, TRAIT_BORG_GIVE)) && !HAS_TRAIT(offered_item, TRAIT_OFFERED_WHEN_PULLED) && !(offered_item.item_flags & HAND_ITEM)))
-		to_chat(src, span_warning("You're not holding anything to offer!"))
+		to_chat(src, span_warning("你手上没有东西可以递出！"))
 		return
 
 	if(offered)
 		if(offered == src)
 			if(!swap_hand(get_inactive_hand_index())) //have to swap hands first to take something
-				to_chat(src, span_warning("You try to take [offered_item] from yourself, but fail."))
+				to_chat(src, span_warning("你试图从自己身上拿走 [offered_item]，但失败了。"))
 				return
 			if(!put_in_active_hand(offered_item))
-				to_chat(src, span_warning("You try to take [offered_item] from yourself, but fail."))
+				to_chat(src, span_warning("你试图从自己身上拿走 [offered_item]，但失败了。"))
 				return
 			else
-				to_chat(src, span_notice("You take [offered_item] from yourself."))
+				to_chat(src, span_notice("你从自己身上拿走了 [offered_item]。"))
 				return
 
 		if(offered.incapacitated)
-			to_chat(src, span_warning("[offered.p_Theyre()] unable to take anything in [offered.p_their()] current state!"))
+			to_chat(src, span_warning("[offered] 现在这个状态，什么也拿不了！"))
 			return
 
 		if(!offered.IsReachableBy(src))
-			to_chat(src, span_warning("You have to be beside [offered.p_them()]!"))
+			to_chat(src, span_warning("你得待在 [offered] 身边才行！"))
 			return
 
 		if(!HAS_TRAIT(offered, TRAIT_CAN_HOLD_ITEMS))
-			to_chat(src, span_warning("[offered.p_They()] can't hold anything you offer!"))
+			to_chat(src, span_warning("[offered] 没法拿住你递出的任何东西！"))
 			return
 	else if(!(locate(/mob/living) in orange(1, src)))
-		to_chat(src, span_warning("There's nobody beside you to take it!"))
+		to_chat(src, span_warning("你身边没有人能接过去！"))
 		return
 
 	if(offered_item.on_offered(src)) // see if the item interrupts with its own behavior
 		return
 
-	balloon_alert_to_viewers("offers something")
-	visible_message(span_notice("[src] is offering [offered ? "[offered] " : ""][offered_item]."), \
-					span_notice("You offer [offered ? "[offered] " : ""][offered_item]."), null, 2)
+	balloon_alert_to_viewers("递出物品")
+	visible_message(span_notice("[src] 正把 [offered ? "[offered] " : ""][offered_item] 递给别人。"), \
+					span_notice("你把 [offered ? "[offered] " : ""][offered_item] 递了出去。"), null, 2)
 
 	apply_status_effect(/datum/status_effect/offering, offered_item, null, offered)
 
@@ -196,27 +196,27 @@
 /mob/living/proc/take(mob/living/offerer, obj/item/offered_item, bypass)
 	clear_alert("[offerer]")
 	if(src.incapacitated)
-		to_chat(src, span_warning("You're unable to take anything in your current state!"))
+		to_chat(src, span_warning("你现在这个状态什么也拿不了！"))
 		return
 	if(get_dist(src, offerer) > 1)
-		to_chat(src, span_warning("[offerer] is out of range!"))
+		to_chat(src, span_warning("[offerer] 不在范围内！"))
 		return
 	if(!offered_item || offerer.get_active_held_item() != offered_item && !bypass)
-		to_chat(src, span_warning("[offerer] is no longer holding the item they were offering!"))
+		to_chat(src, span_warning("[offerer] 已经不再拿着要递出的物品了！"))
 		return
 	if(!get_empty_held_indexes())
-		to_chat(src, span_warning("You have no empty hands!"))
+		to_chat(src, span_warning("你没有空着的手！"))
 		return
 
 	if(offered_item.on_offer_taken(offerer, src)) // see if the item has special behavior for being accepted
 		return
 
 	if(!offerer.temporarilyRemoveItemFromInventory(offered_item))
-		visible_message(span_notice("[offerer] tries to hand over [offered_item] but it's stuck to them...."))
+		visible_message(span_notice("[offerer] 想把 [offered_item] 递过来，但它粘在对方身上……"))
 		return
 
-	visible_message(span_notice("[src] takes [offered_item] from [offerer]."), \
-					span_notice("You take [offered_item] from [offerer]."))
+	visible_message(span_notice("[src] 从 [offerer] 手中接过了 [offered_item]。"), \
+					span_notice("你从 [offerer] 手中接过了 [offered_item]。"))
 	offered_item.do_pickup_animation(src, offerer)
 	put_in_hands(offered_item)
 

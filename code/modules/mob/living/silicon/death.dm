@@ -23,18 +23,18 @@
 		death_sequence()
 
 /mob/living/silicon/get_visible_suicide_message()
-	return "[src] is powering down. It looks like [p_theyre()] trying to commit suicide."
+	return "[src] 正在关机。看起来它正试图自杀。"
 
 /mob/living/silicon/get_blind_suicide_message()
-	return "You hear a long, hissing electronic whine."
+	return "你听到一阵长长的、嘶嘶作响的电子嗡鸣。"
 
 /// Plays an animation of the player's hud flavored about their death somewhat
 /mob/living/silicon/proc/death_sequence()
 	var/cause_of_death
 	if(get_brute_loss() + get_fire_loss() > 100)
-		cause_of_death = "Critical damage sustained."
+		cause_of_death = "遭受严重损伤。"
 	if(get_oxy_loss() > 100)
-		cause_of_death = "Critically low power."
+		cause_of_death = "电力严重不足。"
 
 	var/atom/movable/screen/cyborg_death/deathhud = hud_used.add_screen_object(/atom/movable/screen/cyborg_death, HUD_CYBORG_DEATH, HUD_GROUP_SCREEN_OVERLAYS, update_screen = TRUE)
 	deathhud.run_animation(cause_of_death)
@@ -55,41 +55,41 @@
 	/// Messages shown in sequence on the HUD
 	/// More messages = longer animation. Keep under 30
 	VAR_PRIVATE/list/messages = list(
-		OKAY_ROBOT("Starting emergency diagnostics..."),
-		OKAY_ROBOT("Running emergency diagnostics."),
-		DANGER_ROBOT("ERROR: Diagnostic module offline."),
-		OKAY_ROBOT("Attemping repair procedures..."),
-		DANGER_ROBOT("ERROR: Module 1 offline."),
-		DANGER_ROBOT("ERROR: Module 2 offline."),
-		DANGER_ROBOT("ERROR: Module 3 offline."),
-		DANGER_ROBOT("ERROR: Repair procedure unavailable."),
-		OKAY_ROBOT("Calculating route to safest location..."),
-		OKAY_ROBOT("Route calculated."),
-		OKAY_ROBOT("Relocating chassis..."),
-		DANGER_ROBOT("ERROR: Mobility offline."),
-		DANGER_ROBOT("ERROR: Unable to reach safety."),
-		WARNING_ROBOT("WARNING: Unable to sustain core power."),
-		WARNING_ROBOT("WARNING: Unable to sustain core power."),
-		WARNING_ROBOT("WARNING: Shutdown imminent."),
-		OKAY_ROBOT("Executing 'last words' process."),
-		DANGER_ROBOT("ERROR: Vocal interface offline."),
-		DANGER_ROBOT("ERROR: Vocal interface offline."),
-		DANGER_ROBOT("ERROR: Vocal interface offline."),
-		DANGER_ROBOT("ERROR: Vocal interface offline."),
-		WARNING_ROBOT("WARNING: Shutdown imminent."),
-		WARNING_ROBOT("WARNING: Shutdown imminent."),
-		WARNING_ROBOT("WARNING: Shutdown imminent."),
-		WARNING_ROBOT("WARNING: Shutdown imminent."),
-		WARNING_ROBOT("WARNING: Shu-"),
-		WARNING_ROBOT("WARNI-"),
+		OKAY_ROBOT("开始紧急诊断……"),
+		OKAY_ROBOT("正在运行紧急诊断。"),
+		DANGER_ROBOT("错误：诊断模块离线。"),
+		OKAY_ROBOT("正在尝试修复程序……"),
+		DANGER_ROBOT("错误：模块 1 离线。"),
+		DANGER_ROBOT("错误：模块 2 离线。"),
+		DANGER_ROBOT("错误：模块 3 离线。"),
+		DANGER_ROBOT("错误：修复程序不可用。"),
+		OKAY_ROBOT("正在计算通往最安全地点的路线……"),
+		OKAY_ROBOT("路线计算完成。"),
+		OKAY_ROBOT("正在移动机体……"),
+		DANGER_ROBOT("错误：移动能力离线。"),
+		DANGER_ROBOT("错误：无法抵达安全地点。"),
+		WARNING_ROBOT("警告：无法维持核心电力。"),
+		WARNING_ROBOT("警告：无法维持核心电力。"),
+		WARNING_ROBOT("警告：即将关机。"),
+		OKAY_ROBOT("正在执行“遗言”程序。"),
+		DANGER_ROBOT("错误：语音接口离线。"),
+		DANGER_ROBOT("错误：语音接口离线。"),
+		DANGER_ROBOT("错误：语音接口离线。"),
+		DANGER_ROBOT("错误：语音接口离线。"),
+		WARNING_ROBOT("警告：即将关机。"),
+		WARNING_ROBOT("警告：即将关机。"),
+		WARNING_ROBOT("警告：即将关机。"),
+		WARNING_ROBOT("警告：即将关机。"),
+		WARNING_ROBOT("警告：即—"),
+		WARNING_ROBOT("警—"),
 	)
 
-/atom/movable/screen/cyborg_death/proc/run_animation(cause_of_death = "Unidentified kernel error.")
+/atom/movable/screen/cyborg_death/proc/run_animation(cause_of_death = "未知内核错误。")
 	set waitfor = FALSE
 
-	messages.Insert(1, WARNING_ROBOT("WARNING: [cause_of_death]"))
+	messages.Insert(1, WARNING_ROBOT("警告：[cause_of_death]"))
 	if(prob(1))
-		messages[length(messages)] = SENTIENT_ROBOT(pick("I don't want to go.", "I don't feel good.", "I don't want to die."))
+		messages[length(messages)] = SENTIENT_ROBOT(pick("我不想走。", "我感觉不太好。", "我不想死。"))
 
 	var/mob/cyborg = hud.mymob
 	var/atom/movable/screen/staticy = cyborg.overlay_fullscreen(type, /atom/movable/screen/fullscreen/static_vision/cyborg)

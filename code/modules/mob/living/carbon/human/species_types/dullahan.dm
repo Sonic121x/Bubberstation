@@ -1,5 +1,5 @@
 /datum/species/dullahan
-	name = "Dullahan"
+	name = "无头骑士"
 	id = SPECIES_DULLAHAN
 	examine_limb_id = SPECIES_HUMAN
 	inherent_traits = list(
@@ -73,7 +73,7 @@
 	if(isnull(dullahan.drop_location()))
 		return // don't gib nullspace
 	my_head = null
-	dullahan.investigate_log("has been gibbed by having an illegal head put on [dullahan.p_their()] shoulders.", INVESTIGATE_DEATHS)
+	dullahan.investigate_log("因被人在肩头装上非法的头颅而被撕成了碎块。", INVESTIGATE_DEATHS)
 	dullahan.gib(DROP_ALL_REMAINS) // Yeah so giving them a head on their body is really not a good idea, so their original head will remain but uh, good luck fixing it after that.
 
 /// If our head is destroyed, so are we
@@ -83,7 +83,7 @@
 	if(QDELETED(human))
 		return // guess we already died
 	my_head = null
-	human.investigate_log("has been gibbed by the loss of [human.p_their()] head.", INVESTIGATE_DEATHS)
+	human.investigate_log("因失去头颅而被撕成了碎块。", INVESTIGATE_DEATHS)
 	human.gib(DROP_ALL_REMAINS)
 
 /// Head was butchered? No more dullahan
@@ -141,18 +141,18 @@
 	owner_first_client_connection_handled = TRUE
 
 /datum/species/dullahan/get_physical_attributes()
-	return "A dullahan is much like a human, but their head is detached from their body and must be carried around."
+	return "无头骑士与人类十分相似，但他们的头颅与身体分离，必须随身抱着走。"
 
 /datum/species/dullahan/get_species_description()
-	return "An angry spirit, hanging onto the land of the living for \
-		unfinished business. Or that's what the books say. They're quite nice \
-		when you get to know them."
+	return "一个满怀怒气的亡魂，为了未了之事而滞留在生者的土地上。\
+		至少书上是这么说的。真正认识他们之后，\
+		你会发现他们其实相当友善。"
 
 /datum/species/dullahan/get_species_lore()
 	return list(
-		"\"No wonder they're all so grumpy! Their hands are always full! I used to think, \
-		\"Wouldn't this be cool?\" but after watching these creatures suffer from their head \
-		getting dunked down disposals for the nth time, I think I'm good.\" - Captain Larry Dodd"
+		"“难怪他们一个个脾气都这么差！他们的手总是腾不出来！我以前还想过，‘这难道不酷吗？’\
+		可在看着这些家伙一次又一次脑袋被塞进垃圾管道之后，\
+		我觉得我还是算了吧。”——拉里·多德舰长"
 	)
 
 /datum/species/dullahan/create_pref_unique_perks()
@@ -161,10 +161,10 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "horse-head",
-		SPECIES_PERK_NAME = "Headless and Horseless",
-		SPECIES_PERK_DESC = "Dullahans must lug their head around in their arms. While \
-			many creative uses can come out of your head being independent of your \
-			body, Dullahans will find it mostly a pain.",
+		SPECIES_PERK_NAME = "无头亦无马",
+		SPECIES_PERK_DESC = "无头骑士必须用手臂抱着自己的头到处走。虽然头颅脱离身体\
+			能带来许多富有创意的用法，\
+			但无头骑士大多只觉得这是件麻烦事。",
 	))
 
 	return to_add
@@ -176,11 +176,11 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "skull",
-		SPECIES_PERK_NAME = "Minor Undead",
-		SPECIES_PERK_DESC = "[name] are minor undead. \
-			Minor undead enjoy some of the perks of being dead, like \
-			not needing to breathe or eat, but do not get many of the \
-			environmental immunities involved with being fully undead.",
+		SPECIES_PERK_NAME = "次级亡灵",
+		SPECIES_PERK_DESC = "[name] 属于次级亡灵。\
+			次级亡灵享有死亡状态的一些好处，比如\
+			不需要呼吸或进食，但无法获得完全亡灵\
+			所具备的许多环境免疫。",
 	))
 
 	return to_add
@@ -212,8 +212,8 @@
 	decay_factor = 0
 
 /obj/item/organ/eyes/dullahan
-	name = "head vision"
-	desc = "An abstraction."
+	name = "头部视觉"
+	desc = "一种抽象概念。"
 	actions_types = list(/datum/action/item_action/organ_action/dullahan)
 	zone = BODY_ZONE_CHEST
 	organ_flags = parent_type::organ_flags | ORGAN_UNREMOVABLE
@@ -221,8 +221,8 @@
 	tint = INFINITY // to switch the vision perspective to the head on species_gain() without issue.
 
 /datum/action/item_action/organ_action/dullahan
-	name = "Toggle Perspective"
-	desc = "Switch between seeing normally from your head, or blindly from your body."
+	name = "切换视角"
+	desc = "在正常用头部观看与用身体盲目感知之间切换。"
 
 /datum/action/item_action/organ_action/dullahan/do_effect(trigger_flags)
 	var/obj/item/organ/eyes/dullahan/dullahan_eyes = target
@@ -236,7 +236,7 @@
 
 
 /obj/item/dullahan_relay
-	name = "dullahan relay"
+	name = "无头骑士中继"
 	/// The mob (a dullahan) that owns this relay.
 	var/mob/living/owner
 
@@ -270,7 +270,7 @@
 	detached_head.voice = headless.voice
 	detached_head.pitch = pitch
 	var/obj/item/organ/brain/brain = locate(/obj/item/organ/brain) in detached_head
-	brain.name = "[headless.name]'s brain"
+	brain.name = "[headless.name]的大脑"
 
 	detached_head.copy_appearance_from(headless, overwrite_eyes = TRUE)
 	detached_head.update_icon_dropped()

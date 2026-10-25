@@ -1,6 +1,6 @@
 /datum/species/moth
-	name = "\improper Mothman"
-	plural_form = "Mothmen"
+	name = "\improper 蛾族人"
+	plural_form = "蛾族人"
 	id = SPECIES_MOTH
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	mutant_bodyparts = list("moth_markings" = "None") // SKYRAT EDIT CHANGE - ORIGINAL: body_markings = list(/datum/bodypart_overlay/simple/body_marking/moth = "None")
@@ -36,27 +36,27 @@
 	return features
 
 /datum/species/moth/get_physical_attributes()
-	return "Moths have large and fluffy wings, which help them navigate the station if gravity is offline by pushing the air around them. \
-		Due to that, it isn't of much use out in space. Their eyes are very sensitive."
+	return "蛾族人有一对宽大而蓬松的翅膀，在重力失效时能推动周围的空气，帮助他们在站内移动。\
+		也正因如此，这对翅膀在太空中没什么用处。他们的眼睛非常敏感。"
 
 /datum/species/moth/get_species_description()
-	return "Hailing from a planet that was lost long ago, the moths travel \
-		the galaxy as a nomadic people aboard a colossal fleet of ships, seeking a new homeland."
+	return "蛾族人的母星早已失落，他们作为一个游牧民族，\
+		乘坐庞大的舰队在银河中漂泊，寻找新的家园。"
 
 /datum/species/moth/get_species_lore()
 	return list(
-		"Their homeworld lost to the ages, the moths live aboard the Grand Nomad Fleet. \
-		Made up of what could be found, bartered, repaired, or stolen the armada is a colossal patchwork \
-		built on a history of politely flagging travelers down and taking their things. Occasionally a moth \
-		will decide to leave the fleet, usually to strike out for fortunes to send back home.",
+		"他们的母星已随岁月湮没，蛾族人居住在大游牧舰队上。\
+		这支舰队由能找到、以物易物换来、修复或偷来的一切拼凑而成，是一支庞大的拼装舰队，\
+		其历史建立在礼貌地拦下旅人、然后拿走他们东西的基础上。偶尔会有蛾族人 \
+		决定离开舰队，通常是为了闯荡发财并将财富寄回家乡。",
 
-		"Nomadic life produces a tight-knit culture, with moths valuing their friends, family, and vessels highly. \
-		Moths are gregarious by nature and do best in communal spaces. This has served them well on the galactic stage, \
-		maintaining a friendly and personable reputation even in the face of hostile encounters. \
-		It seems that the galaxy has come to accept these former pirates.",
+		"游牧生活造就了紧密团结的文化，蛾族人极为珍视朋友、家人与飞船。\
+		蛾族人生性合群，最适合在公共空间中生活。这一点在银河舞台上对他们大有裨益，\
+		即便面对敌对遭遇，他们也能保持友善可亲的声誉。\
+		看来银河已经接纳了这些昔日的海盗。",
 
-		"Surprisingly, living together in a giant fleet hasn't flattened variance in dialect and culture. \
-		These differences are welcomed and encouraged within the fleet for the variety that they bring.",
+		"令人意外的是，在庞大舰队中共同生活并没有抹平方言与文化的差异。\
+		舰队内部欢迎并鼓励这些差异，因为它们带来了多样性。",
 	)
 
 /datum/species/moth/create_pref_unique_perks()
@@ -66,28 +66,28 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "feather-alt",
-			SPECIES_PERK_NAME = "Precious Wings",
-			SPECIES_PERK_DESC = "Moths can fly in pressurized, zero-g environments and safely land short falls using their wings.",
+			SPECIES_PERK_NAME = "珍贵的翅膀",
+			SPECIES_PERK_DESC = "蛾族人能在有压的零重力环境中飞行，并借助翅膀安全缓冲短距离坠落。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "tshirt",
-			SPECIES_PERK_NAME = "Meal Plan",
-			SPECIES_PERK_DESC = "Moths can eat clothes for temporary nourishment.",
+			SPECIES_PERK_NAME = "餐饮计划",
+			SPECIES_PERK_DESC = "蛾族人可以吃衣服来获得暂时的营养。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Ablazed Wings",
-			SPECIES_PERK_DESC = "Moth wings are fragile, and can be easily burnt off.",
+			SPECIES_PERK_NAME = "燃烧的翅膀",
+			SPECIES_PERK_DESC = "蛾族人的翅膀很脆弱，很容易被烧掉。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = "Bright Lights",
-			SPECIES_PERK_DESC = "Moths need an extra layer of flash protection to protect \
-				themselves, such as against security officers or when welding. Welding \
-				masks will work.",
+			SPECIES_PERK_NAME = "强光",
+			SPECIES_PERK_DESC = "蛾族人需要额外的防闪光保护来保护 \
+				自己，例如防范安保人员或在焊接时。焊接 \
+				面罩即可奏效。",
 		),
 	)
 
