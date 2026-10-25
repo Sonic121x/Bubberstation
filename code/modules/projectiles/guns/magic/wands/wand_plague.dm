@@ -1,7 +1,7 @@
 /// Makes the target cough out frogs and locusts and such
 /obj/item/gun/magic/wand/plague
-	name = "pestilent wand"
-	desc = "A vile implement which forces its victims' bodies to disgorge frogs and insects."
+	name = "瘟疫魔杖"
+	desc = "一件邪恶的器具，能迫使受害者的身体将青蛙和昆虫呕吐出来。"
 	school = SCHOOL_CONJURATION
 	ammo_type = /obj/item/ammo_casing/magic/plague
 	icon_state = "plaguewand"
@@ -32,7 +32,7 @@
 
 /// Makes the target sick with frogs
 /obj/projectile/magic/plague
-	name = "pestilent bolt"
+	name = "瘟疫魔弹"
 	icon_state = "blastwave"
 	damage = 20
 	damage_type = TOX

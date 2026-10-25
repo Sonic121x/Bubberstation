@@ -8,11 +8,11 @@
 	///The map generator modules that we will generate and sync to.
 	var/list/datum/map_generator_module/modules = list()
 
-	var/buildmode_name = "Undocumented"
+	var/buildmode_name = "未记录"
 
 /datum/map_generator/New()
 	..()
-	if(buildmode_name == "Undocumented")
+	if(buildmode_name == "未记录")
 		buildmode_name = copytext_char("[type]", 20) // / d a t u m / m a p g e n e r a t o r / = 20 characters.
 	initialiseModules()
 
@@ -136,58 +136,58 @@
 // HERE BE DEBUG DRAGONS //
 ///////////////////////////
 
-ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "Test Nature Map Generator", "Test the nature map generator", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "测试自然地图生成器", "测试自然地图生成器", ADMIN_CATEGORY_DEBUG)
 	var/datum/map_generator/nature/N = new()
-	var/startInput = input(user, "Start turf of Map, (X;Y;Z)", "Map Gen Settings", "1;1;1") as text|null
+	var/startInput = input(user, "地图起始地块（X;Y;Z）", "地图生成设置", "1;1;1") as text|null
 
 	if (isnull(startInput))
 		return
 
-	var/endInput = input(user, "End turf of Map (X;Y;Z)", "Map Gen Settings", "[world.maxx];[world.maxy];[user.mob.z]") as text|null
+	var/endInput = input(user, "地图结束地块（X;Y;Z）", "地图生成设置", "[world.maxx];[world.maxy];[user.mob.z]") as text|null
 	if (isnull(endInput))
 		return
 
 	//maxx maxy and current z so that if you fuck up, you only fuck up one entire z level instead of the entire universe
 	if(!startInput || !endInput)
-		to_chat(user, "Missing Input")
+		to_chat(user, "缺少输入")
 		return
 
 	var/list/startCoords = splittext(startInput, ";")
 	var/list/endCoords = splittext(endInput, ";")
 	if(!startCoords || !endCoords)
-		to_chat(user, "Invalid Coords")
-		to_chat(user, "Start Input: [startInput]")
-		to_chat(user, "End Input: [endInput]")
+		to_chat(user, "坐标无效")
+		to_chat(user, "起始输入：[startInput]")
+		to_chat(user, "结束输入：[endInput]")
 		return
 
 	var/turf/Start = locate(text2num(startCoords[1]),text2num(startCoords[2]),text2num(startCoords[3]))
 	var/turf/End = locate(text2num(endCoords[1]),text2num(endCoords[2]),text2num(endCoords[3]))
 	if(!Start || !End)
-		to_chat(user, "Invalid Turfs")
-		to_chat(user, "Start Coords: [startCoords[1]] - [startCoords[2]] - [startCoords[3]]")
-		to_chat(user, "End Coords: [endCoords[1]] - [endCoords[2]] - [endCoords[3]]")
+		to_chat(user, "地块无效")
+		to_chat(user, "起始坐标：[startCoords[1]] - [startCoords[2]] - [startCoords[3]]")
+		to_chat(user, "结束坐标：[endCoords[1]] - [endCoords[2]] - [endCoords[3]]")
 		return
 
 	var/static/list/clusters = list(
-		"None" = CLUSTER_CHECK_NONE,
-		"All" = CLUSTER_CHECK_ALL,
-		"Sames" = CLUSTER_CHECK_SAMES,
-		"Differents" = CLUSTER_CHECK_DIFFERENTS,
-		"Same turfs" = CLUSTER_CHECK_SAME_TURFS,
-		"Same atoms" = CLUSTER_CHECK_SAME_ATOMS,
-		"Different turfs" = CLUSTER_CHECK_DIFFERENT_TURFS,
-		"Different atoms" = CLUSTER_CHECK_DIFFERENT_ATOMS,
-		"All turfs" = CLUSTER_CHECK_ALL_TURFS,
-		"All atoms" = CLUSTER_CHECK_ALL_ATOMS,
+		"无" = CLUSTER_CHECK_NONE,
+		"全部" = CLUSTER_CHECK_ALL,
+		"同类" = CLUSTER_CHECK_SAMES,
+		"异类" = CLUSTER_CHECK_DIFFERENTS,
+		"相同地块" = CLUSTER_CHECK_SAME_TURFS,
+		"相同原子" = CLUSTER_CHECK_SAME_ATOMS,
+		"不同地块" = CLUSTER_CHECK_DIFFERENT_TURFS,
+		"不同原子" = CLUSTER_CHECK_DIFFERENT_ATOMS,
+		"所有地块" = CLUSTER_CHECK_ALL_TURFS,
+		"所有原子" = CLUSTER_CHECK_ALL_ATOMS,
 	)
 
-	var/moduleClusters = input("Cluster Flags (Cancel to leave unchanged from defaults)","Map Gen Settings") as null|anything in clusters
+	var/moduleClusters = input("集群标志（取消则保持默认不变）","地图生成设置") as null|anything in clusters
 	//null for default
 
 	var/theCluster = 0
-	if(moduleClusters != "None")
+	if(moduleClusters != "无")
 		if(!clusters[moduleClusters])
-			to_chat(user, "Invalid Cluster Flags")
+			to_chat(user, "集群标志无效")
 			return
 		theCluster = clusters[moduleClusters]
 	else
@@ -198,9 +198,9 @@ ADMIN_VERB(debug_nature_map_generator, R_DEBUG, "Test Nature Map Generator", "Te
 			M.clusterCheckFlags = theCluster
 
 
-	to_chat(user, "Defining Region")
+	to_chat(user, "正在定义区域")
 	N.defineRegion(Start, End)
-	to_chat(user, "Region Defined")
-	to_chat(user, "Generating Region")
+	to_chat(user, "区域已定义")
+	to_chat(user, "正在生成区域")
 	N.generate()
-	to_chat(user, "Generated Region")
+	to_chat(user, "区域已生成")

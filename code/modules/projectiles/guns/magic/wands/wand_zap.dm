@@ -2,8 +2,8 @@
  * It's just a classic taser
  */
 /obj/item/gun/magic/wand/zap
-	name = "wand of zapping"
-	desc = "This wand overloads the nerves of your enemies with potent lightning."
+	name = "电击魔杖"
+	desc = "这根魔杖用强烈的闪电让敌人的神经过载。"
 	school = SCHOOL_EVOCATION
 	ammo_type = /obj/item/ammo_casing/magic/zap
 	icon_state = "teslawand"
@@ -33,7 +33,7 @@
 
 /// A magic taser electrode
 /obj/projectile/magic/zap
-	name = "spark"
+	name = "电火花"
 	icon_state = "spark"
 	color = COLOR_YELLOW
 	paralyze = 10 SECONDS

@@ -2,8 +2,8 @@
  * Levitation wand applies anti-gravity to target.
  */
 /obj/item/gun/magic/wand/levitate
-	name = "lifting rod"
-	desc = "The power of this rod lifts living creatures off the ground, potentially leaving them unable to move."
+	name = "升举之杖"
+	desc = "这根短杖的力量能把活物托离地面，使其可能无法移动。"
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/levitate
 	icon_state = "gravwand"
@@ -22,7 +22,7 @@
 
 	charges--
 	playsound(user, fire_sound, 50, TRUE)
-	user.visible_message(span_suicide("[user] inverts gravity inside of [user.p_their()] body!"))
+	user.visible_message(span_suicide("[user] 把 [user.p_their()] 身体里的重力倒转了过来！"))
 	var/mob/living/carbon/organ_haver = user
 	for (var/obj/item/organ/organ as anything in organ_haver.organs)
 		organ.Remove(user)
@@ -39,7 +39,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/levitate
-	name = "bolt of levitation"
+	name = "升举魔弹"
 	icon_state = "bluespace"
 
 /obj/projectile/magic/levitate/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -56,13 +56,13 @@
 	alert_type = null
 
 /datum/status_effect/levitate/on_apply()
-	owner.visible_message(span_warning("[owner] floats into the air!"))
+	owner.visible_message(span_warning("[owner] 漂浮到了空中！"))
 	owner.AddElement(/datum/element/forced_gravity, 0)
 	owner.add_filter("antigrav_glow", 2, list("type" = "outline", "color" = "#de3aff48", "size" = 2))
 	return ..()
 
 /datum/status_effect/levitate/on_remove()
-	owner.visible_message(span_notice("[owner] gently descends to the ground"))
+	owner.visible_message(span_notice("[owner] 缓缓落回地面"))
 	owner.RemoveElement(/datum/element/forced_gravity, 0)
 	owner.remove_filter("antigrav_glow")
 	return ..()

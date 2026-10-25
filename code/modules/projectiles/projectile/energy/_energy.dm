@@ -1,5 +1,5 @@
 /obj/projectile/energy
-	name = "energy"
+	name = "能量弹"
 	icon_state = "spark"
 	damage = 0
 	damage_type = BURN

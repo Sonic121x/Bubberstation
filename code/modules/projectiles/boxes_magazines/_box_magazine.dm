@@ -1,7 +1,7 @@
 //Boxes of ammo
 /obj/item/ammo_box
 	name = "ammo box (null_reference_exception)"
-	desc = "A box of ammo."
+	desc = "一盒弹药。"
 	icon = 'icons/obj/weapons/guns/ammo.dmi'
 	abstract_type = /obj/item/ammo_box
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -21,7 +21,7 @@
 	///type that the magazine will be searching for, rejects if not a subtype of
 	var/ammo_type = /obj/item/ammo_casing
 	/// wording used for individual units of ammo, e.g. cartridges (regular ammo), shells (shotgun shells)
-	var/casing_phrasing = "round"
+	var/casing_phrasing = "子弹"
 	///maximum amount of ammo in the magazine
 	var/max_ammo = 7
 	///Controls how sprites are updated for the ammo box; see defines in combat.dm: AMMO_BOX_ONE_SPRITE; AMMO_BOX_PER_BULLET; AMMO_BOX_FULL_EMPTY
@@ -85,8 +85,8 @@
 	var/list/readout = list()
 
 	if(caliber && max_ammo) // Text references a 'magazine' as only magazines generally have the caliber variable initialized
-		readout += "Up to [span_warning("[max_ammo] [caliber] [casing_phrasing]s")] can be found within this magazine. \
-		\nAccidentally discharging any of these projectiles may void your insurance contract."
+		readout += "这个弹匣内最多可装 [span_warning("[max_ammo] 发 [caliber] [casing_phrasing]")]。 \
+		\n意外击发其中任何一枚弹丸都可能导致你的保险合约失效。"
 
 	var/obj/item/ammo_casing/mag_ammo = get_and_shuffle_round()
 
@@ -201,11 +201,11 @@
 /obj/item/ammo_box/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(IS_WRITING_UTENSIL(tool))
 		if(!ammo_band_icon)
-			balloon_alert(user, "no indicator support!")
+			balloon_alert(user, "不支持指示色！")
 			return
-		var/new_color = tgui_color_picker(user, "Set a new ammo band color, cancel to remove indicator", "Ammo Box Indicator Color", ammo_band_color)
+		var/new_color = tgui_color_picker(user, "设置新的弹药带颜色，取消则移除指示色", "弹药盒指示色", ammo_band_color)
 		ammo_band_color = new_color
-		balloon_alert(user, "indicator updated")
+		balloon_alert(user, "指示色已更新")
 		update_appearance()
 		return
 
@@ -249,7 +249,7 @@
 
 	if(num_loaded)
 		if(!silent)
-			to_chat(user, span_notice("You load [num_loaded > 1 ? "[num_loaded] [casing_phrasing]s" : "a [casing_phrasing]"] into \the [src]!"))
+			to_chat(user, span_notice("你将 [num_loaded > 1 ? "[num_loaded] 发 [casing_phrasing]" : "一发 [casing_phrasing]"] 装入了 \the [src]！"))
 			playsound(src, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
 		update_appearance()
 
@@ -264,7 +264,7 @@
 	if(!user.is_holding(src) || !user.put_in_hands(A)) //incase they're using TK
 		A.bounce_away(FALSE, NONE)
 	playsound(src, 'sound/items/weapons/gun/general/mag_bullet_insert.ogg', 60, TRUE)
-	to_chat(user, span_notice("You remove a [casing_phrasing] from [src]!"))
+	to_chat(user, span_notice("你从 [src] 中取出了一发 [casing_phrasing]！"))
 	update_appearance()
 
 /obj/item/ammo_box/examine(mob/user)
@@ -273,10 +273,10 @@
 	var/obj/item/ammo_casing/top_round = get_round()
 	if(!top_round)
 		return
-	. += "It has <b>[shells_left]</b> [casing_phrasing]\s remaining."
+	. += "里面还剩 <b>[shells_left]</b> 发 [casing_phrasing]。"
 	// this is kind of awkward phrasing, but it's the top/ready ammo in the box
 	// intended for people who have like three mislabeled magazines
-	. += span_notice("\A <b>[top_round]</b> is ready.")
+	. += span_notice("顶部的 <b>[top_round]</b> 已就绪。")
 
 /obj/item/ammo_box/update_icon_state()
 	. = ..()
@@ -302,8 +302,8 @@
 	return ammo_band_image
 
 /obj/item/ammo_box/magazine
-	name = "A magazine (what?)"
-	desc = "A magazine of rounds, they look like error signs... this should probably be reported somewhere."
+	name = "弹匣（这是什么？）"
+	desc = "一个装满子弹的弹匣，看上去就像错误图标……这大概得上报给谁。"
 	abstract_type = /obj/item/ammo_box/magazine
 	ammo_box_multiload = AMMO_BOX_MULTILOAD_IN // so you can't use a magazine like a bootleg speedloader
 	drop_sound = 'sound/items/handling/gun/ballistics/magazine/magazine_drop1.ogg'

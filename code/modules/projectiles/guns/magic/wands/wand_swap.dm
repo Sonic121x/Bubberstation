@@ -2,8 +2,8 @@
  * Swaps you with something you hit.
  */
 /obj/item/gun/magic/wand/swap
-	name = "switching rod"
-	desc = "Exchanges the position of the wielder and an unanchored object they point at."
+	name = "交换之杖"
+	desc = "将持杖者与其所指的未固定物体的位置互换。"
 	school = SCHOOL_TRANSLOCATION
 	ammo_type = /obj/item/ammo_casing/magic/swap
 	icon_state = "swapwand"
@@ -13,14 +13,14 @@
 
 /obj/item/gun/magic/wand/swap/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	to_chat(user, span_notice("You swap places with yourself! Amazing!"))
+	to_chat(user, span_notice("你与自己交换了位置！太神奇了！"))
 	var/obj/effect/particle_effect/fluid/smoke/poof_in = new (get_turf(user))
 	poof_in.lifetime = 5 DECISECONDS
 	charges--
 
 /obj/item/gun/magic/wand/swap/do_suicide(mob/living/user)
 	. = ..()
-	user.visible_message(span_suicide("As the smoke clears, [user] is lying completely alive on [get_turf(user)]."))
+	user.visible_message(span_suicide("烟雾散去后，[user] 好端端地躺在 [get_turf(user)] 上。"))
 	return SHAME
 
 /obj/item/ammo_casing/magic/swap
@@ -28,7 +28,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/swap
-	name = "bolt of switching"
+	name = "交换魔弹"
 	icon_state = "magicm"
 	projectile_phasing = PASSTABLE | PASSGLASS | PASSGRILLE
 

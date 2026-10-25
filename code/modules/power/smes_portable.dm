@@ -1,8 +1,8 @@
 // idea inspired by vgstation, original pr on github vgstation-coders/vgstation13#4555
 
 /obj/machinery/power/smes/connector
-	name = "power connector"
-	desc = "A user-safe high-current contact port, used for connecting and interfacing with portable power storage units. Practically useless without one."
+	name = "电力接口"
+	desc = "一个对使用者安全的大电流接触端口，用于连接便携式储能单元并与之对接。没有它，那些单元基本毫无用处。"
 	icon_state = "battery_port"
 	base_icon_state = "battery_port"
 	circuit = /obj/item/circuitboard/machine/smes/connector
@@ -67,7 +67,7 @@
 	PRIVATE_PROC(TRUE)
 
 	if(connected_smes)
-		balloon_alert(user, "disconnect SMES first!")
+		balloon_alert(user, "请先断开 SMES！")
 		return FALSE
 	return TRUE
 
@@ -97,7 +97,7 @@
 
 /obj/machinery/power/smes/connector/ui_interact(mob/user, datum/tgui/ui)
 	if(!connected_smes)
-		balloon_alert(user, "no power bank!")
+		balloon_alert(user, "没有储能单元！")
 		return FALSE
 
 	return ..()
@@ -107,8 +107,8 @@
 
 /// The actual portable part of the portable SMES system. Pretty useless without an actual connector.
 /obj/machinery/smesbank
-	name = "portable power storage unit"
-	desc = "A portable, high-capacity superconducting magnetic energy storage (SMES) unit. Requires a separate power connector port to actually interface with power networks."
+	name = "便携式储能单元"
+	desc = "一台便携式大容量超导磁储能（SMES）单元。需要单独的电力接口端口才能真正接入电网。"
 	icon = 'icons/obj/machines/engine/other.dmi'
 	icon_state = "port_smes"
 	base_icon_state = "port_smes"
@@ -164,24 +164,24 @@
 		return
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[connected_port ? "Disconnect" : "Connect"]"
+		context[SCREENTIP_CONTEXT_LMB] = "[connected_port ? "断开" : "连接"]"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_CROWBAR && panel_open && !connected_port)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/smesbank/examine(user)
 	. = ..()
-	. += span_notice("its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "拧上" : "拧开"]。")
 	if(connected_port)
-		. += span_notice("You need to [EXAMINE_HINT("unwrench")] from the port before deconstructing.")
+		. += span_notice("拆解前需要先用[EXAMINE_HINT("扳手")]把它从端口上卸下。")
 	else
 		if(panel_open)
-			. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
-		. += span_notice("It should be [EXAMINE_HINT("wrenched")] onto a connector port to operate.")
+			. += span_notice("它可以用[EXAMINE_HINT("撬棍")]撬开。")
+		. += span_notice("需要先用[EXAMINE_HINT("扳手")]把它固定到接口端口上才能运行。")
 
 /obj/machinery/smesbank/Destroy()
 	disconnect_port()
@@ -209,10 +209,10 @@
 		if(!wrench.use_tool(src, user, 8 SECONDS))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message( \
-			"[user] disconnects [src].", \
-			span_notice("You unfasten [src] from [connected_port]."), \
-			span_hear("You hear a ratchet."))
-		investigate_log("was disconnected from [connected_port] by [key_name(user)].", INVESTIGATE_ENGINE)
+			"[user] 断开了 [src]。", \
+			span_notice("你把 [src] 从 [connected_port] 上卸下。"), \
+			span_hear("你听到棘轮声。"))
+		investigate_log("被 [key_name(user)] 从 [connected_port] 上断开。", INVESTIGATE_ENGINE)
 		disconnect_port()
 		update_appearance(UPDATE_OVERLAYS)
 		return ITEM_INTERACT_SUCCESS
@@ -223,11 +223,11 @@
 	if(!connect_port(possible_connector, user))
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message( \
-		"[user] connects [src].", \
-		span_notice("You fasten [src] to [possible_connector]."), \
-		span_hear("You hear a ratchet."))
+		"[user] 连接了 [src]。", \
+		span_notice("你把 [src] 固定到 [possible_connector] 上。"), \
+		span_hear("你听到棘轮声。"))
 	update_appearance(UPDATE_OVERLAYS)
-	investigate_log("was connected to [possible_connector] by [key_name(user)].", INVESTIGATE_ENGINE)
+	investigate_log("被 [key_name(user)] 连接到 [possible_connector]。", INVESTIGATE_ENGINE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/smesbank/update_icon_state()
@@ -239,7 +239,7 @@
 
 /obj/machinery/smesbank/crowbar_act(mob/living/user, obj/item/tool)
 	if(connected_port)
-		balloon_alert(user, "disconnect from [connected_port] first!")
+		balloon_alert(user, "请先从 [connected_port] 上断开！")
 		return ITEM_INTERACT_FAILURE
 
 	return default_deconstruction_crowbar(user, tool)
@@ -257,13 +257,13 @@
 
 	if(QDELETED(possible_connector))
 		if(user)
-			balloon_alert(user, "no connector!")
+			balloon_alert(user, "没有接口！")
 		return FALSE
 
 	//Make sure not already connected to something else
 	if(possible_connector.panel_open)
 		if(user)
-			balloon_alert(user, "close connector panel!")
+			balloon_alert(user, "请先合上接口面板！")
 		return FALSE
 
 	//Perform the connection
@@ -300,8 +300,8 @@
 			break
 
 /obj/machinery/smesbank/super
-	name = "super capacity power storage unit"
-	desc = "A portable, super-capacity, superconducting magnetic energy storage (SMES) unit. Relatively rare, and typically installed in long-range outposts where minimal maintenance is expected."
+	name = "超大容量储能单元"
+	desc = "一台便携式超大容量超导磁储能（SMES）单元。相当稀有，通常安装在预期几乎无需维护的远程前哨站。"
 	circuit = /obj/item/circuitboard/machine/smesbank/super
 
 /obj/machinery/smesbank/super/full

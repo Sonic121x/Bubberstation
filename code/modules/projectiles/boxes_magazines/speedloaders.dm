@@ -1,6 +1,6 @@
 /obj/item/ammo_box/speedloader
-	name = "speed loader (base type)"
-	desc = "This shouldn't be here. Report this to a coder, thanks!"
+	name = "快速装弹器（基础类型）"
+	desc = "这东西不该出现在这里。请向程序员报告，谢谢！"
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	ammo_box_multiload = (AMMO_BOX_MULTILOAD_IN | AMMO_BOX_MULTILOAD_OUT_LOADED)
 	// You can feed ammo in from a box (assuming someone ever codes a relevant ammo box),
@@ -8,8 +8,8 @@
 	// but you can't use it to teleport six bullets into a detached rifle magazine.
 
 /obj/item/ammo_box/speedloader/c357
-	name = "speed loader (.357)"
-	desc = "Designed to quickly reload seven-chamber .357 revolvers."
+	name = "快速装弹器（.357）"
+	desc = "用于快速为七膛 .357 左轮手枪装弹。"
 	icon_state = "357"
 	ammo_type = /obj/item/ammo_casing/c357
 	max_ammo = 7
@@ -19,28 +19,28 @@
 	ammo_band_color = null
 
 /obj/item/ammo_box/speedloader/c357/match
-	name = "speed loader (.357 Match)"
-	desc = parent_type::desc + " Match rounds are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "快速装弹器（.357 竞赛弹）"
+	desc = parent_type::desc + " 竞赛弹在极严格的公差内制造，很容易用它们炫出花式射击。"
 	ammo_type = /obj/item/ammo_casing/c357/match
 	ammo_band_color = "#77828a"
 
 /obj/item/ammo_box/speedloader/c357/phasic
-	name = "speed loader (.357 Phasic)"
-	desc = parent_type::desc + " Phasic rounds, also known as 'Ghost Lead', are specially manufactured to pass through non-organic material. Somehow."
+	name = "快速装弹器（.357 相位弹）"
+	desc = parent_type::desc + " 相位弹又称“幽灵铅”，经过特殊制造，可以径直穿过非有机材质。天知道是怎么办到的。"
 	ammo_type = /obj/item/ammo_casing/c357/phasic
 	ammo_band_color = "#693a6a"
 
 /obj/item/ammo_box/speedloader/c357/heartseeker
-	name = "speed loader (.357 Heartseeker)"
-	desc = parent_type::desc + " Heartseeker rounds veer into targets with exceptional precision using an unknown method. \
-		It apparently predicts movement using neural pulses in the brain, but that's less marketable. \
-		As seen in the hit NTFlik horror-space western film, Forget-Me-Not, brought to you by Roseus Galactic!"
+	name = "快速装弹器（.357 寻心弹）"
+	desc = parent_type::desc + " 寻心弹会以不明方法极其精准地转向扑向目标。 \
+		据说它能利用大脑中的神经脉冲预测目标动向，不过这卖点不太好宣传。 \
+		详见 NTFlik 大热太空恐怖西部片《勿忘我》，由罗塞乌斯银河影业出品！"
 	ammo_type = /obj/item/ammo_casing/c357/heartseeker
 	ammo_band_color = "#a91e1e"
 
 /obj/item/ammo_box/speedloader/c38
-	name = "speed loader (.38)"
-	desc = "Designed to quickly reload six-chamber .38 Special revolvers."
+	name = "快速装弹器（.38）"
+	desc = "用于快速为六膛 .38 特种左轮手枪装弹。"
 	icon_state = "38"
 	base_icon_state = "38"
 	ammo_type = /obj/item/ammo_casing/c38
@@ -63,64 +63,64 @@
 		. += "38-[boolet::lead_or_laser]-[inserted_ammo]"
 
 /obj/item/ammo_box/speedloader/c38/trac
-	name = "speed loader (.38 TRAC)"
-	desc = parent_type::desc + " TRAC bullets embed a tracking implant within the target's body."
+	name = "快速装弹器（.38 追踪弹）"
+	desc = parent_type::desc + " 追踪弹会在目标体内植入一枚追踪植入体。"
 	ammo_type = /obj/item/ammo_casing/c38/trac
 	ammo_band_color = COLOR_AMMO_TRACK
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.75, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ammo_box/speedloader/c38/match
-	name = "speed loader (.38 Match)"
-	desc = parent_type::desc + " Match bullets are manufactured within extremely tight tolerances, making them easy to show off trickshots with."
+	name = "快速装弹器（.38 竞赛弹）"
+	desc = parent_type::desc + " 竞赛弹在极严格的公差内制造，很容易用它们炫出花式射击。"
 	ammo_type = /obj/item/ammo_casing/c38/match
 	ammo_band_color = COLOR_AMMO_MATCH
 
 /obj/item/ammo_box/speedloader/c38/match/bouncy
-	name = "speed loader (.38 Rubber)"
-	desc = parent_type::desc + " Rubber rounds are incredibly bouncy and MOSTLY less-lethal, making them great to show off trickshots with."
+	name = "快速装弹器（.38 橡胶弹）"
+	desc = parent_type::desc + " 橡胶弹弹性极强，且大体上属于低致命弹药，非常适合用来炫技。"
 	ammo_type = /obj/item/ammo_casing/c38/match/bouncy
 	ammo_band_color = COLOR_AMMO_RUBBER
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
 
 /obj/item/ammo_box/speedloader/c38/true
-	name = "speed loader (.38 True Strike)"
-	desc = parent_type::desc + " True Strike bullets bounce towards new targets with surprising accuracy after ricocheting."
+	name = "快速装弹器（.38 必中弹）"
+	desc = parent_type::desc + " 必中弹在跳弹之后会以惊人的精度弹向新的目标。"
 	ammo_type = /obj/item/ammo_casing/c38/match/true
 	ammo_band_color = COLOR_AMMO_TRUESTRIKE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 0.75)
 
 /obj/item/ammo_box/speedloader/c38/dumdum
-	name = "speed loader (.38 DumDum)"
-	desc = parent_type::desc + " DumDum bullets expand on impact, reducing outright stopping power but \
-		shredding targets and causing massive bleeding in close range, \
-		at the cost of suffering greatly against armor and distant targets."
+	name = "快速装弹器（.38 达姆弹）"
+	desc = parent_type::desc + " 达姆弹命中后会扩张，牺牲了直接的停止作用， \
+		却能在近距离撕碎目标并造成大量出血， \
+		代价是对付护甲和远距离目标时极为乏力。"
 	ammo_type = /obj/item/ammo_casing/c38/dumdum
 	ammo_band_color = COLOR_AMMO_DUMDUM
 
 /obj/item/ammo_box/speedloader/c38/hotshot
-	name = "speed loader (.38 Hot Shot)"
-	desc = parent_type::desc + " Hot Shot bullets contain an incendiary payload that ignites struck targets."
+	name = "快速装弹器（.38 炽热弹）"
+	desc = parent_type::desc + " 炽热弹内装有燃烧装药，可点燃被命中的目标。"
 	ammo_type = /obj/item/ammo_casing/c38/hotshot
 	ammo_band_color = COLOR_AMMO_HOTSHOT
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.75)
 
 /obj/item/ammo_box/speedloader/c38/iceblox
-	name = "speed loader (.38 Iceblox)"
-	desc = parent_type::desc + " Iceblox bullets contain a cryogenic payload that lower the body temperature of struck targets."
+	name = "快速装弹器（.38 冰封弹）"
+	desc = parent_type::desc + " 冰封弹内装有低温装药，可降低被命中目标的体温。"
 	ammo_type = /obj/item/ammo_casing/c38/iceblox
 	ammo_band_color = COLOR_AMMO_ICEBLOX
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 0.75)
 
 /obj/item/ammo_box/speedloader/c38/flare
-	name = "speed loader (.38 Flare)"
-	desc = parent_type::desc + " Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	name = "快速装弹器（.38 照明弹）"
+	desc = parent_type::desc + " 照明弹弹壳会朝目标发射一束集中的粒子束，把目标照亮给所有人看。"
 	ammo_type = /obj/item/ammo_casing/c38/flare
 	ammo_band_color = COLOR_AMMO_HELLFIRE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ammo_box/speedloader/strilka310
-	name = "stripper clip (.310 Strilka)"
-	desc = "A five-round stripper clip for .310 Strilka rifles."
+	name = "弹夹（.310 斯特里尔卡）"
+	desc = "一个用于 .310 斯特里尔卡步枪的五发弹夹。"
 	icon_state = "310_strip"
 	ammo_type = /obj/item/ammo_casing/strilka310
 	max_ammo = 5
@@ -128,13 +128,13 @@
 	caliber = CALIBER_STRILKA310
 
 /obj/item/ammo_box/speedloader/strilka310/surplus
-	name = "stripper clip (.310 Surplus)"
-	desc = parent_type::desc + " This one has a few spots of rust where there's not excessive amounts of gun grease."
+	name = "弹夹（.310 军剩弹）"
+	desc = parent_type::desc + " 这一件在枪油没糊住的地方有那么几处锈斑。"
 	ammo_type = /obj/item/ammo_casing/strilka310/surplus
 
 /obj/item/ammo_box/speedloader/strilka310/phasic
-	name = "stripper clip (.310 Phasic)"
-	desc = parent_type::desc + " These should come with phasic bullets, \
-		hastily developed after an incident where a misfire resulted in the destruction of Atrakor Silverscale's priceless Vigoxian Fabergé egg. \
-		These fancy bullets pass right though valuables until they end up in a far less expensive human skull."
+	name = "弹夹（.310 相位弹）"
+	desc = parent_type::desc + " 这里面应该装着相位弹， \
+		它们是在一次走火毁掉阿特拉科·银鳞的无价维戈星法贝热彩蛋之后匆忙研发出来的。 \
+		这些花哨的子弹会径直穿过贵重物品，直到最后钻进某个远没那么值钱的人类头骨里。"
 	ammo_type = /obj/item/ammo_casing/strilka310/phasic

@@ -1,7 +1,7 @@
 /obj/item/gun/energy/event_horizon
-	name = "\improper Event Horizon anti-existential beam rifle"
-	desc = "The deranged minds of Nanotrasen, in their great hubris and spite, have birthed forth the definitive conclusion to the arms race. Weaponized black holes, and a platform to deliver them.\
-		To look upon this existential maleficence is to know that the pursuit of profit has consigned all life to this pathetic conclusion; the destruction of reality itself."
+	name = "\improper 事件视界反存在光束步枪"
+	desc = "纳米传讯那些疯狂的头脑，怀着极大的傲慢与恶意，孕育出了军备竞赛的最终答案——武器化的黑洞，以及将黑洞投射出去的平台。\
+		注视这亵渎存在的恶行，你就会明白：对利润的追逐已将一切生命推向了这个可悲的结局——现实本身的毁灭。"
 	icon = 'icons/obj/weapons/guns/energy.dmi'
 	icon_state = "esniper"
 	inhand_icon_state = null
@@ -37,20 +37,20 @@
 /obj/item/gun/energy/event_horizon/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 
 	if(!HAS_TRAIT(user, TRAIT_USER_SCOPED))
-		balloon_alert(user, "must be scoped!")
+		balloon_alert(user, "必须先开镜！")
 		return
 
 	. = ..()
-	message_admins("[ADMIN_LOOKUPFLW(user)] has fired an anti-existential beam at [ADMIN_VERBOSEJMP(user)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(user)] 发射了一束反存在光束。")
 
 /obj/item/ammo_casing/energy/event_horizon
 	projectile_type = /obj/projectile/beam/event_horizon
-	select_name = "doomsday"
+	select_name = "末日"
 	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE)
 	fire_sound = 'sound/items/weapons/beam_sniper.ogg'
 
 /obj/projectile/beam/event_horizon
-	name = "anti-existential beam"
+	name = "反存在光束"
 	icon_state = null
 	hitsound = 'sound/effects/explosion/explosion3.ogg'
 	damage = 100 // Does it matter?

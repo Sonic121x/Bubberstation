@@ -31,21 +31,21 @@
 /datum/map_generator/asteroid/hollow
 	modules = list(/datum/map_generator_module/bottom_layer/asteroid_turfs, \
 		/datum/map_generator_module/border/asteroid_walls)
-	buildmode_name = "Pattern: Asteroid Room \[AIRLESS!\]"
+	buildmode_name = "图案：小行星房间 \[无空气！\]"
 
 /datum/map_generator/asteroid/hollow/random
 	modules = list(/datum/map_generator_module/bottom_layer/asteroid_turfs, \
 		/datum/map_generator_module/border/asteroid_walls, \
 		/datum/map_generator_module/splatter_layer/asteroid_walls)
-	buildmode_name = "Pattern: Asteroid Room: Splatter Walls \[AIRLESS!\]"
+	buildmode_name = "图案：小行星房间：散布岩壁 \[无空气！\]"
 
 /datum/map_generator/asteroid/hollow/random/monsters
 	modules = list(/datum/map_generator_module/bottom_layer/asteroid_turfs, \
 		/datum/map_generator_module/border/asteroid_walls, \
 		/datum/map_generator_module/splatter_layer/asteroid_walls, \
 		/datum/map_generator_module/splatter_layer/asteroid_monsters)
-	buildmode_name = "Pattern: Asteroid Room: Splatter Walls + Monsters \[AIRLESS!\]"
+	buildmode_name = "图案：小行星房间：散布岩壁 + 怪物 \[无空气！\]"
 
 /datum/map_generator/asteroid/filled
 	modules = list(/datum/map_generator_module/bottom_layer/asteroid_walls)
-	buildmode_name = "Block: Asteroid Walls"
+	buildmode_name = "区块：小行星岩壁"

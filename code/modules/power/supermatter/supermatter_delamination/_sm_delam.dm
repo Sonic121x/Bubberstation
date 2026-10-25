@@ -42,8 +42,8 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 		return FALSE
 
 	if (sm.damage >= sm.emergency_point && sm.damage_archived < sm.emergency_point)
-		sm.investigate_log("has entered the emergency point: Pending [sm.delamination_strategy.name].", INVESTIGATE_ENGINE)
-		message_admins("[ADMIN_VERBOSEJMP(sm)] has entered the emergency point: Pending [sm.delamination_strategy.name].")
+		sm.investigate_log("已进入紧急阈值：即将触发[sm.delamination_strategy.name]。", INVESTIGATE_ENGINE)
+		message_admins("[ADMIN_VERBOSEJMP(sm)] 已进入紧急阈值：即将触发[sm.delamination_strategy.name]。")
 
 	if((REALTIMEOFDAY - sm.lastwarning) < SUPERMATTER_WARNING_DELAY)
 		return FALSE
@@ -51,9 +51,9 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 
 	if(sm.damage_archived - sm.damage > SUPERMATTER_FAST_HEALING_RATE && sm.damage_archived >= sm.emergency_point) // Fast healing, engineers probably have it all sorted
 		if(sm.should_alert_common()) // We alert common once per cooldown period, otherwise alert engineering
-			sm.radio.talk_into(sm,"Crystalline hyperstructure returning to safe operating parameters. Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
+			sm.radio.talk_into(sm,"晶体超结构正在恢复至安全运行参数。完整度：[round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
 		else
-			sm.radio.talk_into(sm,"Crystalline hyperstructure returning to safe operating parameters. Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
+			sm.radio.talk_into(sm,"晶体超结构正在恢复至安全运行参数。完整度：[round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
 		playsound(sm, 'sound/machines/terminal/terminal_alert.ogg', 75)
 		return FALSE
 
@@ -73,35 +73,35 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 	// BUBBER EDIT CHANGE END
 
 	if(sm.damage >= sm.emergency_point) // In emergency
-		sm.radio.talk_into(sm, "CRYSTAL DELAMINATION IMMINENT! Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
+		sm.radio.talk_into(sm, "晶体即将崩解！完整度：[round(sm.get_integrity_percent(), 0.01)]%", sm.emergency_channel)
 		sm.lastwarning = REALTIMEOFDAY - (SUPERMATTER_WARNING_DELAY / 2) // Cut the time to next announcement in half.
 	else if(sm.damage_archived > sm.damage) // Healing, in warning
-		sm.radio.talk_into(sm,"Crystalline hyperstructure returning to safe operating parameters. Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
+		sm.radio.talk_into(sm,"晶体超结构正在恢复至安全运行参数。完整度：[round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
 		return FALSE
 	else // Taking damage, in warning
-		sm.radio.talk_into(sm, "Danger! Crystal hyperstructure integrity faltering! Integrity: [round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
+		sm.radio.talk_into(sm, "危险！晶体超结构完整度正在衰退！完整度：[round(sm.get_integrity_percent(), 0.01)]%", sm.warning_channel)
 
 	SEND_SIGNAL(sm, COMSIG_SUPERMATTER_DELAM_ALARM)
 	return TRUE
 
 /// Generates an admin message and creates an investigate log.
 /datum/sm_delam/proc/log_delamination(obj/machinery/power/supermatter_crystal/sm)
-	message_admins("[ADMIN_VERBOSEJMP(sm)] triggered a [name].")
-	sm.investigate_log("triggered a [name].", INVESTIGATE_ENGINE)
+	message_admins("[ADMIN_VERBOSEJMP(sm)] 触发了一次[name]。")
+	sm.investigate_log("触发了一次[name]。", INVESTIGATE_ENGINE)
 
 /// Called when a supermatter switches its strategy from another one to us.
 /// [/obj/machinery/power/supermatter_crystal/proc/set_delam]
 /datum/sm_delam/proc/on_select(obj/machinery/power/supermatter_crystal/sm)
 	SHOULD_CALL_PARENT(TRUE)
-	sm.investigate_log("functional strategy is now [name].", INVESTIGATE_ENGINE)
+	sm.investigate_log("当前生效的策略为[name]。", INVESTIGATE_ENGINE)
 	if(SSticker.HasRoundStarted())
-		message_admins("[ADMIN_VERBOSEJMP(sm)] functional strategy is now [name].")
+		message_admins("[ADMIN_VERBOSEJMP(sm)] 当前生效的策略为[name]。")
 
 /// Called when a supermatter switches its strategy from us to something else.
 /// [/obj/machinery/power/supermatter_crystal/proc/set_delam]
 /datum/sm_delam/proc/on_deselect(obj/machinery/power/supermatter_crystal/sm)
 	SHOULD_CALL_PARENT(TRUE)
-	sm.investigate_log("previous strategy was [name].", INVESTIGATE_ENGINE)
+	sm.investigate_log("先前的策略为[name]。", INVESTIGATE_ENGINE)
 
 /// Added to an examine return value.
 /// [/obj/machinery/power/supermatter_crystal/examine]
@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(sm_delam_list, list(
 /// First message is start of count down, second message is quitting of count down (if sm healed), third is 5 second intervals
 /datum/sm_delam/proc/count_down_messages(obj/machinery/power/supermatter_crystal/sm)
 	var/list/messages = list()
-	messages += "CRYSTAL DELAMINATION IMMINENT. The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
-	messages += "Crystalline hyperstructure returning to safe operating parameters. Failsafe has been disengaged."
-	messages += "remain before causality stabilization."
+	messages += "晶体即将崩解。超物质已达到临界完整度失效。紧急因果失稳场已激活。"
+	messages += "晶体超结构正在恢复至安全运行参数。失效保护已解除。"
+	messages += "后完成因果稳定。"
 	return messages

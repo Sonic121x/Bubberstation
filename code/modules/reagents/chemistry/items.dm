@@ -7,8 +7,8 @@
 * a pH booklet that contains pH paper pages that will change color depending on the pH of the reagents datum it's attacked onto
 */
 /obj/item/ph_booklet
-	name = "pH indicator booklet"
-	desc = "A booklet containing paper soaked in universal indicator."
+	name = "pH 指示试纸册"
+	desc = "一本装有浸过通用指示剂纸张的小册子。"
 	icon_state = "pHbooklet"
 	icon = 'icons/obj/medical/chemical.dmi'
 	item_flags = NOBLUDGEON
@@ -26,13 +26,13 @@
 		if(number_of_pages == 50)
 			icon_state = "pHbooklet_open"
 		if(!number_of_pages)
-			to_chat(user, span_warning("[src] is empty!"))
+			to_chat(user, span_warning("[src] 是空的！"))
 			add_fingerprint(user)
 			return
 		var/obj/item/ph_paper/page = new(get_turf(user))
 		page.add_fingerprint(user)
 		user.put_in_active_hand(page)
-		to_chat(user, span_notice("You take [page] out of \the [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出一张 [page]。"))
 		number_of_pages--
 		playsound(user.loc, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
 		add_fingerprint(user)
@@ -48,7 +48,7 @@
 	if(!isliving(user))
 		return
 	if(!number_of_pages)
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		add_fingerprint(user)
 		return
 	if(number_of_pages == 50)
@@ -56,7 +56,7 @@
 	var/obj/item/ph_paper/P = new(get_turf(user))
 	P.add_fingerprint(user)
 	user.put_in_active_hand(P)
-	to_chat(user, span_notice("You take [P] out of \the [src]."))
+	to_chat(user, span_notice("你从 [src] 中取出一张 [P]。"))
 	number_of_pages--
 	playsound(user.loc, 'sound/items/poster/poster_ripped.ogg', 50, TRUE)
 	add_fingerprint(user)
@@ -67,8 +67,8 @@
 * pH paper will change color depending on the pH of the reagents datum it's attacked onto
 */
 /obj/item/ph_paper
-	name = "pH indicator strip"
-	desc = "A piece of paper that will change colour depending on the pH of a solution."
+	name = "pH 指示试纸条"
+	desc = "一张会随溶液 pH 值改变颜色的纸片。"
 	icon_state = "pHpaper"
 	icon = 'icons/obj/medical/chemical.dmi'
 	item_flags = NOBLUDGEON
@@ -85,11 +85,11 @@
 	if(!LAZYLEN(cont.reagents.reagent_list))
 		return NONE
 	if(used)
-		to_chat(user, span_warning("[src] has already been used!"))
+		to_chat(user, span_warning("[src] 已经被使用过了！"))
 		return ITEM_INTERACT_BLOCKING
 	CONVERT_PH_TO_COLOR(round(cont.reagents.ph, 1), color)
-	desc += " The paper looks to be around a pH of [round(cont.reagents.ph, 1)]"
-	name = "used [name]"
+	desc += " 这张纸的 pH 值大约是 [round(cont.reagents.ph, 1)]。"
+	name = "用过的 [name]"
 	used = TRUE
 	return ITEM_INTERACT_SUCCESS
 
@@ -97,8 +97,8 @@
 * pH meter that will give a detailed or truncated analysis of all the reagents in of an object with a reagents datum attached to it. Only way of detecting purity for now.
 */
 /obj/item/ph_meter
-	name = "Chemical Analyzer"
-	desc = "An electrode attached to a small circuit box that will display details of a solution. Can be toggled to provide a description of each of the reagents. The screen currently displays nothing."
+	name = "化学分析仪"
+	desc = "一根接在小电路盒上的电极，可显示溶液的详细资料。可切换是否提供每种试剂的描述。屏幕目前什么也没显示。"
 	icon_state = "pHmeter"
 	icon = 'icons/obj/medical/chemical.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -108,10 +108,10 @@
 
 /obj/item/ph_meter/attack_self(mob/user)
 	if(scanmode == SHORTENED_CHEM_OUTPUT)
-		to_chat(user, span_notice("You switch the chemical analyzer to provide a detailed description of each reagent."))
+		to_chat(user, span_notice("你把化学分析仪切换为提供每种试剂详细描述的模式。"))
 		scanmode = DETAILED_CHEM_OUTPUT
 	else
-		to_chat(user, span_notice("You switch the chemical analyzer to not include reagent descriptions in its report."))
+		to_chat(user, span_notice("你把化学分析仪切换为报告中不包含试剂描述的模式。"))
 		scanmode = SHORTENED_CHEM_OUTPUT
 
 /obj/item/ph_meter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -122,11 +122,11 @@
 		return NONE
 	SEND_SIGNAL(interacting_with, COMSIG_ON_REAGENT_SCAN, user)
 	var/list/out_message = list()
-	to_chat(user, "<i>The chemistry meter beeps and displays:</i>")
-	out_message += "<b>Total volume: [round(cont.volume, 0.01)] Current temperature: [round(cont.reagents.chem_temp, 0.1)]K Total pH: [round(cont.reagents.ph, 0.01)]\n"
-	out_message += "Chemicals found in [interacting_with.name]:</b>\n"
+	to_chat(user, "<i>化学检测仪哔哔作响，显示出：</i>")
+	out_message += "<b>总体积：[round(cont.volume, 0.01)] 当前温度：[round(cont.reagents.chem_temp, 0.1)]K 总 pH：[round(cont.reagents.ph, 0.01)]\n"
+	out_message += "在 [interacting_with.name] 中检测到的化学物质：</b>\n"
 	if(cont.reagents.is_reacting)
-		out_message += "[span_warning("A reaction appears to be occuring currently.")]<span class='notice'>\n"
+		out_message += "[span_warning("当前似乎正在发生反应。")]<span class='notice'>\n"
 	for(var/datum/reagent/reagent as anything in cont.reagents.reagent_list) // bloodtyping if blood present in container
 		var/blood_info = null
 		if(reagent.data)
@@ -134,23 +134,23 @@
 			if(istype(blood, /datum/blood_type))
 				var/datum/blood_type/blood_type = blood
 				var/type = blood_type.get_type()
-				blood_info = "[blood_type.get_blood_name()] [type ? "(type: [type])" : ""]"
+				blood_info = "[blood_type.get_blood_name()] [type ? "（血型：[type]）" : ""]"
 			else if(blood)
-				blood_info = "[reagent.name] (type: [blood])"
+				blood_info = "[reagent.name]（血型：[blood]）"
 		if(reagent.purity < reagent.inverse_chem_val && reagent.inverse_chem) //If the reagent is impure
 			var/datum/reagent/inverse_reagent = GLOB.chemical_reagents_list[reagent.inverse_chem]
-			out_message += "[span_warning("Inverted reagent detected: ")]<span class='notice'><b>[round(reagent.volume, 0.01)]u of [inverse_reagent.name]</b>, <b>Purity:</b> [round(1 - reagent.purity, 0.000001)*100]%, [(scanmode?"[(inverse_reagent.overdose_threshold?"<b>Overdose:</b> [inverse_reagent.overdose_threshold]u, ":"")]<b>Base pH:</b> [initial(inverse_reagent.ph)], <b>Current pH:</b> [reagent.ph].":"<b>Current pH:</b> [reagent.ph].")]\n"
+			out_message += "[span_warning("检测到反转试剂：")]<span class='notice'><b>[round(reagent.volume, 0.01)]u 的 [inverse_reagent.name]</b>，<b>纯度：</b>[round(1 - reagent.purity, 0.000001)*100]%，[(scanmode?"[(inverse_reagent.overdose_threshold?"<b>过量：</b>[inverse_reagent.overdose_threshold]u，":"")]<b>基础 pH：</b>[initial(inverse_reagent.ph)]，<b>当前 pH：</b>[reagent.ph]。":"<b>当前 pH：</b>[reagent.ph]。")]\n"
 		else
-			out_message += "<b>[round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)]u of [blood_info || reagent.name]</b>, <b>Purity:</b> [round(reagent.purity, 0.000001)*100]%, [(scanmode?"[(reagent.overdose_threshold?"<b>Overdose:</b> [reagent.overdose_threshold]u, ":"")]<b>Base pH:</b> [initial(reagent.ph)], <b>Current pH:</b> [reagent.ph].":"<b>Current pH:</b> [reagent.ph].")]\n"
+			out_message += "<b>[round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)]u 的 [blood_info || reagent.name]</b>，<b>纯度：</b>[round(reagent.purity, 0.000001)*100]%，[(scanmode?"[(reagent.overdose_threshold?"<b>过量：</b>[reagent.overdose_threshold]u，":"")]<b>基础 pH：</b>[initial(reagent.ph)]，<b>当前 pH：</b>[reagent.ph]。":"<b>当前 pH：</b>[reagent.ph]。")]\n"
 		if(scanmode)
-			out_message += "<b>Analysis:</b> [reagent.description]\n"
+			out_message += "<b>分析：</b>[reagent.description]\n"
 	to_chat(user, boxed_message(span_notice("[out_message.Join()]")))
-	desc = "An electrode attached to a small circuit box that will display details of a solution. Can be toggled to provide a description of each of the reagents. The screen currently displays detected vol: [round(cont.volume, 0.01)] detected pH:[round(cont.reagents.ph, 0.1)]."
+	desc = "一根接在小电路盒上的电极，可显示溶液的详细资料。可切换是否提供每种试剂的描述。屏幕目前显示检测体积：[round(cont.volume, 0.01)]，检测 pH：[round(cont.reagents.ph, 0.1)]。"
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/burner
-	name = "burner"
-	desc = "A small table size burner used for heating up beakers."
+	name = "燃烧炉"
+	desc = "一个小巧的桌面燃烧炉，用于加热烧杯。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "burner"
 	custom_materials = list(/datum/material/paper = HALF_SHEET_MATERIAL_AMOUNT / 2)
@@ -178,28 +178,28 @@
 	if(!is_reagent_container(tool))
 		if(tool.heat >= 1000)
 			set_lit(TRUE)
-			user.visible_message(span_notice("[user] lights up the [src]."))
+			user.visible_message(span_notice("[user] 点燃了 [src]。"))
 			return ITEM_INTERACT_SUCCESS
 		return NONE
 
 	if(lit)
 		tool.reagents.expose_temperature(get_temperature())
-		to_chat(user, span_notice("You heat up the [tool] with the [src]."))
+		to_chat(user, span_notice("你用 [src] 加热了 [tool]。"))
 		playsound(user.loc, 'sound/effects/chemistry/heatdam.ogg', 50, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	if(tool.is_drainable()) //Transfer FROM it TO us. Special code so it only happens when flame is off.
 		var/obj/item/reagent_containers/container = tool
 		if(!container.reagents.total_volume)
-			to_chat(user, span_warning("[container] is empty and can't be poured!"))
+			to_chat(user, span_warning("[container] 是空的，无法倾倒！"))
 			return ITEM_INTERACT_BLOCKING
 
 		if(reagents.holder_full())
-			to_chat(user, span_warning("[src] is full."))
+			to_chat(user, span_warning("[src] 已装满。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = container.reagents.trans_to(src, container.amount_per_transfer_from_this, transferred_by = user)
-		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [container]."))
+		to_chat(user, span_notice("你把 [container] 中的 [trans] 单位内容物倒入了 [src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -211,7 +211,7 @@
 	if(is_reagent_container(interacting_with))
 		var/obj/item/reagent_containers/container = interacting_with
 		container.reagents.expose_temperature(get_temperature())
-		user.visible_message(span_notice("[user] heats up [src]."), span_notice("You heat up [src]."))
+		user.visible_message(span_notice("[user] 加热了 [src]。"), span_notice("你加热了 [src]。"))
 		playsound(user, 'sound/effects/chemistry/heatdam.ogg', 50, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -219,7 +219,7 @@
 		var/obj/item/item = interacting_with
 		if(item.get_temperature() >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 			set_lit(TRUE)
-			user.visible_message(span_notice("[user] lights up [src]."), span_notice("You light up [src]."))
+			user.visible_message(span_notice("[user] 点燃了 [src]。"), span_notice("你点燃了 [src]。"))
 			return ITEM_INTERACT_SUCCESS
 
 	return ITEM_INTERACT_BLOCKING
@@ -236,8 +236,8 @@
 		force = 5
 		damtype = BURN
 		hitsound = 'sound/items/tools/welder.ogg'
-		attack_verb_continuous = string_list(list("burns", "singes"))
-		attack_verb_simple = string_list(list("burn", "singe"))
+		attack_verb_continuous = string_list(list("烫伤", "灼烧"))
+		attack_verb_simple = string_list(list("烫伤", "灼烧"))
 		START_PROCESSING(SSobj, src)
 	else
 		hitsound = SFX_SWING_HIT
@@ -258,13 +258,13 @@
 		return
 	if(lit)
 		set_lit(FALSE)
-		user.visible_message(span_notice("[user] snuffs out [src]'s flame."))
+		user.visible_message(span_notice("[user] 掐灭了 [src] 的火焰。"))
 
 /obj/item/burner/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(lit && M.ignite_mob())
-		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(M)] on fire with [src] at [AREACOORD(user)]")
-		user.log_message("set [key_name(M)] on fire with [src]", LOG_GAME)
-		M.log_message("was set on fire by [key_name(user)] with [src]", LOG_VICTIM, log_globally = FALSE)
+		message_admins("[ADMIN_LOOKUPFLW(user)] 在 [AREACOORD(user)] 用 [src] 点燃了 [key_name_admin(M)]")
+		user.log_message("用 [src] 点燃了 [key_name(M)]", LOG_GAME)
+		M.log_message("被 [key_name(user)] 用 [src] 点燃了", LOG_VICTIM, log_globally = FALSE)
 	return ..()
 
 /obj/item/burner/process()
@@ -302,8 +302,8 @@
 	return list(/datum/reagent/fuel = 5, /datum/reagent/silicon = 10)
 
 /obj/item/thermometer
-	name = "thermometer"
-	desc = "A thermometer for checking a something's temperature."
+	name = "温度计"
+	desc = "一支用于测量某物温度的温度计。"
 	icon_state = "thermometer"
 	icon = 'icons/obj/medical/chemical.dmi'
 	item_flags = NOBLUDGEON
@@ -325,7 +325,7 @@
 	if(!user.transferItemToLoc(src, interacting_with))
 		return ITEM_INTERACT_BLOCKING
 	attached_to_reagents = interacting_with.reagents
-	to_chat(user, span_notice("You add the [src] to [interacting_with]."))
+	to_chat(user, span_notice("你把 [src] 装到了 [interacting_with] 上。"))
 	ui_interact(user)
 	return ITEM_INTERACT_SUCCESS
 
@@ -361,7 +361,7 @@
 	attached_to_reagents = null
 
 /obj/item/thermometer/proc/try_put_in_hand(obj/object, mob/living/user)
-	to_chat(user, span_notice("You remove the [src] from [attached_to_reagents.my_atom]."))
+	to_chat(user, span_notice("你把 [src] 从 [attached_to_reagents.my_atom] 上取了下来。"))
 	if(!issilicon(user) && in_range(loc, user))
 		user.put_in_hands(object)
 	else

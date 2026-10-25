@@ -1,5 +1,5 @@
 /obj/projectile/gravityrepulse
-	name = "repulsion bolt"
+	name = "斥力弹"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	hitsound = 'sound/items/weapons/wave.ogg'
@@ -33,7 +33,7 @@
 		new /obj/effect/temp_visual/gravpush(F)
 
 /obj/projectile/gravityattract
-	name = "attraction bolt"
+	name = "引力弹"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	hitsound = 'sound/items/weapons/wave.ogg'
@@ -66,7 +66,7 @@
 		new /obj/effect/temp_visual/gravpush(F)
 
 /obj/projectile/gravitychaos
-	name = "gravitational blast"
+	name = "重力冲击弹"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	hitsound = 'sound/items/weapons/wave.ogg'

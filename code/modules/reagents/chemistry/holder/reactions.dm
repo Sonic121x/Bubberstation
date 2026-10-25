@@ -253,9 +253,9 @@
 			var/obj/item/slime_extract/extract = my_atom
 			extract.extract_uses--
 			if(extract.extract_uses <= 0) // give the notification that the slime core is dead
-				my_atom.visible_message(span_notice("[iconhtml] \The [my_atom]'s power is consumed in the reaction."))
-				extract.name = "used slime extract"
-				extract.desc = "This extract has been used up."
+				my_atom.visible_message(span_notice("[iconhtml] [my_atom] 的力量在反应中被消耗殆尽。"))
+				extract.name = "用过的史莱姆提取物"
+				extract.desc = "这份提取物已经用尽了。"
 				extract.can_grind = FALSE
 
 	//finish the reaction

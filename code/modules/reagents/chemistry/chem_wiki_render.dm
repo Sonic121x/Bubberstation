@@ -1,4 +1,4 @@
-ADMIN_VERB(generate_wikichem_list, R_DEBUG, "Parse Wikichems", "Parse and generate a text file for wikichem.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(generate_wikichem_list, R_DEBUG, "解析维基试剂", "解析并生成用于维基试剂的文本文件。", ADMIN_CATEGORY_DEBUG)
 	//If we're a reaction product
 	var/static/prefix_reaction = {"{| class=\"wikitable sortable\" style=\"width:100%; text-align:left; border: 3px solid #FFDD66; cellspacing=0; cellpadding=2; background-color:white;\"
 ! scope=\"col\" style='width:150px; background-color:#FFDD66;'|Name
@@ -11,12 +11,12 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "Parse Wikichems", "Parse and genera
 
 	var/input_text = tgui_input_text(
 		user,
-		"Input a name of a reagent, or a series of reagents split with a comma (no spaces) to get its wiki table entry",
-		"Recipe",
+		"输入一种试剂名称，或用逗号（不加空格）分隔的多种试剂名称，以获取其维基表格条目",
+		"配方",
 		max_length = MAX_MESSAGE_LEN,
 		) //95% of the time, the reagent type is a lowercase, no spaces / underscored version of the name
 	if(!input_text)
-		to_chat(user, "Input was blank!")
+		to_chat(user, "输入为空！")
 		return
 	text2file(prefix_reaction, "[GLOB.log_directory]/chem_parse.txt")
 	var/list/names = splittext("[input_text]", ",")
@@ -24,13 +24,13 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "Parse Wikichems", "Parse and genera
 	for(var/name in names)
 		var/datum/reagent/reagent = GLOB.chemical_reagents_list[get_chem_id(name)]
 		if(!reagent)
-			to_chat(user, "Could not find [name]. Skipping.")
+			to_chat(user, "找不到 [name]，正在跳过。")
 			continue
 		//Get reaction
 		var/list/reactions = GLOB.chemical_reactions_list_product_index[reagent.type]
 
 		if(!length(reactions))
-			to_chat(user, "Could not find [name] reaction! Continuing anyways.")
+			to_chat(user, "找不到 [name] 的反应！但仍会继续处理。")
 			var/single_parse = generate_chemwiki_line(reagent, null)
 			text2file(single_parse, "[GLOB.log_directory]/chem_parse.txt")
 			continue
@@ -39,7 +39,7 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "Parse Wikichems", "Parse and genera
 			var/single_parse = generate_chemwiki_line(reagent, reaction)
 			text2file(single_parse, "[GLOB.log_directory]/chem_parse.txt")
 	text2file("|}", "[GLOB.log_directory]/chem_parse.txt") //Cap off the table
-	to_chat(user, "Done! Saved file to (wherever your root folder is, i.e. where the DME is)/[GLOB.log_directory]/chem_parse.txt OR use the Get Current Logs verb under the Admin tab. (if you click Open, and it does nothing, that's because you've not set a .txt default program! Try downloading it instead, and use that file to set a default program! Have a nice day!")
+	to_chat(user, "完成！文件已保存到（你的根目录，也就是 DME 所在目录）/[GLOB.log_directory]/chem_parse.txt，或者使用管理员选项卡下的“Get Current Logs”动词。（如果你点击“打开”后没有任何反应，那是因为你还没有设置 .txt 的默认程序！可以改为下载该文件，并用它来设置默认程序！祝你愉快！")
 
 /// Generate the big list of reagent based reactions.
 /proc/generate_chemwiki_line(datum/reagent/reagent, datum/chemical_reaction/reaction)
@@ -138,7 +138,7 @@ ADMIN_VERB(generate_wikichem_list, R_DEBUG, "Parse Wikichems", "Parse and genera
 				else if (sum_change < 0)
 					outstring += "\n<br>H+ producing"
 			else
-				to_chat(usr, "[reaction] doesn't have valid product and reagent volumes! Please tell Fermi.")
+				to_chat(usr, "[reaction] 没有有效的产物与反应物体积！请告知 Fermi。")
 		else
 			if(reaction.H_ion_release > 0)
 				outstring += "\n<br>H+ consuming"

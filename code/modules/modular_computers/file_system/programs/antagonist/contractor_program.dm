@@ -1,7 +1,7 @@
 /datum/computer_file/program/contract_uplink
 	filename = "contractor uplink"
-	filedesc = "Syndicate Contractor Uplink"
-	extended_desc = "A standard, Syndicate issued system for handling important contracts while on the field."
+	filedesc = "辛迪加承包商上行链路"
+	extended_desc = "一套标准的辛迪加配发系统，供特工在任务现场处理重要合同。"
 	program_open_overlay = "contractor-assign"
 	program_icon = "tasks"
 	size = 10
@@ -47,7 +47,7 @@
 		if("PRG_login")
 			var/datum/antagonist/traitor/traitor_user = user.mind.has_antag_datum(/datum/antagonist/traitor)
 			if(!traitor_user)
-				error = "UNAUTHORIZED USER"
+				error = "未授权用户"
 				return TRUE
 
 			traitor_data = traitor_user
@@ -67,10 +67,10 @@
 					program_open_overlay = "contractor-extracted"
 				else
 					user.playsound_local(user, 'sound/machines/uplink/uplinkerror.ogg', 50)
-					error = "Either both you or your target aren't at the dropoff location, or the pod hasn't got a valid place to land. Clear space, or make sure you're both inside."
+					error = "你或你的目标不在交接点，或者撤离舱找不到合适的降落位置。请清理空间，或确保你们两人都已进入舱内。"
 			else
 				user.playsound_local(user, 'sound/machines/uplink/uplinkerror.ogg', 50)
-				error = "Already extracting... Place the target into the pod. If the pod was destroyed, this contract is no longer possible."
+				error = "正在撤离中……请将目标放入撤离舱。若撤离舱已被摧毁，此合同将无法完成。"
 
 			return TRUE
 		if("PRG_contract_abort")
@@ -88,9 +88,9 @@
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(H.put_in_hands(crystals))
-						to_chat(H, span_notice("Your payment materializes into your hands!"))
+						to_chat(H, span_notice("你的报酬在手中凝聚成形！"))
 					else
-						to_chat(user, span_notice("Your payment materializes onto the floor."))
+						to_chat(user, span_notice("你的报酬在地板上凝聚成形。"))
 
 				traitor_data.uplink_handler.contractor_hub.contract_TC_payed_out += traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem
 				traitor_data.uplink_handler.contractor_hub.contract_TC_to_redeem = 0
@@ -142,7 +142,7 @@
 		if(curr.z == dropoff_turf.z) //Direction calculations for same z-level only
 			direction = uppertext(dir2text(get_dir(curr, dropoff_turf))) //Direction text (East, etc). Not as precise, but still helpful.
 			if(get_area(user) == traitor_data.uplink_handler.contractor_hub.current_contract.contract.dropoff)
-				direction = "LOCATION CONFIRMED"
+				direction = "位置已确认"
 		else
 			direction = "???"
 		data["dropoff_direction"] = direction

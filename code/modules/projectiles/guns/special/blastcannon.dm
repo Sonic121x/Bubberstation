@@ -10,8 +10,8 @@
  * It's basically an immovable rod launcher.
  */
 /obj/item/gun/blastcannon
-	name = "blast cannon"
-	desc = "A surprisingly portable device used to concentrate a bomb's blast energy to a narrow wave. Small enough to stow in a bag."
+	name = "冲击炮"
+	desc = "一件便携得出奇的装置，用于将炸弹的爆炸能量汇聚成一道狭窄的冲击波。小到可以塞进包里。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "blastcannon_empty"
 	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
@@ -73,13 +73,13 @@
 /obj/item/gun/blastcannon/examine(mob/user)
 	. = ..()
 	if(bomb)
-		. += span_notice("A bomb is loaded inside.")
+		. += span_notice("里面已经装了一枚炸弹。")
 
 /obj/item/gun/blastcannon/attack_self(mob/user)
 	if(bomb)
 		bomb.forceMove(user.loc)
 		user.put_in_hands(bomb)
-		user.visible_message(span_warning("[user] detaches [bomb] from [src]."))
+		user.visible_message(span_warning("[user] 把 [bomb] 从 [src] 上拆了下来。"))
 		bomb = null
 	update_appearance()
 	return ..()
@@ -94,17 +94,17 @@
 		return NONE
 	var/obj/item/transfer_valve/bomb_to_attach = tool
 	if(bomb)
-		to_chat(user, span_warning("[bomb] is already attached to [src]!"))
+		to_chat(user, span_warning("[bomb] 已经装在 [src] 上了！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!bomb_to_attach.ready())
-		to_chat(user, span_warning("What good would an incomplete bomb do?"))
+		to_chat(user, span_warning("一枚没装好的炸弹能有什么用？"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(bomb_to_attach, src))
-		to_chat(user, span_warning("[bomb_to_attach] seems to be stuck to your hand!"))
+		to_chat(user, span_warning("[bomb_to_attach] 似乎粘在你手上了！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_warning("[user] attaches [bomb_to_attach] to [src]!"),
-						span_notice("You attach bomb_to_attach to [src]."))
+	user.visible_message(span_warning("[user] 把 [bomb_to_attach] 装到了 [src] 上！"),
+						span_notice("你把 bomb_to_attach 装到了 [src] 上。"))
 	bomb = bomb_to_attach
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -117,8 +117,8 @@
 	cached_modifiers = params
 	if(bomb?.valve_open)
 		user.visible_message(
-			span_danger("[user] points [src] at [target]!"),
-			span_danger("You point [src] at [target]!")
+			span_danger("[user] 把 [src] 对准了 [target]！"),
+			span_danger("你把 [src] 对准了 [target]！")
 		)
 		return FALSE
 
@@ -129,13 +129,13 @@
 
 	playsound(src, dry_fire_sound, 30, TRUE) // *click
 	user.visible_message(
-		span_danger("[user] opens [bomb] on [user.p_their()] [src] and points [p_them()] at [target]!"),
-		span_danger("You open [bomb] on your [src] and point [p_them()] at [target]!")
+		span_danger("[user] 打开了 [user.p_their()] [src] 上的 [bomb]，把 [p_them()] 对准了 [target]！"),
+		span_danger("你打开了你的 [src] 上的 [bomb]，把 [p_them()] 对准了 [target]！")
 	)
 	var/turf/current_turf = get_turf(src)
 	var/turf/target_turf = get_turf(target)
-	message_admins("Blastcannon transfer valve opened by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(current_turf)] while aiming at [ADMIN_VERBOSEJMP(target_turf)] (target).")
-	user.log_message("opened blastcannon transfer valve at [AREACOORD(current_turf)] while aiming at [AREACOORD(target_turf)] (target).", LOG_GAME)
+	message_admins("冲击炮的输运阀由 [ADMIN_LOOKUPFLW(user)] 在 [ADMIN_VERBOSEJMP(current_turf)] 处打开，当时正瞄准 [ADMIN_VERBOSEJMP(target_turf)]（目标）。")
+	user.log_message("在 [AREACOORD(current_turf)] 处打开冲击炮输运阀，当时正瞄准 [AREACOORD(target_turf)]（目标）。", LOG_GAME)
 	bomb.toggle_valve()
 	update_appearance()
 	return TRUE
@@ -155,7 +155,7 @@
 	var/light = (arguments[EXARG_KEY_LIGHT_RANGE]**BLASTCANNON_RANGE_EXP) * BLASTCANNON_RANGE_SCALE
 	var/range = max(heavy, medium, light, 0)
 	if(!range)
-		visible_message(span_warning("[src] lets out a little \"phut\"."))
+		visible_message(span_warning("[src] 发出一声轻轻的“噗”。"))
 		return
 
 	if(!ismob(loc))
@@ -213,14 +213,14 @@
  */
 /obj/item/gun/blastcannon/proc/fire_intentionally(atom/target, mob/firer, heavy, medium, light, modifiers)
 	firer.visible_message(
-		span_danger("[firer] fires a blast wave at [target]!"),
-		span_danger("You fire a blast wave at [target]!")
+		span_danger("[firer] 朝 [target] 发射了一道冲击波！"),
+		span_danger("你朝 [target] 发射了一道冲击波！")
 	)
 	var/turf/start_turf = get_turf(src)
 	var/turf/target_turf = get_turf(target)
-	message_admins("Blast wave fired from [ADMIN_VERBOSEJMP(start_turf)] at [ADMIN_VERBOSEJMP(target_turf)] ([target]) by [ADMIN_LOOKUPFLW(firer)] with power [heavy]/[medium]/[light].")
-	firer.log_message("fired a blast wave from [AREACOORD(start_turf)] at [AREACOORD(target_turf)] ([target]) with power [heavy]/[medium]/[light].", LOG_GAME)
-	firer.log_message("fired a blast wave from [AREACOORD(start_turf)] at [AREACOORD(target_turf)] ([target]) with power [heavy]/[medium]/[light].", LOG_ATTACK, log_globally = FALSE)
+	message_admins("冲击波由 [ADMIN_LOOKUPFLW(firer)] 从 [ADMIN_VERBOSEJMP(start_turf)] 向 [ADMIN_VERBOSEJMP(target_turf)]（[target]）发射，威力 [heavy]/[medium]/[light]。")
+	firer.log_message("从 [AREACOORD(start_turf)] 向 [AREACOORD(target_turf)]（[target]）发射了一道冲击波，威力 [heavy]/[medium]/[light]。", LOG_GAME)
+	firer.log_message("从 [AREACOORD(start_turf)] 向 [AREACOORD(target_turf)]（[target]）发射了一道冲击波，威力 [heavy]/[medium]/[light]。", LOG_ATTACK, log_globally = FALSE)
 	fire_blastwave(target, heavy, medium, light, modifiers)
 	return
 
@@ -246,11 +246,11 @@
 	var/mob/firer = cached_firer?.resolve()
 	var/turf/start_turf = get_turf(src)
 	holder.visible_message(
-		span_danger("[src] suddenly goes off[holding ? " in [holder]'s hands" : null]!"),
-		span_danger("[src] suddenly goes off[holding ? " in your hands" : null]!")
+		span_danger("[src] 突然炸响了[holding ? "，就在 [holder] 手里" : null]！"),
+		span_danger("[src] 突然炸响了[holding ? "，就在你手里" : null]！")
 	)
-	message_admins("Blast wave primed by [ADMIN_LOOKUPFLW(firer)] fired from [ADMIN_VERBOSEJMP(start_turf)] roughly towards [ADMIN_VERBOSEJMP(target)] while being held by [ADMIN_LOOKUPFLW(holder)] with power [heavy]/[medium]/[light].")
-	log_game("Blast wave primed by [key_name(firer)] fired from [AREACOORD(start_turf)] roughly towards [AREACOORD(target)] while being held by [key_name(holder)] with power [heavy]/[medium]/[light].")
+	message_admins("冲击波由 [ADMIN_LOOKUPFLW(firer)] 布置引信，从 [ADMIN_VERBOSEJMP(start_turf)] 大致朝 [ADMIN_VERBOSEJMP(target)] 发射，当时由 [ADMIN_LOOKUPFLW(holder)] 拿着，威力 [heavy]/[medium]/[light]。")
+	log_game("冲击波由 [key_name(firer)] 布置引信，从 [AREACOORD(start_turf)] 大致朝 [AREACOORD(target)] 发射，当时由 [key_name(holder)] 拿着，威力 [heavy]/[medium]/[light]。")
 	return fire_blastwave(target, heavy, medium, light, null, (90 * (rand() - 0.5))) // +- anywhere between 0 and 45 degrees
 
 /**
@@ -262,12 +262,12 @@
  * - light: The light impact range of the blastwave.
  */
 /obj/item/gun/blastcannon/proc/fire_dropped(heavy, medium, light)
-	src.visible_message(span_danger("[src] suddenly goes off!"))
+	src.visible_message(span_danger("[src] 突然炸响了！"))
 	var/turf/target = get_edge_target_turf(src, dir)
 	var/mob/firer = cached_firer.resolve()
 	var/turf/start_turf = get_turf(src)
-	message_admins("Blast wave primed by [ADMIN_LOOKUPFLW(firer)] fired from [ADMIN_VERBOSEJMP(start_turf)] roughly towards [ADMIN_VERBOSEJMP(target)] at [ADMIN_VERBOSEJMP(loc)] ([loc]) with power [heavy]/[medium]/[light].")
-	log_game("Blast wave primed by [key_name(firer)] fired from [AREACOORD(start_turf)] roughly towards [AREACOORD(target)] at [AREACOORD(loc)] ([loc]) with power [heavy]/[medium]/[light].")
+	message_admins("冲击波由 [ADMIN_LOOKUPFLW(firer)] 布置引信，从 [ADMIN_VERBOSEJMP(start_turf)] 大致朝 [ADMIN_VERBOSEJMP(target)] 发射，位置在 [ADMIN_VERBOSEJMP(loc)]（[loc]），威力 [heavy]/[medium]/[light]。")
+	log_game("冲击波由 [key_name(firer)] 布置引信，从 [AREACOORD(start_turf)] 大致朝 [AREACOORD(target)] 发射，位置在 [AREACOORD(loc)]（[loc]），威力 [heavy]/[medium]/[light]。")
 	return fire_blastwave(target, heavy, medium, light, null, 360 * rand())
 
 /**
@@ -285,7 +285,7 @@
 
 /// The projectile used by the blastcannon
 /obj/projectile/blastwave
-	name = "blast wave"
+	name = "冲击波"
 	icon_state = "blastwave"
 	damage = 0
 	armor_flag = BOMB // Doesn't actually have any functional purpose. But it makes sense.

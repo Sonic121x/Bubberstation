@@ -1,9 +1,9 @@
 /datum/computer_file/program/revelation
 	filename = "revelation"
-	filedesc = "Revelation"
+	filedesc = "启示录"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "hostile"
-	extended_desc = "This virus can destroy hard drive of system it is executed on. It may be obfuscated to look like another non-malicious program. Once armed, it will destroy the system upon next execution."
+	extended_desc = "该病毒能摧毁运行它的系统的硬盘。它可以被伪装成其他无害程序。一旦启动，它将在下次运行时摧毁系统。"
 	size = 13
 	program_flags = PROGRAM_ON_SYNDINET_STORE
 	tgui_id = "NtosRevelation"
@@ -19,11 +19,11 @@
 	if(computer)
 		if(istype(computer, /obj/item/modular_computer/pda/silicon)) //If this is a borg's integrated tablet
 			var/obj/item/modular_computer/pda/silicon/modularInterface = computer
-			to_chat(modularInterface.silicon_owner,span_userdanger("SYSTEM PURGE DETECTED/"))
+			to_chat(modularInterface.silicon_owner,span_userdanger("检测到系统清除/"))
 			addtimer(CALLBACK(modularInterface.silicon_owner, TYPE_PROC_REF(/mob/living/silicon/robot/, death)), 2 SECONDS, TIMER_UNIQUE)
 			return
 
-		computer.visible_message(span_notice("\The [computer]'s screen brightly flashes and loud electrical buzzing is heard."))
+		computer.visible_message(span_notice("\The [computer] 的屏幕爆发出刺眼的闪光，同时传来响亮的电流嗡鸣。"))
 		computer.enabled = FALSE
 		computer.update_appearance()
 
@@ -33,7 +33,7 @@
 
 		if(computer.internal_cell && prob(25))
 			QDEL_NULL(computer.internal_cell)
-			computer.visible_message(span_notice("\The [computer]'s battery explodes in rain of sparks."))
+			computer.visible_message(span_notice("\The [computer] 的电池炸开，火花四溅。"))
 			do_sparks(3, FALSE, src)
 
 /datum/computer_file/program/revelation/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)

@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/foam_dart
-	name = "foam dart"
-	desc = "It's Donk or Don't! Ages 8 and up."
+	name = "泡沫飞镖"
+	desc = "要么咚克，要么拉倒！8 岁及以上适用。"
 	projectile_type = /obj/projectile/bullet/foam_dart
 	caliber = CALIBER_FOAM
 	icon = 'icons/obj/weapons/guns/toy.dmi'
@@ -30,7 +30,7 @@
 
 /obj/item/ammo_casing/foam_dart/update_desc()
 	. = ..()
-	desc = "It's Donk or Don't! [modified ? "... Although, this one doesn't look too safe." : "Ages 8 and up."]"
+	desc = "要么咚克，要么拉倒！[modified ? "……不过，这枚看起来不太安全。" : "8 岁及以上适用。"]"
 
 /obj/item/ammo_casing/foam_dart/examine_more(mob/user)
 	. = ..()
@@ -39,8 +39,8 @@
 		for(var/type in insertable_items_hint)
 			var/obj/item/type_item = type
 			type_initial_names += "\a [initial(type_item.name)]"
-		. += span_notice("[modified ? "You can" : "If you removed the safety cap with a screwdriver, you could"] insert a small item\
-			[length(type_initial_names) ? ", such as [english_list(type_initial_names, and_text = "or ", final_comma_text = ", ")]" : ""].")
+		. += span_notice("[modified ? "你可以" : "如果你用螺丝刀取下安全帽，你可以"]插入一个小物件\
+			[length(type_initial_names) ? "，例如 [english_list(type_initial_names, and_text = "或 ", final_comma_text = "、")]" : ""]。")
 
 /obj/item/ammo_casing/foam_dart/screwdriver_act(mob/living/user, obj/item/tool)
 	if(modified)
@@ -50,13 +50,13 @@
 	dart.modified = TRUE
 	dart.damage_type = BRUTE
 	dart.set_embed(null) // Cap is what makes them sticky
-	to_chat(user, span_notice("You pop the safety cap off [src]."))
+	to_chat(user, span_notice("你取下了 [src] 上的安全帽。"))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/ammo_casing/foam_dart/riot
-	name = "riot foam dart"
-	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	name = "防暴泡沫飞镖"
+	desc = "用玩具来维持人群秩序是谁想出来的高招？18 岁及以上适用。"
 	projectile_type = /obj/projectile/bullet/foam_dart/riot
 	icon_state = "foamdart_riot"
 	base_icon_state = "foamdart_riot"

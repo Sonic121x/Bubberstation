@@ -1,7 +1,7 @@
 #define MULTIPLY_SPEED 0.8
 
 /obj/projectile/energy/photon
-	name = "photon bolt"
+	name = "光子弹"
 	icon_state = "solarflare"
 	damage_type = STAMINA
 	armor_flag = ENERGY

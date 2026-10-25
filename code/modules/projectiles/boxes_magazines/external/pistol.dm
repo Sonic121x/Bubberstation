@@ -2,10 +2,10 @@
 // Makarov (9mm) //
 
 /obj/item/ammo_box/magazine/m9mm
-	name = "pistol magazine (9mm)"
+	name = "手枪弹匣（9mm）"
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
-	desc = "A 9mm handgun magazine, suitable for the Makarov pistol."
+	desc = "一个 9mm 手枪弹匣，适用于马卡洛夫手枪。"
 	ammo_band_icon = "+9x19ab"
 	ammo_band_color = null
 	ammo_type = /obj/item/ammo_casing/c9mm
@@ -15,14 +15,14 @@
 	multiple_sprite_use_base = TRUE
 
 /obj/item/ammo_box/magazine/m9mm/security
-	name = "pistol magazine (9mm Security)"
-	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	name = "手枪弹匣（9mm 安保型）"
+	desc = "一个 9mm 手枪弹匣，适用于勤务手枪。"
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 	max_ammo = 10
 
 /obj/item/ammo_box/magazine/m9mm/security/rocket
-	name = "pistol magazine (9mm Security)"
-	desc = "A 9mm handgun magazine, suitable for the Service Pistol."
+	name = "手枪弹匣（9mm 安保型）"
+	desc = "一个 9mm 手枪弹匣，适用于勤务手枪。"
 	ammo_type = /obj/item/ammo_casing/c9mm/security
 	max_ammo = 8
 
@@ -34,25 +34,25 @@
 	qdel()
 
 /obj/item/ammo_box/magazine/m9mm/fire
-	name = "pistol magazine (9mm incendiary)"
+	name = "手枪弹匣（9mm 燃烧弹）"
 	MAGAZINE_TYPE_INCENDIARY
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
 
 /obj/item/ammo_box/magazine/m9mm/hp
-	name = "pistol magazine (9mm HP)"
+	name = "手枪弹匣（9mm 空尖弹）"
 	MAGAZINE_TYPE_HOLLOWPOINT
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
 
 /obj/item/ammo_box/magazine/m9mm/ap
-	name = "pistol magazine (9mm AP)"
+	name = "手枪弹匣（9mm 穿甲弹）"
 	MAGAZINE_TYPE_ARMORPIERCE
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
 
 // Stechkin APS (9mm) //
 
 /obj/item/ammo_box/magazine/m9mm_aps
-	name = "stechkin pistol magazine (9mm)"
-	desc = "A 9mm handgun magazine, suitable for the Stechkin APS machine pistol."
+	name = "斯捷奇金手枪弹匣（9mm）"
+	desc = "一个 9mm 手枪弹匣，适用于斯捷奇金 APS 全自动手枪。"
 	icon_state = "9mmaps-15"
 	base_icon_state = "9mmaps"
 	ammo_band_icon = "+9mmapsab"
@@ -66,25 +66,25 @@
 	icon_state = "[base_icon_state]-[round(ammo_count(), 5)]"
 
 /obj/item/ammo_box/magazine/m9mm_aps/fire
-	name = "stechkin pistol magazine (9mm incendiary)"
+	name = "斯捷奇金手枪弹匣（9mm 燃烧弹）"
 	MAGAZINE_TYPE_INCENDIARY
 	ammo_type = /obj/item/ammo_casing/c9mm/fire
 
 /obj/item/ammo_box/magazine/m9mm_aps/hp
-	name = "stechkin pistol magazine (9mm HP)"
+	name = "斯捷奇金手枪弹匣（9mm 空尖弹）"
 	MAGAZINE_TYPE_HOLLOWPOINT
 	ammo_type = /obj/item/ammo_casing/c9mm/hp
 
 /obj/item/ammo_box/magazine/m9mm_aps/ap
-	name = "stechkin pistol magazine (9mm AP)"
+	name = "斯捷奇金手枪弹匣（9mm 穿甲弹）"
 	MAGAZINE_TYPE_ARMORPIERCE
 	ammo_type = /obj/item/ammo_casing/c9mm/ap
 
 // Ansem (10mm) //
 
 /obj/item/ammo_box/magazine/m10mm
-	name = "pistol magazine (10mm)"
-	desc = "A 10mm handgun magazine, suitable for the Ansem pistol."
+	name = "手枪弹匣（10mm）"
+	desc = "一个 10mm 手枪弹匣，适用于安瑟姆手枪。"
 	icon_state = "9x19p"
 	base_icon_state = "9x19p"
 	ammo_band_icon = "+9x19ab"
@@ -97,25 +97,25 @@
 	multiple_sprite_use_base = TRUE
 
 /obj/item/ammo_box/magazine/m10mm/fire
-	name = "pistol magazine (10mm incendiary)"
+	name = "手枪弹匣（10mm 燃烧弹）"
 	MAGAZINE_TYPE_INCENDIARY
 	ammo_type = /obj/item/ammo_casing/c10mm/fire
 
 /obj/item/ammo_box/magazine/m10mm/hp
-	name = "pistol magazine (10mm HP)"
+	name = "手枪弹匣（10mm 空尖弹）"
 	MAGAZINE_TYPE_HOLLOWPOINT
 	ammo_type = /obj/item/ammo_casing/c10mm/hp
 
 /obj/item/ammo_box/magazine/m10mm/ap
-	name = "pistol magazine (10mm AP)"
+	name = "手枪弹匣（10mm 穿甲弹）"
 	MAGAZINE_TYPE_ARMORPIERCE
 	ammo_type = /obj/item/ammo_casing/c10mm/ap
 
 // M1911 (.45) //
 
 /obj/item/ammo_box/magazine/m45
-	name = "handgun magazine (.45)"
-	desc = "A .45 handgun magazine, suitable for the M1911."
+	name = "手枪弹匣（.45）"
+	desc = "一个 .45 手枪弹匣，适用于 M1911。"
 	icon_state = "45-8"
 	base_icon_state = "45"
 	ammo_type = /obj/item/ammo_casing/c45
@@ -127,8 +127,8 @@
 // Desert Eagle (.50 AE) //
 
 /obj/item/ammo_box/magazine/m50
-	name = "handgun magazine (.50 AE)"
-	desc = "A .50 AE handgun magazine, suitable for the Desert Eagle."
+	name = "手枪弹匣（.50 AE）"
+	desc = "一个 .50 AE 手枪弹匣，适用于沙漠之鹰。"
 	icon_state = "50ae"
 	ammo_type = /obj/item/ammo_casing/a50ae
 	caliber = CALIBER_50AE
@@ -138,8 +138,8 @@
 // Regal Condor (.45) //
 
 /obj/item/ammo_box/magazine/r45
-	name = "regal condor magazine (.45 Reaper)"
-	desc = "A very expensive .45 handgun magazine, suitable for the Regal Condor. Loaded with \"reaper\" rounds, which are dangerously effective against everything."
+	name = "皇家秃鹫弹匣（.45 收割者）"
+	desc = "一个极其昂贵的 .45 手枪弹匣，适用于皇家秃鹫。装填有“收割者”弹，对任何目标都危险地有效。"
 	icon_state = "r45-8"
 	base_icon_state = "r45"
 	ammo_type = /obj/item/ammo_casing/c45/reaper

@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/revolver
-	name = "\improper .357 revolver"
-	desc = "A suspicious revolver. Uses .357 ammo."
+	name = "\improper .357 左轮手枪"
+	desc = "一把可疑的左轮手枪。使用 .357 弹药。"
 	icon_state = "revolver"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder
 	fire_sound = 'sound/items/weapons/gun/revolver/shot_alt.ogg'
@@ -57,7 +57,7 @@
 		if(play_click)
 			playsound(src, 'sound/items/weapons/gun/general/ballistic_click.ogg', fire_sound_volume, vary_fire_sound, frequency = click_frequency_to_use)
 
-GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
+GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	spin_chamber(usr)
 
 /obj/item/gun/ballistic/revolver/verb/spin_chamber(mob/living/user)
@@ -71,8 +71,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 
 	if(do_spin())
 		playsound(usr, SFX_REVOLVER_SPIN, 30, FALSE)
-		visible_message(span_notice("[user] spins [src]'s chamber."), span_notice("You spin [src]'s chamber."))
-		balloon_alert(user, "chamber spun")
+		visible_message(span_notice("[user] 转动了 [src] 的弹巢。"), span_notice("你转动了 [src] 的弹巢。"))
+		balloon_alert(user, "弹巢已转动")
 	else
 		verbs -= /obj/item/gun/ballistic/revolver/verb/spin
 
@@ -94,16 +94,16 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 /obj/item/gun/ballistic/revolver/examine(mob/user)
 	. = ..()
 	var/live_ammo = get_ammo(FALSE, FALSE)
-	. += "[live_ammo ? live_ammo : "None"] of those are live rounds."
-	. += span_notice("It can be spun with [EXAMINE_HINT("alt-click")].")
+	. += "其中有 [live_ammo ? live_ammo : "0"] 发是实弹。"
+	. += span_notice("可以用[EXAMINE_HINT("Alt+点击")]转动弹巢。")
 
 /obj/item/gun/ballistic/revolver/ignition_effect(atom/A, mob/user)
 	if(last_fire && last_fire + 15 SECONDS > world.time)
-		return span_rose("[user] touches the end of [src] to \the [A], using the residual heat to ignite it in a puff of smoke. What a badass.")
+		return span_rose("[user] 把 [src] 的枪口凑到 \the [A] 上，用余热点燃了它，冒出一缕青烟。真是帅呆了。")
 
 /obj/item/gun/ballistic/revolver/c38
-	name = "\improper .38 revolver"
-	desc = "A classic, if not outdated, lethal firearm. Uses .38 Special rounds."
+	name = "\improper .38 左轮手枪"
+	desc = "一款经典（也许已经过时）的致命火器。使用 .38 特种弹。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
 	icon_state = "c38"
 	base_icon_state = "c38"
@@ -115,44 +115,44 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	change_base_icon_state = TRUE
 
 /datum/atom_skin/det_revolver/default
-	preview_name = "Default"
+	preview_name = "默认"
 	new_icon_state = "c38"
 
 /datum/atom_skin/det_revolver/fitz_special
-	preview_name = "Fitz Special"
+	preview_name = "菲茨特制型"
 	new_icon_state = "c38_fitz"
 
 /datum/atom_skin/det_revolver/police_positive_special
-	preview_name = "Police Positive Special"
+	preview_name = "警用积极特制型"
 	new_icon_state = "c38_police"
 
 /datum/atom_skin/det_revolver/blued_steel
-	preview_name = "Blued Steel"
+	preview_name = "烤蓝钢"
 	new_icon_state = "c38_blued"
 
 /datum/atom_skin/det_revolver/stainless_steel
-	preview_name = "Stainless Steel"
+	preview_name = "不锈钢"
 	new_icon_state = "c38_stainless"
 
 /datum/atom_skin/det_revolver/gold_trim
-	preview_name = "Gold Trim"
+	preview_name = "金饰边"
 	new_icon_state = "c38_trim"
 
 /datum/atom_skin/det_revolver/golden
-	preview_name = "Golden"
+	preview_name = "金色"
 	new_icon_state = "c38_gold"
 
 /datum/atom_skin/det_revolver/peacemaker
-	preview_name = "The Peacemaker"
+	preview_name = "和平缔造者"
 	new_icon_state = "c38_peacemaker"
 
 /datum/atom_skin/det_revolver/black_panther
-	preview_name = "Black Panther"
+	preview_name = "黑豹"
 	new_icon_state = "c38_panther"
 
 /obj/item/gun/ballistic/revolver/c38/detective
-	name = "\improper Colt Detective Special"
-	desc = "A classic, if not outdated, law enforcement firearm. Uses .38 Special rounds. \nSome spread rumors that if you loosen the barrel with a wrench, you can \"improve\" it."
+	name = "\improper 柯尔特侦探特制型"
+	desc = "一款经典（也许已经过时）的执法用火器。使用 .38 特种弹。 \n有传言说，只要用扳手把枪管拧松，就能“改良”它。"
 
 	can_modify_ammo = TRUE
 	initial_caliber = CALIBER_38
@@ -169,15 +169,15 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/det_revolver)
 
 /obj/item/gun/ballistic/revolver/badass
-	name = "\improper Badass Revolver"
-	desc = "A 7-chamber revolver manufactured by Waffle Corp to make their operatives feel Badass. Offers no tactical advantage whatsoever. Uses .357 ammo."
+	name = "\improper 猛人左轮手枪"
+	desc = "华夫公司为了让自家特工感觉自己很猛而制造的七膛左轮手枪。没有任何战术优势。使用 .357 弹药。"
 	icon_state = "revolversyndie"
 
 /obj/item/gun/ballistic/revolver/badass/nuclear
 	pin = /obj/item/firing_pin/implant/pindicate
 
 /obj/item/gun/ballistic/revolver/cowboy
-	desc = "A classic revolver, refurbished for modern use. Uses .357 ammo."
+	desc = "一把经典左轮手枪，经过翻新以供现代使用。使用 .357 弹药。"
 	//There's already a cowboy sprite in there!
 	icon_state = "lucky"
 
@@ -185,21 +185,21 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	pin = /obj/item/firing_pin/implant/pindicate
 
 /obj/item/gun/ballistic/revolver/mateba
-	name = "\improper Unica 6 auto-revolver"
-	desc = "A retro high-powered autorevolver typically used by officers of the New Russia military. Uses .357 ammo."
+	name = "\improper Unica 6 自动左轮手枪"
+	desc = "一款复古的大威力自动左轮，通常配发给新俄罗斯军队的军官。使用 .357 弹药。"
 	icon_state = "mateba"
 
 /obj/item/gun/ballistic/revolver/golden
-	name = "\improper Golden revolver"
-	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 ammo."
+	name = "\improper 黄金左轮手枪"
+	desc = "这可不是闹着玩，也从来不是什么表演，我很乐意把你认识的最老的老太太打成筛子。使用 .357 弹药。"
 	icon_state = "goldrevolver"
 	fire_sound = 'sound/items/weapons/resonator_blast.ogg'
 	recoil = 8
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/revolver/nagant
-	name = "\improper Nagant revolver"
-	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
+	name = "\improper 纳甘左轮手枪"
+	desc = "一款源自俄罗斯的老式左轮手枪。可安装消音器。使用 7.62x38mmR 弹药。"
 	icon_state = "nagant"
 	can_suppress = TRUE
 
@@ -210,8 +210,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 // You can spin the chamber to randomize the position of the bullet.
 
 /obj/item/gun/ballistic/revolver/russian
-	name = "\improper Russian revolver"
-	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
+	name = "\improper 俄罗斯左轮手枪"
+	desc = "一把俄制左轮手枪，专供饮酒游戏使用。使用 .357 弹药，其机构要求你每次扣动扳机前都得先转动弹巢。"
 	icon_state = "russianrevolver"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
 	hidden_chambered = TRUE //Cheater.
@@ -225,17 +225,17 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 
 /obj/item/gun/ballistic/revolver/russian/examine(mob/user)
 	. = ..()
-	. += span_notice("You can change length of your pause before pulling the trigger with [EXAMINE_HINT("alt-right-click")].")
+	. += span_notice("你可以用[EXAMINE_HINT("Alt+右键")]调整扣动扳机前停顿的时长。")
 
 /obj/item/gun/ballistic/revolver/russian/click_alt_secondary(mob/user)
 	if(loc != user)
-		to_chat(user, span_warning("You need to be holding the gun to determine how long you are going to pause!"))
+		to_chat(user, span_warning("你得先把枪拿在手里，才能决定要停顿多久！"))
 		return CLICK_ACTION_BLOCKING
-	var/new_aim_time = tgui_input_number(user, "How long will you pause before pulling the trigger (seconds)?", "Do you feel lucky?", (aim_time / (1 SECONDS)), 10, 0)
+	var/new_aim_time = tgui_input_number(user, "扣动扳机前你打算停顿多久（秒）？", "你觉得自己运气好吗？", (aim_time / (1 SECONDS)), 10, 0)
 	if(loc != user || user.incapacitated)
 		return CLICK_ACTION_BLOCKING
 	aim_time = new_aim_time * (1 SECONDS)
-	to_chat(user, span_warning("You're going to pause [aim_time] second\s before pulling the trigger[aim_time == 0 ? "... Good luck" : ""]."))
+	to_chat(user, span_warning("你打算在扣动扳机前停顿 [aim_time] 秒[aim_time == 0 ? "……祝你好运" : ""]。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/gun/ballistic/revolver/russian/dropped(mob/user, silent)
@@ -278,21 +278,21 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 		shoot_with_empty_chamber(user)
 		spun = FALSE
 		user.visible_message(
-			span_danger("[user] tries to fire \the [src] aimed at something else, but only succeeds at looking like an idiot."),
-			span_danger("\The [src]'s anti-combat mechanism prevents you from firing it at anyone but yourself!"),
+			span_danger("[user] 试图用 \the [src] 朝别的东西开火，结果只是让自己看起来像个白痴。"),
+			span_danger("\The [src] 的反战斗机构阻止你朝除自己以外的任何人开火！"),
 		)
 		return TRUE // no melee attack
 	if(!spun)
-		to_chat(user, span_warning("You need to spin \the [src]'s chamber first!"))
+		to_chat(user, span_warning("你得先转动 \the [src] 的弹巢！"))
 		return TRUE // no melee attack
 	if(HAS_TRAIT(user, TRAIT_CURSED)) // I cannot live, I cannot die, trapped in myself, body my holding cell.
-		to_chat(user, span_warning("What a horrible night... To have a curse!"))
+		to_chat(user, span_warning("多么可怕的夜晚……竟被诅咒缠身！"))
 		return TRUE // no melee attack
 	if(loc != user)
 		if(tk_firing(user))
-			to_chat(user, span_warning("Russian roulette is stressful enough without trying to focus on telekinesis!"))
+			to_chat(user, span_warning("光是俄罗斯轮盘就够紧张了，还得集中精神用念力！"))
 		else
-			to_chat(user, span_warning("You need to be holding the gun to fire it!"))
+			to_chat(user, span_warning("你得把枪拿在手里才能开火！"))
 		return TRUE // no melee attack
 
 	return ..() // try to shoot the gun
@@ -302,8 +302,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	if(aim_time <= 0)
 		return FALSE
 	user.visible_message(
-		span_danger("[user] aims \the [src] at [user.p_their()] [parse_zone(user.zone_selected)]..."),
-		span_userdanger("You aim \the [src] at your [parse_zone(user.zone_selected)]..."),
+		span_danger("[user] 把 \the [src] 对准了自己的 [parse_zone(user.zone_selected)]……"),
+		span_userdanger("你把 \the [src] 对准了自己的 [parse_zone(user.zone_selected)]……"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	if(prob(10) && !HAS_TRAIT(user, TRAIT_FEARLESS))
@@ -311,8 +311,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	if(!do_after(user, aim_time, target))
 		if(!user.incapacitated)
 			user.visible_message(
-				span_danger("[user] loses [user.p_their()] nerve and puts \the [src] down."),
-				span_userdanger("You lose your nerve and put \the [src] down."),
+				span_danger("[user] 泄了气，把 \the [src] 放下了。"),
+				span_userdanger("你泄了气，把 \the [src] 放下了。"),
 				visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			)
 		return TRUE
@@ -349,18 +349,18 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 		if(loaded_rounds && is_target_face)
 			user.add_mood_event("russian_roulette_win", /datum/mood_event/russian_roulette_win, loaded_rounds)
 		user.visible_message(
-			span_danger("[user][is_target_face ? "": " cowardly"] points \the [src] at [user.p_their()] [aimed_at_readable], pulls the trigger, and... nothing happens!"),
-			span_danger("You[is_target_face ? "": " cowardly"] point \the [src] at your [aimed_at_readable], pull the trigger, and... nothing happens!"),
-			span_hear("You hear a click!"),
+			span_danger("[user][is_target_face ? "": " 怯懦地"]把 \the [src] 对准自己的 [aimed_at_readable]，扣动扳机，然后……什么也没发生！"),
+			span_danger("你[is_target_face ? "": " 怯懦地"]把 \the [src] 对准自己的 [aimed_at_readable]，扣动扳机，然后……什么也没发生！"),
+			span_hear("你听到咔嗒一声！"),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		return TRUE // so they don't hit themselves in the forehead. because returning FALSE translates to "do melee attack" for whatever reason
 
 	user.visible_message(
-		span_danger("[user][is_target_face ? "": " cowardly"] aims \the [src] at [user.p_their()] [aimed_at_readable] as it goes off!"),
-		span_danger("You[is_target_face ? "": " cowardly"] aim \the [src] at your [aimed_at_readable] as it goes off![user.stat >= HARD_CRIT ? " <b>Everything suddenly goes black.</b>" : ""]"),
-		span_hear("You hear a grunt[!IS_UNCONSCIOUS_OR_CRIT(user) ? "" : ", followed by a thud"]!"),
+		span_danger("[user][is_target_face ? "": " 怯懦地"]把 \the [src] 对准自己的 [aimed_at_readable]，就在这时枪响了！"),
+		span_danger("你[is_target_face ? "": " 怯懦地"]把 \the [src] 对准自己的 [aimed_at_readable]，就在这时枪响了！[user.stat >= HARD_CRIT ? " <b>眼前突然一片漆黑。</b>" : ""]"),
+		span_hear("你听到一声闷哼[!IS_UNCONSCIOUS_OR_CRIT(user) ? "" : "，紧接着扑通一声"]！"),
 		vision_distance = COMBAT_MESSAGE_RANGE,
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
@@ -380,8 +380,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	)
 
 /obj/item/gun/ballistic/revolver/russian/soul
-	name = "cursed Russian revolver"
-	desc = "To play with this revolver requires wagering your very soul."
+	name = "被诅咒的俄罗斯左轮手枪"
+	desc = "想玩这把左轮，你得拿自己的灵魂当赌注。"
 
 /obj/item/gun/ballistic/revolver/russian/soul/shoot_self(mob/living/user, affecting = BODY_ZONE_HEAD)
 	. = ..()
@@ -391,15 +391,15 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 			qdel(stone)
 			return
 		user.visible_message(
-			span_danger("[user]'s soul is captured by \the [src]!"),
-			span_userdanger("You've lost the gamble! Your soul is forfeit!"),
+			span_danger("[user] 的灵魂被 \the [src] 攫走了！"),
+			span_userdanger("你赌输了！你的灵魂被收走了！"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 		return
 
 	user.visible_message(
-		span_danger("[user] is punished for trying to cheat the game!"),
-		span_userdanger("You've lost the gamble! Not only is your soul forfeit, but it is whisked away for attempting to cheat death!"),
+		span_danger("[user] 因试图在这局游戏中作弊而受到了惩罚！"),
+		span_userdanger("你赌输了！你的灵魂不仅被收走，还因为你企图欺瞒死亡而被卷走了！"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	user.dust(drop_items = TRUE)
@@ -413,7 +413,7 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	if(HAS_TRAIT(user, TRAIT_CLUMSY) || is_clown_job(user.mind?.assigned_role))
 		return ..()
 	if(process_fire(user, user, FALSE, null, BODY_ZONE_HEAD))
-		user.visible_message(span_warning("[user] somehow manages to shoot [user.p_them()]self in the face!"), span_userdanger("You somehow shoot yourself in the face! How the hell?!"))
+		user.visible_message(span_warning("[user] 不知怎么竟朝自己的脸开了一枪！"), span_userdanger("你不知怎么竟朝自己的脸开了一枪！这到底怎么做到的？！"))
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)
@@ -425,8 +425,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "Spin Chamber", null)
 	icon_state = "mateba"
 
 /obj/item/gun/ballistic/revolver/peashooter
-	name = "peashooter"
+	name = "豆豆枪"
 	icon_state = "peashooter"
-	desc = "A wild plantlife mutation that shoots hardened peas. Incredible."
+	desc = "一株会射出硬化豌豆的野生植物突变体。不可思议。"
 	fire_sound = 'sound/items/weapons/peashoot.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/peashooter

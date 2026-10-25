@@ -2,8 +2,8 @@
 //Put handheld rocket launchers here if someone ever decides to make something so hilarious ~Paprika
 
 /obj/item/gun/ballistic/revolver/grenadelauncher
-	name = "break-action grenade launcher"
-	desc = "A break-action grenade launcher. Archaic by modern standards, but it still works, so who can complain?"
+	name = "撅开式榴弹发射器"
+	desc = "一支撅开式榴弹发射器。以现代标准看很原始，但它还能用，那谁还能抱怨呢？"
 	icon_state = "grenade_launcher"
 	inhand_icon_state = "grenade_launcher"
 	worn_icon_state = "shotgun"
@@ -27,7 +27,7 @@
 		chamber_round()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
-	name = "underbarrel grenade launcher"
+	name = "下挂榴弹发射器"
 	spawn_blacklisted = TRUE
 	pin = null
 
@@ -49,8 +49,8 @@
 	pin = null
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg
-	desc = "A 6-shot grenade launcher."
-	name = "multi grenade launcher"
+	desc = "一支六发榴弹发射器。"
+	name = "多管榴弹发射器"
 	icon = 'icons/obj/devices/mecha_equipment.dmi'
 	icon_state = "mecha_grenadelnchr"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/grenademulti
@@ -60,8 +60,8 @@
 	return
 
 /obj/item/gun/ballistic/automatic/gyropistol
-	name = "gyrojet pistol"
-	desc = "A prototype pistol designed to fire self propelled rockets."
+	name = "旋喷手枪"
+	desc = "一款为发射自推进火箭弹而设计的原型手枪。"
 	icon_state = "gyropistol"
 	fire_sound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/m75
@@ -71,11 +71,11 @@
 	casing_ejector = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher
-	name = "\improper Dardo-RE Rocket Launcher"
-	desc = "A reusable rocket propelled grenade launcher. An arrow pointing toward the front of the launcher \
-		alongside the words \"Front Toward Enemy\" are printed on the tube. Someone seems to have crossed out \
-		that last word and written \"NT\" over it at some point. A sticker near the back of the launcher warn \
-		to \"CHECK BACKBLAST CLEAR BEFORE FIRING\", whatever that means."
+	name = "\improper Dardo-RE 火箭筒"
+	desc = "一支可重复使用的火箭推进榴弹发射器。发射管上印着一个指向发射器前方的箭头， \
+		旁边写着“此端朝向敌人”。似乎有人把 \
+		最后那个词划掉了，还在上面写了“NT”。发射器尾部附近贴着一张警告贴纸， \
+		写着“开火前确认后方喷焰区无障碍”，天知道那是什么意思。"
 	icon = 'icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "rocketlauncher"
 	inhand_icon_state = "rocketlauncher"
@@ -93,7 +93,7 @@
 	weapon_weight = WEAPON_HEAVY
 	bolt_type = BOLT_TYPE_NO_BOLT
 	internal_magazine = TRUE
-	cartridge_wording = "rocket"
+	cartridge_wording = "火箭弹"
 	empty_indicator = TRUE
 	tac_reloads = FALSE
 	can_muzzle_flash = FALSE
@@ -106,16 +106,16 @@
 		AddElement(/datum/element/backblast)
 
 /obj/item/gun/ballistic/rocketlauncher/unrestricted
-	desc = "A reusable rocket propelled grenade launcher. An arrow pointing toward the front of the launcher \
-		alongside the words \"Front Toward Enemy\" are printed on the tube. \
-		A sticker near the back of the launcher warn to \"CHECK BACKBLAST CLEAR BEFORE FIRING\", whatever that means."
+	desc = "一支可重复使用的火箭推进榴弹发射器。发射管上印着指向发射器前方的箭头， \
+		旁边写着“此端朝向敌人”。 \
+		发射器尾部附近贴着一张警告贴纸，写着“开火前确认后方喷焰区无障碍”，天知道那是什么意思。"
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/rocketlauncher/nobackblast
-	name = "\improper Dardo-REF Flameless Rocket Launcher"
-	desc = "A reusable rocket propelled grenade launcher. An arrow pointing toward the front of the launcher \
-		alongside the words \"Front Toward Enemy\" are printed on the tube. \
-		This one has been fitted with a special backblast diverter to prevent 'friendly' fire 'accidents' during use."
+	name = "\improper Dardo-REF 无焰火箭筒"
+	desc = "一支可重复使用的火箭推进榴弹发射器。发射管上印着指向发射器前方的箭头， \
+		旁边写着“此端朝向敌人”。 \
+		这一支加装了专用的尾焰导流器，以防使用过程中发生“友军”误伤的“意外”。"
 	backblast = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher/try_fire_gun(atom/target, mob/living/user, params)
@@ -133,8 +133,8 @@
 		. += "rocketlauncher_loaded"
 
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
-	user.visible_message(span_warning("[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!"), \
-		span_userdanger("You aim [src] at the ground to perform a bisnasty rocket jump..."))
+	user.visible_message(span_warning("[user] 把 [src] 对准了地面！看来是想来一次帅气的火箭跳！"), \
+		span_userdanger("你把 [src] 对准地面，准备来一次炫酷到爆的火箭跳……"))
 	if(can_shoot())
 		ADD_TRAIT(user, TRAIT_NO_TRANSFORM, REF(src))
 		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, TRUE, 5)
@@ -151,12 +151,12 @@
 		sleep(0.5 SECONDS)
 		shoot_with_empty_chamber(user)
 		sleep(2 SECONDS)
-		user.visible_message(span_warning("[user] looks about the room realizing [user.p_theyre()] still there. [user.p_They()] proceed to shove [src] down their throat and choke [user.p_them()]self with it!"), \
-			span_userdanger("You look around after realizing you're still here, then proceed to choke yourself to death with [src]!"))
+		user.visible_message(span_warning("[user] 环顾四周，意识到自己居然还在。于是把 [src] 塞进喉咙，用它把自己呛死了！"), \
+			span_userdanger("你环顾四周，发现自己居然还在，于是把 [src] 塞进喉咙，把自己呛死了！"))
 		sleep(2 SECONDS)
 		return OXYLOSS
 
 /obj/item/gun/ballistic/rocketlauncher/unrestricted/nanotrasen
-	desc = "A reusable rocket propelled grenade launcher. The words \"Syndicate this way\" and an arrow have been written near the barrel. \
-	A sticker near the cheek rest reads, \"ENSURE AREA BEHIND IS CLEAR BEFORE FIRING\""
+	desc = "一支可重复使用的火箭推进榴弹发射器。枪管附近用笔写着“辛迪加往这边走”，还画了一个箭头。 \
+	贴腮板旁贴着一张标签，写着“开火前确保后方区域无障碍”"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/rocketlauncher/empty

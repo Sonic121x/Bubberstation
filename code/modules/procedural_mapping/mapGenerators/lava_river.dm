@@ -6,7 +6,7 @@
 	var/max_x = 0
 	var/max_y = 0
 	modules = list(/datum/map_generator_module/river)
-	buildmode_name = "Pattern: Lava Rivers"
+	buildmode_name = "图案：熔岩河"
 
 /datum/map_generator/lavaland/defineRegion(turf/Start, turf/End, replace = 0)
 	start_z = Start.z

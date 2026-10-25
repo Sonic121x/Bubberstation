@@ -1,7 +1,7 @@
 // Junk (Pipe Pistols and Pipeguns)
 
 /obj/projectile/bullet/junk
-	name = "junk bullet"
+	name = "废料子弹"
 	icon_state = "trashball"
 	damage = 40
 	embed_type = /datum/embedding/bullet/junk
@@ -40,13 +40,13 @@
 	stealthy_embed = FALSE
 
 /obj/projectile/bullet/incendiary/fire/junk
-	name = "burning oil"
+	name = "燃烧的油"
 	damage = 40
 	fire_stacks = 5
 	suppressed = SUPPRESSED_NONE
 
 /obj/projectile/bullet/dart/ants
-	name = "a ball of ants"
+	name = "一团蚂蚁"
 	icon_state = "trashball"
 	damage = 40 // Fuck your life.
 	inject_flags = INJECT_CHECK_PENETRATE_THICK // Fuck your modsuit.
@@ -56,12 +56,12 @@
 	reagents.add_reagent(/datum/reagent/ants, damage) // Get fucked, asshole. Ants.
 
 /obj/projectile/bullet/junk/phasic
-	name = "junk phasic bullet"
+	name = "废料相位子弹"
 	icon_state = "gaussphase"
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 /obj/projectile/bullet/junk/shock
-	name = "bundle of live electrical parts"
+	name = "一捆带电零件"
 	icon_state = "tesla_projectile"
 	damage = 20
 	embed_type = null
@@ -76,14 +76,14 @@
 		victim.electrocute_act(damage, src, siemens_coeff = 1, flags = SHOCK_NOSTUN)
 
 /obj/projectile/bullet/junk/hunter
-	name = "junk hunter bullet"
+	name = "废料猎手子弹"
 	icon_state = "gauss"
 	extra_damage_mob_biotypes = MOB_ROBOTIC | MOB_BEAST | MOB_SPECIAL | MOB_MINING
 	extra_damage_multiplier = 0
 	extra_damage_added_damage = 80
 
 /obj/projectile/bullet/junk/ripper
-	name = "junk ripper bullet"
+	name = "废料撕裂者子弹"
 	icon_state = "redtrac"
 	damage = 20
 	embed_type = /datum/embedding/bullet/junk/ripper
@@ -101,7 +101,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/junk/reaper
-	name = "junk reaper bullet"
+	name = "废料收割者子弹"
 	icon_state = null
 	tracer_type = /obj/effect/projectile/tracer/sniper
 	impact_type = /obj/effect/projectile/impact/sniper

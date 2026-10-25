@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser/musket
-	name = "laser musket"
-	desc = "A hand-crafted laser weapon, it has a hand crank on the side to charge it up."
+	name = "激光火枪"
+	desc = "一件手工制作的激光武器，侧面装有手摇曲柄，可为其充能。"
 	icon_state = "musket"
 	inhand_icon_state = "musket"
 	worn_icon_state = "las_musket"
@@ -31,8 +31,8 @@
 	return ..()
 
 /obj/item/gun/energy/laser/musket/prime
-	name = "heroic laser musket"
-	desc = "A well-engineered, hand-charged laser weapon. Its capacitors hum with potential."
+	name = "英雄级激光火枪"
+	desc = "一件精心设计、手动充能的激光武器。它的电容器嗡鸣着，蓄势待发。"
 	icon_state = "musket_prime"
 	inhand_icon_state = "musket_prime"
 	worn_icon_state = "las_musket_prime"
@@ -46,8 +46,8 @@
 	)
 
 /obj/item/gun/energy/disabler/smoothbore
-	name = "smoothbore disabler"
-	desc = "A hand-crafted disabler, using a hard knock on an energy cell to fire the stunner laser. A lack of proper focusing means it has no accuracy whatsoever."
+	name = "滑膛失能枪"
+	desc = "一把手工制作的失能枪，靠猛敲能量电池来发射电击激光。由于缺乏适当的聚焦，它毫无准头可言。"
 	icon_state = "smoothbore"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smoothbore)
 	shaded_charge = 1
@@ -83,9 +83,9 @@
 	) //i swear 1812 being the overlay numbers was accidental
 
 /obj/item/gun/energy/disabler/smoothbore/prime //much stronger than the other prime variants, so dont just put this in as maint loot
-	name = "elite smoothbore disabler"
-	desc = "An enhancement version of the smoothbore disabler pistol. Improved optics and cell type result in good accuracy and the ability to fire twice. \
-	The disabler bolts also don't dissipate upon impact with armor, unlike the previous model."
+	name = "精英滑膛失能枪"
+	desc = "滑膛失能手枪的增强版本。改进的光学元件与电池类型带来了良好的精度和连开两枪的能力。\
+	与上一代型号不同，失能弹在击中护甲后也不会消散。"
 	icon_state = "smoothbore_prime"
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/smoothbore/prime)
 	charge_sections = 2
@@ -103,8 +103,8 @@
 //Inferno and Cryo Pistols
 
 /obj/item/gun/energy/laser/thermal //the common parent of these guns, it just shoots hard bullets, somoene might like that?
-	name = "nanite pistol"
-	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of angry robots into the bad guys."
+	name = "纳米机器人手枪"
+	desc = "一把改装过的手炮，内有可变形储存的退役武器化纳米机器人。把一团团愤怒的机器吐向坏人。"
 	icon_state = "infernopistol"
 	inhand_icon_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite)
@@ -138,26 +138,26 @@
 		overlay_y = 9)
 
 /obj/item/gun/energy/laser/thermal/inferno //the magma gun
-	name = "inferno pistol"
-	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit globs of molten angry robots into the bad guys. \
-		While it doesn't manipulate temperature in and of itself, it does cause an violent eruption in anyone who is severely cold. Able to generate \
-		ammunition by manually spinning the weapon's nanite canister."
+	name = "炼狱手枪"
+	desc = "一把改装过的手炮，内有可变形储存的退役武器化纳米机器人。把一团团熔融的愤怒机器吐向坏人。\
+		它本身并不能操控温度，但会让任何严重失温的人发生剧烈的喷发。只要手动旋转武器的纳米机器人罐，就能生成\
+		弹药。"
 	icon_state = "infernopistol"
 	light_color = COLOR_RED
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite/inferno)
 
 /obj/item/gun/energy/laser/thermal/cryo //the ice gun
-	name = "cryo pistol"
-	desc = "A modified handcannon with a metamorphic reserve of decommissioned weaponized nanites. Spit shards of frozen angry robots into the bad guys. \
-		While it doesn't manipulate temperature in and of itself, it does cause an internal explosion in anyone who is severely hot. Able to generate \
-		ammunition by manually spinning the weapon's nanite canister."
+	name = "冰冻手枪"
+	desc = "一把改装过的手炮，内有可变形储存的退役武器化纳米机器人。把一团团冻结的愤怒机器吐向坏人。\
+		它本身并不能操控温度，但会让任何严重过热的人发生体内爆炸。只要手动旋转武器的纳米机器人罐，就能生成\
+		弹药。"
 	icon_state = "cryopistol"
 	light_color = COLOR_BLUE
 	ammo_type = list(/obj/item/ammo_casing/energy/nanite/cryo)
 
 /obj/item/gun/energy/laser/musket/repeater
-	name = "iconoclast's repeater"
-	desc = "A weapon of incredible bulk, this ratvarian repeater has been permanently severed from its stand to be carried by hand. Cumbersome, Yes - but powerful."
+	name = "破像者连发弩"
+	desc = "一件笨重无比的武器。这台拉特瓦式连发弩被永久地从支架上拆下，改为手持携带。确实笨重，但威力强大。"
 	icon_state = "repeater"
 	inhand_icon_state = "repeater"
 	slowdown = 1
@@ -195,43 +195,43 @@
 
 /obj/item/gun/energy/laser/musket/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("think carefully")] to learn a little more about [src]."), \
-		lore = "The first examples of laser muskets emerged somewhat recently, even though improvised firearms have had \
-		a rich history throughout human, Mothic and Tiziran history.<br>\
+		lore_hint = span_notice("你可以 [EXAMINE_HINT("仔细想想")] 来进一步了解 [src]。"), \
+		lore = "激光火枪最早的实例出现得并不算久，尽管临时拼凑的枪械在人类、蛾族与提兹拉的历史中都有着\
+		悠久的传统。<br>\
 		<br>\
-		Laser muskets often started to emerge when conventional weaponry or ammunition started to grow scarcer, and the amount \
-		of scrap electronics and materials outpaced the speed at which engineering crews could repair structural defenses and \
-		infrastructure. They're regarded as weapons of extreme desperation, but also of unmatched grit in the face of a hopeless situation. <br>\
+		激光火枪往往是在常规武器或弹药开始变得稀缺、废料电子元件与材料的\
+		总量超过了工程人员修复结构防御和基础设施的速度时出现的。它们被视为极端\
+		绝望下的武器，却也代表着在绝境中无与伦比的坚韧。 <br>\
 		<br>\
-		Constructing one of these is sometimes seen as a rite of passage amongst militia groups and rebel forces. Each one as unique \
-		as the next. <br>\
+		在民兵组织和叛军之中，制造这样一把武器有时被视为成年礼。每一把都独一无二，\
+		各不相同。 <br>\
 		<br>\
-		What will this one's name be? What history will it write? Time will surely tell." \
+		这一把会叫什么名字？它会写下怎样的历史？时间自会给出答案。" \
 	)
 
 // Thermal Pistols
 
 /obj/item/gun/energy/laser/thermal/add_deep_lore()
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src]."), \
-		lore = "A weapon with no name, more a pattern of design. Examples of thermal pistols vary heavily based on the \
-		manufacturer or craftsperson. However, the original inventor of the thermal pistol is largely clouded in mystery. \
-		Replica versions of the pistol were circulating long before weaponized nanites were banned by the \
-		TerraGov Subdermal Weapons Accord, and have continued to exist as a means of disposing of the self-replicating stocks \
-		of weaponized nanites.<br>\
+		lore_hint = span_notice("你可以 [EXAMINE_HINT("仔细端详")] 来进一步了解 [src]。"), \
+		lore = "一种没有名字的武器，更像是一种设计范式。热能手枪的样式因\
+		制造商或工匠不同而差异极大。然而，热能手枪最初的发明者大多笼罩在谜团之中。\
+		早在武器化纳米机器人被《地球政府皮下武器协定》\
+		禁止之前，这款手枪的仿制版本就已流传，并一直作为一种处理自我复制武器化纳米机器人库存的\
+		手段而存在。<br>\
 		<br>\
-		This is an example of Nanotrasen's Viper Classic model, based on earlier models of the weapon in appearance, but using \
-		up to date nanite breeding chambers that respond to user articulation. That is, the weapons can be charged with a vigorous \
-		shake. Though most users prefer to use the custom trick triggerguard to twirl them on their finger. Mostly for showmanship. <br>\
+		这是纳米传讯“毒蛇经典”型号的实例，外观基于该武器的早期型号，但使用了\
+		能响应用户动作的最新式纳米机器人培育舱。也就是说，只要用力\
+		摇一摇就能为武器充能。不过大多数用户更喜欢利用定制的花式扳机护圈，用手指转枪。多半是为了炫耀。 <br>\
 		<br>\
-		Due to various movies and television programs, or perhaps spacer legends of fancy, the weapons are often associated with the \
-		'Space Rangers' that roam the periphery and Australicus regions of space. Polarizing tales of rugged gun fighters roaming \
-		from outpost to outpost, leaving justice, death or merely a large quantity of buzzing nanite clouds in their wake. \
-		Robber barons, frontier lawbringers. Even the occasional hard-boiled detective. These weapons are sometimes associated \
-		with cultural imagery around rugged individualism, tenacity and nonconformity, as well as a bygone age of noble warriors and \
-		ruthless villains. Using these weapons today is largely seen as a way to evoke this imagery, even if it comes across \
-		as mildly tacky. <br>\
+		由于各种电影和电视节目，或者也许只是太空居民的美好传说，这类武器常常与\
+		漫步于外围和澳斯特拉利库斯星区的“太空游骑兵”联系在一起。关于粗犷枪手从\
+		一个哨站游荡到另一个哨站，身后留下正义、死亡或仅仅是一大团嗡嗡作响的纳米机器人云雾的故事，令人两极分化。\
+		强盗大亨，边疆执法者。甚至偶尔还有硬汉侦探。这些武器有时会与\
+		围绕粗犷个人主义、坚韧不拔与不随波逐流的文化意象联系在一起，也与那个由高尚战士和\
+		冷酷恶棍组成的逝去时代相连。如今使用这些武器，很大程度上被视为唤起这种意象的方式，哪怕看起来\
+		有点俗气。 <br>\
 		<br>\
-		It isn't fully understood who started the practice of 'pairing' the pistols, though the custom has remained as long as \
-		living memory. Every thermal pistol has a mate, and it is considered ill fortune to separate them purposefully." \
+		人们并不完全清楚是谁开创了将手枪“配对”的做法，但这一习俗已延续了\
+		有生之年那么久。每一把热能手枪都有伴侣，刻意将它们分开被认为是不祥之兆。" \
 	)

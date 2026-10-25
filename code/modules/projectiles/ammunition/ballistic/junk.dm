@@ -1,8 +1,8 @@
 // Junk
 
 /obj/item/ammo_casing/junk
-	name = "improvised junk round"
-	desc = "What is in the shell? Shoot it to find out."
+	name = "简易杂料弹"
+	desc = "弹壳里装的是什么？开一枪就知道了。"
 	icon_state = "improvshell"
 	caliber = CALIBER_JUNK
 	projectile_type = /obj/projectile/bullet/junk
@@ -11,8 +11,8 @@
 // Junk Shell Spawner; used to spawn in our random shells upon crafting
 
 /obj/effect/spawner/random/junk_shell
-	name = "junk shell spawner"
-	desc = "Bullet. Bullet Bullet."
+	name = "杂料弹生成器"
+	desc = "子弹。子弹子弹。"
 	icon_state = "junkround"
 	loot = list(
 		/obj/item/ammo_casing/junk = 50,

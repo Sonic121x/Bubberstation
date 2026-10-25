@@ -1,7 +1,7 @@
 /// The gravitational singularity
 /obj/singularity
-	name = "gravitational singularity"
-	desc = "A gravitational singularity."
+	name = "引力奇点"
+	desc = "一个引力奇点。"
 	icon = 'icons/obj/machines/engine/singularity.dmi'
 	icon_state = "singularity_s1"
 	anchored = TRUE
@@ -48,7 +48,7 @@
 	/// How long it's been since the singulo last acted, in seconds
 	var/time_since_act = 0
 	/// What the game tells ghosts when you make one
-	var/ghost_notification_message = "IT'S LOOSE"
+	var/ghost_notification_message = "它脱困了"
 
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 	flags_1 = SUPERMATTER_IGNORES_1
@@ -97,9 +97,9 @@
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	var/mob/living/carbon/jedi = user
 	jedi.visible_message(
-		span_danger("[jedi]'s head begins to collapse in on itself!"),
-		span_userdanger("Your head feels like it's collapsing in on itself! This was really not a good idea!"),
-		span_hear("You hear something crack and explode in gore.")
+		span_danger("[jedi] 的脑袋开始向内塌陷！"),
+		span_userdanger("你的脑袋感觉像在向内塌陷！这真不是个好主意！"),
+		span_hear("你听到某物爆裂并炸成一团血肉。")
 		)
 	jedi.Stun(3 SECONDS)
 	new /obj/effect/gibspawner/generic(get_turf(jedi), jedi)
@@ -147,7 +147,7 @@
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			if(current_size <= STAGE_TWO)
-				investigate_log("has been destroyed by a heavy explosion.", INVESTIGATE_ENGINE)
+				investigate_log("被一次剧烈爆炸摧毁。", INVESTIGATE_ENGINE)
 				qdel(src)
 				return TRUE
 
@@ -281,7 +281,7 @@
 		resolved_singularity.singularity_size = current_size
 
 	if(current_size == allowed_size)
-		investigate_log("grew to size [current_size].", INVESTIGATE_ENGINE)
+		investigate_log("尺寸增大至 [current_size]。", INVESTIGATE_ENGINE)
 		return TRUE
 	else if(current_size < (--temp_allowed_size))
 		expand(temp_allowed_size)
@@ -290,7 +290,7 @@
 
 /obj/singularity/proc/check_energy()
 	if(energy <= 0)
-		investigate_log("collapsed.", INVESTIGATE_ENGINE)
+		investigate_log("已坍缩。", INVESTIGATE_ENGINE)
 		qdel(src)
 		return FALSE
 	switch(energy)//Some of these numbers might need to be changed up later -Mport
@@ -322,18 +322,18 @@
 		supermatter_upgrade()
 
 /obj/singularity/proc/supermatter_upgrade()
-	name = "supermatter-charged [initial(name)]"
-	desc = "[initial(desc)] It glows fiercely with inner fire."
+	name = "超物质充能的 [initial(name)]"
+	desc = "[initial(desc)] 它内部燃烧着炽烈的火光。"
 	consumed_supermatter = TRUE
 	set_light(10)
 
 /obj/singularity/proc/consume_boh(obj/boh)
 	collapsing = TRUE
-	name = "unstable [initial(name)]"
-	desc = "[initial(desc)] It seems to be collapsing in on itself."
+	name = "不稳定的 [initial(name)]"
+	desc = "[initial(desc)] 它似乎正在向内坍缩。"
 	visible_message(
-		message = span_danger("As [src] consumes [boh], it begins to collapse in on itself!"),
-		blind_message = span_hear("You hear aggressive crackling!"),
+		message = span_danger("当 [src] 吞噬 [boh] 时，它开始向内坍缩！"),
+		blind_message = span_hear("你听到剧烈的噼啪声！"),
 		vision_distance = 15,
 	)
 	playsound(loc, 'sound/effects/clockcult_gateway_disrupted.ogg', 200, vary = TRUE, extrarange = 3, falloff_exponent = 1, frequency = -1, pressure_affected = FALSE, ignore_walls = TRUE, falloff_distance = 7)
@@ -434,8 +434,8 @@
 /obj/singularity/proc/combust_mobs()
 	for(var/mob/living/carbon/burned_mob in urange(20, src, 1))
 		burned_mob.visible_message(
-			span_warning("[burned_mob]'s skin bursts into flame!"),
-			span_userdanger("You feel an inner fire as your skin bursts into flames!")
+			span_warning("[burned_mob] 的皮肤轰然起火！"),
+			span_userdanger("你感到体内燃起一团火，皮肤随之猛烈燃烧！")
 		)
 		burned_mob.adjust_fire_stacks(5)
 		burned_mob.ignite_mob()
@@ -454,7 +454,7 @@
 		if(istype(stunned_human.glasses, /obj/item/clothing/glasses/meson))
 			var/obj/item/clothing/glasses/meson/check_meson = stunned_human.glasses
 			if(check_meson.vision_flags & SEE_TURFS)
-				to_chat(stunned_human, span_notice("You look directly into \the [src], good thing you had your protective eyewear on!"))
+				to_chat(stunned_human, span_notice("你直视了 \the [src]，幸好你戴着防护眼镜！"))
 				continue
 
 		apply_stun(stunned_mob)
@@ -462,8 +462,8 @@
 /obj/singularity/proc/apply_stun(mob/living/carbon/stunned_mob)
 	stunned_mob.apply_effect(60, EFFECT_STUN)
 	stunned_mob.visible_message(
-		span_danger("[stunned_mob] stares blankly at \the [src]!"),
-		span_userdanger("You look directly into \the [src] and feel weak.")
+		span_danger("[stunned_mob] 呆呆地凝视着 \the [src]！"),
+		span_userdanger("你直视了 \the [src]，感到一阵虚弱。")
 	)
 
 /obj/singularity/proc/emp_area()
@@ -472,7 +472,7 @@
 /obj/singularity/singularity_act()
 	var/gain = (energy/2)
 	var/dist = max((current_size - 2),1)
-	investigate_log("has been destroyed by another singularity.", INVESTIGATE_ENGINE)
+	investigate_log("被另一个奇点摧毁。", INVESTIGATE_ENGINE)
 	explosion(
 		src,
 		devastation_range = dist,

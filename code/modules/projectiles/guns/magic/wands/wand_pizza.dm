@@ -2,8 +2,8 @@
  * Turns things you hit into pizza.
  */
 /obj/item/gun/magic/wand/pizza
-	name = "wand of snacking"
-	desc = "The incredible power of this wand transforms certain objects and surfaces into edible pizza."
+	name = "点心魔杖"
+	desc = "这根魔杖拥有不可思议的力量，能把某些物体和表面变成可以吃的披萨。"
 	school = SCHOOL_TRANSMUTATION
 	ammo_type = /obj/item/ammo_casing/magic/pizza
 	icon_state = "pizzawand"
@@ -12,7 +12,7 @@
 	max_charges = 20
 
 /obj/item/gun/magic/wand/pizza/zap_self(mob/living/user, suicide = FALSE)
-	to_chat(user, span_notice("You can't bring yourself to commit to a permanent transformation into pizza right now."))
+	to_chat(user, span_notice("你现在还下不了狠心，让自己永久变成披萨。"))
 	return
 
 /obj/item/gun/magic/wand/pizza/do_suicide(mob/living/user)
@@ -27,7 +27,7 @@
 	var/special_slice = pick(slice_types)
 	var/obj/item/pizza = new special_slice(user_loc)
 
-	pizza.name = "[user.real_name] slice"
+	pizza.name = "[user.real_name] 切片"
 	user.ghostize()
 	qdel(user)
 
@@ -38,7 +38,7 @@
 	harmful = FALSE
 
 /obj/projectile/magic/pizza
-	name = "bolt of snacking"
+	name = "点心魔弹"
 	icon = 'icons/obj/food/pizza.dmi'
 	icon_state = "pizzamargherita"
 
@@ -77,11 +77,11 @@
 				else
 					// I would love to use plaintext_zone but what if they don't have an arm?
 					var/hand_index = IS_LEFT_INDEX(lunch_haver.active_hand_index) ? BODY_ZONE_L_ARM : BODY_ZONE_R_ARM
-					var/hand_zone = IS_LEFT_INDEX(lunch_haver.active_hand_index) ? "left arm" : "right arm"
+					var/hand_zone = IS_LEFT_INDEX(lunch_haver.active_hand_index) ? "左臂" : "右臂"
 
 					var/mob/living/carbon/edward_pizza_hands = lunch_haver
 					edward_pizza_hands.make_item_prosthetic(the_piz, hand_index)
-					edward_pizza_hands.visible_message(span_warning("[edward_pizza_hands]'s [hand_zone] is transformed into \a [the_piz]!"))
+					edward_pizza_hands.visible_message(span_warning("[edward_pizza_hands] 的[hand_zone]变成了 \a [the_piz]！"))
 
 	lunch_haver.set_combat_mode(FALSE) // You can't eat pizza if you're on combat mode
 	the_piz.attack(lunch_haver, lunch_haver)

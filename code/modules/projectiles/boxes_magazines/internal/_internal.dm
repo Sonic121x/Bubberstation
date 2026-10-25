@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/internal
-	desc = "Oh god, this shouldn't be here"
+	desc = "天哪，这东西不该出现在这里"
 	abstract_type = /obj/item/ammo_box/magazine/internal
 	spawn_blacklisted = TRUE
 	obj_flags = CONDUCTS_ELECTRICITY

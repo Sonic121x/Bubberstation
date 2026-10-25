@@ -1,7 +1,7 @@
 /datum/chemical_reaction/basic_buffer
 	results = list(/datum/reagent/reaction_agent/basic_buffer = 10)
 	required_reagents = list(/datum/reagent/ammonia = 3, /datum/reagent/chlorine = 2, /datum/reagent/hydrogen = 2, /datum/reagent/oxygen = 2) //vagely NH4OH + NH4Cl buffer
-	mix_message = "The solution fizzes in the beaker."
+	mix_message = "溶液在烧杯中嘶嘶作响。"
 	//FermiChem vars:
 	required_temp = 250
 	optimal_temp = 500
@@ -20,7 +20,7 @@
 /datum/chemical_reaction/acidic_buffer
 	results = list(/datum/reagent/reaction_agent/acidic_buffer = 10)
 	required_reagents = list(/datum/reagent/sodium = 2, /datum/reagent/hydrogen = 2, /datum/reagent/consumable/ethanol = 2, /datum/reagent/water = 2)
-	mix_message = "The solution froths in the beaker."
+	mix_message = "溶液在烧杯中翻涌起泡。"
 	required_temp = 250
 	optimal_temp = 500
 	overheat_temp = NO_OVERHEAT
@@ -43,7 +43,7 @@
 /datum/chemical_reaction/prefactor_a
 	results = list(/datum/reagent/prefactor_a = 5)
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/consumable/ethanol = 3, /datum/reagent/toxin/plasma = 1)
-	mix_message = "The solution's viscosity increases."
+	mix_message = "溶液的黏度上升了。"
 	is_cold_recipe = TRUE
 	required_temp = 800
 	optimal_temp = 300
@@ -63,7 +63,7 @@
 /datum/chemical_reaction/prefactor_b
 	results = list(/datum/reagent/prefactor_b = 5)
 	required_reagents = list(/datum/reagent/prefactor_a = 5)
-	mix_message = "The solution's viscosity decreases."
+	mix_message = "溶液的黏度下降了。"
 	mix_sound = 'sound/effects/chemistry/bluespace.ogg' //Maybe use this elsewhere instead
 	required_temp = 50
 	optimal_temp = 500

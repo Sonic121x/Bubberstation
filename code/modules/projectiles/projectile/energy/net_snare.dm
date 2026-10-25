@@ -1,5 +1,5 @@
 /obj/projectile/energy/snare
-	name = "energy snare"
+	name = "能量网索"
 	icon_state = "e_netting"
 	damage = 30
 	damage_type = STAMINA
@@ -31,8 +31,8 @@
 	. = ..()
 
 /obj/effect/nettingportal
-	name = "DRAGnet teleportation field"
-	desc = "A field of bluespace energy, locking on to teleport a target."
+	name = "DRAGnet 传送场"
+	desc = "一片蓝空间能量场，锁定目标并对其进行传送。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dragnetfield"
 	light_range = 3
@@ -60,8 +60,8 @@
 	return
 
 /obj/item/dragnet_beacon
-	name = "\improper DRAGnet beacon"
-	desc = "Can be synced with a DRAGnet to set it as a designated teleporting point."
+	name = "\improper DRAGnet 信标"
+	desc = "可与 DRAGnet 同步，将其设为指定的传送点。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "dragnet_beacon"
 	inhand_icon_state = "beacon"
@@ -79,36 +79,36 @@
 
 	if(isidcard(tool))
 		if(!anchored)
-			balloon_alert(user, "wrench the beacon first!")
+			balloon_alert(user, "请先用扳手固定信标！")
 			return
 
 		if(obj_flags & EMAGGED)
-			balloon_alert(user, "the access control is fried!")
+			balloon_alert(user, "门禁控制已烧毁！")
 			return
 
 		var/obj/item/card/id/id_card = tool
 		if((ACCESS_SECURITY in id_card.GetAccess()))
 			locked = !locked
-			balloon_alert(user, "beacon [locked ? "locked" : "unlocked"]")
+			balloon_alert(user, "信标[locked ? "已锁定" : "已解锁"]")
 		else
-			balloon_alert(user, "no access!")
+			balloon_alert(user, "权限不足！")
 
 /obj/item/dragnet_beacon/wrench_act(mob/living/user, obj/item/tool)
 	if(user.is_holding(src))
-		balloon_alert(user, "put it down first!")
+		balloon_alert(user, "请先把它放下！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(anchored && locked)
-		balloon_alert(user, "must be unlocked first!")
+		balloon_alert(user, "必须先解锁！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(isinspace() && !anchored)
-		balloon_alert(user, "nothing to anchor to!")
+		balloon_alert(user, "无处可固定！")
 		return ITEM_INTERACT_BLOCKING
 
 	set_anchored(!anchored)
 	tool.play_tool_sound(src, 75)
-	user.balloon_alert_to_viewers("[anchored ? "anchored" : "unanchored"]")
+	user.balloon_alert_to_viewers("[anchored ? "已固定" : "已解除固定"]")
 
 /obj/item/dragnet_beacon/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
@@ -117,5 +117,5 @@
 	locked = FALSE
 	set_anchored(FALSE)
 	do_sparks(3, TRUE, src)
-	balloon_alert(user, "beacon unlocked")
+	balloon_alert(user, "信标已解锁")
 	return TRUE

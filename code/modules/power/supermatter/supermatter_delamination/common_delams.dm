@@ -2,7 +2,7 @@
 
 /// When we have too much gas.
 /datum/sm_delam/singularity
-	name = "singularity delamination"
+	name = "奇点崩解"
 
 /datum/sm_delam/singularity/can_select(obj/machinery/power/supermatter_crystal/sm)
 	return (sm.absorbed_gasmix.total_moles() >= MOLE_PENALTY_THRESHOLD)
@@ -12,7 +12,7 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		"Warning: Critical coolant mass reached.",
+		"警告：冷却剂质量已达临界值。",
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE
@@ -62,7 +62,7 @@
 
 /// When we have too much power.
 /datum/sm_delam/tesla
-	name = "tesla delamination"
+	name = "特斯拉崩解"
 
 /datum/sm_delam/tesla/can_select(obj/machinery/power/supermatter_crystal/sm)
 	return (sm.internal_energy > POWER_PENALTY_THRESHOLD)
@@ -72,7 +72,7 @@
 		return FALSE
 	sm.radio.talk_into(
 		sm,
-		"DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.",
+		"危险：电荷惯性链式反应正在进行。",
 		sm.damage > sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	return TRUE
@@ -111,7 +111,7 @@
 
 /// Default delam.
 /datum/sm_delam/explosive
-	name = "explosive delamination"
+	name = "爆炸崩解"
 
 /datum/sm_delam/explosive/can_select(obj/machinery/power/supermatter_crystal/sm)
 	return TRUE

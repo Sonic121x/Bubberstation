@@ -75,7 +75,7 @@
 	SIGNAL_HANDLER
 	if(!computer.get_ntnet_status())
 		return
-	computer.alert_call(src, "晶体正在发生层裂！")
+	computer.alert_call(src, "晶体正在发生崩解！")
 	alert_pending = TRUE
 
 /datum/computer_file/program/supermatter_monitor/proc/clear_supermatter(obj/machinery/power/supermatter_crystal/sm)

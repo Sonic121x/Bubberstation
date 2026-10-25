@@ -1,5 +1,5 @@
 /datum/sm_delam/cascade
-	name = "resonance cascade"
+	name = "共振级联"
 
 /datum/sm_delam/cascade/can_select(obj/machinery/power/supermatter_crystal/sm)
 	if(!sm.is_main_engine)
@@ -22,15 +22,15 @@
 
 	sm.radio.talk_into(
 		sm,
-		"DANGER: HYPERSTRUCTURE OSCILLATION FREQUENCY OUT OF BOUNDS.",
+		"危险：超结构振荡频率超出界限。",
 		sm.damage >= sm.emergency_point ? sm.emergency_channel : sm.warning_channel
 	)
 	var/list/messages = list(
-		"Space seems to be shifting around you...",
-		"You hear a high-pitched ringing sound.",
-		"You feel tingling going down your back.",
-		"Something feels very off.",
-		"A drowning sense of dread washes over you.",
+		"你周围的空间似乎在变动……",
+		"你听到一阵尖细的鸣响。",
+		"你感到一阵刺麻顺着后背向下蔓延。",
+		"总感觉有什么地方很不对劲。",
+		"一股令人窒息的恐惧淹没了你。",
 	)
 	dispatch_announcement_to_players(span_danger(pick(messages)), should_play_sound = FALSE)
 
@@ -45,7 +45,7 @@
 
 /datum/sm_delam/cascade/on_deselect(obj/machinery/power/supermatter_crystal/sm)
 	. = ..()
-	message_admins("[ADMIN_VERBOSEJMP(sm)] will no longer cascade.")
+	message_admins("[ADMIN_VERBOSEJMP(sm)] 将不再发生级联。")
 	sm.vis_contents -= sm.warp
 	QDEL_NULL(sm.warp)
 
@@ -54,8 +54,8 @@
 	effect_explosion(sm)
 	effect_emergency_state()
 	effect_cascade_demoralize()
-	priority_announce("A Type-C resonance shift event has occurred in your sector. Scans indicate local oscillation flux affecting spatial and gravitational substructure. \
-		Multiple resonance hotspots have formed. Please standby.", "Nanotrasen Star Observation Association", ANNOUNCER_SPANOMALIES)
+	priority_announce("你所在的星区发生了一次 C 型共振偏移事件。扫描显示局部振荡通量正在影响空间与引力子结构。\
+		已形成多个共振热点。请待命。", "纳米传讯星象观测协会", ANNOUNCER_SPANOMALIES)
 	sleep(2 SECONDS)
 	effect_strand_shuttle()
 	sleep(5 SECONDS)
@@ -67,16 +67,16 @@
 	return ..()
 
 /datum/sm_delam/cascade/examine(obj/machinery/power/supermatter_crystal/sm)
-	return list(span_bolddanger("The crystal is vibrating at immense speeds, warping space around it!"))
+	return list(span_bolddanger("晶体正以极高速度振动，扭曲着它周围的空间！"))
 
 /datum/sm_delam/cascade/overlays(obj/machinery/power/supermatter_crystal/sm)
 	return list()
 
 /datum/sm_delam/cascade/count_down_messages(obj/machinery/power/supermatter_crystal/sm)
 	var/list/messages = list()
-	messages += "CRYSTAL DELAMINATION IMMINENT. The supermatter has reached critical integrity failure. Harmonic frequency limits exceeded. Causality destabilization field could not be engaged."
-	messages += "Crystalline hyperstructure returning to safe operating parameters. Harmonic frequency restored within emergency bounds. Anti-resonance filter initiated."
-	messages += "remain before resonance-induced stabilization."
+	messages += "晶体即将崩解。超物质已达到临界完整度失效。谐波频率限制已被突破。因果失稳场无法启用。"
+	messages += "晶体超结构正在恢复至安全运行参数。谐波频率已恢复到紧急界限内。反共振过滤器已启动。"
+	messages += "后完成共振诱导的稳定。"
 	return messages
 
 /datum/sm_delam/cascade/proc/announce_cascade(obj/machinery/power/supermatter_crystal/sm)
@@ -87,9 +87,9 @@
 	if(!sm.should_alert_common())
 		return FALSE
 
-	priority_announce("Attention: Long range anomaly scans indicate abnormal quantities of harmonic flux originating from \
-	a subject within [station_name()], a resonance collapse may occur.",
-	"Nanotrasen Star Observation Association", 'sound/announcer/alarm/airraid.ogg')
+	priority_announce("注意：远程异常扫描显示，来自 [station_name()] 内某个主体的谐波通量数值异常，\
+	可能会发生一次共振坍缩。",
+	"纳米传讯星象观测协会", 'sound/announcer/alarm/airraid.ogg')
 	announcement_triggered = TRUE
 	return TRUE
 
