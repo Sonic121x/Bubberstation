@@ -1,6 +1,6 @@
 /obj/machinery/nuclearbomb/selfdestruct
-	name = "station self-destruct terminal"
-	desc = "For when it all gets too much to bear. Do not taunt."
+	name = "空间站自毁终端"
+	desc = "当你实在承受不住一切时使用。请勿挑衅。"
 	icon = 'icons/obj/machines/nuke_terminal.dmi'
 	icon_state = "nuclearbomb_base"
 	anchored = TRUE //stops it being moved

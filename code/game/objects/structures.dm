@@ -37,9 +37,9 @@
 	. = ..()
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)
-			. += span_warning("It's on fire!")
+			. += span_warning("它着火了！")
 		if(broken)
-			. += span_notice("It appears to be broken.")
+			. += span_notice("它似乎已经损坏。")
 		var/examine_status = examine_status(user)
 		if(examine_status)
 			. += examine_status
@@ -48,15 +48,15 @@
 	var/healthpercent = (atom_integrity/max_integrity) * 100
 	switch(healthpercent)
 		if(50 to 99)
-			return  "It looks slightly damaged."
+			return  "它看起来有轻微损坏。"
 		if(25 to 50)
-			return  "It appears heavily damaged."
+			return  "它看起来严重受损。"
 		if(0 to 25)
 			if(!broken)
-				return  span_warning("It's falling apart!")
+				return  span_warning("它快要散架了！")
 
 /obj/structure/examine_descriptor(mob/user)
-	return "structure"
+	return "结构物"
 
 /obj/structure/rust_heretic_act()
 	take_damage(500, BRUTE, "melee", 1)
@@ -73,7 +73,7 @@
 
 /// For when a mob comes flying through the window, smash it and damage the mob
 /obj/structure/proc/smash_and_injure(mob/living/flying_mob, atom/oldloc, direction)
-	flying_mob.balloon_alert_to_viewers("smashed through!")
+	flying_mob.balloon_alert_to_viewers("撞穿了！")
 	flying_mob.apply_damage(damage = rand(5, 15), damagetype = BRUTE, wound_bonus = 15, exposed_wound_bonus = 25, sharpness = SHARP_EDGED, attack_direction = get_dir(src, oldloc))
 	new /obj/effect/decal/cleanable/glass(get_step(flying_mob, flying_mob.dir))
 	deconstruct(disassembled = FALSE)

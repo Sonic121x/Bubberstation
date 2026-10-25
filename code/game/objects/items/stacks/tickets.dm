@@ -1,7 +1,7 @@
 /obj/item/stack/arcadeticket
-	name = "arcade tickets"
-	desc = "Wow! With enough of these, you could buy a bike! ...Pssh, yeah right."
-	singular_name = "arcade ticket"
+	name = "街机奖券"
+	desc = "哇！攒够这些，你就能买辆自行车了！……切，想得美。"
+	singular_name = "街机奖券"
 	icon_state = "arcade-ticket"
 	inhand_icon_state = "tickets"
 	w_class = WEIGHT_CLASS_TINY

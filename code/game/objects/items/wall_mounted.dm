@@ -24,18 +24,18 @@
 /obj/item/wallframe/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/wallframe/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	. = NONE
 	if(find_support_structure(target))
-		context[SCREENTIP_CONTEXT_LMB] = "Mount"
+		context[SCREENTIP_CONTEXT_LMB] = "安装"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/wallframe/examine(mob/user)
 	. = ..()
-	. += span_notice("It can be [EXAMINE_HINT("wrenched")] apart.")
+	. += span_notice("可以用[EXAMINE_HINT("扳手")]拆开。")
 
 /**
  * Returns an structure to mount on from the atom passed
@@ -56,9 +56,9 @@
 		return ITEM_INTERACT_FAILURE
 
 	playsound(loc, 'sound/machines/click.ogg', 75, TRUE)
-	user.visible_message(span_notice("[user.name] attaches [src] to the wall."),
-		span_notice("You attach [src] to the wall."),
-		span_hear("You hear clicking."))
+	user.visible_message(span_notice("[user.name]把[src]固定到了墙上。"),
+		span_notice("你把[src]固定到了墙上。"),
+		span_hear("你听到咔哒声。"))
 
 	var/floor_to_support = get_dir(user, support_structure)
 	var/obj/hanging_object = new result_path(get_turf(user))
@@ -93,22 +93,22 @@
 */
 /obj/item/wallframe/proc/try_build(atom/support, mob/user)
 	if(get_dist(support, user) > 1)
-		balloon_alert(user, "you are too far!")
+		balloon_alert(user, "你离得太远了！")
 		return FALSE
 	var/floor_to_support = get_dir(user, support)
 	if(!(floor_to_support in GLOB.cardinals))
-		balloon_alert(user, "stand in line with wall!")
+		balloon_alert(user, "请与墙壁对齐站立！")
 		return FALSE
 	var/turf/T = get_turf(user)
 	if(!isfloorturf(T) && !bypass_floor) //BUBBER EDIT - allows for wallmounts in floorless areas
-		balloon_alert(user, "cannot place here!")
+		balloon_alert(user, "无法放置在这里！")
 		return FALSE
 	var/area/A = get_area(T)
 	if(A.always_unpowered && !bypass_unpowered) //BUBBER EDIT - allows for wallmounts in unpowered areas
-		balloon_alert(user, "cannot place in this area!")
+		balloon_alert(user, "无法在这个区域放置！")
 		return
 	if(check_wall_item(T, floor_to_support, wall_external))
-		balloon_alert(user, "already something here!")
+		balloon_alert(user, "这里已经有东西了！")
 		return FALSE
 
 	return TRUE
@@ -126,7 +126,7 @@
 	return interact_with_atom(get_step(get_turf(user), user.dir), user)
 
 /obj/item/wallframe/wrench_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You dismantle [src]."))
+	to_chat(user, span_notice("你拆解了[src]。"))
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -136,7 +136,7 @@
 		new mat.sheet_type(drop, round(custom_materials[mat] / SHEET_MATERIAL_AMOUNT))
 
 /obj/item/electronics
-	desc = "Looks like a circuit. Probably is."
+	desc = "看起来像一块电路板。很可能就是。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "door_electronics"
 	inhand_icon_state = "electronic"

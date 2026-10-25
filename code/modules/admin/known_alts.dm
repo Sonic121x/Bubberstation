@@ -9,7 +9,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(usr, span_warning("Couldn't connect to the database."))
+		to_chat(usr, span_warning("无法连接到数据库。"))
 		return
 
 	var/datum/admins/holder = usr.client?.holder
@@ -21,11 +21,11 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 
 	switch (href_list["action"])
 		if ("add")
-			var/ckey1 = input(usr, "Put in the name of the main ckey") as null|text
+			var/ckey1 = input(usr, "请输入主账号的 ckey") as null|text
 			if (!ckey1)
 				return
 
-			var/ckey2 = input(usr, "Put in the name of their alt") as null|text
+			var/ckey2 = input(usr, "请输入其小号的 ckey") as null|text
 			if (!ckey2)
 				return
 
@@ -51,7 +51,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			QDEL_NULL(query_already_exists)
 
 			if (already_exists_row)
-				alert(usr, "Those two are already in the list of known alts!")
+				alert(usr, "这两个账号已经在已知小号列表中了！")
 				return
 
 			var/datum/db_query/query_add_known_alt = SSdbcore.NewQuery({"
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			))
 
 			if (query_add_known_alt.warn_execute())
-				var/message = "[key_name(usr)] has added a new known alt connection between [ckey1] and [ckey2]."
+				var/message = "[key_name(usr)] 添加了 [ckey1] 与 [ckey2] 之间的已知小号关联。"
 				message_admins(message)
 				log_admin_private(message)
 
@@ -75,13 +75,13 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			show_panel(usr.client)
 
 			if (!is_banned_from(ckey2, "Server"))
-				var/ban_choice = alert("[ckey2] is not banned from the server. Do you want to open up the ban panel as well?",,"Yes", "No")
+				var/ban_choice = alert("[ckey2] 尚未被服务器封禁。你是否想同时打开封禁面板？",,"Yes", "No")
 				if (ban_choice == "Yes")
 					holder.ban_panel(ckey2, role = "Server", duration = BAN_PANEL_PERMANENT)
 		if ("delete")
 			var/id = text2num(href_list["id"])
 			if (!id)
-				log_admin_private("[key_name(usr)] tried to delete an invalid known alt ID: [href_list["id"]]")
+				log_admin_private("[key_name(usr)] 试图删除无效的已知小号 ID：[href_list["id"]]")
 				return
 
 			var/datum/db_query/query_known_alt_info = SSdbcore.NewQuery({"
@@ -96,14 +96,14 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 				return
 
 			if (!query_known_alt_info.NextRow())
-				alert("Couldn't find the known alt with the ID [id]")
+				alert("找不到 ID 为 [id] 的已知小号")
 				qdel(query_known_alt_info)
 				return
 
 			var/list/result = query_known_alt_info.item
 			QDEL_NULL(query_known_alt_info)
 
-			if (alert("Are you sure you want to delete the alt connection between [result[1]] and [result[2]]?",,"Yes", "No") != "Yes")
+			if (alert("你确定要删除 [result[1]] 与 [result[2]] 之间的小号关联吗？",,"Yes", "No") != "Yes")
 				return
 
 			var/datum/db_query/query_delete_known_alt = SSdbcore.NewQuery({"
@@ -114,7 +114,7 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 			))
 
 			if (query_delete_known_alt.warn_execute())
-				var/message = "[key_name(usr)] has deleted the known alt connection between [result[1]] and [result[2]]."
+				var/message = "[key_name(usr)] 删除了 [result[1]] 与 [result[2]] 之间的小号关联。"
 				message_admins(message)
 				log_admin_private(message)
 
@@ -162,24 +162,24 @@ GLOBAL_DATUM_INIT(known_alts, /datum/known_alts, new)
 		return
 
 	if (!SSdbcore.Connect())
-		to_chat(usr, span_warning("Couldn't connect to the database."))
+		to_chat(usr, span_warning("无法连接到数据库。"))
 		return
 
 	var/list/known_alts_html = list()
 
 	for (var/known_alt in load_known_alts())
-		known_alts_html += "<a href='byond://?src=[REF(src)];[HrefToken()];action=delete;id=[known_alt[4]]'>\[-\] Delete</a> <b>[known_alt[1]]</b> is an alt of <b>[known_alt[2]]</b> (added by <b>[known_alt[3]]</b>)."
+		known_alts_html += "<a href='byond://?src=[REF(src)];[HrefToken()];action=delete;id=[known_alt[4]]'>\[-\] 删除</a> <b>[known_alt[1]]</b> 是 <b>[known_alt[2]]</b> 的小号（由 <b>[known_alt[3]]</b> 添加）。"
 
 	var/html = {"
-			<p>Any two ckeys in this panel will not show in "banned connection history".</p>
-			<p>Sometimes players switch account, and it's customary to perma-ban the old one.</p>
+			<p>此面板中的任意两个 ckey 都不会显示在“封禁关联历史”中。</p>
+			<p>有时玩家会更换账号，按照惯例会永久封禁旧账号。</p>
 
-			<h2>All Known Alts:</h2> <a href='byond://?src=[REF(src)];[HrefToken()];action=add'>\[+\] Add</a><hr>
+			<h2>所有已知小号：</h2> <a href='byond://?src=[REF(src)];[HrefToken()];action=add'>\[+\] 添加</a><hr>
 
 			[known_alts_html.Join("<br />")]
 	"}
 
-	client << browse(HTML_SKELETON_TITLE("Known Alts", html), "window=known_alts;size=700x400")
+	client << browse(HTML_SKELETON_TITLE("已知小号", html), "window=known_alts;size=700x400")
 
-ADMIN_VERB(known_alts_panel, R_ADMIN, "Known Alts Panel", "View a panel of known alts.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(known_alts_panel, R_ADMIN, "已知小号面板", "查看已知小号列表面板。", ADMIN_CATEGORY_MAIN)
 	GLOB.known_alts.show_panel(user)

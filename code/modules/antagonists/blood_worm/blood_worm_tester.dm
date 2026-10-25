@@ -1,6 +1,6 @@
 /obj/item/blood_worm_tester
-	name = "hemoparasite testing tool"
-	desc = "A proprietary device patented by the DeForest Medical Corporation that is tailor-made for detecting hemoparasites, such as the infamous space-faring blood worm. The testing process is allegedly very painful."
+	name = "血液寄生虫检测工具"
+	desc = "德福雷斯特医疗公司专利注册的专有设备，专为检测血液寄生虫而设计，例如臭名昭著的太空血虫。据称整个检测过程极其痛苦。"
 
 	icon = 'icons/obj/antags/blood_worm.dmi'
 	icon_state = "tester"
@@ -24,40 +24,40 @@
 	return ..()
 
 /obj/item/blood_worm_tester/update_desc(updates)
-	desc = "[initial(desc)] [spent ? "This one is spent." : "It's loaded for a single use."]"
+	desc = "[initial(desc)] [spent ? "这一支已经用过了。" : "已装填，仅可使用一次。"]"
 	return ..()
 
 /obj/item/blood_worm_tester/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (spent)
-		target_mob.balloon_alert(user, "already spent!")
+		target_mob.balloon_alert(user, "已经用过了！")
 		return
 	if (!ISADVANCEDTOOLUSER(user))
-		target_mob.balloon_alert(user, "needs dexterity!")
+		target_mob.balloon_alert(user, "需要灵巧的双手！")
 		return
 	if (!ishuman(target_mob))
-		target_mob.balloon_alert(user, "target a human!")
+		target_mob.balloon_alert(user, "请以人类为目标！")
 		return
 	if (!target_mob.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 		return
 
 	if (target_mob != user)
 		user.visible_message(
-			message = span_danger("\The [user] jab[user.p_s()] \the [target_mob] with \the [src]!"),
-			self_message = span_danger("You jab \the [target_mob] with \the [src]!"),
+			message = span_danger("[user]用[src]扎了[target_mob]一下！"),
+			self_message = span_danger("你用[src]扎了[target_mob]一下！"),
 			ignored_mobs = target_mob,
 		)
 
 		target_mob.show_message(
-			msg = span_userdanger("\The [user] jab[user.p_s()] you with \the [src]!"),
+			msg = span_userdanger("[user]用[src]扎了你一下！"),
 			type = MSG_VISUAL,
 		)
 	else
 		user.visible_message(
-			message = span_notice("\The [user] jab[user.p_s()] [user.p_themselves()] with \the [src]."),
-			self_message = span_notice("You jab yourself with \the [src]."),
+			message = span_notice("[user]用[src]扎了自己一下。"),
+			self_message = span_notice("你用[src]扎了自己一下。"),
 		)
 
-	log_combat(user, target_mob, "tested", src)
+	log_combat(user, target_mob, "检测", src)
 
 	target_mob.painful_scream()
 	target_mob.apply_damage(rand(10, 15), BRUTE, def_zone = check_zone(user.zone_selected), wound_bonus = CANT_WOUND, attack_direction = get_dir(user, target_mob), attacking_item = src)
@@ -65,7 +65,7 @@
 
 	playsound(src, 'sound/items/hypospray.ogg', vol = 50, vary = TRUE)
 
-	say("Scanning...")
+	say("扫描中……")
 
 	// Handling it as a timer instead of a do_after prevents abusing the do_after to do antag checks.
 	// Otherwise, if the target runs away from the testing do_after, then that means they're likely a host.
@@ -80,8 +80,8 @@
 
 /obj/item/blood_worm_tester/proc/report_results(is_worm)
 	if (is_worm)
-		say("Active hemoparasite presence detected!")
+		say("检测到活跃的血液寄生虫！")
 		playsound(src, 'sound/machines/beep/twobeep.ogg', vol = 50, vary = TRUE)
 	else
-		say("No anomalous readings found.")
+		say("未发现异常读数。")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', vol = 40, vary = TRUE)

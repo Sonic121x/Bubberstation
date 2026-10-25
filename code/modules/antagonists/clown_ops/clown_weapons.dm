@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray/waterflower/lube
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist. A <i>slippery</i> twist."
+	name = "喷水花"
+	desc = "一朵看似无害的向日葵……只是有点花样。一个<i>滑溜</i>的花样。"
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	inhand_icon_state = "sunflower"
@@ -13,10 +13,10 @@
 //BANANIUM SWORD
 
 /obj/item/melee/energy/sword/bananium
-	name = "bananium sword"
+	name = "香蕉矿剑"
 	icon_state = "e_sword"
-	attack_verb_continuous = list("hits", "taps", "pokes")
-	attack_verb_simple = list("hit", "tap", "poke")
+	attack_verb_continuous = list("敲击", "轻拍", "戳刺")
+	attack_verb_simple = list("敲", "拍", "戳")
 	force = 0
 	throwforce = 0
 	hitsound = null
@@ -31,8 +31,8 @@
 	AddComponent( \
 		/datum/component/transforming, \
 		throw_speed_on = 4, \
-		attack_verb_continuous_on = list("slips"), \
-		attack_verb_simple_on = list("slip"), \
+		attack_verb_continuous_on = list("滑倒"), \
+		attack_verb_simple_on = list("滑倒"), \
 		clumsy_check = FALSE, \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
@@ -70,14 +70,14 @@
 		return ITEM_INTERACT_BLOCKING
 
 	COOLDOWN_START(src, next_trombone_allowed, 5 SECONDS)
-	to_chat(user, span_warning("You slap the two swords together. Sadly, they do not seem to fit!"))
+	to_chat(user, span_warning("你把两把剑拍在一起。可惜它们似乎接不上！"))
 	playsound(src, 'sound/misc/sadtrombone.ogg', 50)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/melee/energy/sword/bananium/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku, but the blade slips off of [user.p_them()] harmlessly!"))
+	user.visible_message(span_suicide("[user]正[pick("用[src]划开自己的肚子", "扑倒在[src]上")]！看起来是想切腹，但刀刃滑开了，毫发无伤！"))
 	var/datum/component/slippery/slipper = GetComponent(/datum/component/slippery)
 	slipper.Slip(src, user)
 	return SHAME
@@ -85,8 +85,8 @@
 //BANANIUM SHIELD
 
 /obj/item/shield/energy/bananium
-	name = "bananium energy shield"
-	desc = "A shield that stops most melee attacks, protects user from almost all energy projectiles, and can be thrown to slip opponents."
+	name = "香蕉矿能量盾"
+	desc = "一面能挡下大多数近战攻击、保护使用者免受几乎所有能量射弹伤害，还能投掷出去让对手滑倒的盾牌。"
 	icon_state = "bananaeshield"
 	inhand_icon_state = "bananaeshield"
 	throw_speed = 1
@@ -127,15 +127,15 @@
 //BOMBANANA
 
 /obj/item/seeds/banana/bombanana
-	name = "bombanana seed pack"
-	desc = "They're seeds that grow into bombanana trees. When grown, give to the clown."
-	plantname = "Bombanana Tree"
+	name = "香蕉炸弹种子包"
+	desc = "这些种子会长成香蕉炸弹树。长成后，交给小丑。"
+	plantname = "香蕉炸弹树"
 	product = /obj/item/food/grown/banana/bombanana
 
 /obj/item/food/grown/banana/bombanana
 	trash_type = /obj/item/grown/bananapeel/bombanana
 	seed = /obj/item/seeds/banana/bombanana
-	tastes = list("explosives" = 10)
+	tastes = list("炸药" = 10)
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/food/grown/banana/bombanana/Initialize(mapload)
@@ -145,18 +145,18 @@
 /// Log whenever someone eats this with an explicit message since it willspawn a live bomb.
 /obj/item/food/grown/banana/bombanana/proc/on_consumed(datum/source, mob/living/eater, mob/feeder)
 	SIGNAL_HANDLER
-	var/list/concatable = list("[key_name_and_tag(eater)] has eaten a bombanana!")
+	var/list/concatable = list("[key_name_and_tag(eater)] 吃了一根香蕉炸弹！")
 	if(feeder != eater)
-		concatable += "This person was fed this by [key_name_and_tag(feeder)]."
+		concatable += "这个人是被 [key_name_and_tag(feeder)] 喂食的。"
 
-	concatable += "As a result of this, a bombanana peel will be spawned at [AREACOORD(src)]."
+	concatable += "因此，一个香蕉炸弹皮将在 [AREACOORD(src)] 生成。"
 
 	var/final_string = jointext(concatable, " ")
 	log_bomber(details = final_string) // sorta wacks out the traditional "log_bomber" format but it gets the point across better
 	return NONE
 
 /obj/item/grown/bananapeel/bombanana
-	desc = parent_type::desc + " Why is it beeping?"
+	desc = parent_type::desc + " 它为什么在滴滴响？"
 	seed = /obj/item/seeds/banana/bombanana
 	/// How long we have until we explode.
 	var/det_time = 5 SECONDS
@@ -167,12 +167,12 @@
 	. = ..()
 	AddComponent(/datum/component/slippery, det_time)
 	bomb = new /obj/item/grenade/syndieminibomb(src)
-	bomb.name = "bombanana peel"
+	bomb.name = "香蕉炸弹皮"
 	bomb.det_time = det_time
 
 	var/potential_user = null
 	if(iscarbon(loc))
-		to_chat(loc, span_danger("[src] begins to beep."))
+		to_chat(loc, span_danger("[src]开始滴滴作响。"))
 		potential_user = loc // just for fingerprint diagnosis in explosion logging, the on_consumed proc will have provided the necessary context already
 
 	bomb.arm_grenade(potential_user, msg = FALSE)
@@ -182,7 +182,7 @@
 	QDEL_NULL(bomb)
 
 /obj/item/grown/bananapeel/bombanana/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is deliberately slipping on \the [src]! It looks like \he's trying to commit suicide."))
+	user.visible_message(span_suicide("[user]故意踩到[src]上滑倒！看起来是想自杀。"))
 	playsound(loc, 'sound/misc/slip.ogg', 50, TRUE, -1)
 	bomb.arm_grenade(user, 0, FALSE)
 	return BRUTELOSS
@@ -190,8 +190,8 @@
 //TEARSTACHE GRENADE
 
 /obj/item/grenade/chem_grenade/teargas/moustache
-	name = "tear-stache grenade"
-	desc = "A handsomely-attired teargas grenade."
+	name = "催泪胡须手榴弹"
+	desc = "一枚戴着帅气胡子的催泪瓦斯手榴弹。"
 	icon_state = "moustacheg"
 	clumsy_check = GRENADE_NONCLUMSY_FUMBLE
 

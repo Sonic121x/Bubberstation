@@ -3,10 +3,10 @@
  */
 
 /datum/heretic_knowledge/reroll_targets
-	name = "The Relentless Heartbeat"
-	desc = "Allows you transmute a heart, a book, and a jumpsuit while standing over a rune \
-		to reroll your sacrifice targets."
-	gain_text = "The heart is the principle that continues and preserves."
+	name = "不息的心跳"
+	desc = "允许你在站在符文上时转化一颗心脏、一本书和一件连体服，\
+		以重新随机你的献祭目标。"
+	gain_text = "心脏是延续与维系的本源。"
 	required_atoms = list(
 		/obj/item/organ/heart = 1, //BUBBER EDIT
 		/obj/item/book = 1,
@@ -24,7 +24,7 @@
 	// throw a fail to show the heretic that there's no point in rerolling
 	// if you don't have a heart to track the targets in the first place.
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, "ritual failed, no living heart!")
+		loc.balloon_alert(user, "仪式失败，没有活体心脏！")
 		return FALSE
 
 	return TRUE
@@ -39,7 +39,7 @@
 		CRASH("Heretic datum didn't have a hunt_and_sacrifice knowledge learned, what?")
 
 	if(!target_finder.obtain_targets(user, heretic_datum = heretic_datum))
-		loc.balloon_alert(user, "ritual failed, no targets found!")
+		loc.balloon_alert(user, "仪式失败，未找到目标！")
 		return FALSE
 
 	return TRUE

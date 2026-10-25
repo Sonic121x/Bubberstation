@@ -6,8 +6,8 @@
 	return team
 
 /datum/objective/blood_worm/kill
-	name = "KILL"
-	explanation_text = "We must prevent all members of station command from escaping alive on the emergency shuttle."
+	name = "击杀"
+	explanation_text = "我们必须阻止空间站指挥部的所有成员活着乘坐紧急穿梭机逃离。"
 
 /datum/objective/blood_worm/kill/check_completion()
 	for (var/mob/player_mob as anything in GLOB.player_list)
@@ -24,7 +24,7 @@
 	return TRUE
 
 /datum/objective/blood_worm/consume
-	name = "CONSUME"
+	name = "吞噬"
 
 	var/blood_required = 0
 
@@ -33,13 +33,13 @@
 	update_explanation_text()
 
 /datum/objective/blood_worm/consume/update_explanation_text()
-	explanation_text = "We must consume a total of at least [blood_required] units of real blood to sate our appetite."
+	explanation_text = "我们必须总共吞噬至少 [blood_required] 单位真实血液，才能满足我们的食欲。"
 
 /datum/objective/blood_worm/consume/check_completion()
 	return get_blood_worm_team().blood_consumed_total >= blood_required
 
 /datum/objective/blood_worm/multiply
-	name = "MULTIPLY"
+	name = "增殖"
 
 	var/times_required = 0
 
@@ -48,13 +48,13 @@
 	update_explanation_text()
 
 /datum/objective/blood_worm/multiply/update_explanation_text()
-	explanation_text = "At least [times_required] of us must reproduce to pave the way for our overwhelming numbers."
+	explanation_text = "我们中至少 [times_required] 个必须完成繁殖，为我们压倒性的数量铺平道路。"
 
 /datum/objective/blood_worm/multiply/check_completion()
 	return get_blood_worm_team().times_reproduced_total >= times_required
 
 /datum/objective/blood_worm/conquer
-	name = "CONQUER"
+	name = "征服"
 
 	var/worms_required = 0
 
@@ -63,7 +63,7 @@
 	update_explanation_text()
 
 /datum/objective/blood_worm/conquer/update_explanation_text()
-	explanation_text = "At least [worms_required] of us must escape alive on the emergency shuttle to conquer what is on the other side."
+	explanation_text = "我们中至少 [worms_required] 个必须活着乘坐紧急穿梭机逃离，才能征服另一侧的天地。"
 
 /datum/objective/blood_worm/conquer/check_completion()
 	var/conquerors = 0

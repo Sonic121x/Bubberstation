@@ -1,5 +1,5 @@
 /datum/antagonist/pyro_slime
-	name = "\improper Pyroclastic Anomaly"
+	name = "\improper 火山碎屑异常"
 	antagpanel_category = ANTAG_GROUP_ABOMINATIONS
 	show_in_roundend = FALSE
 	show_in_antagpanel = FALSE
@@ -16,7 +16,7 @@
 	owner.announce_objectives()
 
 /datum/objective/pyro_slime
-	explanation_text = "I am fire. I am hunger. The cold is agony. The living pulse with energy; their warmth fuels me. The dead are husks, their embers long faded. Water is death. Fire... fire is freedom."
+	explanation_text = "我是火焰。我是饥饿。寒冷即是痛苦。生者的脉搏中涌动着能量，他们的温暖滋养着我。死者只是躯壳，余烬早已熄灭。水即是死亡。火焰……火焰即是自由。"
 
 /datum/objective/pyro_slime/check_completion()
 	return owner.current && owner.current.stat != DEAD

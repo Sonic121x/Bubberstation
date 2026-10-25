@@ -1,6 +1,6 @@
 /obj/item/melee/baseball_bat
-	name = "baseball bat"
-	desc = "There ain't a skull in the league that can withstand a swatter."
+	name = "棒球棍"
+	desc = "整个联盟里没有哪颗脑袋能扛住这一棍。"
 	icon = 'icons/obj/weapons/bat.dmi'
 	icon_state = "baseball_bat"
 	worn_icon_state="bostaff0"
@@ -12,8 +12,8 @@
 	wound_bonus = -10
 	throwforce = 13
 	demolition_mod = 1.25
-	attack_verb_continuous = list("beats", "smacks")
-	attack_verb_simple = list("beat", "smack")
+	attack_verb_continuous = list("猛击", "拍打")
+	attack_verb_simple = list("猛击", "拍打")
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3.5)
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_HUGE
@@ -40,12 +40,12 @@
 	if(!homerun_able)
 		return ..()
 	if(homerun_ready)
-		to_chat(user, span_warning("You're already ready to do a home run!"))
+		to_chat(user, span_warning("你已经准备好打出全垒打了！"))
 		return ..()
-	to_chat(user, span_warning("You begin gathering strength..."))
+	to_chat(user, span_warning("你开始积蓄力量……"))
 	playsound(get_turf(src), 'sound/effects/magic/lightning_chargeup.ogg', 65, TRUE)
 	if(do_after(user, 9 SECONDS, target = src))
-		to_chat(user, span_userdanger("You gather power! Time for a home run!"))
+		to_chat(user, span_userdanger("力量汇聚完成！该来一记全垒打了！"))
 		homerun_ready = TRUE
 	return ..()
 
@@ -57,7 +57,7 @@
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		return
 	if(homerun_ready)
-		user.visible_message(span_userdanger("It's a home run!"))
+		user.visible_message(span_userdanger("全垒打！"))
 		if(!QDELETED(target))
 			target.throw_at(throw_target, rand(8,10), 14, user)
 		SSexplosions.medturf += throw_target
@@ -123,10 +123,10 @@
 	thrown_datums[target] = target.throwing
 
 /obj/item/melee/baseball_bat/proc/make_silly()
-	name = "cricket bat"
+	name = "板球拍"
 	icon_state = "baseball_bat_brit"
 	inhand_icon_state = "baseball_bat_brit"
-	desc = pick("You've got red on you.", "You gotta know what a crumpet is to understand cricket.")
+	desc = pick("你身上沾了红色。", "你得先知道烤面饼是什么，才能看懂板球。")
 
 /obj/item/melee/baseball_bat/proc/on_hit(atom/movable/target)
 	target.remove_filter("baseball_launch")
@@ -134,16 +134,16 @@
 	thrown_datums -= target
 
 /obj/item/melee/baseball_bat/homerun
-	name = "home run bat"
-	desc = "This thing looks dangerous... Dangerously good at baseball, that is."
+	name = "全垒打棒球棍"
+	desc = "这东西看着很危险……我是说，打棒球强得危险。"
 	icon_state = "baseball_bat_home"
 	inhand_icon_state = "baseball_bat_home"
 	homerun_able = TRUE
 	mob_thrower = TRUE
 
 /obj/item/melee/baseball_bat/ablative
-	name = "metal baseball bat"
-	desc = "This bat is made of highly reflective, highly armored material."
+	name = "金属棒球棍"
+	desc = "这根球棍由高反光、高防护的材料制成。"
 	icon_state = "baseball_bat_metal"
 	inhand_icon_state = "baseball_bat_metal"
 	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 3.5)

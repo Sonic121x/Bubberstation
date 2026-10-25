@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/medical1
-	name = "medicine closet"
-	desc = "Filled to the brim with medical junk."
+	name = "药品柜"
+	desc = "塞满了各种医疗杂物。"
 	icon_state = "med"
 	req_access = list(ACCESS_MEDICAL)
 
@@ -19,8 +19,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/secure_closet/medical2
-	name = "anesthetic closet"
-	desc = "Used to knock people out."
+	name = "麻醉用品柜"
+	desc = "用来让人失去意识。"
 	icon_state = "med_secure"
 	req_access = list(ACCESS_SURGERY)
 
@@ -32,7 +32,7 @@
 		new /obj/item/clothing/mask/breath/muzzle(src)
 
 /obj/structure/closet/secure_closet/medical3
-	name = "medical doctor's locker"
+	name = "医生储物柜"
 	req_access = list(ACCESS_SURGERY)
 	icon_state = "med_secure"
 
@@ -46,7 +46,7 @@
 	return
 
 /obj/structure/closet/secure_closet/psychology
-	name = "psychology locker"
+	name = "心理咨询储物柜"
 	req_access = list(ACCESS_PSYCHOLOGY)
 	icon_state = "cabinet"
 	door_anim_time = 0 // no animation
@@ -70,7 +70,7 @@
 	new /obj/item/clothing/glasses/blindfold(src)
 
 /obj/structure/closet/secure_closet/chief_medical
-	name = "chief medical officer's locker"
+	name = "首席医疗官储物柜"
 	req_access = list(ACCESS_CMO)
 	icon_state = "cmo"
 
@@ -105,7 +105,7 @@
 	new /obj/item/storage/photo_album/cmo(src)
 
 /obj/structure/closet/secure_closet/animal
-	name = "animal control locker"
+	name = "动物管制用品柜"
 	icon_door = "chemical"
 	req_access = list(ACCESS_SURGERY)
 
@@ -116,8 +116,8 @@
 		new /obj/item/electropack(src)
 
 /obj/structure/closet/secure_closet/chemical
-	name = "chemical closet"
-	desc = "Store dangerous chemicals in here."
+	name = "化学品柜"
+	desc = "将危险化学品存放于此。"
 	req_access = list(ACCESS_PHARMACY)
 	icon_state = "chem_secure"
 
@@ -134,7 +134,7 @@
 	new /obj/item/reagent_containers/cup/bottle/acidic_buffer(src) //hopefully they get the hint
 
 /obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
-	name = "advanced chemical closet"
+	name = "高级化学品柜"
 	req_access = list(ACCESS_PLUMBING)
 
 /obj/structure/closet/secure_closet/chemical/heisenberg/PopulateContents()
@@ -146,7 +146,7 @@
 	new /obj/item/clothing/glasses/science(src)
 
 /obj/structure/closet/secure_closet/paramedic
-	name = "emergency medical team locker"
+	name = "急救小队储物柜"
 	req_access = list(ACCESS_PARAMEDIC)
 	icon_state = "paramed_secure"
 

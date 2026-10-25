@@ -1,8 +1,8 @@
 
-ADMIN_VERB(dsay, R_NONE, "DSay", "Speak to the dead.", ADMIN_CATEGORY_GAME)
+ADMIN_VERB(dsay, R_NONE, "死者交谈", "与死者交谈。", ADMIN_CATEGORY_GAME)
 	VERB_ARG(message, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(user.prefs.muted & MUTE_DEADCHAT)
-		to_chat(user, span_danger("You cannot send DSAY messages (muted)."), confidential = TRUE)
+		to_chat(user, span_danger("你无法发送 DSAY 消息（已被禁言）。"), confidential = TRUE)
 		return
 
 	if (user.handle_spam_prevention(message,MUTE_DEADCHAT))
@@ -18,9 +18,9 @@ ADMIN_VERB(dsay, R_NONE, "DSay", "Speak to the dead.", ADMIN_CATEGORY_GAME)
 	if(user.holder.fakekey)
 		rank_name = pick(strings("admin_nicknames.json", "ranks", "config"))
 		admin_name = pick(strings("admin_nicknames.json", "names", "config"))
-	var/name_and_rank = "[span_tooltip(rank_name, "STAFF")] ([admin_name])"
+	var/name_and_rank = "[span_tooltip(rank_name, "管理员")] ([admin_name])"
 
-	deadchat_broadcast("[span_prefix("DEAD:")] [name_and_rank] says, <span class='message'>\"[emoji_parse(message)]\"</span>")
+	deadchat_broadcast("[span_prefix("死者：")] [name_and_rank] 说：<span class='message'>\"[emoji_parse(message)]\"</span>")
 
 	BLACKBOX_LOG_ADMIN_VERB("Dsay")
 

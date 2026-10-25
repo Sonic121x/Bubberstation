@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/critter
-	name = "critter crate"
-	desc = "A crate designed for safe transport of animals. It has an oxygen tank for safe transport in space."
+	name = "生物板条箱"
+	desc = "一种用于安全运输动物的板条箱，配有氧气罐，可在太空中安全运输。"
 	icon_state = "crittercrate"
 	base_icon_state = "crittercrate"
 	horizontal = FALSE
@@ -60,8 +60,8 @@
 		return null
 
 /obj/structure/closet/crate/critter/stasis
-	name = "stasis critter crate"
-	desc = "A crate designed for safe transport of specific animals in stasis to prevent them from aging or starving."
+	name = "静滞生物板条箱"
+	desc = "一种用于在静滞状态下安全运输特定动物的板条箱，可防止它们衰老或挨饿。"
 	var/stasis_sealed = TRUE
 
 /obj/structure/closet/crate/critter/stasis/Exited(atom/movable/gone, direction)
@@ -78,4 +78,4 @@
 		return
 	stasis_sealed = FALSE
 	do_sparks(3, FALSE, src)
-	to_chat(user, span_warning("[src] one-use stasis mechanism has been triggered! It will not work again."))
+	to_chat(user, span_warning("[src]的一次性静滞装置已触发！它不会再次生效。"))

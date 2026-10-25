@@ -19,8 +19,8 @@
 #define ROUNDSTART_CURSED_CHANCE 0.2
 
 /obj/structure/mirror
-	name = "mirror"
-	desc = "Mirror mirror on the wall, who's the most robust of them all?"
+	name = "镜子"
+	desc = "魔镜魔镜告诉我，谁是这里最强壮的人？"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	movement_type = FLOATING
@@ -89,7 +89,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, 28)
 	icon_state = "mirror_broke"
 	cursable = FALSE
 	broken = TRUE
-	desc = "Oh no, seven years of bad luck!"
+	desc = "哦不，七年霉运！"
 
 /obj/structure/mirror/broken/Initialize(mapload)
 	. = ..()
@@ -106,12 +106,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 
 /obj/structure/mirror/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(!deconstructable)
-		balloon_alert(user, "magic prevents detaching!")
+		balloon_alert(user, "魔法阻止了拆卸！")
 		return NONE
-	user.visible_message(span_notice("[user] starts detaching [src]..."), span_notice("You start detaching [src]..."))
+	user.visible_message(span_notice("[user]开始拆卸[src]……"), span_notice("你开始拆卸[src]……"))
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 3 SECONDS))
-		user.visible_message(span_notice("[user] detaches [src]!"), span_notice("You detach [src] from the wall."))
+		user.visible_message(span_notice("[user]拆下了[src]！"), span_notice("你把[src]从墙上拆了下来。"))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		deconstruct()
 		return ITEM_INTERACT_SUCCESS
@@ -152,9 +152,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 /obj/structure/mirror/proc/change_beard(mob/living/carbon/human/beard_dresser)
 	if(beard_dresser.physique == FEMALE)
 		if(beard_dresser.facial_hairstyle == "Shaved")
-			balloon_alert(beard_dresser, "nothing to shave!")
+			balloon_alert(beard_dresser, "没有可刮的胡须！")
 			return
-		var/shave_beard = tgui_alert(beard_dresser, "Shave your beard?", "Grooming", list("Yes", "No"))
+		var/shave_beard = tgui_alert(beard_dresser, "要刮掉你的胡须吗？", "梳妆", list("Yes", "No"))
 		if(shave_beard == "Yes" && can_use_mirror(beard_dresser))
 			beard_dresser.set_facial_hairstyle("Shaved", update = TRUE)
 		return
@@ -165,7 +165,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 		return
 
 	if(HAS_TRAIT(beard_dresser, TRAIT_SHAVED))
-		to_chat(beard_dresser, span_notice("If only growing back facial hair were that easy for you... The reminder makes you feel terrible."))
+		to_chat(beard_dresser, span_notice("要是胡须能这么容易长回来就好了……这提醒让你感觉很糟。"))
 		beard_dresser.add_mood_event("bald_hair_day", /datum/mood_event/bald_reminder)
 		return
 
@@ -176,14 +176,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if(isnull(new_style) || !can_use_mirror(hairdresser))
 		return
 	if(HAS_TRAIT(hairdresser, TRAIT_BALD))
-		to_chat(hairdresser, span_notice("If only growing back hair were that easy for you... The reminder makes you feel terrible."))
+		to_chat(hairdresser, span_notice("要是头发能这么容易长回来就好了……这提醒让你感觉很糟。"))
 		hairdresser.add_mood_event("bald_hair_day", /datum/mood_event/bald_reminder)
 		return
 
 	hairdresser.set_hairstyle(new_style, update = TRUE)
 
 /obj/structure/mirror/proc/change_name(mob/living/carbon/human/user)
-	var/newname = sanitize_name(tgui_input_text(user, "Who are we again?", "Name change", user.name, MAX_NAME_LEN), allow_numbers = TRUE) //It's magic so whatever.
+	var/newname = sanitize_name(tgui_input_text(user, "我们又叫什么来着？", "改名", user.name, MAX_NAME_LEN), allow_numbers = TRUE) //It's magic so whatever.
 	if(!newname || !can_use_mirror(user))
 		return
 	user.real_name = newname
@@ -195,7 +195,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 
 // Erm ackshually the proper term is species. Get it right??
 /obj/structure/mirror/proc/change_race(mob/living/carbon/human/race_changer)
-	var/racechoice = tgui_input_list(race_changer, "What are we again?", "Race change", selectable_races)
+	var/racechoice = tgui_input_list(race_changer, "我们又是什么种族来着？", "种族变更", selectable_races)
 	if(isnull(racechoice) || !can_use_mirror(race_changer))
 		return
 
@@ -206,7 +206,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	var/datum/species/newrace = GLOB.species_prototypes[new_race_path]
 	var/attributes_desc = newrace.get_physical_attributes()
 
-	var/answer = tgui_alert(race_changer, attributes_desc, "Become a [newrace]?", list("Yes", "No"))
+	var/answer = tgui_alert(race_changer, attributes_desc, "要变成[newrace]吗？", list("Yes", "No"))
 	if(!answer || !can_use_mirror(race_changer))
 		return
 	if(answer != "Yes")
@@ -216,19 +216,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	on_species_change(race_changer, newrace)
 	race_changer.set_species(new_race_path, icon_update = FALSE)
 	if(HAS_TRAIT(race_changer, TRAIT_USES_SKINTONES))
-		var/new_s_tone = tgui_input_list(race_changer, "Choose your skin tone", "Race change", GLOB.skin_tones)
+		var/new_s_tone = tgui_input_list(race_changer, "选择你的肤色", "种族变更", GLOB.skin_tones)
 		if(new_s_tone && can_use_mirror(race_changer))
 			race_changer.skin_tone = new_s_tone
 			race_changer.dna.update_ui_block(/datum/dna_block/identity/skin_tone)
 	else if(HAS_TRAIT(race_changer, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(race_changer, TRAIT_FIXED_MUTANT_COLORS))
-		var/new_mutantcolor = tgui_color_picker(race_changer, "Choose your skin color:", "Race change", race_changer.dna.features[FEATURE_MUTANT_COLOR])
+		var/new_mutantcolor = tgui_color_picker(race_changer, "选择你的皮肤颜色：", "种族变更", race_changer.dna.features[FEATURE_MUTANT_COLOR])
 		if(new_mutantcolor && can_use_mirror(race_changer))
 			var/list/mutant_hsv = rgb2hsv(new_mutantcolor)
 			if(mutant_hsv[3] >= 50) // mutantcolors must be bright
 				race_changer.dna.features[FEATURE_MUTANT_COLOR] = sanitize_hexcolor(new_mutantcolor)
 				race_changer.dna.update_uf_block(/datum/dna_block/feature/mutant_color)
 			else
-				to_chat(race_changer, span_notice("Invalid color. Your color is not bright enough."))
+				to_chat(race_changer, span_notice("颜色无效，你的颜色不够明亮。"))
 
 	race_changer.update_body(is_creating = TRUE)
 
@@ -241,25 +241,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 // saved you a click (many)
 /obj/structure/mirror/proc/change_sex(mob/living/carbon/human/sexy)
 
-	var/chosen_sex = tgui_input_list(sexy, "Become a..", "Confirmation", list("Warlock", "Witch", "Wizard", "Itzard")) // YOU try coming up with the 'it' version of wizard
+	var/chosen_sex = tgui_input_list(sexy, "变成……", "确认", list("Warlock", "Witch", "Wizard", "Itzard")) // YOU try coming up with the 'it' version of wizard
 	if(!chosen_sex || !can_use_mirror(sexy))
 		return
 
 	switch(chosen_sex)
 		if("Warlock")
 			sexy.gender = MALE
-			to_chat(sexy, span_notice("Man, you feel like a man!"))
+			to_chat(sexy, span_notice("天啊，你感觉自己像个男人！"))
 		if("Witch")
 			sexy.gender = FEMALE
-			to_chat(sexy, span_notice("Man, you feel like a woman!"))
+			to_chat(sexy, span_notice("天啊，你感觉自己像个女人！"))
 		if("Wizard")
 			sexy.gender = PLURAL
-			to_chat(sexy, span_notice("Woah dude, you feel like a dude!"))
+			to_chat(sexy, span_notice("哇哦，哥们，你感觉自己像个哥们！"))
 		if("Itzard")
 			sexy.gender = NEUTER
-			to_chat(sexy, span_notice("Woah dude, you feel like something else!"))
+			to_chat(sexy, span_notice("哇哦，哥们，你感觉自己像别的什么！"))
 
-	var/chosen_physique = tgui_input_list(sexy, "Alter your physique as well?", "Confirmation", list("Warlock Physique", "Witch Physique", "Wizards Don't Need Gender"))
+	var/chosen_physique = tgui_input_list(sexy, "也要改变你的体态吗？", "确认", list("Warlock Physique", "Witch Physique", "Wizards Don't Need Gender"))
 
 	if(chosen_physique && chosen_physique != "Wizards Don't Need Gender" && can_use_mirror(sexy))
 		sexy.physique = (chosen_physique == "Warlock Physique") ? MALE : FEMALE
@@ -269,18 +269,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	sexy.update_clothing(ITEM_SLOT_ICLOTHING) // update gender shaped clothing
 
 /obj/structure/mirror/proc/change_eyes(mob/living/carbon/human/user)
-	var/new_eye_color = tgui_color_picker(user, "Choose your eye color", "Eye Color", user.eye_color_left)
+	var/new_eye_color = tgui_color_picker(user, "选择你的眼睛颜色", "眼睛颜色", user.eye_color_left)
 	if(isnull(new_eye_color) || !can_use_mirror(user))
 		return
 	user.set_eye_color(sanitize_hexcolor(new_eye_color))
 	user.dna.update_ui_block(/datum/dna_block/identity/eye_colors)
 	user.update_eyes()
-	to_chat(user, span_notice("You gaze at your new eyes with your new eyes. Perfect!"))
+	to_chat(user, span_notice("你用你的新眼睛凝视着你的新眼睛。完美！"))
 
 /obj/structure/mirror/examine(mob/user)
 	. = ..()
 	if(deconstructable)
-		. += span_notice("It's mounted to the wall with a couple of <b>bolts</b>.")
+		. += span_notice("它用几颗<b>螺栓</b>固定在墙上。")
 
 /obj/structure/mirror/examine_status(mob/living/carbon/human/user)
 	if(broken)
@@ -290,10 +290,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 /obj/structure/mirror/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Open Customize Radial"
+		context[SCREENTIP_CONTEXT_LMB] = "打开自定义轮盘"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_WRENCH && deconstructable)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_RMB] = "拆卸"
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
@@ -301,7 +301,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	. = ..()
 	if(broken || . <= 0) // breaking a mirror truly gets you bad luck!
 		return
-	to_chat(user, span_warning("A chill runs down your spine as [src] shatters..."))
+	to_chat(user, span_warning("当[src]碎裂时，一阵寒意顺着你的脊背而下……"))
 	user.AddComponent(/datum/component/omen, incidents_left = 7)
 
 /obj/structure/mirror/bullet_act(obj/projectile/proj)
@@ -311,7 +311,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	. = ..()
 	if(broken) // breaking a mirror truly gets you bad luck!
 		var/mob/living/unlucky_dude = proj.firer
-		to_chat(unlucky_dude, span_warning("A chill runs down your spine as [src] shatters..."))
+		to_chat(unlucky_dude, span_warning("当[src]碎裂时，一阵寒意顺着你的脊背而下……"))
 		unlucky_dude.AddComponent(/datum/component/omen, incidents_left = 7)
 
 /obj/structure/mirror/atom_break(damage_flag)
@@ -321,7 +321,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	icon_state = "mirror_broke"
 	playsound(src, SFX_SHATTER, 70, TRUE)
 	if(desc == initial(desc))
-		desc = "Oh no, seven years of bad luck!"
+		desc = "哦不，七年霉运！"
 	broken = TRUE
 
 /obj/structure/mirror/atom_deconstruct(disassembled = TRUE)
@@ -343,9 +343,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if(!I.tool_start_check(user, amount=1))
 		return TRUE
 
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "正在修理……")
 	if(I.use_tool(src, user, 10, volume = 50))
-		balloon_alert(user, "repaired")
+		balloon_alert(user, "已修复")
 		broken = FALSE
 		icon_state = initial(icon_state)
 		desc = initial(desc)
@@ -360,8 +360,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 
 /obj/item/wallframe/mirror
-	name = "mirror"
-	desc = "An unmounted mirror. Attach it to a wall for use."
+	name = "镜子"
+	desc = "一面未安装的镜子。把它固定到墙上即可使用。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
@@ -376,14 +376,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	result_path = /obj/structure/mirror/magic/lesser/heretic
 
 /obj/item/wallframe/mirror/broken
-	name = "broken mirror"
-	desc = "An unmounted and broken mirror. Attach it to a wall for decor."
+	name = "破碎的镜子"
+	desc = "一面未安装且已破碎的镜子。可以固定到墙上作为装饰。"
 	icon_state = "mirror_broke"
 	result_path = /obj/structure/mirror/broken
 
 /obj/structure/mirror/magic
-	name = "magic mirror"
-	desc = "Turn and face the strange... face."
+	name = "魔法镜"
+	desc = "转身面对那陌生的……面孔吧。"
 	icon_state = "magic_mirror"
 	mirror_options = MAGIC_MIRROR_OPTIONS
 	deconstructable = FALSE
@@ -398,20 +398,20 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 
 //Magic mirrors can change hair color as well
 /obj/structure/mirror/magic/change_hair(mob/living/carbon/human/user)
-	var/hairchoice = tgui_alert(user, "Hairstyle or hair color?", "Change Hair", list("Style", "Color"))
+	var/hairchoice = tgui_alert(user, "要换发型还是发色？", "更换头发", list("Style", "Color"))
 	if(!can_use_mirror(user))
 		return
 	if(hairchoice == "Style") //So you just want to use a mirror then?
 		return ..()
 
-	var/new_hair_color = tgui_color_picker(user, "Choose your hair color", "Hair Color", user.hair_color)
+	var/new_hair_color = tgui_color_picker(user, "选择你的发色", "头发颜色", user.hair_color)
 	if(!new_hair_color || !can_use_mirror(user))
 		return
 	if(new_hair_color)
 		user.set_haircolor(sanitize_hexcolor(new_hair_color))
 		user.dna.update_ui_block(/datum/dna_block/identity/hair_color)
 	if(user.physique == MALE)
-		var/new_face_color = tgui_color_picker(user, "Choose your facial hair color", "Hair Color", user.facial_hair_color)
+		var/new_face_color = tgui_color_picker(user, "选择你的胡须颜色", "头发颜色", user.facial_hair_color)
 		if(new_face_color && can_use_mirror(user))
 			user.set_facial_haircolor(sanitize_hexcolor(new_face_color))
 			user.dna.update_ui_block(/datum/dna_block/identity/facial_color)
@@ -421,7 +421,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if(HAS_TRAIT(race_changer, TRAIT_ADVANCEDTOOLUSER) && HAS_TRAIT(race_changer, TRAIT_LITERATE))
 		return
 
-	to_chat(race_changer, span_alert("You feel quite intelligent."))
+	to_chat(race_changer, span_alert("你觉得自己相当聪明。"))
 	// Prevents wizards from being soft locked out of everything
 	// If this stays after the species was changed once more, well, the magic mirror did it. It's magic i aint gotta explain shit
 	race_changer.add_traits(list(TRAIT_LITERATE, TRAIT_ADVANCEDTOOLUSER), SPECIES_TRAIT)
@@ -436,8 +436,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	return race_list
 
 /obj/structure/mirror/magic/lesser/heretic
-	name = "miraculous mirror"
-	desc = "Gazing at your reflection, you feel like you could be better."
+	name = "奇迹之镜"
+	desc = "凝视着镜中的自己，你觉得自己还能变得更好。"
 	mirror_options = PRIDE_MIRROR_OPTIONS
 
 /obj/structure/mirror/magic/lesser/heretic/on_species_change(mob/living/carbon/human/race_changer, datum/species/newrace)
@@ -450,14 +450,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	new /obj/item/shard(loc) // never gives the frame back
 
 /obj/structure/mirror/magic/lesser/heretic/welder_act(mob/living/user, obj/item/I)
-	to_chat(user, span_alert("Trying to find where to start fixing [src] proves nigh impossible."))
+	to_chat(user, span_alert("想找到从何处开始修理[src]，几乎不可能。"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/mirror/magic/lesser/heretic/pre_change(mob/living/carbon/human/user, picked)
 	if(IS_HERETIC(user))
 		return TRUE
 
-	to_chat(user, span_hypnophrase("You find yourself gazing at [src], unable to look away..."))
+	to_chat(user, span_hypnophrase("你发现自己凝视着[src]，无法移开视线……"))
 	user.Immobilize(5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(change_something), user, picked), 5 SECONDS)
 	return FALSE
@@ -467,34 +467,34 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 		return
 
 	if(!user.Adjacent(src))
-		to_chat(user, span_warning("Pulled away from [src], you snap out of your trance."))
+		to_chat(user, span_warning("被拉离[src]后，你从恍惚中清醒过来。"))
 		return
 	if(broken)
-		to_chat(user, span_warning("With the shattering of [src], you snap out of your trance."))
+		to_chat(user, span_warning("随着[src]碎裂，你从恍惚中清醒过来。"))
 		return
 
 	// randomizes your stuff, doesn't affect DNA though so you could easily get genetics to fix you
 	switch(picked)
 		if(CHANGE_HAIR, CHANGE_BEARD)
-			to_chat(user, span_hypnophrase("The hair - yes, the hair is wrong - [pick("it can be improved", "it needs to be changed", "it must be different")]..."))
+			to_chat(user, span_hypnophrase("头发——对，头发错了——[pick("它还能更好", "它需要改变", "它必须与众不同")]……"))
 			user.set_hairstyle(random_hairstyle(user.gender))
 			user.set_facial_hairstyle(random_facial_hairstyle(user.gender))
 		if(CHANGE_RACE)
-			to_chat(user, span_hypnophrase("The body - no, the body is all wrong - [pick("I must become anew", "I need to be different", "I want to be something else")]..."))
+			to_chat(user, span_hypnophrase("这具身体——不，这具身体全都错了——[pick("我必须重生", "我需要变得不同", "我想成为别的存在")]……"))
 			var/list/options = assoc_to_values(selectable_races) - user.dna.species.type
 			var/datum/species/newrace = GLOB.species_prototypes[pick(options)]
 			on_species_change(user, newrace)
 			user.set_species(newrace.type, icon_update = FALSE)
 		if(CHANGE_SEX)
-			to_chat(user, span_hypnophrase("My form - yes, the form is all wrong - I  need to change it...")) // the wording used here needs to be very deliberate...
+			to_chat(user, span_hypnophrase("我的形体——对，这形体全都错了——我需要改变它……")) // the wording used here needs to be very deliberate...
 			var/list/options = list(MALE, FEMALE, PLURAL, NEUTER) - user.gender
 			user.gender = pick(options)
 			user.physique = user.gender
 		if(CHANGE_EYES)
-			to_chat(user, span_hypnophrase("My eyes - I cannot see clearly - [pick("They're simply not right", "they must be replaced", "they are both wrong")]..."))
+			to_chat(user, span_hypnophrase("我的眼睛——我看不清了——[pick("它们就是不对劲", "它们必须被替换", "它们都是错的")]……"))
 			user.set_eye_color(random_eye_color())
 		if(CHANGE_NAME) // not enabled by default but for badmin support
-			to_chat(user, span_hypnophrase("My name - it doesn't fit me - [pick("Something else would be better", "it must be changed", "Something more appropriate would be good")]..."))
+			to_chat(user, span_hypnophrase("我的名字——它不适合我——[pick("换个别的会更好", "它必须被改变", "更合适的名字会不错")]……"))
 			user.real_name = user.generate_random_mob_name()
 			user.update_visible_name()
 
@@ -502,8 +502,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	race_flags = MIRROR_BADMIN
 
 /obj/structure/mirror/magic/pride
-	name = "pride's mirror"
-	desc = "Pride cometh before the..."
+	name = "傲慢之镜"
+	desc = "傲慢总是先于……"
 	race_flags = MIRROR_PRIDE
 	mirror_options = PRIDE_MIRROR_OPTIONS
 	/// If the last user has altered anything about themselves
@@ -519,8 +519,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	if (!changed || QDELETED(user) || !IN_GIVEN_RANGE(user, src, 3)) // 3 range gives a tiny bit of leeway if you try to run away after using it
 		return
 	user.visible_message(
-		span_bolddanger("The ground splits beneath [user] as [user.p_their()] hand leaves the mirror!"),
-		span_notice("Perfect. Much better! Now <i>nobody</i> will be able to resist yo-"),
+		span_bolddanger("当[user]的手离开镜子时，脚下的地面裂开了！"),
+		span_notice("完美。好多了！现在<i>没人</i>能抗拒你的——"),
 	)
 
 	var/turf/user_turf = get_turf(user)

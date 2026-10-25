@@ -1,5 +1,5 @@
 /obj/item/organ/heart/gland/slime
-	abductor_hint = "gastric animation galvanizer. The abductee occasionally vomits slimes. Slimes will no longer attack the abductee."
+	abductor_hint = "胃部活化电击器。被绑架者会偶尔吐出史莱姆。史莱姆将不再攻击被绑架者。"
 	cooldown_low = 600
 	cooldown_high = 1200
 	uses = -1
@@ -18,7 +18,7 @@
 	gland_owner.remove_language(/datum/language/slime, source = LANGUAGE_GLAND)
 
 /obj/item/organ/heart/gland/slime/activate()
-	to_chat(owner, span_warning("You feel nauseated!"))
+	to_chat(owner, span_warning("你感到一阵恶心！"))
 	owner.vomit(VOMIT_CATEGORY_DEFAULT, lost_nutrition = 20)
 
 	var/mob/living/basic/slime/new_baby_slime = new(get_turf(owner), /datum/slime_type/grey)

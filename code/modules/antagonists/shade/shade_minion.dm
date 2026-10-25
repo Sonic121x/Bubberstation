@@ -5,14 +5,14 @@
  * Technically they're not 'antagonists' but they have antagonist-like properties.
  */
 /datum/antagonist/shade_minion
-	name = "\improper Loyal Shade"
+	name = "\improper 忠诚暗影"
 	show_in_antagpanel = FALSE
 	show_in_roundend = FALSE
 	silent = TRUE
 	ui_name = "AntagInfoShade"
 	antag_flags = ANTAG_SKIP_GLOBAL_LIST
 	/// Name of this shade's master.
-	var/master_name = "nobody?"
+	var/master_name = "无人"
 
 /datum/antagonist/shade_minion/ui_static_data(mob/user)
 	var/list/data = list()

@@ -1,7 +1,7 @@
 #define ICON_STATE_CHECKED 1 /// this dmi is checked. We don't check this one anymore.
 #define ICON_STATE_NULL 2 /// this dmi has null-named icon_state, allowing it to show a sprite on vv editor.
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", /datum)
+ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "查看变量", /datum)
 	VERB_ARG_TYPED(thing, VERB_ARG_TYPE_DATUM, VERB_ARG_SOURCE_WORLD, /datum)
 	user.debug_variables(thing)
 // This is kept as a separate proc because admins are able to show VV to non-admins
@@ -10,7 +10,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", /datum)
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //This is usr because admins can call the proc on other clients, even if they're not admins, to show them VVs.
-		to_chat(usr, span_danger("You need to be an administrator to access this."), confidential = TRUE)
+		to_chat(usr, span_danger("你需要管理员权限才能访问此项。"), confidential = TRUE)
 		return
 
 	if(!thing)
@@ -64,7 +64,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", /datum)
 	if(sprite)
 		hash = md5(sprite)
 		src << browse_rsc(sprite, "vv[hash].png")
-		sprite_text = no_icon ? "\[NO ICON\]" : "<img src='vv[hash].png'></td><td>"
+		sprite_text = no_icon ? "\[无图标\]" : "<img src='vv[hash].png'></td><td>"
 
 	title = "[thing] ([REF(thing)]) = [type]"
 	var/formatted_type = replacetext("[type]", "/", "<wbr>/")
@@ -91,17 +91,17 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", /datum)
 	if (islist)
 		if(!isalist)
 			dropdownoptions = list(
-				"Add Item" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ADD),
-				"Remove Nulls" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_NULLS),
-				"Remove Dupes" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_DUPES),
-				"Set len" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SET_LENGTH),
-				"Shuffle" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SHUFFLE),
-				"Show VV To Player" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
+				"添加项目" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ADD),
+				"移除空项" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_NULLS),
+				"去除重复" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_DUPES),
+				"设置长度" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SET_LENGTH),
+				"打乱顺序" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SHUFFLE),
+				"向玩家显示 VV" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
 				"---"
 			)
 		else
 			dropdownoptions = list(
-				"Show VV To Player" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
+				"向玩家显示 VV" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
 				"---"
 			)
 		for(var/i in 1 to length(dropdownoptions))
@@ -300,9 +300,9 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(debug_variables, R_NONE, "View Variables", /datum)
 					<td width='50%'>
 						<div align='center'>
 							<a id='refresh_link' href='byond://?_src_=vars;
-datumrefresh=[refid];[HrefToken()]'>Refresh</a>
+datumrefresh=[refid];[HrefToken()]'>刷新</a>
 							<div class="dropdown-content">
-								<input type="text" placeholder="Select Action" id="vvDropdownInput" onkeyup="filterDropdown()" onselect="filterDropdown()" onfocus="filterDropdown()" onblur="delayHide()">
+								<input type="text" placeholder="选择操作" id="vvDropdownInput" onkeyup="filterDropdown()" onselect="filterDropdown()" onfocus="filterDropdown()" onblur="delayHide()">
 								<div id="vvDropdownDiv" class="dropdown-options">
 									[dropdownoptions.Join()]
 								</div>
@@ -314,16 +314,16 @@ datumrefresh=[refid];[HrefToken()]'>Refresh</a>
 		</div>
 		<hr>
 		<font size='1'>
-			<b>E</b> - Edit, tries to determine the variable type by itself.<br>
-			<b>C</b> - Change, asks you for the var type first.<br>
-			<b>M</b> - Mass modify: changes this variable for all objects of this type.<br>
+			<b>E</b> - 编辑，自动判断变量类型。<br>
+			<b>C</b> - 修改变量，先询问变量类型。<br>
+			<b>M</b> - 批量修改：为该类型的所有对象修改此变量。<br>
 		</font>
 		<hr>
 		<table width='100%'>
 			<tr>
 				<td width='20%'>
 					<div align='center'>
-						<b>Search:</b>
+						<b>搜索：</b>
 					</div>
 				</td>
 				<td width='80%'>

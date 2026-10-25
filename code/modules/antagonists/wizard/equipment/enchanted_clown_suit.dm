@@ -1,7 +1,7 @@
 /// A spell which gives you a clown item
 /datum/action/cooldown/spell/conjure_item/clown_pockets
-	name = "Acquire Clowning Implement"
-	desc = "Pull an item out of your mysteriously expansive pants."
+	name = "获取小丑道具"
+	desc = "从你那神秘宽大的裤子里掏出一件物品。"
 	button_icon = 'icons/obj/clothing/masks.dmi'
 	button_icon_state = "clown"
 	school = SCHOOL_CONJURATION
@@ -52,7 +52,7 @@
 	cast_message(cast_on)
 	if (!do_after(cast_on, cast_time, cast_on))
 		casting = FALSE
-		cast_on.balloon_alert(cast_on, "interrupted!")
+		cast_on.balloon_alert(cast_on, "被打断了！")
 		StartCooldown(2 SECONDS) // Prevents chat spam
 		return . | SPELL_CANCEL_CAST
 	casting = FALSE
@@ -62,7 +62,7 @@
 	return ..()
 
 /datum/action/cooldown/spell/conjure_item/clown_pockets/post_created(atom/cast_on, atom/created)
-	cast_on.visible_message(span_notice("[cast_on] pulls out [created]!"), span_notice("You pull out [created]!"))
+	cast_on.visible_message(span_notice("[cast_on]掏出了[created]！"), span_notice("你掏出了[created]！"))
 
 /datum/action/cooldown/spell/conjure_item/clown_pockets/can_cast_spell(feedback = TRUE)
 	. = ..()
@@ -70,27 +70,27 @@
 		return
 	if (casting)
 		if (feedback)
-			owner.balloon_alert(owner, "can't rummage harder!")
+			owner.balloon_alert(owner, "不能再使劲翻了！")
 		return FALSE
 
 /// Prints a funny message, exists so I can override it to print a different message
 /datum/action/cooldown/spell/conjure_item/clown_pockets/proc/cast_message(mob/cast_on)
-	cast_on.visible_message(span_notice("[cast_on] reaches far deeper into [cast_on.p_their()] pockets than you think \
-		should be possible and starts rummaging around for something."), span_notice("You reach further down into your \
-		pockets than you ever have before and feel around for something."))
+	cast_on.visible_message(span_notice("[cast_on]把手伸进口袋深处，深得让你觉得\
+		不可能，然后开始翻找着什么。"), span_notice("你把手伸进自己\
+		口袋的深处，深得前所未有，摸索着寻找什么。"))
 
 /// Longer cooldown variant which is attached to the enchanted clown suit
 /datum/action/cooldown/spell/conjure_item/clown_pockets/enchantment
-	name = "Enchanted Clown Pockets"
+	name = "附魔小丑口袋"
 	cooldown_time = 60 SECONDS
 
 /datum/action/cooldown/spell/conjure_item/clown_pockets/enchantment/cast_message(mob/cast_on)
-	cast_on.visible_message(span_notice("[cast_on] starts rummaging around in [cast_on.p_their()] comically large pants."), span_notice("You \
-		start rummaging around in your comically large pants."))
+	cast_on.visible_message(span_notice("[cast_on]开始在滑稽的巨大裤子里翻找起来。"), span_notice("你\
+		开始在滑稽的巨大裤子里翻找起来。"))
 
 /// Enchanted clown suit
 /obj/item/clothing/under/rank/civilian/clown/magic
-	name = "enchanted clown suit"
+	name = "附魔小丑服"
 
 /obj/item/clothing/under/rank/civilian/clown/magic/Initialize(mapload)
 	. = ..()
@@ -99,7 +99,7 @@
 
 /// Enchanted plasmaman clown suit
 /obj/item/clothing/under/plasmaman/clown/magic
-	name = "enchanted clown envirosuit"
+	name = "附魔小丑环境服"
 
 /obj/item/clothing/under/plasmaman/clown/magic/Initialize(mapload)
 	. = ..()

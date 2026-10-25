@@ -4,7 +4,7 @@
 /**********************Mineral deposits**************************/
 
 /turf/closed/mineral //wall piece
-	name = "rock"
+	name = "岩石"
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/smoothrocks.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "rock"
 	smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
@@ -231,7 +231,7 @@
 ///Mining manually with a hand tool or something masquerading as one
 /turf/closed/mineral/proc/manual_mine(mob/living/user, obj/item/tool, exp_multiplier = 1)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你没有足够的灵巧度来做这个！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!isturf(user.loc))
@@ -264,7 +264,7 @@
 	var/mining_speed = mining_arms ? tool_mine_speed : hand_mine_speed
 	TIMER_COOLDOWN_START(src, REF(user), mining_speed)
 	var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER) || 1
-	balloon_alert(user, "pulling out pieces...")
+	balloon_alert(user, "正在抠出碎块……")
 	if(!do_after(user, mining_speed * skill_modifier, target = src))
 		TIMER_COOLDOWN_END(src, REF(user)) //if we fail we can start again immediately
 		return
@@ -314,7 +314,7 @@
 		return gets_drilled(user, exp_multiplier)
 
 /turf/closed/mineral/attack_alien(mob/living/carbon/alien/user, list/modifiers)
-	balloon_alert(user, "digging...")
+	balloon_alert(user, "挖掘中……")
 	playsound(src, 'sound/effects/break_stone.ogg', 50, TRUE)
 	if(do_after(user, tool_mine_speed, target = src))
 		gets_drilled(user)
@@ -536,7 +536,7 @@
 	)
 
 /turf/closed/mineral/random/high_chance/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -588,7 +588,7 @@
 	)
 
 /turf/closed/mineral/random/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -610,7 +610,7 @@
 	)
 
 /turf/closed/mineral/random/volcanic/red_rock
-	name = "siderite"
+	name = "菱铁矿"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon_state = "red_rock"
 	base_icon_state = "red_rock"
@@ -639,7 +639,7 @@
 	)
 
 /turf/closed/mineral/random/volcanic/shale
-	name = "shale"
+	name = "页岩"
 	icon = MAP_SWITCH('icons/turf/walls/shale.dmi', 'icons/turf/mining.dmi')
 	icon_state = "shale"
 	base_icon_state = "shale"
@@ -667,7 +667,7 @@
 	)
 
 /turf/closed/mineral/random/snow
-	name = "snowy mountainside"
+	name = "积雪山坡"
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -753,7 +753,7 @@
 	)
 
 /turf/closed/mineral/random/labormineral/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -761,7 +761,7 @@
 
 // Subtypes for mappers placing ores manually.
 /turf/closed/mineral/random/labormineral/ice
-	name = "snowy mountainside"
+	name = "积雪山坡"
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -796,7 +796,7 @@
 	scan_state = "rock_iron"
 
 /turf/closed/mineral/iron/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -817,7 +817,7 @@
 	scan_state = "rock_uranium"
 
 /turf/closed/mineral/uranium/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -828,7 +828,7 @@
 	scan_state = "rock_diamond"
 
 /turf/closed/mineral/diamond/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -849,7 +849,7 @@
 	scan_state = "rock_gold"
 
 /turf/closed/mineral/gold/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -860,7 +860,7 @@
 	scan_state = "rock_silver"
 
 /turf/closed/mineral/silver/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -876,7 +876,7 @@
 	scan_state = "rock_titanium"
 
 /turf/closed/mineral/titanium/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -887,7 +887,7 @@
 	scan_state = "rock_plasma"
 
 /turf/closed/mineral/plasma/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -909,7 +909,7 @@
 	scan_state = "rock_bananium"
 
 /turf/closed/mineral/bananium/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -921,7 +921,7 @@
 	scan_state = "rock_bscrystal"
 
 /turf/closed/mineral/bscrystal/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -938,7 +938,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/closed/mineral/volcanic/lava_land_surface
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	defer_change = TRUE
@@ -978,7 +978,7 @@
 
 /// Wall piece
 /turf/closed/mineral/ash_rock
-	name = "rock"
+	name = "岩石"
 	icon = 'icons/turf/mining.dmi'
 	icon = MAP_SWITCH('icons/turf/walls/rock_wall.dmi', 'icons/turf/mining.dmi')
 	icon_state = "rock2"
@@ -992,7 +992,7 @@
 	rust_resistance = RUST_RESISTANCE_ORGANIC
 
 /turf/closed/mineral/snowmountain
-	name = "snowy mountainside"
+	name = "积雪山坡"
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "mountainrock"
 	base_icon_state = "mountain_wall"
@@ -1015,7 +1015,7 @@
 	baseturfs = /turf/open/misc/asteroid/snow/icemoon/do_not_scrape
 
 /turf/closed/mineral/snowmountain/cavern
-	name = "ice cavern rock"
+	name = "冰窟岩石"
 	icon = MAP_SWITCH('modular_zubbers/icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi') // BUBBER EDIT
 	icon_state = "icerock"
 	base_icon_state = "icerock_wall"
@@ -1037,7 +1037,7 @@
 //yoo RED ROCK RED ROCK
 
 /turf/closed/mineral/asteroid
-	name = "iron rock"
+	name = "铁矿石岩"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon_state = "red_rock"
 	base_icon_state = "red_rock"
@@ -1048,7 +1048,7 @@
 	wall_icon_state = "red_rock"
 
 /turf/closed/mineral/random/stationside/asteroid
-	name = "iron rock"
+	name = "铁矿石岩"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon_state = "red_rock"
 	base_icon_state = "red_rock"
@@ -1058,13 +1058,13 @@
 	wall_icon_state = "red_rock"
 
 /turf/closed/mineral/random/stationside/asteroid/porus
-	name = "porous iron rock"
-	desc = "This rock is filled with pockets of breathable air."
+	name = "多孔铁矿石岩"
+	desc = "这块岩石里布满了可呼吸空气的气囊。"
 	baseturfs = /turf/open/misc/asteroid
 
 /turf/closed/mineral/asteroid/porous
-	name = "porous rock"
-	desc = "This rock is filled with pockets of breathable air."
+	name = "多孔岩石"
+	desc = "这块岩石里布满了可呼吸空气的气囊。"
 	baseturfs = /turf/open/misc/asteroid
 
 //GIBTONITE
@@ -1086,16 +1086,16 @@
 /turf/closed/mineral/gibtonite/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	var/previous_stage = stage
 	if(istype(tool, /obj/item/goliath_infuser_hammer) && stage == GIBTONITE_ACTIVE)
-		user.visible_message(span_notice("[user] digs [tool] to [src]..."), span_notice("Your tendril hammer instictively digs and wraps around [src] to stop it..."))
+		user.visible_message(span_notice("[user]把[tool]插向[src]……"), span_notice("你的触须锤本能地插入并缠住[src]，想阻止它……"))
 		defuse(user)
 	else if(istype(tool, /obj/item/mining_scanner) || istype(tool, /obj/item/t_scanner/adv_mining_scanner) && stage == GIBTONITE_ACTIVE)
-		user.visible_message(span_notice("[user] holds [tool] to [src]..."), span_notice("You use [tool] to locate where to cut off the chain reaction and attempt to stop it..."))
+		user.visible_message(span_notice("[user]把[tool]举向[src]……"), span_notice("你用[tool]找出切断连锁反应的位置，试图阻止它……"))
 		defuse(user)
 	. = ..()
 	if(istype(tool, /obj/item/clothing/gloves/gauntlets) && previous_stage == GIBTONITE_UNSTRUCK && stage == GIBTONITE_ACTIVE && istype(user))
 		user.Immobilize(0.5 SECONDS)
 		user.throw_at(get_ranged_target_turf(src, get_dir(src, user), 5), range = 5, speed = 3, spin = FALSE)
-		user.visible_message(span_danger("[user] hit gibtonite with [tool.name], launching [user.p_them()] back!"), span_danger("You've struck gibtonite! Your [tool.name] launched you back!"))
+		user.visible_message(span_danger("[user]用[tool.name]敲中了爆裂矿，被弹飞了出去！"), span_danger("你敲中了爆裂矿！你的[tool.name]把你弹飞了回来！"))
 
 /turf/closed/mineral/gibtonite/proc/explosive_reaction(mob/user = null)
 	if(stage != GIBTONITE_UNSTRUCK)
@@ -1105,10 +1105,10 @@
 	activated_overlay.pixel_x = 2
 	activated_overlay.pixel_y = 2
 	add_overlay(activated_overlay)
-	name = "gibtonite deposit"
-	desc = "An active gibtonite reserve. Run!"
+	name = "爆裂矿矿脉"
+	desc = "一处活跃的爆裂矿矿脉。快跑！"
 	stage = GIBTONITE_ACTIVE
-	visible_message(span_danger("There's gibtonite inside! It's going to explode!"))
+	visible_message(span_danger("里面是爆裂矿！它要爆炸了！"))
 
 	var/notify_admins = !is_mining_level(z)
 
@@ -1141,11 +1141,11 @@
 	cut_overlay(activated_overlay)
 	activated_overlay.icon_state = "rock_Gibtonite_inactive"
 	add_overlay(activated_overlay)
-	desc = "An inactive gibtonite reserve. The ore can be extracted."
+	desc = "一处沉寂的爆裂矿矿脉。矿石可以开采了。"
 	stage = GIBTONITE_STABLE
 	if(det_time < 0)
 		det_time = 0
-	visible_message(span_notice("The chain reaction stopped! The gibtonite had [det_time] reactions left till the explosion!"))
+	visible_message(span_notice("连锁反应停止了！这颗爆裂矿距离爆炸还剩 [det_time] 次反应！"))
 	if(defuser)
 		SEND_SIGNAL(defuser, COMSIG_LIVING_DEFUSED_GIBTONITE, det_time)
 
@@ -1180,14 +1180,14 @@
 	mined.update_visuals()
 
 /turf/closed/mineral/gibtonite/volcanic
-	name = "basalt"
+	name = "玄武岩"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = TRUE
 
 /turf/closed/mineral/gibtonite/volcanic/red_rock
-	name = "siderite"
+	name = "菱铁矿"
 	icon = MAP_SWITCH('icons/turf/walls/red_rock.dmi', 'icons/turf/mining.dmi')
 	icon_state = "red_rock"
 	base_icon_state = "red_rock"
@@ -1199,7 +1199,7 @@
 	wall_icon_state = "red_rock"
 
 /turf/closed/mineral/gibtonite/volcanic/shale
-	name = "shale"
+	name = "页岩"
 	icon = MAP_SWITCH('icons/turf/walls/shale.dmi', 'icons/turf/mining.dmi')
 	icon_state = "shale"
 	base_icon_state = "shale"
@@ -1232,8 +1232,8 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/closed/mineral/strong
-	name = "very strong rock"
-	desc = "Seems to be stronger than the other rocks in the area. Only a master of mining techniques could destroy this."
+	name = "极坚硬的岩石"
+	desc = "看起来比这一带的其他岩石都坚硬。只有采矿技术的大师才能摧毁它。"
 	turf_type = /turf/open/misc/asteroid/basalt/lava_land_surface
 	baseturfs = /turf/open/misc/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
@@ -1244,11 +1244,11 @@
 
 /turf/closed/mineral/strong/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!ishuman(user))
-		to_chat(usr, span_warning("Only a more advanced species could break a rock such as this one!"))
+		to_chat(usr, span_warning("只有更高级的物种才能击碎这样的岩石！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.mind?.get_skill_level(/datum/skill/mining) >= SKILL_LEVEL_MASTER)
-		to_chat(usr, span_warning("The rock seems to be too strong to destroy. Maybe I can break it once I become a master miner."))
+		to_chat(usr, span_warning("这块岩石似乎太坚硬了，无法摧毁。也许等我成为采矿大师就能击碎它。"))
 		return ITEM_INTERACT_BLOCKING
 
 	return ..()

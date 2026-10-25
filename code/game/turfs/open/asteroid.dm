@@ -4,8 +4,8 @@
 
 /turf/open/misc/asteroid //floor piece
 	gender = PLURAL
-	name = "asteroid sand"
-	desc = "It's coarse and rough and gets everywhere."
+	name = "小行星沙地"
+	desc = "粗糙又扎脚，还会弄得哪儿都是。"
 	baseturfs = /turf/open/misc/asteroid
 	icon = 'icons/turf/floors.dmi'
 	damaged_dmi = 'icons/turf/floors.dmi'
@@ -81,7 +81,7 @@
 	if(!isturf(user.loc))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "digging...")
+	balloon_alert(user, "正在挖掘……")
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
@@ -107,7 +107,7 @@
 	if(!dug && !broken)
 		return TRUE
 	if(user)
-		balloon_alert(user, "already excavated!")
+		balloon_alert(user, "已经挖过了！")
 	return FALSE
 
 ///Refills the previously dug tile
@@ -140,7 +140,7 @@
 GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/basalt
-	name = "volcanic floor"
+	name = "火山地面"
 	baseturfs = /turf/open/misc/asteroid/basalt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	update_appearance()
 
 /turf/open/misc/asteroid/basalt/smooth/siderite
-	name = "siderite floor"
+	name = "菱铁矿地面"
 	baseturfs = /turf/open/misc/asteroid/basalt/smooth/siderite
 	icon = 'icons/turf/floors/siderite.dmi'
 	damaged_dmi = 'icons/turf/floors/siderite_variants.dmi'
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	turf_flags = NO_RUINS
 
 /turf/open/misc/asteroid/basalt/smooth/shale
-	name = "shale floor"
+	name = "页岩地面"
 	baseturfs = /turf/open/misc/asteroid/basalt/smooth/shale
 	icon = 'icons/turf/floors/shale.dmi'
 	damaged_dmi = 'icons/turf/floors/shale_variants.dmi'
@@ -320,8 +320,8 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/snow
 	gender = PLURAL
-	name = "snow"
-	desc = "Looks cold."
+	name = "雪地"
+	desc = "看起来很冷。"
 	icon = 'icons/turf/snow.dmi'
 	damaged_dmi = 'icons/turf/snow.dmi'
 	baseturfs = /turf/open/misc/asteroid/snow
@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/snow/burn_tile()
 	if(!burnt)
-		visible_message(span_danger("[src] melts away!."))
+		visible_message(span_danger("[src]融化了！"))
 		slowdown = 0
 		burnt = TRUE
 		update_appearance()
@@ -385,21 +385,21 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	if(dug)
 		if(tool.use(DIG_SHEET_AMOUNT))
 			user.visible_message(
-				span_notice("[user] packs [src] back in."),
-				span_notice("You pack [src] back in."),
+				span_notice("[user]把[src]重新填了回去。"),
+				span_notice("你把[src]重新填了回去。"),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 			)
 			refill_dug()
 			return ITEM_INTERACT_SUCCESS
 
-		to_chat(user, "You don't have enough [tool.name] to fill the hole.")
+		to_chat(user, "你没有足够的[tool.name]来填满这个洞。")
 		return ITEM_INTERACT_BLOCKING
 
 	if(footprint_entrance_dirs || footprint_exit_dirs)
 		if(tool.use(1))
 			user.visible_message(
-				span_notice("[user] fills in the footprints in [src]."),
-				span_notice("You fill in the footprints in [src]."),
+				span_notice("[user]填平了[src]上的脚印。"),
+				span_notice("你填平了[src]上的脚印。"),
 				vision_distance = COMBAT_MESSAGE_RANGE,
 			)
 			clear_footprints()
@@ -430,8 +430,8 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	planetary_atmos = TRUE
 
 /turf/open/misc/asteroid/snow/ice
-	name = "icy snow"
-	desc = "Looks colder."
+	name = "冰状积雪"
+	desc = "看起来更冷了。"
 	baseturfs = /turf/open/misc/asteroid/snow/ice
 	initial_gas_mix = BURNING_COLD
 	floor_variance = 0
@@ -483,7 +483,7 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 	planetary_atmos = FALSE
 
 /turf/open/misc/asteroid/moon
-	name = "lunar surface"
+	name = "月面"
 	baseturfs = /turf/open/misc/asteroid/moon
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "moon"
@@ -502,8 +502,8 @@ GLOBAL_LIST_EMPTY(dug_up_basalt)
 
 /turf/open/misc/asteroid/plasma //floor piece
 	gender = PLURAL
-	name = "asteroid gravel"
-	desc = "It's coarse and rough and gets everywhere."
+	name = "小行星砾石"
+	desc = "粗糙又扎脚，还会弄得哪儿都是。"
 	baseturfs = /turf/open/misc/asteroid
 	icon = 'icons/turf/floors.dmi'
 	damaged_dmi = 'icons/turf/floors.dmi'

@@ -1,8 +1,8 @@
 /obj/structure/blob/special/node
-	name = "blob node"
+	name = "变形菌节点"
 	icon = 'icons/mob/nonhuman-player/blob.dmi'
 	icon_state = "blank_blob"
-	desc = "A large, pulsating yellow mass."
+	desc = "一大团不断搏动的黄色物质。"
 	max_integrity = BLOB_NODE_MAX_HP
 	health_regen = BLOB_NODE_HP_REGEN
 	armor_type = /datum/armor/special_node
@@ -25,7 +25,7 @@
 	. = ..()
 
 /obj/structure/blob/special/node/scannerreport()
-	return "Gradually expands and sustains nearby blob spores and blobbernauts."
+	return "逐渐蔓延，并维持附近的变形菌孢子与变形菌巨兽。"
 
 /obj/structure/blob/special/node/update_icon()
 	. = ..()

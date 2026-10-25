@@ -38,23 +38,23 @@
 		target = (where_target_type == WHERE_TARGETED_MOB_HAND ? spawn_params["target"] : user)
 
 		if(!target)
-			to_chat(user, span_warning("No target specified."))
+			to_chat(user, span_warning("未指定目标。"))
 			return
 
 		if(!ismob(target))
-			to_chat(user, span_warning("The targeted atom is not a mob."))
+			to_chat(user, span_warning("目标对象不是生物。"))
 			return
 
 		if(!iscarbon(target) && !iscyborg(target))
-			to_chat(user, span_warning("Can only spawn in hand when the target is a carbon mob or a cyborg."))
+			to_chat(user, span_warning("仅当目标是碳基生物或半机械人时，才能生成到手中。"))
 			where_target_type = WHERE_FLOOR_BELOW_MOB
 
 	else if(where_target_type == WHERE_MARKED_OBJECT || where_target_type == WHERE_IN_MARKED_OBJECT)
 		if(!user.client.holder.marked_datum)
-			to_chat(user, span_warning("You don't have any object marked."))
+			to_chat(user, span_warning("你尚未标记任何对象。"))
 			return
 		else if(!istype(user.client.holder.marked_datum, /atom))
-			to_chat(user, span_warning("The object you have marked cannot be used as a target. Target must be of type /atom."))
+			to_chat(user, span_warning("你标记的对象无法作为目标。目标必须属于/atom类型。"))
 			return
 		else
 			target = (where_target_type == WHERE_MARKED_OBJECT ? get_turf(user.client.holder.marked_datum) : user.client.holder.marked_datum)
@@ -81,7 +81,7 @@
 						relative_turf = locate(1, 1, 1)
 
 				if (!relative_turf)
-					to_chat(user, span_warning("Could not determine a valid relative location."))
+					to_chat(user, span_warning("无法确定有效的相对位置。"))
 					return
 
 				target = locate(relative_turf.x + X, relative_turf.y + Y, relative_turf.z + Z)
@@ -147,7 +147,7 @@
 
 	log_admin("[key_name(user)] created [amount == 1 ? "an instance" : "[amount] instances"] of [atom_to_spawn.type]")
 	if(istype(atom_to_spawn, /mob))
-		message_admins("[key_name_admin(user)] created [amount == 1 ? "an instance" : "[amount] instances"] of [atom_to_spawn.type]")
+		message_admins("[key_name_admin(user)]创建了[amount]个[atom_to_spawn.type]实例")
 
 #undef WHERE_FLOOR_BELOW_MOB
 #undef WHERE_SUPPLY_BELOW_MOB

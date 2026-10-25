@@ -1,6 +1,6 @@
 /obj/effect/fun_balloon
-	name = "fun balloon"
-	desc = "This is going to be a laugh riot."
+	name = "趣味气球"
+	desc = "这会是一场爆笑狂欢。"
 	icon = 'icons/obj/toys/balloons.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
@@ -28,15 +28,15 @@
 	return
 
 /obj/effect/fun_balloon/proc/pop()
-	visible_message(span_notice("[src] pops!"))
+	visible_message(span_notice("[src]爆开了！"))
 	playsound(get_turf(src), pop_sound_effect, 50, TRUE, -1)
 	qdel(src)
 
 // ----------- Sentience Balloon
 /obj/effect/fun_balloon/sentience
-	name = "sentience fun balloon"
-	desc = "When this pops, things are gonna get more aware around here."
-	var/group_name = "a bunch of giant spiders"
+	name = "赋予意识趣味气球"
+	desc = "当它爆开时，这附近的东西会变得更有意识。"
+	var/group_name = "一群巨型蜘蛛"
 	var/effect_range = 3
 	var/antag_type = null
 	var/make_antag = FALSE
@@ -78,7 +78,7 @@
 
 		if("select_antag")
 			var/list/paths = subtypesof(/datum/antagonist)
-			antag_type = input(usr,"Select antag", "Antagonist selection") as null|anything in sort_list(paths)
+			antag_type = input(usr,"选择反派角色", "反派选择") as null|anything in sort_list(paths)
 			make_antag = TRUE
 
 		if("pop")
@@ -96,21 +96,21 @@
 			bodies += possessable
 
 	var/list/candidates = SSpolling.poll_ghosts_for_targets(
-		question = "Would you like to be [span_notice(group_name)]?",
+		question = "你愿意成为[span_notice(group_name)]吗？",
 		role = ROLE_SENTIENCE,
 		check_jobban = ROLE_SENTIENCE,
 		poll_time = 10 SECONDS,
 		checked_targets = bodies,
 		ignore_category = POLL_IGNORE_SHUTTLE_DENIZENS,
 		alert_pic = src,
-		role_name_text = "sentience fun balloon",
+		role_name_text = "赋予意识趣味气球",
 	)
 
 	while(LAZYLEN(candidates) && LAZYLEN(bodies))
 		var/mob/dead/observer/C = pick_n_take(candidates)
 		var/mob/living/body = pick_n_take(bodies)
 
-		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(body)])")
+		message_admins("[key_name_admin(C)]已接管（[key_name_admin(body)]）")
 		body.ghostize(FALSE)
 		body.PossessByPlayer(C.key)
 		if (make_antag)
@@ -120,7 +120,7 @@
 
 // ----------- Emergency Shuttle Balloon
 /obj/effect/fun_balloon/sentience/emergency_shuttle
-	name = "shuttle sentience fun balloon"
+	name = "穿梭机赋予意识趣味气球"
 	var/trigger_time = 60
 
 /obj/effect/fun_balloon/sentience/emergency_shuttle/check()
@@ -130,8 +130,8 @@
 
 // ----------- Scatter Balloon
 /obj/effect/fun_balloon/scatter
-	name = "scatter fun balloon"
-	desc = "When this pops, you're not going to be around here anymore."
+	name = "驱散趣味气球"
+	desc = "当它爆开时，你就不会待在这附近了。"
 	var/effect_range = 5
 
 /obj/effect/fun_balloon/scatter/effect()
@@ -144,8 +144,8 @@
 // ----------- Station Crash
 // Can't think of anywhere better to put it right now
 /obj/effect/station_crash
-	name = "station crash"
-	desc = "With no survivors!"
+	name = "空间站撞击"
+	desc = "无人生还！"
 	icon = 'icons/obj/toys/balloons.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
@@ -167,7 +167,7 @@
 			break
 
 /obj/effect/station_crash/devastating
-	name = "devastating station crash"
-	desc = "Absolute Destruction. Will crash the shuttle far into the station."
+	name = "毁灭性空间站撞击"
+	desc = "绝对毁灭。会把穿梭机狠狠撞进空间站深处。"
 	min_crash_strength = 15
 	max_crash_strength = 25

@@ -1,6 +1,6 @@
 
 /obj/item/storage/toolbox/syndicate
-	name = "tactical toolbox" // BUBBER EDIT CHANGE: Just a normal toolbox. Original: name = "suspicious looking toolbox"
+	name = "战术工具箱" // BUBBER EDIT CHANGE: Just a normal toolbox. Original: name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	inhand_icon_state = "toolbox_syndi"
 	force = 15
@@ -10,7 +10,7 @@
 
 	// BUBBER EDIT ADDITION BEGIN: Just a normal toolbox.
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "A toolbox manufactured by the Syndicate containing extra tactical tools. Made of more robust materials than the average toolbox."
+	special_desc = "辛迪加制造的工具箱，内含额外的战术工具。用料比普通工具箱更坚固。"
 	// BUBBER EDIT ADDITION END: Just a normal toolbox.
 
 /obj/item/storage/toolbox/syndicate/PopulateContents()
@@ -24,8 +24,8 @@
 
 
 /obj/item/storage/toolbox/ammobox
-	name = "ammo canister"
-	desc = "A metal canister designed to hold ammunition"
+	name = "弹药罐"
+	desc = "用于存放弹药的金属罐。"
 	icon_state = "ammobox"
 	inhand_icon_state = "ammobox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -41,26 +41,26 @@
 			new ammo_to_spawn(src)
 
 /obj/item/storage/toolbox/ammobox/strilka310
-	name = ".310 Strilka ammo box (Surplus?)"
-	desc = "It contains a few clips. Goddamn, this thing smells awful. \
-		Has this been sitting in a warehouse for the last several centuries?"
+	name = ".310 斯特里尔卡弹药箱（剩余物资？）"
+	desc = "里面装着几个弹夹。天啊，这东西味道难闻得要命。\
+		它该不会在仓库里放了好几百年吧？"
 	ammo_to_spawn = /obj/item/ammo_box/speedloader/strilka310
 
 /obj/item/storage/toolbox/ammobox/strilka310/surplus
 	ammo_to_spawn = /obj/item/ammo_box/speedloader/strilka310/surplus
 
 /obj/item/storage/toolbox/ammobox/wt550m9
-	name = "4.6x30mm ammo box"
+	name = "4.6x30mm 弹药箱"
 	ammo_to_spawn = /obj/item/ammo_box/magazine/wt550m9
 
 /obj/item/storage/toolbox/ammobox/wt550m9ap
-	name = "4.6x30mm AP ammo box"
+	name = "4.6x30mm 穿甲弹药箱"
 	ammo_to_spawn = /obj/item/ammo_box/magazine/wt550m9/wtap
 
 
 /obj/item/storage/toolbox/guncase
-	name = "gun case"
-	desc = "A weapon's case. Has a blood-red 'S' stamped on the cover."
+	name = "枪械箱"
+	desc = "一个武器箱，盖子上压印着血红色的“S”。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "infiltrator_case"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -81,8 +81,8 @@
 			new extra_to_spawn (src)
 
 /obj/item/storage/toolbox/guncase/traitor
-	name = "makarov gun case"
-	desc = "A weapon's case. Has a blood-red 'S' stamped on the cover. There seems to be a strange switch along the side inside a plastic flap."
+	name = "马卡洛夫枪械箱"
+	desc = "一个武器箱，盖子上压印着血红色的“S”。内侧的塑料翻盖下似乎藏着一个奇怪的开关。"
 	icon_state = "pistol_case"
 	base_icon_state = "pistol_case"
 	// What ammo box do we spawn in our case?
@@ -98,12 +98,12 @@
 
 /obj/item/storage/toolbox/guncase/traitor/examine(mob/user)
 	. = ..()
-	. += span_notice("Activate the Evidence Disposal Explosive using Alt-Right-Click.")
+	. += span_notice("使用 Alt + 右键激活证据销毁炸弹。")
 
 /obj/item/storage/toolbox/guncase/traitor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
-	context[SCREENTIP_CONTEXT_ALT_RMB] = "Activate Evidence Disposal Explosive"
+	context[SCREENTIP_CONTEXT_ALT_RMB] = "激活证据销毁炸弹"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/storage/toolbox/guncase/traitor/PopulateContents()
@@ -122,17 +122,17 @@
 /obj/item/storage/toolbox/guncase/traitor/click_alt_secondary(mob/user)
 	. = ..()
 	if(currently_exploding)
-		user.balloon_alert(user, "already exploding!")
+		user.balloon_alert(user, "已经在爆炸了！")
 		return
 
-	var/i_dont_even_think_once_about_blowing_stuff_up = tgui_alert(user, "Would you like to activate the evidence disposal bomb now?", "BYE BYE", list("Yes","No"))
+	var/i_dont_even_think_once_about_blowing_stuff_up = tgui_alert(user, "你现在要激活证据销毁炸弹吗？", "掰掰", list("Yes","No"))
 
 	if(i_dont_even_think_once_about_blowing_stuff_up != "Yes" || currently_exploding || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING))
 		return
 
 	explosion_timer = addtimer(CALLBACK(src, PROC_REF(think_fast_chucklenuts)), 5 SECONDS, (TIMER_UNIQUE|TIMER_OVERRIDE))
-	to_chat(user, span_warning("You prime [src]'s evidence disposal bomb!"))
-	log_bomber(user, "has activated a", src, "for detonation")
+	to_chat(user, span_warning("你启动了 [src] 的证据销毁炸弹！"))
+	log_bomber(user, "已激活", src, "并准备引爆")
 	playsound(src, 'sound/items/weapons/armbomb.ogg', 50, TRUE)
 	currently_exploding = TRUE
 	update_appearance()
@@ -143,43 +143,43 @@
 	qdel(src)
 
 /obj/item/storage/toolbox/guncase/traitor/ammunition
-	name = "makarov 9mm magazine case"
+	name = "马卡洛夫 9mm 弹匣箱"
 	weapon_to_spawn = /obj/item/ammo_box/magazine/m9mm
 
 /obj/item/storage/toolbox/guncase/traitor/donksoft
-	name = "\improper Donksoft riot pistol gun case"
+	name = "\improper 咚克软防暴手枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/toy/riot/clandestine
 	extra_to_spawn = /obj/item/ammo_box/magazine/toy/pistol/riot
 	ammo_box_to_spawn = /obj/item/ammo_box/foambox/riot
 
 /obj/item/storage/toolbox/guncase/traitor/ammunition/donksoft
-	name = "\improper Donksoft riot pistol magazine case"
+	name = "\improper 咚克软防暴手枪弹匣箱"
 	weapon_to_spawn = /obj/item/ammo_box/magazine/toy/pistol/riot
 	extra_to_spawn = /obj/item/ammo_box/magazine/toy/pistol/riot
 	ammo_box_to_spawn = /obj/item/ammo_box/foambox/riot
 
 /obj/item/storage/toolbox/guncase/bulldog
-	name = "bulldog gun case"
+	name = "斗牛犬枪械箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/shotgun/bulldog
 	extra_to_spawn = /obj/item/ammo_box/magazine/m12g
 
 /obj/item/storage/toolbox/guncase/c20r
-	name = "c-20r gun case"
+	name = "C-20r 枪械箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/c20r
 	extra_to_spawn = /obj/item/ammo_box/magazine/smgm45
 
 /obj/item/storage/toolbox/guncase/smartgun
-	name = "adielle smartgun case"
+	name = "阿迪尔智能枪械箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/smartgun
 	extra_to_spawn = /obj/item/ammo_box/magazine/smartgun
 
 /obj/item/storage/toolbox/guncase/clandestine
-	name = "clandestine gun case"
+	name = "隐秘手枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/clandestine
 	extra_to_spawn = /obj/item/ammo_box/magazine/m10mm
 
 /obj/item/storage/toolbox/guncase/m90gl
-	name = "m-90gl gun case"
+	name = "M-90GL 枪械箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/m90
 	extra_to_spawn = /obj/item/ammo_box/magazine/m223
 
@@ -190,7 +190,7 @@
 	new /obj/item/ammo_box/a40mm/rubber (src)
 
 /obj/item/storage/toolbox/guncase/rocketlauncher
-	name = "rocket launcher gun case"
+	name = "火箭发射器箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/rocketlauncher
 	extra_to_spawn = /obj/item/ammo_box/rocket
 
@@ -199,12 +199,12 @@
 	new extra_to_spawn (src)
 
 /obj/item/storage/toolbox/guncase/revolver
-	name = "revolver gun case"
+	name = "左轮手枪箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/revolver/badass/nuclear
 	extra_to_spawn = /obj/item/ammo_box/speedloader/c357
 
 /obj/item/storage/toolbox/guncase/sword_and_board
-	name = "energy sword and shield weapon case"
+	name = "能量剑与盾武器箱"
 	weapon_to_spawn = /obj/item/melee/energy/sword
 	extra_to_spawn = /obj/item/shield/energy
 
@@ -214,7 +214,7 @@
 	new /obj/item/clothing/head/costume/knight (src)
 
 /obj/item/storage/toolbox/guncase/cqc
-	name = "\improper CQC equipment case"
+	name = "\improper 近身格斗术装备箱"
 	weapon_to_spawn = /obj/item/book/granter/martial/cqc
 	extra_to_spawn = /obj/item/storage/box/syndie_kit/imp_stealth
 
@@ -225,7 +225,7 @@
 	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src)
 
 /obj/item/storage/toolbox/guncase/doublesword
-	name = "double-bladed energy sword weapon case"
+	name = "双刃能量剑武器箱"
 	weapon_to_spawn = /obj/item/dualsaber
 	extra_to_spawn = /obj/item/soap/syndie
 	storage_type = /datum/storage/toolbox/guncase/doublesword
@@ -238,7 +238,7 @@
 	new /obj/item/clothing/under/rank/prisoner/nosensor (src)
 
 /obj/item/storage/toolbox/guncase/china_lake
-	name = "pump-action grenade launcher weapon case"
+	name = "泵动式榴弹发射器武器箱"
 	weapon_to_spawn = /obj/item/gun/ballistic/shotgun/china_lake
 	extra_to_spawn = /obj/item/storage/belt/bandolier/china_lake_extra
 
@@ -249,16 +249,16 @@
 	new /obj/item/storage/fancy/cigarettes/cigpack_syndicate (src)
 
 /obj/item/storage/toolbox/guncase/soviet
-	name = "ancient gun case"
-	desc = "A weapon's case. Has the symbol of the Third Soviet Union stamped on the side."
+	name = "古老枪械箱"
+	desc = "一个武器箱，侧面压印着第三苏联的徽记。"
 	icon_state = "sakhno_case"
 	inhand_icon_state = "sakhno_case"
 	weapon_to_spawn = /obj/effect/spawner/random/sakhno
 	extra_to_spawn = /obj/effect/spawner/random/sakhno/ammo
 
 /obj/item/storage/toolbox/guncase/monkeycase
-	name = "monkey gun case"
-	desc = "Everything a monkey needs to truly go ape-shit. There's a paw-shaped hand scanner lock on the front of the case."
+	name = "猴子枪械箱"
+	desc = "一只猴子要彻底发狂所需的一切。箱子正面有一个爪形的掌纹扫描锁。"
 	storage_type = /datum/storage/toolbox/guncase/monkey
 
 /obj/item/storage/toolbox/guncase/monkeycase/attack_self(mob/user, modifiers)
@@ -281,10 +281,10 @@
 
 	if(is_simian(user))
 		atom_storage.locked = STORAGE_NOT_LOCKED
-		to_chat(user, span_notice("You place your paw on the paw scanner, and hear a soft click as [src] unlocks!"))
+		to_chat(user, span_notice("你把爪子按在爪纹扫描器上，听见 [src] 发出轻轻一声咔哒，解锁了！"))
 		playsound(src, 'sound/items/click.ogg', 25, TRUE)
 		return TRUE
-	to_chat(user, span_warning("You put your hand on the hand scanner, and it rejects it with an angry chimpanzee screech!"))
+	to_chat(user, span_warning("你把手按在掌纹扫描器上，它愤怒地尖叫一声，拒绝了你的手！"))
 	playsound(src, SFX_SCREECH, 75, TRUE)
 	return FALSE
 
@@ -316,7 +316,7 @@
 	new /obj/item/storage/backpack/messenger(src)
 
 /obj/item/storage/toolbox/emergency/turret
-	desc = "You feel a strange urge to hit this with a wrench."
+	desc = "你莫名有种想用扳手敲它一下的冲动。"
 
 /obj/item/storage/toolbox/emergency/turret/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -333,14 +333,14 @@
 		return NONE
 	if(!tool.toolspeed)
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "constructing...")
+	balloon_alert(user, "建造中……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 20))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "constructed!")
+	balloon_alert(user, "建造完成！")
 	user.visible_message(
-		span_danger("[user] bashes [src] with [tool]!"),
-		span_danger("You bash [src] with [tool]!"),
+		span_danger("[user] 用 [tool] 猛敲 [src]！"),
+		span_danger("你用 [tool] 猛敲 [src]！"),
 		null,
 		COMBAT_MESSAGE_RANGE,
 	)

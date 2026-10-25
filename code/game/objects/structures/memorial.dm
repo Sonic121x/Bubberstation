@@ -12,8 +12,8 @@ This memorial has been designed for him and any future coders to perish.
 */
 
 /obj/structure/fluff/arc
-	name = "Tomb of the Unknown Employee"
-	desc = "Here rests an unknown employee\nUnknown by name or rank\nWhose acts will not be forgotten"
+	name = "无名员工之墓"
+	desc = "这里安息着一位无名员工\n姓名与职级皆无人知晓\n其功绩却不会被遗忘"
 	icon = 'icons/obj/fluff/tomb.dmi'
 	icon_state = "memorial"
 	density = TRUE
@@ -38,8 +38,8 @@ So should you read this and should you get the chance, raise a glass in his memo
 That’s how he would have wanted it.
 */
 /obj/item/clothing/accessory/medal/gold/ordom
-	name = "\proper The OrdoM Memorial Medal For Excellence in Paperwork"
-	desc = "Awarded for outstanding excellence in paperwork, administration, and bureaucracy."
+	name = "\proper OrdoM 文书卓越纪念奖章"
+	desc = "授予在文书、行政与官僚事务上表现卓越者。"
 	icon_state = "medal_paperwork"
 	medaltype = "medal-gold"
 	custom_materials = list(/datum/material/gold=HALF_SHEET_MATERIAL_AMOUNT)

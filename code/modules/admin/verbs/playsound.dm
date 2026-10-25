@@ -3,10 +3,10 @@
 #define SHELLEO_STDOUT 2
 #define SHELLEO_STDERR 3
 
-ADMIN_VERB(play_sound, R_SOUND, "Play Global Sound", "Play a sound to all connected players.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(play_sound, R_SOUND, "播放全局音效", "向所有已连接的玩家播放一段音效。", ADMIN_CATEGORY_FUN)
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
 	var/freq = 1
-	var/vol = tgui_input_number(user, "What volume would you like the sound to play at?", max_value = 100)
+	var/vol = tgui_input_number(user, "你希望这段音效以多大音量播放？", max_value = 100)
 	if(!vol)
 		return
 	vol = clamp(vol, 1, 100)
@@ -21,15 +21,15 @@ ADMIN_VERB(play_sound, R_SOUND, "Play Global Sound", "Play a sound to all connec
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
-	var/res = tgui_alert(user, "Show the title of this song to the players?", "Play Sound", list("Yes", "No", "Cancel"))
+	var/res = tgui_alert(user, "要向玩家显示这首歌的标题吗？", "播放音效", list("Yes", "No", "Cancel"))
 	switch(res)
 		if("Yes")
-			to_chat(world, span_boldannounce("An admin played: [sound]"), confidential = TRUE)
+			to_chat(world, span_boldannounce("管理员播放了：[sound]"), confidential = TRUE)
 		if("Cancel")
 			return
 
-	log_admin("[key_name(user)] played sound [sound]")
-	message_admins("[key_name_admin(user)] played sound [sound]")
+	log_admin("[key_name(user)] 播放了音效 [sound]")
+	message_admins("[key_name_admin(user)] 播放了音效 [sound]")
 
 	for(var/mob/M in GLOB.player_list)
 		var/volume_modifier = M.client.prefs.read_preference(/datum/preference/numeric/volume/sound_midi)
@@ -40,24 +40,24 @@ ADMIN_VERB(play_sound, R_SOUND, "Play Global Sound", "Play a sound to all connec
 
 	BLACKBOX_LOG_ADMIN_VERB("Play Global Sound")
 
-ADMIN_VERB(play_local_sound, R_SOUND, "Play Local Sound", "Plays a sound only you can hear.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(play_local_sound, R_SOUND, "播放本地音效", "播放一段只有你能听到的音效。", ADMIN_CATEGORY_FUN)
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
-	log_admin("[key_name(user)] played a local sound [sound]")
-	message_admins("[key_name_admin(user)] played a local sound [sound]")
-	var/volume = tgui_input_number(user, "What volume would you like the sound to play at?", max_value = 100)
+	log_admin("[key_name(user)] 播放了本地音效 [sound]")
+	message_admins("[key_name_admin(user)] 播放了本地音效 [sound]")
+	var/volume = tgui_input_number(user, "你希望这段音效以多大音量播放？", max_value = 100)
 	playsound(get_turf(user.mob), sound, volume || 50, FALSE)
 	BLACKBOX_LOG_ADMIN_VERB("Play Local Sound")
 
-ADMIN_VERB(play_direct_mob_sound, R_SOUND, "Play Direct Mob Sound", "Play a sound directly to a mob.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(play_direct_mob_sound, R_SOUND, "向目标播放音效", "直接向某个生物播放一段音效。", ADMIN_CATEGORY_FUN)
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!target)
-		target = input(user, "Choose a mob to play the sound to. Only they will hear it.", "Play Mob Sound") as null|anything in sort_names(GLOB.player_list)
+		target = input(user, "选择要播放音效的目标生物。只有它能听到。", "向生物播放音效") as null|anything in sort_names(GLOB.player_list)
 	if(QDELETED(target))
 		return
-	log_admin("[key_name(user)] played a direct mob sound [sound] to [key_name_admin(target)].")
-	message_admins("[key_name_admin(user)] played a direct mob sound [sound] to [ADMIN_LOOKUPFLW(target)].")
-	var/volume = tgui_input_number(user, "What volume would you like the sound to play at?", max_value = 100)
+	log_admin("[key_name(user)] 向 [key_name_admin(target)] 直接播放了音效 [sound]。")
+	message_admins("[key_name_admin(user)] 向 [ADMIN_LOOKUPFLW(target)] 直接播放了音效 [sound]。")
+	var/volume = tgui_input_number(user, "你希望这段音效以多大音量播放？", max_value = 100)
 	var/sound/admin_sound = sound(sound)
 	if(volume)
 		admin_sound.volume = volume
@@ -72,7 +72,7 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		return
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(user, span_boldwarning("yt-dlp was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(user, span_boldwarning("未配置 yt-dlp，该操作不可用"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 	var/web_sound_url = ""
 	var/stop_web_sounds = FALSE
@@ -85,14 +85,14 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		var/stdout = output[SHELLEO_STDOUT]
 		var/stderr = output[SHELLEO_STDERR]
 		if(errorlevel)
-			to_chat(user, span_boldwarning("yt-dlp URL retrieval FAILED:"), confidential = TRUE)
+			to_chat(user, span_boldwarning("yt-dlp 获取 URL 失败："), confidential = TRUE)
 			to_chat(user, span_warning("[stderr]"), confidential = TRUE)
 			return
 		var/list/data
 		try
 			data = json_decode(stdout)
 		catch(var/exception/e)
-			to_chat(user, span_boldwarning("yt-dlp JSON parsing FAILED:"), confidential = TRUE)
+			to_chat(user, span_boldwarning("yt-dlp 解析 JSON 失败："), confidential = TRUE)
 			to_chat(user, span_warning("[e]: [stdout]"), confidential = TRUE)
 			return
 		if (data["url"])
@@ -108,36 +108,36 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 		music_extra_data["album"] = data["album"]
 		duration = data["duration"] * 1 SECONDS
 		if (duration > 10 MINUTES)
-			if((tgui_alert(user, "This song is over 10 minutes long. Are you sure you want to play it?", "Length Warning", list("No", "Yes", "Cancel")) != "Yes"))
+			if((tgui_alert(user, "这首歌超过 10 分钟。你确定要播放吗？", "时长警告", list("No", "Yes", "Cancel")) != "Yes"))
 				return
-		var/include_song_data = tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Song Info", list("Yes", "No", "Cancel"))
+		var/include_song_data = tgui_alert(user, "要向玩家显示这首歌的标题和链接吗？\n[title]", "歌曲信息", list("Yes", "No", "Cancel"))
 		switch(include_song_data)
 			if("Yes")
 				music_extra_data["title"] = data["title"]
 				music_extra_data["artist"] = data["artist"]
 			if("No")
 				music_extra_data["link"] = "\[\[HYPERLINK BLOCKED\]\]"
-				music_extra_data["title"] = "Untitled"
-				music_extra_data["artist"] = "Unknown"
+				music_extra_data["title"] = "无标题"
+				music_extra_data["artist"] = "未知"
 				music_extra_data["upload_date"] = "XX.YY.ZZZZ"
-				music_extra_data["album"] = "Default"
+				music_extra_data["album"] = "默认"
 			if("Cancel", null)
 				return
-		var/credit_yourself = tgui_alert(user, "Display who played the song?", "Credit Yourself", list("Yes", "No", "Cancel"))
+		var/credit_yourself = tgui_alert(user, "显示是谁播放了这首歌吗？", "署名", list("Yes", "No", "Cancel"))
 
 		var/list/to_chat_message = list()
 
 		switch(credit_yourself)
 			if("Yes")
 				if(include_song_data == "Yes")
-					to_chat_message += span_notice("[user.ckey] played: [span_linkify(webpage_url)]")
+					to_chat_message += span_notice("[user.ckey] 播放了：[span_linkify(webpage_url)]")
 				else
-					to_chat_message += span_notice("[user.ckey] played a sound.")
+					to_chat_message += span_notice("[user.ckey] 播放了一段音效。")
 			if("No")
 				if(include_song_data == "Yes")
-					to_chat_message += span_notice("An admin played: [span_linkify(webpage_url)]")
+					to_chat_message += span_notice("管理员播放了：[span_linkify(webpage_url)]")
 				else
-					to_chat_message += span_notice("An admin played a sound.")
+					to_chat_message += span_notice("管理员播放了一段音效。")
 			if("Cancel", null)
 				return
 
@@ -149,21 +149,21 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 			if(client.prefs.read_preference(/datum/preference/numeric/volume/sound_midi) > 0)
 				recipients += client
 		recipients |= user.client
-		to_chat(recipients, fieldset_block("Now Playing: [span_bold(music_extra_data["title"])] by [span_bold(music_extra_data["artist"])]", jointext(to_chat_message, ""), "boxed_message"))
+		to_chat(recipients, fieldset_block("正在播放：[span_bold(music_extra_data["title"])]，演唱者：[span_bold(music_extra_data["artist"])]", jointext(to_chat_message, ""), "boxed_message"))
 
 		SSblackbox.record_feedback("nested tally", "played_url", 1, list("[user.ckey]", "[input]"))
-		log_admin("[key_name(user)] played web sound: [input]")
-		message_admins("[key_name(user)] played web sound: [input]")
+		log_admin("[key_name(user)] 播放了网络音效：[input]")
+		message_admins("[key_name(user)] 播放了网络音效：[input]")
 	else
 		//pressed ok with blank
-		log_admin("[key_name(user)] stopped web sounds.")
+		log_admin("[key_name(user)] 停止了网络音效。")
 
-		message_admins("[key_name(user)] stopped web sounds.")
+		message_admins("[key_name(user)] 停止了网络音效。")
 		web_sound_url = null
 		stop_web_sounds = TRUE
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-		tgui_alert(user, "The media provider returned a content URL that isn't using the HTTP or HTTPS protocol. This is a security risk and the sound will not be played.", "Security Risk", list("OK"))
-		to_chat(user, span_boldwarning("BLOCKED: Content URL not using HTTP(S) Protocol!"), confidential = TRUE)
+		tgui_alert(user, "媒体提供方返回的内容 URL 未使用 HTTP 或 HTTPS 协议。这存在安全风险，音效将不会被播放。", "安全风险", list("确定"))
+		to_chat(user, span_boldwarning("已阻止：内容 URL 未使用 HTTP(S) 协议！"), confidential = TRUE)
 
 		return
 	if(web_sound_url || stop_web_sounds)
@@ -186,39 +186,39 @@ GLOBAL_VAR_INIT(web_sound_cooldown, 0)
 ADMIN_VERB_CUSTOM_EXIST_CHECK(play_web_sound)
 	return !!CONFIG_GET(string/invoke_youtubedl)
 
-ADMIN_VERB(play_web_sound, R_SOUND, "Play Internet Sound", "Play a given internet sound to all players.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(play_web_sound, R_SOUND, "播放网络音效", "向所有玩家播放指定的网络音效。", ADMIN_CATEGORY_FUN)
 	if(!CLIENT_COOLDOWN_FINISHED(GLOB, web_sound_cooldown))
-		if(tgui_alert(user, "Someone else is already playing an Internet sound! It has [DisplayTimeText(CLIENT_COOLDOWN_TIMELEFT(GLOB, web_sound_cooldown), 1)] remaining. \
-		Would you like to override?", "Musicalis Interruptus", list("No","Yes")) != "Yes")
+		if(tgui_alert(user, "其他人正在播放网络音效！还剩 [DisplayTimeText(CLIENT_COOLDOWN_TIMELEFT(GLOB, web_sound_cooldown), 1)]。\
+		是否要覆盖？", "音乐被打断", list("No","Yes")) != "Yes")
 			return
 
-	var/web_sound_input = tgui_input_text(user, "Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound", null)
+	var/web_sound_input = tgui_input_text(user, "输入内容 URL（仅限受支持的网站，留空则停止播放）", "播放网络音效", null)
 
 	if(length(web_sound_input))
 		web_sound_input = trim(web_sound_input)
 		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(user, span_boldwarning("Non-http(s) URIs are not allowed."), confidential = TRUE)
-			to_chat(user, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website."), confidential = TRUE)
+			to_chat(user, span_boldwarning("不允许使用非 http(s) 的 URI。"), confidential = TRUE)
+			to_chat(user, span_warning("如需使用 ytsearch: 这类 youtube-dl 快捷方式，请改用网站上对应的完整 URL。"), confidential = TRUE)
 			return
 		web_sound(user.mob, web_sound_input)
 	else
 		web_sound(user.mob, null)
 
-ADMIN_VERB(set_round_end_sound, R_SOUND, "Set Round End Sound", "Set the sound that plays on round end.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(set_round_end_sound, R_SOUND, "设置回合结束音效", "设置回合结束时播放的音效。", ADMIN_CATEGORY_FUN)
 	VERB_ARG(sound, VERB_ARG_TYPE_SOUND, VERB_ARG_SOURCE_INPUT)
-	var/volume = tgui_input_number(user, "What volume would you like this sound to play at?", max_value = 100)
+	var/volume = tgui_input_number(user, "你希望这段音效以多大音量播放？", max_value = 100)
 	var/sound/admin_sound = sound(sound)
 	if(volume)
 		admin_sound.volume = volume
 	SSticker.SetRoundEndSound(sound)
 
-	log_admin("[key_name(user)] set the round end sound to [sound]")
-	message_admins("[key_name_admin(user)] set the round end sound to [sound]")
+	log_admin("[key_name(user)] 将回合结束音效设为 [sound]")
+	message_admins("[key_name_admin(user)] 将回合结束音效设为 [sound]")
 	BLACKBOX_LOG_ADMIN_VERB("Set Round End Sound")
 
-ADMIN_VERB(stop_sounds, R_NONE, "Stop All Playing Sounds", "Stops all playing sounds for EVERYONE.", ADMIN_CATEGORY_DEBUG)
-	log_admin("[key_name(user)] stopped all currently playing sounds.")
-	message_admins("[key_name_admin(user)] stopped all currently playing sounds.")
+ADMIN_VERB(stop_sounds, R_NONE, "停止所有正在播放的音效", "停止所有人正在播放的音效。", ADMIN_CATEGORY_DEBUG)
+	log_admin("[key_name(user)] 停止了所有正在播放的音效。")
+	message_admins("[key_name_admin(user)] 停止了所有正在播放的音效。")
 	for(var/mob/player as anything in GLOB.player_list)
 		SEND_SOUND(player, sound(null))
 		var/client/player_client = player.client

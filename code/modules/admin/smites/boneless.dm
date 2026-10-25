@@ -1,12 +1,12 @@
 /// Gives the target critically bad wounds
 /datum/smite/boneless
-	name = ":B:oneless"
+	name = ":B:无骨"
 
 /datum/smite/boneless/effect(client/user, mob/living/target)
 	. = ..()
 
 	if (!iscarbon(target))
-		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
+		to_chat(user, span_warning("该效果只能用于碳基生物。"), confidential = TRUE)
 		return
 
 	var/mob/living/carbon/carbon_target = target

@@ -1,9 +1,9 @@
 // Shoots out in a wave-like, what rust heretics themselves get
 /datum/action/cooldown/spell/cone/staggered/entropic_plume
-	name = "Entropic Plume"
-	desc = "Spews forth a disorienting plume that causes enemies to strike each other, \
-		briefly blinds them (increasing with range) and poisons them (decreasing with range). \
-		Also spreads rust in the path of the plume."
+	name = "熵蚀羽流"
+	desc = "喷出一股令人迷失方向的羽流，使敌人互相攻击、\
+		短暂失明（随距离增强）并中毒（随距离减弱）。\
+		还会在羽流经过的路径上蔓延锈蚀。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -13,7 +13,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 30 SECONDS
 
-	invocation = "'NTR'P'C PL'M!"
+	invocation = "熵'流'喷'涌！"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
@@ -36,7 +36,7 @@
 	victim.apply_status_effect(/datum/status_effect/forced_combat/amok)
 	victim.apply_status_effect(/datum/status_effect/cloudstruck, 5 SECONDS)
 	victim.adjust_disgust(100)
-	to_chat(victim, span_boldwarning("You feel filled with a rage that is not your own!"))
+	to_chat(victim, span_boldwarning("你感到被一种不属于自己的狂怒填满！"))
 
 /datum/action/cooldown/spell/cone/staggered/entropic_plume/calculate_cone_shape(current_level)
 	// At the first level (that isn't level 1) we will be small
@@ -69,8 +69,8 @@
 
 // Shoots a straight line of rusty stuff ahead of the caster, what rust monsters get
 /datum/action/cooldown/spell/basic_projectile/rust_wave
-	name = "Patron's Reach"
-	desc = "Channels energy into your hands to release a wave of rust."
+	name = "庇护者之触"
+	desc = "将能量引导至双手，释放一道锈蚀之波。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -79,14 +79,14 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 35 SECONDS
 
-	invocation = "SPR'D TH' W'D."
+	invocation = "蔓'延'锈'蚀'。"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
 	projectile_type = /obj/projectile/magic/aoe/rust_wave
 
 /obj/projectile/magic/aoe/rust_wave
-	name = "Patron's Reach"
+	name = "庇护者之触"
 	icon_state = "eldritch_projectile"
 	alpha = 180
 	damage = 30
@@ -115,7 +115,7 @@
 		T.rust_heretic_act()
 
 /datum/action/cooldown/spell/basic_projectile/rust_wave/short
-	name = "Lesser Patron's Reach"
+	name = "次级庇护者之触"
 	projectile_type = /obj/projectile/magic/aoe/rust_wave/short
 
 /obj/projectile/magic/aoe/rust_wave/short

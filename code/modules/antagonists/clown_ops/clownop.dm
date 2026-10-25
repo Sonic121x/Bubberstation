@@ -5,7 +5,7 @@
 	antagpanel_category = ANTAG_GROUP_CLOWNOPS
 	nukeop_outfit = /datum/outfit/syndicate/clownop
 	job_type = /datum/job/nuclear_operative/clown_operative
-	suicide_cry = "HAPPY BIRTHDAY!!"
+	suicide_cry = "生日快乐！！"
 
 	preview_outfit = /datum/outfit/clown_operative_elite
 	preview_outfit_behind = /datum/outfit/clown_operative
@@ -14,8 +14,8 @@
 
 /datum/antagonist/nukeop/clownop/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has clown op'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has clown op'ed [key_name(new_owner)].")
+	message_admins("[key_name_admin(admin)] 已将 [key_name_admin(new_owner)] 设为了小丑特工。")
+	log_admin("[key_name(admin)] 已将 [key_name(new_owner)] 设为了小丑特工。")
 
 /datum/antagonist/nukeop/clownop/apply_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -34,7 +34,7 @@
 		ADD_TRAIT(liver, TRAIT_COMEDY_METABOLISM, CLOWNOP_TRAIT)
 
 /datum/antagonist/nukeop/leader/clownop/give_alias()
-	title ||= pick("Head Honker", "Slipmaster", "Clown King", "Honkbearer")
+	title ||= pick("鸣笛首领", "滑跤大师", "小丑之王", "号角使者")
 	. = ..()
 	if(ishuman(owner.current))
 		owner.current.fully_replace_character_name(owner.current.real_name, "[title] [owner.current.real_name]")
@@ -42,12 +42,12 @@
 		owner.current.fully_replace_character_name(owner.current.real_name, "[nuke_team.syndicate_name] [title]")
 
 /datum/antagonist/nukeop/leader/clownop
-	name = "Clown Operative Leader"
+	name = "小丑特工首领"
 	roundend_category = "clown operatives"
 	antagpanel_category = ANTAG_GROUP_CLOWNOPS
 	nukeop_outfit = /datum/outfit/syndicate/clownop/leader
 	challengeitem = /obj/item/nuclear_challenge/clownops
-	suicide_cry = "HAPPY BIRTHDAY!!"
+	suicide_cry = "生日快乐！！"
 	infiltrator_id = "infiltrator_clown"
 
 /datum/antagonist/nukeop/leader/clownop/apply_innate_effects(mob/living/mob_override)
@@ -68,17 +68,17 @@
 
 // Clown op reinforcements
 /datum/antagonist/nukeop/reinforcement/clownop
-	name = "Clown Operative Reinforcement"
+	name = "小丑特工增援"
 	nukeop_outfit = /datum/outfit/syndicate/clownop/no_crystals
 
 /datum/outfit/clown_operative
-	name = "Clown Operative (Preview only)"
+	name = "小丑特工（仅预览）"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate/honkerative
 	uniform = /obj/item/clothing/under/syndicate
 
 /datum/outfit/clown_operative_elite
-	name = "Clown Operative (Elite, Preview only)"
+	name = "小丑特工（精英，仅预览）"
 
 	back = /obj/item/mod/control/pre_equipped/empty/syndicate/honkerative
 	uniform = /obj/item/clothing/under/syndicate

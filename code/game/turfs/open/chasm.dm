@@ -1,7 +1,7 @@
 // Base chasm, defaults to oblivion but can be overridden
 /turf/open/chasm
-	name = "chasm"
-	desc = "Watch your step."
+	name = "裂隙"
+	desc = "小心脚下。"
 	baseturfs = /turf/open/chasm
 	icon = 'icons/turf/floors/chasms.dmi'
 	icon_state = "chasms-255"
@@ -117,7 +117,7 @@
 
 // Chasm that doesn't do any z-level nonsense and just kills/stores whoever steps into it.
 /turf/open/chasm/true
-	desc = "There's nothing at the bottom. Absolutely nothing."
+	desc = "底下什么都没有。绝对什么都没有。"
 	baseturfs = /turf/open/chasm/true
 
 /turf/open/chasm/true/apply_components(mapload)

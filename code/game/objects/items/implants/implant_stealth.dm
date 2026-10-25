@@ -1,28 +1,28 @@
 /obj/item/implant/stealth
-	name = "S3 implant"
-	desc = "Allows you to be hidden in plain sight."
+	name = "S3 植入体"
+	desc = "能让你在众目睽睽之下隐匿行踪。"
 	actions_types = list(/datum/action/item_action/agent_box)
 
-	implant_info = "Activated manually. \
-		Fabricates a horrifically fragile cardboard box around the user that has integrated gradual optical camouflage."
+	implant_info = "手动激活。\
+		在使用者周围制造一个极其脆弱的纸板箱，其内置了渐进式光学迷彩。"
 
-	implant_lore = "The Cybersun S3 Implant, colloquially the \"stealth\" implant, allows users to fabricate, \
-		on the spot, a \"stealth\" box around them, which sacrifices most of its (miniscule) strength as a cardboard box \
-		in order to support an optical camouflage weave. Unfortunately, the optical camouflage cannot instantly initialize; \
-		bumping into living beings will disrupt the camouflage, and after disruption or upon initial activation, \
-		the camouflage system has to recalibrate to its surroundings. However, once calibrated, it is invisible to the naked eye."
+	implant_lore = "赛博太阳 S3 植入体，俗称“潜行”植入体，允许使用者就地制造一个“潜行”纸板箱包裹自身，\
+		该箱体牺牲了它作为纸板箱的大部分（本就微不足道的）强度，来支撑一层光学迷彩织物。\
+		遗憾的是，光学迷彩无法立刻完成初始化；与活动生物发生碰撞会破坏迷彩，\
+		而在迷彩被破坏后或初次激活时，迷彩系统必须重新校准周围环境。\
+		不过，一旦完成校准，它就肉眼不可见。"
 
 /obj/item/implanter/stealth
-	name = "implanter" // Skyrat edit , was originaly implanter (stealth)
+	name = "植入器" // Skyrat edit , was originaly implanter (stealth)
 	imp_type = /obj/item/implant/stealth
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a stealth implant" // Skyrat edit
+	special_desc = "辛迪加用于潜行植入体的植入器" // Skyrat edit
 
 //Box Object
 
 /obj/structure/closet/cardboard/agent
-	name = "inconspicious box"
-	desc = "It's so normal that you didn't notice it before."
+	name = "不显眼的纸板箱"
+	desc = "它太普通了，以至于你之前完全没注意到它。"
 	icon_state = "agentbox"
 	max_integrity = 1 // "This dumb box shouldn't take more than one hit to make it vanish."
 	move_speed_multiplier = 0.5

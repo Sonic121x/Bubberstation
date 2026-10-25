@@ -3,8 +3,8 @@
  * Because of the inherent nature of hard countering rust heretics it does it very slowly.
  */
 /obj/item/wirebrush
-	name = "wirebrush"
-	desc = "A tool that is used to scrub the rust thoroughly off walls. Not for hair!"
+	name = "钢丝刷"
+	desc = "一把用于彻底刷掉墙壁锈迹的工具。不是用来刷头发的！"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wirebrush"
 	tool_behaviour = TOOL_RUSTSCRAPER

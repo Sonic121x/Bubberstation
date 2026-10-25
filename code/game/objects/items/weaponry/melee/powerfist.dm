@@ -7,8 +7,8 @@
 #define TANK_REMOVING 1
 
 /obj/item/melee/powerfist
-	name = "power-fist"
-	desc = "A metal gauntlet with a piston-powered ram on top for that extra 'oomph' in your punch."
+	name = "动力拳套"
+	desc = "一只金属护手，顶部装有气动活塞撞锤，让你的拳头多几分「劲道」。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "powerfist"
 	inhand_icon_state = "powerfist"
@@ -16,8 +16,8 @@
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
-	attack_verb_continuous = list("whacks", "fists", "power-punches")
-	attack_verb_simple = list("whack", "fist", "power-punch")
+	attack_verb_continuous = list("敲击", "出拳", "动力拳击")
+	attack_verb_simple = list("敲击", "出拳", "动力拳击")
 	force = 20
 	throwforce = 10
 	throw_range = 7
@@ -40,34 +40,34 @@
 /obj/item/melee/powerfist/proc/pressure_setting_to_text(fist_pressure_setting)
 	switch(fist_pressure_setting)
 		if(LOW_PRESSURE)
-			return "low"
+			return "低"
 		if(MID_PRESSURE)
-			return "medium"
+			return "中"
 		if(HIGH_PRESSURE)
-			return "high"
+			return "高"
 		else
 			CRASH("Invalid pressure setting: [fist_pressure_setting]!")
 
 /obj/item/melee/powerfist/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src))
-		. += span_notice("You'll need to get closer to see any more.")
+		. += span_notice("你得再靠近一些才能看到更多信息。")
 		return
 	if(tank)
-		. += span_notice("[icon2html(tank, user)] It has \a [tank] mounted onto it.")
-		. += span_notice("Can be removed with a <b>screwdriver</b>.")
+		. += span_notice("[icon2html(tank, user)] 它上面安装着一个[tank]。")
+		. += span_notice("可以用<b>螺丝刀</b>拆下。")
 
-	. += span_notice("Use a <b>wrench</b> to change the valve strength. Current strength is at <b>[pressure_setting_to_text(fist_pressure_setting)]</b> level.")
+	. += span_notice("用<b>扳手</b>调节阀门强度。当前强度为<b>[pressure_setting_to_text(fist_pressure_setting)]</b>级。")
 
 /obj/item/melee/powerfist/wrench_act(mob/living/user, obj/item/tool)
 	fist_pressure_setting = fist_pressure_setting >= HIGH_PRESSURE ? LOW_PRESSURE : fist_pressure_setting + 1
 	tool.play_tool_sound(src)
-	balloon_alert(user, "piston strength set to [pressure_setting_to_text(fist_pressure_setting)]")
+	balloon_alert(user, "活塞强度设为[pressure_setting_to_text(fist_pressure_setting)]")
 	return TRUE
 
 /obj/item/melee/powerfist/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!tank)
-		balloon_alert(user, "no tank present")
+		balloon_alert(user, "没有安装气罐")
 		return
 	update_tank(tank, TANK_REMOVING, user)
 	return TRUE
@@ -77,11 +77,11 @@
 		return NONE
 
 	if(tank)
-		to_chat(user, span_notice("A tank is already present, remove it with a screwdriver first."))
+		to_chat(user, span_notice("已经装有气罐了，请先用螺丝刀拆下。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(astype(tool, /obj/item/tank/internals).volume <= 3)
-		to_chat(user, span_warning("\The [tool] is too small for \the [src]."))
+		to_chat(user, span_warning("[tool]对于[src]来说太小了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	update_tank(tool, TANK_INSERTING, user)
@@ -90,28 +90,28 @@
 /obj/item/melee/powerfist/proc/update_tank(obj/item/tank/internals/the_tank, removing = TANK_INSERTING, mob/living/carbon/human/user)
 	if(removing)
 		if(!tank)
-			to_chat(user, span_notice("\The [src] currently has no tank attached to it."))
+			to_chat(user, span_notice("[src]目前没有安装气罐。"))
 			return
-		to_chat(user, span_notice("You detach \the [the_tank] from \the [src]."))
+		to_chat(user, span_notice("你把[the_tank]从[src]上拆下。"))
 		tank.forceMove(get_turf(user))
 		user.put_in_hands(tank)
 		tank = null
 		return
 
 	if(tank)
-		to_chat(user, span_warning("\The [src] already has a tank."))
+		to_chat(user, span_warning("[src]已经装有气罐了。"))
 		return
 	if(!user.transferItemToLoc(the_tank, src))
 		return
-	to_chat(user, span_notice("You hook \the [the_tank] up to \the [src]."))
+	to_chat(user, span_notice("你把[the_tank]接到[src]上。"))
 	tank = the_tank
 
 /obj/item/melee/powerfist/attack(mob/living/target, mob/living/user)
 	if(!tank)
-		to_chat(user, span_warning("\The [src] can't operate without a source of gas!"))
+		to_chat(user, span_warning("[src]没有气源就无法运作！"))
 		return
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
+		to_chat(user, span_warning("你不想伤害其他活物！"))
 		return
 	var/turf/our_turf = get_turf(src)
 	if(!our_turf)
@@ -119,24 +119,24 @@
 
 	var/datum/gas_mixture/gas_used = tank.remove_air(gas_per_fist * fist_pressure_setting)
 	if(!gas_used)
-		to_chat(user, span_warning("\The [src]'s tank is empty!"))
+		to_chat(user, span_warning("[src]的气罐是空的！"))
 		target.apply_damage((force / 5), BRUTE)
 		playsound(loc, 'sound/items/weapons/punch1.ogg', 50, TRUE)
-		target.visible_message(span_danger("[user]'s powerfist lets out a dull thunk as [user.p_they()] punch[user.p_es()] [target.name]!"), \
-			span_userdanger("[user]'s punches you!"))
+		target.visible_message(span_danger("[user]的动力拳套发出一声沉闷的空响，一拳打在[target.name]上！"), \
+			span_userdanger("[user]用动力拳打你！"))
 		return
 
 	if(!molar_cmp_equals(gas_used.total_moles(), gas_per_fist * fist_pressure_setting))
 		our_turf.assume_air(gas_used)
-		to_chat(user, span_warning("\The [src]'s piston-ram lets out a weak hiss, it needs more gas!"))
+		to_chat(user, span_warning("[src]的活塞撞锤发出微弱的嘶声，它需要更多气体！"))
 		playsound(loc, 'sound/items/weapons/punch4.ogg', 50, TRUE)
 		target.apply_damage((force / 2), BRUTE)
-		target.visible_message(span_danger("[user]'s powerfist lets out a weak hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
-			span_userdanger("[user]'s punch strikes with force!"))
+		target.visible_message(span_danger("[user]的动力拳套发出微弱的嘶声，一拳打在[target.name]上！"), \
+			span_userdanger("[user]的一拳力道十足！"))
 		return
 
-	target.visible_message(span_danger("[user]'s powerfist lets out a loud hiss as [user.p_they()] punch[user.p_es()] [target.name]!"), \
-		span_userdanger("You cry out in pain as [user]'s punch flings you backwards!"))
+	target.visible_message(span_danger("[user]的动力拳套发出响亮的嘶声，一拳打在[target.name]上！"), \
+		span_userdanger("你痛得叫出声来，[user]的一拳把你打飞出去！"))
 	new /obj/effect/temp_visual/kinetic_blast(target.loc)
 	target.apply_damage(force * fist_pressure_setting, BRUTE, wound_bonus = CANT_WOUND)
 	playsound(src, 'sound/items/weapons/resonator_blast.ogg', 50, TRUE)

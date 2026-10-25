@@ -1,6 +1,6 @@
 /obj/item/tourniquet
-	name = "tourniquet"
-	desc = "A medical device used to stop severe bleeding from a limb."
+	name = "止血带"
+	desc = "一种用于止住肢体严重出血的医疗器具。"
 	icon = 'icons/obj/medical/firstaid.dmi'
 	icon_state = "tourniquet"
 
@@ -26,7 +26,7 @@
 	return ..()
 
 /obj/item/tourniquet/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins to wrap [src] around [p_their()] neck too tight! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始把[src]缠在自己的脖子上，缠得太紧了！看起来是想自杀！"))
 	if(!do_after(user, 5 SECONDS, user))
 		return SHAME
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
@@ -97,44 +97,44 @@
 
 	if(limb.body_zone == BODY_ZONE_HEAD)
 		user.visible_message(
-			span_warning("[user] begins applying [src] to [user == patient ? p_their() : "[patient]'s"] neck..."),
-			span_userdanger("You begin applying [src] to [user == patient ? "your" : "[patient]'s"] neck, though you begin wonder if this is a good idea...?"),
+			span_warning("[user]开始把[src]敷到[user == patient ? p_their() : "[patient]的"]脖子上……"),
+			span_userdanger("你开始把[src]敷到[user == patient ? "你的" : "[patient]的"]脖子上，不过你开始怀疑这是不是个好主意……？"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			ignored_mobs = patient,
 		)
 		if(user != patient)
 			patient.show_message(
-				span_userdanger("[user] begins applying [src] to your neck! That can't be a good idea...!"),
+				span_userdanger("[user]开始把[src]敷到你的脖子上！这可不是什么好主意……！"),
 				MSG_VISUAL,
-				span_userdanger("You feel [user] start wrapping something tight around your neck! That can't be a good idea...!"),
+				span_userdanger("你感觉[user]开始把什么东西紧紧缠在你脖子上！这可不是什么好主意……！"),
 			)
 
 	else if(speed_boosted)
 		user.visible_message(
-			span_notice("[user] begins expertly applying [src] to [user == patient ? p_their() : "[patient]'s"] own [limb.plaintext_zone]..."),
-			span_notice("You begin expertly applying [src] to [user == patient ? "your" : "[patient]'s"] own [limb.plaintext_zone], keeping the holo-image indications in mind..."),
+			span_notice("[user]开始熟练地把[src]绑到[user == patient ? "自己" : "[patient]"]的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
+			span_notice("你开始熟练地把[src]绑到[user == patient ? "自己" : "[patient]"]的[chinese_body_zone_display(limb.plaintext_zone)]上，同时留意着全息影像的指示……"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			ignored_mobs = patient,
 		)
 		if(user != patient)
 			patient.show_message(
-				span_notice("[user] begins expertly applying [src] to your [limb.plaintext_zone]..."),
+				span_notice("[user]开始熟练地把[src]绑到你的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
 				MSG_VISUAL,
-				span_notice("You feel [user] start wrapping something around your [limb.plaintext_zone] with expert precision..."),
+				span_notice("你感觉[user]以专业水准精准地把什么东西缠在你的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
 			)
 
 	else
 		user.visible_message(
-			span_warning("[user] begins applying [src] to [user == patient ? p_their() : "[patient]'s"] [limb.plaintext_zone]..."),
-			span_warning("You begin applying [src] to [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone]..."),
+			span_warning("[user]开始把[src]绑到[user == patient ? "自己" : "[patient]"]的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
+			span_warning("你开始把[src]绑到[user == patient ? "自己" : "[patient]"]的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 			ignored_mobs = patient,
 		)
 		if(user != patient)
 			patient.show_message(
-				span_warning("[user] begins applying [src] to your [limb.plaintext_zone]..."),
+				span_warning("[user]开始把[src]绑到你的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
 				MSG_VISUAL,
-				span_warning("You feel [user] start wrapping something around your [limb.plaintext_zone]..."),
+				span_warning("你感觉[user]开始把什么东西缠在你的[chinese_body_zone_display(limb.plaintext_zone)]上……"),
 			)
 
 	if(!do_after(user, 5 SECONDS * speed_multiplier, patient))

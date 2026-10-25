@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/shapeshift/shed_human_form
-	name = "Shed form"
-	desc = "Shed your fragile form, become one with the arms, become one with the emperor. \
-		Causes heavy amounts of brain damage and sanity loss to nearby mortals."
+	name = "蜕去人形"
+	desc = "蜕去你脆弱的形体，与万千手臂融为一体，与帝皇合而为一。\
+		对附近的凡人造成大量脑损伤与理智损失。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -9,7 +9,7 @@
 
 	school = SCHOOL_FORBIDDEN
 
-	invocation = "REALITY UNCOIL!"
+	invocation = "现实，松解！"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 

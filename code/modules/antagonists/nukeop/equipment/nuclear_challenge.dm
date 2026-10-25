@@ -5,15 +5,15 @@
 GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 /obj/item/nuclear_challenge
-	name = "Declaration of War (Challenge Mode)"
+	name = "宣战书（挑战模式）"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "nukietalkie"
 	inhand_icon_state = "nukietalkie"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	desc = "Use to send a declaration of hostilities to the target, delaying your shuttle departure for 20 minutes while they prepare for your assault.  \
-			Such a brazen move will attract the attention of powerful benefactors within the Syndicate, who will supply your team with a massive amount of bonus telecrystals.  \
-			Must be used within five minutes, or your benefactors will lose interest."
+	desc = "使用后向目标发送敌对宣言，在对方准备迎击时让你的穿梭机延迟 20 分钟出发。  \
+			如此嚣张的举动会引来辛迪加内部强大资助者的注意，他们会为你的小队提供大量额外传送水晶。  \
+			必须在五分钟内使用，否则你的资助者会失去兴趣。"
 	var/declaring_war = FALSE
 	var/uplink_type = /obj/item/uplink/nuclear
 	var/announcement_sound = 'sound/announcer/alarm/nuke_alarm.ogg'
@@ -23,20 +23,20 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	declaring_war = TRUE
-	var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide.", "Declare war?", list("Yes", "No"))
+	var/are_you_sure = tgui_alert(user, "在对[station_name()]宣战之前，请仔细与你的团队商议。你确定要惊动敌方船员吗？你有[DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)]的时间做决定。", "宣战？", list("Yes", "No"))
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
 		return
 
 	if(are_you_sure != "Yes")
-		to_chat(user, span_notice("On second thought, the element of surprise isn't so bad after all."))
+		to_chat(user, span_notice("仔细想想，出其不意其实也不错。"))
 		return
 
-	var/war_declaration = "A syndicate fringe group has declared their intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop them."
+	var/war_declaration = "一个辛迪加边缘团体宣称要用核装置彻底摧毁[station_name()]，并挑衅船员尽管来阻止他们。"
 
 	declaring_war = TRUE
-	var/custom_threat = tgui_alert(user, "Do you want to customize your declaration?", "Customize?", list("Yes", "No"))
+	var/custom_threat = tgui_alert(user, "你想自定义你的宣战内容吗？", "自定义？", list("Yes", "No"))
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	if(custom_threat == "Yes")
 		declaring_war = TRUE
-		war_declaration = tgui_input_text(user, "Insert your custom declaration", "Declaration", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		war_declaration = tgui_input_text(user, "输入你的自定义宣战内容", "宣战宣言", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 		declaring_war = FALSE
 
 	if(!check_allowed(user) || !war_declaration)
@@ -54,25 +54,25 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 ///Admin only proc to bypass checks and force a war declaration. Button on antag panel.
 /obj/item/nuclear_challenge/proc/force_war()
-	var/are_you_sure = tgui_alert(usr, "Are you sure you wish to force a war declaration?[GLOB.player_list.len < CHALLENGE_MIN_PLAYERS ? " Note, the player count is under the required limit." : ""]", "Declare war?", list("Yes", "No"))
+	var/are_you_sure = tgui_alert(usr, "你确定要强制发起宣战吗？[GLOB.player_list.len < CHALLENGE_MIN_PLAYERS ? " 注意，当前玩家数低于要求的限制。" : ""]", "宣战？", list("Yes", "No"))
 
 	if(are_you_sure != "Yes")
 		return
 
-	var/war_declaration = "A syndicate fringe group has declared their intent to utterly destroy [station_name()] with a nuclear device, and dares the crew to try and stop them."
+	var/war_declaration = "一个辛迪加边缘团体宣称要用核装置彻底摧毁[station_name()]，并挑衅船员尽管来阻止他们。"
 
-	var/custom_threat = tgui_alert(usr, "Do you want to customize the declaration?", "Customize?", list("Yes", "No"))
+	var/custom_threat = tgui_alert(usr, "你想自定义宣战内容吗？", "自定义？", list("Yes", "No"))
 
 	if(custom_threat == "Yes")
-		war_declaration = tgui_input_text(usr, "Insert your custom declaration", "Declaration", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
+		war_declaration = tgui_input_text(usr, "输入你的自定义宣战内容", "宣战宣言", max_length = MAX_MESSAGE_LEN, multiline = TRUE, encode = FALSE)
 
 	if(!war_declaration)
-		tgui_alert(usr, "Invalid war declaration.", "Poor Choice of Words")
+		tgui_alert(usr, "无效的宣战宣言。", "用词不当")
 		return
 
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.challenge_start_time)
-			tgui_alert(usr, "War has already been declared!", "War Was Declared")
+			tgui_alert(usr, "战争已经宣战过了！", "战争已宣战")
 			return
 
 	war_was_declared(memo = war_declaration)
@@ -80,15 +80,15 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 /obj/item/nuclear_challenge/proc/war_was_declared(mob/living/user, memo)
 	priority_announce(
 		text = memo,
-		title = "Declaration of War",
+		title = "宣战宣言",
 		sound = announcement_sound,
 		has_important_message = TRUE,
-		sender_override = "Nuclear Operative Outpost",
+		sender_override = "核爆特工前哨站",
 		color_override = "red",
 	)
 	if(user)
-		to_chat(user, "You've attracted the attention of powerful forces within the syndicate. \
-			A bonus bundle of telecrystals has been granted to your team. Great things await you if you complete the mission.")
+		to_chat(user, "你引来了辛迪加内部强大势力的注意。 \
+			你的小队获得了一批额外的传送水晶奖励。完成任务，伟大的事业在等着你。")
 
 	distribute_tc()
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	if(station_techweb)
 		var/obj/machinery/announcement_system/announcement_system = get_announcement_system(null, null, list(RADIO_CHANNEL_SCIENCE))
 		if (!isnull(announcement_system))
-			announcement_system.broadcast("Additional research data received from Nanotrasen R&D Division following the emergency protocol.", list(RADIO_CHANNEL_SCIENCE), TRUE)
+			announcement_system.broadcast("依照应急协议，已从纳米传讯研发部收到额外研究数据。", list(RADIO_CHANNEL_SCIENCE), TRUE)
 		station_techweb.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS * 3))
 
 	qdel(src)
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 	for (var/mob/living/L in orphans)
 		var/TC = new /obj/item/stack/telecrystal(L.drop_location(), tc_per_nukie)
-		to_chat(L, span_warning("Your uplink could not be found so your share of the team's bonus telecrystals has been bluespaced to your [L.put_in_hands(TC) ? "hands" : "feet"]."))
+		to_chat(L, span_warning("找不到你的上行链路，因此你那份团队额外传送水晶已被蓝空间传送到了你的[L.put_in_hands(TC) ? "手上" : "脚边"]。"))
 		tc_to_distribute -= tc_per_nukie
 
 	if (tc_to_distribute > 0) // What shall we do with the remainder...
@@ -139,29 +139,29 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			if (C.stat != DEAD)
 				var/obj/item/stack/telecrystal/TC = new(C.drop_location(), tc_to_distribute)
 				TC.throw_at(get_step(C, C.dir), 3, 3)
-				C.visible_message(span_notice("[C] coughs up a half-digested telecrystal"),span_notice("You cough up a half-digested telecrystal!"))
+				C.visible_message(span_notice("[C]咳出了一颗消化了一半的传送水晶"),span_notice("你咳出了一颗消化了一半的传送水晶！"))
 				break
 
 
 /obj/item/nuclear_challenge/proc/check_allowed(mob/living/user)
 	if(declaring_war)
-		to_chat(user, span_boldwarning("You are already in the process of declaring war! Make your mind up."))
+		to_chat(user, span_boldwarning("你已经在宣战流程中了！快下定决心吧。"))
 		return FALSE
 	if(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS)
-		to_chat(user, span_boldwarning("The enemy crew is too small to be worth declaring war on."))
+		to_chat(user, span_boldwarning("敌方船员人数太少，不值得对他们宣战。"))
 		return FALSE
 	if(!user.onSyndieBase())
-		to_chat(user, span_boldwarning("You have to be at your base to use this."))
+		to_chat(user, span_boldwarning("你必须身处基地才能使用这个。"))
 		return FALSE
 	if(world.time - SSticker.round_start_time > CHALLENGE_TIME_LIMIT)
-		to_chat(user, span_boldwarning("It's too late to declare hostilities. Your benefactors are already busy with other schemes. You'll have to make do with what you have on hand."))
+		to_chat(user, span_boldwarning("现在宣布敌对行动已经太迟了。你的资助者正忙于其他计划，你只能用手头的东西将就了。"))
 		return FALSE
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
 		if(board.moved)
-			to_chat(user, span_boldwarning("The shuttle has already been moved! You have forfeit the right to declare war."))
+			to_chat(user, span_boldwarning("穿梭机已经被移动过了！你已丧失宣战的权利。"))
 			return FALSE
 		if(board.challenge_start_time)
-			to_chat(user, span_boldwarning("War has already been declared!"))
+			to_chat(user, span_boldwarning("战争已经宣战过了！"))
 			return FALSE
 	return TRUE
 
@@ -171,13 +171,13 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 
 /// Subtype that does nothing but plays the war op message. Intended for debugging
 /obj/item/nuclear_challenge/literally_just_does_the_message
-	name = "\"Declaration of War\""
-	desc = "It's a Syndicate Declaration of War thing-a-majig, but it only plays the loud sound and message. Nothing else."
+	name = "“宣战宣言”"
+	desc = "这是辛迪加的宣战玩意儿，但它只会播放响亮的音效和消息，别的什么都不做。"
 	var/admin_only = TRUE
 
 /obj/item/nuclear_challenge/literally_just_does_the_message/check_allowed(mob/living/user)
 	if(admin_only && !check_rights_for(user.client, R_SPAWN|R_FUN|R_DEBUG))
-		to_chat(user, span_hypnophrase("You shouldn't have this!"))
+		to_chat(user, span_hypnophrase("你不该拥有这个！"))
 		return FALSE
 
 	return TRUE
@@ -185,18 +185,18 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 /obj/item/nuclear_challenge/literally_just_does_the_message/war_was_declared(mob/living/user, memo)
 #ifndef TESTING
 	// Reminder for our friends the admins
-	var/are_you_sure = tgui_alert(user, "Last second reminder that fake war declarations is a horrible idea and yes, \
-		this does the whole shebang, so be careful what you're doing.", "Don't do it", list("I'm sure", "You're right"))
+	var/are_you_sure = tgui_alert(user, "最后提醒一句，虚假宣战是个糟糕的主意，而且是的，\
+		这个会执行全套流程，所以做事要小心。", "别这么做", list("I'm sure", "You're right"))
 	if(are_you_sure != "I'm sure")
 		return
 #endif
 
 	priority_announce(
 		text = memo,
-		title = "Declaration of War",
+		title = "宣战宣言",
 		sound = announcement_sound,
 		has_important_message = TRUE,
-		sender_override = "Nuclear Operative Outpost",
+		sender_override = "核爆特工前哨站",
 		color_override = "red",
 	)
 

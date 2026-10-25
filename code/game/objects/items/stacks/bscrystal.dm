@@ -1,10 +1,10 @@
 //Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
 /obj/item/stack/ore/bluespace_crystal
-	name = "bluespace crystal"
-	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
+	name = "蓝空间水晶"
+	desc = "一块发光的蓝空间水晶，人们对其运作原理知之甚少。它看上去十分易碎。"
 	icon = 'icons/obj/ore.dmi'
 	icon_state = "bluespace_crystal"
-	singular_name = "bluespace crystal"
+	singular_name = "蓝空间水晶"
 	dye_color = DYE_COSMIC
 	w_class = WEIGHT_CLASS_TINY
 	material_flags = MATERIAL_NO_DESCRIPTORS // Handles in-hand/thrown teleports by itself
@@ -21,7 +21,7 @@
 	var/blink_range = 8
 
 /obj/item/stack/ore/bluespace_crystal/refined
-	name = "refined bluespace crystal"
+	name = "精炼蓝空间水晶"
 	points = 0
 	refined_type = null
 	merge_type = /obj/item/stack/ore/bluespace_crystal/refined
@@ -39,7 +39,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
 	SEND_SIGNAL(user, COMSIG_MOB_CRUSHED_BLUESPACE_CRYSTAL, src)
-	user.visible_message(span_warning("[user] crushes [src]!"), span_danger("You crush [src]!"))
+	user.visible_message(span_warning("[user] 捏碎了[src]！"), span_danger("你捏碎了[src]！"))
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	blink_mob(user)
@@ -50,7 +50,7 @@
 
 /obj/item/stack/ore/bluespace_crystal/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..()) // not caught in mid-air
-		visible_message(span_notice("[src] fizzles and disappears upon impact!"))
+		visible_message(span_notice("[src] 在撞击时嘶嘶作响，随后消失了！"))
 		var/turf/T = get_turf(hit_atom)
 		new /obj/effect/particle_effect/sparks(T)
 		playsound(loc, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
@@ -63,8 +63,8 @@
 
 //Artificial bluespace crystal, doesn't give you much research.
 /obj/item/stack/ore/bluespace_crystal/artificial
-	name = "artificial bluespace crystal"
-	desc = "An artificially made bluespace crystal, it looks delicate."
+	name = "人造蓝空间水晶"
+	desc = "一块人造的蓝空间水晶，看上去易碎。"
 	mats_per_unit = list(/datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	blink_range = 4 // Not as good as the organic stuff!
 	points = 0 //nice try
@@ -75,16 +75,16 @@
 
 // Polycrystals, aka stacks
 /obj/item/stack/sheet/bluespace_crystal
-	name = "bluespace polycrystal"
-	singular_name = "bluespace polycrystal"
-	desc = "A stable polycrystal, made of fused-together bluespace crystals. You could probably break one off."
+	name = "蓝空间多晶"
+	singular_name = "蓝空间多晶"
+	desc = "一块稳定的多晶体，由多块蓝空间水晶熔合而成。你或许能掰下一块来。"
 	icon_state = "polycrystal"
 	inhand_icon_state = null
 	material_flags = MATERIAL_NO_DESCRIPTORS
 	gulag_value = 100
 	mats_per_unit = list(/datum/material/bluespace=SHEET_MATERIAL_AMOUNT)
-	attack_verb_continuous = list("bluespace polybashes", "bluespace polybatters", "bluespace polybludgeons", "bluespace polythrashes", "bluespace polysmashes")
-	attack_verb_simple = list("bluespace polybash", "bluespace polybatter", "bluespace polybludgeon", "bluespace polythrash", "bluespace polysmash")
+	attack_verb_continuous = list("以蓝空间多晶猛击", "以蓝空间多晶重击", "以蓝空间多晶狠砸", "以蓝空间多晶横扫", "以蓝空间多晶粉碎")
+	attack_verb_simple = list("以蓝空间多晶猛击", "以蓝空间多晶重击", "以蓝空间多晶狠砸", "以蓝空间多晶横扫", "以蓝空间多晶粉碎")
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/bluespace_crystal
 	material_type = /datum/material/bluespace
@@ -102,9 +102,9 @@
 	user.put_in_hands(BC)
 	use(1)
 	if(!amount)
-		to_chat(user, span_notice("You break the final crystal off."))
+		to_chat(user, span_notice("你掰下了最后一块水晶。"))
 	else
-		to_chat(user, span_notice("You break off a crystal."))
+		to_chat(user, span_notice("你掰下了一块水晶。"))
 
 /obj/item/stack/sheet/bluespace_crystal/fifty
 	amount = 50

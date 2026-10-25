@@ -1,11 +1,11 @@
 /datum/antagonist/rev
-	name = "\improper Revolutionary"
+	name = "\improper 革命者"
 	roundend_category = "revolutionaries" // if by some miracle revolutionaries without revolution happen
 	antagpanel_category = "Revolution"
 	pref_flag = ROLE_REV
 	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_name = "rev"
-	suicide_cry = "VIVA LA REVOLUTION!!"
+	suicide_cry = "革命万岁！！"
 	stinger_sound = 'sound/music/antag/revolutionary_tide.ogg'
 	ui_name = "AntagInfoRevolution"
 
@@ -22,13 +22,13 @@
 
 /datum/antagonist/rev/admin_add(datum/mind/new_owner, mob/admin)
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has rev'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, span_userdanger("You are a member of the revolution!"))
+	message_admins("[key_name_admin(admin)]将[key_name_admin(new_owner)]转化为了革命者。")
+	log_admin("[key_name(admin)]将[key_name(new_owner)]转化为了革命者。")
+	to_chat(new_owner.current, span_userdanger("你是革命的一员！"))
 
 /datum/antagonist/rev/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
-	handle_clown_mutation(M, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(M, mob_override ? null : "你的训练让你克服了小丑天性，使你能挥舞武器而不伤到自己。")
 	add_team_hud(M, /datum/antagonist/rev)
 
 /datum/antagonist/rev/remove_innate_effects(mob/living/mob_override)
@@ -45,7 +45,7 @@
 /datum/antagonist/rev/on_gain()
 	. = ..()
 	equip_rev()
-	owner.current.log_message("has been converted to the revolution!", LOG_ATTACK, color="red")
+	owner.current.log_message("已被转化为革命者！", LOG_ATTACK, color="red")
 
 /datum/antagonist/rev/create_team(datum/team/revolution/new_team)
 	if(!new_team)
@@ -70,7 +70,7 @@
 	new_revhead.silent = TRUE
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
-	to_chat(old_owner, span_userdanger("You have proved your devotion to revolution! You are a head revolutionary now!"))
+	to_chat(old_owner, span_userdanger("你已经证明了自己对革命的忠诚！你现在是革命领袖了！"))
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
@@ -79,8 +79,8 @@
 /datum/antagonist/rev/proc/admin_promote(mob/admin)
 	var/datum/mind/O = owner
 	promote()
-	message_admins("[key_name_admin(admin)] has head-rev'ed [O].")
-	log_admin("[key_name(admin)] has head-rev'ed [O].")
+	message_admins("[key_name_admin(admin)]将[O]提升为了革命领袖。")
+	log_admin("[key_name(admin)]将[O]提升为了革命领袖。")
 
 /datum/antagonist/rev/ui_static_data(mob/user)
 	. = ..()
@@ -100,9 +100,9 @@
 	give_hud = TRUE
 	remove_clumsy = TRUE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has head-rev'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has head-rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, span_userdanger("You are a member of the revolutionaries' leadership now!"))
+	message_admins("[key_name_admin(admin)]将[key_name_admin(new_owner)]提升为了革命领袖。")
+	log_admin("[key_name(admin)]将[key_name(new_owner)]提升为了革命领袖。")
+	to_chat(new_owner.current, span_userdanger("你现在是革命领袖层的一员了！"))
 
 /datum/antagonist/rev/head/get_admin_commands()
 	. = ..()
@@ -116,7 +116,7 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, span_danger("Deleting flash failed!"))
+		to_chat(admin, span_danger("删除闪光器失败！"))
 		return
 	qdel(flash)
 
@@ -137,18 +137,18 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, span_danger("Repairing flash failed!"))
+		to_chat(admin, span_danger("修复闪光器失败！"))
 	else
 		flash.burnt_out = FALSE
 		flash.update_appearance()
 
 /datum/antagonist/rev/head/proc/admin_demote(mob/admin)
-	message_admins("[key_name_admin(admin)] has demoted [key_name_admin(owner)] from head revolutionary.")
-	log_admin("[key_name(admin)] has demoted [key_name(owner)] from head revolutionary.")
+	message_admins("[key_name_admin(admin)]已将[key_name_admin(owner)]从革命领袖降职。")
+	log_admin("[key_name(admin)]已将[key_name(owner)]从革命领袖降职。")
 	demote()
 
 /datum/antagonist/rev/head
-	name = "\improper Head Revolutionary"
+	name = "\improper 革命领袖"
 	antag_hud_name = "rev_head"
 	pref_flag = ROLE_REV_HEAD
 
@@ -200,11 +200,11 @@
 	if(flashed.stat == DEAD || issilicon(flashed) || isdrone(flashed))
 		return
 	if(IS_UNCONSCIOUS_OR_CRIT(flashed))
-		to_chat(source, span_warning("[flashed.p_They()] must be conscious before you can convert [flashed.p_them()]!"))
+		to_chat(source, span_warning("在你转化[flashed]之前，必须确保其保持清醒！"))
 		return
 
 	if(isnull(flashed.mind) || !GET_CLIENT(flashed))
-		to_chat(source, span_warning("[flashed]'s mind is so vacant that it is not susceptible to influence!"))
+		to_chat(source, span_warning("[flashed]的头脑一片空白，无法被影响！"))
 		return
 
 	var/holiday_meme_chance = check_holidays(APRIL_FOOLS) && prob(10)
@@ -213,17 +213,17 @@
 			INVOKE_ASYNC(src, PROC_REF(_async_holiday_meme_say), flashed)
 		flash.times_used-- // Flashes are less likely to burn out for headrevs, when used for conversion
 	else
-		to_chat(source, span_warning("[flashed] seems resistant to [flash]!"))
+		to_chat(source, span_warning("[flashed]似乎对[flash]有抗性！"))
 
 /// Used / called async from [proc/on_flash] to deliver a funny meme line
 /datum/antagonist/rev/head/proc/_async_holiday_meme_say(mob/living/carbon/flashed)
 	if(ishuman(flashed))
 		var/mob/living/carbon/human/human_flashed = flashed
 		human_flashed.force_say()
-	flashed.say("You son of a bitch! I'm in.", forced = "That son of a bitch! They're in. (April Fools)")
+	flashed.say("你这混蛋！我加入了。", forced = "That son of a bitch! They're in. (April Fools)")
 
 /datum/antagonist/rev/head/antag_listing_name()
-	return ..() + "(Leader)"
+	return ..() + "(领袖)"
 
 /datum/antagonist/rev/head/get_preview_icon()
 	var/datum/universal_icon/final_icon = render_preview_outfit(preview_outfit)
@@ -295,38 +295,38 @@
 	new_rev.silent = TRUE
 	old_owner.add_antag_datum(new_rev,old_team)
 	new_rev.silent = FALSE
-	to_chat(old_owner, span_userdanger("Revolution has been disappointed of your leader traits! You are a regular revolutionary now!"))
+	to_chat(old_owner, span_userdanger("革命已经对你的领袖才能失望了！你现在只是一名普通革命者！"))
 
 /datum/antagonist/rev/farewell()
 	if(!owner.current)
 		return
-	owner.current.balloon_alert_to_viewers("deconverted!")
+	owner.current.balloon_alert_to_viewers("已解除转化！")
 	if(ishuman(owner.current))
-		owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!"), null, null, null, owner.current)
-		to_chat(owner, "<span class='deconversion_message bold'>You are no longer a brainwashed revolutionary! Your memory is hazy from the time you were a rebel...the only thing you remember is the name of the one who brainwashed you....</span>")
+		owner.current.visible_message(span_deconversion_message("[owner.current]看起来像是刚刚想起了自己真正的效忠对象！"), null, null, null, owner.current)
+		to_chat(owner, "<span class='deconversion_message bold'>你不再是那个被洗脑的革命者了！作为叛乱分子的那段记忆模糊不清……你唯一记得的，是那个给你洗脑的人的名字……</span>")
 	else if(issilicon(owner.current))
-		owner.current.visible_message(span_deconversion_message("The frame beeps contentedly, purging the hostile memory engram from the MMI before initializing it."), null, null, null, owner.current)
-		to_chat(owner, span_userdanger("The frame's firmware detects and deletes your neural reprogramming! You remember nothing but the name of the one who flashed you."))
+		owner.current.visible_message(span_deconversion_message("机体满意地发出哔声，在初始化人机接口之前清除了其中的敌对记忆印迹。"), null, null, null, owner.current)
+		to_chat(owner, span_userdanger("机体固件检测并删除了对你的神经重编程！除了那个闪了你的人的名字，你什么都不记得了。"))
 
 /datum/antagonist/rev/head/farewell()
 	if (deconversion_source == DECONVERTER_STATION_WIN || !owner.current)
 		return
-	owner.current.balloon_alert_to_viewers("deconverted!")
+	owner.current.balloon_alert_to_viewers("已解除转化！")
 	if((ishuman(owner.current)))
 		if(owner.current.stat != DEAD)
-			owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!"), null, null, null, owner.current)
-			to_chat(owner, "<span class='deconversion_message bold'>You have given up your cause of overthrowing the command staff. You are no longer a Head Revolutionary.</span>")
+			owner.current.visible_message(span_deconversion_message("[owner.current]看起来像是刚刚想起了自己真正的效忠对象！"), null, null, null, owner.current)
+			to_chat(owner, "<span class='deconversion_message bold'>你放弃了推翻指挥层的目标。你不再是革命领袖了。</span>")
 		else
-			to_chat(owner, "<span class='deconversion_message bold'>The sweet release of death. You are no longer a Head Revolutionary.</span>")
+			to_chat(owner, "<span class='deconversion_message bold'>死亡带来的甜美解脱。你不再是革命领袖了。</span>")
 	else if(issilicon(owner.current))
-		owner.current.visible_message(span_deconversion_message("The frame beeps contentedly, suppressing the disloyal personality traits from the MMI before initializing it."), null, null, null, owner.current)
-		to_chat(owner, span_userdanger("The frame's firmware detects and suppresses your unwanted personality traits! You feel more content with the leadership around these parts."))
+		owner.current.visible_message(span_deconversion_message("机体满意地发出哔声，在初始化人机接口之前压制了其中的不忠人格特征。"), null, null, null, owner.current)
+		to_chat(owner, span_userdanger("机体固件检测并压制了你不想要的人格特征！你对这一带的领导层感到更加满意了。"))
 
 /// Handles rev removal via IC methods such as borging, mindshielding, blunt force trauma to the head or revs losing.
 /datum/antagonist/rev/proc/remove_revolutionary(deconverter)
-	owner.current.log_message("has been deconverted from the revolution by [ismob(deconverter) ? key_name(deconverter) : deconverter]!", LOG_ATTACK, color=COLOR_CULT_RED)
+	owner.current.log_message("已被[ismob(deconverter) ? key_name(deconverter) : deconverter]解除革命者身份！", LOG_ATTACK, color=COLOR_CULT_RED)
 	if(deconverter == DECONVERTER_BORGED)
-		message_admins("[ADMIN_LOOKUPFLW(owner.current)] has been borged while being a [name]")
+		message_admins("[ADMIN_LOOKUPFLW(owner.current)]在身为[name]时被改造成了半机械人")
 	if(iscarbon(owner.current) && deconverter)
 		var/mob/living/carbon/formerrev = owner.current
 		formerrev.Unconscious(10 SECONDS)
@@ -351,21 +351,21 @@
 	if(give_flash)
 		var/where = carbon_owner.equip_conspicuous_item(new /obj/item/assembly/flash/handheld)
 		if (where)
-			to_chat(carbon_owner, "The flash in your [where] will help you to persuade the crew to join your cause.")
+			to_chat(carbon_owner, "你[where]里的闪光器能帮你劝说船员加入你的事业。")
 		else
-			to_chat(carbon_owner, "The Syndicate were unfortunately unable to get you a flash.")
+			to_chat(carbon_owner, "不幸的是，辛迪加没能给你弄来一个闪光器。")
 
 	if(give_hud)
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/hud = new()
 		hud.Insert(carbon_owner)
 		if(carbon_owner.get_quirk(/datum/quirk/body_purist))
-			to_chat(carbon_owner, "Being a body purist, you would never accept cybernetic implants. Upon hearing this, your employers signed you up for a special program, which... for \
-			some odd reason, you just can't remember... either way, the program must have worked, because you have gained the ability to keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+			to_chat(carbon_owner, "身为一个身体纯粹主义者，你绝不会接受义体植入。听说这一点后，你的雇主为你报名参加了一个特殊项目，而这个项目……由于\
+			某种奇怪的原因，你完全记不起来了……不管怎样，这个项目一定是生效了，因为你已经能够识别谁植入了心智护盾、因而无法被招募。")
 		else
-			to_chat(carbon_owner, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+			to_chat(carbon_owner, "你的眼睛中植入了义体安保 HUD，它能帮你识别谁植入了心智护盾、因而无法被招募。")
 
 /datum/team/revolution
-	name = "\improper Revolution"
+	name = "\improper 革命"
 	/// Maximum number of headrevs
 	var/max_headrevs = 3
 
@@ -477,29 +477,29 @@
 				num_revs += 1
 
 	if(num_survivors)
-		result += "Command's Approval Rating: <B>[100 - round((num_revs/num_survivors)*100, 0.1)]%</B><br>"
+		result += "指挥层的支持率：<B>[100 - round((num_revs/num_survivors)*100, 0.1)]%</B><br>"
 
 	if(headrevs.len)
 		var/list/headrev_part = list()
-		headrev_part += span_header("The head revolutionaries were:")
+		headrev_part += span_header("革命领袖有：")
 		headrev_part += printplayerlist(headrevs, GLOB.revolution_handler.result != REVOLUTION_VICTORY)
 		result += headrev_part.Join("<br>")
 
 	if(revs.len)
 		var/list/rev_part = list()
-		rev_part += span_header("The revolutionaries were:")
+		rev_part += span_header("革命者有：")
 		rev_part += printplayerlist(revs, GLOB.revolution_handler.result != REVOLUTION_VICTORY)
 		result += rev_part.Join("<br>")
 
 	var/list/heads = SSjob.get_all_heads()
 	if(heads.len)
-		var/head_text = span_header("The heads of staff were:")
+		var/head_text = span_header("各部门主管有：")
 		head_text += "<ul class='playerlist'>"
 		for(var/datum/mind/head in heads)
 			var/target = (head in targets)
 			head_text += "<li>"
 			if(target)
-				head_text += span_redtext("Target")
+				head_text += span_redtext("目标")
 			head_text += "[printplayer(head, 1)]</li>"
 		head_text += "</ul><br>"
 		result += head_text
@@ -522,24 +522,24 @@
 	parts += "</table>"
 	common_part = parts.Join()
 
-	var/heads_report = "<b>Heads of Staff</b><br>"
+	var/heads_report = "<b>各部门主管</b><br>"
 	heads_report += "<table cellspacing=5>"
 	for(var/datum/mind/N as anything in SSjob.get_living_heads())
 		var/mob/M = N.current
 		if(M)
-			heads_report += "<tr><td><a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(No Client)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-			heads_report += "<td><A href='byond://?priv_msg=[M.ckey]'>PM</A></td>"
-			heads_report += "<td><A href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a></td>"
+			heads_report += "<tr><td><a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>（无客户端）</i>"][M.stat == DEAD ? " <b><font color=red>（已死亡）</font></b>" : ""]</td>"
+			heads_report += "<td><A href='byond://?priv_msg=[M.ckey]'>私信</A></td>"
+			heads_report += "<td><A href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>跟随</a></td>"
 			var/turf/mob_loc = get_turf(M)
 			heads_report += "<td>[mob_loc.loc]</td></tr>"
 		else
-			heads_report += "<tr><td><a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>Head body destroyed!</i></td>"
-			heads_report += "<td><A href='byond://?priv_msg=[N.key]'>PM</A></td></tr>"
+			heads_report += "<tr><td><a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>主管的身体已被摧毁！</i></td>"
+			heads_report += "<td><A href='byond://?priv_msg=[N.key]'>私信</A></td></tr>"
 	heads_report += "</table>"
 	return common_part + heads_report
 
 /datum/outfit/revolutionary
-	name = "Revolutionary (Preview only)"
+	name = "革命者（仅预览）"
 
 	uniform = /obj/item/clothing/under/costume/soviet
 	head = /obj/item/clothing/head/costume/ushanka

@@ -3,10 +3,10 @@
  */
 
 /datum/heretic_knowledge/spell/space_phase
-	name = "Space Phase"
-	desc = "Grants you Space Phase, a spell that allows you to move freely through space.<br>\
-		You can only phase in and out when you are on a space or misc turf."
-	gain_text = "You feel like your body can move through space as if you where dust."
+	name = "空间相位"
+	desc = "赋予你空间相位，一种让你能在太空中自由移动的法术。<br>\
+		只有当你身处太空或杂项地砖上时，才能进入或退出相位。"
+	gain_text = "你感觉自己的身体能像尘埃一样穿过太空。"
 
 	action_to_add = /datum/action/cooldown/spell/jaunt/space_crawl
 	cost = 2
@@ -15,7 +15,7 @@
 	max_charges = 2
 	path_recharge_amount = 0.0
 	holywater_drain_amount = 0.5
-	transmute_text = "To recharge, crush a bluespace crystal while standing over a rune."
+	transmute_text = "充能方法：站在符文上捏碎一块蓝空间水晶。"
 	/// Tracks tim ein EVA
 	var/seconds_in_eva = 0
 
@@ -38,12 +38,12 @@
 	add_charges(1)
 
 /datum/heretic_knowledge/unfathomable_curio
-	name = "Unfathomable Curio"
-	desc = "Fashion an Unfathomable Curio - \
-		a belt that can hold blades and items for rituals.<br>Whilst worn it will veil you, \
-		blocking one blow of incoming damage, at the cost of the veil. The veil will recharge itself out of combat."
-	transmute_text = "Transmute 3 rods, lungs, and any belt."
-	gain_text = "The mansus holds many a curio, some are not meant for the mortal eye."
+	name = "深不可测的古玩"
+	desc = "制作一件深不可测的古玩—— \
+		一条可以存放刀刃和仪式物品的腰带。<br>佩戴时它会为你覆上一层帷幕， \
+		以消耗帷幕为代价挡下一次伤害。离开战斗后，帷幕会自行恢复。"
+	transmute_text = "转化 3 根金属杆、肺和任意腰带。"
+	gain_text = "漫宿藏有无数古玩，其中一些并非凡人肉眼该见之物。"
 
 	required_atoms = list(
 		/obj/item/organ/lungs = 1,
@@ -57,11 +57,11 @@
 	drafting_tier = 4
 
 /datum/heretic_knowledge/rust_sower
-	name = "Rust Sower Grenade"
-	desc = "Conjure a cursed grenade filled with Eldritch Rust.<br>Upon detonation, it releases a huge cloud that \
-		blinds organics, rusts affected turfs and obliterates silicons and mechs."
-	transmute_text = "Transmute a chemical grenade casing and some moldy food."
-	gain_text = "The choked vines of the Rusted Hills are burdened with such overripe fruits. It undoes the markers of progress, leaving a clean slate to work into new shapes."
+	name = "锈蚀播种者手榴弹"
+	desc = "召唤一枚装满诡异锈蚀的手榴弹。<br>引爆时，它会释放出巨大的云雾， \
+		使有机体失明、锈蚀受影响的地砖，并彻底摧毁硅基单位与机甲。"
+	transmute_text = "转化一个化学手榴弹外壳和一些发霉的食物。"
+	gain_text = "锈蚀群丘上枯槁的藤蔓结满了这样熟透的果实。它能抹去进步的痕迹，留下一片干净的白纸，好让人重新塑造新的形态。"
 	required_atoms = list(
 		list(
 			/obj/item/food/breadslice/moldy,
@@ -80,11 +80,11 @@
 	drafting_tier = 4
 
 /datum/heretic_knowledge/spell/crimson_cleave
-	name = "Crimson Cleave"
-	desc = "Grants you Crimson Cleave, a targeted spell which siphons health in a small AoE.\
-		<br>Also cleanses all wounds upon casting."
-	gain_text = "At first I didn't understand these instruments of war, but the Priest \
-		told me to use them regardless. Soon, he said, I would know them well."
+	name = "绯红劈砍"
+	desc = "赋予你绯红劈砍，一种定向法术，可在小范围内吸取生命。\
+		<br>施放时还会治愈所有伤口。"
+	gain_text = "起初我并不懂这些战争器具，但祭司 \
+		让我尽管使用。他说，很快我就会熟悉它们。"
 	required_atoms = list(
 		list(/obj/effect/decal/cleanable/blood, /obj/item/rag, /obj/item/stack/medical/wrap/gauze) = 1,
 	)
@@ -107,15 +107,15 @@
 			atoms -= medwrap
 
 /datum/heretic_knowledge/rifle
-	name = "Lionhunter's Rifle"
-	desc = "Unleash the Lionhunter's rifle.<br>\
-		The Lionhunter's Rifle is a long ranged ballistic weapon with three shots. \
-		These shots function as normal, albeit weak high-caliber munitions when fired from \
-		close range or at inanimate objects. You can aim the rifle at distant foes, \
-		causing the shot to mark your victim with your grasp and teleport you directly to them."
-	transmute_text = "Transmute a piece of wood, hide from any animal, and a camera."
-	gain_text = "I met an old man in an antique shop who wielded a very unusual weapon. \
-		I could not purchase it at the time, but they showed me how they made it ages ago."
+	name = "猎狮者步枪"
+	desc = "释放猎狮者步枪。<br>\
+		猎狮者步枪是一种可发射三发子弹的远距离实弹武器。 \
+		从近距离或对无生命物体射击时，这些子弹表现为普通但威力偏弱的大口径弹药。 \
+		你可以瞄准远处的敌人， \
+		让子弹用你的抓握标记目标，并将你直接传送到对方身边。"
+	transmute_text = "转化一块木头、任意动物的兽皮和一台相机。"
+	gain_text = "我在一家古董店里遇到一位老人，他拿着一件非常奇特的武器。 \
+		当时我没能买下它，但他向我演示了多年前他们是如何制造它的。"
 	required_atoms = list(
 		/obj/item/stack/sheet/mineral/wood = 1,
 		/obj/item/stack/sheet/animalhide = 1,
@@ -128,12 +128,12 @@
 	drafting_tier = 2
 
 /datum/heretic_knowledge/rifle_ammo
-	name = "Lionhunter Rifle Ammunition"
-	desc = "Create an extra clip of ammunition for the Lionhunter Rifle."
-	transmute_text = "Transmute 3 ballistic ammo casings (used or unused) of any caliber, including shotgun shells."
-	gain_text = "The weapon came with three rough iron balls, intended to be used as ammunition. \
-		They were very effective, for simple iron, but used up quickly. I soon ran out. \
-		No replacement munitions worked in their stead. It was peculiar in what it wanted."
+	name = "猎狮者步枪弹药"
+	desc = "为猎狮者步枪制造一个额外的弹药夹。"
+	transmute_text = "转化 3 枚任意口径的实弹弹壳（用过的或未用的均可），包括霰弹枪弹壳。"
+	gain_text = "那把武器附带了三颗粗糙的铁球，原本打算用作弹药。 \
+		以普通铁器而言它们非常有效，但消耗得很快，我很快就用完了。 \
+		没有任何替代弹药能生效。它想要什么，实在古怪。"
 	required_atoms = list(
 		/obj/item/ammo_casing = 3,
 	)
@@ -154,7 +154,7 @@
 
 /datum/heretic_knowledge/rifle_ammo/pre_research(mob/user, datum/antagonist/heretic/our_heretic)
 	if(!our_heretic.get_knowledge(/datum/heretic_knowledge/rifle))
-		tgui_alert(user, "You must research the Lionhunter's Rifle knowledge before you can research its ammunition.")
+		tgui_alert(user, "你必须先研究猎狮者步枪的知识，才能研究它的弹药。")
 		return FALSE
 
 	return TRUE

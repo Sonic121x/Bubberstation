@@ -27,7 +27,7 @@
 	var/static/list/legacy_names
 	if(!legacy_names)
 		legacy_names = chinese_batch_three_action_names()
-	return legacy_names[value] || value
+	return legacy_names[value] || chinese_batch_four_action_storage_name(value, action_type)
 
 /proc/chinese_batch_three_action_names()
 	return list(

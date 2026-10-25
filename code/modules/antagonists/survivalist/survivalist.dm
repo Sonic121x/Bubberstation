@@ -1,8 +1,8 @@
 /datum/antagonist/survivalist
-	name = "\improper Survivalist"
+	name = "\improper 生存主义者"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
-	suicide_cry = "FOR MYSELF!!"
+	suicide_cry = "为了我自己！！"
 	/// What do we display when you gain the antag datum?
 	var/greet_message = ""
 	/// Should we immediately print the objectives?
@@ -24,7 +24,7 @@
 		owner.announce_objectives()
 
 /datum/antagonist/survivalist/guns
-	greet_message = "Your own safety matters above all else, and the only way to ensure your safety is to stockpile weapons! Grab as many guns as possible, by any means necessary. Kill anyone who gets in your way."
+	greet_message = "你自己的安全高于一切，而确保安全的唯一办法就是囤积武器！不择手段地尽可能多拿枪。任何挡路的人都杀掉。"
 	hardcore_random_bonus = TRUE
 
 /datum/antagonist/survivalist/guns/forge_objectives()
@@ -34,13 +34,13 @@
 	..()
 
 /datum/antagonist/survivalist/magic
-	name = "Amateur Magician"
-	greet_message = "Grow your newfound talent! Grab as many magical artefacts as possible, by any means necessary. Kill anyone who gets in your way."
+	name = "业余魔法师"
+	greet_message = "壮大你新获得的才能！不择手段地尽可能多拿魔法器物。任何挡路的人都杀掉。"
 	hardcore_random_bonus = TRUE
 
 /datum/antagonist/survivalist/magic/greet()
 	. = ..()
-	to_chat(owner, span_notice("As a wonderful magician, you should remember that spellbooks don't mean anything if they are used up."))
+	to_chat(owner, span_notice("作为一名出色的魔法师，你应该记住：法术书一旦用完就什么都不是了。"))
 
 /datum/antagonist/survivalist/magic/forge_objectives()
 	var/datum/objective/steal_n_of_type/summon_magic/magic = new
@@ -60,8 +60,8 @@
 
 /// Applied by the battle royale objective
 /datum/antagonist/survivalist/battle_royale
-	name = "Battle Royale Contestant"
-	greet_message = "There has to be some way you can make it out of this alive..."
+	name = "大逃杀参赛者"
+	greet_message = "总得有什么办法能让你活着离开这一切……"
 	announce_objectives = FALSE
 
 /datum/antagonist/survivalist/battle_royale/on_gain()
@@ -71,12 +71,12 @@
 	RegisterSignals(owner.current, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING), PROC_REF(on_died))
 
 /datum/antagonist/survivalist/battle_royale/greet()
-	to_chat(owner, span_warning("[span_bold("You hear a tinny voice in your ear: ")] \
-		Welcome contestant to Rumble Royale, the galaxy's greatest show! \n\
-		You may have already heard our announcement, but we're glad to tell you that you are on live TV! \n\
-		Your objective in this contest is simple: Within ten minutes be the last contestant left alive, to win a fabulous prize! \n\
-		Your fellow contestants will be hearing this too, so you should grab a GPS quick and get hunting! \n\
-		Noncompliance and removal of this implant is not recommended, and remember to smile for the cameras!"))
+	to_chat(owner, span_warning("[span_bold("你耳边响起一个尖细的金属声：")] \
+		欢迎参赛者来到《乱斗大逃杀》，全银河最盛大的表演！\n\
+		你可能已经听过我们的公告了，但我们很高兴地告诉你，你正在直播电视上！\n\
+		本次竞赛的目标很简单：在十分钟内成为最后存活下来的参赛者，赢取丰厚奖品！\n\
+		你的其他参赛者也会听到这段内容，所以你最好赶紧抓起一个 GPS 开始狩猎！\n\
+		不建议不配合或拆除此植入体，还有，记得对着镜头微笑！"))
 
 	return ..()
 
@@ -86,7 +86,7 @@
 	UnregisterSignal(owner.current, list(COMSIG_LIVING_DEATH, COMSIG_QDELETING))
 	if (owner.current.stat == DEAD)
 		return ..()
-	to_chat(owner, span_notice("Your body is flooded with relief. Against all the odds, you've made it out alive."))
+	to_chat(owner, span_notice("你的身体被一阵宽慰淹没。你排除万难，活着走了出来。"))
 	owner.current?.add_mood_event("battle_royale", /datum/mood_event/royale_survivor)
 	return ..()
 
@@ -94,7 +94,7 @@
 /datum/antagonist/survivalist/battle_royale/proc/set_target_area(target_area_name)
 	var/datum/objective/custom/travel = new
 	travel.owner = owner
-	travel.explanation_text = "Reach the [target_area_name] before time runs out."
+	travel.explanation_text = "在时间耗尽前抵达 [target_area_name]。"
 	objectives.Insert(1, travel)
 	owner.announce_objectives()
 
@@ -104,5 +104,5 @@
 	owner.remove_antag_datum(type)
 
 /datum/mood_event/royale_survivor
-	description = "I made it out of Rumble Royale with my life."
+	description = "我活着离开了《乱斗大逃杀》。"
 	mood_change = 4

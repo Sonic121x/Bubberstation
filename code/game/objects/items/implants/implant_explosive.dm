@@ -11,8 +11,8 @@
 #define MICROBOMB_EXPLOSION_DEVASTATE 0.4
 
 /obj/item/implant/explosive
-	name = "microbomb implant"
-	desc = "And boom goes the weasel."
+	name = "微型炸弹植入体"
+	desc = "砰的一声，黄鼠狼就炸了。"
 	icon_state = "explosive"
 	actions_types = list(/datum/action/item_action/explosive_implant) //Explosive implant action is always available.
 	///Whether the implant's explosion sequence has been activated or not
@@ -40,15 +40,15 @@
 	///Do we tell people when they activated it?
 	var/announce_activation = TRUE
 
-	implant_info = "Activates upon death or encoded signal. Triggers an electrically-detonated microexplosive. \
-		Can sync with other microbombs to increase explosive yield, but this makes detonation non-instant."
+	implant_info = "在死亡或收到编码信号时激活，触发一次电起爆微型炸药。\
+		可与其他微型炸弹同步以提高爆炸当量，但这会使引爆不再瞬时完成。"
 
-	implant_lore = "The Robust Corp RX-78 Employee Management Implant is an electrically-detonated microexplosive, \
-		designed to motivate employees (for organizations with questionable ethics) and/or prevent recovery of \
-		equipment and/or evidence (for non-state actors). \
-		The microexplosive arms upon cessation of vital signs or manual activation. \
-		Upon arming, attempts to sync with any other detected microexplosives for increased detonation yield; \
-		the handshake process between microbombs, however, takes a bit, and only gets longer as more microbombs are detected."
+	implant_lore = "罗伯斯特公司 RX-78 员工管理植入体是一种电起爆微型炸药，\
+		旨在激励员工（适用于道德存疑的组织）和/或防止设备与证据被回收\
+		（适用于非国家行为体）。\
+		该微型炸药在生命体征停止或手动激活时进入待爆状态。\
+		进入待爆状态后，会尝试与探测到的其他微型炸药同步以提高爆炸当量；\
+		然而，微型炸弹之间的握手过程需要一点时间，探测到的微型炸弹越多，耗时越长。"
 
 /obj/item/implant/explosive/proc/on_death(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -67,17 +67,17 @@
 		if(popup)
 			return FALSE
 		popup = TRUE
-		var/response = tgui_alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to explode!", "[name] Confirmation", list("Yes", "No"))
+		var/response = tgui_alert(imp_in, "你确定要激活你的[name]吗？这会导致你爆炸！", "[name] 确认", list("Yes", "No"))
 		popup = FALSE
 		if(response != "Yes")
 			return FALSE
 	if(cause == "death" && HAS_TRAIT(imp_in, TRAIT_PREVENT_IMPLANT_AUTO_EXPLOSION))
 		return FALSE
 	if(announce_activation)
-		to_chat(imp_in, span_notice("You activate your [name]."))
+		to_chat(imp_in, span_notice("你激活了你的[name]。"))
 	active = TRUE
 	var/turf/boomturf = get_turf(imp_in)
-	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of [cause].")
+	message_admins("[ADMIN_LOOKUPFLW(imp_in)] 在 [ADMIN_VERBOSEJMP(boomturf)] 激活了其 [name]，原因为 [cause]。")
 	//If the delay is shorter or equal to the default delay, just blow up already jeez
 	if(delay <= MICROBOMB_DELAY && instant_explosion)
 		explode()
@@ -89,7 +89,7 @@
 		if(istype(target_implant, /obj/item/implant/explosive)) //we don't use our own type here, because macrobombs inherit this proc and need to be able to upgrade microbombs
 			var/obj/item/implant/explosive/other_implant = target_implant
 			if(other_implant.master_implant && master_implant) //we cant have two master implants at once
-				target.balloon_alert(user, "cannot fit implant!")
+				target.balloon_alert(user, "无法装入植入体！")
 				return FALSE
 			if(master_implant)
 				merge_implants(src, other_implant)
@@ -124,14 +124,14 @@
  */
 /obj/item/implant/explosive/proc/timed_explosion()
 	if (isnull(imp_in))
-		visible_message(span_warning("[src] starts beeping ominously!"))
+		visible_message(span_warning("[src] 开始发出不祥的哔哔声！"))
 	else
-		imp_in.visible_message(span_warning("[imp_in] starts beeping ominously!"))
+		imp_in.visible_message(span_warning("[imp_in] 开始发出不祥的哔哔声！"))
 		if(notify_ghosts)
 			notify_ghosts(
-				"[imp_in.real_name] is about to detonate their explosive implant!",
+				"[imp_in.real_name] 即将引爆其爆炸植入体！",
 				source = src,
-				header = "Tick Tick Tick...",
+				header = "滴答，滴答，滴答……",
 				notify_flags = NOTIFY_CATEGORY_NOFLASH,
 				ghost_sound = 'sound/machines/warning-buzzer.ogg',
 				notify_volume = 75,
@@ -141,7 +141,7 @@
 	if(!panic_beep_sound)
 		sleep(delay * 0.25)
 	if(imp_in && !IS_UNCONSCIOUS_OR_CRIT(imp_in) && !no_paralyze)
-		imp_in.visible_message(span_warning("[imp_in] doubles over in pain!"))
+		imp_in.visible_message(span_warning("[imp_in] 痛苦地弯下腰！"))
 		imp_in.Paralyze(14 SECONDS)
 
 	if(!panic_beep_sound)
@@ -175,40 +175,40 @@
 
 ///Macrobomb has the strength and delay of 10 microbombs
 /obj/item/implant/explosive/macro
-	name = "macrobomb implant"
-	desc = "And boom goes the weasel. And everything else nearby."
+	name = "巨型炸弹植入体"
+	desc = "砰的一声，黄鼠狼就炸了，连同附近的一切。"
 	icon_state = "explosive"
 	delay = 10 * MICROBOMB_DELAY
 	explosion_light = 10 * MICROBOMB_EXPLOSION_LIGHT
 	explosion_heavy = 10 * MICROBOMB_EXPLOSION_HEAVY
 	explosion_devastate = 10 * MICROBOMB_EXPLOSION_DEVASTATE
-	implant_lore = "The Robust Corp RX-78/M Employee Management Implant is an electrically-detonated explosive, \
-		designed to maximize the prevention of recovery of equipment and/or evidence by virtue of being ten microbombs all connected to one implant. \
-		Unfortunately, the handshake sequence between microbombs remains an issue. \
-		The microexplosives arm upon cessation of vital signs or manual activation. \
-		Upon arming, attempts to sync with any other detected microexplosives for increased detonation yield; \
-		the handshake process between microbombs, however, takes a bit, and only gets longer as more microbombs are detected."
+	implant_lore = "罗伯斯特公司 RX-78/M 员工管理植入体是一种电起爆炸药，\
+		由十个连接至同一植入体的微型炸弹组成，旨在最大限度地防止设备与证据被回收。\
+		遗憾的是，微型炸弹之间的握手序列仍然是个问题。\
+		该微型炸药在生命体征停止或手动激活时进入待爆状态。\
+		进入待爆状态后，会尝试与探测到的其他微型炸药同步以提高爆炸当量；\
+		然而，微型炸弹之间的握手过程需要一点时间，探测到的微型炸弹越多，耗时越长。"
 
 ///Microbomb which prevents you from going into critical condition but also explodes after a timer when you reach critical condition in the first place.
 /obj/item/implant/explosive/deniability
-	name = "tactical deniability implant"
-	desc = "An enhanced version of the microbomb that directly plugs into the brain. No downsides, promise!"
+	name = "战术免责植入体"
+	desc = "微型炸弹的强化版本，直接接入大脑。绝无副作用，我保证！"
 	delay = 10 SECONDS
 	panic_beep_sound = TRUE
 	no_paralyze = TRUE
 	master_implant = TRUE
 
-	implant_info = parent_type::implant_info + "While implanted, prevents unconsciousness from excessive trauma. \
-		Does not prevent death from excessive trauma, nor being stunned. \
-		Also delays detonation of other implanted microbombs by ten seconds."
+	implant_info = parent_type::implant_info + "植入期间，可防止因过度创伤而失去意识。\
+		但无法防止因过度创伤而死亡，也无法防止被击晕。\
+		同时会使其他已植入微型炸弹的引爆延迟十秒。"
 
-	implant_lore = "The Robust Corp RX-78/T Tactical Deniability Implant is an electrically-detonated microexplosive and \
-		paired neural override lattice, designed to prevent recovery of equipment and/or evidence for non-state actors, \
-		and prevent the reception of pain signals upon excessive trauma (colloquially, \"entering critical condition\"). \
-		The microexplosive arms upon cessation of vital signs or manual activation. \
-		Upon arming, attempts to sync with any other detected microexplosives for increased detonation yield; \
-		the handshake process between microbombs, however, takes a bit, and only gets longer as more microbombs are detected. \
-		The tactical deniability implant introduces a ten-second delay by itself in order to allow operators one last hurrah before death."
+	implant_lore = "罗伯斯特公司 RX-78/T 战术免责植入体是一种电起爆微型炸药，\
+		并配有一套神经覆写晶格，旨在防止非国家行为体的设备与证据被回收，\
+		并阻止在遭受过度创伤（俗称“进入危急状态”）时接收到疼痛信号。\
+		该微型炸药在生命体征停止或手动激活时进入待爆状态。\
+		进入待爆状态后，会尝试与探测到的其他微型炸药同步以提高爆炸当量；\
+		然而，微型炸弹之间的握手过程需要一点时间，探测到的微型炸弹越多，耗时越长。\
+		战术免责植入体自身会引入十秒延迟，以便操作者在死亡前做最后一次挣扎。"
 
 /obj/item/implant/explosive/deniability/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	. = ..()
@@ -229,32 +229,32 @@
 		INVOKE_ASYNC(src, PROC_REF(activate), "deniability")
 
 /obj/item/implant/explosive/deathmatch
-	name = "deathmatch microbomb implant"
+	name = "死斗微型炸弹植入体"
 	delay = 0.5 SECONDS
 	actions_types = null
 	instant_explosion = FALSE
 	notify_ghosts = FALSE
 
 /obj/item/implanter/explosive
-	name = "implanter (microbomb)"
+	name = "植入器（微型炸弹）"
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implantcase/explosive
-	name = "implant case - 'Explosive'"
-	desc = "A glass case containing an explosive implant."
+	name = "植入体盒——“爆炸”"
+	desc = "一个装有爆炸植入体的玻璃盒。"
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implanter/explosive_macro
-	name = "implanter (macrobomb)"
+	name = "植入器（巨型炸弹）"
 	imp_type = /obj/item/implant/explosive/macro
 
 /obj/item/implanter/tactical_deniability
-	name = "implanter (tactical deniability)"
+	name = "植入器（战术免责）"
 	imp_type = /obj/item/implant/explosive/deniability
 
 /datum/action/item_action/explosive_implant
 	check_flags = NONE
-	name = "Activate Explosive Implant"
+	name = "激活爆炸植入体"
 
 #undef MICROBOMB_DELAY
 #undef MICROBOMB_EXPLOSION_LIGHT

@@ -1,8 +1,8 @@
 // Realignment. It's like Fleshmend but solely for stamina damage and stuns. Sec meta
 /datum/action/cooldown/spell/realignment
-	name = "Realignment"
-	desc = "Realign yourself, rapidly regenerating stamina and reducing any stuns or knockdowns. \
-		You cannot attack while realigning. Can be casted multiple times in short succession, but each cast lengthens the cooldown."
+	name = "重整"
+	desc = "重整自身，快速恢复耐力并减轻眩晕与击倒效果。\
+		重整期间你无法攻击。可以在短时间内连续施放，但每次施放都会延长冷却时间。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/hud/implants.dmi'
@@ -24,7 +24,7 @@
 /datum/action/cooldown/spell/realignment/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.apply_status_effect(/datum/status_effect/realignment)
-	to_chat(cast_on, span_notice("We begin to realign ourselves."))
+	to_chat(cast_on, span_notice("我们开始重整自身。"))
 
 /datum/action/cooldown/spell/realignment/after_cast(atom/cast_on)
 	. = ..()
@@ -37,13 +37,13 @@
 /datum/action/cooldown/spell/realignment/get_spell_title()
 	switch(spell_level)
 		if(1, 2)
-			return "Hasty " // Hasty Realignment
+			return "仓促" // Hasty Realignment
 		if(3, 4)
 			return "" // Realignment
 		if(5, 6, 7)
-			return "Slowed " // Slowed Realignment
+			return "迟缓" // Slowed Realignment
 		if(8, 9, 10)
-			return "Laborious " // Laborious Realignment (don't reach here)
+			return "艰难" // Laborious Realignment (don't reach here)
 
 	return ""
 
@@ -58,7 +58,7 @@
 	var/list/realignment_traits = list(TRAIT_BATON_RESISTANCE, TRAIT_PACIFISM)
 
 /datum/status_effect/realignment/get_examine_text()
-	return span_notice("[owner.p_Theyre()] glowing a soft white.")
+	return span_notice("[owner]泛着柔和的白光。")
 
 /datum/status_effect/realignment/on_apply()
 	owner.add_traits(realignment_traits, TRAIT_STATUS_EFFECT(id))
@@ -77,6 +77,6 @@
 	owner.AdjustAllImmobility(-1 SECONDS)
 
 /atom/movable/screen/alert/status_effect/realignment
-	name = "Realignment"
-	desc = "You're realignment yourself. You cannot attack, but are rapidly regenerating stamina."
+	name = "重整"
+	desc = "你正在重整自身。你无法攻击，但耐力正在快速恢复。"
 	icon_state = "realignment"

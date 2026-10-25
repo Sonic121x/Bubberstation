@@ -1,10 +1,10 @@
 /datum/antagonist/ashwalker
-	name = "\improper Ash Walker"
+	name = "\improper 灰行者"
 	pref_flag = ROLE_LAVALAND
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antagpanel_category = ANTAG_GROUP_ASHWALKERS
-	suicide_cry = "I HAVE NO IDEA WHAT THIS THING DOES!!"
+	suicide_cry = "我完全不知道这东西是干什么的！！"
 	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST
 	var/datum/team/ashwalkers/ashie_team
 
@@ -44,8 +44,8 @@
 		owner.current.add_mood_event("oogabooga", /datum/mood_event/sacrifice_good)
 
 /datum/team/ashwalkers
-	name = "Ash Walker Tribe"
-	member_name = "Ash Walker"
+	name = "灰行者部落"
+	member_name = "灰行者"
 	///A list of "worthy" (meat-bearing) sacrifices made to the Necropolis
 	var/sacrifices_made = 0
 	///A list of how many eggs were created by the Necropolis
@@ -54,28 +54,28 @@
 /datum/team/ashwalkers/roundend_report()
 	var/list/report = list()
 
-	report += span_header("An Ash Walker Tribe inhabited the wastes...</span><br>")
+	report += span_header("一支灰行者部落曾栖息于荒原之中……</span><br>")
 	if(length(members)) //The team is generated alongside the tendril, and it's entirely possible that nobody takes the role.
-		report += "The [member_name]s were:"
+		report += "[member_name]共有以下成员："
 		report += printplayerlist(members)
 
 		var/datum/objective/protect_object/necropolis_objective = locate(/datum/objective/protect_object) in objectives
 
 		if(necropolis_objective)
 			objectives -= necropolis_objective //So we don't count it in the check for other objectives.
-			report += "<b>The [name] was tasked with defending the Necropolis:</b>"
+			report += "<b>[name]的任务是保卫死灵之都：</b>"
 			if(necropolis_objective.check_completion())
-				report += span_greentext(span_header("The nest stands! Glory to the Necropolis!<br>"))
+				report += span_greentext(span_header("巢穴屹立不倒！死灵之都万岁！<br>"))
 			else
-				report += span_redtext(span_header("The Necropolis was destroyed, the tribe has fallen...<br>"))
+				report += span_redtext(span_header("死灵之都已毁，部落已然覆灭……<br>"))
 
 		if(length(objectives))
-			report += span_header("The [name]'s other objectives were:")
+			report += span_header("[name]的其他目标有：")
 			printobjectives(objectives)
 
-		report += "The [name] managed to perform <b>[sacrifices_made]</b> sacrifices to the Necropolis. From this, the Necropolis produced <b>[eggs_created]</b> Ash Walker eggs."
+		report += "[name]共向死灵之都献上了 <b>[sacrifices_made]</b> 次祭品。死灵之都由此产下了 <b>[eggs_created]</b> 枚灰行者卵。"
 
 	else
-		report += "<b>But none of its eggs hatched!</b>"
+		report += "<b>但它的卵一颗也没有孵化！</b>"
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"

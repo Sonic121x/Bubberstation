@@ -4,8 +4,8 @@
 	icon_angle = -45
 	max_integrity = 200
 	armor_type = /datum/armor/melee_energy
-	attack_verb_continuous = list("hits", "taps", "pokes")
-	attack_verb_simple = list("hit", "tap", "poke")
+	attack_verb_continuous = list("击打", "轻敲", "戳刺")
+	attack_verb_simple = list("击打", "轻敲", "戳刺")
 	resistance_flags = FIRE_PROOF
 	light_system = OVERLAY_LIGHT
 	light_range = 3
@@ -77,15 +77,15 @@
 		sharpness_on = active_sharpness, \
 		hitsound_on = active_hitsound, \
 		w_class_on = active_w_class, \
-		attack_verb_continuous_on = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts"), \
-		attack_verb_simple_on = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut"), \
+		attack_verb_continuous_on = list("攻击", "劈砍", "切削", "撕裂", "割裂", "撕开", "切块", "切割"), \
+		attack_verb_simple_on = list("攻击", "劈砍", "切削", "撕裂", "割裂", "撕开", "切块", "切割"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/energy/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		attack_self(user)
-	user.visible_message(span_suicide("[user] is [pick("slitting [user.p_their()] stomach open with", "falling on")] [src]! It looks like [user.p_theyre()] trying to commit seppuku!"))
+	user.visible_message(span_suicide("[user]正[pick("用[src]剖开自己的肚子", "扑倒在[src]上")]！看起来是想切腹自尽！"))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/melee/energy/process(seconds_per_tick)
@@ -98,8 +98,8 @@
 
 	var/in_mouth = ""
 	if(ishuman(user) && user.get_item_by_slot(ITEM_SLOT_MASK))
-		in_mouth = ", barely missing [user.p_their()] nose"
-	. = span_rose("[user] swings [user.p_their()] [name][in_mouth]. [user.p_They()] light[user.p_s()] [user.p_their()] [atom.name] in the process.")
+		in_mouth = "，几乎擦过自己的鼻子"
+	. = span_rose("[user]挥舞着自己的[name][in_mouth]，并在此过程中点燃了自己的[atom.name]。")
 	playsound(loc, hitsound, get_clamped_volume(), TRUE, -1)
 	add_fingerprint(user)
 
@@ -135,7 +135,7 @@
 		STOP_PROCESSING(SSobj, src)
 	tool_behaviour = (active ? TOOL_SAW : NONE) //Lets energy weapons cut trees. Also lets them do bonecutting surgery, which is kinda metal!
 	if(user)
-		balloon_alert(user, "[name] [active ? "enabled":"disabled"]")
+		balloon_alert(user, "[name] [active ? "已启用":"已禁用"]")
 	playsound(src, active ? 'sound/items/weapons/saberon.ogg' : 'sound/items/weapons/saberoff.ogg', 35, TRUE)
 	set_light_on(active)
 	update_appearance(UPDATE_ICON_STATE)
@@ -143,16 +143,16 @@
 
 /// Energy axe - extremely strong.
 /obj/item/melee/energy/axe
-	name = "energy axe"
-	desc = "An energized battle axe."
+	name = "能量斧"
+	desc = "一把充能战斧。"
 	icon_state = "axe"
 	inhand_icon_state = "axe"
 	base_icon_state = "axe"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "chops", "cleaves", "tears", "lacerates", "cuts")
-	attack_verb_simple = list("attack", "chop", "cleave", "tear", "lacerate", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "斩击", "撕裂", "割裂", "切削")
+	attack_verb_simple = list("攻击", "劈砍", "斩击", "撕裂", "割裂", "切削")
 	force = 40
 	throwforce = 25
 	throw_speed = 3
@@ -180,7 +180,7 @@
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/energy/axe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] swings [src] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]挥起[src]朝自己的头上砍去！看起来是想自杀！"))
 	return (BRUTELOSS|FIRELOSS)
 
 /// Energy swords.
@@ -189,8 +189,8 @@
 	impact_pain_mult = 10
 
 /obj/item/melee/energy/sword
-	name = "energy sword"
-	desc = "May the force be within you."
+	name = "能量剑"
+	desc = "愿原力与你同在。"
 	icon_state = "e_sword"
 	base_icon_state = "e_sword"
 	inhand_icon_state = "e_sword"
@@ -205,8 +205,8 @@
 	block_chance = 50
 	block_sound = 'sound/items/weapons/block_blade.ogg'
 	embed_type = /datum/embedding/esword
-	var/list/alt_continuous = list("stabs", "pierces", "impales")
-	var/list/alt_simple = list("stab", "pierce", "impale")
+	var/list/alt_continuous = list("刺击", "贯穿", "穿刺")
+	var/list/alt_simple = list("刺击", "贯穿", "穿刺")
 	var/alt_sharpness = SHARP_POINTY
 	var/alt_force_mod = -10
 	var/alt_hitsound = null
@@ -283,7 +283,7 @@
 
 /obj/item/melee/energy/sword/saber/multitool_act(mob/living/user, obj/item/tool)
 	if(hacked)
-		to_chat(user, span_warning("It's already fabulous!"))
+		to_chat(user, span_warning("它已经够炫了！"))
 		return
 	hacked = TRUE
 	sword_color_icon = "rainbow"
@@ -291,7 +291,7 @@
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/item/melee/energy/sword/saber/cyborg
-	name = "cyborg energy sword"
+	name = "半机械人能量剑"
 	hacked = TRUE
 	sword_color_icon = "rainbow"
 	/// The cell cost of hitting something.
@@ -308,7 +308,7 @@
 	var/obj/item/stock_parts/power_store/our_cell = user.cell
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) && !(our_cell.use(hitcost)))
 		attack_self(user)
-		to_chat(user, span_notice("It's out of charge!"))
+		to_chat(user, span_notice("它没电了！"))
 		return
 	return ..()
 
@@ -318,8 +318,8 @@
 	attack_self(user)
 
 /obj/item/melee/energy/sword/saber/cyborg/saw //Used by medical Syndicate cyborgs
-	name = "energy saw"
-	desc = "For heavy duty cutting. It has a carbon-fiber blade in addition to a toggleable hard-light edge to dramatically increase sharpness."
+	name = "能量锯"
+	desc = "用于重型切割。除碳纤维锯片外，它还可切换硬光刃口，大幅提升锋利度。"
 	icon = 'icons/obj/medical/surgery_tools.dmi'
 	icon_state = "esaw"
 	hitsound = 'sound/items/weapons/circsawhit.ogg'
@@ -336,8 +336,8 @@
 	sword_color_icon = null // Stops icon from breaking when turned on.
 
 /obj/item/melee/energy/sword/pirate
-	name = "energy cutlass"
-	desc = "Arrrr matey."
+	name = "能量弯刀"
+	desc = "Arrrr，伙计。"
 	icon_state = "e_cutlass"
 	inhand_icon_state = "e_cutlass"
 	base_icon_state = "e_cutlass"
@@ -351,15 +351,15 @@
 
 /// Energy blades, which are effectively perma-extended energy swords
 /obj/item/melee/energy/blade
-	name = "energy blade"
-	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+	name = "能量刃"
+	desc = "一束凝聚成刀刃状的能量。非常时髦……且致命。"
 	icon_state = "blade"
 	base_icon_state = "blade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/items/weapons/blade1.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击", "劈砍", "切削", "撕裂", "割裂", "撕开", "切块", "切割")
+	attack_verb_simple = list("攻击", "劈砍", "切削", "撕裂", "割裂", "撕开", "切块", "切割")
 	force = 30
 	throwforce = 1 // Throwing or dropping the item deletes it.
 	throw_speed = 3
@@ -369,8 +369,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	/// Our linked spark system that emits from our sword.
 	var/datum/effect_system/basic/spark_spread/spark_system
-	var/list/alt_continuous = list("stabs", "pierces", "impales")
-	var/list/alt_simple = list("stab", "pierce", "impale")
+	var/list/alt_continuous = list("刺击", "贯穿", "穿刺")
+	var/list/alt_simple = list("刺击", "贯穿", "穿刺")
 
 //Most of the other special functions are handled in their own files. aka special snowflake code so kewl
 /obj/item/melee/energy/blade/Initialize(mapload)
@@ -391,17 +391,17 @@
 	return FALSE
 
 /obj/item/melee/energy/blade/hardlight
-	name = "hardlight blade"
-	desc = "An extremely sharp blade made out of hard light. Packs quite a punch."
+	name = "硬光刃"
+	desc = "由硬光制成的极锋利刀刃。威力相当惊人。"
 	icon_state = "lightblade"
 	inhand_icon_state = "lightblade"
 	base_icon_state = "lightblade"
 	icon_angle = 0
 
 /obj/item/melee/energy/sword/surplus
-	name = "\improper Pattern I 'Iaito' energy sword"
-	desc = "Oversized, overengineered, and somehow still mass-produced. The twin energy blades, theoretically, help make up for the poor cutting plane the emitter generates. \
-		When there are no more heroes in a desperate struggle, it's kill or be killed."
+	name = "\improper I 型“居合”能量剑"
+	desc = "超大尺寸、过度设计，却不知怎么仍在大规模量产。理论上，双能量刃能弥补发射器所生成的糟糕切割面。\
+		当绝望的搏斗中再无英雄，不是你死就是我亡。"
 	icon_state = "surplus_e_sword"
 	inhand_icon_state = "surplus_e_sword"
 	base_icon_state = "surplus_e_sword"
@@ -412,8 +412,8 @@
 	active_force = 15 // This force is augmented by the state of our target.
 	active_throwforce = 15
 	active_throw_speed = 3
-	alt_continuous = list("whacks", "smacks", "bashes")
-	alt_simple = list("whack", "smack", "bash")
+	alt_continuous = list("猛击", "拍击", "重击")
+	alt_simple = list("猛击", "拍击", "重击")
 	alt_sharpness = NONE
 	alt_force_mod = -12
 	alt_hitsound = SFX_SWING_HIT
@@ -433,32 +433,32 @@
 	. = ..()
 	RegisterSignal(src, COMSIG_TRANSFORMING_PRE_TRANSFORM, PROC_REF(check_power))
 	AddElement(/datum/element/examine_lore, \
-		lore = "This early iteration of the now infamous energy sword was, supposedly, a Waffle Corp prototype first trialed in a variety of armed conflicts \
-		around the interstellar frontier.<br>\
+		lore = "这种如今臭名昭著的能量剑的早期版本，据说是华夫公司的原型机，最初在星际边疆各地的多种武装冲突中试用。<br>\
 		<br>\
-		Unfortunately, the success rate of the platform, along with the survival rate of its users, was abysmally low. \
-		To make matters worse, initial overestimation of its effectiveness meant that by the time its myriad flaws reared their heads, production had already \
-		reached such a level that the company behind its manufacture would have to pay more to properly disassemble and dispose of the swords, \
-		than if they started offloading them onto markets of various legitimacy to try and recoup costs. Thus, the Iaito was 'born'.<br><br>\
-		As a consequence of its haphazard proliferation and its low market price compared to later, improved energy sword models, examples of the Iaito are \
-		typically found in the hands of various grunts, mooks, goons, criminals, wannabe assassins, lunatics, or those otherwise embroiled in \
-		a desperate struggle. If you're actually trying to kill someone with this sword, you may or may not fit into one or more of those categories." \
+		不幸的是，该平台的成功率，以及使用者的存活率，都低得可怜。\
+		更糟的是，起初对其效能的过高估计，意味着等它那数不清的缺陷暴露出来时，\
+		产量已经高到，其制造商若要认真拆解并处理这些剑，\
+		花费将超过把它们以各种正当或不太正当的渠道甩卖以回本的成本。于是，居合就这样“诞生”了。<br><br>\
+		由于它四处泛滥，且价格远低于后来改进型的能量剑，\
+		居合的持有者通常是各种小兵、喽啰、打手、罪犯、想当刺客的人、疯子，\
+		或是其他深陷绝望搏斗的人。\
+		如果你真打算用这把剑杀人，那你可能正属于上述一类或多类人。" \
 	)
 
 /obj/item/melee/energy/sword/surplus/examine(mob/user)
 	. = ..()
 	if(charge)
-		. += span_notice("[src] has [charge] hits left before it must be recharged.")
+		. += span_notice("[src]还能命中 [charge] 次，之后必须充能。")
 	else
-		. += span_warning("[src] needs to be recharged.")
+		. += span_warning("[src]需要充能。")
 
-	. += span_info("You get the sense that this weapon isn't very effective unless you hit someone while they are exposed in some way, like attacking from behind or while they're staggered.")
+	. += span_info("你感觉这件武器除非在目标处于某种暴露状态时命中，否则效果不佳，比如从背后攻击，或趁其踉跄时出手。")
 
 /obj/item/melee/energy/sword/surplus/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 
 	if(charge < max_charge)
-		context[SCREENTIP_CONTEXT_RMB] = "Recharge"
+		context[SCREENTIP_CONTEXT_RMB] = "充能"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -500,16 +500,16 @@
 		return SECONDARY_ATTACK_CALL_NORMAL
 
 	if(DOING_INTERACTION(user, DOAFTER_SOURCE_CHARGING_ESWORD))
-		user.balloon_alert(user, "busy!")
+		user.balloon_alert(user, "正忙！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(charge <= max_charge)
-		user.balloon_alert(user, "attempting recharge...")
+		user.balloon_alert(user, "正在尝试充能……")
 		if(!do_after(user, charge_time, target = src, extra_checks = CALLBACK(src, PROC_REF(do_jiggle), user), interaction_key = DOAFTER_SOURCE_CHARGING_ESWORD, cog_iconstate = "beat_the_heat"))
-			user.balloon_alert(user, "interrupted!")
+			user.balloon_alert(user, "被打断！")
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	charge = max_charge
-	user.balloon_alert(user, "recharge successful")
+	user.balloon_alert(user, "充能成功")
 	playsound(src, 'sound/machines/ping.ogg', 40, TRUE)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -539,14 +539,14 @@
 
 	charge--
 	if(charge <= 0)
-		user.balloon_alert(user, "out of charge!")
+		user.balloon_alert(user, "没电了！")
 		attack_self(user)
 
 /obj/item/melee/energy/sword/surplus/proc/check_power(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
 	if(charge <= 0 && !HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		balloon_alert(user, "no charge!")
+		balloon_alert(user, "没有电量！")
 		return COMPONENT_BLOCK_TRANSFORM
 
 /obj/item/melee/energy/sword/surplus/proc/do_jiggle(mob/user)
@@ -568,8 +568,8 @@
 // Null rod variants
 
 /obj/item/melee/energy/sword/nullrod
-	name = "light energy sword"
-	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
+	name = "光明能量剑"
+	desc = "如果你将我击倒，我将变得比你所能想象的更加强大。"
 	throw_speed = 3
 	throw_range = 4
 	block_chance = 30
@@ -598,14 +598,14 @@
 	return ..()
 
 /obj/item/melee/energy/sword/nullrod/red
-	name = "dark energy sword"
-	desc = "Woefully ineffective when used on steep terrain."
+	name = "黑暗能量剑"
+	desc = "在陡峭地形上使用时效果差得可悲。"
 	sword_color_icon = "red"
 	light_color = COLOR_SOFT_RED
 
 /obj/item/melee/energy/sword/nullrod/pirate
-	name = "nautical energy cutlass"
-	desc = "Convincing HR that your religion involved piracy was no mean feat."
+	name = "航海能量弯刀"
+	desc = "能说服人力资源部你的宗教涉及海盗行为，可不是件容易的事。"
 	icon_state = "e_cutlass"
 	inhand_icon_state = "e_cutlass"
 	base_icon_state = "e_cutlass"

@@ -1,6 +1,6 @@
 /turf/open/misc/grass
-	name = "grass"
-	desc = "A patch of grass."
+	name = "草地"
+	desc = "一片草地。"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass"
 	base_icon_state = "grass"

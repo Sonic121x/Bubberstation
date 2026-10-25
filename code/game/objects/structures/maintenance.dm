@@ -2,8 +2,8 @@
 as well as a location where a hidden item can sometimes be retrieved
 at the cost of risking a vicious bite.**/
 /obj/structure/moisture_trap
-	name = "moisture trap"
-	desc = "A device installed in order to control moisture in poorly ventilated areas.\nThe stagnant water inside basin seems to produce serious biofouling issues when improperly maintained.\nThis unit in particular seems to be teeming with life!\nWho thought mother Gaia could assert herself so vigorously in this sterile and desolate place?"
+	name = "湿气捕集器"
+	desc = "一种用于控制通风不良区域湿度的装置。\n若维护不当，盆内的积水似乎会造成严重的生物污损问题。\n而这台装置里似乎生机勃勃！\n谁能想到盖亚母亲会在这般无菌荒凉之地如此顽强地彰显自身？"
 	icon_state = "moisture_trap"
 	anchored = TRUE
 	density = FALSE
@@ -73,25 +73,25 @@ at the cost of risking a vicious bite.**/
 	if(iscyborg(user) || isalien(user))
 		return
 	if(!CanReachInside(user))
-		to_chat(user, span_warning("You need to lie down to reach into [src]."))
+		to_chat(user, span_warning("你需要躺下才能把手伸进[src]。"))
 		return
-	to_chat(user, span_notice("You reach down into the cold water of the basin."))
+	to_chat(user, span_notice("你将手伸进盆中冰冷的水里。"))
 	playsound(src,'sound/effects/submerge.ogg', 25, TRUE)
 	if(!do_after(user, 2 SECONDS, target = src))
 		return
 	if(hidden_item)
 		user.put_in_hands(hidden_item)
-		to_chat(user, span_notice("As you poke around inside [src] you feel the contours of something hidden below the murky waters.</span>\n<span class='nicegreen'>You retrieve [hidden_item] from [src]."))
+		to_chat(user, span_notice("当你在[src]里摸索时，你摸到了浑浊水面下某个隐藏之物的轮廓。</span>\n<span class='nicegreen'>你从[src]中取出了[hidden_item]。"))
 		hidden_item = null
 		return
 	if(critter_infested && prob(50) && iscarbon(user))
 		var/mob/living/carbon/bite_victim = user
 		var/obj/item/bodypart/affecting = bite_victim.get_active_hand()
-		to_chat(user, span_danger("You feel a sharp pain as an unseen creature sinks its [pick("fangs", "beak", "proboscis")] into your [affecting.plaintext_zone]!"))
+		to_chat(user, span_danger("你感到一阵剧痛，一只看不见的生物把它的[pick("獠牙", "喙", "口器")]刺进了你的[chinese_body_zone_display(affecting.plaintext_zone)]！"))
 		bite_victim.apply_damage(30, BRUTE, affecting)
 		playsound(src,'sound/items/weapons/bite.ogg', 70, TRUE)
 		return
-	to_chat(user, span_warning("You find nothing of value..."))
+	to_chat(user, span_warning("你没有找到任何有价值的东西……"))
 
 /obj/structure/moisture_trap/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(iscyborg(user) || isalien(user) || !CanReachInside(user))
@@ -107,19 +107,19 @@ at the cost of risking a vicious bite.**/
 		var/obj/item/reagent_containers/reagent_container = tool
 		if(reagent_container.is_open_container())
 			reagent_container.reagents.add_reagent(/datum/reagent/water, min(reagent_container.volume - reagent_container.reagents.total_volume, reagent_container.amount_per_transfer_from_this))
-			to_chat(user, span_notice("You fill [reagent_container] from [src]."))
+			to_chat(user, span_notice("你用[src]装满了[reagent_container]。"))
 			return ITEM_INTERACT_SUCCESS
 
 	if(hidden_item)
-		to_chat(user, span_warning("There is already something inside [src]."))
+		to_chat(user, span_warning("[src]里已经有东西了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning("\The [tool] is stuck to your hand, you cannot put it in [src]!"))
+		to_chat(user, span_warning("[tool]粘在你手上了，你无法把它放进[src]！"))
 		return ITEM_INTERACT_BLOCKING
 
 	hidden_item = tool
-	to_chat(user, span_notice("You hide [tool] inside the basin."))
+	to_chat(user, span_notice("你把[tool]藏进了盆里。"))
 	playsound(src,'sound/effects/splash.ogg', 55, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
@@ -130,11 +130,11 @@ at the cost of risking a vicious bite.**/
 #define ALTAR_TIME (9.5 SECONDS)
 
 /obj/structure/destructible/cult/pants_altar
-	name = "strange structure"
-	desc = "What is this? Who put it on this station? And why does it emanate <span class='hypnophrase'>strange energy?</span>"
+	name = "奇怪的结构"
+	desc = "这是什么？是谁把它放在这座空间站上的？它又为何散发出<span class='hypnophrase'>奇异的能量？</span>"
 	icon_state = "altar"
-	cult_examine_tip = "Even you don't understand the eldritch magic behind this."
-	break_message = span_warning("The structure shatters, leaving only a demonic screech!")
+	cult_examine_tip = "连你也不理解这背后隐藏的诡异魔法。"
+	break_message = span_warning("结构碎裂开来，只留下一声恶魔般的尖啸！")
 	break_sound = 'sound/effects/magic/demon_dies.ogg'
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 	light_range = 2
@@ -147,7 +147,7 @@ at the cost of risking a vicious bite.**/
 /obj/structure/destructible/cult/pants_altar/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/melee/cultblade/dagger) || !IS_CULTIST(user) || !status)
 		return NONE
-	to_chat(user, span_notice("[src] is creating something, you can't move it!"))
+	to_chat(user, span_notice("[src]正在制造东西，你无法移动它！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/destructible/cult/pants_altar/attack_hand(mob/living/user, list/modifiers)
@@ -161,12 +161,12 @@ at the cost of risking a vicious bite.**/
 	var/altar_result = show_radial_menu(user, src, altar_options, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	switch(altar_result)
 		if("Change Color")
-			var/chosen_color = tgui_color_picker(user, "", "Choose Color", pants_color)
+			var/chosen_color = tgui_color_picker(user, "", "选择颜色", pants_color)
 			if(!isnull(chosen_color) && user.can_perform_action(src))
 				pants_color = chosen_color
 		if("Create Artefact")
 			if(!COOLDOWN_FINISHED(src, use_cooldown) || status != ALTAR_INACTIVE)
-				to_chat(user, span_warning("[src] is not ready to create something new yet..."))
+				to_chat(user, span_warning("[src]还没准备好制造新的东西……"))
 				return
 			pants_stageone()
 	return TRUE
@@ -198,7 +198,7 @@ at the cost of risking a vicious bite.**/
 /obj/structure/destructible/cult/pants_altar/proc/pants_stageone()
 	status = ALTAR_STAGEONE
 	update_icon()
-	visible_message(span_warning("[src] starts creating something..."))
+	visible_message(span_warning("[src]开始制造某种东西……"))
 	playsound(src, 'sound/effects/magic/pantsaltar.ogg', 60)
 	addtimer(CALLBACK(src, PROC_REF(pants_stagetwo)), ALTAR_TIME)
 
@@ -206,7 +206,7 @@ at the cost of risking a vicious bite.**/
 /obj/structure/destructible/cult/pants_altar/proc/pants_stagetwo()
 	status = ALTAR_STAGETWO
 	update_icon()
-	visible_message(span_warning("You start feeling nauseous..."))
+	visible_message(span_warning("你开始感到恶心……"))
 	for(var/mob/living/viewing_mob in viewers(7, src))
 		viewing_mob.set_eye_blur_if_lower(20 SECONDS)
 		viewing_mob.adjust_confusion(10 SECONDS)
@@ -216,7 +216,7 @@ at the cost of risking a vicious bite.**/
 /obj/structure/destructible/cult/pants_altar/proc/pants_stagethree()
 	status = ALTAR_STAGETHREE
 	update_icon()
-	visible_message(span_warning("You start feeling horrible..."))
+	visible_message(span_warning("你开始感到非常难受……"))
 	for(var/mob/living/viewing_mob in viewers(7, src))
 		viewing_mob.set_dizzy_if_lower(20 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(pants_create)), ALTAR_TIME)
@@ -225,7 +225,7 @@ at the cost of risking a vicious bite.**/
 /obj/structure/destructible/cult/pants_altar/proc/pants_create()
 	status = ALTAR_INACTIVE
 	update_icon()
-	visible_message(span_danger("[src] emits a flash of light and creates... pants?"))
+	visible_message(span_danger("[src]闪出一道光，然后制造出了……裤子？"))
 	for(var/mob/living/viewing_mob in viewers(7, src))
 		viewing_mob.flash_act()
 	var/obj/item/clothing/under/pants/slacks/altar/pants = new(get_turf(src))
@@ -242,8 +242,8 @@ at the cost of risking a vicious bite.**/
 	return TRUE
 
 /obj/item/clothing/under/pants/slacks/altar
-	name = "strange pants"
-	desc = "A pair of pants. They do not look or feel natural, and smell like fresh blood."
+	name = "奇怪的裤子"
+	desc = "一条裤子。它的外观和手感都极不自然，还散发着新鲜血液的气味。"
 	icon_state = "/obj/item/clothing/under/pants/slacks/altar"
 	greyscale_colors = "#ffffff#ffffff#ffffff"
 	flags_1 = NONE //If IS_PLAYER_COLORABLE gets added color-changing support (i.e. spraycans), these won't end up getting it too. Plus, it already has its own recolor.
@@ -258,8 +258,8 @@ at the cost of risking a vicious bite.**/
  * Spawns in maint shafts, and blocks lines of sight perodically when active.
  */
 /obj/structure/steam_vent
-	name = "steam vent"
-	desc = "A device periodically filtering out moisture particles from the nearby walls and windows. It's only possible due to the moisture traps nearby."
+	name = "蒸汽排放口"
+	desc = "一种会定期滤除附近墙壁与窗户上湿气颗粒的装置。这全靠附近的湿气捕集器才得以实现。"
 	icon_state = "steam_vent"
 	anchored = TRUE
 	density = FALSE
@@ -285,31 +285,31 @@ at the cost of risking a vicious bite.**/
 /obj/structure/steam_vent/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, steam_vent_interact))
-		balloon_alert(user, "not ready to adjust!")
+		balloon_alert(user, "尚未准备好调节！")
 		return
 	vent_active = !vent_active
 	update_icon_state()
 	if(vent_active)
-		balloon_alert(user, "vent on")
+		balloon_alert(user, "排放口已开启")
 	else
-		balloon_alert(user, "vent off")
+		balloon_alert(user, "排放口已关闭")
 		return
 	blow_steam()
 
 /obj/structure/steam_vent/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = vent_active ? "Close valve" : "Open valve"
+		context[SCREENTIP_CONTEXT_LMB] = vent_active ? "关闭阀门" : "打开阀门"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_RMB] = "拆除"
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
 /obj/structure/steam_vent/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(vent_active)
-		balloon_alert(user, "must be off!")
+		balloon_alert(user, "必须先关闭！")
 		return
 	if(tool.use_tool(src, user, 3 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -340,5 +340,5 @@ at the cost of risking a vicious bite.**/
 	icon_state = "steam_vent[vent_active ? "": "_off"]"
 
 /obj/structure/steam_vent/fast
-	desc = "A device periodically filtering out moisture particles from the nearby walls and windows. It's only possible due to the moisture traps nearby. It's faster than most."
+	desc = "一种会定期滤除附近墙壁与窗户上湿气颗粒的装置。这全靠附近的湿气捕集器才得以实现。它比大多数同类装置更快。"
 	steam_speed = 10 SECONDS

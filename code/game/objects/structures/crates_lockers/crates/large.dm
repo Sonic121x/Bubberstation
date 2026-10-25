@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/large
-	name = "large crate"
-	desc = "A hefty wooden crate. You'll need a crowbar to get it open."
+	name = "大型板条箱"
+	desc = "一个沉重的木制板条箱。你需要撬棍才能把它撬开。"
 	icon_state = "largecrate"
 	base_icon_state = "largecrate"
 	density = TRUE
@@ -27,13 +27,13 @@
 /obj/structure/closet/crate/large/attack_hand(mob/user, list/modifiers)
 	add_fingerprint(user)
 	if(!tear_manifest(user))
-		to_chat(user, span_warning("You need a crowbar to pry this open!"))
+		to_chat(user, span_warning("你需要撬棍才能把它撬开！"))
 
 /obj/structure/closet/crate/large/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(user.combat_mode)
 		return ITEM_INTERACT_SKIP_TO_ATTACK //Stops it from opening and turning invisible when items are used on it.
 
-	to_chat(user, span_warning("You need a crowbar to pry this open!"))
+	to_chat(user, span_warning("你需要撬棍才能把它撬开！"))
 	return ITEM_INTERACT_BLOCKING //Just stop. Do nothing. Don't turn into an invisible sprite. Don't open like a locker.
 								  //The large crate has no non-attack interactions other than the crowbar, anyway.
 
@@ -42,9 +42,9 @@
 		tear_manifest(user)
 	if(!open(user))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] pries \the [src] open."), \
-						span_notice("You pry open \the [src]."), \
-						span_hear("You hear splitting wood."))
+	user.visible_message(span_notice("[user]撬开了[src]。"), \
+						span_notice("你撬开了[src]。"), \
+						span_hear("你听到木头裂开的声音。"))
 	playsound(src.loc, 'sound/items/weapons/slashmiss.ogg', 75, TRUE)
 
 	var/turf/dump = get_turf(src)
@@ -66,4 +66,4 @@
 		if(our_contents)
 			var/obj/item/clothing/head/lucky_hat = pick(our_contents)
 			lucky_hat.AddComponent(/datum/component/unusual_effect, color = "#FFEA0030", include_particles = TRUE)
-			lucky_hat.name = "unusual [name]"
+			lucky_hat.name = "奇异[name]"

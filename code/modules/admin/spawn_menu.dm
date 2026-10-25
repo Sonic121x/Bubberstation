@@ -53,7 +53,7 @@
 					var/atom/spawned = new path(target_turf)
 					spawned.flags_1 |= ADMIN_SPAWNED_1
 
-			log_admin("[key_name(ui.user)] spawned [amount] x [path] at [AREACOORD(ui.user)]")
+			log_admin("[key_name(ui.user)] 在 [AREACOORD(ui.user)] 生成了 [amount] x [path]")
 			SStgui.close_uis(src)
 			return TRUE
 

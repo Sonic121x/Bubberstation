@@ -124,7 +124,7 @@
 	var/tcs = new /obj/item/stack/telecrystal(get_turf(user), amount)
 	user.put_in_hands(tcs)
 
-	log_uplink("[key_name(user)] purchased [amount] raw telecrystals from [source]'s uplink")
+	log_uplink("[key_name(user)] 从 [source] 的上行链路购买了 [amount] 颗散装传送水晶")
 	on_update()
 	return TRUE
 

@@ -1,6 +1,6 @@
 /obj/item/tank/jetpack
-	name = "jetpack (oxygen)"
-	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
+	name = "喷气背包（氧气）"
+	desc = "一罐压缩气体，在零重力区域用作推进。请谨慎使用。"
 	icon_state = "jetpack"
 	inhand_icon_state = "jetpack"
 	lefthand_file = 'icons/mob/inhands/equipment/jetpacks_lefthand.dmi'
@@ -81,7 +81,7 @@
 	else if(istype(action, /datum/action/item_action/jetpack_stabilization))
 		if(on)
 			configure_jetpack(!stabilize, user)
-			to_chat(user, span_notice("You turn the jetpack stabilization [stabilize ? "on" : "off"]."))
+			to_chat(user, span_notice("你把喷气背包稳定器[stabilize ? "开启" : "关闭"]了。"))
 	else
 		toggle_internals(user)
 
@@ -91,13 +91,13 @@
 
 	if(!on)
 		if(turn_on(user))
-			to_chat(user, span_notice("You turn the jetpack on."))
+			to_chat(user, span_notice("你打开了喷气背包。"))
 		else
-			to_chat(user, span_notice("You fail to turn the jetpack on."))
+			to_chat(user, span_notice("你没能打开喷气背包。"))
 			return
 	else
 		turn_off(user)
-		to_chat(user, span_notice("You turn the jetpack off."))
+		to_chat(user, span_notice("你关闭了喷气背包。"))
 
 	update_item_action_buttons()
 
@@ -152,8 +152,8 @@
 	if (!ishuman(user))
 		return
 	var/mob/living/carbon/human/suffocater = user
-	suffocater.say("WHAT THE FUCK IS CARBON DIOXIDE?")
-	suffocater.visible_message(span_suicide("[user] is suffocating [user.p_them()]self with [src]! It looks like [user.p_they()] didn't read what that jetpack says!"))
+	suffocater.say("二氧化碳他妈的是什么鬼？")
+	suffocater.visible_message(span_suicide("[user]正用[src]让自己窒息！看来是没读过那个喷气背包上写的是什么！"))
 	return OXYLOSS
 
 /obj/item/tank/jetpack/emp_act(severity)
@@ -174,8 +174,8 @@
 	disabled = FALSE
 
 /obj/item/tank/jetpack/improvised
-	name = "improvised jetpack"
-	desc = "A jetpack made from two air tanks, a fire extinguisher and some atmospherics equipment. It doesn't look like it can hold much."
+	name = "简易喷气背包"
+	desc = "由两个气罐、一个灭火器和一些大气设备拼成的喷气背包。看上去装不了多少气。"
 	icon_state = "jetpack-improvised"
 	inhand_icon_state = "jetpack-improvised"
 	worn_icon = null
@@ -192,20 +192,20 @@
 
 	var/mob/user = loc
 	if(rand(0,250) == 0)
-		to_chat(user, span_notice("You feel your jetpack's engines cut out."))
+		to_chat(user, span_notice("你感觉喷气背包的引擎熄火了。"))
 		turn_off(user)
 		return
 	return ..()
 
 /obj/item/tank/jetpack/void
-	name = "void jetpack (oxygen)"
-	desc = "It works well in a void."
+	name = "虚空喷气背包（氧气）"
+	desc = "在虚空中表现出色。"
 	icon_state = "jetpack-void"
 	inhand_icon_state = "jetpack-void"
 
 /obj/item/tank/jetpack/harness
-	name = "jet harness (oxygen)"
-	desc = "A lightweight tactical harness, used by those who don't want to be weighed down by traditional jetpacks."
+	name = "喷气背带（氧气）"
+	desc = "一条轻量战术背带，供那些不想被传统喷气背包拖累的人使用。"
 	icon_state = "jetpack-mini"
 	inhand_icon_state = "jetpack-black"
 	volume = 40
@@ -213,8 +213,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/tank/jetpack/captain
-	name = "captain's jetpack"
-	desc = "A compact, lightweight jetpack containing a high amount of compressed oxygen."
+	name = "舰长的喷气背包"
+	desc = "一个紧凑轻便的喷气背包，内含大量压缩氧气。"
 	icon_state = "jetpack-captain"
 	inhand_icon_state = "jetpack-captain"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -224,14 +224,14 @@
 	drift_force = 2 NEWTONS
 
 /obj/item/tank/jetpack/security
-	name = "security jetpack (oxygen)"
-	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas by security forces."
+	name = "安保喷气背包（氧气）"
+	desc = "一罐压缩氧气，供安保部队在零重力区域用作推进。"
 	icon_state = "jetpack-sec"
 	inhand_icon_state = "jetpack-sec"
 
 /obj/item/tank/jetpack/carbondioxide
-	name = "jetpack (carbon dioxide)"
-	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."
+	name = "喷气背包（二氧化碳）"
+	desc = "一罐压缩二氧化碳，在零重力区域用作推进。涂成黑色以表示它不应被当作内部供气来源。"
 	icon_state = "jetpack-black"
 	inhand_icon_state = "jetpack-black"
 	distribute_pressure = 0

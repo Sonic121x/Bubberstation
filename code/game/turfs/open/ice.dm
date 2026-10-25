@@ -1,6 +1,6 @@
 /turf/open/misc/ice
-	name = "ice sheet"
-	desc = "A sheet of solid ice. Looks slippery."
+	name = "冰面"
+	desc = "一块坚硬的冰。看起来很滑。"
 	icon = 'icons/turf/floors/ice_turf.dmi'
 	icon_state = "ice_turf-0"
 	base_icon_state = "ice_turf-0"
@@ -18,10 +18,10 @@
 	var/can_make_hole = TRUE
 	var/static/list/tool_screentips = list(
 		TOOL_SHOVEL = list(
-			SCREENTIP_CONTEXT_LMB = "Dig fishing hole",
+			SCREENTIP_CONTEXT_LMB = "挖钓鱼洞",
 		),
 		TOOL_MINING = list(
-			SCREENTIP_CONTEXT_LMB = "Dig fishing hole",
+			SCREENTIP_CONTEXT_LMB = "挖钓鱼洞",
 		),
 	)
 
@@ -40,7 +40,7 @@
 /turf/open/misc/ice/examine(mob/user)
 	. = ..()
 	if(can_make_hole)
-		. += span_info("You could use a [EXAMINE_HINT("shovel")] or a [EXAMINE_HINT("pick")] to dig a fishing hole here.")
+		. += span_info("你可以用[EXAMINE_HINT("铲子")]或[EXAMINE_HINT("镐")]在这里挖一个钓鱼洞。")
 
 /turf/open/misc/ice/attack_animal(mob/living/animal, list/modifiers)
 	. = ..()
@@ -56,11 +56,11 @@
 /turf/open/misc/ice/proc/dig_hole(mob/living/user)
 	if(!can_make_hole)
 		return FALSE
-	balloon_alert(user, "digging...")
+	balloon_alert(user, "正在挖掘……")
 	playsound(src, 'sound/effects/shovel_dig.ogg', 50, TRUE)
 	if(!do_after(user, 5 SECONDS, src))
 		return FALSE
-	balloon_alert(user, "dug hole")
+	balloon_alert(user, "挖好了洞")
 	spawn_hole()
 	return TRUE
 
@@ -97,12 +97,12 @@
 
 /turf/open/misc/ice/temperate
 	baseturfs = /turf/open/misc/ice/temperate
-	desc = "Somehow, it is not melting under these conditions. Must be some very thick ice. Just as slippery too."
+	desc = "不知怎的，它在这样的环境下竟然没有融化。一定是某种非常厚的冰。同样很滑。"
 	initial_gas_mix = COLD_ATMOS //it works with /turf/open/misc/asteroid/snow/temperatre
 
 //For when you want real, genuine ice in your kitchen's cold room.
 /turf/open/misc/ice/coldroom
-	desc = "Somehow, it is not melting under these conditions. Must be some very thick ice. Just as slippery too."
+	desc = "不知怎的，它在这样的环境下竟然没有融化。一定是某种非常厚的冰。同样很滑。"
 	baseturfs = /turf/open/misc/ice/coldroom
 	initial_gas_mix = KITCHEN_COLDROOM_ATMOS
 	planetary_atmos = FALSE

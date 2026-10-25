@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/cosmic_rune
-	name = "Cosmic Rune"
-	desc = "Creates a cosmic rune at your position, only two can exist at a time. Invoking one rune transports you to the other. \
-		Anyone with a star mark gets transported along with you."
+	name = "星辰符文"
+	desc = "在你的位置创造一枚星辰符文，同时最多只能存在两枚。激活其中一枚会将你传送至另一枚。\
+		任何带有星标的人也会随你一同传送。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -51,8 +51,8 @@
 
 /// A rune that allows you to teleport to the location of a linked rune.
 /obj/effect/cosmic_rune
-	name = "cosmic rune"
-	desc = "A strange rune, that can instantly transport people to another location."
+	name = "星辰符文"
+	desc = "一枚奇怪的符文，可将人瞬间传送到另一个地点。"
 	anchored = TRUE
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "cosmic_rune"
@@ -86,15 +86,15 @@
 	if(.)
 		return
 	if(!linked_rune)
-		balloon_alert(user, "no linked rune!")
+		balloon_alert(user, "没有连接的符文！")
 		fail_invoke()
 		return
 	if(!(user in get_turf(src)))
-		balloon_alert(user, "not close enough!")
+		balloon_alert(user, "距离不够近！")
 		fail_invoke()
 		return
 	if(user.has_status_effect(/datum/status_effect/star_mark))
-		balloon_alert(user, "blocked by star mark!")
+		balloon_alert(user, "被星标阻挡！")
 		fail_invoke()
 		return
 	invoke(user)
@@ -144,7 +144,7 @@
 
 /// For if someone failed to invoke the rune
 /obj/effect/cosmic_rune/proc/fail_invoke()
-	visible_message(span_warning("The rune pulses with a small flash of purple light, then returns to normal."))
+	visible_message(span_warning("符文闪起一小阵紫光，随后恢复原状。"))
 	var/oldcolor = rgb(255, 255, 255)
 	color = rgb(150, 50, 200)
 	animate(src, color = oldcolor, time = 5)
@@ -165,7 +165,7 @@
 	linked_rune = null
 
 /obj/effect/temp_visual/cosmic_rune_fade
-	name = "cosmic rune"
+	name = "星辰符文"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "cosmic_rune_fade"
 	plane = FLOOR_PLANE
@@ -180,7 +180,7 @@
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cosmic", silicon_image)
 
 /obj/effect/temp_visual/rune_light
-	name = "cosmic rune"
+	name = "星辰符文"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "cosmic_rune_light"
 	plane = FLOOR_PLANE

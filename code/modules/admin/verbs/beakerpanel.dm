@@ -21,14 +21,14 @@
 	switch(action)
 		if("spawn")
 			var/obj/created = spawn_container_from_data(user, params["spawn_info"])
-			user.log_message("spawned a [created] containing [pretty_string_from_reagent_list(created.reagents.reagent_list)]", LOG_ADMIN)
+			user.log_message("生成了[created]，内含[pretty_string_from_reagent_list(created.reagents.reagent_list)]", LOG_ADMIN)
 			return TRUE
 		if("spawngrenade")
 			var/obj/item/grenade/chem_grenade/grenade = spawn_grenade_from_data(user, params["spawn_info"], params["grenade_info"])
 			var/log_string = list()
 			for(var/obj/beaker as anything in grenade.beakers)
 				log_string += pretty_string_from_reagent_list(beaker.reagents.reagent_list)
-			user.log_message("spawned a [grenade] containing [english_list(log_string)]", LOG_ADMIN)
+			user.log_message("生成了[grenade]，内含[english_list(log_string)]", LOG_ADMIN)
 			return TRUE
 
 /datum/beaker_panel/ui_static_data(mob/user)
@@ -88,6 +88,6 @@
 
 	return grenade
 
-ADMIN_VERB(beaker_panel, R_SPAWN, "Spawn Reagent Container", "Spawn a reagent container.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(beaker_panel, R_SPAWN, "生成试剂容器", "生成一个试剂容器。", ADMIN_CATEGORY_EVENTS)
 	var/datum/beaker_panel/panel = new
 	panel.ui_interact(user.mob)

@@ -1,4 +1,4 @@
-ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "Outfit Manager", "View and edit outfits.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "服装管理器", "查看并编辑服装。", ADMIN_CATEGORY_DEBUG)
 	var/static/datum/outfit_manager/ui = new
 	ui.ui_interact(user.mob)
 
@@ -44,7 +44,7 @@ ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "Outfit Manager", "View and edit out
 		if("load")
 			ui.user.client.holder.load_outfit(ui.user)
 		if("copy")
-			var/datum/outfit/outfit = tgui_input_list(ui.user, "Pick an outfit to copy from", "Outfit Manager", subtypesof(/datum/outfit))
+			var/datum/outfit/outfit = tgui_input_list(ui.user, "选择要复制的服装", "服装管理器", subtypesof(/datum/outfit))
 			if(isnull(outfit))
 				return
 			if(!ispath(outfit))

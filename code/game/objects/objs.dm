@@ -9,7 +9,7 @@
 	var/desc_controls
 
 	/// The context returned when an attack against this object doesn't deal any traditional damage to the object.
-	var/no_damage_feedback = "without leaving a mark"
+	var/no_damage_feedback = "没有留下任何痕迹"
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
 	var/icon_state_preview
@@ -90,8 +90,8 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 		// Sanity in case one is null for some reason
 		var/picked_index = rand(max(length(attacking_item.attack_verb_simple), length(attacking_item.attack_verb_continuous)))
 
-		var/message_verb_continuous = "attacks"
-		var/message_verb_simple = "attack"
+		var/message_verb_continuous = "攻击"
+		var/message_verb_simple = "攻击"
 		// Sanity in case one is... longer than the other?
 		if (picked_index && length(attacking_item.attack_verb_continuous) >= picked_index)
 			message_verb_continuous = attacking_item.attack_verb_continuous[picked_index]
@@ -100,24 +100,24 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 
 		if(demo_mod > 1 && prob(damage * 5))
 			if(HAS_TRAIT(src, TRAIT_INVERTED_DEMOLITION))
-				message_verb_simple = "shred"
-				message_verb_continuous = "shreds"
+				message_verb_simple = "撕碎"
+				message_verb_continuous = "撕碎"
 			else
-				message_verb_simple = "pulverise"
-				message_verb_continuous = "pulverises"
+				message_verb_simple = "粉碎"
+				message_verb_continuous = "粉碎"
 
 		if(demo_mod < 1)
-			message_verb_simple = "ineffectively " + message_verb_simple
-			message_verb_continuous = "ineffectively " + message_verb_continuous
+			message_verb_simple = "徒劳地" + message_verb_simple
+			message_verb_continuous = "徒劳地" + message_verb_continuous
 
 		user.visible_message(
-			span_danger("[user] [message_verb_continuous] [src] with [attacking_item][damage ? "." : ", [no_damage_feedback]!"]"),
-			span_danger("You [message_verb_simple] [src] with [attacking_item][damage ? "." : ", [no_damage_feedback]!"]"),
+			span_danger("[user]用[attacking_item][message_verb_continuous]了[src][damage ? "。" : "，[no_damage_feedback]！"]"),
+			span_danger("你用[attacking_item][message_verb_simple]了[src][damage ? "。" : "，[no_damage_feedback]！"]"),
 			null,
 			COMBAT_MESSAGE_RANGE,
 		)
 
-	log_combat(user, src, "attacked", attacking_item)
+	log_combat(user, src, "攻击了", attacking_item)
 	return damage
 
 /obj/assume_air(datum/gas_mixture/giver)
@@ -171,8 +171,8 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /obj/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "--- /obj ---")
-	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "Delete all of type")
-	VV_DROPDOWN_OPTION(VV_HK_OSAY, "Object Say")
+	VV_DROPDOWN_OPTION(VV_HK_MASS_DEL_TYPE, "删除该类型的所有对象")
+	VV_DROPDOWN_OPTION(VV_HK_OSAY, "对象发言")
 
 /obj/vv_do_topic(list/href_list)
 	. = ..()
@@ -186,12 +186,12 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 	if(href_list[VV_HK_MASS_DEL_TYPE])
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
-		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
+		var/action_type = tgui_alert(usr, "仅严格类型（[type]），还是该类型及其所有子类型？",,list("Strict type","Type and subtypes","Cancel"))
 		if(action_type == "Cancel" || !action_type)
 			return
-		if(tgui_alert(usr, "Are you really sure you want to delete all objects of type [type]?",,list("Yes","No")) != "Yes")
+		if(tgui_alert(usr, "你确定要删除所有类型为 [type] 的对象吗？",,list("Yes","No")) != "Yes")
 			return
-		if(tgui_alert(usr, "Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
+		if(tgui_alert(usr, "需要进行第二次确认。确定删除？",,list("Yes","No")) != "Yes")
 			return
 		var/O_type = type
 		switch(action_type)
@@ -203,10 +203,10 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(usr, "不存在该类型的对象")
 					return
-				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) "))
+				log_admin("[key_name(usr)] 删除了所有类型为 [O_type] 的对象（共删除 [i] 个对象）")
+				message_admins(span_notice("[key_name(usr)] 删除了所有类型为 [O_type] 的对象（共删除 [i] 个对象）"))
 			if("Type and subtypes")
 				var/i = 0
 				for(var/obj/Obj in world)
@@ -215,10 +215,10 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No objects of this type exist")
+					to_chat(usr, "不存在该类型的对象")
 					return
-				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) "))
+				log_admin("[key_name(usr)] 删除了所有类型为 [O_type] 或其子类型的对象（共删除 [i] 个对象）")
+				message_admins(span_notice("[key_name(usr)] 删除了所有类型为 [O_type] 或其子类型的对象（共删除 [i] 个对象）"))
 
 /obj/examine(mob/user)
 	. = ..()
@@ -228,9 +228,9 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /obj/examine_tags(mob/user)
 	. = ..()
 	if(obj_flags & UNIQUE_RENAME)
-		.["renameable"] = "Use a pen on it to rename it or change its description."
+		.["renameable"] = "用笔在上面书写即可重命名或修改描述。"
 	if(obj_flags & CONDUCTS_ELECTRICITY)
-		.["conductive"] = "It appears to be a good conductor of electricity."
+		.["conductive"] = "它似乎是电的良导体。"
 
 /obj/analyzer_act(mob/living/user, obj/item/analyzer/tool)
 	if(atmos_scan(user=user, target=src, silent=FALSE))
@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 /obj/proc/can_be_unfasten_wrench(mob/user, silent)
 	if(!is_anchorable_floor(loc) && !anchored)
 		if(!silent)
-			to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
+			to_chat(user, span_warning("[src]需要放在地面上才能固定！"))
 		return FAILED_UNFASTEN
 	return SUCCESSFUL_UNFASTEN
 
@@ -290,22 +290,22 @@ GLOBAL_LIST_EMPTY(objects_by_id_tag)
 
 	var/turf/ground = get_turf(src)
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
+		to_chat(user, span_notice("你没能固定住[src]。"))
 		return CANT_UNFASTEN
 	var/can_be_unfasten = can_be_unfasten_wrench(user)
 	if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
 		return can_be_unfasten
 	if(time)
-		to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
+		to_chat(user, span_notice("你开始[anchored ? "解除" : ""]固定[src]……"))
 	wrench.play_tool_sound(src, 50)
 	var/prev_anchored = anchored
 	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
 	if(!wrench.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
 		return FAILED_UNFASTEN
 	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
-		to_chat(user, span_notice("You fail to secure [src]."))
+		to_chat(user, span_notice("你没能固定住[src]。"))
 		return CANT_UNFASTEN
-	to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
+	to_chat(user, span_notice("你[anchored ? "解除" : ""]固定了[src]。"))
 	set_anchored(!anchored)
 	check_on_table()
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)

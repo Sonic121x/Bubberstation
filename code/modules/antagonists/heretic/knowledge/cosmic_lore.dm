@@ -11,28 +11,28 @@
 		"moving" = FALSE,
 	)
 	description = list(
-		"The Path of Cosmos revolves around area denial, teleporation, and mastery over space.",
-		"Pick this path if you enjoy adapting to your environment and thinking outside (or inside) the box.",
+		"星辰之道围绕区域封锁、传送与对空间的掌控展开。",
+		"如果你喜欢适应环境、跳出（或钻进）常规思维，就选这条道路。",
 	)
 	pros = list(
-		"Control the movement of foes with cosmic fields",
-		"Move in and around space with ease.",
-		"Teleport rapidly across the station.",
-		"Confound opponents with barriers upon barriers.",
+		"用星辰力场控制敌人的移动",
+		"在太空中来去自如。",
+		"在空间站内快速传送。",
+		"用层层叠叠的屏障令对手困惑。",
 	)
 	cons = list(
-		"Requires you spread your star mark to affect opponents with your cosmic fields.",
-		"Relatively low damage.",
-		"Relatively low direct defense, highly reliant on proper use of abilities.",
+		"需要你先散布星印，才能用星辰力场影响对手。",
+		"伤害相对较低。",
+		"直接防御相对较低，高度依赖恰当使用能力。",
 	)
 	tips = list(
-		"Your Mansus Grasp will mark your opponent with a star mark, as well as leave a mark that, when detonated, will teleport your opponent back to the place where the mark was applied and briefly paralyze them.",
-		"Your cosmic runes can quickly teleport you from two different locations instantly. Beware, however; non-heretics are also able to travel through them. Be creative and have your opponents teleport right into a trap. They come out star marked!",
-		"When standing on top of a cosmic rune, you can click on yourself with a empty hand to activate it.",
-		"Star marked opponents cannot cross your cosmic fields willingly. But they can be dragged through!",
-		"Star Blast is both a jaunt ability as well as a disabling tool. Use it to catch several people in your cosmic fields at once.",
-		"Star Touch will prevent your target from teleporting away. Should they fail to break the tether, they will be put to sleep and then teleport to your feet.",
-		"It's Always a good idea to leave one cosmic rune near your ritual rune, it will allow you to quickly kidnap your targets to sacrifice them.",
+		"你的漫宿之握会给对手留下星印，并留下一个印记；引爆该印记会将对手传送回印记施加之处，并使其短暂麻痹。",
+		"你的星辰符文能让你在两个不同地点之间瞬间传送。但要小心：非异教徒也能通过这些符文穿行。发挥创意，让对手直接传送进陷阱。他们出来时身上会带着星印！",
+		"站在星辰符文上时，你可以用空手点击自己来激活它。",
+		"带有星印的对手无法主动穿过你的星辰力场。但他们可以被拖过去！",
+		"“星爆”既是位移手段，也是控制工具。用它一次把好几个人困在你的星辰力场里。",
+		"“星辰之触”能阻止目标传送逃离。若他们无法挣脱束缚，就会陷入沉睡，然后被传送到你脚下。",
+		"在仪式符文旁留一个星辰符文总是不错的主意，这样你就能迅速绑架目标来献祭。",
 	)
 
 	start = /datum/heretic_knowledge/limited_amount/starting/base_cosmic
@@ -48,12 +48,12 @@
 	ascension = /datum/heretic_knowledge/ultimate/cosmic_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_cosmic
-	name = "Eternal Gate"
-	desc = "Opens up the Path of Cosmos to you.<br>\
-		Allows you to create Cosmic Blades. \
-		You can only create two at a time."
-	transmute_text = "Transmute a sheet of plasma and a knife."
-	gain_text = "A nebula appeared in the sky, its infernal birth shone upon me. This was the start of a great transcendence."
+	name = "永恒之门"
+	desc = "为你开启星辰之道。<br>\
+		允许你制造星辰之刃。\
+		你最多只能同时拥有两把。"
+	transmute_text = "用一张等离子板和一把刀转化。"
+	gain_text = "天空中浮现出一片星云，它那来自地狱的诞生之光洒在我身上。这是一场伟大超越的开端。"
 	required_atoms = list(
 		/obj/item/knife = 1,
 		/obj/item/stack/sheet/mineral/plasma = 1,
@@ -68,27 +68,27 @@
 /datum/heretic_knowledge/limited_amount/starting/base_cosmic/on_mansus_grasp(mob/living/source, mob/living/target)
 	. = ..()
 
-	to_chat(target, span_danger("A cosmic ring appeared above your head!"))
+	to_chat(target, span_danger("一道星辰光环出现在你头顶！"))
 	target.apply_status_effect(/datum/status_effect/star_mark, source)
 	create_cosmic_field(get_turf(source), source)
 
 /datum/heretic_knowledge/spell/cosmic_runes
-	name = "Cosmic Runes"
-	desc = "Grants you Cosmic Runes, a spell that creates two runes linked with each other for easy teleportation. \
-		Only the entity activating the rune will get transported, and it can be used by anyone without a star mark. \
-		However, people with a star mark will get transported along with another person using the rune."
-	gain_text = "The distant stars crept into my dreams, roaring and screaming without reason. \
-		I spoke, and heard my own words echoed back."
+	name = "星辰符文"
+	desc = "赋予你“星辰符文”，一个能创造两枚彼此相连、便于传送的符文的咒法。\
+		只有激活符文的实体才会被传送，且任何人都能在没有星印的情况下使用它。\
+		不过，带有星印的人会随另一名使用符文者一同被传送。"
+	gain_text = "遥远的星辰潜入我的梦境，毫无缘由地咆哮尖叫。\
+		我开口说话，却听见自己的话语被回响而来。"
 	action_to_add = /datum/action/cooldown/spell/cosmic_rune
 	cost = 2
 	drafting_tier = 5
 	max_charges = INFINITY
 
 /datum/heretic_knowledge/spell/star_blast
-	name = "Star Blast"
-	desc = "Fires a projectile that moves very slowly, raising a short-lived wall of cosmic fields where it goes. \
-		Anyone hit by the projectile will receive burn damage, a knockdown, and give people in a three tile range a star mark."
-	gain_text = "The Beast was behind me now at all times, with each sacrifice words of affirmation coursed through me."
+	name = "星爆"
+	desc = "发射一枚移动极慢的投射物，沿途升起一道短暂的星辰力场之墙。\
+		被投射物击中的任何人都会受到灼伤伤害、被击倒，并使三格范围内的所有人获得星印。"
+	gain_text = "那野兽如今始终跟在我身后，每一次献祭都有肯定的话语流经我身。"
 	action_to_add = /datum/action/cooldown/spell/pointed/projectile/star_blast
 	cost = 2
 	max_charges = 4
@@ -97,11 +97,11 @@
 	holywater_drain_amount = 0.25
 
 /datum/heretic_knowledge/armor/cosmic
-	desc = "Create a Starwoven Cloak.<br>Grants protection from the hazards of space \
-		while granting to the user the ability to levitate at will."
-	transmute_text = "Transmute a table (or a suit), a mask and a sheet of plasma."
-	gain_text = "Like radiant cords, the stars shone in union across the silken shape of a billowing cloak, that at once does and does not drape my shoulders. \
-		The eyes of the Beast rested upon me, and through me."
+	desc = "制造一件星辰织就的斗篷。<br>提供对太空危害的防护，\
+		同时赋予使用者随心所欲漂浮的能力。"
+	transmute_text = "用一张桌子（或一套西装）、一个面具和一张等离子板转化。"
+	gain_text = "星辰如光芒之绳，在翻涌斗篷的丝质轮廓上齐声闪耀，它既披在我肩上，又没有披在我肩上。\
+		那野兽的目光落在我身上，并穿透了我。"
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/cosmic)
 	research_tree_icon_state = "cosmic_armor"
 	required_atoms = list(
@@ -111,13 +111,13 @@
 	)
 
 /datum/heretic_knowledge/spell/star_touch
-	name = "Star Touch"
-	desc = "Grants you Star Touch, a spell which places a star mark upon your target \
-		and creates a cosmic field at your feet and to the turfs next to you. Targets which already have a star mark \
-		will be forced to sleep for 4 seconds. When the victim is hit it also creates a beam that burns them. \
-		The beam lasts a minute, until the beam is obstructed or until a new target has been found."
-	gain_text = "After waking in a cold sweat I felt a palm on my scalp, a sigil burned onto me. \
-		My veins now emitted a strange purple glow, the Beast knows I will surpass its expectations."
+	name = "星辰之触"
+	desc = "赋予你“星辰之触”，一个在目标身上施加星印，\
+		并在你脚下及相邻地块创造星辰力场的咒法。已带有星印的目标\
+		会被迫沉睡 4 秒。击中受害者时还会产生一道灼烧他们的光束。\
+		光束持续一分钟，直到被遮挡或找到新的目标为止。"
+	gain_text = "我在冷汗中醒来，感到一只手掌按在我头顶，一道印记灼烧在我身上。\
+		我的血管如今散发着奇异的紫色光芒，那野兽知道我会超越它的期望。"
 	action_to_add = /datum/action/cooldown/spell/touch/star_touch
 	cost = 2
 	max_charges = 4
@@ -126,13 +126,13 @@
 	holywater_drain_amount = 0.25
 
 /datum/heretic_knowledge/blade_upgrade/cosmic
-	name = "Cosmic Blade"
-	desc = "Your blade now star marks your victims, and allows you to attack star marked heathens from further away. \
-		Your attacks will chain bonus damage to up to two previous victims. \
-		The combo is reset after two seconds without making an attack, or if you attack someone already marked. \
-		If you combo three attacks you will receive a cosmic trail and increase your combo timer up to ten seconds."
-	gain_text = "The Beast took my blades in their hand, I kneeled and felt a sharp pain. \
-		The blades now glistened with fragmented power. I fell to the ground and wept at the beast's feet."
+	name = "星辰之刃"
+	desc = "你的刀锋现在会给受害者留下星印，并允许你从更远处攻击带有星印的异端。\
+		你的攻击会将额外伤害连锁传递给此前的最多两名受害者。\
+		若两秒内未发动攻击，或攻击了已被标记的人，连击就会重置。\
+		若你完成三连击，就会获得星辰轨迹，并将连击时限提升至十秒。"
+	gain_text = "那野兽将我的刀锋握在手中，我跪了下来，感到一阵剧痛。\
+		刀锋如今闪耀着碎裂的力量。我扑倒在地，在野兽脚边哭泣。"
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_cosmos"
 	/// Storage for the second target.
@@ -217,10 +217,10 @@
 		combo_duration += increase_amount
 
 /datum/heretic_knowledge/spell/cosmic_expansion
-	name = "Cosmic Expansion"
-	desc = "Grants you Cosmic Expansion, a spell that creates a 5x5 area of cosmic fields around you. \
-		Nearby beings will also receive a star mark."
-	gain_text = "The ground now shook beneath me. The Beast inhabited me, and their voice was intoxicating."
+	name = "星辰扩张"
+	desc = "赋予你“星辰扩张”，一个在你周围创造出 5x5 星辰力场区域的咒法。\
+		附近的生物也会获得星印。"
+	gain_text = "大地在我脚下震颤。那野兽寄宿于我体内，它的声音令人沉醉。"
 	action_to_add = /datum/action/cooldown/spell/conjure/cosmic_expansion
 	cost = 2
 	is_final_knowledge = TRUE
@@ -229,23 +229,23 @@
 	holywater_drain_amount = 0.25
 
 /datum/heretic_knowledge/ultimate/cosmic_final
-	name = "Creators's Gift"
-	desc = "The ascension ritual of the Path of Cosmos.<br>\
-		When completed, you become the owner of a Star Gazer. \
-		You will be able to command the Star Gazer with Alt+click. \
-		You can also give it commands through speech.<br>\
-		The Star Gazer is a strong ally who can even break down reinforced walls. \
-		The Star Gazer has an aura that will heal you and damage opponents.<br>\
-		Star Touch can now teleport you to the Star Gazer when activated in your hand.<br>\
-		Your cosmic expansion spell and your blades also become greatly empowered."
-	transmute_text = "Transmute three corpses with a star mark on them."
-	gain_text = "The Beast held out its hand, I grabbed hold and they pulled me to them. Their body was towering, but it seemed so small and feeble after all their tales compiled in my head. \
-		I clung on to them, they would protect me, and I would protect it. \
-		I closed my eyes with my head laid against their form. I was safe. \
-		WITNESS MY ASCENSION!"
+	name = "造物主之赐"
+	desc = "星辰之道的登神仪式。<br>\
+		完成后，你将拥有一名观星者。\
+		你可以用 Alt+点击 指挥观星者。\
+		你也可以通过言语向它下达命令。<br>\
+		观星者是一名强大的盟友，甚至能摧毁加固墙壁。\
+		观星者拥有光环，会治疗你并伤害对手。<br>\
+		“星辰之触”在手部激活时，现在可以将你传送到观星者身边。<br>\
+		你的星辰扩张咒法与刀锋也会得到极大强化。"
+	transmute_text = "转化三具带有星印的尸体。"
+	gain_text = "那野兽伸出手，我抓住了它，它把我拉了过去。它的身躯高耸，但在它所有传说都已汇集于我脑中之后，它看起来又是如此渺小而虚弱。\
+		我紧紧依附于它，它会保护我，我也会保护它。\
+		我把头靠在它的形体上，闭上了眼睛。我安全了。\
+		见证我的登神！"
 
 	ascension_achievement = /datum/award/achievement/misc/cosmic_ascension
-	announcement_text = "%SPOOKY% A Star Gazer has arrived into the station, %NAME% has ascended! This station is the domain of the Cosmos! %SPOOKY%"
+	announcement_text = "%SPOOKY% 一位观星者已降临空间站，%NAME% 已登神！这座空间站已是星辰的领域！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_cosmic.ogg'
 	/// A static list of command we can use with our mob.
 	var/static/list/star_gazer_commands = list(
@@ -308,8 +308,8 @@
 
 /// Replace an annoying griefer you were paired up to with a different but probably no less annoying player.
 /datum/action/cooldown/mob_cooldown/replace_star_gazer
-	name = "Reset Star Gazer Consciousness"
-	desc = "Replaces the mind of your summon with that of a different ghost."
+	name = "重置观星者意识"
+	desc = "用另一个幽灵的心智替换你召唤物的心智。"
 	button_icon = 'icons/mob/simple/mob.dmi'
 	button_icon_state = "ghost"
 	background_icon_state = "bg_heretic"
@@ -327,15 +327,15 @@
 
 	var/mob/living/to_reset = bad_dog.resolve()
 
-	to_chat(owner, span_mansus("You prompt [to_reset] to shift it\'s personality..."))
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates("Do you want to play as [span_danger("[owner.real_name]'s")] [span_notice(to_reset.name)]?", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, alert_pic = to_reset, jump_target = owner, role_name_text = to_reset.name, amount_to_pick = 1)
+	to_chat(owner, span_mansus("你提示 [to_reset] 转换其人格……"))
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates("你想扮演 [span_danger("[owner.real_name] 的")] [span_notice(to_reset.name)] 吗？", check_jobban = ROLE_PAI, poll_time = 10 SECONDS, alert_pic = to_reset, jump_target = owner, role_name_text = to_reset.name, amount_to_pick = 1)
 	if(isnull(chosen_one))
-		to_chat(owner, span_mansus("Your request to shift [to_reset]'\s personality appears to have been denied... Looks like you're stuck with it for now."))
+		to_chat(owner, span_mansus("你为 [to_reset] 请求人格转换的申请似乎被拒绝了……看来你现在只能先将就着用它。"))
 		StartCooldown()
 		return FALSE
-	to_chat(to_reset, span_mansus("Your summoner reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance."))
-	to_chat(owner, span_mansus("The mind of [to_reset] has twisted itself to suit you better."))
-	message_admins("[key_name_admin(chosen_one)] has taken control of ([ADMIN_LOOKUPFLW(to_reset)])")
+	to_chat(to_reset, span_mansus("你的召唤者重置了你，你的身体被一个幽灵接管了。看来他们对你的表现并不满意。"))
+	to_chat(owner, span_mansus("[to_reset] 的心智已经扭转，以更好地适应你。"))
+	message_admins("[key_name_admin(chosen_one)] 已接管了 ([ADMIN_LOOKUPFLW(to_reset)])")
 	to_reset.ghostize(FALSE)
 	to_reset.PossessByPlayer(chosen_one.key)
 	StartCooldown()

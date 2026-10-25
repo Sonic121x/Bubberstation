@@ -1,6 +1,6 @@
 /obj/item/storage/belt
-	name = "not actually a toolbelt"
-	desc = "Can hold various things. This is the base type of /belt, are you sure you should have this?"
+	name = "其实不是工具腰带"
+	desc = "可以装下各种东西。这是 /belt 的基础类型，你确定你该拿到这个吗？"
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utility"
 	inhand_icon_state = "utility"
@@ -9,15 +9,15 @@
 	righthand_file = 'icons/mob/inhands/equipment/belt_righthand.dmi'
 	abstract_type = /obj/item/storage/belt
 	slot_flags = ITEM_SLOT_BELT
-	attack_verb_continuous = list("whips", "lashes", "disciplines")
-	attack_verb_simple = list("whip", "lash", "discipline")
+	attack_verb_continuous = list("抽打", "鞭打", "惩戒")
+	attack_verb_simple = list("抽打", "鞭打", "惩戒")
 	max_integrity = 300
 	equip_sound = 'sound/items/equip/toolbelt_equip.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	var/content_overlays = FALSE //If this is true, the belt will gain overlays based on what it's holding
 
 /obj/item/storage/belt/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins belting [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]抽打自己！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/storage/belt/update_overlays()
@@ -33,8 +33,8 @@
 	update_appearance()
 
 /obj/item/storage/belt/utility
-	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
-	desc = "Holds tools."
+	name = "工具腰带" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	desc = "用于装工具。"
 	icon_state = "utility"
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
@@ -45,8 +45,8 @@
 	storage_type = /datum/storage/utility_belt
 
 /obj/item/storage/belt/utility/chief
-	name = "chief engineer's toolbelt"
-	desc = "Holds tools, looks snazzy."
+	name = "总工程师工具腰带"
+	desc = "用于装工具，看起来很时髦。"
 	icon_state = "utility_ce"
 	inhand_icon_state = "utility_ce"
 	worn_icon_state = "utility_ce"
@@ -189,8 +189,8 @@
 	new /obj/item/inducer/syndicate(src)
 
 /obj/item/storage/belt/medical
-	name = "medical belt"
-	desc = "Can hold various medical equipment."
+	name = "医疗腰带"
+	desc = "可以装下各种医疗设备。"
 	icon_state = "medical"
 	inhand_icon_state = "medical"
 	worn_icon_state = "medical"
@@ -199,7 +199,7 @@
 	storage_type = /datum/storage/medical_belt
 
 /obj/item/storage/belt/medical/paramedic
-	name = "EMT belt"
+	name = "急救员腰带"
 	icon_state = "emt"
 	inhand_icon_state = "security"
 	worn_icon_state = "emt"
@@ -254,8 +254,8 @@
 	return to_preload
 
 /obj/item/storage/belt/security
-	name = "security belt"
-	desc = "Can hold security gear like handcuffs and flashes."
+	name = "安保腰带"
+	desc = "可以装下手铐、闪光弹等安保装备。"
 	icon_state = "security"
 	inhand_icon_state = "security"//Could likely use a better one.
 	worn_icon_state = "security"
@@ -271,8 +271,8 @@
 	update_appearance()
 
 /obj/item/storage/belt/security/webbing
-	name = "security webbing"
-	desc = "Unique and versatile chest rig, can hold security gear."
+	name = "安保胸挂"
+	desc = "独特而多用途的胸挂，可以装载安保装备。"
 	icon_state = "securitywebbing"
 	inhand_icon_state = "securitywebbing"
 	worn_icon_state = "securitywebbing"
@@ -281,8 +281,8 @@
 	storage_type = /datum/storage/security_belt/webbing
 
 /obj/item/storage/belt/mining
-	name = "explorer's webbing"
-	desc = "A versatile chest rig, cherished by miners and hunters alike."
+	name = "探险者胸挂"
+	desc = "多用途胸挂，深受矿工与猎人喜爱。"
 	icon_state = "explorer1"
 	inhand_icon_state = "explorer1"
 	worn_icon_state = "explorer1"
@@ -307,16 +307,16 @@
 		core.preserve()
 
 /obj/item/storage/belt/mining/primitive
-	name = "hunter's belt"
-	desc = "A versatile belt, woven from sinew."
+	name = "猎手腰带"
+	desc = "多用途腰带，用肌腱编织而成。"
 	icon_state = "ebelt"
 	inhand_icon_state = "ebelt"
 	worn_icon_state = "ebelt"
 	storage_type = /datum/storage/mining_belt/primitive
 
 /obj/item/storage/belt/soulstone
-	name = "soul stone belt"
-	desc = "Designed for ease of access to the shards during a fight, as to not let a single enemy spirit slip away."
+	name = "灵魂石腰带"
+	desc = "设计上便于在战斗中取用碎片，以免让任何一个敌人灵魂溜走。"
 	icon_state = "soulstonebelt"
 	inhand_icon_state = "soulstonebelt"
 	worn_icon_state = "soulstonebelt"
@@ -333,8 +333,8 @@
 		new /obj/item/soulstone/anybody/chaplain(src)
 
 /obj/item/storage/belt/champion
-	name = "championship belt"
-	desc = "Proves to the world that you are the strongest!"
+	name = "冠军腰带"
+	desc = "向全世界证明你是最强的！"
 	icon_state = "championbelt"
 	inhand_icon_state = "championbelt"
 	worn_icon_state = "championbelt"
@@ -347,8 +347,8 @@
 	AddElement(/datum/element/adjust_fishing_difficulty, -2)
 
 /obj/item/storage/belt/military
-	name = "chest rig"
-	desc = "A set of tactical webbing worn by Syndicate boarding parties."
+	name = "胸挂"
+	desc = "一套由辛迪加登舰部队穿着的战术胸挂。"
 	icon_state = "militarywebbing"
 	inhand_icon_state = "militarywebbing"
 	worn_icon_state = "militarywebbing"
@@ -356,13 +356,13 @@
 	storage_type = /datum/storage/military_belt
 
 /obj/item/storage/belt/military/snack
-	name = "tactical snack rig"
+	name = "战术零食胸挂"
 	storage_type = /datum/storage/military_belt/snack
 
 /obj/item/storage/belt/military/snack/Initialize(mapload)
 	. = ..()
-	var/sponsor = pick("Donk Co.", "Waffle Corp.", "Roffle Co.", "Gorlex Marauders", "Tiger Cooperative")
-	desc = "A set of snack-tical webbing worn by athletes of the [sponsor] VR sports division."
+	var/sponsor = pick("咚克公司", "华夫公司", "罗福公司", "戈尔莱克斯掠夺者", "猛虎合作社")
+	desc = "一套由[sponsor]虚拟现实体育分部运动员穿着的零食战术胸挂。"
 
 /obj/item/storage/belt/military/snack/full/Initialize(mapload)
 	. = ..()
@@ -396,8 +396,8 @@
 		new rig_snacks(src)
 
 /obj/item/storage/belt/military/abductor
-	name = "agent belt"
-	desc = "A belt used by abductor agents."
+	name = "特工腰带"
+	desc = "绑架者特工使用的腰带。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "belt"
 	inhand_icon_state = "security"
@@ -414,15 +414,15 @@
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/belt/military/army
-	name = "army belt"
-	desc = "A belt used by military forces."
+	name = "军用腰带"
+	desc = "军队使用的腰带。"
 	icon_state = "military"
 	inhand_icon_state = "security"
 	worn_icon_state = "military"
 
 /obj/item/storage/belt/military/assault
-	name = "assault belt"
-	desc = "A tactical assault belt."
+	name = "突击腰带"
+	desc = "一条战术突击腰带。"
 	icon_state = "assault"
 	inhand_icon_state = "security"
 	worn_icon_state = "assault"
@@ -435,8 +435,8 @@
 	), src)
 
 /obj/item/storage/belt/grenade
-	name = "grenadier belt"
-	desc = "A belt for holding grenades."
+	name = "掷弹兵腰带"
+	desc = "用于装手榴弹的腰带。"
 	icon_state = "grenadebeltnew"
 	inhand_icon_state = "security"
 	worn_icon_state = "grenadebeltnew"
@@ -459,8 +459,8 @@
 
 
 /obj/item/storage/belt/wands
-	name = "wand belt"
-	desc = "A belt designed to hold various rods of power. A veritable fanny pack of exotic magic."
+	name = "魔杖腰带"
+	desc = "设计用于装下各种能量法杖。名副其实的异域魔法腰包。"
 	icon_state = "soulstonebelt"
 	inhand_icon_state = "soulstonebelt"
 	worn_icon_state = "soulstonebelt"
@@ -516,8 +516,8 @@
 
 /// Not a subtype of bandolier because it acts pretty differently
 /obj/item/storage/belt/wand_bandolier
-	name = "wand bandolier"
-	desc = "A bandolier for holding a whole lot of wands. If worn on your suit, swaps expended wands for fresh ones on the fly."
+	name = "魔杖弹带"
+	desc = "用于装下大量魔杖的弹带。佩戴在套装上时，可在行进间将耗尽的魔杖换成新的。"
 	icon_state = "bandolier"
 	inhand_icon_state = "bandolier"
 	worn_icon_state = "bandolier"
@@ -560,15 +560,15 @@
 	wizard.temporarilyRemoveItemFromInventory(old_wand)
 	if (!wizard.put_in_hands(fresh_wand))
 		return
-	to_chat(wizard, span_notice("You quickly draw [fresh_wand]."))
+	to_chat(wizard, span_notice("你迅速抽出[fresh_wand]。"))
 	if (atom_storage.attempt_insert(old_wand, wizard))
 		return
 	old_wand.forceMove(wizard.drop_location())
-	to_chat(wizard, span_warning("...and drop [old_wand] on the ground."))
+	to_chat(wizard, span_warning("……并把[old_wand]掉在地上。"))
 
 /obj/item/storage/belt/janitor
-	name = "janibelt"
-	desc = "A belt used to hold most janitorial supplies."
+	name = "清洁腰带"
+	desc = "用于装下大多数清洁用品的腰带。"
 	icon_state = "janibelt"
 	inhand_icon_state = "janibelt"
 	worn_icon_state = "janibelt"
@@ -584,8 +584,8 @@
 	new /obj/item/melee/flyswatter(src)
 
 /obj/item/storage/belt/bandolier
-	name = "bandolier"
-	desc = "A bandolier for holding rifle shotgun, and bigger revolver caliber ammunition."
+	name = "弹带"
+	desc = "用于装填步枪、霰弹枪以及更大口径左轮弹药的弹带。"
 	icon_state = "bandolier"
 	inhand_icon_state = "bandolier"
 	worn_icon_state = "bandolier"
@@ -597,8 +597,8 @@
 	), src)
 
 /obj/item/storage/belt/fannypack
-	name = "fannypack"
-	desc = "A dorky fannypack for keeping small items in. Concealed enough, or ugly enough to avert their eyes, that others won't see what you put in or take out easily."
+	name = "腰包"
+	desc = "一个呆头呆脑的小腰包，用来装小物件。它足够隐蔽——或者足够难看让人别开眼——别人不容易看清你放进或取出了什么。"
 	icon_state = "fannypack_leather"
 	inhand_icon_state = null
 	worn_icon_state = "fannypack_leather"
@@ -607,58 +607,58 @@
 	storage_type = /datum/storage/fanny_pack
 
 /obj/item/storage/belt/fannypack/black
-	name = "black fannypack"
+	name = "黑色腰包"
 	icon_state = "fannypack_black"
 	worn_icon_state = "fannypack_black"
 
 /obj/item/storage/belt/fannypack/red
-	name = "red fannypack"
+	name = "红色腰包"
 	icon_state = "fannypack_red"
 	worn_icon_state = "fannypack_red"
 
 /obj/item/storage/belt/fannypack/purple
-	name = "purple fannypack"
+	name = "紫色腰包"
 	icon_state = "fannypack_purple"
 	worn_icon_state = "fannypack_purple"
 
 /obj/item/storage/belt/fannypack/blue
-	name = "blue fannypack"
+	name = "蓝色腰包"
 	icon_state = "fannypack_blue"
 	worn_icon_state = "fannypack_blue"
 
 /obj/item/storage/belt/fannypack/orange
-	name = "orange fannypack"
+	name = "橙色腰包"
 	icon_state = "fannypack_orange"
 	worn_icon_state = "fannypack_orange"
 
 /obj/item/storage/belt/fannypack/white
-	name = "white fannypack"
+	name = "白色腰包"
 	icon_state = "fannypack_white"
 	worn_icon_state = "fannypack_white"
 
 /obj/item/storage/belt/fannypack/green
-	name = "green fannypack"
+	name = "绿色腰包"
 	icon_state = "fannypack_green"
 	worn_icon_state = "fannypack_green"
 
 /obj/item/storage/belt/fannypack/pink
-	name = "pink fannypack"
+	name = "粉色腰包"
 	icon_state = "fannypack_pink"
 	worn_icon_state = "fannypack_pink"
 
 /obj/item/storage/belt/fannypack/cyan
-	name = "cyan fannypack"
+	name = "青色腰包"
 	icon_state = "fannypack_cyan"
 	worn_icon_state = "fannypack_cyan"
 
 /obj/item/storage/belt/fannypack/yellow
-	name = "yellow fannypack"
+	name = "黄色腰包"
 	icon_state = "fannypack_yellow"
 	worn_icon_state = "fannypack_yellow"
 
 /obj/item/storage/belt/fannypack/cummerbund
-	name = "cummerbund"
-	desc = "A pleated sash that pairs well with a suit jacket."
+	name = "腰封"
+	desc = "一条打褶的腰封，与西装外套搭配相宜。"
 	icon_state = "cummerbund"
 	inhand_icon_state = null
 	worn_icon_state = "cummerbund"
@@ -669,7 +669,7 @@
 	new /obj/item/grenade/chem_grenade/facid(src)
 
 /obj/item/storage/belt/fannypack/black/rogue
-	name = "fannypack of ULTIMATE DESPAIR"
+	name = "终极绝望腰包"
 
 /obj/item/storage/belt/fannypack/black/rogue/PopulateContents()
 	new /obj/item/food/drug/saturnx(src)
@@ -677,7 +677,7 @@
 	new /obj/item/reagent_containers/hypospray/medipen/methamphetamine(src)
 
 /obj/item/storage/belt/sheath
-	desc = "holds like, blades and stuff. You should not be seeing this."
+	desc = "用来装……刀之类的东西。你不该看到这个。"
 	w_class = WEIGHT_CLASS_BULKY
 	interaction_flags_click = parent_type::interaction_flags_click | NEED_DEXTERITY | NEED_HANDS
 	var/stored_blade
@@ -698,14 +698,14 @@
 /obj/item/storage/belt/sheath/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += span_notice("Alt-click it to quickly draw the blade.")
+		. += span_notice("按住 Alt 点击可快速抽出刀刃。")
 
 /obj/item/storage/belt/sheath/click_alt(mob/user)
 	if(!length(contents))
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, "是空的！")
 		return CLICK_ACTION_BLOCKING
 	var/obj/item/stored_item = contents[1]
-	user.visible_message(span_notice("[user] takes [stored_item] out of [src]."), span_notice("You take [stored_item] out of [src]."))
+	user.visible_message(span_notice("[user]从[src]中取出[stored_item]。"), span_notice("你从[src]中取出[stored_item]。"))
 	user.put_in_hands(stored_item)
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
@@ -730,14 +730,14 @@
 	COOLDOWN_START(src, resheath_cooldown, 10 SECONDS)
 
 /datum/action/innate/blade_counter
-	name = "Counterattack"
-	desc = "Anticipate an enemy's attack and strike back with your sheathed blade."
+	name = "反击"
+	desc = "预判敌人的攻击，用鞘中的刀刃反击。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "declaration"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/honorbound.dmi'
 
-	enable_text = "You prepare to counterattack a target..."
-	disable_text = "You relax your stance."
+	enable_text = "你准备反击目标……"
+	disable_text = "你放松了架势。"
 
 	click_action = TRUE
 
@@ -749,15 +749,15 @@
 	var/obj/item/storage/belt/sheath/owners_sheath = target
 	if(!COOLDOWN_FINISHED(owners_sheath, full_ability_cooldown))
 		if(feedback)
-			to_chat(owner, span_warning("You failed a counterattack too recently!"))
+			to_chat(owner, span_warning("你刚刚才反击失败过，还没恢复！"))
 		return FALSE
 	if(!length(owners_sheath.contents))
 		if(feedback)
-			to_chat(owner, span_warning("Your sheath is empty!"))
+			to_chat(owner, span_warning("你的刀鞘是空的！"))
 		return FALSE
 	if(!COOLDOWN_FINISHED(owners_sheath, resheath_cooldown))
 		if(feedback)
-			to_chat(owner, span_warning("You only just resheathed your blade!"))
+			to_chat(owner, span_warning("你才刚刚把刀收回鞘！"))
 		return FALSE
 	return TRUE
 
@@ -765,11 +765,11 @@
 	if(!isliving(cast_on))
 		return FALSE
 	if(owner == cast_on)
-		to_chat(owner, span_warning("You can't counterattack yourself!"))
+		to_chat(owner, span_warning("你不能反击自己！"))
 		return FALSE
 	var/mob/living/target = cast_on
 	if(!target.mind)
-		to_chat(owner, span_warning("They are too unpredictable to counterattack!"))
+		to_chat(owner, span_warning("他们太难以捉摸，无法反击！"))
 		return FALSE
 	var/obj/item/storage/belt/sheath/oursheath = target
 	if(!length(oursheath.contents))
@@ -783,7 +783,7 @@
 	RegisterSignal(swordsman, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(counter_attack))
 	swordsman.Immobilize(1 SECONDS)
 	eyed_fool = WEAKREF(cast_on)
-	swordsman.visible_message(span_danger("[swordsman] widens [swordsman.p_their()] stance, [swordsman.p_their()] hand hovering over \the [used_sheath]!"), span_notice("You prepare to counterattack [cast_on]!"))
+	swordsman.visible_message(span_danger("[swordsman]拉开架势，手悬在[used_sheath]上方！"), span_notice("你准备反击[cast_on]！"))
 	addtimer(CALLBACK(src, PROC_REF(relax), swordsman, used_sheath), 1 SECONDS)
 	COOLDOWN_START(used_sheath, full_ability_cooldown, 60 SECONDS)
 	unset_ranged_ability(swordsman)
@@ -808,7 +808,7 @@
 
 /datum/action/innate/blade_counter/proc/do_strike(mob/living/fool, mob/living/forward_thinker, obj/item/justicetool)
 	var/obj/item/bodypart/offending_hand = fool.get_active_hand()
-	forward_thinker.visible_message(span_danger("[forward_thinker] swiftly draws \the [justicetool] and strikes [fool] during [fool.p_their()] attack!"), span_notice("You swiftly draw \the [justicetool] and counter-attack [fool]!"))
+	forward_thinker.visible_message(span_danger("[forward_thinker]在[fool]攻击之际迅速抽出[justicetool]并击中[fool]！"), span_notice("你在[fool]攻击之际迅速抽出[justicetool]并反击[fool]！"))
 	fool.apply_damage(
 		damage = justicetool.force * COUNTERMULTIPLIER,
 		damagetype = justicetool.damtype,
@@ -826,8 +826,8 @@
 	UnregisterSignal(holder, COMSIG_LIVING_CHECK_BLOCK)
 
 /datum/action/innate/blade_counter/gunpowered
-	name = "Powered Counterattack"
-	desc = "Anticipate an enemy's attack and attempt to strike back, at great risk to yourself. The firing angle requires it be held on your hip."
+	name = "动力反击"
+	desc = "预判敌人的攻击并尝试反击，但自身风险极大。由于击发角度限制，必须将其挂在腰间。"
 
 	/// Whether the currently relevant counterattack succeeded.
 	var/succeeded_attempt = FALSE
@@ -844,8 +844,8 @@
 	var/obj/item/bodypart/offending_hand = fool.get_active_hand()
 	var/obj/item/bodypart/risked_hand = forward_thinker.get_active_hand()
 	if(iscarbon(fool) && offending_hand.dismember(BRUTE, FALSE, WOUND_SLASH))
-		forward_thinker.visible_message(span_danger("[forward_thinker] swiftly draws \the [justicetool] and strikes [fool] during [fool.p_their()] attack, sending [fool.p_their()] arm flying!"),
-										span_notice("You swiftly draw \the [justicetool] and cut off [fool]'s arm!"))
+		forward_thinker.visible_message(span_danger("[forward_thinker]在[fool]攻击之际迅速抽出[justicetool]并击中[fool]，把对方的手臂砍飞！"),
+										span_notice("你在[fool]攻击之际迅速抽出[justicetool]，砍下了[fool]的手臂！"))
 	else
 		fool.apply_damage(
 			damage = justicetool.force * COUNTERMULTIPLIER,
@@ -858,11 +858,11 @@
 			attack_direction = get_dir(forward_thinker, fool),
 			attacking_item = justicetool,
 		)
-		forward_thinker.visible_message(span_danger("[forward_thinker] swiftly draws \the [justicetool] and strikes [fool] during [fool.p_their()] attack!"),
-										span_notice("You swiftly draw \the [justicetool] and strike them mid-attack!"))
+		forward_thinker.visible_message(span_danger("[forward_thinker]在[fool]攻击之际迅速抽出[justicetool]并击中[fool]！"),
+										span_notice("你迅速抽出[justicetool]，在对方攻击途中命中了他！"))
 	if(!IS_ROBOTIC_LIMB(risked_hand))
-		forward_thinker.visible_message(span_danger("[forward_thinker]'s arm is unable to withstand the force of the attack!"),
-										span_danger("You feel a sharp pain as your arm is mutilated by the force of the attack!"))
+		forward_thinker.visible_message(span_danger("[forward_thinker]的手臂无法承受这一击的力量！"),
+										span_danger("你感到一阵剧痛，手臂被这一击的力量撕裂！"))
 		forward_thinker.apply_damage(
 		damage = 50,
 		damagetype = BRUTE,
@@ -887,13 +887,13 @@
 	if(!worthless_hand)
 		worthless_hand = holder.get_inactive_hand()
 		if(!worthless_hand)
-			holder.visible_message(span_danger("[holder]'s sheath misfires, sending their blade flying!"),
-									span_danger("Your sheath misfires, sending your blade flying!"))
+			holder.visible_message(span_danger("[holder]的刀鞘误触，刀刃飞了出去！"),
+									span_danger("你的刀鞘误触，刀刃飞了出去！"))
 			return
 
 	if(IS_ROBOTIC_LIMB(worthless_hand) || !worthless_hand.dismember(BRUTE, FALSE, WOUND_BLUNT))
-		holder.visible_message(span_danger("[holder]'s arm is mutilated as they misfire [holder.p_their()] sheathed blade!"),
-								span_danger("Your arm is mutilated as you fail to safely fire your blade!"))
+		holder.visible_message(span_danger("[holder]误触鞘中刀刃，手臂被撕裂！"),
+								span_danger("你未能安全击发刀刃，手臂被撕裂！"))
 		holder.apply_damage(
 			damage = 50,
 			damagetype = BRUTE,
@@ -903,14 +903,14 @@
 		)
 		return
 
-	holder.visible_message(span_danger("[holder]'s arm is violently torn off as they misfire [holder.p_their()] sheathed blade!"),
-							span_danger("Your arm is torn off as you fail to safely fire your blade!"))
+	holder.visible_message(span_danger("[holder]误触鞘中刀刃，手臂被猛烈扯断！"),
+							span_danger("你未能安全击发刀刃，手臂被扯断！"))
 
 #undef COUNTERMULTIPLIER
 
 /obj/item/storage/belt/sheath/sabre
-	name = "sabre sheath"
-	desc = "An ornate sheath designed to hold an officer's blade."
+	name = "军刀鞘"
+	desc = "一只华丽的刀鞘，用于收纳军官的佩剑。"
 	icon_state = "sheath"
 	inhand_icon_state = "sheath"
 	worn_icon_state = "sheath"
@@ -918,16 +918,16 @@
 	stored_blade = /obj/item/melee/sabre
 
 /obj/item/storage/belt/sheath/grass_sabre
-	name = "sabre sheath"
-	desc = "A simple grass sheath designed to hold a sabre of... some sort. An actual metal one might be too sharp, though..."
+	name = "军刀鞘"
+	desc = "一只简朴的草编刀鞘，用来装某种……军刀。不过真正的金属刀可能太锋利了……"
 	icon_state = "grass_sheath"
 	inhand_icon_state = "grass_sheath"
 	worn_icon_state = "grass_sheath"
 	storage_type = /datum/storage/green_sabre_belt
 
 /obj/item/storage/belt/sheath/gladius
-	name = "gladius scabbard"
-	desc = "A fun-sized sheath for a fun-sized sword."
+	name = "短剑鞘"
+	desc = "为迷你尺寸的剑准备的迷你刀鞘。"
 	icon_state = "gladius_sheath"
 	inhand_icon_state = "gladius_sheath"
 	worn_icon_state = "gladius_sheath"
@@ -935,8 +935,8 @@
 	stored_blade = /obj/item/claymore/gladius
 
 /obj/item/storage/belt/sheath/katana
-	name = "katana sheath"
-	desc = "A sheath that houses the nimble katana."
+	name = "武士刀鞘"
+	desc = "用于收纳轻巧武士刀的刀鞘。"
 	icon_state = "katana_sheath"
 	inhand_icon_state = "katana_sheath"
 	worn_icon_state = "katana_sheath"
@@ -956,8 +956,8 @@
 	stored_blade = NONE
 
 /obj/item/storage/belt/sheath/ninja
-	name = "energy katana sheath"
-	desc = "A high tech katana sheath that allows for quick blade movements."
+	name = "能量武士刀鞘"
+	desc = "高科技武士刀鞘，可实现快速的拔刀动作。"
 	icon_state = "ninja_sheath"
 	inhand_icon_state = "ninja_sheath"
 	worn_icon_state = "ninja_sheath"
@@ -965,8 +965,8 @@
 	stored_blade = /obj/item/energy_katana
 
 /obj/item/storage/belt/sheath/hanzo_katana
-	name = "hanzo katana sheath"
-	desc = "A normal black sheath meant to house the legendary hanzo steel."
+	name = "半藏武士刀鞘"
+	desc = "普通的黑色刀鞘，用于收纳传说中的半藏钢刀。"
 	icon_state = "hanzo_sheath"
 	inhand_icon_state = "hanzo_sheath"
 	worn_icon_state = "hanzo_sheath"
@@ -978,8 +978,8 @@
 	stored_blade = NONE
 
 /obj/item/storage/belt/plant
-	name = "botanical belt"
-	desc = "A sturdy leather belt used to hold most hydroponics supplies."
+	name = "植物学腰带"
+	desc = "结实的皮质腰带，用于装下大多数水培用品。"
 	icon_state = "plantbelt"
 	inhand_icon_state = "utility"
 	worn_icon_state = "plantbelt"
@@ -987,14 +987,14 @@
 	storage_type = /datum/storage/plant_belt
 
 /obj/item/storage/belt/sheath/sabre/gunpowered
-	name = "modified sabre sheath"
-	desc = "An imitation of a design made by the infamous Cold Space Wind. Has a trigger mechanism to more forcefully draw the blade."
+	name = "改装军刀鞘"
+	desc = "仿制自臭名昭著的“冷空之风”的设计。带有扳机机构，可更有力地拔刀。"
 	icon_state = "gunsheath"
 	actions_types = list(/datum/action/innate/blade_counter/gunpowered)
 	stored_blade = null
 
 /obj/item/storage/belt/sheath/grass_sabre/gunpowered
-	name = "modified sabre sheath"
-	desc = "An imitation of a design grown by the infamous Tiziran Plasma Fire. Has a trigger mechanism to more forcefully draw the blade."
+	name = "改装军刀鞘"
+	desc = "仿制自臭名昭著的“提兹拉等离子火”培育的设计。带有扳机机构，可更有力地拔刀。"
 	icon_state = "grass_gunsheath"
 	actions_types = list(/datum/action/innate/blade_counter/gunpowered)

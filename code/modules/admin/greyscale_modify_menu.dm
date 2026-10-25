@@ -132,8 +132,8 @@
 		if("select_config")
 			var/datum/greyscale_config/new_config = input(
 				usr,
-				"Choose a new greyscale configuration to use",
-				"Greyscale Modification Menu",
+				"请选择要使用的新灰度配置",
+				"灰度修改菜单",
 				"[config.type]"
 			) as anything in allowed_configs
 			new_config = allowed_configs[new_config]
@@ -172,8 +172,8 @@
 			var/group = params["color_index"]
 			var/new_color = tgui_color_picker(
 				usr,
-				"Choose color for greyscale color group [group]:",
-				"Greyscale Modification Menu",
+				"请为灰度颜色组[group]选择颜色：",
+				"灰度修改菜单",
 				split_colors[group]
 			)
 			if(new_color)
@@ -206,9 +206,9 @@
 			if(length(GLOB.player_list) > 1)
 				var/check = alert(
 					user,
-{"Other players are connected to the server, are you sure you want to refresh all greyscale configurations?\n
-This is highly likely to cause a lag spike for a few seconds."},
-					"Refresh Greyscale Configurations",
+{"服务器上还有其他玩家连接，你确定要刷新所有灰度配置吗？\n
+这很可能导致数秒的卡顿。"},
+					"刷新灰度配置",
 					"Yes",
 					"Cancel"
 				)
@@ -234,9 +234,9 @@ This is highly likely to cause a lag spike for a few seconds."},
 			if(length(GLOB.player_list) > 1)
 				var/check = alert(
 					user,
-{"Other players are connected to the server, are you sure you want to automatically refresh all greyscale configurations?\n
-This is highly likely to cause massive amounts of lag as every object in the game will be iterated over every few seconds."},
-					"Auto-Refresh Greyscale Configurations",
+{"服务器上还有其他玩家连接，你确定要自动刷新所有灰度配置吗？\n
+由于每隔几秒就会遍历游戏中的每个物体，这很可能造成严重卡顿。"},
+					"自动刷新灰度配置",
 					"Yes",
 					"Cancel"
 				)

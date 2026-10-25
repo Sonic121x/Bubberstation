@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/projectile/star_blast
-	name = "Star Blast"
-	desc = "This spell fires an unstoppable disk with cosmic energies at a target, spreading the star mark. \
-			When recasted, you will be teleported to the disk, and cosmic fields will generate from the disk and from the caster, pulling nearby heathens into it."
+	name = "星辰冲击"
+	desc = "此法术向目标发射一枚蕴含宇宙能量、无法阻挡的圆盘，并散播星辰印记。\
+			再次施放时，你将被传送至圆盘处，圆盘与施法者都会生成宇宙场，将附近的不信者拉入其中。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -15,8 +15,8 @@
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 
-	active_msg = "You prepare to cast your star blast!"
-	deactive_msg = "You stop swirling cosmic energies from the palm of your hand... for now."
+	active_msg = "你准备施放星辰冲击！"
+	deactive_msg = "你停止从掌心旋聚宇宙能量……暂时而已。"
 	cast_range = 12
 	projectile_type = /obj/projectile/magic/star_ball
 	/// Weakref to the projectile we fire, so that we can recast our ability to teleport to its location
@@ -46,7 +46,7 @@
 		return ..()
 	// BUBBER EDIT ADDITION BEGIN - you need LOS to jaunt to your ball
 	if (!(active_ball in view(cast_range, owner)))
-		owner.balloon_alert(owner, "need line of sight on the ball!")
+		owner.balloon_alert(owner, "需要能看到圆盘！")
 		return // abort entirely
 	// BUBBER EDIT ADDITION ENDs
 
@@ -83,7 +83,7 @@
 	unset_click_ability(owner) // Unselect because we will re-select it to teleport
 
 /obj/projectile/magic/star_ball
-	name = "star ball"
+	name = "星辰球"
 	icon_state = "star_ball"
 	damage = 0
 	speed = 0.2

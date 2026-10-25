@@ -1,6 +1,6 @@
 /obj/item/implant/storage
-	name = "storage implant"
-	desc = "Stores up to two big items in a bluespace pocket."
+	name = "储物植入体"
+	desc = "可在蓝空间口袋中存放最多两件大型物品。"
 	icon_state = "storage"
 	implant_color = "r"
 	var/max_slot_stacking = 4
@@ -17,7 +17,7 @@
 	for (var/obj/item/stored in contents)
 		stored.add_mob_blood(implantee)
 	atom_storage.remove_all()
-	implantee.visible_message(span_warning("A bluespace pocket opens around [src] as it exits [implantee], spewing out its contents and rupturing the surrounding tissue!"))
+	implantee.visible_message(span_warning("[src]离开[implantee]时，周围张开了一个蓝空间口袋，内容物喷涌而出，撕裂了周围的组织！"))
 	implantee.apply_damage(20, BRUTE, BODY_ZONE_CHEST)
 	QDEL_NULL(atom_storage)
 	return ..()
@@ -40,7 +40,7 @@
 	return ..()
 
 /obj/item/implanter/storage
-	name = "implanter" // Skyrat edit , original was implanter (storage)
+	name = "植入器" // Skyrat edit , original was implanter (storage)
 	imp_type = /obj/item/implant/storage
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE // Skyrat edit
-	special_desc = "A Syndicate implanter used for a storage implant" // Skyrat edit
+	special_desc = "辛迪加植入器，用于植入储物植入体" // Skyrat edit

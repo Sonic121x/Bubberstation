@@ -1,12 +1,12 @@
 /datum/antagonist/brother
-	name = "\improper Brother"
+	name = "\improper 血盟兄弟"
 	antagpanel_category = "Brother"
 	pref_flag = ROLE_BROTHER
 	var/special_role = ROLE_BROTHER
 	antag_hud_name = "brother"
 	hijack_speed = 0.5
 	ui_name = "AntagInfoBrother"
-	suicide_cry = "FOR MY BROTHER!!"
+	suicide_cry = "为了我的兄弟！！"
 	antag_moodlet = /datum/mood_event/focused
 	hardcore_random_bonus = TRUE
 	stinger_sound = 'sound/music/antag/traitor/tatoralert.ogg'
@@ -40,7 +40,7 @@
 
 	var/is_first_brother = team.members.len == 1
 	if (!is_first_brother)
-		to_chat(carbon_owner, span_boldwarning("The Syndicate have higher expectations from you than others. They have granted you an extra flash to convert one other person."))
+		to_chat(carbon_owner, span_boldwarning("辛迪加对你的期望高于其他人。他们额外赐予你一枚闪光装置，用来转化另一个人。"))
 
 	return ..()
 
@@ -71,11 +71,11 @@
 		return
 
 	if (flashed.stat != STABLE)
-		flashed.balloon_alert(source, "in critical!")
+		flashed.balloon_alert(source, "处于濒死状态！")
 		return
 
 	if (IS_UNCONSCIOUS(flashed))
-		flashed.balloon_alert(source, "unconscious!")
+		flashed.balloon_alert(source, "失去意识！")
 		return
 
 #ifdef TESTING
@@ -83,31 +83,31 @@
 		flashed.mind_initialize()
 #else
 	if (isnull(flashed.mind) || !GET_CLIENT(flashed))
-		flashed.balloon_alert(source, "[flashed.p_their()] mind is vacant!")
+		flashed.balloon_alert(source, "对方心智一片空白！")
 		return
 #endif
 
 	for(var/datum/objective/brother_objective as anything in source.mind.get_all_objectives())
 		// If the objective has a target, are we flashing them?
 		if(flashed == brother_objective.target?.current)
-			flashed.balloon_alert(source, "that's your target!")
+			flashed.balloon_alert(source, "那是你的目标！")
 			return
 
 	if (flashed.mind.has_antag_datum(/datum/antagonist/brother))
-		flashed.balloon_alert(source, "[flashed.p_theyre()] loyal to someone else!")
+		flashed.balloon_alert(source, "对方已效忠他人！")
 		return
 
 	if (HAS_MIND_TRAIT(flashed, TRAIT_UNCONVERTABLE))
-		flashed.balloon_alert(source, "[flashed.p_they()] resist[flashed.p_s()]!")
+		flashed.balloon_alert(source, "对方抵抗了！")
 		return
 
 	if (!team.add_brother(flashed, key_name(source))) // Shouldn't happen given the former, more specific checks but just in case
-		flashed.balloon_alert(source, "failed!")
+		flashed.balloon_alert(source, "失败！")
 		return
 
-	source.log_message("converted [key_name(flashed)] to blood brother", LOG_ATTACK)
-	flashed.log_message("was converted by [key_name(source)] to blood brother", LOG_ATTACK)
-	log_game("[key_name(flashed)] was made into a blood brother by [key_name(source)]", list(
+	source.log_message("将 [key_name(flashed)] 转化为血盟兄弟", LOG_ATTACK)
+	flashed.log_message("被 [key_name(source)] 转化为血盟兄弟", LOG_ATTACK)
+	log_game("[key_name(flashed)] 被 [key_name(source)] 变成了血盟兄弟", list(
 		"converted" = flashed,
 		"converted by" = source,
 	))
@@ -117,18 +117,18 @@
 		protagonist = flashed, \
 		antagonist = owner.current, \
 	)
-	flashed.balloon_alert(source, "converted")
+	flashed.balloon_alert(source, "已转化")
 
 /datum/antagonist/brother/antag_panel_data()
-	return "Conspirators : [get_brother_names()] | Remaining: [team.brothers_left]"
+	return "同谋：[get_brother_names()] | 剩余：[team.brothers_left]"
 
 /datum/antagonist/brother/get_admin_commands()
 	. = ..()
-	.["Adjust Remaining Conversions"] = CALLBACK(src, PROC_REF(update_recruitments_remaining))
+	.["调整剩余转化次数"] = CALLBACK(src, PROC_REF(update_recruitments_remaining))
 
 /// Add or remove the potential to put more bros in here
 /datum/antagonist/brother/proc/update_recruitments_remaining(mob/admin)
-	var/new_count = tgui_input_number(admin, "How many more people should be able to be recruited?", "Adjust Conversions Remaining", default = 1, min_value = 0)
+	var/new_count = tgui_input_number(admin, "还应允许再招募多少人？", "调整剩余转化次数", default = 1, min_value = 0)
 	if (isnull(new_count))
 		return
 	team.set_brothers_left(new_count)
@@ -170,20 +170,20 @@
 /datum/antagonist/brother/proc/get_brother_names()
 	var/list/brothers = team.members - owner
 	if (!length(brothers))
-		return "none"
+		return "无"
 
 	var/brother_text = ""
 	for(var/i = 1 to brothers.len)
 		var/datum/mind/M = brothers[i]
 		brother_text += M.name
 		if(i == brothers.len - 1)
-			brother_text += " and "
+			brother_text += " 与 "
 		else if(i != brothers.len)
-			brother_text += ", "
+			brother_text += "、"
 	return brother_text
 
 /datum/antagonist/brother/greet()
-	to_chat(owner.current, span_alertsyndie("You are a Blood Brother."))
+	to_chat(owner.current, span_alertsyndie("你是血盟兄弟。"))
 	owner.announce_objectives()
 
 /datum/antagonist/brother/proc/finalize_brother()
@@ -193,8 +193,8 @@
 /datum/antagonist/brother/admin_add(datum/mind/new_owner,mob/admin)
 	var/datum/team/brother_team/team = new
 	team.add_member(new_owner)
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into a blood brother.")
-	log_admin("[key_name(admin)] made [key_name(new_owner)] into a blood brother.")
+	message_admins("[key_name_admin(admin)] 把 [key_name_admin(new_owner)] 变成了血盟兄弟。")
+	log_admin("[key_name(admin)] 把 [key_name(new_owner)] 变成了血盟兄弟。")
 
 /datum/antagonist/brother/apply_innate_effects(mob/living/mob_override)
 	. = ..()
@@ -208,8 +208,8 @@
 	return data
 
 /datum/team/brother_team
-	name = "\improper Blood Brothers"
-	member_name = "blood brother"
+	name = "\improper 血盟兄弟"
+	member_name = "血盟兄弟"
 	var/brothers_left = 2
 
 /datum/team/brother_team/New(starting_members)
@@ -238,7 +238,7 @@
 	if (isnull(member.current))
 		return
 	for (var/datum/mind/brother_mind as anything in members)
-		to_chat(brother_mind, span_warning("[span_bold("[member.current.real_name]")] is no longer your brother!"))
+		to_chat(brother_mind, span_warning("[span_bold("[member.current.real_name]")]不再是你的兄弟了！"))
 	update_name()
 
 /// Adds a new brother to the team
@@ -258,9 +258,9 @@
 		if (brother_mind == new_brother.mind)
 			continue
 
-		to_chat(brother_mind, span_notice("[span_bold("[new_brother.real_name]")] has been converted to aid you as your brother!"))
+		to_chat(brother_mind, span_notice("[span_bold("[new_brother.real_name]")]已被转化，将作为你的兄弟协助你！"))
 		if (brothers_left <= 0)
-			to_chat(brother_mind, span_notice("You cannot recruit any more brothers."))
+			to_chat(brother_mind, span_notice("你无法再招募更多兄弟了。"))
 
 	return TRUE
 
@@ -271,9 +271,9 @@
 		last_names += split_name[split_name.len]
 
 	if (last_names.len == 1)
-		name = "[last_names[1]]'s Isolated Intifada"
+		name = "[last_names[1]]的孤立起义"
 	else
-		name = "[initial(name)] of " + last_names.Join(" & ")
+		name = "[initial(name)]：" + last_names.Join(" 与 ")
 
 /datum/team/brother_team/proc/forge_brother_objectives()
 	objectives = list()
@@ -317,8 +317,8 @@
 	brothers_left = remaining_brothers
 
 /datum/objective/convert_brother
-	name = "convert brother"
-	explanation_text = "Convert a brainwashable person using your flash on them directly. Any handheld flash will work if you lose or break your starting flash."
+	name = "转化兄弟"
+	explanation_text = "用你的闪光装置直接作用于一名可被洗脑的人，将其转化。若你丢失或损坏了初始闪光装置，任何手持闪光装置都能生效。"
 	admin_grantable = FALSE
 	martyr_compatible = TRUE
 

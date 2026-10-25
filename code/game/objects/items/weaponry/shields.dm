@@ -1,7 +1,7 @@
 #define WEAPON_BASH_COOLDOWN (3 SECONDS)
 
 /obj/item/shield
-	name = "shield"
+	name = "盾牌"
 	icon = 'icons/obj/weapons/shields.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -13,8 +13,8 @@
 	throw_speed = 2
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("shoves", "bashes")
-	attack_verb_simple = list("shove", "bash")
+	attack_verb_continuous = list("推搡", "猛砸")
+	attack_verb_simple = list("推搡", "猛砸")
 	armor_type = /datum/armor/item_shield
 	block_sound = 'sound/items/weapons/block_shield.ogg'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.55, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 4.8)
@@ -46,7 +46,7 @@
 	AddElement(/datum/element/disarm_attack)
 	//AddElement(/datum/element/cuffable_item) //BUBBER EDIT - No cuffing shields. Bootleg nodrop at no real cost.
 
-/obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	var/effective_block_chance = final_block_chance
 	if(transparent && (hitby.pass_flags & PASSGLASS))
 		return FALSE
@@ -66,11 +66,11 @@
 	var/healthpercent = round((atom_integrity/max_integrity) * 100, 1)
 	switch(healthpercent)
 		if(50 to 99)
-			. += span_info("It looks slightly damaged.")
+			. += span_info("它看起来有轻微损伤。")
 		if(25 to 50)
-			. += span_info("It appears heavily damaged.")
+			. += span_info("它看起来损伤严重。")
 		if(0 to 25)
-			. += span_warning("It's falling apart!")
+			. += span_warning("它快要散架了！")
 
 /obj/item/shield/item_interaction(mob/living/user, obj/item/tool, list/modifiers, is_right_clicking)
 	. = ..()
@@ -81,12 +81,12 @@
 	if(!COOLDOWN_FINISHED(src, weapon_bash))
 		return ITEM_INTERACT_BLOCKING
 	playsound(src, shield_bash_sound, 50, TRUE)
-	user.manual_emote("bashes [src] with [tool]!")
+	user.manual_emote("用[tool]猛砸[src]！")
 	COOLDOWN_START(src, weapon_bash, WEAPON_BASH_COOLDOWN)
 	user.Shake(3, 3, 0.5 SECONDS)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/item/shield/proc/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/proc/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(!breakable_by_damage || (damage_type != BRUTE && damage_type != BURN))
 		return TRUE
 	var/penetration = 0
@@ -110,12 +110,12 @@
 	playsound(src, shield_break_sound, 50)
 	new shield_break_leftover(get_turf(src))
 	if(isliving(loc))
-		loc.balloon_alert(loc, "shield broken!")
+		loc.balloon_alert(loc, "盾牌碎了！")
 	return ..()
 
 /obj/item/shield/buckler
-	name = "wooden buckler"
-	desc = "A medieval wooden buckler."
+	name = "木制小圆盾"
+	desc = "一面中世纪风格的木制小圆盾。"
 	icon_state = "buckler"
 	inhand_icon_state = "buckler"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 20)
@@ -125,8 +125,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/shield/buckler/moonflower
-	name = "moonflower buckler"
-	desc = "A buckler made from a steel-cap reinforced moonflower."
+	name = "月光花小圆盾"
+	desc = "由钢制顶盖加固的月光花制成的小圆盾。"
 	icon_state = "moonflower_buckler"
 	inhand_icon_state = "moonflower_buckler"
 	block_chance = 40
@@ -135,8 +135,8 @@
 	custom_materials = null
 
 /obj/item/shield/kite
-	name = "kite shield"
-	desc = "Protect your internal organs with this almond shaped shield."
+	name = "鸢盾"
+	desc = "用这面杏仁形的盾牌保护你的内脏吧。"
 	icon_state = "kite"
 	inhand_icon_state = "kite"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 15)
@@ -144,8 +144,8 @@
 	max_integrity = 60
 
 /obj/item/shield/roman
-	name = "\improper Roman shield"
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>."
+	name = "\improper 罗马盾牌"
+	desc = "内侧刻着一行铭文：<i>\"Romanes venio domus\"</i>。"
 	icon_state = "roman_shield"
 	inhand_icon_state = "roman_shield"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4.25)
@@ -154,7 +154,7 @@
 	shield_break_leftover = /obj/item/stack/sheet/iron
 
 /obj/item/shield/roman/fake
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
+	desc = "内侧刻着一行铭文：<i>\"Romanes venio domus\"</i>。它看起来有点不结实。"
 	block_chance = 0
 	armor_type = /datum/armor/none
 	max_integrity = 30
@@ -165,8 +165,8 @@
 	laser = 20
 
 /obj/item/shield/riot
-	name = "riot shield"
-	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder, less so bullets and laser beams."
+	name = "防暴盾"
+	desc = "一面擅长阻挡钝器击中持盾者躯干的盾牌，对子弹和激光的防御则较差。"
 	icon_state = "riot"
 	inhand_icon_state = "riot"
 	custom_materials = list(/datum/material/glass= SHEET_MATERIAL_AMOUNT * 4.05, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.8)
@@ -192,18 +192,18 @@
 		return NONE
 
 	if (atom_integrity >= max_integrity)
-		to_chat(user, span_warning("[src] is already in perfect condition."))
+		to_chat(user, span_warning("[src]已经完好如初了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/sheet/mineral/titanium/titanium_sheet = tool
 	titanium_sheet.use(1)
 	atom_integrity = max_integrity
-	to_chat(user, span_notice("You repair [src] with [titanium_sheet]."))
+	to_chat(user, span_notice("你用[titanium_sheet]修复了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/shield/riot/flash
-	name = "strobe shield"
-	desc = "A shield with a built in, high intensity light capable of blinding and disorienting suspects. Takes regular handheld flashes as bulbs."
+	name = "闪光盾"
+	desc = "一面内置高强度灯光的盾牌，能使嫌疑人致盲并失去方向感。可使用普通手持闪光器作为灯泡。"
 	icon_state = "flashshield"
 	inhand_icon_state = "flashshield"
 	var/obj/item/assembly/flash/handheld/embedded_flash = /obj/item/assembly/flash/handheld
@@ -248,7 +248,7 @@
 /obj/item/shield/riot/flash/attack_self(mob/living/carbon/user)
 	flash_away(user)
 
-/obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	. = ..()
 	if(.)
 		flash_away(owner)
@@ -271,10 +271,10 @@
 
 	var/obj/item/assembly/flash/handheld/flash = tool
 	if(flash.burnt_out)
-		to_chat(user, span_warning("No sense replacing it with a broken bulb!"))
+		to_chat(user, span_warning("用坏掉的灯泡替换可没意义！"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You begin to replace the bulb..."))
+	to_chat(user, span_notice("你开始更换灯泡……"))
 	if(!do_after(user, 2 SECONDS, target = user))
 		return ITEM_INTERACT_BLOCKING
 
@@ -306,16 +306,16 @@
 /obj/item/shield/riot/flash/examine(mob/user)
 	. = ..()
 	if (embedded_flash?.burnt_out)
-		. += span_info("The mounted bulb has burnt out. You can try replacing it with a new <b>flash</b>.")
+		. += span_info("安装的灯泡已经烧坏了。你可以试着用一个新的<b>闪光器</b>替换它。")
 
 /obj/item/shield/energy
-	name = "combat energy shield"
-	desc = "A hardlight shield capable of reflecting blocked energy projectiles, as well as providing well-rounded defense from most all other attacks."
+	name = "战斗能量盾"
+	desc = "一面硬光盾牌，能反射被格挡的能量弹，并对几乎所有其他攻击提供全面的防御。"
 	icon_state = "eshield"
 	inhand_icon_state = "eshield"
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb_continuous = list("shoves", "bashes")
-	attack_verb_simple = list("shove", "bash")
+	attack_verb_continuous = list("推搡", "猛砸")
+	attack_verb_simple = list("推搡", "猛砸")
 	throw_range = 5
 	force = 3
 	throwforce = 3
@@ -348,7 +348,7 @@
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 	RegisterSignal(src, COMSIG_ITEM_CAN_DISARM_ATTACK, PROC_REF(can_disarm_attack))
 
-/obj/item/shield/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		return FALSE
 
@@ -374,7 +374,7 @@
 	SIGNAL_HANDLER
 
 	if(user)
-		balloon_alert(user, active ? "activated" : "deactivated")
+		balloon_alert(user, active ? "已激活" : "已关闭")
 	playsound(src, active ? 'sound/items/weapons/saberon.ogg' : 'sound/items/weapons/saberoff.ogg', 35, TRUE)
 	is_bashable = !is_bashable
 	return COMPONENT_NO_DEFAULT_MESSAGE
@@ -383,20 +383,20 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(send_message)
-			balloon_alert(user, "activate it first!")
+			balloon_alert(user, "先激活它！")
 		return COMPONENT_BLOCK_ITEM_DISARM_ATTACK
 
 /obj/item/shield/energy/advanced
-	name = "advanced combat energy shield"
-	desc = "A hardlight shield capable of reflecting all energy projectiles, as well as providing well-rounded defense from most all other attacks. \
-		Often employed by Nanotrasen deathsquads."
+	name = "高级战斗能量盾"
+	desc = "一面硬光盾牌，能反射所有能量弹，并对几乎所有其他攻击提供全面的防御。\
+		常被纳米传讯的死亡小队使用。"
 	icon_state = "advanced_eshield"
 	inhand_icon_state = "advanced_eshield"
 	reflection_probability = 100 //Guaranteed reflection
 
 /obj/item/shield/riot/tele
-	name = "telescopic shield"
-	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
+	name = "伸缩盾"
+	desc = "一面由轻质材料制成的先进防暴盾，可折叠以便收纳。"
 	icon_state = "teleriot"
 	inhand_icon_state = "teleriot"
 	worn_icon_state = "teleriot"
@@ -417,14 +417,14 @@
 		throw_speed_on = 2, \
 		hitsound_on = hitsound, \
 		w_class_on = WEIGHT_CLASS_BULKY, \
-		attack_verb_continuous_on = list("smacks", "strikes", "cracks", "beats"), \
-		attack_verb_simple_on = list("smack", "strike", "crack", "beat"), \
+		attack_verb_continuous_on = list("拍击", "打击", "敲裂", "痛打"), \
+		attack_verb_simple_on = list("拍击", "打击", "敲裂", "痛打"), \
 	)
 
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 	RegisterSignal(src, COMSIG_ITEM_CAN_DISARM_ATTACK, PROC_REF(can_disarm_attack))
 
-/obj/item/shield/riot/tele/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/riot/tele/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		return ..()
 	return FALSE
@@ -439,7 +439,7 @@
 
 	slot_flags = active ? ITEM_SLOT_BACK : null
 	if(user)
-		balloon_alert(user, active ? "extended" : "collapsed")
+		balloon_alert(user, active ? "已展开" : "已收起")
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -447,7 +447,7 @@
 	SIGNAL_HANDLER
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		if(send_message)
-			balloon_alert(user, "extend it first!")
+			balloon_alert(user, "先展开它！")
 		return COMPONENT_BLOCK_ITEM_DISARM_ATTACK
 
 /datum/armor/item_shield/ballistic
@@ -457,8 +457,8 @@
 	laser = 80
 
 /obj/item/shield/ballistic
-	name = "ballistic shield"
-	desc = "A heavy shield designed for blocking projectiles, weaker to melee."
+	name = "防弹盾"
+	desc = "一面专为阻挡弹丸而设计的重盾，对近战防御较弱。"
 	icon_state = "ballistic"
 	inhand_icon_state = "ballistic"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
@@ -471,13 +471,13 @@
 		return NONE
 
 	if (atom_integrity >= max_integrity)
-		to_chat(user, span_warning("[src] is already in perfect condition."))
+		to_chat(user, span_warning("[src]已经完好如初了。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/sheet/mineral/titanium/titanium_sheet = tool
 	titanium_sheet.use(1)
 	atom_integrity = max_integrity
-	to_chat(user, span_notice("You repair [src] with [titanium_sheet]."))
+	to_chat(user, span_notice("你用[titanium_sheet]修复了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /datum/armor/item_shield/improvised
@@ -486,8 +486,8 @@
 	laser = 30
 
 /obj/item/shield/improvised
-	name = "improvised shield"
-	desc = "A crude shield made out of several sheets of iron taped together, not very durable."
+	name = "简易盾"
+	desc = "用几块铁板拿胶带粘成的粗糙盾牌，不太耐用。"
 	icon_state = "improvised"
 	inhand_icon_state = "improvised"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)

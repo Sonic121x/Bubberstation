@@ -1,10 +1,10 @@
 /datum/antagonist/highlander
-	name = "\improper Highlander"
+	name = "\improper 高地人"
 	var/obj/item/claymore/highlander/sword
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	can_elimination_hijack = ELIMINATION_ENABLED
-	suicide_cry = "FOR SCOTLAND!!" // If they manage to lose their no-drop stuff somehow
+	suicide_cry = "为了苏格兰！！" // If they manage to lose their no-drop stuff somehow
 	antag_flags = ANTAG_FAKE|ANTAG_SKIP_GLOBAL_LIST
 	desensitized_modifier = DESENSITIZED_THRESHOLD * 0.2
 	/// Traits we apply/remove to our target on-demand.
@@ -43,8 +43,8 @@
 	. = ..()
 
 /datum/antagonist/highlander/greet()
-	to_chat(owner, span_bolddanger("Your [sword.name] cries out for blood. Claim the lives of others, and your own will be restored!\n\
-	Activate it in your hand, and it will lead to the nearest target. Attack the nuclear authentication disk with it, and you will store it."))
+	to_chat(owner, span_bolddanger("你的[sword.name]在渴求鲜血。夺取他人的性命，你自己的生命便会得到恢复！\n\
+	在手中激活它，它会指向最近的目标。用它攻击核认证磁盘，你就能将其收纳。"))
 
 	owner.announce_objectives()
 
@@ -79,17 +79,17 @@
 
 
 	var/obj/item/bloodcrawl/antiwelder = new(H)
-	antiwelder.name = "compulsion of honor"
-	antiwelder.desc = "You are unable to hold anything in this hand until you're the last one left!"
+	antiwelder.name = "荣誉的驱使"
+	antiwelder.desc = "在成为最后一人之前，你无法用这只手拿任何东西！"
 	antiwelder.icon_state = "bloodhand_right"
 	H.put_in_hands(antiwelder)
 
 /datum/antagonist/highlander/robot
-	name = "\improper highlander"
+	name = "\improper 高地人"
 
 /datum/antagonist/highlander/robot/greet()
-	to_chat(owner, span_bolddanger("Your integrated claymore cries out for blood. Claim the lives of others, and your own will be restored!\n\
-	Activate it in your hand, and it will lead to the nearest target. Attack the nuclear authentication disk with it, and you will store it."))
+	to_chat(owner, span_bolddanger("你体内集成的阔剑在渴求鲜血。夺取他人的性命，你自己的生命便会得到恢复！\n\
+	在手中激活它，它会指向最近的目标。用它攻击核认证磁盘，你就能将其收纳。"))
 
 /datum/antagonist/highlander/robot/give_equipment()
 	var/mob/living/silicon/robot/robotlander = owner.current
@@ -98,7 +98,7 @@
 	robotlander.revive(ADMIN_HEAL_ALL)
 	robotlander.set_connected_ai() //DISCONNECT FROM AI
 	robotlander.laws.clear_inherent_laws()
-	robotlander.laws.set_zeroth_law("THERE CAN BE ONLY ONE", force = TRUE)
+	robotlander.laws.set_zeroth_law("只能有一个", force = TRUE)
 	robotlander.laws.show_laws(robotlander)
 	robotlander.model.transform_to(/obj/item/robot_model/syndicate/kiltborg)
 	sword = locate(/obj/item/claymore/highlander/robot) in robotlander.model.basic_modules

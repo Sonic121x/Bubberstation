@@ -1,11 +1,11 @@
 /datum/antagonist/pirate
-	name = "\improper Space Pirate"
+	name = "\improper 太空海盗"
 	pref_flag = ROLE_TRAITOR
 	roundend_category = "space pirates"
 	antagpanel_category = ANTAG_GROUP_PIRATES
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
-	suicide_cry = "FOR ME MATEYS!!"
+	suicide_cry = "为了我的伙计们！！"
 	stinger_sound = 'sound/music/antag/pirate/pirate_start.ogg'
 	hijack_speed = 2 // That is without doubt the worst pirate I have ever seen.
 	desensitized_modifier = DESENSITIZED_THRESHOLD
@@ -13,7 +13,7 @@
 
 /datum/antagonist/pirate/greet()
 	. = ..()
-	to_chat(owner, "<B>The station refused to pay for your protection. Protect the ship, siphon the [MONEY_NAME] from the station, and raid it for even more loot.</B>")
+	to_chat(owner, "<B>空间站拒绝为你们的保护付费。保护好飞船，从空间站抽取[MONEY_NAME]，并袭击它以掠夺更多战利品。</B>")
 	owner.announce_objectives()
 
 /datum/antagonist/pirate/get_team()
@@ -53,7 +53,7 @@
 	owner_mob.remove_language(/datum/language/piratespeak, source = LANGUAGE_PIRATE)
 
 /datum/team/pirate
-	name = "\improper Pirate crew"
+	name = "\improper 海盗船员"
 
 /datum/team/pirate/proc/forge_objectives()
 	var/datum/objective/loot/getbooty = new()
@@ -73,19 +73,19 @@
 
 /datum/objective/loot
 	var/obj/machinery/computer/piratepad_control/cargo_hold
-	explanation_text = "Acquire valuable loot and store it in the designated area."
+	explanation_text = "获取有价值的战利品，并将其存放在指定区域。"
 	var/target_value = 50000
 
 
 /datum/objective/loot/update_explanation_text()
 	if(cargo_hold)
 		var/area/storage_area = get_area(cargo_hold)
-		explanation_text = "Acquire loot and store [target_value] of [MONEY_NAME] worth in [storage_area.name] cargo hold."
+		explanation_text = "获取战利品，并将价值 [target_value] 的[MONEY_NAME]存入[storage_area.name]的货舱。"
 
 /datum/objective/loot/proc/loot_listing()
 	//Lists notable loot.
 	if(!cargo_hold || !cargo_hold.total_report)
-		return "Nothing"
+		return "无"
 	sortTim(cargo_hold.total_report.total_value, cmp = GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	var/count = 0
 	var/list/loot_texts = list()
@@ -105,7 +105,7 @@
 /datum/team/pirate/roundend_report()
 	var/list/parts = list()
 
-	parts += span_header("Space Pirates were:")
+	parts += span_header("太空海盗：")
 
 	var/all_dead = TRUE
 	for(var/datum/mind/M in members)
@@ -113,14 +113,14 @@
 			all_dead = FALSE
 	parts += printplayerlist(members)
 
-	parts += "Loot stolen: "
+	parts += "被窃取战利品："
 	var/datum/objective/loot/L = locate() in objectives
 	parts += L.loot_listing()
-	parts += "Total loot value : [L.get_loot_value()]/[L.target_value] [MONEY_NAME]"
+	parts += "战利品总价值：[L.get_loot_value()]/[L.target_value] [MONEY_NAME]"
 
 	if(L.check_completion() && !all_dead)
-		parts += "<span class='greentext big'>The pirate crew was successful!</span>"
+		parts += "<span class='greentext big'>海盗船员成功了！</span>"
 	else
-		parts += "<span class='redtext big'>The pirate crew has failed.</span>"
+		parts += "<span class='redtext big'>海盗船员失败了。</span>"
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

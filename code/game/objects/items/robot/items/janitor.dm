@@ -1,6 +1,6 @@
 /obj/item/borg/cleaner_box
-	name = "janitorial vacuum suite"
-	desc = "A module designed to compensate for your lack of hands by offloading your job onto your more squishy overlords."
+	name = "清洁真空套装"
+	desc = "一种模块，旨在通过把你的活儿甩给那些更加软乎乎的上司来弥补你缺少双手的缺陷。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "cleanerbox"
 	var/obj/item/vacuum_item/hose
@@ -25,8 +25,8 @@
 		hitsound_on = hose.hitsound, \
 		w_class_on = hose.w_class, \
 		clumsy_check = FALSE, \
-		attack_verb_continuous_on = list("washed", "mopped", "scrubbed", "whacked", "bapped", "decontaminated"), \
-		attack_verb_simple_on = list("wash", "mop", "scrub", "whack", "bap", "decontaminate"), \
+		attack_verb_continuous_on = list("冲洗", "拖擦", "刷洗", "敲打", "轻拍", "消毒"), \
+		attack_verb_simple_on = list("冲洗", "拖擦", "刷洗", "敲打", "轻拍", "消毒"), \
 		)
 	hose.RegisterSignal(hose, COMSIG_TRANSFORMING_ON_TRANSFORM, TYPE_PROC_REF(/obj/item/vacuum_item, on_transform))
 	update_icon(UPDATE_OVERLAYS)
@@ -66,8 +66,8 @@
 		offered = locate(/mob/living/carbon) in orange(1, offerer)
 	if(offered && istype(offered))
 		offerer.visible_message(
-			span_notice("[offerer] extends the handle towards [offered] for their cleaning suite."),
-			span_notice("The handle to your [src] extends towards [offered]'s hand."), null, 2)
+			span_notice("[offerer]把清洁套装的把手伸向[offered]。"),
+			span_notice("你[src]的把手伸向[offered]的手。"), null, 2)
 
 	offerer.apply_status_effect(/datum/status_effect/offering, src, /atom/movable/screen/alert/give/borg, offered)
 	return
@@ -81,8 +81,8 @@
 		stack_trace("[src] failed to connect to a trash bag on [module_list.resolve()].")
 		return TRUE
 	taker.visible_message(
-		span_notice("[taker] takes the [hose] from [offerer]."),
-		span_notice("You take the [hose] from [offerer]"))
+		span_notice("[taker]从[offerer]手中接过[hose]。"),
+		span_notice("你从[offerer]手中接过[hose]。"))
 	hose.do_pickup_animation(taker, offerer)
 	taker.put_in_hands(hose)
 	hose.borg_hose = hose.generate_hose(offerer, taker)
@@ -104,11 +104,11 @@
 
 /obj/item/borg/cleaner_box/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Alt-Click</b> to <b>[locked ? "unlock" : "lock"]</b> the [src].")
+	. += span_notice("<b>Alt 点击</b>以<b>[locked ? "解锁" : "锁定"]</b>[src]。")
 
 /obj/item/vacuum_item
-	name = "janitorial floor cleaner"
-	desc = "This is the working end of an industrial cleaner that someone unfortinately gave sapience."
+	name = "清洁地板清洁器"
+	desc = "这是某台工业清洁器的工作端——有人不幸赋予了它智慧。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "vacuum-wand"
 	inhand_icon_state = "vacuum-wand"
@@ -116,8 +116,8 @@
 	lefthand_file = 'icons/mob/inhands/items/vacuum_wand_lefthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	obj_flags = INDESTRUCTIBLE // To prevent fuckery and a broken borg module.
-	attack_verb_continuous = list("sucked", "vacuumed", "smacked", "forcefully dusted off", "beaten")
-	attack_verb_simple = list("suck", "vacuum", "smack", "dust off", "beat")
+	attack_verb_continuous = list("吸吮", "吸尘", "拍打", "强行除尘", "击打")
+	attack_verb_simple = list("吸吮", "吸尘", "拍打", "除尘", "击打")
 	force = 12
 
 	var/datum/beam/held/vacuum/borg_hose
@@ -155,14 +155,14 @@
 		return COMPONENT_NO_DEFAULT_MESSAGE
 	playsound(src, 'sound/items/vacuum/vacuum_clack.ogg', 30, TRUE)
 	if(cleaning) //CLEAN_SCRUB because if you get a borg to help you clean up a crime, you deserve to win.
-		balloon_alert(user, "cleaning")
+		balloon_alert(user, "清洁中")
 		AddComponent( \
 			/datum/component/cleaner, \
 			base_cleaning_duration = 1 SECONDS, \
 			pre_clean_callback = CALLBACK(src, PROC_REF(clean_sound)), \
 			)
 	else
-		balloon_alert(user, "vacuuming")
+		balloon_alert(user, "吸尘中")
 		qdel(GetComponent(/datum/component/cleaner))
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
@@ -198,7 +198,7 @@
 
 /obj/item/vacuum_item/examine(mob/user)
 	. = ..()
-	. += span_notice("<b>Interact</b> to switch to [cleaning ? "<b>vacuum</b>" : "<b>cleaning</b>"] mode.")
+	. += span_notice("<b>交互</b>以切换到[cleaning ? "<b>吸尘</b>" : "<b>清洁</b>"]模式。")
 /obj/item/vacuum_item/proc/on_update()
 	SIGNAL_HANDLER
 	var/mob/living/mob = borg_hose.origin

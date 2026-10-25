@@ -4,7 +4,7 @@
  * Handle interaction with tiles and lets you put stuff on top of it.
  */
 /turf/open/floor/plating
-	name = "plating"
+	name = "地板基板"
 	icon_state = "plating"
 	base_icon_state = "plating"
 	overfloor_placed = FALSE
@@ -31,14 +31,14 @@
 /turf/open/floor/plating/examine(mob/user)
 	. = ..()
 	if(broken || burnt)
-		. += span_notice("It looks like the dents could be <i>welded</i> smooth.")
+		. += span_notice("这些凹痕似乎可以<i>焊接</i>平整。")
 		return
 	if(attachment_holes)
-		. += span_notice("There are a few attachment holes for a new <i>tile</i> or reinforcement <i>rods</i>.")
+		. += span_notice("这里有几个安装孔，可以装新的<i>地砖</i>或加固<i>金属杆</i>。")
 	else
-		. += span_notice("You might be able to build ontop of it with some <i>tiles</i>...")
+		. += span_notice("你也许可以用一些<i>地砖</i>在上面铺设……")
 	if(upgradable)
-		. += span_notice("You could probably make this plating more resilient with some plasteel.")
+		. += span_notice("用一些塑钢也许能让这块基板更坚固。")
 
 #define PLATE_REINFORCE_COST 2
 
@@ -49,15 +49,15 @@
 
 	if(istype(tool, /obj/item/stack/rods) && attachment_holes)
 		if(broken || burnt)
-			to_chat(user, span_warning("Repair the plating first! Use a welding tool[iscyborg(user) ? " or a plating repair tool" : ""] to fix the damage."))
+			to_chat(user, span_warning("先修理基板！使用焊接工具[iscyborg(user) ? "或基板修复工具" : ""]来修复损伤。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/rods/material = tool
 		if (material.get_amount() < 2)
-			to_chat(user, span_warning("You need two rods to make a reinforced floor!"))
+			to_chat(user, span_warning("你需要两根金属杆才能做成加固地板！"))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You begin reinforcing the floor..."))
+		to_chat(user, span_notice("你开始加固地板……"))
 		if(!do_after(user, 3 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -67,17 +67,17 @@
 		place_on_top(/turf/open/floor/engine, flags = CHANGETURF_INHERIT_AIR)
 		playsound(src, 'sound/items/deconstruct.ogg', 80, TRUE)
 		material.use(2)
-		to_chat(user, span_notice("You reinforce the floor."))
+		to_chat(user, span_notice("你加固了地板。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stack/tile))
 		if(broken || burnt)
-			balloon_alert(user, "too damaged, use a welding[iscyborg(user) ? "or plating repair " : ""] tool!")
+			balloon_alert(user, "损坏太严重，请使用焊接[iscyborg(user) ? "或基板修复" : ""]工具！")
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/blocker in src)
 			for(var/mob/sitter as anything in blocker.buckled_mobs)
-				to_chat(user, span_warning("Someone is buckled to \the [blocker]! Unbuckle [sitter] to move [sitter.p_them()] out of the way."))
+				to_chat(user, span_warning("有人被扣在[blocker]上！解开[sitter]的扣具，把对方挪开。"))
 				return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/tile/tile = tool
@@ -88,7 +88,7 @@
 		if((!broken && !burnt) || !tool.use_tool(src, user, 0, volume=80))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_danger("You fix some dents on the broken plating."))
+		to_chat(user, span_danger("你修好了破损基板上的一些凹痕。"))
 		icon_state = base_icon_state
 		burnt = FALSE
 		broken = FALSE
@@ -97,14 +97,14 @@
 
 	if(istype(tool, /obj/item/stack/sheet/plasteel) && upgradable) //Reinforcement!
 		if(broken || burnt)
-			balloon_alert(user, "too damaged, use a welding[iscyborg(user) ? "or plating repair " : ""] tool!")
+			balloon_alert(user, "损坏太严重，请使用焊接[iscyborg(user) ? "或基板修复" : ""]工具！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/sheet/sheets = tool
 		if(sheets.get_amount() < PLATE_REINFORCE_COST)
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "reinforcing plating...")
+		balloon_alert(user, "正在加固基板……")
 		if(!do_after(user, 12 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 		if(sheets.get_amount() < PLATE_REINFORCE_COST || istype(src, /turf/open/floor/plating/reinforced))
@@ -116,15 +116,15 @@
 
 	if(istype(tool, /obj/item/stack/sheet/mineral/plastitanium) && attachment_holes)
 		if(broken || burnt)
-			to_chat(user, span_warning("Repair the plating first! Use a welding tool[iscyborg(user) ? " or a plating repair tool" : ""] to fix the damage."))
+			to_chat(user, span_warning("先修理基板！使用焊接工具[iscyborg(user) ? "或基板修复工具" : ""]来修复损伤。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/sheet/mineral/plastitanium/sheet = tool
 		if (sheet.get_amount() < 1)
-			to_chat(user, span_warning("You are literally holding nothing.")) // finally a reasonable message
+			to_chat(user, span_warning("你手里真的什么都没拿。")) // finally a reasonable message
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "insulating flooring...")
+		balloon_alert(user, "正在铺设绝缘地板……")
 		if(!do_after(user, 1.5 SECONDS, target = src))
 			return ITEM_INTERACT_BLOCKING
 
@@ -134,14 +134,14 @@
 		place_on_top(/turf/open/floor/engine/insulation, flags = CHANGETURF_INHERIT_AIR)
 		playsound(src, 'sound/items/deconstruct.ogg', 80, TRUE)
 		sheet.use(1)
-		to_chat(user, span_notice("You insulate the floor."))
-		balloon_alert(user, "insulated!")
+		to_chat(user, span_notice("你为地板铺上了绝缘层。"))
+		balloon_alert(user, "已绝缘！")
 		return ITEM_INTERACT_SUCCESS
 
 /turf/open/floor/plating/welder_act(mob/living/user, obj/item/tool)
 	if((!broken && !burnt) || !tool.use_tool(src, user, 0, volume=80))
 		return NONE
-	to_chat(user, span_danger("You fix some dents on the broken plating."))
+	to_chat(user, span_danger("你修好了破损基板上的一些凹痕。"))
 	icon_state = base_icon_state
 	burnt = FALSE
 	broken = FALSE
@@ -156,8 +156,8 @@
 	return
 
 /turf/open/floor/plating/foam
-	name = "metal foam plating"
-	desc = "Thin, fragile flooring created with metal foam. Designed to be easily replacable by tiling when applied to in a combat stance."
+	name = "金属泡沫基板"
+	desc = "由金属泡沫制成的薄而脆弱的地板。设计上便于在战斗状态下用地砖快速替换。"
 	icon_state = "foam_plating"
 	upgradable = FALSE
 	attachment_holes = FALSE
@@ -182,7 +182,7 @@
 	var/obj/lattice = locate(/obj/structure/lattice) in src
 	if(lattice)
 		qdel(lattice)
-	to_chat(user, span_notice("You reinforce the foamed plating with tiling."))
+	to_chat(user, span_notice("你用地砖加固了泡沫基板。"))
 	playsound(src, 'sound/items/weapons/Genhit.ogg', 50, TRUE)
 	ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 	return ITEM_INTERACT_SUCCESS
@@ -192,11 +192,11 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src)
 	if(prob(attacking_item.force * 20 - 25))
-		user.visible_message(span_danger("[user] smashes through [src]!"), \
-						span_danger("You smash through [src] with [attacking_item]!"))
+		user.visible_message(span_danger("[user]砸穿了[src]！"), \
+						span_danger("你用[attacking_item]砸穿了[src]！"))
 		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	else
-		to_chat(user, span_danger("You hit [src], to no effect!"))
+		to_chat(user, span_danger("你击打[src]，毫无效果！"))
 
 /turf/open/floor/plating/foam/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	if(the_rcd.mode == RCD_TURF && the_rcd.rcd_design_path == /turf/open/floor/plating/rcd)
@@ -219,8 +219,8 @@
 #define PLATE_CUT 2
 
 /turf/open/floor/plating/reinforced //RCD Proof plating designed to be used on Multi-Z maps to protect the rooms below
-	name = "reinforced plating"
-	desc = "Thick, tough flooring created with multiple layers of metal."
+	name = "加固基板"
+	desc = "由多层金属制成的厚实坚固的地板。"
 	icon_state = "r_plate-0"
 
 	thermal_conductivity = 0.025
@@ -241,11 +241,11 @@
 /turf/open/floor/plating/reinforced/proc/deconstruction_hints(mob/user)
 	switch(deconstruction_state)
 		if(PLATE_INTACT)
-			return span_notice("The plating reinforcements are securely <b>bolted</b> in place.")
+			return span_notice("基板的加固层已被<b>螺栓</b>牢牢固定。")
 		if(PLATE_BOLTS_LOOSENED)
-			return span_notice("The plating reinforcement is <i>unscrewed</i> but <b>welded</b> firmly to the plating.")
+			return span_notice("基板的加固层螺栓已<i>松开</i>，但仍被<b>焊接</b>牢牢固定在基板上。")
 		if(PLATE_CUT)
-			return span_notice("The plating reinforcements have been <i>sliced through</i> but are still <b>loosely</b> held in place.")
+			return span_notice("基板的加固层已被<i>切开</i>，但仍<b>松松地</b>搁在原位。")
 
 /turf/open/floor/plating/reinforced/update_icon_state()
 	icon_state = "r_plate-[deconstruction_state]"
@@ -254,7 +254,7 @@
 /turf/open/floor/plating/reinforced/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你的手不够灵巧，做不了这个！"))
 		return ITEM_INTERACT_BLOCKING
 
 	//get the user's location
@@ -272,14 +272,14 @@
 	switch(deconstruction_state)
 		if(PLATE_INTACT)
 			if(tool_used.tool_behaviour == TOOL_WRENCH)
-				balloon_alert(user, "loosening bolts...")
+				balloon_alert(user, "正在松开螺栓……")
 				if(tool_used.use_tool(src, user, 10 SECONDS, volume=100))
 					if(!istype(src, /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_INTACT)
 						return TRUE
 					deconstruction_state = PLATE_BOLTS_LOOSENED
 					update_appearance(UPDATE_ICON)
 					drop_screws()
-					balloon_alert(user, "removed bolts")
+					balloon_alert(user, "已拆下螺栓")
 				return TRUE
 
 		if(PLATE_BOLTS_LOOSENED)
@@ -287,34 +287,34 @@
 				if(TOOL_WELDER)
 					if(!tool_used.tool_start_check(user, amount=3))
 						return
-					balloon_alert(user, "slicing...")
+					balloon_alert(user, "正在切割……")
 					if(tool_used.use_tool(src, user, 15 SECONDS, volume=100))
 						if(!istype(src, /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_BOLTS_LOOSENED)
 							return TRUE
 						deconstruction_state = PLATE_CUT
 						update_appearance(UPDATE_ICON)
-						balloon_alert(user, "sliced through")
+						balloon_alert(user, "已切断")
 					return TRUE
 
 				if(TOOL_SCREWDRIVER)
-					balloon_alert(user, "securing bolts...")
+					balloon_alert(user, "正在固定螺栓……")
 					if(tool_used.use_tool(src, user, 15 SECONDS, volume=100))
 						if(!istype(src, /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_BOLTS_LOOSENED)
 							return TRUE
 						deconstruction_state = PLATE_INTACT
 						update_appearance(UPDATE_ICON)
-						balloon_alert(user, "secured")
+						balloon_alert(user, "已固定")
 					return TRUE
 			return FALSE
 
 		if(PLATE_CUT)
 			switch(tool_used.tool_behaviour)
 				if(TOOL_CROWBAR)
-					balloon_alert(user, "prying off...")
+					balloon_alert(user, "正在撬起……")
 					if(tool_used.use_tool(src, user, 20 SECONDS, volume=100))
 						if(!istype(src,  /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_CUT)
 							return TRUE
-						balloon_alert(user, "pried off")
+						balloon_alert(user, "已撬下")
 						new /obj/item/stack/sheet/plasteel(src, 2)
 						ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					return TRUE
@@ -322,13 +322,13 @@
 				if(TOOL_WELDER)
 					if(!tool_used.tool_start_check(user, amount=3))
 						return
-					balloon_alert(user, "welding back on...")
+					balloon_alert(user, "正在重新焊上……")
 					if(tool_used.use_tool(src, user, 15 SECONDS, volume=100))
 						if(!istype(src,  /turf/open/floor/plating/reinforced) || deconstruction_state != PLATE_CUT)
 							return TRUE
 						deconstruction_state = PLATE_BOLTS_LOOSENED
 						update_appearance(UPDATE_ICON)
-						balloon_alert(user, "welded back on")
+						balloon_alert(user, "已重新焊上")
 					return TRUE
 			return FALSE
 	return FALSE
@@ -346,7 +346,7 @@
 
 ///not an actual turf its used just for rcd ui purposes
 /turf/open/floor/plating/rcd
-	name = "Floor/Wall"
+	name = "地板/墙壁"
 	icon = 'icons/hud/radial.dmi'
 	icon_state = "wallfloor"
 

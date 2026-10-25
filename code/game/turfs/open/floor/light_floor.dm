@@ -4,8 +4,8 @@
 #define LIGHTFLOOR_BROKEN 3
 
 /turf/open/floor/light
-	name = "light floor"
-	desc = "A wired glass tile embedded into the floor. Modify the color with a Multitool."
+	name = "发光地板"
+	desc = "一块嵌入地板的带线玻璃地砖。可用多功能工具修改颜色。"
 	light_range = 5
 	icon_state = "light_on-1"
 	floor_tile = /obj/item/stack/tile/light
@@ -30,11 +30,11 @@
 
 /turf/open/floor/light/examine(mob/user)
 	. = ..()
-	. += span_notice("There's a <b>small crack</b> on the edge of it.")
-	. += span_notice("Use a multitool on it to change colors.")
-	. += span_notice("Use a screwdriver to turn it off or on.")
+	. += span_notice("它的边缘有一道<b>小裂缝</b>。")
+	. += span_notice("用多功能工具对它操作可以改变颜色。")
+	. += span_notice("用螺丝刀可以开启或关闭它。")
 	if(state) ///check if broken
-		. += span_danger("The light bulb seems fried!")
+		. += span_danger("灯泡似乎烧坏了！")
 
 ///create radial menu
 /turf/open/floor/light/proc/populate_lighttile_designs()
@@ -138,11 +138,11 @@
 		return .
 
 	if(astype(tool, /obj/item/light/bulb).status)/// check if broken
-		to_chat(user, span_danger("The light bulb is broken!"))
+		to_chat(user, span_danger("灯泡坏了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!state)
-		to_chat(user, span_notice("The light bulb seems fine, no need to replace it."))
+		to_chat(user, span_notice("灯泡似乎还好，不需要更换。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.temporarilyRemoveItemFromInventory(tool))
@@ -151,7 +151,7 @@
 	qdel(tool)
 	state = LIGHTFLOOR_FINE //fixing it by bashing it with a light bulb, fun eh?
 	update_appearance()
-	to_chat(user, span_notice("You replace the light bulb."))
+	to_chat(user, span_notice("你更换了灯泡。"))
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -169,8 +169,8 @@
 
 //Cycles through all of the colours
 /turf/open/floor/light/colour_cycle
-	name = "dancefloor"
-	desc = "Funky floor."
+	name = "舞池"
+	desc = "潮到爆的地板。"
 	icon_state = "light_on-cycle_all"
 	light_color = LIGHT_COLOR_SLIME_LAMP
 	can_modify_colour = FALSE

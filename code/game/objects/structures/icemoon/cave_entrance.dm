@@ -10,8 +10,8 @@ GLOBAL_LIST_INIT(ore_probability, list(
 	))
 
 /obj/structure/spawner/ice_moon
-	name = "cave entrance"
-	desc = "A hole in the ground, filled with monsters ready to defend it."
+	name = "洞穴入口"
+	desc = "地面上的一个洞，里面挤满了准备守卫它的怪物。"
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "hole"
 	faction = list(FACTION_MINING)
@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(ore_probability, list(
 	anchored = TRUE
 	scanner_taggable = TRUE
 	mob_gps_id = "WF" // wolf
-	spawner_gps_id = "Animal Den"
+	spawner_gps_id = "动物巢穴"
 
 /obj/structure/spawner/ice_moon/Initialize(mapload)
 	. = ..()
@@ -50,7 +50,7 @@ GLOBAL_LIST_INIT(ore_probability, list(
  */
 /obj/structure/spawner/ice_moon/proc/destroy_effect()
 	playsound(loc,'sound/effects/explosion/explosionfar.ogg', 200, TRUE)
-	visible_message(span_bolddanger("[src] collapses, sealing everything inside!</span>\n<span class='warning'>Ores fall out of the cave as it is destroyed!"))
+	visible_message(span_bolddanger("[src]崩塌了，将里面的一切封死！</span>\n<span class='warning'>洞穴被摧毁时，矿石从中散落出来！"))
 
 /**
  * Drops items after the spawner is destroyed
@@ -76,18 +76,18 @@ GLOBAL_LIST_INIT(ore_probability, list(
 			clearable.ScrapeAway(flags = CHANGETURF_IGNORE_AIR)
 
 /obj/structure/spawner/ice_moon/demonic_portal
-	name = "demonic portal"
-	desc = "A portal that goes to another world, normal creatures couldn't survive there."
+	name = "恶魔传送门"
+	desc = "一道通往另一个世界的传送门，普通生物无法在那里生存。"
 	icon_state = "nether"
 	mob_types = list(/mob/living/basic/mining/ice_demon)
 	light_range = 1
 	light_color = COLOR_SOFT_RED
 	mob_gps_id = "WT|B" // watcher | bluespace
-	spawner_gps_id = "Netheric Distortion"
+	spawner_gps_id = "冥界扭曲"
 
 /obj/structure/spawner/ice_moon/demonic_portal/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/gps, "Netheric Signal")
+	AddComponent(/datum/component/gps, "冥界信号")
 
 /obj/structure/spawner/ice_moon/demonic_portal/clear_rock()
 	for(var/turf/potential in RANGE_TURFS(3, src))
@@ -112,8 +112,8 @@ GLOBAL_LIST_INIT(ore_probability, list(
 	mob_gps_id = "LG|S" // legion | snow
 
 /obj/effect/collapsing_demonic_portal
-	name = "collapsing demonic portal"
-	desc = "It's slowly fading!"
+	name = "正在崩塌的恶魔传送门"
+	desc = "它正在缓缓消散！"
 	layer = TABLE_LAYER
 	icon = 'icons/mob/simple/lavaland/nest.dmi'
 	icon_state = "nether"
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(ore_probability, list(
 /obj/effect/collapsing_demonic_portal/Initialize(mapload)
 	. = ..()
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, FALSE, 50, TRUE, TRUE)
-	visible_message(span_bolddanger("[src] begins to collapse, cutting it off from this world!"))
+	visible_message(span_bolddanger("[src]开始崩塌，正与这个世界断开联系！"))
 	animate(src, transform = matrix().Scale(0, 1), alpha = 50, time = 5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(collapse)), 5 SECONDS)
 
@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(ore_probability, list(
  *
  */
 /obj/effect/collapsing_demonic_portal/proc/drop_loot()
-	visible_message(span_warning("Something slips out of [src]!"))
+	visible_message(span_warning("有什么东西从[src]里滑了出来！"))
 	var/loot = rand(1, 100)
 	switch(loot)
 		if(1 to 80)

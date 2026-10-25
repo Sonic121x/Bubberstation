@@ -3,11 +3,11 @@
  */
 
 /datum/heretic_knowledge/summon/rusty
-	name = "Rusted Ritual"
-	desc = "Summon a Rust Walker.<br>\
-		Rust Walkers excel at spreading rust and are moderately strong in combat."
-	transmute_text = "Transmute a pool of vomit, some cable coil, and 10 sheets of iron."
-	gain_text = "I combined my knowledge of creation with my desire for corruption. The Marshal knew my name, and the Rusted Hills echoed out."
+	name = "锈蚀仪式"
+	desc = "召唤一名锈行者。<br>\
+		锈行者擅长散播锈蚀，战斗力中等偏强。"
+	transmute_text = "转化一滩呕吐物、一些线缆和 10 张铁板。"
+	gain_text = "我将创造之识与腐化之欲结合起来。元帅知晓我的名字，锈蚀之丘随之回响。"
 	required_atoms = list(
 		/obj/effect/decal/cleanable/vomit = 1,
 		/obj/item/stack/sheet/iron = 10,
@@ -19,13 +19,13 @@
 	drafting_tier = 3
 
 /datum/heretic_knowledge/summon/maid_in_mirror
-	name = "Maid in the Mirror"
-	desc = "Summon a Maid in the Mirror.<br>\
-		Maid in the Mirrors are decent combatants that can become incorporeal by phasing in and out of the mirror realm, \
-		serving as powerful scouts and ambushers. Their attacks also apply a stack of void chill."
-	transmute_text = "Transmute five sheets of glass, any suit, and a pair of lungs."
-	gain_text = "Within each reflection, lies a gateway into an unimaginable world of colors never seen and \
-		people never met. The ascent is glass, and the walls are knives. Each step is blood, if you do not have a guide."
+	name = "镜中女仆"
+	desc = "召唤一名镜中女仆。<br>\
+		镜中女仆是不错的战斗者，能够通过在镜中领域进出相位而变为无形， \
+		是非常强力的侦察者与伏击者。她们的攻击还会附加一层虚空之寒。"
+	transmute_text = "转化五张玻璃、任意一件套装和一对肺。"
+	gain_text = "每一面倒影之中，都藏着一扇通往难以想象之境的门户，那里的色彩前所未见， \
+		那里的人素未谋面。上升之路由玻璃构成，墙壁皆为刀刃。若你没有向导，每一步都将踏在鲜血之上。"
 
 	required_atoms = list(
 		/obj/item/stack/sheet/glass = 5,
@@ -39,13 +39,13 @@
 	drafting_tier = 3
 
 /datum/heretic_knowledge/summon/ashy
-	name = "Ashen Ritual"
-	desc = "Summon an Ash Spirit.<br>\
-		Ash Spirits have a short range jaunt and the ability to cause bleeding in foes at range. \
-		They also have the ability to create a ring of fire around themselves for a length of time.<br>\
-		They have a low amount of health, but will passively recover given enough time to do so."
-	transmute_text = "Transmute a pool of ash, a book, and a bonfire."
-	gain_text = "I combined my principle of hunger with my desire for destruction. The Marshal knew my name, and the Nightwatcher gazed on."
+	name = "灰烬仪式"
+	desc = "召唤一名灰烬之灵。<br>\
+		灰烬之灵能进行短距离跃迁，并能使远处的敌人流血。 \
+		它们还能在自己周围制造一圈持续一段时间的火焰。<br>\
+		它们的生命值很低，但只要有足够的时间就会被动恢复。"
+	transmute_text = "转化一滩灰烬、一本书和一堆篝火。"
+	gain_text = "我将饥饿之理与毁灭之欲结合起来。元帅知晓我的名字，守夜者注视着一切。"
 	required_atoms = list(
 		/obj/effect/decal/cleanable/ash = 1,
 		/obj/item/book = 1,
@@ -61,14 +61,14 @@
 #define RISEN_MAX_HEALTH 125
 
 /datum/heretic_knowledge/limited_amount/risen_corpse
-	name = "Shattered Ritual"
-	desc = "Enchant a corpse into a Shattered Risen.<br>\
-		Shattered Risen are strong ghouls that have 125 health, but cannot hold items, \
-		instead having two brutal weapons for hands. You can only create one at a time."
-	transmute_text = "Transmute a corpse with a soul, a pair of latex or nitrile gloves."
-	gain_text = "I witnessed a cold, rending force drag this corpse back to near-life. \
-		When it moves, it crunches like broken glass. Its hands are no longer recognizable as human - \
-		each clenched fist contains a brutal nest of sharp bone-shards instead."
+	name = "破碎仪式"
+	desc = "将一具尸体附魔成破碎复生者。<br>\
+		破碎复生者是强壮的食尸鬼，拥有 125 点生命值，但无法持有物品， \
+		取而代之的是双手上两把残暴的武器。你一次只能创造一个。"
+	transmute_text = "转化一具带有灵魂的尸体、一副乳胶或丁腈手套。"
+	gain_text = "我目睹一股冰冷、撕裂性的力量把这具尸体拽回到近乎活着的状态。 \
+		它动起来时，会像碎玻璃一样嘎吱作响。它的双手已不再像人类的手—— \
+		每一只紧握的拳头里，都塞着一窝尖锐的骨片。"
 
 	required_atoms = list(
 		/obj/item/clothing/suit = 1,
@@ -89,33 +89,33 @@
 		if(body.stat != DEAD)
 			continue
 		if(!IS_VALID_GHOUL_MOB(body) || HAS_TRAIT(body, TRAIT_HUSK))
-			to_chat(user, span_hierophant_warning("[body] is not in a valid state to be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body] 的状态不适合被制成食尸鬼。"))
 			continue
 		if(!body.mind)
-			to_chat(user, span_hierophant_warning("[body] is mindless and cannot be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body] 没有意识，无法被制成食尸鬼。"))
 			continue
 		if(!body.client && !body.mind.get_ghost(ghosts_with_clients = TRUE))
-			to_chat(user, span_hierophant_warning("[body] is soulless and cannot be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body] 没有灵魂，无法被制成食尸鬼。"))
 			continue
 
 		// We will only accept valid bodies with a mind, or with a ghost connected that used to control the body
 		selected_atoms += body
 		return TRUE
 
-	loc.balloon_alert(user, "ritual failed, no valid body!")
+	loc.balloon_alert(user, "仪式失败，没有有效的身体！")
 	return FALSE
 
 /datum/heretic_knowledge/limited_amount/risen_corpse/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/mob/living/carbon/human/soon_to_be_ghoul = locate() in selected_atoms
 	if(QDELETED(soon_to_be_ghoul)) // No body? No ritual
 		stack_trace("[type] reached on_finished_recipe without a human in selected_atoms to make a ghoul out of.")
-		loc.balloon_alert(user, "ritual failed, no valid body!")
+		loc.balloon_alert(user, "仪式失败，没有有效的身体！")
 		return FALSE
 
 	soon_to_be_ghoul.grab_ghost()
 	if(!soon_to_be_ghoul.mind || !soon_to_be_ghoul.client)
 		stack_trace("[type] reached on_finished_recipe without a minded / cliented human in selected_atoms to make a ghoul out of.")
-		loc.balloon_alert(user, "ritual failed, no valid body!")
+		loc.balloon_alert(user, "仪式失败，没有有效的身体！")
 		return FALSE
 
 	selected_atoms -= soon_to_be_ghoul
@@ -124,9 +124,9 @@
 
 /// Make [victim] into a shattered risen ghoul.
 /datum/heretic_knowledge/limited_amount/risen_corpse/proc/make_risen(mob/living/user, mob/living/carbon/human/victim)
-	user.log_message("created a shattered risen out of [key_name(victim)].", LOG_GAME)
-	victim.log_message("became a shattered risen of [key_name(user)]'s.", LOG_VICTIM, log_globally = FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a shattered risen, [ADMIN_LOOKUPFLW(victim)].")
+	user.log_message("用 [key_name(victim)] 创造了一个破碎复生者。", LOG_GAME)
+	victim.log_message("成为了 [key_name(user)] 的破碎复生者。", LOG_VICTIM, log_globally = FALSE)
+	message_admins("[ADMIN_LOOKUPFLW(user)] 创造了一个破碎复生者：[ADMIN_LOOKUPFLW(victim)]。")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,
@@ -150,8 +150,8 @@
 
 /// The "hand" "weapon" used by shattered risen
 /obj/item/mutant_hand/shattered_risen
-	name = "bone-shards"
-	desc = "What once appeared to be a normal human fist, now holds a mauled nest of sharp bone-shards."
+	name = "骨片"
+	desc = "曾经看似普通人类拳头的东西，如今只剩一窝被撕碎的尖锐骨片。"
 	color = "#001aff"
 	hitsound = SFX_SHATTER
 	force = 16
@@ -161,12 +161,12 @@
 	sharpness = SHARP_EDGED
 
 /datum/heretic_knowledge/summon/fire_shark
-	name = "Scorching Shark"
-	desc = "Summon a Fire Shark.<br>\
-		Fire Sharks are fast and strong in groups, but fragile to non-burning damage.<br>\
-		They also inject phlogiston on attack and spawn plasma on death."
-	transmute_text = "Transmute a pool of ash, a liver, and a sheet of plasma."
-	gain_text = "The cradle of the nebula was cold, but not dead. Light and heat flits even through the deepest darkness, and is hunted by its own predators."
+	name = "灼热鲨鱼"
+	desc = "召唤一条火焰鲨鱼。<br>\
+		火焰鲨鱼速度很快，成群时很强，但对非燃烧类伤害十分脆弱。<br>\
+		它们攻击时会注入燃素，死亡时会释放等离子体。"
+	transmute_text = "转化一滩灰烬、一个肝脏和一张等离子体板。"
+	gain_text = "星云的摇篮虽寒冷，却并未死去。光与热在最深的黑暗中也会闪动，并被它自己的捕食者所猎逐。"
 
 	required_atoms = list(
 		/obj/effect/decal/cleanable/ash = 1,
@@ -182,12 +182,12 @@
 	drafting_tier = 3
 
 /datum/heretic_knowledge/mad_mask
-	name = "Mask of Madness"
-	desc = "Create a Mask of Madness.<br>\
-		The mask instills fear into heathens who witness it, causing stamina damage, hallucinations, and insanity.<br>\
-		It can also be forced onto a heathen, to make them unable to take it off..."
-	transmute_text = "Transmute any mask, four lit candles, a stun baton, and a liver."
-	gain_text = "The Watch wore strange garb on duty. It allowed them to walk the city, seemingly unnoticed by the masses."
+	name = "疯狂面具"
+	desc = "创造一个疯狂面具。<br>\
+		面具会让目睹它的异端心生恐惧，造成耐力伤害、幻觉与精神错乱。<br>\
+		它也可以被强行戴到某个异端头上，使其无法将其摘下……"
+	transmute_text = "转化任意一个面具、四根点燃的蜡烛、一根电击棍和一个肝脏。"
+	gain_text = "巡夜者在执勤时会穿戴古怪的衣物。这让他们能行走于城中，似乎不被大众所注意。"
 	required_atoms = list(
 		/obj/item/organ/liver = 1,
 		/obj/item/melee/baton/security = 1,  // Technically means a cattleprod is valid
@@ -212,16 +212,16 @@
 		what.set_light_on(TRUE)
 
 /datum/heretic_knowledge/mansus_gate
-	name = "Keys to the Backdoor"
-	desc = "Open a backdoor to the Mansus.<br>\
-		Entering the container will transport you to the Mansus, granting you a safe haven to transmute or store equipment."
-	transmute_text = "Transmute a locker and a Codex Cicatrix or Codex Morbus."
-	notice = "Only willing individuals or the deceased can pass through the backdoor.\
-		<br>Attempting to perform a sacrifice so close to the gods may anger them.\
-		<br>You can only create one backdoor."
-	gain_text = "With any domain, its security is only as strong as its weakest point. \
-		The Codex speaks of backdoors to the Mansus - gates with shoddy chains, doors with brittle locks, trapdoors with rusted hinges. \
-		With the right key, I could easily exploit these."
+	name = "后门之钥"
+	desc = "打开一扇通往漫宿的后门。<br>\
+		进入该容器会将你传送到漫宿，为你提供一个可安全转化或存放装备的避风港。"
+	transmute_text = "转化一个储物柜和一本疤痕法典或疾病法典。"
+	notice = "只有自愿者或已死者才能通过后门。\
+		<br>在如此接近神明之处尝试献祭，可能会激怒他们。\
+		<br>你只能创造一扇后门。"
+	gain_text = "在任何领域，其安全性都只取决于最薄弱的一环。 \
+		法典提到了通往漫宿的后门——挂着劣质铁链的大门、装着脆弱门锁的房门、铰链生锈的活板门。 \
+		只要有正确的钥匙，我就能轻易利用它们。"
 	required_atoms = list(
 		/obj/structure/closet = 1,
 		list(/obj/item/codex_cicatrix, /obj/item/codex_cicatrix/morbus) = 1,
@@ -282,13 +282,13 @@
 		return CLOSET_TELEPORT_FORCED
 
 	if(isliving(sending_through) && !consents_to_entry(sending_through))
-		locker.balloon_alert(sending_through, "the door refuses you!")
+		locker.balloon_alert(sending_through, "门拒绝了你！")
 		return CLOSET_TELEPORT_BLOCKED
 
 	for(var/mob/living/entering in sending_through.get_all_contents())
 		if(!consents_to_entry(entering))
 			if(isliving(sending_through))
-				locker.balloon_alert(sending_through, "the door refuses you!")
+				locker.balloon_alert(sending_through, "门拒绝了你！")
 			return CLOSET_TELEPORT_BLOCKED
 
 	return CLOSET_TELEPORT_FORCED
@@ -301,14 +301,14 @@
 	return FALSE
 
 /datum/map_template/masus_backdoor
-	name = "The Mansus"
+	name = "漫宿"
 	mappath = "_maps/templates/mansus_backdoor.dmm"
 	width = 59
 	height = 51
 	returns_created_atoms = TRUE
 
 /area/centcom/heretic_backdoor
-	name = "Mansus"
+	name = "漫宿"
 	icon_state = "heretic"
 	requires_power = TRUE
 	always_unpowered = TRUE
@@ -342,7 +342,7 @@
 /area/centcom/heretic_backdoor/proc/greet_message(mob/living/arrived_mob)
 	if(QDELETED(arrived_mob) || get_area(arrived_mob) != src)
 		return
-	to_chat(arrived_mob, span_mansus("A hollow sun shines down from above."))
+	to_chat(arrived_mob, span_mansus("一轮空洞的太阳从上方照耀下来。"))
 
 /datum/movespeed_modifier/heretic_backdoor_slowdown
 	multiplicative_slowdown = 0.5

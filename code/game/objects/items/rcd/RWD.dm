@@ -3,8 +3,8 @@
 #define RWD_MAX_CABLES 210
 
 /obj/item/rwd
-	name = "rapid wiring device"
-	desc = "A device used to rapidly lay cable & pick up stray cable pieces laying around."
+	name = "快速布线装置"
+	desc = "一种用于快速铺设线缆，并拾取散落在地的零碎线缆的装置。"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcl-0"
 	inhand_icon_state = "rcl-0"
@@ -50,10 +50,10 @@
 
 /obj/item/rwd/examine(mob/user)
 	. = ..()
-	. += "Dual wield & walk over floors to lay cable."
-	. += "It has [current_amount] pieces remaining."
-	. += "Right click on it to dispense a custom amount of cable."
-	. += "Alt click to change cable layer."
+	. += "双手持握并在地面上行走即可铺设线缆。"
+	. += "其中还剩 [current_amount] 段线缆。"
+	. += "右键点击它可以放出指定数量的线缆。"
+	. += "Alt 点击可以切换线缆层。"
 
 /obj/item/rwd/update_icon_state()
 	switch(current_amount)
@@ -73,10 +73,10 @@
 
 /obj/item/rwd/attack_self_secondary(mob/user, modifiers)
 	if(current_amount <= 0)
-		balloon_alert(user, "nothing to dispense!")
+		balloon_alert(user, "没有可放出的线缆！")
 		return
 
-	var/amount = tgui_input_number(user = user, message = "Enter amount to dispense", title = "Custom cable", default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
+	var/amount = tgui_input_number(user = user, message = "输入要放出的数量", title = "自定义线缆", default = 0, max_value = min(30, current_amount), min_value = min(1, current_amount), timeout = 0, round_value = TRUE)
 	if(isnull(amount) || amount > current_amount)
 		return
 
@@ -99,7 +99,7 @@
 	//spawn the cable. if it merged with the stak below then you pick that up else put it in the user's hand
 	var/obj/item/stack/cable_coil/new_cable = new(user.drop_location(), amount)
 	if(QDELETED(new_cable))
-		balloon_alert(user, "merged with stack below!")
+		balloon_alert(user, "已与下方的线缆堆合并！")
 	else
 		user.put_in_active_hand(modify_cable(new_cable))
 
@@ -159,7 +159,7 @@
 	if(!istype(user))
 		return FALSE
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("你没有足够的灵活度来做这件事！"))
 		return FALSE
 	if(user.incapacitated || !user.Adjacent(src))
 		return FALSE
@@ -168,7 +168,7 @@
 /// insert cable into the rwd
 /obj/item/rwd/proc/add_cable(mob/user, obj/item/stack/cable_coil/cable)
 	if(current_amount == max_amount)
-		balloon_alert(user, "device is full!")
+		balloon_alert(user, "装置已满！")
 		return
 
 	var/insert_amount = min(cable.amount, max_amount - current_amount)
@@ -177,7 +177,7 @@
 
 	delta_cable(insert_amount, decrement = FALSE)
 	update_appearance(UPDATE_ICON_STATE)
-	balloon_alert(user, "inserted [insert_amount] cable")
+	balloon_alert(user, "已装入 [insert_amount] 段线缆")
 
 /// modify cable properties according to its layer
 /obj/item/rwd/proc/modify_cable(obj/item/stack/cable_coil/target_cable)
@@ -263,7 +263,7 @@
 	current_amount = RWD_MAX_CABLES
 
 /obj/item/rwd/admin
-	name = "admin RWD"
+	name = "管理员 RWD"
 	max_amount = INFINITY
 	current_amount = INFINITY
 

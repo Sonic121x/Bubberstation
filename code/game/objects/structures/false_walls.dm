@@ -2,8 +2,8 @@
  * False Walls
  */
 /obj/structure/falsewall
-	name = "wall"
-	desc = "A huge chunk of metal used to separate rooms."
+	name = "墙壁"
+	desc = "一大块用于分隔房间的金属。"
 	anchored = TRUE
 	icon = 'icons/turf/walls/false_walls.dmi'
 	icon_state = "wall-open"
@@ -100,21 +100,21 @@
 /obj/structure/falsewall/tool_act(mob/living/user, obj/item/tool, list/modifiers)
 	if(!opening || !tool.tool_behaviour)
 		return ..()
-	to_chat(user, span_warning("You must wait until the door has stopped moving!"))
+	to_chat(user, span_warning("你必须等这扇门停止移动！"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/structure/falsewall/screwdriver_act(mob/living/user, obj/item/tool)
 	if(!density)
-		to_chat(user, span_warning("You can't reach, close it first!"))
+		to_chat(user, span_warning("你够不着，先把它关上！"))
 		return
 	var/turf/loc_turf = get_turf(src)
 	if(loc_turf.density)
-		to_chat(user, span_warning("[src] is blocked!"))
+		to_chat(user, span_warning("[src]被挡住了！"))
 		return ITEM_INTERACT_SUCCESS
 	if(!isfloorturf(loc_turf))
-		to_chat(user, span_warning("[src] bolts must be tightened on the floor!"))
+		to_chat(user, span_warning("[src]的螺栓必须在地面上拧紧！"))
 		return ITEM_INTERACT_SUCCESS
-	user.visible_message(span_notice("[user] tightens some bolts on the wall."), span_notice("You tighten the bolts on the wall."))
+	user.visible_message(span_notice("[user]拧紧了墙上的几颗螺栓。"), span_notice("你拧紧了墙上的螺栓。"))
 	ChangeToWall()
 	return ITEM_INTERACT_SUCCESS
 
@@ -127,12 +127,12 @@
 
 /obj/structure/falsewall/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(opening)
-		to_chat(user, span_warning("You must wait until the door has stopped moving!"))
+		to_chat(user, span_warning("你必须等这扇门停止移动！"))
 		return ITEM_INTERACT_BLOCKING // honest to god no idea what the point of this blocker is, I'm just the messenger
 	return NONE
 
 /obj/structure/falsewall/proc/dismantle(mob/user, disassembled=TRUE, obj/item/tool = null)
-	user.visible_message(span_notice("[user] dismantles the false wall."), span_notice("You dismantle the false wall."))
+	user.visible_message(span_notice("[user]拆解了假墙。"), span_notice("你拆解了假墙。"))
 	if(tool)
 		tool.play_tool_sound(src, 100)
 	else
@@ -153,7 +153,7 @@
 	return "wall"
 
 /obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
-	return span_notice("The outer plating is <b>welded</b> firmly in place.")
+	return span_notice("外层装甲板被牢牢<b>焊接</b>在位。")
 
 /obj/structure/falsewall/mouse_drop_receive(mob/living/dropping, mob/user, params)
 	. = ..()
@@ -164,8 +164,8 @@
  */
 
 /obj/structure/falsewall/reinforced
-	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
+	name = "加固墙壁"
+	desc = "一大块用于分隔房间的加固金属。"
 	fake_icon = 'icons/turf/walls/reinforced_wall.dmi'
 	icon_state = "reinforced_wall-open"
 	base_icon_state = "reinforced_wall"
@@ -174,7 +174,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 
 /obj/structure/falsewall/reinforced/examine_status(mob/user)
-	return span_notice("The outer <b>grille</b> is fully intact.")
+	return span_notice("外层<b>格栅</b>完好无损。")
 
 /obj/structure/falsewall/reinforced/wirecutter_act(mob/living/user, obj/item/tool)
 	dismantle(user, TRUE, tool)
@@ -188,8 +188,8 @@
  */
 
 /obj/structure/falsewall/uranium
-	name = "uranium wall"
-	desc = "A wall with uranium plating. This is probably a bad idea."
+	name = "铀墙壁"
+	desc = "一面镀铀的墙壁。这大概不是个好主意。"
 	fake_icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium_wall-open"
 	base_icon_state = "uranium_wall"
@@ -239,8 +239,8 @@
  */
 
 /obj/structure/falsewall/gold
-	name = "gold wall"
-	desc = "A wall with gold plating. Swag!"
+	name = "金墙壁"
+	desc = "一面镀金的墙壁。真拉风！"
 	fake_icon = 'icons/turf/walls/gold_wall.dmi'
 	icon_state = "gold_wall-open"
 	base_icon_state = "gold_wall"
@@ -251,8 +251,8 @@
 	canSmoothWith = SMOOTH_GROUP_GOLD_WALLS
 
 /obj/structure/falsewall/silver
-	name = "silver wall"
-	desc = "A wall with silver plating. Shiny."
+	name = "银墙壁"
+	desc = "一面镀银的墙壁。闪闪发光。"
 	fake_icon = 'icons/turf/walls/silver_wall.dmi'
 	icon_state = "silver_wall-open"
 	base_icon_state = "silver_wall"
@@ -263,8 +263,8 @@
 	canSmoothWith = SMOOTH_GROUP_SILVER_WALLS
 
 /obj/structure/falsewall/diamond
-	name = "diamond wall"
-	desc = "A wall with diamond plating. You monster."
+	name = "钻石墙壁"
+	desc = "一面镀钻石的墙壁。你个怪物。"
 	fake_icon = 'icons/turf/walls/diamond_wall.dmi'
 	icon_state = "diamond_wall-open"
 	base_icon_state = "diamond_wall"
@@ -276,8 +276,8 @@
 	max_integrity = 800
 
 /obj/structure/falsewall/plasma
-	name = "plasma wall"
-	desc = "A wall with plasma plating. This is definitely a bad idea."
+	name = "等离子墙壁"
+	desc = "一面镀等离子体的墙壁。这绝对是个坏主意。"
 	fake_icon = 'icons/turf/walls/plasma_wall.dmi'
 	icon_state = "plasma_wall-open"
 	base_icon_state = "plasma_wall"
@@ -288,8 +288,8 @@
 	canSmoothWith = SMOOTH_GROUP_PLASMA_WALLS
 
 /obj/structure/falsewall/bananium
-	name = "bananium wall"
-	desc = "A wall with bananium plating. Honk!"
+	name = "香蕉矿墙壁"
+	desc = "一面镀香蕉矿的墙壁。HONK！"
 	fake_icon = 'icons/turf/walls/bananium_wall.dmi'
 	icon_state = "bananium_wall-open"
 	base_icon_state = "bananium_wall"
@@ -301,8 +301,8 @@
 
 
 /obj/structure/falsewall/sandstone
-	name = "sandstone wall"
-	desc = "A wall with sandstone plating. Rough."
+	name = "砂岩墙壁"
+	desc = "一面镀砂岩的墙壁。粗糙。"
 	fake_icon = 'icons/turf/walls/sandstone_wall.dmi'
 	icon_state = "sandstone_wall-open"
 	base_icon_state = "sandstone_wall"
@@ -313,8 +313,8 @@
 	canSmoothWith = SMOOTH_GROUP_SANDSTONE_WALLS
 
 /obj/structure/falsewall/wood
-	name = "wooden wall"
-	desc = "A wall with wooden plating. Stiff."
+	name = "木墙壁"
+	desc = "一面木板饰面的墙壁。僵硬。"
 	fake_icon = 'icons/turf/walls/wood_wall.dmi'
 	icon_state = "wood_wall-open"
 	base_icon_state = "wood_wall"
@@ -325,8 +325,8 @@
 	canSmoothWith = SMOOTH_GROUP_WOOD_WALLS
 
 /obj/structure/falsewall/bamboo
-	name = "bamboo wall"
-	desc = "A wall with bamboo finish. Zen."
+	name = "竹墙壁"
+	desc = "一面竹制饰面的墙壁。禅意。"
 	fake_icon = 'icons/turf/walls/bamboo_wall.dmi'
 	icon_state = "bamboo_wall-open"
 	base_icon_state = "bamboo_wall"
@@ -337,8 +337,8 @@
 	canSmoothWith = SMOOTH_GROUP_BAMBOO_WALLS
 
 /obj/structure/falsewall/iron
-	name = "rough iron wall"
-	desc = "A wall with rough metal plating."
+	name = "粗糙铁墙壁"
+	desc = "一面粗糙金属饰面的墙壁。"
 	fake_icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron_wall-open"
 	base_icon_state = "iron_wall"
@@ -351,8 +351,8 @@
 	canSmoothWith = SMOOTH_GROUP_IRON_WALLS
 
 /obj/structure/falsewall/abductor
-	name = "alien wall"
-	desc = "A wall with alien alloy plating."
+	name = "外星墙壁"
+	desc = "一面外星合金饰面的墙壁。"
 	fake_icon = 'icons/turf/walls/abductor_wall.dmi'
 	icon_state = "abductor_wall-open"
 	base_icon_state = "abductor_wall"
@@ -363,8 +363,8 @@
 	canSmoothWith = SMOOTH_GROUP_ABDUCTOR_WALLS
 
 /obj/structure/falsewall/titanium
-	name = "wall"
-	desc = "A light-weight titanium wall used in shuttles."
+	name = "墙壁"
+	desc = "一种用于穿梭机的轻质钛墙壁。"
 	fake_icon = 'icons/turf/walls/shuttle_wall.dmi'
 	icon_state = "shuttle_wall-open"
 	base_icon_state = "shuttle_wall"
@@ -375,8 +375,8 @@
 	canSmoothWith = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_TITANIUM_WALLS
 
 /obj/structure/falsewall/plastitanium
-	name = "wall"
-	desc = "An evil wall of plasma and titanium."
+	name = "墙壁"
+	desc = "一面由等离子体与钛构成的邪恶墙壁。"
 	fake_icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "plastitanium_wall-open"
 	base_icon_state = "plastitanium_wall"
@@ -392,8 +392,8 @@
 	walltype = /turf/closed/wall/mineral/plastitanium/wall_fill
 
 /obj/structure/falsewall/plastitanium/darkpod
-	name = "dark pod wall"
-	desc = "An easily-compressible wall used for temporary shelter."
+	name = "暗色舱壁"
+	desc = "一种易于压缩的墙壁，用于搭建临时庇护所。"
 	fake_icon = 'icons/turf/walls/dark_pod.dmi'
 	icon_state = "dark_pod_walls-open"
 	base_icon_state = "dark_pod_walls"
@@ -404,8 +404,8 @@
 	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 
 /obj/structure/falsewall/plastitanium/redpod
-	name = "red pod wall"
-	desc = "An easily-compressible wall used for temporary shelter."
+	name = "红色舱壁"
+	desc = "一种易于压缩的墙壁，用于搭建临时庇护所。"
 	fake_icon = 'icons/turf/walls/red_pod.dmi'
 	icon_state = "red_pod_walls-open"
 	base_icon_state = "red_pod_walls"
@@ -416,8 +416,8 @@
 	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 
 /obj/structure/falsewall/plastitanium/survival
-	name = "pod wall"
-	desc = "An easily-compressible wall used for temporary shelter."
+	name = "舱壁"
+	desc = "一种易于压缩的墙壁，用于搭建临时庇护所。"
 	fake_icon = 'icons/turf/walls/survival_pod_walls.dmi'
 	icon_state = "survival_pod_walls-open"
 	base_icon_state = "survival_pod_walls"
@@ -428,8 +428,8 @@
 	canSmoothWith = SMOOTH_GROUP_SURVIVAL_TITANIUM_POD
 
 /obj/structure/falsewall/material
-	name = "wall"
-	desc = "A huge chunk of material used to separate rooms."
+	name = "墙壁"
+	desc = "一大块用于分隔房间的材料。"
 	fake_icon = 'icons/turf/walls/material_wall.dmi'
 	icon_state = "material_wall-open"
 	base_icon_state = "material_wall"
@@ -448,7 +448,7 @@
 
 /obj/structure/falsewall/material/finalize_material_effects(list/materials)
 	. = ..()
-	desc = "A huge chunk of [get_material_english_list(materials)] used to separate rooms."
+	desc = "一大块用于分隔房间的[get_material_english_list(materials)]。"
 
 /obj/structure/falsewall/material/toggle_open()
 	if(!QDELETED(src))

@@ -1,8 +1,8 @@
 // This file contains all boxes used by the Medical department, or otherwise associated with the task of mob interactions.
 
 /obj/item/storage/box/syringes
-	name = "box of syringes"
-	desc = "A box full of syringes."
+	name = "注射器盒"
+	desc = "装满注射器的盒子。"
 	illustration = "syringe"
 
 /obj/item/storage/box/syringes/PopulateContents()
@@ -10,7 +10,7 @@
 		new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syringes/variety
-	name = "syringe variety box"
+	name = "混合注射器盒"
 
 /obj/item/storage/box/syringes/variety/PopulateContents()
 	new /obj/item/reagent_containers/syringe(src)
@@ -19,8 +19,8 @@
 	new /obj/item/reagent_containers/syringe/bluespace(src)
 
 /obj/item/storage/box/medipens
-	name = "box of medipens"
-	desc = "A box full of epinephrine MediPens."
+	name = "自动注射笔盒"
+	desc = "装满肾上腺素自动注射笔的盒子。"
 	illustration = "epipen"
 
 /obj/item/storage/box/medipens/PopulateContents()
@@ -28,8 +28,8 @@
 		new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/medipens/utility
-	name = "stimpack value kit"
-	desc = "A box with several stimpack medipens for the economical miner."
+	name = "兴奋剂实惠套装"
+	desc = "装有数支兴奋剂自动注射笔的盒子，适合精打细算的矿工。"
 	illustration = "epipen"
 
 /obj/item/storage/box/medipens/utility/PopulateContents()
@@ -38,7 +38,7 @@
 		new /obj/item/reagent_containers/hypospray/medipen/stimpack(src)
 
 /obj/item/storage/box/beakers
-	name = "box of beakers"
+	name = "烧杯盒"
 	illustration = "beaker"
 
 /obj/item/storage/box/beakers/PopulateContents()
@@ -46,7 +46,7 @@
 		new /obj/item/reagent_containers/cup/beaker( src )
 
 /obj/item/storage/box/beakers/big
-	name = "box of big beakers"
+	name = "大烧杯盒"
 	illustration = "beaker"
 
 /obj/item/storage/box/beakers/big/PopulateContents()
@@ -54,7 +54,7 @@
 		new /obj/item/reagent_containers/cup/beaker/large(src)
 
 /obj/item/storage/box/beakers/bluespace
-	name = "box of bluespace beakers"
+	name = "蓝空间烧杯盒"
 	illustration = "beaker"
 
 /obj/item/storage/box/beakers/bluespace/PopulateContents()
@@ -62,7 +62,7 @@
 		new /obj/item/reagent_containers/cup/beaker/bluespace(src)
 
 /obj/item/storage/box/beakers/variety
-	name = "beaker variety box"
+	name = "混合烧杯盒"
 
 /obj/item/storage/box/beakers/variety/PopulateContents()
 	new /obj/item/reagent_containers/cup/beaker(src)
@@ -73,8 +73,8 @@
 	new /obj/item/reagent_containers/cup/beaker/plastic(src)
 
 /obj/item/storage/box/medigels
-	name = "box of medical gels"
-	desc = "A box full of medical gel applicators, with unscrewable caps and precision spray heads."
+	name = "医疗凝胶盒"
+	desc = "装满医疗凝胶涂抹器的盒子，配有可拧开的盖子和精密喷雾头。"
 	illustration = "medgel"
 
 /obj/item/storage/box/medigels/PopulateContents()
@@ -82,8 +82,8 @@
 		new /obj/item/reagent_containers/medigel( src )
 
 /obj/item/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors, it seems."
+	name = "DNA 注射器盒"
+	desc = "这个盒子里似乎装着注射器。"
 	illustration = "dna"
 
 /obj/item/storage/box/injectors/PopulateContents()
@@ -94,8 +94,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/bodybags
-	name = "body bags"
-	desc = "The label indicates that it contains body bags."
+	name = "尸袋"
+	desc = "标签表明里面装着尸袋。"
 	illustration = "bodybags"
 
 /obj/item/storage/box/bodybags/PopulateContents()
@@ -104,8 +104,8 @@
 		new /obj/item/bodybag(src)
 
 /obj/item/storage/box/pillbottles
-	name = "box of pill bottles"
-	desc = "It has pictures of pill bottles on its front."
+	name = "药瓶盒"
+	desc = "正面印着药瓶的图案。"
 	illustration = "pillbox"
 
 /obj/item/storage/box/pillbottles/PopulateContents()
@@ -121,8 +121,8 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/box/evilmeds
-	name = "box of premium medicine"
-	desc = "Contains a large number of beakers filled with premium medical supplies. Straight from Interdyne Pharmaceutics!"
+	name = "高级药品盒"
+	desc = "内含大量装满高级医疗用品的烧杯，直接来自英特戴恩制药公司！"
 	icon_state = "syndiebox"
 	illustration = "beaker"
 
@@ -139,8 +139,8 @@
 	generate_items_inside(items_inside, src)
 
 /obj/item/storage/box/bandages
-	name = "box of bandages"
-	desc = "A box of DeForest brand gel bandages designed to treat blunt-force trauma."
+	name = "绷带盒"
+	desc = "一盒德福雷斯特品牌的凝胶绷带，用于治疗钝器伤。"
 	icon = 'icons/obj/storage/box.dmi' // SKYRAT EDIT CHANGE
 	icon_state = "brutebox"
 	base_icon_state = "brutebox"
@@ -172,8 +172,8 @@
 
 // The actual box
 /obj/item/storage/box/triage_cards
-	name = "triage card box"
-	desc = "A box containing triage cards, used for quickly assessing the severity of a patient's condition."
+	name = "分诊卡盒"
+	desc = "装满分诊卡的盒子，用于快速评估患者的伤情严重程度。"
 	custom_price = PAYCHECK_CREW
 
 /obj/item/storage/box/triage_cards/PopulateContents()
@@ -184,30 +184,30 @@
 	new /obj/item/pen(src)
 
 // The triage cards themselves
-#define SEVERITY_MINIMAL "minimal"
-#define SEVERITY_DELAYED "delayed"
-#define SEVERITY_IMMEDIATE "immediate"
-#define SEVERITY_DEAD "expectant / deceased"
+#define SEVERITY_MINIMAL "轻微"
+#define SEVERITY_DELAYED "延迟"
+#define SEVERITY_IMMEDIATE "立即"
+#define SEVERITY_DEAD "期待 / 已死亡"
 
 /obj/item/paper/triage
-	name = "triage card"
-	desc = "A card used to determine the severity of a patient's condition at a glance."
-	default_raw_text = "It's so over" // filler text
+	name = "分诊卡"
+	desc = "一张可一眼判断患者伤情严重程度的卡片。"
+	default_raw_text = "彻底完了" // filler text
 	var/severity = "none"
 
 /obj/item/paper/triage/Initialize(mapload)
-	name = "\"[severity]\" [name]"
+	name = "「[severity]」[name]"
 	default_raw_text = {"
 		<center>
-			<h2>TAG - TRIAGE</h2>
+			<h2>标签 - 分诊</h2>
 		</center>
-		<b>Name:</b><br>
+		<b>姓名：</b><br>
 		\[______________________________\]<br>
 		<center>
 			<h3>- [uppertext(severity)] -<h3>
 			<h4>[severity_to_subtitle()]</h4>
 		</center>
-		<b>Injuries:</b><br>
+		<b>伤情：</b><br>
 		\[________________________________________\]<br>
 		\[________________________________________\]<br>
 		\[________________________________________\]<br>
@@ -219,36 +219,36 @@
 /obj/item/paper/triage/proc/severity_to_subtitle()
 	switch(severity)
 		if(SEVERITY_DEAD)
-			return "NO RESPIRATION"
+			return "无呼吸"
 		if(SEVERITY_IMMEDIATE)
-			return "LIFE THREATENING"
+			return "危及生命"
 		if(SEVERITY_DELAYED)
-			return "SERIOUS INJURIES - NOT LIFE THREATENING"
+			return "重伤——不危及生命"
 		if(SEVERITY_MINIMAL)
-			return "MINOR INJURIES - WALKING WOUNDED"
-	return "UNKNOWN"
+			return "轻伤——可行走伤员"
+	return "未知"
 
 /obj/item/paper/triage/examine(mob/user)
 	. = ..()
 	switch(severity)
 		if(SEVERITY_DEAD)
-			. += span_notice("This card indicates that the patient is deceased or is not expected to survive.")
+			. += span_notice("这张卡表示患者已经死亡，或预计无法存活。")
 		if(SEVERITY_IMMEDIATE)
-			. += span_notice("This card indicates that the patient is in a critical condition and requires immediate attention.")
+			. += span_notice("这张卡表示患者情况危急，需要立即处理。")
 		if(SEVERITY_DELAYED)
-			. += span_notice("This card indicates that the patient is seriously injured, but not in immediate danger.")
+			. += span_notice("这张卡表示患者伤势严重，但没有直接危险。")
 		if(SEVERITY_MINIMAL)
-			. += span_notice("This card indicates that the patient is only slightly injured.")
+			. += span_notice("这张卡表示患者只受了轻伤。")
 
-	. += span_smallnoticeital("There is a guide to triage on the back of the card, if you <i>look closer</i>.")
+	. += span_smallnoticeital("如果你<i>仔细查看</i>，可以看到卡片背面印有分诊指南。")
 
 /obj/item/paper/triage/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>The back of [src] has a guide to performing triage:</i>")
-	. += "&bull; \"Is the victim walking and can respond to simple orders?\" If so, mark as <b>minimal</b>."
-	. += "&bull; \"Has the victim stopped breathing entirely (without even gasping for air)?\" If so, mark as <b>expectant / deceased</b>."
-	. += "&bull; \"Is the victim bleeding, failing to follow simple commands, lacking a pulse, having difficulties breathing?\" If so, mark as <b>immediate</b>."
-	. += "&bull; Otherwise, mark as <b>delayed</b>."
+	. += span_notice("<i>[src]的背面印有分诊操作指南：</i>")
+	. += "&bull; “伤者能否行走，并回应简单指令？”若是，标记为<b>轻微</b>。"
+	. += "&bull; “伤者是否已完全停止呼吸（甚至连喘息都没有）？”若是，标记为<b>期待 / 已死亡</b>。"
+	. += "&bull; “伤者是否出血、无法遵从简单指令、没有脉搏、呼吸困难？”若是，标记为<b>立即</b>。"
+	. += "&bull; 否则，标记为<b>延迟</b>。"
 
 /obj/item/paper/triage/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isliving(interacting_with))
@@ -261,7 +261,7 @@
 		return NONE
 
 	user.do_attack_animation(interacting_with, used_item = src)
-	interacting_with.balloon_alert(user, "card attached")
+	interacting_with.balloon_alert(user, "卡片已贴上")
 	interacting_with.AddComponent(/datum/component/sticker, src, get_dir(interacting_with, src), px, py)
 	return ITEM_INTERACT_SUCCESS
 
@@ -283,8 +283,8 @@
 
 // Paper bin to store a lot of triage cards. Goes away when empty.
 /obj/item/paper_bin/triage
-	name = "triage card stack"
-	desc = "A stack of triage cards for quickly assessing the severity of a patient's condition."
+	name = "分诊卡叠"
+	desc = "一叠分诊卡，用于快速评估患者的伤情严重程度。"
 	icon_state = ""
 	bin_overlay_string = ""
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'

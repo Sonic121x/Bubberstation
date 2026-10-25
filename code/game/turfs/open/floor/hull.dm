@@ -1,14 +1,14 @@
 
 /turf/open/floor/engine/hull
-	name = "exterior hull plating"
-	desc = "Sturdy exterior hull plating that separates you from the uncaring vacuum of space."
+	name = "外部船体装甲板"
+	desc = "坚固的外部船体装甲板，将你与冷漠的太空真空隔绝。"
 	icon_state = "regular_hull"
 	initial_gas_mix = AIRLESS_ATMOS
 	temperature = TCMB
 
 /turf/open/floor/engine/hull/air
-	name = "interior hull plating"
-	desc = "Sturdy interior hull plating that separates you from the floor below."
+	name = "内部船体装甲板"
+	desc = "坚固的内部船体装甲板，将你与下方的地板隔绝。"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	temperature = T20C
 
@@ -16,16 +16,16 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/engine/hull/ceiling
-	name = "shuttle ceiling plating"
+	name = "穿梭机顶棚装甲板"
 
 /turf/open/floor/engine/hull/reinforced
-	name = "exterior reinforced hull plating"
-	desc = "Extremely sturdy exterior hull plating that separates you from the uncaring vacuum of space."
+	name = "外部强化船体装甲板"
+	desc = "极其坚固的外部船体装甲板，将你与冷漠的太空真空隔绝。"
 	icon_state = "reinforced_hull"
 	heat_capacity = INFINITY
 
 /turf/open/floor/engine/hull/reinforced/air
-	name = "interior reinforced hull plating"
-	desc = "Extremely sturdy interior hull plating that separates you from the floor below."
+	name = "内部强化船体装甲板"
+	desc = "极其坚固的内部船体装甲板，将你与下方的地板隔绝。"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	temperature = T20C

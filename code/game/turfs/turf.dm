@@ -373,7 +373,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			break
 	if(prev_turf && !(flags & FALL_NO_MESSAGE))
 		for(var/mov_name in falling_mov_names)
-			prev_turf.visible_message(span_danger("[mov_name] falls through [prev_turf]!"))
+			prev_turf.visible_message(span_danger("[mov_name] 穿过 [prev_turf] 坠落而下！"))
 	if(!(flags & FALL_INTERCEPTED) && zFall(falling, levels + 1))
 		return FALSE
 	for(var/atom/movable/falling_mov as anything in falling_movables)
@@ -490,7 +490,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			// A baseturfs list over 100 members long is silly
 			// Because of how this is all structured it will only runtime/message once per type
 			stack_trace("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
-			message_admins("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
+			message_admins("一块地格 <[type]> 创建了长度超过 100 个成员的 baseturfs 列表。这很可能是一个无限循环。")
 			break
 		new_baseturfs.Insert(1, next_target)
 		current_target = next_target
@@ -854,7 +854,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		return
 	if(!GLOB.preset_fish_sources[fish_source].has_known_fishes(src))
 		return
-	. += span_tinynoticeital("This is a fishing spot. You can look again to list its fishes...")
+	. += span_tinynoticeital("这里是一处钓鱼点。你可以再次查看，以列出其中的鱼类……")
 
 /turf/examine_more(mob/user)
 	. = ..()

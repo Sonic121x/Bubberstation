@@ -1,6 +1,6 @@
 /datum/team/blood_worm
-	name = "\improper Blood Worms"
-	member_name = "blood worm"
+	name = "\improper 血虫"
+	member_name = "血虫"
 
 	var/blood_consumed_total = 0
 	var/times_reproduced_total = 0
@@ -60,16 +60,16 @@
 /datum/team/blood_worm/roundend_report()
 	var/list/report = list()
 
-	report += span_header("\The [name]:")
+	report += span_header("[name]：")
 	report += printplayerlist(members)
 
 	if (length(objectives))
-		report += span_header("Their collective goals:")
+		report += span_header("他们的共同目标：")
 		report += print_objective_list()
 
 	report += ""
 
-	report += did_we_win() ? span_greentext("The [name] were successful!") : span_redtext("The [name] have failed!")
+	report += did_we_win() ? span_greentext("[name] 成功了！") : span_redtext("[name] 失败了！")
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
@@ -77,7 +77,7 @@
 	. = list()
 	for (var/i in 1 to length(objectives))
 		var/datum/objective/objective = objectives[i]
-		. += "<B>Objective #[i]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
+		. += "<B>目标 #[i]</B>：[objective.explanation_text] [objective.get_roundend_success_suffix()]"
 
 /datum/team/blood_worm/proc/did_we_win()
 	for (var/datum/objective/objective as anything in objectives)

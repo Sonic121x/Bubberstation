@@ -1,4 +1,4 @@
-ADMIN_VERB(fax_panel, R_ADMIN, "Fax Panel", "View and respond to faxes sent to CC.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(fax_panel, R_ADMIN, "传真面板", "查看并回复发送至中央指挥部的传真。", ADMIN_CATEGORY_EVENTS)
 	var/datum/fax_panel_interface/ui = new /datum/fax_panel_interface(user.mob)
 	ui.ui_interact(user.mob)
 
@@ -13,9 +13,9 @@ ADMIN_VERB(fax_panel, R_ADMIN, "Fax Panel", "View and respond to faxes sent to C
 	var/obj/item/paper/fax_paper = new /obj/item/paper(null)
 
 	/// Default name of fax. Used when field with fax name not edited.
-	var/sending_fax_name = "Secret"
+	var/sending_fax_name = "保密"
 	/// Default name of paper. paper - bluh-bluh. Used when field with paper name not edited.
-	var/default_paper_name = "Standard Report"
+	var/default_paper_name = "标准报告"
 
 /datum/fax_panel_interface/New()
 	//Get all faxes, and save them to our list.
@@ -116,7 +116,7 @@ ADMIN_VERB(fax_panel, R_ADMIN, "Fax Panel", "View and respond to faxes sent to C
 					stamp_class = needed_stamp[3]
 					break
 
-			fax_paper.name = "paper — [default_paper_name]"
+			fax_paper.name = "纸张 — [default_paper_name]"
 			fax_paper.add_raw_text(params["rawText"], advanced_html = TRUE)
 
 			if(stamp)
@@ -130,8 +130,8 @@ ADMIN_VERB(fax_panel, R_ADMIN, "Fax Panel", "View and respond to faxes sent to C
 			our_fax.name = fax_paper.name
 			//send
 			action_fax.receive(our_fax, sending_fax_name)
-			message_admins("[key_name_admin(ui.user)] has sent a custom fax message to [action_fax.name][ADMIN_FLW(action_fax)][ADMIN_SHOW_PAPER(fax_paper)].")
-			log_admin("[key_name(ui.user)] has sent a custom fax message to [action_fax.name]")
+			message_admins("[key_name_admin(ui.user)] 向 [action_fax.name] 发送了一封自定义传真[ADMIN_FLW(action_fax)][ADMIN_SHOW_PAPER(fax_paper)]。")
+			log_admin("[key_name(ui.user)] 向 [action_fax.name] 发送了一封自定义传真")
 
 		if("createPaper")
 			var/obj/item/paper/our_paper = fax_paper.copy(/obj/item/paper, ui.user.loc)

@@ -1,16 +1,16 @@
 /obj/item/tail_pin
 	icon = 'icons/obj/poster.dmi'
 	icon_state = "tailpin"
-	name = "tail pin"
-	desc = "Officially branded 'pin the tail on the corgi' style party implement. Not intended to be used on people."
+	name = "尾巴别针"
+	desc = "官方出品的“给柯基贴尾巴”风格派对用具。不适合用在人身上。"
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 0
 	throw_speed = 1
 	custom_materials = list(/datum/material/iron= HALF_SHEET_MATERIAL_AMOUNT)
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("pokes", "jabs", "pins the tail on")
-	attack_verb_simple = list("poke", "jab")
+	attack_verb_continuous = list("戳", "刺", "把尾巴贴到")
+	attack_verb_simple = list("戳", "刺")
 	sharpness = SHARP_POINTY
 	max_integrity = 200
 	layer = CORGI_ASS_PIN_LAYER
@@ -22,16 +22,16 @@
 	ignore_throwspeed_threshold = TRUE
 
 /obj/item/poster/tail_board
-	name = "party game poster"
+	name = "派对游戏海报"
 	poster_type = /obj/structure/sign/poster/party_game
 	icon_state = "rolled_poster"
 
 /obj/structure/sign/poster/party_game
-	name = "pin the tail on the corgi"
-	desc = "The rules are simple, pin the tail on the corgi, while blindfolded. Are you a bad enough dude to hit the target?"
+	name = "给柯基贴尾巴"
+	desc = "规则很简单：蒙上眼睛，把尾巴贴到柯基身上。你够胆量命中目标吗？"
 	icon_state = "pinningposter"
-	poster_item_name = "party game poster"
-	poster_item_desc = "Place it on a wall to start playing pin the tail on the corgi."
+	poster_item_name = "派对游戏海报"
+	poster_item_desc = "把它贴在墙上即可开始玩“给柯基贴尾巴”。"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/party_game, 32)
 

@@ -2,7 +2,7 @@
  * Parent class for all implants
  */
 /obj/item/implant
-	name = "implant"
+	name = "植入体"
 	icon = 'icons/hud/implants.dmi'
 	icon_state = "generic" //Shows up as the action button icon
 	item_flags = ABSTRACT | DROPDEL
@@ -25,9 +25,9 @@
 	var/hud_icon_state = null
 
 	/// What's the most important info that we really, really care about, e.g. name, lifespan-after-death, utility?
-	var/implant_info = "No information available."
+	var/implant_info = "无可用信息。"
 	/// What's the extended lore for this implant that we might not care that much about, e.g. descriptions, flavortext?
-	var/implant_lore = "No information available."
+	var/implant_lore = "无可用信息。"
 
 /obj/item/implant/proc/activate()
 	SEND_SIGNAL(src, COMSIG_IMPLANT_ACTIVATED)
@@ -77,7 +77,7 @@
 		if(!force && (other_implant.implant_flags & IMPLANT_TYPE_SECURITY))
 			security_implants++
 			if(security_implants >= SECURITY_IMPLANT_CAP) //We've found too many security implants in this mob, and will reject implantation by normal means
-				balloon_alert(user, "too many security implants!")
+				balloon_alert(user, "安保植入体过多！")
 				return FALSE
 		if(flags & COMPONENT_DELETE_NEW_IMPLANT)
 			UNSETEMPTY(target.implants)
@@ -110,7 +110,7 @@
 		target_human.sec_hud_set_implants()
 
 	if(user)
-		log_combat(user, target, "implanted", "\a [name]")
+		log_combat(user, target, "植入了", "[name]")
 
 	SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, target, user, silent, force)
 	GLOB.tracked_implants += src
@@ -194,9 +194,9 @@
 
 	var/list/buttons = list()
 	UNTYPED_LIST_ADD(buttons, list(
-		"name" = "Self Destruct",
+		"name" = "自毁",
 		"color" = "bad",
-		"tooltip" = "Destoys the implant from within the user harmlessly.",
+		"tooltip" = "在用户体内无害地摧毁该植入体。",
 		"action_key" = "self_destruct",
 	))
 	return buttons
@@ -214,13 +214,13 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(params["implant_action"] == "self_destruct")
-		var/warning = tgui_alert(user, "Activation will harmlessly self-destruct this implant. Proceed?", "You sure?", list("Yes", "No"))
+		var/warning = tgui_alert(user, "激活将无害地自毁该植入体。是否继续？", "你确定？", list("Yes", "No"))
 		if(warning != "Yes" || QDELETED(src) || QDELETED(user) || QDELETED(console) || isnull(imp_in))
 			return TRUE
 		if(!console.is_operational || !user.can_perform_action(console, NEED_DEXTERITY|ALLOW_SILICON_REACH))
 			return TRUE
 
-		to_chat(imp_in, span_hear("You feel a tiny jolt from inside of you as one of your implants fizzles out."))
+		to_chat(imp_in, span_hear("你感到体内传来一阵轻微的电流刺痛，随后其中一个植入体失效了。"))
 		do_sparks(number = 2, cardinal_only = FALSE, source = imp_in)
 		deconstruct()
 		return TRUE

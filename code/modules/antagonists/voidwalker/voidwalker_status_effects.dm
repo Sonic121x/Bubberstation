@@ -11,8 +11,8 @@
 	owner.adjust_brute_loss(1)
 
 /atom/movable/screen/alert/status_effect/veryhighgravity
-	name = "Crushing Gravity"
-	desc = "You're getting crushed by high gravity, picking up items and movement will be slowed. You'll also accumulate brute damage!"
+	name = "碾压重力"
+	desc = "你正被高重力碾碎，拾取物品与移动都会变慢。你还会不断累积钝击伤害！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "paralysis"
 

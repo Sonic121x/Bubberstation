@@ -2,8 +2,8 @@
 #define ACCESS_TIMER_LIMIT (10 MINUTES)
 
 /obj/item/access_key
-	name = "access key ring"
-	desc = "A key ring with a beeper, allowing the keys to change shape depending on which department it has access to."
+	name = "通行钥匙环"
+	desc = "带蜂鸣器的钥匙环，能让钥匙根据所拥有的权限改变外形。"
 	icon_state = "access_key"
 	inhand_icon_state = "access_key"
 	icon = 'icons/obj/service/janitor.dmi'
@@ -11,9 +11,9 @@
 	righthand_file = 'icons/mob/inhands/items/keys_righthand.dmi'
 	hitsound = 'sound/items/rattling_keys_attack.ogg'
 	force = 2
-	verb_say = "beeps" //it has a beeper
-	verb_ask = "questionably beeps"
-	verb_exclaim = "beeps loudly"
+	verb_say = "哔哔作响" //it has a beeper
+	verb_ask = "发出疑问的哔声"
+	verb_exclaim = "大声哔哔"
 	w_class = WEIGHT_CLASS_TINY
 
 	///The departmental access given to the key.
@@ -34,12 +34,12 @@
 /obj/item/access_key/examine(mob/user)
 	. = ..()
 	if(department_access)
-		. += "It currently holds access to the [department_access] region."
+		. += "它目前拥有 [department_access] 区域的通行权限。"
 
 /obj/item/access_key/examine_more(mob/user)
 	. = ..()
-	. += span_notice("Access can be granted through a Keycard Authentication Device.")
-	. += span_notice("This access is limited to one department at a time.")
+	. += span_notice("可通过钥匙卡认证装置授予通行权限。")
+	. += span_notice("该权限一次只能授予一个部门。")
 
 /**
  * Called when attempting to open an airlock.
@@ -51,12 +51,12 @@
 /obj/item/access_key/proc/attempt_open_door(mob/living/user, obj/machinery/door/airlock)
 	if(DOING_INTERACTION_WITH_TARGET(user, airlock))
 		return FALSE
-	user.balloon_alert_to_viewers("fumbles with keys...", "finding key...")
+	user.balloon_alert_to_viewers("手忙脚乱地翻找钥匙……", "寻找钥匙……")
 	user.playsound_local(src, 'sound/items/rattling_keys.ogg', 25, TRUE)
 	if(!do_after(user, key_speed, airlock))
 		return FALSE
 	if(!department_access || !airlock.check_access_list(SSid_access.accesses_by_region[department_access]))
-		airlock.balloon_alert(user, "no access!")
+		airlock.balloon_alert(user, "无通行权限！")
 		return FALSE
 	return airlock.try_to_activate_door(user, access_bypass = TRUE)
 
@@ -70,21 +70,21 @@
 /obj/item/access_key/proc/department_access_given(obj/machinery/keycard_auth/source, list/region_access)
 	SIGNAL_HANDLER
 	department_access = region_access[1]
-	say("Access granted to [department_access] area.")
+	say("已授予 [department_access] 区域的通行权限。")
 	playsound(src, 'sound/machines/ding.ogg', 25, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(clear_access)), ACCESS_TIMER_LIMIT, TIMER_UNIQUE|TIMER_OVERRIDE)
-	log_game("Access to the [department_access] department was given to [src] [(ismob(loc)) ? "held by [loc]" : "which is not being held"]")
-	investigate_log("Access to the [department_access] department was given to [src] [(ismob(loc)) ? "held by [loc]" : "which is not being held"]", INVESTIGATE_ACCESSCHANGES)
+	log_game("[department_access] 部门的通行权限已授予 [src] [(ismob(loc)) ? "由 [loc] 持有" : "但未被人持有"]")
+	investigate_log("[department_access] 部门的通行权限已授予 [src] [(ismob(loc)) ? "由 [loc] 持有" : "但未被人持有"]", INVESTIGATE_ACCESSCHANGES)
 
 /**
  * Called when a keycard authenticator runs out of time
  * Clears the department access and alerts nearby people of such.
  */
 /obj/item/access_key/proc/clear_access()
-	log_game("Access to the [department_access] department on [src] has expired.")
-	investigate_log("Access to the [department_access] department on [src] has expired.]", INVESTIGATE_ACCESSCHANGES)
+	log_game("[src] 上的 [department_access] 部门通行权限已过期。")
+	investigate_log("[src] 上的 [department_access] 部门通行权限已过期。]", INVESTIGATE_ACCESSCHANGES)
 	department_access = null
-	say("Access revoked, time ran out.")
+	say("通行权限已撤销，时间到了。")
 	playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE)
 
 #undef ACCESS_TIMER_LIMIT

@@ -66,12 +66,12 @@
 			target.modify_filter(params["name"], params["new_data"])
 			. = TRUE
 		if("modify_color_value")
-			var/new_color = tgui_color_picker(usr, "Pick new filter color", "Filteriffic Colors!") // BUBBERSTATION EDIT: TGUI COLOR PICKER
+			var/new_color = tgui_color_picker(usr, "选择新的滤镜颜色", "滤镜缤纷色彩！") // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(new_color)
 				target.transition_filter(params["name"], list("color" = new_color), 4)
 				. = TRUE
 		if("modify_icon_value")
-			var/icon/new_icon = input("Pick icon:", "Icon") as null|icon
+			var/icon/new_icon = input("选择图标：", "图标") as null|icon
 			if(new_icon)
 				target.modify_filter(params["name"], list("icon" = new_icon))
 				. = TRUE
@@ -87,7 +87,7 @@
 			. = TRUE
 		if("mass_apply")
 			if(!check_rights_for(usr.client, R_FUN))
-				to_chat(usr, span_userdanger("Stay in your lane, jannie."))
+				to_chat(usr, span_userdanger("管好你自己的事，清洁工。"))
 				return
 			var/target_path = text2path(params["path"])
 			if(!target_path)
@@ -100,7 +100,7 @@
 				thing_at.filter_data = filter_data_to_copy.Copy()
 				thing_at.update_filters()
 				count += 1
-			message_admins("LOCAL CLOWN [usr.ckey] JUST MASS FILTER EDITED [count] WITH PATH OF [params["path"]]!")
-			log_admin("LOCAL CLOWN [usr.ckey] JUST MASS FILTER EDITED [count] WITH PATH OF [params["path"]]!")
+			message_admins("本地小丑 [usr.ckey] 刚刚批量滤镜编辑了 [count] 个对象，路径为 [params["path"]]！")
+			log_admin("本地小丑 [usr.ckey] 刚刚批量滤镜编辑了 [count] 个对象，路径为 [params["path"]]！")
 
 

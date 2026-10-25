@@ -13,8 +13,8 @@
  */
 
 /obj/structure/table
-	name = "table"
-	desc = "A square piece of iron standing on four metal legs. It can not move."
+	name = "桌子"
+	desc = "一块方形铁板架在四条金属腿上。它无法移动。"
 	icon = 'icons/obj/smooth_structures/table.dmi'
 	icon_state = "table-0"
 	base_icon_state = "table"
@@ -79,7 +79,7 @@
 	if(can_flip)
 		AddElement( \
 			/datum/element/contextual_screentip_bare_hands, \
-			rmb_text = "Flip", \
+			rmb_text = "翻桌", \
 		)
 
 	ADD_TRAIT(src, TRAIT_COMBAT_MODE_SKIP_INTERACTION, INNATE_TRAIT)
@@ -189,16 +189,16 @@
 	if(istype(held_item, /obj/item/toy/cards/deck))
 		var/obj/item/toy/cards/deck/dealer_deck = held_item
 		if(HAS_TRAIT(dealer_deck, TRAIT_WIELDED))
-			context[SCREENTIP_CONTEXT_LMB] = "Deal card"
-			context[SCREENTIP_CONTEXT_RMB] = "Deal card faceup"
+			context[SCREENTIP_CONTEXT_LMB] = "发牌"
+			context[SCREENTIP_CONTEXT_RMB] = "明牌发放"
 			. = CONTEXTUAL_SCREENTIP_SET
 
 	if(deconstruction_ready)
 		if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_RMB] = "Disassemble"
+			context[SCREENTIP_CONTEXT_RMB] = "拆解"
 			. = CONTEXTUAL_SCREENTIP_SET
 		if(held_item.tool_behaviour == TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+			context[SCREENTIP_CONTEXT_RMB] = "拆卸"
 			. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE
@@ -206,11 +206,11 @@
 /obj/structure/table/examine(mob/user)
 	. = ..()
 	if(is_flipped)
-		. += span_notice("It's been flipped on its side!")
+		. += span_notice("它被翻倒在一旁！")
 	. += deconstruction_hints(user)
 
 /obj/structure/table/proc/deconstruction_hints(mob/user)
-	return span_notice("The top is <b>screwed</b> on, but the main <b>bolts</b> are also visible.")
+	return span_notice("桌面是用<b>螺丝</b>拧上去的，但主<b>螺栓</b>也露在外面。")
 
 /obj/structure/table/proc/on_exit(datum/source, atom/movable/leaving, direction)
 	SIGNAL_HANDLER
@@ -288,13 +288,13 @@
 	var/interaction_key = "table_flip_[REF(src)]"
 	if(!is_flipped)
 		if(!LAZYACCESS(user.do_afters, interaction_key)) // To avoid balloon alert spam
-			user.balloon_alert_to_viewers("flipping table...")
+			user.balloon_alert_to_viewers("正在翻桌……")
 		if(do_after(user, max_integrity * 0.25, src, interaction_key = interaction_key))
 			flip_table(get_dir(user, src))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!LAZYACCESS(user.do_afters, interaction_key)) // To avoid balloon alert spam
-		user.balloon_alert_to_viewers("flipping table upright...")
+		user.balloon_alert_to_viewers("正在把桌子翻正……")
 	if(do_after(user, max_integrity * 0.25, src, interaction_key = interaction_key))
 		unflip_table()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -324,7 +324,7 @@
 /obj/structure/table/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	if(!deconstruction_ready)
 		return NONE
-	to_chat(user, span_notice("You start disassembling [src]..."))
+	to_chat(user, span_notice("你开始拆解[src]……"))
 	if(tool.use_tool(src, user, 2 SECONDS, volume=50))
 		deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -332,7 +332,7 @@
 /obj/structure/table/wrench_act_secondary(mob/living/user, obj/item/tool)
 	if(!deconstruction_ready)
 		return NONE
-	to_chat(user, span_notice("You start deconstructing [src]..."))
+	to_chat(user, span_notice("你开始拆卸[src]……"))
 	if(tool.use_tool(src, user, 4 SECONDS, volume=50))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 		frame = null
@@ -369,7 +369,7 @@
 	for(var/obj/item/thing in used_tray.contents)
 		AfterPutItemOnTable(thing, user)
 	used_tray.atom_storage.remove_all(drop_location())
-	user.visible_message(span_notice("[user] empties [used_tray] on [src]."))
+	user.visible_message(span_notice("[user] 把[used_tray]里的东西全倒在了[src]上。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/table/proc/deck_act(mob/living/user, obj/item/toy/cards/deck/dealer_deck, list/modifiers, flip)
@@ -443,12 +443,12 @@
 /obj/structure/table/greyscale/finalize_material_effects(list/materials)
 	. = ..()
 	var/english_list = get_material_english_list(materials)
-	desc = "A square [(length(materials) > 1) ? "amalgamation" : "piece"] of [english_list] on four legs. It can not move."
+	desc = "一张由[english_list]制成的方形[(length(materials) > 1) ? "混合" : ""]桌板，架在四条腿上。它无法移动。"
 
 ///Table on wheels
 /obj/structure/table/rolling
-	name = "Rolling table"
-	desc = "An NT brand \"Rolly poly\" rolling table. It can and will move."
+	name = "带轮桌子"
+	desc = "一张纳米传讯品牌的“Rolly poly”带轮桌子。它能移动，而且一定会动。"
 	anchored = FALSE
 	smoothing_flags = NONE
 	smoothing_groups = null
@@ -476,16 +476,16 @@
 		return
 
 	if(rable.loaded)
-		to_chat(user, span_warning("You already have \a [rable.loaded] docked!"))
+		to_chat(user, span_warning("你已经对接了一个[rable.loaded]！"))
 		return ITEM_INTERACT_FAILURE
 
 	if(locate(/mob/living) in loc.get_all_contents())
-		to_chat(user, span_warning("You can't collect \the [src] with that much on top!"))
+		to_chat(user, span_warning("上面堆了这么多东西，你没法收起[src]！"))
 		return ITEM_INTERACT_FAILURE
 
 	rable.loaded = src
 	forceMove(rable)
-	user.visible_message(span_notice("[user] collects \the [src]."), span_notice("You collect \the [src]."))
+	user.visible_message(span_notice("[user] 收起了[src]。"), span_notice("你收起了[src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/table/rolling/AfterPutItemOnTable(obj/item/thing, mob/living/user)
@@ -526,8 +526,8 @@
  * Glass tables
  */
 /obj/structure/table/glass
-	name = "glass table"
-	desc = "What did I say about leaning on the glass tables? Now you need surgery."
+	name = "玻璃桌"
+	desc = "我不是说过别靠在玻璃桌上吗？现在你得动手术了。"
 	icon = 'icons/obj/smooth_structures/glass_table.dmi'
 	icon_state = "glass_table-0"
 	base_icon_state = "glass_table"
@@ -573,8 +573,8 @@
 		table_shatter(M)
 
 /obj/structure/table/glass/proc/table_shatter(mob/living/victim)
-	visible_message(span_warning("[src] breaks!"),
-		span_danger("You hear breaking glass."))
+	visible_message(span_warning("[src] 碎了！"),
+		span_danger("你听见玻璃破碎的声音。"))
 
 	playsound(loc, SFX_SHATTER, 50, TRUE)
 
@@ -601,8 +601,8 @@
 	color = NARSIE_WINDOW_COLOUR
 
 /obj/structure/table/glass/plasmaglass
-	name = "plasma glass table"
-	desc = "Someone thought this was a good idea."
+	name = "等离子玻璃桌"
+	desc = "有人觉得这是个好主意。"
 	icon = 'icons/obj/smooth_structures/plasmaglass_table.dmi'
 	icon_state = "plasmaglass_table-0"
 	base_icon_state = "plasmaglass_table"
@@ -616,8 +616,8 @@
  */
 
 /obj/structure/table/wood
-	name = "wooden table"
-	desc = "Do not apply fire to this. Rumour says it burns easily."
+	name = "木桌"
+	desc = "请勿用火烤它。据说它很容易烧起来。"
 	icon = 'icons/obj/smooth_structures/wood_table.dmi'
 	icon_state = "wood_table-0"
 	base_icon_state = "wood_table"
@@ -634,8 +634,8 @@
 	if(QDELETED(src) || prob(66))
 		return
 	visible_message(
-		span_warning("[src] smashes into bits!"),
-		blind_message = span_hear("You hear the loud cracking of wood being split."),
+		span_warning("[src] 碎成了一堆木片！"),
+		blind_message = span_hear("你听见木头被劈开的响亮爆裂声。"),
 	)
 
 	playsound(src, 'sound/effects/wounds/crack2.ogg', 50, TRUE)
@@ -649,8 +649,8 @@
 		..()
 
 /obj/structure/table/wood/poker //No specialties, Just a mapping object.
-	name = "gambling table"
-	desc = "A seedy table for seedy dealings in seedy places."
+	name = "赌桌"
+	desc = "一张寒酸的桌子，供人在寒酸的地方做寒酸的交易。"
 	icon = 'icons/obj/smooth_structures/poker_table.dmi'
 	icon_state = "poker_table-0"
 	base_icon_state = "poker_table"
@@ -663,8 +663,8 @@
 	..(FALSE)
 
 /obj/structure/table/wood/fancy
-	name = "fancy table"
-	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
+	name = "华丽桌子"
+	desc = "标准金属桌架，上面覆着一块极其华丽的花纹桌布。"
 	icon = 'icons/obj/smooth_structures/fancy_table.dmi'
 	icon_state = "fancy_table-0"
 	base_icon_state = "fancy_table"
@@ -742,8 +742,8 @@
  * Reinforced tables
  */
 /obj/structure/table/reinforced
-	name = "reinforced table"
-	desc = "A reinforced version of the four legged table."
+	name = "加固桌"
+	desc = "四条腿桌子的加固版本。"
 	icon = 'icons/obj/smooth_structures/reinforced_table.dmi'
 	icon_state = "reinforced_table-0"
 	base_icon_state = "reinforced_table"
@@ -770,16 +770,16 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_RMB] = deconstruction_ready ? "Strengthen" : "Weaken"
+		context[SCREENTIP_CONTEXT_RMB] = deconstruction_ready ? "加固" : "削弱"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return . || NONE
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
 	if(deconstruction_ready)
-		return span_notice("The top cover has been <i>welded</i> loose and the main frame's <b>bolts</b> are exposed.")
+		return span_notice("顶盖已被<i>焊</i>开，主框架的<b>螺栓</b>露了出来。")
 	else
-		return span_notice("The top cover is firmly <b>welded</b> on.")
+		return span_notice("顶盖被牢牢<b>焊</b>在上面。")
 
 /obj/structure/table/reinforced/welder_act_secondary(mob/living/user, obj/item/tool)
 	if(tool.tool_start_check(user, amount = 0))
@@ -787,15 +787,15 @@
 			return ITEM_INTERACT_BLOCKING
 
 		if(deconstruction_ready)
-			to_chat(user, span_notice("You start strengthening the reinforced table..."))
+			to_chat(user, span_notice("你开始加固这张加固桌……"))
 			if (tool.use_tool(src, user, 50, volume = 50))
-				to_chat(user, span_notice("You strengthen the table."))
+				to_chat(user, span_notice("你加固了桌子。"))
 				deconstruction_ready = FALSE
 				return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_notice("You start weakening the reinforced table..."))
+			to_chat(user, span_notice("你开始削弱这张加固桌……"))
 			if (tool.use_tool(src, user, 50, volume = 50))
-				to_chat(user, span_notice("You weaken the table."))
+				to_chat(user, span_notice("你削弱了桌子。"))
 				deconstruction_ready = TRUE
 				return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
@@ -838,8 +838,8 @@
 	return TRUE
 
 /obj/structure/table/bronze
-	name = "bronze table"
-	desc = "A solid table made out of bronze."
+	name = "青铜桌"
+	desc = "一张由青铜制成的实心桌子。"
 	icon = 'icons/obj/smooth_structures/brass_table.dmi'
 	icon_state = "brass_table-0"
 	base_icon_state = "brass_table"
@@ -853,8 +853,8 @@
 	playsound(src, 'sound/effects/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
 
 /obj/structure/table/reinforced/rglass
-	name = "reinforced glass table"
-	desc = "A reinforced version of the glass table."
+	name = "加固玻璃桌"
+	desc = "玻璃桌的加固版本。"
 	icon = 'icons/obj/smooth_structures/rglass_table.dmi'
 	icon_state = "rglass_table-0"
 	base_icon_state = "rglass_table"
@@ -863,8 +863,8 @@
 	max_integrity = 150
 
 /obj/structure/table/reinforced/plasmarglass
-	name = "reinforced plasma glass table"
-	desc = "A reinforced version of the plasma glass table."
+	name = "加固等离子玻璃桌"
+	desc = "等离子玻璃桌的加固版本。"
 	icon = 'icons/obj/smooth_structures/rplasmaglass_table.dmi'
 	icon_state = "rplasmaglass_table-0"
 	base_icon_state = "rplasmaglass_table"
@@ -872,8 +872,8 @@
 	buildstack = /obj/item/stack/sheet/plasmarglass
 
 /obj/structure/table/reinforced/titaniumglass
-	name = "titanium glass table"
-	desc = "A titanium reinforced glass table, with a fresh coat of NT white paint."
+	name = "钛玻璃桌"
+	desc = "一张钛加固玻璃桌，刚刷上一层纳米传讯白漆。"
 	icon = 'icons/obj/smooth_structures/titaniumglass_table.dmi'
 	icon_state = "titaniumglass_table-0"
 	base_icon_state = "titaniumglass_table"
@@ -882,8 +882,8 @@
 	max_integrity = 250
 
 /obj/structure/table/reinforced/plastitaniumglass
-	name = "plastitanium glass table"
-	desc = "A table made of titanium reinforced silica-plasma composite. About as durable as it sounds."
+	name = "塑钛玻璃桌"
+	desc = "一张由钛加固硅-等离子复合材料制成的桌子。耐用程度差不多就是名字听起来的那样。"
 	icon = 'icons/obj/smooth_structures/plastitaniumglass_table.dmi'
 	icon_state = "plastitaniumglass_table-0"
 	base_icon_state = "plastitaniumglass_table"
@@ -896,8 +896,8 @@
  */
 
 /obj/structure/table/optable//SKYRAT EDIT - ICON OVERRIDEN BY AESTHETICS - SEE MODULE
-	name = "operating table"
-	desc = "Used for advanced medical procedures."
+	name = "手术台"
+	desc = "用于高级医疗手术。"
 	icon = 'icons/obj/medical/surgery_table.dmi'
 	icon_state = "surgery_table"
 	buildstack = /obj/item/stack/sheet/mineral/silver
@@ -952,14 +952,14 @@
 
 	if(being_buckled == buckler)
 		being_buckled.visible_message(
-			span_notice("[buckler] lays down on [src]."),
-			span_notice("You lay down on [src]."),
+			span_notice("[buckler] 躺到了[src]上。"),
+			span_notice("你躺到了[src]上。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_buckled.visible_message(
-			span_notice("[buckler] lays [being_buckled] down on [src]."),
-			span_notice("[buckler] lays you down on [src]."),
+			span_notice("[buckler] 把[being_buckled]放躺到[src]上。"),
+			span_notice("[buckler] 把你放躺到[src]上。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -969,14 +969,14 @@
 
 	if(being_unbuckled == unbuckler)
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] gets up from [src]."),
-			span_notice("You get up from [src]."),
+			span_notice("[unbuckler] 从[src]上起身。"),
+			span_notice("你从[src]上起身。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 	else
 		being_unbuckled.visible_message(
-			span_notice("[unbuckler] pulls [being_unbuckled] up from [src]."),
-			span_notice("[unbuckler] pulls you up from [src]."),
+			span_notice("[unbuckler] 把[being_unbuckled]从[src]上扶了起来。"),
+			span_notice("[unbuckler] 把你从[src]上扶了起来。"),
 			visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 		)
 
@@ -984,26 +984,26 @@
 	. = ..()
 	if(isnull(held_item))
 		if (breath_mask?.loc == src)
-			context[SCREENTIP_CONTEXT_RMB] = "Take mask"
+			context[SCREENTIP_CONTEXT_RMB] = "取下面罩"
 			. |= CONTEXTUAL_SCREENTIP_SET
 		return
 
 	if(breath_mask && breath_mask != held_item)
 		if (held_item.tool_behaviour == TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "Detach mask"
+			context[SCREENTIP_CONTEXT_LMB] = "拆下面罩"
 			. |= CONTEXTUAL_SCREENTIP_SET
 	else if (istype(held_item, /obj/item/clothing/mask/breath))
-		context[SCREENTIP_CONTEXT_LMB] = "Attach mask"
+		context[SCREENTIP_CONTEXT_LMB] = "装上面罩"
 		. |= CONTEXTUAL_SCREENTIP_SET
 
 	if(air_tank)
 		if (held_item.tool_behaviour == TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "Detach tank"
+			context[SCREENTIP_CONTEXT_LMB] = "拆下气瓶"
 			. |= CONTEXTUAL_SCREENTIP_SET
 	else if (istype(held_item, /obj/item/tank))
 		var/obj/item/tank/as_tank = held_item
 		if (as_tank.tank_holder_icon_state)
-			context[SCREENTIP_CONTEXT_LMB] = "Attach tank"
+			context[SCREENTIP_CONTEXT_LMB] = "装上气瓶"
 			. |= CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/table/optable/atom_deconstruct(disassembled)
@@ -1134,7 +1134,7 @@
 /obj/structure/table/optable/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (istype(tool, /obj/item/clothing/mask/breath))
 		if (breath_mask && breath_mask != tool)
-			balloon_alert(user, "mask already attached!")
+			balloon_alert(user, "面罩已装上！")
 			return ITEM_INTERACT_BLOCKING
 
 		if (!user.transferItemToLoc(tool, src))
@@ -1144,7 +1144,7 @@
 			breath_mask = tool
 			RegisterSignal(breath_mask, COMSIG_MOVABLE_MOVED, PROC_REF(on_mask_moved))
 
-		balloon_alert(user, "mask attached")
+		balloon_alert(user, "面罩已装上")
 		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -1153,19 +1153,19 @@
 		return NONE
 
 	if (air_tank)
-		balloon_alert(user, "tank already attached!")
+		balloon_alert(user, "气瓶已装上！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/tank/as_tank = tool
 	if (!as_tank.tank_holder_icon_state)
-		balloon_alert(user, "does not fit!")
+		balloon_alert(user, "装不上！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
 	air_tank = as_tank
-	balloon_alert(user, "tank attached")
+	balloon_alert(user, "气瓶已装上")
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -1179,7 +1179,7 @@
 
 	breath_mask.forceMove(drop_location())
 	tool.play_tool_sound(src, 50)
-	balloon_alert(user, "mask detached")
+	balloon_alert(user, "面罩已拆下")
 	UnregisterSignal(breath_mask, list(COMSIG_MOVABLE_MOVED, COMSIG_ITEM_DROPPED))
 	if (breath_mask.IsReachableBy(user))
 		user.put_in_hands(breath_mask)
@@ -1190,12 +1190,12 @@
 /obj/structure/table/optable/wrench_act(mob/living/user, obj/item/tool)
 	if (!air_tank)
 		return NONE
-	balloon_alert(user, "detaching the tank...")
+	balloon_alert(user, "正在拆下气瓶……")
 	if (!tool.use_tool(src, user, 3 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 	air_tank.forceMove(drop_location())
 	tool.play_tool_sound(src, 50)
-	balloon_alert(user, "tank detached")
+	balloon_alert(user, "气瓶已拆下")
 	if (air_tank.IsReachableBy(user))
 		user.put_in_hands(air_tank)
 
@@ -1217,31 +1217,31 @@
 /obj/structure/table/optable/examine(mob/user)
 	. = ..()
 	if (air_tank)
-		. += span_notice("It has \a [air_tank] secured to it with a couple of [EXAMINE_HINT("bolts")].")
+		. += span_notice("它用几颗[EXAMINE_HINT("螺栓")]固定着一个[air_tank]。")
 		if (patient)
-			. += span_info("You can connect [patient]'s internals to \the [air_tank] by dragging \the [src] onto them.")
+			. += span_info("把[src]拖到[patient]身上，即可将[patient]的内部供气连接到[air_tank]。")
 	else
-		. += span_notice("It has an attachment slot for an air tank underneath.")
+		. += span_notice("它下面有一个气瓶安装槽。")
 	if (breath_mask)
-		. += span_notice("It has \a [breath_mask] attached to its side, the tube secured with a single [EXAMINE_HINT("screw")].")
+		. += span_notice("它侧面装着一个[breath_mask]，软管用一颗[EXAMINE_HINT("螺丝")]固定。")
 		if (breath_mask.loc == src)
-			. += span_info("You can detach the mask by right-clicking \the [src] with an empty hand.")
+			. += span_info("空手右键点击[src]即可拆下面罩。")
 	else
-		. += span_notice("There's a port for a breathing mask tube on its side.")
+		. += span_notice("它侧面有一个呼吸面罩软管接口。")
 
 /obj/structure/table/optable/proc/detach_mask(mob/living/user)
 	if (!istype(user) || !IsReachableBy(user) || !user.can_interact_with(src))
 		return FALSE
 
 	if (!breath_mask)
-		balloon_alert(user, "no mask attached!")
+		balloon_alert(user, "没有装面罩！")
 		return TRUE
 
 	if (!user.put_in_hands(breath_mask))
-		balloon_alert(user, "hands busy!")
+		balloon_alert(user, "双手正忙！")
 		return TRUE
 
-	to_chat(user, span_notice("You pull out \the [breath_mask] from \the [src]."))
+	to_chat(user, span_notice("你把[breath_mask]从[src]里拽了出来。"))
 	update_appearance()
 	return TRUE
 
@@ -1251,21 +1251,21 @@
 		return
 
 	if(!iscarbon(patient))
-		balloon_alert(user, "no internals connector!")
+		balloon_alert(user, "没有内部供气接口！")
 		return
 
 	if (!air_tank)
-		balloon_alert(user, "no tank attached!")
+		balloon_alert(user, "没有装气瓶！")
 		return
 
 	var/mob/living/carbon/carbon_patient = patient
 	var/internals = carbon_patient.can_breathe_internals()
 	if (!internals)
-		balloon_alert(user, "no internals connector!")
+		balloon_alert(user, "没有内部供气接口！")
 		return
 
-	user.visible_message(span_notice("[user] begins connecting [src]'s [air_tank] to [patient]'s [internals]."), span_notice("You begin connecting [src]'s [air_tank] to [patient]'s [internals]..."), ignored_mobs = patient)
-	to_chat(patient, span_userdanger("[user] begins connecting [src]'s [air_tank] to your [internals]!"))
+	user.visible_message(span_notice("[user] 开始把[src]的[air_tank]连接到[patient]的[internals]。"), span_notice("你开始把[src]的[air_tank]连接到[patient]的[internals]……"), ignored_mobs = patient)
+	to_chat(patient, span_userdanger("[user] 开始把[src]的[air_tank]连接到你的[internals]！"))
 
 	if (!do_after(user, 4 SECONDS, patient))
 		return
@@ -1274,8 +1274,8 @@
 		return
 
 	carbon_patient.open_internals(air_tank, is_external = TRUE)
-	to_chat(user, span_notice("You connect [src]'s [air_tank] to [patient]'s [internals]."))
-	to_chat(patient, span_userdanger("[user] connects [src]'s [air_tank] to your [internals]!"))
+	to_chat(user, span_notice("你把[src]的[air_tank]连接到[patient]的[internals]。"))
+	to_chat(patient, span_userdanger("[user] 把[src]的[air_tank]连接到你的[internals]！"))
 
 /obj/structure/table/optable/proc/on_mask_moved(datum/source, atom/oldloc, direction)
 	SIGNAL_HANDLER
@@ -1299,9 +1299,9 @@
 
 	if(isliving(loc))
 		var/mob/living/user = loc
-		to_chat(user, span_warning("[breath_mask]'s tube overextends and it comes out of your hands!"))
+		to_chat(user, span_warning("[breath_mask] 的软管拉得过长，从你手中脱落了！"))
 	else
-		visible_message(span_notice("[breath_mask] snaps back into \the [src]."))
+		visible_message(span_notice("[breath_mask] 弹回了[src]里。"))
 	snap_mask_back()
 
 /obj/structure/table/optable/proc/snap_mask_back()
@@ -1328,8 +1328,8 @@
  * Racks
  */
 /obj/structure/rack
-	name = "rack"
-	desc = "Different from the Middle Ages version."
+	name = "货架"
+	desc = "与中世纪的版本可不一样。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "rack"
 	layer = TABLE_LAYER
@@ -1340,8 +1340,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /obj/structure/rack/skeletal
-	name = "skeletal minibar"
-	desc = "Rattle me boozes!"
+	name = "骸骨迷你吧"
+	desc = "把我的酒瓶晃出响声来！"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "minibar"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -1358,14 +1358,14 @@
 		return NONE
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_RMB] = "拆卸"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
 
 /obj/structure/rack/examine(mob/user)
 	. = ..()
-	. += span_notice("It's held together by a couple of <b>bolts</b>.")
+	. += span_notice("它靠几颗<b>螺栓</b>固定在一起。")
 
 /obj/structure/rack/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
@@ -1400,7 +1400,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message(span_danger("[user] kicks [src]."), null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_danger("[user] 踢了[src]一脚。"), null, null, COMBAT_MESSAGE_RANGE)
 	take_damage(rand(4,8), BRUTE, MELEE, 1)
 
 /obj/structure/rack/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -1428,8 +1428,8 @@
  */
 
 /obj/item/rack_parts
-	name = "rack parts"
-	desc = "Parts of a rack."
+	name = "货架零件"
+	desc = "货架的零件。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "rack_parts"
 	inhand_icon_state = "rack_parts"
@@ -1446,11 +1446,11 @@
 		return NONE
 
 	if(held_item == src)
-		context[SCREENTIP_CONTEXT_LMB] = "Construct Rack"
+		context[SCREENTIP_CONTEXT_LMB] = "组装货架"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆卸"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return NONE
@@ -1467,12 +1467,12 @@
 	if(building)
 		return
 	building = TRUE
-	to_chat(user, span_notice("You start constructing a rack..."))
+	to_chat(user, span_notice("你开始组装货架……"))
 	if(do_after(user, 5 SECONDS, target = user))
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/R = new /obj/structure/rack(get_turf(src))
-		user.visible_message(span_notice("[user] assembles \a [R]."), span_notice("You assemble \a [R]."))
+		user.visible_message(span_notice("[user] 组装了一个[R]。"), span_notice("你组装了一个[R]。"))
 		R.add_fingerprint(user)
 		qdel(src)
 	building = FALSE

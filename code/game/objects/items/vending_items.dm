@@ -2,11 +2,11 @@
 	Vending machine refills can be found at /code/modules/vending/ within each vending machine's respective file
 */
 /obj/item/vending_refill
-	name = "resupply canister"
+	name = "补给罐"
 	icon = 'icons/obj/vending_restock.dmi'
 	icon_state = "refill_snack"
 	inhand_icon_state = "restock_unit"
-	desc = "A vending machine restock cart."
+	desc = "自动售货机的补货推车。"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -19,7 +19,7 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT)
 
 	///Name of the vending machine this canister is associated with
-	var/machine_name = "Generic"
+	var/machine_name = "通用"
 
 	///corresponds to /obj/machinery/vending::list/products
 	var/list/products
@@ -34,18 +34,18 @@
 
 /obj/item/vending_refill/Initialize(mapload)
 	. = ..()
-	name = "\improper [machine_name] restocking unit"
+	name = "\improper [machine_name]补货罐"
 
 /obj/item/vending_refill/examine(mob/user)
 	. = ..()
 
 	var/num = get_part_rating()
 	if (!num)
-		. += span_notice("It's empty!")
+		. += span_notice("它是空的！")
 	else if(num == INFINITY)
-		. += span_notice("It's full of supplies!")
+		. += span_notice("里面装满了物资！")
 	else
-		. += span_notice("It can restock [num] item\s.")
+		. += span_notice("它可以补充 [num] 件物品。")
 
 /obj/item/vending_refill/get_part_rating()
 	. = 0

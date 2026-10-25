@@ -5,8 +5,8 @@
 // The ammo it uses takes time to "charge" before firing,
 // releasing a homing, very damaging projectile
 /obj/item/gun/ballistic/rifle/lionhunter
-	name = "\improper Lionhunter's Rifle"
-	desc = "An antique looking rifle that looks immaculate despite being clearly very old."
+	name = "\improper 猎狮者步枪"
+	desc = "一把外观古旧的步枪，尽管显然年代久远，却保养得一尘不染。"
 	slot_flags = ITEM_SLOT_BACK
 	icon_state = "lionhunter"
 	inhand_icon_state = "lionhunter"
@@ -21,7 +21,7 @@
 	AddComponent(/datum/component/scope, range_modifier = 3.2)
 
 /obj/item/ammo_box/magazine/internal/boltaction/lionhunter
-	name = "lionhunter rifle internal magazine"
+	name = "猎狮者步枪内置弹仓"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter
 	caliber = CALIBER_STRILKA310
 	max_ammo = 3
@@ -50,7 +50,7 @@
 		return TRUE
 
 	if(currently_aiming)
-		user.balloon_alert(user, "already aiming!")
+		user.balloon_alert(user, "已在瞄准！")
 		return FALSE
 
 	var/distance = get_dist(user, target)
@@ -62,7 +62,7 @@
 	if(distance <= min_distance || !isliving(target))
 		return TRUE
 
-	user.balloon_alert(user, "taking aim...")
+	user.balloon_alert(user, "正在瞄准……")
 	user.playsound_local(get_turf(user), 'sound/items/weapons/gun/general/chunkyrack.ogg', 100, TRUE)
 
 	var/image/reticle = image(
@@ -93,7 +93,7 @@
 		viewer.client?.images -= reticle
 
 	if(!.)
-		user.balloon_alert(user, "interrupted!")
+		user.balloon_alert(user, "被打断了！")
 
 	return .
 
@@ -126,7 +126,7 @@
 	return ..()
 
 /obj/projectile/bullet/strilka310/lionhunter
-	name = "hunter's .310 bullet"
+	name = "猎手 .310 子弹"
 	// These stats are only applied if the weapon is fired fully aimed
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 30
@@ -175,8 +175,8 @@
 
 // Extra ammunition can be made with a heretic ritual.
 /obj/item/ammo_box/speedloader/strilka310/lionhunter
-	name = "stripper clip (.310 hunter)"
-	desc = "A stripper clip of mysterious, atypical ammo. It doesn't fit into normal ballistic rifles."
+	name = "桥夹（.310 猎手）"
+	desc = "一个装有神秘非标准弹药的桥夹。它无法装入普通弹道步枪。"
 	icon_state = "lionhunter_strip"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter
 	max_ammo = 3

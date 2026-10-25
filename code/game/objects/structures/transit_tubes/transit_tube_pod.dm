@@ -32,8 +32,8 @@
 
 	tool.play_tool_sound(src)
 	if(contents.len)
-		user.visible_message(span_notice("[user] empties \the [src]."), \
-							span_notice("You empty \the [src]."))
+		user.visible_message(span_notice("[user]清空了[src]。"), \
+							span_notice("你清空了[src]。"))
 		empty_pod()
 	else
 		deconstruct(TRUE)
@@ -75,9 +75,9 @@
 	if(!moving)
 		user.changeNext_move(CLICK_CD_BREAKOUT)
 		user.last_special = world.time + CLICK_CD_BREAKOUT
-		to_chat(user, span_notice("You start trying to escape from the pod..."))
+		to_chat(user, span_notice("你开始试图从舱体里逃出去……"))
 		if(do_after(user, 1 MINUTES, target = src))
-			to_chat(user, span_notice("You manage to open the pod."))
+			to_chat(user, span_notice("你成功打开了舱体。"))
 			empty_pod()
 
 /obj/structure/transit_tube_pod/proc/empty_pod(atom/location)
@@ -155,7 +155,7 @@
 	var/list/savedcontents = contents.Copy()
 	var/saveddir = dir
 	var/turf/destination = get_edge_target_turf(src,saveddir)
-	visible_message(span_warning("[src] ejects its insides out!"))
+	visible_message(span_warning("[src]把里面的东西全喷了出来！"))
 	deconstruct(FALSE)//we automatically deconstruct the pod
 	for(var/i in savedcontents)
 		var/atom/movable/AM = i
@@ -207,8 +207,8 @@
 //special pod made by the dispenser, it fizzles away when reaching a station.
 
 /obj/structure/transit_tube_pod/dispensed
-	name = "temporary transit tube pod"
-	desc = "Hits the skrrrt (tube station), then hits the dirt (nonexistence). You know how it is."
+	name = "临时运输管道舱"
+	desc = "先冲进管道站，然后一头栽进虚无。你懂的。"
 	icon_state = "temppod"
 	occupied_icon_state = "temppod_occupied"
 

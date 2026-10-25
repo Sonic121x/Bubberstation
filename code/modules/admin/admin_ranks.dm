@@ -124,21 +124,21 @@ GLOBAL_PROTECT(protected_ranks)
 /datum/admin_rank/proc/pretty_print_source()
 	switch(source)
 		if(RANK_SOURCE_LOCAL)
-			return "Localhost"
+			return "本地主机"
 		if(RANK_SOURCE_TXT)
 			return "admin_ranks.txt"
 		if(RANK_SOURCE_DB)
-			return "Database"
+			return "数据库"
 		if(RANK_SOURCE_BACKUP)
-			return "Backup JSON"
+			return "备份 JSON"
 		if(RANK_SOURCE_TEMPORARY)
-			return "Temporary"
+			return "临时"
 
 /// Loads admin ranks.
 ///	Return a list containing the backup data if they were loaded from the database backup json
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin Reload blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员等级重载被阻止：检测到高级程序调用。"), confidential = TRUE)
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
@@ -165,8 +165,8 @@ GLOBAL_PROTECT(protected_ranks)
 		else
 			var/datum/db_query/query_load_admin_ranks = SSdbcore.NewQuery("SELECT `rank`, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")]")
 			if(!query_load_admin_ranks.Execute())
-				message_admins("Error loading admin ranks from database. Loading from backup.")
-				log_sql("Error loading admin ranks from database. Loading from backup.")
+				message_admins("从数据库加载管理员等级时出错，正在从备份加载。")
+				log_sql("从数据库加载管理员等级时出错，正在从备份加载。")
 				dbfail = TRUE
 			else
 				while(query_load_admin_ranks.NextRow())
@@ -190,7 +190,7 @@ GLOBAL_PROTECT(protected_ranks)
 	if(dbfail)
 		var/backup_file = file2text("data/admins_backup.json")
 		if(backup_file == null)
-			log_world("Unable to locate admins backup file.")
+			log_world("找不到管理员备份文件。")
 			return FALSE
 		var/list/json = json_decode(backup_file)
 		for(var/J in json["ranks"])
@@ -229,7 +229,7 @@ GLOBAL_PROTECT(protected_ranks)
 				break
 
 	if (rank_names.len > 0)
-		log_config("Admin rank names were invalid: [jointext(ranks, ", ")]")
+		log_config("管理员等级名称无效：[jointext(ranks, ", ")]")
 
 	return ranks
 
@@ -251,8 +251,8 @@ GLOBAL_PROTECT(protected_ranks)
 
 	var/dbfail
 	if(!CONFIG_GET(flag/admin_legacy_system) && !SSdbcore.Connect())
-		message_admins("Failed to connect to database while loading admins. Loading from backup.")
-		log_sql("Failed to connect to database while loading admins. Loading from backup.")
+		message_admins("加载管理员时连接数据库失败，正在从备份加载。")
+		log_sql("加载管理员时连接数据库失败，正在从备份加载。")
 		dbfail = TRUE
 	//clear the datums references
 	GLOB.admin_datums.Cut()
@@ -282,8 +282,8 @@ GLOBAL_PROTECT(protected_ranks)
 	if(!CONFIG_GET(flag/admin_legacy_system) && !dbfail)
 		var/datum/db_query/query_load_admins = SSdbcore.NewQuery("SELECT ckey, `rank`, feedback FROM [format_table_name("admin")] ORDER BY `rank`")
 		if(!query_load_admins.Execute())
-			message_admins("Error loading admins from database. Loading from backup.")
-			log_sql("Error loading admins from database. Loading from backup.")
+			message_admins("从数据库加载管理员时出错，正在从备份加载。")
+			log_sql("从数据库加载管理员时出错，正在从备份加载。")
 			dbfail = 1
 		else
 			while(query_load_admins.NextRow())
@@ -295,7 +295,7 @@ GLOBAL_PROTECT(protected_ranks)
 				var/list/admin_ranks = ranks_from_rank_name(admin_rank)
 
 				if(admin_ranks.len == 0)
-					message_admins("[admin_ckey] loaded with invalid admin rank [admin_rank].")
+					message_admins("[admin_ckey] 载入时使用了无效的管理员等级 [admin_rank]。")
 					skip = 1
 				if(GLOB.admin_datums[admin_ckey] || GLOB.deadmins[admin_ckey])
 					skip = 1
@@ -314,7 +314,7 @@ GLOBAL_PROTECT(protected_ranks)
 				return
 			var/backup_file = file2text("data/admins_backup.json")
 			if(backup_file == null)
-				log_world("Unable to locate admins backup file.")
+				log_world("找不到管理员备份文件。")
 				return
 			backup_file_json = json_decode(backup_file)
 		for(var/backup_admin_ckey in backup_file_json["admins"])
@@ -340,7 +340,7 @@ GLOBAL_PROTECT(protected_ranks)
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin rank DB Sync blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员等级数据库同步被阻止：检测到高级程序调用。"), confidential = TRUE)
 		return
 
 	var/list/sql_ranks = list()
@@ -384,7 +384,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /proc/sync_admins_with_db()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin rank DB Sync blocked: Advanced ProcCall detected."))
+		to_chat(usr, span_adminprefix("管理员等级数据库同步被阻止：检测到高级程序调用。"))
 		return
 
 	if(CONFIG_GET(flag/admin_legacy_system) || !SSdbcore.IsConnected()) //we're already using legacy system so there's nothing to save
@@ -402,7 +402,7 @@ GLOBAL_PROTECT(protected_ranks)
 
 /proc/save_admin_backup()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin rank DB Sync blocked: Advanced ProcCall detected."))
+		to_chat(usr, span_adminprefix("管理员等级数据库同步被阻止：检测到高级程序调用。"))
 		return
 
 	if(CONFIG_GET(flag/admin_legacy_system)) //we're already using legacy system so there's nothing to save

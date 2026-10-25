@@ -5,7 +5,7 @@
  * kinda sitting in limbo... Well, whatever! They're kinda cool anyways!
  */
 /datum/antagonist/imp
-	name = "\improper Imp"
+	name = "\improper 小恶魔"
 	show_in_antagpanel = FALSE
 	show_in_roundend = FALSE
 	ui_name = "AntagInfoDemon"
@@ -17,12 +17,12 @@
 
 /datum/antagonist/imp/proc/give_objectives()
 	var/datum/objective/newobjective = new
-	newobjective.explanation_text = "Try to get a promotion to a higher devilish rank."
+	newobjective.explanation_text = "试着晋升到更高的恶魔阶级。"
 	newobjective.owner = owner
 	objectives += newobjective
 
 /datum/antagonist/imp/ui_static_data(mob/user)
 	var/list/data = list()
-	data["fluff"] = "You're an Imp, a lesser being of congealed sin summoned to serve the hierarchy of hell."
+	data["fluff"] = "你是一只小恶魔，由凝固的罪孽构成的低等存在，被召唤来为地狱的等级体系效力。"
 	data["objectives"] = get_objectives()
 	return data

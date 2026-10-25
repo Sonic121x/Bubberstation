@@ -1,5 +1,5 @@
 
-ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit admin permissions.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "权限面板", "编辑管理员权限。", ADMIN_CATEGORY_MAIN)
 	user.holder.edit_admin_permissions(PERMISSIONS_PAGE_PERMISSIONS)
 
 #define PERMISSIONS_LOGS_PER_PAGE 20
@@ -28,16 +28,16 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 
 	output += {"
 		<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowser=1'>\
-			[action == PERMISSIONS_PAGE_PERMISSIONS ? "<b>\[Permissions\]</b>": "\[Permissions\]"]
+			[action == PERMISSIONS_PAGE_PERMISSIONS ? "<b>\[权限\]</b>": "\[权限\]"]
 		</a>
 		[new_line]<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1'>
-			[action == PERMISSIONS_PAGE_RANKS ? "<b>\[Ranks\]</b>": "\[Ranks\]"]
+			[action == PERMISSIONS_PAGE_RANKS ? "<b>\[等级\]</b>": "\[等级\]"]
 		</a>
 		[new_line]<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlogging=1;editrightslogpage=0'>
-			[action == PERMISSIONS_PAGE_LOGGING ? "<b>\[Logging\]</b>": "\[Logging\]"]
+			[action == PERMISSIONS_PAGE_LOGGING ? "<b>\[日志\]</b>": "\[日志\]"]
 		</a>
 		[new_line]<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1'>
-			[action == PERMISSIONS_PAGE_HOUSEKEEPING ? "<b>\[Housekeeping\]</b>": "\[Housekeeping\]"]
+			[action == PERMISSIONS_PAGE_HOUSEKEEPING ? "<b>\[维护\]</b>": "\[维护\]"]
 		</a>
 	"}
 
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		output += {"
 			<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-				<title>Permissions Panel</title>
+				<title>权限面板</title>
 				<script type='text/javascript' src='[SSassets.transport.get_asset_url("search.js")]'></script>
 			</head>
 			<body onload='selectTextField();updateSearch();'>
@@ -56,8 +56,8 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 					<table id='searchable' cellspacing='0'>
 					<tr class='title'>
 						<th style='width:150px;'>CKEY <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=add'>\[+\]</a></th>
-						<th style='width:125px;'>RANK</th>
-						<th>PERMISSIONS</th>
+						<th style='width:125px;'>等级</th>
+						<th>权限</th>
 					</tr>
 		"}
 		for(var/admin_ckey in GLOB.admin_datums + GLOB.deadmins)
@@ -77,14 +77,14 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 
 			var/verify_link = ""
 			if (admin_datum.blocked_by_2fa)
-				verify_link = "<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=verify;key=[admin_ckey]'>\[2FA VERIFY\]</a>"
+				verify_link = "<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=verify;key=[admin_ckey]'>\[两步验证\]</a>"
 
 			output += {"
 				<tr>
 					<td style='text-align:center;'>[admin_ckey]
 						<br> [deadmin_link]
 						<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=remove;key=[admin_ckey]'>\[-\]</a>
-						<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=sync;key=[admin_ckey]'>\[SYNC TGDB\]</a>
+						<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=sync;key=[admin_ckey]'>\[同步 TGDB\]</a>
 						[verify_link]
 					</td>
 					<td>
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 					</table>
 				</div>
 				<div id='top'>
-					<b>Search:</b>
+					<b>搜索：</b>
 					<input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'>
 				</div>
 			</body>
@@ -109,9 +109,9 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		output += {"
 			<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-				<title>Permissions Panel</title>
+				<title>权限面板</title>
 			</head>
-			[creation_meaningful ? "<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1;editrightsaddrank=1'>\[Create Rank\]</a>" : ""]
+			[creation_meaningful ? "<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1;editrightsaddrank=1'>\[创建等级\]</a>" : ""]
 			<hr style='background:#000000; border:0; height:3px'>
 		"}
 		// First we're gonna collect admins by rank, for sorting purposes
@@ -179,20 +179,20 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 
 			output += {"
 				<b>[rank_name]</b>
-				[modify_might_be_allowed ? " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1;editrightseditrank=[rank_name]'>\[Edit\]</a>" : ""]
-				[delete_might_be_allowed ? " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1;editrightsremoverank=[rank_name]'>\[Delete\]</a>" : ""]
-				<br>Source: [rank_datum.pretty_print_source()]
-				<br>Held By: [length(admins_by_rank[rank_name])]
-				<br>Permissions: [permissions]
-				<br>Denied: [denied_permissions]
-				<br>Allowed to edit: [editing_permissions]
+				[modify_might_be_allowed ? " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1;editrightseditrank=[rank_name]'>\[编辑\]</a>" : ""]
+				[delete_might_be_allowed ? " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserranks=1;editrightsremoverank=[rank_name]'>\[删除\]</a>" : ""]
+				<br>来源：[rank_datum.pretty_print_source()]
+				<br>持有者：[length(admins_by_rank[rank_name])]
+				<br>权限：[permissions]
+				<br>被拒绝：[denied_permissions]
+				<br>可编辑：[editing_permissions]
 				<hr style='background:#000000; border:0; height:1px'>
 			"}
 	else if(action == PERMISSIONS_PAGE_LOGGING)
 		output += {"
 			<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-				<title>Permissions Panel</title>
+				<title>权限面板</title>
 			</head>
 		"}
 		var/log_count = 0
@@ -218,15 +218,15 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 				[HrefTokenFormField()]
 				<input type='hidden' name='_src_' value='holder'>
 				<input type='hidden' name='editrightsbrowserlogging' value='1'>
-				<b>Ckey Modified: </b>
+				<b>被修改的 Ckey：</b>
 					<input type='text' name='editrightslogtarget' value='[log_target]' style='width:20%;''>
-				<b> Acting Admin: </b>
+				<b> 操作管理员： </b>
 					<input type='text' name='editrightslogactor' value='[log_actor]' style='width:20%;''>
-				<b> Action: </b>
+				<b> 操作： </b>
 					<select name="editrightslogoperation" style='width:20%;'>
 						[action_options.Join()]
 					</select>
-				<input type='submit' value='Search'>
+				<input type='submit' value='搜索'>
 			</form>
 		"}
 		var/datum/db_query/query_count_admin_logs = SSdbcore.NewQuery({"
@@ -245,7 +245,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		QDEL_NULL(query_count_admin_logs)
 
 		if(log_count > PERMISSIONS_LOGS_PER_PAGE)
-			output += "<b>Page: </b>"
+			output += "<b>页码：</b>"
 			while(log_count > 0)
 				output += {"
 					|<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlogging=1;editrightslogtarget=[log_target];editrightslogactor=[log_actor];editrightslogoperation=[log_operation];editrightslogpage=[page_count]'>
@@ -287,7 +287,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 				output += "<hr style='background:#000000; border:0; height:3px'>"
 			output += {"
 				<p style='margin:0px'>
-					<b>[datetime] | Round ID [round_id] | Admin [admin_key] | Operation [operation_applied] on [ckey_actioned]</b>
+					<b>[datetime] | 回合 ID [round_id] | 管理员 [admin_key] | 操作 [operation_applied] 作用于 [ckey_actioned]</b>
 					<br>[log]
 				</p>
 				<hr style='background:#000000; border:0; height:3px'>
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		output += {"
 			<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-				<title>Permissions Panel</title>
+				<title>权限面板</title>
 			</head>
 		"}
 
@@ -330,28 +330,28 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			all_db_ranks[loaded_rank] = list("rank" = loaded_rank, "flags" = rank_flags, "exclude_flags" = rank_exclude_flags, "can_edit_flags" = rank_can_edit_flags)
 		QDEL_NULL(query_extract_ranks)
 
-		output += "<h3>Admin ckeys with invalid ranks</h3>"
+		output += "<h3>等级无效的管理员 ckey</h3>"
 		var/list/invalid_admin_ranks = admins_by_rank - all_db_ranks
 		if(length(invalid_admin_ranks)) // Add a nice leader to the output
 			output += "<hr style='background:#000000; border:0; height:1px'>"
 		else
-			output += "No invalid ranks found."
+			output += "未发现无效等级。"
 
 		for(var/illegal_rank in invalid_admin_ranks)
 			for(var/misapplied_admin in admins_by_rank[illegal_rank])
 				output += {"
-					[misapplied_admin] has the non-existent rank [illegal_rank] |
-					<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1;editrightschange=[misapplied_admin]'>\[Change Rank\]</a> |
-					<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1;editrightsremove=[misapplied_admin]'>\[Remove\]</a>
+					[misapplied_admin] 拥有不存在的等级 [illegal_rank] |
+					<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1;editrightschange=[misapplied_admin]'>\[更改等级\]</a> |
+					<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1;editrightsremove=[misapplied_admin]'>\[移除\]</a>
 					<hr style='background:#000000; border:0; height:1px'>
 				"}
 
-		output += "<h3>Unused DB Ranks</h3>"
+		output += "<h3>未使用的数据库等级</h3>"
 		var/list/unused_ranks = all_db_ranks - admins_by_rank
 		if(length(unused_ranks))
 			output += "<hr style='background:#000000; border:0; height:1px'>"
 		else
-			output += "No unused ranks found."
+			output += "未发现未使用的等级。"
 
 		sortTim(unused_ranks, GLOBAL_PROC_REF(cmp_text_asc))
 		for(var/unused_rank in unused_ranks)
@@ -370,12 +370,12 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			if((usr.client.holder.can_edit_rights_flags() & rank_datum.rights) == rank_datum.rights)
 				delete_might_be_allowed = FALSE
 			output += {"
-				Rank [unused_rank] is not held by any admin
-				[delete_might_be_allowed ? " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1;editrightsremoverank=[unused_rank]'>\[Delete\]</a>" : ""]
-				<br>Source: [rank_datum.pretty_print_source()]
-				<br>Permissions: [permissions]
-				<br>Denied: [denied_permissions]
-				<br>Allowed to edit: [editing_permissions]
+				等级 [unused_rank] 没有任何管理员持有
+				[delete_might_be_allowed ? " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserhousekeep=1;editrightsremoverank=[unused_rank]'>\[删除\]</a>" : ""]
+				<br>来源：[rank_datum.pretty_print_source()]
+				<br>权限：[permissions]
+				<br>被拒绝：[denied_permissions]
+				<br>可编辑：[editing_permissions]
 				<hr style='background:#000000; border:0; height:1px'>
 			"}
 
@@ -385,11 +385,11 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to edit admin permissions without sufficient rights.")
-		log_admin("[key_name(usr)] attempted to edit admin permissions without sufficient rights.")
+		message_admins("[key_name_admin(usr)] 试图在权限不足的情况下编辑管理员权限。")
+		log_admin("[key_name(usr)] 试图在权限不足的情况下编辑管理员权限。")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin Edit blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员编辑被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(usr.client)
@@ -409,22 +409,22 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		skip = TRUE
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_admins) && task == "rank")
 		if(admin_ckey in GLOB.protected_admins)
-			to_chat(usr, span_adminprefix("Editing the rank of this admin is blocked by server configuration."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("服务器配置禁止编辑此管理员的等级。"), confidential = TRUE)
 			return
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && task == "permissions")
 		if((target_admin_datum.ranks & GLOB.protected_ranks).len > 0)
-			to_chat(usr, span_adminprefix("Editing the flags of this rank is blocked by server configuration."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("服务器配置禁止编辑此等级的权限标志。"), confidential = TRUE)
 			return
 	if(CONFIG_GET(flag/load_legacy_ranks_only) && (task == "add" || task == "rank" || task == "permissions"))
-		to_chat(usr, span_adminprefix("Database rank loading is disabled, only temporary changes can be made to a rank's permissions and permanently creating a new rank is blocked."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("数据库等级加载已禁用，只能临时更改等级权限，永久创建新等级已被阻止。"), confidential = TRUE)
 		legacy_only = TRUE
 
 	if(check_rights(R_DBRANKS, FALSE) && !skip)
 		if(!SSdbcore.Connect())
-			to_chat(usr, span_danger("Unable to connect to database, changes are temporary only."), confidential = TRUE)
+			to_chat(usr, span_danger("无法连接数据库，更改仅会临时生效。"), confidential = TRUE)
 			use_db = FALSE
 		else
-			use_db = tgui_alert(usr,"Permanent changes are saved to the database for future rounds, temporary changes will affect only the current round", "Permanent or Temporary?", list("Permanent", "Temporary", "Cancel"))
+			use_db = tgui_alert(usr,"永久更改会保存到数据库供后续回合使用，临时更改只影响当前回合", "永久还是临时？", list("Permanent", "Temporary", "Cancel"))
 			if(isnull(use_db) || use_db == "Cancel")
 				return
 			if(use_db == "Permanent")
@@ -435,8 +435,8 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			return
 
 	if(target_admin_datum && (task != "sync" && task != "verify") && !check_if_greater_rights_than_holder(target_admin_datum))
-		message_admins("[key_name_admin(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
-		log_admin("[key_name(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
+		message_admins("[key_name_admin(usr)] 试图在权限不足的情况下更改 [admin_key] 的等级。")
+		log_admin("[key_name(usr)] 试图在权限不足的情况下更改 [admin_key] 的等级。")
 		return
 	switch(task)
 		if("add")
@@ -461,7 +461,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		if("sync")
 			sync_lastadminrank(admin_ckey, admin_key, target_admin_datum)
 		if("verify")
-			var/msg = "has authenticated [admin_ckey]"
+			var/msg = "已通过 [admin_ckey] 的身份验证"
 			message_admins("[key_name_admin(usr)] [msg]")
 			log_admin("[key_name(usr)] [msg]")
 
@@ -473,17 +473,17 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS) || (use_db && !check_rights(R_DBRANKS)))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin Addition blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员添加被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 	if(admin_ckey)
 		. = admin_ckey
 	else
-		admin_key = input("New admin's key","Admin key") as text|null
+		admin_key = input("新管理员的 key","管理员 key") as text|null
 		. = ckey(admin_key)
 	if(!.)
 		return FALSE
 	if(!admin_ckey && (. in (GLOB.admin_datums+GLOB.deadmins)))
-		to_chat(usr, span_danger("[admin_key] is already an admin."), confidential = TRUE)
+		to_chat(usr, span_danger("[admin_key] 已经是管理员了。"), confidential = TRUE)
 		return FALSE
 	if(!use_db)
 		return
@@ -497,7 +497,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		return FALSE
 	if(query_admin_in_db.NextRow())
 		qdel(query_admin_in_db)
-		to_chat(usr, span_danger("[admin_key] already listed in admin database. Check the Housekeeping tab if they don't appear in the list of admins."), confidential = TRUE)
+		to_chat(usr, span_danger("[admin_key] 已在管理员数据库中。如果其未出现在管理员列表中，请查看维护标签页。"), confidential = TRUE)
 		return FALSE
 	QDEL_NULL(query_admin_in_db)
 	var/datum/db_query/query_add_admin = SSdbcore.NewQuery(
@@ -521,16 +521,16 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS) || (use_db && !check_rights(R_DBRANKS)))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Admin Removal blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("管理员移除被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
-	if(tgui_alert(usr,"Are you sure you want to remove [admin_ckey]?", "Confirm Removal", list("Do it", "Cancel")) != "Do it")
+	if(tgui_alert(usr,"你确定要移除 [admin_ckey] 吗？", "确认移除", list("Do it", "Cancel")) != "Do it")
 		return
 	GLOB.admin_datums -= admin_ckey
 	GLOB.deadmins -= admin_ckey
 	if(target_holder)
 		target_holder.disassociate()
-	var/m1 = "[key_name_admin(usr)] removed [admin_key] from the admins list [use_db ? "permanently" : "temporarily"]"
-	var/m2 = "[key_name(usr)] removed [admin_key] from the admins list [use_db ? "permanently" : "temporarily"]"
+	var/m1 = "[key_name_admin(usr)] 已将 [admin_key] 从管理员列表中[use_db ? "永久" : "临时"]移除"
+	var/m2 = "[key_name(usr)] 已将 [admin_key] 从管理员列表中[use_db ? "永久" : "临时"]移除"
 
 	if(!use_db)
 		message_admins(m1)
@@ -560,14 +560,14 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!target_holder || !target_holder.deadmined)
 		return
 	target_holder.activate()
-	message_admins("[key_name_admin(usr)] forcefully readmined [admin_key]")
-	log_admin("[key_name(usr)] forcefully readmined [admin_key]")
+	message_admins("[key_name_admin(usr)] 强制恢复了 [admin_key] 的管理员身份")
+	log_admin("[key_name(usr)] 强制恢复了 [admin_key] 的管理员身份")
 
 /datum/admins/proc/force_deadmin(admin_key, datum/admins/target_holder)
 	if(!target_holder || target_holder.deadmined)
 		return
-	message_admins("[key_name_admin(usr)] forcefully deadmined [admin_key]")
-	log_admin("[key_name(usr)] forcefully deadmined [admin_key]")
+	message_admins("[key_name_admin(usr)] 强制解除了 [admin_key] 的管理员身份")
+	log_admin("[key_name(usr)] 强制解除了 [admin_key] 的管理员身份")
 	target_holder.deactivate() //after logs so the deadmined admin can see the message.
 
 /datum/admins/proc/auto_deadmin()
@@ -576,20 +576,20 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(owner.prefs.read_preference(/datum/preference/toggle/bypass_deadmin_in_centcom) && is_centcom_level(owner.mob.z) && !istype(owner.mob, /mob/dead/new_player))
 		return FALSE
 
-	to_chat(owner, span_interface("You are now a normal player."), confidential = TRUE)
+	to_chat(owner, span_interface("你现在是一名普通玩家了。"), confidential = TRUE)
 	var/old_owner = owner
 	deactivate()
-	message_admins("[old_owner] deadmined via auto-deadmin config.")
-	log_admin("[old_owner] deadmined via auto-deadmin config.")
+	message_admins("[old_owner] 因自动解除管理员配置而被解除了管理员身份。")
+	log_admin("[old_owner] 因自动解除管理员配置而被解除了管理员身份。")
 	return TRUE
 
-#define RANK_DONE ":) I'm Done"
+#define RANK_DONE ":) 我完成了"
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/target_holder, legacy_only)
 	if(!check_rights(R_PERMISSIONS) || (use_db && !check_rights(R_DBRANKS)))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Rank Modification blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("等级修改被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 
 	var/rank_type = RANK_SOURCE_TEMPORARY
@@ -598,7 +598,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 
 	var/list/rank_names = list()
 	if(!use_db || (use_db && !legacy_only))
-		rank_names += "*New Rank*"
+		rank_names += "*新等级*"
 	for(var/datum/admin_rank/admin_rank as anything in GLOB.admin_ranks)
 		if((admin_rank.rights & usr.client.holder.can_edit_rights_flags()) != admin_rank.rights)
 			continue
@@ -614,7 +614,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		var/list/display_rank_names = list(RANK_DONE)
 
 		if (new_rank_names.len > 0)
-			display_rank_names += "** SELECTED **"
+			display_rank_names += "** 已选择 **"
 			for (var/rank_name in new_rank_names)
 				display_rank_names += rank_name
 			display_rank_names += "---------"
@@ -623,7 +623,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			if (!(rank_name in display_rank_names))
 				display_rank_names += rank_name
 
-		var/next_rank = input("Please select a rank, or select [RANK_DONE] if you are finished.") as null|anything in display_rank_names
+		var/next_rank = input("请选择一个等级，若已完成请选择 [RANK_DONE]。") as null|anything in display_rank_names
 
 		if (isnull(next_rank))
 			return
@@ -639,8 +639,8 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			new_rank_names -= next_rank
 			continue
 
-		if (next_rank == "*New Rank*")
-			var/new_rank_name = input("Please input a new rank", "New custom rank") as text|null
+		if (next_rank == "*新等级*")
+			var/new_rank_name = input("请输入新等级", "新建自定义等级") as text|null
 			if (!new_rank_name)
 				return
 
@@ -671,8 +671,8 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 				break
 
 	var/joined_rank = join_admin_ranks(new_ranks)
-	var/m1 = "[key_name_admin(usr)] edited the admin rank of [admin_key] to [joined_rank] [use_db ? "permanently" : "temporarily"]"
-	var/m2 = "[key_name(usr)] edited the admin rank of [admin_key] to [joined_rank] [use_db ? "permanently" : "temporarily"]"
+	var/m1 = "[key_name_admin(usr)] 已将 [admin_key] 的管理员等级[use_db ? "永久" : "临时"]修改为 [joined_rank]"
+	var/m2 = "[key_name(usr)] 已将 [admin_key] 的管理员等级[use_db ? "永久" : "临时"]修改为 [joined_rank]"
 	if(use_db)
 		//if a player was tempminned before having a permanent change made to their rank they won't yet be in the db
 		var/old_rank
@@ -758,11 +758,11 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!check_rights(R_PERMISSIONS))
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Rank Modification blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("等级修改被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 	var/new_flags = input_bitfield(
 		usr,
-		"Admin rights<br>This will affect only the current admin ([admin_ckey]), temporarily",
+		"管理员权限<br>这只会临时影响当前管理员（[admin_ckey]）",
 		"admin_flags",
 		admin_holder.rank_flags(),
 		350,
@@ -795,7 +795,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 
 		admin_holder.ranks = list(new_admin_rank)
 
-	var/log = "[key_name(usr)] has updated the admin rights of [admin_ckey] into [rights2text(new_flags)]"
+	var/log = "[key_name(usr)] 已将 [admin_ckey] 的管理员权限更新为 [rights2text(new_flags)]"
 	message_admins(log)
 	log_admin(log)
 
@@ -805,27 +805,27 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 /// Polls usr for a new rank to add to either JUST this round, or the DB
 /datum/admins/proc/add_rank()
 	if(!check_rights(R_PERMISSIONS))
-		to_chat(usr, span_adminprefix("You don't have the permissions for this."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("你没有执行此操作的权限。"), confidential = TRUE)
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Rank Addition blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("等级添加被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 	if(usr.client.holder.can_edit_rights_flags() == NONE)
-		to_chat(usr, span_adminprefix("You are not allowed to add any rights."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("你不被允许添加任何权限。"), confidential = TRUE)
 		return
 
-	var/new_rank_name = input("Please input a new rank", "New custom rank") as text|null
+	var/new_rank_name = input("请输入新等级", "新建自定义等级") as text|null
 	if (!new_rank_name)
 		return
 
 	var/list/datum/admin_rank/existing_ranks = ranks_from_rank_name(new_rank_name)
 	if (length(existing_ranks))
-		to_chat(usr, span_adminprefix("A rank by this name already exists, sorry!."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("同名等级已存在，抱歉！"), confidential = TRUE)
 		return
 
 	var/rights = input_bitfield(
 		usr,
-		"New rights for [new_rank_name]",
+		"为 [new_rank_name] 设置新权限",
 		"admin_flags",
 		NONE,
 		350,
@@ -834,7 +834,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	)
 	var/excluded_rights = input_bitfield(
 		usr,
-		"New excluded rights for [new_rank_name]",
+		"为 [new_rank_name] 设置新排除权限",
 		"admin_flags",
 		NONE,
 		350,
@@ -843,7 +843,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	)
 	var/edit_rights = input_bitfield(
 		usr,
-		"New editing rights for [new_rank_name]",
+		"为 [new_rank_name] 设置新编辑权限",
 		"admin_flags",
 		NONE,
 		350,
@@ -854,10 +854,10 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	var/use_db = FALSE
 	if(check_rights(R_DBRANKS, FALSE))
 		if(!SSdbcore.Connect())
-			to_chat(usr, span_danger("Unable to connect to database, changes are temporary only."), confidential = TRUE)
+			to_chat(usr, span_danger("无法连接数据库，更改仅会临时生效。"), confidential = TRUE)
 			use_db = FALSE
 		else
-			var/use_db_response = tgui_alert(usr,"Permanent changes are saved to the database for future rounds, temporary changes will affect only the current round", "Permanent or Temporary?", list("Permanent", "Temporary", "Cancel"))
+			var/use_db_response = tgui_alert(usr,"永久更改会保存到数据库供后续回合使用，临时更改只影响当前回合", "永久还是临时？", list("Permanent", "Temporary", "Cancel"))
 			if(isnull(use_db_response) || use_db_response == "Cancel")
 				return
 			if(use_db_response == "Permanent")
@@ -873,13 +873,13 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	else
 		custom_rank = new(new_rank_name, RANK_SOURCE_TEMPORARY, rights, excluded_rights, edit_rights)
 	if(QDELETED(custom_rank))
-		to_chat(usr, span_danger("Rank creation failed, check runtimes."), confidential = TRUE)
+		to_chat(usr, span_danger("等级创建失败，请检查运行时错误。"), confidential = TRUE)
 		return
 
 	GLOB.admin_ranks += custom_rank
 
-	var/m1 = "[key_name_admin(usr)] created the new [use_db ? "permanent" : "temporary"] rank [new_rank_name]"
-	var/m2 = "[key_name(usr)] created the new [use_db ? "permanent" : "temporary"] rank [new_rank_name]"
+	var/m1 = "[key_name_admin(usr)] 创建了新的[use_db ? "永久" : "临时"]等级 [new_rank_name]"
+	var/m2 = "[key_name(usr)] 创建了新的[use_db ? "永久" : "临时"]等级 [new_rank_name]"
 
 	if(!use_db)
 		message_admins(m1)
@@ -923,15 +923,15 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!admin_rank)
 		return
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to remove a rank without sufficient rights.")
-		log_admin("[key_name(usr)] attempted to remove a rank without sufficient rights.")
+		message_admins("[key_name_admin(usr)] 试图在权限不足的情况下移除等级。")
+		log_admin("[key_name(usr)] 试图在权限不足的情况下移除等级。")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Rank Deletion blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("等级删除被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		if(R.name == admin_rank && ((R.rights & usr.client.holder.can_edit_rights_flags()) != R.rights))
-			to_chat(usr, span_adminprefix("You don't have edit rights to all the rights this rank has, rank deletion not permitted."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("你并不拥有此等级所含全部权限的编辑权，因此不允许删除该等级。"), confidential = TRUE)
 			return
 
 	var/list/datum/admin_rank/target_ranks = ranks_from_rank_name(admin_rank)
@@ -942,14 +942,14 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	var/local_only_deletion
 	switch(target_rank.source)
 		if(RANK_SOURCE_LOCAL)
-			to_chat(usr, span_adminprefix("Localhost rank cannot be deleted."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("本地主机等级无法删除。"), confidential = TRUE)
 			return
 		// This handles protected ranks on its own
 		if(RANK_SOURCE_TXT)
-			to_chat(usr, span_adminprefix("Text ranks cannot be meaningfully deleted, go modify admin_ranks.txt"), confidential = TRUE)
+			to_chat(usr, span_adminprefix("文本文件中的等级无法被有效删除，请去修改 admin_ranks.txt"), confidential = TRUE)
 			return
 		if(RANK_SOURCE_BACKUP)
-			to_chat(usr, span_adminprefix("Backup ranks cannot usefully be deleted, as they are stored in a temp json, go uh... edit that? I guess?."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("备份等级无法被有效删除，因为它们存放在临时 json 中，嗯……去改那个？大概吧。"), confidential = TRUE)
 			return
 		if(RANK_SOURCE_TEMPORARY)
 			local_only_deletion = TRUE
@@ -957,7 +957,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			local_only_deletion = FALSE
 
 	if(!local_only_deletion && CONFIG_GET(flag/load_legacy_ranks_only))
-		to_chat(usr, span_adminprefix("Database Rank deletion not permitted while database rank loading is disabled, deleting our local copy."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("数据库等级加载已禁用，此时不允许删除数据库等级，将改为删除本地副本。"), confidential = TRUE)
 		local_only_deletion = TRUE
 
 	if(!local_only_deletion)
@@ -970,21 +970,21 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			return
 		if(query_admins_with_rank.NextRow())
 			qdel(query_admins_with_rank)
-			to_chat(usr, span_danger("Error: Rank deletion attempted while db rank still used; Tell a coder, this shouldn't happen."), confidential = TRUE)
+			to_chat(usr, span_danger("错误：数据库等级仍在使用时尝试删除该等级；请告知程序员，这不该发生。"), confidential = TRUE)
 			return
 		QDEL_NULL(query_admins_with_rank)
 
 	for(var/admin_name in GLOB.admin_datums)
 		var/datum/admins/existing_min = GLOB.admin_datums[admin_name]
 		if(target_rank in existing_min.ranks)
-			to_chat(usr, span_danger("Error: Rank deletion attempted while rank still used; Tell a coder, this shouldn't happen."), confidential = TRUE)
+			to_chat(usr, span_danger("错误：等级仍在使用时尝试删除该等级；请告知程序员，这不该发生。"), confidential = TRUE)
 			return
 
-	if(tgui_alert(usr,"Are you sure you want to remove [admin_rank]?", "Confirm Removal", list("Do it","Cancel")) != "Do it")
+	if(tgui_alert(usr,"你确定要移除 [admin_rank] 吗？", "确认移除", list("Do it","Cancel")) != "Do it")
 		return
 
-	var/m1 = "[key_name_admin(usr)] removed rank [admin_rank] [local_only_deletion ? "temporarially" : "permanently"]"
-	var/m2 = "[key_name(usr)] removed rank [admin_rank] [local_only_deletion ? "temporarially" : "permanently"]"
+	var/m1 = "[key_name_admin(usr)] 已[local_only_deletion ? "临时" : "永久"]移除等级 [admin_rank]"
+	var/m2 = "[key_name(usr)] 已[local_only_deletion ? "临时" : "永久"]移除等级 [admin_rank]"
 	GLOB.admin_ranks -= target_rank
 	QDEL_NULL(target_rank)
 
@@ -1016,11 +1016,11 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	if(!admin_rank)
 		return
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to edit rank permissions without sufficient rights.")
-		log_admin("[key_name(usr)] attempted to edit rank permissions without sufficient rights.")
+		message_admins("[key_name_admin(usr)] 试图在权限不足的情况下编辑等级权限。")
+		log_admin("[key_name(usr)] 试图在权限不足的情况下编辑等级权限。")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, span_adminprefix("Rank Edit blocked: Advanced ProcCall detected."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("等级编辑被阻止：检测到高级 ProcCall。"), confidential = TRUE)
 		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(usr.client)
@@ -1030,23 +1030,23 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		return
 	var/datum/admin_rank/target_rank = target_ranks[1]
 	if(target_rank.name != admin_rank) // Somehow
-		to_chat(usr, span_adminprefix("Passed rank does not match target, somehow."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("传入的等级与目标不匹配，不知为何。"), confidential = TRUE)
 		return
 	if((target_rank.rights & usr.client.holder.can_edit_rights_flags()) != target_rank.rights)
-		to_chat(usr, span_adminprefix("You don't have edit rights to all the rights this rank has, you aren't allowed to modify it."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("你并不拥有此等级所含全部权限的编辑权，因此不允许修改该等级。"), confidential = TRUE)
 		return
 
 	var/attempt_db = FALSE
 	switch(target_rank.source)
 		if(RANK_SOURCE_LOCAL)
-			to_chat(usr, span_adminprefix("Localhost rank cannot be modified."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("本地主机等级无法修改。"), confidential = TRUE)
 			return
 		// This handles protected ranks on its own
 		if(RANK_SOURCE_TXT)
-			to_chat(usr, span_adminprefix("Text ranks cannot be meaningfully modified, go modify admin_ranks.txt"), confidential = TRUE)
+			to_chat(usr, span_adminprefix("文本文件中的等级无法被有效修改，请去修改 admin_ranks.txt"), confidential = TRUE)
 			return
 		if(RANK_SOURCE_BACKUP)
-			to_chat(usr, span_adminprefix("Backup ranks cannot usefully be modified, as they are stored in a temp json, go uh... edit that? I guess?."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("备份等级无法被有效修改，因为它们存放在临时 json 中，嗯……去改那个？大概吧。"), confidential = TRUE)
 			return
 		// For completeness
 		if(RANK_SOURCE_TEMPORARY)
@@ -1062,13 +1062,13 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 	// This means an admin could in theory bypass protections if they modified a linked rank (such as game admin) which is not also protected
 	// It might be wise to make the permissions afforded by protected ranks inviolable. I'm unsure.
 	if(CONFIG_GET(flag/load_legacy_ranks_only))
-		to_chat(usr, span_adminprefix("Database rank loading is disabled, only temporary changes can be made to a rank's permissions."), confidential = TRUE)
+		to_chat(usr, span_adminprefix("数据库等级加载已禁用，只能临时更改等级的权限。"), confidential = TRUE)
 		attempt_db = FALSE
 
 	var/use_db = FALSE
 	if(attempt_db)
 		if(!SSdbcore.Connect())
-			to_chat(usr, span_danger("Unable to connect to database, canceling."), confidential = TRUE)
+			to_chat(usr, span_danger("无法连接数据库，正在取消。"), confidential = TRUE)
 			return
 		use_db = TRUE
 
@@ -1091,7 +1091,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			working_exclude_rights = query_db_rank_info.item[2]
 			working_can_edit_rights = query_db_rank_info.item[3]
 		else // Couldn't find anything, no db memes then
-			to_chat(usr, span_adminprefix("Rank does not exist in database, exiting."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("数据库中不存在该等级，正在退出。"), confidential = TRUE)
 			qdel(query_db_rank_info)
 			return
 		QDEL_NULL(query_db_rank_info)
@@ -1101,24 +1101,24 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		working_can_edit_rights = target_rank.can_edit_rights
 
 	while(TRUE)
-		var/what_to_edit = tgui_input_list(usr, "What do you want to edit", "Rank Editing", list("Rights", "Excluded Rights", "Edit Rights", "Finished"))
+		var/what_to_edit = tgui_input_list(usr, "你想编辑什么", "等级编辑", list("Rights", "Excluded Rights", "Edit Rights", "Finished"))
 		var/existing_flags = NONE
 		var/pretty_name
 		switch(what_to_edit)
 			if("Rights")
 				existing_flags = working_rights
-				pretty_name = "rights"
+				pretty_name = "权限"
 			if("Excluded Rights")
 				existing_flags = working_exclude_rights
-				pretty_name = "excluded rights"
+				pretty_name = "被排除的权限"
 			if("Edit Rights")
 				existing_flags = working_can_edit_rights
-				pretty_name = "editing rights"
+				pretty_name = "编辑权限"
 			else
 				return
 		var/new_flags = input_bitfield(
 			usr,
-			"Editing [target_rank.name] [what_to_edit]",
+			"正在编辑 [target_rank.name] 的 [what_to_edit]",
 			"admin_flags",
 			existing_flags,
 			350,
@@ -1126,7 +1126,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 			allowed_edit_field = usr.client.holder.can_edit_rights_flags(),
 		)
 		if(isnull(new_flags))
-			to_chat(usr, span_adminprefix("Canceled editing rank."), confidential = TRUE)
+			to_chat(usr, span_adminprefix("已取消编辑等级。"), confidential = TRUE)
 			return
 
 		// Gotta turn it off and on again
@@ -1151,7 +1151,7 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 				target_rank.can_edit_rights = new_flags
 				working_can_edit_rights = new_flags
 
-		var/log = "[key_name(usr)] has [use_db ? "permenantly" : "temporarially"] updated the [pretty_name] of the [admin_rank] rank to [rights2text(new_flags)]"
+		var/log = "[key_name(usr)] 已[use_db ? "永久" : "临时"]将 [admin_rank] 等级的[pretty_name]更新为 [rights2text(new_flags)]"
 		message_admins(log)
 		log_admin(log)
 
@@ -1210,6 +1210,6 @@ GLOBAL_LIST_INIT(permission_action_types, list(
 		qdel(query_sync_lastadminrank)
 		return
 	QDEL_NULL(query_sync_lastadminrank)
-	to_chat(usr, span_admin("Sync of [admin_key] successful."), confidential = TRUE)
+	to_chat(usr, span_admin("已成功同步 [admin_key]。"), confidential = TRUE)
 
 #undef PERMISSIONS_LOGS_PER_PAGE

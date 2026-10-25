@@ -3,7 +3,7 @@
 /proc/debug_variable(name, value, level, datum/owner, sanitize = TRUE, display_flags = NONE) //if D is a list, name will be index, and value will be assoc value.
 	if(owner)
 		if(isalist(owner))
-			. = "<li style='backgroundColor:white'>(READ ONLY) "
+			. = "<li style='backgroundColor:white'>（只读）"
 		else if(islist(owner))
 			var/list/list_owner = owner
 			var/index = name
@@ -36,7 +36,7 @@
 	if(isappearance(value))
 		value = get_vv_appearance(value)
 
-	. = "<font color='red'>DISPLAY_ERROR:</font> ([value] [REF(value)])" // Make sure this line can never runtime
+	. = "<font color='red'>显示错误：</font>（[value] [REF(value)]）" // Make sure this line can never runtime
 
 	if(isnull(value))
 		return "<span class='value'>null</span>"
@@ -120,7 +120,7 @@
 
 /datum/weakref/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	. = ..()
-	return "[.] <a href='byond://?_src_=vars;[HrefToken()];Vars=[reference]'>(Resolve)</a>"
+	return "[.] <a href='byond://?_src_=vars;[HrefToken()];Vars=[reference]'>（解析）</a>"
 
 /matrix/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	return {"<span class='value'>

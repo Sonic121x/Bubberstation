@@ -1,7 +1,7 @@
 /obj/item/highfrequencyblade
-	name = "high frequency blade"
-	desc = "A sword reinforced by a powerful alternating current and resonating at extremely high vibration frequencies. \
-		This oscillation weakens the molecular bonds of anything it cuts, thereby increasing its cutting ability."
+	name = "高频刀"
+	desc = "一把由强大交流电强化的刀剑，以极高的振动频率共振。\
+		这种震荡会削弱被其切开的任何物体的分子键，从而提升切割能力。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "hfrequency0"
 	worn_icon_state = "hfrequency0"
@@ -47,13 +47,13 @@
 /obj/item/highfrequencyblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK)
 		if(HAS_TRAIT(src, TRAIT_WIELDED) || prob(final_block_chance))
-			owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
+			owner.visible_message(span_danger("[owner]用[src]挡开了[attack_text]！"))
 			playsound(src, SFX_BULLET_MISS, 75, TRUE)
 			return TRUE
 		return FALSE
 	var/stop_that_blade = (final_block_chance + (attack_type == OVERWHELMING_ATTACK ? 25 : 0)) * (HAS_TRAIT(src, TRAIT_WIELDED) ? 2 : 1)
 	if(prob(stop_that_blade))
-		owner.visible_message(span_danger("[owner] parries [attack_text] with [src]!"))
+		owner.visible_message(span_danger("[owner]用[src]格开了[attack_text]！"))
 		return TRUE
 	return FALSE
 
@@ -94,12 +94,12 @@
 	if(isliving(target))
 		var/mob/living/living_target = target
 		living_target.apply_damage(force*damage_mod, BRUTE, sharpness = SHARP_EDGED, wound_bonus = wound_bonus, exposed_wound_bonus = exposed_wound_bonus, def_zone = user.zone_selected)
-		log_combat(user, living_target, "slashed", src)
+		log_combat(user, living_target, "劈砍", src)
 		if(living_target.stat == DEAD && prob(force*damage_mod*0.5))
-			living_target.visible_message(span_danger("[living_target] explodes in a shower of gore!"), blind_message = span_hear("You hear organic matter ripping and tearing!"))
-			living_target.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
+			living_target.visible_message(span_danger("[living_target]炸成了一蓬血肉！"), blind_message = span_hear("你听到有机物被撕裂、扯碎的声音！"))
+			living_target.investigate_log("被[src]碾成了肉酱。", INVESTIGATE_DEATHS)
 			living_target.gib(DROP_ALL_REMAINS)
-			log_combat(user, living_target, "gibbed", src)
+			log_combat(user, living_target, "碾成肉酱", src)
 		return TRUE
 	else if(target.uses_integrity)
 		target.take_damage(force*damage_mod*3, BRUTE, MELEE, FALSE, null, 50)
@@ -139,7 +139,7 @@
 	animate(src, duration*0.5, color = slash_color, transform = scaled_transform, alpha = 255)
 
 /obj/item/highfrequencyblade/wizard
-	desc = "A blade that was mastercrafted by a legendary blacksmith. Its enchantments let it slash through anything."
+	desc = "由传奇铁匠精心锻造的刀剑。其附魔让它能切开任何东西。"
 	force = 8
 	throwforce = 20
 	wound_bonus = 20
@@ -147,6 +147,6 @@
 
 /obj/item/highfrequencyblade/wizard/attack_self(mob/user, modifiers)
 	if(!HAS_MIND_TRAIT(user, TRAIT_MAGICALLY_GIFTED))
-		balloon_alert(user, "you're too weak!")
+		balloon_alert(user, "你太虚弱了！")
 		return
 	return ..()

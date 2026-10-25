@@ -2,10 +2,10 @@
 
 // normal transit tubes
 /obj/structure/c_transit_tube
-	name = "unattached transit tube"
+	name = "未安装的运输管道"
 	icon = 'icons/obj/pipes_n_cables/transit_tube.dmi'
 	icon_state = "straight"
-	desc = "An unattached segment of transit tube."
+	desc = "一段未安装的运输管道。"
 	density = FALSE
 	layer = LOW_ITEM_LAYER //same as the built tube
 	anchored = FALSE
@@ -23,7 +23,7 @@
 	for(var/obj/structure/transit_tube/tube in source_turf)
 		existing_tubes +=1
 		if(existing_tubes >= 2)
-			to_chat(user, "[span_warning("You cannot wrench any more transit tubes!")] ")
+			to_chat(user, "[span_warning("你不能再扳紧更多运输管道了！")] ")
 			return FALSE
 	return TRUE
 
@@ -42,10 +42,10 @@
 	..()
 	if(!can_wrench_in_loc(user))
 		return
-	to_chat(user, span_notice("You start attaching \the [src]..."))
+	to_chat(user, span_notice("你开始安装[src]……"))
 	add_fingerprint(user)
 	if(I.use_tool(src, user, 2 SECONDS, volume=50, extra_checks=CALLBACK(src, PROC_REF(can_wrench_in_loc), user)))
-		to_chat(user, span_notice("You attach \the [src]."))
+		to_chat(user, span_notice("你安装了[src]。"))
 		var/obj/structure/transit_tube/R = new build_type(loc, dir)
 		transfer_fingerprints_to(R)
 		qdel(src)
@@ -54,7 +54,7 @@
 
 // transit tube station
 /obj/structure/c_transit_tube/station
-	name = "unattached through station"
+	name = "未安装的贯通站台"
 	icon_state = "closed_station0"
 	build_type = /obj/structure/transit_tube/station
 	flipped_build_type = /obj/structure/transit_tube/station/flipped
@@ -69,7 +69,7 @@
 
 // reverser station, used for the terminus
 /obj/structure/c_transit_tube/station/reverse
-	name = "unattached terminus station"
+	name = "未安装的终点站台"
 	icon_state = "closed_terminus0"
 	build_type = /obj/structure/transit_tube/station/reverse
 	flipped_build_type = /obj/structure/transit_tube/station/reverse/flipped
@@ -85,7 +85,7 @@
 
 /obj/structure/c_transit_tube/station/dispenser
 	icon_state = "open_dispenser0"
-	name = "unattached dispenser station"
+	name = "未安装的投放站台"
 	build_type = /obj/structure/transit_tube/station/dispenser
 	flipped_build_type = /obj/structure/transit_tube/station/dispenser/flipped
 	base_icon_state = "open_dispenser"
@@ -99,7 +99,7 @@
 //and the ones that reverse
 
 /obj/structure/c_transit_tube/station/dispenser/reverse
-	name = "unattached terminus dispenser station"
+	name = "未安装的终点投放站台"
 	icon_state = "open_terminusdispenser0"
 	build_type = /obj/structure/transit_tube/station/dispenser/reverse
 	flipped_build_type = /obj/structure/transit_tube/station/dispenser/reverse/flipped
@@ -157,9 +157,9 @@
 //transit tube pod
 //see station.dm for the logic
 /obj/structure/c_transit_tube_pod
-	name = "unattached transit tube pod"
+	name = "未安装的运输管道舱"
 	icon = 'icons/obj/pipes_n_cables/transit_tube.dmi'
 	icon_state = "pod"
-	desc = "Could probably be <b>dragged</b> into an open Transit Tube."
+	desc = "大概可以<b>拖</b>进开启的运输管道里。"
 	anchored = FALSE
 	density = FALSE

@@ -1,6 +1,6 @@
 /// The datum and interface for the malf unlock menu, which lets them choose actions to unlock.
 /datum/module_picker
-	var/name = "Malfunction Modules Menu"
+	var/name = "故障模块菜单"
 	var/processing_time = 50
 	var/list/possible_modules
 
@@ -79,7 +79,7 @@
 		return
 	//Bubber edit begin - nuke station easier to bus
 	if(istype(AM, /datum/ai_module/malf/destructive/nuke_station) && !AI.can_purchase_nuke)
-		to_chat(AI, span_warning("Unable to purchase Nuke Station, contact your employer for assistance!"))
+		to_chat(AI, span_warning("无法购买核爆空间站，请联系你的雇主寻求协助！"))
 		return
 	//Bubber edit end
 	if(!AI || AI.stat == DEAD)
@@ -113,8 +113,8 @@
 					AI.playsound_local(AI, AM.unlock_sound, 50, 0)
 			else //Adding uses to an existing module
 				action.uses += initial(action.uses)
-				action.desc = "[initial(action.desc)] It has [action.uses] use\s remaining."
+				action.desc = "[initial(action.desc)] 剩余 [action.uses] 次使用。"
 				action.build_all_button_icons()
 	processing_time -= AM.cost
-	log_malf_upgrades("[key_name(AI)] purchased [AM.name]")
+	log_malf_upgrades("[key_name(AI)] 购买了 [AM.name]")
 	SSblackbox.record_feedback("nested tally", "malfunction_modules_bought", 1, list("[initial(AM.name)]", "[AM.cost]"))

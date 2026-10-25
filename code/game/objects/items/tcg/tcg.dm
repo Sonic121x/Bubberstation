@@ -2,8 +2,8 @@
 #define UNTAPPED_ANGLE 0
 
 /obj/item/tcgcard
-	name = "Coder"
-	desc = "Wow, a mint condition coder card! Better tell the GitHub all about this!"
+	name = "编码员"
+	desc = "哇，一张崭新出厂的编码员卡！最好去 GitHub 上到处宣传一下！"
 	icon = DEFAULT_TCG_DMI_ICON
 	icon_state = "runtime"
 	w_class = WEIGHT_CLASS_TINY
@@ -57,12 +57,12 @@
 		return ..()
 	var/datum/card/data_holder = extract_datum()
 
-	name_chaser += "Faction: [data_holder.faction]"
-	name_chaser += "Cost: [data_holder.summoncost]"
-	name_chaser += "Type: [data_holder.cardtype] - [data_holder.cardsubtype]"
-	name_chaser += "Power/Resolve: [data_holder.power]/[data_holder.resolve]"
+	name_chaser += "阵营：[data_holder.faction]"
+	name_chaser += "费用：[data_holder.summoncost]"
+	name_chaser += "类型：[data_holder.cardtype] - [data_holder.cardsubtype]"
+	name_chaser += "力量/决心：[data_holder.power]/[data_holder.resolve]"
 	if(data_holder.rules) //This can sometimes be empty
-		name_chaser += "Ruleset: [data_holder.rules]"
+		name_chaser += "规则：[data_holder.rules]"
 	name_chaser += list("[icon2html(get_cached_flat_icon(), user, "extra_classes" = "hugeicon")]")
 
 	return name_chaser
@@ -107,7 +107,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		var/datum/card/template = extract_datum()
 		name = template.name
 	else
-		name = "Trading Card"
+		name = "交易卡"
 
 /obj/item/tcgcard/update_desc(updates)
 	. = ..()
@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		var/datum/card/template = extract_datum()
 		desc = "<i>[template.desc]</i>"
 	else
-		desc = "It's the back of a trading card... no peeking!"
+		desc = "这是交易卡的背面……不许偷看！"
 
 /obj/item/tcgcard/update_icon_state()
 	if(flipped)
@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(istype(tool, /obj/item/tcgcard_deck))
 		var/obj/item/tcgcard_deck/old_deck = tool
 		if(length(old_deck.contents) >= 30)
-			to_chat(user, span_notice("This pile has too many cards for a regular deck!"))
+			to_chat(user, span_notice("这堆牌太多了，装不进一副普通牌组！"))
 			return ITEM_INTERACT_BLOCKING
 		user.transferItemToLoc(src, old_deck)
 		flipped = old_deck.flipped
@@ -169,10 +169,10 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	animate(src, transform = ntransform, time = 2, easing = SINE_EASING)
 
 /obj/item/tcgcard/proc/flip_card(mob/user)
-	to_chat(user, span_notice("You turn the card over."))
+	to_chat(user, span_notice("你把这张卡翻了过来。"))
 	if(!flipped)
-		name = "Trading Card"
-		desc = "It's the back of a trading card... no peeking!"
+		name = "交易卡"
+		desc = "这是交易卡的背面……不许偷看！"
 		icon_state = "cardback"
 	else
 		var/datum/card/template = extract_datum()
@@ -186,8 +186,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
  * The "top" card of the deck will always be the bottom card in the stack for our purposes.
  */
 /obj/item/tcgcard_deck
-	name = "Trading Card Pile"
-	desc = "A stack of TCG cards."
+	name = "交易卡牌堆"
+	desc = "一叠集换式卡牌。"
 	icon = 'icons/obj/toys/tcgmisc.dmi'
 	icon_state = "deck_up"
 	base_icon_state = "deck"
@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 
 /obj/item/tcgcard_deck/examine(mob/user)
 	. = ..()
-	. += span_notice("\The [src] has [contents.len] cards inside.")
+	. += span_notice("[src]里有 [contents.len] 张牌。")
 
 /obj/item/tcgcard_deck/attack_hand(mob/user, list/modifiers)
 	var/list/choices = list(
@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(!istype(tool, /obj/item/tcgcard))
 		return NONE
 	if(contents.len >= 30)
-		to_chat(user, span_notice("This pile has too many cards for a regular deck!"))
+		to_chat(user, span_notice("这堆牌太多了，装不进一副普通牌组！"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/item/tcgcard/new_card = tool
 	new_card.flipped = flipped
@@ -283,8 +283,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	user.put_in_hands(drawn_card)
 	drawn_card.flipped = flipped //If it's a face down deck, it'll be drawn face down, if it's a face up pile you'll draw it face up.
 	drawn_card.update_icon_state()
-	user.visible_message(span_notice("[user] draws a card from \the [src]!"), \
-					span_notice("You draw a card from \the [src]!"))
+	user.visible_message(span_notice("[user]从[src]中抽了一张牌！"), \
+					span_notice("你从[src]中抽了一张牌！"))
 	if(contents.len <= 1)
 		var/obj/item/tcgcard/final_card = contents[1]
 		user.transferItemToLoc(final_card, drop_location())
@@ -303,8 +303,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(user.active_storage)
 		user.active_storage.hide_contents(user)
 	if(visable)
-		user.visible_message(span_notice("[user] shuffles \the [src]!"), \
-						span_notice("You shuffle \the [src]!"))
+		user.visible_message(span_notice("[user]洗了洗[src]！"), \
+						span_notice("你洗了洗[src]！"))
 
 
 /**
@@ -336,8 +336,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		qdel(src)
 
 /obj/item/cardpack
-	name = "Trading Card Pack: Coder"
-	desc = "Contains six complete fuckups by the coders. Report this on GitHub please!"
+	name = "交易卡包：编码员"
+	desc = "内含编码员们搞出的六张彻底翻车之作。请到 GitHub 上报告！"
 	icon = 'icons/obj/toys/tcgmisc.dmi'
 	icon_state = "error"
 	w_class = WEIGHT_CLASS_TINY
@@ -367,15 +367,15 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	var/drop_all_cards = FALSE
 
 /obj/item/cardpack/series_one
-	name = "Trading Card Pack: Series 1"
-	desc = "Contains six cards of varying rarity from the 2560 Core Set. Collect them all!"
+	name = "交易卡包：第一系列"
+	desc = "内含六张来自 2560 核心系列、稀有度各异的卡牌。把它们全部收集起来吧！"
 	icon_state = "cardpack_series1"
 	series = "coreset2020"
 	contains_coin = 10
 
 /obj/item/cardpack/resin
-	name = "Trading Card Pack: Resin Frontier Booster Pack"
-	desc = "Contains six cards of varying rarity from the Resin Frontier set. Collect them all!"
+	name = "交易卡包：树脂边疆补充包"
+	desc = "内含六张来自树脂边疆系列、稀有度各异的卡牌。把它们全部收集起来吧！"
 	icon_state = "cardpack_resin"
 	series = "resinfront"
 	contains_coin = 0
@@ -403,17 +403,17 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	for(var/template in cards)
 		//Makes a new card based of the series of the pack.
 		new /obj/item/tcgcard(get_turf(user), series, template)
-	to_chat(user, span_notice("Wow! Check out these cards!"))
+	to_chat(user, span_notice("哇！快看看这些卡牌！"))
 	new /obj/effect/decal/cleanable/wrapping(get_turf(user))
 	playsound(loc, 'sound/items/poster/poster_ripped.ogg', 20, TRUE)
 	if(prob(contains_coin))
-		to_chat(user, span_notice("...and it came with a flipper, too!"))
+		to_chat(user, span_notice("……而且还附赠了一枚筹码！"))
 		new /obj/item/coin/thunderdome(get_turf(user))
 	qdel(src)
 
 /obj/item/coin/thunderdome
-	name = "\improper TGC Flipper"
-	desc = "A TGC flipper, for deciding who gets to go first. Also conveniently acts as a counter, for various purposes."
+	name = "\improper TGC 筹码"
+	desc = "一枚 TGC 筹码，用来决定谁先手。也可顺手充作计数器，用途多样。"
 	icon = 'icons/obj/toys/tcgmisc.dmi'
 	icon_state = "coin_nanotrasen"
 	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT*5)
@@ -422,8 +422,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	override_material_worth = TRUE
 
 /obj/item/storage/card_binder
-	name = "card binder"
-	desc = "The perfect way to keep your collection of cards safe and valuable."
+	name = "卡册"
+	desc = "保管你的卡牌收藏，让它们安全又保值的完美方式。"
 	icon = 'icons/obj/toys/tcgmisc.dmi'
 	icon_state = "binder"
 	inhand_icon_state = "album"
@@ -473,10 +473,10 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 /datum/card
 	///Unique ID, for use in lookups and (eventually) for persistence. MAKE SURE THIS IS UNIQUE FOR EACH CARD IN AS SERIES, OR THE ENTIRE SYSTEM WILL BREAK, AND I WILL BE VERY DISAPPOINTED.
 	var/id = "coder"
-	var/name = "Coder"
-	var/desc = "Wow, a mint condition coder card! Better tell the GitHub all about this!"
+	var/name = "编码员"
+	var/desc = "哇，一张崭新出厂的编码员卡！最好去 GitHub 上到处宣传一下！"
 	///This handles any extra rules for the card, i.e. extra attributes, special effects, etc. If you've played any other card game, you know how this works.
-	var/rules = "There are no rules here. There is no escape. No Recall or Intervention can work in this place."
+	var/rules = "此地没有规则。无处可逃。此地无法召回，也无从干预。"
 	var/icon = DEFAULT_TCG_DMI
 	var/icon_state = "template"
 	///What it costs to summon this card to the battlefield.

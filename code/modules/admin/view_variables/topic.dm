@@ -21,29 +21,29 @@
 
 		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
 		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob", confidential = TRUE)
+			to_chat(usr, "这只能用于 /mob 类型的实例", confidential = TRUE)
 			return
 
-		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
+		var/new_name = stripped_input(usr,"你想给这个生物起什么名字？","输入名字",M.real_name,MAX_NAME_LEN)
 
 		// If the new name is something that would be restricted by IC chat filters,
 		// give the admin a warning but allow them to do it anyway if they want.
-		if(is_ic_filtered(new_name) || is_soft_ic_filtered(new_name) && tgui_alert(usr, "Your selected name contains words restricted by IC chat filters. Confirm this new name?", "IC Chat Filter Conflict", list("Confirm", "Cancel")) == "Cancel")
+		if(is_ic_filtered(new_name) || is_soft_ic_filtered(new_name) && tgui_alert(usr, "你选择的名字包含被 IC 聊天过滤器限制的词语。确认使用这个新名字吗？", "IC 聊天过滤器冲突", list("Confirm", "Cancel")) == "Cancel")
 			return
 
 		if( !new_name || !M )
 			return
 
-		message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
+		message_admins("管理员 [key_name_admin(usr)] 将 [key_name_admin(M)] 重命名为 [new_name]。")
 		M.fully_replace_character_name(M.real_name,new_name)
 		vv_update_display(M, "name", new_name)
-		vv_update_display(M, "real_name", M.real_name || "No real name")
+		vv_update_display(M, "real_name", M.real_name || "无真实姓名")
 
 	else if(href_list["rotatedatum"])
 
 		var/atom/A = locate(href_list["rotatedatum"])
 		if(!istype(A))
-			to_chat(usr, "This can only be done to instances of type /atom", confidential = TRUE)
+			to_chat(usr, "这只能用于 /atom 类型的实例", confidential = TRUE)
 			return
 
 		switch(href_list["rotatedir"])
@@ -62,13 +62,13 @@
 
 		var/Text = href_list["adjustDamage"]
 
-		var/amount = input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num|null
+		var/amount = input("对生物造成多少伤害？（负值会治疗）","调整 [Text] 损失",0) as num|null
 
 		if (isnull(amount))
 			return
 
 		if(!L)
-			to_chat(usr, "Mob doesn't exist anymore", confidential = TRUE)
+			to_chat(usr, "生物已不存在", confidential = TRUE)
 			return
 
 		var/newamt
@@ -92,12 +92,12 @@
 				L.adjust_stamina_loss(amount, forced = TRUE)
 				newamt = L.get_stamina_loss()
 			else
-				to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]", confidential = TRUE)
+				to_chat(usr, "你造成了一个错误。调试信息：Text:[Text] Mob:[L]", confidential = TRUE)
 				return
 
 		if(amount != 0)
-			var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
-			message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
+			var/log_msg = "[key_name(usr)] 对 [key_name(L)] 造成了 [amount] 点 [Text] 伤害"
+			message_admins("[key_name(usr)] 对 [ADMIN_LOOKUPFLW(L)] 造成了 [amount] 点 [Text] 伤害")
 			log_admin(log_msg)
 			admin_ticket_log(L, "<font color='blue'>[log_msg]</font>")
 			vv_update_display(L, Text, "[newamt]")
@@ -123,9 +123,9 @@
 
 		var/new_val
 		if(href_list["var_tweak"] == "damtype")
-			new_val = input("Enter the new damage type for [editing]","Set Damtype", existing_val) in list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN)
+			new_val = input("输入[editing]的新伤害类型","设置伤害类型", existing_val) in list(BRUTE, BURN, TOX, OXY, STAMINA, BRAIN)
 		else
-			new_val = input("Enter the new value for [editing]'s [href_list["var_tweak"]]","Set [href_list["var_tweak"]]", existing_val) as num|null
+			new_val = input("输入[editing]的[href_list["var_tweak"]]的新数值","设置 [href_list["var_tweak"]]", existing_val) as num|null
 		if(isnull(new_val) || new_val == existing_val || QDELETED(editing) || !check_rights(R_VAREDIT))
 			return
 
@@ -139,8 +139,8 @@
 			if("bare wound")
 				editing.exposed_wound_bonus = new_val
 
-		message_admins("[key_name(usr)] set [editing]'s [href_list["var_tweak"]] to [new_val] (was [existing_val])")
-		log_admin("[key_name(usr)] set [editing]'s [href_list["var_tweak"]] to [new_val] (was [existing_val])")
+		message_admins("[key_name(usr)] 将 [editing] 的 [href_list["var_tweak"]] 设为 [new_val]（原为 [existing_val]）")
+		log_admin("[key_name(usr)] 将 [editing] 的 [href_list["var_tweak"]] 设为 [new_val]（原为 [existing_val]）")
 		vv_update_display(editing, href_list["var_tweak"], istext(new_val) ? uppertext(new_val) : new_val)
 
 	//Finally, refresh if something modified the list.

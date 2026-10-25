@@ -1,8 +1,8 @@
 
 // CHAINSAW
 /obj/item/chainsaw
-	name = "chainsaw"
-	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
+	name = "链锯"
+	desc = "一款多用途电动工具。既能给树木修枝，也能给人截肢。"
 	icon = 'icons/obj/weapons/chainsaw.dmi'
 	icon_state = "chainsaw"
 	base_icon_state = "chainsaw"
@@ -17,8 +17,8 @@
 	throw_range = 4
 	demolition_mod = 1.5
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 6.5)
-	attack_verb_continuous = list("saws", "tears", "lacerates", "cuts", "chops", "dices")
-	attack_verb_simple = list("saw", "tear", "lacerate", "cut", "chop", "dice")
+	attack_verb_continuous = list("锯", "撕裂", "割裂", "切割", "砍", "剁")
+	attack_verb_simple = list("锯", "撕裂", "割裂", "切割", "砍", "剁")
 	hitsound = SFX_SWING_HIT
 	sharpness = SHARP_EDGED
 	actions_types = list(/datum/action/item_action/startchainsaw)
@@ -59,7 +59,7 @@
 /obj/item/chainsaw/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 
-	to_chat(user, span_notice("As you pull the starting cord dangling from [src], [active ? "it begins to whirr" : "the chain stops moving"]."))
+	to_chat(user, span_notice("当你拉动[src]上垂下的启动绳时，[active ? "它开始嗡嗡转动" : "链条停止了转动"]。"))
 	var/datum/component/butchering/butchering = GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = active
 	if (active)
@@ -87,18 +87,18 @@
 
 /obj/item/chainsaw/suicide_act(mob/living/user)
 	if(!HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
-		user.visible_message(span_suicide("[user] smashes [src] into [user.p_their()] neck, destroying [user.p_their()] esophagus! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]把[src]猛砸进自己的脖子，砸碎了自己的食道！看起来是想自杀！"))
 		playsound(src, 'sound/items/weapons/genhit1.ogg', 100, TRUE)
 		return BRUTELOSS
 
 	if (!iscarbon(user))
-		user.visible_message(span_suicide("[user] begins to shred [user.p_themselves()] with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]开始用[src]把自己切成碎片！看起来是想自杀！"))
 		return BRUTELOSS
 
-	user.visible_message(span_suicide("[user] begins to tear [user.p_their()] head off with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]开始用[src]把自己的头扯下来！看起来是想自杀！"))
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(!myhead)
-		visible_message(span_suicide("[user] realises that [user.p_they()] cannot cut off [user.p_their()] head because [user.p_they()] [user.p_do()]n't have one!"))
+		visible_message(span_suicide("[user]这才意识到自己没法砍下自己的头，因为根本就没有头！"))
 		return SHAME
 
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', 100, TRUE)
@@ -107,7 +107,7 @@
 
 	var/datum/wound/slash/crit_wound = new ()
 	crit_wound.apply_wound(myhead)
-	visible_message(span_suicide("[user] tries in vain to cut off [user.p_their()] head but perishes in the attempt!"))
+	visible_message(span_suicide("[user]徒劳地试图割下自己的头，却在这个过程中死去了！"))
 	return BRUTELOSS
 
 /obj/item/chainsaw/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
@@ -125,7 +125,7 @@
 		return ..()
 
 	playsound(src, 'sound/items/weapons/chainsawhit.ogg', vol = 100, vary = TRUE)
-	target_mob.balloon_alert(user, "cutting off head...")
+	target_mob.balloon_alert(user, "正在割下头颅……")
 
 	if (!do_after(user, behead_time, target_mob, extra_checks = CALLBACK(src, PROC_REF(has_same_head), target_mob, head)))
 		return TRUE
@@ -133,7 +133,7 @@
 	if (head.dismember(silent = FALSE))
 		playsound(src, 'sound/items/weapons/chainsawhit.ogg', vol = 100, vary = TRUE)
 	else
-		to_chat(user, span_warning("[target_mob]'s head is attached too firmly to cut off!"))
+		to_chat(user, span_warning("[target_mob]的头接得太牢，割不下来！"))
 
 	return TRUE
 
@@ -148,18 +148,18 @@
  */
 
 /obj/item/chainsaw/doomslayer
-	name = "THE GREAT COMMUNICATOR"
+	name = "伟大的沟通者"
 	desc = span_warning("VRRRRRRR!!!")
 	armour_penetration = 100
 	force_on = 30
 	behead_time = 2 SECONDS
 
-/obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == PROJECTILE_ATTACK)
-		owner.visible_message(span_danger("Ranged attacks just make [owner] angrier!"))
+		owner.visible_message(span_danger("远程攻击只会让[owner]更愤怒！"))
 		playsound(src, SFX_BULLET_MISS, 75, TRUE)
 		return TRUE
 	return FALSE
 
 /datum/action/item_action/startchainsaw
-	name = "Pull The Starting Cord"
+	name = "拉动启动绳"

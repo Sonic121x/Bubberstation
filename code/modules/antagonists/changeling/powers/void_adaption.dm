@@ -1,9 +1,9 @@
 /datum/action/changeling/void_adaption
-	name = "Void Adaption"
-	desc = "We prepare our cells to resist the hostile environment outside of the station. We may freely travel wherever we wish."
-	helptext = "This ability is passive, and will automatically protect us in situations of extreme cold or vacuum, \
-		as well as removing our need to breathe oxygen, although we will still be affected by hazardous gases. \
-		While it is actively protecting us from temperature or pressure it reduces our chemical regeneration rate."
+	name = "虚空适应"
+	desc = "我们让细胞做好准备，以抵御空间站外的恶劣环境。我们可以自由前往任何想去的地方。"
+	helptext = "此能力为被动效果，会在极寒或真空环境中自动保护我们， \
+		同时让我们不再需要呼吸氧气，但我们仍会受到危险气体的影响。 \
+		当它正在保护我们免受温度或压力影响时，会降低我们的化学物质再生速度。"
 	category = "utility"
 	button_icon_state = "void_adaption"
 	owner_has_control = FALSE
@@ -25,7 +25,7 @@
 	remove_from.remove_traits(gain_traits, REF(src))
 	UnregisterSignal(remove_from, COMSIG_LIVING_LIFE)
 	if (currently_active)
-		on_removed_adaption(remove_from, "Our cells relax, despite the danger!")
+		on_removed_adaption(remove_from, "尽管仍有危险，我们的细胞放松了下来！")
 	return ..()
 
 /// Checks if we would be providing any useful benefit at present
@@ -45,20 +45,20 @@
 
 			var/affected_pressure = special_boy.calculate_affecting_pressure(environment.return_pressure())
 			if (affected_pressure < HAZARD_LOW_PRESSURE)
-				active_reasons += "vacuum"
+				active_reasons += "真空"
 
 		if (affected_temperature < vulnerable_temperature)
-			active_reasons += "cold"
+			active_reasons += "寒冷"
 
 	var/should_be_active = !!length(active_reasons)
 	if (currently_active == should_be_active)
 		return
 
 	if (!should_be_active)
-		on_removed_adaption(void_adapted, "Our cells relax in safer air.")
+		on_removed_adaption(void_adapted, "在更安全的空气中，我们的细胞放松了下来。")
 		return
 	var/datum/antagonist/changeling/changeling_data = IS_CHANGELING(void_adapted)
-	to_chat(void_adapted, span_changeling("Our cells harden themselves against the [pick(active_reasons)]."))
+	to_chat(void_adapted, span_changeling("我们的细胞针对[pick(active_reasons)]强化起来。"))
 	changeling_data?.chem_recharge_slowdown -= recharge_slowdown
 	currently_active = TRUE
 

@@ -1,7 +1,7 @@
 
 /obj/item/assembly
-	name = "assembly"
-	desc = "A small electronic device that should never exist."
+	name = "组装件"
+	desc = "一个本不该存在的小型电子装置。"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
 	icon_state = ""
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -73,7 +73,7 @@
 
 /obj/item/assembly/proc/is_secured(mob/user)
 	if(!secured)
-		to_chat(user, span_warning("\The [src] is unsecured!"))
+		to_chat(user, span_warning("[src]尚未固定！"))
 		return FALSE
 	return TRUE
 
@@ -126,20 +126,20 @@
 		// Check both our's and their's assembly flags to see if either should not duplicate
 		// If so, and we match types, don't create a holder - block it
 		if(((new_assembly.assembly_flags|assembly_flags) & ASSEMBLY_NO_DUPLICATES) && istype(new_assembly, type))
-			balloon_alert(user, "can't attach another [new_assembly.name]!")
+			balloon_alert(user, "不能再装一个[new_assembly.name]了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(new_assembly.secured)
-			balloon_alert(user, "[new_assembly.name] is not attachable!")
+			balloon_alert(user, "[new_assembly.name]无法安装！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(secured)
-			balloon_alert(user, "[name] is not attachable!")
+			balloon_alert(user, "[name]无法安装！")
 			return ITEM_INTERACT_BLOCKING
 
 		holder = new /obj/item/assembly_holder(drop_location())
 		holder.assemble(src, new_assembly, user)
-		holder.balloon_alert(user, "parts combined")
+		holder.balloon_alert(user, "部件已组合")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/assembly_holder))
@@ -151,15 +151,15 @@
 
 /obj/item/assembly/screwdriver_act(mob/living/user, obj/item/tool)
 	if(toggle_secure())
-		to_chat(user, span_notice("\The [src] is ready!"))
+		to_chat(user, span_notice("[src]已就绪！"))
 	else
-		to_chat(user, span_notice("\The [src] can now be attached!"))
+		to_chat(user, span_notice("[src]现在可以安装了！"))
 	add_fingerprint(user)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/assembly/examine(mob/user)
 	. = ..()
-	. += span_notice("\The [src] [secured? "is secured and ready to be used!" : "can be attached to other things."]")
+	. += span_notice("[src][secured? "已固定，随时可用！" : "可以安装到其他物体上。"]")
 
 /obj/item/assembly/ui_host(mob/user)
 	// In order, return:

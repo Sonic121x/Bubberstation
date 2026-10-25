@@ -1,7 +1,7 @@
 /datum/action/changeling/lesserform
-	name = "Lesser Form"
-	desc = "We debase ourselves and become lesser. We become a monkey. Costs 5 chemicals."
-	helptext = "The transformation greatly reduces our size, allowing us to slip out of cuffs and climb through vents."
+	name = "低等形态"
+	desc = "我们自降身份，化为低等形态。我们会变成一只猴子。消耗 5 点化学物质。"
+	helptext = "该变形会大幅缩小我们的体型，使我们能脱出手铐并爬过通风管道。"
 	button_icon_state = "lesser_form"
 	category = "stealth"
 	chemical_cost = 5
@@ -29,13 +29,13 @@
 /// Stop being a monkey
 /datum/action/changeling/lesserform/proc/unmonkey(mob/living/carbon/human/user)
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't transform in pipes!")
+		user.balloon_alert(user, "不能在管道里变形！")
 		return FALSE
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	var/datum/changeling_profile/chosen_form = select_form(changeling, user)
 	if(!chosen_form)
 		return FALSE
-	to_chat(user, span_notice("We transform our appearance."))
+	to_chat(user, span_notice("我们改变了自己的外表。"))
 	var/datum/dna/chosen_dna = chosen_form.dna
 	var/datum/species/chosen_species = chosen_dna.species
 	user.humanize(species = chosen_species, instant = transform_instantly)
@@ -53,7 +53,7 @@
 
 /// Become a monkey
 /datum/action/changeling/lesserform/proc/become_monkey(mob/living/carbon/human/user)
-	to_chat(user, span_warning("Our genes cry out!"))
+	to_chat(user, span_warning("我们的基因在嘶喊！"))
 	user.monkeyize(instant = transform_instantly)
 	return TRUE
 
@@ -64,8 +64,8 @@
 
 /datum/action/changeling/lesserform/update_button_name(atom/movable/screen/movable/action_button/button, force)
 	if (ismonkey(owner))
-		name = "Human Form"
-		desc = "We change back into a human. Costs 5 chemicals."
+		name = "人类形态"
+		desc = "我们变回人类。消耗 5 点化学物质。"
 	else
 		name = initial(name)
 		desc = initial(desc)

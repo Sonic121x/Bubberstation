@@ -1,5 +1,5 @@
 /datum/antagonist/ninja
-	name = "\improper Space Ninja"
+	name = "\improper 太空忍者"
 	antagpanel_category = ANTAG_GROUP_NINJAS
 	pref_flag = ROLE_NINJA
 	antag_hud_name = "ninja"
@@ -7,11 +7,11 @@
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
-	suicide_cry = "FOR THE SPIDER CLAN!!"
+	suicide_cry = "为了蜘蛛氏族！！"
 	preview_outfit = /datum/outfit/ninja_preview
 	can_assign_self_objectives = TRUE
 	ui_name = "AntagInfoNinja"
-	default_custom_objective = "Destroy vital station infrastructure, without being seen."
+	default_custom_objective = "摧毁空间站的重要基础设施，且不被发现。"
 	desensitized_modifier = DESENSITIZED_THRESHOLD
 	///Whether or not this ninja will obtain objectives
 	var/give_objectives = TRUE
@@ -33,11 +33,11 @@
  * Proc that adds the ninja starting memories to the owner of the antagonist datum.
  */
 /datum/antagonist/ninja/proc/addMemories()
-	antag_memory += "I am an elite mercenary of the mighty Spider Clan. A <font color='red'><B>SPACE NINJA</B></font>!<br>"
-	antag_memory += "Surprise is my weapon. Shadows are my armor. Without them, I am nothing.<br>"
+	antag_memory += "我是强大蜘蛛氏族的精英雇佣兵。一名<font color='red'><B>太空忍者</B></font>！<br>"
+	antag_memory += "突袭是我的武器，阴影是我的护甲。没有它们，我什么都不是。<br>"
 
 /datum/objective/cyborg_hijack
-	explanation_text = "Use your gloves to convert at least one cyborg to aid you in sabotaging the station."
+	explanation_text = "使用你的手套转化至少一个半机械人，协助你破坏空间站。"
 
 /datum/objective/door_jack
 	///How many doors that need to be opened using the gloves to pass the objective
@@ -47,13 +47,13 @@
 	var/area/detonation_location
 
 /datum/objective/security_scramble
-	explanation_text = "Use your gloves on a security console to set everyone to arrest at least once.  Note that the AI will be alerted once you begin!"
+	explanation_text = "在安保控制台上使用你的手套，将所有人设为逮捕状态至少一次。注意，你一旦开始，AI 就会收到警报！"
 
 /datum/objective/terror_message
-	explanation_text = "Use your gloves on a communication console in order to bring another threat to the station.  Note that the AI will be alerted once you begin!"
+	explanation_text = "在通讯控制台上使用你的手套，为空间站带来另一种威胁。注意，你一旦开始，AI 就会收到警报！"
 
 /datum/objective/research_secrets
-	explanation_text = "Use your gloves on a research & development server to sabotage research efforts.  Note that the AI will be alerted once you begin!"
+	explanation_text = "在研究与发展服务器上使用你的手套，破坏科研工作。注意，你一旦开始，AI 就会收到警报！"
 
 /**
  * Proc that adds all the ninja's objectives to the antag datum.
@@ -72,7 +72,7 @@
 	//Door jacks, flag will be set to complete on when the last door is hijacked
 	var/datum/objective/door_jack/doorobjective = new /datum/objective/door_jack()
 	doorobjective.doors_required = rand(15,40)
-	doorobjective.explanation_text = "Use your gloves to doorjack [doorobjective.doors_required] airlocks on the station."
+	doorobjective.explanation_text = "使用你的手套入侵空间站上的 [doorobjective.doors_required] 个气闸。"
 	objectives += doorobjective
 
 	//SKYRAT EDIT START
@@ -86,7 +86,7 @@
 			bombobjective.detonation_location = selected_area
 			break
 		if(bombobjective.detonation_location)
-			bombobjective.explanation_text = "Detonate your starter bomb in [bombobjective.detonation_location].  Note that the bomb will not work anywhere else!"
+			bombobjective.explanation_text = "在[bombobjective.detonation_location]引爆你的初始炸弹。注意，该炸弹在其他任何地方都不会生效！"
 			objectives += bombobjective
 	//SKYRAT EDIT END
 
@@ -106,9 +106,9 @@
 /datum/antagonist/ninja/greet()
 	. = ..()
 	SEND_SOUND(owner.current, sound('sound/music/antag/ninja_greeting.ogg'))
-	to_chat(owner.current, span_danger("I am an elite mercenary of the mighty Spider Clan!"))
-	to_chat(owner.current, span_warning("Surprise is my weapon. Shadows are my armor. Without them, I am nothing."))
-	to_chat(owner.current, span_notice("The station is located to your [dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]. A thrown ninja star will be a great way to get there."))
+	to_chat(owner.current, span_danger("我是强大蜘蛛氏族的精英雇佣兵！"))
+	to_chat(owner.current, span_warning("突袭是我的武器，阴影是我的护甲。没有它们，我什么都不是。"))
+	to_chat(owner.current, span_notice("空间站位于你的[dir2text(get_dir(owner.current, locate(world.maxx/2, world.maxy/2, owner.current.z)))]方向。扔出一枚忍者镖是前往那里的好办法。"))
 	owner.announce_objectives()
 
 /datum/antagonist/ninja/on_gain() // BUBBER EDIT BEGIN- WHOLE PROC EDITS
@@ -131,8 +131,8 @@
 /datum/antagonist/ninja/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.set_assigned_role(SSjob.get_job_type(/datum/job/space_ninja))
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has ninja'ed [key_name_admin(new_owner)].")
-	log_admin("[key_name(admin)] has ninja'ed [key_name(new_owner)].")
+	message_admins("[key_name_admin(admin)] 将 [key_name_admin(new_owner)] 设为了忍者。")
+	log_admin("[key_name(admin)] 将 [key_name(new_owner)] 设为了忍者。")
 
 /datum/antagonist/ninja/on_respawn(mob/new_character)
 	equip_space_ninja()

@@ -1,4 +1,4 @@
-ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "Spawn Object-Mob", "Spawn an object as if it were a mob.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "生成物体怪物", "将一个物体生成为活物。", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG(object, VERB_ARG_TYPE_TYPEPATH, VERB_ARG_SOURCE_INPUT)
 	var/chosen = pick_closest_path(object, make_types_fancy(subtypesof(/obj)))
 
@@ -11,49 +11,49 @@ ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "Spawn Object-Mob", "Spawn an object as if
 
 	var/list/settings = list("mainsettings" = list(
 		"name" = list(
-			"desc" = "Name",
+			"desc" = "名称",
 			"type" = "string",
 			"value" = "Bob",
 		),
 		"maxhealth" = list(
-			"desc" = "Max. health",
+			"desc" = "最大生命值",
 			"type" = "number",
 			"value" = 100,
 		),
 		"access" = list(
-			"desc" = "Access ID",
+			"desc" = "权限 ID",
 			"type" = "datum",
 			"path" = "/obj/item/card/id",
 			"value" = "Default",
 		),
 		"objtype" = list(
-			"desc" = "Base obj type",
+			"desc" = "基础物体类型",
 			"type" = "datum",
 			"path" = "/obj",
 			"value" = "[chosen]",
 		),
 		"googlyeyes" = list(
-			"desc" = "Googly eyes",
+			"desc" = "活动眼珠",
 			"type" = "boolean",
 			"value" = "No",
 		),
 		"disableai" = list(
-			"desc" = "Disable AI",
+			"desc" = "禁用 AI",
 			"type" = "boolean",
 			"value" = "Yes",
 		),
 		"idledamage" = list(
-			"desc" = "Damaged while idle",
+			"desc" = "闲置时受伤",
 			"type" = "boolean",
 			"value" = "No",
 		),
 		"dropitem" = list(
-			"desc" = "Drop obj on death",
+			"desc" = "死亡时掉落物体",
 			"type" = "boolean",
 			"value" = "Yes",
 		),
 		"mobtype" = list(
-			"desc" = "Base mob type",
+			"desc" = "基础生物类型",
 			"type" = "datum",
 			"path" = "/mob/living/basic/mimic/copy",
 			"value" = "/mob/living/basic/mimic/copy",
@@ -65,7 +65,7 @@ ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "Spawn Object-Mob", "Spawn an object as if
 		),
 	))
 
-	var/list/pref_return = present_pref_like_picker(user.mob, "Customize mob", "Customize mob", width = 450, timeout = 0, settings = settings)
+	var/list/pref_return = present_pref_like_picker(user.mob, "自定义生物", "自定义生物", width = 450, timeout = 0, settings = settings)
 	if (pref_return["button"] != 1)
 		return
 
@@ -75,7 +75,7 @@ ADMIN_VERB(spawn_obj_as_mob, R_SPAWN, "Spawn Object-Mob", "Spawn an object as if
 
 	basemob = text2path(mainsettings["mobtype"]["value"])
 	if (!ispath(basemob, /mob/living/basic/mimic/copy) || !ispath(chosen_obj, /obj))
-		to_chat(user.mob, "Mob or object path invalid", confidential = TRUE)
+		to_chat(user.mob, "生物或物体路径无效。", confidential = TRUE)
 
 	basemob = new basemob(get_turf(user.mob), new chosen_obj(get_turf(user.mob)), user.mob, mainsettings["dropitem"]["value"] == "Yes" ? FALSE : TRUE, (mainsettings["googlyeyes"]["value"] == "Yes" ? FALSE : TRUE))
 

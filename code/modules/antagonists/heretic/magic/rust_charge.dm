@@ -1,8 +1,8 @@
 // Rust charge, a charge action that can only be started on rust (and only destroys rust tiles)
 /datum/action/cooldown/mob_cooldown/charge/rust
-	name = "Rust Charge"
-	desc = "A charge that must be started on a rusted tile and will destroy any rusted objects you come into contact with, \
-		will deal high damage to others and rust around you during the charge."
+	name = "锈蚀冲锋"
+	desc = "一种必须从锈蚀地砖上发起的冲锋，会摧毁你接触到的任何锈蚀物体，\
+		对其他人造成高额伤害，并在冲锋期间锈蚀你周围的地面。"
 	charge_distance = 10
 	charge_damage = 25
 	cooldown_time = 45 SECONDS

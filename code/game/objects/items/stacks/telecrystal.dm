@@ -1,7 +1,7 @@
 /obj/item/stack/telecrystal
-	name = "telecrystal"
-	desc = "Covered in a web of finely engraved geometrical patterns, pulsing with suspiciously enticing energies."
-	singular_name = "telecrystal"
+	name = "传送水晶"
+	desc = "表面覆满精细雕琢的几何纹路，脉动着令人不禁心动的不祥能量。"
+	singular_name = "传送水晶"
 	icon_state = "telecrystal"
 	dye_color = DYE_SYNDICATE
 	full_w_class = WEIGHT_CLASS_TINY
@@ -26,7 +26,7 @@
 			continue
 		hidden_uplink.uplink_handler.add_telecrystals(amount)
 		use(amount)
-		to_chat(user, span_notice("You press [src] onto yourself and charge your hidden uplink."))
+		to_chat(user, span_notice("你把[src]按在自己身上，为隐藏的上行链路充能。"))
 		return ITEM_INTERACT_SUCCESS
 	return ITEM_INTERACT_BLOCKING
 
@@ -37,9 +37,9 @@
 	amount = 20
 
 /obj/item/stack/sheet/telepolycrystal
-	name = "telelocational podcrystal"
-	singular_name = "telelocational podcrystal"
-	desc = "A \"somewhat\" stable chunk of telecrystal. It lacks the precision-carved tuning channels, making it useless for long-range matter teleportation."
+	name = "传送定位舱水晶"
+	singular_name = "传送定位舱水晶"
+	desc = "一块\"勉强\"算稳定的传送水晶。它缺少精密雕琢的调谐通道，因此无法用于长距离物质传送。"
 	icon_state = "telepolycrystal"
 	inhand_icon_state = null
 	full_w_class = WEIGHT_CLASS_TINY

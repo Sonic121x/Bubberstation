@@ -1,6 +1,6 @@
 /obj/item/grenade/iedcasing
-	name = "improvised explosive"
-	desc = "An improvised explosive device."
+	name = "简易爆炸物"
+	desc = "一件简易爆炸装置。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/weapons/grenade.dmi'
 	base_icon_state = "pipebomb"
@@ -53,10 +53,10 @@
 
 /obj/item/grenade/iedcasing/examine(mob/user)
 	. = ..()
-	. += span_notice("Using it in-hand activates the assembly, which means timers start timing and so on.")
-	. += span_notice("Using it off-hand allows you to configure the assembly, if possible.")
+	. += span_notice("在主手中使用会启动组装件，例如使计时器开始计时。")
+	. += span_notice("在副手中使用可配置组装件，前提是它支持配置。")
 	if(contents.len > 1) // above 1, so more than just the activator
-		. += span_warning("It seems to have something stuffed in it.")
+		. += span_warning("里面似乎塞着什么东西。")
 	if(isnull(activator))
 		return
 	. += activator.examine(user)
@@ -119,12 +119,12 @@
 		suffix = "-a"
 	else if(istype(as_prox))
 		suffix = as_prox.timing ? "-arming" : (as_prox.scanning ? "-a" : "")
-	icon_state = "[base_icon_state]-[initial(activator.name)][suffix]" //signalers detonate instantly so theyre not here
+	icon_state = "[base_icon_state]-[istype(as_timer) ? "timer" : istype(as_mousetrap) ? "mousetrap" : istype(as_prox) ? "proximity sensor" : istype(activator, /obj/item/assembly/signaler) ? "remote signaling device" : initial(activator.name)][suffix]" //signalers detonate instantly so theyre not here
 	return ..()
 
 /obj/item/grenade/iedcasing/attack_self(mob/user)
 	if(isnull(activator) || !COOLDOWN_FINISHED(src, spam_cd))
-		balloon_alert(user, isnull(activator) ? "you shouldnt be seeing this" : "on cooldown!")
+		balloon_alert(user, isnull(activator) ? "你不该看到这条提示" : "尚在冷却中！")
 		return
 	if(istype(activator, /obj/item/assembly/signaler))
 		return //no signallers, signallers send a signal and i can imagine this having bad sideeffects if some has multiple of the same frequency in their backpack and uses them inhand by accident
@@ -132,7 +132,7 @@
 	add_fingerprint(user)
 	activator.activate()
 	update_icon(UPDATE_ICON_STATE)
-	user.balloon_alert_to_viewers("arming!")
+	user.balloon_alert_to_viewers("正在启动！")
 	COOLDOWN_START(src, spam_cd, 1 SECONDS)
 
 /obj/item/grenade/iedcasing/detonate(mob/living/lanced_by) //Blowing that can up
@@ -170,8 +170,8 @@
 #define MAX_STUFFINGS 3
 
 /obj/item/sliced_pipe
-	name = "halved pipe"
-	desc = "Two half-size pipes made from one."
+	name = "半截管子"
+	desc = "一根管子切成的两段短管。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "slicedapart"
@@ -213,16 +213,16 @@
 /obj/item/sliced_pipe/examine(mob/user)
 	. = ..()
 	if(!wires_are_in)
-		. += span_notice("You could stuff something in, or fill it with fuel or some other volatile chemical..")
-		. += span_notice("Afterwards, add some cable.")
+		. += span_notice("可以往里塞些东西，或灌入燃料等易爆化学物质……")
+		. += span_notice("然后接上线缆。")
 	else
-		. += span_notice("The wires are just dangling from it, you need some sort of <i> activating assembly</i>.")
+		. += span_notice("线缆还悬在外面，你需要某种<i>触发组装件</i>。")
 
 /obj/item/sliced_pipe/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!wires_are_in)
 		// here we can stuff in additional objects for a cooler effect
 		if(is_type_in_typecache(tool, allowed) && contents.len < MAX_STUFFINGS)
-			balloon_alert(user, "stuffed in")
+			balloon_alert(user, "已塞入")
 			var/atom/movable/to_put = tool
 			if(isstack(tool))
 				var/obj/item/stack/as_stack = tool
@@ -236,14 +236,14 @@
 		if(tool.reagents)
 			return NONE
 		if(reagents.total_volume < 5)
-			balloon_alert(user, "add more fuel!")
+			balloon_alert(user, "需要更多燃料！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/cable_coil/coil = tool
 		if(!istype(coil))
 			return ITEM_INTERACT_BLOCKING
 		if (coil.get_amount() < 15)
-			balloon_alert(user, "need 15 length!")
+			balloon_alert(user, "需要15段线缆！")
 			return ITEM_INTERACT_BLOCKING
 		coil.use(15)
 
@@ -256,7 +256,7 @@
 		power *= cur_power
 		power -= contents.len / 2
 
-		balloon_alert(user, "wires attached")
+		balloon_alert(user, "线缆已接好")
 		icon_state = "[icon_state]-cable"
 		reagents.flags = SEALED_CONTAINER
 		wires_are_in = TRUE
@@ -267,11 +267,11 @@
 	if(!istype(assembly) || !(assembly.type in allowed_activators))
 		return ITEM_INTERACT_BLOCKING
 	if(assembly.secured)
-		balloon_alert(user, "unsecure assembly first!")
+		balloon_alert(user, "请先松开组装件！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(assembly, src))
 		return ITEM_INTERACT_BLOCKING
-	user.balloon_alert(user, "attached")
+	user.balloon_alert(user, "已连接")
 
 	var/obj/item/grenade/iedcasing/pipebomb = new(drop_location())
 	for(var/atom/movable/item_inside as anything in contents)

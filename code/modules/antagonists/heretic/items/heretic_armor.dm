@@ -4,8 +4,8 @@
 
 // Eldritch armor. Looks cool, hood lets you cast heretic spells.
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
-	name = "ominous armor"
-	desc = "A ragged, dusty set of robes. Strange eyes line the inside."
+	name = "不祥装甲"
+	desc = "一套破烂肮脏的长袍。内侧排列着奇怪的眼睛。"
 	icon_state = "armor"
 	inhand_icon_state = null
 	flags_inv = HIDESHOES | HIDEJUMPSUIT | HIDEBELT
@@ -58,11 +58,11 @@
 	hood_up = FALSE
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
-	name = "ominous hood"
+	name = "不祥兜帽"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "helmet"
-	desc = "A torn, dust-caked hood. Strange eyes line the inside."
+	desc = "一顶破损、蒙满灰尘的兜帽。内侧排列着奇怪的眼睛。"
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE | HIDEHAIR | HIDEFACIALHAIR | HIDESNOUT
 	flags_cover = HEADCOVERSEYES | PEPPERPROOF
 	flash_protect = FLASH_PROTECTION_WELDER_HYPER_SENSITIVE
@@ -86,9 +86,9 @@
 // Ash
 // Prevents fire from decaying while worn, also passively generates fire via the toggle
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/ash
-	name = "\improper Scorched Mantle"
-	desc = "Left to burn to tatters, what remains is naught but a blackened echo of the mantle of the Watch. \
-		Yet the soot-choked folds turn blade and flame from the form within. A brief reprieve before its gaze turns inwards."
+	name = "\improper 焦灼披肩"
+	desc = "任其烧成残片，所余不过是守望者披肩被熏黑的余响。\
+		但那积满烟灰的褶皱仍能挡开来自其内之躯的刀锋与火焰。这只是它目光转向内部之前短暂的暂歇。"
 	icon_state = "ash_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/ash
 	armor_type = /datum/armor/eldritch_armor/ash
@@ -159,7 +159,7 @@
 		user.extinguish()
 		STOP_PROCESSING(SSobj, src)
 
-	user.balloon_alert(user, flame_generation ? "enabled" : "disabled")
+	user.balloon_alert(user, flame_generation ? "已启用" : "已禁用")
 	user.fire_stack_decay_rate = flame_generation ? 0 : initial(user.fire_stack_decay_rate)
 	// Extinguishes the wearer after they disable the flames
 
@@ -176,9 +176,9 @@
 	wearer.ignite_mob(TRUE)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/ash
-	name = "\improper Scorched Mantle"
-	desc = "Left to burn to tatters, what remains is naught but a blackened echo of the mantle of the Watch. \
-		Yet the soot-choked folds turn blade and flame from the form within. A brief reprieve before its gaze turns inwards."
+	name = "\improper 焦灼披肩"
+	desc = "任其烧成残片，所余不过是守望者披肩被熏黑的余响。\
+		但那积满烟灰的褶皱仍能挡开来自其内之躯的刀锋与火焰。这只是它目光转向内部之前短暂的暂歇。"
 	icon_state = "ash_armor"
 	armor_type = /datum/armor/eldritch_armor/ash
 
@@ -196,9 +196,9 @@
 // Blade
 // Is shock-proof and gives you baton resistance
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/blade
-	name = "\improper Shattered Panoply"
-	desc = "The sharpened edges of this ancient suit of armor assert a revelation known to aspirants of battle; \
-			a true warrior can not be distinguished from the blade they wield."
+	name = "\improper 破碎全甲"
+	desc = "这套古老铠甲的锐利边缘宣示着一条为战斗渴望者所知的启示：\
+			真正的战士与他们所持的利刃无从分辨。"
 	icon_state = "blade_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/blade
 	armor_type = /datum/armor/eldritch_armor/blade
@@ -261,7 +261,7 @@
 /obj/item/knife/kitchen/magic
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "dio_knife"
-	name = "magic knife"
+	name = "魔法飞刀"
 	throwforce = 15
 	// most importantly, this ignores shields
 	armour_penetration = 200
@@ -304,9 +304,9 @@
 	QDEL_IN(knife, delete_delay + appear_delay + throw_delay)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/blade
-	name = "\improper Shattered Panoply"
-	desc = "The sharpened edges of this ancient suit of armor assert a revelation known to aspirants of battle; \
-			a true warrior can not be distinguished from the blade they wield."
+	name = "\improper 破碎全甲"
+	desc = "这套古老铠甲的锐利边缘宣示着一条为战斗渴望者所知的启示：\
+			真正的战士与他们所持的利刃无从分辨。"
 	icon_state = "blade_armor"
 	armor_type = /datum/armor/eldritch_armor/blade
 	siemens_coefficient = 0
@@ -325,9 +325,9 @@
 // Cosmic
 // Allows you to toggle gravity for yourself at will
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/cosmic
-	name = "\improper Starwoven Cloak"
-	desc = "Gleaming gems conjure forth wisps of power, turning about to illuminate the wearer in a dim radiance. \
-			Gazing upon the robe, you cannot help but feel noticed."
+	name = "\improper 星织斗篷"
+	desc = "闪亮的宝石召出缕缕力量，回旋流转，以微弱的光辉照亮穿戴者。\
+			凝视这件长袍时，你不禁觉得自己被注意到了。"
 	icon_state = "cosmic_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/cosmic
 	armor_type = /datum/armor/eldritch_armor/cosmic
@@ -370,16 +370,16 @@
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/cosmic/proc/toggle_gravity(mob/living/user)
 	if(!weightless_enabled)
 		user.add_traits(list(TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_FLYING, TRAIT_FREE_HYPERSPACE_MOVEMENT), REF(src))
-		user.balloon_alert(user, "enabled")
+		user.balloon_alert(user, "已启用")
 	else
 		user.remove_traits(list(TRAIT_NEGATES_GRAVITY, TRAIT_MOVE_FLYING, TRAIT_FREE_HYPERSPACE_MOVEMENT), REF(src))
-		user.balloon_alert(user, "disabled")
+		user.balloon_alert(user, "已禁用")
 	weightless_enabled = !weightless_enabled
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/cosmic
-	name = "\improper Starwoven Hood"
-	desc = "Gleaming gems conjure forth wisps of power, turning about to illuminate the wearer in a dim radiance. \
-			Gazing upon the robe, you cannot help but feel noticed."
+	name = "\improper 星织兜帽"
+	desc = "闪亮的宝石召出缕缕力量，回旋流转，以微弱的光辉照亮穿戴者。\
+			凝视这件长袍时，你不禁觉得自己被注意到了。"
 	icon_state = "cosmic_armor"
 	armor_type = /datum/armor/eldritch_armor/cosmic
 	clothing_flags = THICKMATERIAL | PLASMAMAN_PREVENT_IGNITION | STOPSPRESSUREDAMAGE
@@ -404,9 +404,9 @@
 // Flesh
 // Emits a healing aura that affects any heretic summons (excluding the heretic himself)
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/flesh
-	name = "Writhing Embrace"
-	desc = "A rotten carcass, or perhaps several, twisted into fleshy polyps, knotted intestines and cracked bone. \
-			How one 'wears' this baffles reasonable understanding. It moves when it believes itself unobserved."
+	name = "蠕动的拥抱"
+	desc = "一具腐烂的尸体，也许有好几具，扭曲成肉质的息肉、打结的肠子和碎裂的骨骼。\
+			人究竟要如何“穿”上这东西，实在令人费解。当它以为自己无人注视时，它会动。"
 	icon_state = "flesh_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/flesh
 	armor_type = /datum/armor/eldritch_armor/flesh
@@ -460,7 +460,7 @@
 // Lock
 // Gives you digital camo, silences your footsteps and makes you un-examineable
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/lock
-	name = "Shifting Guise"
+	name = "变幻伪装"
 	icon_state = "lock_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/lock
 	armor_type = /datum/armor/eldritch_armor/lock
@@ -503,10 +503,10 @@
 // Moon
 // Converts all damage into brain damage, nullifying the attack in the process
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/moon
-	name = "\improper Resplendant Regalia"
-	desc = "The confounding nature of this opulent garb turns and twists the sight. \
-			The viewer must come to a chilling revelation; \
-			what they see is as true as any other face."
+	name = "\improper 华贵礼服"
+	desc = "这套华丽服饰令人困惑的本质扭曲着观者的视线。\
+			观者终将领会到一个令人心寒的真相：\
+			他们所看见的，与任何别的面孔一样真实。"
 	icon_state = "moon_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/moon
 	armor_type = /datum/armor/eldritch_armor/moon
@@ -524,28 +524,28 @@
 	//---- Messages that get sent when someone wearing the moon robes is attacked
 	/// Visible message that nearby people see
 	var/static/list/visible_message_list = list(
-		"%USER seems to hardly register that they have been harmed by %ATTACKER, not even flinching naturally.",
-		"Though wounded, %USER seems oblivious to %ATTACKER.",
-		"You hear %USER laughing. But they have not made a single sound, even when struck by %ATTACKER.",
+		"%USER似乎几乎没意识到自己被%ATTACKER伤了，连自然的退缩都没有。",
+		"尽管受了伤，%USER似乎对%ATTACKER毫无察觉。",
+		"你听到%USER在笑。但即使被%ATTACKER击中，他们也没有发出一点声音。",
 	)
 	/// Message sent to the wearer who got attacked
 	var/static/list/self_message_list = list(
-		"Your body ripples as still water freshly disturbed. The sensation is exquisite, and you have %ATTACKER to thank.",
-		"A bell tolls. %ATTACKER has struck the hour and you tick to that tune.",
+		"你的身体像被新搅动的静水一样荡漾。这种感觉妙不可言，这得多谢%ATTACKER。",
+		"钟声敲响。%ATTACKER敲响了整点，而你随着那旋律滴答作响。",
 		//"You are needed in [area name]. You need to be there. %ATTACKER might want you to stay, but you are needed in [area name].",
 		//"You see %ATTACKER strike a [name of animal]. The face of the beast is a mirror of your own. How strange.",
-		"%ATTACKER bumps you and you spill your tea. It's fine. You've plenty of cups.",
-		"You hear a roaring crash. The waves hit the boat. The sea is vast and dark. You see %ATTACKER striking the water, cursing its master.",
-		"Sequins scatter into the air around %ATTACKER. The sequins...",
-		"You notice that a button has popped off your collar. How did that happen? Maybe %ATTACKER is to blame.",
-		"%ATTACKER isn't very funny, and you're struggling to see the punchline.",
+		"%ATTACKER撞了你一下，你把茶洒了。没关系。你的杯子多得是。",
+		"你听到轰然巨响。海浪拍打着小船。大海辽阔而黑暗。你看见%ATTACKER拍打着水面，咒骂着它的主人。",
+		"亮片在%ATTACKER周围散入空中。那些亮片……",
+		"你注意到领口上有一颗纽扣崩开了。怎么会这样？也许该怪%ATTACKER。",
+		"%ATTACKER并不怎么好笑，你很难看出笑点在哪。",
 	)
 	/// Message sent to blind people nearby
 	var/static/list/blind_message_list = list(
-		"You hear echoing laughter.",
-		"You hear a distance chorus.",
-		"You hear the sound of bells and whistles.",
-		"You hear the clack of a tambourine.",
+		"你听到回荡的笑声。",
+		"你听到远处的合唱。",
+		"你听到铃铛与哨子的声音。",
+		"你听到铃鼓的咔嗒声。",
 	)
 	/// List of all signals registered, used for cleanup
 	var/signal_registered = list()
@@ -668,7 +668,7 @@
 		return ..()
 	var/mob/living/carbon/human/wearer = user
 	if(wearer.get_organ_loss(ORGAN_SLOT_BRAIN) > 0)
-		wearer.balloon_alert(user, "can't strip, brain damaged!")
+		wearer.balloon_alert(user, "无法脱下，脑部受损！")
 		return FALSE
 	return ..()
 
@@ -704,7 +704,7 @@
 	var/obj/item/bodypart/head/to_explode = human_wearer.get_bodypart(BODY_ZONE_HEAD)
 	if(!to_explode)
 		return
-	human_wearer.visible_message(span_warning("[human_wearer]'s head splatters with a sickening crunch!"), ignored_mobs = list(human_wearer))
+	human_wearer.visible_message(span_warning("[human_wearer]的脑袋发出一声令人作呕的碎裂声爆开了！"), ignored_mobs = list(human_wearer))
 	new /obj/effect/gibspawner/generic(get_turf(human_wearer), human_wearer)
 	to_explode.dismember(dam_type = BRUTE, silent = TRUE)
 	to_explode.drop_organs()
@@ -753,11 +753,11 @@
 	braindead = TRUE
 	wearer.set_organ_loss(ORGAN_SLOT_BRAIN, INFINITY)
 	playsound(wearer, 'sound/effects/pope_entry.ogg', 50)
-	to_chat(wearer, span_bold(span_hypnophrase("A terrible fate has befallen you.")))
+	to_chat(wearer, span_bold(span_hypnophrase("可怕的命运降临到你身上。")))
 	addtimer(CALLBACK(src, PROC_REF(kill_wearer), wearer), 5 SECONDS)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/moon
-	name = "\improper Resplendant Hood"
+	name = "\improper 华贵兜帽"
 	icon_state = "moon_armor"
 	armor_type = /datum/armor/eldritch_armor/moon
 
@@ -773,7 +773,7 @@
 	wound = 0
 
 /atom/movable/screen/moon_health
-	name = "Health Level"
+	name = "健康水平"
 	icon = 'icons/hud/moon_health_64x64.dmi'
 	icon_state = "moon_hud_1"
 	base_icon_state = "moon_hud"
@@ -819,10 +819,10 @@
 // Rust
 // Gains more armor while standing on top of rust. Has an animated overlay
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/rust
-	name = "\improper Salvaged Remains"
-	desc = "Touching the folds of this plain robe seem to fill you with unease. \
-			Even looking fills you with a sense of vertigo. \
-			Some pulse threatening to pull you within."
+	name = "\improper 打捞遗骸"
+	desc = "触碰这件朴素长袍的褶皱似乎会让你心生不安。\
+			甚至只是看着它，都会让你感到一阵眩晕。\
+			某种脉动仿佛随时会把你拉入其中。"
 	icon_state = "rust_armor"
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/rust
 	armor_type = /datum/armor/eldritch_armor/rust
@@ -985,10 +985,10 @@
 	. += rust_appearance
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/rust
-	name = "\improper Salvaged Remains"
-	desc = "Touching the folds of this plain robe seem to fill you with unease. \
-			Even looking fills you with a sense of vertigo. \
-			Some pulse threatening to pull you within."
+	name = "\improper 打捞遗骸"
+	desc = "触碰这件朴素长袍的褶皱似乎会让你心生不安。\
+			甚至只是看着它，都会让你感到一阵眩晕。\
+			某种脉动仿佛随时会把你拉入其中。"
 	icon_state = "rust_armor"
 	armor_type = /datum/armor/eldritch_armor/rust
 
@@ -1038,9 +1038,9 @@
 // Void
 // Gives you a short stealth when you are hit
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/void
-	name = "\improper Hollow Weave"
-	desc = "At first, the empty canvas of this robe seems to shimmer with a faint, cold light. \
-			Yet upon tracking the shape of the folds more carefully, it is better to describe it as the absence of such a thing."
+	name = "\improper 空洞织造"
+	desc = "起初，这件长袍的空无画布似乎泛着一层微弱而冰冷的光。\
+			然而若更仔细地追索其褶皱的形状，倒不如说它是这种东西的缺失。"
 	icon_state = "void_armor"
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch/void
@@ -1080,9 +1080,9 @@
 	animate(owner, time = 1 SECONDS, alpha = initial(owner.alpha))
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/void
-	name = "\improper Hollow Weave"
-	desc = "At first, the empty canvas of this robe seems to shimmer with a faint, cold light. \
-			Yet upon tracking the shape of the folds more carefully, it is better to describe it as the absence of such a thing."
+	name = "\improper 空洞织造"
+	desc = "起初，这件长袍的空无画布似乎泛着一层微弱而冰冷的光。\
+			然而若更仔细地追索其褶皱的形状，倒不如说它是这种东西的缺失。"
 	icon_state = "void_armor"
 	armor_type = /datum/armor/eldritch_armor/void
 
@@ -1099,9 +1099,9 @@
 
 // Void cloak. Turns invisible with the hood up, lets you hide stuff.
 /obj/item/clothing/head/hooded/cult_hoodie/void
-	name = "void hood"
-	desc = "Black like tar, reflecting no light. Runic symbols line the outside. \
-		With each flash you lose comprehension of what you are seeing."
+	name = "虚空兜帽"
+	desc = "漆黑如沥青，不反射任何光线。外侧排列着符文。\
+		每次闪烁，你都会失去对所见之物的理解。"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "void_cloak"
@@ -1122,9 +1122,9 @@
 	add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), INNATE_TRAIT)
 
 /obj/item/clothing/suit/hooded/cultrobes/void
-	name = "void cloak"
-	desc = "Black like tar, reflecting no light. Runic symbols line the outside. \
-		With each flash you lose comprehension of what you are seeing."
+	name = "虚空斗篷"
+	desc = "漆黑如沥青，不反射任何光线。外侧排列着符文。\
+		每次闪烁，你都会失去对所见之物的理解。"
 	icon_state = "void_cloak"
 	inhand_icon_state = null
 	allowed = list(/obj/item/melee/sickly_blade)
@@ -1183,7 +1183,7 @@
 
 	// Let examiners know this works as a focus only if the hood is down
 	//. += span_notice("Allows you to cast heretic spells while the hood is down.") // BUBBER EDIT REMOVAL
-	. += span_notice("Is space worthy as long as the hood is down.")
+	. += span_notice("只要兜帽放下，就具备太空适应性。")
 
 /obj/item/clothing/suit/hooded/cultrobes/void/on_hood_down(obj/item/clothing/head/hooded/hood)
 	make_visible()
@@ -1191,12 +1191,12 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/void/can_create_hood()
 	if(!isliving(loc))
-		CRASH("[src] attempted to make a hood on a non-living thing: [loc]")
+		CRASH("[src] 试图在非生物物体上生成兜帽：[loc]")
 	var/mob/living/wearer = loc
 	if(IS_HERETIC_OR_MONSTER(wearer))
 		return TRUE
 
-	loc.balloon_alert(loc, "can't get the hood up!")
+	loc.balloon_alert(loc, "无法拉起兜帽！")
 	return FALSE
 
 /obj/item/clothing/suit/hooded/cultrobes/void/on_hood_created(obj/item/clothing/head/hooded/hood)
@@ -1211,8 +1211,8 @@
 	if(isliving(loc))
 		loc.remove_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
 		REMOVE_TRAIT(loc, TRAIT_RESISTLOWPRESSURE, REF(src))
-		loc.balloon_alert(loc, "cloak hidden")
-		loc.visible_message(span_notice("Light shifts around [loc], making the cloak around them invisible!"))
+		loc.balloon_alert(loc, "斗篷已隐藏")
+		loc.visible_message(span_notice("[loc]周围的光线扭曲，使其身上的斗篷变得隐形！"))
 
 /// Makes our cloak "visible" again.
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_visible()
@@ -1221,5 +1221,5 @@
 
 	if(isliving(loc))
 		loc.add_traits(list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD), REF(src))
-		loc.balloon_alert(loc, "cloak revealed")
-		loc.visible_message(span_notice("A kaleidoscope of colours collapses around [loc], a cloak appearing suddenly around their person!"))
+		loc.balloon_alert(loc, "斗篷已显现")
+		loc.visible_message(span_notice("万花筒般的色彩在[loc]周围收拢，一件斗篷突然出现在其身上！"))

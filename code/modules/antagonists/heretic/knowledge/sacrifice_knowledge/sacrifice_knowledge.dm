@@ -9,9 +9,9 @@
  * Allows the heretic to sacrifice living heart targets.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice
-	name = "Heartbeat of the Mansus"
-	desc = "Allows you to sacrifice targets to the Mansus by bringing them to a rune in critical (or worse) condition."
-	notice = "If you have no targets, stand on a transmutation rune and invoke it to acquire some."
+	name = "漫宿心跳"
+	desc = "允许你将处于重伤（或更糟状态）的目标带到符文处，以此向漫宿献祭。"
+	notice = "如果你没有目标，站到转化符文上并激活它即可获取目标。"
 	required_atoms = list(/mob/living/carbon/human = 1)
 	cost = 0
 	priority = MAX_KNOWLEDGE_PRIORITY // Should be at the top
@@ -53,16 +53,16 @@
 #ifndef UNIT_TESTS // This is a decently hefty thing to generate while unit testing, so we should skip it.
 	if(!heretic_level_generated)
 		heretic_level_generated = TRUE
-		log_game("Loading heretic lazytemplate for heretic sacrifices...")
+		log_game("正在加载用于异教徒献祭的异教徒懒加载模板……")
 		INVOKE_ASYNC(src, PROC_REF(generate_heretic_z_level))
 #endif
 
 /// Generate the sacrifice z-level.
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/generate_heretic_z_level()
 	if(!SSmapping.lazy_load_template(LAZY_TEMPLATE_KEY_HERETIC_SACRIFICE))
-		log_game("The heretic sacrifice template failed to load.")
-		message_admins("The heretic sacrifice lazy template failed to load. Heretic sacrifices won't be teleported to the shadow realm. \
-			If you want, you can spawn an /obj/effect/landmark/heretic somewhere to stop that from happening.")
+		log_game("异教徒献祭模板加载失败。")
+		message_admins("异教徒献祭懒加载模板加载失败。异教徒献祭将不会被传送到暗影界。\
+			如果你愿意，可以在某处生成一个 /obj/effect/landmark/heretic 来阻止这种情况发生。")
 		CRASH("Failed to lazy load heretic sacrifice template!")
 
 /datum/heretic_knowledge/hunt_and_sacrifice/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
@@ -71,12 +71,12 @@
 	// You may wonder why we don't straight up prevent them from invoking the ritual if they don't have one -
 	// Hunt and sacrifice should always be invokable for clarity's sake, even if it'll fail immediately.
 	if(heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, "ritual failed, no living heart!")
+		loc.balloon_alert(user, "仪式失败，没有活体心脏！")
 		return FALSE
 
 	// BUBBER EDIT ADDITION BEGIN - cant sacrifice if youve fulfilled your obj
 	if (heretic_datum.wildcard_obj.completed)
-		loc.balloon_alert(user, "your patrons are already satisfied...")
+		loc.balloon_alert(user, "你的主顾们已经满足了……")
 		return FALSE
 	// BUBBER EDIT ADDITION END
 
@@ -87,25 +87,25 @@
 		return TRUE
 
 	if(istype(get_area(loc), /area/centcom/heretic_backdoor))
-		loc.balloon_alert(user, "ritual failed, invalid location!")
+		loc.balloon_alert(user, "仪式失败，地点无效！")
 		switch(backdoor_sacrifice_attempts)
 			if(0)
-				to_chat(user, span_mansus("Attempting a sacrifice so close to the gods is risky..."))
+				to_chat(user, span_mansus("在如此靠近神明之处献祭十分危险……"))
 			if(1)
-				to_chat(user, span_mansus("<i>You hear a knocking sound[HAS_TRAIT(user, TRAIT_DEAF) ? ", despite your deafness" : ""]...</i>"))
+				to_chat(user, span_mansus("<i>你听到一阵敲击声[HAS_TRAIT(user, TRAIT_DEAF) ? "，尽管你听不见" : ""]……</i>"))
 			if(2)
-				to_chat(user, span_mansus("<i>The knocking grows louder..."))
+				to_chat(user, span_mansus("<i>敲击声越来越响……"))
 				user.soundbang_act(SOUNDBANG_NORMAL, deafen_pwr = 10 SECONDS, stun_pwr = 1 SECONDS, damage_pwr = 10, ignore_deafness = TRUE)
 			if(3)
-				to_chat(user, span_mansus("<i>The knocking becomes deafening!</i>"))
+				to_chat(user, span_mansus("<i>敲击声变得震耳欲聋！</i>"))
 				user.soundbang_act(SOUNDBANG_OVERWHELMING, deafen_pwr = 20 SECONDS, stun_pwr = 4 SECONDS, damage_pwr = 20, ignore_deafness = TRUE)
 			if(4)
 				if(begin_sacrifice(user))
-					to_chat(user, span_mansus("<b><i>Your insolence is punished!</i></b>"))
+					to_chat(user, span_mansus("<b><i>你的无礼已受到惩罚！</i></b>"))
 				else
-					to_chat(user, span_mansus("The knocking stops - but you can't help but feel like you've dodged a bullet, somehow."))
+					to_chat(user, span_mansus("敲击声停止了——但你不由得觉得自己似乎躲过了一劫。"))
 			if(5 to INFINITY)
-				to_chat(user, span_mansus("You don't think trying it again would provide any more insight..."))
+				to_chat(user, span_mansus("你觉得再试一次也不会带来更多启示……"))
 
 		backdoor_sacrifice_attempts++
 		return FALSE
@@ -129,7 +129,7 @@
 		return TRUE
 
 	// or FALSE if we don't
-	loc.balloon_alert(user, "ritual failed, no sacrifice found!")
+	loc.balloon_alert(user, "仪式失败，未找到献祭目标！")
 	return FALSE
 
 /datum/heretic_knowledge/hunt_and_sacrifice/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -140,7 +140,7 @@
 		if(obtain_targets(user, heretic_datum = heretic_datum))
 			return TRUE
 		else
-			loc.balloon_alert(user, "ritual failed, no targets found!")
+			loc.balloon_alert(user, "仪式失败，未找到目标！")
 			return FALSE
 
 	sacrifice_process(user, selected_atoms, loc)
@@ -175,7 +175,7 @@
 
 	if(!length(valid_targets))
 		if(!silent)
-			to_chat(user, span_mansus("No sacrifice targets could be found!"))
+			to_chat(user, span_mansus("未能找到任何献祭目标！"))
 		return FALSE
 
 	// Now, let's try to get four targets.
@@ -213,12 +213,12 @@
 		target_sanity++
 
 	if(!silent)
-		to_chat(user, span_danger("Your targets have been determined. Your Living Heart will allow you to track their position. Go and sacrifice them!"))
+		to_chat(user, span_danger("你的目标已确定。你的活体心脏能让你追踪他们的位置。去献祭他们吧！"))
 
 	for(var/datum/mind/chosen_mind as anything in final_targets)
 		heretic_datum.add_sacrifice_target(chosen_mind.current)
 		if(!silent)
-			to_chat(user, span_danger("[chosen_mind.current.real_name], the [chosen_mind.assigned_role?.title]."))
+			to_chat(user, span_danger("[chosen_mind.current.real_name]，[chosen_mind.assigned_role?.title]。"))
 
 	return TRUE
 
@@ -244,7 +244,7 @@
 	for(var/datum/antagonist/heretic/all_heretic in GLOB.antagonists)
 		all_heretic.remove_sacrifice_target(sacrifice)
 
-	var/feedback = "Your patrons accept your offer"
+	var/feedback = "你的主顾们接受了你的献礼"
 	var/sac_job_flag = sacrifice.mind?.assigned_role?.job_flags | sacrifice.last_mind?.assigned_role?.job_flags
 	var/datum/antagonist/cult/cultist_datum = GET_CULTIST(sacrifice)
 	// Heads give 3 points, cultists give 1 point (and a special reward), normal sacrifices give 2 points.
@@ -253,7 +253,7 @@
 	if((sac_job_flag & JOB_HEAD_OF_STAFF))
 		heretic_datum.adjust_knowledge_points(3)
 		heretic_datum.high_value_sacrifices++
-		feedback += " <i>graciously</i>"
+		feedback += " <i>欣然</i>"
 	if(cultist_datum)
 		heretic_datum.adjust_knowledge_points(1)
 		grant_reward(user, sacrifice, loc)
@@ -264,19 +264,19 @@
 			for(var/datum/mind/mind as anything in cultist_datum.cult_team.members)
 				if(mind.current)
 					SEND_SOUND(mind.current, 'sound/effects/magic/clockwork/narsie_attack.ogg')
-					var/message = span_narsie("A vile heretic has ") + \
-					span_cult_large(span_hypnophrase("sacrificed")) + \
-					span_narsie(" one of our own. Destroy and sacrifice the infidel before it claims more!")
+					var/message = span_narsie("一名卑劣的异教徒") + \
+					span_cult_large(span_hypnophrase("献祭了")) + \
+					span_narsie("我们的一员。在那异端夺走更多之前，摧毁并献祭它！")
 					to_chat(mind.current, message)
 			// he(retic) gets a warn too
-			to_chat(user, span_narsiesmall("How DARE you!? I will see you destroyed for this."))
-			var/non_flavor_warning = span_cult_bold("You feel that your action has attracted ") + span_hypnophrase("attention") + span_cult_bold(".")
+			to_chat(user, span_narsiesmall("你竟敢如此！？为此我必将看着你被毁灭。"))
+			var/non_flavor_warning = span_cult_bold("你感到自己的行为引来了") + span_hypnophrase("注意") + span_cult_bold("。")
 			to_chat(user, non_flavor_warning)
 		return
 	else
 		heretic_datum.adjust_knowledge_points(2)
 
-	to_chat(user, span_hypnophrase("[feedback]."))
+	to_chat(user, span_hypnophrase("[feedback]。"))
 	if(!begin_sacrifice(sacrifice))
 		disembowel_target(sacrifice)
 		return
@@ -291,8 +291,8 @@
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/grant_reward(mob/living/user, mob/living/sacrifice, turf/loc)
 
 	// Visible and audible encouragement!
-	to_chat(user, span_big(span_hypnophrase("A servant of the Sanguine Apostate!")))
-	to_chat(user, span_mansus("Your patrons are rapturous!"))
+	to_chat(user, span_big(span_hypnophrase("猩红叛教者的仆从！")))
+	to_chat(user, span_mansus("你的主顾们欣喜若狂！"))
 	playsound(sacrifice, 'sound/effects/magic/disintegrate.ogg', 75, TRUE)
 
 	// Drop all items and splatter them around messily.
@@ -382,13 +382,13 @@
 			brain.revive()
 			brain.leave_modsuit(TRUE)
 	//BUBBERSTATION EDIT END
-	sac_target.visible_message(span_danger("[sac_target] begins to shudder violenty as dark tendrils begin to drag them into thin air!"))
+	sac_target.visible_message(span_danger("[sac_target]开始剧烈颤抖，黑暗的触须正将其拖入虚空！"))
 	sac_target.equip_to_slot_or_del(new /obj/item/restraints/handcuffs/cult, ITEM_SLOT_HANDCUFFED, indirect_action = TRUE)
 	sac_target.dropItemToGround(sac_target.legcuffed, TRUE)
 
 	sac_target.adjust_organ_loss(ORGAN_SLOT_BRAIN, 85, 150)
 	sac_target.do_jitter_animation()
-	log_combat(heretic_mind.current, sac_target, "sacrificed")
+	log_combat(heretic_mind.current, sac_target, "献祭了")
 
 	addtimer(CALLBACK(sac_target, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation)), SACRIFICE_SLEEP_DURATION * (1/3))
 	addtimer(CALLBACK(sac_target, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation)), SACRIFICE_SLEEP_DURATION * (2/3))
@@ -396,13 +396,13 @@
 	// If our target is dead, try to revive them
 	// and if we fail to revive them, don't proceede the chain
 	sac_target.adjust_oxy_loss(-100, FALSE)
-	if(!sac_target.heal_and_revive(50, span_danger("[sac_target]'s heart begins to beat with an unholy force as they return from death!")))
+	if(!sac_target.heal_and_revive(50, span_danger("[sac_target]的心脏以不洁之力重新跳动，从死亡中归来！")))
 		return
 
 	if(sac_target.AdjustUnconscious(SACRIFICE_SLEEP_DURATION))
-		to_chat(sac_target, span_hypnophrase("Your mind feels torn apart as you fall into a shallow slumber..."))
+		to_chat(sac_target, span_hypnophrase("随着你陷入浅眠，你的心智仿佛被撕裂……"))
 	else
-		to_chat(sac_target, span_hypnophrase("Your mind begins to tear apart as you watch dark tendrils envelop you."))
+		to_chat(sac_target, span_hypnophrase("你看着黑暗触须将你包裹，心智开始崩裂。"))
 
 	sac_target.AdjustParalyzed(SACRIFICE_SLEEP_DURATION * 1.2)
 	sac_target.AdjustImmobilized(SACRIFICE_SLEEP_DURATION * 1.2)
@@ -441,11 +441,11 @@
 	// and we fail to revive them (using a lower number than before),
 	// just disembowel them and stop the chain
 	sac_target.adjust_oxy_loss(-100, FALSE)
-	if(!sac_target.heal_and_revive(60, span_danger("[sac_target]'s heart begins to beat with an unholy force as they return from death!")))
+	if(!sac_target.heal_and_revive(60, span_danger("[sac_target]的心脏以不洁之力重新跳动，从死亡中归来！")))
 		disembowel_target(sac_target)
 		return
 
-	to_chat(sac_target, span_big(span_hypnophrase("Unnatural forces begin to claw at your every being from beyond the veil.")))
+	to_chat(sac_target, span_big(span_hypnophrase("超自然的力量开始从帷幕之外撕扯你的每一寸存在。")))
 
 	playsound(sac_target, 'sound/music/antag/heretic/heretic_sacrifice.ogg', 50, FALSE) // play theme
 
@@ -471,7 +471,7 @@
 		to_give.Insert(sac_target)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target), sac_target)
-	sac_target.visible_message(span_boldwarning("Several organs force themselves out of [sac_target]!"))
+	sac_target.visible_message(span_boldwarning("几个器官从[sac_target]体内被强行挤出！"))
 
 /**
  * This proc is called from [proc/after_target_sleeps] when the [sac_target] should be waking up.)
@@ -501,8 +501,8 @@
 	sac_target.adjust_hallucinations(24 SECONDS)
 	sac_target.emote("scream")
 
-	to_chat(sac_target, span_reallybig(span_hypnophrase("The grasp of the Mansus reveal themselves to you!")))
-	to_chat(sac_target, span_hypnophrase("You feel invigorated! Fight to survive!"))
+	to_chat(sac_target, span_reallybig(span_hypnophrase("漫宿的抓握在你面前显露！")))
+	to_chat(sac_target, span_hypnophrase("你感到充满活力！为生存而战！"))
 	// When it runs out, let them know they're almost home free
 	addtimer(CALLBACK(src, PROC_REF(after_helgrasp_ends), sac_target), helgrasp_time)
 	// Win condition
@@ -518,7 +518,7 @@
 	if(QDELETED(sac_target) || sac_target.stat == DEAD)
 		return
 
-	to_chat(sac_target, span_hypnophrase("The worst is behind you... Not much longer! Hold fast, or expire!"))
+	to_chat(sac_target, span_hypnophrase("最糟的已经过去了……再撑一会儿！坚持住，否则就死！"))
 
 /**
  * This proc is called from [proc/begin_sacrifice] if the target survived the shadow realm), or [COMSIG_LIVING_DEATH] if they don't.
@@ -581,13 +581,13 @@
 
 	if(heretic_mind?.current)
 		var/composed_return_message = ""
-		composed_return_message += span_notice("Your victim, [sac_target], was returned to the station - ")
+		composed_return_message += span_notice("你的受害者[sac_target]已被送回空间站——")
 		if(sac_target.stat == DEAD)
-			composed_return_message += span_red("dead. ")
+			composed_return_message += span_red("已死亡。")
 		else
-			composed_return_message += span_green("alive, but with a shattered mind. ")
+			composed_return_message += span_green("还活着，但心智已破碎。")
 
-		composed_return_message += span_notice("You hear a whisper... ")
+		composed_return_message += span_notice("你听到一声低语……")
 		composed_return_message += span_mansus(get_area_name(safe_turf, TRUE))
 		to_chat(heretic_mind.current, composed_return_message)
 
@@ -608,7 +608,7 @@
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/on_target_escape(mob/living/carbon/human/sac_target, old_z, new_z)
 	SIGNAL_HANDLER
 
-	to_chat(sac_target, span_boldwarning("Your attempt to escape the Mansus is not taken kindly!"))
+	to_chat(sac_target, span_boldwarning("你试图逃离漫宿的行为可不被欣赏！"))
 	// Ends up calling return_target() via death signal to clean up.
 	disembowel_target(sac_target)
 
@@ -618,11 +618,11 @@
  * Gives the sacrifice target some after effects upon ariving back to reality.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/after_return_live_target(mob/living/carbon/human/sac_target)
-	to_chat(sac_target, span_hypnophrase("The fight is over, but at great cost. You have been returned to the station in one piece."))
+	to_chat(sac_target, span_hypnophrase("战斗结束了，但代价沉重。你已完好无损地被送回空间站。"))
 	if(IS_HERETIC(sac_target))
-		to_chat(sac_target, span_big(span_hypnophrase("You don't remember anything leading up to the experience, but you feel your connection with the Mansus weakened - Knowledge once known, forgotten...")))
+		to_chat(sac_target, span_big(span_hypnophrase("你不记得这段经历之前的任何事，但你感到自己与漫宿的联系变弱了——曾知晓的知识，已被遗忘……")))
 	else
-		to_chat(sac_target, span_big(span_hypnophrase("You don't remember anything leading up to the experience - All you can think about are those horrific hands...")))
+		to_chat(sac_target, span_big(span_hypnophrase("你不记得这段经历之前的任何事——你满脑子只有那些可怖的手……")))
 
 	// Oh god where are we?
 	sac_target.flash_act()
@@ -651,12 +651,12 @@
  * it spawns a special red broken illusion on their spot, for style.
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/after_return_dead_target(mob/living/carbon/human/sac_target)
-	to_chat(sac_target, span_hypnophrase("You failed to resist the horrors of the Mansus! Your ruined body has been returned to the station."))
-	to_chat(sac_target, span_big(span_hypnophrase("The experience leaves your mind torn and memories tattered. You will not remember anything leading up to the experience if revived.")))
+	to_chat(sac_target, span_hypnophrase("你未能抵抗漫宿的恐怖！你残破的身体已被送回空间站。"))
+	to_chat(sac_target, span_big(span_hypnophrase("这段经历让你的心智撕裂、记忆破碎。若被复活，你将不记得这段经历之前的任何事。")))
 
 	var/obj/effect/visible_heretic_influence/illusion = new(get_turf(sac_target))
-	illusion.name = "\improper weakened rift in reality"
-	illusion.desc = "A rift wide enough for something... or someone... to come through."
+	illusion.name = "现实中的虚弱裂隙"
+	illusion.desc = "一道足够宽的裂隙，某种东西……或者某个人……可以从中穿出。"
 	illusion.color = COLOR_DARK_RED
 
 /**
@@ -665,15 +665,15 @@
  */
 /datum/heretic_knowledge/hunt_and_sacrifice/proc/disembowel_target(mob/living/carbon/human/sac_target)
 	if(heretic_mind)
-		log_combat(heretic_mind.current, sac_target, "disemboweled via sacrifice")
+		log_combat(heretic_mind.current, sac_target, "因献祭被开膛")
 	sac_target.spill_organs(DROP_ALL_REMAINS)
 	sac_target.apply_damage(250, BRUTE)
 	if(sac_target.stat != DEAD)
-		sac_target.investigate_log("has been killed by heretic sacrifice.", INVESTIGATE_DEATHS)
+		sac_target.investigate_log("已被异教徒献祭杀死。", INVESTIGATE_DEATHS)
 		sac_target.death()
 	sac_target.visible_message(
-		span_danger("[sac_target]'s organs are pulled out of [sac_target.p_their()] chest by shadowy hands!"),
-		span_userdanger("Your organs are violently pulled out of your chest by shadowy hands!")
+		span_danger("[sac_target]的器官被阴影之手从其胸腔中拽出！"),
+		span_userdanger("你的器官被阴影之手猛烈地从胸腔中拽出！")
 	)
 
 	new /obj/effect/gibspawner/human/bodypartless(get_turf(sac_target), sac_target)

@@ -1,5 +1,5 @@
 /datum/antagonist/wishgranter
-	name = "\improper Wishgranter Avatar"
+	name = "\improper 许愿者化身"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	hijack_speed = 2 //You literally are here to do nothing else. Might as well be fast about it.
@@ -17,7 +17,7 @@
 
 /datum/antagonist/wishgranter/greet()
 	. = ..()
-	to_chat(owner, "<B>Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!</B>")
+	to_chat(owner, "<B>你的顾虑被一扫而空，忠诚的纽带已经断裂，你可以随心所欲地杀戮了！</B>")
 	owner.announce_objectives()
 
 /datum/antagonist/wishgranter/proc/give_powers()

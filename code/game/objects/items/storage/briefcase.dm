@@ -1,6 +1,6 @@
 /obj/item/storage/briefcase
-	name = "briefcase"
-	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
+	name = "公文包"
+	desc = "它由正品人造革制成，价签还挂在上面。它的主人一定是个真正的专业人士。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "briefcase"
 	inhand_icon_state = "briefcase"
@@ -12,8 +12,8 @@
 	throw_speed = 2
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb_continuous = list("bashes", "batters", "bludgeons", "thrashes", "whacks")
-	attack_verb_simple = list("bash", "batter", "bludgeon", "thrash", "whack")
+	attack_verb_continuous = list("猛击", "重击", "捶打", "抽打", "狠砸")
+	attack_verb_simple = list("猛击", "重击", "捶打", "抽打", "狠砸")
 	resistance_flags = FLAMMABLE
 	max_integrity = 150
 	storage_type = /datum/storage/briefcase
@@ -49,17 +49,17 @@
 		if(istype(potentially_paper, /obj/item/paper) || istype(potentially_paper, /obj/item/paperplane))
 			papers_found += potentially_paper
 	if(!papers_found.len || !item_loc)
-		user.visible_message(span_suicide("[user] bashes [user.p_them()]self in the head with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]用[src]猛砸自己的头！看起来是想自杀！"))
 		return BRUTELOSS
 
-	user.visible_message(span_suicide("[user] opens [src] and all of [user.p_their()] papers fly out!"))
+	user.visible_message(span_suicide("[user]打开[src]，所有的文件都飞了出来！"))
 	for(var/obj/item/paper as anything in papers_found)	//Throws the papers in a random direction
 		var/turf/turf_to_throw_at = prob(20) ? item_loc : get_ranged_target_turf(item_loc, pick(GLOB.alldirs))
 		paper.throw_at(turf_to_throw_at, 2)
 
 	stoplag(1 SECONDS)
-	user.say("ARGGHH, HOW WILL I GET THIS WORK DONE NOW?!!")
-	user.visible_message(span_suicide("[user] looks overwhelmed with paperwork! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.say("啊啊啊啊，这下我要怎么完成这些工作？！！")
+	user.visible_message(span_suicide("[user]看起来被文书工作压垮了！看起来是想自杀！"))
 	return OXYLOSS
 
 // Empty subtype
@@ -67,7 +67,7 @@
 	return
 
 /obj/item/storage/briefcase/sniper
-	desc = "Its label reads \"genuine hardened Captain leather\", but suspiciously has no other tags or branding. Smells like L'Air du Temps."
+	desc = "标签上写着“正品舰长级硬化皮革”，但可疑的是上面再没有其他标签或品牌标识。闻起来像时光之韵香水。"
 	force = 10
 
 /obj/item/storage/briefcase/sniper/PopulateContents()
@@ -84,8 +84,8 @@
  * Uses the lockable storage component to give it a lock.
  */
 /obj/item/storage/briefcase/secure
-	name = "secure briefcase"
-	desc = "A large briefcase with a digital locking system."
+	name = "安全公文包"
+	desc = "一个大号公文包，配有数字锁定系统。"
 	icon_state = "secure"
 	base_icon_state = "secure"
 	inhand_icon_state = "sec-case"
@@ -103,8 +103,8 @@
 
 /// Base container used for gimmick disks.
 /obj/item/storage/briefcase/secure/digital_storage
-	name = "digi-case"
-	desc = "It's made of AUTHENTIC digital leather and has a price-tag still attached. Its owner must be a real professional."
+	name = "数码公文包"
+	desc = "它由正品数字皮革制成，价签还挂在上面。它的主人一定是个真正的专业人士。"
 	icon_state = "secure"
 	base_icon_state = "secure"
 	inhand_icon_state = "sec-case"
@@ -162,7 +162,7 @@
 	if(!isturf(user.loc)) //no setting up in a locker
 		return
 	add_fingerprint(user)
-	user.visible_message(span_notice("[user] starts setting down [src]..."), span_notice("You start setting up [pad]..."))
+	user.visible_message(span_notice("[user]开始放下[src]……"), span_notice("你开始架设[pad]……"))
 	if(do_after(user, 3 SECONDS, target = user))
 		pad.forceMove(get_turf(src))
 		pad.update_indicator()
@@ -177,7 +177,7 @@
 	if(remote.pad == WEAKREF(src.pad))
 		return ..()
 	remote.pad = WEAKREF(src.pad)
-	to_chat(user, span_notice("You link [pad] to [remote]."))
+	to_chat(user, span_notice("你把[pad]与[remote]连接了起来。"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/storage/briefcase/gun
@@ -191,7 +191,7 @@
 /obj/item/storage/briefcase/gun/examine_more(mob/user)
 	. = ..()
 	if(user.is_holding(src))
-		. += span_notice("Upon closer inspection, you notice a hole in the side of the briefcase.")
+		. += span_notice("仔细观察后，你注意到公文包侧面有一个洞。")
 
 /obj/item/storage/briefcase/gun/preloaded
 

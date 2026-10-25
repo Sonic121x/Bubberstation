@@ -1,5 +1,5 @@
 /obj/item/organ/heart/gland/blood
-	abductor_hint = "pseudonuclear hemo-destabilizer. Periodically randomizes the abductee's bloodtype into a random reagent."
+	abductor_hint = "拟核血液失稳器。会定期将被绑架者的血型随机变为某种随机试剂。"
 	cooldown_low = 1200
 	cooldown_high = 1800
 	uses = -1
@@ -13,7 +13,7 @@
 	if(!ishuman(owner) || !owner.dna.species)
 		return
 	var/mob/living/carbon/human/owner_mob = owner
-	to_chat(owner_mob, span_warning("You feel your blood heat up for a moment."))
+	to_chat(owner_mob, span_warning("你感到血液短暂地发热起来。"))
 	var/datum/reagent/new_blood_reagent = get_random_reagent_id()
 	// Try to find a corresponding blood type for this reagent
 	var/datum/blood_type/new_blood_type = get_blood_type(new_blood_reagent)

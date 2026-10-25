@@ -8,14 +8,14 @@
 		if(T)
 			var/atom/a_loc = A.loc
 			var/is_turf = isturf(a_loc)
-			coords = "[is_turf ? "at" : "from [a_loc] at"] [AREACOORD(T)]"
-			jmp_coords = "[is_turf ? "at" : "from [a_loc] at"] [ADMIN_VERBOSEJMP(T)]"
+			coords = "[is_turf ? "位于" : "来自 [a_loc]，位于"] [AREACOORD(T)]"
+			jmp_coords = "[is_turf ? "位于" : "来自 [a_loc]，位于"] [ADMIN_VERBOSEJMP(T)]"
 		else
-			jmp_coords = coords = "in nullspace"
+			jmp_coords = coords = "位于空域"
 
-	if (tgui_alert(usr, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", list("Yes", "No")) == "Yes")
-		log_admin("[key_name(usr)] deleted [D] [coords]")
-		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
+	if (tgui_alert(usr, "你确定要删除：\n[D]\n[coords]？", "确认", list("Yes", "No")) == "Yes")
+		log_admin("[key_name(usr)] 删除了 [D] [coords]")
+		message_admins("[key_name_admin(usr)] 删除了 [D] [jmp_coords]")
 		BLACKBOX_LOG_ADMIN_VERB("Delete")
 		SEND_SIGNAL(D, COMSIG_ADMIN_DELETING, src)
 		if(isturf(D))

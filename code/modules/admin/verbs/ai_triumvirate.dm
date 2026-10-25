@@ -28,20 +28,20 @@ GLOBAL_DATUM(triple_ai_controller, /datum/triple_ai_controller)
 	GLOB.triple_ai_controller = null
 	. = ..()
 
-GAME_VERB_PROC(/client, triple_ai, "Toggle AI Triumvirate", "Admin.Events")
+GAME_VERB_PROC(/client, triple_ai, "切换 AI 三人执政", "Admin.Events")
 
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, "This option is currently only usable during pregame. This may change at a later date.", confidential = TRUE)
+		to_chat(usr, "此选项目前只能在游戏开始前使用。未来可能会变更。", confidential = TRUE)
 		return
 
 	var/datum/job/job = SSjob.get_job_type(/datum/job/ai)
 	if(!job)
-		to_chat(usr, "Unable to locate the AI job", confidential = TRUE)
+		to_chat(usr, "无法找到 AI 职业", confidential = TRUE)
 		CRASH("triple_ai() called, no /datum/job/ai to be found.")
 
 	if(!GLOB.triple_ai_controller)
 		GLOB.triple_ai_controller = new()
 	else
 		QDEL_NULL(GLOB.triple_ai_controller)
-	to_chat(usr, "There will[GLOB.triple_ai_controller ? "" : "not"] be an AI Triumvirate at round start.")
-	message_admins(span_adminnotice("[key_name_admin(usr)] has toggled [GLOB.triple_ai_controller ? "on" : "off"] triple AIs at round start."))
+	to_chat(usr, "回合开始时[GLOB.triple_ai_controller ? "将" : "不会"]出现 AI 三人执政。")
+	message_admins(span_adminnotice("[key_name_admin(usr)] 已[GLOB.triple_ai_controller ? "开启" : "关闭"]了回合开始时的三 AI 模式。"))

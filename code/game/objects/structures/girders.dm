@@ -1,9 +1,9 @@
 /obj/structure/girder
 	icon = 'icons/obj/smooth_structures/girder.dmi'
-	name = "girder"
+	name = "钢梁"
 	base_icon_state = "girder"
 	icon_state = "girder-0"
-	desc = "A large structural assembly made out of metal; It requires a layer of iron before it can be considered a wall."
+	desc = "由金属构成的大型结构组件；需要铺设一层铁板才能算作墙壁。"
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 200
@@ -38,26 +38,26 @@
 	. = ..()
 	switch(state)
 		if(GIRDER_REINF)
-			. += span_notice("The support struts are <b>screwed</b> in place.")
+			. += span_notice("支撑柱已用<b>螺丝</b>固定到位。")
 		if(GIRDER_REINF_STRUTS)
-			. += span_notice("The support struts are <i>unscrewed</i> and the inner <b>grille</b> is intact.")
+			. += span_notice("支撑柱已<i>松开螺丝</i>，内部<b>格栅</b>完好。")
 		if(GIRDER_NORMAL)
 			if(can_displace)
-				. += span_notice("The bolts are <b>wrenched</b> in place.")
+				. += span_notice("螺栓已用<b>扳手</b>固定到位。")
 		if(GIRDER_DISPLACED)
-			. += span_notice("The bolts are <i>loosened</i>, but the <b>screws</b> are holding [src] together.")
+			. += span_notice("螺栓已<i>松开</i>，但<b>螺丝</b>仍将[src]固定在一起。")
 		if(GIRDER_TRAM)
-			. += span_notice("[src] is designed for tram usage. Deconstructed with a screwdriver!")
+			. += span_notice("[src]专为电车使用而设计。可用螺丝刀拆卸！")
 	if (can_weld_apart)
-		. += span_notice("The frame looks weak enough to be <b>welded</b> apart.")
+		. += span_notice("框架看起来足够脆弱，可以用<b>焊接</b>切开。")
 	else
-		. += span_notice("The frame could be sliced apart with a <b>plasmacutter</b>.")
+		. += span_notice("框架可以用<b>等离子切割器</b>切开。")
 
 /obj/structure/girder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (user.combat_mode)
 		return
 	if (istype(tool, /obj/item/stack/sheet/plasteel))
-		if (try_construction_step(user, tool, 5 SECONDS, req_state = GIRDER_NORMAL, start_alert = "reinforcing frame...", amount = 1))
+		if (try_construction_step(user, tool, 5 SECONDS, req_state = GIRDER_NORMAL, start_alert = "正在加固框架……", amount = 1))
 			replace_girder(/obj/structure/girder/reinforced)
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
@@ -66,25 +66,25 @@
 	. = ITEM_INTERACT_BLOCKING
 	switch (state)
 		if (GIRDER_TRAM)
-			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_TRAM, start_alert = "disassembling frame..."))
+			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_TRAM, start_alert = "正在拆卸框架……"))
 				deconstruct(disassembled = TRUE)
 				return ITEM_INTERACT_SUCCESS
 		if (GIRDER_DISPLACED)
-			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_DISPLACED, start_alert = "disassembling frame..."))
+			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_DISPLACED, start_alert = "正在拆卸框架……"))
 				deconstruct(disassembled = TRUE)
 				return ITEM_INTERACT_SUCCESS
 		if (GIRDER_REINF)
-			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_REINF, start_alert = "unsecuring support struts..."))
+			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_REINF, start_alert = "正在松开支撑柱……"))
 				state = GIRDER_REINF_STRUTS
 				return ITEM_INTERACT_SUCCESS
 		if (GIRDER_REINF_STRUTS)
-			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_REINF_STRUTS, start_alert = "securing support struts..."))
+			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_REINF_STRUTS, start_alert = "正在固定支撑柱……"))
 				state = GIRDER_REINF
 				return ITEM_INTERACT_SUCCESS
 
 /obj/structure/girder/wirecutter_act(mob/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
-	if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_REINF_STRUTS, start_alert = "removing inner grille..."))
+	if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_REINF_STRUTS, start_alert = "正在拆除内部格栅……"))
 		new /obj/item/stack/sheet/plasteel(get_turf(src))
 		replace_girder(/obj/structure/girder)
 		return ITEM_INTERACT_SUCCESS
@@ -92,15 +92,15 @@
 /obj/structure/girder/wrench_act(mob/user, obj/item/tool)
 	. = ITEM_INTERACT_BLOCKING
 	if (!can_displace)
-		balloon_alert(user, "no bolts!")
+		balloon_alert(user, "没有螺栓！")
 		return
 	switch (state)
 		if (GIRDER_NORMAL)
-			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_NORMAL, start_alert = "unsecuring frame..."))
+			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_NORMAL, start_alert = "正在松开框架……"))
 				replace_girder(/obj/structure/girder/displaced)
 				return ITEM_INTERACT_SUCCESS
 		if (GIRDER_DISPLACED)
-			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_DISPLACED, start_alert = "securing frame..."))
+			if (try_construction_step(user, tool, 4 SECONDS, req_state = GIRDER_DISPLACED, start_alert = "正在固定框架……"))
 				replace_girder(/obj/structure/girder)
 				return ITEM_INTERACT_SUCCESS
 
@@ -108,9 +108,9 @@
 	. = ITEM_INTERACT_BLOCKING
 	// Plasmacutters can always slice apart girders.
 	if (!can_weld_apart && !istype(tool, /obj/item/gun/energy/plasmacutter))
-		balloon_alert(user, "can't weld apart!")
+		balloon_alert(user, "无法焊接拆开！")
 		return
-	if (try_construction_step(user, tool, 4 SECONDS, start_alert = "slicing apart..."))
+	if (try_construction_step(user, tool, 4 SECONDS, start_alert = "正在切割……"))
 		deconstruct(disassembled = TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -129,7 +129,7 @@
 	if (!isnull(req_state) && req_state != state)
 		return FALSE
 	if (req_floor && !isfloorturf(loc))
-		balloon_alert(user, "needs a floor!")
+		balloon_alert(user, "需要地板！")
 		return FALSE
 	return TRUE
 
@@ -165,7 +165,7 @@
 	replace_girder(/obj/structure/girder/cult)
 
 /obj/structure/girder/displaced
-	name = "displaced girder"
+	name = "移位的钢梁"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "displaced"
 	anchored = FALSE
@@ -177,7 +177,7 @@
 	canSmoothWith = null
 
 /obj/structure/girder/reinforced
-	name = "reinforced girder"
+	name = "加固钢梁"
 	icon = 'icons/obj/smooth_structures/reinforced_girder.dmi'
 	icon_state = "reinforced-0"
 	base_icon_state = "reinforced"
@@ -186,8 +186,8 @@
 	max_integrity = 350
 
 /obj/structure/girder/tram
-	name = "tram girder"
-	desc = "Titanium framework to construct tram walls. Can be plated with <b>titanium glass</b> or other wall materials."
+	name = "电车钢梁"
+	desc = "用于构建电车墙壁的钛制框架。可以覆上<b>钛玻璃</b>或其他墙体材料。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "tram"
 	state = GIRDER_TRAM
@@ -198,13 +198,13 @@
 	stack_type = /obj/item/stack/sheet/mineral/titanium
 
 /obj/structure/girder/tram/corner
-	name = "tram frame corner"
+	name = "电车框架转角"
 
 //////////////////////////////////////////// cult girder //////////////////////////////////////////////
 
 /obj/structure/girder/cult
-	name = "runed girder"
-	desc = "Framework made of a strange and shockingly cold metal. It doesn't seem to have any bolts."
+	name = "符文钢梁"
+	desc = "由一种陌生且冰凉刺骨的金属制成的框架。似乎没有任何螺栓。"
 	icon = 'icons/obj/antags/cult/structures.dmi'
 	icon_state= "cultgirder"
 	can_displace = FALSE
@@ -250,8 +250,8 @@
 	return FALSE
 
 /obj/structure/girder/bronze
-	name = "wall gear"
-	desc = "A girder made out of sturdy bronze, made to resemble a gear."
+	name = "墙壁齿轮"
+	desc = "由坚固青铜制成的钢梁，外形如同齿轮。"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "wall_gear"
 	can_displace = FALSE

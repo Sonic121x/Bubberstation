@@ -1,6 +1,6 @@
 /obj/structure/decoration
-	name = "plastic decoration"
-	desc = "A cheap plastic imitation of nature. At least it doesn't need watering."
+	name = "塑料装饰品"
+	desc = "一件廉价的塑料仿自然装饰。至少它不需要浇水。"
 	icon = 'icons/obj/fluff/flora/ausflora.dmi'
 	resistance_flags = FLAMMABLE
 	max_integrity = 20
@@ -19,11 +19,11 @@
 
 /obj/structure/decoration/examine(mob/user)
 	. = ..()
-	. += span_notice("It's made of cheap, hollow plastic.")
+	. += span_notice("它由廉价的中空塑料制成。")
 
 /obj/structure/decoration/grass
-	name = "plastic grass patch"
-	desc = "Fake grass. Feels like a brillo pad."
+	name = "塑料草坪"
+	desc = "假草。摸起来像钢丝刷。"
 	icon = /obj/structure/flora/grass/green::icon
 	icon_state = /obj/structure/flora/grass/green::icon_state
 
@@ -59,8 +59,8 @@
 	update_appearance()
 
 /obj/structure/decoration/jungle_grass
-	name = "plastic jungle grass"
-	desc = "Plastic alien-looking grass. The jungle vibe without the jungle bugs."
+	name = "塑料丛林草"
+	desc = "塑料做的异星感草丛。有丛林情调，没有丛林虫子。"
 	icon = /obj/structure/flora/grass/jungle::icon
 	icon_state = /obj/structure/flora/grass/jungle::icon_state
 
@@ -107,8 +107,8 @@
 	update_appearance()
 
 /obj/structure/decoration/bush
-	name = "plastic bush"
-	desc = "A plastic shrub. Bristly to the touch and slightly off-color."
+	name = "塑料灌木"
+	desc = "一丛塑料矮树。摸起来刺手，颜色也略微不对。"
 	icon = /obj/structure/flora/bush::icon
 	icon_state = /obj/structure/flora/bush::icon_state
 
@@ -129,7 +129,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/reed
-	name = "plastic reeds"
+	name = "塑料芦苇"
 	icon = /obj/structure/flora/bush/reed::icon
 	icon_state = /obj/structure/flora/bush/reed::icon_state
 
@@ -150,7 +150,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/leafy
-	name = "plastic leafy bush"
+	name = "塑料阔叶灌木"
 	icon = /obj/structure/flora/bush/leafy::icon
 	icon_state = /obj/structure/flora/bush/leafy::icon_state
 
@@ -168,7 +168,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/pale
-	name = "plastic pale bush"
+	name = "塑料灰白灌木"
 	icon = /obj/structure/flora/bush/pale::icon
 	icon_state = /obj/structure/flora/bush/pale::icon_state
 
@@ -189,7 +189,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/stalky
-	name = "plastic stalky bush"
+	name = "塑料茎秆灌木"
 	icon = /obj/structure/flora/bush/stalky::icon
 	icon_state = /obj/structure/flora/bush/stalky::icon_state
 
@@ -207,7 +207,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/grassy
-	name = "plastic grassy bush"
+	name = "塑料草丛灌木"
 	icon = /obj/structure/flora/bush/grassy::icon
 	icon_state = /obj/structure/flora/bush/grassy::icon_state
 
@@ -228,7 +228,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/sparsegrass
-	name = "plastic sparse grass"
+	name = "塑料稀疏草"
 	icon = /obj/structure/flora/bush/sparsegrass::icon
 	icon_state = /obj/structure/flora/bush/sparsegrass::icon_state
 
@@ -246,7 +246,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/fullgrass
-	name = "plastic full grass"
+	name = "塑料茂密草"
 	icon = /obj/structure/flora/bush/fullgrass::icon
 	icon_state = /obj/structure/flora/bush/fullgrass::icon_state
 
@@ -264,7 +264,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/ferny
-	name = "plastic ferny bush"
+	name = "塑料蕨类灌木"
 	icon = /obj/structure/flora/bush/ferny::icon
 	icon_state = /obj/structure/flora/bush/ferny::icon_state
 
@@ -282,7 +282,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/sunny
-	name = "plastic sunny bush"
+	name = "塑料向阳灌木"
 	icon = /obj/structure/flora/bush/sunny::icon
 	icon_state = /obj/structure/flora/bush/sunny::icon_state
 
@@ -300,7 +300,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/generic
-	name = "plastic generic bush"
+	name = "塑料普通灌木"
 	icon = /obj/structure/flora/bush/generic::icon
 	icon_state = /obj/structure/flora/bush/generic::icon_state
 
@@ -321,7 +321,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/pointy
-	name = "plastic pointy bush"
+	name = "塑料尖叶灌木"
 	icon = /obj/structure/flora/bush/pointy::icon
 	icon_state = /obj/structure/flora/bush/pointy::icon_state
 
@@ -342,7 +342,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/lavendergrass
-	name = "plastic lavender grass"
+	name = "塑料薰衣草"
 	icon = /obj/structure/flora/bush/lavendergrass::icon
 	icon_state = /obj/structure/flora/bush/lavendergrass::icon_state
 
@@ -363,7 +363,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/flowers_yw
-	name = "plastic yellow-white flowers"
+	name = "塑料黄白花"
 	icon = /obj/structure/flora/bush/flowers_yw::icon
 	icon_state = /obj/structure/flora/bush/flowers_yw::icon_state
 
@@ -381,7 +381,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/flowers_br
-	name = "plastic blue-red flowers"
+	name = "塑料蓝红花"
 	icon = /obj/structure/flora/bush/flowers_br::icon
 	icon_state = /obj/structure/flora/bush/flowers_br::icon_state
 
@@ -399,7 +399,7 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/flowers_pp
-	name = "plastic purple flowers"
+	name = "塑料紫花"
 	icon = /obj/structure/flora/bush/flowers_pp::icon
 	icon_state = /obj/structure/flora/bush/flowers_pp::icon_state
 
@@ -417,8 +417,8 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/snow
-	name = "plastic snowy bush"
-	desc = "A plastic bush dusted with fake snow. Year-round winter cheer."
+	name = "塑料雪景灌木"
+	desc = "覆着假雪的塑料灌木。全年都是冬日气氛。"
 	icon = /obj/structure/flora/bush/snow::icon
 	icon_state = /obj/structure/flora/bush/snow::icon_state
 
@@ -445,8 +445,8 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/jungle
-	name = "plastic jungle bush"
-	desc = "Plastic jungle foliage. All the looks, none of the allergens."
+	name = "塑料丛林灌木"
+	desc = "塑料丛林植物。外观全都有，过敏原一个没有。"
 	icon = /obj/structure/flora/bush/jungle::icon
 	icon_state = /obj/structure/flora/bush/jungle::icon_state
 
@@ -498,8 +498,8 @@
 	update_appearance()
 
 /obj/structure/decoration/bush/large
-	name = "large plastic bush"
-	desc = "A large plastic bush. Dominates the room with its hollow presence."
+	name = "大型塑料灌木"
+	desc = "一丛大型塑料灌木。以它那空洞的存在感占据整个房间。"
 	icon = /obj/structure/flora/bush/large::icon
 	icon_state = /obj/structure/flora/bush/large::icon_state
 	pixel_x = /obj/structure/flora/bush/large::pixel_x
@@ -522,8 +522,8 @@
 	update_appearance()
 
 /obj/structure/decoration/rock
-	name = "plastic rock"
-	desc = "A hollow plastic boulder. Surprisingly convincing from a distance."
+	name = "塑料岩石"
+	desc = "一块中空塑料巨石。远看意外地像真的。"
 	icon = /obj/structure/flora/rock::icon
 	icon_state = /obj/structure/flora/rock::icon_state
 
@@ -544,8 +544,8 @@
 	update_appearance()
 
 /obj/structure/decoration/rock/pile
-	name = "plastic rock pile"
-	desc = "A pile of hollow plastic rocks. Light enough to kick over."
+	name = "塑料岩堆"
+	desc = "一堆中空塑料岩石。轻得能一脚踢倒。"
 	icon = /obj/structure/flora/rock/pile::icon
 	icon_state = /obj/structure/flora/rock/pile::icon_state
 
@@ -563,8 +563,8 @@
 	update_appearance()
 
 /obj/structure/decoration/rock/pile/jungle
-	name = "plastic jungle rocks"
-	desc = "Fake rocks with a jungle theme. No actual geological history."
+	name = "塑料丛林岩石"
+	desc = "丛林主题的假岩石。没有任何真实地质历史。"
 	icon = /obj/structure/flora/rock/pile/jungle::icon
 	icon_state = /obj/structure/flora/rock/pile/jungle::icon_state
 
@@ -588,8 +588,8 @@
 	update_appearance()
 
 /obj/structure/decoration/rock/pile/jungle/large
-	name = "plastic large rocks"
-	desc = "A pile of large fake jungle rocks. Surprisingly light."
+	name = "塑料大块岩石"
+	desc = "一堆巨大的假丛林岩石。意外地轻。"
 	icon = /obj/structure/flora/rock/pile/jungle/large::icon
 	icon_state = /obj/structure/flora/rock/pile/jungle/large::icon_state
 	pixel_x = /obj/structure/flora/rock/pile/jungle/large::pixel_x
@@ -609,8 +609,8 @@
 	update_appearance()
 
 /obj/structure/decoration/rock/volcano
-	name = "plastic volcano pore"
-	desc = "A lovingly painted miniature plastic volcano."
+	name = "塑料火山口"
+	desc = "一座精心上色的微型塑料火山。"
 	icon = /obj/structure/flora/rock/volcano::icon
 	icon_state = /obj/structure/flora/rock/volcano::icon_state
 
@@ -634,8 +634,8 @@
 	update_appearance()
 
 /obj/structure/decoration/misc/glowgrowth
-	name = "plastic glowgrowth colony"
-	desc = "A large plastic immitation of bioluminescent fungi colony. Not so bioluminescent."
+	name = "塑料荧光菌群"
+	desc = "大型塑料仿生物发光真菌群。不太会发光。"
 	icon = /obj/structure/flora/ash/glowgrowth::icon
 	icon_state = /obj/structure/flora/ash/glowgrowth::icon_state
 

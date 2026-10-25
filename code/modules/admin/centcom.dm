@@ -4,7 +4,7 @@
 		return
 
 	if(!CONFIG_GET(string/centcom_ban_db))
-		to_chat(usr, span_warning("Centcom Galactic Ban DB is disabled!"))
+		to_chat(usr, span_warning("中央指挥部银河封禁数据库已禁用！"))
 		return
 
 	// Make the request
@@ -21,12 +21,12 @@
 	var/list/dat = list("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><body>")
 
 	if(response.errored)
-		dat += "<br>Failed to connect to CentCom."
+		dat += "<br>无法连接至中央指挥部。"
 	else if(response.status_code != 200)
-		dat += "<br>Failed to connect to CentCom. Status code: [response.status_code]"
+		dat += "<br>无法连接至中央指挥部。状态码：[response.status_code]"
 	else
 		if(response.body == "\[]")
-			dat += "<center><b>0 bans detected for [ckey]</b></center>"
+			dat += "<center><b>未检测到 [ckey] 的封禁记录</b></center>"
 		else
 			bans = json_decode(response.body)
 
@@ -34,31 +34,31 @@
 			var/list/valid_sources
 			if(CONFIG_GET(string/centcom_source_whitelist))
 				valid_sources = splittext(CONFIG_GET(string/centcom_source_whitelist), ",")
-				dat += "<center><b>Bans detected for [ckey]</b></center>"
+				dat += "<center><b>检测到 [ckey] 的封禁记录</b></center>"
 			else
 				//Ban count is potentially inaccurate if they're using a whitelist
-				dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
+				dat += "<center><b>检测到 [bans.len] 条 [ckey] 的封禁记录</b></center>"
 
 			for(var/list/ban in bans)
 				if(valid_sources && !(ban["sourceName"] in valid_sources))
 					continue
-				dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
-				dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
-				dat += "<b>Type: </b> [sanitize(ban["type"])]<br>"
-				dat += "<b>Banned By: </b> [sanitize(ban["bannedBy"])]<br>"
-				dat += "<b>Reason: </b> [sanitize(ban["reason"])]<br>"
-				dat += "<b>Datetime: </b> [sanitize(ban["bannedOn"])]<br>"
+				dat += "<b>服务器：</b> [sanitize(ban["sourceName"])]<br>"
+				dat += "<b>RP 等级：</b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
+				dat += "<b>类型：</b> [sanitize(ban["type"])]<br>"
+				dat += "<b>封禁者：</b> [sanitize(ban["bannedBy"])]<br>"
+				dat += "<b>原因：</b> [sanitize(ban["reason"])]<br>"
+				dat += "<b>时间：</b> [sanitize(ban["bannedOn"])]<br>"
 				var/expiration = ban["expires"]
-				dat += "<b>Expires: </b> [expiration ? "[sanitize(expiration)]" : "Permanent"]<br>"
+				dat += "<b>到期：</b> [expiration ? "[sanitize(expiration)]" : "永久"]<br>"
 				if(ban["type"] == "job")
-					dat += "<b>Jobs: </b> "
+					dat += "<b>职业：</b> "
 					var/list/jobs = ban["jobs"]
 					dat += sanitize(jobs.Join(", "))
 					dat += "<br>"
 				dat += "<hr>"
 
 	dat += "<br></body>"
-	var/datum/browser/popup = new(usr, "centcomlookup-[ckey]", "<div align='center'>Central Command Galactic Ban Database</div>", 700, 600)
+	var/datum/browser/popup = new(usr, "centcomlookup-[ckey]", "<div align='center'>中央指挥部银河封禁数据库</div>", 700, 600)
 	popup.set_content(dat.Join())
 	popup.open(0)
 
@@ -68,7 +68,7 @@
 		return
 
 	if(!CONFIG_GET(string/centcom_ban_db))
-		to_chat(usr, span_warning("Centcom Galactic Ban DB is disabled!"))
+		to_chat(usr, span_warning("中央指挥部银河封禁数据库已禁用！"))
 		return
 
 	// Make the request

@@ -1,15 +1,15 @@
 //does low brute damage, oxygen damage, and stamina damage and wets tiles when damaged
 /datum/blobstrain/reagent/pressurized_slime
-	name = "Pressurized Slime"
-	description = "will do low brute and oxygen damage, high stamina damage, and makes tiles under targets very slippery."
-	effectdesc = "will also make tiles slippery near attacked blobs."
-	analyzerdescdamage = "Does low brute and oxygen damage, high stamina damage, and makes tiles under targets very slippery, extinguishing them. Is resistant to brute attacks."
-	analyzerdesceffect = "When attacked or killed, lubricates nearby tiles, extinguishing anything on them."
+	name = "加压史莱姆"
+	description = "会造成较低的钝击与缺氧伤害、较高的耐力伤害，并让目标脚下的地砖变得非常湿滑。"
+	effectdesc = "还会让受攻击的变形菌附近的地砖变滑。"
+	analyzerdescdamage = "造成较低的钝击与缺氧伤害、较高的耐力伤害，并使目标脚下的地砖变得非常湿滑，同时扑灭其身上的火焰。对钝击攻击有抗性。"
+	analyzerdesceffect = "受到攻击或被杀死时，润滑附近的地砖，并扑灭其上的一切火焰。"
 	color = "#AAAABB"
 	complementary_color = "#BBBBAA"
-	blobbernaut_message = "emits slime at"
-	message = "The blob splashes into you"
-	message_living = ", and you gasp for breath"
+	blobbernaut_message = "朝……喷出黏液"
+	message = "变形菌溅了你一身"
+	message_living = "，你大口喘着气"
 	reagent = /datum/reagent/blob/pressurized_slime
 
 /datum/blobstrain/reagent/pressurized_slime/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
@@ -21,7 +21,7 @@
 
 /datum/blobstrain/reagent/pressurized_slime/death_reaction(obj/structure/blob/B, damage_flag)
 	if(damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER)
-		B.visible_message(span_boldwarning("The blob ruptures, spraying the area with liquid!"))
+		B.visible_message(span_boldwarning("变形菌破裂开来，向这一片区域喷洒出液体！"))
 		extinguisharea(B, 50)
 
 /datum/blobstrain/reagent/pressurized_slime/proc/extinguisharea(obj/structure/blob/B, probchance)
@@ -35,8 +35,8 @@
 				L.extinguish_mob()
 
 /datum/reagent/blob/pressurized_slime
-	name = "Pressurized Slime"
-	taste_description = "a sponge"
+	name = "加压史莱姆"
+	taste_description = "一块海绵"
 	color = "#AAAABB"
 
 /datum/reagent/blob/pressurized_slime/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)

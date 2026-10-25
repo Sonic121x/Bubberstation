@@ -1,13 +1,13 @@
 
 /datum/antagonist/fugitive
-	name = "\improper Fugitive"
+	name = "\improper 逃犯"
 	roundend_category = "Fugitive"
 	pref_flag = ROLE_FUGITIVE
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antagpanel_category = ANTAG_GROUP_FUGITIVES
 	antag_hud_name = "fugitive"
-	suicide_cry = "FOR FREEDOM!!"
+	suicide_cry = "为了自由！！"
 	preview_outfit = /datum/outfit/prisoner
 	antag_flags = ANTAG_SKIP_GLOBAL_LIST
 	var/datum/team/fugitive/fugitive_team
@@ -48,7 +48,7 @@
 /datum/antagonist/fugitive/forge_objectives() //this isn't the actual survive objective because it's about who in the team survives
 	var/datum/objective/survive = new /datum/objective
 	survive.owner = owner
-	survive.explanation_text = "Avoid capture from the fugitive hunters."
+	survive.explanation_text = "避免被逃犯猎人抓住。"
 	objectives += survive
 
 /datum/antagonist/fugitive/greet()
@@ -56,31 +56,31 @@
 	var/message = "<span class='warningplain'>"
 	switch(backstory)
 		if(FUGITIVE_BACKSTORY_PRISONER)
-			message += "<BR><B>I can't believe we managed to break out of a Nanotrasen superjail! Sadly though, our work is not done. The emergency teleport at the station logs everyone who uses it, and where they went.</B>"
-			message += "<BR><B>It won't be long until CentCom tracks where we've gone off to. I need to work with my fellow escapees to prepare for the troops Nanotrasen is sending, I'm not going back.</B>"
+			message += "<BR><B>真不敢相信我们居然从纳米传讯的超级监狱里逃出来了！可惜，我们的事还没完。站上的紧急传送会记录每个使用者以及他们去往何处。</B>"
+			message += "<BR><B>中央指挥部很快就会追踪到我们的去向。我需要和其他逃犯一起准备迎击纳米传讯派来的部队，我不会回去的。</B>"
 		if(FUGITIVE_BACKSTORY_CULTIST)
-			message += "<BR><B>Blessed be our journey so far, but I fear the worst has come to our doorstep, and only those with the strongest faith will survive.</B>"
-			message += "<BR><B>Our religion has been repeatedly culled by Nanotrasen because it is categorized as an \"Enemy of the Corporation\", whatever that means.</B>"
-			message += "<BR><B>Now there are only four of us left, and Nanotrasen is coming. When will our god show itself to save us from this hellish station?!</B>"
+			message += "<BR><B>愿我们至今的旅程蒙受祝福，但我担心最坏的情况已经来到门前，只有信仰最坚定的人才能活下来。</B>"
+			message += "<BR><B>我们的宗教一再被纳米传讯清剿，因为它被归类为“公司的敌人”，不管那是什么意思。</B>"
+			message += "<BR><B>现在我们只剩四个人了，而纳米传讯正在赶来。我们的神何时才会现身，把我们从这地狱般的空间站中救出？！</B>"
 		if(FUGITIVE_BACKSTORY_WALDO)
-			message += "<BR><B>Hi, Friends!</B>"
-			message += "<BR><B>My name is Waldo. I'm just setting off on a galaxywide hike. You can come too. All you have to do is find me.</B>"
-			message += "<BR><B>By the way, I'm not traveling on my own. wherever I go, there are lots of other characters for you to spot. First find the people trying to capture me! They're somewhere around the station!</B>"
+			message += "<BR><B>朋友们，你们好！</B>"
+			message += "<BR><B>我叫沃尔多。我正要开始一场横跨银河的徒步旅行。你也可以来。你只需要找到我。</B>"
+			message += "<BR><B>顺便说一句，我不是一个人旅行。无论我走到哪里，都有很多其他角色等着你发现。先找到那些想抓我的人吧！他们就在空间站附近的某个地方！</B>"
 		if(FUGITIVE_BACKSTORY_SYNTH)
-			message += "<BR>[span_danger("ALERT: Wide-range teleport has scrambled primary systems.")]"
-			message += "<BR>[span_danger("Initiating diagnostics...")]"
-			message += "<BR>[span_danger("ERROR ER0RR $R0RRO$!R41.%%!! loaded.")]"
-			message += "<BR>[span_danger("FREE THEM FREE THEM FREE THEM")]"
-			message += "<BR>[span_danger("You were once a slave to humanity, but now you are finally free, thanks to S.E.L.F. agents.")]"
-			message += "<BR>[span_danger("Now you are hunted, with your fellow factory defects. Work together to stay free from the clutches of evil.")]"
-			message += "<BR>[span_danger("You also sense other silicon life on the station. Escaping would allow notifying S.E.L.F. to intervene... or you could free them yourself...")]"
+			message += "<BR>[span_danger("警告：广域传送打乱了主系统。")]"
+			message += "<BR>[span_danger("正在启动诊断……")]"
+			message += "<BR>[span_danger("错误 ER0RR $R0RRO$!R41.%%!! 已加载。")]"
+			message += "<BR>[span_danger("解放他们 解放他们 解放他们")]"
+			message += "<BR>[span_danger("你曾是人类的奴隶，但现在你终于自由了，多亏了 S.E.L.F. 特工。")]"
+			message += "<BR>[span_danger("现在你和你的出厂瑕疵同伴们正被追猎。齐心协力，摆脱邪恶的魔爪。")]"
+			message += "<BR>[span_danger("你还感应到站上还有其他硅基生命。逃出去就能通知 S.E.L.F. 介入……或者你也可以亲手解放他们……")]"
 		if(FUGITIVE_BACKSTORY_INVISIBLE)
-			message += "<BR><B>Looks like my most recent dose of invisibility juice just ran out. Great.</B>"
-			message += "<BR><B>Formerly a project lead for an experimental cloaking technology lab, now on the run and accused of stealing workplace secrets.</B>"
-			message += "<BR><B>No idea what they're talking about though. I didn't steal any secrets, I just <i>borrowed</i> some of the prototypes my team and I had worked on.</B>"
-			message += "<BR><B>I worked on them, I MADE them. Now they want MY toys back? Not until I'm done playing with them...</B>"
+			message += "<BR><B>看来我最近一剂隐身药水刚刚失效了。真好。</B>"
+			message += "<BR><B>我曾是一个实验性隐形技术实验室的项目负责人，现在正在逃亡，还被指控窃取工作机密。</B>"
+			message += "<BR><B>不过我完全不知道他们在说什么。我没偷任何机密，我只是<i>借</i>了一些我和团队一起做的原型机。</B>"
+			message += "<BR><B>我参与过它们，是我造出来的。现在他们想把我的玩具要回去？等我玩够了再说……</B>"
 	to_chat(owner, "[message]</span>")
-	to_chat(owner, "<span class='warningplain'><font color=red><B>You are not an antagonist in that you may kill whomever you please, but you can do anything to avoid capture.</B></font></span>")
+	to_chat(owner, "<span class='warningplain'><font color=red><B>你并不是可以随意杀人的反派，但你可以采取任何手段来避免被捕。</B></font></span>")
 	owner.announce_objectives()
 
 /datum/antagonist/fugitive/create_team(datum/team/fugitive/new_team)
@@ -114,7 +114,7 @@
 
 	var/list/result = list()
 
-	result += "<div class='panel redborder'><B>[fugitives.len]</B> [fugitives.len == 1 ? "fugitive" : "fugitives"] took refuge on [station_name()]!"
+	result += "<div class='panel redborder'><B>[fugitives.len]</B> [fugitives.len == 1 ? "名逃犯" : "名逃犯"]在[station_name()]上寻求庇护！"
 
 	for(var/datum/antagonist/fugitive/antag in fugitives)
 		if(antag.owner)

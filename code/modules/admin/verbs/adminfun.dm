@@ -1,57 +1,57 @@
-ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "Explosion", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+ADMIN_VERB(admin_explosion, R_ADMIN|R_FUN, "爆炸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(orignator, VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_TURF | VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /atom)
-	var/devastation = input(user, "Range of total devastation. -1 to none", "Input")  as num|null
+	var/devastation = input(user, "总毁灭范围。-1 表示无", "输入")  as num|null
 	if(devastation == null)
 		return
-	var/heavy = input(user, "Range of heavy impact. -1 to none", "Input")  as num|null
+	var/heavy = input(user, "重度冲击范围。-1 表示无", "输入")  as num|null
 	if(heavy == null)
 		return
-	var/light = input(user, "Range of light impact. -1 to none", "Input")  as num|null
+	var/light = input(user, "轻度冲击范围。-1 表示无", "输入")  as num|null
 	if(light == null)
 		return
-	var/flash = input(user, "Range of flash. -1 to none", "Input")  as num|null
+	var/flash = input(user, "闪光范围。-1 表示无", "输入")  as num|null
 	if(flash == null)
 		return
-	var/flames = input(user, "Range of flames. -1 to none", "Input")  as num|null
+	var/flames = input(user, "火焰范围。-1 表示无", "输入")  as num|null
 	if(flames == null)
 		return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1) || (flames != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20) || (flames > 20))
-			if (tgui_alert(user, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) == "No")
+			if (tgui_alert(user, "你确定要这么做吗？这会非常卡。", "确认", list("Yes", "No")) == "No")
 				return
 
 		explosion(orignator, devastation, heavy, light, flames, flash, explosion_cause = user.mob)
-		log_admin("[key_name(user)] created an explosion ([devastation],[heavy],[light],[flames]) at [AREACOORD(orignator)]")
-		message_admins("[key_name_admin(user)] created an explosion ([devastation],[heavy],[light],[flames]) at [AREACOORD(orignator)]")
+		log_admin("[key_name(user)] 在 [AREACOORD(orignator)] 制造了一场爆炸（[devastation],[heavy],[light],[flames]）")
+		message_admins("[key_name_admin(user)] 在 [AREACOORD(orignator)] 制造了一场爆炸（[devastation],[heavy],[light],[flames]）")
 		BLACKBOX_LOG_ADMIN_VERB("Explosion")
 
-ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "EM Pulse", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+ADMIN_VERB(admin_emp, R_ADMIN|R_FUN, "电磁脉冲", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(orignator, VERB_ARG_TYPE_OBJ | VERB_ARG_TYPE_TURF | VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /atom)
-	var/heavy = input(user, "Range of heavy pulse.", "Input")  as num|null
+	var/heavy = input(user, "重度脉冲范围。", "输入")  as num|null
 	if(heavy == null)
 		return
-	var/light = input(user, "Range of light pulse.", "Input")  as num|null
+	var/light = input(user, "轻度脉冲范围。", "输入")  as num|null
 	if(light == null)
 		return
 
 	if (heavy || light)
 		empulse(orignator, heavy, light)
-		log_admin("[key_name(user)] created an EM Pulse ([heavy],[light]) at [AREACOORD(orignator)]")
-		message_admins("[key_name_admin(user)] created an EM Pulse ([heavy],[light]) at [AREACOORD(orignator)]")
+		log_admin("[key_name(user)] 在 [AREACOORD(orignator)] 制造了一次电磁脉冲（[heavy],[light]）")
+		message_admins("[key_name_admin(user)] 在 [AREACOORD(orignator)] 制造了一次电磁脉冲（[heavy],[light]）")
 		BLACKBOX_LOG_ADMIN_VERB("EM Pulse")
 
-ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
+ADMIN_VERB(gib_them, R_ADMIN, "碎尸", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN)
 	VERB_ARG_TYPED(victim, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
-	var/confirm = tgui_alert(user, "Drop a brain?", "Confirm", list("Yes", "No","Cancel")) || "Cancel"
+	var/confirm = tgui_alert(user, "要掉落大脑吗？", "确认", list("Yes", "No","Cancel")) || "Cancel"
 	if(confirm == "Cancel")
 		return
 	//Due to the delay here its easy for something to have happened to the mob
 	if(isnull(victim))
 		return
 
-	log_admin("[key_name(user)] has gibbed [key_name(victim)]")
-	message_admins("[key_name_admin(user)] has gibbed [key_name_admin(victim)]")
+	log_admin("[key_name(user)] 把 [key_name(victim)] 碎尸了")
+	message_admins("[key_name_admin(user)] 把 [key_name_admin(victim)] 碎尸了")
 
 	if(isobserver(victim))
 		new /obj/effect/gibspawner/generic(get_turf(victim))
@@ -59,7 +59,7 @@ ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_H
 
 	var/mob/living/living_victim = victim
 	if (istype(living_victim))
-		living_victim.investigate_log("has been gibbed by an admin.", INVESTIGATE_DEATHS)
+		living_victim.investigate_log("被管理员碎尸了。", INVESTIGATE_DEATHS)
 		if(confirm == "Yes")
 			living_victim.gib(DROP_ALL_REMAINS)
 		else
@@ -67,59 +67,59 @@ ADMIN_VERB(gib_them, R_ADMIN, "Gib", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_H
 
 	BLACKBOX_LOG_ADMIN_VERB("Gib")
 
-ADMIN_VERB(gib_self, R_ADMIN, "Gibself", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
+ADMIN_VERB(gib_self, R_ADMIN, "自我碎尸", "把你自己也享受一遍你给他人的待遇。", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, "你确定？", "确认", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
-	log_admin("[key_name(user)] used gibself.")
-	message_admins(span_adminnotice("[key_name_admin(user)] used gibself."))
+	log_admin("[key_name(user)] 使用了自我碎尸。")
+	message_admins(span_adminnotice("[key_name_admin(user)] 使用了自我碎尸。"))
 	BLACKBOX_LOG_ADMIN_VERB("Gib Self")
 
 	var/mob/living/ourself = user.mob
 	if (istype(ourself))
 		ourself.gib()
 
-ADMIN_VERB(dust_self, R_ADMIN, "Dustself", "Give yourself the same treatment you give others.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "You sure?", "Confirm", list("Yes", "No"))
+ADMIN_VERB(dust_self, R_ADMIN, "自我化灰", "把你自己也享受一遍你给他人的待遇。", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, "你确定？", "确认", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
-	log_admin("[key_name(user)] used dustself.")
-	message_admins(span_adminnotice("[key_name_admin(user)] used dustself."))
+	log_admin("[key_name(user)] 使用了自我化灰。")
+	message_admins(span_adminnotice("[key_name_admin(user)] 使用了自我化灰。"))
 	BLACKBOX_LOG_ADMIN_VERB("Dust Self")
 
 	var/mob/living/ourself = user.mob
 	if (istype(ourself))
 		ourself.dust(just_ash = FALSE, drop_items = FALSE, force = TRUE)
 
-ADMIN_VERB(everyone_random, R_SERVER, "Make Everyone Random", "Make everyone have a random appearance.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(everyone_random, R_SERVER, "让所有人随机化", "让每个人都拥有随机外观。", ADMIN_CATEGORY_FUN)
 	if(SSticker.HasRoundStarted())
-		to_chat(user, "Nope you can't do this, the game's already started. This only works before rounds!", confidential = TRUE)
+		to_chat(user, "不行，你不能这么做，游戏已经开始了。此功能仅在回合开始前有效！", confidential = TRUE)
 		return
 
 	var/frn = CONFIG_GET(flag/force_random_names)
 	if(frn)
 		CONFIG_SET(flag/force_random_names, FALSE)
-		message_admins("Admin [key_name_admin(user)] has disabled \"Everyone is Special\" mode.")
-		to_chat(user, "Disabled.", confidential = TRUE)
+		message_admins("管理员 [key_name_admin(user)] 关闭了“人人独特”模式。")
+		to_chat(user, "已关闭。", confidential = TRUE)
 		return
 
-	var/notifyplayers = tgui_alert(user, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel")) || "Cancel"
+	var/notifyplayers = tgui_alert(user, "要向玩家发送通知吗？", "选项", list("Yes", "No", "Cancel")) || "Cancel"
 	if(notifyplayers == "Cancel")
 		return
 
-	log_admin("Admin [key_name(user)] has forced the players to have random appearances.")
-	message_admins("Admin [key_name_admin(user)] has forced the players to have random appearances.")
+	log_admin("管理员 [key_name(user)] 强制所有玩家使用随机外观。")
+	message_admins("管理员 [key_name_admin(user)] 强制所有玩家使用随机外观。")
 
 	if(notifyplayers == "Yes")
-		to_chat(world, span_adminnotice("Admin [user.key] has forced the players to have completely random identities!"), confidential = TRUE)
+		to_chat(world, span_adminnotice("管理员 [user.key] 强制所有玩家使用完全随机的身份！"), confidential = TRUE)
 
-	to_chat(user, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.", confidential = TRUE)
+	to_chat(user, "<i>记住：只要回合还没开始，你随时可以再次使用该命令来关闭随机化</i>。", confidential = TRUE)
 
 	CONFIG_SET(flag/force_random_names, TRUE)
 	BLACKBOX_LOG_ADMIN_VERB("Make Everyone Random")
 
-ADMIN_VERB(mass_zombie_infection, R_ADMIN, "Mass Zombie Infection", "Infects all humans with a latent organ that will zombify them on death.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "Please confirm you want to add latent zombie organs in all humans?", "Confirm Zombies", list("Yes", "No"))
+ADMIN_VERB(mass_zombie_infection, R_ADMIN, "大规模丧尸感染", "让所有人类感染一种潜伏器官，使其在死亡时变成丧尸。", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, "请确认你要为所有人类植入潜伏的丧尸器官？", "确认丧尸", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -127,32 +127,32 @@ ADMIN_VERB(mass_zombie_infection, R_ADMIN, "Mass Zombie Infection", "Infects all
 		var/mob/living/carbon/human/H = i
 		new /obj/item/organ/zombie_infection/nodamage(H)
 
-	message_admins("[key_name_admin(user)] added a latent zombie infection to all humans.")
-	log_admin("[key_name(user)] added a latent zombie infection to all humans.")
+	message_admins("[key_name_admin(user)] 为所有人类植入了潜伏的丧尸感染。")
+	log_admin("[key_name(user)] 为所有人类植入了潜伏的丧尸感染。")
 	BLACKBOX_LOG_ADMIN_VERB("Mass Zombie Infection")
 
-ADMIN_VERB(mass_zombie_cure, R_ADMIN, "Mass Zombie Cure", "Removes the zombie infection from all humans, returning them to normal.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "Please confirm you want to cure all zombies?", "Confirm Zombie Cure", list("Yes", "No"))
+ADMIN_VERB(mass_zombie_cure, R_ADMIN, "大规模丧尸治愈", "移除所有人类的丧尸感染，使其恢复正常。", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, "请确认你要治愈所有丧尸？", "确认丧尸治愈", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
 	for(var/obj/item/organ/zombie_infection/nodamage/I in GLOB.zombie_infection_list)
 		qdel(I)
 
-	message_admins("[key_name_admin(user)] cured all zombies.")
-	log_admin("[key_name(user)] cured all zombies.")
+	message_admins("[key_name_admin(user)] 治愈了所有丧尸。")
+	log_admin("[key_name(user)] 治愈了所有丧尸。")
 	BLACKBOX_LOG_ADMIN_VERB("Mass Zombie Cure")
 
-ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the bolt of change to every single mob.", ADMIN_CATEGORY_FUN)
-	var/confirm = tgui_alert(user, "Please confirm you want polymorph all mobs?", "Confirm Polymorph", list("Yes", "No"))
+ADMIN_VERB(polymorph_all, R_ADMIN, "全体变形", "对每一个生物施加变化之杖的效果。", ADMIN_CATEGORY_FUN)
+	var/confirm = tgui_alert(user, "请确认你要对全部生物施放变形？", "确认变形", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
 	var/list/mobs = shuffle(GLOB.alive_mob_list.Copy()) // might change while iterating
 	var/who_did_it = key_name_admin(user)
 
-	message_admins("[key_name_admin(user)] started polymorphed all living mobs.")
-	log_admin("[key_name(user)] polymorphed all living mobs.")
+	message_admins("[key_name_admin(user)] 开始对全部活体生物施放变形。")
+	log_admin("[key_name(user)] 对全部活体生物施放了变形。")
 	BLACKBOX_LOG_ADMIN_VERB("Polymorph All")
 
 	for(var/mob/living/M in mobs)
@@ -161,21 +161,21 @@ ADMIN_VERB(polymorph_all, R_ADMIN, "Polymorph All", "Applies the effects of the 
 		if(!M)
 			continue
 
-		M.audible_message(span_hear("...wabbajack...wabbajack..."))
+		M.audible_message(span_hear("……瓦巴杰克……瓦巴杰克……"))
 		playsound(M.loc, 'sound/effects/magic/staff_change.ogg', 50, TRUE, -1)
 
 		M.wabbajack()
 
-	message_admins("Mass polymorph started by [who_did_it] is complete.")
+	message_admins("由 [who_did_it] 发起的大规模变形已完成。")
 
 /// Allow admin to mass add or remove a trait across all mobs
-ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a trait from every mob.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(mass_modify_traits, R_FUN, "批量修改特质", "为每个生物添加或移除一项特质。", ADMIN_CATEGORY_FUN)
 
-	var/choice = tgui_alert(user, "Add or Remove Trait?", "Mass Add/Remove Trait", list("Add", "Remove"))
+	var/choice = tgui_alert(user, "添加还是移除特质？", "批量添加/移除特质", list("Add", "Remove"))
 	if(isnull(choice))
 		return
 	var/is_add = (choice == "Add")
-	var/lower_choice = LOWER_TEXT(choice)
+	var/lower_choice = is_add ? "添加" : "移除"
 
 	// Build list of valid traits that can be applied to mobs
 	var/list/available_traits = list()
@@ -187,12 +187,12 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 
 	available_traits = sort_list(available_traits, GLOBAL_PROC_REF(cmp_typepaths_asc)) // sort alphabetically
 
-	var/mob_trait = tgui_input_list(user, "Select a trait to [lower_choice].", "Mass [choice] Trait", available_traits)
+	var/mob_trait = tgui_input_list(user, "选择要[lower_choice]的特质。", "批量[lower_choice]特质", available_traits)
 	if(isnull(mob_trait))
 		return
 	mob_trait = available_traits[mob_trait]
 
-	var/target_scope = tgui_alert(user, "[choice] [lower_choice == "add" ? "to" : "from"] all mobs, or only cliented ones?", "Scope", list("All", "Cliented"))
+	var/target_scope = tgui_alert(user, "将[is_add ? "添加" : "移除"]应用到全部生物，还是仅有玩家客户端的生物？", "范围", list("All", "Cliented"))
 	if(!target_scope)
 		return
 	var/cliented_only = (target_scope == "Cliented")
@@ -203,11 +203,11 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 	var/trait_name = GLOB.admin_trait_name_map[mob_trait] || mob_trait
 
 	// Ask for confirmation first
-	var/action_word = is_add ? "to" : "from"
+	var/action_word = is_add ? "为" : "从"
 	var/confirm = tgui_alert(
 		user,
-		"Please confirm you want to [lower_choice] [trait_name] [action_word] every [cliented_only ? "cliented" : ""] mob?",
-		"Confirm Mass [choice] Trait",
+		"请确认你要[action_word]每个[cliented_only ? "有玩家的" : ""]生物[lower_choice] [trait_name]？",
+		"确认批量[is_add ? "添加" : "移除"]特质",
 		list("Yes", "No")
 	)
 	if(confirm != "Yes")
@@ -227,14 +227,14 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 
 	else // Removing trait
 		var/source = null
-		var/remove_mode = tgui_alert(user, "Remove from specific source?", "Mass Remove Trait", list("All", "Admin-Granted Traits", "Specific"))
+		var/remove_mode = tgui_alert(user, "要从指定来源移除吗？", "批量移除特质", list("All", "Admin-Granted Traits", "Specific"))
 		if(isnull(remove_mode))
 			return
 
 		switch(remove_mode)
 			if("Admin-Granted Traits") source = TRAIT_ADMIN_GRANTED
 			if("Specific")
-				source = LOWER_TEXT(tgui_input_text(user, "Enter source", "Mass Remove Trait", max_length = MAX_NAME_LEN))
+				source = LOWER_TEXT(tgui_input_text(user, "输入来源", "批量移除特质", max_length = MAX_NAME_LEN))
 				if(isnull(source))
 					return
 
@@ -245,8 +245,8 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 			affected++
 
 	if(affected)
-		var/plural = affected == 1 ? "mob" : "mobs"
-		var/log_msg = "[key_name_admin(user)] mass [lower_choice][is_add ? "ed" : "d"] [trait_name] [action_word] [affected] [plural]."
+		var/plural = "个生物"
+		var/log_msg = "[key_name_admin(user)] 批量[is_add ? "添加" : "移除"]了 [trait_name]，影响 [affected] [plural]。"
 		message_admins(log_msg)
 		log_admin(log_msg)
 
@@ -258,9 +258,9 @@ ADMIN_VERB(mass_modify_traits, R_FUN, "Mass Modify Traits", "Adds or removes a t
 			out += GLOB.admin_visible_traits[key]
 	return out
 
-ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player with divine power.", ADMIN_CATEGORY_FUN, /mob/living)
+ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "天罚", "以神圣之力惩罚一名玩家。", ADMIN_CATEGORY_FUN, /mob/living)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob/living)
-	var/punishment = tgui_input_list(user, "Choose a punishment", "DIVINE SMITING", GLOB.smites)
+	var/punishment = tgui_input_list(user, "选择一项惩罚", "神圣惩罚", GLOB.smites)
 
 	if(QDELETED(target) || !punishment)
 		return
@@ -308,7 +308,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player
 	divine_wrath.fire()
 
 /client/proc/punish_log(whom, punishment)
-	var/msg = "[key_name_admin(src)] punished [key_name_admin(whom)] with [punishment]."
+	var/msg = "[key_name_admin(src)] 以 [punishment] 惩罚了 [key_name_admin(whom)]。"
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
-	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
+	log_admin("[key_name(src)] 以 [punishment] 惩罚了 [key_name(whom)]。")

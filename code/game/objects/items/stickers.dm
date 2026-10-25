@@ -14,8 +14,8 @@
  */
 
 /obj/item/sticker
-	name = "sticker"
-	desc = "A sticker with some strong adhesive on the back, sticks to stuff!"
+	name = "贴纸"
+	desc = "背面涂有强力胶水的贴纸，能贴到各种东西上！"
 
 	icon = 'icons/obj/toys/stickers.dmi'
 
@@ -43,7 +43,7 @@
 
 /obj/item/sticker/Bump(atom/bumped_atom)
 	if(prob(50) && attempt_attach(bumped_atom))
-		bumped_atom.balloon_alert_to_viewers("sticker landed on sticky side!")
+		bumped_atom.balloon_alert_to_viewers("贴纸粘胶面朝下落地了！")
 
 /obj/item/sticker/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isatom(interacting_with))
@@ -67,7 +67,7 @@
  */
 /obj/item/sticker/proc/attempt_attach(atom/target, mob/user, px, py)
 	if(COUNT_TRAIT_SOURCES(target, TRAIT_STICKERED) >= MAX_STICKER_COUNT)
-		balloon_alert_to_viewers("sticker won't stick!")
+		balloon_alert_to_viewers("贴纸贴不上了！")
 		return FALSE
 
 	if(isnull(px) || isnull(py))
@@ -81,11 +81,11 @@
 
 	if(!isnull(user))
 		user.do_attack_animation(target, used_item = src)
-		target.balloon_alert(user, "sticker sticked")
+		target.balloon_alert(user, "贴纸已贴上")
 		var/mob/living/victim = target
 		if(istype(victim) && !isnull(victim.client))
-			user.log_message("stuck [src] to [key_name(victim)]", LOG_ATTACK)
-			victim.log_message("had [src] stuck to them by [key_name(user)]", LOG_ATTACK)
+			user.log_message("将 [src] 贴到了 [key_name(victim)] 身上", LOG_ATTACK)
+			victim.log_message("被 [key_name(user)] 将 [src] 贴在了身上", LOG_ATTACK)
 
 	target.AddComponent(/datum/component/sticker, src, get_dir(target, src), px, py, null, null, examine_text)
 	return TRUE
@@ -93,95 +93,95 @@
 #undef MAX_STICKER_COUNT
 
 /obj/item/sticker/smile
-	name = "smiley sticker"
+	name = "笑脸贴纸"
 	icon_state = "smile"
 
 /obj/item/sticker/frown
-	name = "frowny sticker"
+	name = "苦脸贴纸"
 	icon_state = "frown"
 
 /obj/item/sticker/left_arrow
-	name = "left arrow sticker"
+	name = "左箭头贴纸"
 	icon_state = "arrow-left"
 
 /obj/item/sticker/right_arrow
-	name = "right arrow sticker"
+	name = "右箭头贴纸"
 	icon_state = "arrow-right"
 
 /obj/item/sticker/star
-	name = "star sticker"
+	name = "星星贴纸"
 	icon_state = "star"
 
 /obj/item/sticker/heart
-	name = "heart sticker"
+	name = "爱心贴纸"
 	icon_state = "heart"
 
 /obj/item/sticker/googly
-	name = "googly eye sticker"
+	name = "活动眼珠贴纸"
 	icon_state = "googly"
 	icon_states = list("googly", "googly-alt")
 
 /obj/item/sticker/rev
-	name = "blue R sticker"
-	desc = "A sticker of FUCK THE SYSTEM, the galaxy's premiere hardcore punk band."
+	name = "蓝色 R 贴纸"
+	desc = "一张印着 FUCK THE SYSTEM 的贴纸，那是全银河最顶尖的硬核朋克乐队。"
 	icon_state = "revhead"
-	examine_text = "There is a sticker displaying <b>FUCK THE SYSTEM</b>, the galaxy's premiere hardcore punk band."
+	examine_text = "这里贴着一张印有 <b>FUCK THE SYSTEM</b> 的贴纸，那是全银河最顶尖的硬核朋克乐队。"
 
 /obj/item/sticker/pslime
-	name = "slime plushie sticker"
+	name = "史莱姆玩偶贴纸"
 	icon_state = "pslime"
 
 /obj/item/sticker/pliz
-	name = "lizard plushie sticker"
+	name = "蜥蜴玩偶贴纸"
 	icon_state = "plizard"
 
 /obj/item/sticker/pbee
-	name = "bee plushie sticker"
+	name = "蜜蜂玩偶贴纸"
 	icon_state = "pbee"
 
 /obj/item/sticker/psnake
-	name = "snake plushie sticker"
+	name = "蛇玩偶贴纸"
 	icon_state = "psnake"
 
 /obj/item/sticker/robot
-	name = "bot sticker"
+	name = "机器人贴纸"
 	icon_state = "tile"
 	icon_states = list("tile", "medbot", "clean")
 
 /obj/item/sticker/toolbox
-	name = "toolbox sticker"
+	name = "工具箱贴纸"
 	icon_state = "soul"
 
 /obj/item/sticker/chief_engineer
-	name = "CE approved sticker"
+	name = "总工程师认证贴纸"
 	icon_state = "ce_approved"
 	exclude_from_random = TRUE
-	examine_text = "There is a sticker displaying the <b>Chief Engineer's SEAL OF APPROVAL.</b>"
+	examine_text = "这里贴着一张印有<b>总工程师认证印章</b>的贴纸。"
 
 /obj/item/sticker/clown
-	name = "clown sticker"
+	name = "小丑贴纸"
 	icon_state = "honkman"
 
 /obj/item/sticker/mime
-	name = "mime sticker"
+	name = "默剧演员贴纸"
 	icon_state = "silentman"
 
 /obj/item/sticker/assistant
-	name = "assistant sticker"
+	name = "助理贴纸"
 	icon_state = "tider"
 
 /obj/item/sticker/skub
-	name = "skub sticker"
+	name = "斯库布贴纸"
 	icon_state = "skub"
-	examine_text = "There is a sticker displaying <b>Skubtide, Stationwide!</b>"
+	examine_text = "这里贴着一张印有<b>斯库布浪潮，席卷全站！</b>的贴纸。"
 
 /obj/item/sticker/anti_skub
-	name = "anti-skub sticker"
+	name = "反斯库布贴纸"
 	icon_state = "anti_skub"
-	examine_text = "There is an <b>anti-skub</b> sticker."
+	examine_text = "这里贴着一张<b>反斯库布</b>贴纸。"
 
 /obj/item/sticker/syndicate
-	name = "syndicate sticker"
+	name = "辛迪加贴纸"
 	icon_state = "synd"
 	exclude_from_random = TRUE
 
@@ -190,41 +190,41 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/sticker/syndicate/c4
-	name = "C-4 sticker"
+	name = "C-4 贴纸"
 	icon_state = "c4"
 
 /obj/item/sticker/syndicate/bomb
-	name = "syndicate bomb sticker"
+	name = "辛迪加炸弹贴纸"
 	icon_state = "sbomb"
 
 /obj/item/sticker/syndicate/apc
-	name = "broken APC sticker"
+	name = "损坏的 APC 贴纸"
 	icon_state = "milf"
 
 /obj/item/sticker/syndicate/larva
-	name = "larva sticker"
+	name = "幼虫贴纸"
 	icon_state = "larva"
 
 /obj/item/sticker/syndicate/cult
-	name = "bloody paper sticker"
+	name = "血迹纸张贴纸"
 	icon_state = "cult"
 
 /obj/item/sticker/syndicate/flash
-	name = "flash sticker"
+	name = "闪光贴纸"
 	icon_state = "flash"
 
 /obj/item/sticker/syndicate/op
-	name = "operative sticker"
+	name = "特工贴纸"
 	icon_state = "newcop"
 
 /obj/item/sticker/syndicate/trap
-	name = "bear trap sticker"
+	name = "捕熊陷阱贴纸"
 	icon_state = "trap"
 
 /obj/item/sticker/purity_seal
-	name = "purity seal"
+	name = "净化封印"
 	icon_state = "purity_seal_1"
-	desc =  "Looking closer, you realize it's actually a mass produced sticker. You suppose it's the holiness that counts."
+	desc =  "仔细一看，你发现这其实是量产贴纸。你想，重要的是那份神圣感吧。"
 
 /obj/item/sticker/purity_seal/purity_seal_2
 	icon_state = "purity_seal_2"

@@ -1,6 +1,6 @@
 /obj/item/implant/chem
-	name = "chem implant"
-	desc = "Injects things."
+	name = "化学植入体"
+	desc = "可注入各种物质。"
 	icon_state = "reagents"
 	actions_types = null
 	implant_flags = IMPLANT_TYPE_SECURITY
@@ -14,29 +14,29 @@
 	var/code
 
 
-	implant_info = "Requires filling via syringe while in an implant case. Automatically activates upon implantation. \
-		Allows for remote release of reagents directly into implantee's bloodstream. Can be synced with a remote signalling device."
+	implant_info = "需在植入体盒内用注射器注入药剂。植入时自动激活。\
+		可将药剂远程直接释放至被植入者的血液中。可与远程信号装置同步。"
 
-	implant_lore = "The Robust Corp MJ-420 Remote Chemical Release Implant is a remotely-controlled \
-		microcapsule network designed to be filled via syringe while still within an implant case. After implantation, \
-		the MJ-420 can be accessed via prisoner management console to release controlled amounts of reagents directly \
-		into the implantee's bloodstream, which is useful for controlled release of sedatives, antipsychotics, or, for \
-		particularly dangerous prisoners, lethal injections. Upon implantee's death, breaks down and releases all reagents \
-		into their bloodstream."
+	implant_lore = "强劲公司 MJ-420 远程化学释放植入体是一种远程控制的微胶囊网络，\
+		设计为在仍处于植入体盒内时通过注射器填充。植入后，\
+		可通过囚犯管理控制台访问 MJ-420，将可控剂量的药剂直接释放到被植入者的血液中，\
+		这对于控制性释放镇静剂、抗精神病药物，\
+		或对特别危险的囚犯执行注射死刑都很有用。被植入者死亡时，\
+		它会分解并将所有药剂释放进其血液。"
 
 /obj/item/implant/chem/is_shown_on_console(obj/machinery/computer/prisoner/management/console)
 	return !frequency && is_valid_z_level(get_turf(console), get_turf(imp_in))
 
 /obj/item/implant/chem/get_management_console_data()
 	var/list/info_shown = ..()
-	info_shown["Volume"] = "[reagents.total_volume]u"
+	info_shown["容量"] = "[reagents.total_volume]u"
 	return info_shown
 
 /obj/item/implant/chem/get_management_console_buttons()
 	var/list/buttons = ..()
 	for(var/i in implant_sizes)
 		UNTYPED_LIST_ADD(buttons, list(
-			"name" = "Inject [i]u",
+			"name" = "注入 [i]u",
 			"color" = "good",
 			"action_key" = "inject",
 			"action_params" = list("amount" = i),
@@ -87,9 +87,9 @@
 	else
 		injectamount = cause
 	reagents.trans_to(victim, injectamount, methods = INJECT)
-	to_chat(victim, span_hear("You hear a faint beep."))
+	to_chat(victim, span_hear("你听到一声微弱的哔声。"))
 	if(!reagents.total_volume)
-		to_chat(victim, span_hear("You hear a faint click from your chest."))
+		to_chat(victim, span_hear("你听到胸口传来一声微弱的咔嗒声。"))
 		qdel(src)
 
 /obj/item/implant/chem/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -99,7 +99,7 @@
 	return ..()
 
 /obj/item/implant/chem/proc/signaler_sync(obj/item/assembly/signaler/syncing_signaler, mob/living/user)
-	to_chat(user, "You sync \the [src] to \the [syncing_signaler]'s code & frequency[frequency ? "" : ", disabling other methods of activation"].")
+	to_chat(user, "你将 \the [src] 同步至 \the [syncing_signaler] 的代码与频率[frequency ? "" : "，同时禁用了其他激活方式"]。")
 	code = syncing_signaler.code
 	SSradio.remove_object(src, frequency)
 	frequency = syncing_signaler.frequency
@@ -111,6 +111,6 @@
 	activate(reagents.total_volume)
 
 /obj/item/implantcase/chem
-	name = "implant case - 'Remote Chemical'"
-	desc = "A glass case containing a remote chemical implant."
+	name = "植入体盒 -“远程化学”"
+	desc = "一个玻璃盒，内含一个远程化学植入体。"
 	imp_type = /obj/item/implant/chem

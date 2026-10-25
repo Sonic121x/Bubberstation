@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/blood_siphon
-	name = "Blood Siphon"
-	desc = "A targeted spell that heals your wounds while damaging the enemy. \
-		It has a chance to transfer wounds between you and your enemy."
+	name = "血液虹吸"
+	desc = "一种定向法术，在伤害敌人的同时治疗你的伤口。\
+		它有一定几率在你与敌人之间转移伤口。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -27,16 +27,16 @@
 	. = ..()
 	playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 75, TRUE)
 	if(cast_on.can_block_magic())
-		owner.balloon_alert(owner, "spell blocked!")
+		owner.balloon_alert(owner, "法术被挡下！")
 		cast_on.visible_message(
-			span_danger("The spell bounces off of [cast_on]!"),
-			span_danger("The spell bounces off of you!"),
+			span_danger("法术在[cast_on]身上弹开了！"),
+			span_danger("法术在你身上弹开了！"),
 		)
 		return FALSE
 
 	cast_on.visible_message(
-		span_danger("[cast_on] turns pale as a red glow envelops [cast_on.p_them()]!"),
-		span_danger("You pale as a red glow enevelops you!"),
+		span_danger("[cast_on]面色苍白，全身笼罩着一层红光！"),
+		span_danger("你面色苍白，一层红光将你笼罩！"),
 	)
 
 	var/mob/living/living_owner = owner

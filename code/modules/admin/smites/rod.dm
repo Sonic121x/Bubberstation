@@ -1,10 +1,10 @@
 /// Throw an immovable rod at the target
 /datum/smite/rod
-	name = "Immovable Rod"
+	name = "不可移动之杆"
 	var/force_looping = FALSE
 
 /datum/smite/rod/configure(client/user)
-	var/loop_input = tgui_alert(usr,"Would you like this rod to force-loop across space z-levels?", "Loopy McLoopface", list("Yes", "No"))
+	var/loop_input = tgui_alert(usr,"你希望这根杆强制循环穿越太空各 Z 层吗？", "转圈麦转转脸", list("Yes", "No"))
 
 	force_looping = (loop_input == "Yes")
 

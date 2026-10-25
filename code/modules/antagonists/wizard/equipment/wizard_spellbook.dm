@@ -1,6 +1,6 @@
 /obj/item/spellbook
-	name = "spell book"
-	desc = "An unearthly tome that glows with power."
+	name = "法术书"
+	desc = "一本散发着力量光芒的诡异书卷。"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
 	worn_icon_state = "book"
@@ -39,13 +39,13 @@
 /obj/item/spellbook/proc/on_magic_charge(datum/source, datum/action/cooldown/spell/spell, mob/living/caster)
 	SIGNAL_HANDLER
 
-	to_chat(caster, span_warning("Glowing red letters appear on the front cover..."))
+	to_chat(caster, span_warning("封面上浮现出发着红光的字母……"))
 	to_chat(caster, span_red(pick(
-		"NICE TRY BUT NO!",
-		"CLEVER BUT NOT CLEVER ENOUGH!",
-		"SUCH FLAGRANT CHEESING IS WHY WE ACCEPTED YOUR APPLICATION!",
-		"CUTE! VERY CUTE!",
-		"YOU DIDN'T THINK IT'D BE THAT EASY, DID YOU?",
+		"想得美，不行！",
+		"很聪明，但还不够聪明！",
+		"正是这种明目张胆的作弊，才让我们接受了你的申请！",
+		"可爱！真可爱！",
+		"你不会真以为有这么容易吧？",
 	)))
 
 	return COMPONENT_ITEM_BURNT_OUT
@@ -53,23 +53,23 @@
 /obj/item/spellbook/examine(mob/user)
 	. = ..()
 	if(owner)
-		. += "There is a small signature on the front cover: \"[owner]\"."
+		. += "封面上有一个小小的签名：“[owner]”。"
 	else
-		. += "It appears to have no author."
+		. += "它似乎没有作者。"
 
 /obj/item/spellbook/attack_self(mob/user)
 	if(!owner)
 		if(!user.mind)
 			return
-		to_chat(user, span_notice("You bind [src] to yourself."))
+		to_chat(user, span_notice("你把[src]绑定到自己身上。"))
 		owner = user.mind
 		return
 
 	if(user.mind != owner)
 		if(IS_WIZARD_APPRENTICE(user))
-			to_chat(user, span_warning("If you got caught sneaking a peek from your teacher's spellbook, you'd likely be expelled from the Wizard Academy. Better not."))
+			to_chat(user, span_warning("要是被人发现你偷看老师的法术书，你很可能会被巫师学院开除。还是别这么做。"))
 		else
-			to_chat(user, span_warning("[src] does not recognize you as its owner and refuses to open!"))
+			to_chat(user, span_warning("[src]不承认你是它的主人，拒绝打开！"))
 		return
 
 	return ..()
@@ -80,26 +80,26 @@
 	var/success_string
 	if(istype(tool, /obj/item/antag_spawner/contract))
 		if(astype(tool, /obj/item/antag_spawner/contract).used)
-			to_chat(user, span_warning("The contract has been used, you can't get your points back now!"))
+			to_chat(user, span_warning("这份合约已被使用，你现在无法取回点数了！"))
 			return ITEM_INTERACT_BLOCKING
 		spawner_entry = locate(/datum/spellbook_entry/item/contract) in entries
-		success_string = "You feed the contract back into the spellbook, refunding your points."
+		success_string = "你把合约塞回法术书，取回了自己的点数。"
 
 	if(istype(tool, /obj/item/antag_spawner/slaughter_demon/laughter))
 		spawner_entry = locate(/datum/spellbook_entry/item/hugbottle) in entries
-		success_string = "On second thought, maybe summoning a demon isn't a funny idea. You refund your points."
+		success_string = "转念一想，召唤恶魔也许并不是个有趣的主意。你取回了点数。"
 
 	else if(istype(tool, /obj/item/antag_spawner/slaughter_demon))
 		spawner_entry = locate(/datum/spellbook_entry/item/bloodbottle) in entries
-		success_string = "On second thought, maybe summoning a demon is a bad idea. You refund your points."
+		success_string = "转念一想，召唤恶魔也许是个坏主意。你取回了点数。"
 
 	if(isnull(success_string))
 		return NONE
 	if(!istype(spawner_entry)) // No success_string means it isn't a valid item, no spawner entry means the book doesn't have it(somehow)(they had this check before I got here)
-		to_chat(user, span_warning("[src] doesn't seem to want to refund [tool]."))
+		to_chat(user, span_warning("[src]似乎不想退还[tool]。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!spawner_entry.can_refund(user, src, tool))
-		to_chat(user, span_warning("You can't refund [src]."))
+		to_chat(user, span_warning("你无法退还[src]。"))
 		return ITEM_INTERACT_BLOCKING
 
 	to_chat(user, span_notice(success_string))
@@ -162,7 +162,7 @@
 		return
 	var/mob/living/carbon/human/wizard = usr
 	if(!istype(wizard))
-		to_chat(wizard, span_warning("The book doesn't seem to listen to lower life forms."))
+		to_chat(wizard, span_warning("这本书似乎不听低级生命体的话。"))
 		return FALSE
 
 	// Actions that are always available
@@ -186,7 +186,7 @@
 			return TRUE
 
 	if(uses < initial(uses))
-		to_chat(wizard, span_warning("You need to have all your spell points to do this!"))
+		to_chat(wizard, span_warning("你需要拥有全部法术点数才能这样做！"))
 		return FALSE
 
 	// Actions that are only available if you have full spell points
@@ -215,7 +215,7 @@
 	to_buy.times++
 	if(HAS_TRAIT(user, TRAIT_SPELLS_LOTTERY))
 		if(prob(50 / to_buy.cost))
-			to_chat(user, span_notice("This spell was given to you for free!"))
+			to_chat(user, span_notice("这个法术是免费送给你的！"))
 			return TRUE
 	uses -= to_buy.cost
 	return TRUE
@@ -277,7 +277,7 @@
 		for(var/i in 1 to wanted_spells[entry])
 			if(!purchase_entry(to_buy, wizard))
 				stack_trace("Wizard Loadout \"[loadout]\" was unable to buy a spell for [wizard]. ([entry])")
-				message_admins("Wizard [wizard] purchased Loadout \"[loadout]\" but was unable to purchase one of the entries ([to_buy]) for some reason.")
+				message_admins("巫师 [wizard] 购买了配装 \"[loadout]\"，但因某种原因无法购买其中一项条目（[to_buy]）。")
 				break
 
 	refunds_allowed = FALSE

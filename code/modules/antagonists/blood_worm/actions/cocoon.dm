@@ -38,11 +38,11 @@
 		return FALSE
 	if (HAS_TRAIT(owner, TRAIT_SHAPESHIFTED))
 		if (feedback)
-			owner.balloon_alert(owner, "not while shapeshifted!")
+			owner.balloon_alert(owner, "变形状态下不行！")
 		return FALSE
 	if (!isturf(owner.loc))
 		if (feedback)
-			owner.balloon_alert(owner, "get on the ground!")
+			owner.balloon_alert(owner, "先落到地面上！")
 		return FALSE
 	if (!check_consumed_blood(feedback))
 		return FALSE
@@ -52,18 +52,18 @@
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/Activate(atom/target)
 	owner.visible_message(
-		message = span_danger("\The [owner] start[owner.p_s()] growing a cocoon!"),
-		self_message = span_notice("You start growing a cocoon."),
-		blind_message = span_hear("You start hearing fleshy knitting!")
+		message = span_danger("[owner]开始结茧！"),
+		self_message = span_notice("你开始结茧。"),
+		blind_message = span_hear("你听到血肉编织的声音！")
 	)
 
 	if (!do_after(owner, 5 SECONDS, extra_checks = CALLBACK(src, PROC_REF(check_consumed_blood))))
 		return FALSE
 
 	owner.visible_message(
-		message = span_danger("\The [owner] enter[owner.p_s()] a cocoon!"),
-		self_message = span_green("You enter your freshly grown cocoon!"),
-		blind_message = span_hear("You stop hearing fleshy knitting!")
+		message = span_danger("[owner]进入了茧中！"),
+		self_message = span_green("你钻进了自己刚结好的茧！"),
+		blind_message = span_hear("血肉编织的声音停止了！")
 	)
 
 	cocoon = new cocoon_type(get_turf(owner))
@@ -98,9 +98,9 @@
 			continue // Harms potential hosts.
 
 		unfortunate_observer.visible_message(
-			message = span_danger("\The [unfortunate_observer] is splashed with a wave of corrosive blood!"),
-			self_message = span_userdanger("You're splashed with a wave of corrosive blood! YEOWCH!"),
-			blind_message = span_hear("You hear sizzling!")
+			message = span_danger("[unfortunate_observer]被一阵腐蚀性血液泼中！"),
+			self_message = span_userdanger("你被一阵腐蚀性血液泼中！好痛！"),
+			blind_message = span_hear("你听到嘶嘶的灼烧声！")
 		)
 
 		unfortunate_observer.Knockdown(3 SECONDS)
@@ -147,13 +147,13 @@
 /// Cancels the incubation process, destroying the cocoon early.
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/proc/cancel()
 	cocoon.visible_message(
-		message = span_danger("\The [cocoon] fall[cocoon.p_s()] apart, expelling \the [owner] within."),
-		blind_message = span_danger("You hear a splat!"),
+		message = span_danger("[cocoon]四分五裂，把里面的[owner]吐了出来。"),
+		blind_message = span_danger("你听到啪的一声！"),
 		ignored_mobs = owner
 	)
 
 	if (!QDELETED(owner) && owner.stat != DEAD)
-		to_chat(owner, span_userdanger("Your cocoon falls apart!"))
+		to_chat(owner, span_userdanger("你的茧散开了！"))
 
 	playsound(cocoon, 'sound/effects/splat.ogg', vol = 60, vary = TRUE, ignore_walls = FALSE)
 
@@ -202,7 +202,7 @@
 
 	if (total_consumed_blood < total_blood_required)
 		if (feedback)
-			worm.balloon_alert(worm, "only at [FLOOR(total_consumed_blood / total_blood_required * 100, 1)]% of required growth!")
+			worm.balloon_alert(worm, "仅达到所需成长度的 [FLOOR(total_consumed_blood / total_blood_required * 100, 1)]%！")
 		return FALSE
 	return TRUE
 
@@ -215,8 +215,8 @@
 	anchored = TRUE
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/hatchling
-	name = "Mature"
-	desc = "Enter incubation in a cocoon, emerging as a juvenile blood worm."
+	name = "成熟"
+	desc = "在茧中进入孵化，出来时成为幼年血虫。"
 
 	button_icon_state = "mature_hatchling"
 
@@ -226,7 +226,7 @@
 	total_blood_required = 500
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/hatchling/Activate(atom/target)
-	if (tgui_alert(owner, "Are you sure? After [cocoon_time / 10] seconds, you will become a juvenile, gaining stat increases and the ability to spit corrosive blood, but losing the ability to ventcrawl.", "Mature", list("Yes", "No"), 30 SECONDS) != "Yes")
+	if (tgui_alert(owner, "你确定吗？[cocoon_time / 10] 秒后，你将变为幼体，获得属性提升和喷吐腐蚀性血液的能力，但会失去爬通风管道的能力。", "成熟", list("Yes", "No"), 30 SECONDS) != "Yes")
 		return
 	if (!IsAvailable(feedback = TRUE))
 		return
@@ -236,11 +236,11 @@
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/hatchling/transfer(mob/living/basic/blood_worm/old_worm, mob/living/basic/blood_worm/new_worm)
 	. = ..()
 
-	log_blood_worm("[key_name(new_worm)] finished maturing into a juvenile blood worm")
+	log_blood_worm("[key_name(new_worm)] 已成熟为幼年血虫")
 
 /obj/structure/blood_worm_cocoon/hatchling
-	name = "small blood cocoon"
-	desc = "The incubation cocoon of a hatchling blood worm. Its surface is slowly shifting."
+	name = "小型血茧"
+	desc = "幼年血虫的孵化茧。其表面正在缓慢蠕动。"
 
 	icon_state = "cocoon-small"
 
@@ -248,11 +248,11 @@
 	damage_deflection = 10
 
 /obj/structure/blood_worm_cocoon/hatchling/examine(mob/user)
-	return ..() + span_warning("It can be broken to prevent the blood worm from maturing.")
+	return ..() + span_warning("可以打破它来阻止血虫成熟。")
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/juvenile
-	name = "Mature"
-	desc = "Enter incubation in a cocoon, emerging as an adult blood worm."
+	name = "成熟"
+	desc = "在茧中进入孵化，出来时成为成年血虫。"
 
 	button_icon_state = "mature_juvenile"
 
@@ -262,7 +262,7 @@
 	total_blood_required = 1500
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/juvenile/Activate(atom/target)
-	if (tgui_alert(owner, "Are you sure? After [cocoon_time / 10] seconds, you will become an adult, gaining stat increases and the ability to spit bursts of corrosive blood by right-clicking with Spit Blood while outside of a host.", "Mature", list("Yes", "No"), 30 SECONDS) != "Yes")
+	if (tgui_alert(owner, "你确定吗？[cocoon_time / 10] 秒后，你将变为成体，获得属性提升，并且在寄主体外时右键点击“喷吐血液”即可喷出一串腐蚀性血液。", "成熟", list("Yes", "No"), 30 SECONDS) != "Yes")
 		return
 	if (!IsAvailable(feedback = TRUE))
 		return
@@ -272,11 +272,11 @@
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/juvenile/transfer(mob/living/basic/blood_worm/old_worm, mob/living/basic/blood_worm/new_worm)
 	. = ..()
 
-	log_blood_worm("[key_name(new_worm)] finished maturing into an adult blood worm")
+	log_blood_worm("[key_name(new_worm)] 已成熟为成年血虫")
 
 /obj/structure/blood_worm_cocoon/juvenile
-	name = "medium blood cocoon"
-	desc = "The incubation cocoon of a juvenile blood worm. Its surface is slowly shifting."
+	name = "中型血茧"
+	desc = "幼年血虫的孵化茧。其表面正在缓慢蠕动。"
 
 	icon_state = "cocoon-medium"
 
@@ -284,11 +284,11 @@
 	damage_deflection = 15
 
 /obj/structure/blood_worm_cocoon/juvenile/examine(mob/user)
-	return ..() + span_warning("It can be broken to prevent the blood worm from maturing, but it looks rather tough.")
+	return ..() + span_warning("可以打破它来阻止血虫成熟，但它看起来相当坚硬。")
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/adult
-	name = "Reproduce"
-	desc = "Enter incubation in a cocoon, creating 4 new hatchlings including yourself."
+	name = "繁殖"
+	desc = "在茧中进入孵化，创造 4 只新的幼体，其中包括你自己。"
 
 	button_icon_state = "reproduce"
 
@@ -314,7 +314,7 @@
 	return ..()
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/adult/Activate(atom/target)
-	if (tgui_alert(owner, "Are you sure? After [cocoon_time / 10] seconds, you will create [num_hatchlings + 1] new hatchlings, including yourself.", "Reproduce", list("Yes", "No"), 30 SECONDS) != "Yes")
+	if (tgui_alert(owner, "你确定吗？[cocoon_time / 10] 秒后，你将创造 [num_hatchlings + 1] 只新的幼体，其中包括你自己。", "繁殖", list("Yes", "No"), 30 SECONDS) != "Yes")
 		return
 	if (!IsAvailable(feedback = TRUE))
 		return
@@ -322,17 +322,17 @@
 	return ..()
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/adult/handle_timer()
-	cocoon.balloon_alert(owner, "polling ghosts")
+	cocoon.balloon_alert(owner, "正在征集幽灵")
 
 	candidates = SSpolling.poll_ghost_candidates(
-		question = "Would you like to become a newly hatched blood worm? (x[num_hatchlings])",
+		question = "你想成为一只刚孵化的血虫吗？（x[num_hatchlings]）",
 		role = ROLE_BLOOD_WORM_INFESTATION,
 		check_jobban = ROLE_BLOOD_WORM,
 		poll_time = cocoon_time,
 		ignore_category = POLL_IGNORE_BLOOD_WORM,
 		alert_pic = cocoon_type, // The hatchling icon is too small, and a well-cropped juvenile icon is already used for the main spawn event.
 		jump_target = cocoon,
-		role_name_text = "blood worm",
+		role_name_text = "血虫",
 		amount_to_pick = num_hatchlings
 	)
 
@@ -347,9 +347,9 @@
 		return
 	if (num_candidates <= 0)
 		cancel()
-		owner.balloon_alert(owner, "no candidates!") // We can't host this balloon alert on a deleted cocoon.
+		owner.balloon_alert(owner, "没有候选人！") // We can't host this balloon alert on a deleted cocoon.
 		return
-	if (num_candidates < num_hatchlings && tgui_alert(owner, "There are only [num_candidates]/[num_hatchlings] candidates for hatchlings, want to proceed anyway?", "Ghost Shortage", list("Yes", "No"), 10 SECONDS) != "Yes")
+	if (num_candidates < num_hatchlings && tgui_alert(owner, "幼体候选人只有 [num_candidates]/[num_hatchlings]，还要继续吗？", "幽灵不足", list("Yes", "No"), 10 SECONDS) != "Yes")
 		cancel()
 		return
 
@@ -376,7 +376,7 @@
 
 	SEND_SIGNAL(new_worm, COMSIG_BLOOD_WORM_REPRODUCED)
 
-	log_blood_worm("[key_name(new_worm)] finished reproducing, resetting their growth back into a hatchling blood worm")
+	log_blood_worm("[key_name(new_worm)] 完成了繁殖，成长进度重置为幼年血虫")
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/adult/cancel()
 	send_apology_to_candidates()
@@ -394,11 +394,11 @@
 			continue
 
 		// Sucks, but that's just how it is sometimes.
-		to_chat(candidate, span_warning("The blood worm cocoon you rolled a hatchling spot for was canceled. Sorry."))
+		to_chat(candidate, span_warning("你抽到幼体名额的那个血虫茧已被取消。很抱歉。"))
 
 /obj/structure/blood_worm_cocoon/adult
-	name = "large blood cocoon"
-	desc = "The incubation cocoon of an adult blood worm. You can see many faint shadows within."
+	name = "大型血茧"
+	desc = "成年血虫的孵化茧。你能看到里面有许多模糊的影子。"
 
 	icon_state = "cocoon-large"
 
@@ -406,7 +406,7 @@
 	damage_deflection = 20
 
 /obj/structure/blood_worm_cocoon/adult/examine(mob/user)
-	return ..() + span_warning("It can be broken to prevent the blood worm from reproducing, but it looks extremely tough.")
+	return ..() + span_warning("可以打破它来阻止血虫繁殖，但它看起来极其坚硬。")
 
 /datum/action/cooldown/mob_cooldown/blood_worm/cocoon/hatchling/polymorph
 	new_worm_type = /mob/living/basic/blood_worm/juvenile/polymorph

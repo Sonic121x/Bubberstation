@@ -1,12 +1,12 @@
 /datum/antagonist/abductor
-	name = "\improper Abductor"
+	name = "\improper 绑架者"
 	roundend_category = "abductors"
 	antagpanel_category = ANTAG_GROUP_ABDUCTORS
 	pref_flag = ROLE_ABDUCTOR
 	antag_hud_name = "abductor"
 	show_in_antagpanel = FALSE //should only show subtypes
 	show_to_ghosts = TRUE
-	suicide_cry = "FOR THE MOTHERSHIP!!" // They can't even talk but y'know
+	suicide_cry = "为了母舰！！" // They can't even talk but y'know
 	stinger_sound = 'sound/music/antag/ayylien.ogg'
 	var/datum/team/abductor_team/team
 	var/sub_role
@@ -42,24 +42,24 @@
 	return finish_preview_icon(final_icon)
 
 /datum/antagonist/abductor/agent
-	name = "\improper Abductor Agent"
+	name = "\improper 绑架者特工"
 	sub_role = "Agent"
 	outfit = /datum/outfit/abductor/agent
 	landmark_type = /obj/effect/landmark/abductor/agent
-	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
+	greet_text = "利用你的隐形技术和装备让人类失去行动能力，好让你的科学家同伴进行回收。"
 	show_in_antagpanel = TRUE
 
 /datum/antagonist/abductor/scientist
-	name = "\improper Abductor Scientist"
+	name = "\improper 绑架者科学家"
 	sub_role = "Scientist"
 	outfit = /datum/outfit/abductor/scientist
 	landmark_type = /obj/effect/landmark/abductor/scientist
-	greet_text = "Use your experimental console and surgical equipment to monitor your agent and experiment upon abducted humans."
+	greet_text = "利用你的实验控制台和手术设备监视你的特工，并对被绑架的人类进行实验。"
 	show_in_antagpanel = TRUE
 	role_job = /datum/job/abductor_scientist
 
 /datum/antagonist/abductor/scientist/onemanteam
-	name = "\improper Abductor Solo"
+	name = "\improper 单人绑架者"
 	outfit = /datum/outfit/abductor/scientist/onemanteam
 	role_job = /datum/job/abductor_solo
 
@@ -87,7 +87,7 @@
 
 /datum/antagonist/abductor/greet()
 	. = ..()
-	to_chat(owner.current, span_notice("With the help of your teammate, kidnap and experiment on station crew members!"))
+	to_chat(owner.current, span_notice("在你的队友协助下，绑架空间站船员并对他们进行实验！"))
 	to_chat(owner.current, span_notice("[greet_text]"))
 	owner.announce_objectives()
 
@@ -96,12 +96,12 @@
 	var/mob/living/carbon/human/new_abductor = owner.current
 	new_abductor.set_species(/datum/species/abductor)
 	// BUBBER EDIT START - Apply body part updates after setting mutant colors.
-	var/list/body_colors = new_abductor.client?.prefs.read_preference(/datum/preference/tri_color/mutant_colors) 
-	if(length(body_colors)) 
-		new_abductor.dna.features[FEATURE_MUTANT_COLOR] = body_colors[1] 
-		for(var/obj/item/bodypart/part as anything in new_abductor.get_bodyparts()) 
-			part.add_color_override(body_colors[1], LIMB_COLOR_AYYLMAO + 1) 
-	new_abductor.update_body_parts(update_limb_data = TRUE) 
+	var/list/body_colors = new_abductor.client?.prefs.read_preference(/datum/preference/tri_color/mutant_colors)
+	if(length(body_colors))
+		new_abductor.dna.features[FEATURE_MUTANT_COLOR] = body_colors[1]
+		for(var/obj/item/bodypart/part as anything in new_abductor.get_bodyparts())
+			part.add_color_override(body_colors[1], LIMB_COLOR_AYYLMAO + 1)
+	new_abductor.update_body_parts(update_limb_data = TRUE)
 	// BUBBER EDIT END
 	var/obj/item/organ/tongue/abductor/abductor_tongue = new_abductor.get_organ_slot(ORGAN_SLOT_TONGUE)
 	abductor_tongue.mothership = "[team.name]"
@@ -171,14 +171,14 @@
 	var/list/current_teams = list()
 	for(var/datum/team/abductor_team/T in GLOB.antagonist_teams)
 		current_teams[T.name] = T
-	var/choice = tgui_input_list(admin,"Add to which team ?", "Abductor Teams", current_teams + "new team")
+	var/choice = tgui_input_list(admin,"添加到哪个队伍？", "绑架者队伍", current_teams + "new team")
 	if (choice == "new team")
 		team = new
-		if(tgui_alert(admin, "Use a Custom Skin Color?", "Alien Spraypainter", list("Yes", "No")) == "Yes")
+		if(tgui_alert(admin, "使用自定义肤色？", "外星喷漆器", list("Yes", "No")) == "Yes")
 			// Keep in mind the darker colors don't look all that great, but it's easier to just reference an existing color list than make a new one
-			var/colorchoice = tgui_input_list(admin, "Select Which Color?", "Alien Spraypainter", GLOB.color_list_ethereal + "Custom Color")
+			var/colorchoice = tgui_input_list(admin, "选择哪种颜色？", "外星喷漆器", GLOB.color_list_ethereal + "Custom Color")
 			if(colorchoice == "Custom Color")
-				colorchoice = tgui_color_picker(admin, "Pick new color", "Alien Spraypainter", COLOR_WHITE)
+				colorchoice = tgui_color_picker(admin, "选择新颜色", "外星喷漆器", COLOR_WHITE)
 			else
 				colorchoice = GLOB.color_list_ethereal[colorchoice]
 			team.team_skincolor = colorchoice
@@ -187,8 +187,8 @@
 	else
 		return
 	new_owner.add_antag_datum(src)
-	log_admin("[key_name(usr)] made [key_name(new_owner)] [name] on [choice]!")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(new_owner)] [name] on [choice] !")
+	log_admin("[key_name(usr)] 将 [key_name(new_owner)] 设为 [name]（[choice]）！")
+	message_admins("[key_name_admin(usr)] 将 [key_name_admin(new_owner)] 设为 [name]（[choice]）！")
 
 /datum/antagonist/abductor/get_admin_commands()
 	. = ..()
@@ -196,10 +196,10 @@
 
 /datum/antagonist/abductor/proc/admin_equip(mob/admin)
 	if(!ishuman(owner.current))
-		to_chat(admin, span_warning("This only works on humans!"))
+		to_chat(admin, span_warning("这只能对类人生效！"))
 		return
 	var/mob/living/carbon/human/new_abductor = owner.current
-	var/gear = tgui_alert(admin,"Agent or Scientist Gear", "Gear", list("Agent", "Scientist"))
+	var/gear = tgui_alert(admin,"特工或科学家装备", "装备", list("Agent", "Scientist"))
 	if(gear)
 		if(gear == "Agent")
 			new_abductor.equipOutfit(/datum/outfit/abductor/agent)
@@ -207,7 +207,7 @@
 			new_abductor.equipOutfit(/datum/outfit/abductor/scientist)
 
 /datum/team/abductor_team
-	member_name = "\improper Abductor"
+	member_name = "\improper 绑架者"
 	var/team_number
 	var/static/team_count = 1
 	///List of all brainwashed victims' minds
@@ -218,7 +218,7 @@
 /datum/team/abductor_team/New()
 	..()
 	team_number = team_count++
-	name = "Mothership [pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
+	name = "母舰 [pick(GLOB.greek_letters)]" //TODO Ensure unique and actual alieny names
 	add_objective(new /datum/objective/experiment)
 	// Some aliens can be green as a treat
 	if(prob(check_holidays(APRIL_FOOLS) ? 50 : 2) && isnull(team_skincolor))
@@ -232,11 +232,11 @@
 		if(!O.check_completion())
 			won = FALSE
 	if(won)
-		result += "<span class='greentext big'>[name] team fulfilled its mission!</span>"
+		result += "<span class='greentext big'>[name] 小队完成了任务！</span>"
 	else
-		result += "<span class='redtext big'>[name] team failed its mission.</span>"
+		result += "<span class='redtext big'>[name] 小队任务失败。</span>"
 
-	result += span_header("The abductors of [name] were:")
+	result += span_header("来自 [name] 的绑架者有：")
 	for(var/datum/mind/abductor_mind in members)
 		result += printplayer(abductor_mind)
 	result += printobjectives(objectives)
@@ -257,7 +257,7 @@
 	target_amount = 6
 
 /datum/objective/experiment/New()
-	explanation_text = "Experiment on [target_amount] humans."
+	explanation_text = "对 [target_amount] 名人类进行实验。"
 
 /datum/objective/experiment/check_completion()
 	for(var/obj/machinery/abductor/experiment/E as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/abductor/experiment))

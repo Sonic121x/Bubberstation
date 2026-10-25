@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/touch/mansus_grasp
-	name = "Mansus Grasp"
-	desc = "A touch spell that lets you channel the power of the Old Gods through your grip."
+	name = "漫宿之握"
+	desc = "一种触碰法术，让你通过握持引导旧神的力量。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -25,8 +25,8 @@
 
 /datum/action/cooldown/spell/touch/mansus_grasp/on_antimagic_triggered(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	victim.visible_message(
-		span_danger("The spell bounces off of [victim]!"),
-		span_danger("The spell bounces off of you!"),
+		span_danger("法术在[victim]身上弹开了！"),
+		span_danger("法术在你身上弹开了！"),
 	)
 
 /datum/action/cooldown/spell/touch/mansus_grasp/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
@@ -58,9 +58,9 @@
 		carbon_hit.mob_light(range = 1.5, power = 2.5, color = COLOR_CULT_RED, duration = 0.5 SECONDS)
 		playsound(carbon_hit, 'sound/effects/magic/curse.ogg', 50, TRUE)
 
-		to_chat(caster, span_warning("An unholy force intervenes as you grasp [carbon_hit], absorbing most of the effects!"))
-		to_chat(carbon_hit, span_warning("As [caster] grasps you with eldritch forces, your blood magic absorbs most of the effects!"))
-		carbon_hit.balloon_alert_to_viewers("absorbed!")
+		to_chat(caster, span_warning("当你抓住[carbon_hit]时，一股不洁之力介入，吸收了大部分效果！"))
+		to_chat(carbon_hit, span_warning("当[caster]以邪异之力抓住你时，你的血魔法吸收了大部分效果！"))
+		carbon_hit.balloon_alert_to_viewers("被吸收了！")
 		return TRUE
 
 	carbon_hit.adjust_timed_status_effect(4 SECONDS, /datum/status_effect/speech/slurring/heretic)
@@ -79,18 +79,18 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/melee/touch_attack/mansus_fist
-	name = "Mansus Grasp"
-	desc = "A sinister looking aura that distorts the flow of reality around it. \
-		Causes knockdown, minor bruises, and major stamina damage. \
-		It gains additional beneficial effects as you expand your knowledge of the Mansus."
+	name = "漫宿之握"
+	desc = "一团外表邪恶的光环，会扭曲周围现实的流动。\
+		造成击倒、轻微淤伤和大量耐力伤害。\
+		随着你对漫宿知识的扩展，它还会获得额外的增益效果。"
 	icon_state = "mansus"
 	inhand_icon_state = "mansus"
 
 /obj/item/melee/touch_attack/mansus_fist/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/effect_remover, \
-		success_feedback = "You remove %THEEFFECT.", \
-		tip_text = "Clear rune", \
+		success_feedback = "你移除了%THEEFFECT。", \
+		tip_text = "清除符文", \
 		on_clear_callback = CALLBACK(src, PROC_REF(after_clear_rune)), \
 		effects_we_clear = list(/obj/effect/heretic_rune), \
 		time_to_remove = 0.4 SECONDS)
@@ -106,11 +106,11 @@
 	remove_hand_with_no_refund(user)
 
 /obj/item/melee/touch_attack/mansus_fist/ignition_effect(atom/to_light, mob/user)
-	. = span_rose("[user] effortlessly snaps [user.p_their()] fingers near [to_light], igniting it with eldritch energies. Fucking badass!")
+	. = span_rose("[user] 在[to_light]旁轻描淡写地打了个响指，用邪异能量把它点燃了。真他妈帅！")
 	remove_hand_with_no_refund(user)
 
 /obj/item/melee/touch_attack/mansus_fist/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] covers [user.p_their()] face with [user.p_their()] sickly-looking hand! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 用那只病态的手捂住了自己的脸！看起来正在自杀！"))
 	var/mob/living/carbon/carbon_user = user //iscarbon already used in spell's parent
 	var/datum/action/cooldown/spell/touch/mansus_grasp/source = spell_which_made_us?.resolve()
 	if(QDELETED(source) || !IS_HERETIC(user))

@@ -7,9 +7,9 @@
  * Determines if an item or its contents are contraband.
  */
 /obj/item/inspector
-	name = "\improper N-spect scanner"
-	desc = "Central Command standard issue inspection device. \
-		Used for precision scans to determine if an item contains, or is itself, contraband."
+	name = "\improper N 光谱扫描仪"
+	desc = "中央指挥部标准配发的检查装置。\
+		用于精确扫描，以判定某件物品内部是否含有违禁品，或该物品本身是否为违禁品。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "inspector"
 	worn_icon_state = "salestagger"
@@ -51,17 +51,17 @@
 
 /obj/item/inspector/crowbar_act(mob/living/user, obj/item/tool)
 	cell_cover_open = !cell_cover_open
-	balloon_alert(user, "[cell_cover_open ? "opened" : "closed"] cell cover")
+	balloon_alert(user, "[cell_cover_open ? "已打开" : "已关闭"]电池盖")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inspector/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(cell_cover_open && istype(tool, /obj/item/stock_parts/power_store/cell))
 		if(cell)
-			to_chat(user, span_warning("[src] already has a cell installed."))
+			to_chat(user, span_warning("[src]已经装有一块电池了。"))
 			return ITEM_INTERACT_BLOCKING
 		if(user.transferItemToLoc(tool, src))
 			cell = tool
-			to_chat(user, span_notice("You successfully install \the [cell] into [src]."))
+			to_chat(user, span_notice("你成功将[cell]装入[src]。"))
 			return ITEM_INTERACT_SUCCESS
 		return ITEM_INTERACT_BLOCKING
 	return NONE
@@ -69,8 +69,8 @@
 /obj/item/inspector/item_ctrl_click(mob/user)
 	if(!cell_cover_open || !cell)
 		return CLICK_ACTION_BLOCKING
-	user.visible_message(span_notice("[user] removes \the [cell] from [src]!"), \
-		span_notice("You remove [cell]."))
+	user.visible_message(span_notice("[user]从[src]中取出了[cell]！"), \
+		span_notice("你取出了[cell]。"))
 	cell.add_fingerprint(user)
 	user.put_in_hands(cell)
 	cell = null
@@ -78,24 +78,24 @@
 
 /obj/item/inspector/examine(mob/user)
 	. = ..()
-	. += span_info("Use on an item to scan if it contains, or is, contraband.")
+	. += span_info("将其用于某件物品上，可扫描该物品是否含有违禁品，或本身是否为违禁品。")
 	if(!cell_cover_open)
-		. += span_notice("Its cell cover is closed. It looks like it could be <strong>pried</strong> out, but doing so would require an appropriate tool.")
+		. += span_notice("它的电池盖是关闭的。看起来可以用工具<strong>撬</strong>开，但需要合适的工具。")
 		return
-	. += span_notice("Its cell cover is open, exposing the cell slot. It looks like it could be <strong>pried</strong> in, but doing so would require an appropriate tool.")
+	. += span_notice("它的电池盖是打开的，露出了电池槽。看起来可以把盖子<strong>撬</strong>回去，但需要合适的工具。")
 	if(!cell)
-		. += span_notice("The slot for a cell is empty.")
+		. += span_notice("电池槽是空的。")
 	else
-		. += span_notice("\The [cell] is firmly in place. Ctrl-click with an empty hand to remove it.")
+		. += span_notice("[cell]已牢固就位。用空手 Ctrl 点击可将其取出。")
 
 /obj/item/inspector/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!user.Adjacent(interacting_with))
 		return ITEM_INTERACT_BLOCKING
 	if(cell_cover_open)
-		balloon_alert(user, "close cover first!")
+		balloon_alert(user, "请先关闭盖板！")
 		return ITEM_INTERACT_BLOCKING
 	if(!cell || !cell.use(0.001 * STANDARD_CELL_CHARGE))
-		balloon_alert(user, "check cell!")
+		balloon_alert(user, "检查电池！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(iscarbon(interacting_with)) // Prevents scanning people
@@ -103,25 +103,25 @@
 
 	if(contraband_scan(interacting_with, user))
 		playsound(src, 'sound/machines/uplink/uplinkerror.ogg', 40)
-		balloon_alert(user, "contraband detected!")
+		balloon_alert(user, "检测到违禁品！")
 		return ITEM_INTERACT_SUCCESS
 
 	playsound(src, 'sound/machines/ping.ogg', 20)
-	balloon_alert(user, "clear")
+	balloon_alert(user, "无异常")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/inspector/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	var/update_context = FALSE
 	if(cell_cover_open && cell)
-		context[SCREENTIP_CONTEXT_CTRL_LMB] = "Remove cell"
+		context[SCREENTIP_CONTEXT_CTRL_LMB] = "取出电池"
 		update_context = TRUE
 
 	if(cell_cover_open && !cell && istype(held_item, /obj/item/stock_parts/power_store/cell))
-		context[SCREENTIP_CONTEXT_LMB] = "Install cell"
+		context[SCREENTIP_CONTEXT_LMB] = "安装电池"
 		update_context = TRUE
 
 	if(held_item?.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "[cell_cover_open ? "close" : "open"] battery panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[cell_cover_open ? "关闭" : "打开"]电池面板"
 		update_context = TRUE
 
 	if(update_context)
@@ -132,7 +132,7 @@
 	if(cell_cover_open || !cell)
 		return NONE
 	if(isitem(target))
-		context[SCREENTIP_CONTEXT_LMB] = "Contraband Scan"
+		context[SCREENTIP_CONTEXT_LMB] = "违禁品扫描"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 

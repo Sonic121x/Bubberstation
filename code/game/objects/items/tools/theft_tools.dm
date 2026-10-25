@@ -5,8 +5,8 @@
 
 //the nuke core - objective item
 /obj/item/nuke_core
-	name = "plutonium core"
-	desc = "Extremely radioactive. Wear goggles."
+	name = "钚核心"
+	desc = "放射性极强。请佩戴护目镜。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "plutonium_core"
 	inhand_icon_state = "plutoniumcore"
@@ -36,13 +36,13 @@
 		radiation_pulse(get_turf(src), max_range = 2, threshold = RAD_EXTREME_INSULATION)
 
 /obj/item/nuke_core/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is rubbing [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把[src]往自己身上蹭！看起来是想自杀！"))
 	return TOXLOSS
 
 //nuke core box, for carrying the core
 /obj/item/nuke_core_container
-	name = "nuke core container"
-	desc = "Solid container for radioactive objects."
+	name = "核弹核心容器"
+	desc = "用于装放射性物体的坚固容器。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "core_container_empty"
 	inhand_icon_state = "tile"
@@ -60,7 +60,7 @@
 	ncore.forceMove(src)
 	core = ncore
 	icon_state = "core_container_loaded"
-	to_chat(user, span_warning("Container is sealing..."))
+	to_chat(user, span_warning("容器正在密封……"))
 	addtimer(CALLBACK(src, PROC_REF(seal)), 5 SECONDS)
 	return TRUE
 
@@ -70,14 +70,14 @@
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/deconstruct.ogg', 60, TRUE)
 		if(ismob(loc))
-			to_chat(loc, span_warning("[src] is sealed, [core]'s radiation is contained."))
+			to_chat(loc, span_warning("[src]已密封，[core]的辐射已被封住。"))
 
 /obj/item/nuke_core_container/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/nuke_core))
 		return NONE
 
 	if(!user.temporarilyRemoveItemFromInventory(tool))
-		to_chat(user, span_warning("The [tool] is stuck to your hand!"))
+		to_chat(user, span_warning("[tool]粘在你手上了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	load(tool, user)
@@ -86,8 +86,8 @@
 
 //snowflake screwdriver, works as a key to start nuke theft, traitor only
 /obj/item/screwdriver/nuke
-	name = "screwdriver"
-	desc = "A screwdriver with an ultra thin tip that's carefully designed to boost screwing speed."
+	name = "螺丝刀"
+	desc = "一把尖端极细的螺丝刀，专为提升拧螺丝速度而精心设计。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "screwdriver_nuke"
 	post_init_icon_state = null
@@ -102,37 +102,37 @@
 	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_nuke")
 
 /obj/item/paper/guides/antag/nuke_instructions
-	default_raw_text = "How to break into a Nanotrasen self-destruct terminal and remove its plutonium core:<br>\
+	default_raw_text = "如何闯入纳米传讯的自毁终端并取出其中的钚核心：<br>\
 	<ul>\
-	<li>Use a screwdriver with a very thin tip (provided) to unscrew the terminal's front panel</li>\
-	<li>Dislodge and remove the front panel with a crowbar</li>\
-	<li>Cut the inner metal plate with a welding tool</li>\
-	<li>Pry off the inner plate with a crowbar to expose the radioactive core</li>\
-	<li>Use the core container to remove the plutonium core; the container will take some time to seal</li>\
+	<li>使用一把尖端极细的螺丝刀（已提供）拧下终端的前面板</li>\
+	<li>用撬棍撬松并取下面板</li>\
+	<li>用焊接工具切开内层金属板</li>\
+	<li>用撬棍撬开内板，露出放射性核心</li>\
+	<li>用核心容器取出钚核心；容器需要一些时间才能密封</li>\
 	<li>???</li>\
 	</ul>"
 
 /obj/item/paper/guides/antag/hdd_extraction
-	default_raw_text = "<h1>Source Code Theft & You - The Idiot's Guide to Crippling Nanotrasen Research & Development</h1><br>\
-	Rumour has it that Nanotrasen are using their R&D Servers to create something awful! They've codenamed it Project Goon, whatever that means.<br>\
-	This cannot be allowed to stand. Below is all our intel for stealing their source code and crippling their research efforts:<br>\
+	default_raw_text = "<h1>源代码窃取与你——搞垮纳米传讯研发部的傻瓜指南</h1><br>\
+	有传言说，纳米传讯正在利用他们的研发服务器制造某种可怕的东西！他们给它起的代号是暴徒计划，不管那是什么意思。<br>\
+	绝不能让这种事继续下去。以下是我们窃取其源代码、瘫痪其研究工作的全部情报：<br>\
 	<ul>\
-	<li>Locate the physical R&D Server mainframes. Intel suggests these are stored in specially cooled rooms deep within their Science department.</li>\
-	<li>Nanotrasen is a corporation not known for subtlety in design. You should be able to identify the master server by any distinctive markings.</li>\
-	<li>Tools are on-site procurement. Screwdriver, crowbar and wirecutters should be all you need to do the job.<li>\
-	<li>The front panel screws are hidden in recesses behind stickers. Easily removed once you know they're there.</li>\
-	<li>You'll probably find the hard drive in secure housing. You may need to pry it loose with a crowbar, shouldn't do too much damage.</li>\
-	<li>Finally, carefully cut all of the hard drive's connecting wires. Don't rush this, snipping the wrong wire could wipe all data!</li>\
+	<li>找到研发服务器的物理主机。情报显示，它们存放在科研部深处专门冷却的房间内。</li>\
+	<li>纳米传讯在设计上一向不讲低调。你应该能通过任何显眼的标记找到主服务器。</li>\
+	<li>工具就地取材。一把螺丝刀、一根撬棍和一把剪线钳就足够完成这活。<li>\
+	<li>前面板的螺丝藏在贴纸后面的凹槽里。知道位置之后就很容易取下。</li>\
+	<li>硬盘多半装在加固外壳里。你可能得用撬棍把它撬松，应该不会造成太大损伤。</li>\
+	<li>最后，小心切断硬盘上所有的连接线。别急，剪错线可能会抹掉全部数据！</li>\
 	</ul>\
-	Removing this drive is guaranteed to cripple research efforts regardless of what data is contained on it.<br>\
-	The thing's probably hardwired. No putting it back once you've extracted it. The crew are likely to be as mad as bees if they find out!<br>\
-	Survive the shift and extract the hard drive safely.<br>\
-	Succeed and you will receive a coveted green highlight on your record for this assignment. Fail us and red's the last colour you'll ever see.<br>\
-	Do not disappoint us.<br>"
+	无论硬盘里存着什么数据，取走它都必定会重创他们的研究工作。<br>\
+	这东西很可能是硬连线的。一旦取出就装不回去了。如果船员们发现，恐怕会气得发疯！<br>\
+	活过这一班，并安全取出硬盘。<br>\
+	成功的话，你的档案上会为此获得一个令人艳羡的绿色高亮。让我们失望，红色就会是你最后看到的颜色。<br>\
+	别让我们失望。<br>"
 
 /obj/item/disk/computer/hdd_theft
-	name = "r&d server hard disk drive"
-	desc = "For some reason, people really seem to want to steal this. The source code on this drive is probably used for something awful!"
+	name = "研发服务器硬盘驱动器"
+	desc = "不知为何，人们似乎特别想偷走这东西。这块硬盘上的源代码大概被用来做某种可怕的事！"
 	max_capacity = 512
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -141,21 +141,21 @@
 // STEALING SUPERMATTER
 
 /obj/item/paper/guides/antag/supermatter_sliver
-	default_raw_text = "How to safely extract a supermatter sliver:<br>\
+	default_raw_text = "如何安全提取一块超物质碎片：<br>\
 	<ul>\
-	<li>You must have active magnetic anchoring at all times near an active supermatter crystal.</li>\
-	<li>Approach an active supermatter crystal with radiation shielded personal protective equipment. DO NOT MAKE PHYSICAL CONTACT.</li>\
-	<li>Use a supermatter scalpel (provided) to slice off a sliver of the crystal.</li>\
-	<li>Use supermatter extraction tongs (also provided) to safely pick up the sliver you sliced off.</li>\
-	<li>Physical contact of any object with the sliver will dust the object, as well as yourself.</li>\
-	<li>Use the tongs to place the sliver into the provided container, which will take some time to seal.</li>\
-	<li>Get the hell out before the crystal delaminates.</li>\
+	<li>在活跃的超物质晶体附近，你必须始终保持磁力锚定开启。</li>\
+	<li>穿上辐射防护个人防护装备后再接近活跃的超物质晶体。切勿进行物理接触。</li>\
+	<li>用超物质手术刀（已提供）从晶体上削下一块碎片。</li>\
+	<li>用超物质提取钳（同样已提供）安全夹起你削下的碎片。</li>\
+	<li>任何物体与碎片发生物理接触，都会使该物体以及你本人化为飞灰。</li>\
+	<li>用提取钳把碎片放入提供的容器中，容器需要一些时间才能密封。</li>\
+	<li>在晶体分层崩解之前赶紧逃出去。</li>\
 	<li>???</li>\
 	</ul>"
 
 /obj/item/nuke_core/supermatter_sliver
-	name = "supermatter sliver"
-	desc = "A tiny, highly volatile sliver of a supermatter crystal. Do not handle without protection!"
+	name = "超物质碎片"
+	desc = "一小块极不稳定的超物质晶体碎片。请勿在无防护的情况下接触！"
 	icon_state = "supermatter_sliver"
 	inhand_icon_state = null //touching it dusts you, so no need for an inhand icon.
 	pulseicon = "supermatter_sliver_pulse"
@@ -183,18 +183,18 @@
 	if(istype(tool, /obj/item/hemostat/supermatter))
 		var/obj/item/hemostat/supermatter/tongs = tool
 		if (tongs.sliver)
-			to_chat(user, span_warning("\The [tongs] is already holding a supermatter sliver!"))
+			to_chat(user, span_warning("[tongs]里已经夹着一块超物质碎片了！"))
 			return ITEM_INTERACT_BLOCKING
 		forceMove(tongs)
 		tongs.sliver = src
 		tongs.update_appearance()
-		to_chat(user, span_notice("You carefully pick up [src] with [tongs]."))
+		to_chat(user, span_notice("你小心地用[tongs]夹起了[src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/scalpel/supermatter) || istype(tool, /obj/item/nuke_core_container/supermatter/)) // we don't want it to dust
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("As it touches \the [src], both \the [src] and \the [tool] burst into dust!"))
+	to_chat(user, span_notice("当它触碰到[src]时，[src]与[tool]都化作飞灰！"))
 	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 	qdel(tool)
@@ -210,15 +210,15 @@
 	var/mob/thrower = throwingdatum?.get_thrower()
 	if(istype(thrower))
 		log_combat(thrower, hit_atom, "consumed", src)
-		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)], thrown by [key_name_admin(thrower)].")
-		investigate_log("has consumed [key_name(victim)], thrown by [key_name(thrower)]", INVESTIGATE_ENGINE)
+		message_admins("[src]吞噬了[key_name_admin(victim)] [ADMIN_JMP(src)]，投掷者为[key_name_admin(thrower)]。")
+		investigate_log("吞噬了[key_name(victim)]，投掷者为[key_name(thrower)]", INVESTIGATE_ENGINE)
 	else
-		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)] via throw impact.")
-		investigate_log("has consumed [key_name(victim)] via throw impact.", INVESTIGATE_ENGINE)
-	victim.visible_message(span_danger("As [victim] is hit by [src], both flash into dust and silence fills the room..."),\
-		span_userdanger("You're hit by [src] and everything suddenly goes silent.\n[src] flashes into dust, and soon as you can register this, you do as well."),\
-		span_hear("Everything suddenly goes silent."))
-	victim.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
+		message_admins("[src]通过投掷撞击吞噬了[key_name_admin(victim)] [ADMIN_JMP(src)]。")
+		investigate_log("通过投掷撞击吞噬了[key_name(victim)]。", INVESTIGATE_ENGINE)
+	victim.visible_message(span_danger("[victim]被[src]击中，两者一闪化为飞灰，房间里陷入死寂……"),\
+		span_userdanger("你被[src]击中，一切突然归于寂静。\n[src]一闪化为飞灰，而当你意识到这一点时，你也一样。"),\
+		span_hear("一切突然归于寂静。"))
+	victim.investigate_log("被[src]化为飞灰。", INVESTIGATE_DEATHS)
 	victim.dust()
 	radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
@@ -228,17 +228,17 @@
 	..()
 	if(!isliving(user) || HAS_TRAIT(user, TRAIT_GODMODE)) //try to keep this in sync with supermatter's consume fail conditions
 		return FALSE
-	user.visible_message(span_danger("[user] reaches out and tries to pick up [src]. [user.p_their()] body starts to glow and bursts into flames before flashing into dust!"),\
-			span_userdanger("You reach for [src] with your hands. That was dumb."),\
-			span_hear("Everything suddenly goes silent."))
+	user.visible_message(span_danger("[user]伸手试图捡起[src]。整个身体开始发光，燃起火焰，随后一闪化为飞灰！"),\
+			span_userdanger("你伸手去碰[src]。这举动真蠢。"),\
+			span_hear("一切突然归于寂静。"))
 	radiation_pulse(user, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
-	user.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
+	user.investigate_log("被[src]化为飞灰。", INVESTIGATE_DEATHS)
 	user.dust()
 
 /obj/item/nuke_core_container/supermatter
-	name = "supermatter bin"
-	desc = "A tiny receptacle that releases an inert hyper-noblium mix upon sealing, allowing a sliver of a supermatter crystal to be safely stored."
+	name = "超物质收纳箱"
+	desc = "一个微小的容器，密封时会释放惰性的超惰性气体混合物，从而安全存放一块超物质晶体碎片。"
 	var/obj/item/nuke_core/supermatter_sliver/sliver
 
 /obj/item/nuke_core_container/supermatter/Destroy()
@@ -253,7 +253,7 @@
 	T.sliver = null
 	T.icon_state = "supermatter_tongs"
 	icon_state = "core_container_loaded"
-	to_chat(user, span_warning("Container is sealing..."))
+	to_chat(user, span_warning("容器正在密封……"))
 	addtimer(CALLBACK(src, PROC_REF(seal)), 5 SECONDS)
 	return TRUE
 
@@ -263,11 +263,11 @@
 		icon_state = "core_container_sealed"
 		playsound(src, 'sound/items/Deconstruct.ogg', 60, TRUE)
 		if(ismob(loc))
-			to_chat(loc, span_warning("[src] is permanently sealed, [sliver] is safely contained."))
+			to_chat(loc, span_warning("[src]已永久密封，[sliver]被安全封存。"))
 
 /obj/item/scalpel/supermatter
-	name = "supermatter scalpel"
-	desc = "A scalpel with a fragile tip of condensed hyper-noblium gas, searingly cold to the touch, that can safely shave a sliver off a supermatter crystal."
+	name = "超物质手术刀"
+	desc = "一把刀尖由凝聚的超惰性气体制成的脆弱手术刀，触感灼冷，能从超物质晶体上安全地削下一块碎片。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "supermatter_scalpel"
 	toolspeed = 0.5
@@ -280,8 +280,8 @@
 	usesLeft = rand(2, 4)
 
 /obj/item/hemostat/supermatter
-	name = "supermatter extraction tongs"
-	desc = "A pair of tongs made from condensed hyper-noblium gas, searingly cold to the touch, that can safely grip a supermatter sliver."
+	name = "超物质提取钳"
+	desc = "一把由凝聚的超惰性气体制成的钳子，触感灼冷，能安全夹取超物质碎片。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "supermatter_tongs"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -319,7 +319,7 @@
 /obj/item/hemostat/supermatter/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum) // no instakill supermatter javelins
 	if(sliver)
 		sliver.forceMove(loc)
-		visible_message(span_notice("\The [sliver] falls out of \the [src] as it hits the ground."))
+		visible_message(span_notice("当[src]落地时，[sliver]从里面掉了出来。"))
 		sliver = null
 		update_appearance()
 	return ..()
@@ -331,21 +331,21 @@
 		var/mob/living/victim = AM
 		if(victim.incorporeal_move || HAS_TRAIT(victim, TRAIT_GODMODE)) //try to keep this in sync with supermatter's consume fail conditions
 			return
-		victim.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
+		victim.investigate_log("被[src]化为飞灰。", INVESTIGATE_DEATHS)
 		victim.dust()
-		message_admins("[src] has consumed [key_name_admin(victim)] [ADMIN_JMP(src)].")
-		investigate_log("has consumed [key_name(victim)].", INVESTIGATE_ENGINE)
+		message_admins("[src]吞噬了[key_name_admin(victim)] [ADMIN_JMP(src)]。")
+		investigate_log("吞噬了[key_name(victim)]。", INVESTIGATE_ENGINE)
 	else if(istype(AM, /obj/singularity))
 		return
 	else
-		investigate_log("has consumed [AM].", INVESTIGATE_ENGINE)
+		investigate_log("吞噬了[AM]。", INVESTIGATE_ENGINE)
 		qdel(AM)
 	if (user)
 		log_combat(user, AM, "consumed", sliver, "via [src]")
-		user.visible_message(span_danger("As [user] touches [AM] with \the [src], both flash into dust and silence fills the room..."),\
-			span_userdanger("You touch [AM] with [src], and everything suddenly goes silent.\n[AM] and [sliver] flash into dust, and soon as you can register this, you do as well."),\
-			span_hear("Everything suddenly goes silent."))
-		user.investigate_log("has been dusted by [src].", INVESTIGATE_DEATHS)
+		user.visible_message(span_danger("当[user]用[src]触碰[AM]时，两者一闪化为飞灰，房间里陷入死寂……"),\
+			span_userdanger("你用[src]触碰了[AM]，一切突然归于寂静。\n[AM]和[sliver]一闪化为飞灰，而当你意识到这一点时，你也一样。"),\
+			span_hear("一切突然归于寂静。"))
+		user.investigate_log("被[src]化为飞灰。", INVESTIGATE_DEATHS)
 		user.dust()
 	radiation_pulse(src, max_range = 2, threshold = RAD_EXTREME_INSULATION, chance = 40)
 	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)

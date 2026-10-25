@@ -1,6 +1,6 @@
 /obj/structure/void_conduit
-	name = "void conduit"
-	desc = "An open gate which leads to nothingness. Releases pulses which you do not want to get hit by."
+	name = "虚空导管"
+	desc = "一扇通向虚无的敞开大门。它会释放脉冲，你可不希望被它们击中。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "void_conduit"
 	anchored = TRUE

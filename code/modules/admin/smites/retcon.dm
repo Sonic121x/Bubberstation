@@ -1,12 +1,12 @@
 /datum/smite/retcon
-	name = "Retcon"
+	name = "追溯抹除"
 	/// how long until the thing attacked by this smite gets deleted
 	var/timer
 	/// the time it takes to actually do the fade out animation, the victim will always have some time still fully visible
 	var/fade_out_timer
 
 /datum/smite/retcon/configure(client/user)
-	timer = tgui_input_number(user, "How long should it take before the target disappears, in seconds?", "Retcon", 5)
+	timer = tgui_input_number(user, "目标应在多少秒后消失？", "追溯抹除", 5)
 
 	if (isnull(timer))
 		return FALSE

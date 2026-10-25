@@ -1,4 +1,4 @@
-ADMIN_VERB(trophy_manager, R_ADMIN, "Trophy Manager", "View all trophies.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(trophy_manager, R_ADMIN, "奖杯管理器", "查看所有奖杯。", ADMIN_CATEGORY_MAIN)
 	var/static/datum/trophy_manager/ui = new
 	ui.ui_interact(user.mob)
 
@@ -34,25 +34,25 @@ ADMIN_VERB(trophy_manager, R_ADMIN, "Trophy Manager", "View all trophies.", ADMI
 	switch(action)
 		if("delete")
 			SSpersistence.saved_trophies -= trophy
-			log_admin("[key_name(user)] has deleted a trophy made by [trophy.placer_key].")
-			message_admins(span_notice("[key_name_admin(user)] has deleted trophy made by [trophy.placer_key]."))
+			log_admin("[key_name(user)] 删除了一个由 [trophy.placer_key] 制作的奖杯。")
+			message_admins(span_notice("[key_name_admin(user)] 删除了一个由 [trophy.placer_key] 制作的奖杯。"))
 			return TRUE
 		if("edit_message")
 			var/old_message = trophy.message
-			var/new_message = tgui_input_text(user, "New trophy message?", "Message Editing", trophy.message, max_length = MAX_PLAQUE_LEN)
+			var/new_message = tgui_input_text(user, "新的奖杯留言？", "留言编辑", trophy.message, max_length = MAX_PLAQUE_LEN)
 			if(!new_message)
 				return
 			trophy.message = new_message
-			log_admin("[key_name(user)] has edited the message of trophy made by [trophy.placer_key] from \"[old_message]\" to \"[new_message]\".")
+			log_admin("[key_name(user)] 将 [trophy.placer_key] 制作的奖杯留言从“[old_message]”编辑为“[new_message]”。")
 			return TRUE
 		if("edit_path")
 			var/old_path = trophy.path
-			var/new_path = tgui_input_text(user, "New trophy path?", "Path Editing", trophy.path)
+			var/new_path = tgui_input_text(user, "新的奖杯路径？", "路径编辑", trophy.path)
 			if(!new_path)
 				return
 			if(!text2path(new_path))
-				to_chat(user, span_warning("Invalid path selected"))
+				to_chat(user, span_warning("所选路径无效"))
 				return
 			trophy.path = new_path
-			log_admin("[key_name(user)] has edited the item path of trophy made by [trophy.placer_key] from \"[old_path]\" to \"[new_path]\".")
+			log_admin("[key_name(user)] 将 [trophy.placer_key] 制作的奖杯物品路径从“[old_path]”编辑为“[new_path]”。")
 			return TRUE

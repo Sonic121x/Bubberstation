@@ -40,39 +40,39 @@ GLOBAL_VAR(antag_prototypes)
 	return parts.Join("<br>")
 
 /datum/antagonist/proc/antag_panel_objectives()
-	var/result = "<i><b>Personal Objectives</b></i>:<br>"
+	var/result = "<i><b>个人目标</b></i>：<br>"
 	if (objectives.len == 0)
-		result += "EMPTY<br>"
+		result += "空<br>"
 	else
 		var/obj_count = 1
 		for(var/datum/objective/objective as anything in objectives)
-			result += "<B>[obj_count]</B>: [objective.explanation_text] \
-				<a href='byond://?src=[REF(owner)];obj_edit=[REF(objective)]'>Edit</a> \
-				<a href='byond://?src=[REF(owner)];obj_delete=[REF(objective)]'>Delete</a> \
-				<a href='byond://?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.check_completion() ? "green" : "red"]>[objective.completed ? "Mark as incomplete" : "Mark as complete"]</font></a> \
+			result += "<B>[obj_count]</B>：[objective.explanation_text] \
+				<a href='byond://?src=[REF(owner)];obj_edit=[REF(objective)]'>编辑</a> \
+				<a href='byond://?src=[REF(owner)];obj_delete=[REF(objective)]'>删除</a> \
+				<a href='byond://?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.check_completion() ? "green" : "red"]>[objective.completed ? "标记为未完成" : "标记为已完成"]</font></a> \
 				<br>"
 			obj_count++
-	result += "<a href='byond://?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Add objective</a><br>"
-	result += "<a href='byond://?src=[REF(owner)];obj_prompt_custom=1;target_antag=[REF(src)]'>Prompt custom objective entry</a><br>"
-	result += "<a href='byond://?src=[REF(owner)];obj_announce=1'>Announce objectives</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>添加目标</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_prompt_custom=1;target_antag=[REF(src)]'>输入自定义目标</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_announce=1'>公布目标</a><br>"
 	return result
 
 /datum/mind/proc/get_common_admin_commands()
-	var/common_commands = "<span>Common Commands:</span>"
+	var/common_commands = "<span>常用命令：</span>"
 	if(ishuman(current))
-		common_commands += "<a href='byond://?src=[REF(src)];common=undress'>undress</a>"
+		common_commands += "<a href='byond://?src=[REF(src)];common=undress'>脱衣</a>"
 	else if(iscyborg(current))
 		var/mob/living/silicon/robot/R = current
 		if(R.emagged)
-			common_commands += "<a href='byond://?src=[REF(src)];silicon=Unemag'>Unemag</a>"
+			common_commands += "<a href='byond://?src=[REF(src)];silicon=Unemag'>取消电磁化</a>"
 	else if(isAI(current))
 		var/mob/living/silicon/ai/A = current
 		if (A.connected_robots.len)
 			for (var/mob/living/silicon/robot/R in A.connected_robots)
 				if (R.emagged)
-					common_commands += "<a href='byond://?src=[REF(src)];silicon=unemagcyborgs'>Unemag slaved cyborgs</a>"
+					common_commands += "<a href='byond://?src=[REF(src)];silicon=unemagcyborgs'>取消从属半机械人的电磁化</a>"
 					break
-	common_commands += "<a href='byond://?src=[REF(src)];common=toggle_exploitables'>Toggle exploitables override</a>" //SKYRAT EDIT ADDITION -- EXPLOITABLES
+	common_commands += "<a href='byond://?src=[REF(src)];common=toggle_exploitables'>切换可利用项覆盖</a>" //SKYRAT EDIT ADDITION -- EXPLOITABLES
 	return common_commands
 
 /**
@@ -81,11 +81,11 @@ GLOBAL_VAR(antag_prototypes)
 /datum/mind/proc/get_special_statuses()
 	var/list/result = LAZYCOPY(special_statuses)
 	if(!current)
-		result += span_bad("No body!")
+		result += span_bad("没有躯体！")
 	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
-		result += span_good("Mindshielded")
+		result += span_good("已受心智护盾保护")
 	if(current && HAS_MIND_TRAIT(current, TRAIT_UNCONVERTABLE))
-		result += span_good("Unconvertable")
+		result += span_good("不可转化")
 	return result
 
 /**
@@ -96,28 +96,28 @@ GLOBAL_VAR(antag_prototypes)
 	if(iscyborg(current))
 		var/mob/living/silicon/robot/robot = current
 		if (robot.emagged)
-			roles += "Emagged"
+			roles += "已电磁化"
 	return roles
 
 /datum/mind/proc/traitor_panel()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr, "Not before round-start!", "Alert")
+		tgui_alert(usr, "回合开始前不行！", "提示")
 		return
 	if(QDELETED(src))
-		tgui_alert(usr, "This mind doesn't have a mob, or is deleted! For some reason!", "Edit Memory")
+		tgui_alert(usr, "出于某种原因，这个心智没有所属生物，或者已被删除！", "编辑记忆")
 		return
 
-	var/out = "<B>[name]</B>[(current && (current.real_name != name))?" (as [current.real_name])":""]<br>"
-	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
+	var/out = "<B>[name]</B>[(current && (current.real_name != name))?"（作为 [current.real_name]）":""]<br>"
+	out += "当前该心智由 key [key] 拥有 [active?"（已同步）":"（未同步）"]<br>"
 	//BUBBERSTATION CHANGE START: ANTAG TICKET INTEGRATION
-	out += "Antag Tickets: <B>[current.client.get_antag_tickets()]</B> (Current multiplier: <B>x[current.client.antag_ticket_multiplier()]</B>)<br>"
+	out += "反派票券：<B>[current.client.get_antag_tickets()]</B>（当前倍率：<B>x[current.client.antag_ticket_multiplier()]</B>）<br>"
 	//BUBBERSTATION CHANGE END: ANTAG TICKET INTEGRAATION
-	out += "Assigned role: [assigned_role.title]. <a href='byond://?src=[REF(src)];role_edit=1'>Edit</a><br>"
-	out += "<a href='byond://?_src_=holder;[HrefToken()];check_teams=1'>Show Teams</a><br><br>"
+	out += "已分配职业：[assigned_role.title]。<a href='byond://?src=[REF(src)];role_edit=1'>编辑</a><br>"
+	out += "<a href='byond://?_src_=holder;[HrefToken()];check_teams=1'>显示队伍</a><br><br>"
 
 	var/special_statuses = get_special_roles() | get_special_statuses()
 	if(length(special_statuses))
-		out += "Roles: [jointext(special_statuses, " | ")]<br>"
+		out += "角色：[jointext(special_statuses, " | ")]<br>"
 
 	if(!GLOB.antag_prototypes)
 		GLOB.antag_prototypes = list()
@@ -159,7 +159,7 @@ GLOBAL_VAR(antag_prototypes)
 
 		if(!current_antag) //Show antagging options
 			if(possible_admin_antags.len)
-				antag_header_parts += span_highlight("None")
+				antag_header_parts += span_highlight("无")
 				antag_header_parts += possible_admin_antags
 			else
 				//If there's no antags to show in this category skip the section completely
@@ -167,9 +167,9 @@ GLOBAL_VAR(antag_prototypes)
 		else //Show removal and current one
 			priority_sections |= antag_category
 			antag_header_parts += span_bad("[current_antag.name]")
-			antag_header_parts += "<a href='byond://?src=[REF(src)];reroll_antag=[REF(current_antag)]'>Remove and reassign to new player</a>" // BUBBER EDIT ADDITION - ANTAG RE-ROLLING
-			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>Remove</a>"
-			antag_header_parts += "<a href='byond://?src=[REF(src)];open_antag_vv=[REF(current_antag)]'>Open VV</a>"
+			antag_header_parts += "<a href='byond://?src=[REF(src)];reroll_antag=[REF(current_antag)]'>移除并重新分配给新玩家</a>" // BUBBER EDIT ADDITION - ANTAG RE-ROLLING
+			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>移除</a>"
+			antag_header_parts += "<a href='byond://?src=[REF(src)];open_antag_vv=[REF(current_antag)]'>打开 VV</a>"
 
 
 		//We aren't antag of this category, grab first prototype to check the prefs (This is pretty vague but really not sure how else to do this)
@@ -181,7 +181,7 @@ GLOBAL_VAR(antag_prototypes)
 				pref_source = prototype
 				break
 		if(pref_source.pref_flag)
-			antag_header_parts += pref_source.enabled_in_preferences(src) ? "<br/>Enabled in Prefs" : "<br/>Disabled in Prefs" // BUBBER EDIT CHANGE - ORIGINAL: "Enabled in Prefs" : "Disabled in Prefs"
+			antag_header_parts += pref_source.enabled_in_preferences(src) ? "<br/>偏好中已启用" : "<br/>偏好中已禁用" // BUBBER EDIT CHANGE - ORIGINAL: "Enabled in Prefs" : "Disabled in Prefs"
 
 		//Traitor : None | Traitor | IAA
 		// Command1 | Command2 | Command3
@@ -205,19 +205,19 @@ GLOBAL_VAR(antag_prototypes)
 
 	//Uplink
 	if(ishuman(current))
-		var/uplink_info = "<i><b>Uplink</b></i>:"
+		var/uplink_info = "<i><b>上行链路</b></i>："
 		var/datum/component/uplink/U = find_syndicate_uplink()
 		if(U)
 			if (check_rights(R_FUN, 0))
-				uplink_info += ", <a href='byond://?src=[REF(src)];common=crystals'>[U.uplink_handler.telecrystals]</a> TC"
+				uplink_info += "，<a href='byond://?src=[REF(src)];common=crystals'>[U.uplink_handler.telecrystals]</a> TC"
 				if(U.uplink_handler.has_progression)
-					uplink_info += ", <a href='byond://?src=[REF(src)];common=progression'>[U.uplink_handler.progression_points]</a> PR"
+					uplink_info += "，<a href='byond://?src=[REF(src)];common=progression'>[U.uplink_handler.progression_points]</a> PR"
 			else
-				uplink_info += ", [U.uplink_handler.telecrystals] TC"
+				uplink_info += "，[U.uplink_handler.telecrystals] TC"
 				if(U.uplink_handler.has_progression)
-					uplink_info += ", [U.uplink_handler.progression_points] PR"
+					uplink_info += "，[U.uplink_handler.progression_points] PR"
 		else
-			uplink_info += "<a href='byond://?src=[REF(src)];common=uplink'>give</a>"
+			uplink_info += "<a href='byond://?src=[REF(src)];common=uplink'>给予</a>"
 		uplink_info += "." //hiel grammar
 
 		out += uplink_info + "<br>"

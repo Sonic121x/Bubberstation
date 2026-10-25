@@ -2,7 +2,7 @@
 #define ACTIVATION_UP_KEEP (0.025 * STANDARD_CELL_RATE)
 
 /obj/item/borg_chameleon
-	name = "cyborg chameleon projector"
+	name = "半机械人变色龙投影器"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "shield0"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -49,29 +49,29 @@
 		if (isturf(user.loc))
 			toggle(user)
 		else
-			to_chat(user, span_warning("You can't use [src] while inside something!"))
+			to_chat(user, span_warning("你在某个东西内部时无法使用[src]！"))
 	else
-		to_chat(user, span_warning("You need at least [display_energy(ACTIVATION_COST)] of charge in your cell to use [src]!"))
+		to_chat(user, span_warning("你的电池至少需要 [display_energy(ACTIVATION_COST)] 的电量才能使用[src]！"))
 
 /obj/item/borg_chameleon/proc/toggle(mob/living/silicon/robot/user)
 	if(active)
 		playsound(src, 'sound/effects/pop.ogg', 100, TRUE, -6)
-		to_chat(user, span_notice("You deactivate \the [src]."))
+		to_chat(user, span_notice("你关闭了[src]。"))
 		deactivate(user)
 	else
 		if(animation_playing)
-			to_chat(user, span_notice("\the [src] is recharging."))
+			to_chat(user, span_notice("[src]正在充能。"))
 			return
 		animation_playing = TRUE
-		to_chat(user, span_notice("You activate \the [src]."))
+		to_chat(user, span_notice("你启动了[src]。"))
 		playsound(src, 'sound/effects/seedling_chargeup.ogg', 100, TRUE, -6)
 		apply_wibbly_filters(user)
 		if (do_after(user, 5 SECONDS, target = user, cog_icon = null) && user.cell.use(ACTIVATION_COST))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
-			to_chat(user, span_notice("You are now disguised as the Nanotrasen engineering borg \"[friendlyName]\"."))
+			to_chat(user, span_notice("你现在伪装成纳米传讯工程半机械人“[friendlyName]”。"))
 			activate(user)
 		else
-			to_chat(user, span_warning("The chameleon field fizzles."))
+			to_chat(user, span_warning("变色龙场嗤的一声熄灭了。"))
 			do_sparks(3, FALSE, user)
 		remove_wibbly_filters(user)
 		animation_playing = FALSE
@@ -118,7 +118,7 @@
 /obj/item/borg_chameleon/proc/disrupt(mob/living/silicon/robot/user)
 	SIGNAL_HANDLER
 	if(active)
-		to_chat(user, span_danger("Your chameleon field deactivates."))
+		to_chat(user, span_danger("你的变色龙场关闭了。"))
 		deactivate(user)
 
 #undef ACTIVATION_COST

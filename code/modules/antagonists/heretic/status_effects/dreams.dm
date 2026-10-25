@@ -88,8 +88,8 @@
 
 /datum/dream/heretic/GenerateDream(mob/living/carbon/dreamer)
 	. = list()
-	. += "you wander through the forest of Mansus"
-	. += "there is a " + pick("pond", "well", "lake", "puddle", "stream", "spring", "brook", "marsh")
+	. += "你漫步穿过漫宿的森林"
+	. += "那里有一处" + pick("池塘", "水井", "湖泊", "水洼", "溪流", "泉眼", "小河", "沼泽")
 
 	if(isnull(allowed_typecaches_by_root_type))
 		allowed_typecaches_by_root_type = list()
@@ -102,17 +102,17 @@
 		var/list/filtered_objects = typecache_filter_list(all_objects, allowed_typecaches_by_root_type[object_type])
 		if(filtered_objects.len)
 			if (!something_found)
-				. += "its waters reflect"
+				. += "其水面映出"
 				something_found = TRUE
 			var/obj/found_object = pick(filtered_objects)
 			. += initial(found_object.name)
 	if(!something_found)
-		. += pick("it's pitch black", "ihe reflections are vague", "you stroll aimlessly")
+		. += pick("一片漆黑", "倒影朦胧不清", "你漫无目的地游荡")
 	else
-		. += "the images fade in the ripples"
-	. += "you feel exhausted"
+		. += "影像在涟漪中消散"
+	. += "你感到筋疲力尽"
 
 /datum/mood_event/mansus_dream_fatigue
-	description = "I must recover before I can dream of Mansus again."
+	description = "我必须先恢复过来，才能再次梦见漫宿。"
 	mood_change = -2
 	timeout = 5 MINUTES

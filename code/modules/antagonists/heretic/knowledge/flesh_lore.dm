@@ -11,30 +11,30 @@
 		"moving" = FALSE,
 	)
 	description = list(
-		"The Path of Flesh revolves around summoning ghouls and monstrosities to do your bidding.",
-		"Pick this path if you enjoy the fantasy of being a necromancer commanding legions of allies.",
+		"血肉之道围绕着召唤食尸鬼与畸形怪物来为你效劳。",
+		"如果你喜欢当一名统率亡灵大军的死灵法师，就选择这条道路。",
 	)
 	pros = list(
-		"Can turn dead humanoids into fragile but loyal ghouls.",
-		"Access to a versatile list of summoned minions.",
-		"Your summons are very versatie and can quicky overwhelm the crew should you coordinate your attacks",
-		"Eating organs or being fat grants various boons (depending on the level of your passive).",
+		"能将死去的人形生物变成脆弱但忠诚的食尸鬼。",
+		"可使用多种多样的召唤仆从。",
+		"你的召唤物非常多样，只要协调好攻势，就能迅速压倒船员",
+		"食用器官或保持肥胖会带来各种恩惠（取决于你被动效果的等级）。",
 	)
 	cons = list(
-		"A high degree of your progression is obtaining additional summoned monsters.",
-		"You have very little utility beyond your summoned monsters.",
-		"You gain no inherent access to defensive, offensive or mobility spells.",
-		"You are mostly focused around supporting your minions.",
+		"你的成长很大一部分依赖于获得额外的召唤怪物。",
+		"除召唤怪物外，你几乎没有其他辅助能力。",
+		"你无法天生获得防御、攻击或移动类法术。",
+		"你主要专注于辅助你的仆从。",
 	)
 	tips = list(
-		"Your Mansus Grasp allows you to turn dead humanoids into ghouls (even mindshielded humanoids like security officers and the captain). It also Leaves a mark that causes heavy bleeding when triggered by your bloody blade.",
-		"As a Flesh Heretic, organs and dead bodies are your best friends! You can use them for rituals, to heal or to gain buffs.",
-		"Your Flesh Surgery spell can heal your summons. Your robes grant you an aura that also heals nearby summons (but not yourself).",
-		"Your Flesh Surgery spell also lets you steal organs from humanoids. Useful if you need a spare liver.",
-		"Raw Prophets can link you and other summons in a telepathic network, allowing for long distance co-ordination.",
-		"Flesh Stalkers are decent combatants with the ability to disguise themselves as small creatures, like beepskies and corgis. They can also utilize an EMP spell, but this can potentially harm them if they transformed into a robot!",
-		"Your success with this path is reliant on how knowledgable or robust your minions are. However, there is always power in numbers; the more minions, the higher your chances of success.",
-		"Your minions are more expendable than you are. Do not be afraid to tell them to go to their deaths. You can just recover them later... maybe.",
+		"你的漫宿之握能让你把死去的人形生物变成食尸鬼（即使是安保官和舰长这类带有心智护盾的人形生物）。它还会留下一个印记，被你的血刃触发时会造成大量流血。",
+		"作为一名血肉异教徒，器官和尸体是你最好的朋友！你可以用它们举行仪式、进行治疗或获得增益。",
+		"你的血肉手术法术可以治疗你的召唤物。你的长袍会赋予你一个光环，同样能治疗附近的召唤物（但不包括你自己）。",
+		"你的血肉手术法术还能让你从人形生物身上窃取器官。如果你需要一颗备用肝脏，这会很有用。",
+		"生肉先知可以将你与其他召唤物连入一个心灵感应网络，从而实现远距离协同。",
+		"血肉潜行者是不错的战斗者，能够伪装成小型生物，比如小蜜蜂机器人和柯基犬。它们还能使用 EMP 法术，但如果它们变形为机器人，这可能会伤到它们自己！",
+		"你在这条道路上的成功取决于你的仆从有多博学、多能打。不过，人多总是力量大；仆从越多，成功的机会就越高。",
+		"你的仆从比你更可消耗。不要害怕让他们去送死。你之后可以把他们回收回来……也许吧。",
 	)
 
 	start = /datum/heretic_knowledge/limited_amount/starting/base_flesh
@@ -50,12 +50,12 @@
 	ascension = /datum/heretic_knowledge/ultimate/flesh_final
 
 /datum/heretic_knowledge/limited_amount/starting/base_flesh
-	name = "Principle of Hunger"
-	desc = "Opens up the Path of Flesh to you.<br>\
-		Allows you to create Bloody Blades. \
-		You can only create three at a time."
-	transmute_text = "Transmute a knife and a pool of blood."
-	gain_text = "Hundreds of us starved, but not me... I found strength in my greed."
+	name = "饥饿原理"
+	desc = "为你开启血肉之道。<br>\
+		允许你创造血刃。 \
+		你一次只能创造三把。"
+	transmute_text = "转化一把刀和一滩血。"
+	gain_text = "我们中数百人饿死了，但我不一样……我在贪婪中找到了力量。"
 	required_atoms = list(
 		/obj/item/knife = 1,
 		/obj/effect/decal/cleanable/blood = 1,
@@ -73,7 +73,7 @@
 	summon_objective.owner = our_heretic.owner
 	our_heretic.objectives += summon_objective
 
-	to_chat(user, span_mansus("Undertaking the Path of Flesh, you are given another objective."))
+	to_chat(user, span_mansus("踏上血肉之道后，你获得了另一个目标。"))
 	our_heretic.owner.announce_objectives()
 
 /datum/heretic_knowledge/limited_amount/starting/base_flesh/on_mansus_grasp(mob/living/source, mob/living/target)
@@ -83,22 +83,22 @@
 		return
 
 	if(LAZYLEN(created_items) >= limit)
-		target.balloon_alert(source, "at ghoul limit!")
+		target.balloon_alert(source, "已达食尸鬼上限！")
 		return COMPONENT_BLOCK_HAND_USE
 
 	if(HAS_TRAIT(target, TRAIT_HUSK))
-		target.balloon_alert(source, "husked!")
+		target.balloon_alert(source, "已是干尸！")
 		return COMPONENT_BLOCK_HAND_USE
 
 	if(!IS_VALID_GHOUL_MOB(target))
-		target.balloon_alert(source, "invalid body!")
+		target.balloon_alert(source, "身体无效！")
 		return COMPONENT_BLOCK_HAND_USE
 
 	target.grab_ghost()
 
 	// The grab failed, so they're mindless or playerless. We can't continue
 	if(!target.mind || !target.client)
-		target.balloon_alert(source, "no soul!")
+		target.balloon_alert(source, "没有灵魂！")
 		return COMPONENT_BLOCK_HAND_USE
 
 	make_ghoul(source, target)
@@ -108,8 +108,8 @@
 
 /// Makes [victim] into a ghoul.
 /datum/heretic_knowledge/limited_amount/starting/base_flesh/proc/make_ghoul(mob/living/user, mob/living/carbon/human/victim)
-	user.log_message("created a ghoul, controlled by [key_name(victim)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a ghoul, [ADMIN_LOOKUPFLW(victim)].")
+	user.log_message("创造了一个食尸鬼，由 [key_name(victim)] 控制。", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(user)] 创造了一个食尸鬼：[ADMIN_LOOKUPFLW(victim)]。")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,
@@ -128,13 +128,13 @@
 	LAZYREMOVE(created_items, WEAKREF(ghoul))
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul
-	name = "Imperfect Ritual"
-	desc = "Enchant a corpse into a Voiceless Dead. \
-		The corpse does not need to have a soul.<br>\
-		Voiceless Dead are mute ghouls and only have 50 health, but can use Bloody Blades effectively. \
-		You can only create two at a time."
-	transmute_text = "Transmute a corpse and a poppy."
-	gain_text = "I found notes of a dark ritual, unfinished... yet still, I pushed forward."
+	name = "不完美仪式"
+	desc = "将一具尸体附魔成无声亡者。 \
+		该尸体不需要拥有灵魂。<br>\
+		无声亡者是说不出话的食尸鬼，只有 50 点生命值，但能有效使用血刃。 \
+		你一次只能创造两个。"
+	transmute_text = "转化一具尸体和一朵罂粟。"
+	gain_text = "我找到了一个黑暗仪式的笔记，尚未完成……但我仍然坚持了下去。"
 	required_atoms = list(
 		/mob/living/carbon/human = 1,
 		/obj/item/food/grown/flower/poppy = 1,
@@ -153,32 +153,32 @@
 		if(body.stat != DEAD)
 			continue
 		if(!IS_VALID_GHOUL_MOB(body) || HAS_TRAIT(body, TRAIT_HUSK))
-			to_chat(user, span_hierophant_warning("[body] is not in a valid state to be made into a ghoul."))
+			to_chat(user, span_hierophant_warning("[body] 的状态不适合被制成食尸鬼。"))
 			continue
 
 		// We'll select any valid bodies here. If they're clientless, we'll give them a new one.
 		selected_atoms += body
 		return TRUE
 
-	loc.balloon_alert(user, "ritual failed, no valid body!")
+	loc.balloon_alert(user, "仪式失败，没有有效的身体！")
 	return FALSE
 
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	var/mob/living/carbon/human/soon_to_be_ghoul = locate() in selected_atoms
 	if(QDELETED(soon_to_be_ghoul)) // No body? No ritual
 		stack_trace("[type] reached on_finished_recipe without a human in selected_atoms to make a ghoul out of.")
-		loc.balloon_alert(user, "ritual failed, no valid body!")
+		loc.balloon_alert(user, "仪式失败，没有有效的身体！")
 		return FALSE
 
 	soon_to_be_ghoul.grab_ghost()
 
 	if(!soon_to_be_ghoul.mind || !soon_to_be_ghoul.client)
-		message_admins("[ADMIN_LOOKUPFLW(user)] is creating a voiceless dead of a body with no player.")
-		var/mob/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [span_danger(soon_to_be_ghoul.real_name)], a [span_notice("voiceless dead")]?", check_jobban = ROLE_HERETIC, role = ROLE_HERETIC, poll_time = 5 SECONDS, checked_target = soon_to_be_ghoul, alert_pic = mutable_appearance('icons/mob/human/human.dmi', "husk"), jump_target = soon_to_be_ghoul, role_name_text = "voiceless dead")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 正用一具没有玩家的身体创造无声亡者。")
+		var/mob/chosen_one = SSpolling.poll_ghosts_for_target("你想扮演[span_danger(soon_to_be_ghoul.real_name)]，一名[span_notice("无声亡者")]吗？", check_jobban = ROLE_HERETIC, role = ROLE_HERETIC, poll_time = 5 SECONDS, checked_target = soon_to_be_ghoul, alert_pic = mutable_appearance('icons/mob/human/human.dmi', "husk"), jump_target = soon_to_be_ghoul, role_name_text = "无声亡者")
 		if(isnull(chosen_one))
-			loc.balloon_alert(user, "ritual failed, no ghosts!")
+			loc.balloon_alert(user, "仪式失败，没有幽灵！")
 			return FALSE
-		message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(soon_to_be_ghoul)]) to replace an AFK player.")
+		message_admins("[key_name_admin(chosen_one)] 接管了（[key_name_admin(soon_to_be_ghoul)]），以替换一名暂离的玩家。")
 		soon_to_be_ghoul.ghostize(FALSE)
 		soon_to_be_ghoul.PossessByPlayer(chosen_one.key)
 
@@ -191,8 +191,8 @@
 
 /// Makes [victim] into a ghoul.
 /datum/heretic_knowledge/limited_amount/flesh_ghoul/proc/make_ghoul(mob/living/user, mob/living/carbon/human/victim)
-	user.log_message("created a voiceless dead, controlled by [key_name(victim)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a voiceless dead, [ADMIN_LOOKUPFLW(victim)].")
+	user.log_message("创造了一个无声亡者，由 [key_name(victim)] 控制。", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(user)] 创造了一个无声亡者：[ADMIN_LOOKUPFLW(victim)]。")
 
 	victim.apply_status_effect(
 		/datum/status_effect/ghoul,
@@ -213,24 +213,24 @@
 	REMOVE_TRAIT(ghoul, TRAIT_MUTE, MAGIC_TRAIT)
 
 /datum/heretic_knowledge/spell/flesh_surgery
-	name = "Knitting of Flesh"
-	desc = "Grants you the spell Knit Flesh.<br>This spell allows you to remove organs from victims \
-		without requiring a lengthy surgery.<br>This process is much longer if the target is not dead.<br>\
-		This spell also allows you to heal your minions and summons, or restore failing organs to acceptable status."
-	gain_text = "But they were not out of my reach for long. With every step, the screams grew, until at last \
-		I learned that they could be silenced."
+	name = "血肉编织"
+	desc = "赐予你“编织血肉”法术。<br>该法术让你无需漫长的手术即可从受害者身上取出器官。\
+		<br>如果目标没有死亡，这个过程会漫长得多。<br>\
+		该法术还能让你治疗你的仆从与召唤物，或将衰竭的器官恢复到可接受的状态。"
+	gain_text = "但它们并没有长久地逃出我的掌心。每走一步，尖叫声就愈发响亮，直到最终 \
+		我明白，它们是可以被平息下来的。"
 	action_to_add = /datum/action/cooldown/spell/touch/flesh_surgery
 	cost = 2
 	drafting_tier = 5
 	max_charges = INFINITY
 
 /datum/heretic_knowledge/armor/flesh
-	desc = "Create a Writhing Embrace.<br>\
-		It grants you the ability to detect the health condition of other living (and non-living) \
-		and an aura that slowly heals your summons."
-	transmute_text = "Transmute a table (or a suit), a mask and a pool of blood."
-	gain_text = "I tugged these wretched, slothing things about me, like one might a warm blanket. \
-		With eyes-not-mine, they will witness. With teeth-not-mine, they will clench. With limbs-not-mine, they will break."
+	desc = "创造一个蠕动拥抱。<br>\
+		它赐予你探知其他活物（以及非活物）健康状况的能力， \
+		以及一个缓慢治疗你召唤物的光环。"
+	transmute_text = "转化一张桌子（或一件套装）、一个面具和一滩血。"
+	gain_text = "我把这些可悲的、迟缓蠕动的东西裹在身上，就像别人裹上一条温暖的毯子。 \
+		以不属于我的眼睛，它们将见证。以不属于我的牙齿，它们将紧咬。以不属于我的肢体，它们将折断。"
 	result_atoms = list(/obj/item/clothing/suit/hooded/cultrobes/eldritch/flesh)
 	research_tree_icon_state = "flesh_armor"
 	required_atoms = list(
@@ -240,13 +240,13 @@
 	)
 
 /datum/heretic_knowledge/summon/raw_prophet
-	name = "Raw Ritual"
-	desc = "Summon a Raw Prophet.<br>\
-		Raw Prophets have a greatly increased sight range and x-ray vision, as well as a long range jaunt and \
-		the ability to link minds to communicate with ease, but are very fragile and weak in combat."
-	transmute_text = "Transmute a pair of eyes, a left arm, and a pool of blood."
-	gain_text = "I could not continue alone. I was able to summon The Uncanny Man to help me see more. \
-		The screams... once constant, now silenced by their wretched appearance. Nothing was out of reach."
+	name = "生肉仪式"
+	desc = "召唤一名生肉先知。<br>\
+		生肉先知拥有大幅提升的视野范围和透视视觉，还能进行远距离跃迁， \
+		并连接心灵以便轻松交流，但它们非常脆弱，战斗力也很弱。"
+	transmute_text = "转化一对眼睛、一条左臂和一滩血。"
+	gain_text = "我无法独自继续。我成功召唤了诡秘之人，帮助我看到更多。 \
+		那些尖叫声……曾经不绝于耳，如今被它们可憎的外貌所平息。没有什么再遥不可及。"
 	required_atoms = list(
 		/obj/item/organ/eyes = 1,
 		/obj/effect/decal/cleanable/blood = 1,
@@ -258,10 +258,10 @@
 
 
 /datum/heretic_knowledge/blade_upgrade/flesh
-	name = "Bleeding Steel"
-	desc = "Your Bloody Blade now causes enemies to bleed heavily on attack."
-	gain_text = "The Uncanny Man was not alone. They led me to the Marshal. \
-		I finally began to understand. And then, blood rained from the heavens."
+	name = "流血之钢"
+	desc = "你的血刃现在会让敌人受到攻击时大量流血。"
+	gain_text = "诡秘之人并不孤单。它们把我引向了元帅。 \
+		我终于开始理解。而后，血从天空落下如雨。"
 	research_tree_icon_path = 'icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_flesh"
 	///What type of wound do we apply on hit
@@ -277,12 +277,12 @@
 	crit_wound.apply_wound(bodypart, attack_direction = get_dir(source, target))
 
 /datum/heretic_knowledge/summon/stalker
-	name = "Lonely Ritual"
-	desc = "Summon a Stalker.<br>\
-		Stalkers can jaunt, release EMPs, shapeshift into animals or automatons, and are strong in combat."
-	transmute_text = "Transmute a tail of any kind, a stomach, a tongue, a pen and a piece of paper."
-	gain_text = "I was able to combine my greed and desires to summon an eldritch beast I had never seen before. \
-		An ever shapeshifting mass of flesh, it knew well my goals. The Marshal approved."
+	name = "孤独仪式"
+	desc = "召唤一名潜行者。<br>\
+		潜行者可以跃迁、释放 EMP、变形为动物或自动机械，并且战斗力很强。"
+	transmute_text = "转化任意一种尾巴、一个胃、一条舌头、一支笔和一张纸。"
+	gain_text = "我将贪婪与欲望结合起来，召唤出了一只我从未见过的诡异野兽。 \
+		一团不断变形的血肉，它很清楚我的目标。元帅认可了。"
 
 	required_atoms = list(
 		/obj/item/organ/tail = 1,
@@ -298,21 +298,21 @@
 	is_final_knowledge = TRUE
 
 /datum/heretic_knowledge/ultimate/flesh_final
-	name = "Priest's Final Hymn"
-	desc = "The ascension ritual of the Path of Flesh.<br>\
-		When completed, you gain the ability to shed your human form \
-		and become the Lord of the Night, a supremely powerful creature. \
-		Just the act of transforming causes nearby heathens great fear and trauma.<br>\
-		While in the Lord of the Night form, you can consume arms to heal and regain segments.<br>\
-		Additionally, you can summon three times as many Ghouls and Voiceless Dead, \
-		and can create unlimited blades to arm them all."
-	transmute_text = "Transmute four corpses."
-	gain_text = "With the Marshal's knowledge, my power had peaked. The throne was open to claim. \
-		Men of this world, hear me, for the time has come! The Marshal guides my army! \
-		Reality will bend to THE LORD OF THE NIGHT or be unraveled! WITNESS MY ASCENSION!"
+	name = "祭司的终末赞歌"
+	desc = "血肉之道的飞升仪式。<br>\
+		完成之后，你将获得褪去人类形态、 \
+		成为夜之主的能力，那是一种极其强大的生物。 \
+		仅仅是变形的举动，就会让附近的异端陷入极大的恐惧与创伤。<br>\
+		在夜之主形态下，你可以吞噬手臂来治疗并恢复肢体。<br>\
+		此外，你可以召唤三倍数量的食尸鬼与无声亡者， \
+		并能创造无限的血刃来将它们全部武装起来。"
+	transmute_text = "转化四具尸体。"
+	gain_text = "凭借元帅的知识，我的力量已达巅峰。王座已无主，可供夺取。 \
+		此世之人，听我说，时候到了！元帅指引着我的军队！ \
+		现实将向夜之主屈膝，否则便将被撕碎！见证我的飞升！"
 	required_atoms = list(/mob/living/carbon/human = 4)
 	ascension_achievement = /datum/award/achievement/misc/flesh_ascension
-	announcement_text = "%SPOOKY% Ever coiling vortex. Reality unfolded. ARMS OUTREACHED, THE LORD OF THE NIGHT, %NAME% has ascended! Fear the ever twisting hand! %SPOOKY%"
+	announcement_text = "%SPOOKY% 永不停歇盘绕的漩涡。现实被展开。双臂伸展，夜之主 %NAME% 已飞升！畏惧那不断扭曲的手吧！%SPOOKY%"
 	announcement_sound = 'sound/music/antag/heretic/ascend_flesh.ogg'
 
 /datum/heretic_knowledge/ultimate/flesh_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)

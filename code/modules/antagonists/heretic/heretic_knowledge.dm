@@ -12,9 +12,9 @@
 	/// The abstract parent type of the knowledge, used in determine mutual exclusivity in some cases
 	abstract_type = /datum/heretic_knowledge
 	/// Name of the knowledge, shown to the heretic.
-	var/name = "Basic knowledge"
+	var/name = "基础知识"
 	/// Description of the knowledge, shown to the heretic. Describes what it unlocks / does.
-	var/desc = "Basic knowledge of forbidden arts."
+	var/desc = "禁忌秘术的基础知识。"
 	/// Text describing how you create the thing
 	var/transmute_text = ""
 	/// Big red notices about the knowledge
@@ -59,8 +59,8 @@
 /datum/heretic_knowledge/proc/pre_research(mob/user, datum/antagonist/heretic/our_heretic)
 	// consider moving this check to a type instead
 	if(is_final_knowledge && !our_heretic.unlimited_blades)
-		var/choice = tgui_alert(user, "THIS WILL DISABLE BLADE BREAKING, Are you ready to research this? The blade cap will also be removed.", "Get Final Spell?", list("Yes", "No"))
-		if(choice != "Yes")
+		var/choice = tgui_alert(user, "这将禁用碎刃逃脱，并解除刀刃数量上限。确定要研究吗？", "获取最终法术？", list("是", "否"))
+		if(choice != "是")
 			return FALSE
 	return TRUE
 
@@ -146,10 +146,10 @@
 /datum/heretic_knowledge/proc/parse_required_item(atom/item_path, number_of_things)
 	// If we need a human, there is a high likelihood we actually need a (dead) body
 	if(ispath(item_path, /mob/living/carbon/human))
-		return "[number_of_things] bod[number_of_things > 1 ? "ies" : "y"]"
+		return "[number_of_things]具尸体"
 	if(ispath(item_path, /mob/living))
-		return "[number_of_things] carcass[number_of_things > 1 ? "es" : ""] of any kind"
-	return "[number_of_things] [initial(item_path.name)]\s"
+		return "[number_of_things]具任意生物的尸体"
+	return "[number_of_things]个[initial(item_path.name)]"
 
 /**
  * Called whenever the knowledge's associated ritual is completed successfully.
@@ -229,7 +229,7 @@
 	. = ..()
 	charges = max_charges
 	if(max_charges != INFINITY)
-		desc += "<br>Has [max_charges] charge\s[transmute_text ? ", after which you must recharge the spell" : ""]."
+		desc += "<br>拥有[max_charges]次充能[transmute_text ? "，耗尽后必须为法术重新充能" : ""]。"
 
 /datum/heretic_knowledge/spell/Destroy()
 	QDEL_NULL(created_action_ref)
@@ -317,7 +317,7 @@
 		return NONE
 
 	if(feedback)
-		to_chat(the_spell.owner, span_mansus("You don't have enough charges to cast this spell!"))
+		to_chat(the_spell.owner, span_mansus("充能不足，无法施放此法术！"))
 	return SPELL_CANCEL_CAST
 
 /datum/heretic_knowledge/spell/proc/check_charges(mob/living/source, datum/action/cooldown/the_spell)
@@ -331,7 +331,7 @@
 	if(our_heretic?.ascended)
 		return NONE
 
-	to_chat(source, span_mansus("You don't have enough charges to cast this spell! [transmute_text]"))
+	to_chat(source, span_mansus("充能不足，无法施放此法术！[transmute_text]"))
 	return SPELL_CANCEL_CAST
 
 /datum/heretic_knowledge/spell/proc/deduct_charge(mob/living/source, datum/action/cooldown/the_spell)
@@ -406,7 +406,7 @@
 			LAZYREMOVE(created_items, ref)
 
 	if(LAZYLEN(created_items) >= limit)
-		loc.balloon_alert(user, "ritual failed, at limit!")
+		loc.balloon_alert(user, "仪式失败，已达数量上限！")
 		return FALSE
 
 	return TRUE
@@ -443,7 +443,7 @@
 		our_heretic.heretic_path = new column_path()
 	if(!our_heretic.heretic_path)
 		// If we don't have a path, we can't continue.
-		to_chat(user, span_warning("Oh shit, something broke, no path found!"))
+		to_chat(user, span_warning("糟糕，出了点问题，未找到研究路线！"))
 		stack_trace("failed to find valid path [our_heretic.heretic_shops[HERETIC_KNOWLEDGE_TREE][type][HKT_ROUTE]] from researching [src]")
 		return
 	SSblackbox.record_feedback("tally", "heretic_path_taken", 1, our_heretic.heretic_path.route)
@@ -606,10 +606,10 @@
 	summoned.move_resist = MOVE_FORCE_OVERPOWERING
 	animate(summoned, 10 SECONDS, alpha = 155)
 
-	message_admins("A [summoned.name] is being summoned by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(summoned)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)]正在[ADMIN_COORDJMP(summoned)]召唤[summoned.name]。")
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_HERETIC, poll_time = 10 SECONDS, checked_target = summoned, ignore_category = poll_ignore_define, alert_pic = summoned, role_name_text = summoned.name)
 	if(isnull(chosen_one))
-		loc.balloon_alert(user, "ritual failed, no ghosts!")
+		loc.balloon_alert(user, "仪式失败，没有幽灵响应！")
 		animate(summoned, 0.5 SECONDS, alpha = 0)
 		QDEL_IN(summoned, 0.6 SECONDS)
 		return FALSE
@@ -624,7 +624,7 @@
 	summoned.ai_controller?.clear_forced_off() //the client keeps the AI off from here; if they disconnect the AI may take back over
 
 	user.log_message("created a [summoned.name], controlled by [key_name(chosen_one)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a [summoned.name], [ADMIN_LOOKUPFLW(summoned)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)]创造了[summoned.name]：[ADMIN_LOOKUPFLW(summoned)]。")
 
 	SEND_SIGNAL(user, COMSIG_HERETIC_SUMMONED_MOB, summoned)
 
@@ -643,10 +643,10 @@
  * A subtype of knowledge that generates random ritual components.
  */
 /datum/heretic_knowledge/knowledge_ritual
-	name = "Ritual of Knowledge"
-	desc = "A randomly generated transmutation ritual that rewards knowledge points and can only be completed once."
-	notice = "This can only be completed once."
-	gain_text = "Everything can be a key to unlocking the secrets behind the Gates. I must be wary and wise."
+	name = "求知仪式"
+	desc = "随机生成的转化仪式，完成后可获得知识点，且只能完成一次。"
+	notice = "此仪式只能完成一次。"
+	gain_text = "万物皆可成为解开门后秘密的钥匙。我必须谨慎而睿智。"
 	abstract_type = /datum/heretic_knowledge/knowledge_ritual
 	cost = 1
 	priority = MAX_KNOWLEDGE_PRIORITY - 10 // A pretty important midgame ritual.
@@ -700,16 +700,16 @@
 
 	var/list/requirements_string = list()
 
-	to_chat(user, span_mansus("The [name] requires the following:"))
+	to_chat(user, span_mansus("[name]需要以下物品："))
 	for(var/obj/item/path as anything in required_atoms)
 		var/amount_needed = required_atoms[path]
-		to_chat(user, span_hypnophrase("[amount_needed] [initial(path.name)]\s..."))
-		requirements_string += "[amount_needed == 1 ? "":"[amount_needed] "][initial(path.name)]\s"
+		to_chat(user, span_hypnophrase("[amount_needed]个[initial(path.name)]……"))
+		requirements_string += "[amount_needed]个[initial(path.name)]"
 
-	to_chat(user, span_mansus("Completing it will reward you [KNOWLEDGE_RITUAL_POINTS] knowledge points. You can check the knowledge in your Researched Knowledge to be reminded."))
+	to_chat(user, span_mansus("完成仪式将获得[KNOWLEDGE_RITUAL_POINTS]点知识。你可以在已研究知识中查看此知识以回顾要求。"))
 
-	transmute_text = "Transmute [english_list(requirements_string)]."
-	desc = "Rewards you with [KNOWLEDGE_RITUAL_POINTS] bonus knowledge points."
+	transmute_text = "转化[jointext(requirements_string, "、")]。"
+	desc = "奖励[KNOWLEDGE_RITUAL_POINTS]点额外知识。"
 
 /datum/heretic_knowledge/knowledge_ritual/can_be_invoked(datum/antagonist/heretic/invoker)
 	return !was_completed
@@ -722,9 +722,9 @@
 	our_heretic.adjust_knowledge_points(KNOWLEDGE_RITUAL_POINTS)
 	was_completed = TRUE
 
-	to_chat(user, span_boldnotice("[name] completed!"))
-	to_chat(user, span_hypnophrase(span_big("[pick_list(HERETIC_INFLUENCE_FILE, "drain_message")]")))
-	desc += " (Completed!)"
+	to_chat(user, span_boldnotice("[name]已完成！"))
+	to_chat(user, span_hypnophrase(span_big("[chinese_batch_four_influence_display(pick_list(HERETIC_INFLUENCE_FILE, "drain_message"))]")))
+	desc += "（已完成！）"
 	log_heretic_knowledge("[key_name(user)] completed a [name] at [round_timestamp()].")
 	user.add_mob_memory(/datum/memory/heretic_knowledge_ritual)
 	SEND_SIGNAL(our_heretic, COMSIG_HERETIC_PASSIVE_UPGRADE_FINAL)
@@ -808,9 +808,9 @@
 	SSblackbox.record_feedback("tally", "heretic_ascended", 1, heretic_datum.heretic_path.route)
 	log_heretic_knowledge("[key_name(user)] completed their final ritual at [round_timestamp()].")
 	notify_ghosts(
-		"[user.real_name] has completed an ascension ritual!",
+		"[user.real_name]完成了飞升仪式！",
 		source = user,
-		header = "A Heretic is Ascending!",
+		header = "一名异教徒正在飞升！",
 	)
 	priority_announce(
 		text = replacetext(replacetext(announcement_text, "%NAME%", user.real_name), "%SPOOKY%", GLOBAL_PROC_REF(generate_heretic_text)),
@@ -820,7 +820,7 @@
 	)
 
 	if(EMERGENCY_IDLE_OR_RECALLED)
-		SSshuttle.call_evac_shuttle("Critical reality rupture detected on supranatural casuality long-range scanners. Mass crew casualty and possible station destruction determined to be beyond acceptable probability. Priority evacuation shuttle dispatched.")
+		SSshuttle.call_evac_shuttle("超自然因果远程扫描仪检测到严重现实破裂。预计出现大规模船员伤亡及空间站毁灭的概率已超过可接受范围。已优先派遣疏散穿梭机。")
 	SSshuttle.emergency_no_recall = TRUE
 
 	if(!isnull(ascension_achievement))

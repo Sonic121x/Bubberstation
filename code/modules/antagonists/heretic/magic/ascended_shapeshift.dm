@@ -1,8 +1,8 @@
 // Given to ascended knock heretics, is a form of shapeshift that can turn into all 4 common heretic summons, and is not limited to 1 selection.
 /datum/action/cooldown/spell/shapeshift/eldritch/ascension
-	name = "Ascended Shapechange"
-	desc = "A spell that allows you to take on the form of another eldritch creature, gaining their abilities. \
-		You can change your choice at any time, and if your form dies, you dont die."
+	name = "飞升变形"
+	desc = "一种让你化身为另一种邪异生物并获取其能力的法术。\
+		你可以随时更换选择，即使你的化身死亡，你也不会死去。"
 	cooldown_time = 20 SECONDS
 	convert_damage = FALSE
 	die_with_shapeshifted_form = FALSE

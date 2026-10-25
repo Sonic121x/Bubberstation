@@ -1,7 +1,7 @@
 //Pinpointers are used to track atoms from a distance as long as they're on the same z-level. The captain and nuke ops have ones that track the nuclear authentication disk.
 /obj/item/pinpointer
-	name = "pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals."
+	name = "定位仪"
+	desc = "一种手持追踪装置，可锁定特定信号。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "pinpointer"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -49,12 +49,12 @@
 	if(!process_scan) //since it's not scanning on process, it scans here.
 		scan_for_target()
 	toggle_on()
-	user.visible_message(span_notice("[user] [active ? "" : "de"]activates [user.p_their()] pinpointer."), span_notice("You [active ? "" : "de"]activate your pinpointer."))
+	user.visible_message(span_notice("[user][active ? "关闭" : "启动"]了自己的定位仪。"), span_notice("你[active ? "关闭" : "启动"]了自己的定位仪。"))
 
 /obj/item/pinpointer/examine(mob/user)
 	. = ..()
 	if(target)
-		. += "It is currently tracking [target]."
+		. += "它当前正在追踪[target]。"
 
 /obj/item/pinpointer/proc/toggle_on()
 	active = !active
@@ -105,8 +105,8 @@
 			return "pinon[alert ? "alert" : "far"][icon_suffix]"
 
 /obj/item/pinpointer/crew // A replacement for the old crew monitoring consoles
-	name = "crew pinpointer"
-	desc = "A handheld tracking device that points to crew suit sensors."
+	name = "船员定位仪"
+	desc = "一种手持追踪装置，可指向船员的服装传感器。"
 	icon_state = "pinpointer_crew"
 	worn_icon_state = "pinpointer_crew"
 	custom_price = PAYCHECK_CREW * 6
@@ -136,14 +136,14 @@
 /obj/item/pinpointer/crew/attack_self(mob/living/user)
 	if(active)
 		toggle_on()
-		user.visible_message(span_notice("[user] deactivates [user.p_their()] pinpointer."), span_notice("You deactivate your pinpointer."))
+		user.visible_message(span_notice("[user]关闭了自己的定位仪。"), span_notice("你关闭了自己的定位仪。"))
 		return
 
 	if (!pinpointer_owner)
 		pinpointer_owner = user
 
 	if (pinpointer_owner && pinpointer_owner != user)
-		to_chat(user, span_notice("The pinpointer doesn't respond. It seems to only recognise its owner."))
+		to_chat(user, span_notice("定位仪没有反应。它似乎只认自己的主人。"))
 		return
 
 	var/list/name_counts = list()
@@ -154,7 +154,7 @@
 		if(!trackable(H))
 			continue
 
-		var/crewmember_name = "Unknown"
+		var/crewmember_name = "未知"
 		if(H.wear_id)
 			var/obj/item/card/id/I = H.wear_id.GetID()
 			if(I?.registered_name)
@@ -167,9 +167,9 @@
 		name_counts[crewmember_name] = 1
 
 	if(!length(names))
-		user.visible_message(span_notice("[user]'s pinpointer fails to detect a signal."), span_notice("Your pinpointer fails to detect a signal."))
+		user.visible_message(span_notice("[user]的定位仪未能探测到信号。"), span_notice("你的定位仪未能探测到信号。"))
 		return
-	var/pinpoint_target = tgui_input_list(user, "Person to track", "Pinpoint", sort_list(names))
+	var/pinpoint_target = tgui_input_list(user, "要追踪的人员", "定位", sort_list(names))
 	if(isnull(pinpoint_target))
 		return
 	if(isnull(names[pinpoint_target]))
@@ -178,7 +178,7 @@
 		return
 	target = names[pinpoint_target]
 	toggle_on()
-	user.visible_message(span_notice("[user] activates [user.p_their()] pinpointer."), span_notice("You activate your pinpointer."))
+	user.visible_message(span_notice("[user]启动了自己的定位仪。"), span_notice("你启动了自己的定位仪。"))
 
 /obj/item/pinpointer/crew/scan_for_target()
 	if(target)
@@ -190,8 +190,8 @@
 		active = FALSE
 
 /obj/item/pinpointer/pair
-	name = "pair pinpointer"
-	desc = "A handheld tracking device that locks onto its other half of the matching pair."
+	name = "成对定位仪"
+	desc = "一种手持追踪装置，可锁定与之配套的另一半。"
 	/// Reference to the other, specific pinpointer that it's bought with. Assigned on /obj/item/storage/box/pinpointer_pairs.
 	var/other_pair
 
@@ -208,12 +208,12 @@
 		return
 	var/mob/mob_holder = get(target, /mob)
 	if(istype(mob_holder))
-		. += "Its pair is being held by [mob_holder]."
+		. += "它的配对物正被[mob_holder]持有。"
 		return
 
 /obj/item/pinpointer/shuttle
-	name = "bounty shuttle pinpointer"
-	desc = "A handheld tracking device that locates the bounty hunter shuttle for quick escapes."
+	name = "赏金穿梭机定位仪"
+	desc = "一种手持追踪装置，可定位赏金猎人穿梭机，便于快速撤离。"
 	icon_state = "pinpointer_hunter"
 	worn_icon_state = "pinpointer_black"
 	icon_suffix = "_hunter"
@@ -237,8 +237,8 @@
 GLOBAL_LIST_EMPTY(sniffable_sheets)
 
 /obj/item/pinpointer/material_sniffer
-	name = "material sniffer"
-	desc = "A handheld tracking device that locates sheets of glass and iron."
+	name = "材料嗅探器"
+	desc = "一种手持追踪装置，可定位玻璃板与铁板。"
 	icon_state = "pinpointer_sniffer"
 	worn_icon_state = "pinpointer_black"
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.8, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 0.7)
@@ -266,5 +266,5 @@ GLOBAL_LIST_EMPTY(sniffable_sheets)
 	if(!new_sheet_target)
 		target = null
 		return
-	say("Located [new_sheet_target.amount] [new_sheet_target.singular_name]s!")
+	say("已定位到[new_sheet_target.amount]份[new_sheet_target.singular_name]！")
 	target = new_sheet_target

@@ -1,6 +1,6 @@
 /obj/item/grenade/syndieminibomb
-	desc = "A syndicate manufactured explosive used to sow destruction and chaos."
-	name = "syndicate minibomb"
+	desc = "辛迪加制造的爆炸物，用于散播破坏与混乱。"
+	name = "辛迪加迷你炸弹"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "syndicate"
 	inhand_icon_state = "flashbang"
@@ -19,16 +19,16 @@
 	qdel(src)
 
 /obj/item/grenade/syndieminibomb/concussion
-	name = "HE Grenade"
-	desc = "A compact shrapnel grenade meant to devastate nearby organisms and cause some damage in the process. Pull pin and throw opposite direction."
+	name = "高爆手榴弹"
+	desc = "紧凑的破片手榴弹，用于重创附近的生物，并顺带造成些破坏。拔销后向远处投掷。"
 	icon_state = "concussion"
 	ex_heavy = 2
 	ex_light = 3
 	ex_flame = 3
 
 /obj/item/grenade/frag
-	name = "frag grenade"
-	desc = "An anti-personnel fragmentation grenade, this weapon excels at killing soft targets by shredding them with metal shrapnel."
+	name = "破片手榴弹"
+	desc = "反人员破片手榴弹，擅长用金属弹片撕碎缺乏防护的目标。"
 	icon_state = "frag"
 	shrapnel_type = /obj/projectile/bullet/shrapnel
 	shrapnel_radius = 4
@@ -37,8 +37,8 @@
 	ex_flame = 4
 
 /obj/item/grenade/frag/mega
-	name = "FRAG grenade"
-	desc = "An anti-everything fragmentation grenade, this weapon excels at killing anything any everything by shredding them with metal shrapnel."
+	name = "超级破片手榴弹"
+	desc = "反一切破片手榴弹，擅长用金属弹片撕碎任何东西。"
 	shrapnel_type = /obj/projectile/bullet/shrapnel/mega
 	shrapnel_radius = 12
 
@@ -51,8 +51,8 @@
 	qdel(src)
 
 /obj/item/grenade/gluon
-	desc = "An advanced grenade that releases a harmful stream of gluons inducing radiation in those nearby. These gluon streams will also make victims feel exhausted, and induce shivering. This extreme coldness will also likely wet any nearby floors."
-	name = "gluon frag grenade"
+	desc = "先进手榴弹，会释放有害的胶子流，使附近的人受到辐射、疲惫并发抖。极度低温还可能使周围地面结霜打滑。"
+	name = "胶子破片手榴弹"
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "bluefrag"
 	inhand_icon_state = "flashbang"

@@ -101,13 +101,13 @@ GLOBAL_PROTECT(lua_state_stack)
 
 	// Internal errors unrelated to the code being executed are returned as text rather than lists
 	if(isnull(result))
-		result = list("status" = "error", "message" = "load returned null (it may have runtimed - check the runtime logs)", "name" = "input")
+		result = list("status" = "error", "message" = "加载返回了 null（可能发生了运行时错误，请查看运行时日志）", "name" = "input")
 	if(istext(result))
 		result = parse_error(result, "input")
 	result["chunk"] = script
 	check_if_slept(result)
 
-	log_lua("[key_name(usr)] executed the following lua code:\n<code>[script]</code>")
+	log_lua("[key_name(usr)] 执行了以下 lua 代码：\n<code>[script]</code>")
 
 	return result
 
@@ -129,7 +129,7 @@ GLOBAL_PROTECT(lua_state_stack)
 				var/datum/weakref/weak_ref = path_element
 				var/resolved = weak_ref.hard_resolve()
 				if(!resolved)
-					return list("status" = "error", "message" = "Weakref in function path ([weak_ref] [text_ref(weak_ref)]) resolved to null.", "name" = jointext(function, "."))
+					return list("status" = "error", "message" = "函数路径中的弱引用（[weak_ref] [text_ref(weak_ref)]）解析为 null。", "name" = jointext(function, "."))
 				new_function_path += resolved
 			else
 				new_function_path += path_element
@@ -147,7 +147,7 @@ GLOBAL_PROTECT(lua_state_stack)
 	GLOB.lua_usr = tmp_usr
 
 	if(isnull(result))
-		result = list("status" = "error", "message" = "call_function returned null (it may have runtimed - check the runtime logs)", "name" = jointext(function, "."))
+		result = list("status" = "error", "message" = "call_function 返回了 null（可能发生了运行时错误，请查看运行时日志）", "name" = jointext(function, "."))
 	if(istext(result))
 		result = parse_error(result, jointext(function, "."))
 	check_if_slept(result)
@@ -173,7 +173,7 @@ GLOBAL_PROTECT(lua_state_stack)
 	pop(GLOB.lua_state_stack)
 
 	if(isnull(result))
-		result = list("status" = "error", "message" = "awaken returned null (it may have runtimed - check the runtime logs)", "name" = "An attempted awaken")
+		result = list("status" = "error", "message" = "awaken 返回了 null（可能发生了运行时错误，请查看运行时日志）", "name" = "An attempted awaken")
 	if(istext(result))
 		result = parse_error(result, "An attempted awaken")
 	check_if_slept(result)
@@ -190,7 +190,7 @@ GLOBAL_PROTECT(lua_state_stack)
 	pop(GLOB.lua_state_stack)
 
 	if(isnull(result))
-		result = list("status" = "error", "param" = "resume returned null (it may have runtimed - check the runtime logs)", "name" = "An attempted resume")
+		result = list("status" = "error", "param" = "resume 返回了 null（可能发生了运行时错误，请查看运行时日志）", "name" = "An attempted resume")
 	if(istext(result))
 		result = parse_error(result, "An attempted resumt")
 	check_if_slept(result)

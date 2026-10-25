@@ -1,8 +1,8 @@
 /datum/action/changeling/resonant_shriek
-	name = "Resonant Shriek"
-	desc = "Our lungs and vocal cords shift, allowing us to emit a noise that deafens and confuses non-changelings, causing them to lose some control over their movements. \
-		Best used to stop prey from escaping. Doesn't work well in a vacuum. Costs 20 chemicals."
-	helptext = "Emits a high-frequency sound that confuses and deafens humans to hamper their movement, blows out nearby lights and overloads cyborg sensors."
+	name = "共振尖啸"
+	desc = "我们的肺与声带发生移位，得以发出一种使非变形怪耳聋、混乱的噪音，令其部分失去对动作的控制。\
+		最适合用来阻止猎物逃跑。在真空中效果不佳。消耗 20 点化学物质。"
+	helptext = "发出高频声音，使人类混乱、耳聋从而妨碍其行动，同时烧毁附近的灯具并使半机械人的传感器过载。"
 	button_icon_state = "resonant_shriek"
 	category = "combat"
 	chemical_cost = 20
@@ -14,7 +14,7 @@
 /datum/action/changeling/resonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't shriek in pipes!")
+		user.balloon_alert(user, "不能在管道里尖啸！")
 		return FALSE
 	playsound(user, 'sound/effects/screech.ogg', 100)
 	for(var/mob/living/living in get_hearers_in_view(4, user))
@@ -33,8 +33,8 @@
 	return TRUE
 
 /datum/action/changeling/dissonant_shriek
-	name = "Technophagic Shriek"
-	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Breaks headsets and cameras, and can sometimes break laser weaponry, doors, and modsuits. Costs 20 chemicals."
+	name = "噬械尖啸"
+	desc = "我们调整声带，释放出能过载附近电子设备的高频声音。会破坏耳机与摄像头，有时还能破坏激光武器、门与 MOD 外骨骼。消耗 20 点化学物质。"
 	button_icon_state = "technophagic_shriek"
 	category = "combat"
 	chemical_cost = 20
@@ -45,11 +45,11 @@
 /datum/action/changeling/dissonant_shriek/sting_action(mob/user)
 	..()
 	if(user.movement_type & VENTCRAWLING)
-		user.balloon_alert(user, "can't shriek in pipes!")
+		user.balloon_alert(user, "不能在管道里尖啸！")
 		return FALSE
 	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	if(!COOLDOWN_FINISHED(src, dissonant_shriek_cooldown))
-		user.balloon_alert(user, "throat is sore!")
+		user.balloon_alert(user, "喉咙嘶哑了！")
 		return FALSE
 	//BUBBER EDIT: NO PULSE IF YOU'RE ON COOLDOWN
 	empulse(get_turf(user), 2, 5, 1, emp_source = src)

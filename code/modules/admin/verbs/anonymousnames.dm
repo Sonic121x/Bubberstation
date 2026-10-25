@@ -7,20 +7,20 @@ GLOBAL_DATUM(current_anonymous_theme, /datum/anonymous_theme)
 
 	this is the setup, it handles announcing crew and other settings for the mode and then creating the datum singleton
 */
-GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
+GAME_VERB_PROC(/client, anon_names, "设置匿名姓名", "Admin.Events")
 
 	if(GLOB.current_anonymous_theme)
-		var/response = tgui_alert(usr, "Anon mode is currently enabled. Disable?", "cold feet", list("Disable Anon Names", "Keep it Enabled"))
+		var/response = tgui_alert(usr, "匿名模式当前已启用。要禁用吗？", "临阵退缩", list("Disable Anon Names", "Keep it Enabled"))
 		if(response != "Disable Anon Names")
 			return
-		message_admins(span_adminnotice("[key_name_admin(usr)] has disabled anonymous names."))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 禁用了匿名姓名。"))
 		QDEL_NULL(GLOB.current_anonymous_theme)
 		return
 	var/list/input_list = list("Cancel")
 	for(var/_theme in typesof(/datum/anonymous_theme))
 		var/datum/anonymous_theme/theme = _theme
 		input_list[initial(theme.name)] = theme
-	var/result = input(usr, "Choose an anonymous theme","going dark") as null|anything in input_list
+	var/result = input(usr, "选择一个匿名主题","隐入黑暗") as null|anything in input_list
 	if(!usr || !result || result == "Cancel")
 		return
 	var/datum/anonymous_theme/chosen_theme = input_list[result]
@@ -28,13 +28,13 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	var/alert_players = "No"
 	if(SSticker.current_state > GAME_STATE_PREGAME) //before anonnames is done, for asking a sleep
 		if(initial(chosen_theme.extras_enabled))
-			extras_enabled = tgui_alert(usr, extras_enabled, "extras", list("Yes", "No"))
-		alert_players = tgui_alert(usr, "Alert crew? These are IC Themed FROM centcom.", "announcement", list("Yes", "No"))
+			extras_enabled = tgui_alert(usr, extras_enabled, "额外内容", list("Yes", "No"))
+		alert_players = tgui_alert(usr, "要通知全体船员吗？这些内容是来自中央指挥部的角色内主题内容。", "公告", list("Yes", "No"))
 	//turns "Yes" and "No" into TRUE and FALSE
 	extras_enabled = extras_enabled == "Yes"
 	alert_players = alert_players == "Yes"
 	GLOB.current_anonymous_theme = new chosen_theme(extras_enabled, alert_players)
-	message_admins(span_adminnotice("[key_name_admin(usr)] has enabled anonymous names. THEME: [GLOB.current_anonymous_theme]."))
+	message_admins(span_adminnotice("[key_name_admin(usr)] 启用了匿名姓名。主题：[GLOB.current_anonymous_theme]。"))
 
 /* Datum singleton initialized by the client proc to hold the naming generation */
 /datum/anonymous_theme
@@ -76,7 +76,7 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
  * it's in a proc so it can be a non-constant expression.
  */
 /datum/anonymous_theme/proc/announce_to_all_players()
-	priority_announce("A recent bureaucratic error in the Organic Resources Department has resulted in a necessary full recall of all identities and names until further notice.", "Identity Loss", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("有机资源部近期发生的一起官僚失误，导致我们必须全面召回所有人的身份与姓名，直至另行通知。", "身份丢失", SSstation.announcer.get_rand_alert_sound())
 
 /**
  * anonymous_all_players: sets all crewmembers on station anonymous.
@@ -104,7 +104,7 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
  * called when the anonymous theme is removed regardless of extra theming
  */
 /datum/anonymous_theme/proc/restore_all_players()
-	priority_announce("Names and Identities have been restored.", "Identity Restoration", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("姓名与身份已恢复。", "身份恢复", SSstation.announcer.get_rand_alert_sound())
 	for(var/mob/living/player in GLOB.player_list)
 		if(!player.mind || (!ishuman(player) && !issilicon(player)) || player.mind.assigned_role.faction != FACTION_STATION)
 			continue
@@ -149,11 +149,11 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	name = "Employees"
 
 /datum/anonymous_theme/employees/announce_to_all_players()
-	priority_announce("As punishment for this station's poor productivity when compared to neighbor stations, names and identities will be restricted until further notice.", "Finance Report", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("由于本站相比邻近空间站生产率低下，作为惩罚，姓名与身份将被限制，直至另行通知。", "财务报告", SSstation.announcer.get_rand_alert_sound())
 
 /datum/anonymous_theme/employees/anonymous_name(mob/target)
 	var/is_head_of_staff = target.mind.assigned_role.job_flags & JOB_HEAD_OF_STAFF
-	var/name = "[is_head_of_staff ? "Manager" : "Employee"] "
+	var/name = "[is_head_of_staff ? "主管" : "员工"] "
 	for(var/i in 1 to 6)
 		if(prob(30) || i == 1)
 			name += ascii2text(rand(65, 90)) //A - Z
@@ -164,11 +164,11 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 /datum/anonymous_theme/employees/anonymous_ai_name(is_ai = FALSE)
 	var/verbs = capitalize(pick(GLOB.ing_verbs))
 	var/phonetic = pick(GLOB.phonetic_alphabet)
-	return "Employee [is_ai ? "Core" : JOB_ASSISTANT] [verbs] [phonetic]"
+	return "员工 [is_ai ? "核心" : JOB_ASSISTANT] [verbs] [phonetic]"
 
 /datum/anonymous_theme/wizards
 	name = "Wizard Academy"
-	extras_prompt = "Give everyone random robes too?"
+	extras_prompt = "同时给每个人随机长袍吗？"
 
 /datum/anonymous_theme/wizards/player_extras(mob/living/player)
 	var/random_path = pick(
@@ -182,7 +182,7 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	player.put_in_hands(new random_path())
 
 /datum/anonymous_theme/wizards/announce_to_all_players()
-	priority_announce("Your station has been caught by a Wizard Federation Memetic Hazard. You are not y0urself, and yo% a2E 34!NOT4--- Welcome to the Academy, apprentices!", "Memetic Hazard", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("你们空间站已陷入巫师联邦的模因危害。你不再是你自0己，你并% 4E 34!NOT4—— 欢迎来到学院，学徒们！", "模因危害", SSstation.announcer.get_rand_alert_sound())
 
 /datum/anonymous_theme/wizards/anonymous_name(mob/target)
 	var/wizard_name_first = pick(GLOB.wizard_first)
@@ -190,7 +190,7 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	return "[wizard_name_first] [wizard_name_second]"
 
 /datum/anonymous_theme/wizards/anonymous_ai_name(is_ai = FALSE)
-	return "Crystallized Knowledge [is_ai ? "Nexus" : "Sliver"] +[rand(1,99)]" //Could two people roll the same number? Yeah, probably. Do I CARE? Nawww
+	return "结晶知识 [is_ai ? "枢纽" : "碎片"] +[rand(1,99)]" //Could two people roll the same number? Yeah, probably. Do I CARE? Nawww
 
 /datum/anonymous_theme/spider_clan
 	name = "Spider Clan"
@@ -199,26 +199,26 @@ GAME_VERB_PROC(/client, anon_names, "Setup Anonymous Names", "Admin.Events")
 	return "[pick(GLOB.ninja_titles)] [pick(GLOB.ninja_names)]"
 
 /datum/anonymous_theme/spider_clan/announce_to_all_players()
-	priority_announce("Your station has been sold out to the Spider Clan. Your new designations will be applied now.", "New Management", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("你们空间站已被出卖给蜘蛛氏族。你们的新代号即将生效。", "新管理层", SSstation.announcer.get_rand_alert_sound())
 
 /datum/anonymous_theme/spider_clan/anonymous_ai_name(is_ai = FALSE)
 	var/posibrain_name = pick(GLOB.posibrain_names)
 	if(is_ai)
-		return "Shaolin Templemaster [posibrain_name]"
+		return "少林寺主 [posibrain_name]"
 	else
 		var/martial_prefix = capitalize(pick(GLOB.martial_prefix))
-		var/martial_style = pick("Monkey", "Tiger", "Viper", "Mantis", "Crane", "Panda", "Bat", "Bear", "Centipede", "Frog")
+		var/martial_style = pick("猴", "虎", "蛇", "螳螂", "鹤", "熊猫", "蝙蝠", "熊", "蜈蚣", "蛙")
 		return "\"[martial_prefix] [martial_style]\" [posibrain_name]"
 
 /datum/anonymous_theme/station
 	name = "Stations?"
-	extras_prompt = "Also set station name to be a random human name?"
+	extras_prompt = "同时把站名设为随机人名吗？"
 
 /datum/anonymous_theme/station/theme_extras()
 	set_station_name("[pick(GLOB.first_names)] [pick(GLOB.last_names)]")
 
 /datum/anonymous_theme/station/announce_to_all_players()
-	priority_announce("Confirmed level 9 reality error event near [station_name()]. All personnel must try their best to carry on, as to not trigger more reality events by accident.", "Central Command Higher Dimensional Affairs", 'sound/announcer/notice/notice1.ogg')
+	priority_announce("已确认 [station_name()] 附近发生 9 级现实错误事件。全体人员必须尽力维持正常运作，以免意外触发更多现实事件。", "中央指挥部高维事务处", 'sound/announcer/notice/notice1.ogg')
 
 /datum/anonymous_theme/station/anonymous_name(mob/target)
 	return new_station_name()

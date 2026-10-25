@@ -11,13 +11,13 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 	/// Any long, blob-tile specific effects
 	var/effectdesc = null
 	/// Short descriptor of what the strain does damage-wise, generally seen in the reroll menu
-	var/analyzerdescdamage = "Unknown. Report this bug to a coder, or just adminhelp."
+	var/analyzerdescdamage = "未知。请向程序员报告此 bug，或者直接 adminhelp。"
 	/// Short descriptor of what the strain does in general, generally seen in the reroll menu
 	var/analyzerdesceffect
 	/// Blobbernaut attack verb
-	var/blobbernaut_message = "slams"
+	var/blobbernaut_message = "猛击"
 	/// Message sent to any mob hit by the blob
-	var/message = "The blob strikes you"
+	var/message = "变形菌击中了你"
 	/// Gets added onto 'message' if the mob stuck is of type living
 	var/message_living = null
 	/// Stores world.time to figure out when to next give resources
@@ -98,8 +98,8 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 		blob_mob.maxHealth *= max_mob_health_multiplier
 		blob_mob.health *= max_mob_health_multiplier
 		blob_mob.update_icons() //If it's getting a new strain, tell it what it does!
-		to_chat(blob_mob, "Your overmind's blob strain is now: <b><font color=\"[color]\">[name]</b></font>!")
-		to_chat(blob_mob, "The <b><font color=\"[color]\">[name]</b></font> strain [shortdesc ? "[shortdesc]" : "[description]"]")
+		to_chat(blob_mob, "你主脑的变形菌株现在是：<b><font color=\"[color]\">[name]</b></font>！")
+		to_chat(blob_mob, "<b><font color=\"[color]\">[name]</b></font> 菌株[shortdesc ? "[shortdesc]" : "[description]"]")
 
 /datum/blobstrain/proc/on_lose()
 	if(overmind.blob_core)
@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(valid_blobstrains, subtypesof(/datum/blobstrain) - list(/datum/
 	return
 
 /datum/blobstrain/proc/examine(mob/user)
-	return list("<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
+	return list("<b>临界质量进度：</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
 
 /datum/blobstrain/proc/on_blobmob_atom_interacted(mob/living/minion, atom/interacted_atom, adjacent, modifiers)
 	return

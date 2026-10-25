@@ -1,6 +1,6 @@
 /turf/open/floor/concrete
-	name = "concrete floor"
-	desc = "Cold, bare concrete flooring."
+	name = "混凝土地板"
+	desc = "冰冷、光秃的混凝土地板。"
 	icon = 'icons/turf/floors/concrete.dmi'
 	damaged_dmi = 'icons/turf/floors/concrete.dmi'
 	icon_state = "conc_smooth_1"
@@ -42,14 +42,14 @@
 
 /turf/open/floor/concrete/examine(mob/user)
 	. = ..()
-	. += span_notice("[p_They()] look[p_s()] like you could smash [p_them()] with <b>[tool_behaviour_name(TOOL_MINING)]</b>.")
+	. += span_notice("看起来可以用 <b>[tool_behaviour_name(TOOL_MINING)]</b> 砸碎它。")
 	switch(harden_lvl)
 		if(0.8 to 0.99)
-			. += "[p_They()] look[p_s()] nearly dry."
+			. += "它看起来快干透了。"
 		if(0.4 to 0.8)
-			. += "[p_They()] look[p_s()] a little wet."
+			. += "它看起来还有点湿。"
 		if(0 to 0.4)
-			. += "[p_They()] look[p_s()] freshly poured."
+			. += "它看起来是刚浇筑的。"
 	return
 
 /turf/open/floor/concrete/add_footprint(mob/living/carbon/human/walker, movement_direction)
@@ -67,11 +67,11 @@
 	if(.)
 		return
 	if(I.tool_behaviour == TOOL_MINING)
-		to_chat(user, span_notice("You start smashing [src]..."))
+		to_chat(user, span_notice("你开始砸碎[src]……"))
 		var/adj_time = (broken || burnt) ? smash_time/2 : smash_time
 		if(I.use_tool(src, user, adj_time, volume=30))
 			new /obj/effect/decal/cleanable/concrete_dust(src)
-			to_chat(user, span_notice("You break [src]."))
+			to_chat(user, span_notice("你砸碎了[src]。"))
 			playsound(src, 'sound/effects/break_stone.ogg', 30, TRUE)
 			remove_tile(silent=TRUE)
 			return TRUE
@@ -129,7 +129,7 @@
 	)
 	if(!choice)
 		return FALSE
-	to_chat(user, "You reshape [src].")
+	to_chat(user, "你重塑了[src]。")
 	var/old_harden = harden_lvl
 	var/turf/open/floor/concrete/newconc = ChangeTurf(choice, flags = CHANGETURF_INHERIT_AIR)
 	newconc.harden_lvl = old_harden
@@ -165,8 +165,8 @@
 	has_variation = FALSE
 
 /turf/open/floor/concrete/reinforced
-	name = "hexacrete floor"
-	desc = "Reinforced hexacrete tiling."
+	name = "六边混凝土地板"
+	desc = "加固的六边混凝土砖。"
 	icon = 'icons/turf/floors/hexacrete.dmi'
 	icon_state = "hexacrete-0"
 	base_icon_state = "hexacrete"
@@ -181,8 +181,8 @@
 	slowdown = -0.3
 
 /turf/open/floor/concrete/pavement
-	name = "strip of pavement"
-	desc = "Hot, coarse pavement. Preferred for roadways, as vehicles are generally quieter driven on this than on traditional concrete."
+	name = "一段路面"
+	desc = "灼热粗糙的路面。常用于道路，因为车辆行驶其上通常比传统混凝土更安静。"
 	icon_state = "pavement_1"
 	base_icon_state = "pavement"
 	shape_types = list(/turf/open/floor/concrete/pavement)

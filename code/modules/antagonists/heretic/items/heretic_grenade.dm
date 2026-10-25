@@ -4,8 +4,8 @@
  */
 
 /obj/item/grenade/chem_grenade/rust_sower
-	name = "rust sower"
-	desc = "A nifty little thing that explodes into rust. Causes borgs and mechs to get utterly obliterated."
+	name = "播锈手雷"
+	desc = "一个小巧的玩意儿，爆炸后迸出锈蚀。能让半机械人和机甲彻底报废。"
 	possible_fuse_time = list("5")
 	stage = GRENADE_READY
 	base_icon_state = "rustgrenade"
@@ -48,10 +48,10 @@
 	return -1
 
 /datum/reagent/heretic_rust
-	name = "Eldritch Rust"
-	description = "A slurry of viscous, chunky brown liquid."
+	name = "诡异锈液"
+	description = "一种黏稠、带块状物的褐色液体。"
 	color = COLOR_CARGO_BROWN // Rust color
-	taste_description = "rotten copper"
+	taste_description = "腐坏的铜"
 	penetrates_skin = NONE
 	ph = 7.4
 	default_container = /obj/item/reagent_containers/cup/bottle/capsaicin
@@ -95,7 +95,7 @@
 	if(methods & INGEST)
 		if(!holder.has_reagent(/datum/reagent/consumable/milk))
 			if(prob(15))
-				to_chat(exposed_mob, span_danger("[pick("Your head pounds.", "Your mouth feels like it's on fire.", "You feel dizzy.")]"))
+				to_chat(exposed_mob, span_danger("[pick("你的头一阵阵胀痛。", "你的嘴像着了火一样。", "你感到一阵眩晕。")]"))
 			if(prob(10))
 				victim.set_eye_blur_if_lower(2 SECONDS)
 			if(prob(10))
@@ -111,4 +111,4 @@
 	. = ..()
 	if(!holder.has_reagent(/datum/reagent/consumable/milk))
 		if(SPT_PROB(5, seconds_per_tick))
-			affected_mob.visible_message(span_warning("[affected_mob] [pick("dry heaves!","coughs!","splutters!")]"))
+			affected_mob.visible_message(span_warning("[affected_mob] [pick("干呕起来！","咳嗽起来！","呛得直喷气！")]"))

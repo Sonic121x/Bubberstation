@@ -2,11 +2,11 @@
 //Possible todo: make a custom message for directing a penlight/flashlight at the eyes - not sure what would display though.
 
 /datum/action/changeling/augmented_eyesight
-	name = "Augmented Eyesight"
-	desc = "Creates more light sensing rods in our eyes, allowing our vision to penetrate most blocking objects. \
-		Protects our vision from flashes while inactive."
-	helptext = "Grants us x-ray vision or flash protection. \
-		We will become a lot more vulnerable to flash-based devices while x-ray vision is active."
+	name = "强化视觉"
+	desc = "在我们的眼中生成更多感光杆状细胞，使我们的视线能够穿透大多数遮挡物。\
+		在未激活时保护我们的视觉免受闪光影响。"
+	helptext = "赋予我们 X 光视觉或闪光防护。\
+		当 X 光视觉激活时，我们会更容易受到闪光装置的伤害。"
 	button_icon_state = "augmented_eyesight"
 	category = "utility"
 	chemical_cost = 0
@@ -22,7 +22,7 @@
 	RegisterSignal(user, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(eye_removed))
 	if(!isnull(ling_eyes))
 		ling_eyes.flash_protect = FLASH_PROTECTION_WELDER //Adjust the user's eyes' flash protection
-		to_chat(user, span_changeling("We adjust our eyes to protect them from bright lights."))
+		to_chat(user, span_changeling("我们调整双眼，以保护它们免受强光伤害。"))
 
 /datum/action/changeling/augmented_eyesight/sting_action(mob/living/carbon/user)
 	if(!istype(user))
@@ -30,7 +30,7 @@
 
 	var/obj/item/organ/eyes/ling_eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(isnull(ling_eyes))
-		user.balloon_alert(user, "no eyes!")
+		user.balloon_alert(user, "没有眼睛！")
 		return FALSE
 
 	..()
@@ -39,13 +39,13 @@
 		active = FALSE
 		REMOVE_TRAIT(user, TRAIT_XRAY_VISION, REF(src))
 		ling_eyes.flash_protect = max(ling_eyes.flash_protect += 3, FLASH_PROTECTION_WELDER)
-		to_chat(user, span_changeling("We adjust our eyes to protect them from bright lights."))
+		to_chat(user, span_changeling("我们调整双眼，以保护它们免受强光伤害。"))
 
 	else
 		active = TRUE
 		ADD_TRAIT(user, TRAIT_XRAY_VISION, REF(src))
 		ling_eyes.flash_protect = max(ling_eyes.flash_protect += -3, FLASH_PROTECTION_HYPER_SENSITIVE)
-		to_chat(user, span_changeling("We adjust our eyes to sense prey through walls."))
+		to_chat(user, span_changeling("我们调整双眼，以便穿透墙壁感知猎物。"))
 
 	user.update_sight()
 	return TRUE

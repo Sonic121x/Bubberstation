@@ -1,8 +1,8 @@
 /// Curse brain trauma that makes someone space textured, mute, pacifist and forbids them from entering space
 /datum/brain_trauma/voided
-	name = "Voided"
-	desc = "They've seen the secrets of the cosmos, in exchange for a curse that keeps them chained."
-	scan_desc = "cosmic neural pattern"
+	name = "虚空化"
+	desc = "他们窥见了宇宙的奥秘，代价是一道将他们牢牢束缚的诅咒。"
+	scan_desc = "宇宙神经模式"
 	gain_text = ""
 	lose_text = ""
 	resilience = TRAUMA_RESILIENCE_LOBOTOMY
@@ -85,7 +85,7 @@
 	//BUBBER EDIT START - makes nebula vomit not painful to deal with
 	if(prob(vomit_frequency))
 		new /obj/effect/decal/cleanable/vomit/nebula(owner.loc)
-		owner.visible_message(span_notice("a beautifully sparkling liquid drips off of [owner] and forms a puddle"), span_notice("The beautifully sparkling liquid dripping off of you forms a puddle"))
+		owner.visible_message(span_notice("一摊美丽闪亮的液体从[owner]身上滴落，汇成了一滩"), span_notice("从你身上滴落的美妙闪亮液体汇成了一滩"))
 	//BUBBER EDIT END
 
 /// Apply the space texture
@@ -118,7 +118,7 @@
 
 /// Positive version of the previous. Get space immunity and the ability to slowly move through glass (but you still get muted)
 /datum/brain_trauma/voided/stable
-	scan_desc = "stable cosmic neural pattern"
+	scan_desc = "稳定的宇宙神经模式"
 	traits_to_apply = list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTCOLD)
 	ban_from_space = FALSE
 	vomit_frequency = 0

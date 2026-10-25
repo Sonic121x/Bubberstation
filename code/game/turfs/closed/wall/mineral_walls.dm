@@ -1,6 +1,6 @@
 /turf/closed/wall/mineral
-	name = "mineral wall"
-	desc = "This shouldn't exist"
+	name = "矿物墙"
+	desc = "这东西不应该存在"
 	icon_state = ""
 	abstract_type = /turf/closed/wall/mineral
 	smoothing_flags = SMOOTH_BITMASK
@@ -10,8 +10,8 @@
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/mineral/gold
-	name = "gold wall"
-	desc = "A wall with gold plating. Swag!"
+	name = "金墙"
+	desc = "覆有镀金层的墙。真帅！"
 	icon = 'icons/turf/walls/gold_wall.dmi'
 	icon_state = "gold_wall-0"
 	base_icon_state = "gold_wall"
@@ -24,8 +24,8 @@
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/mineral/silver
-	name = "silver wall"
-	desc = "A wall with silver plating. Shiny!"
+	name = "银墙"
+	desc = "覆有镀银层的墙。闪闪发亮！"
 	icon = 'icons/turf/walls/silver_wall.dmi'
 	icon_state = "silver_wall-0"
 	base_icon_state = "silver_wall"
@@ -37,8 +37,8 @@
 	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT*2)
 
 /turf/closed/wall/mineral/diamond
-	name = "diamond wall"
-	desc = "A wall with diamond plating. You monster."
+	name = "钻石墙"
+	desc = "覆有钻石镀层的墙。你这怪物。"
 	icon = 'icons/turf/walls/diamond_wall.dmi'
 	icon_state = "diamond_wall-0"
 	base_icon_state = "diamond_wall"
@@ -56,8 +56,8 @@
 	return ..()
 
 /turf/closed/wall/mineral/bananium
-	name = "bananium wall"
-	desc = "A wall with bananium plating. Honk!"
+	name = "香蕉矿墙"
+	desc = "覆有香蕉矿镀层的墙。HONK！"
 	icon = 'icons/turf/walls/bananium_wall.dmi'
 	icon_state = "bananium_wall-0"
 	base_icon_state = "bananium_wall"
@@ -70,8 +70,8 @@
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/mineral/sandstone
-	name = "sandstone wall"
-	desc = "A wall with sandstone plating. Rough."
+	name = "砂岩墙"
+	desc = "覆有砂岩层的墙。粗糙。"
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
 	icon_state = "sandstone_wall-0"
 	base_icon_state = "sandstone_wall"
@@ -86,8 +86,8 @@
 
 /turf/closed/wall/mineral/uranium
 	article = "a"
-	name = "uranium wall"
-	desc = "A wall with uranium plating. This is probably a bad idea."
+	name = "铀墙"
+	desc = "覆有铀镀层的墙。这大概不是什么好主意。"
 	icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium_wall-0"
 	base_icon_state = "uranium_wall"
@@ -143,8 +143,8 @@
 	return ..()
 
 /turf/closed/wall/mineral/plasma
-	name = "plasma wall"
-	desc = "A wall with plasma plating. This is definitely a bad idea."
+	name = "等离子墙"
+	desc = "覆有等离子镀层的墙。这绝对不是什么好主意。"
 	icon = 'icons/turf/walls/plasma_wall.dmi'
 	icon_state = "plasma_wall-0"
 	base_icon_state = "plasma_wall"
@@ -158,8 +158,8 @@
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/mineral/wood
-	name = "wooden wall"
-	desc = "A wall with wooden plating. Stiff."
+	name = "木墙"
+	desc = "覆有木板层的墙。硬邦邦的。"
 	icon = 'icons/turf/walls/wood_wall.dmi'
 	icon_state = "wood_wall-0"
 	base_icon_state = "wood_wall"
@@ -190,15 +190,15 @@
 	return ..() //No recoil damage, wood is weak
 
 /turf/closed/wall/mineral/wood/nonmetal
-	desc = "A solidly wooden wall. It's a bit weaker than a wall made with metal."
+	desc = "一堵实木墙，比金属墙稍脆弱一些。"
 	girder_type = /obj/structure/barricade/wooden
 	hardness = 67 //a bit weaker than iron (60)
 	sheet_amount = 5
 	make_delay = 5 SECONDS
 
 /turf/closed/wall/mineral/bamboo
-	name = "bamboo wall"
-	desc = "A wall with a bamboo finish."
+	name = "竹墙"
+	desc = "带有竹制饰面的墙。"
 	icon = 'icons/turf/walls/bamboo_wall.dmi'
 	icon_state = "bamboo_wall-0"
 	base_icon_state = "bamboo_wall"
@@ -210,8 +210,8 @@
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/mineral/iron
-	name = "rough iron wall"
-	desc = "A wall with rough iron plating."
+	name = "粗糙铁墙"
+	desc = "覆有粗糙铁层的墙。"
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron_wall-0"
 	base_icon_state = "iron_wall"
@@ -225,8 +225,8 @@
 	rust_resistance = RUST_RESISTANCE_BASIC
 
 /turf/closed/wall/mineral/snow
-	name = "packed snow wall"
-	desc = "A wall made of densely packed snow blocks."
+	name = "压实雪墙"
+	desc = "由密实压紧的雪块砌成的墙。"
 	icon = 'icons/turf/walls/snow_wall.dmi'
 	icon_state = "snow_wall-0"
 	base_icon_state = "snow_wall"
@@ -246,8 +246,8 @@
 	return ..() //No recoil damage, snow is weak
 
 /turf/closed/wall/mineral/abductor
-	name = "alien wall"
-	desc = "A wall with alien alloy plating."
+	name = "外星墙"
+	desc = "覆有外星合金层的墙。"
 	icon = 'icons/turf/walls/abductor_wall.dmi'
 	icon_state = "abductor_wall-0"
 	base_icon_state = "abductor_wall"
@@ -264,8 +264,8 @@
 /////////////////////Titanium walls/////////////////////
 
 /turf/closed/wall/mineral/titanium //has to use this path due to how building walls works
-	name = "wall"
-	desc = "A light-weight titanium wall used in shuttles."
+	name = "墙"
+	desc = "一种用于穿梭机的轻质钛墙。"
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
 	icon_state = "shuttle_wall-0"
 	base_icon_state = "shuttle_wall"
@@ -313,8 +313,8 @@
 /////////////////////Plastitanium walls/////////////////////
 
 /turf/closed/wall/mineral/plastitanium
-	name = "wall"
-	desc = "A durable wall made of an alloy of plasma and titanium."
+	name = "墙"
+	desc = "由等离子与钛的合金制成的坚固墙壁。"
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "plastitanium_wall-0"
 	base_icon_state = "plastitanium_wall"
@@ -332,8 +332,8 @@
 	sheet_amount = 1
 
 /turf/closed/wall/mineral/plastitanium/darkpod
-	name = "dark pod wall"
-	desc = "An easily-compressible wall used for temporary shelter."
+	name = "暗舱壁"
+	desc = "易于压缩的墙壁，用于搭建临时庇护所。"
 	sheet_type = /obj/item/stack/wall_filling/plastitanium/pod
 	sheet_amount = 1
 	icon = 'icons/turf/walls/dark_pod.dmi'
@@ -344,8 +344,8 @@
 	rust_resistance = RUST_RESISTANCE_TITANIUM
 
 /turf/closed/wall/mineral/plastitanium/redpod
-	name = "red pod wall"
-	desc = "An easily-compressible wall used for temporary shelter."
+	name = "红舱壁"
+	desc = "易于压缩的墙壁，用于搭建临时庇护所。"
 	sheet_type = /obj/item/stack/wall_filling/plastitanium/redpod
 	sheet_amount = 1
 	icon = 'icons/turf/walls/red_pod.dmi'
@@ -356,8 +356,8 @@
 	rust_resistance = RUST_RESISTANCE_TITANIUM
 
 /turf/closed/wall/mineral/plastitanium/survival
-	name = "pod wall"
-	desc = "An easily-compressible wall used for temporary shelter."
+	name = "生存舱壁"
+	desc = "易于压缩的墙壁，用于搭建临时庇护所。"
 	icon = 'icons/turf/walls/survival_pod_walls.dmi'
 	icon_state = "survival_pod_walls-0"
 	base_icon_state = "survival_pod_walls"

@@ -96,8 +96,8 @@
 
 //---- Screen alert
 /atom/movable/screen/alert/status_effect/void_chill
-	name = "Void Chill"
-	desc = "There's something freezing you from within and without. You've never felt cold this oppressive before..."
+	name = "虚空寒意"
+	desc = "有什么东西正从内外两侧冻结你。你从未感受过如此压抑的寒冷……"
 	icon_state = "heretic_template"
 	overlay_state = "void_chill_minor"
 

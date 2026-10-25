@@ -1,6 +1,6 @@
 /obj/structure/flora
-	name = "flora"
-	desc = "Some sort of plant."
+	name = "植物"
+	desc = "某种植物。"
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	anchored = TRUE
@@ -14,9 +14,9 @@
 	/// If the user is able to harvest this with their hands
 	var/harvest_with_hands = FALSE
 	/// The "verb" to use when the user harvests the flora
-	var/harvest_verb = "harvest"
+	var/harvest_verb = "采摘"
 	/// What should be added to harvest_verb depending on the context ("user harvest(s) the tree" / "user chop(s down) the tree")
-	var/harvest_verb_suffix = "s"
+	var/harvest_verb_suffix = ""
 	/// If the user is allowed to uproot the flora
 	var/can_uproot = TRUE
 	var/uprooted = FALSE
@@ -54,26 +54,26 @@
 		return NONE
 
 	if(flags_1 & HOLOGRAM_1)
-		balloon_alert(user, "it goes right through!")
+		balloon_alert(user, "直接穿过去了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(can_uproot && tool.tool_behaviour == TOOL_SHOVEL)
 		if(uprooted)
-			user.visible_message(span_notice("[user] starts to replant [src]..."),
-								span_notice("You start to replant [src]..."))
+			user.visible_message(span_notice("[user]开始重新栽种[src]……"),
+								span_notice("你开始重新栽种[src]……"))
 		else
-			user.visible_message(span_notice("[user] starts to uproot [src]..."),
-								span_notice("You start to uproot [src]..."))
+			user.visible_message(span_notice("[user]开始连根拔起[src]……"),
+								span_notice("你开始连根拔起[src]……"))
 		tool.play_tool_sound(src, 50)
 		if(!do_after(user, harvest_time, src))
 			return ITEM_INTERACT_BLOCKING
 		if(uprooted)
-			user.visible_message(span_notice("[user] replants [src]."),
-								span_notice("You replant [src]."))
+			user.visible_message(span_notice("[user]重新栽种了[src]。"),
+								span_notice("你重新栽种了[src]。"))
 			replant(user)
 		else
-			user.visible_message(span_notice("[user] uproots [src]."),
-								span_notice("You uproot [src]."))
+			user.visible_message(span_notice("[user]连根拔起了[src]。"),
+								span_notice("你连根拔起了[src]。"))
 			uproot(user)
 		tool.play_tool_sound(src, 50)
 		return ITEM_INTERACT_SUCCESS
@@ -81,14 +81,14 @@
 	if(!can_harvest(user, tool))
 		return NONE
 
-	user.visible_message(span_notice("[user] starts to [harvest_verb] [src]..."),
-						span_notice("You start to [harvest_verb] [src] with [tool]..."))
+	user.visible_message(span_notice("[user]开始[harvest_verb][src]……"),
+						span_notice("你开始用[tool][harvest_verb][src]……"))
 	play_attack_sound(tool.force)
 	if(!do_after(user, harvest_time * tool.toolspeed, src))
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
-					span_notice("You [harvest_verb] [src]."))
+	visible_message(span_notice("[user][harvest_verb][harvest_verb_suffix][src]。"),
+					span_notice("你[harvest_verb][harvest_verb_suffix][src]。"))
 	play_attack_sound(tool.force)
 	if(harvest(user))
 		after_harvest(user)
@@ -101,12 +101,12 @@
 	if(!can_harvest(user))
 		return
 
-	user.visible_message(span_notice("[user] starts to [harvest_verb] [src]..."),
-		span_notice("You start to [harvest_verb] [src]..."))
+	user.visible_message(span_notice("[user]开始[harvest_verb][src]……"),
+		span_notice("你开始[harvest_verb][src]……"))
 	play_attack_sound()
 	if(!do_after(user, harvest_time, src))
 		return
-	visible_message(span_notice("[user] [harvest_verb][harvest_verb_suffix] [src]."),
+	visible_message(span_notice("[user][harvest_verb][harvest_verb_suffix][src]。"),
 		ignored_mobs = list(user))
 	play_attack_sound()
 
@@ -294,8 +294,8 @@
 #define TREE_FALL_EXTRARANGE 5
 
 /obj/structure/flora/tree
-	name = "tree"
-	desc = "A large tree."
+	name = "树"
+	desc = "一棵大树。"
 	density = TRUE
 	max_integrity = 150
 	pixel_x = -16
@@ -304,11 +304,11 @@
 	drag_slowdown = 1.5
 	harvest_amount_low = 6
 	harvest_amount_high = 10
-	harvest_message_low = "You manage to gather a few logs from the tree."
-	harvest_message_med = "You manage to gather some logs from the tree."
-	harvest_message_high = "You manage to get most of the wood from the tree."
-	harvest_verb = "chop"
-	harvest_verb_suffix = "s down"
+	harvest_message_low = "你设法从树上收集到几根原木。"
+	harvest_message_med = "你设法从树上收集到一些原木。"
+	harvest_message_high = "你设法取走了这棵树的大部分木材。"
+	harvest_verb = "砍伐"
+	harvest_verb_suffix = ""
 	delete_on_harvest = TRUE
 	flora_flags = FLORA_HERBAL | FLORA_WOODEN
 
@@ -330,7 +330,7 @@
 	if(has_gravity(my_turf)) // If a tree falls in the forest, it makes a sound unless it doesn't have gravity.
 		playsound(my_turf, 'sound/effects/meteorimpact.ogg', 100 , FALSE, extrarange = TREE_FALL_EXTRARANGE)
 	var/obj/structure/flora/tree/stump/new_stump = new(my_turf)
-	new_stump.name = "[name] stump"
+	new_stump.name = "[name]树桩"
 
 /obj/structure/flora/tree/uproot(mob/living/user)
 	..()
@@ -338,20 +338,20 @@
 		playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , FALSE, extrarange = TREE_FALL_EXTRARANGE)
 
 /obj/structure/flora/tree/stump
-	name = "stump"
-	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
+	name = "树桩"
+	desc = "这代表着我们对船员和空间站本身的承诺：尽可能多地砍伐树木。" //running naked through the trees
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "tree_stump"
 	density = FALSE
 	delete_on_harvest = TRUE
 
 /obj/structure/flora/tree/stump/harvest(mob/living/user, product_amount_multiplier)
-	to_chat(user, span_notice("You manage to remove [src]."))
+	to_chat(user, span_notice("你设法清除了[src]。"))
 	qdel(src)
 
 /obj/structure/flora/tree/stump/uproot(mob/living/user)
 	..()
-	to_chat(user, span_notice("You manage to remove [src]."))
+	to_chat(user, span_notice("你设法清除了[src]。"))
 	qdel(src)
 
 /obj/structure/flora/tree/stump/get_seethrough_map()
@@ -359,7 +359,7 @@
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/fluff/flora/deadtrees.dmi'
-	desc = "A dead tree. How it died, you know not."
+	desc = "一棵枯树。它是怎么死的，你无从得知。"
 	icon_state = "tree_1"
 	harvest_amount_low = 2
 	harvest_amount_high = 6
@@ -386,7 +386,7 @@
 	update_appearance()
 
 /obj/structure/flora/tree/jungle
-	desc = "It's seriously hampering your view of the jungle."
+	desc = "它严重遮挡了你看丛林的视线。"
 	icon = 'icons/obj/fluff/flora/jungletrees.dmi'
 	icon_state = "tree1"
 	pixel_x = -48
@@ -449,8 +449,8 @@
  **************/
 
 /obj/structure/flora/tree/pine
-	name = "pine tree"
-	desc = "A coniferous pine tree."
+	name = "松树"
+	desc = "一棵针叶松树。"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 
@@ -469,17 +469,17 @@
 	update_appearance()
 
 /obj/structure/flora/tree/pine/xmas
-	name = "\improper Christmas tree"
-	desc = "A wondrous decorated Christmas tree."
+	name = "\improper 圣诞树"
+	desc = "一棵装饰精美的奇妙圣诞树。"
 	icon_state = "pine_c"
 
 /obj/structure/flora/tree/pine/xmas/presentless
 	icon_state = "pinepresents"
-	desc = "A wondrous decorated Christmas tree. It has presents, though none of them seem to have your name on them."
+	desc = "一棵装饰精美的奇妙圣诞树。上面有礼物，但似乎没有一件写着你的名字。"
 
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
-	desc = "A wondrous decorated Christmas tree. It has presents!"
+	desc = "一棵装饰精美的奇妙圣诞树。上面有礼物！"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //protected by the christmas spirit
 	var/gift_type = /obj/item/gift/anything
 	var/unlimited = FALSE
@@ -498,9 +498,9 @@
 		return
 
 	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, span_warning("There are no presents with your name on."))
+		to_chat(user, span_warning("没有写着你的名字的礼物。"))
 		return
-	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
+	to_chat(user, span_warning("翻找一阵后，你找到了一件写着你名字的礼物！"))
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
@@ -509,18 +509,18 @@
 	user.put_in_hands(G)
 
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
-	desc = "A wonderous decorated Christmas tree. It has a seemly endless supply of presents!"
+	desc = "一棵装饰精美的奇妙圣诞树。上面的礼物似乎无穷无尽！"
 	unlimited = TRUE
 
 /obj/structure/festivus
-	name = "festivus pole"
-	desc = "During last year's Feats of Strength the Research Director was able to suplex this passing immobile rod into a planter."
+	name = "费斯提乌斯柱"
+	desc = "去年“力量展示”环节，科研主管把路过的这根不动的杆子背摔进了花盆里。"
 	icon = 'icons/obj/fluff/flora/pinetrees.dmi'
 	icon_state = "festivus_pole"
 
 /obj/structure/festivus/anchored
-	name = "suplexed rod"
-	desc = "A true feat of strength, almost as good as last year."
+	name = "被背摔的杆子"
+	desc = "真正的力量壮举，几乎和去年一样精彩。"
 	icon_state = "anchored_rod"
 	anchored = TRUE
 
@@ -530,13 +530,13 @@
 
 /obj/structure/flora/coconuts
 	gender = PLURAL
-	name = "coconuts"
+	name = "椰子"
 	icon = 'icons/obj/fluff/beach.dmi'
 	icon_state = "coconuts"
 
 /obj/structure/flora/tree/palm
-	name = "palm tree"
-	desc = "A tree straight from the tropics."
+	name = "棕榈树"
+	desc = "一棵来自热带的树。"
 	icon = 'icons/obj/fluff/beach2.dmi'
 	icon_state = "palm1"
 	pixel_x = 0
@@ -555,16 +555,16 @@
  * Grass *
  *********/
 /obj/structure/flora/grass
-	name = "grass"
-	desc = "A patch of overgrown grass."
+	name = "草"
+	desc = "一片长得过茂的草。"
 	icon = 'icons/obj/fluff/flora/snowflora.dmi'
 	gender = PLURAL //"this is grass" not "this is a grass"
 	harvest_with_hands = TRUE
 	harvest_amount_low = 0
 	harvest_amount_high = 2
-	harvest_message_low = "You uproot the grass from the ground, just for the fun of it."
-	harvest_message_med = "You gather up some grass."
-	harvest_message_high = "You gather up a handful grass."
+	harvest_message_low = "你纯粹为了好玩把草从地里拔了出来。"
+	harvest_message_med = "你收集了一些草。"
+	harvest_message_high = "你收集了一把草。"
 	can_uproot = TRUE
 	flora_flags = FLORA_HERBAL
 
@@ -614,8 +614,8 @@
 	update_appearance()
 
 /obj/structure/flora/grass/jungle
-	name = "jungle grass"
-	desc = "Thick alien flora."
+	name = "丛林草"
+	desc = "茂密的外星植物。"
 	icon = 'icons/obj/fluff/flora/jungleflora.dmi'
 	icon_state = "grassa1"
 
@@ -661,8 +661,8 @@
  **********/
 
 /obj/structure/flora/bush
-	name = "bush"
-	desc = "Some type of shrubbery. Known for causing considerable economic stress on designers."
+	name = "灌木"
+	desc = "某种灌木。以让设计师承受相当大的经济压力而闻名。"
 	icon = 'icons/obj/fluff/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
 	flora_flags = FLORA_HERBAL
@@ -934,7 +934,7 @@
 	update_appearance()
 
 /obj/structure/flora/bush/jungle
-	desc = "A wild plant that is found in jungles."
+	desc = "一种生长在丛林中的野生植物。"
 	icon = 'icons/obj/fluff/flora/jungleflora.dmi'
 	icon_state = "busha1"
 	flora_flags = FLORA_HERBAL
@@ -998,8 +998,8 @@
 	update_appearance()
 
 /obj/structure/flora/lunar_plant
-	name = "lunar plant"
-	desc= "This seemingly dead plant is actually quite alive, hibernating until sensing living things."
+	name = "月生植物"
+	desc= "这株看似枯死的植物其实很有活力，它一直休眠，直到感知到活物。"
 	icon_state = "lunar_plant"
 	icon = 'icons/obj/fluff/flora/xenoflora.dmi'
 	density = FALSE
@@ -1025,16 +1025,16 @@
 // (I know these aren't plants)
 
 /obj/structure/flora/rock
-	name = "large rock"
+	name = "大块岩石"
 	icon_state = "basalt1"
-	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
+	desc = "一块火山岩。当年的拓荒者常骑着这些宝贝走好几英里。"
 	icon = 'icons/obj/fluff/flora/rocks.dmi'
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	harvest_amount_low = 10
 	harvest_amount_high = 20
-	harvest_message_med = "You finish mining the rock."
-	harvest_verb = "mine"
+	harvest_message_med = "你开采完了这块岩石。"
+	harvest_verb = "开采"
 	flora_flags = FLORA_STONE
 	can_uproot = FALSE
 	delete_on_harvest = TRUE
@@ -1057,12 +1057,12 @@
 	update_appearance()
 
 /obj/structure/flora/rock/pile
-	name = "rock pile"
-	desc = "A pile of rocks."
+	name = "石堆"
+	desc = "一堆石头。"
 	icon_state = "lavarocks1"
 	harvest_amount_low = 5
 	harvest_amount_high = 10
-	harvest_message_med = "You finish mining the pile of rocks."
+	harvest_message_med = "你开采完了这堆石头。"
 	density = FALSE
 
 /obj/structure/flora/rock/pile/style_2
@@ -1108,12 +1108,12 @@
 	update_appearance()
 
 /obj/structure/flora/rock/siderite_growth
-	name = "siderite growth"
-	desc = "A natural stalagmite formed of siderite, with thin pointy strands of dirty metal sticking out of the top."
+	name = "菱铁矿增生体"
+	desc = "由菱铁矿自然形成的石笋，顶部伸出细长尖锐的脏金属丝。"
 	icon_state = "siderite_growth1"
 	base_icon_state = "siderite_growth"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
-	harvest_message_med = "You finish mining the growth."
+	harvest_message_med = "你开采完了这个增生体。"
 
 /obj/structure/flora/rock/siderite_growth/Initialize(mapload)
 	. = ..()
@@ -1125,11 +1125,11 @@
 	return list(/obj/item/stack/ore/glass/siderite = 1)
 
 /obj/structure/flora/rock/volcano
-	name = "volcanic pore"
-	desc = "A miniature volcano-like rock formed of the lava slowly pouring from it."
+	name = "火山气孔"
+	desc = "一块形似微型火山的岩石，熔岩正从中缓缓流出。"
 	icon_state = "volcano_1"
 	base_icon_state = "volcano"
-	harvest_message_med = "You finish mining the pore buildup."
+	harvest_message_med = "你开采完了气孔结壳。"
 	light_range = 3
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
@@ -1171,7 +1171,7 @@
 	update_appearance()
 
 /obj/structure/flora/rock/pile/jungle/large
-	name = "pile of large rocks"
+	name = "大石堆"
 	icon_state = "rocks1"
 	icon = 'icons/obj/fluff/flora/largejungleflora.dmi'
 	pixel_x = -16
@@ -1192,7 +1192,7 @@
 
 //TODO: Make new sprites for these. the pallete in the icons are grey, and a white color here still makes them grey
 /obj/structure/flora/rock/icy
-	name = "icy rock"
+	name = "冰岩"
 	icon_state = "basalt1"
 	color = rgb(204,233,235)
 
@@ -1208,7 +1208,7 @@
 	update_appearance()
 
 /obj/structure/flora/rock/pile/icy
-	name = "icy rocks"
+	name = "冰岩堆"
 	icon_state = "lavarocks1"
 	color = rgb(204,233,235)
 

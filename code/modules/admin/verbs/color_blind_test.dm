@@ -15,10 +15,10 @@
 		"Achromatopsia" = list(0.33,0.33,0.33,0, 0.33,0.33,0.33,0, 0.33,0.33,0.33,0, 0,0,0,1, 0,0,0,0),
 	)
 	var/list/descriptions = list(
-		"Protanopia" = "No long wavelength cones, ends up not being able to see red light. Troubles with blue/green and red/green",
-		"Deuteranopia" = "No medium wavelength cones. Because the red and green parts of light nearly overlap in this space, trouble is mostly with red/green",
-		"Tritanopia" = "No short wavelength cones, so trouble with blue/green and yellow/violet. Aggressively rare, and equally hard to simulate",
-		"Achromatopsia" = "No cones at all, which leads to something close to monochromatic vision"
+		"Protanopia" = "缺少长波长视锥细胞，结果就是看不见红光。在蓝/绿和红/绿方面有困难",
+		"Deuteranopia" = "缺少中波长视锥细胞。由于在这个色彩空间里红绿两部分几乎重叠，主要困难在于红/绿区分",
+		"Tritanopia" = "缺少短波长视锥细胞，因此在蓝/绿和黄/紫方面有困难。极其罕见，也同样难以模拟",
+		"Achromatopsia" = "完全没有视锥细胞，导致接近单色视觉"
 	)
 	var/selected_type = ""
 

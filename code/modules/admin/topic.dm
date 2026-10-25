@@ -3,20 +3,20 @@
 	. = auth && (auth == href_token || auth == GLOB.href_token)
 	if(.)
 		return
-	var/msg = !auth ? "no" : "a bad"
-	message_admins("[key_name_admin(usr)] clicked an href with [msg] authorization key!")
+	var/msg = !auth ? "缺失的" : "错误的"
+	message_admins("[key_name_admin(usr)] 点击了一个使用[msg]授权密钥的 href 链接！")
 	if(CONFIG_GET(flag/debug_admin_hrefs))
-		message_admins("Debug mode enabled, call not blocked. Please ask your coders to review this round's logs.")
+		message_admins("调试模式已启用，调用未被拦截。请让你们的程序员查看本回合的日志。")
 		log_world("UAH: [href]")
 		return TRUE
-	log_admin_private("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
+	log_admin_private("[key_name(usr)] 点击了一个使用[msg]授权密钥的 href 链接！[href]")
 
 /datum/admins/Topic(href, href_list)
 	..()
 
 	if(usr.client != src.owner || !check_rights(0))
-		message_admins("[usr.key] has attempted to override the admin panel!")
-		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
+		message_admins("[usr.key] 试图覆盖管理员面板！")
+		log_admin("[key_name(usr)] 试图在未授权的情况下使用管理员面板。")
 		return
 
 	if(!CheckAdminHref(href, href_list))
@@ -31,7 +31,7 @@
 		if(AH)
 			AH.Action(href_list["ahelp_action"])
 		else
-			to_chat(usr, "Ticket [ahelp_ref] has been deleted!", confidential = TRUE)
+			to_chat(usr, "工单 [ahelp_ref] 已被删除！", confidential = TRUE)
 
 	else if(href_list["ahelp_tickets"])
 		GLOB.ahelp_tickets.BrowseTickets(text2num(href_list["ahelp_tickets"]))
@@ -44,7 +44,7 @@
 			return
 		var/mob/M = locate(href_list["getplaytimewindow"]) in GLOB.mob_list
 		if(!M)
-			to_chat(usr, span_danger("ERROR: Mob not found."), confidential = TRUE)
+			to_chat(usr, span_danger("错误：未找到生物。"), confidential = TRUE)
 			return
 		cmd_show_exp_panel(M.client)
 
@@ -98,8 +98,8 @@
 				if(EMERGENCY_AT_LEAST_DOCKED)
 					return
 				SSshuttle.emergency.request()
-				log_admin("[key_name(usr)] called the Emergency Shuttle.")
-				message_admins(span_adminnotice("[key_name_admin(usr)] called the Emergency Shuttle to the station."))
+				log_admin("[key_name(usr)] 呼叫了紧急穿梭机。")
+				message_admins(span_adminnotice("[key_name_admin(usr)] 将紧急穿梭机呼叫至空间站。"))
 
 			if("2")
 				if(EMERGENCY_AT_LEAST_DOCKED)
@@ -107,12 +107,12 @@
 				switch(SSshuttle.emergency.mode)
 					if(SHUTTLE_CALL)
 						SSshuttle.cancel_evac(usr) // note that this does provide logging/feedback of its own but it's better for backcompatibility to retain the following logging lines
-						log_admin("[key_name(usr)] sent the Emergency Shuttle back.")
-						message_admins(span_adminnotice("[key_name_admin(usr)] sent the Emergency Shuttle back."))
+						log_admin("[key_name(usr)] 将紧急穿梭机送回了。")
+						message_admins(span_adminnotice("[key_name_admin(usr)] 将紧急穿梭机送回了。"))
 					else
 						SSshuttle.emergency.request()
-						log_admin("[key_name(usr)] called the Emergency Shuttle.")
-						message_admins(span_adminnotice("[key_name_admin(usr)] called the Emergency Shuttle to the station."))
+						log_admin("[key_name(usr)] 呼叫了紧急穿梭机。")
+						message_admins(span_adminnotice("[key_name_admin(usr)] 将紧急穿梭机呼叫至空间站。"))
 
 
 
@@ -120,13 +120,13 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		var/timer = input("Enter new shuttle duration (seconds):","Edit Shuttle Timeleft", SSshuttle.emergency.timeLeft() ) as num|null
+		var/timer = input("输入新的穿梭机时长（秒）：","编辑穿梭机剩余时间", SSshuttle.emergency.timeLeft() ) as num|null
 		if(!timer)
 			return
 		SSshuttle.emergency.setTimer(timer SECONDS)
-		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.")
-		minor_announce("The emergency shuttle will reach its destination in [DisplayTimeText(timer SECONDS)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds."))
+		log_admin("[key_name(usr)] 将紧急穿梭机的剩余时间改为 [timer] 秒。")
+		minor_announce("紧急穿梭机将在 [DisplayTimeText(timer SECONDS)] 后抵达目的地。")
+		message_admins(span_adminnotice("[key_name_admin(usr)] 将紧急穿梭机的剩余时间改为 [timer] 秒。"))
 	else if(href_list["trigger_centcom_recall"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -150,7 +150,7 @@
 		if(!shuttle_console)
 			return
 		shuttle_console.admin_controlled = !shuttle_console.admin_controlled
-		to_chat(usr, "[shuttle_console] was [shuttle_console.admin_controlled ? "locked" : "unlocked"].", confidential = TRUE)
+		to_chat(usr, "[shuttle_console] 已[shuttle_console.admin_controlled ? "锁定" : "解锁"]。", confidential = TRUE)
 
 	else if(href_list["delay_round_end"])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/delay_round_end)
@@ -159,31 +159,31 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(tgui_alert(usr, "Really cancel current round end delay? The reason for the current delay is: \"[SSticker.admin_delay_notice]\"", "Undelay round end", list("Yes", "No")) == "No")
+		if(tgui_alert(usr, "真的要取消当前的回合结束延迟吗？当前延迟的原因是：“[SSticker.admin_delay_notice]”", "取消回合结束延迟", list("Yes", "No")) == "No")
 			return
 
 		SSticker.admin_delay_notice = null
 		SSticker.delay_end = FALSE
 
-		log_admin("[key_name(usr)] undelayed the round end.")
+		log_admin("[key_name(usr)] 取消了回合结束延迟。")
 		if(SSticker.ready_for_reboot)
-			message_admins("[key_name_admin(usr)] undelayed the round end. You must now manually Reboot World to start the next shift.")
+			message_admins("[key_name_admin(usr)] 取消了回合结束延迟。你现在必须手动重启世界才能开始下一个班次。")
 		else
-			message_admins("[key_name_admin(usr)] undelayed the round end.")
+			message_admins("[key_name_admin(usr)] 取消了回合结束延迟。")
 	else if(href_list["end_round"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins(span_adminnotice("[key_name_admin(usr)] is considering ending the round."))
-		if(tgui_alert(usr, "This will end the round, are you SURE you want to do this?", "Confirmation", list("Yes", "No")) == "Yes")
-			if(tgui_alert(usr, "Final Confirmation: End the round NOW?", "Confirmation", list("Yes", "No")) == "Yes")
-				message_admins(span_adminnotice("[key_name_admin(usr)] has ended the round."))
+		message_admins(span_adminnotice("[key_name_admin(usr)] 正在考虑结束本回合。"))
+		if(tgui_alert(usr, "这将结束本回合，你确定要这么做吗？", "确认", list("Yes", "No")) == "Yes")
+			if(tgui_alert(usr, "最终确认：现在就结束本回合？", "确认", list("Yes", "No")) == "Yes")
+				message_admins(span_adminnotice("[key_name_admin(usr)] 结束了本回合。"))
 				SSticker.force_ending = ADMIN_FORCE_END_ROUND //Yeah there we go APC destroyed mission accomplished
 				return
 			else
-				message_admins(span_adminnotice("[key_name_admin(usr)] decided against ending the round."))
+				message_admins(span_adminnotice("[key_name_admin(usr)] 决定不结束本回合。"))
 		else
-			message_admins(span_adminnotice("[key_name_admin(usr)] decided against ending the round."))
+			message_admins(span_adminnotice("[key_name_admin(usr)] 决定不结束本回合。"))
 
 	else if(href_list["simplemake"])
 		if(!check_rights(R_SPAWN))
@@ -191,19 +191,19 @@
 
 		var/mob/M = locate(href_list["mob"])
 		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 类型的实例。", confidential = TRUE)
 			return
 
 		var/delmob = TRUE
 		if(!isobserver(M))
-			switch(tgui_alert(usr,"Delete old mob?","Message",list("Yes","No","Cancel")))
+			switch(tgui_alert(usr,"删除旧生物？","消息",list("Yes","No","Cancel")))
 				if("Cancel")
 					return
 				if("No")
 					delmob = FALSE
 
-		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
-		message_admins(span_adminnotice("[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]"))
+		log_admin("[key_name(usr)] 对 [key_name(M)] 使用了基础变形。正在变形为 [href_list["simplemake"]]。; deletemob=[delmob]")
+		message_admins(span_adminnotice("[key_name_admin(usr)] 对 [key_name_admin(M)] 使用了基础变形。正在变形为 [href_list["simplemake"]]。; deletemob=[delmob]"))
 		switch(href_list["simplemake"])
 			if("observer")
 				M.change_mob_type( /mob/dead/observer , null, null, delmob )
@@ -229,19 +229,19 @@
 		var/mob/M = locate(href_list["boot2"])
 		if(ismob(M))
 			if(!check_if_greater_rights_than(M.client))
-				to_chat(usr, span_danger("Error: They have more rights than you do."), confidential = TRUE)
+				to_chat(usr, span_danger("错误：他们的权限比你高。"), confidential = TRUE)
 				return
-			if(tgui_alert(usr, "Kick [key_name(M)]?", "Confirm", list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, "踢出 [key_name(M)]？", "确认", list("Yes", "No")) != "Yes")
 				return
 			if(!M)
-				to_chat(usr, span_danger("Error: [M] no longer exists!"), confidential = TRUE)
+				to_chat(usr, span_danger("错误：[M] 已不存在！"), confidential = TRUE)
 				return
 			if(!M.client)
-				to_chat(usr, span_danger("Error: [M] no longer has a client!"), confidential = TRUE)
+				to_chat(usr, span_danger("错误：[M] 已不再有客户端！"), confidential = TRUE)
 				return
-			to_chat(M, span_danger("You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), confidential = TRUE)
-			log_admin("[key_name(usr)] kicked [key_name(M)].")
-			message_admins(span_adminnotice("[key_name_admin(usr)] kicked [key_name_admin(M)]."))
+			to_chat(M, span_danger("你已被[usr.client.holder.fakekey ? "一名管理员" : "[usr.client.key]"]踢出服务器。"), confidential = TRUE)
+			log_admin("[key_name(usr)] 踢出了 [key_name(M)]。")
+			message_admins(span_adminnotice("[key_name_admin(usr)] 踢出了 [key_name_admin(M)]。"))
 			qdel(M.client)
 
 	else if(href_list["addmessage"])
@@ -285,7 +285,7 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = tgui_alert(usr,"Delete message/note?",,list("Yes","No"));
+		var/safety = tgui_alert(usr,"删除留言/备注？",,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
@@ -293,7 +293,7 @@
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = tgui_alert(usr,"Delete message/note?",,list("Yes","No"));
+		var/safety = tgui_alert(usr,"删除留言/备注？",,list("Yes","No"));
 		if (safety == "Yes")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
@@ -394,7 +394,7 @@
 		if(query_get_message_edits.NextRow())
 			var/edit_log = query_get_message_edits.item[1]
 			if(!QDELETED(usr))
-				var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				var/datum/browser/browser = new(usr, "Note edits", "备注编辑")
 				browser.set_content(jointext(edit_log, ""))
 				browser.open()
 		qdel(query_get_message_edits)
@@ -410,15 +410,15 @@
 
 		var/mob/M = locate(href_list["forcespeech"])
 		if(!ismob(M))
-			to_chat(usr, "this can only be used on instances of type /mob.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 类型的实例。", confidential = TRUE)
 			return
-		var/speech = input("What will [key_name(M)] say?", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = input("你要让 [key_name(M)] 说什么？", "强制发言", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
-		M.say(speech, forced = "admin speech")
+		M.say(speech, forced = "管理员发言")
 		speech = sanitize(speech) // Nah, we don't trust them
-		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-		message_admins(span_adminnotice("[key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]"))
+		log_admin("[key_name(usr)] 强制 [key_name(M)] 说出：[speech]")
+		message_admins(span_adminnotice("[key_name_admin(usr)] 强制 [key_name_admin(M)] 说出：[speech]"))
 
 	else if(href_list["applyquirks"])
 		if(!check_rights(R_ADMIN))
@@ -426,14 +426,14 @@
 
 		var/mob/living/carbon/human/target = locate(href_list["applyquirks"])
 		if(!istype(target))
-			to_chat(usr, "this can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living/carbon/human 类型的实例。", confidential = TRUE)
 			return
 		if(!target.client)
-			to_chat(usr, "[target] has no client!", confidential = TRUE)
+			to_chat(usr, "[target] 没有客户端！", confidential = TRUE)
 			return
 		SSquirks.AssignQuirks(target, target.client)
-		log_admin("[key_name(usr)] applied client quirks to [key_name(target)].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] applied client quirks to [key_name_admin(target)]."))
+		log_admin("[key_name(usr)] 对 [key_name(target)] 应用了客户端特质。")
+		message_admins(span_adminnotice("[key_name_admin(usr)] 对 [key_name_admin(target)] 应用了客户端特质。"))
 
 	else if(href_list["sendtoprison"])
 		if(!check_rights(R_ADMIN))
@@ -441,23 +441,23 @@
 
 		var/mob/M = locate(href_list["sendtoprison"])
 		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 类型的实例。", confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.", confidential = TRUE)
+			to_chat(usr, "此操作不能用于 /mob/living/silicon/ai 类型的实例。", confidential = TRUE)
 			return
 
-		if(tgui_alert(usr, "Send [key_name(M)] to Prison?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "将 [key_name(M)] 送入监狱？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		// BUBBER EDIT - START - Immersion-friendly Admin Prison
 		do_sparks(10, TRUE, M, spark_type = /datum/effect_system/basic/spark_spread/quantum)
 		// BUBBER EDIT - END
 
-		to_chat(M, span_adminnotice("You have been sent to Prison!"), confidential = TRUE)
+		to_chat(M, span_adminnotice("你已被送入监狱！"), confidential = TRUE)
 
-		log_admin("[key_name(usr)] has sent [key_name(M)] to Prison!")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to Prison!")
+		log_admin("[key_name(usr)] 已将 [key_name(M)] 送入监狱！")
+		message_admins("[key_name_admin(usr)] 已将 [key_name_admin(M)] 送入监狱！")
 
 	else if(href_list["sendbacktolobby"])
 		if(!check_rights(R_ADMIN))
@@ -466,18 +466,18 @@
 		var/mob/M = locate(href_list["sendbacktolobby"])
 
 		if(!isobserver(M))
-			to_chat(usr, span_notice("You can only send ghost players back to the Lobby."), confidential = TRUE)
+			to_chat(usr, span_notice("你只能将幽灵玩家送回大厅。"), confidential = TRUE)
 			return
 
 		if(!M.client)
-			to_chat(usr, span_warning("[M] doesn't seem to have an active client."), confidential = TRUE)
+			to_chat(usr, span_warning("[M] 似乎没有活跃的客户端。"), confidential = TRUE)
 			return
 
-		if(tgui_alert(usr, "Send [key_name(M)] back to Lobby?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "将 [key_name(M)] 送回大厅？", "消息", list("Yes", "No")) != "Yes")
 			return
 
-		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
-		message_admins("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+		log_admin("[key_name(usr)] 已将 [key_name(M)] 送回大厅。")
+		message_admins("[key_name(usr)] 已将 [key_name(M)] 送回大厅。")
 
 		var/mob/dead/new_player/NP = new()
 		NP.ckey = M.ckey
@@ -487,15 +487,15 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "确认？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdome1"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living 类型的实例。", confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.", confidential = TRUE)
+			to_chat(usr, "此操作不能用于 /mob/living/silicon/ai 类型的实例。", confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -505,23 +505,23 @@
 		L.Unconscious(100)
 		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdome1))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("You have been sent to the Thunderdome.")), 5 SECONDS)
-		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 1)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 1)")
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("你已被送入雷霆竞技场。")), 5 SECONDS)
+		log_admin("[key_name(usr)] 已将 [key_name(L)] 送入雷霆竞技场。（队伍 1）")
+		message_admins("[key_name_admin(usr)] 已将 [key_name_admin(L)] 送入雷霆竞技场。（队伍 1）")
 
 	else if(href_list["tdome2"])
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "确认？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdome2"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living 类型的实例。", confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.", confidential = TRUE)
+			to_chat(usr, "此操作不能用于 /mob/living/silicon/ai 类型的实例。", confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -531,46 +531,46 @@
 		L.Unconscious(100)
 		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdome2))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("You have been sent to the Thunderdome.")), 5 SECONDS)
-		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 2)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 2)")
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("你已被送入雷霆竞技场。")), 5 SECONDS)
+		log_admin("[key_name(usr)] 已将 [key_name(L)] 送入雷霆竞技场。（队伍 2）")
+		message_admins("[key_name_admin(usr)] 已将 [key_name_admin(L)] 送入雷霆竞技场。（队伍 2）")
 
 	else if(href_list["tdomeadmin"])
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "确认？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdomeadmin"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living 类型的实例。", confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.", confidential = TRUE)
+			to_chat(usr, "此操作不能用于 /mob/living/silicon/ai 类型的实例。", confidential = TRUE)
 			return
 		var/mob/living/L = M
 
 		L.Unconscious(100)
 		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdomeadmin))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("You have been sent to the Thunderdome.")), 5 SECONDS)
-		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Admin.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Admin.)")
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("你已被送入雷霆竞技场。")), 5 SECONDS)
+		log_admin("[key_name(usr)] 已将 [key_name(L)] 送入雷霆竞技场。（管理员）")
+		message_admins("[key_name_admin(usr)] 已将 [key_name_admin(L)] 送入雷霆竞技场。（管理员）")
 
 	else if(href_list["tdomeobserve"])
 		if(!check_rights(R_FUN))
 			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+		if(tgui_alert(usr, "确认？", "消息", list("Yes", "No")) != "Yes")
 			return
 
 		var/mob/M = locate(href_list["tdomeobserve"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living 类型的实例。", confidential = TRUE)
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.", confidential = TRUE)
+			to_chat(usr, "此操作不能用于 /mob/living/silicon/ai 类型的实例。", confidential = TRUE)
 			return
 		var/mob/living/L = M
 
@@ -585,9 +585,9 @@
 		L.Unconscious(100)
 		sleep(0.5 SECONDS)
 		L.forceMove(pick(GLOB.tdomeobserve))
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("You have been sent to the Thunderdome.")), 5 SECONDS)
-		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Observer.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Observer.)")
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, span_adminnotice("你已被送入雷霆竞技场。")), 5 SECONDS)
+		log_admin("[key_name(usr)] 已将 [key_name(L)] 送入雷霆竞技场。（观察者）")
+		message_admins("[key_name_admin(usr)] 已将 [key_name_admin(L)] 送入雷霆竞技场。（观察者）")
 
 	else if(href_list["revive"])
 		if(!check_rights(R_ADMIN))
@@ -595,12 +595,12 @@
 
 		var/mob/living/L = locate(href_list["revive"])
 		if(!istype(L))
-			to_chat(usr, "This can only be used on instances of type /mob/living.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living 类型的实例。", confidential = TRUE)
 			return
 
 		L.revive(ADMIN_HEAL_ALL)
-		message_admins(span_danger("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"))
-		log_admin("[key_name(usr)] healed / Revived [key_name(L)].")
+		message_admins(span_danger("管理员 [key_name_admin(usr)] 治疗/复活了 [key_name_admin(L)]！"))
+		log_admin("[key_name(usr)] 治疗/复活了 [key_name(L)]。")
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))
@@ -610,20 +610,20 @@
 		if(!istype(our_mob))
 			return
 		if(isAI(our_mob))
-			to_chat(usr, "That's already an AI.", confidential = TRUE)
+			to_chat(usr, "那已经是一个 AI 了。", confidential = TRUE)
 			return
 
 		var/move = TRUE
-		switch(tgui_alert(usr,"Move new AI to AI spawn location?","Move AI?", list("Yes", "No","Cancel")))
+		switch(tgui_alert(usr,"将新 AI 移动到 AI 出生点？","移动 AI？", list("Yes", "No","Cancel")))
 			if("Cancel", null)
 				return
 			if("No")
 				move = FALSE
 		if(QDELETED(our_mob))
-			to_chat(usr, span_danger("Subject was deleted already. Transform canceled."))
+			to_chat(usr, span_danger("对象已被删除。变形已取消。"))
 			return
-		message_admins(span_danger("Admin [key_name_admin(usr)] AIized [key_name_admin(our_mob)]!"))
-		log_admin("[key_name(usr)] AIized [key_name(our_mob)].")
+		message_admins(span_danger("管理员 [key_name_admin(usr)] 将 [key_name_admin(our_mob)] 转化为 AI！"))
+		log_admin("[key_name(usr)] 将 [key_name(our_mob)] 转化为 AI。")
 		our_mob.AIize(our_mob.client, move)
 
 	else if(href_list["makerobot"])
@@ -637,14 +637,14 @@
 		var/mob/original_mob = locate(href_list["ppbyckeyorigmob"]) in GLOB.mob_list
 		var/mob/target_mob = get_mob_by_ckey(target_ckey)
 		if(!target_mob)
-			to_chat(usr, span_warning("No mob found with that ckey."))
+			to_chat(usr, span_warning("未找到该 ckey 对应的生物。"))
 			return
 
 		if(original_mob == target_mob)
-			to_chat(usr, span_warning("[target_ckey] is still in their original mob: [original_mob]."))
+			to_chat(usr, span_warning("[target_ckey] 仍在其原本的生物体内：[original_mob]。"))
 			return
 
-		to_chat(usr, span_notice("Jumping to [target_ckey]'s new mob: [target_mob]!"))
+		to_chat(usr, span_notice("正在跳转到 [target_ckey] 的新生物体：[target_mob]！"))
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, target_mob)
 
 	else if(href_list["adminplayerobservefollow"])
@@ -678,7 +678,7 @@
 	else if(href_list["adminmoreinfo"])
 		var/mob/subject = locate(href_list["adminmoreinfo"]) in GLOB.mob_list
 		if(!ismob(subject))
-			to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 类型的实例。", confidential = TRUE)
 			return
 
 		var/location_description = ""
@@ -690,13 +690,13 @@
 		//Location
 		if(isturf(position))
 			if(isarea(position.loc))
-				location_description = "[subject.loc == position ? "at coordinates" : "in [position.loc] at coordinates"] [position.x], [position.y], [position.z] in area <b>[position.loc]</b>"
+				location_description = "[subject.loc == position ? "位于坐标" : "位于 [position.loc] 内的坐标"] [position.x], [position.y], [position.z]，区域为 <b>[position.loc]</b>"
 			else
-				location_description = "[subject.loc == position ? "at coordinates" : "in [subject.loc] at coordinates"] [position.x], [position.y], [position.z]"
+				location_description = "[subject.loc == position ? "位于坐标" : "位于 [subject.loc] 内的坐标"] [position.x], [position.y], [position.z]"
 
 		//Job + antagonist
 		if(subject.mind)
-			special_role_description = "Role: <b>[subject.mind.assigned_role.title]</b>; Antagonist: <font color='red'><b>"
+			special_role_description = "职业：<b>[subject.mind.assigned_role.title]</b>；反派：<font color='red'><b>"
 
 			if(subject.mind.antag_datums)
 				var/iterable = 0
@@ -707,9 +707,9 @@
 						special_role_description += ", "
 				special_role_description += "</b></font>"
 			else
-				special_role_description += "None</b></font>"
+				special_role_description += "无</b></font>"
 		else
-			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>"
+			special_role_description = "职业：<i>意识数据缺失</i> 反派：<i>意识数据缺失</i>"
 
 		//Health
 		if(isliving(subject))
@@ -717,18 +717,18 @@
 			var/status
 			switch (subject.stat)
 				if(STABLE)
-					status = "Alive"
+					status = "存活"
 				if(SOFT_CRIT)
-					status = "<font color='orange'><b>Critical</b></font>"
+					status = "<font color='orange'><b>濒危</b></font>"
 				if(HARD_CRIT)
-					status = "<font color='orange'><b>Unconscious</b></font>"
+					status = "<font color='orange'><b>无意识</b></font>"
 				if(DEAD)
-					status = "<font color='red'><b>Dead</b></font>"
-			health_description = "Status: [status]"
-			health_description += "<br>Brute: [lifer.get_brute_loss()] - Burn: [lifer.get_fire_loss()] - Toxin: [lifer.get_tox_loss()] - Suffocation: [lifer.get_oxy_loss()]"
-			health_description += "<br>Brain: [lifer.get_organ_loss(ORGAN_SLOT_BRAIN)] - Stamina: [lifer.get_stamina_loss()]"
+					status = "<font color='red'><b>死亡</b></font>"
+			health_description = "状态：[status]"
+			health_description += "<br>钝击：[lifer.get_brute_loss()] - 烧伤：[lifer.get_fire_loss()] - 毒素：[lifer.get_tox_loss()] - 窒息：[lifer.get_oxy_loss()]"
+			health_description += "<br>大脑：[lifer.get_organ_loss(ORGAN_SLOT_BRAIN)] - 耐力：[lifer.get_stamina_loss()]"
 		else
-			health_description = "This mob type has no health to speak of."
+			health_description = "这种生物没有值得一提的生命值。"
 
 		//Gender
 		switch(subject.gender)
@@ -738,13 +738,13 @@
 				gender_description = "<font color='red'><b>[subject.gender]</b></font>"
 
 		//Full Output
-		var/exportable_text = "[span_bold("Info about [subject.name]:")]<br>"
-		exportable_text += "Key - [span_bold(subject.key)]<br>"
-		exportable_text += "Mob Type - [subject.type]<br>"
-		exportable_text += "Gender - [gender_description]<br>"
+		var/exportable_text = "[span_bold("关于 [subject.name] 的信息：")]<br>"
+		exportable_text += "账号 - [span_bold(subject.key)]<br>"
+		exportable_text += "生物类型 - [subject.type]<br>"
+		exportable_text += "性别 - [gender_description]<br>"
 		exportable_text += "[health_description]<br>"
-		exportable_text += "Name: [span_bold(subject.name)] - Real Name: [subject.real_name] - Mind Name: [subject.mind?"[subject.mind.name]":""]<br>"
-		exportable_text += "Location is [location_description]<br>"
+		exportable_text += "名称：[span_bold(subject.name)] - 真实姓名：[subject.real_name] - 意识名称：[subject.mind?"[subject.mind.name]":""]<br>"
+		exportable_text += "位置为 [location_description]<br>"
 		exportable_text += "[special_role_description]<br>"
 		exportable_text += ADMIN_FULLMONTY_NONAME(subject)
 
@@ -759,7 +759,7 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Add)
 				job.total_positions += 1
-				log_job_debug("[key_name(usr)] added a slot to [job.title]")
+				log_job_debug("[key_name(usr)] 为 [job.title] 增加了一个名额")
 				break
 
 		src.manage_free_slots()
@@ -774,11 +774,11 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Add)
 				var/newslots = null
-				newslots = input(usr, "How many job slots do you want?", "Add job slots", "[newslots]") as num|null
+				newslots = input(usr, "你想要多少个职业名额？", "添加职业名额", "[newslots]") as num|null
 				if(!isnull(newslots))
-					to_chat(src.owner, "Job slots for [job.title] set to [newslots]" , confidential = TRUE)
+					to_chat(src.owner, "[job.title] 的职业名额已设为 [newslots]" , confidential = TRUE)
 					job.total_positions = newslots
-					log_job_debug("[key_name(usr)] set the job cap for [job.title] to [newslots]")
+					log_job_debug("[key_name(usr)] 将 [job.title] 的职业上限设为 [newslots]")
 					break
 
 		src.manage_free_slots()
@@ -792,7 +792,7 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Remove && job.total_positions - job.current_positions > 0)
 				job.total_positions -= 1
-				log_job_debug("[key_name(usr)] removed a slot from [job.title]")
+				log_job_debug("[key_name(usr)] 从 [job.title] 移除了一个名额")
 				break
 
 		src.manage_free_slots()
@@ -806,7 +806,7 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Unlimit)
 				job.total_positions = -1
-				log_job_debug("[key_name(usr)] removed the limit from [job.title]")
+				log_job_debug("[key_name(usr)] 移除了 [job.title] 的名额限制")
 				break
 
 		src.manage_free_slots()
@@ -820,7 +820,7 @@
 		for(var/datum/job/job as anything in SSjob.joinable_occupations)
 			if(job.title == Limit)
 				job.total_positions = job.current_positions
-				log_job_debug("[key_name(usr)] set the limit for [job.title] to [job.total_positions]")
+				log_job_debug("[key_name(usr)] 将 [job.title] 的限制设为其当前名额数 [job.total_positions]")
 				break
 
 		src.manage_free_slots()
@@ -832,35 +832,35 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
 		if(!ishuman(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob/living/carbon/human 类型的实例。", confidential = TRUE)
 			return
 		var/obj/item/new_item = new H.dna.species.species_cookie(H)
 		if(H.put_in_hands(new_item))
 			H.update_held_items()
 		else
 			qdel(new_item)
-			log_admin("[key_name(H)] has their hands full, so they did not receive their [new_item.name], spawned by [key_name(src.owner)].")
-			message_admins("[key_name(H)] has their hands full, so they did not receive their [new_item.name], spawned by [key_name(src.owner)].")
+			log_admin("[key_name(H)] 双手已满，因此没有拿到由 [key_name(src.owner)] 生成的 [new_item.name]。")
+			message_admins("[key_name(H)] 双手已满，因此没有拿到由 [key_name(src.owner)] 生成的 [new_item.name]。")
 			return
 
-		log_admin("[key_name(H)] got their [new_item], spawned by [key_name(src.owner)].")
-		message_admins("[key_name(H)] got their [new_item], spawned by [key_name(src.owner)].")
+		log_admin("[key_name(H)] 拿到了由 [key_name(src.owner)] 生成的 [new_item]。")
+		message_admins("[key_name(H)] 拿到了由 [key_name(src.owner)] 生成的 [new_item]。")
 		SSblackbox.record_feedback("amount", "admin_cookies_spawned", 1)
-		to_chat(H, span_adminnotice("Your prayers have been answered!! You received the <b>best [new_item.name]!</b>"), confidential = TRUE)
+		to_chat(H, span_adminnotice("你的祈祷得到了回应！！你获得了<b>最棒的 [new_item.name]！</b>"), confidential = TRUE)
 		SEND_SOUND(H, sound('sound/effects/pray_chaplain.ogg'))
 
 	else if (href_list["adminpopup"])
 		if (!check_rights(R_ADMIN))
 			return
 
-		var/message = input(owner, "As well as a popup, they'll also be sent a message to reply to. What do you want that to be?", "Message") as text|null
+		var/message = input(owner, "除了弹窗外，他们还会收到一条可供回复的消息。你希望消息内容是什么？", "消息") as text|null
 		if (!message)
-			to_chat(owner, span_notice("Popup cancelled."))
+			to_chat(owner, span_notice("弹窗已取消。"))
 			return
 
 		var/client/target = locate(href_list["adminpopup"])
 		if (!istype(target))
-			to_chat(owner, span_notice("The mob doesn't exist anymore!"))
+			to_chat(owner, span_notice("该生物已不存在！"))
 			return
 
 		give_admin_popup(target, owner, message)
@@ -916,7 +916,7 @@
 			return
 
 		var/mob/M = locate(href_list["playsoundto"])
-		var/S = input("", "Select a sound file",) as null|sound
+		var/S = input("", "选择声音文件",) as null|sound
 		if(S)
 			SSadmin_verbs.dynamic_invoke_verb(usr.client, /datum/admin_verb/play_direct_mob_sound, S, M)
 
@@ -926,7 +926,7 @@
 
 		var/mob/M = locate(href_list["individuallog"]) in GLOB.mob_list
 		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 类型的实例。", confidential = TRUE)
 			return
 
 		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
@@ -936,7 +936,7 @@
 
 		var/mob/M = locate(href_list["languagemenu"]) in GLOB.mob_list
 		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob.", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 类型的实例。", confidential = TRUE)
 			return
 		M.get_language_holder().open_language_menu(usr)
 
@@ -946,23 +946,23 @@
 			return
 		// literally just gives them a sound and a message
 		SEND_SOUND(rper, sound('sound/misc/roleplay.ogg'))
-		to_chat(rper, boxed_message("You hear a nagging voice in your head... [span_hypnophrase("Please roleplay appropriately.")]"))
-		message_admins("[ADMIN_LOOKUPFLW(usr)] reminded [ADMIN_LOOKUPFLW(rper)] to roleplay appropriately.")
-		log_admin("[key_name(usr)] reminded [key_name(rper)] to roleplay appropriately.")
+		to_chat(rper, boxed_message("你听到脑海中有一个喋喋不休的声音……[span_hypnophrase("请进行恰当的角色扮演。")]"))
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 提醒 [ADMIN_LOOKUPFLW(rper)] 进行恰当的角色扮演。")
+		log_admin("[key_name(usr)] 提醒 [key_name(rper)] 进行恰当的角色扮演。")
 
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN))
 			return
 
 		if(!SSticker.HasRoundStarted())
-			tgui_alert(usr,"The game hasn't started yet!")
+			tgui_alert(usr,"游戏还未开始！")
 			return
 
 		var/mob/M = locate(href_list["traitor"])
 		if(!ismob(M))
 			var/datum/mind/D = M
 			if(!istype(D))
-				to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+				to_chat(usr, "此操作只能用于 /mob 和 /mind 类型的实例", confidential = TRUE)
 				return
 			else
 				D.traitor_panel()
@@ -975,7 +975,7 @@
 			return
 
 		if(!SSticker.HasRoundStarted())
-			tgui_alert(usr,"The game hasn't started yet!")
+			tgui_alert(usr,"游戏还未开始！")
 			return
 
 		var/target = locate(href_list["skill"])
@@ -986,7 +986,7 @@
 		else if (istype(target, /datum/mind))
 			target_mind = target
 		else
-			to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
+			to_chat(usr, "此操作只能用于 /mob 和 /mind 类型的实例", confidential = TRUE)
 			return
 		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_skill_panel, target_mind)
 		return
@@ -999,7 +999,7 @@
 			return
 		var/mob/M = locate(href_list["initmind"])
 		if(!ismob(M) || M.mind)
-			to_chat(usr, "This can only be used on instances on mindless mobs", confidential = TRUE)
+			to_chat(usr, "此操作只能用于没有意识的生物", confidential = TRUE)
 			return
 		M.mind_initialize()
 
@@ -1028,18 +1028,18 @@
 			return
 		if(SSticker.IsRoundInProgress())
 			var/afkonly = text2num(href_list["afkonly"])
-			if(tgui_alert(usr,"Are you sure you want to kick all [afkonly ? "AFK" : ""] clients from the lobby??","Message",list("Yes","Cancel")) != "Yes")
-				to_chat(usr, "Kick clients from lobby aborted", confidential = TRUE)
+			if(tgui_alert(usr,"你确定要将所有[afkonly ? "挂机" : ""]客户端踢出大厅吗？？","消息",list("Yes","Cancel")) != "Yes")
+				to_chat(usr, "已中止踢出大厅客户端", confidential = TRUE)
 				return
-			var/list/listkicked = kick_clients_in_lobby(span_danger("You were kicked from the lobby by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"]."), afkonly)
+			var/list/listkicked = kick_clients_in_lobby(span_danger("你被[usr.client.holder.fakekey ? "一名管理员" : "[usr.client.key]"]踢出了大厅。"), afkonly)
 
 			var/strkicked = ""
 			for(var/name in listkicked)
 				strkicked += "[name], "
-			message_admins("[key_name_admin(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
-			log_admin("[key_name(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+			message_admins("[key_name_admin(usr)] 已将[afkonly ? "所有挂机" : "所有"]客户端踢出大厅。共踢出 [length(listkicked)] 个客户端：[strkicked ? strkicked : "--"]")
+			log_admin("[key_name(usr)] 已将[afkonly ? "所有挂机" : "所有"]客户端踢出大厅。共踢出 [length(listkicked)] 个客户端：[strkicked ? strkicked : "--"]")
 		else
-			to_chat(usr, "You may only use this when the game is running.", confidential = TRUE)
+			to_chat(usr, "你只能在游戏进行时使用此功能。", confidential = TRUE)
 
 	else if(href_list["set_selfdestruct_code"])
 		if(!check_rights(R_ADMIN))
@@ -1047,27 +1047,27 @@
 		var/code = random_nukecode()
 		for(var/obj/machinery/nuclearbomb/selfdestruct/SD as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb/selfdestruct))
 			SD.r_code = code
-		message_admins("[key_name_admin(usr)] has set the self-destruct \
-			code to \"[code]\".")
+		message_admins("[key_name_admin(usr)] 将自毁 \
+			密码设为“[code]”。")
 
 	else if(href_list["add_station_goal"])
 		if(!check_rights(R_ADMIN))
 			return
 		var/list/type_choices = typesof(/datum/station_goal)
-		var/picked = tgui_input_list(usr, "Choose goal type", "Station Goal", type_choices)
+		var/picked = tgui_input_list(usr, "选择目标类型", "空间站目标", type_choices)
 		if(!picked)
 			return
 		var/datum/station_goal/G = new picked()
 		if(picked == /datum/station_goal)
-			var/newname = input("Enter goal name:") as text|null
+			var/newname = input("输入目标名称：") as text|null
 			if(!newname)
 				return
 			G.name = newname
-			var/description = input("Enter CentCom message contents:") as message|null
+			var/description = input("输入中央指挥部消息内容：") as message|null
 			if(!description)
 				return
 			G.report_message = description
-		message_admins("[key_name(usr)] created \"[G.name]\" station goal.")
+		message_admins("[key_name(usr)] 创建了“[G.name]”空间站目标。")
 		modify_goals()
 
 	else if(href_list["change_lag_switch"])
@@ -1077,19 +1077,19 @@
 		switch(href_list["change_lag_switch"])
 			if("ALL_ON")
 				SSlag_switch.set_all_measures(TRUE)
-				log_admin("[key_name(usr)] turned all Lag Switch measures ON.")
-				message_admins("[key_name_admin(usr)] turned all Lag Switch measures ON.")
+				log_admin("[key_name(usr)] 开启了所有卡顿开关措施。")
+				message_admins("[key_name_admin(usr)] 开启了所有卡顿开关措施。")
 			if("ALL_OFF")
 				SSlag_switch.set_all_measures(FALSE)
-				log_admin("[key_name(usr)] turned all Lag Switch measures OFF.")
-				message_admins("[key_name_admin(usr)] turned all Lag Switch measures OFF.")
+				log_admin("[key_name(usr)] 关闭了所有卡顿开关措施。")
+				message_admins("[key_name_admin(usr)] 关闭了所有卡顿开关措施。")
 			else
 				var/switch_index = text2num(href_list["change_lag_switch"])
 				if(!SSlag_switch.set_measure(switch_index, !LAZYACCESS(SSlag_switch.measures, switch_index)))
-					to_chat(src, span_danger("Something went wrong when trying to toggle that Lag Switch. Check runtimes for more info."), confidential = TRUE)
+					to_chat(src, span_danger("切换该卡顿开关时出错。请查看运行时错误以获取更多信息。"), confidential = TRUE)
 				else
-					log_admin("[key_name(usr)] turned a Lag Switch measure at index ([switch_index]) [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
-					message_admins("[key_name_admin(usr)] turned a Lag Switch measure [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
+					log_admin("[key_name(usr)] 将索引 ([switch_index]) 处的卡顿开关措施[LAZYACCESS(SSlag_switch.measures, switch_index) ? "开启" : "关闭"]")
+					message_admins("[key_name_admin(usr)] 将一项卡顿开关措施[LAZYACCESS(SSlag_switch.measures, switch_index) ? "开启" : "关闭"]")
 
 		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/lag_switch_panel)
 
@@ -1100,32 +1100,32 @@
 		switch(href_list["change_lag_switch_option"])
 			if("CANCEL")
 				if(SSlag_switch.cancel_auto_enable_in_progress())
-					log_admin("[key_name(usr)] canceled the automatic Lag Switch activation in progress.")
-					message_admins("[key_name_admin(usr)] canceled the automatic Lag Switch activation in progress.")
+					log_admin("[key_name(usr)] 取消了正在进行的卡顿开关自动启用。")
+					message_admins("[key_name_admin(usr)] 取消了正在进行的卡顿开关自动启用。")
 				return // return here to avoid (re)rendering the panel for this case
 			if("TOGGLE_AUTO")
 				SSlag_switch.toggle_auto_enable()
-				log_admin("[key_name(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
-				message_admins("[key_name_admin(usr)] toggled automatic Lag Switch activation [SSlag_switch.auto_switch ? "ON" : "OFF"].")
+				log_admin("[key_name(usr)] 切换了卡顿开关自动启用：[SSlag_switch.auto_switch ? "开启" : "关闭"]。")
+				message_admins("[key_name_admin(usr)] 切换了卡顿开关自动启用：[SSlag_switch.auto_switch ? "开启" : "关闭"]。")
 			if("NUM")
-				var/new_num = input("Enter new threshold value:", "Num") as null|num
+				var/new_num = input("输入新的阈值：", "数值") as null|num
 				if(!isnull(new_num))
 					SSlag_switch.trigger_pop = new_num
-					log_admin("[key_name(usr)] set the Lag Switch automatic trigger pop to [new_num].")
-					message_admins("[key_name_admin(usr)] set the Lag Switch automatic trigger pop to [new_num].")
+					log_admin("[key_name(usr)] 将卡顿开关的自动触发人口设为 [new_num]。")
+					message_admins("[key_name_admin(usr)] 将卡顿开关的自动触发人口设为 [new_num]。")
 			if("SLOWCOOL")
-				var/new_num = input("Enter new cooldown in seconds:", "Num") as null|num
+				var/new_num = input("输入新的冷却时间（秒）：", "数值") as null|num
 				if(!isnull(new_num))
 					SSlag_switch.change_slowmode_cooldown(new_num)
-					log_admin("[key_name(usr)] set the Lag Switch slowmode cooldown to [new_num] seconds.")
-					message_admins("[key_name_admin(usr)] set the Lag Switch slowmode cooldown to [new_num] seconds.")
+					log_admin("[key_name(usr)] 将卡顿开关的慢速模式冷却设为 [new_num] 秒。")
+					message_admins("[key_name_admin(usr)] 将卡顿开关的慢速模式冷却设为 [new_num] 秒。")
 
 		SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/lag_switch_panel)
 
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
 		if(!istype(error_viewer))
-			to_chat(usr, span_warning("That runtime viewer no longer exists."), confidential = TRUE)
+			to_chat(usr, span_warning("该运行时错误查看器已不存在。"), confidential = TRUE)
 			return
 
 		if(href_list["viewruntime_backto"])
@@ -1145,16 +1145,16 @@
 		thing_to_check = splittext(thing_to_check, ", ")
 
 
-		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
+		var/list/dat = list("按 [uppertext(href_list["showrelatedacc"])] 关联的账号：")
 		dat += thing_to_check
 
-		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
+		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] 的关联账号", 420, 300)
 		browser.set_content(dat.Join("<br>"))
 		browser.open()
 
 	else if(href_list["centcomlookup"])
 		if(href_list) // BUBBER EDIT BEGIN - Crash Bandaid
-			message_admins("a naughty admin was prevented from hanging the server sending an external query.")
+			message_admins("一名调皮的管理员试图发送外部查询挂起服务器，已被阻止。")
 			return // BUBBER EDIT END - Crash Bandaid
 		if(!check_rights(R_ADMIN))
 			return
@@ -1168,8 +1168,8 @@
 		var/data = list("key" = usr.key)
 		var/answer = href_list["slowquery"]
 		if(answer == "yes")
-			if(tgui_alert(usr, "Did you just press any admin buttons?", "Query server hang report", list("Yes", "No")) == "Yes")
-				var/response = input(usr,"What were you just doing?","Query server hang report") as null|text
+			if(tgui_alert(usr, "你刚才是否按了任何管理员按钮？", "查询服务器挂起报告", list("Yes", "No")) == "Yes")
+				var/response = input(usr,"你刚才在做什么？","查询服务器挂起报告") as null|text
 				if(response)
 					data["response"] = response
 			logger.Log(LOG_CATEGORY_DEBUG_SQL, "server hang", data)
@@ -1348,10 +1348,10 @@
 	else if(href_list["admincommend"])
 		var/mob/heart_recepient = locate(href_list["admincommend"])
 		if(!heart_recepient?.ckey)
-			to_chat(usr, span_warning("This mob either no longer exists or no longer is being controlled by someone!"))
+			to_chat(usr, span_warning("该生物要么已不存在，要么已不再由任何人控制！"))
 			return
 
-		switch(tgui_alert(usr, "Would you like the effects to apply immediately or at the end of the round? Applying them now will make it clear it was an admin commendation.", "<3?", list("Apply now", "Apply at round end", "Cancel")))
+		switch(tgui_alert(usr, "你希望效果立即生效还是在回合结束时生效？立即生效会明确显示这是管理员嘉奖。", "<3?", list("Apply now", "Apply at round end", "Cancel")))
 			if("Apply now")
 				heart_recepient.receive_heart(usr, instant = TRUE)
 			if("Apply at round end")
@@ -1450,7 +1450,7 @@
 			return
 
 		if(!SSdynamic.force_run_midround(/datum/dynamic_ruleset/midround/from_living/opfor_candidate, admin = usr))
-			message_admins("An OPFOR candidate could not be selected.")
+			message_admins("无法选出敌对势力候选人。")
 	// SKYRAT EDIT ADDITION END
 	else if(href_list["play_internet"])
 		if(!check_rights(R_SOUND))

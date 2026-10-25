@@ -360,11 +360,11 @@ GLOBAL_VAR_INIT(last_maptick_time, 0)
 /world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
-			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
-			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, span_boldannounce("Rebooting World immediately due to host request."))
+			log_admin("[key_name(usr)] 通过客户端调试工具请求立即重启世界")
+			message_admins("[key_name_admin(usr)] 通过客户端调试工具请求立即重启世界")
+		to_chat(world, span_boldannounce("应主机请求，世界即将立即重启。"))
 	else
-		to_chat(world, span_boldannounce("Rebooting world..."))
+		to_chat(world, span_boldannounce("世界重启中……"))
 		Master.Shutdown() //run SS shutdowns
 
 	#ifdef UNIT_TESTS

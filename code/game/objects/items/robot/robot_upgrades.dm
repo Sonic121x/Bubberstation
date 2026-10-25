@@ -2,8 +2,8 @@
 // Contains various borg upgrades.
 
 /obj/item/borg/upgrade
-	name = "borg upgrade module"
-	desc = "Protected by FRM."
+	name = "半机械人升级模块"
+	desc = "由 FRM 保护。"
 	icon = 'icons/mob/silicon/robot_items.dmi'
 	icon_state = "module_general"
 	w_class = WEIGHT_CLASS_SMALL
@@ -26,15 +26,15 @@
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(borg.stat == DEAD)
-		to_chat(user, span_warning("[src] will not function on a deceased cyborg!"))
+		to_chat(user, span_warning("[src]无法在已死亡的半机械人身上运作！"))
 		return FALSE
 	if(model_type && !is_type_in_list(borg.model, model_type))
-		to_chat(borg, span_alert("Upgrade mounting error! No suitable hardpoint detected."))
-		to_chat(user, span_warning("There's no mounting point for the module!"))
+		to_chat(borg, span_alert("升级安装错误！未检测到合适的挂载点。"))
+		to_chat(user, span_warning("没有可用于该模块的挂载点！"))
 		return FALSE
 	if(!allow_duplicates && (locate(type) in borg.upgrades))
-		to_chat(borg, span_alert("Upgrade mounting error! Hardpoint already occupied!"))
-		to_chat(user, span_warning("The mounting point for the module is already occupied!"))
+		to_chat(borg, span_alert("升级安装错误！挂载点已被占用！"))
+		to_chat(user, span_warning("该模块的挂载点已被占用！"))
 		return FALSE
 	// Handles adding/removing items.
 	if(length(items_to_add))
@@ -71,8 +71,8 @@
 	return TRUE
 
 /obj/item/borg/upgrade/rename
-	name = "cyborg reclassification board"
-	desc = "Used to rename a cyborg."
+	name = "半机械人重新分类板"
+	desc = "用于给半机械人重命名。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cyborg_upgrade1"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5)
@@ -80,11 +80,11 @@
 	var/heldname = ""
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user)
-	var/new_heldname = sanitize_name(tgui_input_text(user, "Enter new robot name", "Cyborg Reclassification", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
+	var/new_heldname = sanitize_name(tgui_input_text(user, "输入新的机器人名称", "半机械人重新分类", heldname, MAX_NAME_LEN), allow_numbers = TRUE)
 	if(!new_heldname || !user.is_holding(src))
 		return
 	heldname = new_heldname
-	user.log_message("set \"[heldname]\" as a name in a cyborg reclassification board at [loc_name(user)]", LOG_GAME)
+	user.log_message("在半机械人重新分类板上将 \"[heldname]\" 设为名称，位置：[loc_name(user)]", LOG_GAME)
 
 /obj/item/borg/upgrade/rename/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	. = ..()
@@ -96,11 +96,11 @@
 	borg.updatename()
 	if(oldname == borg.real_name)
 		borg.notify_ai(AI_NOTIFICATION_CYBORG_RENAMED, oldname, borg.real_name)
-	user.log_message("used a cyborg reclassification board to rename [oldkeyname] to [key_name(borg)]", LOG_GAME)
+	user.log_message("使用半机械人重新分类板将 [oldkeyname] 重命名为 [key_name(borg)]", LOG_GAME)
 
 /obj/item/borg/upgrade/disablercooler
-	name = "cyborg rapid disabler cooling module"
-	desc = "Used to cool a mounted disabler, increasing the potential current in it and thus its recharge rate."
+	name = "半机械人快速干扰枪冷却模块"
+	desc = "用于冷却已挂载的干扰枪，提高其电流上限，从而提升充能速率。"
 	icon_state = "module_security"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/security)
@@ -116,11 +116,11 @@
 
 	var/obj/item/gun/energy/disabler/cyborg/disabler = locate() in borg.model.modules
 	if(isnull(disabler))
-		to_chat(user, span_warning("There's no disabler in this unit!"))
+		to_chat(user, span_warning("该单位内没有干扰枪！"))
 		return FALSE
 	if(disabler.charge_delay <= 2)
-		to_chat(borg, span_warning("A cooling unit is already installed!"))
-		to_chat(user, span_warning("There's no room for another cooling unit!"))
+		to_chat(borg, span_warning("已安装冷却单元！"))
+		to_chat(user, span_warning("没有空间再安装一个冷却单元！"))
 		return FALSE
 
 	disabler.charge_delay = max(2 , disabler.charge_delay - 4)
@@ -135,8 +135,8 @@
 	disabler.charge_delay = initial(disabler.charge_delay)
 
 /obj/item/borg/upgrade/thrusters
-	name = "ion thruster upgrade"
-	desc = "An energy-operated thruster system for cyborgs."
+	name = "离子推进器升级"
+	desc = "为半机械人设计的能量驱动推进器系统。"
 	icon_state = "module_general"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 3, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 3, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 2.5)
 
@@ -145,7 +145,7 @@
 	if(!.)
 		return .
 	if(borg.ionpulse)
-		to_chat(user, span_warning("This unit already has ion thrusters installed!"))
+		to_chat(user, span_warning("该单位已安装离子推进器！"))
 		return FALSE
 
 	borg.ionpulse = TRUE
@@ -158,8 +158,8 @@
 	borg.ionpulse = FALSE
 
 /obj/item/borg/upgrade/diamond_drill
-	name = "mining cyborg diamond drill"
-	desc = "A diamond drill replacement for the mining model's standard drill."
+	name = "采矿半机械人钻石钻头"
+	desc = "用于替换采矿型号标准钻头的钻石钻头。"
 	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
@@ -170,8 +170,8 @@
 	items_to_remove = list(/obj/item/pickaxe/drill, /obj/item/shovel)
 
 /obj/item/borg/upgrade/soh
-	name = "mining cyborg satchel of holding"
-	desc = "A satchel of holding replacement for mining cyborg's ore satchel module."
+	name = "采矿半机械人次元挎包"
+	desc = "用于替换采矿半机械人矿石挎包模块的次元挎包。"
 	icon_state = "module_miner"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/miner)
@@ -182,8 +182,8 @@
 	items_to_remove = list(/obj/item/storage/bag/ore/cyborg)
 
 /obj/item/borg/upgrade/tboh
-	name = "janitor cyborg trash bag of holding"
-	desc = "A trash bag of holding replacement for the janiborg's standard trash bag."
+	name = "清洁半机械人次元垃圾袋"
+	desc = "用于替换清洁半机械人标准垃圾袋的次元垃圾袋。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -194,8 +194,8 @@
 	items_to_remove = list(/obj/item/storage/bag/trash)
 
 /obj/item/borg/upgrade/amop
-	name = "janitor cyborg advanced mop"
-	desc = "An advanced mop replacement for the janiborg's standard mop."
+	name = "清洁半机械人高级拖把"
+	desc = "用于替换清洁半机械人标准拖把的高级拖把。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -206,8 +206,8 @@
 	items_to_remove = list(/obj/item/mop)
 
 /obj/item/borg/upgrade/prt
-	name = "janitor cyborg plating repair tool"
-	desc = "A tiny heating device to repair burnt and damaged hull platings with."
+	name = "清洁半机械人装甲板修补工具"
+	desc = "一个小型加热装置，用于修补烧焦和受损的船体装甲板。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -217,8 +217,8 @@
 	items_to_add = list(/obj/item/cautery/prt)
 
 /obj/item/borg/upgrade/plunger
-	name = "janitor cyborg plunging tool"
-	desc = "An integrated cyborg retractable plunger. It's meant for plunging things, duh."
+	name = "清洁半机械人搋子工具"
+	desc = "集成式半机械人可伸缩搋子。就是用来搋东西的，这还用说。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -228,8 +228,8 @@
 	items_to_add = list(/obj/item/plunger)
 
 /obj/item/borg/upgrade/high_capacity_light_replacer
-	name = "janitor cyborg high capacity replacer"
-	desc = "Increases the amount of lights that can be stored in the replacer."
+	name = "清洁半机械人大容量灯泡更换器"
+	desc = "增加灯泡更换器可储存的灯泡数量。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -240,8 +240,8 @@
 	items_to_remove = list(/obj/item/lightreplacer)
 
 /obj/item/borg/upgrade/syndicate
-	name = "illegal equipment module"
-	desc = "Unlocks the hidden, deadlier functions of a cyborg."
+	name = "非法装备模块"
+	desc = "解锁半机械人隐藏的致命功能。"
 	icon_state = "module_illegal"
 	require_model = TRUE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 5)
@@ -258,8 +258,8 @@
 		return FALSE
 
 	borg.SetEmagged(TRUE)
-	borg.logevent("WARN: hardware installed with missing security certificate!") //A bit of fluff to hint it was an illegal tech item
-	borg.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
+	borg.logevent("警告：所安装硬件的安全证书缺失！") //A bit of fluff to hint it was an illegal tech item
+	borg.logevent("警告：已向进程 [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)] 授予 root 权限。") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 
 	return TRUE
 
@@ -270,8 +270,8 @@
 	borg.SetEmagged(FALSE)
 
 /obj/item/borg/upgrade/lavaproof
-	name = "mining cyborg lavaproof chassis"
-	desc = "An upgrade kit to apply specialized coolant systems and insulation layers to a mining cyborg's chassis, enabling them to withstand exposure to molten rock and liquid plasma."
+	name = "采矿半机械人防熔岩底盘"
+	desc = "一套升级套件，可为采矿半机械人的底盘加装专用冷却系统与隔热层，使其能够承受熔岩和液态等离子体的侵蚀。"
 	icon_state = "module_miner"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | FREEZE_PROOF
 	require_model = TRUE
@@ -292,8 +292,8 @@
 	borg.remove_traits(list(TRAIT_LAVA_IMMUNE, TRAIT_SNOWSTORM_IMMUNE), type)
 
 /obj/item/borg/upgrade/selfrepair
-	name = "self-repair module"
-	desc = "This module will repair the cyborg over time."
+	name = "自我修复模块"
+	desc = "该模块会随时间逐步修复半机械人。"
 	icon_state = "module_general"
 	require_model = TRUE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5)
@@ -324,10 +324,10 @@
 
 /obj/item/borg/upgrade/selfrepair/ui_action_click()
 	if(on)
-		to_chat(toggle_action.owner, span_notice("You deactivate the self-repair module."))
+		to_chat(toggle_action.owner, span_notice("你关闭了自我修复模块。"))
 		deactivate_sr()
 	else
-		to_chat(toggle_action.owner, span_notice("You activate the self-repair module."))
+		to_chat(toggle_action.owner, span_notice("你启动了自我修复模块。"))
 		activate_sr()
 
 
@@ -356,12 +356,12 @@
 
 	if(istype(cyborg) && (cyborg.stat != DEAD) && on)
 		if(!cyborg.cell)
-			to_chat(cyborg, span_alert("Self-repair module deactivated. Please insert power cell."))
+			to_chat(cyborg, span_alert("自我修复模块已关闭。请插入电池。"))
 			deactivate_sr()
 			return
 
 		if(cyborg.cell.charge < energy_cost * 2)
-			to_chat(cyborg, span_alert("Self-repair module deactivated. Please recharge."))
+			to_chat(cyborg, span_alert("自我修复模块已关闭。请充电。"))
 			deactivate_sr()
 			return
 
@@ -382,19 +382,19 @@
 
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_BORG_SELF_REPAIR))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BORG_SELF_REPAIR, 200 SECONDS)
-			var/msgmode = "standby"
+			var/msgmode = "待机"
 			if(cyborg.health < 0)
-				msgmode = "critical"
+				msgmode = "危重"
 			else if(cyborg.health < cyborg.maxHealth)
-				msgmode = "normal"
-			to_chat(cyborg, span_notice("Self-repair is active in [span_boldnotice("[msgmode]")] mode."))
+				msgmode = "正常"
+			to_chat(cyborg, span_notice("自我修复正以[span_boldnotice("[msgmode]")]模式运行。"))
 	else
 		deactivate_sr()
 
 /obj/item/borg/upgrade/hypospray
-	name = "medical cyborg hypospray advanced synthesiser"
-	desc = "An upgrade to the Medical model cyborg's hypospray, allowing it \
-		to produce more advanced and complex medical reagents."
+	name = "医疗半机械人喷雾器高级合成器"
+	desc = "医疗型号半机械人喷雾器的升级，使其 \
+		能够生产更高级、更复杂的医疗试剂。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -416,15 +416,15 @@
 		hypo.remove_hypo_upgrade()
 
 /obj/item/borg/upgrade/hypospray/expanded
-	name = "medical cyborg expanded hypospray"
-	desc = "An upgrade to the Medical model's hypospray, allowing it \
-		to treat a wider range of conditions and problems."
+	name = "医疗半机械人扩展喷雾器"
+	desc = "医疗型号喷雾器的升级，使其 \
+		能够治疗更多种类的病症与问题。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT * 4, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/borg/upgrade/piercing_hypospray
-	name = "cyborg piercing hypospray"
-	desc = "An upgrade to a cyborg's hypospray, allowing it to \
-		pierce armor and thick material."
+	name = "半机械人穿透喷雾器"
+	desc = "半机械人喷雾器的升级，使其能够 \
+		穿透护甲和厚重材料。"
 	icon_state = "module_medical"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 1.5)
 
@@ -440,7 +440,7 @@
 		found_hypo = TRUE
 
 	if(!found_hypo)
-		to_chat(user, span_warning("There are no installed hypospray modules to upgrade with piercing!")) //check to see if any hyposprays were upgraded
+		to_chat(user, span_warning("没有已安装的喷雾器模块可以加装穿透功能！")) //check to see if any hyposprays were upgraded
 		return FALSE
 
 	// If we are actually going to install the upgrade due to the presence of compatible modules, make sure their emagged counterparts get upgraded too.
@@ -457,10 +457,10 @@
 		hypo.bypass_protection = initial(hypo.bypass_protection)
 
 /obj/item/borg/upgrade/surgery_omnitool
-	name = "cyborg surgical omni-tool upgrade"
-	desc = "An upgrade to the Medical model, upgrading the built-in \
-		surgical omnitool, to be on par with advanced surgical tools, allowing for faster surgery. \
-		It also upgrades their scanner."
+	name = "半机械人手术全能工具升级"
+	desc = "医疗型号的升级，将内置的 \
+		手术全能工具提升至与高级手术工具相当的水平，从而加快手术速度。 \
+		它还会升级其扫描仪。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical,  /obj/item/robot_model/syndicate_medical)
@@ -487,9 +487,9 @@
 		omnitool.set_upgraded(FALSE)
 
 /obj/item/borg/upgrade/engineering_omnitool
-	name = "cyborg engineering omni-tool upgrade"
-	desc = "An upgrade to the Engineering model, upgrading the built-in \
-		engineering omnitool, to be on par with advanced engineering tools"
+	name = "半机械人工程全能工具升级"
+	desc = "工程型号的升级，将内置的 \
+		工程全能工具提升至与高级工程工具相当的水平"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering,  /obj/item/robot_model/saboteur)
@@ -515,9 +515,9 @@
 		welder.toolspeed = initial(welder.toolspeed)
 
 /obj/item/borg/upgrade/defib
-	name = "medical cyborg defibrillator"
-	desc = "An upgrade to the Medical model, installing a built-in \
-		defibrillator, for on the scene revival."
+	name = "医疗半机械人除颤器"
+	desc = "医疗型号的升级，安装内置的 \
+		除颤器，以便在现场实施复苏。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -530,7 +530,7 @@
 	var/obj/item/borg/upgrade/defib/backpack/defib_pack = locate() in borg //If a full defib unit was used to upgrade prior, we can just pop it out now and replace
 	if(defib_pack)
 		defib_pack.deactivate(borg, user)
-		to_chat(user, span_notice("The defibrillator pops out of the chassis as the compact upgrade installs."))
+		to_chat(user, span_notice("随着紧凑型升级安装完成，除颤器从底盘中弹出。"))
 	. = ..()
 
 ///A version of the above that also acts as a holder of an actual defibrillator item used in place of the upgrade chip.
@@ -564,10 +564,10 @@
 	defib_instance?.forceMove(borg.drop_location()) // [on_defib_instance_qdel_or_moved()] handles the rest.
 
 /obj/item/borg/upgrade/processor
-	name = "medical and research cyborg surgical processor" // BUBBER EDIT Research borgs
-	desc = "An upgrade to the Medical and Research model, installing a processor \
-		capable of scanning surgery disks and carrying \
-		out procedures"
+	name = "医疗与科研半机械人手术处理器" // BUBBER EDIT Research borgs
+	desc = "医疗与科研型号的升级，安装一个能够扫描 \
+		手术磁盘并执行 \
+		手术流程的处理器"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical)
@@ -577,8 +577,8 @@
 	items_to_add = list(/obj/item/surgical_processor)
 
 /obj/item/borg/upgrade/ai
-	name = "B.O.R.I.S. module"
-	desc = "Bluespace Optimized Remote Intelligence Synchronization. An uplink device which takes the place of an MMI in cyborg endoskeletons, creating a robotic shell controlled by an AI."
+	name = "B.O.R.I.S. 模块"
+	desc = "蓝空间优化远程智能同步。一种上行链路设备，用于在半机械人内骨骼中替代人机接口，制造出由 AI 控制的机械壳体。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "boris"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 7.5, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 6, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2)
@@ -588,7 +588,7 @@
 	if(!.)
 		return .
 	if(borg.key) //You cannot replace a player unless the key is completely removed.
-		to_chat(user, span_warning("Intelligence patterns detected in this [borg.braintype]. Aborting."))
+		to_chat(user, span_warning("在该[borg.braintype]中检测到智能模式。正在中止。"))
 		return FALSE
 
 	borg.make_shell(src)
@@ -602,8 +602,8 @@
 	borg.notify_ai(AI_NOTIFICATION_AI_SHELL)
 
 /obj/item/borg/upgrade/expand
-	name = "borg expander"
-	desc = "A cyborg resizer, it makes a cyborg huge."
+	name = "半机械人扩容装置"
+	desc = "一种半机械人体型调整器，能让半机械人变得巨大。"
 	icon_state = "module_general"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2.5) //Bubber edit 100 iron -> 1 iron
 
@@ -613,7 +613,7 @@
 		return FALSE
 
 	if(borg.hasExpanded)
-		to_chat(usr, span_warning("This unit already has an expand module installed!"))
+		to_chat(usr, span_warning("该单位已安装扩容模块！"))
 		return FALSE
 
 	ADD_TRAIT(borg, TRAIT_NO_TRANSFORM, REF(src))
@@ -647,8 +647,8 @@
 		borg.update_transform(0.625) // SKYRAT EDIT CHANGE - ORIGINAL: borg.update_transform(0.5)
 
 /obj/item/borg/upgrade/rped
-	name = "engineering cyborg RPED (expanded)"
-	desc = "An expanded rapid part exchange device for the engineering cyborg."
+	name = "工程半机械人 RPED（扩展型）"
+	desc = "为工程半机械人设计的扩展型快速零件更换装置。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
@@ -658,8 +658,8 @@
 	items_to_add = list(/obj/item/storage/part_replacer/cyborg)
 
 /obj/item/borg/upgrade/smallrped
-	name = "engineering cyborg RPED"
-	desc = "A regular version of rapid part exchange device for the engineering cyborg."
+	name = "工程半机械人 RPED"
+	desc = "工程半机械人的常规版快速零件更换装置。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
@@ -673,14 +673,14 @@
 	var/obj/item/borg/upgrade/smallrped/upgrade = locate() in borg
 	var/obj/item/storage/part_replacer/cyborg/small/replacer = locate() in borg.model.modules
 	if(upgrade)
-		to_chat(user, span_notice("The old RPED module is now expanded and gets more space"))
+		to_chat(user, span_notice("旧的 RPED 模块现已扩展，获得更多空间"))
 		replacer.emptyStorage()
 		replacer.forceMove(get_turf(borg))
 		qdel(upgrade)
 
 /obj/item/borg/upgrade/inducer
-	name = "engineering integrated power inducer"
-	desc = "An integrated inducer that can charge a device's internal cell from power provided by the cyborg."
+	name = "工程集成式电力感应器"
+	desc = "一种集成式感应器，可利用半机械人提供的电量为设备内置电池充电。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
@@ -689,8 +689,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/item/borg/upgrade/pinpointer
-	name = "medical cyborg crew pinpointer"
-	desc = "A crew pinpointer module for the medical cyborg. Permits remote access to the crew monitor."
+	name = "医疗半机械人船员定位仪"
+	desc = "医疗半机械人的船员定位仪模块，可远程访问船员监视器。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical)
@@ -724,12 +724,12 @@
 	GLOB.crewmonitor.show(borg,borg)
 
 /datum/action/item_action/crew_monitor
-	name = "Interface With Crew Monitor"
+	name = "接入船员监视器"
 	button_icon =  "scanner"
 
 /obj/item/borg/upgrade/transform
-	name = "borg model picker (Standard)"
-	desc = "Allows you to turn a cyborg into a standard cyborg."
+	name = "半机械人型号选择器（标准）"
+	desc = "允许你将半机械人转换为标准半机械人。"
 	icon_state = "module_general"
 	var/obj/item/robot_model/new_model = null
 
@@ -739,15 +739,15 @@
 		borg.model.transform_to(new_model)
 
 /obj/item/borg/upgrade/transform/clown
-	name = "borg model picker (Clown)"
-	desc = "Allows you to turn a cyborg into a clown, honk."
+	name = "半机械人型号选择器（小丑）"
+	desc = "允许你将半机械人转换为小丑，HONK。"
 	icon_state = "module_honk"
 	new_model = /obj/item/robot_model/clown
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 7.5, /datum/material/bananium = SMALL_MATERIAL_AMOUNT * 5)
 
 /obj/item/borg/upgrade/engineering_app
-	name = "engineering manipulation apparatus"
-	desc = "An engineering cyborg upgrade allowing for manipulation of circuit boards and other engineering matter."
+	name = "工程操作装置"
+	desc = "一种工程半机械人升级，可操作电路板及其他工程物件。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
@@ -757,8 +757,8 @@
 	items_to_add = list(/obj/item/borg/apparatus/engineering)
 
 /obj/item/borg/upgrade/beaker_app
-	name = "beaker storage apparatus"
-	desc = "A supplementary beaker storage apparatus for medical cyborgs."
+	name = "烧杯储存装置"
+	desc = "为医疗半机械人提供的附加烧杯储存装置。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -768,8 +768,8 @@
 	items_to_add = list(/obj/item/borg/apparatus/beaker/extra)
 
 /obj/item/borg/upgrade/bs_syringe
-	name = "advanced syringe"
-	desc = "Bluespace technology that expands capacity of your standard cyborg syringe."
+	name = "高级注射器"
+	desc = "蓝空间技术，可扩展半机械人标准注射器的容量。"
 	icon_state = "module_medical"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/medical)
@@ -780,8 +780,8 @@
 	items_to_remove = list(/obj/item/reagent_containers/syringe)
 
 /obj/item/borg/upgrade/drink_app
-	name = "glass storage apparatus"
-	desc = "A supplementary drinking glass storage apparatus for service cyborgs."
+	name = "杯子储存装置"
+	desc = "为服务半机械人提供的附加饮水杯储存装置。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -791,8 +791,8 @@
 	items_to_add = list(/obj/item/borg/apparatus/beaker/drink)
 
 /obj/item/borg/upgrade/broomer
-	name = "experimental push broom"
-	desc = "An experimental push broom used for efficiently pushing refuse."
+	name = "实验性推扫帚"
+	desc = "一种实验性推扫帚，用于高效清扫垃圾。"
 	icon_state = "module_janitor"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/janitor)
@@ -802,8 +802,8 @@
 	items_to_add = list(/obj/item/pushbroom)
 
 /obj/item/borg/upgrade/condiment_synthesizer
-	name = "Service Cyborg Condiment Synthesiser"
-	desc = "An upgrade to the service model cyborg, allowing it to produce solid condiments."
+	name = "服务半机械人调味品合成器"
+	desc = "服务型号半机械人的升级，使其能够生产固体调味品。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -813,8 +813,8 @@
 	items_to_add = list(/obj/item/reagent_containers/borghypo/condiment_synthesizer)
 
 /obj/item/borg/upgrade/silicon_knife
-	name = "Service Cyborg Kitchen Toolset"
-	desc = "An upgrade to the service model cyborg, to help process foods."
+	name = "服务半机械人厨房工具套件"
+	desc = "服务型号半机械人的升级，有助于加工食材。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -824,8 +824,8 @@
 	items_to_add = list(/obj/item/knife/kitchen/silicon)
 
 /obj/item/borg/upgrade/service_apparatus
-	name = "Service Cyborg Service Apparatus"
-	desc = "An upgrade to the service model cyborg, to help handle foods and paper."
+	name = "服务半机械人服务装置"
+	desc = "服务型号半机械人的升级，有助于处理食物和纸张。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -835,8 +835,8 @@
 	items_to_add = list(/obj/item/borg/apparatus/service)
 
 /obj/item/borg/upgrade/rolling_table
-	name = "Service Cyborg Rolling Table Dock"
-	desc = "An upgrade to the service model cyborg, to help provide mobile service."
+	name = "服务半机械人移动桌对接装置"
+	desc = "服务型号半机械人的升级，有助于提供移动服务。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -846,8 +846,8 @@
 	items_to_add = list(/obj/item/rolling_table_dock)
 
 /obj/item/borg/upgrade/service_cookbook
-	name = "Service Cyborg Cookbook"
-	desc = "An upgrade to the service model cyborg, that lets them create more foods."
+	name = "服务半机械人食谱"
+	desc = "服务型号半机械人的升级，使其能够制作更多食物。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -857,8 +857,8 @@
 	items_to_add = list(/obj/item/borg/cookbook)
 
 /obj/item/borg/upgrade/botany_upgrade
-	name = "Service Cyborg Botany Tools"
-	desc = "An upgrade to the service model cyborg, that let them do gardening and plant processing."
+	name = "服务半机械人植物学工具"
+	desc = "服务型号半机械人的升级，使其能够进行园艺和植物加工。"
 	icon_state = "module_service"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/service)
@@ -868,8 +868,8 @@
 	items_to_add = list(/obj/item/storage/bag/plants/cyborg, /obj/item/borg/cyborg_omnitool/botany, /obj/item/plant_analyzer)
 
 /obj/item/borg/upgrade/shuttle_blueprints
-	name = "Engineering Cyborg Shuttle Blueprint Database"
-	desc = "An upgrade to the engineering model cyborg allowing for the construction and expansion of shuttles."
+	name = "工程半机械人穿梭机蓝图数据库"
+	desc = "工程型号半机械人的升级，可用于建造和扩建穿梭机。"
 	icon_state = "module_engineer"
 	require_model = TRUE
 	model_type = list(/obj/item/robot_model/engineering, /obj/item/robot_model/saboteur)
@@ -881,8 +881,8 @@
 ///This isn't an upgrade or part of the same path, but I'm gonna just stick it here because it's a tool used on cyborgs.
 //A reusable tool that can bring borgs back to life. They gotta be repaired first, though.
 /obj/item/borg_restart_board
-	name = "cyborg emergency reboot module"
-	desc = "A reusable firmware reset tool that can force a reboot of a disabled-but-repaired cyborg, bringing it back online."
+	name = "半机械人紧急重启模块"
+	desc = "一种可重复使用的固件重置工具，可强制重启已修复但停机的半机械人，使其重新上线。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "cyborg_upgrade1"
@@ -892,13 +892,13 @@
 	if(!istype(borgo))
 		return ..()
 	if(!borgo.opened)
-		to_chat(user, span_warning("You must access the cyborg's internals!"))
+		to_chat(user, span_warning("你必须先打开半机械人的内部结构！"))
 		return ..()
 	if(borgo.health < 0)
-		to_chat(user, span_warning("You have to repair the cyborg before using this module!"))
+		to_chat(user, span_warning("使用该模块前，你必须先修复半机械人！"))
 		return ..()
 	if(!(borgo.stat & DEAD))
-		to_chat(user, span_warning("This cyborg is already operational!"))
+		to_chat(user, span_warning("该半机械人已经在运行中！"))
 		return ..()
 
 	if(borgo.mind)
@@ -908,6 +908,6 @@
 		playsound(loc, 'sound/machines/ping.ogg', 75, TRUE)
 
 	borgo.revive()
-	borgo.logevent("WARN -- System recovered from unexpected shutdown.")
-	borgo.logevent("System brought online.")
+	borgo.logevent("警告——系统已从意外关机中恢复。")
+	borgo.logevent("系统已上线。")
 	return ..()

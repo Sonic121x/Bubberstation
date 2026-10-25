@@ -1,131 +1,131 @@
-#define SPELLBOOK_CATEGORY_DEFENSIVE "Defensive"
+#define SPELLBOOK_CATEGORY_DEFENSIVE "防御"
 // Defensive wizard spells
 /datum/spellbook_entry/magicm
-	name = "Magic Missile"
-	desc = "Fires several, slow moving, magic projectiles at nearby targets."
+	name = "魔法飞弹"
+	desc = "向附近目标射出数枚缓慢飞行的魔法弹。"
 	spell_type = /datum/action/cooldown/spell/aoe/magic_missile
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/disabletech
-	name = "Disable Tech"
-	desc = "Disables all weapons, cameras and most other technology in range."
+	name = "禁用科技"
+	desc = "使范围内的所有武器、摄像头以及大多数其他科技设备失效。"
 	spell_type = /datum/action/cooldown/spell/emp/disable_tech
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/repulse
-	name = "Repulse"
-	desc = "Throws everything around the user away."
+	name = "斥退"
+	desc = "将使用者周围的一切都抛飞出去。"
 	spell_type = /datum/action/cooldown/spell/aoe/repulse/wizard
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/lightning_packet
-	name = "Thrown Lightning"
-	desc = "Forged from eldrich energies, a packet of pure power, \
-		known as a spell packet will appear in your hand, that when thrown will stun the target."
+	name = "投掷闪电"
+	desc = "由邪异能量锻造而成，一包名为法术包的纯粹力量，\
+		会出现在你手中，投掷出去便可击晕目标。"
 	spell_type = /datum/action/cooldown/spell/conjure_item/spellpacket
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/timestop
-	name = "Time Stop"
-	desc = "Stops time for everyone except for you, allowing you to move freely \
-		while your enemies and even projectiles are frozen."
+	name = "时间停止"
+	desc = "除你之外的所有人都被时间停止，使你能自由移动，\
+		而你的敌人甚至飞射的弹道都被冻结。"
 	spell_type = /datum/action/cooldown/spell/timestop
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/smoke
-	name = "Smoke"
-	desc = "Spawns a cloud of choking smoke at your location."
+	name = "烟雾"
+	desc = "在你所在的位置生成一团令人窒息的烟雾。"
 	spell_type = /datum/action/cooldown/spell/smoke
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/forcewall
-	name = "Force Wall"
-	desc = "Create a magical barrier that only you can pass through."
+	name = "力场墙"
+	desc = "创造一道只有你能穿过的魔法屏障。"
 	spell_type = /datum/action/cooldown/spell/forcewall
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/lichdom
-	name = "Bind Soul"
-	desc = "A dark necromantic pact that can forever bind your soul to an item of your choosing, \
-		turning you into an immortal Lich. So long as the item remains intact, you will revive from death, \
-		no matter the circumstances. Be wary - with each revival, your body will become weaker, and \
-		it will become easier for others to find your item of power."
+	name = "缚魂"
+	desc = "一份黑暗的死灵契约，能将你的灵魂永久束缚于一件你选定的物品中，\
+		把你变成不朽的巫妖。只要该物品完好无损，无论境况如何，你都会从死亡中复活。\
+		但要小心——每一次复活，你的身体都会变得更虚弱，\
+		别人也会更容易找到你的力量物品。"
 	spell_type =  /datum/action/cooldown/spell/lichdom
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	no_coexistence_typecache = list(/datum/action/cooldown/spell/splattercasting, /datum/spellbook_entry/perks/wormborn, /datum/spellbook_entry/ghostliness)
 
 /datum/spellbook_entry/chuunibyou
-	name = "Chuuni Invocations"
-	desc = "Makes all your spells shout invocations, and the invocations become... stupid. You heal slightly after casting a spell."
+	name = "中二咏唱"
+	desc = "让你所有法术都大声咏唱，而咏唱内容会变得……很蠢。施放法术后你会略微恢复。"
 	spell_type =  /datum/action/cooldown/spell/chuuni_invocations
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/spacetime_dist
-	name = "Spacetime Distortion"
-	desc = "Entangle the strings of space-time in an area around you, \
-		randomizing the layout and making proper movement impossible. The strings vibrate..."
+	name = "时空扭曲"
+	desc = "将你周围区域的时空之线缠结在一起，\
+		打乱空间布局，使正常行走成为不可能。这些线在颤动……"
 	spell_type = /datum/action/cooldown/spell/spacetime_dist
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/the_traps
-	name = "The Traps!"
-	desc = "Summon a number of traps around you. They will damage and enrage any enemies that step on them."
+	name = "陷阱！"
+	desc = "在你周围召唤若干陷阱。踩到陷阱的敌人会受到伤害并被激怒。"
 	spell_type = /datum/action/cooldown/spell/conjure/the_traps
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/bees
-	name = "Lesser Summon Bees"
-	desc = "This spell magically kicks a transdimensional beehive, \
-		instantly summoning a swarm of bees to your location. These bees are NOT friendly to anyone."
+	name = "次级召唤蜜蜂"
+	desc = "这个法术以魔法之力踢了一脚跨维度蜂巢，\
+		瞬间在你所在处召唤出一群蜜蜂。这些蜜蜂对任何人都绝不友好。"
 	spell_type = /datum/action/cooldown/spell/conjure/bee
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/duffelbag
-	name = "Bestow Cursed Duffel Bag"
-	desc = "A curse that firmly attaches a demonic duffel bag to the target's back. \
-		The duffel bag will make the person it's attached to take periodical damage \
-		if it is not fed regularly, and regardless of whether or not it's been fed, \
-		it will slow the person wearing it down significantly."
+	name = "赐予诅咒行李袋"
+	desc = "一个恶咒，将一个恶魔行李袋牢牢固定在目标背上。\
+		如果不定期喂食，行李袋会周期性地对背负者造成伤害，\
+		而且无论是否被喂食，\
+		它都会让穿戴者行动明显迟缓。"
 	spell_type = /datum/action/cooldown/spell/touch/duffelbag
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 	cost = 1
 
 /datum/spellbook_entry/item/staffhealing
-	name = "Staff of Healing"
-	desc = "An altruistic staff that can heal the lame and raise the dead."
+	name = "治疗法杖"
+	desc = "一根利他的法杖，能治愈瘸子，也能使死者复生。"
 	item_path = /obj/item/gun/magic/staff/healing
 	cost = 1
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/lockerstaff
-	name = "Staff of the Locker"
-	desc = "A staff that shoots lockers. It eats anyone it hits on its way, leaving a welded locker with your victims behind."
+	name = "储物柜法杖"
+	desc = "一根能射出储物柜的法杖。它会把沿途撞到的人吞进去，只留下一个焊死的储物柜，里面装着你的受害者。"
 	item_path = /obj/item/gun/magic/staff/locker
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
+	name = "窥视宝珠"
+	desc = "一颗噼啪放电的白炽宝珠。使用它可以让你的幽灵在活着时离体，从而窥探空间站并与亡者交谈。此外，购买它还会永久赋予你 X 射线视觉。"
 	item_path = /obj/item/scrying
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/wands
-	name = "Wand Assortment"
-	desc = "A collection of wands that allow for a wide variety of utility. \
-		Wands have a limited number of charges, so be conservative with their use. \
-		Comes in a handy belt, or a fancy bandolier if you are already wearing one."
+	name = "魔杖组合"
+	desc = "一套用途广泛的魔杖。\
+		魔杖的充能次数有限，使用时要节省。\
+		装在一条便利的腰带上，如果你已系着腰带，则换成一个精美的弹药带。"
 	item_path = /obj/item/storage/belt/wands/full
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/wands/try_equip_item(mob/living/carbon/human/user, obj/item/to_equip)
 	if (!istype(user.belt, /obj/item/storage/belt/wands))
 		var/was_equipped = user.equip_to_slot_if_possible(to_equip, ITEM_SLOT_BELT, disable_warning = TRUE)
-		to_chat(user, span_notice("\A [to_equip.name] has been summoned [was_equipped ? "on your waist" : "at your feet"]."))
+		to_chat(user, span_notice("\A [to_equip.name] 已被召唤，[was_equipped ? "挂在你腰间" : "落在你脚下"]。"))
 		return
 
 	// If you already have a wand belt you get a cool bandolier instead for your copious amount of wands
@@ -137,22 +137,22 @@
 	qdel(to_equip)
 
 	var/was_equipped = user.equip_to_slot_if_possible(bandolier, ITEM_SLOT_SUITSTORE, disable_warning = TRUE)
-	to_chat(user, span_notice("\A [bandolier.name] has been summoned [was_equipped ? "across your chest" : "at your feet"]."))
+	to_chat(user, span_notice("\A [bandolier.name] 已被召唤，[was_equipped ? "斜挎在你胸前" : "落在你脚下"]。"))
 
 /datum/spellbook_entry/item/wands/discount
-	name = "Wand Assortment (Bargain Bin)"
-	desc = "A random collection of wands sourced from apprentice wandmaking studies. \
-		You're never quite sure what you're going to get. \
-		Comes in a handy belt, or a fancy bandolier if you are already wearing one."
+	name = "魔杖组合（打折货）"
+	desc = "一批来自学徒魔杖制作课程的随机魔杖。\
+		你永远不太确定会拿到什么。\
+		装在一条便利的腰带上，如果你已系着腰带，则换成一个精美的弹药带。"
 	cost = 1
 	item_path = /obj/item/storage/belt/wands/full/discount
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 
 /datum/spellbook_entry/item/armor
-	name = "Mastercrafted Armor Set"
-	desc = "An artefact suit of armor that allows you to cast spells \
-		while providing more protection against attacks and the void of space. \
-		Also grants a battlemage shield."
+	name = "大师级护甲套装"
+	desc = "一套神器护甲，让你能施放法术，\
+		同时提供更好的防护，抵御攻击与太空的虚空。\
+		还会赋予一面战斗法师护盾。"
 	item_path = /obj/item/mod/control/pre_equipped/enchanted
 	category = SPELLBOOK_CATEGORY_DEFENSIVE
 

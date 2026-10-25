@@ -1,6 +1,6 @@
 /obj/item/extinguisher
-	name = "fire extinguisher"
-	desc = "A traditional red fire extinguisher."
+	name = "灭火器"
+	desc = "传统的红色灭火器。"
 	icon = 'icons/obj/tools.dmi' // SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "fire_extinguisher0"
 	worn_icon_state = "fire_extinguisher"
@@ -17,8 +17,8 @@
 	force = 13
 	demolition_mod = 1.25
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
-	attack_verb_continuous = list("slams", "whacks", "bashes", "thunks", "batters", "bludgeons", "thrashes")
-	attack_verb_simple = list("slam", "whack", "bash", "thunk", "batter", "bludgeon", "thrash")
+	attack_verb_continuous = list("猛砸", "重击", "痛打", "砰击", "殴打", "棍击", "抽打")
+	attack_verb_simple = list("猛砸", "重击", "痛打", "砰击", "殴打", "棍击", "抽打")
 	dog_fashion = /datum/dog_fashion/back
 	resistance_flags = FIRE_PROOF
 	interaction_flags_click = NEED_DEXTERITY|NEED_HANDS|ALLOW_RESTING
@@ -68,8 +68,8 @@
 /obj/item/extinguisher/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item != src)
 		return
-	context[SCREENTIP_CONTEXT_LMB] = "Engage nozzle"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Empty"
+	context[SCREENTIP_CONTEXT_LMB] = "打开喷嘴"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "排空"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/extinguisher/dropped(mob/user, silent)
@@ -112,7 +112,7 @@
 	if(!do_after(user,  2 SECONDS, target = wallopee))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	wallopee.visible_message(span_danger("[user] brings [src] heavily down on [wallopee]'s [head_name]."), span_userdanger("[user] brings [src] heavily down on your [head_name]!"))
+	wallopee.visible_message(span_danger("[user]用[src]重重砸向[wallopee]的[head_name]。"), span_userdanger("[user]用[src]重重砸向你的[head_name]！"))
 
 	var/min_wound = head_to_bash.get_wound_threshold_of_wound_type(WOUND_BLUNT, WOUND_SEVERITY_SEVERE, return_value_if_no_wound = 30, wound_source = src)
 	var/max_wound = head_to_bash.get_wound_threshold_of_wound_type(WOUND_BLUNT, WOUND_SEVERITY_CRITICAL, return_value_if_no_wound = 50, wound_source = src)
@@ -133,8 +133,8 @@
 	starting_water = FALSE
 
 /obj/item/extinguisher/mini
-	name = "pocket fire extinguisher"
-	desc = "A light and compact fibreglass-framed model fire extinguisher."
+	name = "袖珍灭火器"
+	desc = "轻巧紧凑的玻璃钢外壳灭火器。"
 	icon_state = "miniFE0"
 	worn_icon_state = "miniFE"
 	inhand_icon_state = "miniFE"
@@ -152,8 +152,8 @@
 	starting_water = FALSE
 
 /obj/item/extinguisher/crafted
-	name = "Improvised cooling spray"
-	desc = "Spraycan turned coolant dispenser. Can be sprayed on containers to cool them. Refill using water."
+	name = "简易冷却喷雾"
+	desc = "由喷漆罐改装成的冷却剂喷洒器。可喷在容器上为其降温。可用水补充。"
 	icon_state = "coolant0"
 	worn_icon_state = "miniFE"
 	inhand_icon_state = "miniFE"
@@ -173,7 +173,7 @@
 /obj/item/extinguisher/crafted/attack_self(mob/user)
 	safety = !safety
 	icon_state = "[sprite_name][!safety]"
-	to_chat(user, "[safety ? "You remove the straw and put it on the side of the cool canister" : "You insert the straw, readying it for use"].")
+	to_chat(user, "[safety ? "你拔出吸管，把它架在冷却罐侧面" : "你插入吸管，准备就绪"].")
 
 /obj/item/extinguisher/proc/refill()
 	if(!chem)
@@ -191,8 +191,8 @@
 		create_reagents(max_water, AMOUNT_VISIBLE)
 
 /obj/item/extinguisher/advanced
-	name = "advanced fire extinguisher"
-	desc = "Used to stop thermonuclear fires from spreading inside your engine."
+	name = "高级灭火器"
+	desc = "用于阻止热核火焰在引擎内蔓延。"
 	icon_state = "foam_extinguisher0"
 	worn_icon_state = "foam_extinguisher"
 	inhand_icon_state = "foam_extinguisher"
@@ -215,20 +215,20 @@
 
 /obj/item/extinguisher/suicide_act(mob/living/user)
 	if (!safety && (reagents.total_volume >= 1))
-		user.visible_message(span_suicide("[user] puts the nozzle to [user.p_their()] mouth. It looks like [user.p_theyre()] trying to extinguish the spark of life!"))
+		user.visible_message(span_suicide("[user]把喷嘴对准自己的嘴。看起来是想熄灭生命之火！"))
 		interact_with_atom(user, user)
 		return OXYLOSS
 	else if (safety && (reagents.total_volume >= 1))
-		user.visible_message(span_warning("[user] puts the nozzle to [user.p_their()] mouth... The safety's still on!"))
+		user.visible_message(span_warning("[user]把喷嘴对准自己的嘴……保险还没打开！"))
 		return SHAME
 	else
-		user.visible_message(span_warning("[user] puts the nozzle to [user.p_their()] mouth... [src] is empty!"))
+		user.visible_message(span_warning("[user]把喷嘴对准自己的嘴……[src]是空的！"))
 		return SHAME
 
 /obj/item/extinguisher/attack_self(mob/user)
 	safety = !safety
 	src.icon_state = "[sprite_name][!safety]"
-	balloon_alert(user, "safety [safety ? "on" : "off"]")
+	balloon_alert(user, "保险[safety ? "开" : "关"]")
 	return
 
 /obj/item/extinguisher/attack(mob/M, mob/living/user)
@@ -246,29 +246,29 @@
 
 /obj/item/extinguisher/examine(mob/user)
 	. = ..()
-	. += "The safety is [safety ? "on" : "off"]."
+	. += "保险处于[safety ? "开启" : "关闭"]状态。"
 
 	if(reagents.total_volume)
-		. += span_notice("Alt-click to empty it.")
+		. += span_notice("按住 Alt 点击可排空。")
 
 /obj/item/extinguisher/proc/AttemptRefill(atom/target, mob/user)
 	if(is_type_in_list(target, tanktypes) && target.Adjacent(user))
 		if(reagents.total_volume == reagents.maximum_volume)
-			balloon_alert(user, "already full!")
+			balloon_alert(user, "已经满了！")
 			return TRUE
 		// Make sure we're refilling with the proper chem.
 		if(!(target.reagents.has_reagent(chem, check_subtypes = TRUE)))
-			balloon_alert(user, "can't refill with this liquid!")
+			balloon_alert(user, "不能用这种液体补充！")
 			return TRUE
 		var/obj/structure/reagent_dispensers/W = target //will it work?
 		var/transferred = W.reagents.trans_to(src, max_water, transferred_by = user)
 		if(transferred > 0)
-			to_chat(user, span_notice("\The [src] has been refilled by [transferred] units."))
+			to_chat(user, span_notice("[src]已补充了 [transferred] 单位。"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, TRUE, -6)
 			for(var/datum/reagent/water/R in reagents.reagent_list)
 				R.cooling_temperature = cooling_power
 		else
-			to_chat(user, span_warning("\The [W] is empty!"))
+			to_chat(user, span_warning("[W]是空的！"))
 
 		return TRUE
 	else
@@ -290,7 +290,7 @@
 		return NONE
 
 	if (src.reagents.total_volume < 1)
-		balloon_alert(user, "it's empty!")
+		balloon_alert(user, "它是空的！")
 		return .
 
 	if (world.time < src.last_use + 12)
@@ -360,7 +360,7 @@
 
 /obj/item/extinguisher/click_alt(mob/user)
 	if(!user.is_holding(src))
-		to_chat(user, span_notice("You must be holding [src] in your hands to do this!"))
+		to_chat(user, span_notice("你必须把[src]拿在手里才能这样做！"))
 		return CLICK_ACTION_BLOCKING
 	EmptyExtinguisher(user)
 	return CLICK_ACTION_SUCCESS
@@ -369,14 +369,14 @@
 	if(loc == user && reagents.total_volume)
 		reagents.expose(user.loc, TOUCH)
 		reagents.clear_reagents()
-		user.visible_message(span_notice("[user] empties out [src] onto the floor using the release valve."), span_info("You quietly empty out [src] using its release valve."))
+		user.visible_message(span_notice("[user]打开泄放阀，把[src]里的东西倒在地上。"), span_info("你悄悄打开泄放阀，倒空了[src]。"))
 
 // Firebot assembly
 /obj/item/extinguisher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if (!istype(tool, /obj/item/bodypart/arm/left/robot) && !istype(tool, /obj/item/bodypart/arm/right/robot))
 		return NONE
 
-	to_chat(user, span_notice("You add [tool] to [src]."))
+	to_chat(user, span_notice("你把[tool]装到了[src]上。"))
 	qdel(tool)
 	var/obj/item/bot_assembly/firebot/assembly = new(drop_location())
 	var/held_index = user.is_holding(src)
@@ -386,8 +386,8 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/extinguisher/anti
-	name = "fire extender"
-	desc = "A traditional red fire extinguisher. Made in Britain... wait, what?"
+	name = "火焰加长器"
+	desc = "传统的红色灭火器。英国制造……等等，什么？"
 	chem = /datum/reagent/fuel
 	tanktypes = list(
 		/obj/structure/reagent_dispensers/fueltank,

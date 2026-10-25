@@ -15,7 +15,7 @@
 	icon = 'icons/obj/weapons/restraints.dmi'
 
 /obj/item/restraints/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]勒住自己的脖子！看来是想自杀！"))
 	return OXYLOSS
 
 // Zipties, cable cuffs, etc. Can be cut with wirecutters instantly.
@@ -31,8 +31,8 @@
  * Clicking people with those will cause an attempt at handcuffing them to occur
 */
 /obj/item/restraints/handcuffs
-	name = "handcuffs"
-	desc = "Use this to keep prisoners in line."
+	name = "手铐"
+	desc = "用它让囚犯守规矩。"
 	gender = PLURAL
 	icon_state = "handcuff"
 	worn_icon_state = "handcuff"
@@ -86,34 +86,34 @@
 /// Handles all of the checks and application in a typical situation where someone attacks a carbon victim with the handcuff item.
 /obj/item/restraints/handcuffs/proc/attempt_to_cuff(mob/living/carbon/victim, mob/living/user)
 	if(SEND_SIGNAL(victim, COMSIG_CARBON_CUFF_ATTEMPTED, user) & COMSIG_CARBON_CUFF_PREVENT)
-		victim.balloon_alert(user, "can't be handcuffed!")
+		victim.balloon_alert(user, "无法戴上手铐！")
 		return
 
 	if(handcuffs_clumsiness_check(user))
 		return
 
 	if(!isnull(victim.handcuffed))
-		victim.balloon_alert(user, "already handcuffed!")
+		victim.balloon_alert(user, "已经戴着手铐！")
 		return
 
 	if(!victim.canBeHandcuffed())
-		victim.balloon_alert(user, "can't be handcuffed!")
+		victim.balloon_alert(user, "无法戴上手铐！")
 		return
 
 	victim.visible_message(
-		span_danger("[user] is trying to put [src] on [victim]!"),
-		span_userdanger("[user] is trying to put [src] on you!"),
+		span_danger("[user]正试图把[src]戴到[victim]手上！"),
+		span_userdanger("[user]正试图把[src]戴到你手上！"),
 	)
 
 	if(victim.is_blind())
-		to_chat(victim, span_userdanger("As you feel someone grab your wrists, [src] start digging into your skin!"))
+		to_chat(victim, span_userdanger("你感觉有人抓住了你的手腕，[src]正勒进你的皮肤！"))
 
 	playsound(loc, cuffsound, 30, TRUE, -2)
 	log_combat(user, victim, "attempted to handcuff")
 
 	if(!do_after(user, get_handcuff_time(user), victim, timed_action_flags = IGNORE_SLOWDOWNS) || !victim.canBeHandcuffed())
-		victim.balloon_alert(user, "failed to handcuff!")
-		to_chat(user, span_warning("You fail to handcuff [victim]!"))
+		victim.balloon_alert(user, "戴上手铐失败！")
+		to_chat(user, span_warning("你没能给[victim]戴上手铐！"))
 		log_combat(user, victim, "failed to handcuff")
 		return
 
@@ -121,8 +121,8 @@
 	playsound(loc, cuffsuccesssound, 30, TRUE, -2)
 
 	victim.visible_message(
-		span_notice("[user] handcuffs [victim]."),
-		span_userdanger("[user] handcuffs you."),
+		span_notice("[user]给[victim]戴上了手铐。"),
+		span_userdanger("[user]给你戴上了手铐。"),
 	)
 
 	log_combat(user, victim, "successfully handcuffed")
@@ -135,7 +135,7 @@
 /obj/item/restraints/handcuffs/proc/handcuffs_clumsiness_check(mob/user)
 	if(!iscarbon(user) || !HAS_TRAIT(user, TRAIT_CLUMSY) || prob(50)) //Clumsy people have a 50% chance to handcuff themselves instead of their target.
 		return FALSE
-	to_chat(user, span_warning("Uh... how do those things work?!"))
+	to_chat(user, span_warning("呃……这玩意儿怎么用来着？！"))
 	apply_cuffs(user, user)
 	return TRUE
 /**
@@ -188,8 +188,8 @@
  * Fake handcuffs that can be removed near-instantly.
 */
 /obj/item/restraints/handcuffs/fake
-	name = "fake handcuffs"
-	desc = "Fake handcuffs meant for gag purposes."
+	name = "假手铐"
+	desc = "用于恶作剧的假手铐。"
 	breakouttime = 1 SECONDS
 	restraint_strength = HANDCUFFS_TYPE_WEAK
 	resist_cooldown = CLICK_CD_SLOW
@@ -200,8 +200,8 @@
  * Ghetto handcuffs. Removing those is faster.
 */
 /obj/item/restraints/handcuffs/cable
-	name = "cable restraints"
-	desc = "Looks like some cables tied together. Could be used to tie something up."
+	name = "线缆束具"
+	desc = "看起来像是几根线缆绑在一起。可以用来捆住东西。"
 	icon_state = "cuff"
 	inhand_icon_state = "coil_red"
 	color = CABLE_HEX_COLOR_RED
@@ -221,7 +221,7 @@
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/stack/sheet/iron = list(
-			SCREENTIP_CONTEXT_LMB = "Craft bola",
+			SCREENTIP_CONTEXT_LMB = "制作流星锤",
 		),
 	)
 
@@ -265,8 +265,8 @@
  * Just cable restraints that look differently and can't be recycled.
 */
 /obj/item/restraints/handcuffs/cable/sinew
-	name = "sinew restraints"
-	desc = "A pair of restraints fashioned from long strands of flesh."
+	name = "肌腱束具"
+	desc = "一副用长条血肉纤维编成的束具。"
 	icon_state = "sinewcuff"
 	inhand_icon_state = null
 	cable_color = null
@@ -344,8 +344,8 @@
  * One-use handcuffs that take 45 seconds to resist out of instead of one minute. This turns into the used version when applied.
 */
 /obj/item/restraints/handcuffs/cable/zipties
-	name = "zipties"
-	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
+	name = "扎带"
+	desc = "塑料制的一次性扎带，可用来短暂束缚他人，但使用后即毁。"
 	icon_state = "cuff"
 	inhand_icon_state = "cuff_white"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -358,7 +358,7 @@
 
 /obj/item/restraints/handcuffs/cable/zipties/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
-	desc = "A pair of broken zipties."
+	desc = "一副断掉的扎带。"
 	icon_state = "cuff_used"
 	used = TRUE
 
@@ -368,7 +368,7 @@
  * What zipties turn into when applied. These can't be used to cuff people.
 */
 /obj/item/restraints/handcuffs/cable/zipties/used
-	desc = "A pair of broken zipties."
+	desc = "一副断掉的扎带。"
 	icon_state = "cuff_used"
 	used = TRUE
 
@@ -378,27 +378,27 @@
  * One-use handcuffs that is very easy to break out of, meant as a one-use alternative to regular fake handcuffs.
  */
 /obj/item/restraints/handcuffs/cable/zipties/fake
-	name = "fake zipties"
-	desc = "Fake zipties meant for gag purposes."
+	name = "假扎带"
+	desc = "用于恶作剧的假扎带。"
 	breakouttime = 1 SECONDS
 	resist_cooldown = CLICK_CD_SLOW
 
 /obj/item/restraints/handcuffs/cable/zipties/fake/used
-	desc = "A pair of broken fake zipties."
+	desc = "一副断掉的假扎带。"
 	icon_state = "cuff_used"
 	used = TRUE
 
 ///handcuffs applied by cult magic and heretics sacrifice
 /obj/item/restraints/handcuffs/cult
-	name = "shadow shackles"
-	desc = "Shackles that bind the wrists with sinister magic."
+	name = "暗影镣铐"
+	desc = "用邪恶魔法束缚双腕的镣铐。"
 	breakouttime = 45 SECONDS
 	icon_state = "cult_shackles"
 	flags_1 = NONE
 
 /obj/item/restraints/handcuffs/cult/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
-	wearer.visible_message(span_danger("[wearer]'s shackles shatter in a discharge of dark magic!"), span_userdanger("Your [src] shatters in a discharge of dark magic!"))
+	wearer.visible_message(span_danger("[wearer]的镣铐在暗魔法的迸发中碎裂！"), span_userdanger("你的[src]在暗魔法的迸发中碎裂了！"))
 	qdel(src)
 
 
@@ -408,8 +408,8 @@
  * Parent class for everything that can legcuff carbons. Can't legcuff anything itself.
 */
 /obj/item/restraints/legcuffs
-	name = "leg cuffs"
-	desc = "Use this to keep prisoners in line."
+	name = "脚镣"
+	desc = "用它让囚犯守规矩。"
 	gender = PLURAL
 	icon_state = "handcuff"
 	inhand_icon_state = "handcuff"
@@ -430,11 +430,11 @@
  * This opens, closes, and bites people's legs.
  */
 /obj/item/restraints/legcuffs/beartrap
-	name = "bear trap"
+	name = "捕熊夹"
 	throw_speed = 1
 	throw_range = 1
 	icon_state = "beartrap"
-	desc = "A trap used to catch bears and other legged creatures."
+	desc = "用来捕捉熊以及其他有腿生物的陷阱。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	///If true, the trap is "open" and can trigger.
 	var/armed = FALSE
@@ -457,7 +457,7 @@
 	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is sticking [user.p_their()] head in \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把头伸进[src]里！看来是想自杀！"))
 	playsound(loc, 'sound/items/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 
@@ -472,12 +472,12 @@
 	update_appearance()
 
 	if(armed && (HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(25))
-		to_chat(user, span_warning("Your hand slips, setting off the trigger!"))
+		to_chat(user, span_warning("你的手一滑，触发了机关！"))
 		var/hand_zone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 		spring_trap(user, def_zone = hand_zone)
 		return
 
-	to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
+	to_chat(user, span_notice("[src]现在[armed ? "已张开" : "已解除"]"))
 
 
 /obj/item/restraints/legcuffs/beartrap/attempt_pickup(mob/user)
@@ -485,7 +485,7 @@
 		return ..()
 
 	if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(25))
-		to_chat(user, span_warning("Your hand slips, setting off the trigger!"))
+		to_chat(user, span_warning("你的手一滑，触发了机关！"))
 		var/hand_zone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 		spring_trap(user, def_zone = hand_zone)
 		return TRUE
@@ -525,7 +525,7 @@
 		var/obj/vehicle/ridden_vehicle = victim.buckled
 		if(!ridden_vehicle.are_legs_exposed) //close the trap without injuring/trapping the rider if their legs are inside the vehicle at all times.
 			close_trap()
-			ridden_vehicle.visible_message(span_danger("[ridden_vehicle] triggers \the [src]."))
+			ridden_vehicle.visible_message(span_danger("[ridden_vehicle]触发了[src]。"))
 			return
 
 	//don't close the trap if they're as small as a mouse
@@ -536,11 +536,11 @@
 
 	close_trap()
 	if(ignore_movetypes)
-		victim.visible_message(span_danger("\The [src] ensnares [victim]!"), \
-				span_userdanger("\The [src] ensnares you!"))
+		victim.visible_message(span_danger("[src]缠住了[victim]！"), \
+				span_userdanger("[src]缠住了你！"))
 	else
-		victim.visible_message(span_danger("[victim] triggers \the [src]."), \
-				span_userdanger("You trigger \the [src]!"))
+		victim.visible_message(span_danger("[victim]触发了[src]。"), \
+				span_userdanger("你触发了[src]！"))
 
 	if(iscarbon(victim) && (victim.body_position == STANDING_UP || hit_prone) && !((def_zone == BODY_ZONE_PRECISE_R_HAND) || (def_zone == BODY_ZONE_PRECISE_L_HAND)))
 		var/mob/living/carbon/carbon_victim = victim
@@ -559,7 +559,7 @@
  * A weaker version of the bear trap that can be resisted out of faster and disappears
  */
 /obj/item/restraints/legcuffs/beartrap/energy
-	name = "energy snare"
+	name = "能量捕捉器"
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
@@ -594,8 +594,8 @@
 	slowdown = 3
 
 /obj/item/restraints/legcuffs/bola
-	name = "bola"
-	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
+	name = "流星锤"
+	desc = "一种设计用于投向目标的束缚装置。一旦命中目标，它会缠住其双腿，使其难以快速移动。"
 	icon_state = "bola"
 	icon_state_preview = "bola_preview"
 	inhand_icon_state = "bola"
@@ -638,7 +638,7 @@
 /obj/item/restraints/legcuffs/bola/proc/ensnare(mob/living/carbon/snared_mob)
 	if(snared_mob.legcuffed || snared_mob.num_legs < 2)
 		return
-	visible_message(span_danger("\The [src] ensnares [snared_mob]!"), span_userdanger("\The [src] ensnares you!"))
+	visible_message(span_danger("[src]缠住了[snared_mob]！"), span_userdanger("[src]缠住了你！"))
 	snared_mob.equip_to_slot(src, ITEM_SLOT_LEGCUFFED)
 	SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 	snared_mob.Knockdown(knockdown)
@@ -650,8 +650,8 @@
  * It knocks people down and is harder to remove.
  */
 /obj/item/restraints/legcuffs/bola/tactical
-	name = "reinforced bola"
-	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
+	name = "强化流星锤"
+	desc = "把坚固的流星锤，用长钢链制成。看起来很沉，足以把人绊倒。"
 	icon_state = "bola_r"
 	inhand_icon_state = "bola_r"
 	breakouttime = 7 SECONDS
@@ -664,8 +664,8 @@
  * It's harder to remove, smaller and has a defined price.
  */
 /obj/item/restraints/legcuffs/bola/energy
-	name = "energy bola"
-	desc = "A specialized hard-light bola designed to ensnare fleeing criminals and aid in arrests."
+	name = "能量流星锤"
+	desc = "一种特制的硬光流星锤，用于缠住逃跑的罪犯，协助实施逮捕。"
 	icon_state = "ebola"
 	inhand_icon_state = "ebola"
 	hitsound = 'sound/items/weapons/taserhit.ogg'
@@ -691,8 +691,8 @@
  * It's much harder to remove, doesn't cause a slowdown and gives people /datum/status_effect/gonbola_pacify.
  */
 /obj/item/restraints/legcuffs/bola/gonbola
-	name = "gonbola"
-	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
+	name = "贡多拉流星锤"
+	desc = "嘿，如果非得被什么东西抱住双腿，那还不如是这个小家伙。"
 	icon_state = "gonbola"
 	icon_state_preview = "gonbola_preview"
 	inhand_icon_state = "bola_r"

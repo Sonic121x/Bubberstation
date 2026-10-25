@@ -1,8 +1,8 @@
 /datum/team/beno
-	name = "Lost Aliens"
+	name = "迷失的异形"
 
 /datum/antagonist/beno
-	name = "Lost Xenomorph"
+	name = "迷失的异形"
 	pref_flag = ROLE_ALIEN
 	show_in_antagpanel = FALSE
 	antagpanel_category = ANTAG_GROUP_XENOS
@@ -20,17 +20,17 @@
 /datum/objective/maints_benos
 
 /datum/objective/maints_benos/New()
-	explanation_text = "Escape your cell and survive. You remember nothing of time before you came here. You've been here for god knows how long-- A decade? A century? This place has changed you. Be it the time, the environment, or the bioscramblers. You are not what you once were."
+	explanation_text = "逃出你的牢房并活下去。你记不起来到这里之前的任何时光。你已在此待了天知道多久——十年？一个世纪？这地方改变了你。或许是时间，或许是环境，又或许是生物扰乱器。你已不再是曾经的你。"
 
 /obj/effect/mob_spawn/ghost_role/beno
-	name = "Comatose Xenomorph"
-	desc = "They are in a deep sleep but they seem passive, don't hurt them."
+	name = "昏迷的异形"
+	desc = "它正处于深度沉眠之中，但看起来性情温和，别伤害它。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "eggs"
 	show_flavor = TRUE
-	you_are_text = "You are a lost xenomorph."
-	flavour_text = "You are a lost xenomorph. You are disconnected from the hive and have been stuck here. Only god knows how long -- a decade or two? A century? This place might have changed you due to the intensity of the anomalies, or you may be the exact same. All you remember is that you were born here."
-	important_text = "You should be neutral to the crew. You are not really an antagonist. When you load in you will be presented with two pop-ups to choose your name and description. These will be your xenomorph's name and flavor text/description. Along with this, if you choose any caste, except for the ravager and runner, you will get hands."
+	you_are_text = "你是一只迷失的异形。"
+	flavour_text = "你是一只迷失的异形。你与虫巢断开了联系，被困在了这里。只有天知道过了多久——十年？二十年？还是一个世纪？这里的异常现象如此强烈，也许已经改变了你，也许你依旧如初。你唯一记得的是，你生于此地。"
+	important_text = "你应当对船员保持中立。你实际上并非反派。进入游戏时会出现两个弹窗，供你选择名字与描述，它们将成为你这只异形的名字与风味文本/描述。此外，只要你选择的种姓不是 ravager 或 runner，你就会获得双手。"
 	faction = list(ROLE_ALIEN)
 	role_ban = ROLE_ALIEN
 	prompt_ghost = FALSE
@@ -48,8 +48,8 @@
 		/mob/living/carbon/alien/adult/skyrat/spitter/maintsroom,
 		/mob/living/carbon/alien/adult/skyrat/warrior/maintsroom,
 	)
-	var/new_mob_name = "Dingus"
-	var/new_mob_desc = "A normal looking xenomorph"
+	var/new_mob_name = "呆瓜"
+	var/new_mob_desc = "一只外貌普通的异形"
 
 //try building
 /obj/effect/mob_spawn/ghost_role/beno/proc/get_radial_choice(mob/user)
@@ -74,10 +74,10 @@
 	mob_type = chosen_beno
 
 	new_mob_name = initial(new_mob_name)
-	new_mob_name = sanitize_name(tgui_input_text(user, "Set your name.", new_mob_name, max_length = MAX_NAME_LEN))
+	new_mob_name = sanitize_name(tgui_input_text(user, "设置你的名字。", new_mob_name, max_length = MAX_NAME_LEN))
 
 	new_mob_desc = initial(new_mob_desc)
-	new_mob_desc = tgui_input_text(user, "Set your description.", new_mob_desc, max_length = MAX_MESSAGE_LEN)
+	new_mob_desc = tgui_input_text(user, "设置你的描述。", new_mob_desc, max_length = MAX_MESSAGE_LEN)
 
 	return TRUE
 

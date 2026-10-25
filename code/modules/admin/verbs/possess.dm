@@ -1,5 +1,5 @@
 
-ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "Possess Obj", "Possess an object.", ADMIN_CATEGORY_FUN, /obj)
+ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "附身物体", "附身一个物体。", ADMIN_CATEGORY_FUN, /obj)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_OBJ, VERB_ARG_SOURCE_WORLD, /obj)
 	if(isnull(target.loc))
 		return
@@ -11,13 +11,13 @@ ADMIN_VERB_AND_CONTEXT_MENU(possess, R_POSSESS, "Possess Obj", "Possess an objec
 		return
 
 	var/turf/target_turf = get_turf(target)
-	var/message = "[key_name(user)] has possessed [target] ([target.type]) at [AREACOORD(target_turf)]"
+	var/message = "[key_name(user)] 在 [AREACOORD(target_turf)] 附身了 [target]（[target.type]）"
 	message_admins(message)
 	log_admin(message)
 
 	BLACKBOX_LOG_ADMIN_VERB("Possess Object")
 
-ADMIN_VERB(release, R_POSSESS, "Release Object", "Stop possessing an object.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(release, R_POSSESS, "释放物体", "停止附身物体。", ADMIN_CATEGORY_FUN)
 	var/possess_component = user.mob.GetComponent(/datum/component/object_possession)
 	if(!isnull(possess_component))
 		qdel(possess_component)

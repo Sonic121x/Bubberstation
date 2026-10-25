@@ -1,6 +1,6 @@
 /obj/item/grenade/empgrenade //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "classic EMP grenade"
-	desc = "It is designed to wreak havoc on electronic systems."
+	name = "经典电磁脉冲手榴弹"
+	desc = "专门用于破坏电子系统。"
 	icon_state = "emp"
 	inhand_icon_state = "emp"
 

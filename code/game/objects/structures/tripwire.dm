@@ -1,6 +1,6 @@
 /obj/structure/tripwire
-	name = "tripwire post?"
-	desc = "This should not be here. Somebody should be told about this."
+	name = "绊线柱？"
+	desc = "这东西不该出现在这里。应该有人去反映一下。"
 	icon = 'icons/obj/tripwire.dmi'
 	icon_state = "tripwire_post"
 	anchored = TRUE
@@ -8,8 +8,8 @@
 	abstract_type = /obj/structure/tripwire
 
 /obj/structure/tripwire/post
-	name = "stanchion"
-	desc = "A sturdy post made to support one end of a large cable."
+	name = "支柱"
+	desc = "一根结实的立柱，用来支撑一根粗大缆绳的一端。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 	/// The post that the other end of this post's tripwire, if any. Also serves as a check for if we have a tripwire.
 	var/obj/structure/tripwire/post/opposing_post
@@ -56,18 +56,18 @@
 	if(!opposing_post)
 		return NONE
 
-	visible_message(span_notice("[user] begins cutting through \the [src]'s tripwire..."), \
-					span_notice("You begin cutting through \the [src]'s tripwire..."), \
-					span_hear("You hear snipping."))
+	visible_message(span_notice("[user]开始割断[src]的绊线……"), \
+					span_notice("你开始割断[src]的绊线……"), \
+					span_hear("你听到剪切声。"))
 	if(!tool.use_tool(src, user, 5 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!opposing_post)
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice("[user] cuts away \the [src]'s tripwire."), \
-					span_notice("You finish cutting \the [src]'s tripwire."), \
-					span_hear("You hear a final snip."))
+	visible_message(span_notice("[user]割掉了[src]的绊线。"), \
+					span_notice("你完成了对[src]绊线的割断。"), \
+					span_hear("你听到最后一声剪切声。"))
 	new /obj/item/stack/cable_coil(drop_location(), 20)
 	clear_wire()
 	return ITEM_INTERACT_SUCCESS
@@ -92,7 +92,7 @@
 		are_we_tying = TRUE
 
 	if(are_we_tying)// if it's on a different z level, or further than would be reasonable, refuse to acknowledge the distance and mulligan.
-		to_chat(user, span_notice("You tie one end of \the [irrelevant_cable] around \the [src]."))
+		to_chat(user, span_notice("你把[irrelevant_cable]的一端系在了[src]上。"))
 		irrelevant_cable.connecting_post = WEAKREF(src)
 		return ITEM_INTERACT_SUCCESS
 
@@ -103,15 +103,15 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(distance_between > 4)
-		to_chat(user, span_notice("The post on the other end is too far away!"))
+		to_chat(user, span_notice("另一端的支柱太远了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(distance_between == 0)
-		to_chat(user, span_notice("No point in connecting them, they're already together."))
+		to_chat(user, span_notice("没必要连接，它们本来就在一起。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(connecting_post.x != x && connecting_post.y != y)
-		to_chat(user, span_notice("The wire will be much less effective at an angle."))
+		to_chat(user, span_notice("斜着拉线会让绊线的效果大打折扣。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/turf/end_point_turf = get_turf(connecting_post)
@@ -129,13 +129,13 @@
 		if(iterating_turf == end_point_turf)
 			connect_to_post(connecting_post, direction_to_extend)
 			connecting_post.connect_to_post(src, REVERSE_DIR(direction_to_extend))
-			to_chat(user, span_notice("You successfully wire together the two posts."))
+			to_chat(user, span_notice("你成功把两根支柱用绊线连了起来。"))
 			qdel(irrelevant_cable)
 			return ITEM_INTERACT_SUCCESS
 
 		if(iterating_turf.is_blocked_turf(TRUE))
 			clear_wire()
-			to_chat(user, span_notice("You can't feed the cable through solid objects."))
+			to_chat(user, span_notice("你无法把缆绳穿过实心物体。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/structure/tripwire/cable/new_wire = new(iterating_turf)
@@ -160,13 +160,13 @@
 
 /obj/structure/tripwire/post/wrench_act(mob/living/user, obj/item/tool)
 	if(opposing_post)
-		balloon_alert(user, "unwire first!")
+		balloon_alert(user, "请先解开绊线！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.use_tool(src, user, 0))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "[anchored ? "un" : ""]anchored")
+	balloon_alert(user, "[anchored ? "已解除固定" : "已固定"]")
 	set_anchored(!anchored)
 	return ITEM_INTERACT_SUCCESS
 
@@ -187,8 +187,8 @@
 	return ..()
 
 /obj/structure/tripwire/cable
-	name = "heavy cable"
-	desc = "A very thick cable made to withstand great force."
+	name = "重型缆绳"
+	desc = "一根非常粗大的缆绳，可承受巨大的力量。"
 	icon_state = "tripwire_1"
 
 /obj/structure/tripwire/cable/Initialize(mapload)
@@ -201,16 +201,16 @@
 	return ..()
 
 /obj/structure/tripwire/cable/wirecutter_act(mob/living/user, obj/item/tool)
-	visible_message(span_notice("[user] begins cutting through \the [src]..."), \
-					span_notice("You begin cutting through \the [src]..."), \
-					span_hear("You hear snipping."))
+	visible_message(span_notice("[user]开始割断[src]……"), \
+					span_notice("你开始割断[src]……"), \
+					span_hear("你听到剪切声。"))
 
 	if(!tool.use_tool(src, user, 5 SECONDS))
 		return ITEM_INTERACT_BLOCKING
 
-	visible_message(span_notice("[user] cuts away \the [src]."), \
-					span_notice("You finish cutting \the [src]."), \
-					span_hear("You hear a final snip."))
+	visible_message(span_notice("[user]割掉了[src]。"), \
+					span_notice("你完成了对[src]的割断。"), \
+					span_hear("你听到最后一声剪切声。"))
 	new /obj/item/stack/cable_coil(drop_location(), 20)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -293,8 +293,8 @@
 
 	var/drivers = falling_down.return_drivers()
 
-	visible_message(span_danger("[falling_down] topples over \the [src]!"), \
-		blind_message = span_danger("You hear a deafening CRASH!"), \
+	visible_message(span_danger("[falling_down]被[src]绊倒了！"), \
+		blind_message = span_danger("你听到一声震耳欲聋的巨响！"), \
 		ignored_mobs = drivers)
 
 	for(var/mob/living/driver as anything in drivers) // can any mechs have two drivers? No. Could they? yes.
@@ -302,18 +302,18 @@
 		var/falling_string
 		switch(damage)
 			if(0)
-				falling_string = "You rapidly fall forward but only lightly hit [falling_down]'s controls. "
+				falling_string = "你猛地向前栽倒，但只是轻轻撞到了[falling_down]的操控装置。 "
 			if(0 to 10)
-				falling_string = "You rapidly fall forward and hit your head on [falling_down]'s controls! "
+				falling_string = "你猛地向前栽倒，头撞到了[falling_down]的操控装置！ "
 			if(10 to INFINITY)
-				falling_string = "You rapidly fall forward and smash your head against [falling_down]'s controls! "
+				falling_string = "你猛地向前栽倒，把头狠狠砸在[falling_down]的操控装置上！ "
 
-		falling_string += "When you recover, you [damage_value > 40 ? "slowly" : "quickly"] begin righting [falling_down]."
+		falling_string += "等你回过神来，你[damage_value > 40 ? "缓慢地" : "迅速地"]开始把[falling_down]扶正。"
 		to_chat(driver, span_danger(falling_string))
 
 /obj/item/tripwire_cable
-	name = "sturdy cable"
-	desc = "A coil of extremely thick cable that can withstand great force."
+	name = "结实的缆绳"
+	desc = "一卷极粗的缆绳，能够承受巨大的力量。"
 	icon = 'icons/obj/tripwire.dmi'
 	icon_state = "tripwire_cable"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -326,17 +326,17 @@
 /obj/item/tripwire_cable/attack_self(mob/user, modifiers)
 	if(!connecting_post.resolve())
 		return
-	to_chat(user, span_notice("You recoil the length of cable until it's all back together again."))
+	to_chat(user, span_notice("你把缆绳重新卷回，直到它恢复成一整卷。"))
 	connecting_post = null
 
 /obj/item/tripwire_cable/wirecutter_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You cut off the cable's excess bulk."))
+	to_chat(user, span_notice("你切掉了缆绳多余的部分。"))
 	new /obj/item/stack/cable_coil(drop_location(), 15)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /datum/crafting_recipe/tripwire_cable
-	name = "Tripwire Cable"
+	name = "绊线缆绳"
 	result = /obj/item/tripwire_cable
 	reqs = list(
 		/obj/item/stack/cable_coil = 30,

@@ -4,9 +4,9 @@
 
 
 /datum/action/changeling/pheromone_receptors
-	name = "Pheromone Receptors"
-	desc = "We attune our senses to track other changelings by scent.  The closer they are, the easier we can find them."
-	helptext = "We will know the general direction of nearby changelings, with closer scents being stronger.  Our chemical generation is slowed while this is active."
+	name = "信息素受体"
+	desc = "我们调整感官，靠气味追踪其他变形怪。他们离得越近，我们就越容易找到。"
+	helptext = "我们能感知附近变形怪的大致方向，气味越近越强烈。激活期间我们的化学物质生成会减慢。"
 	button_icon_state = "pheromone_receptors"
 	category = "utility"
 	chemical_cost = 0 //Reduces regain rate while active.
@@ -24,14 +24,14 @@
 	..()
 	var/datum/antagonist/changeling/changeling = IS_CHANGELING(user)
 	if(HAS_TRAIT(user, TRAIT_ANOSMIA)) //Anosmia quirk holders can't smell anything
-		to_chat(user, span_warning("We can't smell!"))
+		to_chat(user, span_warning("我们闻不到气味！"))
 		return
 	if(!receptors_active)
-		to_chat(user, span_warning("We search for the scent of any nearby changelings."))
+		to_chat(user, span_warning("我们搜寻附近任何变形怪的气味。"))
 		changeling.chem_recharge_slowdown += 0.25
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 	else
-		to_chat(user, span_notice("We stop searching for now."))
+		to_chat(user, span_notice("我们暂时停止搜寻。"))
 		changeling.chem_recharge_slowdown -= 0.25
 		user.remove_status_effect(/datum/status_effect/agent_pinpointer/changeling)
 
@@ -66,8 +66,8 @@
 
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/changeling
-	name = "Pheromone Scent"
-	desc = "The nose always knows."
+	name = "信息素气味"
+	desc = "鼻子总是知道的。"
 
 #undef CHANGELING_PHEROMONE_MIN_DISTANCE
 #undef CHANGELING_PHEROMONE_MAX_DISTANCE

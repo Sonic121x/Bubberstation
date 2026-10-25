@@ -1,7 +1,7 @@
 /obj/item/airlock_painter
-	name = "airlock painter"
-	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob."
-	desc_controls = "Alt-Click to remove the ink cartridge."
+	name = "气闸喷涂器"
+	desc = "一台先进的自喷涂装置，预置了多种气闸涂装。在施工中或施工后用于气闸，即可更换涂装。"
+	desc_controls = "Alt 点击可取出墨盒。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "paint_sprayer"
 	inhand_icon_state = "paint_sprayer"
@@ -21,22 +21,22 @@
 	var/initial_ink_type = /obj/item/toner
 	/// Associate list of all paint jobs the airlock painter can apply. The key is the name of the airlock the user will see. The value is the type path of the airlock
 	var/list/available_paint_jobs = list(
-		"Public" = /obj/machinery/door/airlock/public,
-		"Engineering" = /obj/machinery/door/airlock/engineering,
-		"Atmospherics" = /obj/machinery/door/airlock/atmos,
-		"Security" = /obj/machinery/door/airlock/security,
-		"Command" = /obj/machinery/door/airlock/command,
-		"Medical" = /obj/machinery/door/airlock/medical,
-		"Virology" = /obj/machinery/door/airlock/virology,
-		"Research" = /obj/machinery/door/airlock/research,
-		"Hydroponics" = /obj/machinery/door/airlock/hydroponics,
-		"Freezer" = /obj/machinery/door/airlock/freezer,
-		"Science" = /obj/machinery/door/airlock/science,
-		"Mining" = /obj/machinery/door/airlock/mining,
-		"Maintenance" = /obj/machinery/door/airlock/maintenance,
-		"External" = /obj/machinery/door/airlock/external,
-		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
-		"Standard" = /obj/machinery/door/airlock
+		"公共" = /obj/machinery/door/airlock/public,
+		"工程" = /obj/machinery/door/airlock/engineering,
+		"大气" = /obj/machinery/door/airlock/atmos,
+		"安保" = /obj/machinery/door/airlock/security,
+		"指挥" = /obj/machinery/door/airlock/command,
+		"医疗" = /obj/machinery/door/airlock/medical,
+		"病毒学" = /obj/machinery/door/airlock/virology,
+		"科研" = /obj/machinery/door/airlock/research,
+		"水培" = /obj/machinery/door/airlock/hydroponics,
+		"冷库" = /obj/machinery/door/airlock/freezer,
+		"科学" = /obj/machinery/door/airlock/science,
+		"采矿" = /obj/machinery/door/airlock/mining,
+		"维护" = /obj/machinery/door/airlock/maintenance,
+		"外部" = /obj/machinery/door/airlock/external,
+		"外部维护"= /obj/machinery/door/airlock/maintenance/external,
+		"标准" = /obj/machinery/door/airlock
 	)
 
 /obj/item/airlock_painter/Initialize(mapload)
@@ -62,10 +62,10 @@
 //because you're expecting user input.
 /obj/item/airlock_painter/proc/can_use(mob/user)
 	if(!ink)
-		balloon_alert(user, "no cartridge!")
+		balloon_alert(user, "没有墨盒！")
 		return FALSE
 	else if(ink.charges < 1)
-		balloon_alert(user, "out of ink!")
+		balloon_alert(user, "墨水用尽！")
 		return FALSE
 	else
 		return TRUE
@@ -74,7 +74,7 @@
 	var/obj/item/organ/lungs/L = user.get_organ_slot(ORGAN_SLOT_LUNGS)
 
 	if(can_use(user) && L)
-		user.visible_message(span_suicide("[user] is inhaling toner from [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]正在吸入[src]里的碳粉！看起来是想自杀！"))
 		use(user)
 
 		// Once you've inhaled the toner, you throw up your lungs
@@ -100,49 +100,49 @@
 
 		// TODO maybe add some colorful vomit?
 
-		user.visible_message(span_suicide("[user] vomits out [user.p_their()] [L]!"))
+		user.visible_message(span_suicide("[user]把自己的[L]吐了出来！"))
 		playsound(user.loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 		L.forceMove(T)
 
 		return (TOXLOSS|OXYLOSS)
 	else if(can_use(user) && !L)
-		user.visible_message(span_suicide("[user] is spraying toner on [user.p_them()]self from [src]! It looks like [user.p_theyre()] trying to commit suicide."))
+		user.visible_message(span_suicide("[user]正用[src]往自己身上喷碳粉！看起来是想自杀。"))
 		user.reagents.add_reagent(/datum/reagent/colorful_reagent, 1)
 		user.reagents.expose(user, TOUCH, 1)
 		return TOXLOSS
 
 	else
-		user.visible_message(span_suicide("[user] is trying to inhale toner from [src]! It might be a suicide attempt if [src] had any toner."))
+		user.visible_message(span_suicide("[user]正试图吸入[src]中的碳粉！如果[src]里还有碳粉，这可能会是一次自杀尝试。"))
 		return SHAME
 
 
 /obj/item/airlock_painter/examine(mob/user)
 	. = ..()
 	if(!ink)
-		. += span_notice("It doesn't have a toner cartridge installed.")
+		. += span_notice("它没有安装碳粉盒。")
 		return
-	var/ink_level = "high"
+	var/ink_level = "充足"
 	if(ink.charges < 1)
-		ink_level = "empty"
+		ink_level = "已空"
 	else if((ink.charges/ink.max_charges) <= 0.25) //25%
-		ink_level = "low"
+		ink_level = "偏低"
 	else if((ink.charges/ink.max_charges) > 1) //Over 100% (admin var edit)
-		ink_level = "dangerously high"
-	. += span_notice("Its ink levels look [ink_level].")
+		ink_level = "危险地过量"
+	. += span_notice("它剩余的墨水量看起来[ink_level]。")
 
 /obj/item/airlock_painter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/toner))
 		return NONE
 
 	if(ink)
-		to_chat(user, span_warning("[src] already contains \a [ink]!"))
+		to_chat(user, span_warning("[src]里已经装有[ink]了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You install [tool] into [src]."))
+	to_chat(user, span_notice("你将[tool]装入[src]。"))
 	ink = tool
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -154,6 +154,6 @@
 	playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 	ink.forceMove(user.drop_location())
 	user.put_in_hands(ink)
-	to_chat(user, span_notice("You remove [ink] from [src]."))
+	to_chat(user, span_notice("你从[src]中取出[ink]。"))
 	ink = null
 	return CLICK_ACTION_SUCCESS

@@ -1,5 +1,5 @@
 /obj/item/assembly_holder
-	name = "Assembly"
+	name = "组件"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
 	icon_state = "assembly_holder"
 	inhand_icon_state = "assembly"
@@ -31,7 +31,7 @@
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
 	attach(A,user)
 	attach(A2,user)
-	name = "[A.name]-[A2.name] assembly"
+	name = "[A.name]-[A2.name] 组件"
 	update_appearance()
 	SSblackbox.record_feedback("tally", "assembly_made", 1, "[initial(A.name)]-[initial(A2.name)]")
 
@@ -48,20 +48,20 @@
 
 /obj/item/assembly_holder/proc/try_add_assembly(obj/item/assembly/attached_assembly, mob/user)
 	if(attached_assembly.secured)
-		balloon_alert(user, "not attachable!")
+		balloon_alert(user, "无法连接！")
 		return FALSE
 
 	if(LAZYLEN(assemblies) >= HOLDER_MAX_ASSEMBLIES)
-		balloon_alert(user, "too many assemblies!")
+		balloon_alert(user, "组件太多了！")
 		return FALSE
 
 	if(attached_assembly.assembly_flags & ASSEMBLY_NO_DUPLICATES)
 		if(locate(attached_assembly.type) in assemblies)
-			balloon_alert(user, "can't attach another of that!")
+			balloon_alert(user, "不能再连接一个同类部件！")
 			return FALSE
 
 	add_assembly(attached_assembly, user)
-	balloon_alert(user, "part attached")
+	balloon_alert(user, "部件已连接")
 	return TRUE
 
 /**
@@ -78,7 +78,7 @@
 	for(var/obj/item/assembly/assembly as anything in assemblies)
 		name += "[assembly.name]-"
 	name = splicetext(name, length(name), length(name) + 1, "")
-	name += " assembly"
+	name += " 组件"
 	update_appearance()
 
 /obj/item/assembly_holder/proc/attach(obj/item/assembly/A, mob/user)
@@ -143,7 +143,7 @@
 
 
 /obj/item/assembly_holder/screwdriver_act(mob/user, obj/item/tool)
-	loc.balloon_alert(user, "disassembled")
+	loc.balloon_alert(user, "已拆卸")
 
 	deconstruct(TRUE)
 
@@ -157,7 +157,7 @@
 /obj/item/assembly_holder/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(LAZYLEN(assemblies) == 1)
-		balloon_alert(user, "part missing!")
+		balloon_alert(user, "缺少部件！")
 		return
 
 	for(var/obj/item/assembly/assembly as anything in assemblies)

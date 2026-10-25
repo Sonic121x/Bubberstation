@@ -16,11 +16,11 @@
 					if("ckey")
 						var/mob/living/L = target
 						if(istype(L))
-							vv_update_display(target, "ckey", L.ckey || "No ckey")
+							vv_update_display(target, "ckey", L.ckey || "无 ckey")
 					if("real_name")
 						var/mob/living/L = target
 						if(istype(L))
-							vv_update_display(target, "real_name", L.real_name || "No real name")
+							vv_update_display(target, "real_name", L.real_name || "无真实姓名")
 
 			if(href_list[VV_HK_BASIC_CHANGE])
 				modify_variables(target, target_var, 0)
@@ -35,11 +35,11 @@
 			if (!C)
 				return
 			if(!target)
-				to_chat(usr, span_warning("The object you tried to expose to [C] no longer exists (nulled or hard-deled)"), confidential = TRUE)
+				to_chat(usr, span_warning("你试图向[C]公开的对象已不存在（已被置空或硬删除）"), confidential = TRUE)
 				return
-			message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='byond://?_src_=vars;datumrefresh=[REF(target)]'>VV window</a>")
-			log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [target]")
-			to_chat(C, "[holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window", confidential = TRUE)
+			message_admins("[key_name_admin(usr)] 向 [key_name_admin(C)] 展示了一个 <a href='byond://?_src_=vars;datumrefresh=[REF(target)]'>VV 窗口</a>")
+			log_admin("管理员 [key_name(usr)] 向 [key_name(C)] 展示了一个 [target] 的 VV 窗口")
+			to_chat(C, "[holder.fakekey ? "一位管理员" : "[usr.client.key]"]授予了你查看“查看变量”窗口的权限", confidential = TRUE)
 			C.debug_variables(target)
 	if(check_rights(R_DEBUG))
 		if(href_list[VV_HK_DELETE])
@@ -62,21 +62,21 @@
 		names += "---Elements---"
 		names += sort_list(subtypesof(/datum/element), GLOBAL_PROC_REF(cmp_typepaths_asc))
 
-		var/result = tgui_input_list(usr, "Choose a component/element to add", "Add Component", names)
+		var/result = tgui_input_list(usr, "选择要添加的组件/元素", "添加组件", names)
 		if(isnull(result))
 			return
 		if(!usr || result == "---Components---" || result == "---Elements---")
 			return
 
 		if(QDELETED(src))
-			to_chat(usr, "That thing doesn't exist anymore!", confidential = TRUE)
+			to_chat(usr, "那东西已经不存在了！", confidential = TRUE)
 			return
 
 		var/add_source
 		if(ispath(result, /datum/component))
 			var/datum/component/comp_path = result
 			if(initial(comp_path.dupe_mode) == COMPONENT_DUPE_SOURCES)
-				add_source = tgui_input_text(usr, "Enter a source for the component", "Add Component", "ADMIN-ABUSE")
+				add_source = tgui_input_text(usr, "输入组件的来源", "添加组件", "ADMIN-ABUSE")
 				if(isnull(add_source))
 					return
 
@@ -92,8 +92,8 @@
 		else
 			datumname = "element"
 			target._AddElement(lst)
-		log_admin("[key_name(usr)] has added [result] [datumname] to [key_name(target)].")
-		message_admins(span_notice("[key_name_admin(usr)] has added [result] [datumname] to [key_name_admin(target)]."))
+		log_admin("[key_name(usr)] 向 [key_name(target)] 添加了 [result] [datumname]。")
+		message_admins(span_notice("[key_name_admin(usr)] 向 [key_name_admin(target)] 添加了 [result] [datumname]。"))
 	if(href_list[VV_HK_REMOVECOMPONENT] || href_list[VV_HK_MASS_REMOVECOMPONENT])
 		if(!check_rights(NONE))
 			return
@@ -106,20 +106,20 @@
 		names += "---Elements---"
 		// We have to list every element here because there is no way to know what element is on this object without doing some sort of hack.
 		names += sort_list(subtypesof(/datum/element), GLOBAL_PROC_REF(cmp_typepaths_asc))
-		var/path = tgui_input_list(usr, "Choose a component/element to remove. All elements listed here may not be on the datum.", "Remove element", names)
+		var/path = tgui_input_list(usr, "选择要移除的组件/元素。此处列出的元素未必都在该数据对象上。", "移除元素", names)
 		if(isnull(path))
 			return
 		if(!usr || path == "---Components---" || path == "---Elements---")
 			return
 		if(QDELETED(src))
-			to_chat(usr, "That thing doesn't exist anymore!")
+			to_chat(usr, "那东西已经不存在了！")
 			return
 		var/list/targets_to_remove_from = list(target)
 		if(mass_remove)
 			var/method = vv_subtype_prompt(target.type)
 			targets_to_remove_from = get_all_of_type(target.type, method)
 
-			if(alert(usr, "Are you sure you want to mass-delete [path] on [target.type]?", "Mass Remove Confirmation", "Yes", "No") == "No")
+			if(alert(usr, "确定要在 [target.type] 上批量删除 [path] 吗？", "批量移除确认", "Yes", "No") == "No")
 				return
 
 		for(var/datum/target_to_remove_from as anything in targets_to_remove_from)
@@ -134,7 +134,7 @@
 				for(var/to_delete in components_actual)
 					qdel(to_delete)
 
-		message_admins(span_notice("[key_name_admin(usr)] has [mass_remove? "mass" : ""] removed [path] component from [mass_remove? target.type : key_name_admin(target)]."))
+		message_admins(span_notice("[key_name_admin(usr)] 已[mass_remove? "批量" : ""]从 [mass_remove? target.type : key_name_admin(target)] 移除了 [path] 组件。"))
 	if(href_list[VV_HK_MODIFY_GREYSCALE])
 		if(!check_rights(NONE))
 			return

@@ -62,23 +62,23 @@
 /mutable_appearance/appearance_mirror/vv_get_var(var_name)
 	// No editing for you
 	var/value = vars[var_name]
-	return "<li style='backgroundColor:white'>(READ ONLY) [var_name] = [_debug_variable_value(var_name, value, 0, src, sanitize = TRUE, display_flags = NONE)]</li>"
+	return "<li style='backgroundColor:white'>（只读）[var_name] = [_debug_variable_value(var_name, value, 0, src, sanitize = TRUE, display_flags = NONE)]</li>"
 
 /mutable_appearance/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "Debug Appearance")
+	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "调试外观")
 
 /mutable_appearance/appearance_mirror/vv_get_dropdown()
 	SHOULD_CALL_PARENT(FALSE)
 
 	. = list()
 	VV_DROPDOWN_OPTION("", "--- /appearance_mirror ---")
-	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "Call Proc")
-	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
-	VV_DROPDOWN_OPTION(VV_HK_TAG, "Tag Datum")
-	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
-	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
-	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "Debug Appearance")
+	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "调用过程")
+	VV_DROPDOWN_OPTION(VV_HK_MARK, "标记对象")
+	VV_DROPDOWN_OPTION(VV_HK_TAG, "标记数据")
+	VV_DROPDOWN_OPTION(VV_HK_DELETE, "删除")
+	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "向玩家展示 VV")
+	VV_DROPDOWN_OPTION(VV_HK_DEBUG_APPEARANCE, "调试外观")
 
 /proc/get_vv_appearance(mutable_appearance/appearance) // actually appearance yadeeyada
 	return new /mutable_appearance/appearance_mirror(appearance)

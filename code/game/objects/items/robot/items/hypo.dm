@@ -99,8 +99,8 @@
 
 ///Borg Hypospray
 /obj/item/reagent_containers/borghypo
-	name = "cyborg hypospray"
-	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
+	name = "半机械人无针注射器"
+	desc = "一套先进的化学合成与注射系统，专为重型医疗设备而设计。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	inhand_icon_state = "hypo"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -184,26 +184,26 @@
 
 	var/mob/living/carbon/injectee = interacting_with
 	if(!selected_reagent)
-		balloon_alert(user, "no reagent selected!")
+		balloon_alert(user, "未选择试剂！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, "not enough [selected_reagent.name]!")
+		balloon_alert(user, "[selected_reagent.name]不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!injectee.try_inject(user, user.zone_selected, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE | (bypass_protection ? INJECT_CHECK_PENETRATE_THICK : 0)))
-		balloon_alert(user, "[injectee.parse_zone_with_bodypart(user.zone_selected)] is blocked!")
+		balloon_alert(user, "[injectee.parse_zone_with_bodypart(user.zone_selected)]被阻挡了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!injectee.reagents)
-		balloon_alert(user, "unable to inject!")
+		balloon_alert(user, "无法注射！")
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(injectee, span_warning("You feel a tiny prick!"))
-	to_chat(user, span_notice("You inject [injectee] with the injector ([selected_reagent.name])."))
+	to_chat(injectee, span_warning("你感到一阵轻微的刺痛！"))
+	to_chat(user, span_notice("你用注射器为[injectee]注射了（[selected_reagent.name]）。"))
 	user.changeNext_move(CLICK_CD_MELEE)
 	stored_reagents.trans_to(injectee, amount_per_transfer_from_this, target_id = selected_reagent.type, transferred_by = user, methods = INJECT)
-	balloon_alert(user, "[amount_per_transfer_from_this] unit\s injected")
+	balloon_alert(user, "已注射 [amount_per_transfer_from_this] 单位")
 	log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	return ITEM_INTERACT_SUCCESS
 
@@ -246,13 +246,13 @@
 				var/obj/item/robot_model/container_model = loc
 				cyborg = container_model.robot
 			playsound(cyborg, 'sound/effects/pop.ogg', 50, FALSE)
-			balloon_alert(cyborg, "dispensing [selected_reagent.name]")
+			balloon_alert(cyborg, "正在分配 [selected_reagent.name]")
 			break
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	. = ..()
-	. += "Currently loaded: [selected_reagent ? "[selected_reagent]. [selected_reagent.description]" : "nothing."]"
-	. += span_notice("<i>Alt+Click</i> to change transfer amount. Currently set to [amount_per_transfer_from_this]u.")
+	. += "当前装载：[selected_reagent ? "[selected_reagent]。[selected_reagent.description]" : "无。"]"
+	. += span_notice("<i>Alt+点击</i>可更改转移量。当前设定为 [amount_per_transfer_from_this]u。")
 
 /* SKYRAT EDIT REMOVAL START - SEE master_files/code/modules/reagents/reagent_containers.dm
 /obj/item/reagent_containers/borghypo/click_alt(mob/living/user)
@@ -292,32 +292,32 @@ SKYRAT EDIT REMOVAL END */
 
 /// Peacekeeper hypospray
 /obj/item/reagent_containers/borghypo/peace
-	name = "Peace Hypospray"
+	name = "和平无针注射器"
 	default_reagent_types = BASE_PEACE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/peace/hacked
-	desc = "Everything's peaceful in death!"
+	desc = "死亡之中，一切太平！"
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_PEACE_REAGENTS
 
 /// Clownborg hypospray
 /obj/item/reagent_containers/borghypo/clown
-	name = "laughter injector"
-	desc = "Keeps the crew happy and productive!"
+	name = "欢愉注射器"
+	desc = "让船员保持快乐与高效！"
 	default_reagent_types = BASE_CLOWN_REAGENTS
 
 /obj/item/reagent_containers/borghypo/clown/hacked
-	desc = "Keeps the crew so happy they don't work!"
+	desc = "让船员快乐到无心工作！"
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_CLOWN_REAGENTS
 
 /// Syndicate medborg hypospray
 /obj/item/reagent_containers/borghypo/syndicate
-	name = "syndicate cyborg hypospray"
-	desc = "An experimental piece of Syndicate technology used to produce powerful restorative nanites used to very quickly restore injuries of all types. \
-		Also metabolizes potassium iodide for radiation poisoning, inacusiate for ear damage and morphine for offense."
+	name = "辛迪加半机械人无针注射器"
+	desc = "一件实验性的辛迪加科技产品，可生成强效的纳米修复机器人，能在极短时间内治愈各种伤势。\
+		同时还能代谢碘化钾以治疗辐射中毒、代谢耳复宁以治疗耳部损伤、代谢吗啡以用于进攻。"
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	charge_cost = 0.02 * STANDARD_CELL_CHARGE
@@ -327,8 +327,8 @@ SKYRAT EDIT REMOVAL END */
 
 /// Borg Shaker for the serviceborgs
 /obj/item/reagent_containers/borghypo/borgshaker
-	name = "cyborg shaker"
-	desc = "An advanced drink synthesizer and mixer."
+	name = "半机械人摇酒器"
+	desc = "一台先进的饮品合成与调配装置。"
 	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "shaker"
 	possible_transfer_amounts = list(5,10,20,1)
@@ -397,7 +397,7 @@ SKYRAT EDIT REMOVAL END */
 		var/obj/item/borg/apparatus/beaker/service/beverage_apparatus = (locate() in cyborg.model.modules) || (locate() in cyborg.held_items)
 
 		if (isnull(beverage_apparatus))
-			to_chat(user, span_warning("This unit has no beverage apparatus. This shouldn't be possible. Delete yourself, NOW!"))
+			to_chat(user, span_warning("本机没有饮料装置。这不应该发生。立即自我删除！"))
 			data["apparatusHasItem"] = FALSE
 		else
 			data["apparatusHasItem"] = !isnull(beverage_apparatus.stored)
@@ -407,13 +407,13 @@ SKYRAT EDIT REMOVAL END */
 	if(!interacting_with.is_refillable())
 		return NONE
 	if(!selected_reagent)
-		balloon_alert(user, "no reagent selected!")
+		balloon_alert(user, "未选择试剂！")
 		return ITEM_INTERACT_BLOCKING
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, "not enough [selected_reagent.name]!")
+		balloon_alert(user, "[selected_reagent.name]不足！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.reagents.total_volume >= interacting_with.reagents.maximum_volume)
-		balloon_alert(user, "it's full!")
+		balloon_alert(user, "已经满了！")
 		return ITEM_INTERACT_BLOCKING
 
 	// This is the in-between where we're storing the reagent we're going to pour into the container
@@ -423,13 +423,13 @@ SKYRAT EDIT REMOVAL END */
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 
 	shaker.trans_to(interacting_with, amount_per_transfer_from_this, transferred_by = user)
-	balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
+	balloon_alert(user, "已倒入 [amount_per_transfer_from_this] 单位")
 	return ITEM_INTERACT_SUCCESS
 
 
 /obj/item/reagent_containers/borghypo/condiment_synthesizer // Solids! Condiments! The borger uprising!
-	name = "Condiment Synthesizer"
-	desc = "An advanced condiment synthesizer"
+	name = "调味品合成器"
+	desc = "一台先进的调味品合成器"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "flour"
 	possible_transfer_amounts = list(5,10,20,1)
@@ -467,13 +467,13 @@ SKYRAT EDIT REMOVAL END */
 	if(!interacting_with.is_refillable())
 		return NONE
 	if(!selected_reagent)
-		balloon_alert(user, "no reagent selected!")
+		balloon_alert(user, "未选择试剂！")
 		return ITEM_INTERACT_BLOCKING
 	if(!stored_reagents.has_reagent(selected_reagent.type, amount_per_transfer_from_this))
-		balloon_alert(user, "not enough [selected_reagent.name]!")
+		balloon_alert(user, "[selected_reagent.name]不足！")
 		return ITEM_INTERACT_BLOCKING
 	if(interacting_with.reagents.total_volume >= interacting_with.reagents.maximum_volume)
-		balloon_alert(user, "it's full!")
+		balloon_alert(user, "已经满了！")
 		return ITEM_INTERACT_BLOCKING
 	// This is the in-between where we're storing the reagent we're going to pour into the container
 	// because we cannot specify a singular reagent to transfer in trans_to
@@ -481,12 +481,12 @@ SKYRAT EDIT REMOVAL END */
 	stored_reagents.remove_reagent(selected_reagent.type, amount_per_transfer_from_this)
 	shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, reagtemp = dispensed_temperature, no_react = TRUE)
 	shaker.trans_to(interacting_with, amount_per_transfer_from_this, transferred_by = user)
-	balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
+	balloon_alert(user, "已倒入 [amount_per_transfer_from_this] 单位")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
-	name = "cyborg shaker"
-	desc = "Will mix drinks that knock them dead."
+	name = "半机械人摇酒器"
+	desc = "能调出足以把他们放倒的饮品。"
 	icon_state = "threemileislandglass"
 	icon = 'icons/obj/drinks/mixed_drinks.dmi'
 	tgui_theme = "syndicate"

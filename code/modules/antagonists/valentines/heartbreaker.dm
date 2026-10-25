@@ -1,9 +1,9 @@
 /datum/antagonist/heartbreaker
-	name = "\improper Heartbreaker"
+	name = "\improper 负心人"
 	roundend_category = "valentines"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
-	suicide_cry = "FOR LONELINESS!!"
+	suicide_cry = "为了孤独！！"
 
 /datum/antagonist/heartbreaker/forge_objectives()
 	var/datum/objective/martyr/normiesgetout = new
@@ -16,5 +16,5 @@
 
 /datum/antagonist/heartbreaker/greet()
 	. = ..()
-	to_chat(owner, span_boldwarning("You didn't get a date! They're all having fun without you! You'll show them though..."))
+	to_chat(owner, span_boldwarning("你没找到约会对象！他们都在没有你的情况下玩得很开心！不过你会让他们好看的……"))
 	owner.announce_objectives()

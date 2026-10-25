@@ -27,7 +27,7 @@
 		if(player.mind && !IS_CULTIST(player) && !is_convertable_to_cult(player) && player.stat != DEAD && is_station_level(player.loc.z))
 			target_candidates += player.mind
 	if(target_candidates.len == 0)
-		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
+		message_admins("血教献祭：找不到无法转化的目标，正在寻找可转化的目标。")
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
 			// SKYRAT EDIT ADDITION START - Players in the interlink can't be obsession targets
 			if(SSticker.IsRoundInProgress() && istype(get_area(player), /area/centcom/interlink))
@@ -45,7 +45,7 @@
 		RegisterSignal(target.current, COMSIG_QDELETING, PROC_REF(on_target_body_del))
 		RegisterSignal(target.current, COMSIG_MOB_MIND_TRANSFERRED_INTO, PROC_REF(on_possible_mindswap))
 	else
-		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
+		message_admins("血教献祭：找不到无法转化或可转化的目标。完啦！")
 		sacced = TRUE // Prevents another hypothetical softlock. This basically means every PC is a cultist.
 	if(!sacced)
 		cult.make_image(src)
@@ -86,9 +86,9 @@
 
 /datum/objective/sacrifice/update_explanation_text()
 	if(target)
-		explanation_text = "Sacrifice [target], the [target.assigned_role.title] via invoking an Offer rune with [target.p_them()] on it and three acolytes around it."
+		explanation_text = "使用献祭符文，将[target]（[target.assigned_role.title]）置于符文之上，并由三名侍僧环绕，以此献祭[target]。"
 	else
-		explanation_text = "The veil has already been weakened here, proceed to the final objective."
+		explanation_text = "此处的帷幕已经被削弱，继续完成最终目标。"
 
 /datum/objective/eldergod
 	var/summoned = FALSE
@@ -106,7 +106,7 @@
 	update_explanation_text()
 
 /datum/objective/eldergod/update_explanation_text()
-	explanation_text = "Summon Nar'Sie by invoking the rune 'Summon Nar'Sie'. The summoning can only be accomplished in [english_list(summon_spots)] - where the veil is weak enough for the ritual to begin."
+	explanation_text = "通过使用“召唤纳尔西”符文来召唤纳尔西。召唤仪式只能在[english_list(summon_spots)]进行——那里的帷幕足够薄弱，可以让仪式开始。"
 
 /datum/objective/eldergod/check_completion()
 	if(killed)

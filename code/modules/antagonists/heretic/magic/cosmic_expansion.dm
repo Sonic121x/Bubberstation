@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/conjure/cosmic_expansion
-	name = "Cosmic Expansion"
-	desc = "This spell generates a 5x5 domain of cosmic fields. \
-		Creatures up to 7 tiles away will also receive a star mark."
+	name = "星辰扩张"
+	desc = "该法术会生成一片 5x5 的星辰力场领域。\
+		距离最多 7 格范围内的生物也会被标记星印。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -11,7 +11,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 60 SECONDS // BUBBER EDIT CHANGE - from 15 to 60 secs, now more of a panic button
 
-	invocation = "C'SM'S 'XP'ND!"
+	invocation = "星'辰'扩'张'！"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 

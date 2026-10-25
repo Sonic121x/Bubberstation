@@ -1,9 +1,9 @@
 
 /obj/structure/transit_tube
-	name = "transit tube"
+	name = "运输管道"
 	icon = 'icons/obj/pipes_n_cables/transit_tube.dmi'
 	icon_state = "straight"
-	desc = "A transit tube for moving things around."
+	desc = "用于运送物品的运输管道。"
 	density = TRUE
 	layer = LOW_ITEM_LAYER
 	anchored = TRUE
@@ -37,15 +37,15 @@
 		return NONE
 
 	for(var/obj/structure/transit_tube_pod/pod in loc)
-		to_chat(user, span_warning("Remove the pod first!"))
+		to_chat(user, span_warning("请先移除舱体！"))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] starts to detach \the [src]."), \
-						span_notice("You start to detach \the [src]..."))
+	user.visible_message(span_notice("[user]开始拆卸[src]。"), \
+						span_notice("你开始拆卸[src]……"))
 	if(!tool.use_tool(src, user, 2 SECONDS, volume=50))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You detach \the [src]."))
+	to_chat(user, span_notice("你拆下了[src]。"))
 	var/obj/structure/c_transit_tube/husk = new tube_construction(loc)
 	husk.setDir(dir)
 	transfer_fingerprints_to(husk)

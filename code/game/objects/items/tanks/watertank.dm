@@ -1,7 +1,7 @@
 //Hydroponics tank and base code
 /obj/item/watertank
-	name = "backpack water tank"
-	desc = "A S.U.N.S.H.I.N.E. brand water tank backpack with a nozzle to water plants."
+	name = "背负式水箱"
+	desc = "S.U.N.S.H.I.N.E. 品牌的水箱背包，配有用于浇灌植物的喷嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "waterbackpack"
 	inhand_icon_state = "waterbackpack"
@@ -42,7 +42,7 @@
 	if(!istype(user))
 		return
 	if(user.get_item_by_slot(user.getBackSlot()) != src)
-		to_chat(user, span_warning("The watertank must be worn properly to use!"))
+		to_chat(user, span_warning("必须正确穿戴水箱才能使用！"))
 		return
 	if(user.incapacitated)
 		return
@@ -53,13 +53,13 @@
 	if(noz in src)
 		//Detach the nozzle into the user's hands
 		if(!user.put_in_hands(noz))
-			to_chat(user, span_warning("You need a free hand to hold the mister!"))
+			to_chat(user, span_warning("你需要空出一只手来握住喷雾器！"))
 			return
 	else
 		//Remove from their hands and put back "into" the tank
 		remove_noz()
 
-GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
+GAME_VERB(/obj/item/watertank, toggle_mister_verb, "切换喷雾器", null)
 	toggle_mister(usr)
 
 /obj/item/watertank/proc/make_noz()
@@ -68,7 +68,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 /obj/item/watertank/proc/noz_move(atom/movable/mover, atom/oldloc, direction)
 	if(mover.loc == src || mover.loc == loc)
 		return
-	balloon_alert(loc, "nozzle snaps back")
+	balloon_alert(loc, "喷嘴弹回")
 	mover.forceMove(src)
 
 /obj/item/watertank/equipped(mob/user, slot)
@@ -104,8 +104,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 // the watertank backpack. Allowing it to be placed elsewhere or created without a parent
 // watertank object will likely lead to weird behaviour or runtimes.
 /obj/item/reagent_containers/spray/mister
-	name = "water mister"
-	desc = "A mister nozzle attached to a water tank."
+	name = "喷水器"
+	desc = "连接在水箱上的喷雾嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "mister"
 	inhand_icon_state = "mister"
@@ -132,8 +132,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 
 //Janitor tank
 /obj/item/watertank/janitor
-	name = "backpack cleaner tank"
-	desc = "A janitorial cleaner backpack with nozzle to clean blood and graffiti."
+	name = "背负式清洁水箱"
+	desc = "清洁工用的清洁背包，配有可清除血迹和涂鸦的喷嘴。"
 	icon_state = "waterbackpackjani"
 	inhand_icon_state = "waterbackpackjani"
 	custom_price = PAYCHECK_CREW * 5
@@ -143,8 +143,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	reagents.add_reagent(/datum/reagent/space_cleaner, 500)
 
 /obj/item/reagent_containers/spray/mister/janitor
-	name = "janitor spray nozzle"
-	desc = "A janitorial spray nozzle attached to a watertank, designed to clean up large messes."
+	name = "清洁工喷嘴"
+	desc = "连接在水箱上的清洁喷洒嘴，用于清理大面积污渍。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "misterjani"
 	inhand_icon_state = "misterjani"
@@ -158,12 +158,12 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)
 
 /obj/item/reagent_containers/spray/mister/janitor/mode_change_message(mob/user)
-	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "affix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
+	to_chat(user, span_notice("你[amount_per_transfer_from_this == 10 ? "取下" : "装上"]了喷嘴。现在每次喷洒将使用 [amount_per_transfer_from_this] 单位。"))
 
 //Security tank
 /obj/item/watertank/pepperspray
-	name = "ANTI-TIDER-2500 suppression backpack"
-	desc = "The ultimate crowd-control device; this tool allows the user to quickly and efficiently pacify groups of hostile targets."
+	name = "ANTI-TIDER-2500 镇压背包"
+	desc = "终极人群控制装置；这件工具能让使用者快速高效地安抚成群的敌对目标。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "pepperbackpacksec"
 	inhand_icon_state = "pepperbackpacksec"
@@ -175,8 +175,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	reagents.add_reagent(/datum/reagent/consumable/condensedcapsaicin, 1000)
 
 /obj/item/reagent_containers/spray/mister/pepperspray
-	name = "security spray nozzle"
-	desc = "A pacifying spray nozzle attached to a pepperspray tank, designed to silence perps."
+	name = "安保喷嘴"
+	desc = "连接在胡椒喷雾箱上的镇压喷嘴，用于让嫌疑人闭嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "mistersec"
 	inhand_icon_state = "mistersec"
@@ -190,12 +190,12 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	return new /obj/item/reagent_containers/spray/mister/pepperspray(src)
 
 /obj/item/reagent_containers/spray/mister/pepperspray/mode_change_message(mob/user)
-	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "affix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
+	to_chat(user, span_notice("你[amount_per_transfer_from_this == 10 ? "取下" : "装上"]了喷嘴。现在每次喷洒将使用 [amount_per_transfer_from_this] 单位。"))
 
 //ATMOS FIRE FIGHTING BACKPACK
 /obj/item/watertank/atmos
-	name = "backpack firefighter tank"
-	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer."
+	name = "背负式消防水箱"
+	desc = "带灭火喷嘴的冷藏加压背负式水箱，用于灭火。可在灭火器、树脂发射器和较小规模的树脂泡沫器之间切换。"
 	inhand_icon_state = "waterbackpackatmos"
 	icon_state = "waterbackpackatmos"
 	worn_icon_state = "waterbackpackatmos"
@@ -217,8 +217,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 		N.nozzle_mode = 0
 
 /obj/item/extinguisher/mini/nozzle
-	name = "extinguisher nozzle"
-	desc = "A heavy duty nozzle attached to a firefighter's backpack tank."
+	name = "灭火器喷嘴"
+	desc = "连接在消防员背负水箱上的重型喷嘴。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "atmos_nozzle"
 	inhand_icon_state = "nozzleatmos"
@@ -260,19 +260,19 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 			nozzle_mode = RESIN_LAUNCHER
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_1"
-			balloon_alert(user, "switched to resin launcher")
+			balloon_alert(user, "已切换到树脂发射器")
 			return
 		if(RESIN_LAUNCHER)
 			nozzle_mode = RESIN_FOAM
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_2"
-			balloon_alert(user, "switched to resin foam")
+			balloon_alert(user, "已切换到树脂泡沫")
 			return
 		if(RESIN_FOAM)
 			nozzle_mode = EXTINGUISHER
 			if(uses_pack)
 				tank.icon_state = "waterbackpackatmos_0"
-			balloon_alert(user, "switched to fire extinguisher")
+			balloon_alert(user, "已切换到灭火器")
 			return
 	return
 
@@ -291,15 +291,15 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 			return ITEM_INTERACT_SKIP_TO_ATTACK
 		var/datum/reagents/R = reagents
 		if(R.total_volume < 100)
-			balloon_alert(user, "not enough water!")
+			balloon_alert(user, "水不够！")
 			return ITEM_INTERACT_BLOCKING
 		if(!COOLDOWN_FINISHED(src, resin_cooldown))
-			balloon_alert(user, "still recharging!")
+			balloon_alert(user, "仍在充能！")
 			return ITEM_INTERACT_BLOCKING
 		COOLDOWN_START(src, resin_cooldown, 10 SECONDS)
 		R.remove_all(100)
 		var/obj/effect/resin_container/resin = new (get_turf(src))
-		user.log_message("used Resin Launcher", LOG_GAME)
+		user.log_message("使用了树脂发射器", LOG_GAME)
 		playsound(src,'sound/items/syringeproj.ogg',40,TRUE)
 		var/delay = 2
 		var/datum/move_loop/loop = GLOB.move_manager.move_towards(resin, interacting_with, delay, timeout = delay * 5, priority = MOVEMENT_ABOVE_SPACE_PRIORITY)
@@ -311,11 +311,11 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 		if(!isturf(interacting_with))
 			return NONE
 		if(!Adj)
-			balloon_alert(user, "too far!")
+			balloon_alert(user, "距离太远！")
 			return ITEM_INTERACT_BLOCKING
 		for(var/thing in interacting_with)
 			if(istype(thing, /obj/effect/particle_effect/fluid/foam/metal/resin) || istype(thing, /obj/structure/foamedmetal/resin))
-				balloon_alert(user, "already has resin!")
+				balloon_alert(user, "已有树脂！")
 				return ITEM_INTERACT_BLOCKING
 		if(metal_synthesis_cooldown < 5)
 			var/obj/effect/particle_effect/fluid/foam/metal/resin/foam = new (get_turf(interacting_with))
@@ -324,7 +324,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 			addtimer(CALLBACK(src, PROC_REF(reduce_metal_synth_cooldown)), 10 SECONDS)
 			return ITEM_INTERACT_SUCCESS
 
-		balloon_alert(user, "still being synthesized!")
+		balloon_alert(user, "仍在合成中！")
 		return ITEM_INTERACT_BLOCKING
 
 	return NONE
@@ -347,8 +347,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	metal_synthesis_cooldown--
 
 /obj/effect/resin_container
-	name = "resin container"
-	desc = "A compacted ball of expansive resin, used to repair the atmosphere in a room, or seal off breaches."
+	name = "树脂容器"
+	desc = "紧实的膨胀树脂球，用于修复房间内的大气或封堵破口。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "frozen_smoke_capsule"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -369,8 +369,8 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 #undef RESIN_FOAM
 
 /obj/item/reagent_containers/chemtank
-	name = "backpack chemical injector"
-	desc = "A chemical autoinjector that can be carried on your back."
+	name = "背负式化学注射器"
+	desc = "可背负携带的化学自动注射器。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "waterbackpackchem"
 	inhand_icon_state = "waterbackpackchem"
@@ -400,7 +400,7 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	if(!istype(user))
 		return
 	if (user.get_item_by_slot(ITEM_SLOT_BACK) != src)
-		to_chat(user, span_warning("The chemtank needs to be on your back before you can activate it!"))
+		to_chat(user, span_warning("化学箱必须备在背上才能激活！"))
 		return
 	if(on)
 		turn_off()
@@ -431,13 +431,13 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	on = TRUE
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, span_notice("[src] turns on."))
+		to_chat(loc, span_notice("[src]启动了。"))
 
 /obj/item/reagent_containers/chemtank/proc/turn_off()
 	on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, span_notice("[src] turns off."))
+		to_chat(loc, span_notice("[src]关闭了。"))
 
 /obj/item/reagent_containers/chemtank/process(seconds_per_tick)
 	if(!ishuman(loc))
@@ -458,4 +458,4 @@ GAME_VERB(/obj/item/watertank, toggle_mister_verb, "Toggle Mister", null)
 	user.update_worn_back() //for overlays update
 
 /datum/action/item_action/activate_injector
-	name = "Activate Injector"
+	name = "激活注射器"

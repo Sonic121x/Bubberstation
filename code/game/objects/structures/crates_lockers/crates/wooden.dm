@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/wooden
-	name = "wooden crate"
-	desc = "Works just as well as a metal one."
+	name = "木箱"
+	desc = "和金属箱一样好用。"
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 6)
 	material_drop = /obj/item/stack/sheet/mineral/wood
 	material_drop_amount = 6
@@ -15,8 +15,8 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 6)
 
 /obj/structure/closet/crate/wooden/toy
-	name = "toy box"
-	desc = "It has the words \"Clown + Mime\" written underneath of it with marker."
+	name = "玩具箱"
+	desc = "它底下用马克笔写着“小丑 + 默剧演员”。"
 
 /obj/structure/closet/crate/wooden/toy/PopulateContents()
 	. = ..()

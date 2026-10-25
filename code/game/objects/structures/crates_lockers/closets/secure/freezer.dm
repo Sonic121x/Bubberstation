@@ -41,14 +41,14 @@
 	new /obj/item/assembly/igniter/condenser(drop_location())
 
 /obj/structure/closet/secure_closet/freezer/empty
-	name = "freezer"
+	name = "冷冻柜"
 
 /obj/structure/closet/secure_closet/freezer/empty/open
 	req_access = null
 	locked = FALSE
 
 /obj/structure/closet/secure_closet/freezer/kitchen
-	name = "kitchen cabinet"
+	name = "厨柜"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/PopulateContents()
@@ -63,8 +63,8 @@
 	req_access = null
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance
-	name = "maintenance refrigerator"
-	desc = "This refrigerator looks quite dusty, is there anything edible still inside?"
+	name = "维护区冰箱"
+	desc = "这台冰箱积满了灰尘，里面还有能吃的东西吗？"
 	req_access = null
 
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance/PopulateContents()
@@ -80,11 +80,11 @@
 	req_access = null
 
 /obj/structure/closet/secure_closet/freezer/meat
-	name = "meat fridge"
+	name = "肉类冰箱"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/meat/update_name()
-	name = check_holidays(VEGAN_DAY) ? "vegan fridge" : "meat fridge"
+	name = check_holidays(VEGAN_DAY) ? "纯素食冰箱" : "肉类冰箱"
 	return ..()
 
 /obj/structure/closet/secure_closet/freezer/meat/PopulateContents()
@@ -102,7 +102,7 @@
 	req_access = null
 
 /obj/structure/closet/secure_closet/freezer/gulag_fridge
-	name = "refrigerator"
+	name = "冰箱"
 
 /obj/structure/closet/secure_closet/freezer/gulag_fridge/PopulateContents()
 	..()
@@ -110,7 +110,7 @@
 		new /obj/item/reagent_containers/cup/glass/bottle/beer/light(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge
-	name = "refrigerator"
+	name = "冰箱"
 	req_access = list(ACCESS_KITCHEN)
 
 /obj/structure/closet/secure_closet/freezer/fridge/PopulateContents()
@@ -135,8 +135,8 @@
 	opened = TRUE
 
 /obj/structure/closet/secure_closet/freezer/money
-	name = "freezer"
-	desc = "This contains cold hard cash."
+	name = "冷冻柜"
+	desc = "里面放着冰冷的硬通货。"
 	req_access = list(ACCESS_VAULT)
 
 /obj/structure/closet/secure_closet/freezer/money/PopulateContents()
@@ -149,8 +149,8 @@
 		new /obj/item/stack/spacecash/c200(src)
 
 /obj/structure/closet/secure_closet/freezer/cream_pie
-	name = "cream pie closet"
-	desc = "Contains pies filled with cream and/or custard, you sickos."
+	name = "奶油派柜"
+	desc = "里面是装满奶油和蛋奶馅的派，别想歪了。"
 	req_access = list(ACCESS_THEATRE)
 
 /obj/structure/closet/secure_closet/freezer/cream_pie/PopulateContents()

@@ -1,7 +1,7 @@
 /// Remain in someones view without breaking line of sight
 /datum/action/cooldown/spell/pointed/unsettle
-	name = "Unsettle"
-	desc = "Stare directly into someone who doesn't see you. Remain in their view for a bit to stun them for 2 seconds and announce your presence to them. "
+	name = "惊扰"
+	desc = "直视一个没有看见你的人。在他的视野中停留片刻，即可将其击晕 2 秒，并让他意识到你的存在。 "
 	button_icon = 'icons/mob/actions/actions_voidwalker.dmi'
 	button_icon_state = "unsettle"
 	background_icon_state = "bg_void"
@@ -9,8 +9,8 @@
 	spell_requirements = NONE
 	cooldown_time = 12 SECONDS
 	cast_range = 9
-	active_msg = "You prepare to stare down a target..."
-	deactive_msg = "You refocus your eyes..."
+	active_msg = "你准备好盯住一个目标……"
+	deactive_msg = "你重新凝聚目光……"
 
 	/// how long we need to stare at someone to unsettle them (woooooh)
 	var/stare_time = 6 SECONDS
@@ -25,11 +25,11 @@
 	. = ..()
 
 	if(!isliving(cast_on))
-		cast_on.balloon_alert(owner, "cannot be targeted!")
+		cast_on.balloon_alert(owner, "无法作为目标！")
 		return FALSE
 
 	if(!check_if_staring(cast_on))
-		owner.balloon_alert(owner, "cannot see you!")
+		owner.balloon_alert(owner, "看不见你！")
 		return FALSE
 
 	return .
@@ -51,10 +51,10 @@
 	SIGNAL_HANDLER
 
 	if(target.is_blind() || !(owner in view(target, world.view)))
-		owner.balloon_alert(owner, "line of sight broken!")
+		owner.balloon_alert(owner, "视线被打断！")
 		return FALSE
 	if(in_combat)
-		owner.balloon_alert(owner, "interrupted by combat!")
+		owner.balloon_alert(owner, "被战斗打断！")
 		in_combat = FALSE
 	return TRUE
 
@@ -77,18 +77,18 @@
 	color = COLOR_PURPLE
 
 /datum/action/cooldown/spell/list_target/telepathy/voidwalker
-	name = "Cosmic Transmit"
+	name = "星辰传讯"
 	background_icon_state = "bg_void"
 	button_icon = 'icons/mob/actions/actions_voidwalker.dmi'
 	button_icon_state = "telepathy"
 	overlay_icon_state = null
 
 /datum/action/cooldown/spell/list_target/telepathy/voidwalker/sunwalker
-	name = "Stellar Transmit"
+	name = "恒星传讯"
 	background_icon_state = "bg_star"
 
 /datum/action/cooldown/mob_cooldown/charge/sunwalker
-	name = "Stellar Charge"
+	name = "恒星冲锋"
 	background_icon_state = "bg_star"
 	charge_past = 1
 	charge_damage = 30
@@ -110,7 +110,7 @@
 	return
 
 /datum/action/cooldown/mob_cooldown/charge/voidwalker
-	name = "Cosmic Dash"
+	name = "星辰冲刺"
 	background_icon_state = "bg_void"
 	button_icon = 'icons/mob/actions/actions_voidwalker.dmi'
 	button_icon_state = "dash"
@@ -134,5 +134,5 @@
 	if(istype(get_turf(target), valid_target_turf))
 		return ..()
 
-	owner.balloon_alert(owner, "must target [initial(valid_target_turf.name)]!")
+	owner.balloon_alert(owner, "必须以[initial(valid_target_turf.name)]为目标！")
 	return FALSE

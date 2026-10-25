@@ -1,4 +1,4 @@
-ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows you to view, add, and edit news feeds.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(access_news_network, R_ADMIN, "访问新闻播报网络", "允许你查看、添加和编辑新闻频道。", ADMIN_CATEGORY_EVENTS)
 	var/datum/newspanel/new_newspanel = new
 	new_newspanel.ui_interact(user.mob)
 
@@ -40,7 +40,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 /datum/newspanel/ui_static_data(mob/user)
 	. = ..()
 	if (!is_admin(user))
-		to_chat(usr, "Error: you are not an admin!", confidential = TRUE)
+		to_chat(usr, "错误：你不是管理员！", confidential = TRUE)
 		return
 
 /datum/newspanel/ui_data(mob/user)
@@ -50,9 +50,9 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 	var/list/message_list = list()
 
 	data["user"] = list()
-	data["user"]["name"] = "Centcom Official"
-	data["user"]["job"] = "Official"
-	data["user"]["department"] = "Department of News"
+	data["user"]["name"] = "中央指挥部官员"
+	data["user"]["job"] = "官员"
+	data["user"]["department"] = "新闻部"
 
 	data["admin_mode"] = TRUE
 	data["security_mode"] = TRUE
@@ -120,8 +120,8 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 	data["channelAuthor"] = current_channel?.author
 
 	if(!current_channel)
-		data["channelAuthor"] = "Nanotrasen Inc"
-		data["channelDesc"] = "Welcome to Newscaster Net. Interface & News networks Operational."
+		data["channelAuthor"] = "纳米传讯公司"
+		data["channelDesc"] = "欢迎使用新闻播报网。界面与新闻网络运行正常。"
 		data["channelLocked"] = TRUE
 	else
 		data["channelDesc"] = current_channel.channel_desc
@@ -151,7 +151,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 
 		if("createStory")
 			if(!current_channel)
-				to_chat(usr, "select a channel first!")
+				to_chat(usr, "请先选择一个频道！")
 				return TRUE
 			var/current_channel_id = params["current"]
 			create_story(channel_id = current_channel_id)
@@ -237,14 +237,14 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = tgui_input_text(usr, "Write the Criminal's Name", "Warrent Alert Handler", "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
+			var/temp_name = tgui_input_text(usr, "填写罪犯姓名", "通缉警报处理器", "约翰·多伊", max_length = MAX_NAME_LEN, multiline = FALSE)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = tgui_input_text(usr, "Write the Criminal's Crimes", "Warrent Alert Handler", "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+			var/temp_desc = tgui_input_text(usr, "填写罪犯的罪行", "通缉警报处理器", "未知", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -253,7 +253,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 		if("submitWantedIssue")
 			if(!crime_description || !criminal_name)
 				return TRUE
-			GLOB.news_network.submit_wanted(criminal_name, crime_description, "Centcom Official", current_image, adminMsg = TRUE, newMessage = TRUE)
+			GLOB.news_network.submit_wanted(criminal_name, crime_description, "中央指挥部官员", current_image, adminMsg = TRUE, newMessage = TRUE)
 			current_image = null
 			return TRUE
 
@@ -277,7 +277,7 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
  * *user: The mob who is being checked for a held photo object.
  */
 /datum/newspanel/proc/attach_photo(mob/user)
-	to_chat(user, "I didn't add this!")
+	to_chat(user, "这个不是我添加的！")
 	return
 
 /**
@@ -289,15 +289,15 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 		return
 	var/datum/feed_channel/potential_channel = GLOB.news_network.network_channels_by_name[channel_name]
 	if(potential_channel)
-		tgui_alert(usr, "ERROR: Feed channel with that name already exists on the Network.", list("Okay"))
+		tgui_alert(usr, "错误：网络中已存在该名称的新闻频道。", list("好的"))
 		return TRUE
 	if(!channel_desc)
 		return TRUE
 	if(isnull(channel_locked))
 		return TRUE
-	var/choice = tgui_alert(usr, "Please confirm feed channel creation","Network Channel Handler", list("Confirm","Cancel"))
+	var/choice = tgui_alert(usr, "请确认创建新闻频道","网络频道处理器", list("Confirm","Cancel"))
 	if(choice == "Confirm")
-		GLOB.news_network.create_feed_channel(channel_name, "Centcom Official", channel_desc, locked = channel_locked)
+		GLOB.news_network.create_feed_channel(channel_name, "中央指挥部官员", channel_desc, locked = channel_locked)
 		SSblackbox.record_feedback("text", "newscaster_channels", 1, "[channel_name]")
 	creating_channel = FALSE
 
@@ -309,12 +309,12 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 		creating_comment = FALSE
 		return TRUE
 	var/datum/feed_comment/new_feed_comment = new /datum/feed_comment
-	new_feed_comment.author = "Centcom Official"
+	new_feed_comment.author = "中央指挥部官员"
 	new_feed_comment.body = comment_text
 	new_feed_comment.time_stamp = round_timestamp()
 	current_message.comments += new_feed_comment
 	GLOB.news_network.last_action ++
-	usr.log_message("(as an admin) commented on message [current_message.return_body(-1)] -- [current_message.body]", LOG_COMMENT)
+	usr.log_message("（作为管理员）评论了消息 [current_message.return_body(-1)] -- [current_message.body]", LOG_COMMENT)
 	creating_comment = FALSE
 
 /**
@@ -343,12 +343,12 @@ ADMIN_VERB(access_news_network, R_ADMIN, "Access Newscaster Network", "Allows yo
 		return
 	current_channel = potential_channel
 
-	var/temp_message = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", feed_channel_message, max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+	var/temp_message = tgui_input_text(usr, "撰写你的新闻稿", "网络频道处理器", feed_channel_message, max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 	if(length(temp_message) <= 1)
 		return TRUE
 	if(temp_message)
 		feed_channel_message = temp_message
-	GLOB.news_network.submit_article("<font face=\"[PEN_FONT]\">[parsemarkdown(feed_channel_message, usr)]</font>", "Centcom Official", current_channel.channel_name, send_photo_data(), adminMessage = TRUE, allow_comments = TRUE)
+	GLOB.news_network.submit_article("<font face=\"[PEN_FONT]\">[parsemarkdown(feed_channel_message, usr)]</font>", "中央指挥部官员", current_channel.channel_name, send_photo_data(), adminMessage = TRUE, allow_comments = TRUE)
 	SSblackbox.record_feedback("amount", "newscaster_stories", 1)
 	feed_channel_message = ""
 	current_image = null

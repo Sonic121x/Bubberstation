@@ -17,20 +17,20 @@
 		return ..()
 
 /obj/structure/plaque/static_plaque/atmos
-	name = "\improper FEA Atmospherics Division plaque"
-	desc = "This plaque commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle men who have died in its hands."
+	name = "\improper FEA 大气部分部纪念牌"
+	desc = "这块纪念牌纪念大气部 FEA 分部的覆灭。献给所有死于其手中的那些被烧焦、头晕目眩、骨脆易折的人们。"
 
 /obj/structure/plaque/static_plaque/thunderdome
-	name = "\improper Thunderdome plaque"
-	desc = "This plaque commemorates those who have fallen in glorious combat.  For all the charred, dizzy, and beaten men who have died in its hands."
+	name = "\improper 雷霆竞技场纪念牌"
+	desc = "这块纪念牌纪念那些在光荣战斗中倒下的人。献给所有死于其手中的那些被烧焦、头晕目眩、饱受殴打的人们。"
 
 /obj/structure/plaque/static_plaque/golden
-	name = "The Most Robust Men Award for Robustness"
-	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
+	name = "最强劲男士强劲奖"
+	desc = "强劲并非一种行为或生活方式，而是一种精神状态。只有那些意志力足够强大、能在危机中采取行动、从敌人手中救下朋友的人，才是真正强劲的。保持强劲吧，朋友们。"
 	icon_state = "goldenplaque"
 
 /obj/structure/plaque/static_plaque/golden/captain
-	name = "The Most Robust Captain Award for Robustness"
+	name = "最强劲舰长强劲奖"
 
 // Commission plaques, to give a little backstory to the stations. Commission dates are date of merge (or best approximation, in the case of Meta) + 540 years to convert to SS13 dates.
 // Where PRs are available, I've linked them. Where they are unavailable, a git hash is provided instead for the direct commit that added/removed the map.
@@ -38,8 +38,8 @@
 
 // Runtimestation: added Nov 11, 2016 (946ec1fec869eb59d6a84e32c90613af734fcd0e)
 /obj/structure/plaque/static_plaque/golden/commission
-	name = "commission plaque"
-	desc = "Spinward Sector Station SS-13\n'Runtime' Class Outpost\nCommissioned 03/11/2556\n'Dedicated to the Pioneers'"
+	name = "启用纪念牌"
+	desc = "顺旋星区空间站 SS-13\n“运行时”级前哨站\n启用 03/11/2556\n“献给先驱者们”"
 	icon_state = "commission_nt"
 	layer = BELOW_OPEN_DOOR_LAYER
 
@@ -47,98 +47,98 @@
 
 // Catwalk: added Apr 10, 2025 (#90532)
 /obj/structure/plaque/static_plaque/golden/commission/catwalk
-	desc = "Spinward Sector Station SS-13\n'Catwalk' Class Outpost\nCommissioned 10/04/2565\n'The New Level'"
+	desc = "顺旋星区空间站 SS-13\n“栈桥”级前哨站\n启用 10/04/2565\n“新的高度”"
 
 // Deltastation: added Dec 17, 2016 (#22066)
 /obj/structure/plaque/static_plaque/golden/commission/delta
-	desc = "Spinward Sector Station SS-13\n'Delta' Class Outpost\nCommissioned 17/12/2556\n'Efficiency Through Redundancy'"
+	desc = "顺旋星区空间站 SS-13\n“德尔塔”级前哨站\n启用 17/12/2556\n“以冗余求效率”"
 
 // Icebox Station: added May 13, 2020 (#51090)
 /obj/structure/plaque/static_plaque/golden/commission/icebox
-	desc = "Spinward Sector Station SS-13\n'Box' Class Outpost (Revision 2.2: 'Icebox')\nCommissioned 13/05/2560\n'Cold Reliable'"
+	desc = "顺旋星区空间站 SS-13\n“箱型”级前哨站（第 2.2 版：“冰盒”）\n启用 13/05/2560\n“冷酷可靠”"
 
 // Metastation: added Mar 11, 2013 (best estimate, pre-git)
 /obj/structure/plaque/static_plaque/golden/commission/meta
-	desc = "Spinward Sector Station SS-13\n'Meta' Class Outpost\nCommissioned 11/03/2553\n'Theseus' Station'"
+	desc = "顺旋星区空间站 SS-13\n“元”级前哨站\n启用 11/03/2553\n“忒修斯”站"
 
 // Nebulastation: added Nov 6, 2024 (#84826)
 /obj/structure/plaque/static_plaque/golden/commission/nebula
-	desc = "Spinward Sector Station SS-13\n'Nebula' Class Outpost\nCommissioned 06/11/2564\n'The New Future'"
+	desc = "顺旋星区空间站 SS-13\n“星云”级前哨站\n启用 06/11/2564\n“崭新的未来”"
 
 // Kilostation: added Nov 13, 2019 (#46968)
 /obj/structure/plaque/static_plaque/golden/commission/kilo
-	desc = "Spinward Sector Station SS-13\n'Kilo' Class Outpost\nCommissioned 13/11/2559\n'Forever Different'"
+	desc = "顺旋星区空间站 SS-13\n“千型”级前哨站\n启用 13/11/2559\n“永远不同”"
 
 // Tramstation: added Mar 11, 2021 (#56509)
 /obj/structure/plaque/static_plaque/golden/commission/tram
-	desc = "Spinward Sector Station SS-13\n'Tram' Class Outpost\nCommissioned 11/03/2561\n'Making Moves'"
+	desc = "顺旋星区空间站 SS-13\n“电车”级前哨站\n启用 11/03/2561\n“步步前行”"
 
 // Kilostation: added Nov 13, 2019 (#46968), removed, readded Jul 7, 2026 (#96447)
 /obj/structure/plaque/static_plaque/golden/commission/kilo
-	desc = "Spinward Sector Station SS-13\n'Kilo' Class Outpost\nCommissioned 13/11/2559\nDecommissioned\nRecommissioned 7/7/2566'Forever Different'"
+	desc = "顺旋星区空间站 SS-13\n“千型”级前哨站\n启用 13/11/2559\n退役\n于 7/7/2566 重新启用“永远不同”"
 
 // Boxstation: added Nov 15, 2010 (pre-git), removed Jul 06, 2020 (#52017)- 9 years, 7 months, 21 days
 // Modified NSSJourney (from FluffySTG), added April 19, 2021 (#4884). added to Bubber Feb 10, 2024 (#1128).
 /obj/structure/plaque/static_plaque/golden/commission/box
-	desc = "Spinward Sector Station SS-02\n'Box' Class Outpost\nCommissioned 15/11/2550\nDecommissioned 06/07/2560\nRecommissioned 10/02/2564\n'Uncontested Boxing Champion'"
+	desc = "顺旋星区空间站 SS-02\n“箱型”级前哨站\n启用 15/11/2550\n退役 06/07/2560\n于 10/02/2564 重新启用\n“无可争议的拳击冠军”"
 
 //Removed stations
 
 // Asteroidstation: added Oct 17, 2015 (169ab09f7b52254ee505e54cdea681fab287647b), removed Jun 19, 2016 (#18661)- 8 months, 2 days
 /obj/structure/plaque/static_plaque/golden/commission/asteroid
-	desc = "Spinward Sector Station SS-12\n'Asteroid' Class Outpost\nCommissioned 13/10/2555\nDecommissioned 19/06/2556\n'A Meteoric Success'"
+	desc = "顺旋星区空间站 SS-12\n“小行星”级前哨站\n启用 13/10/2555\n退役 19/06/2556\n“流星般的成功”"
 
 // Birdboat Station: added Sep 17, 2015 (#11829), removed Feb 09, 2017 (#23754)- 1 year, 4 months, 23 days
 /obj/structure/plaque/static_plaque/golden/commission/birdboat
-	desc = "Spinward Sector Station SS-03\n'Birdboat' Class Outpost\nCommissioned 17/09/2555\nDecommissioned 09/02/2557\n'Rocking the Boat'"
+	desc = "顺旋星区空间站 SS-03\n“鸟船”级前哨站\n启用 17/09/2555\n退役 09/02/2557\n“摇动小船”"
 
 // Pubbystation: added Oct 19, 2016 (#20925), removed Dec 10, 2020 (#54588)- 4 years, 1 month, 21 days
 /obj/structure/plaque/static_plaque/golden/commission/pubby
-	desc = "Spinward Sector Station SS-06\n'Pubby' Class Outpost\nCommissioned 19/10/2556\nDecommissioned 10/12/2560\n'No Law But Ours'"
+	desc = "顺旋星区空间站 SS-06\n“酒馆”级前哨站\n启用 19/10/2556\n退役 10/12/2560\n“除了我们的法律别无他法”"
 
 // Cerestation: added Mar 29, 2017 (#24665), removed Aug 26th, 2017 (#30196)- 4 months, 28 days
 /obj/structure/plaque/static_plaque/golden/commission/cere
-	desc = "Spinward Sector Station SS-10\n'Cere' Class Outpost\nCommissioned 29/03/2557\nDecommissioned 26/08/2557\n'Take a Hike'"
+	desc = "顺旋星区空间站 SS-10\n“谷神”级前哨站\n启用 29/03/2557\n退役 26/08/2557\n“滚去远足”"
 
 // Discstation: added Sep 21, 2015 (#11923), removed Jan 31, 2016 (#15069)- 4 months, 10 days
 /obj/structure/plaque/static_plaque/golden/commission/disc
-	desc = "Spinward Sector Station SS-05\n'Disc' Class Outpost\nCommissioned 21/09/2555\nDecommissioned 31/01/2556\n'Sleep Tight'"
+	desc = "顺旋星区空间站 SS-05\n“圆盘”级前哨站\n启用 21/09/2555\n退役 31/01/2556\n“睡个好觉”"
 
 // Donutstation: added Dec 16, 2018 (#41099), removed Apr 28, 2020 (#50730)- 1 year, 4 months, 12 days
 /obj/structure/plaque/static_plaque/golden/commission/donut
-	desc = "Spinward Sector Station SS-11\n'Donut' Class Outpost\nCommissioned 16/12/2558\nDecommissioned 28/04/2560\n'Hail the Lord'"
+	desc = "顺旋星区空间站 SS-11\n“甜甜圈”级前哨站\n启用 16/12/2558\n退役 28/04/2560\n“赞美吾主”"
 
 // Dreamstation: added Oct 06, 2015 (#12154), removed Dec 22, 2016 (#22305)- 1 year, 2 months, 16 days
 /obj/structure/plaque/static_plaque/golden/commission/dream
-	desc = "Spinward Sector Station SS-04\n'Dream' Class Outpost\nCommissioned 06/10/2555\nDecommissioned 22/12/2556\n'Aiming High'"
+	desc = "顺旋星区空间站 SS-04\n“梦境”级前哨站\n启用 06/10/2555\n退役 22/12/2556\n“志存高远”"
 
 // Efficiencystation: added Jan 28, 2016 (46f64266cfb8b40e35faa8a4d9a2d3aeec689943), removed Dec 20, 2016 (#22306)- 10 months, 22 days
 /obj/structure/plaque/static_plaque/golden/commission/efficiency
-	desc = "Spinward Sector Station SS-07\n'Efficiency' Class Outpost\nCommissioned 28/01/2556\nDecommissioned 20/12/2556\n'Work Smarter, Not Harder'"
+	desc = "顺旋星区空间站 SS-07\n“效率”级前哨站\n启用 28/01/2556\n退役 20/12/2556\n“巧干而非苦干”"
 
 // Ministation: added Jan 29, 2014 (7a76e9456b782e6626bf81e27a912d8232c76b18), removed Dec 27, 2016 (#22453)- 2 years, 10 months, 28 days
 /obj/structure/plaque/static_plaque/golden/commission/mini
-	desc = "Spinward Sector Station SS-08\n'Mini' Class Outpost\nCommissioned 29/01/2554\nDecommissioned 27/12/2556\n'The Littlest Station'"
+	desc = "顺旋星区空间站 SS-08\n“迷你”级前哨站\n启用 29/01/2554\n退役 27/12/2556\n“最小的空间站”"
 
 // North Star: added Apr 13, 2023 (#74371), removed Nov 25, 2024 (#87937)- 1 year, 7 months, 12 days
 /obj/structure/plaque/static_plaque/golden/commission/northstar
-	desc = "Spinward Sector Ship SS-13\n'North Star' Class Vessel\nCommissioned 13/04/2563\nDecommissioned 25/11/2564\n'New Opportunities'"
+	desc = "顺旋星区船舰 SS-13\n“北极星”级舰船\n启用 13/04/2563\n退役 25/11/2564\n“新的机遇”"
 
 // Omegastation: added Dec 27, 2016 (#22453), removed Sep 20, 2018 (#40352)- 1 year, 8 months, 24 days
 /obj/structure/plaque/static_plaque/golden/commission/omega
-	desc = "Spinward Sector Station SS-09\n'Omega' Class Outpost\nCommissioned 27/12/2556\nDecommissioned 20/09/2558\n'Tiny Take Two'"
+	desc = "顺旋星区空间站 SS-09\n“欧米伽”级前哨站\n启用 27/12/2556\n退役 20/09/2558\n“小巧，再来一次”"
 
 // Uterusstation: added Sep 03, 2011 (bbd6db9ce2d6341892b89a620593fc8877f5a817), removed Jun 21, 2012 (72d72f7ce522c2d2ad4863f44ee9f5054413c489)- 9 months, 18 days
 /obj/structure/plaque/static_plaque/golden/commission/uterus
-	desc = "Spinward Sector Station SS-01\n'Uterus' Class Outpost\nCommissioned 03/09/2551\nDecommissioned 21/06/2552\n'Humanity's Vanguard'"
+	desc = "顺旋星区空间站 SS-01\n“子宫”级前哨站\n启用 03/09/2551\n退役 21/06/2552\n“人类先锋”"
 
 // Birdshot: added Apr 29, 2023 (#74371), removed Jul 9, 2025 (#92022) — 2 years, 2 months, 10 days
 /obj/structure/plaque/static_plaque/golden/commission/birdshot
-	desc = "Spinward Sector Station SS-13\n'Birdshot' Class Outpost\nCommissioned 29/04/2563\nDecommissioned 09/07/2565\n'Shooting for the Stars'"
+	desc = "顺旋星区空间站 SS-13\n“鸟弹”级前哨站\n启用 29/04/2563\n退役 09/07/2565\n“向着星辰进发”"
 
 // Wawastation: added Jun 4, 2024 (#82298), removed Jul 7, 2026 (#96447) - 2 years, 1 month, 3 days
 /obj/structure/plaque/static_plaque/golden/commission/wawa
-	desc = "Spinward Sector Station SS-13\n'Wawa' Class Outpost\nCommissioned 04/06/2564\nDecomissioned 9/07/2565\n'Forever Vertical'"
+	desc = "顺旋星区空间站 SS-13\n“瓦瓦”级前哨站\n启用 04/06/2564\n退役 9/07/2565\n“永远垂直”"
 
 // Other Stations
 
@@ -152,30 +152,30 @@
 //See: code>game>objects>structures>signs>_signs.dm
 
 /obj/structure/sign/plaques/kiddie
-	name = "\improper AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be disabled. Beneath the image, someone has scratched the word \"PACKETS\"."
+	name = "\improper AI 开发者纪念牌"
+	desc = "在长得离谱的姓名与职务清单旁边，画着一个小孩子。这孩子看起来是残疾的。图像下方，有人刻上了“PACKETS”这个词。"
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/plaques/kiddie/devils_tooth
-	name = "\improper Devil's Tooth Plaque"
-	desc = "A plaque commemorating the fallen souls who had to die tunneling out this segment of the frozen ice planet that surrounds it. It's named \"Devil's Tooth\" because those who laid down their life here surely thought they were in hell."
+	name = "\improper 恶魔之牙纪念牌"
+	desc = "一块纪念牌，纪念那些为了凿穿这片冰封星球而丧生的亡魂。它之所以叫“恶魔之牙”，是因为那些在此献出生命的人当时想必以为自己身处地狱。"
 
 /obj/structure/sign/plaques/kiddie/badger
-	name = "\improper Remembrance Plaque"
-	desc = "A plaque commemorating the fallen, may they rest in peace, forever asleep amongst the stars. Someone has drawn a picture of a crying badger at the bottom."
+	name = "\improper 悼念纪念牌"
+	desc = "一块纪念逝者的纪念牌，愿他们安息，在群星之间永远长眠。有人在底部画了一只哭泣的獾。"
 
 /obj/structure/sign/plaques/kiddie/library
-	name = "\improper Library Rules Sign"
-	desc = "A long list of rules to be followed when in the library, extolling the virtues of being quiet at all times and threatening those who would dare eat hot food inside."
+	name = "\improper 图书馆规章标牌"
+	desc = "一长串在图书馆内需遵守的规则，颂扬时刻保持安静的美德，并威胁那些胆敢在里面吃热食的人。"
 
 /obj/structure/sign/plaques/kiddie/perfect_man
-	name = "\improper 'Perfect Man' sign"
-	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Nanotrasen Employee."
+	name = "\improper “完美人”标牌"
+	desc = "展品导览，说明纳米传讯公司在心智护盾植入体与克隆技术上的最新进展，如何造就了“完美人”——忠诚的纳米传讯雇员——的诞生及其实际上的永生。"
 
 /obj/structure/sign/plaques/kiddie/perfect_drone
-	name = "\improper 'Perfect Drone' sign"
-	desc = "A guide to the drone shell dispenser, detailing the constructive and destructive applications of modern repair drones, as well as the development of the incorruptible cyborg servants of tomorrow, available today."
+	name = "\improper “完美无人机”标牌"
+	desc = "无人机外壳分配器的导览，详述现代维修无人机的建设与破坏用途，以及明日那些不可腐蚀的半机械人仆从的发展——今日即可拥有。"
 
 /obj/structure/sign/plaques/kiddie/gameoflife
-	name = "\improper Conway's The Game Of Life plaque"
-	desc = "A plaque detailing the historical significance of The Game Of Life in the field of computer science, and that the mural underfoot is a representation of the game in action."
+	name = "\improper 康威《生命游戏》纪念牌"
+	desc = "一块纪念牌，详述《生命游戏》在计算机科学领域的历史意义，并说明脚下的壁画正是该游戏运行过程的呈现。"

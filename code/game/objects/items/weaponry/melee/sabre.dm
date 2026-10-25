@@ -1,6 +1,6 @@
 /obj/item/melee/sabre
-	name = "officer's sabre"
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	name = "军官佩剑"
+	desc = "一件优雅的武器，其单分子刃口能轻易切开血肉与骨骼。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "sabre"
 	inhand_icon_state = "sabre"
@@ -15,8 +15,8 @@
 	block_chance = 50
 	armour_penetration = 75
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("slashes", "cuts")
-	attack_verb_simple = list("slash", "cut")
+	attack_verb_continuous = list("劈砍", "切割")
+	attack_verb_simple = list("劈砍", "切割")
 	block_sound = 'sound/items/weapons/parry.ogg'
 	hitsound = 'sound/items/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
@@ -38,7 +38,7 @@
 		damage_multiplier = 1.35, \
 		should_bane_callback = CALLBACK(src, PROC_REF(bane_check)), \
 		on_bane_callback = CALLBACK(src, PROC_REF(bane_message)), \
-		label_text = "assistants", \
+		label_text = "助理", \
 	)
 
 /obj/item/melee/sabre/proc/bane_check(mob/living/target)
@@ -47,8 +47,8 @@
 
 /obj/item/melee/sabre/proc/bane_message(mob/living/target, mob/living/attacker)
 	target.visible_message(
-		span_warning("[src] tears through [target] with unnatural ease!"),
-		span_boldwarning("As [src] tears into your body, you feel the weight of authority collapse into your wounds!"),
+		span_warning("[src]以异乎寻常的轻易撕开了[target]！"),
+		span_boldwarning("当[src]撕裂你的身体时，你感到权力的重压倾泻进伤口！"),
 	)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 
@@ -64,7 +64,7 @@
 	playsound(container.parent, 'sound/items/sheath.ogg', 25, TRUE)
 
 /obj/item/melee/sabre/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is trying to cut off all [user.p_their()] limbs with [src]! it looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正试图用[src]把自己的四肢全部砍下来！看来是想自杀！"))
 	var/i = 0
 	ADD_TRAIT(src, TRAIT_NODROP, SABRE_SUICIDE_TRAIT)
 	if(iscarbon(user))
@@ -108,8 +108,8 @@
 
 
 /obj/item/melee/parsnip_sabre
-	name = "parsnip sabre"
-	desc = "A weird, yet elegant weapon. Surprisingly sharp for something made from a parsnip."
+	name = "欧防风佩剑"
+	desc = "一把怪异却又优雅的武器。对于一件用欧防风做成的东西来说，它锋利得令人意外。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "parsnip_sabre"
 	inhand_icon_state = "parsnip_sabre"
@@ -123,8 +123,8 @@
 	block_chance = 40
 	armour_penetration = 40
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("slashes", "cuts")
-	attack_verb_simple = list("slash", "cut")
+	attack_verb_continuous = list("劈砍", "切割")
+	attack_verb_simple = list("劈砍", "切割")
 	block_sound = 'sound/items/weapons/parry.ogg'
 	hitsound = 'sound/items/weapons/rapierhit.ogg'
 	custom_materials = null

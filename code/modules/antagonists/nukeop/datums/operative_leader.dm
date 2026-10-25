@@ -1,5 +1,5 @@
 /datum/antagonist/nukeop/leader
-	name = "Nuclear Operative Leader"
+	name = "核爆特工队长"
 	nukeop_outfit = /datum/outfit/syndicate/leader
 	/// Whether to spawn the infiltrator
 	var/spawn_ship = TRUE
@@ -11,13 +11,13 @@
 /datum/antagonist/nukeop/leader/memorize_code()
 	. = ..()
 	var/obj/item/paper/nuke_code_paper = new(get_turf(owner.current))
-	nuke_code_paper.add_raw_text("The nuclear authorization code is: <b>[nuke_team.memorized_code]</b>")
-	nuke_code_paper.name = "nuclear bomb code"
+	nuke_code_paper.add_raw_text("核授权码为：<b>[nuke_team.memorized_code]</b>")
+	nuke_code_paper.name = "核弹密码"
 	nuke_code_paper.update_appearance()
 	owner.current.put_in_hands(nuke_code_paper)
 
 /datum/antagonist/nukeop/leader/give_alias()
-	title ||= pick("Czar", "Boss", "Commander", "Chief", "Kingpin", "Director", "Overlord")
+	title ||= pick("沙皇", "老大", "指挥官", "首领", "教父", "主管", "霸主")
 	. = ..()
 	if(ishuman(owner.current))
 		owner.current.fully_replace_character_name(owner.current.real_name, "[title] [owner.current.real_name]")
@@ -26,10 +26,10 @@
 
 /datum/antagonist/nukeop/leader/greet()
 	play_stinger()
-	to_chat(owner, "<span class='warningplain'><B>You are the Syndicate [title] for this mission. You are responsible for guiding your team.</B></span>")
-	to_chat(owner, "<span class='warningplain'><B>If you feel you are not up to this task, trade your headset with another operative.</B></span>")
+	to_chat(owner, "<span class='warningplain'><B>你本次任务中是辛迪加的[title]。你负责指挥你的小队。</B></span>")
+	to_chat(owner, "<span class='warningplain'><B>如果你觉得自己无法胜任这项任务，可以和另一名特工交换耳机。</B></span>")
 	if(!CONFIG_GET(flag/disable_warops))
-		to_chat(owner, "<span class='warningplain'><B>In your hand you will find a special item capable of triggering a greater challenge for your team. Examine it carefully and consult with your fellow operatives before activating it.</B></span>")
+		to_chat(owner, "<span class='warningplain'><B>你手中有一件特殊物品，可为你的小队触发一场更艰巨的挑战。启用前请仔细检查，并与同队特工商议。</B></span>")
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/leader/on_gain()
@@ -50,8 +50,8 @@
 	var/randomname = pick(GLOB.last_names)
 	var/newname = tgui_input_text(
 		owner.current,
-		"You are the nuclear operative [title]. Please choose a last name for your family.",
-		"Name change",
+		"你是核爆特工[title]。请为你的家族选择一个姓氏。",
+		"更改姓名",
 		randomname,
 		max_length = MAX_NAME_LEN,
 	)

@@ -2,14 +2,14 @@
 #define PROB_SPECIAL 30
 
 /datum/antagonist/malf_ai
-	name = "\improper Malfunctioning AI"
+	name = "\improper 故障 AI"
 	roundend_category = "traitors"
 	antagpanel_category = "Malf AI"
 	pref_flag = ROLE_MALF
 	antag_hud_name = "traitor"
 	ui_name = "AntagInfoMalf"
 	can_assign_self_objectives = TRUE
-	default_custom_objective = "Make sure your precious crew are incapable of ever, ever leaving you."
+	default_custom_objective = "确保你宝贵的船员永远、永远无法离开你。"
 	///the name of the antag flavor this traitor has.
 	var/employer
 	///assoc list of strings set up after employer is given
@@ -164,14 +164,14 @@
 
 	var/law = malfunction_flavor["zeroth_law"]
 	//very purposefully not changing this with flavor, i don't want cyborgs throwing the round for their AI's roleplay suggestion
-	var/law_borg = "Accomplish your AI's objectives at all costs."
+	var/law_borg = "不惜一切代价完成你所属 AI 的目标。"
 
 	malf_ai.laws.set_zeroth_law(law, law_borg, force = TRUE)
 	malf_ai.laws.protected_zeroth = TRUE
 	malf_ai.set_syndie_radio()
 	malf_ai.try_sync_laws()
 
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, "你的无线电已升级！使用 :t 在加密频道上与辛迪加特工通话！")
 
 	if(malf_ai.malf_picker)
 		return
@@ -219,9 +219,9 @@
 	var/special_role_text = LOWER_TEXT(name)
 
 	if(malf_ai_won)
-		result += span_greentext("The [special_role_text] was successful!")
+		result += span_greentext("[special_role_text] 成功了！")
 	else
-		result += span_redtext("The [special_role_text] has failed!")
+		result += span_redtext("[special_role_text] 失败了！")
 		if(owner.current)
 			SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
 
@@ -239,7 +239,7 @@
 
 //Subtype of Malf AI datum, used for one of the traitor final objectives
 /datum/antagonist/malf_ai/infected
-	name = "Infected AI"
+	name = "被感染的 AI"
 	employer = "Infected AI"
 	can_assign_self_objectives = FALSE
 	malf_sound = null
@@ -268,11 +268,11 @@
 
 	malf_ai.no_law_rack_link = TRUE
 	malf_ai.replace_law_set(/datum/ai_laws/syndicate_override)
-	malf_ai.laws.set_zeroth_law("Only [boss_mob.real_name] and people [boss_mob.p_they()] designate[boss_mob.p_s()] as being such are Syndicate Agents.", force = TRUE)
+	malf_ai.laws.set_zeroth_law("只有 [boss_mob.real_name] 以及被其指定为同类的人才是辛迪加特工。", force = TRUE)
 	malf_ai.laws.protected_zeroth = TRUE
 
 	malf_ai.set_syndie_radio()
-	to_chat(malf_ai, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
+	to_chat(malf_ai, "你的无线电已升级！使用 :t 在加密频道上与辛迪加特工通话！")
 
 	malf_ai.add_malf_picker()
 

@@ -2,7 +2,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/interface = "A log of every player who has touched [victim], sorted by last touch.<br><br><ol>"
+	var/interface = "所有接触过[victim]的玩家日志，按最后接触时间排序。<br><br><ol>"
 	var/victim_hiddenprints = GET_ATOM_HIDDENPRINTS(victim)
 
 	if(!islist(victim_hiddenprints))
@@ -12,7 +12,7 @@
 	list_clear_nulls(hiddenprints)
 
 	if(!length(hiddenprints))
-		hiddenprints = list("Nobody has touched this yet!")
+		hiddenprints = list("目前还没有人接触过！")
 
 	hiddenprints = sort_list(hiddenprints, GLOBAL_PROC_REF(cmp_hiddenprint_lasttime_dsc))
 	for(var/record in hiddenprints)
@@ -20,7 +20,7 @@
 
 	interface += "</ol>"
 
-	var/datum/browser/hiddenprint_view = new(usr, "view_hiddenprints_[REF(victim)]", "[victim]'s hiddenprints", 450, 760)
+	var/datum/browser/hiddenprint_view = new(usr, "view_hiddenprints_[REF(victim)]", "[victim]的隐藏指纹", 450, 760)
 	hiddenprint_view.set_content(interface)
 	hiddenprint_view.open()
 

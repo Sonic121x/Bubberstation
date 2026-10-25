@@ -3,12 +3,12 @@
  */
 
 /datum/heretic_knowledge/void_cloak
-	name = "Void Cloak"
-	desc = "Fashion a Void Cloak.<br>While the hood is down, protects you from space. \
-		While the hood is up, the cloak is completely invisible.<br>It also provide decent armor and \
-		has pockets which can hold one of your blades, various ritual components (such as organs), and small heretical trinkets."
-	transmute_text = "Transmute a glass shard, a bedsheet, and any outer clothing item (such as armor or a suit jacket)."
-	gain_text = "The Owl is the keeper of things that are not quite in practice, but in theory are. Many things are."
+	name = "虚空斗篷"
+	desc = "制作一件虚空斗篷。<br>兜帽放下时，它能保护你免受太空环境伤害。\
+		兜帽戴上时，斗篷会完全隐形。<br>它还提供不错的护甲，\
+		并有口袋，可装下你的一把利刃、各种仪式材料（例如器官）以及小型异教饰物。"
+	transmute_text = "使用一块玻璃碎片、一条床单和任意外衣（如护甲或西装外套）进行转化。"
+	gain_text = "猫头鹰看管着那些实践中尚未成立、理论上却已存在的事物。而这类事物多得是。"
 	required_atoms = list(
 		/obj/item/shard = 1,
 		/obj/item/clothing/suit = 1,
@@ -21,11 +21,11 @@
 	drafting_tier = 1
 
 /datum/heretic_knowledge/medallion
-	name = "Ashen Eyes"
-	desc = "Sculpt an Eldritch Medallion.<br>\
-		The Eldritch Medallion grants you thermal vision while worn, and also functions as a focus."
-	transmute_text = "Transmute a pair of eyes, a candle, and a glass shard."
-	gain_text = "Piercing eyes guided them through the mundane. Neither darkness nor terror could stop them."
+	name = "灰烬之眼"
+	desc = "雕制一枚邪异徽章。<br>\
+		佩戴邪异徽章可让你获得热成像视觉，它还能作为施法聚焦物。"
+	transmute_text = "使用一对眼睛、一根蜡烛和一块玻璃碎片进行转化。"
+	gain_text = "锐利的双眼指引他们穿行于凡俗之中。黑暗与恐惧都无法阻挡他们。"
 	required_atoms = list(
 		/obj/item/organ/eyes = 1,
 		/obj/item/shard = 1,
@@ -38,12 +38,12 @@
 	drafting_tier = 1
 
 /datum/heretic_knowledge/essence // AKA Eldritch Flask
-	name = "Priest's Ritual"
-	desc = "Fill a flask of Eldritch Essence.<br>\
-		Eldritch Essence can be consumed for potent healing, or given to heathens for deadly poisoning."
-	transmute_text = "Transmute a tank of water and a glass shard."
-	gain_text = "This is an old recipe. The Owl whispered it to me. \
-		Created by the Priest - the Liquid that both was and is not."
+	name = "祭司仪式"
+	desc = "灌满一瓶邪异精华。<br>\
+		邪异精华可饮下以获得强效治疗，也可给异端喝下以施以致命毒杀。"
+	transmute_text = "使用一罐水和一块玻璃碎片进行转化。"
+	gain_text = "这是一个古老的配方。猫头鹰在我耳边低语了它。\
+		由祭司所创——那既是又不是的液体。"
 	required_atoms = list(
 		/obj/structure/reagent_dispensers/watertank = 1,
 		/obj/item/shard = 1,
@@ -55,11 +55,11 @@
 	drafting_tier = 1
 
 /datum/heretic_knowledge/phylactery
-	name = "Phylactery of Damnation"
-	desc = "Create a Phylactery that can instantly draw blood, even from long distances."
-	transmute_text = "Transmute a sheet of glass and a poppy."
-	gain_text = "A tincture twisted into the shape of a bloodsucker vermin. \
-		Whether it chose the shape for itself, or this is the humor of the sickened mind that conjured this vile implement into being is something best not pondered."
+	name = "诅咒命匣"
+	desc = "制作一个命匣，可瞬间吸取血液，即使相隔很远也能做到。"
+	transmute_text = "使用一块玻璃和一朵罂粟进行转化。"
+	gain_text = "一剂被扭曲成吸血害虫形状的药酊。\
+		究竟是它自己选择了这副形态，还是召出这件邪恶器具的病态心智开的玩笑，最好还是别去细想。"
 	required_atoms = list(
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/food/grown/flower/poppy = 1,
@@ -69,18 +69,18 @@
 	research_tree_icon_path = 'icons/obj/antags/eldritch.dmi'
 	research_tree_icon_state = "phylactery_2"
 	drafting_tier = 1
-	notice = "Target of the Phylactery may feel a prick."
+	notice = "被命匣锁定的目标可能会感到一阵刺痛。"
 
 /datum/heretic_knowledge/crucible
-	name = "Mawed Crucible"
-	desc = "Create a Mawed Crucible.<br>\
-		The Mawed Crucible can brew powerful but temporary potions for combat and utility, but must be fed bodyparts and organs between uses. \
-		<br>&bull; Brew of the Crucible Soul: Allows you to walk through walls. Returns you to the place you consumed the potion after it expires. \
-		<br>&bull; Brew of Dusk and Dawn: Allows you to see through walls. \
-		<br>&bull; Brew of the Wounded Soldier: Heals you over time. The more severe your wounds (such as fractures or cuts), the faster it heals you."
-	transmute_text = "Transmute a portable water tank and a table."
-	gain_text = "This is pure agony. I wasn't able to summon the figure of the Aristocrat, \
-		but with the Priest's attention I stumbled upon a different recipe..."
+	name = "巨口坩埚"
+	desc = "制作一座巨口坩埚。<br>\
+		巨口坩埚能熬制强大但临时的战斗与实用药水，但每次使用之间必须喂给它肢体和器官。\
+		<br>&bull; 坩埚之魂药剂：让你能够穿墙行走。效果结束后，你会回到饮下药水的位置。\
+		<br>&bull; 暮光与晨光药剂：让你能够透视墙壁。\
+		<br>&bull; 伤兵药剂：持续为你治疗。你的伤势越重（例如骨折或割伤），治疗速度就越快。"
+	transmute_text = "使用一个便携水箱和一张桌子进行转化。"
+	gain_text = "这是纯粹的痛苦。我没能召来贵族的形象，\
+		但借由祭司的注视，我偶然发现了另一份配方……"
 	required_atoms = list(
 		/obj/structure/reagent_dispensers/watertank = 1,
 		/obj/structure/table = 1,
@@ -92,12 +92,12 @@
 	drafting_tier = 1
 
 /datum/heretic_knowledge/eldritch_coin
-	name = "Eldritch Coin"
-	desc = "Create an Eldritch Coin.<br>\
-		Flip the coin. On heads, nearby airlocks will open or close. On tails, nearby airlocks will bolt to their current state.<br>\
-		If you insert the coin into an airlock, it will be consumed to fry its electronics, keeping it open or closed permanently until repaired."
-	transmute_text = "Transmute a sheet of plasma and a diamond."
-	gain_text = "The Mansus is a place of all sorts of sins. But greed held a special role."
+	name = "邪异硬币"
+	desc = "制作一枚邪异硬币。<br>\
+		掷出硬币。正面时，附近的气闸会开启或关闭。反面时，附近的气闸会锁定在当前状态。<br>\
+		如果你把硬币插入气闸，它会被消耗并烧毁气闸的电子系统，使其永久保持开启或关闭，直到被修复。"
+	transmute_text = "使用一块等离子体和一颗钻石进行转化。"
+	gain_text = "漫宿是容纳各种罪恶之地。而贪婪在其中占着特殊的位置。"
 	required_atoms = list(
 		/obj/item/stack/sheet/mineral/diamond = 1,
 		/obj/item/stack/sheet/mineral/plasma = 1,
@@ -115,13 +115,13 @@
  * Overall, it's a tradeoff between speed and stealth or power.
  */
 /datum/heretic_knowledge/codex_cicatrix
-	name = "Codex Cicatrix"
-	desc = "Author the Codex Cicatrix.<br>\
-		The Codex Cicatrix can be used when draining influences to gain additional knowledge, but comes at greater risk of being noticed.<br>\
-		It can also be used to draw and remove transmutation runes easier, and can be opened to restore charges to your Mansus Grasp."
-	transmute_text = "Transmute a book, any pen, and your pick from any carcass (animal or human), leather"
-	gain_text = "The occult leaves fragments of knowledge and power anywhere and everywhere. The Codex Cicatrix is one such example. \
-		Within the leather-bound faces and age old pages, a path into the Mansus is revealed."
+	name = "疤痕法典"
+	desc = "撰写疤痕法典。<br>\
+		在吸取影响时可使用疤痕法典来获得额外知识，但被发现的几率也更大。<br>\
+		它还能更轻松地绘制与擦除转化符文，翻开它可恢复漫宿之握的充能。"
+	transmute_text = "使用一本书、任意一支笔，以及从任意尸体（动物或人）上取下的皮革进行转化"
+	gain_text = "神秘学随处都散落着知识与力量的碎片。疤痕法典就是其中一例。\
+		在皮革包裹的面页与古老书页之间，一条通往漫宿的道路显现出来。"
 	required_atoms = list(
 		list(/obj/item/toy/eldritch_book, /obj/item/book) = 1,
 		/obj/item/pen = 1,
@@ -162,7 +162,7 @@
 	if(!body)
 		return ..()
 	// A golem or an android doesn't have skin!
-	var/exterior_text = "skin"
+	var/exterior_text = "皮肤"
 	// If carbon, it's the limb. If not, it's the body.
 	var/atom/movable/ripped_thing = body
 
@@ -175,12 +175,12 @@
 
 		carbody.apply_damage(25, BRUTE, bodypart, sharpness = SHARP_EDGED)
 		if(!(bodypart.bodytype & BODYTYPE_ORGANIC))
-			exterior_text = "exterior"
+			exterior_text = "外壳"
 	else
 		body.apply_damage(25, BRUTE, sharpness = SHARP_EDGED)
 		// If it is not a carbon mob, we will just check biotypes and damage it directly.
 		if(body.mob_biotypes & (MOB_MINERAL|MOB_ROBOTIC))
-			exterior_text = "exterior"
+			exterior_text = "外壳"
 
 	// Procure book for flavor text. This is why we call parent at the end.
 	var/obj/item/book/le_book = locate() in selected_atoms
@@ -188,7 +188,7 @@
 		stack_trace("Somehow, no book in codex cicatrix selected atoms! [english_list(selected_atoms)]")
 	playsound(body, 'sound/items/poster/poster_ripped.ogg', 100, TRUE)
 	body.do_jitter_animation()
-	body.visible_message(span_danger("An awful ripping sound is heard as [ripped_thing]'s [exterior_text] is ripped straight out, wrapping around [le_book || "the book"], turning into an eldritch shade of blue!"))
+	body.visible_message(span_danger("伴随着一阵可怕的撕裂声，[ripped_thing]的[exterior_text]被整片撕下，缠绕在[le_book || "那本书"]上，化作诡异的蓝色！"))
 	return ..()
 
 /**
@@ -197,14 +197,14 @@
  * Additionally changes all nearby airlock's access's to ACCESS_HERETIC
  */
 /datum/heretic_knowledge/bookworm
-	name = "Warren King's Welcome"
-	desc = "Brand all present ID cards and nearby airlocks.<br>\
-		Branded ID cards will gain access to maintenance, external airlocks, as well to branded airlocks.<br>\
-		Branded airlocks will only be accessible by those with a branded ID card."
-	transmute_text = "Transmute 10 cable pieces, a piece of paper, and a multitool."
-	gain_text = "Gnawed into vicious-stained fingerbones, my grim invitation snaps my nauseous and clouded mind towards the heavy-set door. \
-		Slowly, the light dances between a crawling darkness, blanketing the fetid promenade with infinite machinations. \
-		But the King will soon take his pound of flesh. Even here, the taxman takes their cut. For there are a thousands mouths to feed."
+	name = "兔穴之王的礼遇"
+	desc = "在所有场上的 ID 卡和附近的气闸上烙下印记。<br>\
+		被打上印记的 ID 卡将获得进入维护通道、外部气闸以及被打上印记的气闸的权限。<br>\
+		被打上印记的气闸只允许持有被打上印记 ID 卡的人通行。"
+	transmute_text = "使用 10 段线缆、一张纸和一个多用工具进行转化。"
+	gain_text = "我的邀请函被啃咬进染着恶意的指骨之中，它把我晕眩而混沌的思绪猛地引向那扇厚重的门。\
+		光线在蠕动的黑暗之间缓缓起舞，以无尽的算计笼罩着恶臭的步道。\
+		但王很快就会收走他那一磅肉。即便在这里，收税人也照样抽成。因为有成千上万张嘴等着喂饱。"
 	required_atoms = list(
 		/obj/item/stack/cable_coil = 10,
 		/obj/item/paper = 1,
@@ -245,12 +245,12 @@
  * Allows the heretic to craft a spell focus, which passively regenerates some spell charges
  */
 /datum/heretic_knowledge/amber_focus
-	name = "Amber Focus"
-	desc = "Sculpts an Amber Focus.<br>\
-		Recharges some spell charges every few minutes while worn, barring some exceptional spells."
-	transmute_text = "Transmute a sheet of glass and a pair of eyes."
-	gain_text = "I felt lost and directionless. Everything that I tried to grasp, slipped through my fingers. \
-		I needed something to hold onto, something to focus on, to keep me from straying too far from the path."
+	name = "琥珀聚焦器"
+	desc = "雕制一件琥珀聚焦器。<br>\
+		佩戴时每隔几分钟恢复部分法术充能，但某些特殊法术除外。"
+	transmute_text = "使用一块玻璃和一对眼睛进行转化。"
+	gain_text = "我感到迷茫而失去方向。我试图抓住的一切都从指间滑走了。\
+		我需要一个可以依靠的东西，一个可以专注的东西，好让我不至于偏离道路太远。"
 	required_atoms = list(
 		/obj/item/organ/eyes = 1,
 		/obj/item/stack/sheet/glass = 1,
@@ -262,13 +262,13 @@
 	research_tree_icon_state = "eldritch_necklace"
 
 /datum/heretic_knowledge/miraculous_mirror
-	name = "Miraculous Mirror"
-	desc = "Craft a Miraculous Mirror.<br>\
-		The Miraculous Mirror allows you to freely change any aspect of your appearance. \
-		You can also use it to change your species, but doing so will cause the mirror to shatter in the process."
-	transmute_text = "Transmute five bars of silver and a pair of organic eyes."
-	gain_text = "I was imperfect, weak. How could I achieve such great things in such a sorry state? \
-		Every window I passed by, I saw a reflection of myself, and every time I did, I felt a burning desire to change, to be better, to start anew."
+	name = "奇迹之镜"
+	desc = "制作一面奇迹之镜。<br>\
+		奇迹之镜能让你随意改变外貌的任何方面。\
+		你也可以用它改变自己的种族，但这样做会使镜子碎裂。"
+	transmute_text = "使用五块银锭和一对有机眼睛进行转化。"
+	gain_text = "我不完美，很软弱。以这样可悲的状态，我怎么可能成就如此伟业？\
+		每当我经过窗边，都会看到自己的倒影；而每一次，我心中都会燃起想要改变、想要变得更好、想要重新开始的渴望。"
 	required_atoms = list(
 		/obj/item/organ/eyes = 1,
 		/obj/item/stack/sheet/mineral/silver = 5,
@@ -288,10 +288,10 @@
 			atoms -= eye
 
 /datum/heretic_knowledge/spell/cloak_of_shadows
-	name = "Cloak of Shadow"
-	desc = "Grants you the spell Cloak of Shadow.<br>\
-		This spell will completely conceal your identity in a purple smoke for three minutes, assisting you in keeping secrecy."
-	notice = "Can only be cast if you have a Living Heart."
+	name = "暗影斗篷"
+	desc = "赋予你暗影斗篷法术。<br>\
+		该法术会用紫色烟雾完全隐藏你的身份，持续三分钟，帮助你保持隐秘。"
+	notice = "只有拥有活体心脏时才能施放。"
 	action_to_add = /datum/action/cooldown/spell/shadow_cloak
 	cost = 1
 	drafting_tier = 1
@@ -304,5 +304,5 @@
 		return ..()
 
 	if(feedback)
-		to_chat(the_spell.owner, span_mansus("You need a Living Heart to cast [the_spell]!"))
+		to_chat(the_spell.owner, span_mansus("你需要一颗活体心脏才能施放[the_spell]！"))
 	return SPELL_CANCEL_CAST

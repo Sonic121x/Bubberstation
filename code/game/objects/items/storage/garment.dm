@@ -1,47 +1,47 @@
 /obj/item/storage/bag/garment
-	name = "garment bag"
+	name = "服装袋"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "garment_bag"
-	desc = "A bag for storing extra clothes and shoes."
+	desc = "用于存放备用衣物和鞋子的袋子。"
 	slot_flags = NONE
 	resistance_flags = FLAMMABLE
 	storage_type = /datum/storage/bag/garment
 
 /obj/item/storage/bag/garment/captain
-	name = "captain's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the captain."
+	name = "舰长的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于舰长。"
 
 /obj/item/storage/bag/garment/hos
-	name = "head of security's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the head of security."
+	name = "安保主管的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于安保主管。"
 
 /obj/item/storage/bag/garment/warden
-	name = "warden's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the warden."
+	name = "典狱长的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于典狱长。"
 
 /obj/item/storage/bag/garment/hop
-	name = "head of personnel's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the head of personnel."
+	name = "人事主管的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于人事主管。"
 
 /obj/item/storage/bag/garment/research_director
-	name = "research director's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the research director."
+	name = "科研主管的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于科研主管。"
 
 /obj/item/storage/bag/garment/chief_medical
-	name = "chief medical officer's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the chief medical officer."
+	name = "首席医疗官的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于首席医疗官。"
 
 /obj/item/storage/bag/garment/engineering_chief
-	name = "chief engineer's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the chief engineer."
+	name = "总工程师的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于总工程师。"
 
 /obj/item/storage/bag/garment/quartermaster
-	name = "quartermasters's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the quartermaster."
+	name = "货运主管的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于货运主管。"
 
 /obj/item/storage/bag/garment/paramedic
-	name = "EMT's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the emergency medical team."
+	name = "急救员的服装袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个属于急救医疗队。"
 
 /obj/item/storage/bag/garment/captain/PopulateContents()
 	new /obj/item/clothing/under/rank/captain(src)

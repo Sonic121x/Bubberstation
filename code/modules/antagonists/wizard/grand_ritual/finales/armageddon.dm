@@ -4,9 +4,9 @@
 
 /// Kill yourself and probably a bunch of other people
 /datum/grand_finale/armageddon
-	name = "Annihilation"
-	desc = "This crew have offended you beyond the realm of pranks. Make the ultimate sacrifice to teach them a lesson your elders can really respect. \
-		YOU WILL NOT SURVIVE THIS."
+	name = "湮灭"
+	desc = "这群船员对你的冒犯已经超出了恶作剧的范畴。献出终极的牺牲，给他们上一堂连你的长辈都会真正敬重的课。\
+		你无法在这一切中幸存。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
 	minimum_time = 90 MINUTES // This will probably immediately end the round if it gets finished.
@@ -15,19 +15,19 @@
 	glow_colour = "#be000048"
 	/// Things to yell before you die
 	var/static/list/possible_last_words = list(
-		"Flames and ruin!",
-		"Dooooooooom!!",
+		"烈焰与毁灭！",
+		"毁——灭——！！",
 		"HAHAHAHAHAHA!! AHAHAHAHAHAHAHAHAA!!",
 		"Hee hee hee!! Hoo hoo hoo!! Ha ha haaa!!",
 		"Ohohohohohoho!!",
-		"Cower in fear, puny mortals!",
-		"Tremble before my glory!",
-		"Pick a god and pray!",
-		"It's no use!",
-		"If the gods wanted you to live, they would not have created me!",
-		"God stays in heaven out of fear of what I have created!",
-		"Ruination is come!",
-		"All of creation, bend to my will!",
+		"在恐惧中瑟瑟发抖吧，渺小的凡人！",
+		"在我的荣光前颤抖吧！",
+		"挑个神祈祷吧！",
+		"没用的！",
+		"如果神明想让你活下去，就不会创造我！",
+		"神之所以待在天上，是害怕我所创造的东西！",
+		"毁灭已至！",
+		"万物众生，皆从吾意！",
 	)
 
 /datum/grand_finale/armageddon/trigger(mob/living/carbon/human/invoker)
@@ -52,7 +52,7 @@
 			GLOB.meteor_mode ||= new()
 			GLOB.meteor_mode.meteordelay = 0
 			GLOB.meteor_mode.start_meteor()
-			priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", ANNOUNCER_METEORS)
+			priority_announce("已探测到流星正沿碰撞轨道逼近空间站。", "流星警报", ANNOUNCER_METEORS)
 
 #undef DOOM_SINGULARITY
 #undef DOOM_TESLA

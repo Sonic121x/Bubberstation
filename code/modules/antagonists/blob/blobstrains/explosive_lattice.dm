@@ -1,14 +1,14 @@
 //does aoe brute damage when hitting targets, is immune to explosions
 /datum/blobstrain/reagent/explosive_lattice
-	name = "Explosive Lattice"
-	description = "will attack with small explosions, dealing a medium mix of brute and burn damage to everyone nearby. Spores explode on death."
-	effectdesc = "will also resist explosions, but takes increased damage from fire and other energy sources."
-	analyzerdescdamage = "Does a medium mix of brute and burn damage in a small explosion around its targets.  Spores explode on death."
-	analyzerdesceffect = "Is highly resistant to explosions, but takes increased damage from fire and other energy sources."
+	name = "爆裂晶格"
+	description = "会以小型爆炸进行攻击，对附近所有人造成中等程度的钝击与灼烧混合伤害。孢子会在死亡时爆炸。"
+	effectdesc = "同时能抵抗爆炸，但受到火焰及其他能量来源的伤害会增加。"
+	analyzerdescdamage = "在其目标周围引发小型爆炸，造成中等程度的钝击与灼烧混合伤害。孢子会在死亡时爆炸。"
+	analyzerdesceffect = "对爆炸有很强的抗性，但受到火焰及其他能量来源的伤害会增加。"
 	color = "#8B2500"
 	complementary_color = "#00668B"
-	blobbernaut_message = "blasts"
-	message = "The blob blasts you"
+	blobbernaut_message = "轰击"
+	message = "变形菌轰击了你"
 	reagent = /datum/reagent/blob/explosive_lattice
 
 /datum/blobstrain/reagent/explosive_lattice/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
@@ -31,8 +31,8 @@
 		playsound(dead_spore , 'sound/effects/explosion/explosion2.ogg', 20 + 20 * death_cloud_size, TRUE)
 
 /datum/reagent/blob/explosive_lattice
-	name = "Explosive Lattice"
-	taste_description = "the bomb"
+	name = "爆裂晶格"
+	taste_description = "炸弹"
 	color = "#8B2500"
 
 /datum/reagent/blob/explosive_lattice/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message, touch_protection, mob/eye/blob/overmind)

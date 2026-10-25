@@ -2,8 +2,8 @@
  * Base class for all grenades.
  */
 /obj/item/grenade
-	name = "grenade"
-	desc = "It has an adjustable timer."
+	name = "手榴弹"
+	desc = "配有可调节计时器。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "grenade"
@@ -65,7 +65,7 @@
 	RegisterSignal(src, COMSIG_ITEM_USED_AS_INGREDIENT, PROC_REF(on_used_as_ingredient))
 
 /obj/item/grenade/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] primes [src], then eats it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]启动[src]后把它吞了下去！看起来是在自杀！"))
 	playsound(src, 'sound/items/eatfood.ogg', 50, TRUE)
 	arm_grenade(user, det_time)
 	user.transferItemToLoc(src, user, TRUE)//>eat a grenade set to 5 seconds >rush captain
@@ -107,16 +107,16 @@
  */
 /obj/item/grenade/proc/botch_check(mob/living/carbon/human/user)
 	if(sticky && prob(50)) // to add risk to sticky tape grenade cheese, no return cause we still prime as normal after.
-		to_chat(user, span_warning("What the... [src] is stuck to your hand!"))
+		to_chat(user, span_warning("怎么回事……[src]粘在你手上了！"))
 		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 
 	var/clumsy = HAS_TRAIT(user, TRAIT_CLUMSY)
 	if(clumsy && (clumsy_check == GRENADE_CLUMSY_FUMBLE) && prob(50))
-		to_chat(user, span_warning("Huh? How does this thing work?"))
+		to_chat(user, span_warning("咦？这东西该怎么用？"))
 		arm_grenade(user, 5, FALSE)
 		return TRUE
 	else if(!clumsy && (clumsy_check == GRENADE_NONCLUMSY_FUMBLE))
-		to_chat(user, span_warning("You pull the pin on [src]. Attached to it is a pink ribbon that says, \"[span_clown("HONK")]\""))
+		to_chat(user, span_warning("你拔下了[src]的保险销。上面系着一条粉色丝带，写着“[span_clown("HONK")]”。"))
 		arm_grenade(user, 5, FALSE)
 		return TRUE
 
@@ -124,17 +124,17 @@
 	. = ..()
 	if(display_timer)
 		if(det_time > 0)
-			. += "The timer is set to [DisplayTimeText(det_time)]."
+			. += "计时器已设为[DisplayTimeText(det_time)]。"
 		else
-			. += "\The [src] is set for instant detonation."
+			. += "[src]已设为立即引爆。"
 	if (dud_flags & GRENADE_USED)
-		. += span_warning("It looks like [p_theyve()] already been used.")
+		. += span_warning("它看起来已经使用过了。")
 
 /obj/item/grenade/attack_self(mob/user)
 	if(HAS_TRAIT(src, TRAIT_NODROP))
-		to_chat(user, span_notice("You try prying [src] off your hand..."))
+		to_chat(user, span_notice("你试着将[src]从手上撬下来……"))
 		if(do_after(user, 7 SECONDS, target = src))
-			to_chat(user, span_notice("You manage to remove [src] from your hand."))
+			to_chat(user, span_notice("你终于把[src]从手上弄了下来。"))
 			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		return
 
@@ -145,7 +145,7 @@
 
 /obj/item/grenade/proc/log_grenade(mob/user)
 	if(!type_cluster)
-		log_bomber(user, "has primed a", src, "for detonation", message_admins = dud_flags == NONE)
+		log_bomber(user, "已启动", src, "，准备引爆", message_admins = dud_flags == NONE)
 
 /**
  * arm_grenade (formerly preprime) refers to when a grenade with a standard time fuze is activated, making it go beepbeepbeep and then detonate a few seconds later.
@@ -156,7 +156,7 @@
 	if(user)
 		add_fingerprint(user)
 		if(msg)
-			to_chat(user, span_warning("You prime [src]! [capitalize(DisplayTimeText(det_time))]!"))
+			to_chat(user, span_warning("你启动了[src]！[capitalize(DisplayTimeText(det_time))]后引爆！"))
 	if(shrapnel_type && shrapnel_radius)
 		shrapnel_initialized = TRUE
 		AddComponent(/datum/component/pellet_cloud, projectile_type = shrapnel_type, magnitude = shrapnel_radius)
@@ -225,9 +225,9 @@
 	if(change_det_time())
 		tool.play_tool_sound(src)
 		if(det_time == 0)
-			to_chat(user, span_notice("You modify the time delay. It's set to be instantaneous."))
+			to_chat(user, span_notice("你调整了引爆延迟，现在设为立即引爆。"))
 		else
-			to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
+			to_chat(user, span_notice("你调整了引爆延迟，现在设为[DisplayTimeText(det_time)]。"))
 		return TRUE
 
 /obj/item/grenade/multitool_act(mob/living/user, obj/item/tool)
@@ -237,17 +237,17 @@
 
 	. = TRUE
 
-	var/newtime = tgui_input_list(user, "Please enter a new detonation time", "Detonation Timer", possible_fuse_time)
+	var/newtime = chinese_grenade_fuse_choice(user, possible_fuse_time)
 	if (isnull(newtime))
 		return
 	if(!user.can_perform_action(src))
 		return
 	if(newtime == "Instant" && change_det_time(0))
-		to_chat(user, span_notice("You modify the time delay. It's set to be instantaneous."))
+		to_chat(user, span_notice("你调整了引爆延迟，现在设为立即引爆。"))
 		return
 	newtime = round(text2num(newtime))
 	if(change_det_time(newtime))
-		to_chat(user, span_notice("You modify the time delay. It's set for [DisplayTimeText(det_time)]."))
+		to_chat(user, span_notice("你调整了引爆延迟，现在设为[DisplayTimeText(det_time)]。"))
 
 /**
  * Sets det_time to a number in SECONDS
@@ -283,14 +283,14 @@
 /obj/item/grenade/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
 
-/obj/item/grenade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/grenade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(damage && attack_type == PROJECTILE_ATTACK && damage_type != STAMINA && prob(15))
-		owner.visible_message(span_danger("[attack_text] hits [owner]'s [src], setting it off! What a shot!"))
+		owner.visible_message(span_danger("[attack_text]击中了[owner]的[src]，将它引爆了！好一枪！"))
 		var/turf/source_turf = get_turf(src)
-		var/logmsg = "held a grenade detonated by a projectile ([hitby]) at [COORD(source_turf)]"
+		var/logmsg = "在[COORD(source_turf)]持有的手榴弹被弹射物（[hitby]）引爆"
 		owner.log_message(logmsg, LOG_GAME)
 		owner.log_message(logmsg, LOG_VICTIM, log_globally = FALSE)
-		message_admins("A projectile ([hitby]) detonated a grenade held by [key_name_admin(owner)] at [ADMIN_COORDJMP(source_turf)]")
+		message_admins("弹射物（[hitby]）在[ADMIN_COORDJMP(source_turf)]引爆了[key_name_admin(owner)]持有的手榴弹。")
 		detonate()
 
 		if(!QDELETED(src)) // some grenades don't detonate but we want them destroyed

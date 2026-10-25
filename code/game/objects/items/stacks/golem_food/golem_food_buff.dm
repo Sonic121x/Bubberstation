@@ -31,12 +31,12 @@
 /datum/golem_food_buff/glass
 	exclusive = FALSE
 	nutrition = 0.5
-	added_info = "This mineral can be consumed at any time, but it's mostly empty calories."
+	added_info = "这种矿物随时都能食用，但基本只是空热量。"
 
 /// More filling, and heals you
 /datum/golem_food_buff/iron
 	nutrition = 3
-	added_info = "This mineral is filling and even heals you a little."
+	added_info = "这种矿物能填饱肚子，还能稍许治疗你。"
 	/// Amount by which you heal from eating some iron
 	var/healed_amount = 3
 	/// Order in which to heal damage types
@@ -50,46 +50,46 @@
 
 /datum/golem_food_buff/uranium
 	status_effect = /datum/status_effect/golem/uranium
-	added_info = "If consumed this mineral will power you in place of food, pausing your digestion for five minutes."
+	added_info = "食用后，这种矿物将代替食物为你供能，并使你的消化暂停五分钟。"
 
 /datum/golem_food_buff/silver
 	status_effect = /datum/status_effect/golem/silver
-	added_info = "If consumed this mineral will repel the supernatural, affording you resistance to mystical effects."
+	added_info = "食用后，这种矿物将驱退超自然力量，使你获得对神秘效果的抗性。"
 
 /datum/golem_food_buff/plasma
 	status_effect = /datum/status_effect/golem/plasma
-	added_info = "If consumed this mineral will allow you to absorb heat and convert it into power."
+	added_info = "食用后，这种矿物将让你能够吸收热量并将其转化为能量。"
 
 /datum/golem_food_buff/plasteel
 	status_effect = /datum/status_effect/golem/plasteel
-	added_info = "If consumed this mineral will harden you against the hazards of space."
+	added_info = "食用后，这种矿物将使你硬化，以抵御太空的危害。"
 
 /datum/golem_food_buff/gold
 	status_effect = /datum/status_effect/golem/gold
-	added_info = "If consumed this mineral will grant you a shiny coating which reflects projectiles."
+	added_info = "食用后，这种矿物将赋予你一层闪亮的涂层，可以反射投射物。"
 
 /datum/golem_food_buff/diamond
 	status_effect = /datum/status_effect/golem/diamond
-	added_info = "If consumed this mineral will reflact light around you, making you faster and harder to see."
+	added_info = "食用后，这种矿物将折射你周围的光线，使你速度更快、更难被看见。"
 
 /datum/golem_food_buff/titanium
 	status_effect = /datum/status_effect/golem/titanium
-	added_info = "If consumed this mineral will make you tougher and punch harder."
+	added_info = "食用后，这种矿物将使你更加结实，出拳也更重。"
 
 /datum/golem_food_buff/bananium
 	status_effect = /datum/status_effect/golem/bananium
-	added_info = "If consumed this mineral will make you funnier."
+	added_info = "食用后，这种矿物将使你更有趣。"
 
 /datum/golem_food_buff/lightbulb
 	nutrition = 0
 	exclusive = FALSE
 	status_effect = /datum/status_effect/golem/lightbulb
-	added_info = "Not nutritious, but gives you a healthy glow if eaten."
+	added_info = "毫无营养，但吃下后能让你发出健康的光泽。"
 	exclusive = FALSE
 
 /datum/golem_food_buff/gibtonite
 	exclusive = FALSE
-	added_info = "After consumption, you can launch this mineral like a rocket. It's a little hard to keep down."
+	added_info = "食用后，你可以像火箭一样把这种矿物发射出去。只是它有点难留在胃里。"
 
 /datum/golem_food_buff/gibtonite/apply_effects(mob/living/carbon/human/consumer, atom/movable/consumed, multiplier = 1)
 	var/obj/item/gibtonite_hand/new_hand = new(null, /* held_gibtonite = */ consumed)
@@ -103,11 +103,11 @@
 	consumed.forceMove(get_turf(consumer))
 	new_hand.held_gibtonite = null
 	qdel(new_hand)
-	consumer.visible_message(span_warning("[consumer] can't keep [consumed] down, and coughs it onto the ground!"))
+	consumer.visible_message(span_warning("[consumer]无法咽下[consumed]，把它咳到了地上！"))
 
 /datum/golem_food_buff/bluespace
 	exclusive = FALSE
-	added_info = "After consumption, you can use the stored power to teleport yourself."
+	added_info = "食用后，你可以使用储存的能量将自己传送走。"
 
 /datum/golem_food_buff/bluespace/apply_effects(mob/living/carbon/human/consumer, atom/movable/consumed, multiplier = 1)
 	if(multiplier <= 0.2)
@@ -119,4 +119,4 @@
 			consumer.dropItemToGround(stack)
 	if (consumer.put_in_hands(new_hand, del_on_fail = TRUE))
 		return
-	consumer.balloon_alert(consumer, "no free hands!")
+	consumer.balloon_alert(consumer, "没有空闲的手！")

@@ -1,6 +1,6 @@
 /obj/structure/closet/crate
-	name = "crate"
-	desc = "A rectangular steel crate."
+	name = "货箱"
+	desc = "一个长方形钢制货箱。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "crate"
 	base_icon_state = "crate"
@@ -153,7 +153,7 @@
 		manifest = null
 		return FALSE
 	if(user)
-		to_chat(user, span_notice("You tear the manifest off of [src]."))
+		to_chat(user, span_notice("你从[src]上撕下了货单。"))
 	playsound(src, 'sound/items/poster/poster_ripped.ogg', 75, TRUE)
 
 	our_manifest.forceMove(drop_location(src))
@@ -168,8 +168,8 @@
 	icon_state = "crateopen"
 
 /obj/structure/closet/crate/coffin
-	name = "coffin"
-	desc = "It's a burial receptacle for the dearly departed."
+	name = "棺材"
+	desc = "用于安葬逝者的容器。"
 	icon_state = "coffin"
 	base_icon_state = "coffin"
 	resistance_flags = FLAMMABLE
@@ -187,8 +187,8 @@
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/structure/closet/crate/trashcart //please make this a generic cart path later after things calm down a little
-	desc = "A heavy, metal trashcart with wheels."
-	name = "trash cart"
+	desc = "一辆带轮子的沉重金属垃圾车。"
+	name = "垃圾推车"
 	icon_state = "trashcart"
 	base_icon_state = "trashcart"
 	can_install_electronics = FALSE
@@ -196,8 +196,8 @@
 	weld_z = 5
 
 /obj/structure/closet/crate/trashcart/laundry
-	name = "laundry cart"
-	desc = "A large cart for hauling around large amounts of laundry."
+	name = "洗衣推车"
+	desc = "用于运送大量待洗衣物的大推车。"
 	icon_state = "laundry"
 	base_icon_state = "laundry"
 	elevation = 14
@@ -224,26 +224,26 @@
 			new /obj/item/storage/bag/trash/filled(src)
 
 /obj/structure/closet/crate/internals
-	desc = "An internals crate."
-	name = "internals crate"
+	desc = "装载呼吸设备的货箱。"
+	name = "呼吸设备箱"
 	icon_state = "o2crate"
 	base_icon_state = "o2crate"
 
 /obj/structure/closet/crate/medical
-	desc = "A medical crate."
-	name = "medical crate"
+	desc = "医疗用品货箱。"
+	name = "医疗货箱"
 	icon_state = "medicalcrate"
 	base_icon_state = "medicalcrate"
 
 /obj/structure/closet/crate/deforest
-	name = "\improper DeForest Medical crate"
-	desc = "A DeForest brand crate of medical supplies."
+	name = "\improper 德福雷斯特医疗货箱"
+	desc = "德福雷斯特品牌的医疗用品货箱。"
 	icon_state = "deforest"
 	base_icon_state = "deforest"
 
 /obj/structure/closet/crate/interdyne_normal
-	name = "\improper Interdyne Pharmaceutics crate"
-	desc = "An Interdyne Pharmaceutics brand crate. Probably contains helpful chemicals? Hopefully contains helpful chemicals."
+	name = "\improper 英特戴恩制药货箱"
+	desc = "英特戴恩制药品牌的货箱。里面大概是有益的化学药剂？希望是有益的化学药剂。"
 	icon_state = "interdynecrate"
 	base_icon_state = "interdynecrate"
 
@@ -252,8 +252,8 @@
 	base_icon_state = "medical"
 
 /obj/structure/closet/crate/freezer
-	desc = "A freezer."
-	name = "freezer"
+	desc = "一个冷冻柜。"
+	name = "冷冻柜"
 	icon_state = "freezer"
 	base_icon_state = "freezer"
 	paint_jobs = null
@@ -278,8 +278,8 @@
 		internal_air.temperature -= temperature_decrease_this_tick
 
 /obj/structure/closet/crate/freezer/blood
-	name = "blood freezer"
-	desc = "A freezer containing packs of blood."
+	name = "血液冷冻柜"
+	desc = "装有血袋的冷冻柜。"
 
 /obj/structure/closet/crate/freezer/blood/PopulateContents()
 	. = ..()
@@ -297,8 +297,8 @@
 	new /obj/item/paper/fluff/jobs/medical/blood_types(src)
 
 /obj/structure/closet/crate/freezer/surplus_limbs
-	name = "surplus prosthetic limbs"
-	desc = "A crate containing an assortment of cheap prosthetic limbs."
+	name = "剩余义肢"
+	desc = "装有各种廉价义肢的货箱。"
 
 /obj/structure/closet/crate/freezer/surplus_limbs/PopulateContents()
 	. = ..()
@@ -312,8 +312,8 @@
 	new /obj/item/bodypart/leg/right/robot/surplus(src)
 
 /obj/structure/closet/crate/freezer/organ
-	name = "organ freezer"
-	desc = "A freezer containing a set of organic organs."
+	name = "器官冷冻柜"
+	desc = "装有一套有机器官的冷冻柜。"
 
 /obj/structure/closet/crate/freezer/organ/PopulateContents()
 	. = ..()
@@ -327,64 +327,64 @@
 	new /obj/item/organ/appendix(src)
 
 /obj/structure/closet/crate/freezer/food
-	name = "food icebox"
+	name = "食品冰箱"
 	icon_state = "food"
 	base_icon_state = "food"
 
 /obj/structure/closet/crate/freezer/donk
-	name = "\improper Donk Co. fridge"
-	desc = "A Donk Co. brand fridge, keeps your donkpockets and foam ammunition fresh!"
+	name = "\improper 咚克公司冰箱"
+	desc = "咚克公司品牌冰箱，让你的咚克馅饼和泡沫弹药保持新鲜！"
 	icon_state = "donkcocrate"
 	base_icon_state = "donkcocrate"
 
 /obj/structure/closet/crate/self
-	name = "\improper S.E.L.F. crate"
-	desc = "A robust-looking crate with a seemingly decorative holographic display. The front of the crate proudly declares its allegiance to the notorious terrorist group 'S.E.L.F'."
+	name = "\improper S.E.L.F.货箱"
+	desc = "看起来很结实的货箱，配有似乎仅作装饰的全息显示屏。箱体正面自豪地宣告它效忠于臭名昭著的恐怖组织“S.E.L.F”。"
 	icon_state = "selfcrate"
 	base_icon_state = "selfcrate"
 
 /obj/structure/closet/crate/radiation
-	desc = "A crate with a radiation sign on it."
-	name = "radiation crate"
+	desc = "贴有辐射标志的货箱。"
+	name = "辐射货箱"
 	icon_state = "radiation"
 	base_icon_state = "radiation"
 
 /obj/structure/closet/crate/hydroponics
-	name = "hydroponics crate"
-	desc = "All you need to destroy those pesky weeds and pests."
+	name = "水培货箱"
+	desc = "消灭恼人杂草和害虫所需的一切。"
 	icon_state = "hydrocrate"
 	base_icon_state = "hydrocrate"
 
 /obj/structure/closet/crate/centcom
-	name = "centcom crate"
+	name = "中央指挥部货箱"
 	icon_state = "centcom"
 	base_icon_state = "centcom"
 
 /obj/structure/closet/crate/cargo
-	name = "cargo crate"
+	name = "货运箱"
 	icon_state = "cargo"
 	base_icon_state = "cargo"
 
 /obj/structure/closet/crate/robust
-	name = "robust industries crate"
-	desc = "Robust Industries LLC. crate. Feels oddly nostalgic."
+	name = "罗伯斯特工业货箱"
+	desc = "罗伯斯特工业有限责任公司的货箱。莫名有种怀旧感。"
 	icon_state = "robust"
 	base_icon_state = "robust"
 
 /obj/structure/closet/crate/cargo/mining
-	name = "mining crate"
+	name = "采矿货箱"
 	icon_state = "mining"
 	base_icon_state = "mining"
 
 /obj/structure/closet/crate/engineering
-	name = "engineering crate"
+	name = "工程货箱"
 	icon_state = "engi_crate"
 	base_icon_state = "engi_crate"
 
 
 /obj/structure/closet/crate/nakamura
-	name = "nakamura engineering crate"
-	desc = "Crate from Nakamura Engineering, most likely containing engineering supplies or MODcores."
+	name = "中村工程货箱"
+	desc = "中村工程公司的货箱，里面很可能装着工程用品或 MOD 核心。"
 	icon_state = "nakamura"
 	base_icon_state = "nakamura"
 
@@ -394,13 +394,13 @@
 	base_icon_state = "engi_e_crate"
 
 /obj/structure/closet/crate/engineering/atmos
-	name = "atmospherics crate"
+	name = "大气技术货箱"
 	icon_state = "atmos"
 	base_icon_state = "atmos"
 
 /obj/structure/closet/crate/rcd
-	desc = "A crate for the storage of an RCD."
-	name = "\improper RCD crate"
+	desc = "用于存放快速建造装置的货箱。"
+	name = "\improper 快速建造装置箱"
 	icon_state = "engi_crate"
 	base_icon_state = "engi_crate"
 
@@ -411,18 +411,18 @@
 	new /obj/item/construction/rcd(src)
 
 /obj/structure/closet/crate/science
-	name = "science crate"
-	desc = "A science crate."
+	name = "科研货箱"
+	desc = "一个科研用品货箱。"
 	icon_state = "scicrate"
 	base_icon_state = "scicrate"
 
 /obj/structure/closet/crate/science/robo
-	name = "robotics crate"
+	name = "机器人学货箱"
 	icon_state = "robo"
 	base_icon_state = "robo"
 
 /obj/structure/closet/crate/mod
-	name = "MOD crate"
+	name = "MOD 货箱"
 	icon_state = "robo"
 	base_icon_state = "robo"
 
@@ -434,7 +434,7 @@
 		new /obj/item/clothing/neck/link_scryer/loaded(src)
 
 /obj/structure/closet/crate/solarpanel_small
-	name = "budget solar panel crate"
+	name = "经济型太阳能板货箱"
 	icon_state = "engi_e_crate"
 	base_icon_state = "engi_e_crate"
 
@@ -447,8 +447,8 @@
 	new /obj/item/electronics/tracker(src)
 
 /obj/structure/closet/crate/goldcrate
-	name = "gold crate"
-	desc = "A rectangular steel crate. It seems to be painted to look like gold."
+	name = "金色货箱"
+	desc = "一个长方形钢制货箱，似乎被涂成了黄金的颜色。"
 	icon_state = "gold"
 	base_icon_state = "gold"
 
@@ -463,8 +463,8 @@
 		new /obj/item/stack/sheet/mineral/gold(src, 1, FALSE)
 
 /obj/structure/closet/crate/silvercrate
-	name = "silver crate"
-	desc = "A rectangular steel crate. It seems to be painted to look like silver."
+	name = "银色货箱"
+	desc = "一个长方形钢制货箱，似乎被涂成了白银的颜色。"
 	icon_state = "silver"
 	base_icon_state = "silver"
 
@@ -486,8 +486,8 @@
 	return
 
 /obj/structure/closet/crate/glitter
-	name = "pink crate"
-	desc = "A glittery pink crate."
+	name = "粉色货箱"
+	desc = "闪闪发光的粉色货箱。"
 	icon_state = "pink"
 	base_icon_state = "pink"
 	var/glitter_prob = 25
@@ -503,22 +503,22 @@
 		old_turf.spawn_glitter(list("[glitter_color]" = 100))
 
 /obj/structure/closet/crate/glitter/lavender
-	name = "lavender crate"
-	desc = "A glittery purple... no, lavender crate."
+	name = "薰衣草色货箱"
+	desc = "闪闪发光的紫色……不，是薰衣草色货箱。"
 	icon_state = "lavender"
 	base_icon_state = "lavender"
 	glitter_color = "#db80ff"
 
 /obj/structure/closet/crate/market
-	name = "shield bubble"
-	desc = "A rippling blue energy bubble, capable of sustaining itself until it hits a solid wall."
+	name = "护盾泡"
+	desc = "泛着涟漪的蓝色能量泡，能一直维持到撞上实体墙壁为止。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	base_icon_state = "shield2"
 
 /obj/structure/closet/crate/market/after_open(mob/living/user, force)
 	. = ..()
-	visible_message(span_notice("[src] pops as [user] touches it!"))
+	visible_message(span_notice("[user]碰到[src]时，它破裂了！"))
 	pop_crate()
 
 /obj/structure/closet/crate/market/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)

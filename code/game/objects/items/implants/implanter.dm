@@ -2,8 +2,8 @@
  * Players can use this item to put obj/item/implant's in living mobs. Can be renamed with a pen.
  */
 /obj/item/implanter//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "implanter"
-	desc = "A sterile automatic implant injector."
+	name = "植入器"
+	desc = "一支无菌的自动植入体注射器。"
 	icon = 'icons/obj/medical/syringe.dmi'
 	icon_state = "implanter0"
 	inhand_icon_state = "syringe_0"
@@ -28,7 +28,7 @@
 		return
 
 	if(target != user)
-		target.visible_message(span_warning("[user] is attempting to implant [target]."))
+		target.visible_message(span_warning("[user]正试图给[target]植入植入体。"))
 		if(!do_after(user, 5 SECONDS, target))
 			return
 
@@ -37,13 +37,13 @@
 
 	if(imp.implant(target, user))
 		if (target == user)
-			to_chat(user, span_notice("You implant yourself."))
+			to_chat(user, span_notice("你给自己植入了植入体。"))
 		else
-			target.visible_message(span_notice("[user] implants [target]."), span_notice("[user] implants you."))
+			target.visible_message(span_notice("[user]给[target]植入了植入体。"), span_notice("[user]给你植入了植入体。"))
 		imp = null
 		update_appearance()
 	else
-		to_chat(user, span_warning("[src] fails to implant [target]."))
+		to_chat(user, span_warning("[src]未能给[target]植入植入体。"))
 
 /obj/item/implanter/Initialize(mapload)
 	. = ..()
@@ -52,4 +52,4 @@
 	update_appearance()
 
 /obj/item/implanter/nameformat(input, user)
-	return "implanter[input?  " ([input])" : null]"
+	return "植入器[input?  "（[input]）" : null]"

@@ -8,8 +8,8 @@
  * salem style. Keeping the fire on requires oxygen. You can dismantle the bonfire back into logs when it is unignited.
  */
 /obj/structure/bonfire
-	name = "bonfire"
-	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
+	name = "篝火"
+	desc = "用于烧烤、炙烤、烧焦、熏制、加热、烘烤、焙烤、微炖、煎封、熔化，偶尔也用来烧点东西。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "bonfire"
 	light_color = LIGHT_COLOR_FIRE
@@ -43,7 +43,7 @@
 /obj/structure/bonfire/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stack/rods) && !can_buckle && !grill)
 		var/obj/item/stack/rods/rods = tool
-		var/choice = tgui_alert(user, "What would you like to construct?", "Bonfire", list("Stake","Grill"))
+		var/choice = tgui_alert(user, "你想要搭建什么？", "篝火", list("Stake","Grill"))
 		if(isnull(choice))
 			return ITEM_INTERACT_BLOCKING
 		rods.use(1)
@@ -51,7 +51,7 @@
 			if("Stake")
 				can_buckle = TRUE
 				buckle_requires_restraints = TRUE
-				to_chat(user, span_notice("You add a rod to \the [src]."))
+				to_chat(user, span_notice("你在[src]上加了一根支杆。"))
 				var/mutable_appearance/rod_underlay = mutable_appearance('icons/obj/service/hydroponics/equipment.dmi', "bonfire_rod")
 				rod_underlay.pixel_z = 16
 				underlays += rod_underlay
@@ -59,7 +59,7 @@
 
 			if("Grill")
 				grill = TRUE
-				to_chat(user, span_notice("You add a grill to \the [src]."))
+				to_chat(user, span_notice("你在[src]上加了一个烤架。"))
 				add_overlay("bonfire_grill")
 				return ITEM_INTERACT_SUCCESS
 
@@ -91,7 +91,7 @@
 	if(.)
 		return
 	if(burning)
-		to_chat(user, span_warning("You need to extinguish [src] before removing the logs!"))
+		to_chat(user, span_warning("你得先熄灭[src]才能取走木柴！"))
 		return
 	if(!has_buckled_mobs() && do_after(user, 5 SECONDS, target = src))
 		for(var/obj/item/grown/log/bonfire_log in contents)
@@ -137,11 +137,11 @@
 		var/mob/living/burning_body = entered
 		if(burning_body.on_fire)
 			start_burning()
-			visible_message(span_notice("[entered] runs over [src], starting its fire!"))
+			visible_message(span_notice("[entered]跑过[src]，把它点着了！"))
 
 	else if(entered.resistance_flags & ON_FIRE)
 		start_burning()
-		visible_message(span_notice("[entered]'s fire spreads to [src], setting it ablaze!"))
+		visible_message(span_notice("[entered]身上的火蔓延到[src]，将它点燃了！"))
 
 /obj/structure/bonfire/proc/bonfire_burn(seconds_per_tick = 2)
 	var/turf/current_location = get_turf(src)

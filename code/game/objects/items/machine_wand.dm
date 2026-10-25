@@ -2,8 +2,8 @@
 #define EMP_TIMEOUT_DURATION (2 MINUTES)
 
 /obj/item/machine_remote
-	name = "machine wand"
-	desc = "A remote for controlling machines and bots around the station."
+	name = "机械遥控杖"
+	desc = "用于操控空间站内机械与机器人的遥控装置。"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "weakpoint_locator"
 	inhand_icon_state = "weakpoint_locator"
@@ -46,12 +46,12 @@
 /obj/item/machine_remote/examine(mob/user)
 	. = ..()
 	if(controlling_machine_or_bot)
-		. += span_notice("It is currently controlling [controlling_machine_or_bot]. Use in-hand to interact with it.")
+		. += span_notice("它当前正在操控 [controlling_machine_or_bot]。在手中使用即可与其交互。")
 
 /obj/item/machine_remote/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(controlling_machine_or_bot)
-		context[SCREENTIP_CONTEXT_LMB] = "Use [controlling_machine_or_bot]"
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Flush Control"
+		context[SCREENTIP_CONTEXT_LMB] = "使用 [controlling_machine_or_bot]"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "断开操控"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -62,7 +62,7 @@
 /obj/item/machine_remote/ui_interact(mob/user, datum/tgui/ui)
 	if(!COOLDOWN_FINISHED(src, timeout_time))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 30 , TRUE)
-		say("Remote control disabled temporarily. Please try again soon.")
+		say("遥控暂时禁用，请稍后再试。")
 		return FALSE
 	if(!controlling_machine_or_bot)
 		return
@@ -81,7 +81,7 @@
 		return CLICK_ACTION_BLOCKING
 	if(!controlling_machine_or_bot)
 		return CLICK_ACTION_BLOCKING
-	say("Remote control over [controlling_machine_or_bot] stopped.")
+	say("已停止对 [controlling_machine_or_bot] 的遥控。")
 	remove_old_machine()
 	return CLICK_ACTION_SUCCESS
 
@@ -93,7 +93,7 @@
 /obj/item/machine_remote/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!COOLDOWN_FINISHED(src, timeout_time))
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 30 , TRUE)
-		say("Remote control disabled temporarily. Please try again soon.")
+		say("遥控暂时禁用，请稍后再试。")
 		return ITEM_INTERACT_BLOCKING
 	if(!ismachinery(interacting_with) && !isbot(interacting_with))
 		return NONE
@@ -112,12 +112,12 @@
 	if(istype(new_machine, /obj/machinery/power/apc))
 		var/obj/machinery/power/apc/new_apc = new_machine
 		if(new_apc.aidisabled)
-			say("AI wire cut, machine uncontrollable.")
+			say("AI 线路被切断，无法操控该机械。")
 			return
 	else if(istype(new_machine, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/new_airlock = new_machine
 		if(!new_airlock.canAIControl())
-			say("AI wire cut, machine uncontrollable.")
+			say("AI 线路被切断，无法操控该机械。")
 			return
 	controlling_machine_or_bot = new_machine
 	controlling_machine_or_bot.add_overlay(bug_appearance)
@@ -145,8 +145,8 @@
 
 ///The effect of the bug moving towards the selected machinery to mess with.
 /obj/effect/bug_moving
-	name = "bug"
-	desc = "Where da bug goin?"
+	name = "飞虫"
+	desc = "这虫子要飞哪儿去？"
 	icon_state = "fly"
 	obj_flags = CAN_BE_HIT
 	max_integrity = 20

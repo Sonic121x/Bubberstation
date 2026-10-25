@@ -1,8 +1,8 @@
 // The mawed crucible, a heretic structure that can create potions from bodyparts and organs.
 /obj/structure/destructible/eldritch_crucible
-	name = "mawed crucible"
-	desc = "A deep basin made of cast iron, immortalized by steel-like teeth holding it in place. \
-		Staring at the vile extract within fills your mind with terrible ideas."
+	name = "巨口坩埚"
+	desc = "一只铸铁铸成的深盆，被钢铁般的利齿牢牢咬住，因而长存不坏。\
+		凝视其中污秽的提取液，你的脑海中会涌出可怕的念头。"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	icon_state = "crucible"
 	base_icon_state = "crucible"
@@ -21,7 +21,7 @@
 
 /obj/structure/destructible/eldritch_crucible/Initialize(mapload)
 	. = ..()
-	break_message = span_warning("[src] falls apart with a thud!")
+	break_message = span_warning("[src]砰的一声散架了！")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/destructible/eldritch_crucible/process(seconds_per_tick)
@@ -37,7 +37,7 @@
 /obj/structure/destructible/eldritch_crucible/atom_deconstruct(disassembled = TRUE)
 	// Create a spillage if we were destroyed with leftover mass
 	if(current_mass)
-		break_message = span_warning("[src] falls apart with a thud, spilling shining extract everywhere!")
+		break_message = span_warning("[src]砰的一声散架了，闪亮的提取液洒得到处都是！")
 		var/turf/our_turf = get_turf(src)
 
 		new /obj/effect/decal/cleanable/greenglow(our_turf)
@@ -54,23 +54,23 @@
 		return*/ // BUBBER EDIT REMOVAL - expanding knowledge of heretic
 
 	if(current_mass > 0)
-		. += span_notice("You can refill an eldritch flask with this")
+		. += span_notice("你可以用它为邪术烧瓶补充液体")
 
 	if(current_mass < max_mass)
 		var/to_fill = max_mass - current_mass
-		. += span_notice("[src] requires <b>[to_fill]</b> more organ[to_fill == 1 ? "":"s"] or bodypart[to_fill == 1 ? "":"s"].")
+		. += span_notice("[src]还需要 <b>[to_fill]</b> 个器官或身体部位。")
 	else
-		. += span_boldnotice("[src] is bubbling to the brim with viscous liquid, and is ready to use.")
+		. += span_boldnotice("[src]里黏稠的液体冒着泡，已经满到边缘，随时可以使用。")
 
-	. += span_notice("You can <b>[anchored ? "unanchor and move":"anchor in place"]</b> [src] with a <b>Codex Cicatrix</b> or <b>Mansus Grasp</b>.")
-	. += span_info("The following potions can be brewed:")
+	. += span_notice("你可以用<b>疤痕法典</b>或<b>漫宿之握</b>来<b>[anchored ? "解除固定并移动":"就地固定"]</b>[src]。")
+	. += span_info("以下药水可以酿造：")
 	for(var/obj/item/eldritch_potion/potion as anything in subtypesof(/obj/item/eldritch_potion))
-		var/potion_string = span_info("\tThe " + initial(potion.name) + " - " + initial(potion.crucible_tip))
+		var/potion_string = span_info("\t" + initial(potion.name) + "——" + initial(potion.crucible_tip))
 		. += potion_string
 
 /obj/structure/destructible/eldritch_crucible/examine_status(mob/user)
 	if(IS_HERETIC_OR_MONSTER(user) || isobserver(user))
-		return span_notice("It's at <b>[round(atom_integrity * 100 / max_integrity)]%</b> stability.")
+		return span_notice("它的稳定度为 <b>[round(atom_integrity * 100 / max_integrity)]%</b>。")
 	return ..()
 
 // no breaky herety thingy
@@ -81,26 +81,26 @@
 	if(istype(tool, /obj/item/codex_cicatrix) || istype(tool, /obj/item/melee/touch_attack/mansus_fist))
 		playsound(src, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 		set_anchored(!anchored)
-		balloon_alert(user, "[anchored ? "":"un"]anchored")
+		balloon_alert(user, "[anchored ? "已固定" : "已解除固定"]")
 		return ITEM_INTERACT_SUCCESS
 	if(istype(tool, /obj/item/reagent_containers/cup/beaker/eldritch))
 		if(current_mass < max_mass)
-			balloon_alert(user, "not full enough!")
+			balloon_alert(user, "还不够满！")
 			return ITEM_INTERACT_SUCCESS
 		var/obj/item/reagent_containers/cup/beaker/eldritch/to_fill = tool
 		if(to_fill.reagents.total_volume >= to_fill.reagents.maximum_volume)
-			balloon_alert(user, "flask is full!")
+			balloon_alert(user, "烧瓶已经满了！")
 			return ITEM_INTERACT_SUCCESS
 		to_fill.reagents.add_reagent(/datum/reagent/eldritch, 50)
 		do_item_attack_animation(src, used_item = tool, animation_type = ATTACK_ANIMATION_BLUNT)
 		current_mass--
-		balloon_alert(user, "refilled flask")
+		balloon_alert(user, "已补充烧瓶")
 		return ITEM_INTERACT_SUCCESS
 
 	if(isbodypart(tool))
 		var/obj/item/bodypart/consumed = tool
 		if(!IS_ORGANIC_LIMB(consumed))
-			balloon_alert(user, "not organic!")
+			balloon_alert(user, "不是有机的！")
 			return ITEM_INTERACT_BLOCKING
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
@@ -113,10 +113,10 @@
 	if(isorgan(tool))
 		var/obj/item/organ/consumed = tool
 		if(!IS_ORGANIC_ORGAN(consumed))
-			balloon_alert(user, "not organic!")
+			balloon_alert(user, "不是有机的！")
 			return ITEM_INTERACT_BLOCKING
 		if(consumed.organ_flags & ORGAN_VITAL) // Basically, don't eat organs like brains
-			balloon_alert(user, "invalid organ!")
+			balloon_alert(user, "无效的器官！")
 			return ITEM_INTERACT_BLOCKING
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
@@ -142,11 +142,11 @@
 		return TRUE
 
 	if(in_use)
-		balloon_alert(user, "in use!")
+		balloon_alert(user, "正在使用中！")
 		return TRUE
 
 	if(current_mass < max_mass)
-		balloon_alert(user, "not full enough!")
+		balloon_alert(user, "还不够满！")
 		return TRUE
 
 	INVOKE_ASYNC(src, PROC_REF(show_radial), user)
@@ -195,8 +195,8 @@
 	spawned_pot.is_from_crucible = TRUE // BUBBER EDIT ADDITION - Influence potions cant be drunk by non-heretics
 
 	playsound(src, 'sound/effects/desecration/desecration-02.ogg', 75, TRUE)
-	visible_message(span_notice("[src]'s shining liquid drains into a flask, creating a [spawned_pot.name]!"))
-	balloon_alert(user, "potion created")
+	visible_message(span_notice("[src]里闪亮的液体流入烧瓶，制成了一瓶[spawned_pot.name]！"))
+	balloon_alert(user, "药水已制成")
 
 	current_mass = 0
 	update_appearance(UPDATE_ICON_STATE)
@@ -214,7 +214,7 @@
 	if(QDELETED(arm))
 		return
 
-	to_chat(user, span_userdanger("[src] grabs your [arm.plaintext_zone]!"))
+	to_chat(user, span_userdanger("[src]咬住了你的[arm.plaintext_zone]！"))
 	arm.dismember()
 	consume_fuel(consumed = arm)
 
@@ -225,15 +225,15 @@
 /obj/structure/destructible/eldritch_crucible/proc/consume_fuel(mob/living/feeder, obj/item/consumed)
 	if(current_mass >= max_mass)
 		if(feeder)
-			balloon_alert(feeder, "crucible full!")
+			balloon_alert(feeder, "坩埚已满！")
 		return
 
 	current_mass++
 	playsound(src, 'sound/items/eatfood.ogg', 100, TRUE)
-	visible_message(span_notice("[src] devours [consumed] and fills itself with a little bit of liquid!"))
+	visible_message(span_notice("[src]吞噬了[consumed]，里面的液体又多了一点！"))
 
 	if(feeder)
-		balloon_alert(feeder, "crubile fed ([current_mass] / [max_mass])")
+		balloon_alert(feeder, "已投喂坩埚（[current_mass] / [max_mass]）")
 
 	qdel(consumed)
 	update_appearance(UPDATE_ICON_STATE)
@@ -244,14 +244,14 @@
 
 // Potions created by the mawed crucible.
 /obj/item/eldritch_potion
-	name = "brew of day and night"
-	desc = "You should never see this"
+	name = "昼夜药剂"
+	desc = "你不该看到这个"
 	icon = 'icons/obj/antags/eldritch.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	pickup_sound = 'sound/items/handling/materials/glass_pick_up.ogg'
 	drop_sound = 'sound/items/handling/materials/glass_drop.ogg'
 	/// When a heretic examines a mawed crucible, shows a list of possible potions by name + includes this tip to explain what it does.
-	var/crucible_tip = "Doesn't do anything."
+	var/crucible_tip = "没有任何效果。"
 	/// Typepath to the status effect this applies
 	var/status_effect
 	/// If you can drink the same potion while the effect is active
@@ -285,18 +285,18 @@
 		return TRUE*/
 		// BUBBER EDIT ADDITION BEGIN - Allows for potion shop gimmicks
 		if (!is_from_crucible)
-			to_chat(user, span_danger("You down some of the liquid from [src]. The taste causes you to retch, and the glass vanishes."))
+			to_chat(user, span_danger("你喝下[src]中的一些液体。那味道让你一阵干呕，瓶子也随之消失。"))
 			user.reagents?.add_reagent(/datum/reagent/eldritch, 10)
 			user.adjust_disgust(50)
 			qdel(src)
 			return TRUE
-		to_chat(user, span_warning("The taste is disgusting, but you force down the potion anyway.")) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
+		to_chat(user, span_warning("味道令人作呕，但你还是硬把药水咽了下去。")) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		qdel(src) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		potion_effect(user) // BUBBER EDIT ADDITION - Allows for potion shop gimmicks
 		return TRUE
 		// BUBBER EDIT ADDITION END
 
-	to_chat(user, span_notice("You drink the viscous liquid from [src], causing the glass to dematerialize."))
+	to_chat(user, span_notice("你喝下[src]中黏稠的液体，玻璃瓶随之消散。"))
 	potion_effect(user)
 	qdel(src)
 	return TRUE
@@ -311,31 +311,31 @@
 	carbon_user.apply_status_effect(status_effect)
 
 /obj/item/eldritch_potion/crucible_soul
-	name = "brew of the crucible soul"
-	desc = "A glass bottle containing a bright orange, translucent liquid."
+	name = "坩埚灵魂药剂"
+	desc = "一只玻璃瓶，里面装着明亮的橙色半透明液体。"
 	icon_state = "crucible_soul"
 	status_effect = /datum/status_effect/crucible_soul
-	crucible_tip = "Allows you to walk through walls. After expiring, you are teleported to your original location. Lasts 40 seconds."
+	crucible_tip = "允许你穿墙而行。效果结束后，你会被传送回最初的位置。持续 40 秒。"
 	can_refresh = FALSE
 
 /obj/item/eldritch_potion/crucible_soul/attack_self(mob/user)
 	if(user.has_status_effect(/datum/status_effect/crucible_soul_cooldown))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return TRUE
 	return ..()
 
 /obj/item/eldritch_potion/duskndawn
-	name = "brew of dusk and dawn"
-	desc = "A glass bottle containing a dull yellow liquid. It seems to fade in and out with regularity."
+	name = "黄昏与黎明药剂"
+	desc = "一只玻璃瓶，里面装着暗黄色的液体。它似乎有规律地忽隐忽现。"
 	icon_state = "clarity"
 	status_effect = /datum/status_effect/duskndawn
-	crucible_tip = "Allows you to see through walls and objects. Lasts 90 seconds."
+	crucible_tip = "允许你透视墙壁与物体。持续 90 秒。"
 
 /obj/item/eldritch_potion/wounded
-	name = "brew of the wounded soldier"
-	desc = "A glass bottle containing a colorless, dark liquid."
+	name = "伤兵药剂"
+	desc = "一只玻璃瓶，里面装着深色的透明液体。"
 	icon_state = "marshal"
 	status_effect = /datum/status_effect/marshal
-	crucible_tip = "Causes all wounds you are experiencing to begin to heal you. Fractures, sprains, cuts, and punctures will heal bruises, \
-		and flesh damage will heal burns. The more severe the wounds, the stronger the healing. Additionally, prevents slowdown from damage. \
-		Lasts 60 seconds. "
+	crucible_tip = "使你身上的所有伤口开始为你治疗。骨折、扭伤、割伤和穿刺伤会治愈瘀伤，\
+		而血肉损伤会治愈烧伤。伤口越严重，治疗效果越强。此外，还能防止因受伤而减速。\
+		持续 60 秒。"

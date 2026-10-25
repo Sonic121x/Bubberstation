@@ -1,7 +1,7 @@
 /// The common cardboard box.
 /obj/item/storage/box
-	name = "box"
-	desc = "It's just an ordinary box."
+	name = "盒子"
+	desc = "只是一个普通的盒子。"
 	icon = 'icons/obj/storage/box.dmi'
 	icon_state = "box"
 	inhand_icon_state = "syringe_kit"
@@ -26,12 +26,12 @@
 /obj/item/storage/box/suicide_act(mob/living/user)
 	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
 	if(myhead)
-		user.visible_message(span_suicide("[user] puts [user.p_their()] head into \the [src] and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]把自己的头伸进[src]，并开始合上盖子！看来是想自杀！"))
 		if (myhead.dismember())
 			myhead.forceMove(src) //force your enemies to kill themselves with your head collection box!
 		playsound(user, "desecration-01.ogg", 50, TRUE, -1)
 		return BRUTELOSS
-	user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正用[src]殴打自己！看来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/storage/box/update_overlays()
@@ -45,12 +45,12 @@
 	if(!foldable_result || (flags_1 & HOLOGRAM_1))
 		return
 	if(contents.len)
-		balloon_alert(user, "items inside!")
+		balloon_alert(user, "里面还有东西！")
 		return
 	if(!ispath(foldable_result))
 		return
 
 	var/obj/item/result = new foldable_result(user.drop_location())
-	balloon_alert(user, "folded")
+	balloon_alert(user, "已折叠")
 	qdel(src)
 	user.put_in_hands(result)

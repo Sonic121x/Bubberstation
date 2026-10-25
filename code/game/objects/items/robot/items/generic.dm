@@ -17,7 +17,7 @@
 #define CYBORG_STUN_CHARGE_COST (0.2 * STANDARD_CELL_CHARGE)
 
 /obj/item/borg/stun
-	name = "electrically-charged arm"
+	name = "带电手臂"
 	icon_state = "elecarm"
 	var/stamina_damage = 60 //Same as normal batong
 	var/cooldown_check = 0
@@ -26,11 +26,11 @@
 
 /obj/item/borg/stun/attack(mob/living/attacked_mob, mob/living/user)
 	if(cooldown_check > world.time)
-		user.balloon_alert(user, "still recharging!")
+		user.balloon_alert(user, "仍在充能！")
 		return
 	if(ishuman(attacked_mob))
 		var/mob/living/carbon/human/human = attacked_mob
-		if(human.check_block(src, 0, "[attacked_mob]'s [name]", MELEE_ATTACK))
+		if(human.check_block(src, 0, "[attacked_mob]的[name]", MELEE_ATTACK))
 			playsound(attacked_mob, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 			return FALSE
 	if(iscyborg(user))
@@ -46,25 +46,25 @@
 	if(issilicon(attacked_mob))
 		attacked_mob.emp_act(EMP_HEAVY)
 		attacked_mob.visible_message(
-			span_danger("[user] shocks [attacked_mob] with [src]!"),
-			span_userdanger("[user] shocks you with [src]!"),
+			span_danger("[user]用[src]电击了[attacked_mob]！"),
+			span_userdanger("[user]用[src]电击了你！"),
 		)
 	else
 		attacked_mob.visible_message(
-			span_danger("[user] prods [attacked_mob] with [src]!"),
-			span_userdanger("[user] prods you with [src]!"),
+			span_danger("[user]用[src]戳了戳[attacked_mob]！"),
+			span_userdanger("[user]用[src]戳了戳你！"),
 		)
 
 	playsound(loc, 'sound/items/weapons/egloves.ogg', 50, TRUE, -1)
 	cooldown_check = world.time + cooldown
-	log_combat(user, attacked_mob, "stunned", src, "(Combat mode: [user.combat_mode ? "On" : "Off"])")
+	log_combat(user, attacked_mob, "击晕", src, "（战斗模式：[user.combat_mode ? "开启" : "关闭"]）")
 
 #undef CYBORG_STUN_CHARGE_COST
 
 /obj/item/borg/cyborghug
-	name = "hugging module"
+	name = "拥抱模块"
 	icon_state = "hugmodule"
-	desc = "For when a someone really needs a hug."
+	desc = "当某人真的需要一个拥抱时使用。"
 	/// Hug mode
 	var/mode = HUG_MODE_NICE
 	/// Crush cooldown
@@ -89,13 +89,13 @@
 			mode = HUG_MODE_NICE
 	switch(mode)
 		if(HUG_MODE_NICE)
-			to_chat(user, span_infoplain("Power reset. Hugs!"))
+			to_chat(user, span_infoplain("能量重置。抱抱！"))
 		if(HUG_MODE_HUG)
-			to_chat(user, span_infoplain("Power increased!"))
+			to_chat(user, span_infoplain("功率提升！"))
 		if(HUG_MODE_SHOCK)
-			to_chat(user, "<span class='warningplain'>BZZT. Electrifying arms...</span>")
+			to_chat(user, "<span class='warningplain'>BZZT。手臂通电中……</span>")
 		if(HUG_MODE_CRUSH)
-			to_chat(user, "<span class='warningplain'>ERROR: ARM ACTUATORS OVERLOADED.</span>")
+			to_chat(user, "<span class='warningplain'>错误：手臂驱动器过载。</span>")
 
 /obj/item/borg/cyborghug/attack(mob/living/attacked_mob, mob/living/silicon/robot/user, list/modifiers, list/attack_modifiers)
 	if(attacked_mob == user)
@@ -110,28 +110,28 @@
 				return
 			if(user.zone_selected == BODY_ZONE_HEAD)
 				user.visible_message(
-					span_notice("[user] playfully boops [attacked_mob] on the head!"),
-					span_notice("You playfully boop [attacked_mob] on the head!"),
+					span_notice("[user]调皮地戳了戳[attacked_mob]的头！"),
+					span_notice("你调皮地戳了戳[attacked_mob]的头！"),
 				)
 				user.do_attack_animation(attacked_mob, ATTACK_EFFECT_BOOP)
 				playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
 			else if(ishuman(attacked_mob))
 				if(user.body_position == LYING_DOWN)
 					user.visible_message(
-						span_notice("[user] shakes [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
-						span_notice("You shake [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
+						span_notice("[user]摇晃[attacked_mob]，想扶对方起来！"),
+						span_notice("你摇晃[attacked_mob]，想扶对方起来！"),
 					)
 				else
 					user.visible_message(
-						span_notice("[user] hugs [attacked_mob] to make [attacked_mob.p_them()] feel better!"),
-						span_notice("You hug [attacked_mob] to make [attacked_mob.p_them()] feel better!"),
+						span_notice("[user]拥抱[attacked_mob]，想让对方好受一些！"),
+						span_notice("你拥抱[attacked_mob]，想让对方好受一些！"),
 					)
 				if(attacked_mob.resting)
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_notice("[user] pets [attacked_mob]!"),
-					span_notice("You pet [attacked_mob]!"),
+					span_notice("[user]抚摸了[attacked_mob]！"),
+					span_notice("你抚摸了[attacked_mob]！"),
 				)
 			playsound(loc, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		if(HUG_MODE_HUG)
@@ -139,26 +139,26 @@
 				attacked_mob.adjust_status_effects_on_shake_up()
 				if(attacked_mob.body_position == LYING_DOWN)
 					user.visible_message(
-						span_notice("[user] shakes [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
-						span_notice("You shake [attacked_mob] trying to get [attacked_mob.p_them()] up!"),
+						span_notice("[user]摇晃[attacked_mob]，想扶对方起来！"),
+						span_notice("你摇晃[attacked_mob]，想扶对方起来！"),
 					)
 				else if(user.zone_selected == BODY_ZONE_HEAD)
-					user.visible_message(span_warning("[user] bops [attacked_mob] on the head!"),
-						span_warning("You bop [attacked_mob] on the head!"),
+					user.visible_message(span_warning("[user]敲了敲[attacked_mob]的头！"),
+						span_warning("你敲了敲[attacked_mob]的头！"),
 					)
 					user.do_attack_animation(attacked_mob, ATTACK_EFFECT_PUNCH)
 				else
 					if(!(SEND_SIGNAL(attacked_mob, COMSIG_BORG_HUG_MOB, user) & COMSIG_BORG_HUG_HANDLED))
 						user.visible_message(
-							span_warning("[user] hugs [attacked_mob] in a firm bear-hug! [attacked_mob] looks uncomfortable..."),
-							span_warning("You hug [attacked_mob] firmly to make [attacked_mob.p_them()] feel better! [attacked_mob] looks uncomfortable..."),
+							span_warning("[user]紧紧抱住[attacked_mob]，来了个熊抱！[attacked_mob]看起来不太舒服……"),
+							span_warning("你紧紧拥抱[attacked_mob]，想让对方好受一些！[attacked_mob]看起来不太舒服……"),
 						)
 				if(attacked_mob.resting)
 					attacked_mob.set_resting(FALSE, TRUE)
 			else
 				user.visible_message(
-					span_warning("[user] bops [attacked_mob] on the head!"),
-					span_warning("You bop [attacked_mob] on the head!"),
+					span_warning("[user]敲了敲[attacked_mob]的头！"),
+					span_warning("你敲了敲[attacked_mob]的头！"),
 				)
 			playsound(loc, 'sound/items/weapons/tap.ogg', 50, TRUE, -1)
 		if(HUG_MODE_SHOCK)
@@ -169,20 +169,20 @@
 				attacked_mob.dropItemToGround(attacked_mob.get_active_held_item())
 				attacked_mob.dropItemToGround(attacked_mob.get_inactive_held_item())
 				user.visible_message(
-					span_userdanger("[user] electrocutes [attacked_mob] with [user.p_their()] touch!"),
-					span_danger("You electrocute [attacked_mob] with your touch!"),
+					span_userdanger("[user]通过触碰电击了[attacked_mob]！"),
+					span_danger("你以触碰电击了[attacked_mob]！"),
 				)
 			else
 				if(!iscyborg(attacked_mob))
 					attacked_mob.adjust_fire_loss(10)
 					user.visible_message(
-						span_userdanger("[user] shocks [attacked_mob]!"),
-						span_danger("You shock [attacked_mob]!"),
+						span_userdanger("[user]电击了[attacked_mob]！"),
+						span_danger("你电击了[attacked_mob]！"),
 					)
 				else
 					user.visible_message(
-						span_userdanger("[user] shocks [attacked_mob]. It does not seem to have an effect"),
-						span_danger("You shock [attacked_mob] to no effect."),
+						span_userdanger("[user]电击了[attacked_mob]，但似乎没有效果。"),
+						span_danger("你电击了[attacked_mob]，但毫无效果。"),
 					)
 			playsound(loc, 'sound/effects/sparks/sparks2.ogg', 50, TRUE, -1)
 			user.cell.use(0.5 * STANDARD_CELL_CHARGE, force = TRUE)
@@ -192,13 +192,13 @@
 				return
 			if(ishuman(attacked_mob))
 				user.visible_message(
-					span_userdanger("[user] crushes [attacked_mob] in [user.p_their()] grip!"),
-					span_danger("You crush [attacked_mob] in your grip!"),
+					span_userdanger("[user]用握力碾压[attacked_mob]！"),
+					span_danger("你用握力碾压[attacked_mob]！"),
 				)
 			else
 				user.visible_message(
-					span_userdanger("[user] crushes [attacked_mob]!"),
-						span_danger("You crush [attacked_mob]!"),
+					span_userdanger("[user]碾碎了[attacked_mob]！"),
+						span_danger("你碾碎了[attacked_mob]！"),
 				)
 			playsound(loc, 'sound/items/weapons/smash.ogg', 50, TRUE, -1)
 			attacked_mob.adjust_brute_loss(15)
@@ -212,7 +212,7 @@
 	boop = TRUE
 
 /obj/item/borg/charger
-	name = "power connector"
+	name = "电源连接器"
 	icon_state = "charger_draw"
 	item_flags = NOBLUDGEON
 	/// Charging mode
@@ -231,7 +231,7 @@
 		mode = "charge"
 	else
 		mode = "draw"
-	to_chat(user, span_notice("You toggle [src] to \"[mode]\" mode."))
+	to_chat(user, span_notice("你将[src]切换至“[mode]”模式。"))
 	update_appearance()
 
 /obj/item/borg/charger/interact_with_atom(atom/target, mob/living/silicon/robot/user, list/modifiers)
@@ -243,10 +243,10 @@
 		if(is_type_in_list(target, charge_machines))
 			var/obj/machinery/target_machine = target
 			if((target_machine.machine_stat & (NOPOWER|BROKEN)) || !target_machine.anchored)
-				to_chat(user, span_warning("[target_machine] is unpowered!"))
+				to_chat(user, span_warning("[target_machine]没有通电！"))
 				return
 
-			to_chat(user, span_notice("You connect to [target_machine]'s power line..."))
+			to_chat(user, span_notice("你接入了[target_machine]的电源线……"))
 			while(do_after(user, 1.5 SECONDS, target = target_machine, show_progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
 					return
@@ -256,27 +256,27 @@
 
 				target_machine.charge_cell(0.15 * STANDARD_CELL_CHARGE, user.cell)
 
-			to_chat(user, span_notice("You stop charging yourself."))
+			to_chat(user, span_notice("你停止为自己充电。"))
 
 		else if(is_type_in_list(target, charge_items))
 			var/obj/item/stock_parts/power_store/cell = target
 			if(!istype(cell))
 				cell = locate(/obj/item/stock_parts/power_store) in target
 			if(!cell)
-				to_chat(user, span_warning("[target] has no power cell!"))
+				to_chat(user, span_warning("[target]没有电池！"))
 				return
 
 			if(istype(target, /obj/item/gun/energy))
 				var/obj/item/gun/energy/energy_gun = target
 				if(!energy_gun.can_charge)
-					to_chat(user, span_warning("[target] has no power port!"))
+					to_chat(user, span_warning("[target]没有充电接口！"))
 					return
 
 			if(!cell.charge)
-				to_chat(user, span_warning("[target] has no power!"))
+				to_chat(user, span_warning("[target]没有电了！"))
 
 
-			to_chat(user, span_notice("You connect to [target]'s power port..."))
+			to_chat(user, span_notice("你接入了[target]的充电接口……"))
 
 			while(do_after(user, 1.5 SECONDS, target = target, show_progress = FALSE))
 				if(!user || !user.cell || mode != "draw")
@@ -295,26 +295,26 @@
 					break
 				target.update_appearance()
 
-			to_chat(user, span_notice("You stop charging yourself."))
+			to_chat(user, span_notice("你停止为自己充电。"))
 
 	else if(is_type_in_list(target, charge_items))
 		var/obj/item/stock_parts/power_store/cell = target
 		if(!istype(cell))
 			cell = locate(/obj/item/stock_parts/power_store) in target
 		if(!cell)
-			to_chat(user, span_warning("[target] has no power cell!"))
+			to_chat(user, span_warning("[target]没有电池！"))
 			return
 
 		if(istype(target, /obj/item/gun/energy))
 			var/obj/item/gun/energy/energy_gun = target
 			if(!energy_gun.can_charge)
-				to_chat(user, span_warning("[target] has no power port!"))
+				to_chat(user, span_warning("[target]没有充电接口！"))
 				return
 
 		if(cell.charge >= cell.maxcharge)
-			to_chat(user, span_warning("[target] is already charged!"))
+			to_chat(user, span_warning("[target]已经充满电了！"))
 
-		to_chat(user, span_notice("You connect to [target]'s power port..."))
+		to_chat(user, span_notice("你接入了[target]的充电接口……"))
 
 		while(do_after(user, 1.5 SECONDS, target = target, show_progress = FALSE))
 			if(!user || !user.cell || mode != "charge")
@@ -333,11 +333,11 @@
 				break
 			target.update_appearance()
 
-		to_chat(user, span_notice("You stop charging [target]."))
+		to_chat(user, span_notice("你停止为[target]充电。"))
 
 /obj/item/harmalarm
-	name = "\improper Sonic Harm Prevention Tool"
-	desc = "Releases a harmless blast that confuses most organics. For when the harm is JUST TOO MUCH."
+	name = "\improper 声波伤害预防工具"
+	desc = "释放一道无害的冲击波，使大多数有机体陷入混乱。适用于伤害实在太过分的时候。"
 	icon = 'icons/obj/devices/voice.dmi'
 	icon_state = "megaphone"
 	/// Harm alarm cooldown
@@ -346,21 +346,21 @@
 /obj/item/harmalarm/emag_act(mob/user, obj/item/card/emag/emag_card)
 	obj_flags ^= EMAGGED
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "safeties shorted")
+		balloon_alert(user, "保险装置已短路")
 	else
-		balloon_alert(user, "safeties reset")
+		balloon_alert(user, "保险装置已重置")
 	return TRUE
 
 /obj/item/harmalarm/attack_self(mob/user)
 	var/safety = !(obj_flags & EMAGGED)
 	if (!COOLDOWN_FINISHED(src, alarm_cooldown))
-		to_chat(user, "<font color='red'>The device is still recharging!</font>")
+		to_chat(user, "<font color='red'>设备仍在充能！</font>")
 		return
 
 	if(iscyborg(user))
 		var/mob/living/silicon/robot/robot_user = user
 		if(!robot_user.cell || robot_user.cell.charge < 1200)
-			to_chat(user, span_warning("You don't have enough charge to do this!"))
+			to_chat(user, span_warning("你的电量不足以执行此操作！"))
 			return
 		robot_user.cell.charge -= 1000
 		if(robot_user.emagged)
@@ -368,22 +368,22 @@
 
 	if(safety == TRUE)
 		user.visible_message(
-			"<font color='red' size='2'>[user] blares out a near-deafening siren from its speakers!</font>",
-			span_userdanger("Your siren blares around [iscyborg(user) ? "you" : "and confuses you"]!"),
-			span_danger("The siren pierces your hearing!"),
+			"<font color='red' size='2'>[user]的扬声器爆发出几乎震聋人的警报声！</font>",
+			span_userdanger("你的警笛在你四周鸣响[iscyborg(user) ? "！" : "，并让你陷入混乱！"]"),
+			span_danger("警笛声刺穿你的耳膜！"),
 		)
 		for(var/mob/living/carbon/carbon in get_hearers_in_view(9, user))
 			if(carbon.get_ear_protection() > 0)
 				continue
 			carbon.adjust_confusion(6 SECONDS)
 
-		audible_message("<font color='red' size='7'>HUMAN HARM</font>")
+		audible_message("<font color='red' size='7'>人类伤害</font>")
 		playsound(get_turf(src), 'sound/mobs/non-humanoids/cyborg/harmalarm.ogg', 70, 3)
 		COOLDOWN_START(src, alarm_cooldown, HARM_ALARM_SAFETY_COOLDOWN)
-		user.log_message("used a Cyborg Harm Alarm", LOG_ATTACK)
+		user.log_message("使用了半机械人伤害警报", LOG_ATTACK)
 		if(iscyborg(user))
 			var/mob/living/silicon/robot/robot_user = user
-			to_chat(robot_user.connected_ai, "<br>[span_notice("NOTICE - Peacekeeping 'HARM ALARM' used by: [user]")]<br>")
+			to_chat(robot_user.connected_ai, "<br>[span_notice("通告——维和“伤害警报”使用人：[user]")]<br>")
 	else
 		user.audible_message("<font color='red' size='7'>BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZT</font>")
 		for(var/mob/living/living in get_hearers_in_view(9, user))
@@ -402,10 +402,10 @@
 					living.adjust_jitter(50 SECONDS)
 		playsound(get_turf(src), 'sound/machines/warning-buzzer.ogg', 130, 3)
 		COOLDOWN_START(src, alarm_cooldown, HARM_ALARM_NO_SAFETY_COOLDOWN)
-		user.log_message("used an emagged Cyborg Harm Alarm", LOG_ATTACK)
+		user.log_message("使用了遭 EMAG 破解的半机械人伤害警报", LOG_ATTACK)
 
 /obj/item/shield_module
-	name = "Shield Activator"
+	name = "护盾激活器"
 	icon = 'icons/mob/silicon/robot_items.dmi'
 	icon_state = "module_miner"
 	var/active = FALSE

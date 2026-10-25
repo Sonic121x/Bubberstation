@@ -1,6 +1,6 @@
 /obj/item/storage/lockbox
-	name = "lockbox"
-	desc = "A locked box."
+	name = "锁箱"
+	desc = "一个上锁的箱子。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "lockbox+l"
 	inhand_icon_state = "lockbox"
@@ -32,7 +32,7 @@
 		return NONE
 	if(!held_item.GetID())
 		return NONE
-	context[SCREENTIP_CONTEXT_LMB] = atom_storage.locked ? "Unlock with ID" : "Lock with ID"
+	context[SCREENTIP_CONTEXT_LMB] = atom_storage.locked ? "用 ID 卡解锁" : "用 ID 卡上锁"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/storage/lockbox/tool_act(mob/living/user, obj/item/tool, list/modifiers)
@@ -50,12 +50,12 @@
 	if(check_access(id_card))
 		return TRUE
 	if(!silent)
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "权限不足！")
 	return FALSE
 
 /obj/item/storage/lockbox/proc/toggle_locked(mob/living/user)
 	atom_storage.set_locked(atom_storage.locked ? STORAGE_NOT_LOCKED : STORAGE_FULLY_LOCKED)
-	balloon_alert(user, atom_storage.locked ? "locked" : "unlocked")
+	balloon_alert(user, atom_storage.locked ? "已上锁" : "已解锁")
 
 /obj/item/storage/lockbox/update_icon_state()
 	. = ..()
@@ -72,16 +72,16 @@
 	if(!broken)
 		broken = TRUE
 		atom_storage.set_locked(STORAGE_NOT_LOCKED)
-		balloon_alert(user, "lock destroyed")
+		balloon_alert(user, "锁已破坏")
 		if (emag_card && user)
-			user.visible_message(span_warning("[user] swipes [emag_card] over [src], breaking it!"))
+			user.visible_message(span_warning("[user]把[emag_card]刷过[src]，将其损坏了！"))
 		return TRUE
 	return FALSE
 
 /obj/item/storage/lockbox/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += span_notice("It appears to be broken.")
+		. += span_notice("它看起来已经损坏了。")
 
 /obj/item/storage/lockbox/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
@@ -94,7 +94,7 @@
 	update_appearance()
 
 /obj/item/storage/lockbox/loyalty
-	name = "lockbox of mindshield implants"
+	name = "心智护盾植入体锁箱"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()
@@ -103,16 +103,16 @@
 	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/lockbox/clusterbang
-	name = "lockbox of clusterbangs"
-	desc = "You have a bad feeling about opening this."
+	name = "集束音爆弹锁箱"
+	desc = "你对打开它有种不祥的预感。"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/clusterbang/PopulateContents()
 	new /obj/item/grenade/clusterbuster(src)
 
 /obj/item/storage/lockbox/medal
-	name = "medal box"
-	desc = "A locked box used to store medals of honor."
+	name = "勋章盒"
+	desc = "用于存放荣誉勋章的锁箱。"
 	icon = 'icons/obj/storage/case.dmi'
 	icon_state = "medalbox+l"
 	inhand_icon_state = "syringe_kit"
@@ -129,7 +129,7 @@
 /obj/item/storage/lockbox/medal/examine(mob/user)
 	. = ..()
 	if(!atom_storage.locked)
-		. += span_notice("Alt-click to [open ? "close":"open"] it.")
+		. += span_notice("按住 Alt 点击以[open ? "关闭":"打开"]它。")
 
 /obj/item/storage/lockbox/medal/click_alt(mob/user)
 	if(!atom_storage.locked)
@@ -165,8 +165,8 @@
 		. += medalicon
 
 /obj/item/storage/lockbox/medal/hop
-	name = "Head of Personnel medal box"
-	desc = "A locked box used to store medals to be given to those exhibiting excellence in management."
+	name = "人事主管勋章盒"
+	desc = "用于存放颁给在管理方面表现杰出者勋章的锁箱。"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hopbox+l"
 	icon_locked = "hopbox+l"
@@ -178,16 +178,16 @@
 	new /obj/item/clothing/accessory/medal/gold/ordom(src)
 
 /obj/item/storage/lockbox/medal/sec
-	name = "security medal box"
-	desc = "A locked box used to store medals to be given to members of the security department."
+	name = "安保勋章盒"
+	desc = "用于存放颁给安保部成员勋章的锁箱。"
 	req_access = list(ACCESS_HOS)
 	icon_state = "secbox+l"
 	icon_locked = "secbox+l"
 	icon_closed = "secbox"
 
 /obj/item/storage/lockbox/medal/med
-	name = "medical medal box"
-	desc = "A locked box used to store medals to be given to members of the medical department."
+	name = "医疗勋章盒"
+	desc = "用于存放颁给医疗部成员勋章的锁箱。"
 	req_access = list(ACCESS_CMO)
 	icon_state = "medbox+l"
 	icon_locked = "medbox+l"
@@ -204,8 +204,8 @@
 		new /obj/item/clothing/accessory/medal/silver/security(src)
 
 /obj/item/storage/lockbox/medal/cargo
-	name = "cargo award box"
-	desc = "A locked box used to store awards to be given to members of the cargo department."
+	name = "货运奖励盒"
+	desc = "用于存放颁给货运部成员奖励的锁箱。"
 	req_access = list(ACCESS_QM)
 	icon_state = "cargobox+l"
 	icon_locked = "cargobox+l"
@@ -215,8 +215,8 @@
 	new /obj/item/clothing/accessory/medal/ribbon/cargo(src)
 
 /obj/item/storage/lockbox/medal/service
-	name = "service award box"
-	desc = "A locked box used to store awards to be given to members of the service department."
+	name = "服务奖励盒"
+	desc = "用于存放颁给服务部成员奖励的锁箱。"
 	req_access = list(ACCESS_HOP)
 	icon_state = "srvbox+l"
 	icon_locked = "srvbox+l"
@@ -226,8 +226,8 @@
 	new /obj/item/clothing/accessory/medal/silver/excellence(src)
 
 /obj/item/storage/lockbox/medal/sci
-	name = "science medal box"
-	desc = "A locked box used to store medals to be given to members of the science department."
+	name = "科研勋章盒"
+	desc = "用于存放颁给科研部成员勋章的锁箱。"
 	req_access = list(ACCESS_RD)
 	icon_state = "scibox+l"
 	icon_locked = "scibox+l"
@@ -239,8 +239,8 @@
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 
 /obj/item/storage/lockbox/medal/engineering
-	name = "engineering medal box"
-	desc = "A locked box used to store awards to be given to members of the engineering department."
+	name = "工程勋章盒"
+	desc = "用于存放颁给工程部成员奖励的锁箱。"
 	req_access = list(ACCESS_CE)
 	icon_state = "engbox+l"
 	icon_locked = "engbox+l"
@@ -252,8 +252,8 @@
 	new /obj/item/clothing/accessory/medal/silver/elder_atmosian(src)
 
 /obj/item/storage/lockbox/order
-	name = "order lockbox"
-	desc = "A box used to secure small cargo orders from being looted by those who didn't order it. Yeah, cargo tech, that means you."
+	name = "订单锁箱"
+	desc = "一个用于保护小型货运订单、防止被没下单的人顺手拿走的箱子。没错，货运技术员，说的就是你。"
 	icon_state = "secure"
 	icon_closed = "secure"
 	icon_locked = "secure_locked"
@@ -283,8 +283,8 @@
 /obj/item/storage/lockbox/order/examine(mob/user)
 	. = ..()
 	if(department_purchase)
-		. += span_notice("This crate was purchased with departmental funds from [department_account.account_holder], and can be opened by anyone who has an ID linked to an account with a paycheck from that department.")
-		. += span_notice("Or overriden by someone with captain access.")
+		. += span_notice("这个板条箱是用[department_account.account_holder]的部门资金购买的，任何持有与该部门工资账户关联的 ID 卡的人都能打开它。")
+		. += span_notice("或者由拥有舰长权限的人强行打开。")
 // BUBBER EDIT END
 
 /obj/item/storage/lockbox/order/can_unlock(mob/living/user, obj/item/card/id/id_card, silent = FALSE)
@@ -299,17 +299,17 @@
 			return TRUE
 
 		if(!silent)
-			balloon_alert(user, "incorrect bank account!")
+			balloon_alert(user, "银行账户不正确！")
 		return FALSE
 	//SKYRAT EDIT ADDITION END
 
 	if(!silent)
-		balloon_alert(user, "incorrect bank account!")
+		balloon_alert(user, "银行账户不正确！")
 	return FALSE
 
 /obj/item/storage/lockbox/dueling
-	name = "dueling pistol case"
-	desc = "Let's solve this like gentlespacemen."
+	name = "决斗手枪盒"
+	desc = "让我们像文明的太空绅士那样解决问题。"
 	icon_state = "medalbox+l"
 	inhand_icon_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -330,8 +330,8 @@
 	new /datum/duel(gun_A, gun_B)
 
 /obj/item/storage/lockbox/bitrunning
-	name = "base class curiosity"
-	desc = "Talk to a coder."
+	name = "基础类好奇箱"
+	desc = "请与程序员联系。"
 	req_access = list(ACCESS_INACCESSIBLE)
 	icon_state = "bitrunning+l"
 	inhand_icon_state = "bitrunning"
@@ -342,8 +342,8 @@
 	icon_open = "bitrunning"
 
 /obj/item/storage/lockbox/bitrunning/encrypted
-	name = "encrypted curiosity"
-	desc = "Needs to be decrypted at the safehouse to be opened."
+	name = "加密好奇箱"
+	desc = "需要在安全屋中解密才能打开。"
 	resistance_flags =  INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	/// Path for the loot we are assigned
 	var/loot_path
@@ -352,8 +352,8 @@
 	return FALSE
 
 /obj/item/storage/lockbox/bitrunning/decrypted
-	name = "decrypted curiosity"
-	desc = "Compiled from the virtual domain. An extra reward of a successful bitrunner."
+	name = "解密好奇箱"
+	desc = "由虚拟域编译而成。成功比特潜行者的额外奖励。"
 	storage_type = /datum/storage/lockbox/bitrunning_decrypted
 
 	/// What virtual domain did we come from.

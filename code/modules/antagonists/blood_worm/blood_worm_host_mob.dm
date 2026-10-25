@@ -1,6 +1,6 @@
 /mob/living/blood_worm_host
-	name = "Host"
-	desc = "...how are you examining this? THIS THING ISN'T EVEN EMBODIED."
+	name = "宿主"
+	desc = "……你到底是怎么查看这个的？这东西连实体都没有。"
 
 	var/datum/action/changeling_expel_worm/expel_worm_action
 
@@ -10,7 +10,7 @@
 		return
 
 	if (IS_CHANGELING(src))
-		to_chat(src, span_good("The blood worm in your body is vulnerable to your genetic prowess!"))
+		to_chat(src, span_good("你体内的血虫对你的基因能力毫无抵抗之力！"))
 
 		if (!expel_worm_action)
 			expel_worm_action = new(src)

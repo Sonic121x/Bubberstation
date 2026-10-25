@@ -1,8 +1,8 @@
 //~*~*~*~*SPARKLER*~*~*~*~*~*~
 
 /obj/item/sparkler
-	name = "sparkler"
-	desc = "A little stick coated with metal powder and barium nitrate, burns with a pleasing sparkle."
+	name = "仙女棒"
+	desc = "涂有金属粉末和硝酸钡的小棒，燃烧时会绽放悦目的火花。"
 	icon = 'icons/obj/holiday/holiday_misc.dmi'
 	icon_state = "sparkler"
 	w_class = WEIGHT_CLASS_TINY
@@ -30,9 +30,9 @@
 	icon_state = "sparkler_on"
 	force = 6
 	hitsound = 'sound/items/tools/welder.ogg'
-	name = "lit [initial(name)]"
-	attack_verb_continuous = list("burns")
-	attack_verb_simple = list("burn")
+	name = "点燃的[initial(name)]"
+	attack_verb_continuous = list("灼烧")
+	attack_verb_simple = list("灼烧")
 	set_light(l_range = 2, l_power = 2)
 	damtype = BURN
 	START_PROCESSING(SSobj, src)
@@ -52,7 +52,7 @@
 	return ..()
 
 /obj/item/sparkler/ignition_effect(atom/atom, mob/user)
-	. = span_notice("[user] gracefully lights [atom] with [src].")
+	. = span_notice("[user]优雅地用[src]点燃了[atom]。")
 
 /obj/item/sparkler/get_temperature()
 	return lit * heat
@@ -60,8 +60,8 @@
 //~*~*~*~*FIRECRACKER*~*~*~*~*~*~
 
 /obj/item/grenade/firecracker
-	name = "large firecracker"
-	desc = "Outlawed in most of the sector. Doubles as an excellent finger remover."
+	name = "大型爆竹"
+	desc = "在星区大部分地区都被列为违禁品。也是出色的手指切除工具。"
 	icon = 'icons/obj/holiday/holiday_misc.dmi'
 	icon_state = "firecracker"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -93,19 +93,19 @@
 		return
 	if(det_time)
 		det_time -= 10
-		to_chat(user, span_notice("You shorten the fuse of [src] with [item]."))
+		to_chat(user, span_notice("你用[item]剪短了[src]的引线。"))
 		playsound(src, 'sound/items/tools/wirecutter.ogg', 20, TRUE)
 		icon_state = initial(icon_state) + "_[det_time]"
 		update_appearance()
 	else
-		to_chat(user, span_danger("You've already removed all of the fuse!"))
+		to_chat(user, span_danger("引线已经被你全部剪掉了！"))
 
 /obj/item/grenade/firecracker/arm_grenade(mob/user, delayoverride, msg = TRUE, volume = 80)
 	log_grenade(user)
 	if(user)
 		add_fingerprint(user)
 		if(msg)
-			to_chat(user, span_warning("You prime [src]! [capitalize(DisplayTimeText(det_time))]!"))
+			to_chat(user, span_warning("你点燃了[src]！[capitalize(DisplayTimeText(det_time))]后爆炸！"))
 	playsound(src, 'sound/effects/fuse.ogg', volume, TRUE)
 	active = TRUE
 	icon_state = initial(icon_state) + "_active"

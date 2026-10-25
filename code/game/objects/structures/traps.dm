@@ -1,12 +1,12 @@
 /obj/structure/trap
-	name = "IT'S A TRAP"
-	desc = "Stepping on me is a guaranteed bad day."
+	name = "这是陷阱"
+	desc = "踩上去保证你今天不好过。"
 	icon = 'icons/obj/service/hand_of_god_structures.dmi'
 	icon_state = "trap"
 	density = FALSE
 	anchored = TRUE
 	alpha = 30 //initially quite hidden when not "recharging"
-	var/flare_message = span_warning("the trap flares brightly!")
+	var/flare_message = span_warning("陷阱闪起了亮光！")
 	var/last_trigger = 0
 	var/time_between_triggers = 1 MINUTES
 	var/charges = INFINITY
@@ -20,7 +20,7 @@
 
 /obj/structure/trap/Initialize(mapload)
 	. = ..()
-	flare_message = span_warning("[src] flares brightly!")
+	flare_message = span_warning("[src] 闪起了亮光！")
 	spark_system = new(src, 4, TRUE)
 
 	var/static/list/loc_connections = list(
@@ -45,7 +45,7 @@
 	if(user.mind && (user.mind in immune_minds))
 		return
 	if(get_dist(user, src) <= 1)
-		. += span_notice("You reveal [src]!")
+		. += span_notice("你发现了[src]！")
 		flare()
 
 /obj/structure/trap/proc/flare()
@@ -87,8 +87,8 @@
 	return
 
 /obj/structure/trap/stun
-	name = "shock trap"
-	desc = "A trap that will shock and render you immobile. You'd better avoid it."
+	name = "电击陷阱"
+	desc = "一个会电击你并让你动弹不得的陷阱。你最好躲开它。"
 	icon_state = "trap-shock"
 	var/stun_time = 10 SECONDS
 
@@ -97,8 +97,8 @@
 	victim.Paralyze(stun_time)
 
 /obj/structure/trap/stun/hunter
-	name = "bounty trap"
-	desc = "A trap that only goes off when a fugitive steps on it, announcing the location and stunning the target. You'd better avoid it."
+	name = "赏金陷阱"
+	desc = "一个只有在逃犯踩上去时才会触发的陷阱，会通报位置并眩晕目标。你最好躲开它。"
 	icon = 'icons/obj/weapons/restraints.dmi'
 	icon_state = "bounty_trap_on"
 	stun_time = 20 SECONDS
@@ -110,7 +110,7 @@
 /obj/structure/trap/stun/hunter/Initialize(mapload)
 	. = ..()
 	time_between_triggers = 1 SECONDS
-	flare_message = span_warning("[src] snaps shut!")
+	flare_message = span_warning("[src] 啪地合上了！")
 
 /obj/structure/trap/stun/hunter/Destroy()
 	if(!QDELETED(stored_item))
@@ -138,8 +138,8 @@
 		caught = FALSE
 
 /obj/item/bountytrap
-	name = "bounty trap"
-	desc = "A trap that only goes off when a fugitive steps on it, announcing the location and stunning the target. It's currently inactive."
+	name = "赏金陷阱"
+	desc = "一个只有在逃犯踩上去时才会触发的陷阱，会通报位置并眩晕目标。它目前处于未激活状态。"
 	icon = 'icons/obj/weapons/restraints.dmi'
 	icon_state = "bounty_trap_off"
 	var/obj/structure/trap/stun/hunter/stored_trap
@@ -162,13 +162,13 @@
 /obj/item/bountytrap/proc/announce_fugitive()
 	spark_system.start()
 	playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
-	radio.talk_into(src, "Fugitive has triggered this trap in the [get_area_name(src)]!", RADIO_CHANNEL_COMMON)
+	radio.talk_into(src, "逃犯在[get_area_name(src)]触发了这个陷阱！", RADIO_CHANNEL_COMMON)
 
 /obj/item/bountytrap/attack_self(mob/living/user)
 	var/turf/target_turf = get_turf(src)
 	if(!user || !user.transferItemToLoc(src, target_turf))//visibly unequips
 		return
-	to_chat(user, span_notice("You set up [src]. Examine while close to disarm it."))
+	to_chat(user, span_notice("你架设好了[src]。靠近时检查它即可解除。"))
 	stored_trap.forceMove(target_turf)//moves trap to ground
 	forceMove(stored_trap)//moves item into trap
 
@@ -181,37 +181,37 @@
 	. = ..()
 
 /obj/structure/trap/fire
-	name = "flame trap"
-	desc = "A trap that will set you ablaze. You'd better avoid it."
+	name = "火焰陷阱"
+	desc = "一个会把你点燃的陷阱。你最好躲开它。"
 	icon_state = "trap-fire"
 
 /obj/structure/trap/fire/trap_effect(mob/living/victim)
-	to_chat(victim, span_danger("<B>Spontaneous combustion!</B>"))
+	to_chat(victim, span_danger("<B>自燃！</B>"))
 	victim.Paralyze(2 SECONDS)
 	new /obj/effect/hotspot(get_turf(src))
 
 /obj/structure/trap/chill
-	name = "frost trap"
-	desc = "A trap that will chill you to the bone. You'd better avoid it."
+	name = "霜冻陷阱"
+	desc = "一个会把你冻透的陷阱。你最好躲开它。"
 	icon_state = "trap-frost"
 
 /obj/structure/trap/chill/trap_effect(mob/living/victim)
 	if(HAS_TRAIT(victim, TRAIT_RESISTCOLD))
 		return
-	to_chat(victim, span_bolddanger("You're frozen solid!"))
+	to_chat(victim, span_bolddanger("你被冻得硬邦邦的！"))
 	victim.Paralyze(2 SECONDS)
 	victim.adjust_bodytemperature(-300)
 	victim.apply_status_effect(/datum/status_effect/freon)
 
 
 /obj/structure/trap/damage
-	name = "earth trap"
-	desc = "A trap that will summon a small earthquake, just for you. You'd better avoid it."
+	name = "大地陷阱"
+	desc = "一个会专门为你召唤一场小地震的陷阱。你最好躲开它。"
 	icon_state = "trap-earth"
 
 
 /obj/structure/trap/damage/trap_effect(mob/living/victim)
-	to_chat(victim, span_bolddanger("The ground quakes beneath your feet!"))
+	to_chat(victim, span_bolddanger("你脚下的地面在震动！"))
 	victim.Paralyze(10 SECONDS)
 	victim.adjust_brute_loss(35)
 	var/obj/structure/flora/rock/style_random/giant_rock = new(get_turf(src))
@@ -219,8 +219,8 @@
 
 
 /obj/structure/trap/ward
-	name = "divine ward"
-	desc = "A divine barrier, It looks like you could destroy it with enough effort, or wait for it to dissipate..."
+	name = "神圣结界"
+	desc = "一道神圣屏障。看起来只要用力就能摧毁它，或者等它自行消散……"
 	icon_state = "ward"
 	density = TRUE
 	time_between_triggers = 2 MINUTES
@@ -230,12 +230,12 @@
 	QDEL_IN(src, time_between_triggers)
 
 /obj/structure/trap/cult
-	name = "unholy trap"
-	desc = "A trap that rings with unholy energy. You think you hear... chittering?"
+	name = "不洁陷阱"
+	desc = "一个回荡着不洁能量的陷阱。你觉得你听见了……窸窣声？"
 	icon_state = "trap-cult"
 
 /obj/structure/trap/cult/trap_effect(mob/living/victim)
-	to_chat(victim, span_bolddanger("With a crack, the hostile constructs come out of hiding, stunning you!"))
+	to_chat(victim, span_bolddanger("随着一声爆响，敌意构装体从藏身处冲出，把你震晕了！"))
 	victim.electrocute_act(10, src, flags = SHOCK_NOGLOVES) // electrocute act does a message.
 	victim.Paralyze(2 SECONDS)
 	new /mob/living/basic/construct/proteon/hostile(loc)

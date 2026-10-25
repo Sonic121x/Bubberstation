@@ -1,7 +1,7 @@
 /obj/item/stack/light_w
-	name = "wired glass tile"
-	singular_name = "wired glass floor tile"
-	desc = "A glass tile, which is wired, somehow."
+	name = "接线玻璃地砖"
+	singular_name = "接线玻璃地板砖"
+	desc = "一块玻璃地砖，不知怎么地还接了电线。"
 	icon = 'icons/obj/tiles.dmi'
 	icon_state = "glass_wire"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -19,18 +19,18 @@
 
 /obj/item/stack/light_w/examine(mob/user)
 	. = ..()
-	. += span_warning("\The [src] looks unfinished, add <b>iron</b> to complete it.")
+	. += span_warning("[src]看起来尚未完工，添加<b>铁</b>即可完成它。")
 
 /obj/item/stack/light_w/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stack/sheet/iron))
 		return ..()
 	var/obj/item/stack/sheet/iron/steel = tool
 	if(!steel.use(1))
-		to_chat(user, span_warning("You need one iron sheet to finish the light tile!"))
+		to_chat(user, span_warning("你需要一张铁板才能完成这块发光地砖！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/stack/tile/light/finished_tiles = new(user.drop_location())
-	to_chat(user, span_notice("You make a light tile."))
+	to_chat(user, span_notice("你制作了一块发光地砖。"))
 	if(!QDELETED(finished_tiles))
 		finished_tiles.add_fingerprint(user)
 	use(1)

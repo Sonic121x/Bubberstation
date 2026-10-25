@@ -1,5 +1,5 @@
 /obj/item/stack/sheet
-	name = "sheet"
+	name = "板材"
 	lefthand_file = 'icons/mob/inhands/items/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/sheets_righthand.dmi'
 	icon_state = "sheet-metal_3"
@@ -10,8 +10,8 @@
 	max_amount = 50
 	throw_speed = 1
 	throw_range = 3
-	attack_verb_continuous = list("bashes", "batters", "bludgeons", "thrashes", "smashes")
-	attack_verb_simple = list("bash", "batter", "bludgeon", "thrash", "smash")
+	attack_verb_continuous = list("猛击", "捶打", "重砸", "抽打", "砸碎")
+	attack_verb_simple = list("猛击", "捶打", "重砸", "抽打", "砸碎")
 	novariants = FALSE
 	material_flags = MATERIAL_EFFECTS | MATERIAL_NO_DESCRIPTORS
 	table_type = /obj/structure/table/greyscale
@@ -43,7 +43,7 @@
 /obj/item/stack/sheet/examine(mob/user)
 	. = ..()
 	if (manufactured && gulag_value)
-		. += span_notice("It has been embossed with a manufacturer's mark of guaranteed quality.")
+		. += span_notice("上面压印着保证品质的制造商标记。")
 
 	var/datum/material/material = get_master_material()
 	if (!HAS_TRAIT(user, TRAIT_RESEARCH_SCANNER) || !material)
@@ -61,7 +61,7 @@
 			material_string += span_tooltip("[property]: [tooltip_hint]", descriptor)
 
 	if (length(material_string))
-		. += span_info("[capitalize(material.name)] is [english_list(material_string)].")
+		. += span_info("[capitalize(material.name)] 为 [english_list(material_string)]。")
 
 /obj/item/stack/sheet/add(_amount)
 	. = ..()
@@ -96,7 +96,7 @@
 	if(!shards.len)
 		return FALSE
 	if(!use(1))
-		to_chat(user, is_cyborg ? span_warning("There is not enough material in the synthesizer to produce a shard!") : span_warning("Somehow, there is not enough of [src] to shatter!"))
+		to_chat(user, is_cyborg ? span_warning("合成器中的材料不足以产出一块碎片！") : span_warning("不知怎么的，[src]的数量不足以碎裂！"))
 		if(!is_cyborg)
 			stack_trace("A stack of sheet material was attempted to be shattered into shards while having less than 1 sheets remaining.")
 		return FALSE
@@ -107,7 +107,7 @@
 		var/obj/item/new_shard = new shard_to_create(target)
 		new_shard.add_fingerprint(user)
 		shards_created += "[new_shard.name]"
-	user.visible_message(span_notice("[user] shatters the sheet of [name] on [target], leaving [english_list(shards_created)]."), \
-		span_notice("You shatter the sheet of [name] on [target], leaving [english_list(shards_created)]."))
+	user.visible_message(span_notice("[user]把一张[name]砸在[target]上，留下了[english_list(shards_created)]。"), \
+		span_notice("你把一张[name]砸在[target]上，留下了[english_list(shards_created)]。"))
 	return TRUE
 

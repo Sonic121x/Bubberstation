@@ -1,12 +1,12 @@
 /// Become the official Captain of the station
 /datum/grand_finale/usurp
-	name = "Usurpation"
-	desc = "The ultimate use of your gathered power! Rewrite time such that you have been Captain of this station the whole time."
+	name = "篡位"
+	desc = "你聚集力量的终极运用！改写时间，让你自始至终都是这座空间站的舰长。"
 	icon = 'icons/obj/card.dmi'
 	icon_state = "card_gold"
 
 /datum/grand_finale/usurp/trigger(mob/living/carbon/human/invoker)
-	message_admins("[key_name(invoker)] has replaced the Captain")
+	message_admins("[key_name(invoker)] 取代了舰长")
 	var/list/former_captains = list()
 	var/list/other_crew = list()
 	SEND_SOUND(world, sound('sound/effects/magic/timeparadox2.ogg'))
@@ -17,13 +17,13 @@
 		crewmate.Unconscious(3 SECONDS) // Everyone falls unconscious but not everyone gets told about a new captain
 		if (crewmate == invoker || IS_HUMAN_INVADER(crewmate))
 			continue
-		to_chat(crewmate, span_notice("The world spins and dissolves. Your past flashes before your eyes, backwards.\n\
-			Life strolls back into the ocean and shrinks into nothingness, planets explode into storms of solar dust, \
-			the stars rush back to greet each other at the beginning of things and then... you snap back to the present. \n\
-			Everything is just as it was and always has been. \n\n\
-			A stray thought sticks in the forefront of your mind. \n\
-			[span_hypnophrase("I'm so glad that [invoker.real_name] is our legally appointed Captain!")] \n\
-			Is... that right?"))
+		to_chat(crewmate, span_notice("世界旋转、溶解。你的过往在眼前倒放着闪过。\n\
+			生命退回海洋，缩成虚无；行星炸开成太阳尘埃的风暴，\
+			群星在万物之初奔回彼此相拥，然后……你猛然回到当下。 \n\
+			一切一如往常，也一直如此。 \n\n\
+			一个奇怪的念头停在你脑海的最前端。 \n\
+			[span_hypnophrase("我真高兴，[invoker.real_name] 是我们依法任命的舰长！")] \n\
+			是……这样吗？"))
 		if (is_captain_job(crewmate.mind.assigned_role))
 			former_captains += crewmate
 			demote_to_assistant(crewmate)
@@ -33,7 +33,7 @@
 
 	dress_candidate(invoker)
 	GLOB.manifest.modify(invoker.real_name, JOB_CAPTAIN, JOB_CAPTAIN)
-	minor_announce("Captain [invoker.real_name] on deck!")
+	minor_announce("舰长 [invoker.real_name] 到任！")
 
 	// Enlist some crew to try and restore the natural order
 	for (var/mob/living/carbon/human/former_captain as anything in former_captains)
@@ -95,7 +95,7 @@
 
 /// An outfit which replaces parts of a wizard's clothes with captain's clothes but keeps the robes
 /datum/outfit/job/wizard_captain
-	name = "Captain (Wizard Transformation)"
+	name = "舰长（巫师变身）"
 	jobtype = /datum/job/captain
 	id = /obj/item/card/id/advanced/gold
 	id_trim = /datum/id_trim/job/captain

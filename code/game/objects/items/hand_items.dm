@@ -15,11 +15,11 @@
 	SEND_SIGNAL(user, COMSIG_LIVING_HAND_ITEM_ATTACK, target_mob)
 
 /obj/item/hand_item/circlegame
-	name = "circled hand"
-	desc = "If somebody looks at this while it's below your waist, you get to bop them."
+	name = "圈指手"
+	desc = "如果有人在你把它放在腰下时看了它一眼，你就可以敲他一下。"
 	icon_state = "madeyoulook"
-	attack_verb_continuous = list("bops")
-	attack_verb_simple = list("bop")
+	attack_verb_continuous = list("敲")
+	attack_verb_simple = list("敲")
 
 /obj/item/hand_item/circlegame/Initialize(mapload)
 	. = ..()
@@ -53,10 +53,10 @@
 		return
 
 	if(owner == sucker) // big mood
-		to_chat(owner, span_danger("Wait a second... you just looked at your own [src.name]!"))
+		to_chat(owner, span_danger("等等……你刚才看了你自己的[src.name]！"))
 		addtimer(CALLBACK(src, PROC_REF(selfGottem), owner), 1 SECONDS)
 	else
-		to_chat(sucker, span_danger("Wait a second... was that a-"))
+		to_chat(sucker, span_danger("等等……那是——"))
 		addtimer(CALLBACK(src, PROC_REF(GOTTEM), owner, sucker), 0.6 SECONDS)
 
 /// Stage 3A: We face our own failures
@@ -65,9 +65,9 @@
 		return
 
 	playsound(get_turf(owner), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
-	owner.visible_message(span_danger("[owner] shamefully bops [owner.p_them()]self with [owner.p_their()] [src.name]."), span_userdanger("You shamefully bop yourself with your [src.name]."), \
-		span_hear("You hear a dull thud!"))
-	log_combat(owner, owner, "bopped", src.name, "(self)")
+	owner.visible_message(span_danger("[owner]羞愧地用自己的[src.name]敲了自己一下。"), span_userdanger("你羞愧地用自己的[src.name]敲了自己一下。"), \
+		span_hear("你听到一声沉闷的撞击声！"))
+	log_combat(owner, owner, "敲了", src.name, "（自己）")
 	owner.do_attack_animation(owner)
 	owner.apply_damage(100, STAMINA)
 	owner.Knockdown(10)
@@ -79,15 +79,15 @@
 		return
 
 	if(QDELETED(src) || QDELETED(owner))
-		to_chat(sucker, span_warning("Nevermind... must've been your imagination..."))
+		to_chat(sucker, span_warning("算了……一定是你的错觉……"))
 		return
 
 	if(!in_range(owner, sucker) || !(owner.mobility_flags & MOBILITY_USE))
-		to_chat(sucker, span_notice("Phew... you moved away before [owner] noticed you saw [owner.p_their()] [src.name]..."))
+		to_chat(sucker, span_notice("呼……你及时挪开了，[owner]没发现你看到了那个[src.name]……"))
 		return
 
-	to_chat(owner, span_warning("[sucker] looks down at your [src.name] before trying to avert [sucker.p_their()] eyes, but it's too late!"))
-	to_chat(sucker, span_danger("<b>[owner] sees the fear in your eyes as you try to look away from [owner.p_their()] [src.name]!</b>"))
+	to_chat(owner, span_warning("[sucker]低头看了一眼你的[src.name]，刚想移开视线，但已经太迟了！"))
+	to_chat(sucker, span_danger("<b>当你试图把视线从[owner]的[src.name]上移开时，[owner]从你眼中看到了恐惧！</b>"))
 
 	owner.face_atom(sucker)
 	if(owner.client)
@@ -97,35 +97,35 @@
 	owner.do_attack_animation(sucker)
 
 	if(HAS_TRAIT(owner, TRAIT_HULK))
-		owner.visible_message(span_danger("[owner] bops [sucker] with [owner.p_their()] [src.name] much harder than intended, sending [sucker.p_them()] flying!"), \
-			span_danger("You bop [sucker] with your [src.name] much harder than intended, sending [sucker.p_them()] flying!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), ignored_mobs=list(sucker))
-		to_chat(sucker, span_userdanger("[owner] bops you incredibly hard with [owner.p_their()] [src.name], sending you flying!"))
+		owner.visible_message(span_danger("[owner]用自己的[src.name]敲了[sucker]一下，力道远比自己预想的要大，直接把对方打飞了出去！"), \
+			span_danger("你用自己的[src.name]敲了[sucker]一下，力道远比自己预想的要大，直接把对方打飞了出去！"), span_hear("你听到一声令人不适的血肉相击声！"), ignored_mobs=list(sucker))
+		to_chat(sucker, span_userdanger("[owner]用自己的[src.name]狠狠地敲了你一下，把你打飞了出去！"))
 		sucker.apply_damage(50, STAMINA)
 		sucker.Knockdown(50)
-		log_combat(owner, sucker, "bopped", src.name, "(setup- Hulk)")
+		log_combat(owner, sucker, "敲了", src.name, "（圈套 - 绿巨人）")
 		var/atom/throw_target = get_edge_target_turf(sucker, owner.dir)
 		sucker.throw_at(throw_target, 6, 3, owner)
 	else
-		owner.visible_message(span_danger("[owner] bops [sucker] with [owner.p_their()] [src.name]!"), span_danger("You bop [sucker] with your [src.name]!"), \
-			span_hear("You hear a dull thud!"), ignored_mobs=list(sucker))
+		owner.visible_message(span_danger("[owner]用自己的[src.name]敲了[sucker]一下！"), span_danger("你用自己的[src.name]敲了[sucker]一下！"), \
+			span_hear("你听到一声沉闷的撞击声！"), ignored_mobs=list(sucker))
 		sucker.apply_damage(15, STAMINA)
-		log_combat(owner, sucker, "bopped", src.name, "(setup)")
-		to_chat(sucker, span_userdanger("[owner] bops you with [owner.p_their()] [src.name]!"))
+		log_combat(owner, sucker, "敲了", src.name, "（圈套）")
+		to_chat(sucker, span_userdanger("[owner]用自己的[src.name]敲了你一下！"))
 	qdel(src)
 
 
 /obj/item/hand_item/noogie
-	name = "noogie"
-	desc = "Get someone in an aggressive grab then use this on them to ruin their day."
+	name = "搓头"
+	desc = "先用主动抓取抓住别人，然后对他使用这个，就能毁掉他的一天。"
 	inhand_icon_state = "nothing"
 
 /obj/item/hand_item/noogie/attack(mob/living/carbon/target, mob/living/carbon/human/user)
 	if(!istype(target))
-		to_chat(user, span_warning("You don't think you can give this a noogie!"))
+		to_chat(user, span_warning("你觉得你没法用这个给人搓头！"))
 		return
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You can't bring yourself to noogie [target]! You don't want to risk harming anyone..."))
+		to_chat(user, span_warning("你狠不下心去搓[target]的头！你不想冒伤害别人的风险……"))
 		return
 
 	if(!(target?.get_bodypart(BODY_ZONE_HEAD)) || user.pulling != target || user.grab_state < GRAB_AGGRESSIVE || user.get_stamina_loss() > 80)
@@ -133,33 +133,33 @@
 
 	var/obj/item/bodypart/head/the_head = target.get_bodypart(BODY_ZONE_HEAD)
 	if(!(the_head.biological_state & (BIO_FLESH|BIO_CHITIN)))
-		to_chat(user, span_warning("You can't noogie [target], [target.p_they()] [target.p_have()] no skin on [target.p_their()] head!"))
+		to_chat(user, span_warning("你没法搓[target]的头，对方头上一点皮肤都没有！"))
 		return
 
 	// [user] gives [target] a [prefix_desc] noogie[affix_desc]!
 	var/brutal_noogie = FALSE // was it an extra hard noogie?
-	var/prefix_desc = "rough"
+	var/prefix_desc = "粗鲁的"
 	var/affix_desc = ""
 	var/affix_desc_target = ""
 
 	if(HAS_TRAIT(target, TRAIT_ANTENNAE))
-		prefix_desc = "violent"
-		affix_desc = "on [target.p_their()] sensitive antennae"
-		affix_desc_target = "on your highly sensitive antennae"
+		prefix_desc = "粗暴的"
+		affix_desc = "，还专门冲着对方敏感的触角"
+		affix_desc_target = "，还专门冲着你极其敏感的触角"
 		brutal_noogie = TRUE
 	if(HAS_TRAIT(user, TRAIT_HULK))
-		prefix_desc = "sickeningly brutal"
+		prefix_desc = "骇人残暴的"
 		brutal_noogie = TRUE
 
-	var/message_others = "[prefix_desc] noogie[affix_desc]"
-	var/message_target = "[prefix_desc] noogie[affix_desc_target]"
+	var/message_others = "[prefix_desc]搓头[affix_desc]"
+	var/message_target = "[prefix_desc]搓头[affix_desc_target]"
 
-	user.visible_message(span_danger("[user] begins giving [target] a [message_others]!"), span_warning("You start giving [target] a [message_others]!"), vision_distance=COMBAT_MESSAGE_RANGE, ignored_mobs=target)
-	to_chat(target, span_userdanger("[user] starts giving you a [message_target]!"))
+	user.visible_message(span_danger("[user]开始给[target]来一记[message_others]！"), span_warning("你开始给[target]来一记[message_others]！"), vision_distance=COMBAT_MESSAGE_RANGE, ignored_mobs=target)
+	to_chat(target, span_userdanger("[user]开始给你来一记[message_target]！"))
 
 	if(!do_after(user, 1.5 SECONDS, target))
-		to_chat(user, span_warning("You fail to give [target] a noogie!"))
-		to_chat(target, span_danger("[user] fails to give you a noogie!"))
+		to_chat(user, span_warning("你没能搓成[target]的头！"))
+		to_chat(target, span_danger("[user]没能搓成你的头！"))
 		return
 
 	if(brutal_noogie)
@@ -175,8 +175,8 @@
 		return FALSE
 
 	if(user.get_stamina_loss() > 80)
-		to_chat(user, span_warning("You're too tired to continue giving [target] a noogie!"))
-		to_chat(target, span_danger("[user] is too tired to continue giving you a noogie!"))
+		to_chat(user, span_warning("你太累了，没力气继续搓[target]的头了！"))
+		to_chat(target, span_danger("[user]太累了，没力气继续搓你的头了！"))
 		return
 
 	var/damage = rand(1, 5)
@@ -188,18 +188,18 @@
 	if(damage >= 5)
 		target.emote("scream")
 
-	log_combat(user, target, "given a noogie to", addition = "([damage] brute before armor)")
+	log_combat(user, target, "搓头", addition = "（护甲前 [damage] 点钝击伤害）")
 	target.apply_damage(damage, BRUTE, BODY_ZONE_HEAD)
 	user.adjust_stamina_loss(iteration + 5)
 	playsound(get_turf(user), SFX_RUSTLE, 50)
 
 	if(prob(33))
-		user.visible_message(span_danger("[user] continues noogie'ing [target]!"), span_warning("You continue giving [target] a noogie!"), vision_distance=COMBAT_MESSAGE_RANGE, ignored_mobs=target)
-		to_chat(target, span_userdanger("[user] continues giving you a noogie!"))
+		user.visible_message(span_danger("[user]继续搓[target]的头！"), span_warning("你继续搓[target]的头！"), vision_distance=COMBAT_MESSAGE_RANGE, ignored_mobs=target)
+		to_chat(target, span_userdanger("[user]继续搓你的头！"))
 
 	if(!do_after(user, 1 SECONDS + (iteration * 2), target))
-		to_chat(user, span_warning("You fail to give [target] a noogie!"))
-		to_chat(target, span_danger("[user] fails to give you a noogie!"))
+		to_chat(user, span_warning("你没能搓成[target]的头！"))
+		to_chat(target, span_danger("[user]没能搓成你的头！"))
 		return
 
 	iteration++
@@ -207,11 +207,11 @@
 
 
 /obj/item/hand_item/slapper
-	name = "slapper"
-	desc = "This is how real men fight."
+	name = "巴掌"
+	desc = "这才是真男人的战斗方式。"
 	inhand_icon_state = "nothing"
-	attack_verb_continuous = list("slaps")
-	attack_verb_simple = list("slap")
+	attack_verb_continuous = list("扇")
+	attack_verb_simple = list("扇")
 	hitsound = 'sound/effects/snap.ogg'
 	/// How many smaller table smacks we can do before we're out
 	var/table_smacks_left = 3
@@ -234,12 +234,12 @@
 	var/datum/status_effect/offering/kiss_check = slapped.has_status_effect(/datum/status_effect/offering)
 	if(kiss_check && istype(kiss_check.offered_item, /obj/item/hand_item/kisser) && (user in kiss_check.possible_takers))
 		user.visible_message(
-			span_danger("[user] scoffs at [slapped]'s advance, winds up, and smacks [slapped.p_them()] hard to the ground!"),
-			span_notice("The nerve! You wind back your hand and smack [slapped] hard enough to knock [slapped.p_them()] over!"),
-			span_hear("You hear someone get the everloving shit smacked out of them!"),
+			span_danger("[user]对[slapped]的示好嗤之以鼻，抡起手臂，一巴掌把对方重重地扇倒在地！"),
+			span_notice("真是岂有此理！你抡起手，一巴掌把[slapped]扇得摔倒在地！"),
+			span_hear("你听到有人被一巴掌扇得七荤八素！"),
 			ignored_mobs = slapped,
 		)
-		to_chat(slapped, span_userdanger("You see [user] scoff and pull back [user.p_their()] arm, then suddenly you're on the ground with an ungodly ringing in your ears!"))
+		to_chat(slapped, span_userdanger("你看到[user]嗤笑一声，抡起手臂，然后你突然就躺在了地上，耳朵里嗡嗡作响，仿佛要炸开！"))
 		slap_volume = 120
 		SEND_SOUND(slapped, sound('sound/items/weapons/flash_ring.ogg'))
 		shake_camera(slapped, 2, 2)
@@ -249,17 +249,17 @@
 	else if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
 		if(user == slapped)
 			user.visible_message(
-				span_notice("[user] facepalms!"),
-				span_notice("You facepalm."),
-				span_hear("You hear a slap."),
+				span_notice("[user]捂住了脸！"),
+				span_notice("你捂住了脸。"),
+				span_hear("你听到一声巴掌响。"),
 			)
 
 		else
 			if(IS_UNCONSCIOUS(slapped))
 				user.visible_message(
-					span_notice("[user] slaps [slapped] in the face, trying to wake [slapped.p_them()] up!"),
-					span_notice("You slap [slapped] in the face, trying to wake [slapped.p_them()] up!"),
-					span_hear("You hear a slap."),
+					span_notice("[user]扇了[slapped]一巴掌，想唤醒对方！"),
+					span_notice("你扇了[slapped]一巴掌，想唤醒对方！"),
+					span_hear("你听到一声巴掌响。"),
 				)
 
 				// Worse than just help intenting people.
@@ -268,21 +268,21 @@
 
 			else
 				user.visible_message(
-					span_danger("[user] slaps [slapped] in the face!"),
-					span_notice("You slap [slapped] in the face!"),
-					span_hear("You hear a slap."),
+					span_danger("[user]扇了[slapped]一耳光！"),
+					span_notice("你扇了[slapped]一耳光！"),
+					span_hear("你听到一声巴掌响。"),
 				)
 	else if(user.zone_selected == BODY_ZONE_L_ARM || user.zone_selected == BODY_ZONE_R_ARM)
 		user.visible_message(
-			span_danger("[user] gives [slapped] a slap on the wrist!"),
-			span_notice("You give [slapped] a slap on the wrist!"),
-			span_hear("You hear a slap."),
+			span_danger("[user]打了[slapped]的手腕一下！"),
+			span_notice("你打了[slapped]的手腕一下！"),
+			span_hear("你听到一声巴掌响。"),
 		)
 	else
 		user.visible_message(
-			span_danger("[user] slaps [slapped]!"),
-			span_notice("You slap [slapped]!"),
-			span_hear("You hear a slap."),
+			span_danger("[user]扇了[slapped]一下！"),
+			span_notice("你扇了[slapped]一下！"),
+			span_hear("你听到一声巴掌响。"),
 		)
 	playsound(slapped, 'sound/items/weapons/slap.ogg', slap_volume, TRUE, -1)
 	return
@@ -305,7 +305,7 @@
 /obj/item/hand_item/slapper/proc/slap_table(obj/structure/table/table, mob/living/user)
 	user.do_attack_animation(table)
 	playsound(get_turf(table), 'sound/effects/tableslam.ogg', 40, TRUE)
-	user.visible_message(span_notice("[user] slaps [user.p_their()] hand on [table]."), span_notice("You slap your hand on [table]."), vision_distance=COMBAT_MESSAGE_RANGE)
+	user.visible_message(span_notice("[user]把手拍在[table]上。"), span_notice("你把手拍在[table]上。"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 	table_smacks_left--
 	if(table_smacks_left <= 0)
@@ -316,12 +316,12 @@
 				var/extra_wound = 0
 				if(HAS_TRAIT(user, TRAIT_HULK))
 					extra_wound = 20
-				user.visible_message(span_danger("[user.name] slams their hand through \the [table]!"),
-					span_userdanger("You smash your hand through \the [table]!"), span_hear("You hear a loud crash of broken glass!"), COMBAT_MESSAGE_RANGE, user)
+				user.visible_message(span_danger("[user.name]一拳把手砸穿了\the [table]！"),
+					span_userdanger("你一拳把手砸穿了\the [table]！"), span_hear("你听到一声响亮的玻璃碎裂声！"), COMBAT_MESSAGE_RANGE, user)
 				active_arm?.receive_damage(brute = 10, wound_bonus = extra_wound)
 				user.apply_damage(30, STAMINA)
 				table.deconstruct(FALSE)
-				log_combat(user, user, "hand slammed", null, "through [table]")
+				log_combat(user, user, "手砸", null, "砸穿了 [table]")
 		//BUBBER ADDITION END
 		qdel(src)
 
@@ -340,7 +340,7 @@
 	SEND_SIGNAL(table, COMSIG_TABLE_SLAMMED, user)
 
 	playsound(get_turf(table), 'sound/effects/tableslam.ogg', 110, TRUE)
-	user.visible_message("<b>[span_danger("[user] slams [user.p_their()] fist down on [table]!")]</b>", "<b>[span_danger("You slam your fist down on [table]!")]</b>")
+	user.visible_message("<b>[span_danger("[user]一拳砸在[table]上！")]</b>", "<b>[span_danger("你一拳砸在[table]上！")]</b>")
 	qdel(src)
 
 // Successful takes will qdel our hand after
@@ -353,8 +353,8 @@
 
 
 /obj/item/hand_item/hand
-	name = "hand"
-	desc = "Sometimes, you just want to act gentlemanly."
+	name = "手"
+	desc = "有时候，你就是想表现得绅士一点。"
 	inhand_icon_state = "nothing"
 
 /obj/item/hand_item/hand/pre_attack(mob/living/carbon/help_target, mob/living/carbon/helper, list/modifiers, list/attack_modifiers)
@@ -362,7 +362,7 @@
 		return ..()
 
 	if(helper.resting)
-		to_chat(helper, span_warning("You can't act gentlemanly when you're lying down!"))
+		to_chat(helper, span_warning("你躺着的时候可没法表现得绅士！"))
 		return TRUE
 
 
@@ -371,7 +371,7 @@
 		return ..()
 
 	if(helper.resting)
-		to_chat(helper, span_warning("You can't act gentlemanly when you're lying down!"))
+		to_chat(helper, span_warning("你躺着的时候可没法表现得绅士！"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	return SECONDARY_ATTACK_CALL_NORMAL
@@ -392,21 +392,21 @@
 		return
 
 	if(offerer.body_position == LYING_DOWN)
-		to_chat(offerer, span_warning("You can't act gentlemanly when you're lying down!"))
+		to_chat(offerer, span_warning("你躺着的时候可没法表现得绅士！"))
 		return
 
 	if(!offered)
 		offered = locate(/mob/living/carbon) in orange(1, offerer)
 
 	if(offered && istype(offered) && offered.body_position == LYING_DOWN)
-		offerer.visible_message(span_notice("[offerer] offers [offerer.p_their()] hand to [offered], looking to help them up!"),
-			span_notice("You offer [offered] your hand, to try to help them up!"), null, 2)
+		offerer.visible_message(span_notice("[offerer]向[offered]伸出手，想扶他起来！"),
+			span_notice("你向[offered]伸出手，想扶他起来！"), null, 2)
 
 		offerer.apply_status_effect(/datum/status_effect/offering/no_item_received/needs_resting, src, /atom/movable/screen/alert/give/hand/helping, offered)
 		return
 
-	offerer.visible_message(span_notice("[offerer] extends out [offerer.p_their()] hand."),
-		span_notice("You extend out your hand."), null, 2)
+	offerer.visible_message(span_notice("[offerer]伸出了手。"),
+		span_notice("你伸出了手。"), null, 2)
 
 	offerer.apply_status_effect(/datum/status_effect/offering/no_item_received, src, /atom/movable/screen/alert/give/hand)
 	return
@@ -425,8 +425,8 @@
 		if(taker.body_position == LYING_DOWN)
 			return // That didn't help them. Awkwaaaaard.
 
-		offerer.visible_message(span_notice("[offerer] helps [taker] up!"), span_nicegreen("You help [taker] up!"), span_hear("You hear someone helping someone else up!"), ignored_mobs = taker)
-		to_chat(taker, span_nicegreen("You take [offerer]'s hand, letting [offerer.p_them()] help your up! How nice of them!"))
+		offerer.visible_message(span_notice("[offerer]把[taker]扶了起来！"), span_nicegreen("你把[taker]扶了起来！"), span_hear("你听到有人把另一个人扶了起来！"), ignored_mobs = taker)
+		to_chat(taker, span_nicegreen("你握住[offerer]的手，让对方把你扶了起来！真是好心人！"))
 
 		offerer.add_mob_memory(/datum/memory/helped_up, protagonist = offerer, deuteragonist = taker)
 		taker.add_mob_memory(/datum/memory/helped_up, protagonist = offerer, deuteragonist = taker)
@@ -450,18 +450,18 @@
 	if(did_we_pull == FALSE)
 		return // That didn't work for one reason or the other. No need to display anything.
 
-	to_chat(offerer, span_notice("[taker] takes your hand, allowing you to pull [taker.p_them()] along."))
-	to_chat(taker, span_notice("You take [offerer]'s hand, which allows [offerer.p_them()] to pull you along. How polite!"))
+	to_chat(offerer, span_notice("[taker]握住你的手，让你可以拉着对方一起走。"))
+	to_chat(taker, span_notice("你握住[offerer]的手，这样对方就能拉着你走了。真是有礼貌！"))
 
 	qdel(src)
 
 
 /obj/item/hand_item/stealer
-	name = "steal"
-	desc = "Your filthy little fingers are ready to commit crimes."
+	name = "偷"
+	desc = "你那肮脏的小手指已经准备好犯罪了。"
 	inhand_icon_state = "nothing"
-	attack_verb_continuous = list("steals")
-	attack_verb_simple = list("steal")
+	attack_verb_continuous = list("偷走")
+	attack_verb_simple = list("偷走")
 
 /obj/item/hand_item/stealer/attack(mob/living/target_mob, mob/living/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -469,28 +469,28 @@
 		return
 	var/mob/living/carbon/human/target_human = target_mob
 	if(target_human == user)
-		to_chat(user, span_notice("Why would you try stealing your own shoes?"))
+		to_chat(user, span_notice("你为什么要偷自己的鞋？"))
 		return
 	if (!target_human.shoes)
 		return
 	if (user.body_position != LYING_DOWN)
 		return
 	var/obj/item/item_to_strip = target_human.shoes
-	user.visible_message(span_warning("[user] starts stealing [target_human]'s [item_to_strip.name]!"), \
-		span_danger("You start stealing [target_human]'s [item_to_strip.name]..."))
-	to_chat(target_human, span_userdanger("[user] starts stealing your [item_to_strip.name]!"))
+	user.visible_message(span_warning("[user]开始偷[target_human]的[item_to_strip.name]！"), \
+		span_danger("你开始偷[target_human]的[item_to_strip.name]……"))
+	to_chat(target_human, span_userdanger("[user]开始偷你的[item_to_strip.name]！"))
 	if (!do_after(user, item_to_strip.strip_delay, target_human))
 		return
 	if(!target_human.dropItemToGround(item_to_strip))
 		return
 	user.put_in_hands(item_to_strip)
-	user.visible_message(span_warning("[user] stole [target_human]'s [item_to_strip.name]!"), \
-		span_notice("You stole [target_human]'s [item_to_strip.name]!"))
-	to_chat(target_human, span_userdanger("[user] stole your [item_to_strip.name]!"))
+	user.visible_message(span_warning("[user]偷走了[target_human]的[item_to_strip.name]！"), \
+		span_notice("你偷走了[target_human]的[item_to_strip.name]！"))
+	to_chat(target_human, span_userdanger("[user]偷走了你的[item_to_strip.name]！"))
 
 /obj/item/hand_item/kisser
-	name = "kiss"
-	desc = "I want you all to know, everyone and anyone, to seal it with a kiss."
+	name = "吻"
+	desc = "我希望所有人都知道，每一个人、任何人，都要用一个吻来盖章。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "heart"
 	inhand_icon_state = "nothing"
@@ -504,7 +504,7 @@
 
 /obj/item/hand_item/kisser/ranged_interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	var/obj/projectile/blown_kiss = new kiss_type(get_turf(user))
-	user.visible_message("<b>[user]</b> blows \a [blown_kiss] at [target]!", span_notice("You blow \a [blown_kiss] at [target]!"))
+	user.visible_message("<b>[user]</b>向[target]吹了一个[blown_kiss]！", span_notice("你向[target]吹了一个[blown_kiss]！"))
 
 	//Shooting Code:
 	blown_kiss.original = target
@@ -521,8 +521,8 @@
 		return TRUE
 
 	cheek_kiss = (offerer.zone_selected != BODY_ZONE_PRECISE_MOUTH)
-	offerer.visible_message(span_notice("[offerer] leans in slightly, offering a kiss[cheek_kiss ? " on the cheek" : ""]!"),
-		span_notice("You lean in slightly, indicating you'd like to offer a kiss[cheek_kiss ? " on the cheek" : ""]!"), null, 2)
+	offerer.visible_message(span_notice("[offerer]微微凑近，献上一个吻[cheek_kiss ? "，落在脸颊上" : ""]！"),
+		span_notice("你微微凑近，表示想献上一个吻[cheek_kiss ? "，落在脸颊上" : ""]！"), null, 2)
 	offerer.apply_status_effect(/datum/status_effect/offering/no_item_received, src)
 	return TRUE
 
@@ -532,8 +532,8 @@
 		return
 
 	var/obj/projectile/blown_kiss = new kiss_type(get_turf(offerer))
-	offerer.visible_message("<b>[offerer]</b> gives [taker] \a [blown_kiss][cheek_kiss ? " on the cheek" : ""]!!", span_notice("You give [taker] \a [blown_kiss][cheek_kiss ? " on the cheek" : ""]!"), ignored_mobs = taker)
-	to_chat(taker, span_nicegreen("[offerer] gives you \a [blown_kiss][cheek_kiss ? " on the cheek" : ""]!"))
+	offerer.visible_message("<b>[offerer]</b>给了[taker]一个[blown_kiss][cheek_kiss ? "，落在脸颊上" : ""]！！", span_notice("你给了[taker]一个[blown_kiss][cheek_kiss ? "，落在脸颊上" : ""]！"), ignored_mobs = taker)
+	to_chat(taker, span_nicegreen("[offerer]给了你一个[blown_kiss][cheek_kiss ? "，落在脸颊上" : ""]！"))
 	offerer.face_atom(taker)
 	taker.face_atom(offerer)
 	offerer.do_item_attack_animation(taker, used_item = src, animation_type = ATTACK_ANIMATION_BLUNT)
@@ -549,37 +549,37 @@
 	return TRUE // so the core offering code knows to halt
 
 /obj/item/hand_item/kisser/death
-	name = "kiss of death"
-	desc = "If looks could kill, they'd be this."
+	name = "死亡之吻"
+	desc = "如果眼神能杀人，那大概就是这个样子。"
 	color = COLOR_BLACK
 	kiss_type = /obj/projectile/kiss/death
 
 /obj/item/hand_item/kisser/syndie
-	name = "syndie kiss"
-	desc = "oooooo you like syndicate ur a syndiekisser"
+	name = "辛迪加之吻"
+	desc = "哦哦哦哦你喜欢辛迪加，你就是个辛迪加亲亲怪"
 	color = COLOR_SYNDIE_RED
 	kiss_type = /obj/projectile/kiss/syndie
 
 /obj/item/hand_item/kisser/ink
-	name = "ink kiss"
-	desc = "Is that a blot of ink in your pocket or are you just happy to see me?"
+	name = "墨吻"
+	desc = "你口袋里那是一团墨迹，还是你只是见到我很高兴？"
 	color = COLOR_ALMOST_BLACK
 	kiss_type = /obj/projectile/kiss/ink
 
 /obj/item/hand_item/kisser/french
-	name = "french kiss"
-	desc = "You really should brush your teeth."
+	name = "法式深吻"
+	desc = "你真的该刷牙了。"
 	color = COLOR_GRAY
 	kiss_type = /obj/projectile/kiss/french
 
 /obj/item/hand_item/kisser/chef
-	name = "chef's kiss"
-	desc = "The secret ingridient is love. And opium, but mostly love."
+	name = "主厨之吻"
+	desc = "秘诀在于爱。还有鸦片，但主要还是爱。"
 	color = COLOR_LIGHT_PINK
 	kiss_type = /obj/projectile/kiss/chef
 
 /obj/projectile/kiss
-	name = "kiss"
+	name = "吻"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "heart"
 	hitsound = 'sound/effects/emotes/kiss.ogg'
@@ -597,7 +597,7 @@
 
 /obj/projectile/kiss/fire(angle, atom/direct_target)
 	if(firer && !silent_blown)
-		name = "[name] blown by [firer]"
+		name = "[firer]吹出的[name]"
 
 	return ..()
 
@@ -619,7 +619,7 @@
 /obj/projectile/kiss/proc/harmless_on_hit(mob/living/living_target)
 	playsound(get_turf(living_target), hitsound, 100, TRUE)
 	if(!suppressed)  // direct
-		living_target.visible_message(span_danger("[living_target] is hit by \a [src]."), span_userdanger("You're hit by \a [src]!"), vision_distance=COMBAT_MESSAGE_RANGE)
+		living_target.visible_message(span_danger("[living_target]被一个[src]击中了。"), span_userdanger("你被一个[src]击中了！"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 	living_target.add_mob_memory(/datum/memory/kissed, deuteragonist = firer)
 	living_target.add_mood_event("kiss", /datum/mood_event/kiss, firer, suppressed)
@@ -640,21 +640,21 @@
 	var/roll = rand(1, 3)
 	switch(roll)
 		if(1)
-			other_msg = "stumbles slightly, turning a bright red!"
-			self_msg = "You lose control of your limbs for a moment as your blood rushes to your face, turning it bright red!"
+			other_msg = "踉跄了一下，脸涨得通红！"
+			self_msg = "血液一下子涌上你的脸，你的脸涨得通红，一时间四肢都不听使唤了！"
 			living_target.adjust_confusion(rand(5 SECONDS, 10 SECONDS))
 		if(2)
-			other_msg = "stammers softly for a moment before choking on something!"
-			self_msg = "You feel your tongue disappear down your throat as you fight to remember how to make words!"
-			addtimer(CALLBACK(living_target, TYPE_PROC_REF(/atom/movable, say), pick("Uhhh...", "O-oh, uhm...", "I- uhhhhh??", "You too!!", "What?")), rand(0.5 SECONDS, 1.5 SECONDS))
+			other_msg = "小声结巴了一阵，然后被什么呛住了！"
+			self_msg = "你感觉舌头缩回了喉咙里，拼命想记起该怎么说话！"
+			addtimer(CALLBACK(living_target, TYPE_PROC_REF(/atom/movable, say), pick("呃……", "哦、哦，那个……", "我——呃呃呃？？", "你也是！！", "什么？")), rand(0.5 SECONDS, 1.5 SECONDS))
 			living_target.adjust_stutter(rand(10 SECONDS, 30 SECONDS))
 		if(3)
-			other_msg = "locks up with a stunned look on [living_target.p_their()] face, staring at [firer ? firer : "the ceiling"]!"
-			self_msg = "Your brain completely fails to process what just happened, leaving you rooted in place staring at [firer ? "[firer]" : "the ceiling"] for what feels like an eternity!"
+			other_msg = "整个人僵住了，脸上写满震惊，直勾勾地盯着[firer ? firer : "天花板"]！"
+			self_msg = "你的大脑完全没能处理刚才发生的事，你呆立在原地，盯着[firer ? "[firer]" : "天花板"]，仿佛过了漫长的一个世纪！"
 			living_target.face_atom(firer)
 			living_target.Stun(rand(3 SECONDS, 8 SECONDS))
 
-	living_target.visible_message("<b>[living_target]</b> [other_msg]", span_userdanger("Whoa! [self_msg]"))
+	living_target.visible_message("<b>[living_target]</b> [other_msg]", span_userdanger("哇！[self_msg]"))
 
 /obj/projectile/kiss/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
@@ -664,7 +664,7 @@
 		try_fluster(living_target)
 
 /obj/projectile/kiss/death
-	name = "kiss of death"
+	name = "死亡之吻"
 	damage = 35 // okay i kinda lied about love not being able to hurt you
 	wound_bonus = 0
 	sharpness = SHARP_POINTY
@@ -679,7 +679,7 @@
 	dont_go_breakin_my_heart.apply_organ_damage(999)
 
 /obj/projectile/kiss/ink
-	name = "ink kiss"
+	name = "墨吻"
 	color = COLOR_ALMOST_BLACK
 	damage = /obj/projectile/ink_spit::damage
 	damage_type = /obj/projectile/ink_spit::damage_type
@@ -698,7 +698,7 @@
 
 // Based on energy gun characteristics
 /obj/projectile/kiss/syndie
-	name = "syndie kiss"
+	name = "辛迪加之吻"
 	color = COLOR_SYNDIE_RED
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	damage_type = BURN
@@ -710,7 +710,7 @@
 	silent_blown = TRUE
 
 /obj/projectile/kiss/french
-	name = "french kiss (is that a hint of garlic?)"
+	name = "法式深吻（这是……一丝大蒜味？）"
 	color = "#f2e9d2" //Scientifically proven to be the colour of garlic
 
 /obj/projectile/kiss/french/harmless_on_hit(mob/living/living_target)
@@ -721,10 +721,10 @@
 	if(!living_target.has_reagent(/datum/reagent/consumable/garlic))
 		//Phwoar
 		living_target.reagents.add_reagent(/datum/reagent/consumable/garlic, 1)
-	living_target.visible_message("[living_target] has a funny look on [living_target.p_their()] face.", "Wow, that is a strong after taste of garlic!", vision_distance=COMBAT_MESSAGE_RANGE)
+	living_target.visible_message("[living_target]脸上露出古怪的表情。", "哇，好浓的大蒜回味！", vision_distance=COMBAT_MESSAGE_RANGE)
 
 /obj/projectile/kiss/chef
-	name = "chef's kiss"
+	name = "主厨之吻"
 
 // If our chef's kiss hits a food item, we will improve it with love.
 /obj/projectile/kiss/chef/on_hit(atom/target, blocked, pierce_hit)
@@ -739,17 +739,17 @@
 	// From here on, no message
 	suppressed = SUPPRESSED_VERY
 	if(!(kisser.mind && HAS_TRAIT_FROM(target, TRAIT_HANDMADE, REF(kisser.mind))))
-		to_chat(firer, span_warning("Wait a second, you didn't make this [target.name]. How can you claim it as your own?"))
+		to_chat(firer, span_warning("等等，这个[target.name]不是你做的。你怎么能说它是你的作品？"))
 		return
 	if(target.reagents.has_reagent(/datum/reagent/love))
-		to_chat(firer, span_warning("You've already blessed [target.name] with your heart and soul."))
+		to_chat(firer, span_warning("你已经用真心和灵魂为[target.name]做过祝福了。"))
 		return
 
 	var/amount_nutriment = target.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment, type_check = REAGENT_PARENT_TYPE)
 	if(amount_nutriment <= 0)
-		to_chat(firer, span_warning("There's not enough nutrition in [target.name] for it to be a proper meal."))
+		to_chat(firer, span_warning("[target.name]里的营养不够，算不上像样的一餐。"))
 		return
 
-	to_chat(firer, span_green("You deliver a chef's kiss over [target], declaring it perfect."))
-	target.visible_message(span_notice("[firer] delivers a chef's kiss over [target]."), ignored_mobs = firer)
+	to_chat(firer, span_green("你对[target]行了一个主厨之吻，宣布它完美无缺。"))
+	target.visible_message(span_notice("[firer]对[target]行了一个主厨之吻。"), ignored_mobs = firer)
 	target.reagents.add_reagent(/datum/reagent/love, clamp(amount_nutriment / 4, 1, 10)) // clamped to about half of the most dense food I think we have (super bite burger)

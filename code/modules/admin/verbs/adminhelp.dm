@@ -74,20 +74,20 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	switch(state)
 		if(AHELP_ACTIVE)
 			l2b = active_tickets
-			title = "Active Tickets"
+			title = "待处理工单"
 		if(AHELP_CLOSED)
 			l2b = closed_tickets
-			title = "Closed Tickets"
+			title = "已关闭工单"
 		if(AHELP_RESOLVED)
 			l2b = resolved_tickets
-			title = "Resolved Tickets"
+			title = "已解决工单"
 	if(!l2b)
 		return
 	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>[title]</title></head>")
-	dat += "<A href='byond://?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
+	dat += "<A href='byond://?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>刷新</A><br><br>"
 	for(var/I in l2b)
 		var/datum/admin_help/AH = I
-		dat += "[span_adminnotice("[span_adminhelp("Ticket #[AH.id]")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A>")]<br>"
+		dat += "[span_adminnotice("[span_adminhelp("工单 #[AH.id]")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A>")]<br>"
 
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
@@ -97,7 +97,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	SHOULD_NOT_SLEEP(TRUE)
 	var/list/L = list()
 	var/num_disconnected = 0
-	L[++L.len] = list("Active Tickets:", "[astatclick.update("[active_tickets.len]")]", null, REF(astatclick))
+	L[++L.len] = list("待处理工单：", "[astatclick.update("[active_tickets.len]")]", null, REF(astatclick))
 	astatclick.update("[active_tickets.len]")
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
@@ -107,13 +107,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		else
 			++num_disconnected
 	if(num_disconnected)
-		L[++L.len] = list("Disconnected:", "[astatclick.update("[num_disconnected]")]", null, REF(astatclick))
-	L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[closed_tickets.len]")]", null, REF(cstatclick))
-	L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[resolved_tickets.len]")]", null, REF(rstatclick))
+		L[++L.len] = list("已断线：", "[astatclick.update("[num_disconnected]")]", null, REF(astatclick))
+	L[++L.len] = list("已关闭工单：", "[cstatclick.update("[closed_tickets.len]")]", null, REF(cstatclick))
+	L[++L.len] = list("已解决工单：", "[rstatclick.update("[resolved_tickets.len]")]", null, REF(rstatclick))
 	//SKYRAT EDIT ADDITION
 	if(LAZYLEN(SSopposing_force.submitted_applications))
 		for(var/datum/opposing_force/opposing_force as anything in SSopposing_force.submitted_applications)
-			L[++L.len] = list("[opposing_force.handling_admin ? "H-[opposing_force.handling_admin]. " : ""]OPFOR:", "[opposing_force.stat_button.update(" [opposing_force.ckey] ")]", null, REF(opposing_force.stat_button))
+			L[++L.len] = list("[opposing_force.handling_admin ? "H-[opposing_force.handling_admin]. " : ""]敌对势力：", "[opposing_force.stat_button.update(" [opposing_force.ckey] ")]", null, REF(opposing_force.stat_button))
 	//SKYRAT EDIT END
 	return L
 
@@ -122,14 +122,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
 		C.current_ticket.initiator = C
-		C.current_ticket.AddInteraction("Client reconnected.")
+		C.current_ticket.AddInteraction("客户端已重新连接。")
 		SSblackbox.LogAhelp(C.current_ticket.id, "Reconnected", "Client reconnected", C.ckey)
 
 //Dissasociate ticket
 /datum/admin_help_tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
 		var/datum/admin_help/T = C.current_ticket
-		T.AddInteraction("Client disconnected.")
+		T.AddInteraction("客户端已断线。")
 		//Gotta async this cause clients only logout on destroy, and sleeping in destroy is disgusting
 		INVOKE_ASYNC(SSblackbox, TYPE_PROC_REF(/datum/controller/subsystem/blackbox, LogAhelp), T.id, "Disconnected", "Client disconnected", C.ckey)
 		T.initiator = null
@@ -154,8 +154,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /obj/effect/statclick/ticket_list/Click()
 	if (!usr.client?.holder)
-		message_admins("[key_name_admin(usr)] non-holder clicked on a ticket list statclick! ([src])")
-		usr.log_message("non-holder clicked on a ticket list statclick! ([src])", LOG_ADMIN)
+		message_admins("[key_name_admin(usr)] 非管理员用户点击了工单列表统计按钮！（[src]）")
+		usr.log_message("非管理员用户点击了工单列表统计按钮！（[src]）", LOG_ADMIN)
 		return
 
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
@@ -238,7 +238,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_ticket) //This is a bug
 		stack_trace("Multiple ahelp current_tickets")
-		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code")
+		initiator.current_ticket.AddInteraction("工单因代码错误而未能关闭")
 		initiator.current_ticket.Close()
 	initiator.current_ticket = src
 
@@ -250,8 +250,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	addtimer(CALLBACK(src, PROC_REF(add_to_ping_ss), 2 MINUTES)) //SKYRAT EDIT ADDITION - Ticket Ping | this is not responsible for the notification itself, but only for adding the ticket to the list of those to notify.
 	if(is_bwoink)
-		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)] PM'd [LinkedReplyName()]</font>")
-		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
+		AddInteraction("<font color='blue'>[key_name_admin(usr)] 向 [LinkedReplyName()] 发送了私信</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)] 向 [LinkedReplyName()] 发送了私信</font>")
+		message_admins("<font color='blue'>工单 [TicketHref("#[id]")] 已创建</font>")
 	else
 		MessageNoRecipient(msg_raw, urgent)
 		send_message_to_tgs(msg, urgent)
@@ -259,41 +259,41 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /datum/admin_help/proc/format_embed_discord(message)
 	var/datum/discord_embed/embed = new()
-	embed.title = "Ticket #[id]"
+	embed.title = "工单 #[id]"
 	embed.description = "<byond://[world.internet_address]:[world.port]>"
 	embed.author = key_name(initiator_ckey)
 	var/round_state
 	switch(SSticker.current_state)
 		if(GAME_STATE_STARTUP, GAME_STATE_PREGAME, GAME_STATE_SETTING_UP)
-			round_state = "Round has not started"
+			round_state = "回合尚未开始"
 		if(GAME_STATE_PLAYING)
-			round_state = "Round is ongoing."
+			round_state = "回合进行中。"
 			if(SSshuttle.emergency.getModeStr())
 				round_state += "\n[SSshuttle.emergency.getModeStr()]: [SSshuttle.emergency.getTimerStr()]"
 				if(SSticker.emergency_reason)
-					round_state += ", Shuttle call reason: [SSticker.emergency_reason]"
+					round_state += "，召唤穿梭机原因：[SSticker.emergency_reason]"
 		if(GAME_STATE_FINISHED)
-			round_state = "Round has ended"
+			round_state = "回合已结束"
 	var/list/admin_counts = get_admin_counts(R_BAN)
 	var/stealth_admins = jointext(admin_counts["stealth"], ", ")
 	var/afk_admins = jointext(admin_counts["afk"], ", ")
 	var/other_admins = jointext(admin_counts["noflags"], ", ")
 	var/admin_text = ""
-	var/player_count = "**Total**: [length(GLOB.clients)], **Living**: [length(GLOB.alive_player_list)], **Dead**: [length(GLOB.dead_player_list)], **Observers**: [length(GLOB.current_observers_list)]"
+	var/player_count = "**总计**：[length(GLOB.clients)]，**存活**：[length(GLOB.alive_player_list)]，**死亡**：[length(GLOB.dead_player_list)]，**观察者**：[length(GLOB.current_observers_list)]"
 	if(stealth_admins)
-		admin_text += "**Stealthed**: [stealth_admins]\n"
+		admin_text += "**隐身**：[stealth_admins]\n"
 	if(afk_admins)
-		admin_text += "**AFK**: [afk_admins]\n"
+		admin_text += "**AFK**：[afk_admins]\n"
 	if(other_admins)
-		admin_text += "**Lacks +BAN**: [other_admins]\n"
+		admin_text += "**缺少 +BAN 权限**：[other_admins]\n"
 	embed.fields = list(
 		"CKEY" = initiator_ckey,
-		"PLAYERS" = player_count,
-		"ROUND STATE" = round_state,
-		"ROUND ID" = GLOB.round_id,
-		"ROUND TIME" = round_timestamp(),
-		"MESSAGE" = message,
-		"ADMINS" = admin_text,
+		"玩家" = player_count,
+		"回合状态" = round_state,
+		"回合 ID" = GLOB.round_id,
+		"回合时间" = round_timestamp(),
+		"消息" = message,
+		"管理员" = admin_text,
 	)
 	if(CONFIG_GET(string/adminhelp_ahelp_link))
 		var/ahelp_link = replacetext(CONFIG_GET(string/adminhelp_ahelp_link), "$RID", GLOB.round_id)
@@ -306,32 +306,32 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(urgent)
 		var/extra_message = CONFIG_GET(string/urgent_ahelp_message)
-		to_chat(initiator, span_boldwarning("Notified admins to prioritize your ticket"))
+		to_chat(initiator, span_boldwarning("已通知管理员优先处理你的工单"))
 		var/datum/discord_embed/embed = format_embed_discord(message)
 		embed.content = extra_message
-		embed.footer = "This player requested an admin"
+		embed.footer = "该玩家请求了管理员"
 		send2adminchat_webhook(embed, urgent = TRUE)
 		webhook_sent = WEBHOOK_URGENT
 	//send it to TGS if nobody is on and tell us how many were on
-	var/admin_number_present = send2tgs_adminless_only(initiator_ckey, "Ticket #[id]: [message_to_send]")
+	var/admin_number_present = send2tgs_adminless_only(initiator_ckey, "工单 #[id]：[message_to_send]")
 	// BUBBER EDIT BEGIN
 	var/list/adm = get_admin_counts(R_BAN)
 	var/list/afkmins = adm["afk"]
 	var/list/stealthmins = adm["stealth"]
 	var/list/powerlessmins = adm["noflags"]
 	var/list/allmins = adm["total"]
-	send2adminchat("Ticket #[id]","[message_to_send] || Online Admins : \[[english_list(allmins)]\] : All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]!") // BUBBER EDIT ADDITION
+	send2adminchat("工单 #[id]","[message_to_send] || 在线管理员：\[[english_list(allmins)]\]：所有管理员均隐身\[[english_list(stealthmins)]\]、AFK\[[english_list(afkmins)]\]或缺少 +BAN\[[english_list(powerlessmins)]\]！") // BUBBER EDIT ADDITION
 	// BUBBER EDIT END
-	log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
+	log_admin_private("工单 #[id]：[key_name(initiator)]：[name] — 被 [admin_number_present] 名拥有 +BAN 权限的非 AFK 管理员收到。")
 	if(admin_number_present <= 0)
-		to_chat(initiator, span_notice("No active admins are online, your adminhelp was sent to admins who are available through IRC or Discord."), confidential = TRUE)
+		to_chat(initiator, span_notice("当前没有在线的活跃管理员，你的求助已发送给可通过 IRC 或 Discord 联系的管理员。"), confidential = TRUE)
 		heard_by_no_admins = TRUE
 		var/regular_webhook_url = CONFIG_GET(string/regular_adminhelp_webhook_url)
 		if(regular_webhook_url && (!urgent || regular_webhook_url != CONFIG_GET(string/urgent_adminhelp_webhook_url)))
 			var/extra_message = CONFIG_GET(string/ahelp_message)
 			var/datum/discord_embed/embed = format_embed_discord(message)
 			embed.content = extra_message
-			embed.footer = "This player sent an ahelp when no admins are available [urgent? "and also requested an admin": ""]"
+			embed.footer = "该玩家在没有管理员在线时发送了求助[urgent? "，并请求了管理员": ""]"
 			send2adminchat_webhook(embed, urgent = FALSE)
 			webhook_sent = WEBHOOK_NON_URGENT
 
@@ -375,7 +375,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		admins_involved |= usr.ckey
 		if(heard_by_no_admins)
 			heard_by_no_admins = FALSE
-			send2adminchat(initiator_ckey, "Ticket #[id]: Answered by [key_name(usr)]")
+			send2adminchat(initiator_ckey, "工单 #[id]：已由 [key_name(usr)] 回复")
 
 	ticket_interactions += "[server_timestamp()]: [formatted_message]"
 	if (!isnull(player_message))
@@ -391,20 +391,20 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
 	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
-	. += " (<A href='byond://?_src_=holder;[HrefToken()];showmessageckey=[initiator.ckey]'>NOTES</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken()];showmessageckey=[initiator.ckey]'>备注</A>)"
 	if(state == AHELP_ACTIVE)
 		if (CONFIG_GET(flag/popup_admin_pm))
-			. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];adminpopup=[REF(initiator)]'>POPUP</A>)"
+			. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];adminpopup=[REF(initiator)]'>弹窗</A>)"
 		. += ClosureLinks(ref_src)
 
 //private
 /datum/admin_help/proc/ClosureLinks(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	. = " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJT</A>)"
+	. = " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=reject'>驳回</A>)"
 	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
-	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
-	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RSLVE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=close'>关闭</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[ref_src];ahelp_action=resolve'>解决</A>)"
 
 //private
 /datum/admin_help/proc/LinkedReplyName(ref_src)
@@ -425,14 +425,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/ref_src = "[REF(src)]"
 	//Message to be sent to all admins
 	var/admin_msg = fieldset_block(
-		span_adminhelp("Ticket [TicketHref("#[id]", ref_src)]"),
+		span_adminhelp("工单 [TicketHref("#[id]", ref_src)]"),
 		"<b>[LinkedReplyName(ref_src)]</b>\n\n\
 		[span_linkify(keywords_lookup(msg))]\n\n\
 		<b class='smaller'>[FullMonty(ref_src)]</b>",
 		"boxed_message red_box")
 
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>", player_message = "<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
-	log_admin_private("Ticket #[id]: [key_name(initiator)]: [msg]")
+	log_admin_private("工单 #[id]：[key_name(initiator)]：[msg]")
 
 	//send this msg to all admins
 	for(var/client/X in GLOB.admins)
@@ -453,7 +453,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	to_chat(
 		initiator,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = span_notice("PM to-<b>Admins</b>: [span_linkify(message)]"),
+		html = span_notice("发给<b>管理员</b>的私信：[span_linkify(message)]"),
 		confidential = TRUE,
 	)
 
@@ -462,11 +462,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
 	if(state == AHELP_ACTIVE)
-		to_chat(usr, span_warning("This ticket is already open."), confidential = TRUE)
+		to_chat(usr, span_warning("该工单已经处于打开状态。"), confidential = TRUE)
 		return
 
 	if(GLOB.ahelp_tickets.CKey2ActiveTicket(initiator_ckey))
-		to_chat(usr, span_warning("This user already has an active ticket, cannot reopen this one."), confidential = TRUE)
+		to_chat(usr, span_warning("该用户已有待处理工单，无法重新打开此工单。"), confidential = TRUE)
 		return
 
 	statclick = new(null, src)
@@ -482,9 +482,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	closed_at = null
 	if(initiator)
 		initiator.current_ticket = src
-	send2adminchat("Ticket #[id]:", "Reopened!") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
-	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>", player_message = "Ticket reopened!")
-	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].")
+	send2adminchat("工单 #[id]：", "已重新打开！") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
+	AddInteraction("<font color='purple'>由 [key_name_admin(usr)] 重新打开</font>", player_message = "工单已重新打开！")
+	var/msg = span_adminhelp("工单 [TicketHref("#[id]")] 已由 [key_name_admin(usr)] 重新打开。")
 	message_admins(msg)
 	log_admin_private(msg)
 	SSblackbox.LogAhelp(id, "Reopened", "Reopened by [usr.key]", usr.ckey)
@@ -509,18 +509,18 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	//SKYRAT EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
-		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
+		var/response = tgui_alert(usr, "该工单已由 [handler] 处理中。你确定要继续吗？", "工单已分配", list("Yes", "No"))
 		if(!response || response == "No")
 			return
 	//SKYRAT EDIT ADDITION END
 	RemoveActive()
 	state = AHELP_CLOSED
 	GLOB.ahelp_tickets.ListInsert(src)
-	AddInteraction("<font color='red'>Closed by [key_name].</font>", player_message = "<font color='red'>Ticket closed!</font>")
-	send2adminchat("Ticket #[id]:", "Marked as closed by [key_name]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
+	AddInteraction("<font color='red'>由 [key_name] 关闭。</font>", player_message = "<font color='red'>工单已关闭！</font>")
+	send2adminchat("工单 #[id]：", "已被 [key_name] 标记为关闭") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 	if(!silent)
 		SSblackbox.record_feedback("tally", "ahelp_stats", 1, "closed")
-		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
+		var/msg = "工单 [TicketHref("#[id]")] 已由 [key_name] 关闭。"
 		message_admins(msg)
 		SSblackbox.LogAhelp(id, "Closed", "Closed by [usr.key]", null, usr.ckey)
 		log_admin_private(msg)
@@ -531,7 +531,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	//SKYRAT EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
-		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
+		var/response = tgui_alert(usr, "该工单已由 [handler] 处理中。你确定要继续吗？", "工单已分配", list("Yes", "No"))
 		if(!response || response == "No")
 			return
 	//SKYRAT EDIT ADDITION END
@@ -540,12 +540,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ListInsert(src)
 
 	addtimer(CALLBACK(initiator, TYPE_PROC_REF(/client, giveadminhelpverb)), 5 SECONDS)
-	send2adminchat("Ticket #[id]:", "Marked as resolved by [key_name]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
-	AddInteraction("<font color='green'>Resolved by [key_name].</font>", player_message = "<font color='green'>Ticket resolved!</font>")
-	to_chat(initiator, span_adminhelp("Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly."), confidential = TRUE)
+	send2adminchat("工单 #[id]：", "已被 [key_name] 标记为已解决") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
+	AddInteraction("<font color='green'>由 [key_name] 解决。</font>", player_message = "<font color='green'>工单已解决！</font>")
+	to_chat(initiator, span_adminhelp("你的工单已由管理员解决。求助动词将在稍后归还给你。"), confidential = TRUE)
 	if(!silent)
 		SSblackbox.record_feedback("tally", "ahelp_stats", 1, "resolved")
-		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name]"
+		var/msg = "工单 [TicketHref("#[id]")] 已由 [key_name] 解决"
 		message_admins(msg)
 		SSblackbox.LogAhelp(id, "Resolved", "Resolved by [usr.key]", null, usr.ckey)
 		log_admin_private(msg)
@@ -556,24 +556,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	//SKYRAT EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
-		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
+		var/response = tgui_alert(usr, "该工单已由 [handler] 处理中。你确定要继续吗？", "工单已分配", list("Yes", "No"))
 		if(!response || response == "No")
 			return
 	//SKYRAT EDIT ADDITION END
 	if(initiator)
 		initiator.giveadminhelpverb()
-		send2adminchat("[key_name]", "Rejected Adminhelp: [id]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
+		send2adminchat("[key_name]", "已驳回的求助：工单 [id]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
 
-		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>", confidential = TRUE)
-		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>", confidential = TRUE)
-		to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.", confidential = TRUE)
+		to_chat(initiator, "<font color='red' size='4'><b>- 管理员求助已被驳回！ -</b></font>", confidential = TRUE)
+		to_chat(initiator, "<font color='red'><b>你的管理员求助已被驳回。</b>求助动词已归还给你，你可以再次尝试。</font>", confidential = TRUE)
+		to_chat(initiator, "提交管理员求助时请保持冷静、表达清晰并描述具体，不要假定管理员已经了解相关事件，并明确写出你所举报者的名字。", confidential = TRUE)
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "rejected")
-	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name]"
+	var/msg = "工单 [TicketHref("#[id]")] 已由 [key_name] 驳回"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Rejected by [key_name].", player_message = "Ticket rejected!")
+	AddInteraction("由 [key_name] 驳回。", player_message = "工单已驳回！")
 	SSblackbox.LogAhelp(id, "Rejected", "Rejected by [usr.key]", null, usr.ckey)
 	Close(silent = TRUE)
 
@@ -583,53 +583,53 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	//SKYRAT EDIT ADDITION BEGIN - ADMIN
 	if(handler && handler != usr.ckey)
-		var/response = tgui_alert(usr, "This ticket is already being handled by [handler]. Do you want to continue?", "Ticket already assigned", list("Yes", "No"))
+		var/response = tgui_alert(usr, "该工单已由 [handler] 处理中。你确定要继续吗？", "工单已分配", list("Yes", "No"))
 		if(!response || response == "No")
 			return
 	//SKYRAT EDIT ADDITION END
-	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
-	msg += "<font color='red'>Your issue has been determined by an administrator to be an in character issue and does NOT require administrator intervention at this time. For further resolution you should pursue options that are in character.</font>"
+	var/msg = "<font color='red' size='4'><b>- 管理员求助已被标记为 IC 问题！ -</b></font><br>"
+	msg += "<font color='red'>管理员已判定你的问题属于角色内（IC）问题，目前不需要管理员介入。如需进一步解决，请通过角色内的方式处理。</font>"
 
 	if(initiator)
 		to_chat(initiator, msg, confidential = TRUE)
-	send2adminchat("Ticket #[id]:", "Marked as IC issue by [key_name]") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
+	send2adminchat("工单 #[id]：", "已被 [key_name] 标记为 IC 问题") // BUBBER EDIT - LOG ALL AHELPS TO DISCORD
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "IC")
-	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name]"
+	msg = "工单 [TicketHref("#[id]")] 已被 [key_name] 标记为 IC"
 	message_admins(msg)
 	log_admin_private(msg)
-	AddInteraction("Marked as IC issue by [key_name]", player_message = "Marked as IC issue!")
+	AddInteraction("由 [key_name] 标记为 IC 问题", player_message = "已标记为 IC 问题！")
 	SSblackbox.LogAhelp(id, "IC Issue", "Marked as IC issue by [usr.key]", null,  usr.ckey)
 	Resolve(silent = TRUE)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
-	var/list/dat = list("<html><head><meta name='color-scheme' content='light dark'><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Ticket #[id]</title></head>") // BUBBER EDIT ADDITION - Add meta color-scheme tag
+	var/list/dat = list("<html><head><meta name='color-scheme' content='light dark'><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>工单 #[id]</title></head>") // BUBBER EDIT ADDITION - Add meta color-scheme tag
 	var/ref_src = "[REF(src)]"
-	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
-	dat += "<b>State: [ticket_status()]</b>"
-	dat += "[FOURSPACES][TicketHref("Refresh", ref_src)][FOURSPACES][TicketHref("Re-Title", ref_src, "retitle")]"
+	dat += "<h4>管理员求助工单 #[id]：[LinkedReplyName(ref_src)]</h4>"
+	dat += "<b>状态：[ticket_status()]</b>"
+	dat += "[FOURSPACES][TicketHref("刷新", ref_src)][FOURSPACES][TicketHref("修改标题", ref_src, "retitle")]"
 	if(state != AHELP_ACTIVE)
-		dat += "[FOURSPACES][TicketHref("Reopen", ref_src, "reopen")]"
-	dat += "<br><br>Opened at: [round_timestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
+		dat += "[FOURSPACES][TicketHref("重新打开", ref_src, "reopen")]"
+	dat += "<br><br>打开于：[round_timestamp(wtime = opened_at)]（约 [DisplayTimeText(world.time - opened_at)] 前）"
 	if(closed_at)
-		dat += "<br>Closed at: [round_timestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
+		dat += "<br>关闭于：[round_timestamp(wtime = closed_at)]（约 [DisplayTimeText(world.time - closed_at)] 前）"
 	dat += "<br><br>"
 	if(initiator)
-		dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>"
+		dat += "<b>操作：</b> [FullMonty(ref_src)]<br>"
 	else
-		dat += "<b>DISCONNECTED</b>[FOURSPACES][ClosureLinks(ref_src)]<br>"
-	dat += "<br><b>Log:</b><br><br>"
+		dat += "<b>已断线</b>[FOURSPACES][ClosureLinks(ref_src)]<br>"
+	dat += "<br><b>日志：</b><br><br>"
 	for(var/I in ticket_interactions)
 		dat += "[I]<br>"
 
 	// Helper for opening directly to player ticket history
-	dat += "<br><br><b>Player Ticket History:</b>"
-	dat += "[FOURSPACES]<A href='byond://?_src_=holder;[HrefToken()];player_ticket_history=[initiator_ckey]'>Open</A>"
+	dat += "<br><br><b>玩家工单历史：</b>"
+	dat += "[FOURSPACES]<A href='byond://?_src_=holder;[HrefToken()];player_ticket_history=[initiator_ckey]'>打开</A>"
 
 	// Append any tickets also opened by this user if relevant
 	var/list/related_tickets = GLOB.ahelp_tickets.TicketsByCKey(initiator_ckey)
 	if (related_tickets.len > 1)
-		dat += "<br/><b>Other Tickets by User</b><br/>"
+		dat += "<br/><b>该用户的其他工单</b><br/>"
 		for (var/datum/admin_help/related_ticket in related_tickets)
 			if (related_ticket.id == id)
 				continue
@@ -644,21 +644,21 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/ticket_status()
 	switch(state)
 		if(AHELP_ACTIVE)
-			return "<font color='red'>OPEN</font>"
+			return "<font color='red'>待处理</font>"
 		if(AHELP_RESOLVED)
-			return "<font color='green'>RESOLVED</font>"
+			return "<font color='green'>已解决</font>"
 		if(AHELP_CLOSED)
-			return "CLOSED"
+			return "已关闭"
 		else
 			stack_trace("Invalid ticket state: [state]")
-			return "INVALID, CALL A CODER"
+			return "无效，请联系程序员"
 
 /datum/admin_help/proc/Retitle()
-	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
+	var/new_title = input(usr, "输入工单标题", "重命名工单", name) as text|null
 	if(new_title)
 		name = new_title
 		//not saying the original name cause it could be a long ass message
-		var/msg = "Ticket [TicketHref("#[id]")] titled [name] by [key_name_admin(usr)]"
+		var/msg = "工单 [TicketHref("#[id]")] 已被 [key_name_admin(usr)] 改名为 [name]"
 		message_admins(msg)
 		log_admin_private(msg)
 	TicketPanel() //we have to be here to do this
@@ -668,12 +668,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	testing("Ahelp action: [action]")
 	if(webhook_sent != WEBHOOK_NONE)
 		var/datum/discord_embed/embed = new()
-		embed.title = "Ticket #[id]"
+		embed.title = "工单 #[id]"
 		if(CONFIG_GET(string/adminhelp_ahelp_link))
 			var/ahelp_link = replacetext(CONFIG_GET(string/adminhelp_ahelp_link), "$RID", GLOB.round_id)
 			ahelp_link = replacetext(ahelp_link, "$TID", id)
 			embed.url = ahelp_link
-		embed.description = "[key_name(usr)] has sent an action to this ticket. Action ID: [action]"
+		embed.description = "[key_name(usr)] 对此工单发送了一个操作。操作 ID：[action]"
 		if(webhook_sent == WEBHOOK_URGENT)
 			send2adminchat_webhook(embed, urgent = TRUE)
 		if(webhook_sent == WEBHOOK_NON_URGENT || CONFIG_GET(string/regular_adminhelp_webhook_url) != CONFIG_GET(string/urgent_adminhelp_webhook_url))
@@ -705,7 +705,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if("pingmute")
 			ticket_ping_stop = !ticket_ping_stop
 			SSblackbox.record_feedback("tally", "ahelp_stats", 1, "pingmute")
-			var/msg = "Ticket [TicketHref("#[id]")] has been [ticket_ping_stop ? "" : "un"]muted from the Ticket Ping Subsystem by [key_name_admin(usr)]."
+			var/msg = "工单 [TicketHref("#[id]")] 已被 [key_name_admin(usr)] 在工单提醒子系统中[ticket_ping_stop ? "静音" : "解除静音"]。"
 			message_admins(msg)
 			log_admin_private(msg)
 		if("convert")
@@ -713,23 +713,23 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		// SKYRAT EDIT ADDITION END
 
 /datum/admin_help/proc/player_ticket_panel()
-	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Player Ticket</title></head>")
-	dat += "<b>State: "
+	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>玩家工单</title></head>")
+	dat += "<b>状态："
 	switch(state)
 		if(AHELP_ACTIVE)
-			dat += "<font color='red'>OPEN</font></b>"
+			dat += "<font color='red'>待处理</font></b>"
 		if(AHELP_RESOLVED)
-			dat += "<font color='green'>RESOLVED</font></b>"
+			dat += "<font color='green'>已解决</font></b>"
 		if(AHELP_CLOSED)
-			dat += "CLOSED</b>"
+			dat += "已关闭</b>"
 		else
-			dat += "UNKNOWN</b>"
-	dat += "\n[FOURSPACES]<A href='byond://?_src_=usr;player_ticket_panel=1'>Refresh</A>"
-	dat += "<br><br>Opened at: [round_timestamp("hh:mm:ss", opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
+			dat += "未知</b>"
+	dat += "\n[FOURSPACES]<A href='byond://?_src_=usr;player_ticket_panel=1'>刷新</A>"
+	dat += "<br><br>打开于：[round_timestamp("hh:mm:ss", opened_at)]（约 [DisplayTimeText(world.time - opened_at)] 前）"
 	if(closed_at)
-		dat += "<br>Closed at: [round_timestamp("hh:mm:ss", closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
+		dat += "<br>关闭于：[round_timestamp("hh:mm:ss", closed_at)]（约 [DisplayTimeText(world.time - closed_at)] 前）"
 	dat += "<br><br>"
-	dat += "<br><b>Log:</b><br><br>"
+	dat += "<br><b>日志：</b><br><br>"
 	for (var/interaction in player_interactions)
 		dat += "[interaction]<br>"
 
@@ -754,8 +754,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 /obj/effect/statclick/ahelp/Click()
 	if (!usr.client?.holder)
-		message_admins("[key_name_admin(usr)] non-holder clicked on an ahelp statclick! ([src])")
-		usr.log_message("non-holder clicked on an ahelp statclick! ([src])", LOG_ADMIN)
+		message_admins("[key_name_admin(usr)] 非管理员用户点击了求助统计按钮！（[src]）")
+		usr.log_message("非管理员用户点击了求助统计按钮！（[src]）", LOG_ADMIN)
 		return
 
 	ahelp_datum.TicketPanel()
@@ -820,7 +820,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 /datum/admin_help_ui_handler/proc/perform_adminhelp(client/user_client, message, urgent)
 	if(GLOB.say_disabled) //This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."), confidential = TRUE)
+		to_chat(usr, span_danger("发言功能目前已被管理员禁用。"), confidential = TRUE)
 		return
 
 	if(!message)
@@ -828,7 +828,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 
 	//handle muting and automuting
 	if(user_client.prefs.muted & MUTE_ADMINHELP)
-		to_chat(user_client, span_danger("Error: Admin-PM: You cannot send adminhelps (Muted)."), confidential = TRUE)
+		to_chat(user_client, span_danger("错误：管理员私信：你已被禁言，无法发送求助。"), confidential = TRUE)
 		return
 	if(user_client.handle_spam_prevention(message, MUTE_ADMINHELP))
 		return
@@ -862,9 +862,9 @@ GAME_VERB_HIDDEN(/client, no_tgui_adminhelp, "NoTguiAdminhelp")
 
 GAME_VERB(/client, adminhelp, "Adminhelp", "Admin")
 	GLOB.admin_help_ui_handler.ui_interact(mob)
-	to_chat(src, span_boldnotice("Adminhelp failing to open or work? <a href='byond://?src=[REF(src)];tguiless_adminhelp=1'>Click here</a>"))
+	to_chat(src, span_boldnotice("管理员求助打不开或无法使用？<a href='byond://?src=[REF(src)];tguiless_adminhelp=1'>点击这里</a>"))
 
-GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
+GAME_VERB(/client, view_latest_ticket, "查看最新工单", "Admin")
 	if(!current_ticket)
 		// Check if the client had previous tickets, and show the latest one
 		var/list/prev_tickets = list()
@@ -884,7 +884,7 @@ GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
 			return
 
 		// client had no tickets this round
-		to_chat(src, span_warning("You have not had an ahelp ticket this round."))
+		to_chat(src, span_warning("本回合你还没有提交过求助工单。"))
 		return
 
 	current_ticket.player_ticket_panel()
@@ -953,9 +953,9 @@ GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
 		var/list/powerlessmins = adm["noflags"]
 		var/list/allmins = adm["total"]
 		if(!afkmins.len && !stealthmins.len && !powerlessmins.len)
-			final = "[msg] - No admins online"
+			final = "[msg] — 没有管理员在线"
 		else
-			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
+			final = "[msg] — 所有管理员均隐身\[[english_list(stealthmins)]\]、AFK\[[english_list(afkmins)]\]或缺少 +BAN\[[english_list(powerlessmins)]\]！总计：[allmins.len] "
 		send2adminchat(source,final)
 		send2otherserver(source,final)
 
@@ -1005,11 +1005,11 @@ GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
 
 
 /proc/tgsadminwho()
-	var/list/message = list("Admins: ")
+	var/list/message = list("管理员：")
 	var/list/admin_keys = list()
 	for(var/adm in GLOB.admins)
 		var/client/C = adm
-		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
+		admin_keys += "[C][C.holder.fakekey ? "(隐身)" : ""][C.is_afk() ? "(AFK)" : ""]"
 
 	for(var/admin in admin_keys)
 		if(LAZYLEN(message) > 1)
@@ -1082,7 +1082,7 @@ GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
 		msg += "[original_word] "
 	if(external)
 		if(founds == "")
-			return "Search Failed"
+			return "搜索失败"
 		else
 			return founds
 
@@ -1175,11 +1175,11 @@ GAME_VERB(/client, view_latest_ticket, "View Latest Ticket", "Admin")
 				var/state_word
 				switch(ahelp_check.state)
 					if(AHELP_ACTIVE)
-						state_word = "Active"
+						state_word = "待处理"
 					if(AHELP_CLOSED)
-						state_word = "Closed"
+						state_word = "已关闭"
 					if(AHELP_RESOLVED)
-						state_word = "Resolved"
+						state_word = "已解决"
 
 				msglist[i]= "<u><A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];ahelp=[REF(ahelp_check)];ahelp_action=ticket'>[word] ([state_word] | [ahelp_check.initiator_key_name])</A></u>"
 				modified = TRUE

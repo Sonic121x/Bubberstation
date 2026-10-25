@@ -1,6 +1,6 @@
 /obj/item/assembly/timer
-	name = "timer"
-	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
+	name = "定时器"
+	desc = "用于为各种装置计时。与需要倒计时的机关配合良好。滴答，滴答。"
 	icon_state = "timer"
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5, /datum/material/glass=SMALL_MATERIAL_AMOUNT*0.5)
 	assembly_behavior = ASSEMBLY_TOGGLEABLE_INPUT
@@ -14,13 +14,13 @@
 	var/hearing_range = 3
 
 /obj/item/assembly/timer/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] looks at the timer and decides [user.p_their()] fate! It looks like [user.p_theyre()] going to commit suicide!"))
+	user.visible_message(span_suicide("[user] 看着定时器，决定了自己的命运！看起来是打算自杀！"))
 	activate()//doesnt rely on timer_end to prevent weird metas where one person can control the timer and therefore someone's life. (maybe that should be how it works...)
 	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), time SECONDS)//kill yourself once the time runs out
 	return MANUAL_SUICIDE
 
 /obj/item/assembly/timer/proc/manual_suicide(mob/living/user)
-	user.visible_message(span_suicide("[user]'s time is up!"))
+	user.visible_message(span_suicide("[user] 的时间到了！"))
 	user.adjust_oxy_loss(200)
 	user.death(FALSE)
 
@@ -34,7 +34,7 @@
 
 /obj/item/assembly/timer/examine(mob/user)
 	. = ..()
-	. += span_notice("The timer is [timing ? "counting down from [time]":"set for [time] seconds"].")
+	. += span_notice("定时器[timing ? "正从 [time] 开始倒计时":"已设为 [time] 秒"]。")
 
 /obj/item/assembly/timer/activate()
 	if(!..())

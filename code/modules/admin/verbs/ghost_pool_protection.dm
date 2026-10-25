@@ -1,6 +1,6 @@
 //very similar to centcom_podlauncher in terms of how this is coded, so i kept a lot of comments from it
 
-ADMIN_VERB(ghost_pool_protection, R_ADMIN, "Ghost Pool Protection", "Choose which ways people can get into the round, or just clear it out completely for admin events.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(ghost_pool_protection, R_ADMIN, "幽灵池保护", "选择玩家加入回合的方式，或者为管理员活动将其完全清空。", ADMIN_CATEGORY_EVENTS)
 	var/datum/ghost_pool_menu/tgui = new(user)
 	tgui.ui_interact(user.mob)
 
@@ -71,14 +71,14 @@ ADMIN_VERB(ghost_pool_protection, R_ADMIN, "Ghost Pool Protection", "Choose whic
 		if("no_roles")
 			new_role_flags = NONE
 		if("apply_settings")
-			to_chat(usr, "Settings Applied!")
+			to_chat(usr, "设置已应用！")
 			var/msg
 			switch(new_role_flags)
 				if(ALL)
-					msg = "enabled all of"
+					msg = "全部启用了"
 				if(NONE)
-					msg = "disabled all of"
+					msg = "全部禁用了"
 				else
-					msg = "modified"
-			message_admins("[key_name_admin(holder)] has [msg] this round's allowed ghost roles.")
+					msg = "修改了"
+			message_admins("[key_name_admin(holder)]已[msg]本回合允许的幽灵角色。")
 			GLOB.ghost_role_flags = new_role_flags

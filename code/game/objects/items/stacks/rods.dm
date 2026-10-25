@@ -1,24 +1,24 @@
 GLOBAL_LIST_INIT(rod_recipes, list ( \
-	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 1 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("table frame", /obj/structure/table_frame, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
-	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_ENTERTAINMENT), \
-	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_CONTAINERS), \
-	new/datum/stack_recipe("railing", /obj/structure/railing, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("railing corner", /obj/structure/railing/corner, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("railing end", /obj/structure/railing/corner/end, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("railing end (flipped)", /obj/structure/railing/corner/end/flip, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("tank holder", /obj/structure/tank_holder, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
-	new/datum/stack_recipe("ladder", /obj/structure/ladder/crafted, 15, time = 15 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("catwalk floor tile", /obj/item/stack/tile/catwalk_tile, 1, 4, 20, category = CAT_TILES), \
-	new/datum/stack_recipe("stairs frame", /obj/structure/stairs_frame, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
-	new/datum/stack_recipe("probing cane", /obj/item/cane/white, 3, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_TOOLS), \
-	new/datum/stack_recipe("sharpened iron rod", /obj/item/ammo_casing/rebar, 1, time = 0.2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_WEAPON_AMMO), \
+	new/datum/stack_recipe("格栅", /obj/structure/grille, 2, time = 1 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("桌框", /obj/structure/table_frame, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+	new/datum/stack_recipe("滑板车车架", /obj/item/scooter_frame, 10, time = 2.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_ENTERTAINMENT), \
+	new/datum/stack_recipe("床单篮", /obj/structure/bedsheetbin/empty, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_CONTAINERS), \
+	new/datum/stack_recipe("护栏", /obj/structure/railing, 2, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("护栏转角", /obj/structure/railing/corner, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("护栏端头", /obj/structure/railing/corner/end, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("护栏端头（翻转）", /obj/structure/railing/corner/end/flip, 1, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("储罐架", /obj/structure/tank_holder, 2, time = 0.5 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_FURNITURE), \
+	new/datum/stack_recipe("梯子", /obj/structure/ladder/crafted, 15, time = 15 SECONDS, crafting_flags = CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("栈桥地板砖", /obj/item/stack/tile/catwalk_tile, 1, 4, 20, category = CAT_TILES), \
+	new/datum/stack_recipe("楼梯框架", /obj/structure/stairs_frame, 10, time = 5 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, category = CAT_STRUCTURE), \
+	new/datum/stack_recipe("探路手杖", /obj/item/cane/white, 3, time = 1 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_SKIP_MATERIALS_PARITY, category = CAT_TOOLS), \
+	new/datum/stack_recipe("磨尖的铁棍", /obj/item/ammo_casing/rebar, 1, time = 0.2 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY, category = CAT_WEAPON_AMMO), \
 	))
 
 /obj/item/stack/rods
-	name = "iron rod"
-	desc = "Some rods. Can be used for building or something."
-	singular_name = "iron rod"
+	name = "铁棍"
+	desc = "一些铁棍。可以用来建造些什么。"
+	singular_name = "铁棍"
 	icon_state = "rods"
 	inhand_icon_state = "rods"
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -30,8 +30,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	demolition_mod = 1.25
 	mats_per_unit = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
 	max_amount = 50
-	attack_verb_continuous = list("hits", "bludgeons", "whacks")
-	attack_verb_simple = list("hit", "bludgeon", "whack")
+	attack_verb_continuous = list("击打", "重击", "猛砸")
+	attack_verb_simple = list("击打", "重击", "猛砸")
 	hitsound = 'sound/items/weapons/gun/general/grenade_launch.ogg'
 	embed_type = /datum/embedding/rods
 	novariants = TRUE
@@ -48,7 +48,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	embed_chance = 50
 
 /obj/item/stack/rods/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins to stuff \the [src] down [user.p_their()] throat! It looks like [user.p_theyre()] trying to commit suicide!"))//it looks like theyre ur mum
+	user.visible_message(span_suicide("[user]开始把[src]塞进自己的喉咙！看起来是想自杀！"))//it looks like theyre ur mum
 	return BRUTELOSS
 
 /obj/item/stack/rods/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
@@ -57,8 +57,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	AddElement(/datum/element/openspace_item_click_handler)
 	var/static/list/tool_behaviors = list(
 		TOOL_WELDER = list(
-			SCREENTIP_CONTEXT_LMB = "Craft iron sheets",
-			SCREENTIP_CONTEXT_RMB = "Craft floor tiles",
+			SCREENTIP_CONTEXT_LMB = "制作铁板",
+			SCREENTIP_CONTEXT_RMB = "制作地板砖",
 		),
 	)
 	AddElement(/datum/element/contextual_screentip_tools, tool_behaviors)
@@ -87,13 +87,13 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 
 /obj/item/stack/rods/welder_act(mob/living/user, obj/item/tool)
 	if(get_amount() < 2)
-		balloon_alert(user, "not enough rods!")
+		balloon_alert(user, "铁棍不足！")
 		return
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/sheet/iron/new_item = new(user.loc)
 		user.visible_message(
-			span_notice("[user.name] shaped [src] into iron sheets with [tool]."),
-			blind_message = span_hear("You hear welding."),
+			span_notice("[user.name] 用[tool]把[src]加工成了铁板。"),
+			blind_message = span_hear("你听到了焊接声。"),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -105,8 +105,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	if(tool.use_tool(src, user, delay = 0, volume = 40))
 		var/obj/item/stack/tile/iron/two/new_item = new(user.loc)
 		user.visible_message(
-			span_notice("[user.name] shaped [src] into floor tiles with [tool]."),
-			blind_message = span_hear("You hear welding."),
+			span_notice("[user.name] 用[tool]把[src]加工成了地板砖。"),
+			blind_message = span_hear("你听到了焊接声。"),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -131,9 +131,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	amount = 50
 
 /obj/item/stack/rods/lava
-	name = "heat resistant rod"
-	desc = "Treated, specialized iron rods. When exposed to the vacuum of space their coating breaks off, but they can hold up against the extreme heat of active lava."
-	singular_name = "heat resistant rod"
+	name = "耐热铁棍"
+	desc = "经过处理的专用铁棍。暴露在太空真空中时其涂层会脱落，但仍能承受活性熔岩的极端高温。"
+	singular_name = "耐热铁棍"
 	icon_state = "lavarods"
 	inhand_icon_state = "rods"
 	color = "#5286b9ff"
@@ -148,9 +148,9 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	amount = 30
 
 /obj/item/stack/rods/shuttle
-	name = "shuttle frame rods"
-	desc = "Treated, specialized iron rods suitable for the construction of shuttle frames or the expansion of existing shuttles."
-	singular_name = "shuttle frame rod"
+	name = "穿梭机框架铁棍"
+	desc = "经过处理的专用铁棍，适用于建造穿梭机框架或扩建现有穿梭机。"
+	singular_name = "穿梭机框架铁棍"
 	icon_state = "shuttlerods"
 	mats_per_unit = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT,  /datum/material/titanium=SMALL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/rods/shuttle

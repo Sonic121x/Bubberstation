@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/apetra_vulnera
-	name = "Apetra Vulnera"
-	desc = "Causes severe bleeding on every limb of a target which has more than 15 brute damage. \
-		Wounds a random limb if no limb is sufficiently damaged."
+	name = "阿佩特拉·武尔内拉"
+	desc = "使目标每条受到超过 15 点钝击伤害的肢体严重出血。\
+		若没有肢体受到足够伤害，则随机使一条肢体受创。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -10,7 +10,7 @@
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 45 SECONDS
 
-	invocation = "AP'TRA VULN'RA!"
+	invocation = "阿普特拉·武尔内拉！"
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = NONE
 
@@ -32,8 +32,8 @@
 
 	if(cast_on.can_block_magic(antimagic_flags))
 		cast_on.visible_message(
-			span_danger("[cast_on]'s bruises briefly glow, but repels the effect!"),
-			span_danger("Your bruises sting a little, but you are protected!")
+			span_danger("[cast_on]的瘀伤短暂发光，但抵消了该效果！"),
+			span_danger("你的瘀伤有些刺痛，但你受到了保护！")
 		)
 		return FALSE
 
@@ -50,8 +50,8 @@
 		crit_wound.apply_wound(pick(cast_on.get_bodyparts()))
 
 	cast_on.visible_message(
-		span_danger("[cast_on]'s scratches and bruises are torn open by an unholy force!"),
-		span_danger("Your scratches and bruises are torn open by some horrible unholy force!")
+		span_danger("[cast_on]的划伤与瘀伤被一股邪恶之力撕裂开来！"),
+		span_danger("你的划伤与瘀伤被某种可怕的邪恶之力撕裂开来！")
 	)
 
 	new /obj/effect/temp_visual/cleave(get_turf(cast_on))

@@ -4,7 +4,7 @@
 #define FLAVOR_FACTION_NANOTRASEN "nanotrasen"
 
 /datum/antagonist/traitor
-	name = "\improper Traitor"
+	name = "\improper 叛徒"
 	roundend_category = "traitors"
 	antagpanel_category = "Traitor"
 	pref_flag = ROLE_TRAITOR
@@ -12,10 +12,10 @@
 	antag_hud_name = "traitor"
 	hijack_speed = 0.5 //10 seconds per hijack stage by default
 	ui_name = "AntagInfoTraitor"
-	suicide_cry = "FOR THE SYNDICATE!!"
+	suicide_cry = "为了辛迪加！！"
 	preview_outfit = /datum/outfit/traitor
 	can_assign_self_objectives = TRUE
-	default_custom_objective = "Perform an overcomplicated heist on valuable Nanotrasen assets."
+	default_custom_objective = "对纳米传讯的贵重资产实施一场极其复杂的劫案。"
 	hardcore_random_bonus = TRUE
 	stinger_sound = 'sound/music/antag/traitor/tatoralert.ogg'
 
@@ -206,7 +206,7 @@
 	. = ..()
 	var/mob/living/datum_owner = mob_override || owner.current
 
-	handle_clown_mutation(datum_owner, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	handle_clown_mutation(datum_owner, mob_override ? null : "你的训练让你克服了小丑的天性，可以自如地使用武器而不会伤到自己。")
 	if(should_give_codewords)
 		datum_owner.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 		datum_owner.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
@@ -270,13 +270,13 @@
 		for(var/datum/objective/objective in objectives)
 			if(!objective.check_completion())
 				traitor_won = FALSE
-			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
+			objectives_text += "<br><B>目标 #[count]</B>：[objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			count++
 
 	result += "<br>[owner.name] <B>[traitor_flavor["roundend_report"]]</B>"
 
 	if(uplink_owned)
-		var/uplink_text = "(used [used_telecrystals] TC) [purchases]"
+		var/uplink_text = "（已使用 [used_telecrystals] TC）[purchases]"
 		if((used_telecrystals == 0) && traitor_won)
 			var/static/icon/badass = icon('icons/ui/antags/badass.dmi', "badass")
 			uplink_text += "<BIG>[icon2html(badass, world)]</BIG>"
@@ -290,9 +290,9 @@
 	var/special_role_text = LOWER_TEXT(name)
 
 	if(traitor_won)
-		result += span_greentext("The [special_role_text] was successful!")
+		result += span_greentext("[special_role_text]成功了！")
 	else
-		result += span_redtext("The [special_role_text] has failed!")
+		result += span_redtext("[special_role_text]失败了！")
 		SEND_SOUND(owner.current, 'sound/ambience/misc/ambifailure.ogg')
 
 	return result.Join("<br>")
@@ -306,25 +306,25 @@
 
 	if(completed_contracts <= 0)
 		return
-	var/plural_check = "contract"
+	var/plural_check = "合同"
 	if (completed_contracts > 1)
-		plural_check = "contracts"
-	var/sent_data = "Completed [span_greentext("[completed_contracts]")] [plural_check] for a total of [span_greentext("[tc_total] TC")]!<br>"
+		plural_check = "合同"
+	var/sent_data = "完成了 [span_greentext("[completed_contracts]")] 份[plural_check]，共获得 [span_greentext("[tc_total] TC")]！<br>"
 	if(contractor_support_unit)
-		sent_data += "<b>[contractor_support_unit.owner.key]</b> played <b>[contractor_support_unit.owner.current.name]</b>, their contractor support unit.<br>"
+		sent_data += "<b>[contractor_support_unit.owner.key]</b> 扮演了 <b>[contractor_support_unit.owner.current.name]</b>，即其承包商支援单位。<br>"
 	return sent_data
 
 /datum/antagonist/traitor/roundend_report_footer()
 	var/phrases = jointext(SStraitor.syndicate_code_phrase, ", ")
 	var/responses = jointext(SStraitor.syndicate_code_response, ", ")
 
-	var/message = "<br><b>The code phrases were:</b> <span class='bluetext'>[phrases]</span><br>\
-					<b>The code responses were:</b> [span_redtext("[responses]")]<br>"
+	var/message = "<br><b>暗语短语为：</b> <span class='bluetext'>[phrases]</span><br>\
+					<b>暗语回应为：</b> [span_redtext("[responses]")]<br>"
 
 	return message
 
 /datum/outfit/traitor
-	name = "Traitor (Preview only)"
+	name = "叛徒（仅预览）"
 
 	uniform = /obj/item/clothing/under/color/grey
 	suit = /obj/item/clothing/suit/hooded/ablative

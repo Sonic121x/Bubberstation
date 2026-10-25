@@ -11,8 +11,8 @@
  * Locator
  */
 /obj/item/locator
-	name = "bluespace locator"
-	desc = "A handheld device that locks onto the unique bluespace resonance of tracking implants, providing real-time directional and positional data."
+	name = "蓝空间定位器"
+	desc = "一种手持设备，能锁定追踪植入体所独有的蓝空间共振，实时提供方向与位置数据。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "locator"
 	var/temp = null
@@ -72,8 +72,8 @@
  * Hand-tele
  */
 /obj/item/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology. One of the buttons opens a portal, the other re-opens your last destination."
+	name = "手持传送器"
+	desc = "一件应用蓝空间技术的便携装置。其中一个按钮会打开传送门，另一个会重新打开你上次的目的地。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "hand_tele"
 	inhand_icon_state = "electronic"
@@ -114,7 +114,7 @@
 ///Checks if the targeted portal was created by us, then causes it to expire, removing it
 /obj/item/hand_tele/proc/try_dispel_portal(atom/target, mob/user)
 	if(is_parent_of_portal(target))
-		to_chat(user, span_notice("You dispel [target] with [src]!"))
+		to_chat(user, span_notice("你用[src]驱散了[target]！"))
 		var/obj/effect/portal/portal = target
 		portal.expire()
 		return TRUE
@@ -136,7 +136,7 @@
 		portal_location = last_portal_location_ref.resolve()
 
 	if (isnull(portal_location))
-		to_chat(user, span_warning("[src] flashes briefly. No target is locked in."))
+		to_chat(user, span_warning("[src]短暂闪烁了一下。没有锁定任何目标。"))
 		return ITEM_INTERACT_BLOCKING
 
 	try_create_portal_to(user, portal_location)
@@ -151,7 +151,7 @@
 	//SKYRAT EDIT BEGIN
 	var/turf/my_turf = get_turf(src)
 	if(is_away_level(my_turf.z))
-		to_chat(user, "<span class='warning'>[src] cannot be used here!</span>")
+		to_chat(user, "<span class='warning'>[src]无法在此处使用！</span>")
 		return
 	//SKYRAT EDIT END
 	var/list/locations = list()
@@ -173,13 +173,13 @@
 			continue
 
 		if(computer.power_station.engaged)
-			locations["[get_area(target)] (Active)"] = computer
+			locations["[get_area(target)]（活跃）"] = computer
 		else
-			locations["[get_area(target)] (Inactive)"] = computer
+			locations["[get_area(target)]（未激活）"] = computer
 
-	locations["None (Dangerous)"] = PORTAL_LOCATION_DANGEROUS
+	locations["无（危险）"] = PORTAL_LOCATION_DANGEROUS
 
-	var/teleport_location_key = tgui_input_list(user, "Teleporter to lock on", "Hand Teleporter", sort_list(locations))
+	var/teleport_location_key = tgui_input_list(user, "要锁定的传送器", "手持传送器", sort_list(locations))
 	if (isnull(teleport_location_key))
 		return
 	if(user.get_active_held_item() != src || user.incapacitated)
@@ -206,7 +206,7 @@
 /// Takes either PORTAL_LOCATION_DANGEROUS or an /obj/machinery/computer/teleport/computer.
 /obj/item/hand_tele/proc/try_create_portal_to(mob/user, teleport_location)
 	if (length(active_portal_pairs) >= max_portal_pairs)
-		user.show_message(span_notice("[src] is recharging!"))
+		user.show_message(span_notice("[src]正在充能！"))
 		return
 
 	var/atom/teleport_target
@@ -231,11 +231,11 @@
 		teleport_target = target
 
 	if (teleport_target == null)
-		to_chat(user, span_notice("[src] vibrates, then stops. Maybe you should try something else."))
+		to_chat(user, span_notice("[src]振动了一下，然后停住了。也许你该试试别的。"))
 		return
 
 	if(!check_teleport_valid(src, teleport_target))
-		to_chat(user, span_notice("[src] is malfunctioning."))
+		to_chat(user, span_notice("[src]发生故障。"))
 		return
 
 	if (!can_teleport_notifies(user))
@@ -253,14 +253,14 @@
 
 	try_move_adjacent(portal1, user.dir)
 	if(QDELETED(portal1) || QDELETED(portal2)) //in the event that something managed to delete the portal objects, i.e. something teleported them
-		to_chat(user, span_notice("[src] vibrates, but no portal seems to appear. Maybe you should try something else."))
+		to_chat(user, span_notice("[src]振动了一下，但似乎没有出现传送门。也许你该试试别的。"))
 		return
 	active_portal_pairs[portal1] = portal2
 
-	investigate_log("was used by [key_name(user)] at [AREACOORD(user)] to create a portal pair with destinations [AREACOORD(portal1)] and [AREACOORD(portal2)].", INVESTIGATE_PORTAL)
+	investigate_log("被 [key_name(user)] 在 [AREACOORD(user)] 处使用，创建了一对传送门，目的地分别为 [AREACOORD(portal1)] 和 [AREACOORD(portal2)]。", INVESTIGATE_PORTAL)
 	add_fingerprint(user)
 
-	user.show_message(span_notice("Locked in."), MSG_AUDIBLE)
+	user.show_message(span_notice("已锁定。"), MSG_AUDIBLE)
 
 	return TRUE
 
@@ -270,7 +270,7 @@
 /obj/item/hand_tele/proc/can_teleport_notifies(mob/user)
 	var/turf/current_location = get_turf(user)
 	if (!current_location || !check_teleport_valid(src, current_location) || !isturf(user.loc) || (away_restricted && is_away_level(current_location.z)))
-		to_chat(user, span_notice("[src] is malfunctioning."))
+		to_chat(user, span_notice("[src]发生故障。"))
 		return FALSE
 
 	return TRUE
@@ -301,21 +301,21 @@
 
 /obj/item/hand_tele/suicide_act(mob/living/user)
 	if(iscarbon(user))
-		user.visible_message(span_suicide("[user] is creating a weak portal and sticking [user.p_their()] head through! It looks like [user.p_theyre()] trying to commit suicide!"))
+		user.visible_message(span_suicide("[user]创造了一个不稳定的传送门，把自己的头伸了进去！看起来是想自杀！"))
 		var/mob/living/carbon/itemUser = user
 		var/obj/item/bodypart/head/head = itemUser.get_bodypart(BODY_ZONE_HEAD)
 		if(head)
 			head.drop_limb()
 			var/list/safeLevels = SSmapping.levels_by_any_trait(list(ZTRAIT_SPACE_RUINS, ZTRAIT_LAVA_RUINS, ZTRAIT_STATION, ZTRAIT_MINING))
 			head.forceMove(locate(rand(1, world.maxx), rand(1, world.maxy), pick(safeLevels)))
-			itemUser.visible_message(span_suicide("The portal snaps closed taking [user]'s head with it!"))
+			itemUser.visible_message(span_suicide("传送门猛然闭合，把[user]的头一起带走了！"))
 		else
-			itemUser.visible_message(span_suicide("[user] looks even further depressed as they realize they do not have a head...and suddenly dies of shame!"))
+			itemUser.visible_message(span_suicide("[user]意识到自己没有头，看起来更加沮丧了……然后突然羞愤而死！"))
 		return BRUTELOSS
 
 /obj/item/syndicate_teleporter
-	name = "experimental teleporter"
-	desc = "A reverse-engineered version of the Nanotrasen handheld teleporter. Lacks the advanced safety features of its counterpart. A three-headed serpent can be seen on the back."
+	name = "实验性传送器"
+	desc = "一件逆向工程仿制的纳米传讯手持传送器。缺少原型机所具备的高级安全功能。背面可以看到一条三头蛇的图案。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "syndi-tele"
 	throwforce = 5
@@ -349,7 +349,7 @@
 
 /obj/item/syndicate_teleporter/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] has <b>[charges]</b> out of [max_charges] charges left.")
+	. += span_notice("[src]还剩 <b>[charges]</b> 次充能，总共 [max_charges] 次。")
 
 /obj/item/syndicate_teleporter/attack_self(mob/user)
 	. = ..()
@@ -363,7 +363,7 @@
 		charges++
 		if(ishuman(loc))
 			var/mob/living/carbon/human/holder = loc
-			balloon_alert(holder, "teleporter beeps")
+			balloon_alert(holder, "传送器发出哔声")
 		playsound(src, 'sound/machines/beep/twobeep.ogg', 10, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
 
 /obj/item/syndicate_teleporter/emp_act(severity)
@@ -373,7 +373,7 @@
 	var/teleported_something = FALSE
 	if(ishuman(loc))
 		var/mob/living/carbon/human/holder = loc
-		balloon_alert(holder, "teleporter buzzes!")
+		balloon_alert(holder, "传送器嗡嗡作响！")
 		attempt_teleport(user = holder, triggered_by_emp = TRUE)
 	else
 		var/turf/teleport_turf = get_turf(src)
@@ -382,7 +382,7 @@
 				teleported_something = TRUE
 			attempt_teleport(user = mob_on_same_tile, triggered_by_emp = TRUE, not_holding_tele = TRUE)
 		if(!teleported_something)
-			visible_message(span_danger("[src] blinks out of existence!"))
+			visible_message(span_danger("[src]闪烁一下，从现实中消失了！"))
 			do_sparks(2, 1, src)
 			qdel(src)
 
@@ -394,7 +394,7 @@
  **/
 /obj/item/syndicate_teleporter/proc/attempt_teleport(mob/user, triggered_by_emp = FALSE, not_holding_tele = FALSE)
 	if(!charges && !triggered_by_emp)
-		balloon_alert(user, "recharging!")
+		balloon_alert(user, "正在充能！")
 		return
 
 	var/turf/current_location = get_turf(user)
@@ -402,7 +402,7 @@
 	if(malfunctioning(user, current_location))
 		if(not_holding_tele)
 			return
-		balloon_alert(user, "malfunctioning!")
+		balloon_alert(user, "发生故障！")
 		return
 
 	var/teleport_distance = rand(minimum_teleport_distance, maximum_teleport_distance)
@@ -416,7 +416,7 @@
 			panic_teleport(user, destination) //We're in a wall, engage emergency parallel teleport.
 		else
 			if(bagholdingcheck && !not_holding_tele)
-				to_chat(user, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
+				to_chat(user, span_warning("你的次元背包上的蓝空间接口干扰了传送！"))
 			get_fragged(user, destination, not_holding_tele) //EMP teleported you into a wall? Wearing a BoH? You're dead.
 	else
 		telefrag(destination, user)
@@ -461,7 +461,7 @@
 		charges = max(charges - 1, 0)
 		new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(mobloc)
 		new /obj/effect/temp_visual/teleport_abductor/syndi_teleporter(emergency_destination)
-		balloon_alert(user, "emergency teleport triggered!")
+		balloon_alert(user, "紧急传送已触发！")
 		if(make_bloods(destination, emergency_destination, user))
 			new /obj/effect/temp_visual/circle_wave/syndi_teleporter/bloody(destination)
 		else
@@ -483,12 +483,12 @@
 	playsound(destination, SFX_PORTAL_ENTER, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	playsound(destination, 'sound/effects/magic/disintegrate.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	if(!not_holding_tele)
-		to_chat(victim, span_userdanger("You teleport into [destination], [src] tries to save you, but..."))
+		to_chat(victim, span_userdanger("你传送进了[destination]，[src]试图救你，但是……"))
 	else
-		to_chat(victim, span_userdanger("You teleport into [destination]."))
+		to_chat(victim, span_userdanger("你传送进了[destination]。"))
 	destination.ex_act(EXPLODE_HEAVY)
 	victim.unequip_everything()
-	victim.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
+	victim.investigate_log("被[src]绞碎成肉酱。", INVESTIGATE_DEATHS)
 	victim.gib(DROP_ALL_REMAINS)
 
 ///Damage and stun all mobs in fragging_location turf, called after a teleport
@@ -496,7 +496,7 @@
 	for(var/mob/living/victim in fragging_location)//Hit everything in the turf
 		victim.apply_damage(20, BRUTE)
 		victim.Paralyze(6 SECONDS)
-		to_chat(victim, span_warning("[user] teleports into you, knocking you to the floor with the bluespace wave!"))
+		to_chat(victim, span_warning("[user]传送到了你身上，蓝空间冲击波把你掀翻在地！"))
 		victim.throw_at(get_step_rand(victim), 1, 1, user, spin = TRUE)
 
 ///Bleed and make blood splatters at tele start and end points
@@ -515,8 +515,8 @@
 	// average evens out to 10 per teleport, but the randomness spices things up
 	if(prob(25) && bleed_amount)
 		playsound(src, 'sound/effects/wounds/pierce1.ogg', 40, vary = TRUE)
-		visible_message(span_warning("Blood visibly spurts out of [user] as [src] fails to teleport [user.p_their()] body properly!"), \
-			span_boldwarning("Blood visibly spurts out of you as [src] fails to teleport your body properly!"))
+		visible_message(span_warning("鲜血从[user]身上喷涌而出，[src]没能正确传送对方的身体！"), \
+			span_boldwarning("鲜血从你身上明显喷出，[src]没能正确传送你的身体！"))
 		carbon_user.bleed(bleed_amount * 0.75)
 		carbon_user.spray_blood(pick(GLOB.alldirs), rand(1, 3))
 		return TRUE
@@ -538,19 +538,19 @@
 	amount_to_scale = 1
 
 /obj/item/paper/syndicate_teleporter
-	name = "Teleporter Guide"
+	name = "传送器指南"
 	default_raw_text = {"
-		<b>Instructions on your new prototype teleporter:</b><br>
+		<b>关于你新式原型传送器的使用说明：</b><br>
 		<br>
-		This teleporter will teleport the user 4-8 meters in the direction they are facing.<br>
+		本传送器会将使用者朝其面朝的方向传送 4-8 米。<br>
 		<br>
-		It has 4 charges, and will recharge over time randomly. No, sticking the teleporter into an APC, microwave, or electrified airlock will not make it charge faster.<br>
+		它拥有 4 次充能，并会随时间随机恢复。不，把传送器插进 APC、微波炉或带电的气闸并不会让它充得更快。<br>
 		<br>
-		<b>Warning:</b> Teleporting into walls will activate a failsafe teleport parallel up to 3 meters, but the user will be ripped apart if it fails to find a safe location.<br>
+		<b>警告：</b>传送进墙内会激活失效保护，沿平行方向最多 3 米进行传送，但如果找不到安全位置，使用者将被撕成碎片。<br>
 		<br>
-		Do not expose the teleporter to electromagnetic pulses. Unwanted malfunctions may occur.
+		请勿让传送器暴露在电磁脉冲之下。否则可能发生意外的故障。
 		<br>
-		Final word of caution: the technology involved is experimental in nature. Although many years of research have allowed us to prevent leaving your organs behind, it simply cannot account for all of the liquid in your body.
+		最后一点警告：所涉及的技术本质上是实验性的。尽管多年的研究已让我们能够避免把你的器官留在原地，但它实在无法顾及你体内的所有液体。
 		"}
 
 /obj/effect/temp_visual/teleport_abductor/syndi_teleporter

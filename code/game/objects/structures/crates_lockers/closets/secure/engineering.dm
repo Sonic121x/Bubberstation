@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "chief engineer's locker"
+	name = "总工程师储物柜"
 	req_access = list(ACCESS_CE)
 	icon_state = "ce"
 
@@ -36,7 +36,7 @@
 	new /obj/item/storage/photo_album/ce(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
-	name = "electrical supplies locker"
+	name = "电气用品柜"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng"
 	icon_door = "eng_elec"
@@ -57,7 +57,7 @@
 	new /obj/item/clothing/gloves/color/yellow(src)
 
 /obj/structure/closet/secure_closet/engineering_welding
-	name = "welding supplies locker"
+	name = "焊接用品柜"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng"
 	icon_door = "eng_weld"
@@ -70,7 +70,7 @@
 		new /obj/item/weldingtool(src)
 
 /obj/structure/closet/secure_closet/engineering_personal
-	name = "engineer's locker"
+	name = "工程师储物柜"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "eng_secure"
 
@@ -91,7 +91,7 @@
 
 
 /obj/structure/closet/secure_closet/atmospherics
-	name = "atmospheric technician's locker"
+	name = "大气技术员储物柜"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "atmos"
 

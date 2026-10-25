@@ -1,5 +1,5 @@
 /datum/antagonist/spy
-	name = "\improper Spy"
+	name = "\improper 间谍"
 	roundend_category = "spies"
 	antagpanel_category = "Spy"
 	antag_hud_name = "spy"
@@ -9,7 +9,7 @@
 	ui_name = "AntagInfoSpy"
 	preview_outfit = /datum/outfit/spy
 	can_assign_self_objectives = TRUE
-	default_custom_objective = "Rob the station blind."
+	default_custom_objective = "把空间站洗劫一空。"
 	/// Whether an uplink has been created (successfully or at all)
 	var/uplink_created = FALSE
 	/// String displayed in the antag panel pointing the spy to where their uplink is.
@@ -40,10 +40,10 @@
 /datum/antagonist/spy/get_admin_commands()
 	. = ..()
 	// I wanted to put this in check-antagonists but it's less conducive to that
-	.["See All Bounties (For all spies)"] = CALLBACK(src, PROC_REF(see_bounties))
-	.["Refresh Bounties (For all spies)"] = CALLBACK(src, PROC_REF(refresh_bounties))
-	.["Give Spy Uplink"] = CALLBACK(src, PROC_REF(admin_create_spy_uplink))
-	.["Bounty Handler VV"] = CALLBACK(src, PROC_REF(bounty_handler_vv))
+	.["查看所有赏金（所有间谍）"] = CALLBACK(src, PROC_REF(see_bounties))
+	.["刷新赏金（所有间谍）"] = CALLBACK(src, PROC_REF(refresh_bounties))
+	.["发放间谍上行链路"] = CALLBACK(src, PROC_REF(admin_create_spy_uplink))
+	.["赏金处理器 VV"] = CALLBACK(src, PROC_REF(bounty_handler_vv))
 
 /datum/antagonist/spy/proc/see_bounties()
 	if(!check_rights(R_ADMIN|R_DEBUG))
@@ -51,7 +51,7 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, "No spy uplink!", "Mission Failed")
+		tgui_alert(usr, "没有间谍上行链路！", "任务失败")
 		return
 
 	uplink.ui_interact(usr)
@@ -62,18 +62,18 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, "No spy uplink!", "Mission Failed")
+		tgui_alert(usr, "没有间谍上行链路！", "任务失败")
 		return
 
 	uplink.handler.force_refresh()
-	tgui_alert(usr, "Bounties refreshed.", "Mission Success")
+	tgui_alert(usr, "赏金已刷新。", "任务成功")
 
 /datum/antagonist/spy/proc/admin_create_spy_uplink()
 	if(!check_rights(R_ADMIN|R_DEBUG))
 		return
 
 	if(!auto_create_spy_uplink(owner.current, give_backup = FALSE))
-		tgui_alert(usr, "Failed to give [owner.current] a spy uplink - likely don't have a valid item to host it.", "Mission Failed")
+		tgui_alert(usr, "未能给[owner.current]配发间谍上行链路——可能没有可用于承载它的有效物品。", "任务失败")
 
 /datum/antagonist/spy/proc/bounty_handler_vv()
 	if(!check_rights(R_ADMIN|R_DEBUG))
@@ -81,7 +81,7 @@
 
 	var/datum/component/spy_uplink/uplink = uplink_weakref?.resolve()
 	if(isnull(uplink))
-		tgui_alert(usr, "No spy uplink!", "Mission Failed")
+		tgui_alert(usr, "没有间谍上行链路！", "任务失败")
 		return
 
 	usr.client?.debug_variables(uplink.handler)
@@ -99,7 +99,7 @@
 		if(give_backup)
 			var/datum/action/backup_uplink/backup = new(src)
 			backup.Grant(spy)
-			to_chat(spy, span_boldnotice("You were unable to be supplied with an uplink, so you have been given the ability to create one yourself."))
+			to_chat(spy, span_boldnotice("你未能获得上行链路，因此被赋予了自行创建一个的能力。"))
 		return FALSE
 
 	return TRUE
@@ -113,16 +113,16 @@
 	uplink_created = TRUE
 
 	if(istype(spy_uplink, /obj/item/modular_computer/pda))
-		uplink_location = "your PDA"
+		uplink_location = "你的 PDA"
 
 	else if(istype(spy_uplink, /obj/item/pen))
 		if(istype(spy_uplink.loc, /obj/item/modular_computer/pda))
-			uplink_location = "your PDA's pen"
+			uplink_location = "你 PDA 里的笔"
 		else
-			uplink_location = "a pen"
+			uplink_location = "一支笔"
 
 	else if(istype(spy_uplink, /obj/item/radio))
-		uplink_location = "your radio headset"
+		uplink_location = "你的无线电耳机"
 
 	return TRUE
 
@@ -181,14 +181,14 @@
 		objectives += gtfo
 
 /datum/antagonist/spy/antag_panel_data()
-	return "Bounties Claimed: [bounties_claimed]"
+	return "已领取赏金：[bounties_claimed]"
 
 /datum/antagonist/spy/roundend_report()
 	var/list/report = list()
 	report += printplayer(owner)
-	report += " - They completed <b>[bounties_claimed]</b> bounties."
+	report += " - 其完成了 <b>[bounties_claimed]</b> 项赏金。"
 	if(bounties_claimed > 0)
-		report += " - They received the following rewards: [english_list(all_loot)]"
+		report += " - 其获得了以下奖励：[english_list(all_loot)]"
 	report += printobjectives(objectives)
 	return report.Join("<br>")
 
@@ -202,7 +202,7 @@
 	return finish_preview_icon(dummy_icon)
 
 /datum/outfit/spy
-	name = "Spy (Preview only)"
+	name = "间谍（仅供预览）"
 	// Balaclava sprite is ass, otherwise I would use it for this
 	uniform = /obj/item/clothing/under/suit/black
 	gloves = /obj/item/clothing/gloves/color/black
@@ -213,8 +213,8 @@
 	ears = /obj/item/radio/headset
 
 /datum/action/backup_uplink
-	name = "Create Uplink"
-	desc = "Fashion a PDA, Pen or Radio Headset into a swanky Spy Uplink."
+	name = "创建上行链路"
+	desc = "把 PDA、钢笔或无线电耳机改造成一个时髦的间谍上行链路。"
 	var/list/valid_types = list(
 		/obj/item/modular_computer/pda,
 		/obj/item/pen,
@@ -235,15 +235,15 @@
 	var/mob/living/spy = usr
 	var/obj/item/held_thing = spy.get_active_held_item()
 	if(isnull(held_thing))
-		spy.balloon_alert(spy, "you need to hold something!")
+		spy.balloon_alert(spy, "你需要手里拿着东西！")
 		return
 
 	if(!is_type_in_list(held_thing, valid_types))
-		held_thing.balloon_alert(spy, "invalid item!")
+		held_thing.balloon_alert(spy, "物品无效！")
 		return
 
 	var/datum/antagonist/spy/spy_datum = target
 	spy_datum.create_spy_uplink(spy, held_thing)
-	held_thing.balloon_alert(spy, "uplink created")
+	held_thing.balloon_alert(spy, "上行链路已创建")
 
 	qdel(src)

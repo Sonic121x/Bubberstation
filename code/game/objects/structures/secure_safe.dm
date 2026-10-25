@@ -1,6 +1,6 @@
 /obj/item/wallframe/secure_safe
-	name = "secure safe frame"
-	desc = "A locked safe. It being unpowered prevents any access until placed back onto a wall."
+	name = "保险箱框架"
+	desc = "一个上锁的保险箱。由于没有供电，在装回墙上之前无法进行任何访问。"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "wall_safe"
 	base_icon_state = "wall_safe"
@@ -41,8 +41,8 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	visible_message(span_warning("Sparks fly from [src]!"), blind_message = span_hear("You hear a faint electrical spark."))
-	balloon_alert(user, "lock destroyed")
+	visible_message(span_warning("火花从[src]上飞溅出来！"), blind_message = span_hear("你听到一声微弱的电火花声。"))
+	balloon_alert(user, "锁已损毁")
 	playsound(src, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	stored_lock_code = null
 	atom_storage.locked = STORAGE_NOT_LOCKED
@@ -80,8 +80,8 @@
  * to allow people to lock items up.
  */
 /obj/structure/secure_safe
-	name = "secure safe"
-	desc = "Excellent for securing things away from grubby hands."
+	name = "保险箱"
+	desc = "非常适合把东西收好，远离那些不干净的手。"
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "wall_safe"
 	base_icon_state = "wall_safe"
@@ -147,7 +147,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/secure_safe, 32)
 	return ..()
 
 /obj/structure/secure_safe/hos
-	name = "head of security's safe"
+	name = "安保主管的保险箱"
 
 /**
  * This safe is meant to be damn robust. To break in, you're supposed to get creative, or use acid or an explosion.
@@ -159,11 +159,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/secure_safe, 32)
  * get access to it.
  */
 /obj/structure/secure_safe/caps_spare
-	name = "captain's spare ID safe"
-	desc = "In case of emergency, do not break glass. All Captains and Acting Captains are provided with codes to access this safe. \
-		It is made out of the same material as the station's Black Box and is designed to resist all conventional weaponry. \
-		There appears to be a small amount of surface corrosion. It doesn't look like it could withstand much of an explosion.\
-		Due to the expensive material, it was made incredibly small to cut corners, leaving only enough room to fit something as slim as an ID card."
+	name = "舰长备用 ID 保险箱"
+	desc = "紧急情况下，请勿打破玻璃。所有舰长与代理舰长都配有此保险箱的访问密码。\
+		它由与空间站黑匣子相同的材料制成，旨在抵御一切常规武器。\
+		表面似乎有少量腐蚀痕迹。看起来它承受不住太大的爆炸。\
+		由于材料昂贵，为节省成本而造得极其狭小，只够容纳一张薄薄的 ID 卡。"
 	icon_state = "spare_safe"
 	base_icon_state = "spare_safe"
 	armor_type = /datum/armor/safe_caps_spare

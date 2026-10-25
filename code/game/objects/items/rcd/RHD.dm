@@ -3,8 +3,8 @@
 #define SILO_USE_AMOUNT (SHEET_MATERIAL_AMOUNT / 4)
 
 /obj/item/construction
-	name = "not for ingame use"
-	desc = "A device used to rapidly build and deconstruct. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "非游戏内使用"
+	desc = "一种用于快速建造与拆除的设备。可用铁、塑料钢、玻璃或压缩物质弹药筒装填。"
 	abstract_type = /obj/item/construction
 	opacity = FALSE
 	density = FALSE
@@ -85,12 +85,12 @@
 
 /obj/item/construction/examine(mob/user)
 	. = ..()
-	. += "It currently holds [get_matter(user)]/[max_matter] matter-units."
+	. += "它目前储存有 [get_matter(user)]/[max_matter] 物质单位。"
 	if(construction_upgrades & RCD_UPGRADE_SILO_LINK)
-		. += "Remote storage link state: [silo_link ? "[silo_mats.on_hold() ? "ON HOLD" : "ON"]" : "OFF"]."
+		. += "远程储存连接状态：[silo_link ? "[silo_mats.on_hold() ? "暂停" : "开启"]" : "关闭"]。"
 		var/iron = get_silo_iron()
 		if(iron)
-			. += "Remote connection has iron in equivalent to [iron] RCD unit\s." //1 matter for 1 floor tile, as 4 tiles are produced from 1 iron
+			. += "远程连接中的铁储量相当于 [iron] 个 RCD 单位。" //1 matter for 1 floor tile, as 4 tiles are produced from 1 iron
 
 /obj/item/construction/Destroy()
 	QDEL_NULL(spark_system)
@@ -120,10 +120,10 @@
 /// Installs an upgrade into the RCD checking if it is already installed, or if it is a banned upgrade
 /obj/item/construction/proc/install_upgrade(obj/item/rcd_upgrade/design_disk, mob/user)
 	if(design_disk.upgrade & construction_upgrades)
-		balloon_alert(user, "already installed!")
+		balloon_alert(user, "已安装！")
 		return FALSE
 	if(design_disk.upgrade & banned_upgrades)
-		balloon_alert(user, "cannot install upgrade!")
+		balloon_alert(user, "无法安装升级！")
 		return FALSE
 	construction_upgrades |= design_disk.upgrade
 	if((design_disk.upgrade & RCD_UPGRADE_SILO_LINK) && !silo_mats)
@@ -143,7 +143,7 @@
 		var/obj/item/rcd_ammo/ammo = item
 		var/load = min(ammo.ammoamt, max_matter - matter)
 		if(load <= 0)
-			balloon_alert(user, "storage full!")
+			balloon_alert(user, "储存已满！")
 			return FALSE
 		ammo.ammoamt -= load
 		if(ammo.ammoamt <= 0)
@@ -159,7 +159,7 @@
 
 /obj/item/construction/proc/loadwithsheets(obj/item/stack/the_stack, mob/user)
 	if(the_stack.matter_amount <= 0)
-		balloon_alert(user, "invalid sheets!")
+		balloon_alert(user, "板材无效！")
 		return FALSE
 	var/maxsheets = round((max_matter-matter) / the_stack.matter_amount) //calculate the max number of sheets that will fit in RCD
 	if(maxsheets > 0)
@@ -168,7 +168,7 @@
 		matter += the_stack.matter_amount * amount_to_use
 		playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 		return TRUE
-	balloon_alert(user, "storage full!")
+	balloon_alert(user, "储存已满！")
 	return FALSE
 
 /obj/item/construction/attack_self(mob/user)
@@ -197,7 +197,7 @@
 			if(has_ammobar)
 				flick("[charge_icon_state || icon_state]_empty", src)
 			if(user)
-				balloon_alert(user, "not enough matter!")
+				balloon_alert(user, "物质不足！")
 			return FALSE
 		if(!dry_run)
 			matter -= amount
@@ -206,14 +206,14 @@
 	else
 		if(!silo_mats.can_use_resource(user_data = ID_DATA(user)))
 			if(user)
-				balloon_alert(user, "permission denied!")
+				balloon_alert(user, "权限被拒绝！")
 			return FALSE
 		if(!silo_mats.mat_container.has_enough_of_material(/datum/material/iron, amount * SILO_USE_AMOUNT))
 			if(user)
-				balloon_alert(user, "not enough silo material!")
+				balloon_alert(user, "筒仓材料不足！")
 			return FALSE
 		if(!dry_run)
-			amount = silo_mats.use_materials(list(/datum/material/iron = SILO_USE_AMOUNT), multiplier = amount, action = "RESTOCKED", name = "x restocked an RCD", user_data = ID_DATA(user))
+			amount = silo_mats.use_materials(list(/datum/material/iron = SILO_USE_AMOUNT), multiplier = amount, action = "RESTOCKED", name = "x 补充了一台 RCD", user_data = ID_DATA(user))
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return dry_run ? TRUE : amount
 
@@ -238,15 +238,15 @@
 
 /obj/item/construction/proc/toggle_silo(mob/user)
 	if(!silo_mats)
-		to_chat(user, span_warning("no remote storage connection."))
+		to_chat(user, span_warning("没有远程储存连接。"))
 		return FALSE
 
 	if(!silo_mats.mat_container && !silo_link) // Allow them to turn off an invalid link.
-		to_chat(user, span_warning("no silo link detected."))
+		to_chat(user, span_warning("未检测到筒仓连接。"))
 		return FALSE
 
 	silo_link = !silo_link
-	to_chat(user, span_notice("silo link state: [silo_link ? "on" : "off"]"))
+	to_chat(user, span_notice("筒仓连接状态：[silo_link ? "开启" : "关闭"]"))
 	return TRUE
 
 ///shared action for toggling silo link rcd,rld & plumbing
@@ -272,7 +272,7 @@
 	if(target.z != user.z)
 		return
 	if(!(target in dview(7, get_turf(user))))
-		balloon_alert(user, "out of range!")
+		balloon_alert(user, "超出范围！")
 		flick("[icon_state]_empty", src)
 		return FALSE
 	else
@@ -295,54 +295,54 @@
 	return TRUE
 
 /obj/item/rcd_upgrade
-	name = "RCD advanced design disk"
-	desc = "It seems to be empty."
+	name = "RCD 高级设计盘"
+	desc = "它看起来是空的。"
 	icon = 'icons/obj/devices/floppy_disks.dmi'
 	icon_state = "datadisk3"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/titanium = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.75)
 	var/upgrade
 
 /obj/item/rcd_upgrade/frames
-	name = "RCD advanced upgrade: frames"
-	desc = "It contains the design for machine frames and computer frames."
+	name = "RCD 高级升级：框架"
+	desc = "其中包含机器框架与电脑框架的设计图。"
 	icon_state = "datadisk6"
 	upgrade = RCD_UPGRADE_FRAMES
 
 /obj/item/rcd_upgrade/simple_circuits
-	name = "RCD advanced upgrade: simple circuits"
-	desc = "It contains the design for firelock, air alarm, fire alarm, APC circuits and crap power cells."
+	name = "RCD 高级升级：简易电路"
+	desc = "其中包含防火门、空气警报器、火警警报器、APC 电路以及劣质电池的设计图。"
 	icon_state = "datadisk4"
 	upgrade = RCD_UPGRADE_SIMPLE_CIRCUITS
 
 /obj/item/rcd_upgrade/anti_interrupt
-	name = "RCD advanced upgrade: anti disruption"
-	desc = "It contains the upgrades necessary to prevent interruption of RCD construction and deconstruction."
+	name = "RCD 高级升级：防干扰"
+	desc = "其中包含防止 RCD 建造与拆除过程被打断所需的升级。"
 	icon_state = "datadisk2"
 	upgrade = RCD_UPGRADE_ANTI_INTERRUPT
 
 /obj/item/rcd_upgrade/cooling
-	name = "RCD advanced upgrade: enhanced cooling"
-	desc = "It contains the upgrades necessary to allow more frequent use of the RCD."
+	name = "RCD 高级升级：强化冷却"
+	desc = "其中包含允许更频繁使用 RCD 所需的升级。"
 	icon_state = "datadisk7"
 	upgrade = RCD_UPGRADE_NO_FREQUENT_USE_COOLDOWN
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/rcd_upgrade/silo_link
-	name = "RCD advanced upgrade: silo link"
-	desc = "It contains direct silo connection RCD upgrade."
+	name = "RCD 高级升级：筒仓连接"
+	desc = "其中包含 RCD 直连筒仓的升级。"
 	icon_state = "datadisk8"
 	upgrade = RCD_UPGRADE_SILO_LINK
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 1.25)
 
 /obj/item/rcd_upgrade/furnishing
-	name = "RCD advanced upgrade: furnishings"
-	desc = "It contains the design for chairs, stools, tables, and glass tables."
+	name = "RCD 高级升级：家具"
+	desc = "其中包含椅子、凳子、桌子与玻璃桌的设计图。"
 	icon_state = "datadisk5"
 	upgrade = RCD_UPGRADE_FURNISHING
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/titanium = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.75)
 
 /datum/action/item_action/rcd_scan
-	name = "Destruction Scan"
-	desc = "Scans the surrounding area for destruction. Scanned structures will rebuild significantly faster."
+	name = "破坏扫描"
+	desc = "扫描周围区域以寻找可破坏结构。被扫描过的结构重建速度会显著加快。"
 
 #undef SILO_USE_AMOUNT

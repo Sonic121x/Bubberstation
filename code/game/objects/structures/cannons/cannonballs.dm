@@ -1,10 +1,10 @@
 /obj/item/stack/cannonball
-	name = "cannonballs"
-	desc = "A stack of heavy plasteel cannonballs. Gunnery for the space age!"
+	name = "炮弹"
+	desc = "一叠沉重的塑钢炮弹。太空时代的炮术！"
 	icon_state = "cannonballs"
 	base_icon_state = "cannonballs"
 	max_amount = 14
-	singular_name = "cannonball"
+	singular_name = "炮弹"
 	merge_type = /obj/item/stack/cannonball
 	throwforce = 10
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -26,9 +26,9 @@
 	amount = 4
 
 /obj/item/stack/cannonball/shellball
-	name = "explosive shellballs"
-	singular_name = "explosive shellball"
-	desc = "An explosive anti-materiel and counter-battery projectile cannonball. Makes great work out of any wall, for easy entrances."
+	name = "爆炸榴弹"
+	singular_name = "爆炸榴弹"
+	desc = "一种爆炸性的反器材、反炮兵炮弹。对付任何墙壁都极有效，方便开个入口。"
 	color = COLOR_RED
 	merge_type = /obj/item/stack/cannonball/shellball
 	projectile_type = /obj/projectile/bullet/cannonball/explosive
@@ -40,19 +40,19 @@
 	amount = 14
 
 /obj/item/stack/cannonball/emp
-	name = "malfunction shots"
-	singular_name = "malfunction shot"
+	name = "故障弹"
+	singular_name = "故障弹"
 	icon_state = "emp_cannonballs"
 	base_icon_state = "emp_cannonballs"
-	desc = "A shot filled with two chambers that combine on impact, creating a chemical EMP. What does any of that mean? Who knows. Modern piracy really lost its soul with these newfangled things."
+	desc = "一发内有两个腔室的炮弹，撞击时混合产生化学 EMP。这到底是什么意思？谁知道呢。现代海盗用上这些新玩意儿后，真是彻底没了灵魂。"
 	max_amount = 4
 	merge_type = /obj/item/stack/cannonball/emp
 	projectile_type = /obj/projectile/bullet/cannonball/emp
 
 /obj/item/stack/cannonball/the_big_one
-	name = "\"The Biggest Ones\""
-	singular_name = "\"The Biggest One\""
-	desc = "An insane amount of explosives jammed into a massive cannonball. The last cannonball you'll ever fire in a fight, mostly because there'll be nothing left to shoot at afterwards."
+	name = "“最大颗”"
+	singular_name = "“最大颗”"
+	desc = "疯狂的炸药量被塞进一颗巨大的炮弹里。这可能是你在一场战斗中发射的最后一颗炮弹，主要是因为之后也没什么可打的了。"
 	max_amount = 5
 	icon_state = "biggest_cannonballs"
 	base_icon_state = "biggest_cannonballs"
@@ -63,9 +63,9 @@
 	amount = 5
 
 /obj/item/stack/cannonball/trashball
-	name = "trashballs"
-	singular_name = "trashball"
-	desc = "A clump of tightly packed garbage. It'll work as a cannonball, but it may be unhealthy to actually put this in a real cannon."
+	name = "垃圾球"
+	singular_name = "垃圾球"
+	desc = "一团塞得紧紧的垃圾。它确实能当炮弹用，但把它塞进真炮里可能不太健康。"
 	max_amount = 4
 	icon_state = "trashballs"
 	base_icon_state = "trashballs"

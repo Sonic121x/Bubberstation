@@ -1,8 +1,8 @@
 /obj/structure/reflector
-	name = "reflector base"
+	name = "反射镜基座"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "reflector_map"
-	desc = "A base for reflector assemblies."
+	desc = "反射镜组件的基座。"
 	anchored = FALSE
 	density = FALSE
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5)
@@ -42,13 +42,13 @@
 /obj/structure/reflector/examine(mob/user)
 	. = ..()
 	if(finished)
-		. += "It is set to [rotation_angle] degrees, and the rotation is [can_rotate ? "unlocked" : "locked"]."
+		. += "它被设定为 [rotation_angle] 度，旋转状态为[can_rotate ? "已解锁" : "已锁定"]。"
 		if(!admin)
 			if(can_rotate)
-				. += span_notice("Use your <b>hand</b> to adjust its direction.")
-				. += span_notice("Use a <b>screwdriver</b> to lock the rotation.")
+				. += span_notice("用你的<b>手</b>调整它的朝向。")
+				. += span_notice("用<b>螺丝刀</b>锁定旋转。")
 			else
-				. += span_notice("Use <b>screwdriver</b> to unlock the rotation.")
+				. += span_notice("用<b>螺丝刀</b>解锁旋转。")
 
 /obj/structure/reflector/proc/set_angle(new_angle)
 	if(can_rotate)
@@ -85,18 +85,18 @@
 
 /obj/structure/reflector/screwdriver_act(mob/living/user, obj/item/tool)
 	can_rotate = !can_rotate
-	to_chat(user, span_notice("You [can_rotate ? "unlock" : "lock"] [src]'s rotation."))
+	to_chat(user, span_notice("你[can_rotate ? "解锁" : "锁定"]了[src]的旋转。"))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reflector/wrench_act(mob/living/user, obj/item/tool)
 	if(anchored)
-		to_chat(user, span_warning("Unweld [src] from the floor first!"))
+		to_chat(user, span_warning("请先用电焊把[src]从地板上拆下来！"))
 		return ITEM_INTERACT_SUCCESS
-	user.visible_message(span_notice("[user] starts to dismantle [src]."), span_notice("You start to dismantle [src]..."))
+	user.visible_message(span_notice("[user]开始拆解[src]。"), span_notice("你开始拆解[src]……"))
 	if(!tool.use_tool(src, user, 8 SECONDS, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You dismantle [src]."))
+	to_chat(user, span_notice("你拆解了[src]。"))
 	new framebuildstacktype(drop_location(), framebuildstackamount)
 	if(buildstackamount)
 		new buildstacktype(drop_location(), buildstackamount)
@@ -107,27 +107,27 @@
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_BLOCKING
 	if(atom_integrity < max_integrity)
-		user.visible_message(span_notice("[user] starts to repair [src]."),
-							span_notice("You begin repairing [src]..."),
-							span_hear("You hear welding."))
+		user.visible_message(span_notice("[user]开始修理[src]。"),
+							span_notice("你开始修理[src]……"),
+							span_hear("你听到焊接声。"))
 		if(tool.use_tool(src, user, 4 SECONDS, volume=40))
 			atom_integrity = max_integrity
-			user.visible_message(span_notice("[user] repairs [src]."), \
-								span_notice("You finish repairing [src]."))
+			user.visible_message(span_notice("[user]修理了[src]。"), \
+								span_notice("你完成了对[src]的修理。"))
 	else if(!anchored)
-		user.visible_message(span_notice("[user] starts to weld [src] to the floor."),
-							span_notice("You start to weld [src] to the floor..."),
-							span_hear("You hear welding."))
+		user.visible_message(span_notice("[user]开始把[src]焊接到地板上。"),
+							span_notice("你开始把[src]焊接到地板上……"),
+							span_hear("你听到焊接声。"))
 		if (tool.use_tool(src, user, 2 SECONDS, volume=50))
 			set_anchored(TRUE)
-			to_chat(user, span_notice("You weld [src] to the floor."))
+			to_chat(user, span_notice("你把[src]焊接到了地板上。"))
 	else
-		user.visible_message(span_notice("[user] starts to cut [src] free from the floor."),
-							span_notice("You start to cut [src] free from the floor..."),
-							span_hear("You hear welding."))
+		user.visible_message(span_notice("[user]开始把[src]从地板上切割下来。"),
+							span_notice("你开始把[src]从地板上切割下来……"),
+							span_hear("你听到焊接声。"))
 		if (tool.use_tool(src, user, 2 SECONDS, volume=50))
 			set_anchored(FALSE)
-			to_chat(user, span_notice("You cut [src] free from the floor."))
+			to_chat(user, span_notice("你把[src]从地板上切割了下来。"))
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -144,7 +144,7 @@
 	var/obj/item/stack/sheet/using_stack = tool
 	if(istype(using_stack, /obj/item/stack/sheet/glass))
 		if(!using_stack.use(5))
-			to_chat(user, span_warning("You need five sheets of glass to create a reflector!"))
+			to_chat(user, span_warning("你需要五片玻璃才能制作一面反射镜！"))
 			return ITEM_INTERACT_BLOCKING
 
 		new /obj/structure/reflector/single(drop_location())
@@ -153,7 +153,7 @@
 
 	if(istype(using_stack, /obj/item/stack/sheet/rglass))
 		if(!using_stack.use(10))
-			to_chat(user, span_warning("You need ten sheets of reinforced glass to create a double reflector!"))
+			to_chat(user, span_warning("你需要十片强化玻璃才能制作一面双面反射镜！"))
 			return ITEM_INTERACT_BLOCKING
 
 		new /obj/structure/reflector/double(drop_location())
@@ -170,9 +170,9 @@
 
 /obj/structure/reflector/proc/rotate(mob/user)
 	if (!can_rotate || admin)
-		to_chat(user, span_warning("The rotation is locked!"))
+		to_chat(user, span_warning("旋转已锁定！"))
 		return FALSE
-	var/new_angle = tgui_input_number(user, "New angle for primary reflection face", "Reflector Angle", rotation_angle, 360)
+	var/new_angle = tgui_input_number(user, "主反射面的新角度", "反射镜角度", rotation_angle, 360)
 	if(isnull(new_angle) || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return FALSE
 	set_angle(SIMPLIFY_DEGREES(new_angle))
@@ -183,9 +183,9 @@
 //SINGLE
 
 /obj/structure/reflector/single
-	name = "reflector"
+	name = "反射镜"
 	deflector_icon_state = "reflector"
-	desc = "An angled mirror for reflecting laser beams."
+	desc = "一面用于反射激光束的斜角镜。"
 	density = TRUE
 	finished = TRUE
 	buildstacktype = /obj/item/stack/sheet/glass
@@ -209,9 +209,9 @@
 //DOUBLE
 
 /obj/structure/reflector/double
-	name = "double sided reflector"
+	name = "双面反射镜"
 	deflector_icon_state = "reflector_double"
-	desc = "A double sided angled mirror for reflecting laser beams."
+	desc = "一面用于反射激光束的双面斜角镜。"
 	density = TRUE
 	finished = TRUE
 	buildstacktype = /obj/item/stack/sheet/rglass
@@ -235,9 +235,9 @@
 //BOX
 
 /obj/structure/reflector/box
-	name = "reflector box"
+	name = "反射箱"
 	deflector_icon_state = "reflector_box"
-	desc = "A box with an internal set of mirrors that reflects all laser beams in a single direction."
+	desc = "一个内置镜组的箱子，能把所有激光束反射向同一方向。"
 	density = TRUE
 	finished = TRUE
 	buildstacktype = /obj/item/stack/sheet/mineral/diamond
@@ -269,8 +269,8 @@
 //	USB
 
 /obj/item/circuit_component/reflector
-	display_name = "Reflector"
-	desc = "Allows you to adjust the angle of a reflector."
+	display_name = "反射镜"
+	desc = "让你可以调整反射镜的角度。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	///angle the reflector will be set to at trigger unless locked
@@ -279,7 +279,7 @@
 	var/obj/structure/reflector/attached_reflector
 
 /obj/item/circuit_component/reflector/populate_ports()
-	angle = add_input_port("Angle", PORT_TYPE_NUMBER)
+	angle = add_input_port("角度", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/reflector/register_usb_parent(atom/movable/parent)
 	. = ..()
@@ -297,10 +297,10 @@
 
 /obj/structure/reflector/ui_interact(mob/user, datum/tgui/ui)
 	if(!finished)
-		user.balloon_alert(user, "nothing to rotate!")
+		user.balloon_alert(user, "没有可旋转的部件！")
 		return
 	if(!can_rotate)
-		user.balloon_alert(user, "can't rotate!")
+		user.balloon_alert(user, "无法旋转！")
 		ui?.close()
 		return
 	ui = SStgui.try_update_ui(user, src, ui)

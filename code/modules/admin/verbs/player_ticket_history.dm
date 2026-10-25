@@ -19,7 +19,7 @@ GENERAL_PROTECT_DATUM(/datum/ticket_log_entry)
 GLOBAL_DATUM_INIT(player_ticket_history, /datum/ticket_history_holder, new)
 GLOBAL_PROTECT(player_ticket_history)
 
-ADMIN_VERB(player_ticket_history, R_ADMIN, "Player Ticket History", "Allows you to view the ticket history of a player.", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(player_ticket_history, R_ADMIN, "玩家工单历史", "查看某位玩家的工单历史。", ADMIN_CATEGORY_MAIN)
 	GLOB.player_ticket_history.ui_interact(user.mob)
 
 /datum/ticket_history_holder
@@ -57,7 +57,7 @@ ADMIN_VERB(player_ticket_history, R_ADMIN, "Player Ticket History", "Allows you 
 	)
 	if(!ticket_lookup.Execute())
 		qdel(ticket_lookup)
-		to_chat(usr, "Failed to query ticket history for [ckey]!")
+		to_chat(usr, "查询 [ckey] 的工单历史失败！")
 		return
 
 	var/list/lookup_targets = list()
@@ -108,11 +108,11 @@ ADMIN_VERB(player_ticket_history, R_ADMIN, "Player Ticket History", "Allows you 
 	UNTIL(lookup_targets.len == 0)
 
 	if(!length(history_cache))
-		to_chat(usr, span_adminnotice("No ticket history found for [ckey]!"))
+		to_chat(usr, span_adminnotice("未找到 [ckey] 的工单历史！"))
 		ticket_histories -= ckey
 		return
 
-	to_chat(usr, span_adminnotice("Finished caching ticket history for [ckey]!"))
+	to_chat(usr, span_adminnotice("已完成 [ckey] 的工单历史缓存！"))
 
 /datum/ticket_history_holder/ui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN)

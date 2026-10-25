@@ -1,6 +1,6 @@
 /// Antag datum associated with the experimental cloner
 /datum/antagonist/evil_clone
-	name = "\improper Evil Clone"
+	name = "\improper 邪恶克隆体"
 	stinger_sound = 'sound/music/antag/hypnotized.ogg'
 	pref_flag = ROLE_EVIL_CLONE
 	roundend_category = "evil clones"
@@ -11,7 +11,7 @@
 
 /datum/antagonist/evil_clone/on_gain()
 	if (owner.current)
-		name = "[owner.current.real_name] Prime"
+		name = "[owner.current.real_name] 本体"
 	forge_objectives()
 	return ..()
 
@@ -21,9 +21,9 @@
 	play_stinger()
 	var/mob/living/current_mob = owner.current
 	if (current_mob)
-		to_chat(current_mob, span_big("You are [current_mob.real_name]."))
-		to_chat(current_mob, span_hypnophrase("You are the <b>only</b> [current_mob.real_name]."))
-		to_chat(current_mob, span_boldwarning("Anyone else pretending to be [current_mob.real_name] must be punished."))
+		to_chat(current_mob, span_big("你是 [current_mob.real_name]。"))
+		to_chat(current_mob, span_hypnophrase("你是<b>唯一</b>的 [current_mob.real_name]。"))
+		to_chat(current_mob, span_boldwarning("任何冒充 [current_mob.real_name] 的人都必须受到惩罚。"))
 	owner.announce_objectives()
 
 /datum/antagonist/evil_clone/forge_objectives()
@@ -34,8 +34,8 @@
 
 /// Kill everyone with the same name as you
 /datum/objective/accept_no_substitutes
-	name = "kill all clones"
-	explanation_text = "Ensure that nobody with a particular name that you don't remember remains alive."
+	name = "杀死所有克隆体"
+	explanation_text = "确保没有任何一个顶着那个你已记不清的姓名的人存活。"
 	admin_grantable = TRUE
 	/// What name do we want to expunge?
 	var/target_name
@@ -43,7 +43,7 @@
 /// Set the name to check for
 /datum/objective/accept_no_substitutes/proc/set_target_name(new_name)
 	target_name = new_name
-	explanation_text = "Ensure that nobody with the name [target_name] remains alive."
+	explanation_text = "确保没有任何名为 [target_name] 的人存活。"
 
 /datum/objective/accept_no_substitutes/check_completion()
 	if (!target_name)

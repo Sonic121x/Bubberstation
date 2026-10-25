@@ -3,7 +3,7 @@
 
 ///A lavaland geyser that spawns chems and can be mining scanned for points. Made to work with the plumbing pump to extract that sweet rare nectar
 /obj/structure/geyser
-	name = "geyser"
+	name = "间歇泉"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
 	icon_state = "geyser"
 	anchored = TRUE
@@ -68,10 +68,10 @@
 		return NONE //this runs the plunger code
 
 	if(discovered)
-		to_chat(user, span_warning("This geyser has already been discovered!"))
+		to_chat(user, span_warning("这处间歇泉已经被发现了！"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You discovered the geyser and mark it on the GPS system!"))
+	to_chat(user, span_notice("你发现了这处间歇泉，并将其标记在 GPS 系统上！"))
 	playsound(src, 'sound/machines/beep/twobeep_high.ogg', 30)
 	SEND_SIGNAL(user, COMSIG_LIVING_DISCOVERED_GEYSER, src)
 	if(discovery_message)
@@ -85,33 +85,33 @@
 
 	var/obj/item/card/id/card = user.get_idcard()
 	if(card)
-		to_chat(user, span_notice("[point_value] mining points have been paid out!"))
+		to_chat(user, span_notice("已发放 [point_value] 采矿点数！"))
 		card.registered_account.mining_points += point_value
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/geyser/wittel
 	reagent_id = /datum/reagent/wittel
 	point_value = 250
-	true_name = "wittel geyser"
-	discovery_message = "It's a rare wittel geyser! This could be very powerful in the right hands... "
+	true_name = "维特尔间歇泉"
+	discovery_message = "这是一处稀有的维特尔间歇泉！在合适的人手里会非常强大…… "
 
 /obj/structure/geyser/plasma_oxide
 	reagent_id = /datum/reagent/plasma_oxide
-	true_name = "plasma-oxide geyser"
+	true_name = "等离子氧化物间歇泉"
 
 /obj/structure/geyser/protozine
 	reagent_id = /datum/reagent/medicine/omnizine/protozine
-	true_name = "protozine geyser"
+	true_name = "原嗪间歇泉"
 
 /obj/structure/geyser/hollowwater
 	reagent_id = /datum/reagent/water/hollowwater
-	true_name = "hollow water geyser"
+	true_name = "空水间歇泉"
 
 /obj/structure/geyser/chiral_buffer
 	reagent_id = /datum/reagent/reaction_agent/inversing_buffer
 	point_value = 250
-	true_name = "chiral inversing geyser"
-	discovery_message = "It's a rare chiral inversing geyser! This could be very powerful in the right hands... "
+	true_name = "手性反转间歇泉"
+	discovery_message = "这是一处稀有的手性反转间歇泉！在合适的人手里会非常强大…… "
 
 /obj/structure/geyser/random
 	point_value = 500
@@ -119,16 +119,16 @@
 /obj/structure/geyser/random/Initialize(mapload)
 	reagent_id = get_random_reagent_id()
 
-	true_name = "[initial(reagent_id.name)] geyser"
+	true_name = "[initial(reagent_id.name)]间歇泉"
 
-	discovery_message = "It's a [true_name]! How does any of this even work?" //it doesnt
+	discovery_message = "这是一处[true_name]！这一切究竟是怎么运作的？" //it doesnt
 
 	return ..()
 
 ///A wearable tool that lets you empty plumbing machinery and some other stuff
 /obj/item/plunger
-	name = "plunger"
-	desc = "It's a plunger for plunging."
+	name = "搋子"
+	desc = "这是用来搋东西的搋子。"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "plunger"
 	worn_icon_state = "plunger"
@@ -164,7 +164,7 @@
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, disable_warning = TRUE))
-			victim.visible_message(span_warning("The plunger slams into [victim]'s face!"), span_warning("The plunger suctions to your face!"))
+			victim.visible_message(span_warning("搋子砸在了[victim]的脸上！"), span_warning("搋子吸在了你脸上！"))
 
 /obj/item/plunger/attack_self(mob/user)
 	. = ..()
@@ -173,15 +173,15 @@
 
 	if(!layer_mode)
 		icon_state = initial(icon_state)
-		to_chat(user, span_notice("You set the plunger to 'Plunger Mode'."))
+		to_chat(user, span_notice("你将搋子切换为“搋子模式”。"))
 	else
 		icon_state = layer_mode_sprite
-		to_chat(user, span_notice("You set the plunger to 'Layer Mode'."))
+		to_chat(user, span_notice("你将搋子切换为“管层模式”。"))
 
 	playsound(src, 'sound/machines/click.ogg', 10, TRUE)
 
 /obj/item/plunger/click_alt(mob/user)
-	var/new_layer = tgui_input_list(user, "Select a layer", "Layer", GLOB.plumbing_layers)
+	var/new_layer = tgui_input_list(user, "选择管层", "管层", GLOB.plumbing_layers)
 	if(isnull(new_layer) || !user.can_perform_action(src))
 		return CLICK_ACTION_BLOCKING
 	target_layer = GLOB.plumbing_layers[new_layer]
@@ -189,8 +189,8 @@
 
 ///A faster reinforced plunger
 /obj/item/plunger/reinforced
-	name = "reinforced plunger"
-	desc = "It's an M. 7 Reinforced Plunger© for heavy duty plunging."
+	name = "强化搋子"
+	desc = "这是 M. 7 强化搋子©，用于重型搋吸作业。"
 	icon_state = "reinforced_plunger"
 	worn_icon_state = "reinforced_plunger"
 	reinforced = TRUE
