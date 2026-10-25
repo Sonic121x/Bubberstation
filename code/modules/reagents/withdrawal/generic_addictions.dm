@@ -1,9 +1,9 @@
 ///Opioids
 /datum/addiction/opioids
-	name = "opioid"
-	description = "Patient has developed a dependence on opioid substances."
-	symptoms = "Expresses a desire for painkillers, and when in withdrawl, experiences drowsiness, high blood pressure, and nausea."
-	withdrawal_stage_messages = list("I feel aches in my bodies..", "I need some pain relief...", "It aches all over...I need some opioids!")
+	name = "阿片类药物"
+	description = "患者已对阿片类物质产生依赖。"
+	symptoms = "表现出对止痛药的渴望，戒断期间会出现嗜睡、高血压和恶心。"
+	withdrawal_stage_messages = list("我浑身酸痛……", "我需要点止痛的东西……", "全身都在疼……我需要阿片类药物！")
 
 /datum/addiction/opioids/withdrawal_stage_1_process(mob/living/carbon/affected_carbon, seconds_per_tick)
 	. = ..()
@@ -27,10 +27,10 @@
 ///Stimulants
 
 /datum/addiction/stimulants
-	name = "stimulant"
-	description = "Patient has developed a dependence on stimulant substances."
-	symptoms = "Expresses a desire for stimulants, and when in withdrawal, experiences fatigue, slowness, and difficulty concentrating."
-	withdrawal_stage_messages = list("You feel a bit tired...You could really use a pick me up.", "You are getting a bit woozy...", "So...Tired...")
+	name = "兴奋剂"
+	description = "患者已对兴奋剂物质产生依赖。"
+	symptoms = "表现出对兴奋剂的渴望，戒断期间会出现疲劳、迟钝和注意力难以集中。"
+	withdrawal_stage_messages = list("你感觉有点累……真需要提提神。", "你开始有点头晕……", "好……累……")
 
 /datum/addiction/stimulants/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -52,10 +52,10 @@
 
 ///Alcohol
 /datum/addiction/alcohol
-	name = "alcohol"
-	description = "Patient has developed a dependence on alcohol."
-	symptoms = "Expresses a desire for alcoholic beverages, and when in withdrawal, experiences jitteriness, hallucinations, and potentially seizures."
-	withdrawal_stage_messages = list("I could use a drink...", "Maybe the bar is still open?..", "God I need a drink!")
+	name = "酒精"
+	description = "患者已对酒精产生依赖。"
+	symptoms = "表现出对含酒精饮料的渴望，戒断期间会出现颤抖、幻觉，甚至癫痫发作。"
+	withdrawal_stage_messages = list("我该喝一杯了……", "也许酒吧还开着？……", "天啊，我需要喝一杯！")
 
 /datum/addiction/alcohol/withdrawal_stage_1_process(mob/living/carbon/affected_carbon, seconds_per_tick)
 	. = ..()
@@ -74,10 +74,10 @@
 		affected_carbon.apply_status_effect(/datum/status_effect/seizure)
 
 /datum/addiction/hallucinogens
-	name = "hallucinogen"
-	description = "Patient has developed a dependence on hallucinogenic substances."
-	symptoms = "Expresses a desire for hallucinogens, and when in withdrawal, experiences feelings of emptiness, difficulty seeing, and disconnection from reality."
-	withdrawal_stage_messages = list("I feel so empty...", "I wonder what the machine elves are up to?..", "I need to see the beautiful colors again!!")
+	name = "致幻剂"
+	description = "患者已对致幻物质产生依赖。"
+	symptoms = "表现出对致幻剂的渴望，戒断期间会感到空虚、视力困难以及与现实的脱节。"
+	withdrawal_stage_messages = list("我感到好空虚……", "不知道机器精灵们在忙什么？……", "我需要再次看到那些美丽的颜色！！")
 
 /datum/addiction/hallucinogens/withdrawal_enters_stage_2(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -98,10 +98,10 @@
 	affected_carbon.remove_status_effect(/datum/status_effect/trance, 40 SECONDS, TRUE)
 
 /datum/addiction/maintenance_drugs
-	name = "maintenance drug"
-	description = "Patient has developed a dependence on maintenance drugs."
-	symptoms = "Expresses a desire for maintenance drugs, and when in withdrawal, experiences various adaptions \
-		such as light sensitivity, numbness, changes to taste, enhanced hair growth, and greater low light vision."
+	name = "维护区药物"
+	description = "患者已对维护区药物产生依赖。"
+	symptoms = "表现出对维护区药物的渴望，戒断期间会出现各种适应性变化，\
+		例如畏光、麻木、味觉改变、毛发加速生长以及更强的暗视能力。"
 	withdrawal_stage_messages = list("", "", "")
 
 /datum/addiction/maintenance_drugs/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon)
@@ -119,7 +119,7 @@
 		return
 	var/mob/living/carbon/human/affected_human = affected_carbon
 	if(affected_human.gender == MALE)
-		to_chat(affected_human, span_warning("Your chin itches."))
+		to_chat(affected_human, span_warning("你的下巴发痒。"))
 		affected_human.set_facial_hairstyle("Beard (Full)", update = TRUE)
 	//Only like gross food
 	var/obj/item/organ/tongue/tongue = affected_carbon.get_organ_slot(ORGAN_SLOT_TONGUE)
@@ -133,7 +133,7 @@
 	. = ..()
 	if(!ishuman(affected_carbon))
 		return
-	to_chat(affected_carbon, span_warning("You feel yourself adapt to the darkness."))
+	to_chat(affected_carbon, span_warning("你感觉自己适应了黑暗。"))
 	ADD_TRAIT(affected_carbon, TRAIT_NIGHT_VISION, type)
 
 /datum/addiction/maintenance_drugs/withdrawal_stage_3_process(mob/living/carbon/affected_carbon, seconds_per_tick)
@@ -161,10 +161,10 @@
 
 ///Makes you a hypochondriac - I'd like to call it hypochondria, but "I could use some hypochondria" doesn't work
 /datum/addiction/medicine
-	name = "medicine"
-	description = "Patient has developed a dependence on medicine, similar to that of Hypochondria."
-	symptoms = "Expresses a need for medication despite being otherwise healthy, and when in withdrawal, \
-		experiences coughing fits, hallucinations, and distorted health perceptions."
+	name = "药物"
+	description = "患者已对药物产生依赖，类似于疑病症。"
+	symptoms = "在身体健康的情况下仍表现出对药物的需求，戒断期间\
+		会出现阵发性咳嗽、幻觉和扭曲的健康感知。"
 	withdrawal_stage_messages = list("", "", "")
 	/// Weakref to the "fake alert" hallucination we're giving to the addicted
 	var/datum/weakref/fake_alert_ref
@@ -177,7 +177,7 @@
 		return
 	var/datum/hallucination/health_doll = affected_carbon.cause_hallucination( \
 		/datum/hallucination/fake_health_doll, \
-		"medicine addiction", \
+		"药物成瘾", \
 		severity = 1, \
 		duration = 120 MINUTES, \
 	)
@@ -211,7 +211,7 @@
 
 	var/datum/hallucination/fake_alert = affected_carbon.cause_hallucination( \
 		pick(possibilities), \
-		"medicine addiction", \
+		"药物成瘾", \
 		duration = 120 MINUTES, \
 	)
 	if(!fake_alert)
@@ -265,7 +265,7 @@
 		to_chat(affected_carbon, organ.high_threshold_passed)
 		return
 
-	to_chat(affected_carbon, span_warning("You feel a dull pain in your [organ.name]."))
+	to_chat(affected_carbon, span_warning("你感到 [organ.name] 里有一阵隐痛。"))
 
 /datum/addiction/medicine/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()

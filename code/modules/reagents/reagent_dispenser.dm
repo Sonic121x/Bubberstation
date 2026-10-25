@@ -2,8 +2,8 @@
 #define COOLER_JUG_EJECT_TIME (8 SECONDS)
 
 /obj/structure/reagent_dispensers
-	name = "Dispenser"
-	desc = "..."
+	name = "分配器"
+	desc = "……"
 	icon = 'icons/obj/medical/chemical_tanks.dmi'
 	icon_state = "water"
 	abstract_type = /obj/structure/reagent_dispensers
@@ -51,7 +51,7 @@
  *
  */
 /obj/structure/reagent_dispensers/proc/rig_boom()
-	log_bomber(last_rigger, "rigged [src] exploded", src)
+	log_bomber(last_rigger, "装了手脚的 [src] 爆炸了", src)
 	boom()
 
 /obj/structure/reagent_dispensers/Initialize(mapload)
@@ -66,17 +66,17 @@
 /obj/structure/reagent_dispensers/examine(mob/user)
 	. = ..()
 	if(can_be_tanked)
-		. += span_notice("Use a sheet of iron to convert this into a plumbing-compatible tank.")
+		. += span_notice("使用一张铁板可将其转换为可接入管道系统的储罐。")
 	if(openable)
 		if(!leaking)
-			. += span_notice("Its tap looks like it could be <b>wrenched</b> open.")
+			. += span_notice("它的龙头似乎可以用<b>扳手</b>拧开。")
 		else
-			. += span_warning("Its tap is <b>wrenched</b> open!")
+			. += span_warning("它的龙头被<b>扳手</b>拧开了！")
 	if(accepts_rig && get_dist(user, src) <= 2)
 		if(rig)
-			. += span_warning("There is some kind of device <b>rigged</b> to the tank!")
+			. += span_warning("罐体上<b>装配</b>了某种装置！")
 		else
-			. += span_notice("It looks like you could <b>rig</b> a device to the tank.")
+			. += span_notice("看起来你可以往罐体上<b>装配</b>一个装置。")
 
 
 /obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
@@ -88,13 +88,13 @@
 /obj/structure/reagent_dispensers/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/assembly_holder) && accepts_rig)
 		if(rig)
-			balloon_alert(user, "another device is in the way!")
+			balloon_alert(user, "已经有别的装置挡住了！")
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/assembly_holder/holder = tool
 		if(!(locate(/obj/item/assembly/igniter) in holder.assemblies))
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert_to_viewers("attaching rig...")
+		user.balloon_alert_to_viewers("正在装配装置……")
 		add_fingerprint(user)
 		if(!do_after(user, 2 SECONDS, target = src) || !user.transferItemToLoc(holder, src))
 			return ITEM_INTERACT_BLOCKING
@@ -106,9 +106,9 @@
 		assembliesoverlay.pixel_z += 1
 		add_overlay(assembliesoverlay)
 		RegisterSignal(src, COMSIG_IGNITER_ACTIVATE, PROC_REF(rig_boom))
-		log_bomber(user, "attached [holder.name] to ", src)
+		log_bomber(user, "把 [holder.name] 安装到了 ", src)
 		last_rigger = user
-		user.balloon_alert_to_viewers("attached rig")
+		user.balloon_alert_to_viewers("装置已装配")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stack/sheet/iron) && can_be_tanked)
@@ -117,7 +117,7 @@
 		var/obj/structure/reagent_dispensers/plumbed/storage/new_tank = new /obj/structure/reagent_dispensers/plumbed/storage(drop_location())
 		new_tank.reagents.maximum_volume = reagents.maximum_volume
 		reagents.trans_to(new_tank, reagents.total_volume)
-		new_tank.name = "stationary [name]"
+		new_tank.name = "固定式[name]"
 		new_tank.update_appearance(UPDATE_OVERLAYS)
 		new_tank.set_anchored(anchored)
 		qdel(src)
@@ -139,11 +139,11 @@
 	rig.on_found()
 	if(QDELETED(src))
 		return
-	user.balloon_alert_to_viewers("detaching rig...")
+	user.balloon_alert_to_viewers("正在拆卸装置……")
 	if(!do_after(user, 2 SECONDS, target = src))
 		return
-	user.balloon_alert_to_viewers("detached rig")
-	user.log_message("detached [rig] from [src].", LOG_GAME)
+	user.balloon_alert_to_viewers("装置已拆卸")
+	user.log_message("从 [src] 上拆下了 [rig]。", LOG_GAME)
 	if(!user.put_in_hands(rig))
 		rig.forceMove(get_turf(user))
 	rig = null
@@ -173,12 +173,12 @@
 		reagents.del_reagent(/datum/reagent/fuel) // not actually used for the explosion
 	if(reagents.total_volume)
 		if(!fuel_amt)
-			visible_message(span_danger("\The [src] ruptures!"))
+			visible_message(span_danger("\The [src] 破裂了！"))
 		// Leave it up to future terrorists to figure out the best way to mix reagents with fuel for a useful boom here
 		chem_splash(loc, null, 2 + floor((reagents.total_volume + fuel_amt) / 1000), list(reagents), extra_heat=(fuel_amt / 50),adminlog=(fuel_amt<25))
 
 	if(fuel_amt) // with that done, actually explode
-		visible_message(span_danger("\The [src] explodes!"))
+		visible_message(span_danger("\The [src] 爆炸了！"))
 		// old code for reference:
 		// standard fuel tank = 1000 units = heavy_impact_range = 1, light_impact_range = 5, flame_range = 5
 		// big fuel tank = 5000 units = devastation_range = 1, heavy_impact_range = 2, light_impact_range = 7, flame_range = 12
@@ -221,8 +221,8 @@
 	if(!openable)
 		return FALSE
 	leaking = !leaking
-	balloon_alert(user, "[leaking ? "opened" : "closed"] tap")
-	user.log_message("[leaking ? "opened" : "closed"] [src].", LOG_GAME)
+	balloon_alert(user, "[leaking ? "打开了" : "关闭了"]龙头")
+	user.log_message("[leaking ? "打开了" : "关闭了"] [src]。", LOG_GAME)
 	tank_leak()
 	return ITEM_INTERACT_SUCCESS
 
@@ -231,21 +231,21 @@
 	tank_leak()
 
 /obj/structure/reagent_dispensers/watertank
-	name = "water tank"
-	desc = "A water tank."
+	name = "水箱"
+	desc = "一个水箱。"
 	icon_state = "water"
 	openable = TRUE
 	climbable = TRUE
 
 /obj/structure/reagent_dispensers/watertank/high
-	name = "high-capacity water tank"
-	desc = "A highly pressurized water tank made to hold gargantuan amounts of water."
+	name = "高容量水箱"
+	desc = "一个高压水箱，用于容纳海量的水。"
 	icon_state = "water_high" //I was gonna clean my room...
 	tank_volume = 3000
 
 /obj/structure/reagent_dispensers/foamtank//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "firefighting foam tank"
-	desc = "A tank full of firefighting foam."
+	name = "消防泡沫罐"
+	desc = "一个装满消防泡沫的罐子。"
 	icon_state = "foam"
 	reagent_id = /datum/reagent/firefighting_foam
 	tank_volume = 500
@@ -253,8 +253,8 @@
 	climbable = TRUE
 
 /obj/structure/reagent_dispensers/fueltank//SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "fuel tank"
-	desc = "A tank full of industrial welding fuel. Do not consume."
+	name = "燃料罐"
+	desc = "一个装满工业焊接燃料的罐子。请勿饮用。"
 	icon_state = "fuel"
 	reagent_id = /datum/reagent/fuel
 	openable = TRUE
@@ -292,7 +292,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/hitting_projectile)
 	if(hitting_projectile.damage > 0 && ((hitting_projectile.damage_type == BURN) || (hitting_projectile.damage_type == BRUTE)))
-		log_bomber(hitting_projectile.firer, "detonated a", src, "via projectile")
+		log_bomber(hitting_projectile.firer, "引爆了", src, "（弹体所致）")
 		boom(guaranteed_violent = TRUE) // SKYRAT EDIT CHANGE
 		return hitting_projectile.on_hit(src, 0)
 
@@ -304,10 +304,10 @@
 	var/obj/item/weldingtool/refilling_welder = tool
 	if(istype(refilling_welder) && !refilling_welder.welding)
 		if(refilling_welder.reagents.has_reagent(/datum/reagent/fuel, refilling_welder.max_fuel))
-			to_chat(user, span_warning("Your [refilling_welder.name] is already full!"))
+			to_chat(user, span_warning("你的 [refilling_welder.name] 已经满了！"))
 			return ITEM_INTERACT_BLOCKING
 		reagents.trans_to(refilling_welder, refilling_welder.max_fuel, transferred_by = user)
-		user.visible_message(span_notice("[user] refills [user.p_their()] [refilling_welder.name]."), span_notice("You refill [refilling_welder]."))
+		user.visible_message(span_notice("[user] 给自己的 [refilling_welder.name] 加满了燃料。"), span_notice("你给 [refilling_welder] 加满了燃料。"))
 		playsound(src, 'sound/effects/refill.ogg', 50, TRUE)
 		refilling_welder.update_appearance()
 		return ITEM_INTERACT_SUCCESS
@@ -315,26 +315,26 @@
 	var/obj/item/lighter/refilling_lighter = tool
 	if(istype(refilling_lighter) && !refilling_lighter.lit)
 		if(refilling_lighter.reagents.has_reagent(/datum/reagent/fuel, refilling_lighter.maximum_fuel))
-			to_chat(user, span_warning("Your [refilling_lighter.name] is already full!"))
+			to_chat(user, span_warning("你的 [refilling_lighter.name] 已经满了！"))
 			return ITEM_INTERACT_BLOCKING
 		reagents.trans_to(refilling_lighter, refilling_lighter.maximum_fuel, transferred_by = user)
-		user.visible_message(span_notice("[user] refills [user.p_their()] [refilling_lighter.name]."), span_notice("You refill [refilling_lighter]."))
+		user.visible_message(span_notice("[user] 给自己的 [refilling_lighter.name] 加满了燃料。"), span_notice("你给 [refilling_lighter] 加满了燃料。"))
 		playsound(src, 'sound/effects/refill.ogg', 25, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	if(!reagents.has_reagent(/datum/reagent/fuel))
-		to_chat(user, span_warning("[src] is out of fuel!"))
+		to_chat(user, span_warning("[src] 没燃料了！"))
 		return ITEM_INTERACT_BLOCKING
 	user.visible_message(
-		span_danger("[user] catastrophically fails at refilling [user.p_their()] [tool.name]!"),
-		span_userdanger("That was stupid of you."))
-	log_bomber(user, "detonated a", src, "via [tool.name]")
+		span_danger("[user] 在给自己 [tool.name] 加燃料时惨烈失败！"),
+		span_userdanger("你真是蠢得可以。"))
+	log_bomber(user, "引爆了", src, "（通过 [tool.name]）")
 	boom()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_dispensers/fueltank/large
-	name = "high capacity fuel tank"
-	desc = "A tank full of a high quantity of welding fuel. Keep away from open flames."
+	name = "高容量燃料罐"
+	desc = "一个装满大量焊接燃料的罐子。请远离明火。"
 	icon_state = "fuel_high"
 	tank_volume = 5000
 
@@ -353,8 +353,8 @@
 	can_be_tanked = FALSE
 
 /obj/structure/reagent_dispensers/wall/peppertank
-	name = "pepper spray refiller"
-	desc = "Contains condensed capsaicin for use in law \"enforcement.\""
+	name = "胡椒喷雾补充器"
+	desc = "含有浓缩辣椒素，供“执法”使用。"
 	icon_state = "pepper"
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
@@ -363,13 +363,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 /obj/structure/reagent_dispensers/wall/peppertank/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		desc = "IT'S PEPPER TIME, BITCH!"
+		desc = "现在是辣椒时间，婊子！"
 	if(mapload)
 		find_and_mount_on_atom()
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "water cooler"
-	desc = "A machine that cools and dispenses liquids to drink. The 'hot' handle doesn't seem to do anything."
+	name = "饮水机"
+	desc = "一台冷却并分配饮料的机器。“热水”把手似乎没有任何作用。"
 	icon_state = "water_cooler"
 	anchored = TRUE
 	reagent_flags = DRAINABLE | TRANSPARENT
@@ -398,11 +398,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
 	. = ..()
 	if (paper_cups > 1)
-		. += "There are [paper_cups] paper cups left."
+		. += "还剩 [paper_cups] 个纸杯。"
 	else if (paper_cups == 1)
-		. += "There is one paper cup left."
+		. += "还剩一个纸杯。"
 	else
-		. += "There are no paper cups left."
+		. += "没有纸杯了。"
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -411,7 +411,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 
 
 	if(tipped)
-		balloon_alert(user, "un-tipping...")
+		balloon_alert(user, "正在扶正……")
 		if(!do_after(user, 5 SECONDS, src))
 			return
 		tipped = FALSE
@@ -420,16 +420,16 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 
 
 	if(user.combat_mode && our_jug)
-		balloon_alert(user, "removing jug...")
+		balloon_alert(user, "正在取出水壶……")
 		if(!do_after(user, COOLER_JUG_EJECT_TIME, src))
 			return
 		eject_jug(user)
 		return
 
 	if(!paper_cups)
-		to_chat(user, span_warning("There aren't any cups left!"))
+		to_chat(user, span_warning("没有杯子了！"))
 		return
-	user.visible_message(span_notice("[user] takes a cup from [src]."), span_notice("You take a paper cup from [src]."))
+	user.visible_message(span_notice("[user] 从 [src] 上拿了一个杯子。"), span_notice("你从 [src] 上拿了一个纸杯。"))
 	var/obj/item/reagent_containers/cup/glass/sillycup/new_cup = new(get_turf(src))
 	user.put_in_hands(new_cup)
 	paper_cups--
@@ -499,11 +499,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand_secondary(mob/user, modifiers)
 	if(tipped)
-		balloon_alert(user, "it's already tipped!")
+		balloon_alert(user, "它已经被弄翻了！")
 		return
 
 	if(anchored)
-		balloon_alert(user, "it's anchored!")
+		balloon_alert(user, "它被固定住了！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if(!do_after(user, 1.5 SECONDS, src))
@@ -516,11 +516,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 		return
 
 	if(tipped)
-		balloon_alert(user, "it's tipped!")
+		balloon_alert(user, "它被弄翻了！")
 		return
 
 	var/obj/item/reagent_containers/cooler_jug/new_jug = tool
-	balloon_alert(user, "replacing jug...")
+	balloon_alert(user, "正在更换水壶……")
 	if(!do_after(user, COOLER_JUG_EJECT_TIME, src))
 		return
 
@@ -530,8 +530,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 	eject_jug(user, our_jug)
 	our_jug = new_jug
 	our_jug.reagents.trans_to(reagents, tank_volume)
-	balloon_alert(user, "attached")
-	user.log_message("attached a [new_jug] to [src] at [AREACOORD(src)] containing ([new_jug.reagents.get_reagent_log_string()])", LOG_ATTACK)
+	balloon_alert(user, "已装好")
+	user.log_message("在 [AREACOORD(src)] 处把一个 [new_jug] 装到了 [src] 上，其中含有（[new_jug.reagents.get_reagent_log_string()]）", LOG_ATTACK)
 	add_fingerprint(user)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -540,7 +540,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 	if(QDELETED(src))
 		return
 	if(reagents.total_volume)
-		visible_message(span_danger("\The [src] flips on it's side and spills everywhere!"))
+		visible_message(span_danger("\The [src] 翻倒在地，内容物洒得到处都是！"))
 		chem_splash(get_turf(src), null, 2 + floor((reagents.total_volume) / 1000), list(reagents))
 	eject_jug(throw_away = TRUE)
 	playsound(src, 'sound/effects/glass/glassbash.ogg', 100)
@@ -597,13 +597,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 
 ///Punch cooler. Starts full of healing juice. In case anyone wants to map one somewhere as a healing station.
 /obj/structure/reagent_dispensers/water_cooler/punch_cooler
-	name = "punch cooler"
-	desc = "A machine that dispenses fruit punch to drink. This juice is unbearably sweet, and can only be safely consumed in the presence of a liquid cooler. Engage with caution."
+	name = "果汁饮料机"
+	desc = "一台分配水果宾治饮料的机器。这果汁甜得让人受不了，只有在有液体冷却剂的情况下才能安全饮用。请谨慎使用。"
 	reagent_id = /datum/reagent/consumable/fruit_punch
 
 /obj/structure/reagent_dispensers/keg
-	name = "keg"
-	desc = "A keg, usually filled with some low-grade, Nanotrasen brewed alcoholic drink."
+	name = "酒桶"
+	desc = "一个酒桶，通常装满了某种劣质的纳米传讯自酿酒精饮料。"
 	icon_state = "keg"
 	openable = TRUE
 	var/keg_print
@@ -623,37 +623,37 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 		qdel(src)
 
 /obj/structure/reagent_dispensers/keg/beer
-	name = "beer keg"
-	desc = "Beer is liquid bread, it's good for you..."
+	name = "啤酒桶"
+	desc = "啤酒是液体面包，对你有好处……"
 	keg_print = "keg_beer"
 	reagent_id = /datum/reagent/consumable/ethanol/beer
 
 /obj/structure/reagent_dispensers/keg/whiskey
-	name = "irish whiskey keg"
-	desc = "<i>Too much of anything is bad, but too much good whiskey is barely enough.\"</i> - Mark Twain"
+	name = "爱尔兰威士忌桶"
+	desc = "<i>任何东西过量都不好，但好威士忌再多也几乎不够。</i>——马克·吐温"
 	keg_print = "keg_irish"
 	reagent_id = /datum/reagent/consumable/ethanol/whiskey
 
 /obj/structure/reagent_dispensers/keg/rum
-	name = "rum keg"
-	desc = "A keg of not just any rum, oh no. It's the famous Captain Pete's Spiced Rum. It's GRIFF in a bottle... or keg, dare I say."
+	name = "朗姆酒桶"
+	desc = "这桶可不是随便什么朗姆酒。这是大名鼎鼎的皮特船长香料朗姆酒。简直是把骗局装进了瓶……或者说桶里。"
 	keg_print = "keg_pirate"
 	reagent_id = /datum/reagent/consumable/ethanol/rum/aged
 
 /obj/structure/reagent_dispensers/keg/gold
-	name = "gold keg"
-	desc = "A gaudy, gold-coated keg. It's easy to assume that whatever is inside it must be quite valuable indeed."
+	name = "黄金酒桶"
+	desc = "一个花哨的镀金酒桶。很容易让人以为里面装的东西一定相当值钱。"
 	icon_state = "keg_gold"
 
 /obj/structure/reagent_dispensers/keg/gold/rum
-	name = "vintage rum keg"
-	desc = "A keg of Captain Pete's Spiced Rum from over half a century ago. Old recipe, strong and authentic flavor, y'aaarrrr..."
+	name = "陈年朗姆酒桶"
+	desc = "一桶半个多世纪前的皮特船长香料朗姆酒。古老配方，浓烈而地道的风味，呀啊啊啊……"
 	keg_print = "keg_pirate"
 	reagent_id = /datum/reagent/consumable/ethanol/rum/aged
 
 /obj/structure/reagent_dispensers/keg/gold/irish
-	name = "special irish drink keg"
-	desc = "A keg full of a cocktail drink made from imported irish whiskey."
+	name = "特制爱尔兰饮品桶"
+	desc = "一个装满用进口爱尔兰威士忌调制的鸡尾酒的酒桶。"
 	keg_print = "keg_irish"
 
 /obj/structure/reagent_dispensers/keg/gold/irish/Initialize(mapload)
@@ -666,14 +666,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 	return ..()
 
 /obj/structure/reagent_dispensers/keg/gold/trappist
-	name = "trappist beer keg"
-	desc = "A keg of <i>Mont de Requin Trappistes Bleu</i>. A beer normally brewed under guidelines so strict that there are only a handful of two of certified trappist beer breweries, none in the Spinward Sector."
+	name = "特拉比斯特啤酒桶"
+	desc = "一桶<i>蒙德雷坎蓝标特拉比斯特</i>啤酒。这种啤酒通常依照极为严格的标准酿造，获得认证的特拉比斯特啤酒厂只有寥寥几家，顺旋星区一家也没有。"
 	keg_print = "keg_beer"
 	reagent_id = /datum/reagent/consumable/ethanol/trappist
 
 /obj/structure/reagent_dispensers/wall/virusfood
-	name = "virus food dispenser"
-	desc = "A dispenser of low-potency virus mutagenic."
+	name = "病毒食物分配器"
+	desc = "一个低效价病毒诱变剂的分配器。"
 	icon_state = "virus_food"
 	reagent_id = /datum/reagent/consumable/virus_food
 
@@ -685,15 +685,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 		find_and_mount_on_atom()
 
 /obj/structure/reagent_dispensers/cooking_oil
-	name = "vat of cooking oil"
-	desc = "A huge metal vat with a tap on the front. Filled with cooking oil for use in frying food."
+	name = "食用油大桶"
+	desc = "一个巨大的金属桶，前面带有一个龙头。里面装满了用于油炸食物的食用油。"
 	icon_state = "vat"
 	reagent_id = /datum/reagent/consumable/nutriment/fat/oil
 	openable = TRUE
 
 /obj/structure/reagent_dispensers/servingdish
-	name = "serving dish"
-	desc = "A dish full of food slop for your bowl."
+	name = "分餐盘"
+	desc = "一盘装满食物糊糊的餐盘，供你盛进碗里。"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "serving"
 	reagent_id = /datum/reagent/consumable/nutraslop
@@ -708,10 +708,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 	anchored = FALSE
 
 /obj/structure/reagent_dispensers/plumbed
-	name = "stationary water tank"
+	name = "固定式水箱"
 	anchored = TRUE
 	icon_state = "water_stationary" //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	desc = "A stationary, plumbed, water tank."
+	desc = "一个固定的、接入管道的水箱。"
 	can_be_tanked = FALSE
 
 /obj/structure/reagent_dispensers/plumbed/Initialize(mapload)
@@ -724,7 +724,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/reagent_dispensers/plumbed/storage
-	name = "stationary storage tank"
+	name = "固定式储液罐"
 	icon_state = "tank_stationary"
 	reagent_id = null //start empty
 
@@ -746,9 +746,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/virusfood, 30
 	. += tank_color
 
 /obj/structure/reagent_dispensers/plumbed/fuel
-	name = "stationary fuel tank"
+	name = "固定式燃料罐"
 	icon_state = "fuel_stationary"
-	desc = "A stationary, plumbed, fuel tank."
+	desc = "一个固定的、接入管道的燃料罐。"
 	reagent_id = /datum/reagent/fuel
 	accepts_rig = TRUE
 

@@ -3,11 +3,11 @@ GLOBAL_LIST_INIT_TYPED(addictions, /datum/addiction, init_subtypes_w_path_keys(/
 ///base class for addiction, handles when you become addicted and what the effects of that are. By default you become addicted when you hit a certain threshold, and stop being addicted once you go below another one.
 /datum/addiction
 	///Name of this addiction
-	var/name = "cringe code"
+	var/name = "尬代码"
 	///Description of this addiction
-	var/description = "A harmful dependence on cringe code."
+	var/description = "对尬代码的有害依赖。"
 	///Medical symptoms of this addiction
-	var/symptoms = "Wants more cringe code."
+	var/symptoms = "想要更多尬代码。"
 	///Higher threshold, when you start being addicted
 	var/addiction_gain_threshold = 600
 	///Lower threshold, when you stop being addicted
@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT_TYPED(addictions, /datum/addiction, init_subtypes_w_path_keys(/
 /datum/addiction/proc/become_addicted(datum/mind/victim_mind)
 	LAZYSET(victim_mind.active_addictions, type, 1) //Start at first cycle.
 	SEND_SIGNAL(victim_mind.current, COMSIG_CARBON_GAIN_ADDICTION, victim_mind)
-	victim_mind.current.log_message("has become addicted to [name].", LOG_GAME)
+	victim_mind.current.log_message("对 [name] 上瘾了。", LOG_GAME)
 
 ///Called when you lose addiction poitns somehow. Takes a mind as argument and sees if you lost the addiction
 /datum/addiction/proc/on_lose_addiction_points(datum/mind/victim_mind, new_amount = 0, last_amount = 0)
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT_TYPED(addictions, /datum/addiction, init_subtypes_w_path_keys(/
 /datum/addiction/proc/lose_addiction(datum/mind/victim_mind)
 	victim_mind.current.clear_mood_event("[type]_addiction")
 	SEND_SIGNAL(victim_mind.current, COMSIG_CARBON_LOSE_ADDICTION, victim_mind)
-	to_chat(victim_mind.current, span_notice("You feel like you've gotten over your need for drugs."))
+	to_chat(victim_mind.current, span_notice("你觉得自己已经摆脱了对毒品的依赖。"))
 	end_withdrawal(victim_mind.current)
 	LAZYREMOVE(victim_mind.active_addictions, type)
 

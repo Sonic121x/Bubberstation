@@ -295,7 +295,7 @@
 			to_chat(chap, span_warning("[GLOB.deity] 拒绝治疗这具金属污秽之物！"))
 			return BLESSING_IGNORED
 
-	account.adjust_money(-GREEDY_HEAL_COST, "Church Donation: Treatment")
+	account.adjust_money(-GREEDY_HEAL_COST, "教会捐赠：治疗")
 	var/heal_amt = 30
 	var/list/hurt_limbs = blessed.get_damaged_bodyparts(1, 1, BODYTYPE_ORGANIC)
 	if(!length(hurt_limbs))

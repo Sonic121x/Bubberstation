@@ -12,8 +12,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "conveyor_map"
 	base_icon_state = "conveyor"
-	name = "conveyor belt"
-	desc = "A conveyor belt."
+	name = "传送带"
+	desc = "一条传送带。"
 	layer = BELOW_OPEN_DOOR_LAYER
 	processing_flags = NONE
 	/// The current state of the conveyor.
@@ -73,29 +73,29 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor/examine(mob/user)
 	. = ..()
 	if(inverted)
-		. += span_notice("It is currently set to go in reverse.")
-	. += "\nLeft-click with a <b>wrench</b> to rotate clockwise."
-	. += "Right-click with a <b>wrench</b> to rotate counterclockwise."
-	. += "Left-click with a <b>screwdriver</b> to invert its direction."
-	. += "Right-click with a <b>screwdriver</b> to flip its belt around."
-	. += "Left-click with a <b>multitool</b> to toggle whether this conveyor receives power via cable. Toggling connects and disconnects."
-	. += "Using another <b>conveyor belt assembly</b> on this will place a <b>new conveyor belt<b> in the direction this one is pointing."
+		. += span_notice("它目前被设为反向运行。")
+	. += "\n用<b>扳手</b>左键点击可顺时针旋转。"
+	. += "用<b>扳手</b>右键点击可逆时针旋转。"
+	. += "用<b>螺丝刀</b>左键点击可反转其方向。"
+	. += "用<b>螺丝刀</b>右键点击可把它的皮带翻转过来。"
+	. += "用<b>多功能工具</b>左键点击可切换此传送带是否通过线缆供电。切换即连接或断开。"
+	. += "在这上面使用另一个<b>传送带组件</b>，会在它指向的方向放置一条<b>新传送带<b>。"
 
 /obj/machinery/conveyor/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(istype(held_item, /obj/item/stack/conveyor))
-		context[SCREENTIP_CONTEXT_LMB] = "Extend current conveyor belt"
+		context[SCREENTIP_CONTEXT_LMB] = "延长当前传送带"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Rotate conveyor belt clockwise"
-		context[SCREENTIP_CONTEXT_RMB] = "Rotate conveyor belt counterclockwise"
+		context[SCREENTIP_CONTEXT_LMB] = "顺时针旋转传送带"
+		context[SCREENTIP_CONTEXT_RMB] = "逆时针旋转传送带"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Invert conveyor belt"
-		context[SCREENTIP_CONTEXT_RMB] = "Flip conveyor belt"
+		context[SCREENTIP_CONTEXT_LMB] = "反转传送带方向"
+		context[SCREENTIP_CONTEXT_RMB] = "翻转传送带皮带"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Toggle conveyor belt wire mode"
+		context[SCREENTIP_CONTEXT_LMB] = "切换传送带线缆模式"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/conveyor/centcom_auto
@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(!target_turf || isclosedturf(target_turf))
 			return ITEM_INTERACT_BLOCKING
 		for(var/obj/machinery/conveyor/belt in target_turf)
-			to_chat(user, span_warning("You cannot place a conveyor belt on top of another conveyor belt."))
+			to_chat(user, span_warning("你不能在另一条传送带上再放一条传送带。"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/stack/conveyor/belt_item = tool
@@ -315,8 +315,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	return NONE
 
 /obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/tool)
-	user.visible_message(span_notice("[user] struggles to pry up [src] with [tool]."), \
-	span_notice("You struggle to pry up [src] with [tool]."))
+	user.visible_message(span_notice("[user] 艰难地用 [tool] 撬起 [src]。"), \
+	span_notice("你艰难地用 [tool] 撬起 [src]。"))
 
 	if(!tool.use_tool(src, user, 4 SECONDS, volume = 40))
 		return ITEM_INTERACT_BLOCKING
@@ -325,21 +325,21 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(!QDELETED(belt_item)) //God I hate stacks
 		transfer_fingerprints_to(belt_item)
 
-	to_chat(user, span_notice("You remove [src]."))
+	to_chat(user, span_notice("你拆下了 [src]。"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor/wrench_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	setDir(turn(dir, -45))
-	to_chat(user, span_notice("You rotate [src]."))
+	to_chat(user, span_notice("你旋转了 [src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	inverted = !inverted
 	update_move_direction()
-	to_chat(user, span_notice("You set [src]'s direction [inverted ? "backwards" : "back to default"]."))
+	to_chat(user, span_notice("你把 [src] 的方向设为[inverted ? "反向" : "默认方向"]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor/multitool_act(mob/living/user, obj/item/tool)
@@ -351,7 +351,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		START_PROCESSING(SSmachines, src)
 	else
 		STOP_PROCESSING(SSmachines, src)
-	to_chat(user, span_notice("You set [src]'s wire mode [wire_mode ? "on" : "off"]."))
+	to_chat(user, span_notice("你把 [src] 的线缆模式设为[wire_mode ? "开启" : "关闭"]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
@@ -364,13 +364,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	tool.play_tool_sound(src)
 	flipped = !flipped
 	update_move_direction()
-	to_chat(user, span_notice("You flip [src]'s belt [flipped ? "around" : "back to normal"]."))
+	to_chat(user, span_notice("你把 [src] 的皮带[flipped ? "翻转了过来" : "恢复原状"]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor/wrench_act_secondary(mob/living/user, obj/item/tool)
 	tool.play_tool_sound(src)
 	setDir(turn(dir, 45))
-	to_chat(user, span_notice("You rotate [src]."))
+	to_chat(user, span_notice("你旋转了 [src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor/powered(chan = power_channel, ignore_use_power = FALSE)
@@ -424,8 +424,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 // Conveyor switch
 /obj/machinery/conveyor_switch
-	name = "conveyor switch"
-	desc = "A conveyor control switch."
+	name = "传送带开关"
+	desc = "一个传送带控制开关。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "switch-off"
 	base_icon_state = "switch"
@@ -479,22 +479,22 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor_switch/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Toggle forwards"
+		context[SCREENTIP_CONTEXT_LMB] = "切换为正向"
 		if(!oneway)
-			context[SCREENTIP_CONTEXT_RMB] = "Toggle backwards"
+			context[SCREENTIP_CONTEXT_RMB] = "切换为反向"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Set speed"
-		context[SCREENTIP_CONTEXT_RMB] = "View wires"
+		context[SCREENTIP_CONTEXT_LMB] = "设置速度"
+		context[SCREENTIP_CONTEXT_RMB] = "查看线路"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Toggle oneway"
+		context[SCREENTIP_CONTEXT_LMB] = "切换单向模式"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Detach"
+		context[SCREENTIP_CONTEXT_LMB] = "拆下"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Invert"
+		context[SCREENTIP_CONTEXT_LMB] = "反转"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /// Updates all conveyor belts that are linked to this switch, and tells them to start processing.
@@ -565,11 +565,11 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/conveyor_switch/multitool_act(mob/living/user, obj/item/I)
-	var/input_speed = tgui_input_number(user, "Set the speed of the conveyor belts in seconds", "Speed", conveyor_speed, 20, 0.2, round_value = FALSE)
+	var/input_speed = tgui_input_number(user, "以秒为单位设置传送带的运行速度", "速度", conveyor_speed, 20, 0.2, round_value = FALSE)
 	if(!input_speed || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 	conveyor_speed = input_speed
-	to_chat(user, span_notice("You change the time between moves to [input_speed] seconds."))
+	to_chat(user, span_notice("你把每次移动的间隔改为 [input_speed] 秒。"))
 	update_linked_conveyors()
 	return TRUE
 
@@ -578,32 +578,32 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/obj/item/conveyor_switch_construct/switch_construct = new/obj/item/conveyor_switch_construct(src.loc)
 	switch_construct.id = id
 	transfer_fingerprints_to(switch_construct)
-	to_chat(user, span_notice("You detach [src]."))
+	to_chat(user, span_notice("你拆下了 [src]。"))
 	qdel(src)
 	return TRUE
 
 /obj/machinery/conveyor_switch/screwdriver_act(mob/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	oneway = !oneway
-	to_chat(user, span_notice("You set [src] to [oneway ? "one way" : "default"] configuration."))
+	to_chat(user, span_notice("你把 [src] 设为[oneway ? "单向" : "默认"]配置。"))
 	return TRUE
 
 /obj/machinery/conveyor_switch/wrench_act(mob/user, obj/item/tool)
 	tool.play_tool_sound(src, 50)
 	invert_icon = !invert_icon
 	update_appearance()
-	to_chat(user, span_notice("You set [src] to [invert_icon ? "inverted": "normal"] position."))
+	to_chat(user, span_notice("你把 [src] 设为[invert_icon ? "反向" : "正常"]位置。"))
 	return TRUE
 
 /obj/machinery/conveyor_switch/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] is set to [oneway ? "one way" : "default"] configuration. It can be changed with a <b>screwdriver</b>.")
-	. += span_notice("[src] is set to [invert_icon ? "inverted": "normal"] position. It can be rotated with a <b>wrench</b>.")
-	. += span_notice("[src] is set to move [conveyor_speed] seconds per belt. It can be changed with a <b>multitool</b>.")
+	. += span_notice("[src] 当前为[oneway ? "单向" : "默认"]配置。可用<b>螺丝刀</b>更改。")
+	. += span_notice("[src] 当前为[invert_icon ? "反向" : "正常"]位置。可用<b>扳手</b>旋转。")
+	. += span_notice("[src] 被设为每条传送带 [conveyor_speed] 秒移动一次。可用<b>多功能工具</b>更改。")
 
 /obj/machinery/conveyor_switch/oneway
 	icon_state = "conveyor_switch_oneway"
-	desc = "A conveyor control switch. It appears to only go in one direction."
+	desc = "一个传送带控制开关。看起来只能朝一个方向运行。"
 	oneway = TRUE
 
 /obj/machinery/conveyor_switch/oneway/Initialize(mapload)
@@ -612,8 +612,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		invert_icon = TRUE
 
 /obj/item/conveyor_switch_construct
-	name = "conveyor switch assembly"
-	desc = "A conveyor control switch assembly."
+	name = "传送带开关组件"
+	desc = "一个传送带控制开关的组件。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "switch-off"
 	w_class = WEIGHT_CLASS_BULKY
@@ -628,7 +628,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/conveyor_switch_construct/attack_self(mob/user)
 	for(var/obj/item/stack/conveyor/belt in view())
 		belt.id = id
-	to_chat(user, span_notice("You have linked all nearby conveyor belt assemblies to this switch."))
+	to_chat(user, span_notice("你把附近所有传送带组件都链接到了这个开关。"))
 
 /obj/item/conveyor_switch_construct/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isfloorturf(interacting_with))
@@ -640,7 +640,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			found = TRUE
 			break
 	if(!found)
-		to_chat(user, "[icon2html(src, user)]" + span_notice("The conveyor switch did not detect any linked conveyor belts in range."))
+		to_chat(user, "[icon2html(src, user)]" + span_notice("传送带开关在范围内没有检测到任何已链接的传送带。"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/machinery/conveyor_switch/built_switch = new/obj/machinery/conveyor_switch(interacting_with, id)
 	transfer_fingerprints_to(built_switch)
@@ -648,12 +648,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/conveyor
-	name = "conveyor belt assembly"
-	desc = "A conveyor belt assembly."
+	name = "传送带组件"
+	desc = "一个传送带组件。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "conveyor_construct"
 	max_amount = 30
-	singular_name = "conveyor belt"
+	singular_name = "传送带"
 	w_class = WEIGHT_CLASS_BULKY
 	merge_type = /obj/item/stack/conveyor
 	mats_per_unit = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -669,7 +669,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return NONE
 	var/belt_dir = get_dir(interacting_with, user)
 	if(interacting_with == user.loc)
-		to_chat(user, span_warning("You cannot place a conveyor belt under yourself!"))
+		to_chat(user, span_warning("你不能把传送带放在自己脚下！"))
 		return ITEM_INTERACT_BLOCKING
 	var/obj/machinery/conveyor/belt = new/obj/machinery/conveyor(interacting_with, belt_dir, id)
 	transfer_fingerprints_to(belt)
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/stack/conveyor/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/conveyor_switch_construct))
 		return NONE
-	to_chat(user, span_notice("You link the switch to the conveyor belt assembly."))
+	to_chat(user, span_notice("你把开关链接到了传送带组件。"))
 	var/obj/item/conveyor_switch_construct/switch_construct = tool
 	id = switch_construct.id
 	return ITEM_INTERACT_SUCCESS
@@ -689,7 +689,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/item/stack/conveyor/examine(mob/user)
 	. = ..()
-	. += span_notice("Use a conveyor switch assembly on this before placing to connect to a lever.")
+	. += span_notice("在放置之前先用传送带开关组件点一下它，即可与控制杆连接。")
 
 /obj/item/stack/conveyor/use(used, transfer, check)
 	. = ..()
@@ -699,20 +699,20 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	amount = 30
 
 /obj/item/paper/guides/conveyor
-	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
-	default_raw_text = "<h1>Congratulations!</h1><p>You are now the proud owner of the best conveyor set available for \
-		space mail order! We at Nano-it-up know you love to prepare your own structures without wasting time, \
-		so we have devised a special streamlined assembly procedure that puts all other mail-order products to \
-		shame!</p><p>Firstly, you need to link the conveyor switch assembly to each of the conveyor belt \
-		assemblies. After doing so, you simply need to install the belt assemblies onto the floor, et voila, \
-		belt built. Our special Nano-it-up smart switch will detected any linked assemblies as far as the eye \
-		can see! This convenience, you can only have it when you Nano-it-up. Stay nano!</p>"
+	name = "纸张——“纳米动起来”自助建造系列，第 9 期：在太空中建造属于你自己的传送带"
+	default_raw_text = "<h1>恭喜！</h1><p>你现在自豪地拥有了太空邮购渠道能买到的最好传送带套装！\
+		我们“纳米动起来”深知你热爱自己动手搭建结构、不愿浪费时间，\
+		因此设计了一套特别精简的组装流程，让所有其他邮购产品都相形见绌！\
+		</p><p>首先，你需要把传送带开关组件与每一个传送带组件链接起来。\
+		完成后，你只需把传送带组件安装到地面上，瞧，传送带就建好了。\
+		我们特制的“纳米动起来”智能开关能感知视野内任何已链接的组件！\
+		这种便利，只有“纳米动起来”才能带给你。永远纳米！</p>"
 
 #undef MAX_CONVEYOR_ITEMS_MOVE
 
 /obj/item/circuit_component/conveyor_switch
-	display_name = "Conveyor Switch"
-	desc = "Allows to control connected conveyor belts."
+	display_name = "传送带开关"
+	desc = "用于控制已连接的传送带。"
 
 	/// Direction input ports.
 	var/datum/port/input/stop
@@ -724,20 +724,20 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/obj/machinery/conveyor_switch/attached_switch
 
 /obj/item/circuit_component/conveyor_switch/populate_ports()
-	active = add_input_port("Activate", PORT_TYPE_SIGNAL, trigger = PROC_REF(activate))
-	stop = add_input_port("Stop", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop))
-	direction = add_output_port("Conveyor Direction", PORT_TYPE_NUMBER)
+	active = add_input_port("激活", PORT_TYPE_SIGNAL, trigger = PROC_REF(activate))
+	stop = add_input_port("停止", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop))
+	direction = add_output_port("传送带方向", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/conveyor_switch/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Conveyor direction 0 means that it is stopped, 1 means that it is active and -1 means that it is working in reverse mode", "orange", "info")
+	. += create_ui_notice("传送带方向为 0 表示已停止，1 表示正向运行，-1 表示反向运行", "orange", "info")
 
 /obj/item/circuit_component/conveyor_switch/register_usb_parent(atom/movable/shell)
 	. = ..()
 	if(istype(shell, /obj/machinery/conveyor_switch))
 		attached_switch = shell
 		if(!attached_switch.oneway)
-			reverse = add_input_port("Reverse", PORT_TYPE_SIGNAL, trigger = PROC_REF(reverse))
+			reverse = add_input_port("反向", PORT_TYPE_SIGNAL, trigger = PROC_REF(reverse))
 
 /obj/item/circuit_component/conveyor_switch/unregister_usb_parent(atom/movable/shell)
 	attached_switch = null

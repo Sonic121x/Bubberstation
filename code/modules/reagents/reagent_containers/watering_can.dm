@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/cup/watering_can
-	name = "watering can"
-	desc = "It's a watering can. It is scientifically proved that using a watering can to simulate rain increases plant happiness!"
+	name = "洒水壶"
+	desc = "一个洒水壶。科学证明，用洒水壶模拟下雨能提高植物的幸福感！"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "watering_can"
 	inhand_icon_state = "watering_can"
@@ -18,16 +18,16 @@
 		AddElement(/datum/element/swabable, CELL_LINE_TABLE_SNAIL, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 /obj/item/reagent_containers/cup/watering_can/wood
-	name = "wood watering can"
-	desc = "An old metal-made watering can but shoddily painted to look like it was made of wood for some dubious reason..."
+	name = "木制洒水壶"
+	desc = "一个老旧的金属洒水壶，不知为何被拙劣地漆成木头的模样……"
 	icon_state = "watering_can_wood"
 	inhand_icon_state = "watering_can_wood"
 	volume = 70
 	possible_transfer_amounts = list(20,70)
 
 /obj/item/reagent_containers/cup/watering_can/advanced
-	desc = "Everything a botanist would want in a watering can. This marvel of technology generates its own water!"
-	name = "advanced watering can"
+	desc = "植物学家对洒水壶的一切期望都在这里。这项技术奇迹能自己产生水！"
+	name = "高级洒水壶"
 	icon_state = "adv_watering_can"
 	inhand_icon_state = "adv_watering_can"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2)
