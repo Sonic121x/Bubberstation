@@ -1,6 +1,6 @@
 /datum/job/clown
 	title = JOB_CLOWN
-	description = "Entertain the crew, make bad jokes, go on a holy quest to find bananium, HONK!"
+	description = "娱乐船员，讲冷笑话，踏上寻找香蕉矿的神圣远征，HONK！"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -32,7 +32,7 @@
 	)
 
 	family_heirlooms = list(/obj/item/bikehorn/golden)
-	rpg_title = "Jester"
+	rpg_title = "弄臣"
 	job_flags = STATION_JOB_FLAGS
 
 	job_tone = "honk"

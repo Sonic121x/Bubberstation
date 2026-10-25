@@ -16,7 +16,7 @@
 	lighting_cutoff_blue = 35
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	/// Message to output if throwing damage is absorbed
-	var/throw_blocked_message = "bounces off"
+	var/throw_blocked_message = "被弹开，未能伤及"
 	/// What crusher trophy this mob drops, if any
 	var/crusher_loot
 	/// What is the chance the mob drops it if all their health was taken by crusher attacks

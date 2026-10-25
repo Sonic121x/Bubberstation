@@ -1,8 +1,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!
-	name = "soil"
-	desc = "A patch of dirt."
+	name = "土壤"
+	desc = "一块泥土。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "soil"
 	circuit = null
@@ -34,11 +34,11 @@
 	if(tool.tool_behaviour != TOOL_SHOVEL) //Spades can still uproot plants on left click
 		return ..()
 
-	balloon_alert(user, "digging up soil...")
+	balloon_alert(user, "正在挖起土壤……")
 	if(!tool.use_tool(src, user, 3 SECONDS, volume = 50))
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "bagged")
+	balloon_alert(user, "已装袋")
 	new sack_type(loc, src) //The bag handles sucking up the soil, stopping processing and setting relevants stats.
 	return ITEM_INTERACT_SUCCESS
 
@@ -63,8 +63,8 @@
 /////////////// Advanced Soils //////////////
 
 /obj/machinery/hydroponics/soil/vermaculite
-	name = "vermaculite growing medium"
-	desc = "A plant bed made of light, expanded mineral granules.\n\nThe plant health benefits from the high degree of soil aeration is especially useful for when propagating grafts."
+	name = "蛭石栽培基质"
+	desc = "由轻盈的膨胀矿物颗粒制成的种植床。\n\n高透气性对植物健康大有裨益，在培育嫁接植株时尤其有用。"
 	icon_state = "soil_verm"
 	maxnutri = 20
 	maxwater =  150
@@ -72,8 +72,8 @@
 	sack_type = /obj/item/soil_sack/vermaculite
 
 /obj/machinery/hydroponics/soil/gel
-	name = "hydrogel beads"
-	desc = "A plant bed made of superabsorbent polymer beads.\n\nThese types of water gel beads can hold onto an incredible amount of water and reduces evaporative losses to almost nothing."
+	name = "水凝胶珠"
+	desc = "由高吸水性聚合物珠制成的种植床。\n\n这类水凝胶珠能锁住大量水分，几乎杜绝蒸发损失。"
 	icon_state = "soil_gel"
 	gender = PLURAL
 	maxwater = 300
@@ -82,16 +82,16 @@
 	sack_type = /obj/item/soil_sack/gel
 
 /obj/machinery/hydroponics/soil/coir
-	name = "korta root coir"
-	desc = "A type of traditional growing medium from Tizira.\n\nUsed by the natives as a resourceful way to cultivate seraka mushrooms using waste korta roots.\nMushrooms of all kinds thrive due to the high organic content enabling them to mature faster."
+	name = "科塔根椰糠"
+	desc = "一种源自提兹拉的传统栽培基质。\n\n当地人利用废弃的科塔根来培育塞拉卡蘑菇，物尽其用。\n由于有机质含量高，各种蘑菇都能更快成熟。"
 	icon_state = "soil_coir"
 	maxnutri = 20
 	tray_flags = SOIL | FAST_MUSHROOMS
 	sack_type = /obj/item/soil_sack/coir
 
 /obj/machinery/hydroponics/soil/worm
-	name = "worm castings"
-	desc = "A type of compost created when the humble worm dutifully works the soil.\n\nIt is packed with nutrients unlocked by said creatures digestive system. Give thanks to the worm!"
+	name = "蚯蚓粪"
+	desc = "当卑微的蚯蚓勤恳地翻耕土壤时产生的一种堆肥。\n\n其中富含由这些生物消化系统释放的养分。感谢蚯蚓吧！"
 	icon_state = "soil_worm"
 	maxnutri = 35
 	maxwater = 200
@@ -104,8 +104,8 @@
 	flick("soil_worm_wiggle", src)
 
 /obj/machinery/hydroponics/soil/rich
-	name = "rich soil"
-	desc = "A rich patch of dirt, usually used in gardens."
+	name = "肥沃土壤"
+	desc = "一块肥沃的泥土，常用于花园。"
 	icon_state = "rich_soil"
 	maxnutri = 20
 	sack_type = /obj/item/soil_sack/rich
@@ -113,8 +113,8 @@
 /////////////////// Soil Sacks ///////////////////////
 /// Holder items that store the soils until deployed.
 /obj/item/soil_sack
-	name = "soil sack"
-	desc = "A large plastic bag containing commercial garden soil. It is packed with sand, peat and manure. While you might not care much for such mixture, the plants have strange tastes."
+	name = "土壤袋"
+	desc = "一大袋商用园艺土，装满沙子、泥炭和粪肥。你可能不太喜欢这种混合物，但植物就好这一口。"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "soil_sack"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
@@ -163,7 +163,7 @@
 		return ..()
 
 	if(locate(/obj/machinery/hydroponics/soil) in interacting_with)
-		to_chat(user, span_alert("There is already a bed of soil there!"))
+		to_chat(user, span_alert("那里已经有一块土壤了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!do_after(user, 1 SECONDS, interacting_with))
@@ -190,7 +190,7 @@
 	stored_soil.forceMove(target) //stored_soil is set to null at this point, and the soil sack is deleted when that happens
 	return soil_ref
 
-/obj/item/soil_sack/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/soil_sack/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "这次攻击", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	if(attack_type == OVERWHELMING_ATTACK)
 		return FALSE
 	return ..()
@@ -215,8 +215,8 @@
 
 
 /obj/item/soil_sack/vermaculite
-	name = "NT vermaculite sack"
-	desc = "A sack of expanded mineral granules that can be used as soilless growing medium.\n\nYou like to think of it a bag of rocky popcorn that lets the roots breathe."
+	name = "纳米传讯蛭石袋"
+	desc = "一袋膨胀矿物颗粒，可用作无土栽培基质。\n\n你更愿意把它想象成一袋让根系自由呼吸的岩石爆米花。"
 	icon_state = "soil_sack_verm"
 	base_icon_state = "soil_sack_verm"
 	custom_premium_price = PAYCHECK_CREW * 2
@@ -224,8 +224,8 @@
 	slowdown = 0
 
 /obj/item/soil_sack/gel
-	name = "hydrogel bead sack"
-	desc = "A sack of space age superabsorbent gel beads! You wonder how shipping them prehydrated would ever make business sense..."
+	name = "水凝胶珠袋"
+	desc = "一袋太空时代的高吸水性凝胶珠！你实在想不通预先水化后再运输怎么会符合商业逻辑……"
 	icon_state = "soil_sack_gel"
 	base_icon_state = "soil_sack_gel"
 	custom_premium_price = PAYCHECK_CREW * 2
@@ -233,23 +233,23 @@
 	stored_soil = /obj/machinery/hydroponics/soil/gel
 
 /obj/item/soil_sack/coir
-	name = "#1™ korta coir sack"
-	desc = "A sack of Tiziran korta root coir. The fiberous roots are composted until they separate into individual fibres.\n\nProvides an excellent food source for saprotrophic mushrooms and helps hold onto water in the hot Tizirian climate."
+	name = "#1™ 科塔椰糠袋"
+	desc = "一袋提兹拉科塔根椰糠。纤维状的根经过堆肥，直到分离成一根根纤维。\n\n它是腐生蘑菇的绝佳养分来源，并能在炎热的提兹拉气候中帮助保持水分。"
 	icon_state = "soil_sack_coir"
 	base_icon_state = "soil_sack_coir"
 	custom_premium_price = PAYCHECK_CREW * 3
 	stored_soil = /obj/machinery/hydroponics/soil/coir
 
 /obj/item/soil_sack/worm
-	name = "worm castings sack"
-	desc = "A sack of vermicompost, also known as worm castings.\n\nThis invertebrate manure not only contains plant nutrients and undigested organic matter, it also harbours a rich flora of beneficial microorganisms."
+	name = "蚯蚓粪袋"
+	desc = "一袋蚯蚓堆肥，也就是蚯蚓粪。\n\n这种无脊椎动物的粪便不仅含有植物养分和未消化的有机物，还富含有益微生物菌群。"
 	icon_state = "soil_sack_worm"
 	base_icon_state = "soil_sack_worm"
 	custom_premium_price = PAYCHECK_CREW * 4
 	stored_soil = /obj/machinery/hydroponics/soil/worm
 
 /obj/item/soil_sack/rich
-	name = "rich soil sack"
-	desc = "A sack of rich black soil.\nAs your gaze falls upon it, you feel a bit more connected to the land."
+	name = "肥沃土壤袋"
+	desc = "一袋肥沃的黑土。\n当你凝视它时，会觉得自己与土地多了一分联系。"
 	custom_premium_price = PAYCHECK_CREW * 1.5
 	stored_soil = /obj/machinery/hydroponics/soil/rich

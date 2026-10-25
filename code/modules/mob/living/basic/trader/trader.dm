@@ -1,14 +1,14 @@
 /mob/living/basic/trader
-	name = "Trader"
-	desc = "Come buy some!"
+	name = "商人"
+	desc = "快来买点东西吧！"
 	unique_name = FALSE
 	icon = 'icons/mob/simple/simple_human.dmi'
 	maxHealth = 200
 	health = 200
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "拳击"
+	attack_verb_simple = "拳击"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	basic_mob_flags = DEL_ON_DEATH
 	unsuitable_atmos_damage = 2.5
@@ -62,9 +62,9 @@
 	return get_generic_humanoid_static_appearance()
 
 /mob/living/basic/trader/mrbones
-	name = "Mr. Bones"
-	desc = "A skeleton merchant, he seems very humerus."
-	speak_emote = list("rattles")
+	name = "骨头先生"
+	desc = "一位骷髅商人，他看起来很幽默，还有一身好肱骨。"
+	speak_emote = list("发出咔嗒声")
 	speech_span = SPAN_SANS
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	icon_state = "mrbones"

@@ -3,8 +3,8 @@
 
 ///Boulders with special artificats that can give higher mining points
 /obj/item/boulder/artifact
-	name = "artifact boulder"
-	desc = "This boulder is brimming with strange energy. Cracking it open could contain something unusual for science."
+	name = "秘藏巨石"
+	desc = "这块巨石充满了奇异的能量。敲开它，也许能找到对科学研究不同寻常的东西。"
 	icon_state = "boulder_artifact"
 	/// This is the type of item that will be inside the boulder. Default is a strange object.
 	var/artifact_type = /obj/item/relic/lavaland
@@ -55,15 +55,15 @@
 
 ///Boulders spawned by the vent in the work camp, contain exclusively iron so we can have a reliable payout
 /obj/item/boulder/gulag_vent
-	name = "iron boulder"
-	desc = "Basically just a raw lump of iron. Smash it into bits with a pickaxe."
+	name = "铁巨石"
+	desc = "基本上就是一块生铁。用镐子把它敲碎。"
 	// This produces 5 ore when smashed open because not using a machine reduces the ore count by one. 14 boulders x 15 ore x 5 points = 1050 points
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 16)
 
 /// Boulders usually spawned in lavaland labour camp area, broken open with pickaxe like a loot box
 /obj/item/boulder/gulag
-	name = "low-quality boulder"
-	desc = "Smash it with a pickaxe to get a bunch of ore at once. This rocks."
+	name = "劣质巨石"
+	desc = "用镐子敲碎它，一次获得大量矿石。这石头真带劲。"
 
 /obj/item/boulder/gulag/Initialize(mapload)
 	. = ..()
@@ -81,8 +81,8 @@
 
 ///lowgrade boulder, Exists as an admin spawn for testing and unit testing.
 /obj/item/boulder/shabby
-	name = "shabby boulder"
-	desc = "A bizarre, twisted boulder. Wait, wait no, it's just a rock."
+	name = "破旧巨石"
+	desc = "一块古怪扭曲的巨石。等等，不对，只是一块石头。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.1, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.1)
 	durability = 1
 

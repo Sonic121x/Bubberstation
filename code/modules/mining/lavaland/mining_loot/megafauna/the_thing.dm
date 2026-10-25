@@ -1,6 +1,6 @@
 /datum/action/innate/brain_undeployment
-	name = "Disconnect from shell"
-	desc = "Stop controlling your shell and resume normal core operations."
+	name = "断开与机体的连接"
+	desc = "停止操控你的机体，恢复核心的正常运作。"
 	button_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 
@@ -13,8 +13,8 @@
 	return TRUE
 
 /obj/item/organ/brain/cybernetic/ai
-	name = "AI-uplink brain"
-	desc = "Can be inserted into a body with NO ORGANIC INTERNAL ORGANS (robotic organs only) to allow AIs to control it. Comes with its own health sensors beacon. MUST be a humanoid or bad things happen to the consciousness."
+	name = "AI 上行链路脑"
+	desc = "可植入没有任何有机内部器官的身体（仅限机械器官），让 AI 能够操控该身体。自带生命体征传感器信标。宿主必须是类人形，否则意识会遇到不测。"
 	can_smoothen_out = FALSE
 	/// if connected, our AI
 	var/mob/living/silicon/ai/mainframe
@@ -27,7 +27,7 @@
 
 /obj/item/organ/brain/cybernetic/ai/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their eyes move with machine precision, their expression completely blank.")
+	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their 双眼以机械般的精确度移动，表情一片空白。")
 
 /obj/item/organ/brain/cybernetic/ai/Destroy()
 	. = ..()
@@ -95,16 +95,16 @@
 		return
 	var/list/lines = list()
 	lines += span_bold("[owner]")
-	lines += "Target is currently [!HAS_TRAIT(owner, TRAIT_INCAPACITATED) ? "functional" : "incapacitated"]"
-	lines += "Estimated organic/inorganic integrity: [owner.health]"
+	lines += "目标当前[!HAS_TRAIT(owner, TRAIT_INCAPACITATED) ? "运作正常" : "失去行动能力"]"
+	lines += "有机/无机体完整度估算：[owner.health]"
 	if(mainframe)
-		lines += span_warning("Already occupied by another digital entity.")
+		lines += span_warning("已被另一个数字实体占用。")
 	else if(connected_ai && connected_ai != user)
-		lines += span_warning("Uplink is locked by another digital entity.")
+		lines += span_warning("上行链路已被另一个数字实体锁定。")
 	else if(!is_sufficiently_augmented())
-		lines += span_warning("Organic organs detected. Robotic organs only, cannot take over.")
+		lines += span_warning("检测到有机器官。仅限机械器官，无法接管。")
 	else
-		lines += "<a href='byond://?src=[REF(src)];ai_take_control=[REF(user)]'>[span_boldnotice("Take control?")]</a><br>"
+		lines += "<a href='byond://?src=[REF(src)];ai_take_control=[REF(user)]'>[span_boldnotice("要接管控制吗？")]</a><br>"
 
 	to_chat(user, boxed_message(jointext(lines, "\n")), type = MESSAGE_TYPE_INFO)
 
@@ -116,13 +116,13 @@
 	if(isnull(AI))
 		return
 	if(AI.controlled_equipment)
-		to_chat(AI, span_warning("You are already loaded into an onboard computer!"))
+		to_chat(AI, span_warning("你已加载到一台机载计算机中！"))
 		return
 	if(!SScameras.is_visible_by_cameras(owner))
-		to_chat(AI, span_warning("Target is no longer near active cameras."))
+		to_chat(AI, span_warning("目标已不在活动摄像头附近。"))
 		return
 	if(!isturf(AI.loc))
-		to_chat(AI, span_warning("You aren't in your core!"))
+		to_chat(AI, span_warning("你不在自己的核心中！"))
 		return
 
 	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(undeploy))
@@ -131,7 +131,7 @@
 	ADD_TRAIT(AI.mind, TRAIT_UNCONVERTABLE, REF(src))
 	ADD_TRAIT(AI, TRAIT_MIND_TEMPORARILY_GONE, REF(src))
 	AI.mind.transfer_to(owner)
-	to_chat(owner, span_boldbig("You are still considered a silicon/cyborg/AI. Follow your laws."))
+	to_chat(owner, span_boldbig("你仍被视为硅基单位/半机械人/AI。请遵守你的法则。"))
 
 /obj/item/organ/brain/cybernetic/ai/proc/deploy_init(mob/living/silicon/ai/AI)
 	//todo camera maybe
@@ -194,10 +194,10 @@
 /obj/item/organ/brain/cybernetic/ai/proc/on_organ_gain(datum/source, obj/item/organ/new_organ, special)
 	SIGNAL_HANDLER
 	if(!is_sufficiently_augmented())
-		to_chat(owner, span_danger("Connection failure. Organics detected."))
+		to_chat(owner, span_danger("连接失败。检测到有机组织。"))
 		undeploy()
 
 /obj/item/organ/brain/cybernetic/ai/proc/ai_deleted(datum/source)
 	SIGNAL_HANDLER
-	to_chat(owner, span_danger("Your core has been rendered inoperable..."))
+	to_chat(owner, span_danger("你的核心已无法运作……"))
 	undeploy()

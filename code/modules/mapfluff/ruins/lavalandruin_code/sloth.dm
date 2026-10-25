@@ -1,5 +1,5 @@
 /////////// lavaland slot ruin items
 
 /obj/item/paper/fluff/stations/lavaland/sloth/note
-	name = "note from sloth"
-	default_raw_text = "have not gotten around to finishing my cursed item yet sorry - sloth"
+	name = "来自 sloth 的便条"
+	default_raw_text = "还没抽出时间做完我那件诅咒物品，抱歉——sloth"

@@ -30,7 +30,7 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 			if((ismob(poi) && !SSpoints_of_interest.is_valid_poi(poi, CALLBACK(src, PROC_REF(validate_mob_poi)))) \
 				|| !SSpoints_of_interest.is_valid_poi(poi)
 			)
-				to_chat(usr, span_notice("That point of interest is no longer valid."))
+				to_chat(usr, span_notice("该关注点已失效。"))
 				return TRUE
 
 			var/mob/dead/observer/user = usr
@@ -248,7 +248,7 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 	if(istype(atom_poi, /obj/machinery/power/supermatter_crystal))
 		var/obj/machinery/power/supermatter_crystal/crystal = atom_poi
 		var/integrity = round(crystal.get_integrity_percent())
-		misc["extra"] = "Integrity: [integrity]%"
+		misc["extra"] = "完整度：[integrity]%"
 
 		if(integrity < 10)
 			critical = TRUE
@@ -260,7 +260,7 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 		var/obj/machinery/nuclearbomb/bomb = atom_poi
 
 		if(bomb.timing)
-			misc["extra"] = "Timer: [bomb.countdown?.displayed_text]s"
+			misc["extra"] = "倒计时：[bomb.countdown?.displayed_text] 秒"
 			critical = TRUE
 
 		return list(misc, critical)
@@ -269,14 +269,14 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 	if(istype(atom_poi, /obj/item/disk/nuclear))
 		var/obj/item/disk/nuclear/disk = atom_poi
 		var/mob/holder = disk.pulledby || get(disk, /mob)
-		misc["extra"] = "Location: [holder?.real_name || "Unsecured"]"
+		misc["extra"] = "位置：[holder?.real_name || "未固定"]"
 
 		return list(misc, critical)
 
 	// Display singuloths if they exist
 	if(istype(atom_poi, /obj/singularity))
 		var/obj/singularity/singulo = atom_poi
-		misc["extra"] = "Energy: [round(singulo.energy)]"
+		misc["extra"] = "能量：[round(singulo.energy)]"
 
 		if(singulo.current_size > 2)
 			critical = TRUE

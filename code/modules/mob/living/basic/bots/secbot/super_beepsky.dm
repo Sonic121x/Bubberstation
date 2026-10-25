@@ -1,6 +1,6 @@
 /mob/living/basic/bot/secbot/grievous //This bot is powerful. If you managed to get 4 eswords somehow, you deserve this horror. Emag him for best results.
-	name = "General Beepsky"
-	desc = "Is that a secbot with four eswords in its arms...?"
+	name = "毕普斯基将军"
+	desc = "那是个手臂上装了四把能量剑的安保机器人吗……？"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "grievous"
 	base_icon_state = "grievous"
@@ -35,7 +35,7 @@
 /mob/living/basic/bot/secbot/grievous/proc/on_weapon_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 	if(active)
-		visible_message(span_warning("[src] ignites his energy swords!"))
+		visible_message(span_warning("[src] 点燃了它的能量剑！"))
 	sword_active = active
 	update_icon_state()
 
@@ -51,7 +51,7 @@
 	if(!sword_active || !prob(block_chance))
 		return NONE
 
-	visible_message(span_warning("[source] deflects [hitting_projectile] with its energy swords!"))
+	visible_message(span_warning("[source] 用它的能量剑弹开了 [hitting_projectile]！"))
 	playsound(source, 'sound/items/weapons/blade1.ogg', 50, TRUE)
 	return COMPONENT_BULLET_BLOCKED
 
@@ -59,7 +59,7 @@
 	. = ..()
 	if(!ismob(movable_target) || !ai_controller.blackboard[BB_CURRENT_TARGET] == movable_target)
 		return
-	visible_message(span_warning("[src] flails his swords and cuts [movable_target]!"))
+	visible_message(span_warning("[src] 挥舞能量剑，砍中了 [movable_target]！"))
 	playsound(src, 'sound/mobs/non-humanoids/beepsky/beepskyspinsabre.ogg' , 100, TRUE, -1)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, ClickOn), movable_target)
 
@@ -91,8 +91,8 @@
 
 
 /mob/living/basic/bot/secbot/grievous/toy //A toy version of general beepsky!
-	name = "Genewul Bweepskee"
-	desc = "An adorable looking secbot with four toy swords taped to its arms"
+	name = "将将毕普斯基"
+	desc = "一台可爱的安保机器人，手臂上用胶带粘着四把玩具剑"
 	health = 50
 	maxHealth = 50
 	block_chance = 0

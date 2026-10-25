@@ -23,10 +23,10 @@
 	behavior_tree_json = "code/modules/mob/living/basic/lavaland/goldgrub/babygrub.bt.json"
 
 /datum/pet_command/grub_spit
-	command_name = "Spit"
+	command_name = "吐出"
 	radial_icon = 'icons/obj/ore.dmi'
 	radial_icon_state = "uranium"
-	command_desc = "Ask your grub pet to spit out its ores."
+	command_desc = "让你的幼虫宠物把吞下的矿石吐出来。"
 	speech_commands = list("spit", "ores")
 
 /datum/pet_command/grub_spit/execute_action(datum/ai_controller/controller)
@@ -38,7 +38,7 @@
 	controller.clear_blackboard_key(BB_ACTIVE_PET_COMMAND)
 
 /datum/pet_command/grub_spit/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to spit its ores!"
+	return "示意 [living_pet] 吐出它的矿石！"
 
 
 #define BURROW_RANGE 5

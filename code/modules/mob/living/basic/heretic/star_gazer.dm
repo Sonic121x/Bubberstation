@@ -1,14 +1,14 @@
 /mob/living/basic/heretic_summon/star_gazer
-	name = "\improper Star Gazer"
-	desc = "A creature that has been tasked to watch over the stars."
+	name = "\improper 观星者"
+	desc = "一只被派去守望群星的生物。"
 	icon = 'icons/mob/nonhuman-player/96x96eldritch_mobs.dmi'
 	icon_state = "star_gazer"
 	icon_living = "star_gazer"
 	pixel_x = -32
 	base_pixel_x = -32
 	mob_biotypes = MOB_HUMANOID | MOB_SPECIAL
-	response_help_continuous = "passes through"
-	response_help_simple = "pass through"
+	response_help_continuous = "把手穿过"
+	response_help_simple = "把手穿过"
 	speed = -0.2
 	maxHealth = 6000
 	health = 6000
@@ -18,12 +18,12 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 40
 	sentience_type = SENTIENCE_BOSS
-	attack_verb_continuous = "ravages"
-	attack_verb_simple = "ravage"
+	attack_verb_continuous = "撕裂"
+	attack_verb_simple = "撕裂"
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	melee_attack_cooldown = 0.6 SECONDS
-	speak_emote = list("growls")
+	speak_emote = list("低吼")
 	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0, STAMINA = 0, OXY = 0)
 	death_sound = 'sound/effects/magic/cosmic_expansion.ogg'
 
@@ -96,13 +96,13 @@
 		return
 	begging_timer = addtimer(CALLBACK(src, PROC_REF(beg_for_ghost)), 2 MINUTES, TIMER_STOPPABLE | TIMER_UNIQUE) // Keep begging until someone accepts
 	var/mob/chosen_ghost = SSpolling.poll_ghost_candidates(
-		"Do you want to play as an ascended heretic's stargazer?",
+		"你想扮演一名登神异教徒的观星者吗？",
 		check_jobban = ROLE_HERETIC,
 		poll_time = 20 SECONDS,
 		ignore_category = POLL_IGNORE_HERETIC_MONSTER,
 		alert_pic = mutable_appearance('icons/effects/eldritch.dmi', "cosmic_diamond"),
 		jump_target = src,
-		role_name_text = "star gazer",
+		role_name_text = "观星者",
 		amount_to_pick = 1
 	)
 	if(chosen_ghost)
@@ -135,13 +135,13 @@
 			continue
 		nearby_mob.apply_status_effect(/datum/status_effect/star_mark)
 		nearby_mob.apply_damage(10)
-		to_chat(nearby_mob, span_userdanger("\The [src] [attack_verb_continuous] you!"))
+		to_chat(nearby_mob, span_userdanger("\The [src] [attack_verb_continuous] 了你！"))
 		do_attack_animation(nearby_mob, ATTACK_EFFECT_SLASH)
-		log_combat(src, nearby_mob, "slashed")
+		log_combat(src, nearby_mob, "劈砍了")
 
 /datum/action/cooldown/recall_stargazer
-	name = "Seek master"
-	desc = "Teleports you to your master"
+	name = "寻找主人"
+	desc = "将你传送到你的主人身边"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -159,9 +159,9 @@
 	return TRUE
 
 /datum/action/cooldown/spell/stargazer_laser
-	name = "Star Gaze"
-	desc = "Generates a massive death beam that eradicates everything in it's path. \
-			Has it's own gravitational pull, sucking in new victims."
+	name = "星辰凝视"
+	desc = "生成一道巨大的死亡光束，消灭路径上的一切。 \
+			它带有自己的引力，会把新的受害者吸进去。"
 	background_icon_state = "bg_heretic"
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
@@ -367,12 +367,12 @@
 				if(living_victim.stat != STABLE)
 					playsound(living_victim, 'sound/effects/supermatter.ogg', 80, TRUE)
 					living_victim.visible_message(
-						span_danger("You see [living_victim] engulfed in the scorching wrath of the cosmos. \
-							For a moment, you see their silhouette flail in agony before fading to mere atoms."),
-						span_boldbig(span_hypnophrase("THE POWER OF THE COSMOS ITSELF POURS OUT OVER YOUR FORM. \
-							WAVES OF HEAT LATCH ONTO YOUR BODY, PULLING IT APART AT THE SEAMS. \
-							YOUR TOTAL ANNIHILATION TAKES ONLY A MOMENT BEFORE YOU ARE REDUCED BACK TO WHAT YOU ALWAYS WERE. \
-							MOTES OF MERE DUST..."))
+						span_danger("你看到 [living_victim] 被宇宙的灼热怒火吞噬。 \
+							有那么一瞬间，你看到其轮廓在痛苦中挣扎，随后化作纯粹的原子消散。"),
+						span_boldbig(span_hypnophrase("宇宙本身的力量倾泻在你的形体之上。 \
+							阵阵热浪攀附住你的身体，将它沿着缝隙撕开。 \
+							你的彻底湮灭只在一瞬之间，随后你被还原成你一直以来的模样。 \
+							不过是微不足道的尘埃……"))
 						)
 					living_victim.dust()
 				living_victim.emote("scream")
@@ -406,6 +406,6 @@
 
 /datum/pet_command/attack/star_gazer
 	speech_commands = list("attack", "sic", "kill", "slash them")
-	command_feedback = "stares!"
-	pointed_reaction = "stares intensely!"
-	refuse_reaction = "..."
+	command_feedback = "盯着看！"
+	pointed_reaction = "死死盯着！"
+	refuse_reaction = "……"

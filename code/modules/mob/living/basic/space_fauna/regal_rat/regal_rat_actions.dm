@@ -3,8 +3,8 @@
  */
 
 /datum/action/cooldown/mob_cooldown/domain
-	name = "Rat King's Domain"
-	desc = "While enabled, continuously corrupt the surrounding area to be more suitable for your rat army."
+	name = "鼠王之域"
+	desc = "启用后，持续腐化周围区域，使其更适合你的大鼠军团。"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 	click_to_activate = FALSE
 	cooldown_time = 1 SECONDS
@@ -26,7 +26,7 @@
 		return FALSE
 	if (owner.movement_type & VENTCRAWLING)
 		if (feedback)
-			owner.balloon_alert(owner, "can't use while ventcrawling!")
+			owner.balloon_alert(owner, "爬通风管时无法使用！")
 		return FALSE
 
 /datum/action/cooldown/mob_cooldown/domain/Activate(atom/target)
@@ -93,8 +93,8 @@
  * If none are nearby, creates a new mouse.
  */
 /datum/action/cooldown/mob_cooldown/riot
-	name = "Raise Army"
-	desc = "Raise an army out of the hordes of mice and pests crawling around the maintenance shafts."
+	name = "召集大军"
+	desc = "从维修管道里爬来爬去的成群老鼠与害虫中召集一支大军。"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_INCAPACITATED
 	click_to_activate = FALSE
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
@@ -112,7 +112,7 @@
 		return FALSE
 	if (owner.movement_type & VENTCRAWLING)
 		if (feedback)
-			owner.balloon_alert(owner, "can't use while ventcrawling!")
+			owner.balloon_alert(owner, "爬通风管时无法使用！")
 		return FALSE
 
 /datum/action/cooldown/mob_cooldown/riot/Activate(atom/target)
@@ -140,16 +140,16 @@
 // Command you can give to a mouse to make it kill someone
 /datum/pet_command/attack/mouse
 	speech_commands = list("attack", "sic", "kill", "cheese em")
-	command_feedback = "squeak!" // Frogs and roaches can squeak too it's fine
-	pointed_reaction = "and squeaks aggressively"
-	refuse_reaction = "quivers"
+	command_feedback = "吱吱！" // Frogs and roaches can squeak too it's fine
+	pointed_reaction = "，气势汹汹地吱吱叫"
+	refuse_reaction = "发抖"
 
 // Command you can give to a glockroach to make it shoot someone
 /datum/pet_command/attack/glockroach
 	speech_commands = list("attack", "sic", "kill", "cheese em")
-	command_feedback = "squeak!"
-	pointed_reaction = "and cocks its gun"
-	refuse_reaction = "quivers"
+	command_feedback = "吱吱！"
+	pointed_reaction = "，扳开了枪的保险"
+	refuse_reaction = "发抖"
 	attack_subtree = /datum/bt_node/subtree/pet_command/attack/ranged/glockroach
 
 /**
@@ -157,24 +157,24 @@
  */
 
 /datum/reagent/rat_spit
-	name = "Rat Spit"
-	description = "Something coming from a rat. Dear god! Who knows where it's been!"
+	name = "老鼠唾液"
+	description = "从老鼠身上来的东西。老天啊！谁知道它都待过哪儿！"
 	color = "#C8C8C8"
 	metabolization_rate = 0.03 * REAGENTS_METABOLISM
-	taste_description = "something funny"
+	taste_description = "怪味"
 	overdose_threshold = 20
 
 /datum/reagent/rat_spit/on_mob_metabolize(mob/living/affected_mob)
 	. = ..()
 	if(HAS_TRAIT(affected_mob, TRAIT_AGEUSIA))
 		return
-	to_chat(affected_mob, span_notice("This food has a funny taste!"))
+	to_chat(affected_mob, span_notice("这食物有股怪味！"))
 
 /datum/reagent/rat_spit/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	. = ..()
 	var/mob/living/carbon/victim = affected_mob
 	if (istype(victim) && !victim.has_faction(FACTION_RAT))
-		to_chat(victim, span_userdanger("With this last sip, you feel your body convulsing horribly from the contents you've ingested. As you contemplate your actions, you sense an awakened kinship with rat-kind and their newly risen leader!"))
+		to_chat(victim, span_userdanger("随着最后一口下咽，你感觉吃下去的东西让身体剧烈地抽搐起来。在你回想自己的所作所为时，你感到自己与鼠类、以及它们新登基的领袖之间产生了某种觉醒的血脉共鸣！"))
 		victim.add_faction(FACTION_RAT)
 		victim.vomit(VOMIT_CATEGORY_DEFAULT)
 	metabolization_rate = 10 * REAGENTS_METABOLISM
@@ -182,10 +182,10 @@
 /datum/reagent/rat_spit/on_mob_life(mob/living/carbon/affected_mob, metabolization_ratio)
 	. = ..()
 	if(prob(15))
-		to_chat(affected_mob, span_notice("You feel queasy!"))
+		to_chat(affected_mob, span_notice("你感到一阵恶心！"))
 		affected_mob.adjust_disgust(3)
 	else if(prob(10))
-		to_chat(affected_mob, span_warning("That food does not sit up well!"))
+		to_chat(affected_mob, span_warning("那食物在肚子里翻腾得厉害！"))
 		affected_mob.adjust_disgust(5)
 	else if(prob(5))
 		affected_mob.vomit(VOMIT_CATEGORY_DEFAULT)

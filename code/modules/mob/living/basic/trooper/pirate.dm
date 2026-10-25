@@ -1,10 +1,10 @@
 /// Pirate trooper subtype
 /mob/living/basic/trooper/pirate
-	name = "Pirate"
-	desc = "Does what he wants cause a pirate is free."
-	response_help_continuous = "pushes"
-	response_help_simple = "push"
-	speak_emote = list("yarrs")
+	name = "海盗"
+	desc = "想干什么就干什么，因为海盗是自由的。"
+	response_help_continuous = "推开"
+	response_help_simple = "推开"
+	speak_emote = list("哟嗬嗬")
 	faction = list(FACTION_PIRATE)
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/pirate
 	corpse = /obj/effect/mob_spawn/corpse/human/pirate
@@ -17,12 +17,12 @@
 	AddComponent(/datum/component/plundering_attacks, plunder_amount = plunder_credits)
 
 /mob/living/basic/trooper/pirate/melee
-	name = "Pirate Swashbuckler"
+	name = "海盗剑客"
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	armour_penetration = 35
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/blade1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	loot = list(/obj/effect/mob_spawn/corpse/human/pirate/melee)
@@ -38,7 +38,7 @@
 	plunder_credits = 50 //they hit hard so they steal more
 
 /mob/living/basic/trooper/pirate/melee/space
-	name = "Space Pirate Swashbuckler"
+	name = "太空海盗剑客"
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	loot = null
@@ -50,7 +50,7 @@
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 
 /mob/living/basic/trooper/pirate/ranged
-	name = "Pirate Gunner"
+	name = "海盗炮手"
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/pirate/ranged
 	corpse = /obj/effect/mob_spawn/corpse/human/pirate/ranged
 	r_hand = /obj/item/gun/energy/laser/soul
@@ -75,7 +75,7 @@
 	)
 
 /mob/living/basic/trooper/pirate/ranged/space
-	name = "Space Pirate Gunner"
+	name = "太空海盗炮手"
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = 0
 	corpse = /obj/effect/mob_spawn/corpse/human/pirate/ranged/space

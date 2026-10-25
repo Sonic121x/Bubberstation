@@ -1,12 +1,12 @@
 /obj/item/skillchip/acrobatics
-	name = "old F058UR7 skillchip"
-	desc = "A formerly cutting-edge skillchip that granted the user an advanced, Olympian-level degree of kinesthesics for flipping, spinning, and absolutely nothing else. \
-		It was pulled off the markets shortly after release due to users damaging the chip's integrity from excessive acrobatics, causing deadly malfunctions. It really puts the 'flop' in 'Fosbury Flop'!"
-	skill_name = "Spinesthetics"
-	skill_description = "Allows you to flip and spin at an illegal and dangerous rate."
+	name = "旧款 F058UR7 技能芯片"
+	desc = "一款曾经领先时代的技能芯片，能让使用者在翻腾与旋转方面获得奥林匹克级别的高超本体感觉，除此之外一无是处。 \
+		它上市后不久便撤出了市场，因为用户过度杂技会损伤芯片的完整性，引发致命的故障。它可真是让“弗斯伯里背越式”名副其实地“摔”了一把！"
+	skill_name = "旋感美学"
+	skill_description = "让你能以违法且危险的频率翻腾与旋转。"
 	skill_icon = FA_ICON_WHEELCHAIR_ALT
-	activate_message = span_notice("You suddenly have an extremely advanced and complex sense of how to spin and flip with grace.")
-	deactivate_message = span_notice("Your divine grasp of Spinesthesics disappears entirely.")
+	activate_message = span_notice("你突然拥有了一种极其高级而复杂的感知，知道如何优雅地旋转与翻腾。")
+	deactivate_message = span_notice("你对旋感美学的神圣掌握彻底消失了。")
 	custom_premium_price = PAYCHECK_CREW * 4
 	/// set integrity to 1 when mapping for !!FUN!!
 	max_integrity = 100
@@ -57,15 +57,15 @@
 	switch(rand(mintegrity, get_integrity())) // 1 to 100 but gets worse every time
 		// CRIT FAIL
 		if(1)
-			bozo.visible_message(span_userdanger("[bozo]'s head suddenly explodes outwards!"))
+			bozo.visible_message(span_userdanger("[bozo] 的脑袋突然向外炸开了！"))
 
 			explosion(bozo, light_impact_range = 2, adminlog = TRUE, explosion_cause = src)
 			// WITNESS THE GORE
 			for(var/mob/living/splashed in view(2, bozo))
 				if(bozo.has_status_effect(/datum/status_effect/grouped/blindness))
-					to_chat(splashed, span_userdanger("You're splashed with something"))
+					to_chat(splashed, span_userdanger("有什么东西溅到了你身上"))
 				else
-					to_chat(splashed, span_userdanger("You are blinded by a shower of blood!"))
+					to_chat(splashed, span_userdanger("你被一阵血雨糊住了眼睛！"))
 				splashed.Stun(1 SECONDS)
 				splashed.Knockdown(2 SECONDS)
 				splashed.set_eye_blur_if_lower(15 SECONDS)
@@ -92,8 +92,8 @@
 		// last chance to stop
 		if(7 to 9)
 			bozo.visible_message(
-				span_danger("[bozo] seems to short circuit!"),
-				span_userdanger("Your brain short circuits!"),
+				span_danger("[bozo] 似乎短路了！"),
+				span_userdanger("你的大脑短路了！"),
 			)
 			// if they're susceptible to electrocution, confuse them
 			if(bozo.electrocute_act(15, bozo, 1, SHOCK_NOGLOVES|SHOCK_NOSTUN))
@@ -112,8 +112,8 @@
 				bozo.adjust_fire_stacks(11 - get_integrity())
 				bozo.ignite_mob()
 				bozo.visible_message(
-					span_danger("[bozo]'s head lights up!"),
-					span_userdanger("Your head hurts so much, it feels like it's on fire!"),
+					span_danger("[bozo] 的脑袋着火了！"),
+					span_userdanger("你的头太疼了，感觉像是烧了起来！"),
 				)
 				ASYNC
 					bozo.emote("scream")
@@ -122,8 +122,8 @@
 				particle_path = /particles/smoke/steam/bad
 			else
 				bozo.visible_message(
-					span_danger("[bozo]'s head starts smoking!"),
-					span_userdanger("Your brain feels like it's on fire!"),
+					span_danger("[bozo] 的脑袋开始冒烟了！"),
+					span_userdanger("你的大脑感觉像是烧了起来！"),
 				)
 
 				// increase smokiness if already smoking
@@ -147,7 +147,7 @@
 		// hey, something isn't right...
 		if(16 to 50)
 			bozo.visible_message(
-				span_warning("[bozo]'s head sparks."),
+				span_warning("[bozo] 的脑袋冒出了火花。"),
 			)
 
 			sparks.amount = rand(1, 2)
@@ -159,13 +159,13 @@
 	allowed_usage++
 
 /obj/item/skillchip/acrobatics/kiss
-	name = "prototype N. 807 - K1SS skillchip"
-	desc = "An idle experiment when developing skillchips led to this catastrophe. Everyone involved swore to keep it a secret until death, but it looks like someone has let loose this mistake into the world."
+	name = "原型编号 807 - K1SS 技能芯片"
+	desc = "研发技能芯片时一次随意的实验酿成了这场灾难。所有参与者都发誓至死保密，但看来有人把这个错误放了出去。"
 	skill_name = "ERROERERROROROEROEORROER"
-	skill_description = "NULL DESCRIPTION NOT FOUND"
+	skill_description = "错误：未找到描述"
 	skill_icon = FA_ICON_KISS_BEAM
-	activate_message = span_userdanger("This was a mistake.")
-	deactivate_message = span_userdanger("The mistake is over.")
+	activate_message = span_userdanger("这是个错误。")
+	deactivate_message = span_userdanger("这个错误结束了。")
 	custom_premium_price = PAYCHECK_CREW * 500
 	max_integrity = 25
 	affected_emotes = list("kiss")

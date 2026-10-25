@@ -1,6 +1,6 @@
 /mob/living/basic/clown
-	name = "Clown"
-	desc = "A denizen of Clown Planet."
+	name = "小丑"
+	desc = "小丑星球的原住民。"
 	icon = 'icons/mob/simple/clown_mobs.dmi'
 	icon_state = "clown"
 	icon_living = "clown"
@@ -8,10 +8,10 @@
 	icon_gib = "clown_gib"
 	health_doll_icon = "clown" //if >32x32, it will use this generic. for all the huge clown mobs that subtype from this
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "robusts"
-	response_harm_simple = "robust"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "猛捶"
+	response_harm_simple = "猛捶"
 	combat_mode = TRUE
 	maxHealth = 75
 	health = 75
@@ -32,8 +32,8 @@
 	var/list/loot = list(/obj/effect/gibspawner/human) // BUBBER EDIT CHANGE - Original: /obj/effect/mob_spawn/corpse/human/clown
 	///blackboard emote list
 	var/list/emotes = list(
-		BB_EMOTE_SAY = list("HONK!!", "Honk!", "Welcome to Clown Planet!"),
-		BB_EMOTE_HEAR = list("honks!", "squeaks!"),
+		BB_EMOTE_SAY = list("HONK!!", "Honk!", "欢迎来到小丑星球！"),
+		BB_EMOTE_HEAR = list("发出洪克声！", "发出吱吱声！"),
 		BB_EMOTE_SOUND = list('sound/items/bikehorn.ogg'), //WE LOVE TO PARTY
 		BB_SPEAK_CHANCE = 5,
 	)
@@ -64,7 +64,7 @@
 		return ..()
 	var/obj/item/food/grown/banana/bunch/unripe_bunch = target
 	unripe_bunch.start_ripening()
-	log_combat(src, target, "explosively ripened")
+	log_combat(src, target, "使其爆裂催熟")
 
 /mob/living/basic/clown/get_bloodtype()
 	if (check_holidays(APRIL_FOOLS))
@@ -72,21 +72,21 @@
 	return ..()
 
 /mob/living/basic/clown/lube
-	name = "Living Lube"
-	desc = "A puddle of lube brought to life by the Honkmother."
+	name = "活体润滑油"
+	desc = "一滩被洪克之母赋予生命的润滑油。"
 	icon_state = "lube"
 	icon_living = "lube"
 	maxHealth = 50
 	health = 50
-	response_help_continuous = "dips a finger into"
-	response_help_simple = "dip a finger into"
-	response_disarm_continuous = "gently scoops and pours aside"
-	response_disarm_simple = "gently scoop and pour aside"
+	response_help_continuous = "蘸了蘸"
+	response_help_simple = "蘸了蘸"
+	response_disarm_continuous = "轻轻舀到一旁"
+	response_disarm_simple = "轻轻舀到一旁"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_SLIME
 	damage_coeff = list(BRUTE = 0.25, BURN = 1, TOX = 1, STAMINA = 1, OXY = 1)
 	emotes = list(
-		BB_EMOTE_SAY = list("HONK!!", "Honk!", "Welcome to Clown Planet!"),
-		BB_EMOTE_HEAR = list("bubbles.", "oozes."),
+		BB_EMOTE_SAY = list("HONK!!", "Honk!", "欢迎来到小丑星球！"),
+		BB_EMOTE_HEAR = list("冒起泡来。", "渗出黏液。"),
 	)
 	waddles = FALSE
 	loot = list(
@@ -99,15 +99,15 @@
 	AddElement(/datum/element/lube_walking)
 
 /mob/living/basic/clown/honkling
-	name = "Honkling"
-	desc = "A divine being sent by the Honkmother to spread joy. It's not dangerous, but it's a bit of a nuisance."
+	name = "洪克灵"
+	desc = "洪克之母派来散播欢乐的神圣存在。它并不危险，只是有点扰人。"
 	icon_state = "honkling"
 	icon_living = "honkling"
 	speed = -0.5
 	melee_damage_lower = 1
 	melee_damage_upper = 1
-	attack_verb_continuous = "cheers up"
-	attack_verb_simple = "cheer up"
+	attack_verb_continuous = "鼓舞"
+	attack_verb_simple = "鼓舞"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	loot = list(
 		/obj/item/clothing/mask/gas/clown_hat,
@@ -128,22 +128,22 @@
 	)
 
 /mob/living/basic/clown/fleshclown
-	name = "Fleshclown"
-	desc = "A being forged out of the pure essence of pranking, cursed into existence by a cruel maker."
+	name = "血肉小丑"
+	desc = "由纯粹的整蛊精华锻造而成的存在，因一位残忍造物主的诅咒而诞生。"
 	icon_state = "fleshclown"
 	icon_living = "fleshclown"
-	response_help_continuous = "reluctantly pokes"
-	response_help_simple = "reluctantly poke"
-	response_disarm_continuous = "sinks his hands into the spongy flesh of"
-	response_disarm_simple = "sink your hands into the spongy flesh of"
-	response_harm_continuous = "cleanses the world of"
-	response_harm_simple = "cleanse the world of"
+	response_help_continuous = "不情愿地戳了戳"
+	response_help_simple = "不情愿地戳了戳"
+	response_disarm_continuous = "抓揉"
+	response_disarm_simple = "抓揉"
+	response_harm_continuous = "为世界清除"
+	response_harm_simple = "为世界清除"
 	maxHealth = 140
 	health = 140
 	speed = -0.5
 	melee_damage_upper = 15
-	attack_verb_continuous = "limply slaps"
-	attack_verb_simple = "limply slap"
+	attack_verb_continuous = "有气无力地拍打"
+	attack_verb_simple = "有气无力地拍打"
 	obj_damage = 5
 	loot = list(
 		/obj/effect/gibspawner/human,
@@ -155,14 +155,14 @@
 		BB_EMOTE_SAY = list(
 			"HONK!!",
 			"Honk!",
-			"I didn't ask for this...",
-			"I feel constant and horrible pain!!",
-			"I was born out of mirthful pranking but I live in suffering!!",
-			"This body is a merciless and unforgiving prison!!",
+			"我可没要求过这一切……",
+			"我无时无刻不在承受可怕的痛苦！！",
+			"我诞生于欢乐的整蛊，却活在苦难之中！！",
+			"这具身体是一座冷酷无情的牢笼！！",
 			"YA-HONK!!!",
 		),
-		BB_EMOTE_HEAR = list("honks!", "contemplates its existence."),
-		BB_EMOTE_SEE = list("sweats.", "jiggles."),
+		BB_EMOTE_HEAR = list("发出洪克声！", "陷入对自身存在的沉思。"),
+		BB_EMOTE_SEE = list("冒汗。", "抖动着。"),
 		BB_SPEAK_CHANCE = 5,
 	)
 
@@ -171,25 +171,25 @@
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/basic/clown/longface
-	name = "Longface"
-	desc = "Often found walking into the bar."
+	name = "长脸"
+	desc = "常被人撞见走进酒吧。"
 	icon_state = "long face"
 	icon_living = "long face"
 	move_resist = INFINITY
-	response_help_continuous = "tries to awkwardly hug"
-	response_help_simple = "try to awkwardly hug"
-	response_disarm_continuous = "pushes the unwieldy frame of"
-	response_disarm_simple = "push the unwieldy frame of"
-	response_harm_continuous = "tries to shut up"
-	response_harm_simple = "try to shut up"
+	response_help_continuous = "笨拙地试着拥抱"
+	response_help_simple = "笨拙地试着拥抱"
+	response_disarm_continuous = "使劲推了推"
+	response_disarm_simple = "使劲推了推"
+	response_harm_continuous = "试图喝止"
+	response_harm_simple = "试图喝止"
 	maxHealth = 150
 	health = 150
 	pixel_x = -16
 	base_pixel_x = -16
 	speed = 1.5
 	melee_damage_upper = 20
-	attack_verb_continuous = "YA-HONKs"
-	attack_verb_simple = "YA-HONK"
+	attack_verb_continuous = "高喊 YA-HONK 冲撞"
+	attack_verb_simple = "高喊 YA-HONK 冲撞"
 	loot = list(
 		/obj/effect/gibspawner/human,
 		/obj/item/grown/bananapeel,
@@ -197,7 +197,7 @@
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list("YA-HONK!!!"),
-		BB_EMOTE_HEAR = list("honks!", "squeaks!"),
+		BB_EMOTE_HEAR = list("发出洪克声！", "发出吱吱声！"),
 		BB_SPEAK_CHANCE = 60,
 	)
 
@@ -206,18 +206,18 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_LONGFACE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 /mob/living/basic/clown/clownhulk
-	name = "Honk Hulk"
-	desc = "A cruel and fearsome clown. Don't make him angry."
+	name = "洪克浩克"
+	desc = "一个残忍又可怕的小丑。别惹他生气。"
 	icon_state = "honkhulk"
 	icon_living = "honkhulk"
 	move_resist = INFINITY
 	gender = MALE
-	response_help_continuous = "tries desperately to appease"
-	response_help_simple = "try desperately to appease"
-	response_disarm_continuous = "foolishly pushes"
-	response_disarm_simple = "foolishly push"
-	response_harm_continuous = "angers"
-	response_harm_simple = "anger"
+	response_help_continuous = "拼命讨好"
+	response_help_simple = "拼命讨好"
+	response_disarm_continuous = "愚蠢地推了推"
+	response_disarm_simple = "愚蠢地推了推"
+	response_harm_continuous = "激怒"
+	response_harm_simple = "激怒"
 	maxHealth = 400
 	health = 400
 	pixel_x = -16
@@ -225,8 +225,8 @@
 	speed = 1.5
 	melee_damage_lower = 15
 	melee_damage_upper = 20
-	attack_verb_continuous = "pummels"
-	attack_verb_simple = "pummel"
+	attack_verb_continuous = "痛殴"
+	attack_verb_simple = "痛殴"
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	loot = list(
@@ -236,28 +236,28 @@
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list("HONK!!", "Honk!", "HAUAUANK!!!", "GUUURRRRAAAHHH!!!"),
-		BB_EMOTE_HEAR = list("honks!", "grunts!"),
-		BB_EMOTE_SEE = list("sweats!"),
+		BB_EMOTE_HEAR = list("发出洪克声！", "低吼！"),
+		BB_EMOTE_SEE = list("冒汗！"),
 		BB_SPEAK_CHANCE = 5,
 	)
 
 /mob/living/basic/clown/clownhulk/chlown
-	name = "Chlown"
-	desc = "A real lunkhead who somehow gets all the girls."
+	name = "猛丑"
+	desc = "一个十足的笨蛋，偏偏总能泡到所有姑娘。"
 	icon_state = "chlown"
 	icon_living = "chlown"
 	gender = MALE
-	response_help_continuous = "submits to"
-	response_help_simple = "submit to"
-	response_disarm_continuous = "tries to assert dominance over"
-	response_disarm_simple = "try to assert dominance over"
-	response_harm_continuous = "makes a weak beta attack at"
-	response_harm_simple = "make a weak beta attack at"
+	response_help_continuous = "屈服于"
+	response_help_simple = "屈服于"
+	response_disarm_continuous = "试图压制"
+	response_disarm_simple = "试图压制"
+	response_harm_continuous = "弱弱地攻击了"
+	response_harm_simple = "弱弱地攻击了"
 	maxHealth = 500
 	health = 500
 	armour_penetration = 20
-	attack_verb_continuous = "steals the girlfriend of"
-	attack_verb_simple = "steal the girlfriend of"
+	attack_verb_continuous = "勾搭"
+	attack_verb_simple = "勾搭"
 	attack_sound = 'sound/items/airhorn/airhorn2.ogg'
 	loot = list(
 		/obj/effect/gibspawner/human,
@@ -266,25 +266,25 @@
 		/obj/item/clothing/mask/gas/clown_hat,
 	)
 	emotes = list(
-		BB_EMOTE_SAY = list("HONK!!", "Honk!", "Bruh.", "cheeaaaahhh?"),
-		BB_EMOTE_SEE = list("asserts his dominance!", "emasculates everyone implicitly!"),
+		BB_EMOTE_SAY = list("HONK!!", "Honk!", "哥们。", "cheeaaaahhh?"),
+		BB_EMOTE_SEE = list("彰显自己的支配地位！", "无形中让所有人都自愧不如！"),
 		BB_SPEAK_CHANCE = 5,
 	)
 
 /mob/living/basic/clown/clownhulk/honkmunculus
-	name = "Honkmunculus"
-	desc = "A slender wiry figure of alchemical origin."
+	name = "洪克人造人"
+	desc = "一个瘦削结实、源自炼金术的身影。"
 	icon_state = "honkmunculus"
 	icon_living = "honkmunculus"
-	response_help_continuous = "skeptically pokes"
-	response_help_simple = "skeptically poke"
-	response_disarm_continuous = "pushes the unwieldy frame of"
-	response_disarm_simple = "push the unwieldy frame of"
+	response_help_continuous = "怀疑地戳了戳"
+	response_help_simple = "怀疑地戳了戳"
+	response_disarm_continuous = "使劲推了推"
+	response_disarm_simple = "使劲推了推"
 	maxHealth = 200
 	health = 200
 	melee_damage_upper = 15
-	attack_verb_continuous = "ferociously mauls"
-	attack_verb_simple = "ferociously maul"
+	attack_verb_continuous = "凶狠地撕咬"
+	attack_verb_simple = "凶狠地撕咬"
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	loot = list(
 		/obj/effect/gibspawner/xeno/bodypartless,
@@ -294,7 +294,7 @@
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list("honk!"),
-		BB_EMOTE_SEE = list("squirms!", "writhes!"),
+		BB_EMOTE_SEE = list("扭动着身子！", "痛苦地翻滚！"),
 	)
 
 /mob/living/basic/clown/clownhulk/honkmunculus/Initialize(mapload)
@@ -310,20 +310,20 @@
 	) // I don't really know what a clown is using to inject people but let's assume it doesn't need to penetrate at all
 
 /mob/living/basic/clown/clownhulk/destroyer
-	name = "The Destroyer"
-	desc = "An ancient being born of arcane honking."
+	name = "毁灭者"
+	desc = "一个诞生于奥术洪克声中的古老存在。"
 	icon_state = "destroyer"
 	icon_living = "destroyer"
-	response_disarm_continuous = "bounces off of"
-	response_harm_continuous = "bounces off of"
+	response_disarm_continuous = "撞上去弹开了"
+	response_harm_continuous = "撞上去弹开了"
 	maxHealth = 400
 	health = 400
 	speed = 1.5
 	melee_damage_lower = 20
 	melee_damage_upper = 40
 	armour_penetration = 30
-	attack_verb_continuous = "acts out divine vengeance on"
-	attack_verb_simple = "act out divine vengeance on"
+	attack_verb_continuous = "代行神罚"
+	attack_verb_simple = "代行神罚"
 	obj_damage = 50
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
 	ai_controller = /datum/ai_controller/basic_controller/clown/murder
@@ -334,24 +334,24 @@
 		/obj/item/clothing/mask/gas/clown_hat,
 	)
 	emotes = list(
-		BB_EMOTE_SAY = list("HONK!!!", "The Honkmother is merciful, so I must act out her wrath.", "Parce mihi ad beatus honkmother placet mihi ut peccata committere.", "DIE!!!"),
-		BB_EMOTE_HEAR = list("honks!", "grunts!"),
-		BB_EMOTE_SEE = list("sweats!"),
+		BB_EMOTE_SAY = list("HONK!!!", "洪克之母是仁慈的，所以我必须代她降下怒火。", "Parce mihi ad beatus honkmother placet mihi ut peccata committere.", "去死吧！！！"),
+		BB_EMOTE_HEAR = list("发出洪克声！", "低吼！"),
+		BB_EMOTE_SEE = list("冒汗！"),
 		BB_SPEAK_CHANCE = 5,
 	)
 
 /mob/living/basic/clown/mutant
-	name = "Unknown"
-	desc = "Kill it for its own sake."
+	name = "未知"
+	desc = "为了它自己好，杀了它吧。"
 	icon_state = "mutant"
 	icon_living = "mutant"
 	move_resist = INFINITY
-	response_help_continuous = "reluctantly sinks a finger into"
-	response_help_simple = "reluctantly sink a finger into"
-	response_disarm_continuous = "squishes into"
-	response_disarm_simple = "squish into"
-	response_harm_continuous = "squishes into"
-	response_harm_simple = "squish into"
+	response_help_continuous = "不情愿地戳了戳"
+	response_help_simple = "不情愿地戳了戳"
+	response_disarm_continuous = "挤压"
+	response_disarm_simple = "挤压"
+	response_harm_continuous = "挤压"
+	response_harm_simple = "挤压"
 	maxHealth = 130
 	health = 130
 	pixel_x = -16
@@ -359,8 +359,8 @@
 	speed = 1.5
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	attack_verb_continuous = "awkwardly flails at"
-	attack_verb_simple = "awkwardly flail at"
+	attack_verb_continuous = "笨拙地乱挥"
+	attack_verb_simple = "笨拙地乱挥"
 	loot = list(
 		/obj/effect/gibspawner/generic,
 		/obj/effect/gibspawner/generic/animal,
@@ -372,14 +372,14 @@
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list("aaaaaahhhhuuhhhuhhhaaaaa...", "AAAaaauuuaaAAAaauuhhh!!", "huuuuuh... hhhhuuuooooonnnnkk...", "HuaUAAAnKKKK!!"),
-		BB_EMOTE_SEE = list("squirms!", "writhes!", "pulsates!", "froths!", "oozes!"),
+		BB_EMOTE_SEE = list("扭动！", "翻滚！", "搏动着！", "吐着白沫！", "渗出黏液！"),
 		BB_SPEAK_CHANCE = 10,
 	)
 
 
 /mob/living/basic/clown/mutant/glutton
-	name = "banana glutton"
-	desc = "Something that was once a clown."
+	name = "香蕉暴食者"
+	desc = "曾经是小丑的某样东西。"
 	icon_state = "glutton"
 	icon_living = "glutton"
 	health = 200
@@ -389,8 +389,8 @@
 	melee_damage_upper = 15
 	obj_damage = 50
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 1, OXY = 1)
-	attack_verb_continuous = "slams"
-	attack_verb_simple = "slam"
+	attack_verb_continuous = "猛砸"
+	attack_verb_simple = "猛砸"
 	///Tracks how many total foods we have eaten, used for calculating when we should gain max health.
 	var/foods_eaten = 0
 
@@ -402,8 +402,8 @@
 		/obj/effect/spawner/random/chance_for_freedom,
 	)
 	emotes = list(
-		BB_EMOTE_SAY = list("hey, buddy!", "HONK!!!", "H-h-h-H-HOOOOONK!!!!", "HONKHONKHONK!!!", "HEY, BUCKO, GET BACK HERE!!!", "HOOOOOOOONK!!!"),
-		BB_EMOTE_SEE = list("jiggles!", "wobbles!"),
+		BB_EMOTE_SAY = list("嘿，老兄！", "HONK!!!", "H-h-h-H-HOOOOONK!!!!", "HONKHONKHONK!!!", "嘿，小子，给我回来！！！", "HOOOOOOOONK!!!"),
+		BB_EMOTE_SEE = list("晃动着！", "摇摆着！"),
 	)
 	death_sound = 'sound/misc/sadtrombone.ogg'
 	waddles = FALSE
@@ -443,7 +443,7 @@
 
 	if(IS_EDIBLE(potential_food))
 		if(prank_pouch.len >= 8)
-			to_chat(src, span_warning("Your prank pouch is filled to the brim! You don't think you can swallow any more morsels right now."))
+			to_chat(src, span_warning("你的整蛊袋已经塞得满满当当！你觉得现在再也咽不下任何东西了。"))
 			return FALSE
 		return TRUE
 
@@ -457,7 +457,7 @@
 		/obj/item/food/ink_sac,
 	)
 
-	visible_message(span_warning("[src] eats [eaten_atom]!"), span_notice("You eat [eaten_atom]."))
+	visible_message(span_warning("[src] 吃掉了 [eaten_atom]！"), span_notice("你吃掉了 [eaten_atom]。"))
 	if(is_type_in_list(eaten_atom, funny_items))
 		eaten_atom.forceMove(src)
 		prank_pouch += eaten_atom
@@ -466,7 +466,7 @@
 		//Encourage gluttony RP by giving a litle bonus for each obj eaten.
 		foods_eaten++
 		if(!(foods_eaten % 5) && foods_eaten <= 100)
-			balloon_alert(src, "weight gained!")
+			balloon_alert(src, "体重增加了！")
 			maxHealth += 10
 			health += 10
 		if(istype(eaten_atom, /obj/item/food/grown/banana))
@@ -491,8 +491,8 @@
 
 ///This ability will let you fire one random item from your pouch,
 /datum/action/cooldown/regurgitate
-	name = "Regurgitate"
-	desc = "Regurgitates a single item from the depths of your pouch."
+	name = "反刍"
+	desc = "从你袋子的深处反刍出一件物品。"
 	background_icon_state = "bg_changeling"
 	overlay_icon_state = "bg_changeling_border"
 	button_icon = 'icons/mob/actions/actions_animal.dmi'
@@ -505,7 +505,7 @@
 	if(!.)
 		return
 
-	to_chat(on_who, span_notice("Your throat muscles tense up. <B>Left-click to regurgitate a funny morsel!</B>"))
+	to_chat(on_who, span_notice("你的喉部肌肉绷紧了。<B>左键点击即可反刍出一块滑稽的食物！</B>"))
 	on_who.icon_state = "glutton_tongue"
 	on_who.update_appearance(UPDATE_ICON)
 
@@ -515,7 +515,7 @@
 		return
 
 	if(refund_cooldown)
-		to_chat(on_who, span_notice("Your throat muscles relax."))
+		to_chat(on_who, span_notice("你的喉部肌肉放松了下来。"))
 	on_who.icon_state = initial(on_who.icon_state)
 	on_who.update_appearance(UPDATE_ICON)
 
@@ -533,7 +533,7 @@
 	var/mob/living/basic/clown/mutant/glutton/pouch_owner = owner
 	if(!length(pouch_owner.prank_pouch))
 		pouch_owner.icon_state = initial(pouch_owner.icon_state)
-		to_chat(pouch_owner, span_notice("Your prank pouch is empty."))
+		to_chat(pouch_owner, span_notice("你的整蛊袋是空的。"))
 		return TRUE
 
 	var/obj/item/projected_morsel = pick(pouch_owner.prank_pouch)
@@ -546,15 +546,15 @@
 	return TRUE
 
 /mob/living/basic/clown/banana
-	name = "Clownana"
-	desc = "A fusion of clown and banana DNA birthed from a botany experiment gone wrong."
+	name = "小丑蕉"
+	desc = "小丑与香蕉 DNA 的融合体，诞生于一次出错的植物学实验。"
 	icon_state = "banana tree"
 	icon_living = "banana tree"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_PLANT
-	response_disarm_continuous = "peels"
-	response_disarm_simple = "peel"
-	response_harm_continuous = "peels"
-	response_harm_simple = "peel"
+	response_disarm_continuous = "剥开"
+	response_disarm_simple = "剥开"
+	response_harm_continuous = "剥开"
+	response_harm_simple = "剥开"
 	maxHealth = 120
 	health = 120
 	speed = -1
@@ -567,7 +567,7 @@
 	)
 	emotes = list(
 		BB_EMOTE_SAY = list("HONK!!", "Honk!", "YA-HONK!!!"),
-		BB_EMOTE_SEE = list("bites into the banana!", "plucks a banana off its head!", "photosynthesizes!"),
+		BB_EMOTE_SEE = list("咬了一口香蕉！", "从头上摘下一根香蕉！", "进行光合作用！"),
 		BB_EMOTE_SOUND = list('sound/items/bikehorn.ogg'),
 	)
 
@@ -583,8 +583,8 @@
 
 ///drops peels around the mob when activated
 /datum/action/cooldown/rustle
-	name = "Rustle"
-	desc = "Shake loose a few banana peels."
+	name = "抖动"
+	desc = "抖落几片香蕉皮。"
 	cooldown_time = 8 SECONDS
 	button_icon_state = "rustle"
 	button_icon = 'icons/mob/actions/actions_clown.dmi'
@@ -614,8 +614,8 @@
 
 ///spawns a plumb bunch of bananas imbued with mystical power.
 /datum/action/cooldown/exquisite_bunch
-	name = "Exquisite Bunch"
-	desc = "Pluck your finest bunch of bananas from your head. This bunch is especially nutrious to monkeykind. A gentle tap will trigger an explosive ripening process."
+	name = "精致香蕉串"
+	desc = "从头上摘下你最好的一串香蕉。这串香蕉对猴类格外有营养。轻轻一拍就会触发爆炸式的成熟过程。"
 	button_icon = 'icons/obj/service/hydroponics/harvest.dmi'
 	cooldown_time = 60 SECONDS
 	button_icon_state = "banana_bunch"
@@ -633,7 +633,7 @@
 	if(!bunch_turf)
 		return
 	if(!bunch_turf.IsReachableBy(owner) || !isopenturf(bunch_turf))
-		owner.balloon_alert(owner, "can't do that here!")
+		owner.balloon_alert(owner, "这里不行！")
 		return
 	activating = TRUE
 	if(!do_after(owner, 1 SECONDS))

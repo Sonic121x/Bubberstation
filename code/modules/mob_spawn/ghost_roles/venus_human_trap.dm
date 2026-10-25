@@ -1,14 +1,14 @@
 /// Handles logic for ghost spawning code, visible object in game is handled by /obj/structure/alien/resin/flower_bud
 /obj/effect/mob_spawn/ghost_role/venus_human_trap
-	name = "flower bud"
-	desc = "A large pulsating plant..."
+	name = "花苞"
+	desc = "一株巨大的、搏动着的植物……"
 	icon = 'icons/mob/spacevines.dmi'
 	icon_state = "bud0"
 	mob_type = /mob/living/basic/venus_human_trap
 	density = FALSE
-	prompt_name = "venus human trap"
-	you_are_text = "You are a venus human trap."
-	flavour_text = "You are a venus human trap!  Protect the kudzu at all costs, and feast on those who oppose you!"
+	prompt_name = "维纳斯捕人花"
+	you_are_text = "你是一株维纳斯捕人花。"
+	flavour_text = "你是一株维纳斯捕人花！不惜一切代价保护野葛，并吞食那些反抗你的人！"
 	faction = list(FACTION_HOSTILE,FACTION_VINES,FACTION_PLANTS)
 	spawner_job_path = /datum/job/venus_human_trap
 	invisibility = INVISIBILITY_ABSTRACT //The flower bud structure is our visible component, we just handle logic.
@@ -39,9 +39,9 @@
 /obj/effect/mob_spawn/ghost_role/venus_human_trap/proc/bear_fruit()
 	ready = TRUE
 	notify_ghosts(
-		"[src] has borne fruit!",
+		"[src] 已经结出果实！",
 		source = src,
-		header = "Venus Human Trap",
+		header = "维纳斯捕人花",
 		click_interact = TRUE,
 		ignore_key = POLL_IGNORE_VENUSHUMANTRAP,
 	)
@@ -52,6 +52,6 @@
 		return FALSE
 	if(!ready)
 		if(!silent)
-			to_chat(user, span_warning("\The [src] has not borne fruit yet!"))
+			to_chat(user, span_warning("\The [src] 还没有结出果实！"))
 		return FALSE
 	return TRUE

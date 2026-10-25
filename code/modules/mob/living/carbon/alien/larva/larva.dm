@@ -1,6 +1,6 @@
 /mob/living/carbon/alien/larva
-	name = "alien larva"
-	real_name = "alien larva"
+	name = "异形幼虫"
+	real_name = "异形幼虫"
 	icon_state = "larva0"
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
@@ -53,13 +53,13 @@
 // This comment is 12 years old I hope it's fixed by now
 /mob/living/carbon/alien/larva/get_status_tab_items()
 	. = ..()
-	. += "Progress: [amount_grown]/[max_grown]"
+	. += "成长进度：[amount_grown]/[max_grown]"
 
 /mob/living/carbon/alien/larva/Login()
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, "<b>You are an alien larva. Hide from danger until you can evolve.<br>Use say :a to communicate with the hivemind.</b>")
+	to_chat(src, "<b>你是一只异形幼虫。在能够进化之前，请躲避危险。<br>使用 say :a 与虫巢意识交流。</b>")
 
 /mob/living/carbon/alien/larva/adjustPlasma(amount)
 	if(stat != DEAD && amount > 0)

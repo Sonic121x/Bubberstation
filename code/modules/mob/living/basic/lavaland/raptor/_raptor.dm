@@ -1,15 +1,15 @@
 GLOBAL_LIST_INIT(raptor_inherit_traits, list(
-	BB_BASIC_DEPRESSED = "Depressed",
-	BB_RAPTOR_MOTHERLY = "Motherly",
-	BB_RAPTOR_PLAYFUL = "Playful",
-	BB_RAPTOR_COWARD = "Coward",
+	BB_BASIC_DEPRESSED = "抑郁",
+	BB_RAPTOR_MOTHERLY = "慈爱",
+	BB_RAPTOR_PLAYFUL = "顽皮",
+	BB_RAPTOR_COWARD = "胆小",
 ))
 
 GLOBAL_LIST_EMPTY(raptor_population)
 
 /mob/living/basic/raptor
-	name = "raptor"
-	desc = "A trusty, powerful steed. Taming it might prove difficult..."
+	name = "迅猛龙"
+	desc = "一头可靠而强壮的坐骑。想驯服它恐怕相当困难……"
 	icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 	icon_state = "raptor_red"
 	base_icon_state = "raptor"
@@ -29,11 +29,11 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	unsuitable_atmos_damage = 0
 	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE
 	maximum_survivable_temperature = INFINITY
-	attack_verb_continuous = "pecks"
-	attack_verb_simple = "chomp"
+	attack_verb_continuous = "啄击"
+	attack_verb_simple = "啃咬"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	faction = list(FACTION_RAPTOR, FACTION_NEUTRAL)
-	speak_emote = list("screeches")
+	speak_emote = list("尖啸")
 	butcher_results = list(
 		/obj/item/food/meat/slab/chicken = 4,
 		/obj/item/stack/sheet/bone = 2,
@@ -151,15 +151,15 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 	switch (health / maxHealth)
 		if (0 to 0.2)
-			. += span_italics(span_bolddanger("[p_They()] [p_are()] gruesomly wounded, barely staying up on [p_their()] feet!"))
+			. += span_italics(span_bolddanger("[p_They()] 伤得血肉模糊，几乎连 [p_their()] 双腿都撑不住了！"))
 		if (0.2 to 0.4)
-			. += span_danger("[p_They()] [p_have()] heavy injuries and open wounds all around [p_their()] body!")
+			. += span_danger("[p_They()] 全身都是重伤和敞开的创口！")
 		if (0.4 to 0.6)
-			. += span_warning("[p_They()] [p_are()] noticeably hurt, limping from [p_their()] cuts and bruises.")
+			. += span_warning("[p_They()] 明显受了伤，[p_their()] 割伤和淤青让它一瘸一拐。")
 		if (0.6 to 0.8)
-			. += span_warning("[p_They()] [p_are()] visibly injured, a few bruises and cuts showing between [p_their()] feathers.")
+			. += span_warning("[p_They()] 身上可见伤痕，[p_their()] 羽毛间露出几处淤青和割伤。")
 		if (0.8 to 0.999)
-			. += span_notice("[p_They()] [p_have()] a few minor bruises and scratches.")
+			. += span_notice("[p_They()] 只有几处轻微的淤青和擦伤。")
 
 /mob/living/basic/raptor/Life(seconds_per_tick)
 	. = ..()
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(raptor_population)
 		return BASIC_MOB_CONTINUE_ATTACK_CHAIN
 	var/obj/ore_food = locate(/obj/item/stack/ore) in target
 	if(isnull(ore_food))
-		balloon_alert(src, "no food!")
+		balloon_alert(src, "没有食物！")
 	else
 		UnarmedAttack(ore_food, TRUE, modifiers)
 	return BASIC_MOB_END_ATTACK_CHAIN_COOLDOWN
@@ -355,21 +355,21 @@ GLOBAL_LIST_EMPTY(raptor_population)
 	// Visuals
 	switch (new_stage)
 		if (RAPTOR_BABY)
-			name = "baby raptor"
-			desc = "Will this grow into something useful?"
+			name = "迅猛龙幼崽"
+			desc = "它会长成什么有用的东西吗？"
 			icon = 'icons/mob/simple/lavaland/raptor_baby.dmi'
 			base_icon_state = "baby"
 			base_pixel_w = 0
 			mob_size = MOB_SIZE_TINY
 		if (RAPTOR_YOUNG)
-			name = "raptor youngling"
-			desc = "A young raptor that can grow into a robust, trusty steed. Rather naive at such an age, it shouldn't be too hard to tame."
+			name = "迅猛龙亚成体"
+			desc = "一头年幼的迅猛龙，能长成强壮可靠的坐骑。这个年纪的它还相当天真，驯服起来应该不会太难。"
 			icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 			base_icon_state = "young"
 			base_pixel_w = initial(base_pixel_w)
 			mob_size = MOB_SIZE_HUMAN
 		if (RAPTOR_ADULT)
-			name = "raptor"
+			name = "迅猛龙"
 			desc = initial(desc)
 			icon = 'icons/mob/simple/lavaland/raptor_big.dmi'
 			base_icon_state = "raptor"
@@ -449,8 +449,8 @@ GLOBAL_LIST_EMPTY(raptor_population)
 
 /mob/living/basic/raptor/proc/update_blackboard()
 	var/static/list/display_emote = list(
-		BB_EMOTE_SAY = list("Chirp chirp chirp!", "Kweh!", "Bwark!"),
-		BB_EMOTE_SEE = list("shakes its feathers!", "stretches!", "flaps its wings!", "pecks at the ground!"),
+		BB_EMOTE_SAY = list("叽叽叽！", "咕哎！", "呱！"),
+		BB_EMOTE_SEE = list("抖了抖羽毛！", "伸了个懒腰！", "拍了拍翅膀！", "啄了啄地面！"),
 		BB_EMOTE_SOUND = list(
 			'sound/mobs/non-humanoids/raptor/raptor_1.ogg',
 			'sound/mobs/non-humanoids/raptor/raptor_2.ogg',

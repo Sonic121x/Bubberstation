@@ -1,8 +1,8 @@
 #define TEND_DAMAGE_INTERACTION "tend_damage_interaction"
 
 /mob/living/basic/bot/medbot
-	name = "\improper Medibot"
-	desc = "A little medical robot. He looks somewhat underwhelmed."
+	name = "\improper 医疗机器人"
+	desc = "一台小巧的医疗机器人。它看起来有些提不起干劲。"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "medbot_generic_idle"
 	base_icon_state = "medbot"
@@ -21,8 +21,8 @@
 	radio_channel = RADIO_CHANNEL_MEDICAL
 	bot_type = MED_BOT
 	data_hud_type = TRAIT_MEDICAL_HUD
-	hackables = "health processor circuits"
-	possessed_message = "You are a medbot! Ensure good health among the crew to the best of your ability!"
+	hackables = "健康处理器电路"
+	possessed_message = "你是一台医疗机器人！尽你所能维护船员的身体健康！"
 
 	additional_access = /datum/id_trim/medibot
 	announcement_type = /datum/action/cooldown/bot_announcement/medbot
@@ -165,7 +165,7 @@
 	update_appearance()
 	damage_type_healer = HEAL_ALL_DAMAGE
 	if(prob(50))
-		name += ", PhD."
+		name += "，博士"
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -269,8 +269,8 @@
 
 /mob/living/basic/bot/medbot/emag_effects(mob/user)
 	medical_mode_flags &= ~MEDBOT_DECLARE_CRIT
-	balloon_alert(user, "reagent synthesis circuits shorted")
-	audible_message(span_danger("[src] buzzes oddly!"))
+	balloon_alert(user, "试剂合成电路短路")
+	audible_message(span_danger("[src] 发出奇怪的嗡鸣声！"))
 	flick_overlay_view(mutable_appearance(icon, "[base_icon_state]_spark"), 1 SECONDS)
 	playsound(src, SFX_SPARKS, 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -280,11 +280,11 @@
 	if(!(medical_mode_flags & MEDBOT_TIPPED_MODE))
 		return
 	var/static/list/panic_state = list(
-		"It appears to be tipped over, and is quietly waiting for someone to set it right.",
-		"It is tipped over and requesting help.",
-		"They are tipped over and appear visibly distressed.",
-		span_warning("They are tipped over and visibly panicking!"),
-		span_warning(span_bold("They are freaking out from being tipped over!"))
+		"它似乎被掀翻了，正安静地等人把它扶正。",
+		"它被掀翻了，正在请求帮助。",
+		"它被掀翻了，看起来十分难受。",
+		span_warning("它被掀翻了，明显陷入了惊慌！"),
+		span_warning(span_bold("它因为被掀翻而彻底抓狂了！"))
 	)
 	. += pick(panic_state)
 /*
@@ -305,7 +305,7 @@
 	tipper = WEAKREF(user)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 	if(prob(10))
-		speak("PSYCH ALERT: Crewmember [user.name] recorded displaying antisocial tendencies torturing bots in [get_area(src)]. Please schedule psych evaluation.", radio_channel)
+		speak("心理警报：船员 [user.name] 被记录在 [get_area(src)] 虐待机器人，表现出反社会倾向。请安排其接受心理评估。", radio_channel)
 
 /mob/living/basic/bot/medbot/explode()
 	var/atom/our_loc = drop_location()
@@ -351,11 +351,11 @@
 
 	if (!(bot_access_flags & BOT_COVER_EMAGGED))
 		if((damage_type_healer == HEAL_ALL_DAMAGE && patient.get_total_damage() <= heal_threshold) || (!(damage_type_healer == HEAL_ALL_DAMAGE) && patient.get_current_damage_of_type(damage_type_healer) <= heal_threshold))
-			to_chat(src, "[patient] is healthy! Your programming prevents you from tending the wounds of anyone with less than [heal_threshold + 1] [damage_type_healer == HEAL_ALL_DAMAGE ? "total" : damage_type_healer] damage.")
+			to_chat(src, "[patient] 很健康！你的程序禁止你为伤害低于 [heal_threshold + 1] 点[damage_type_healer == HEAL_ALL_DAMAGE ? "总" : damage_type_healer]伤害的人处理伤口。")
 			return
 
 	update_bot_mode(new_mode = BOT_HEALING, update_hud = FALSE)
-	patient.visible_message("[src] is trying to tend the wounds of [patient]", span_userdanger("[src] is trying to tend your wounds!"))
+	patient.visible_message("[src] 正试图为 [patient] 处理伤口", span_userdanger("[src] 正试图处理你的伤口！"))
 	if(!do_after(src, delay = 2 SECONDS, target = patient, interaction_key = TEND_DAMAGE_INTERACTION))
 		update_bot_mode(new_mode = BOT_IDLE)
 		return
@@ -365,23 +365,23 @@
 		modified_heal_amount *= 1.1
 	if(bot_access_flags & BOT_COVER_EMAGGED)
 		patient.reagents?.add_reagent(/datum/reagent/toxin/chloralhydrate, 5)
-		log_combat(src, patient, "pretended to tend wounds on", "internal tools")
+		log_combat(src, patient, "假装处理伤口", "内置工具")
 	else if(damage_type_healer == HEAL_ALL_DAMAGE)
 		patient.heal_ordered_damage(amount = modified_heal_amount, damage_types = list(BRUTE, BURN, TOX, OXY))
-		log_combat(src, patient, "tended the wounds of", "internal tools")
+		log_combat(src, patient, "处理伤口", "内置工具")
 		if(patient.get_total_damage() <= heal_threshold)
 			done_healing = TRUE
 	else
 		patient.heal_damage_type(heal_amount = modified_heal_amount, damagetype = damage_type_healer)
-		log_combat(src, patient, "tended the wounds of", "internal tools")
+		log_combat(src, patient, "处理伤口", "内置工具")
 		if(patient.get_current_damage_of_type(damage_type_healer) <= heal_threshold)
 			done_healing = TRUE
 
-	patient.visible_message(span_notice("[src] tends the wounds of [patient]!"), "[span_infoplain(span_green("[src] tends your wounds!"))]")
+	patient.visible_message(span_notice("[src] 处理好了 [patient] 的伤口！"), "[span_infoplain(span_green("[src] 处理好了你的伤口！"))]")
 
 	if(done_healing)
-		visible_message(span_infoplain("[src] places [p_their()] tools back into [p_themselves()]."))
-		to_chat(src, "[patient] is now healthy!")
+		visible_message(span_infoplain("[src] 把[p_their()]工具收回[p_themselves()]里。"))
+		to_chat(src, "[patient] 现在已经恢复健康了！")
 		update_bot_mode(new_mode = BOT_IDLE)
 		return
 
@@ -395,7 +395,7 @@
 		return
 
 	heal_multiplier += design.additive_multiplier
-	INVOKE_ASYNC(src, PROC_REF(speak), "New knowledge found! Surgical efficacy improved to [round(heal_multiplier * 100)]%!")
+	INVOKE_ASYNC(src, PROC_REF(speak), "发现新知识！手术效率提升至 [round(heal_multiplier * 100)]%！")
 
 /mob/living/basic/bot/medbot/proc/on_techweb_unresearch(datum/source, datum/design/medibot_upgrade/design)
 	SIGNAL_HANDLER
@@ -404,7 +404,7 @@
 		return
 
 	heal_multiplier -= design.additive_multiplier
-	INVOKE_ASYNC(src, PROC_REF(speak), "Error! Surgical efficacy decreased to [round(heal_multiplier * 100)]%!")
+	INVOKE_ASYNC(src, PROC_REF(speak), "错误！手术效率下降至 [round(heal_multiplier * 100)]%！")
 
 /datum/id_trim/medibot
 	assignment = JOB_MEDIBOT
@@ -431,7 +431,7 @@
 		ACCESS_PHARMACY,
 		ACCESS_PARAMEDIC,
 		)
-	honorifics = list("Medical Robot")
+	honorifics = list("医疗机器人")
 	honorific_positions = HONORIFIC_POSITION_FIRST | HONORIFIC_POSITION_LAST | HONORIFIC_POSITION_FIRST_FULL | HONORIFIC_POSITION_NONE
 
 /mob/living/basic/bot/medbot/autopatrol
@@ -441,15 +441,15 @@
 	medical_mode_flags = MEDBOT_DECLARE_CRIT | MEDBOT_STATIONARY_MODE | MEDBOT_SPEAK_MODE
 
 /mob/living/basic/bot/medbot/mysterious
-	name = "\improper Mysterious Medibot"
-	desc = "International Medibot of mystery."
+	name = "\improper 神秘医疗机器人"
+	desc = "国际神秘医疗机器人。"
 	skin = "bezerk"
 	damage_type_healer = HEAL_ALL_DAMAGE
 	heal_amount = 10
 
 /mob/living/basic/bot/medbot/derelict
-	name = "\improper Old Medibot"
-	desc = "Looks like it hasn't been modified since the late 2080s."
+	name = "\improper 老旧医疗机器人"
+	desc = "看起来自 2080 年代末以来，它就再没被改装过。"
 	skin = "bezerk"
 	damage_type_healer = HEAL_ALL_DAMAGE
 	medical_mode_flags = MEDBOT_SPEAK_MODE
@@ -457,8 +457,8 @@
 	heal_amount = 5
 
 /mob/living/basic/bot/medbot/nukie
-	name = "Oppenheimer"
-	desc = "A medibot stolen from a Nanotrasen station and upgraded by the Syndicate. Despite their best efforts at reprogramming, it still appears visibly upset near nuclear explosives."
+	name = "奥本海默"
+	desc = "一台从纳米传讯空间站偷来、又被辛迪加升级过的医疗机器人。尽管他们费尽心思重写程序，它一靠近核炸药仍会明显表现出不安。"
 	health = 40
 	maxHealth = 40
 	skin = "bezerk"

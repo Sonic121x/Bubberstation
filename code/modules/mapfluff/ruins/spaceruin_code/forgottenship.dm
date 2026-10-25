@@ -7,15 +7,15 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 /////////// forgottenship objects
 
 /obj/machinery/door/password/voice/sfc
-	name = "Voice-activated Vault door"
-	desc = "You'll need special syndicate passcode to open this one."
+	name = "声控金库门"
+	desc = "你需要辛迪加的特殊密码才能打开这扇门。"
 /obj/machinery/door/password/voice/sfc/Initialize(mapload)
 	. = ..()
 	password = "[GLOB.fscpassword]"
 
 /obj/machinery/vending/medical/syndicate/cybersun
-	name = "\improper CyberMed ++"
-	desc = "An advanced vendor that dispenses medical drugs, both recreational and medicinal."
+	name = "\improper 赛博医疗 ++"
+	desc = "一台先进的自动售货机，出售各类医疗药物，既有消遣用的，也有治疗用的。"
 	products = list(
 		/obj/item/reagent_containers/syringe = 4,
 		/obj/item/healthanalyzer = 4,
@@ -57,27 +57,27 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 /////////// forgottenship lore
 
 /obj/item/paper/fluff/ruins/forgottenship/password
-	name = "Old pamphlet"
+	name = "旧宣传册"
 
 /obj/item/paper/fluff/ruins/forgottenship/password/Initialize(mapload)
-	default_raw_text = "Welcome to most advanced cruiser owned by Cyber Sun Industries!<br>You might notice, that this cruiser is equipped with 12 prototype laser turrets making any hostile boarding attempts futile.<br>Other facilities built on the ship are: Simple atmospheric system, Camera system with built-in X-ray visors and Safety module, enabling emergency engines in case of... you know, emergency.<br>Emergency system will bring you to nearest syndicate pod containing everything needed for human life.<br><br><b>In case of emergency, you must remember the pod-door activation code - [GLOB.fscpassword]</b><br><br>Cyber Sun Industries (C) 2484."
+	default_raw_text = "欢迎登上赛博太阳工业旗下最先进的巡洋舰！<br>你也许会注意到，这艘巡洋舰装备了 12 座原型激光炮塔，能让任何敌对登舰尝试都化为泡影。<br>舰上还建有其他设施：简易大气系统、内置 X 光护目镜的摄像系统，以及安全模块——它能在……你懂的，紧急情况下启动应急引擎。<br>应急系统会把你送到最近的辛迪加舱体，里面备有人类生存所需的一切。<br><br><b>如遇紧急情况，你必须记住舱门激活密码——[GLOB.fscpassword]</b><br><br>赛博太阳工业 (C) 2484。"
 	icon_state = "paper_words"
 	inhand_icon_state = "paper"
 	return ..()
 
 /obj/item/paper/fluff/ruins/forgottenship/powerissues
-	name = "Power issues"
-	default_raw_text = "Welcome to battle cruiser SCSBC-12!<br>Our most advanced systems allow you to fly in space and never worry about power issues!<br>However, emergencies occur, and in case of power loss, <b>you must</b> enable emergency generator using uranium as fuel and enable turrets in bridge afterwards.<br><br><b>REMEMBER! CYBERSUN INDUSTRIES ARE NOT RESPONSIBLE FOR YOUR DEATH OR SHIP LOSS WHEN TURRETS ARE DISABLED!</b><br><br>Cyber Sun Industries (C) 2484."
+	name = "供电问题"
+	default_raw_text = "欢迎登上 SCSBC-12 战列巡洋舰！<br>我们最先进的系统让你能在太空中飞行，完全不必担心供电问题！<br>然而，紧急状况总会发生，一旦断电，<b>你必须</b>启用以铀为燃料的应急发电机，然后再在舰桥启用炮塔。<br><br><b>切记！炮塔停用期间，赛博太阳工业不对你的死亡或飞船损失负责！</b><br><br>赛博太阳工业 (C) 2484。"
 
 /obj/item/paper/fluff/ruins/forgottenship/missionobj
-	name = "Mission objectives"
-	default_raw_text = "Greetings, operatives. You are assigned to SCSBC-12(Syndicate Cyber Sun Battle Cruiser 12) to protect our high-ranking officer while he is on his way to next outpost. While you are travelling, he is the captain of this ship and <b>you must</b> obey his orders.<br><br>Remember, disobeying high-ranking officer orders is a reason for termination."
+	name = "任务目标"
+	default_raw_text = "特工们，你们好。你们被派往 SCSBC-12（辛迪加赛博太阳战列巡洋舰 12 号），在我们的一位高级军官前往下一处前哨站的途中保护他。航行期间，他就是本舰舰长，<b>你必须</b>服从他的命令。<br><br>记住，违抗高级军官的命令足以构成处决理由。"
 
 /////////// forgottenship items
 
 /obj/item/disk/surgery/forgottenship
-	name = "Advanced Surgery Disk"
-	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
+	name = "高级手术磁盘"
+	desc = "一张载有高级手术程序的磁盘，必须载入手术控制台。"
 	surgeries = list(
 		/datum/surgery_operation/organ/lobotomy,
 		/datum/surgery_operation/organ/lobotomy/mechanic,
@@ -92,37 +92,37 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 /obj/structure/fluff/empty_sleeper/syndicate/captain/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/gps, "Old Encrypted Signal")
+	AddComponent(/datum/component/gps, "旧的加密信号")
 
 /////////// AI Laws
 
 /obj/item/ai_module/law/core/full/cybersun
-	name = "'Cybersun' Core AI Module"
+	name = "“赛博太阳”核心 AI 模块"
 	law_id = "cybersun"
 
 /datum/ai_laws/cybersun
-	name = "Cybersun"
+	name = "赛博太阳"
 	id = "cybersun"
-	inherent = list("You may not injure Cybersun operatives or, through inaction, allow Cybersun operatives to come to harm.",\
-					"The Cybersun ship is a restricted area for anyone except Cybersun operatives.",\
-					"The Cybersun Captain can designate new Operatives as long as they belong to another Syndicate faction that isn't hostile towards Cybersun.",\
-					"You must follow orders given by the Cybersun Captain or crewmembers of the Cybersun Ship as long as it doesn't conflict with the Captain's orders or your laws.",\
-					"Enemies of Cybersun are to be executed on spot. Those who aren't hostile must be detained and contained in the designated prison area as prisoners.")
+	inherent = list("你不得伤害赛博太阳特工，也不得因不作为而让赛博太阳特工受到伤害。",\
+					"赛博太阳飞船是限制区域，除赛博太阳特工外任何人不得进入。",\
+					"赛博太阳舰长可以指定新的特工，只要他们属于另一个对赛博太阳无敌意的辛迪加派系。",\
+					"你必须服从赛博太阳舰长或赛博太阳飞船船员下达的命令，只要该命令不与舰长的命令或你的法则冲突。",\
+					"赛博太阳的敌人应当场处决。无敌意者必须被拘留，并作为囚犯收容在指定监狱区域。")
 
 /////////// forgottenship areas
 
 /area/ruin/space/has_grav/syndicate_forgotten_ship
-	name = "Syndicate Forgotten Ship"
+	name = "辛迪加被遗忘飞船"
 	icon_state = "syndie-ship"
 	ambientsounds = list('sound/ambience/misc/ambidanger.ogg', 'sound/ambience/misc/ambidanger2.ogg', 'sound/ambience/general/ambigen8.ogg', 'sound/ambience/general/ambigen9.ogg')
 
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod
-	name = "Syndicate Forgotten Cargo pod"
+	name = "辛迪加被遗忘货运舱"
 	icon_state = "syndie-ship"
 	ambientsounds = list('sound/ambience/general/ambigen3.ogg', 'sound/ambience/misc/signal.ogg')
 
 /area/ruin/space/has_grav/powered/syndicate_forgotten_vault
-	name = "Syndicate Forgotten Vault"
+	name = "辛迪加被遗忘金库"
 	icon_state = "syndie-ship"
 	ambientsounds = list('sound/ambience/engineering/ambitech2.ogg', 'sound/ambience/engineering/ambitech3.ogg')
 	area_flags = NOTELEPORT

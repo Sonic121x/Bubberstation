@@ -65,7 +65,7 @@ GLOBAL_DATUM_INIT(interviews, /datum/interview_manager, new)
 	if (open_interviews[C.ckey])
 		return open_interviews[C.ckey]
 	else if (!(C.ckey in cooldown_ckeys))
-		log_admin_private("New interview created for [key_name(C)].")
+		log_admin_private("为 [key_name(C)] 创建了新的面试。")
 		open_interviews[C.ckey] = new /datum/interview(C)
 		return open_interviews[C.ckey]
 
@@ -101,15 +101,15 @@ GLOBAL_DATUM_INIT(interviews, /datum/interview_manager, new)
 
 	// Notify admins
 	var/ckey = to_queue.owner_ckey
-	log_admin_private("Interview for [ckey] has been enqueued for review. Current position in queue: [to_queue.pos_in_queue]")
-	var/admins_present = send2tgs_adminless_only("panic-bunker-interview", "Interview for [ckey] enqueued for review. Current position in queue: [to_queue.pos_in_queue]")
+	log_admin_private("[ckey] 的面试已加入待审核队列。当前队列位置：[to_queue.pos_in_queue]")
+	var/admins_present = send2tgs_adminless_only("panic-bunker-interview", "[ckey] 的面试已加入待审核队列。当前队列位置：[to_queue.pos_in_queue]")
 	if (admins_present <= 0 && to_queue.owner)
-		to_chat(to_queue.owner, span_notice("No active admins are online, your interview's submission was sent through TGS to admins who are available. This may use IRC or Discord."))
+		to_chat(to_queue.owner, span_notice("当前没有在线管理员，你的面试已通过 TGS 发送给可用的管理员。这可能通过 IRC 或 Discord 进行。"))
 	for(var/client/X in GLOB.admins)
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
 		window_flash(X, ignorepref = TRUE)
-		to_chat(X, span_adminhelp("[to_queue.link_self()] for [ckey] enqueued for review. Current position in queue: [to_queue.pos_in_queue]"), confidential = TRUE)
+		to_chat(X, span_adminhelp("[to_queue.link_self()]（[ckey]）已加入待审核队列。当前队列位置：[to_queue.pos_in_queue]"), confidential = TRUE)
 
 /**
  * Removes a ckey from the cooldown list, used for enforcing cooldown after an interview is denied.

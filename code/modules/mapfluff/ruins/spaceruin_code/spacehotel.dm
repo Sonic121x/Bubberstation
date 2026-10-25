@@ -2,11 +2,11 @@
 
 
 /obj/item/paper/fluff/ruins/spacehotel/notice
-	name = "!NOTICE!"
-	default_raw_text = "<bold>!NOTICE!</bold><br><br><center>We are expecting arriving guests soon from a nearby station! Stay sharp and make sure guests enjoy their time spent here. Don't think you can sneak off while they're here, either.</center>"
+	name = "！通知！"
+	default_raw_text = "<bold>！通知！</bold><br><br><center>我们很快将迎来附近空间站的客人！保持警惕，确保客人们在此度过愉快的时光。也别以为客人在这儿时你们能偷懒溜号。</center>"
 
 /obj/item/paper/pamphlet/ruin/spacehotel
-	name = "hotel pamphlet"
-	default_raw_text = "<center><b>The Twin Nexus Hotel</center></b><br><center><i>A place of Sanctuary</i></center><br><br><center>Welcome to The Twin-Nexus Hotel, \[insert name here]! The loyal staff strive to their best effort to cater for the best possible experience for all space(wo)men! If you have any questions or comments, please ask one of our on-board staff for more information.</center>"
+	name = "酒店宣传册"
+	default_raw_text = "<center><b>双枢纽酒店</center></b><br><center><i>庇护之所</i></center><br><br><center>欢迎来到双枢纽酒店，\[填入姓名]！我们忠诚的员工将竭尽全力，为所有太空男女提供最优质的体验！如有任何疑问或意见，请向我们的随船员工咨询更多信息。</center>"
 
 

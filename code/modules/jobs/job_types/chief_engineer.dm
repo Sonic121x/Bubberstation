@@ -1,7 +1,7 @@
 /datum/job/chief_engineer
 	title = JOB_CHIEF_ENGINEER
-	description = "Coordinate engineering, ensure equipment doesn't get stolen, \
-		make sure the Supermatter doesn't blow up, maintain telecommunications."
+	description = "统筹工程部事务，确保设备不被偷走，\
+		保证超物质不会爆炸，维护电信系统。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD
 	head_announce = RADIO_CHANNEL_ENGINEERING
 	faction = FACTION_STATION
@@ -42,7 +42,7 @@
 		/obj/item/stack/sheet/mineral/gold = 15,
 		/obj/effect/spawner/random/engineering/tool_advanced = 3
 	)
-	rpg_title = "Head Crystallomancer"
+	rpg_title = "首席水晶术士"
 	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
 
 	human_authority = JOB_AUTHORITY_HUMANS_ONLY
@@ -55,7 +55,7 @@
 	spawned.add_mob_memory(/datum/memory/key/message_server_key, decrypt_key = GLOB.preset_station_message_server_key)
 
 /datum/job/chief_engineer/get_captaincy_announcement(mob/living/captain)
-	return "Due to staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于人手短缺，新晋代理舰长 [captain.real_name] 已到任！"
 
 
 /datum/outfit/job/ce

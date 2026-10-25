@@ -1,13 +1,13 @@
 /**********************Resonator**********************/
 
 /obj/item/resonator
-	name = "resonator"
+	name = "谐振器"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "resonator"
 	inhand_icon_state = "resonator"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure. It has two modes: Automatic and manual detonation."
+	desc = "一种手持装置，可生成会持续谐振直至引爆的小型能量场，击碎岩石。在低压环境中伤害更高。有两种模式：自动引爆与手动引爆。"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 15
 	throwforce = 10
@@ -32,10 +32,10 @@
 
 /obj/item/resonator/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info("You set the resonator's fields to detonate only after you hit one with it."))
+		to_chat(user, span_info("你把谐振器的能量场设为只在你击中其中一个后才会引爆。"))
 		mode = RESONATOR_MODE_MANUAL
 	else
-		to_chat(user, span_info("You set the resonator's fields to automatically detonate after 2 seconds."))
+		to_chat(user, span_info("你把谐振器的能量场设为 2 秒后自动引爆。"))
 		mode = RESONATOR_MODE_AUTO
 
 /obj/item/resonator/proc/create_resonance(target, mob/user)
@@ -56,8 +56,8 @@
 
 //resonance field, crushes rock, damages mobs
 /obj/effect/temp_visual/resonance
-	name = "resonance field"
-	desc = "A resonating field that significantly damages anything inside of it when the field eventually ruptures. More damaging in low pressure environments."
+	name = "谐振场"
+	desc = "一个谐振场，在最终破裂时会对其内部的一切造成显著伤害。在低压环境中伤害更高。"
 	icon_state = "shield1"
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = ABOVE_GAME_PLANE
@@ -82,7 +82,7 @@
 		duration = 2 SECONDS
 	if(mode == RESONATOR_MODE_MATRIX)
 		icon_state = "shield2"
-		name = "resonance matrix"
+		name = "谐振矩阵"
 		RegisterSignal(src, COMSIG_ATOM_ENTERED, PROC_REF(burst))
 		var/static/list/loc_connections = list(
 			COMSIG_ATOM_ENTERED = PROC_REF(burst),
@@ -113,7 +113,7 @@
 		proj_turf = get_turf(src)
 	resonance_damage = initial(resonance_damage)
 	if(lavaland_equipment_pressure_check(proj_turf))
-		name = "strong [initial(name)]"
+		name = "强化的 [initial(name)]"
 		resonance_damage *= 3
 	else
 		name = initial(name)
@@ -133,9 +133,9 @@
 	playsound(src_turf, 'sound/items/weapons/resonator_blast.ogg', 50, TRUE)
 	for(var/mob/living/attacked_living in src_turf)
 		if(creator)
-			log_combat(creator, attacked_living, "used a resonator field on", "resonator")
+			log_combat(creator, attacked_living, "用谐振场攻击了", "resonator")
 			SEND_SIGNAL(creator, COMSIG_LIVING_RESONATOR_BURST, creator, attacked_living)
-		to_chat(attacked_living, span_userdanger("[src] ruptured with you in it!"))
+		to_chat(attacked_living, span_userdanger("[src] 在把你罩在其中时破裂了！"))
 		attacked_living.apply_damage(resonance_damage, BRUTE)
 		if(!QDELETED(attacked_living))
 			attacked_living.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
@@ -164,8 +164,8 @@
 	animate(src, transform = matrix() * 0.1, alpha = 50, time = 4)
 
 /obj/item/resonator/upgraded
-	name = "upgraded resonator"
-	desc = "An upgraded version of the resonator that can produce more fields at once, as well as having no damage penalty for bursting a resonance field early. It also allows you to set 'Resonance matrixes', that detonate after someone(or something) walks over it."
+	name = "升级版谐振器"
+	desc = "谐振器的升级版本，可同时生成更多能量场，且提前引爆谐振场时没有伤害惩罚。它还允许你设置“谐振矩阵”，在有人（或某物）踩上去后引爆。"
 	icon_state = "resonator_u"
 	inhand_icon_state = "resonator_u"
 	fieldlimit = 6
@@ -174,11 +174,11 @@
 
 /obj/item/resonator/upgraded/attack_self(mob/user)
 	if(mode == RESONATOR_MODE_AUTO)
-		to_chat(user, span_info("You set the resonator's fields to detonate only after you hit one with it."))
+		to_chat(user, span_info("你把谐振器的能量场设为只在你击中其中一个后才会引爆。"))
 		mode = RESONATOR_MODE_MANUAL
 	else if(mode == RESONATOR_MODE_MANUAL)
-		to_chat(user, span_info("You set the resonator's fields to work as matrix traps."))
+		to_chat(user, span_info("你把谐振器的能量场设为矩阵陷阱模式。"))
 		mode = RESONATOR_MODE_MATRIX
 	else
-		to_chat(user, span_info("You set the resonator's fields to automatically detonate after 2 seconds."))
+		to_chat(user, span_info("你把谐振器的能量场设为 2 秒后自动引爆。"))
 		mode = RESONATOR_MODE_AUTO

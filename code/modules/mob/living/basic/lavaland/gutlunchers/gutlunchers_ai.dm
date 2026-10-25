@@ -28,9 +28,9 @@
 	behavior_tree_json = "code/modules/mob/living/basic/lavaland/gutlunchers/gutlunch_milk.bt.json"
 
 /datum/pet_command/mine_walls
-	command_name = "Mine"
+	command_name = "挖掘"
 	radial_icon_state = "mine"
-	command_desc = "Command your pet to mine down walls."
+	command_desc = "命令你的宠物挖开矿壁。"
 	speech_commands = list("mine", "smash")
 
 /datum/pet_command/mine_walls/try_activate_command(mob/living/commander, radial_command)
@@ -47,14 +47,14 @@
 	controller.set_behavior_tree_override(SUBPLAN_ID_PET_COMMAND, /datum/bt_node/subtree/pet_command/mine_walls)
 
 /datum/pet_command/mine_walls/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to start mining!"
+	return "示意 [living_pet] 开始挖掘！"
 
 //pet commands
 /datum/pet_command/breed/gutlunch
 
 /datum/pet_command/breed/gutlunch/set_command_target(mob/living/parent, atom/target)
 	if(GLOB.gutlunch_count >= MAXIMUM_GUTLUNCH_POP)
-		parent.balloon_alert_to_viewers("can't reproduce anymore!")
+		parent.balloon_alert_to_viewers("不能再繁殖了！")
 		return FALSE
 	return ..()
 
@@ -79,7 +79,7 @@
 		if(!living_pawn.client || !living_pawn.faction_check_atom(potential_friend) || living_pawn.has_ally(REF(potential_friend)))
 			continue
 		living_pawn.befriend(potential_friend)
-		to_chat(potential_friend, span_nicegreen("[living_pawn] looks at you with endearing eyes!"))
+		to_chat(potential_friend, span_nicegreen("[living_pawn] 用惹人怜爱的眼神望着你！"))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 

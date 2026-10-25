@@ -52,12 +52,12 @@
 	read_only = TRUE
 	GLOB.interviews.approved_ckeys |= owner_ckey
 	GLOB.interviews.close_interview(src)
-	log_admin_private("[key_name(approved_by)] has approved interview #[id] for [owner_ckey][!owner ? "(DC)": ""].")
-	message_admins(span_adminnotice("[key_name(approved_by)] has approved [link_self()] for [owner_ckey][!owner ? "(DC)": ""]."))
+	log_admin_private("[key_name(approved_by)] 已批准 [owner_ckey] 的面试 #[id][!owner ? "（已断线）": ""]。")
+	message_admins(span_adminnotice("[key_name(approved_by)] 已批准 [link_self()]（[owner_ckey]）[!owner ? "（已断线）": ""]。"))
 	if (owner)
 		SEND_SOUND(owner, sound('sound/effects/adminhelp.ogg'))
-		to_chat(owner, "<font color='red' size='4'><b>-- Interview Update --</b></font>" \
-			+ "\n[span_adminsay("Your interview was approved, you will now be reconnected in 5 seconds.")]", confidential = TRUE)
+		to_chat(owner, "<font color='red' size='4'><b>-- 面试更新 --</b></font>" \
+			+ "\n[span_adminsay("你的面试已获批准，5 秒后将自动重连。")]", confidential = TRUE)
 		addtimer(CALLBACK(src, PROC_REF(reconnect_owner)), 5 SECONDS)
 
 /**
@@ -71,14 +71,14 @@
 	read_only = TRUE
 	GLOB.interviews.close_interview(src)
 	GLOB.interviews.cooldown_ckeys |= owner_ckey
-	log_admin_private("[key_name(denied_by)] has denied interview #[id] for [owner_ckey][!owner ? "(DC)": ""].")
-	message_admins(span_adminnotice("[key_name(denied_by)] has denied [link_self()] for [owner_ckey][!owner ? "(DC)": ""]."))
+	log_admin_private("[key_name(denied_by)] 已拒绝 [owner_ckey] 的面试 #[id][!owner ? "（已断线）": ""]。")
+	message_admins(span_adminnotice("[key_name(denied_by)] 已拒绝 [link_self()]（[owner_ckey]）[!owner ? "（已断线）": ""]。"))
 	addtimer(CALLBACK(GLOB.interviews, TYPE_PROC_REF(/datum/interview_manager, release_from_cooldown), owner_ckey), 18 SECONDS)
 	if (owner)
 		SEND_SOUND(owner, sound('sound/effects/adminhelp.ogg'))
-		to_chat(owner, "<font color='red' size='4'><b>-- Interview Update --</b></font>" \
-			+ "\n<span class='adminsay'>Unfortunately your interview was denied. Please try submitting another questionnaire." \
-			+ " You may do this in three minutes.</span>", confidential = TRUE)
+		to_chat(owner, "<font color='red' size='4'><b>-- 面试更新 --</b></font>" \
+			+ "\n<span class='adminsay'>很遗憾，你的面试被拒绝了。请尝试重新提交一份问卷。" \
+			+ " 你可以在三分钟后再次提交。</span>", confidential = TRUE)
 
 /**
  * Forces client to reconnect, used in the callback from approval
@@ -91,15 +91,15 @@
 /**
  * Verb for opening the existing interview, or if relevant creating a new interview if possible.
  */
-GAME_VERB_PROC(/mob/dead/new_player, open_interview, "Open Interview", "Interview")
+GAME_VERB_PROC(/mob/dead/new_player, open_interview, "打开面试", "面试")
 	var/mob/dead/new_player/M = usr
 	if (M?.client?.interviewee)
 		var/datum/interview/I = GLOB.interviews.interview_for_client(M.client)
 		if (I) // we can be returned nothing if the user is on cooldown
 			I.ui_interact(M)
 		else
-			to_chat(usr, "<span class='adminsay'>You are on cooldown for interviews. Please" \
-				+ " wait at least 3 minutes before starting a new questionnaire.</span>", confidential = TRUE)
+			to_chat(usr, "<span class='adminsay'>你正处于面试冷却期。请" \
+				+ "至少等待 3 分钟后再开始新的问卷。</span>", confidential = TRUE)
 
 /datum/interview/ui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -172,4 +172,4 @@ GAME_VERB_PROC(/mob/dead/new_player, open_interview, "Open Interview", "Intervie
  * Generates a clickable link to open this interview
  */
 /datum/interview/proc/link_self()
-	return "<a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];interview=[REF(src)]'>Interview #[id]</a>"
+	return "<a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];interview=[REF(src)]'>面试 #[id]</a>"

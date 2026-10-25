@@ -3,8 +3,8 @@
 
 /// A mob that gets mad at people at random and tries to eat nearby objects
 /mob/living/basic/goose
-	name = "goose"
-	desc = "It's loose."
+	name = "鹅"
+	desc = "它正在外头撒野。"
 	icon_state = "goose"
 	icon_living = "goose"
 	icon_dead = "goose_dead"
@@ -14,17 +14,17 @@
 	health = 25
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attack_verb_continuous = "pecks"
-	attack_verb_simple = "peck"
+	attack_verb_continuous = "啄"
+	attack_verb_simple = "啄"
 	attack_sound = "goose"
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	speak_emote = list("honks")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	speak_emote = list("嘎嘎叫")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	ai_controller = /datum/ai_controller/basic_controller/goose
 	butcher_results = list(/obj/item/food/meat/slab/grassfed = 2)
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -66,7 +66,7 @@
 	if (!food.has_material_type(/datum/material/plastic))
 		return NONE
 
-	visible_message(span_boldwarning("[src] is choking on \the [food]!"))
+	visible_message(span_boldwarning("[src] 被 [food] 噎住了！"))
 	food.forceMove(src)
 	choke(food)
 
@@ -78,9 +78,9 @@
 
 /// A less grumpy but much grosser variant of the goose, who will decorate the halls in their own special way
 /mob/living/basic/goose/vomit
-	name = "Birdboat"
-	real_name = "Birdboat"
-	desc = "It's a sick-looking goose, probably ate too much maintenance trash. Best not to move it around too much."
+	name = "鸟船"
+	real_name = "鸟船"
+	desc = "一只病恹恹的鹅，大概是维护区的垃圾吃太多了。最好别把它挪来挪去。"
 	gender = MALE
 	faction = list(FACTION_NEUTRAL, FACTION_MAINT_CREATURES)
 	gold_core_spawnable = NO_SPAWN
@@ -101,7 +101,7 @@
 	// 5% chance every round to have anarchy mode deadchat control on birdboat.
 	if (!prob(5))
 		return
-	desc = "[initial(desc)] It's waddling more than usual. It seems to be possessed."
+	desc = "[initial(desc)] 它比平时摇得更厉害了，似乎被什么东西附身了。"
 	deadchat_plays()
 
 /mob/living/basic/goose/vomit/Destroy()
@@ -116,13 +116,13 @@
 
 /mob/living/basic/goose/vomit/examine(mob/user)
 	. = ..()
-	. += span_notice("Somehow, it still looks hungry.")
+	. += span_notice("不知怎么的，它看起来还是饿。")
 
 /mob/living/basic/goose/vomit/on_gobbled(atom/source, obj/item/food, mob/feeder)
 	if (length(contents) > GOOSE_SATIATED)
 		if (COOLDOWN_FINISHED(src, eat_fail_feedback_cooldown))
 			if (feeder)
-				visible_message(span_notice("[src] looks too full to eat \the [food]!"))
+				visible_message(span_notice("[src] 看起来太饱了，吃不下 [food]！"))
 			COOLDOWN_START(src, eat_fail_feedback_cooldown, 5 SECONDS)
 		return COMSIG_MOB_TERMINATE_EAT
 
@@ -141,8 +141,8 @@
 /mob/living/basic/goose/vomit/choke(obj/item/not_food_after_all)
 	if (prob(75))
 		return ..()
-	visible_message(span_warning("[src] is gagging on \the [not_food_after_all]!"))
-	manual_emote("gags!")
+	visible_message(span_warning("[src] 被 [not_food_after_all] 呛得直干呕！"))
+	manual_emote("干呕着！")
 	addtimer(CALLBACK(src, PROC_REF(vomit)), 5 SECONDS)
 
 /// Start making a mess
@@ -161,7 +161,7 @@
 /mob/living/basic/goose/vomit/deadchat_plays(mode = ANARCHY_MODE, cooldown = 12 SECONDS)
 	var/list/goose_inputs = list(
 		"vomit" = CALLBACK(src, PROC_REF(vomit)),
-		"honk" = CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "HONK!!!"),
+		"honk" = CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "嘎！！！"),
 		"spin" = CALLBACK(src, TYPE_PROC_REF(/mob, emote), "spin"))
 
 	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, goose_inputs, cooldown, CALLBACK(src, PROC_REF(stop_deadchat_plays)))

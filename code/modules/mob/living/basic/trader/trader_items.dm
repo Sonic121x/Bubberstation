@@ -1,7 +1,7 @@
 ///Sale signs
 /obj/structure/trader_sign
-	name = "holographic store sign"
-	desc = "A holographic sign that promises great deals."
+	name = "全息商店招牌"
+	desc = "一块承诺超值优惠的全息招牌。"
 	icon = 'icons/obj/trader_signs.dmi'
 	icon_state = "faceless"
 	anchored = TRUE

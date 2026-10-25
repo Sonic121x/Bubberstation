@@ -1,20 +1,20 @@
 /// The Greatest (animal) Of All Time. Cud chewing, shin-kicking, kitchen-dwelling nuisance.
 /mob/living/basic/goat
-	name = "goat"
-	desc = "Not known for their pleasant disposition."
+	name = "山羊"
+	desc = "以坏脾气闻名。"
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
 
-	speak_emote = list("brays")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "kicks"
-	attack_verb_simple = "kick"
+	speak_emote = list("咩咩叫")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "踢"
+	attack_verb_simple = "踢"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_KICK
 
@@ -83,8 +83,8 @@
 		edible_bodypart.dismember()
 
 	living_target.visible_message(
-		span_warning("[src] takes a big chomp out of [living_target]!"),
-		span_userdanger("[src] takes a big chomp out of your [edible_bodypart || "body"]!"),
+		span_warning("[src] 从 [living_target] 身上咬下一大口！"),
+		span_userdanger("[src] 从你的 [edible_bodypart || "身体"] 上咬下一大口！"),
 	)
 
 	return COMPONENT_HOSTILE_NO_ATTACK
@@ -94,7 +94,7 @@
 	if (!COOLDOWN_FINISHED(src, gleam_cooldown))
 		return
 	visible_message(
-		span_danger("[src] gets an evil-looking gleam in [p_their()] eye."),
+		span_danger("[src] 的眼中闪过一道邪恶的光。"),
 	)
 	COOLDOWN_START(src, gleam_cooldown, gleam_delay)
 
@@ -136,5 +136,5 @@
 			eaten = TRUE
 
 	if(eaten && prob(10))
-		say("Nom") // bon appetit
+		say("嚼嚼") // bon appetit
 		playsound(src, 'sound/items/eatfood.ogg', rand(30, 50), TRUE)

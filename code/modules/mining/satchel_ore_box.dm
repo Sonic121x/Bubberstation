@@ -4,8 +4,8 @@
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox"
-	name = "ore box"
-	desc = "A heavy wooden box, which can be filled with a lot of ores or boulders"
+	name = "矿石箱"
+	desc = "一只沉重的木箱，可以装下大量矿石或岩块。"
 	density = TRUE
 	pressure_resistance = 5 * ONE_ATMOSPHERE
 	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 4)
@@ -31,28 +31,28 @@
 		return
 
 	if(held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(istype(held_item, /obj/item/stack/ore) || istype(held_item, /obj/item/boulder))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert Item"
+		context[SCREENTIP_CONTEXT_LMB] = "放入物品"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(held_item.atom_storage)
-		context[SCREENTIP_CONTEXT_LMB] = "Transfer Contents"
+		context[SCREENTIP_CONTEXT_LMB] = "转移内容物"
 		return CONTEXTUAL_SCREENTIP_SET
 
 
 /obj/structure/ore_box/examine(mob/living/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += span_notice("Can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("可以被[EXAMINE_HINT("撬开")]拆解。")
 		ui_interact(user)
 
 /obj/structure/ore_box/crowbar_act(mob/living/user, obj/item/I)
 	. = ITEM_INTERACT_BLOCKING
 	if(I.use_tool(src, user, 50, volume = 50))
-		user.visible_message(span_notice("[user] pries \the [src] apart."),
-			span_notice("You pry apart \the [src]."),
-			span_hear("You hear splitting wood."))
+		user.visible_message(span_notice("[user] 把 \the [src] 撬开了。"),
+			span_notice("你把 \the [src] 撬开了。"),
+			span_hear("你听到木头裂开的声音。"))
 		deconstruct(TRUE)
 		return ITEM_INTERACT_SUCCESS
 
@@ -63,7 +63,7 @@
 
 	if(tool.atom_storage)
 		tool.atom_storage.remove_type(/obj/item/stack/ore, src, INFINITY, TRUE, FALSE, user, null)
-		to_chat(user, span_notice("You empty the ore in [tool] into \the [src]."))
+		to_chat(user, span_notice("你把 [tool] 里的矿石倒进了 \the [src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -90,7 +90,7 @@
 			name = potental_ore.name
 			amount = potental_ore.amount
 		else
-			name = "Boulders"
+			name = "岩块"
 			amount = 1
 
 		var/item_found = FALSE

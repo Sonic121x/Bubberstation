@@ -1,7 +1,7 @@
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = "Galactic Common"
-	desc = "The common galactic tongue."
+	desc = "银河系的通用语言。"
 	key = "0"
 	flags = LANGUAGE_TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_UNDERSTOOD
 	default_priority = 100

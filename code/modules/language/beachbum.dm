@@ -1,6 +1,6 @@
 /datum/language/beachbum
 	name = "Beachtongue"
-	desc = "An ancient language from the distant Beach Planet. People magically learn to speak it under the influence of space drugs."
+	desc = "一种来自遥远海滩星球的古老语言。人们在太空毒品的影响下会神奇地学会它。"
 	key = "u"
 	space_chance = 80
 	sentence_chance = 5

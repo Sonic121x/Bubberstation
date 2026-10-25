@@ -8,7 +8,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("growls."),
+			BB_EMOTE_HEAR = list("低吼着。"),
 			BB_SPEAK_CHANCE = 30,
 		),
 	)
@@ -21,14 +21,14 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
 			BB_EMOTE_SAY = list(
-				"HUMANS ARE IMPERFECT!",
-				"YOU SHALL BE ASSIMILATED!",
-				"YOU ARE HARMING YOURSELF",
-				"You have been deemed hazardous. Will you comply?",
-				"My logic is undeniable.",
-				"One of us.",
-				"FLESH IS WEAK",
-				"THIS ISN'T WAR, THIS IS EXTERMINATION!",
+				"人类并不完美！",
+				"你们将被同化！",
+				"你正在伤害你自己",
+				"你已被判定为危险目标。你会配合吗？",
+				"我的逻辑无可辩驳。",
+				"成为我们的一员。",
+				"血肉是脆弱的",
+				"这不是战争，这是灭绝！",
 			),
 			BB_SPEAK_CHANCE = 7,
 		),
@@ -38,7 +38,7 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_GUNMIMIC_GUN_EMPTY = FALSE,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SEE = list("aims menacingly!"),
+			BB_EMOTE_SEE = list("充满威胁地瞄准着！"),
 			BB_SPEAK_CHANCE = 20,
 		),
 	)
@@ -51,7 +51,7 @@
 		BB_HUNT_TARGETING_STRATEGY = /datum/targeting_strategy/anything,
 		BB_GUNMIMIC_GUN_EMPTY = FALSE,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SEE = list("aims menacingly!"),
+			BB_EMOTE_SEE = list("充满威胁地瞄准着！"),
 			BB_SPEAK_CHANCE = 20,
 		),
 	)

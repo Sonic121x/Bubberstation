@@ -63,21 +63,21 @@
 	switch(action)
 		if("toggle_exempt")
 			if(!check_rights(R_ADMIN))
-				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
-				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin rights.")
-				to_chat(usr, span_danger("ERROR: Insufficient admin rights."), confidential = TRUE)
+				message_admins("[ADMIN_LOOKUPFLW(usr)] 试图在没有管理员权限的情况下切换职业游玩时长豁免状态。")
+				log_admin("[ADMIN_LOOKUPFLW(usr)] 试图在没有管理员权限的情况下切换职业游玩时长豁免状态。")
+				to_chat(usr, span_danger("错误：管理员权限不足。"), confidential = TRUE)
 				return TRUE
 
 			var/datum/admins/viewer_admin_datum = GLOB.admin_datums[usr.ckey]
 
 			if(!viewer_admin_datum)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
-				log_admin("[ADMIN_LOOKUPFLW(usr)] attempted to toggle job playtime exempt status without admin datum for their ckey.")
-				to_chat(usr, span_danger("ERROR: Insufficient admin rights."), confidential = TRUE)
+				message_admins("[ADMIN_LOOKUPFLW(usr)] 试图在没有对应 ckey 管理员数据的情况下切换职业游玩时长豁免状态。")
+				log_admin("[ADMIN_LOOKUPFLW(usr)] 试图在没有对应 ckey 管理员数据的情况下切换职业游玩时长豁免状态。")
+				to_chat(usr, span_danger("错误：管理员权限不足。"), confidential = TRUE)
 				return TRUE
 
 			if(QDELETED(owner))
-				to_chat(usr, span_danger("ERROR: Client not found."), confidential = TRUE)
+				to_chat(usr, span_danger("错误：未找到客户端。"), confidential = TRUE)
 				return TRUE
 
 			viewer_admin_datum.toggle_exempt_status(owner)

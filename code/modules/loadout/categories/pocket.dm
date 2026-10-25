@@ -1,6 +1,6 @@
 /// Pocket items (Moved to backpack)
 /datum/loadout_category/pocket
-	category_name = "Other"
+	category_name = "其他"
 	category_ui_icon = FA_ICON_QUESTION
 	type_to_generate = /datum/loadout_item/pocket_items
 	tab_order = /datum/loadout_category/head::tab_order + 5
@@ -9,7 +9,7 @@
 
 /datum/loadout_category/pocket/New()
 	. = ..()
-	category_info = "([max_allowed] allowed)"
+	category_info = "（允许 [max_allowed] 个）"
 
 /datum/loadout_category/pocket/handle_duplicate_entires(
 	datum/preference_middleware/loadout/manager,
@@ -40,144 +40,144 @@
 // BUBBER EDIT - START: Put toys in the toys category
 
 /datum/loadout_item/toys/plush
-	group = "Plushies"
+	group = "毛绒玩具"
 	abstract_type = /datum/loadout_item/toys/plush
 
 /datum/loadout_item/toys/plush/bee
-	name = "Plush (Bee)"
+	name = "蜜蜂毛绒玩具"
 	item_path = /obj/item/toy/plush/beeplushie
 
 /datum/loadout_item/toys/plush/carp
-	name = "Plush (Carp)"
+	name = "太空鲤鱼毛绒玩具"
 	item_path = /obj/item/toy/plush/carpplushie
 
 /datum/loadout_item/toys/plush/lizard_greyscale
-	name = "Plush (Lizard, Colorable)"
+	name = "蜥蜴人毛绒玩具（可染色）"
 	item_path = /obj/item/toy/plush/lizard_plushie/greyscale
 
 /datum/loadout_item/toys/plush/lizard_random
-	name = "Plush (Lizard, Random)"
+	name = "蜥蜴人毛绒玩具（随机）"
 	loadout_flags = parent_type::loadout_flags | LOADOUT_FLAG_BLOCK_GREYSCALING
 	ui_icon = 'icons/obj/fluff/previews.dmi'
 	ui_icon_state = "plushie_lizard_random"
 	item_path = /obj/item/toy/plush/lizard_plushie
 
 /datum/loadout_item/toys/plush/moth
-	name = "Plush (Moth)"
+	name = "蛾人毛绒玩具"
 	item_path = /obj/item/toy/plush/moth
 
 /datum/loadout_item/toys/plush/nukie
-	name = "Plush (Nukie)"
+	name = "特工毛绒玩具"
 	item_path = /obj/item/toy/plush/nukeplushie
 
 /datum/loadout_item/toys/plush/peacekeeper
-	name = "Plush (Peacekeeper)"
+	name = "维和毛绒玩具"
 	item_path = /obj/item/toy/plush/pkplush
 
 /datum/loadout_item/toys/plush/plasmaman
-	name = "Plush (Plasmaman)"
+	name = "等离子人毛绒玩具"
 	item_path = /obj/item/toy/plush/plasmamanplushie
 
 /datum/loadout_item/toys/plush/human
-	name = "Plush (human)"
+	name = "人类毛绒玩具"
 	item_path = /obj/item/toy/plush/human
 
 /datum/loadout_item/toys/plush/rouny
-	name = "Plush (Rouny)"
+	name = "奔跑者毛绒玩具"
 	item_path = /obj/item/toy/plush/rouny
 
 /datum/loadout_item/toys/plush/snake
-	name = "Plush (Snake)"
+	name = "蛇毛绒玩具"
 	item_path = /obj/item/toy/plush/snakeplushie
 
 /datum/loadout_item/toys/plush/horse
-	name = "Plush (Horse)"
+	name = "马毛绒玩具"
 	item_path = /obj/item/toy/plush/horse
 
 /datum/loadout_item/toys/dice
-	group = "Dice"
+	group = "骰子"
 
 /datum/loadout_item/toys/dice/dice_bag
-	name = "Dice Bag"
+	name = "骰子袋"
 	item_path = /obj/item/storage/dice
 
 /datum/loadout_item/toys/dice/d1
-	name = "D1"
+	name = "D1骰子"
 	item_path = /obj/item/dice/d1
 
 /datum/loadout_item/toys/dice/d2
-	name = "D2"
+	name = "D2骰子"
 	item_path = /obj/item/dice/d2
 
 /datum/loadout_item/toys/dice/d4
-	name = "D4"
+	name = "D4骰子"
 	item_path = /obj/item/dice/d4
 
 /datum/loadout_item/toys/dice/d6
-	name = "D6"
+	name = "D6骰子"
 	item_path = /obj/item/dice/d6
 
 /datum/loadout_item/toys/dice/d6_ebony
-	name = "D6 (Ebony)"
+	name = "D6骰子（乌木）"
 	item_path = /obj/item/dice/d6/ebony
 
 /datum/loadout_item/toys/dice/d6_space
-	name = "D6 (Space)"
+	name = "D6骰子（太空）"
 	item_path = /obj/item/dice/d6/space
 
 /datum/loadout_item/toys/dice/d8
-	name = "D8"
+	name = "D8骰子"
 	item_path = /obj/item/dice/d8
 
 /datum/loadout_item/toys/dice/d10
-	name = "D10"
+	name = "D10骰子"
 	item_path = /obj/item/dice/d10
 
 /datum/loadout_item/toys/dice/d12
-	name = "D12"
+	name = "D12骰子"
 	item_path = /obj/item/dice/d12
 
 /datum/loadout_item/toys/dice/d20
-	name = "D20"
+	name = "D20骰子"
 	item_path = /obj/item/dice/d20
 
 /datum/loadout_item/toys/dice/d100
-	name = "D100"
+	name = "D100骰子"
 	item_path = /obj/item/dice/d100
 
 /datum/loadout_item/toys/dice/d00
-	name = "D00"
+	name = "D00骰子"
 	item_path = /obj/item/dice/d00
 
 /datum/loadout_item/toys/cards
-	group = "Cards"
+	group = "纸牌"
 	abstract_type = /datum/loadout_item/toys/cards
 
 /datum/loadout_item/toys/cards/card_binder
-	name = "Card Binder"
+	name = "卡册"
 	item_path = /obj/item/storage/card_binder
 
 /datum/loadout_item/toys/cards/card_deck
-	name = "Playing Card Deck"
+	name = "一副纸牌"
 	item_path = /obj/item/toy/cards/deck
 
 /datum/loadout_item/toys/cards/kotahi_deck
-	name = "Kotahi Deck"
+	name = "KOTAHI 牌组"
 	item_path = /obj/item/toy/cards/deck/kotahi
 
 /datum/loadout_item/toys/cards/wizoff_deck
-	name = "Wizoff Deck"
+	name = "Wiz-Off 牌组"
 	item_path = /obj/item/toy/cards/deck/wizoff
 
 // BUBBER EDIT - END
 
 /datum/loadout_item/pocket_items/lipstick
-	name = "Lipstick"
+	name = "口红"
 	item_path = /obj/item/lipstick
 
 /datum/loadout_item/pocket_items/lipstick/get_item_information()
 	. = ..()
-	.[FA_ICON_PALETTE] = "Recolorable"
+	.[FA_ICON_PALETTE] = "可染色"
 
 /* SKYRAT EDIT REMOVAL
 /datum/loadout_item/pocket_items/lipstick/on_equip_item(obj/item/equipped_item, list/item_details, mob/living/carbon/human/equipper, datum/outfit/job/outfit, visuals_only = FALSE)
@@ -243,44 +243,44 @@
 */
 
 /datum/loadout_item/pocket_items/lighter
-	name = "Zippo Lighter"
+	name = "芝宝打火机"
 	item_path = /obj/item/lighter
 
 /datum/loadout_item/pocket_items/flask
-	name = "Pocket Flask"
+	name = "便携酒壶"
 	item_path = /obj/item/reagent_containers/cup/glass/flask
 
 /datum/loadout_item/pocket_items/clipboard
-	name = "Clipboard"
+	name = "写字板"
 	item_path = /obj/item/clipboard
 
 /datum/loadout_item/pocket_items/dye
-	name = "Hair Dye"
+	name = "染发喷雾"
 	item_path = /obj/item/dyespray
 
 /datum/loadout_item/pocket_items/poster
-	name = "Poster (Contraband)"
+	name = "海报（违禁品）"
 	item_path = /obj/item/poster/random_contraband
 
 /datum/loadout_item/pocket_items/poster_pinup
-	name = "Poster (Pinup)"
+	name = "海报（画报女郎）"
 	item_path = /obj/item/poster/random_contraband/pinup
 
 /datum/loadout_item/pocket_items/holodisk
-	name = "Holodisk"
+	name = "全息录像盘"
 	item_path = /obj/item/disk/holodisk
 
 /datum/loadout_item/pocket_items/mug_nt
-	name = "Nanotrasen Mug"
+	name = "纳米传讯马克杯"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/nanotrasen
 
 /datum/loadout_item/pocket_items/britcup
-	name = "British Flag Cup"
+	name = "英国国旗杯"
 	item_path = /obj/item/reagent_containers/cup/glass/mug/britcup
 
 // The wallet loadout item is special, and puts the player's ID and other small items into it on initialize (fancy!)
 /datum/loadout_item/pocket_items/wallet
-	name = "Wallet"
+	name = "钱包"
 	item_path = /obj/item/storage/wallet
 
 /datum/loadout_item/pocket_items/wallet/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)
@@ -336,8 +336,8 @@
 
 	UnregisterSignal(source, COMSIG_HUMAN_CHARACTER_SETUP_FINISHED)
 	var/datum/record/crew/record = find_record(source.real_name)
-	record?.medical_notes += new /datum/medical_note("Central Command", "Patient is a registered brain donor for Robotics research.", null)
+	record?.medical_notes += new /datum/medical_note("中央指挥部", "患者是机器人技术研究项目的注册脑捐赠者。", null)
 
 /datum/loadout_item/pocket_items/candles
-	name = "Box of Candles"
+	name = "一盒蜡烛"
 	item_path = /obj/item/storage/fancy/candle_box

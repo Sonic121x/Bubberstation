@@ -3,8 +3,8 @@
  */
 
 /obj/item/crusher_trophy
-	name = "tail spike"
-	desc = "A strange spike with no usage."
+	name = "尾刺"
+	desc = "一根奇怪的尖刺，似乎没什么用处。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "tail_spike"
 	/// If it has a bonus effect, this is how much that effect is
@@ -18,7 +18,7 @@
 
 /obj/item/crusher_trophy/examine(mob/living/user)
 	. = ..()
-	. += span_notice("Causes [effect_desc()] when attached to a kinetic crusher.")
+	. += span_notice("附着在动能粉碎器上时，效果为：[effect_desc()]。")
 
 /// Returns a string to get added to the examine
 /obj/item/crusher_trophy/proc/effect_desc()
@@ -29,12 +29,12 @@
 /obj/item/crusher_trophy/proc/add_to(obj/item/kinetic_crusher/crusher, mob/living/user)
 	for(var/obj/item/crusher_trophy/trophy as anything in crusher.trophies)
 		if(istype(trophy, denied_type) || istype(src, trophy.denied_type))
-			to_chat(user, span_warning("You can't seem to attach [src] to [crusher]. Maybe remove a few trophies?"))
+			to_chat(user, span_warning("你似乎无法将 [src] 装到 [crusher] 上。也许该先取下几个战利品？"))
 			return FALSE
 	if(!user.transferItemToLoc(src, crusher))
 		return FALSE
 	crusher.trophies += src
-	to_chat(user, span_notice("You attach [src] to [crusher]."))
+	to_chat(user, span_notice("你将 [src] 装到了 [crusher] 上。"))
 	return TRUE
 
 /// Removes the trophy from our crusher

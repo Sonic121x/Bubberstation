@@ -1,6 +1,6 @@
 /obj/item/food/egg/raptor_egg
-	name = "raptor egg"
-	desc = "An uneven egg with a rough, thick shell."
+	name = "迅猛龙蛋"
+	desc = "一枚凹凸不平、外壳粗糙而厚实的蛋。"
 	icon = 'icons/mob/simple/lavaland/raptor_baby.dmi'
 	icon_state = "raptor_egg"
 	resistance_flags = LAVA_PROOF|FIRE_PROOF
@@ -28,7 +28,7 @@
 /obj/item/food/egg/raptor_egg/examine(mob/user)
 	. = ..()
 	if (growth_progress >= RAPTOR_EGG_GROWTH_PROGRESS)
-		. += span_boldnotice("Its noticeably shaking, ready to hatch!")
+		. += span_boldnotice("它在明显晃动着，快要孵化了！")
 
 /obj/item/food/egg/raptor_egg/process(seconds_per_tick)
 	if (!isturf(loc) || length(GLOB.raptor_population) >= MAX_RAPTOR_POP)
@@ -47,7 +47,7 @@
 	if (growth_progress < RAPTOR_EGG_GROWTH_PROGRESS || islava(loc))
 		return
 
-	visible_message(span_notice("[src] hatches with a quiet cracking sound."))
+	visible_message(span_notice("[src] 伴随一声轻微的破裂声孵化了。"))
 	new /mob/living/basic/raptor/baby(loc, child_color, inherited_stats)
 	inherited_stats = null
 	qdel(src)

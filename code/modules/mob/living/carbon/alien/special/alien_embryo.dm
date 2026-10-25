@@ -1,7 +1,7 @@
 // This is to replace the previous datum/disease/alien_embryo for slightly improved handling and maintainability
 // It functions almost identically (see code/datums/diseases/alien_embryo.dm)
 /obj/item/organ/body_egg/alien_embryo
-	name = "alien embryo"
+	name = "异形胚胎"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "larva0_dead"
 	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 5, /datum/reagent/toxin/acid = 10)
@@ -19,9 +19,9 @@
 /obj/item/organ/body_egg/alien_embryo/on_find(mob/living/finder)
 	..()
 	if(stage < 5)
-		to_chat(finder, span_notice("It's small and weak, barely the size of a foetus."))
+		to_chat(finder, span_notice("它又小又弱，只有胎儿那么大。"))
 	else
-		to_chat(finder, span_notice("It's grown quite large, and writhes slightly as you look at it."))
+		to_chat(finder, span_notice("它已经长得相当大，在你注视它时还会微微扭动。"))
 		if(prob(10))
 			INVOKE_ASYNC(src, PROC_REF(attempt_grow), gib_on_success = FALSE)
 
@@ -37,29 +37,29 @@
 			if(SPT_PROB(1, seconds_per_tick))
 				owner.emote("cough")
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(owner, span_danger("Your throat feels sore."))
+				to_chat(owner, span_danger("你的喉咙隐隐作痛。"))
 			if(SPT_PROB(1, seconds_per_tick))
-				to_chat(owner, span_danger("Mucous runs down the back of your throat."))
+				to_chat(owner, span_danger("黏液顺着你的喉咙后壁流下。"))
 		if(5)
 			if(SPT_PROB(1, seconds_per_tick))
 				owner.emote("sneeze")
 			if(SPT_PROB(1, seconds_per_tick))
 				owner.emote("cough")
 			if(SPT_PROB(2, seconds_per_tick))
-				to_chat(owner, span_danger("Your muscles ache."))
+				to_chat(owner, span_danger("你的肌肉酸痛。"))
 				if(prob(20))
 					owner.take_bodypart_damage(1)
 			if(SPT_PROB(2, seconds_per_tick))
-				to_chat(owner, span_danger("Your stomach hurts."))
+				to_chat(owner, span_danger("你的胃一阵绞痛。"))
 				if(prob(20))
 					owner.adjust_tox_loss(1)
 		if(6)
-			to_chat(owner, span_danger("You feel something tearing its way out of your chest..."))
+			to_chat(owner, span_danger("你感觉有东西正撕开你的胸膛钻出来……"))
 			owner.adjust_tox_loss(5 * seconds_per_tick) // Why is this [TOX]?
 
 /obj/item/organ/body_egg/alien_embryo/get_status_appendix(scanpower, add_tooltips)
 	if(scanpower >= SCANPOWER_SUPER)
-		return "Stage: [stage]/6"
+		return "阶段：[stage]/6"
 
 /// Controls Xenomorph Embryo growth. If embryo is fully grown (or overgrown), stop the proc. If not, increase the stage by one and if it's not fully grown (stage 6), add a timer to do this proc again after however long the growth time variable is.
 /obj/item/organ/body_egg/alien_embryo/proc/advance_embryo_stage()
@@ -91,14 +91,14 @@
 
 	bursting = TRUE
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(
-		question = "An [span_notice("alien")] is bursting out of [span_danger(owner.real_name)]!",
+		question = "一只[span_notice("异形")]正从 [span_danger(owner.real_name)] 体内破体而出！",
 		role = ROLE_ALIEN,
 		check_jobban = ROLE_ALIEN,
 		poll_time = 20 SECONDS,
 		checked_target = src,
 		ignore_category = POLL_IGNORE_ALIEN_LARVA,
 		alert_pic = owner,
-		role_name_text = "alien larva",
+		role_name_text = "异形幼虫",
 		chat_text_border_icon = /mob/living/carbon/alien/larva,
 	)
 	on_poll_concluded(gib_on_success, chosen_one)
@@ -135,21 +135,21 @@
 		new_xeno.RemoveInvisibility(type)
 
 	if(gib_on_success)
-		new_xeno.visible_message(span_danger("[new_xeno] bursts out of [owner] in a shower of gore!"), span_userdanger("You exit [owner], your previous host."), span_hear("You hear organic matter ripping and tearing!"))
+		new_xeno.visible_message(span_danger("[new_xeno] 伴随着四溅的血肉从 [owner] 体内爆出！"), span_userdanger("你离开了 [owner]，你此前的宿主。"), span_hear("你听到有机组织被撕裂扯开的声音！"))
 		//owner.investigate_log("has been gibbed by an alien larva.", INVESTIGATE_DEATHS) // SKYRAT EDIT REMOVAL - ALIEN QOL - don't ever gib host.
 		//owner.gib(DROP_ORGANS|DROP_BODYPARTS)
 		// SKYRAT EDIT ADDITION BEGIN - ALIEN QOL - You aren't getting gibbed but you aren't going to be having fun
 		owner.apply_damage(150, BRUTE, BODY_ZONE_CHEST, wound_bonus = 30, sharpness = SHARP_POINTY)
 		owner.spawn_gibs()
 		owner.cut_overlay(overlay)
-		owner.investigate_log("has been chestbursted.", INVESTIGATE_DEATHS)
+		owner.investigate_log("被破胸而出的异形幼虫杀死。", INVESTIGATE_DEATHS)
 		// SKYRAT EDIT ADDITION END - ALIEN QOL
 	else
-		new_xeno.visible_message(span_danger("[new_xeno] wriggles out of [owner]!"), span_userdanger("You exit [owner], your previous host."))
-		owner.log_message("had an alien larva within them escape (without being gibbed).", LOG_ATTACK, log_globally = FALSE)
+		new_xeno.visible_message(span_danger("[new_xeno] 从 [owner] 体内扭动着钻了出来！"), span_userdanger("你离开了 [owner]，你此前的宿主。"))
+		owner.log_message("体内的异形幼虫逃了出来（未被炸成碎块）。", LOG_ATTACK, log_globally = FALSE)
 		owner.adjust_brute_loss(40)
 		owner.cut_overlay(overlay)
-	owner.investigate_log("has been gibbed by an alien larva.", INVESTIGATE_DEATHS)
+	owner.investigate_log("被异形幼虫炸成了碎块。", INVESTIGATE_DEATHS)
 	qdel(src)
 
 

@@ -5,8 +5,8 @@
 */
 
 /mob/living/basic/killer_tomato
-	name = "Killer Tomato"
-	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
+	name = "杀手番茄"
+	desc = "这是一颗大得吓人的牛肉番茄，而且它还额外加了牛肉！"
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"
@@ -16,16 +16,16 @@
 	maxHealth = 30
 	health = 30
 	butcher_results = list(/obj/item/food/meat/slab/killertomato = 2)
-	response_help_continuous = "prods"
-	response_help_simple = "prod"
-	response_disarm_continuous = "pushes aside"
-	response_disarm_simple = "push aside"
-	response_harm_continuous = "smacks"
-	response_harm_simple = "smack"
+	response_help_continuous = "戳"
+	response_help_simple = "戳"
+	response_disarm_continuous = "推到一边"
+	response_disarm_simple = "推到一边"
+	response_harm_continuous = "拍打"
+	response_harm_simple = "拍打"
 	melee_damage_lower = 8
 	melee_damage_upper = 12
-	attack_verb_continuous = "slams"
-	attack_verb_simple = "slam"
+	attack_verb_continuous = "猛砸"
+	attack_verb_simple = "猛砸"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	faction = list(FACTION_PLANTS)
 
@@ -45,8 +45,8 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("gnashes.", "growls lowly.", "snarls."),
-			BB_EMOTE_SEE = list("salivates."),
+			BB_EMOTE_HEAR = list("龇牙低吼。", "低声咆哮。", "呜咽咆哮。"),
+			BB_EMOTE_SEE = list("流着口水。"),
 			BB_SPEAK_CHANCE = 3,
 		),
 	)

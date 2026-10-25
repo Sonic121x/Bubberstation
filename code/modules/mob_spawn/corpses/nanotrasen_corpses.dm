@@ -2,7 +2,7 @@
 //generally nanotrasen themed corpses
 
 /obj/effect/mob_spawn/corpse/human/bridgeofficer
-	name = "Bridge Officer"
+	name = "舰桥军官"
 	outfit = /datum/outfit/nanotrasenbridgeofficer
 
 /datum/outfit/nanotrasenbridgeofficer
@@ -16,7 +16,7 @@
 	id_trim = /datum/id_trim/centcom/corpse/bridge_officer
 
 /obj/effect/mob_spawn/corpse/human/commander
-	name = "Commander"
+	name = "指挥官"
 	outfit = /datum/outfit/nanotrasencommander
 
 /datum/outfit/nanotrasencommander
@@ -34,7 +34,7 @@
 	id_trim = /datum/id_trim/centcom/corpse/commander
 
 /obj/effect/mob_spawn/corpse/human/nanotrasensoldier
-	name = "\improper Nanotrasen Private Security Officer"
+	name = "\improper 纳米传讯私人安保官"
 	outfit = /datum/outfit/nanotrasensoldier
 
 /datum/outfit/nanotrasensoldier
@@ -50,9 +50,9 @@
 	id_trim = /datum/id_trim/centcom/corpse/private_security
 
 /obj/effect/mob_spawn/corpse/human/intern //this is specifically the comms intern from the event
-	name = "CentCom Intern"
+	name = "中央指挥部实习生"
 	outfit = /datum/outfit/centcom/centcom_intern/unarmed
-	mob_name = "Nameless Intern"
+	mob_name = "无名实习生"
 
 /obj/effect/mob_spawn/corpse/human/intern/special(mob/living/carbon/human/spawned_human, mob/mob_possessor, apply_prefs)
 	. = ..()

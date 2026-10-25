@@ -1,11 +1,11 @@
 /datum/job/bridge_assistant
 	title = JOB_BRIDGE_ASSISTANT
-	description = "Watch over the Bridge, command its consoles, and spend your days brewing coffee for higher-ups."
+	description = "看守舰桥，操作舰桥上的控制台，再日复一日地为上级煮咖啡。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD //not really a head but close enough
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Captain, and in non-Bridge related situations the other heads"
+	supervisors = "舰长；与舰桥无关的事务上则听命于其他部门主管"
 	minimal_player_age = 7
 	exp_requirements = 300
 	exp_required_type = EXP_TYPE_CREW
@@ -30,14 +30,14 @@
 		/obj/item/storage/fancy/cigarettes = 1,
 		/obj/item/pen/fountain = 1,
 	)
-	rpg_title = "Royal Guard"
+	rpg_title = "皇家卫兵"
 	allow_bureaucratic_error = FALSE
 	// BUBBER EDIT - Previous: job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | JOB_CANNOT_OPEN_SLOTS
 	job_flags = STATION_JOB_FLAGS | JOB_ANTAG_BLACKLISTED | HEAD_OF_STAFF_JOB_FLAGS
 	human_authority = JOB_AUTHORITY_NON_HUMANS_ALLOWED
 
 /obj/effect/landmark/start/bridge_assistant
-	name = "Bridge Assistant"
+	name = "舰桥助理"
 	icon_state = "Blueshield"
 	icon = 'modular_skyrat/master_files/icons/mob/landmarks.dmi'
 

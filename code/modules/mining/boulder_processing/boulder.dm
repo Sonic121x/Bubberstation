@@ -5,8 +5,8 @@
  * The objects that ore vents produce, which is refined into minerals.
  */
 /obj/item/boulder
-	name = "boulder"
-	desc = "This rocks."
+	name = "巨石"
+	desc = "这石头真带劲。"
 	icon_state = "ore"
 	icon = 'icons/obj/ore.dmi'
 	item_flags = NO_MAT_REDEMPTION | SLOWS_WHILE_IN_HAND
@@ -43,24 +43,24 @@
 
 /obj/item/boulder/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(held_item && (held_item.tool_behaviour == TOOL_MINING || HAS_TRAIT(held_item, TRAIT_BOULDER_BREAKER)))
-		context[SCREENTIP_CONTEXT_LMB] = "Crush boulder into ore"
+		context[SCREENTIP_CONTEXT_LMB] = "将巨石碾成矿石"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
 		if(isbasicmob(user))
-			context[SCREENTIP_CONTEXT_LMB] = "Crush boulder into ore"
+			context[SCREENTIP_CONTEXT_LMB] = "将巨石碾成矿石"
 		else
-			context[SCREENTIP_CONTEXT_RMB] = "Crush boulder into ore"
+			context[SCREENTIP_CONTEXT_RMB] = "将巨石碾成矿石"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/boulder/examine(mob/user)
 	. = ..()
-	. += span_notice("This boulder would take [durability] more steps to refine or break.")
+	. += span_notice("这块巨石还需要 [durability] 步才能精炼或破碎。")
 	if(HAS_TRAIT(user, TRAIT_BOULDER_BREAKER))
-		. += span_notice("You can crush this boulder with your bare hands.")
+		. += span_notice("你可以徒手碾碎这块巨石。")
 
 /obj/item/boulder/examine_more(mob/user)
 	. = ..()
-	. += span_notice("[span_bold("Boulders")] can either be cracked open by [span_bold("mining tools")], or processed into sheets with [span_bold("refineries or smelters")]. Undisturbed boulders can be collected by the [span_bold("BRM")].")
+	. += span_notice("[span_bold("巨石")]可以用[span_bold("采矿工具")]敲开，也可以用[span_bold("精炼机或熔炉")]加工成板材。未被扰动的巨石可由 [span_bold("BRM")] 收集。")
 
 /obj/item/boulder/update_icon_state()
 	. = ..()
@@ -128,7 +128,7 @@
 /obj/item/boulder/proc/create_platform(atom/interacting_with, mob/living/user, timer_override = null)
 	if(locate(/obj/structure/lattice/catwalk/boulder, interacting_with))
 		if(user)
-			to_chat(user, span_warning("There is already a boulder platform here!"))
+			to_chat(user, span_warning("这里已经有一块巨石平台了！"))
 		return null
 
 	var/active_platform_lifespan = platform_lifespan //Default to the assigned value.
@@ -138,7 +138,7 @@
 	var/obj/structure/lattice/catwalk/boulder/platform = new(interacting_with)
 	addtimer(CALLBACK(platform, TYPE_PROC_REF(/obj/structure/lattice/catwalk/boulder, pre_self_destruct)), active_platform_lifespan)
 	// See Lattice.dm for more info
-	visible_message(span_notice("\The [src] floats on \the [interacting_with], forming a temporary platform!"))
+	visible_message(span_notice("\The [src] 浮在 \the [interacting_with] 上，形成了一座临时平台！"))
 	qdel(src)
 	return platform
 
@@ -218,8 +218,8 @@
 ///Moves boulder contents to the drop location, and then deletes the boulder.
 /obj/item/boulder/proc/break_apart()
 	if(length(contents))
-		var/list/quips = list("Clang!", "Crack!", "Bang!", "Clunk!", "Clank!")
-		visible_message(span_notice("[pick(quips)] Something falls out of \the [src]!"))
+		var/list/quips = list("当啷！", "咔嚓！", "砰！", "咚！", "锵！")
+		visible_message(span_notice("[pick(quips)] 有什么东西从 \the [src] 里掉了出来！"))
 		playsound(loc, 'sound/effects/pickaxe/picaxe1.ogg', 60, FALSE)
 		for(var/obj/item/content as anything in contents)
 			content.forceMove(get_turf(src))

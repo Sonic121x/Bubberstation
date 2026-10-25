@@ -10,8 +10,8 @@
  */
 
 /mob/living/basic/node_drone
-	name = "NODE drone"
-	desc = "Standard in-atmosphere drone, used by Nanotrasen to operate and excavate valuable ore vents."
+	name = "NODE 无人机"
+	desc = "标准的大气层内无人机，纳米传讯用它来操作并开采珍贵的矿脉喷口。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "mining_node_active"
 	icon_living = "mining_node_active"
@@ -29,13 +29,13 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_VERY_STRONG
 	pull_force = MOVE_FORCE_VERY_STRONG
-	speak_emote = list("chirps")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "clangs"
-	response_harm_simple = "clang against"
+	speak_emote = list("啾啾鸣叫")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "敲打"
+	response_harm_simple = "敲打"
 
 	ai_controller = /datum/ai_controller/basic_controller/node_drone
 
@@ -66,9 +66,9 @@
 	. = ..()
 	var/sameside = user.faction_check_atom(src, exact_match = FALSE)
 	if(sameside)
-		. += span_notice("This drone is currently attached to a mineral vent. You should protect it from harm to secure the mineral vent.")
+		. += span_notice("这架无人机目前已接驳在一处矿脉喷口上。为了守住喷口，你应当保护它不受伤害。")
 	else
-		. += span_warning("This vile Nanotrasen trash is trying to destroy the environment. Attack it to free the mineral vent from its grasp.")
+		. += span_warning("这件可鄙的纳米传讯垃圾正试图破坏环境。攻击它，把矿脉喷口从它手中夺回来。")
 
 /mob/living/basic/node_drone/update_icon_state()
 	. = ..()
@@ -121,17 +121,17 @@
 	flying_state = FLY_OUT_STATE
 	update_appearance(UPDATE_ICON_STATE)
 	if(prob(1))
-		say("I have to go now, my planet needs me.")
+		say("我得走了，我的星球需要我。")
 		funny_ending = TRUE
 	if(success)
-		visible_message(span_notice("The drone flies away to safety as the vent is secured."))
+		visible_message(span_notice("喷口已经守住，无人机飞向了安全的地方。"))
 	else
-		visible_message(span_danger("The drone flies away after failing to open the vent!"))
+		visible_message(span_danger("无人机开启喷口失败，飞走了！"))
 	animate(src, pixel_z = 400, time = 2 SECONDS, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	sleep(2 SECONDS)
 	if(funny_ending)
 		playsound(src, 'sound/effects/explosion/explosion3.ogg', 50, FALSE) //node drone died on the way back to his home planet.
-		visible_message(span_notice("...or maybe not."))
+		visible_message(span_notice("……也许并没有。"))
 	qdel(src)
 
 

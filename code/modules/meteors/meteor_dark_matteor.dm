@@ -1,8 +1,8 @@
 /// The dark matt-eor. Only attracted by emagging 10 satellites and maximizing meteor chances, and it drops a singulo. Otherwise, it's not that bad.
 /obj/effect/meteor/dark_matteor
-	name = "dark matt-eor"
+	name = "暗物质陨石"
 	icon_state = "dark_matter"
-	desc = "The most widely accepted theory is that dark matter is made up of weakly interacting massive particles (WIMPs). But seeing this malevolent force of imminent death careening towards you, gotta admit, it doesn't look so WIMPy anymore..."
+	desc = "最广为接受的理论认为，暗物质由弱相互作用大质量粒子（WIMP）构成。但看着这股满怀恶意、携着死亡扑面而来的力量，你不得不承认，它现在看起来可一点都不“怂”了……"
 	hits = 15
 	hitpwr = EXPLODE_DEVASTATE
 	heavy = TRUE
@@ -10,7 +10,7 @@
 	meteordrop = list(/obj/singularity/dark_matter) //what the FUCK
 	dropamt = 1
 	threat = 100
-	signature = "dark matter"
+	signature = "暗物质"
 	/// distortion to really give you that sense of oh shit
 	var/atom/movable/warp_effect/warp
 	/// and another oh shit in the form of quantum sparks
@@ -54,7 +54,7 @@
 		spark_system.start()
 
 /obj/effect/meteor/dark_matteor/shield_defense(obj/machinery/satellite/meteor_shield/defender)
-	defender.visible_message(span_danger("[defender]'s beam is reflected by [src]!"))
+	defender.visible_message(span_danger("[defender] 的光束被 [src] 反射了！"))
 	new /obj/effect/temp_visual/explosion/fast(get_turf(defender))
 	qdel(defender)
 	return FALSE
@@ -63,4 +63,4 @@
 	. = ..()
 	if(previous_security_level && SSsecurity_level.get_current_level_as_number() != SEC_LEVEL_DELTA)
 		SSsecurity_level.set_level(previous_security_level)
-	priority_announce("Wow. The Dark Matt-eor actually missed your station. Don't forget to thank your Chaplain for his apparent divine intervention.", "Meteor Update")
+	priority_announce("哇哦。暗物质陨石居然真的错过了你的空间站。别忘了感谢你的牧师，看来他真得到了神明的庇佑。", "陨石动态")

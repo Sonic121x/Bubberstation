@@ -50,7 +50,7 @@
 
 /// Returns a nation name for this department.
 /datum/job_department/proc/generate_nation_name()
-	var/static/list/nation_suffixes = list("stan", "topia", "land", "nia", "ca", "tova", "dor", "ador", "tia", "sia", "ano", "tica", "tide", "cis", "marea", "co", "taoide", "slavia", "stotzka")
+	var/static/list/nation_suffixes = list("斯坦", "托邦", "兰", "尼亚", "卡", "托瓦", "多尔", "阿多尔", "蒂亚", "西亚", "阿诺", "提卡", "潮", "西斯", "马雷亚", "科", "陶伊德", "斯拉维亚", "施托茨卡")
 	return pick(nation_prefixes) + pick(nation_suffixes)
 
 /// Returns a simplifed spaceless string for use in stuff like CSS.
@@ -61,13 +61,13 @@
 /datum/job_department/assistant
 	department_name = DEPARTMENT_ASSISTANT
 	department_bitflags = DEPARTMENT_BITFLAG_ASSISTANT
-	nation_prefixes = list("Assa", "Mainte", "Tunnel", "Gris", "Grey", "Liath", "Grigio", "Ass", "Assi")
+	nation_prefixes = list("阿萨", "维护", "隧道", "格里", "灰", "利亚", "格里吉奥", "阿苏", "阿西")
 	ui_color = "#808080"
 	// Don't add department_head! Assistants names should not be in bold.
 
 /datum/job_department/assistant/generate_nation_name()
-	var/nomadic_name = pick("roving clans", "barbaric tribes", "tides", "bandit kingdom", "tribal society", "marauder clans", "horde")
-	return "The [nomadic_name] of [..()]"
+	var/nomadic_name = pick("游荡氏族", "蛮族部落", "浪潮", "匪盗王国", "部落社会", "掠夺者氏族", "大群")
+	return "[..()]的[nomadic_name]"
 
 /// A special captain only department, for use by the preferences menu
 /datum/job_department/captain
@@ -93,7 +93,7 @@
 	department_experience_type = EXP_TYPE_SECURITY
 	display_order = 2
 	ui_color = "#d92626"
-	nation_prefixes = list("Securi", "Beepski", "Shitcuri", "Red", "Stunba", "Flashbango", "Flasha", "Stanfordi")
+	nation_prefixes = list("安保", "毕普", "屎安", "红", "眩晕", "闪光邦戈", "闪雷", "斯坦福")
 	primary_work_area = /area/station/security
 	department_delivery_areas = list(
 		/area/station/security/office,
@@ -115,7 +115,7 @@
 	department_experience_type = EXP_TYPE_ENGINEERING
 	display_order = 3
 	ui_color = "#f26c0d"
-	nation_prefixes = list("Atomo", "Engino", "Power", "Teleco")
+	nation_prefixes = list("原子", "工程", "动力", "电信")
 	primary_work_area = /area/station/engineering
 	department_delivery_areas = list(
 		/area/station/engineering/main,
@@ -132,7 +132,7 @@
 	department_experience_type = EXP_TYPE_MEDICAL
 	display_order = 4
 	ui_color = "#00b3b3"
-	nation_prefixes = list("Mede", "Healtha", "Recova", "Chemi", "Viro", "Psych")
+	nation_prefixes = list("医疗", "健康", "康复", "化学", "病毒", "精神")
 	primary_work_area = /area/station/medical
 	department_delivery_areas = list(
 		/area/station/medical/medbay/central,
@@ -151,7 +151,7 @@
 	department_experience_type = EXP_TYPE_SCIENCE
 	display_order = 5
 	ui_color = "#b333cc"
-	nation_prefixes = list("Sci", "Griffa", "Geneti", "Explosi", "Mecha", "Xeno", "Nani", "Cyto")
+	nation_prefixes = list("科研", "狮鹫", "基因", "爆炸", "机械", "异种", "纳米", "细胞")
 	primary_work_area = /area/station/science
 	department_delivery_areas = list(
 		/area/station/science/research,
@@ -170,7 +170,7 @@
 	department_experience_type = EXP_TYPE_SUPPLY
 	display_order = 6
 	ui_color = "#a96a3c"
-	nation_prefixes = list("Cargo", "Guna", "Suppli", "Mule", "Crate", "Ore", "Mini", "Shaf")
+	nation_prefixes = list("货运", "枪炮", "补给", "骡队", "板条箱", "矿石", "迷你", "沙夫")
 	primary_work_area = /area/station/cargo
 	head_of_staff_access = ACCESS_QM
 	department_access = REGION_ACCESS_SUPPLY
@@ -182,7 +182,7 @@
 	department_experience_type = EXP_TYPE_SERVICE
 	display_order = 7
 	ui_color = "#1fad4e"
-	nation_prefixes = list("Honka", "Boozo", "Fatu", "Danka", "Mimi", "Libra", "Jani", "Religi")
+	nation_prefixes = list("洪克", "酒鬼", "胖子", "谢谢", "咪咪", "天秤", "贾尼", "宗教")
 	primary_work_area = /area/station/service
 	department_delivery_areas = list(/area/station/hallway/secondary/service, /area/station/service/bar/atrium)
 	associated_cargo_groups = list("Service", "Food & Hydroponics", "Livestock", "Costumes & Toys")
@@ -198,7 +198,7 @@
 	ui_color = "#d9268e"
 
 /datum/job_department/silicon/generate_nation_name()
-	return "United Nations" //For nations ruleset specifically, because all other sources of nation creation cannot choose silicons
+	return "联合国" //For nations ruleset specifically, because all other sources of nation creation cannot choose silicons
 
 /// Catch-all department for undefined jobs.
 /datum/job_department/undefined

@@ -1,6 +1,6 @@
 /// Inhand items (Moves overrided items to backpack)
 /datum/loadout_category/inhands
-	category_name = "Inhand"
+	category_name = "手持"
 	category_ui_icon = FA_ICON_BRIEFCASE
 	type_to_generate = /datum/loadout_item/inhand
 	tab_order = /datum/loadout_category/head::tab_order + 4
@@ -17,17 +17,17 @@
 		outfit.l_hand = item_path
 
 /datum/loadout_item/inhand/cane
-	name = "Cane"
+	name = "手杖"
 	item_path = /obj/item/cane
 
 /datum/loadout_item/inhand/cane_white
-	name = "White Cane"
+	name = "白手杖"
 	item_path = /obj/item/cane/white
 
 /datum/loadout_item/inhand/briefcase
-	name = "Briefcase (Leather)"
+	name = "公文包（皮革）"
 	item_path = /obj/item/storage/briefcase
 
 /datum/loadout_item/inhand/briefcase_secure
-	name = "Briefcase (Secure)"
+	name = "安全公文包"
 	item_path = /obj/item/storage/briefcase/secure

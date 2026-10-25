@@ -2,8 +2,8 @@
 //looks like a regular piano, then if you get close it wakes up and bites you
 
 /mob/living/basic/mad_piano
-	name = "space piano"
-	desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
+	name = "太空钢琴"
+	desc = "这是一架太空钢琴，和普通钢琴一样，但永远音准无误！哪怕演奏者跑了调。"
 	icon = 'icons/mob/simple/mad_piano.dmi'
 	icon_state = "calm"
 	mob_size = MOB_SIZE_HUGE
@@ -20,13 +20,13 @@
 	basic_mob_flags = DEL_ON_DEATH
 	attack_sound = 'sound/effects/piano_hit.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	ai_controller = /datum/ai_controller/basic_controller/mad_piano
 	//alternate variables used when aggro
-	var/name_aggro = "mad piano"
+	var/name_aggro = "疯狂钢琴"
 	var/icon_aggro = "aggressive"
-	var/desc_aggro = "This instrument is aggressive! Better stay away from its big chomping teeth!"
+	var/desc_aggro = "这件乐器变得凶暴了！最好离它那张大嚼特嚼的嘴远一点！"
 	//and when calm
 	var/name_calm
 	var/icon_calm

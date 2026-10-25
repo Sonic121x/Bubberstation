@@ -1,6 +1,6 @@
 /datum/language/moffic
 	name = "Moffic"
-	desc = "The language of the Mothpeople borders on complete unintelligibility."
+	desc = "蛾族人的语言几乎完全无法理解。"
 	key = "m"
 	space_chance = 5
 	sentence_chance = 0

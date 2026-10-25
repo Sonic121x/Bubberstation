@@ -35,7 +35,7 @@
 		var/used_slots = get_used_skillchip_slots()
 
 		if(used_slots + skillchip.slot_use > max_slots)
-			return "Not enough free slots. You have [max_slots - used_slots] free and need [skillchip.slot_use]."
+			return "空闲槽位不足。你还有 [max_slots - used_slots] 个空闲槽位，但需要 [skillchip.slot_use] 个。"
 
 	LAZYADD(skillchips, skillchip)
 	skillchip.on_implant(src)
@@ -151,7 +151,7 @@
 			chip_tally++
 
 	if(chip_tally)
-		to_chat(owner, span_warning("Unusual brain biology detected. Failsafe procedure engaged. [chip_tally] skillchip[chip_tally == 1 ? " has" : "s have"] been deactivated."))
+		to_chat(owner, span_warning("检测到异常脑部生物学特征，失效保护程序已启动。[chip_tally] 枚技能芯片[chip_tally == 1 ? "已" : "均"]被停用。"))
 
 /// Disables or re-enables any extra skillchips after skillchip limit changes.
 /obj/item/organ/brain/proc/update_skillchips()

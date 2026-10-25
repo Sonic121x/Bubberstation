@@ -1,33 +1,33 @@
 /obj/machinery/door/puzzle/keycard/icebox/office
-	name = "secure airlock"
-	desc = "Be aware, dear crew, find my lost key. You'll find it in a direction that's wheast."
+	name = "安全气闸"
+	desc = "请注意，亲爱的船员们，找到我丢失的钥匙。它的方向有点“西东”。"
 	puzzle_id = "Puzzle1"
 
 /obj/item/keycard/icebox/office
-	name = "secure keycard (1)"
-	desc = "The NT post office, first rate shipping and packaging. This one is labeled 'front door'."
+	name = "安全门禁卡（1）"
+	desc = "纳米传讯邮局，一流的运输与包装。这张卡上标着“前门”。"
 	color = "#f01249"
 	puzzle_id = "Puzzle1"
 
 /obj/machinery/door/puzzle/keycard/icebox/processing
-	name = "secure airlock"
-	desc = "There's a note attached, 'Which one of you dumbasses shipped out my fucking office key?'."
+	name = "安全气闸"
+	desc = "门上贴着一张便条：“你们哪个蠢货把我的办公室钥匙给寄出去了？”"
 	puzzle_id = "Puzzle2"
 
 /obj/item/keycard/icebox/processing
-	name = "secure keycard (2)"
-	desc = "The NT post office, first rate shipping and packaging. This one is labeled 'Boss's office'."
+	name = "安全门禁卡（2）"
+	desc = "纳米传讯邮局，一流的运输与包装。这张卡上标着“老板办公室”。"
 	color = "#f0e112"
 	puzzle_id = "Puzzle2"
 
 /obj/item/paper/crumpled/bloody/fluff/stations/lavaland/mailroom/waiting
-	name = "tattered note"
-	default_raw_text = "<i>I've been waiting in this lobby for days now. DAYS. I just want to pick up this package but the ticket machine keeps SKIPPING my number! I'll write to HR over this, I swear. Hopefully they'll get to me before the blizzard hits.</i>"
+	name = "破烂的便条"
+	default_raw_text = "<i>我已经在这个大厅里等了好几天了。好几天。我只想取个包裹，可取号机一直跳过我的号码！我发誓，我一定要写信向人事部投诉。希望他们能在暴风雪来临之前处理到我。</i>"
 
 /obj/item/paper/crumpled/muddy/fluff/instructions
-	name = "worn-down note"
-	default_raw_text = "<b>I'll make this short because we both know what's on the line here.</b><i>Your remote planitary outpost is, somehow, a central artery for all of centcom's paycheck divison processing. It's also, all handled in cash! So that means that everyone's payday cash goes through you. Axe your coworker and make off with the paychecks. You'll be compensated fairly for your work. Return to syndicate HQ for more instructions.</i>"
+	name = "磨损的便条"
+	default_raw_text = "<b>我就长话短说了，毕竟我们都知道这事有多重要。</b><i>你那座偏远的行星前哨站不知怎的成了中央指挥部所有工资处理的核心通道。而且全都是以现金处理的！也就是说，每个人的发薪现金都要经过你这里。干掉你的同事，带着工资款跑路。你的工作会得到公平的报酬。返回辛迪加总部获取进一步指示。</i>"
 
 /obj/item/paper/crumpled/fluff/poem
-	name = "discarded note"
-	default_raw_text = "<i>Now, I know we haven't worked together long, my beloved, but you and I make a wonderful team, and I was wondering if you wanted to... get drinks later? Perhaps? There'll alwawys be more mail to sort, after all.</i>"
+	name = "被丢弃的便条"
+	default_raw_text = "<i>我知道我们共事不久，亲爱的，但你和我组成了一支很棒的团队，我想问问你要不要……晚点一起去喝一杯？也许？毕竟，总会有更多邮件要分拣的。</i>"

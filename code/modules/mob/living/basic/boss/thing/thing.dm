@@ -1,7 +1,7 @@
 #define PHASEREGEN_FILTER "healing_glow"
 #define RUIN_QUEUE "the_thing_depleter"
 /mob/living/basic/boss/thing
-	name = "\improper Thing"
+	name = "\improper 怪形"
 	icon = 'icons/mob/simple/icemoon/thething.dmi'
 	icon_state = "p1"
 	icon_dead = "dead"
@@ -14,12 +14,12 @@
 	mob_biotypes = MOB_ORGANIC|MOB_SPECIAL|MOB_MINING
 	sharpness = SHARP_EDGED
 	melee_attack_cooldown = CLICK_CD_SLOW
-	attack_verb_continuous = "eviscerates"
-	attack_verb_simple = "eviscerate"
+	attack_verb_continuous = "剖开"
+	attack_verb_simple = "剖开"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	speed = 3.5 //dont make this any faster PLEASE
-	gps_name = "L-4 Biohazard Beacon"
+	gps_name = "L-4 生化危险信标"
 	ai_controller = /datum/ai_controller/basic_controller/thing_boss
 	crusher_loot = list(/obj/item/crusher_trophy/flesh_glob)
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
@@ -106,8 +106,8 @@
 		return_to_spawnloc()
 		return
 	add_traits(list(TRAIT_GODMODE, TRAIT_IMMOBILIZED), MEGAFAUNA_TRAIT)
-	balloon_alert_to_viewers("invulnerable! overload the machines!")
-	visible_message(span_danger("[src] drops to the ground staggered, unable to keep up with injuries!"))
+	balloon_alert_to_viewers("无敌！让机器过载！")
+	visible_message(span_danger("[src] 踉跄着倒在地上，伤势重得再也支撑不住！"))
 	phase_invulnerability_timer = addtimer(CALLBACK(src, PROC_REF(phase_too_slow)), phase_invul_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	add_filter(PHASEREGEN_FILTER, 2, list("type" = "outline", "color" = COLOR_PALE_GREEN, "alpha" = 0, "size" = 1))
 	var/filter = get_filter(PHASEREGEN_FILTER)
@@ -142,7 +142,7 @@
 	for(var/turf/open/target in RANGE_TURFS(1, loc))
 		new /obj/effect/temp_visual/mook_dust(target)
 	playsound(loc, 'sound/effects/meteorimpact.ogg', 40, TRUE)
-	visible_message(span_danger("[src] retreats through the ground back to where it came from!"))
+	visible_message(span_danger("[src] 钻进地面，退回了它来的地方！"))
 	forceMove(spawn_loc)
 
 /// The Thing is successfully hit by incendiary fire while downed by damage (alternatively takes too much damage if not ruin spawned)
@@ -166,8 +166,8 @@
 /mob/living/basic/boss/thing/proc/phase_too_slow()
 	phase_invulnerability_timer = null
 	remove_traits(list(TRAIT_GODMODE, TRAIT_IMMOBILIZED), MEGAFAUNA_TRAIT)
-	balloon_alert_to_viewers("recovers!")
-	visible_message(span_danger("[src] recovers from the damage! Too slow!"))
+	balloon_alert_to_viewers("恢复了！")
+	visible_message(span_danger("[src] 从伤势中恢复了过来！太慢了！"))
 	adjust_health(-(maxHealth/3) * 0.5) //half of a phase (which is a third of maxhealth)
 	var/filter = get_filter(PHASEREGEN_FILTER)
 	if(!isnull(filter))
@@ -200,8 +200,8 @@
 // special stuff for our ruin to make a cooler bossfight
 
 /obj/structure/thing_boss_phase_depleter
-	name = "Molecular Accelerator"
-	desc = "Weird-ass lab equipment."
+	name = "分子加速器"
+	desc = "一台古怪的实验室设备。"
 	icon_state = "thingdepleter"
 	anchored = TRUE
 	density = TRUE
@@ -238,7 +238,7 @@
 
 /obj/structure/thing_boss_phase_depleter/examine(mob/user)
 	. = ..()
-	. += density ? span_boldnotice("It may be possible to overload this and destroy that things defenses...") : span_bolddanger("The machine is currently being restrained by tendrils.")
+	. += density ? span_boldnotice("也许可以让它过载，从而摧毁那东西的防御……") : span_bolddanger("这台机器正被触须缠住。")
 
 /obj/structure/thing_boss_phase_depleter/proc/set_circuit_floor(state)
 	for(var/turf/open/floor/circuit/circuit in RANGE_TURFS(1, loc))
@@ -251,7 +251,7 @@
 	density = FALSE
 	obj_flags &= ~CAN_BE_HIT
 	set_circuit_floor(FALSE)
-	name = "hatch"
+	name = "舱口"
 	icon_state = "thingdepleter_infloor"
 
 /obj/structure/thing_boss_phase_depleter/proc/go_out_floor()
@@ -270,7 +270,7 @@
 		return
 	if(!user.can_perform_action(src) || !user.can_interact_with(src))
 		return
-	balloon_alert_to_viewers("overloading...")
+	balloon_alert_to_viewers("过载中……")
 	icon_state = "thingdepleter_overriding"
 	if(!do_after(user, 1 SECONDS, target = src))
 		if(density)
@@ -290,8 +290,8 @@
 	color = COLOR_ORANGE
 
 /obj/structure/aggro_gate
-	name = "biohazard gate"
-	desc = "A wall of solid light, only activating when a human is endangered by a biohazard, unfortunately that does little for safety as it locks you in with said biohazard. Virtually indestructible, you must evade (or kill) the threat."
+	name = "生化危险闸门"
+	desc = "一道由固态光构成的墙，仅当人类受到生化危险威胁时才会激活。可惜这对安全没什么帮助，因为它会把你和那个生化危险一起锁在里面。它几乎无法被摧毁，你只能躲避（或杀死）威胁。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "wave2"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF

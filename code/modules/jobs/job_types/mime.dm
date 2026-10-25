@@ -27,7 +27,7 @@
 		/obj/item/reagent_containers/cup/glass/bottle/bottleofnothing = 10,
 		/obj/item/book/granter/action/spell/mime/mimery = 1,
 	)
-	rpg_title = "Fool"
+	rpg_title = "愚者"
 	job_flags = STATION_JOB_FLAGS
 
 	voice_of_god_power = 0.5 //Why are you speaking
@@ -79,8 +79,8 @@
 	ADD_TRAIT(H, TRAIT_MIME_FAN, INNATE_TRAIT)
 
 /obj/item/book/granter/action/spell/mime/mimery
-	name = "Guide to Dank Mimery"
-	desc = "Teaches one of three classic pantomime routines, allowing a practiced mime to conjure invisible objects into corporeal existence. One use only."
+	name = "恶搞默剧指南"
+	desc = "传授三种经典默剧表演之一，让熟练的默剧演员能将无形之物具现为实体。仅可使用一次。"
 	pages_to_mastery = 0
 	reading_time = 0
 
@@ -105,14 +105,14 @@
 		vow.Grant(user)
 	var/datum/action/new_action = new granted_action(user.mind || user)
 	new_action.Grant(user)
-	to_chat(user, span_warning("The book disappears into thin air."))
+	to_chat(user, span_warning("这本书凭空消失了。"))
 	qdel(src)
 
 /obj/item/book/granter/action/spell/mime/mimery/can_learn(mob/living/user)
 	for(var/type in list(/datum/action/cooldown/spell/conjure/invisible_wall, /datum/action/cooldown/spell/conjure/invisible_chair, /datum/action/cooldown/spell/conjure_item/invisible_box))
 		if(!(locate(type) in user.actions))
 			return TRUE
-	to_chat(user, span_warning("You already know the secrets of mimery!"))
+	to_chat(user, span_warning("你早已掌握默剧的奥秘！"))
 	return FALSE
 
 /**

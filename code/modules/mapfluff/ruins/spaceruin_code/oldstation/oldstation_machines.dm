@@ -1,6 +1,6 @@
 /obj/machinery/computer/old
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/piratepad_control")
-	name = "old computer"
+	name = "旧计算机"
 	circuit = /obj/item/circuitboard/computer
 
 /obj/machinery/computer/old/Initialize(mapload)

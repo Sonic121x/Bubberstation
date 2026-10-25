@@ -1,6 +1,6 @@
 /mob/living/basic/leaper
-	name = "leaper"
-	desc = "Commonly referred to as 'leapers', the Geron Toad is a massive beast that spits out highly pressurized bubbles containing a unique toxin, knocking down its prey and then crushing it with its girth."
+	name = "跃蛙"
+	desc = "通常被称为“跃蛙”的格罗恩蟾是一头巨大的野兽，会喷出高压气泡，气泡中含有独特的毒素，击倒猎物后再用庞大的身躯将其压碎。"
 	icon = 'icons/mob/simple/jungle/leaper.dmi'
 	icon_state = "leaper"
 	icon_living = "leaper"

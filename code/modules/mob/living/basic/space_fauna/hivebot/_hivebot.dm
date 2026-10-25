@@ -1,6 +1,6 @@
 /mob/living/basic/hivebot
-	name = "hivebot"
-	desc = "A small robot."
+	name = "蜂巢机器人"
+	desc = "一台小型机器人。"
 	icon = 'icons/mob/simple/hivebot.dmi'
 	icon_state = "basic"
 	icon_living = "basic"
@@ -14,20 +14,20 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 3
 
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	attack_verb_continuous = "抓"
+	attack_verb_simple = "抓"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
-	verb_say = "states"
-	verb_ask = "queries"
-	verb_exclaim = "declares"
-	verb_yell = "alarms"
+	verb_say = "陈述道"
+	verb_ask = "询问道"
+	verb_exclaim = "宣告道"
+	verb_yell = "警报道"
 	bubble_icon = "machine"
 
 	faction = list(FACTION_HIVEBOT)
 	combat_mode = TRUE
 	speech_span = SPAN_ROBOT
-	death_message = "blows apart!"
+	death_message = "炸裂开来！"
 
 	habitable_atmos = null
 	minimum_survivable_temperature = TCMB
@@ -52,8 +52,8 @@
 	return ..()
 
 /mob/living/basic/hivebot/range
-	name = "hivebot"
-	desc = "A smallish robot, this one is armed!"
+	name = "蜂巢机器人"
+	desc = "一台小号机器人，这一台装有武器！"
 	icon_state = "ranged"
 	icon_living = "ranged"
 	icon_dead = "ranged"
@@ -69,22 +69,22 @@
 	ranged_attack_cooldown = 1.5 SECONDS
 
 /mob/living/basic/hivebot/strong
-	name = "strong hivebot"
+	name = "强力蜂巢机器人"
 	icon_state = "strong"
 	icon_living = "strong"
 	icon_dead = "strong"
-	desc = "A robot, this one is armed and looks tough!"
+	desc = "一台机器人，这一台装有武器，看起来很强悍！"
 	health = 80
 	maxHealth = 80
 	ranged_attacker = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/hivebot/ranged
 
 /mob/living/basic/hivebot/mechanic
-	name = "hivebot mechanic"
+	name = "蜂巢机器人技工"
 	icon_state = "strong"
 	icon_living = "strong"
 	icon_dead = "strong"
-	desc = "A robot built for base upkeep, intended for use inside hivebot colonies."
+	desc = "一台为基地维护而造的机器人，设计用于蜂巢机器人聚居地内部。"
 	health = 60
 	maxHealth = 60
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -112,30 +112,30 @@
 
 /mob/living/basic/hivebot/mechanic/proc/repair_machine(obj/machinery/fixable)
 	if(fixable.get_integrity() >= fixable.max_integrity)
-		to_chat(src, span_warning("Diagnostics indicate that this machine is at peak integrity."))
+		to_chat(src, span_warning("诊断显示这台机器的完整度处于最佳状态。"))
 		return
 	if(!COOLDOWN_FINISHED(src, repair_cooldown))
-		balloon_alert(src, "recharging!")
+		balloon_alert(src, "充电中！")
 		return
 	fixable.repair_damage(fixable.max_integrity - fixable.get_integrity())
 	do_sparks(number = 3, cardinal_only = TRUE, source = fixable)
-	to_chat(src, span_warning("Repairs complete!"))
+	to_chat(src, span_warning("维修完成！"))
 	COOLDOWN_START(src, repair_cooldown, 50 SECONDS)
 
 /mob/living/basic/hivebot/mechanic/proc/repair_hivebot(mob/living/basic/bot_target)
 	if(bot_target.health >= bot_target.maxHealth)
-		to_chat(src, span_warning("Diagnostics indicate that this unit is at peak integrity."))
+		to_chat(src, span_warning("诊断显示这台单元的完整度处于最佳状态。"))
 		return
 	if(!COOLDOWN_FINISHED(src, repair_cooldown))
-		balloon_alert(src, "recharging!")
+		balloon_alert(src, "充电中！")
 		return
 	bot_target.revive(HEAL_ALL)
 	do_sparks(number = 3, cardinal_only = TRUE, source = bot_target)
-	to_chat(src, span_warning("Repairs complete!"))
+	to_chat(src, span_warning("维修完成！"))
 	COOLDOWN_START(src, repair_cooldown, 50 SECONDS)
 
 /obj/item/ammo_casing/hivebot
-	name = "hivebot bullet casing"
+	name = "蜂巢机器人子弹弹壳"
 	projectile_type = /obj/projectile/hivebotbullet
 
 /obj/projectile/hivebotbullet

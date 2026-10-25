@@ -1,16 +1,16 @@
 /mob/living/basic/paper_wizard
-	name = "Mjor the Creative"
-	desc = "A wizard with a taste for the arts."
+	name = "创造者姆约尔"
+	desc = "一位热衷于艺术的巫师。"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	faction = list(FACTION_HOSTILE, FACTION_STICKMAN)
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "paperwizard"
 	gender = MALE
 
-	response_help_continuous = "brushes"
-	response_help_simple = "brush"
-	response_disarm_continuous = "pushes"
-	response_disarm_simple = "push"
+	response_help_continuous = "轻拂"
+	response_help_simple = "轻拂"
+	response_disarm_continuous = "推搡"
+	response_disarm_simple = "推搡"
 	basic_mob_flags = DEL_ON_DEATH
 
 	status_flags = CANPUSH
@@ -54,16 +54,16 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_WRITING_LIST = list(
-			"I can turn the paper into gold and ink into diamonds!",
-			"Your fate is written and sealed!",
-			"You shall suffer the wrath of a thousand paper cuts!",
+			"我能把纸张变成黄金，把墨迹变成钻石！",
+			"你的命运早已写定，无从更改！",
+			"你将尝到千刀纸割之怒！",
 		)
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
 
 /mob/living/basic/paper_wizard/copy
-	desc = "'Tis a ruse!"
+	desc = "这是个骗局！"
 	health = 1
 	maxHealth = 1
 	alpha = 200
@@ -89,21 +89,21 @@
 
 	if(!(attack_flags & (ATTACKER_STAMINA_ATTACK|ATTACKER_SHOVING)))
 		attacker.adjust_brute_loss(20)
-		to_chat(attacker, span_warning("The clone casts a spell to damage you before he dies!"))
+		to_chat(attacker, span_warning("克隆体在消亡前施法伤害了你！"))
 
 
 /mob/living/basic/paper_wizard/copy/examine(mob/user)
 	. = ..()
 	if(isobserver(user))
-		. += span_notice("It's an illusion - what is it hiding?")
+		. += span_notice("这是幻象——它在掩饰什么？")
 	else
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(src))
 		qdel(src) //I see through your ruse!
 
 //fancy effects
 /obj/effect/temp_visual/paper_scatter
-	name = "scattering paper"
-	desc = "Pieces of paper scattering to the wind."
+	name = "纷飞纸张"
+	desc = "随风四散的纸片。"
 	layer = ABOVE_NORMAL_TURF_LAYER
 	plane = GAME_PLANE
 	icon = 'icons/effects/effects.dmi'
@@ -113,8 +113,8 @@
 	randomdir = FALSE
 
 /obj/effect/temp_visual/paperwiz_dying
-	name = "craft portal"
-	desc = "A wormhole sucking the wizard into the void. Neat."
+	name = "手工传送门"
+	desc = "一个把巫师吸进虚空的虫洞。真妙。"
 	layer = ABOVE_NORMAL_TURF_LAYER
 	plane = GAME_PLANE
 	icon = 'icons/effects/effects.dmi'
@@ -125,7 +125,7 @@
 
 /obj/effect/temp_visual/paperwiz_dying/Initialize(mapload)
 	. = ..()
-	visible_message(span_bolddanger("The wizard cries out in pain as a gate appears behind him, sucking him in!"))
+	visible_message(span_bolddanger("巫师痛苦地嘶喊起来，一扇大门在他身后浮现，将他吸了进去！"))
 	playsound(get_turf(src), 'sound/effects/magic/mandswap.ogg', 50, vary = TRUE, pressure_affected = TRUE)
 	playsound(get_turf(src), 'sound/effects/hallucinations/wail.ogg', 50, vary = TRUE, pressure_affected = TRUE)
 	RegisterSignal(src, COMSIG_PREQDELETED, PROC_REF(on_delete))

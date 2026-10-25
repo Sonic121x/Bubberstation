@@ -60,7 +60,7 @@
 	return isnull(selection) ? null : display_choices[selection]
 
 /proc/chinese_outfit_display(value)
-	var/static/list/display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……")
+	var/static/list/display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备")
 	return display_names[value] || chinese_job_display(value)
 
 /proc/chinese_granter_spell_display(value)

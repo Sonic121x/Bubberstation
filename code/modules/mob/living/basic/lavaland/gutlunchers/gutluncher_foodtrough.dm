@@ -37,8 +37,8 @@
 		. += ore_icon
 
 /obj/structure/ore_container/food_trough/gutlunch_trough
-	name = "gutlunch trough"
-	desc = "The gutlunches will eat out of it!"
+	name = "食脏兽食槽"
+	desc = "食脏兽会凑到这里吃东西！"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "gutlunch_trough"
 	x_offsets = list(-5, 8)

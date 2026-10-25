@@ -1,7 +1,7 @@
 /// Mob which retreats and spawns annoying sub-mobs to attack you
 /mob/living/basic/mining/hivelord
-	name = "hivelord"
-	desc = "A levitating swarm of tiny creatures which act as a single individual. When threatened or hunting they rapidly replicate additional short-lived bodies."
+	name = "虫巢领主"
+	desc = "由微小生物组成的浮空群体，整体行动如同一只个体。受到威胁或捕猎时，它们会迅速复制出额外的短命躯体。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "hivelord"
 	icon_living = "hivelord"
@@ -14,11 +14,11 @@
 	health = 75
 	melee_damage_lower = 0
 	melee_damage_upper = 0
-	attack_verb_continuous = "weakly tackles"
-	attack_verb_simple = "weakly tackle"
-	speak_emote = list("telepathically cries")
+	attack_verb_continuous = "虚弱地扑撞"
+	attack_verb_simple = "虚弱地扑撞"
+	speak_emote = list("在心灵中哭喊")
 	attack_sound = 'sound/items/weapons/pierce.ogg'
-	throw_blocked_message = "passes between the bodies of the"
+	throw_blocked_message = "从无数躯体之间穿过，落向"
 	obj_damage = 0
 	pass_flags = PASSTABLE
 	ai_controller = /datum/ai_controller/basic_controller/hivelord
@@ -68,15 +68,15 @@
 
 /// Attack worms spawned by the hivelord
 /mob/living/basic/hivelord_brood
-	name = "hivelord brood"
-	desc = "Short-lived attack form of the hivelord. One isn't much of a threat, but..."
+	name = "虫巢领主仔虫"
+	desc = "虫巢领主的短命攻击形态。单独一只算不上威胁，可是……"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "hivelord_brood"
 	icon_living = "hivelord_brood"
 	icon_dead = "hivelord_brood"
 	icon_gib = "syndicate_gib"
-	friendly_verb_continuous = "chirrups near"
-	friendly_verb_simple = "chirrup near"
+	friendly_verb_continuous = "啾啾叫着蹭向"
+	friendly_verb_simple = "啾啾叫着蹭向"
 	mob_size = MOB_SIZE_SMALL
 	basic_mob_flags = DEL_ON_DEATH
 	pass_flags = PASSTABLE | PASSMOB
@@ -90,9 +90,9 @@
 	health = 1
 	melee_damage_lower = 2
 	melee_damage_upper = 2
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	speak_emote = list("telepathically cries")
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
+	speak_emote = list("在心灵中哭喊")
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	obj_damage = 0

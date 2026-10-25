@@ -6,14 +6,14 @@
  *
  */
 /mob/living/basic/spider/growing/spiderling
-	name = "spiderling"
-	desc = "It never stays still for long."
+	name = "蜘蛛幼体"
+	desc = "它从来待不住多久。"
 	icon_state = "spiderling"
 	icon_dead = "spiderling_dead"
 	density = FALSE
 	speed = -0.75
 	move_resist = INFINITY // YOU CAN'T HANDLE ME LET ME BE FREE LET ME BE FREE LET ME BE FREE
-	speak_emote = list("hisses")
+	speak_emote = list("嘶嘶作响")
 	initial_language_holder = /datum/language_holder/spider
 	basic_mob_flags = FLAMMABLE_MOB | DEL_ON_DEATH
 	mob_size = MOB_SIZE_TINY
@@ -21,7 +21,7 @@
 	melee_damage_upper = 2
 	health = 5
 	maxHealth = 5
-	death_message = "lets out a final hiss..."
+	death_message = "发出最后一声嘶鸣……"
 	player_speed_modifier = 0
 	spider_growth_time = 40 SECONDS
 	ai_controller = /datum/ai_controller/basic_controller/spiderling
@@ -66,7 +66,7 @@
 		BB_VENTCRAWL_COOLDOWN = 20 SECONDS, // enough time to get splatted while we're out in the open.
 		BB_TIME_TO_GIVE_UP_ON_VENT_PATHING = 30 SECONDS,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("chitters."),
+			BB_EMOTE_HEAR = list("发出吱吱声。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/insect/chitter.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),

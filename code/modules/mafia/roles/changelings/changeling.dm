@@ -1,6 +1,6 @@
 /datum/mafia_role/mafia
-	name = "Changeling"
-	desc = "You're a member of the changeling hive. Talk during the Night period to coordinate with your allies, and kill all non-Changelings."
+	name = "变形怪"
+	desc = "你是变形怪巢群的一员。在夜晚阶段交谈以与盟友协调行动，并杀死所有非变形怪。"
 	team = MAFIA_TEAM_MAFIA
 	role_type = MAFIA_REGULAR
 	role_flags = ROLE_CAN_KILL
@@ -10,7 +10,7 @@
 
 	revealed_outfit = /datum/outfit/mafia/changeling
 	special_ui_theme = "syndicate"
-	win_condition = "become majority over the town and no solo killing role can stop them."
+	win_condition = "人数超过镇民并成为多数，且没有任何独行杀手能阻止他们。"
 
 	role_unique_actions = list(/datum/mafia_ability/changeling_kill)
 
@@ -21,12 +21,12 @@
 /datum/mafia_role/mafia/proc/mafia_text(datum/mafia_controller/source)
 	SIGNAL_HANDLER
 
-	to_chat(body, "<b>Vote for who to kill tonight. The killer will be chosen randomly from voters.</b>")
+	to_chat(body, "<b>投票决定今晚要杀谁。杀手将从投票者中随机选出。</b>")
 
 /datum/mafia_role/mafia/thoughtfeeder
-	name = "Thoughtfeeder"
-	desc = "You're a changeling variant that feeds on the memories of others. Talk during the Night period to coordinate with your allies, \
-		and kill all non-Changelings, using your ability to learn people's roles to your advantage."
+	name = "噬思者"
+	desc = "你是以他人记忆为食的变形怪变体。在夜晚阶段交谈以与盟友协调行动，\
+		并杀死所有非变形怪，善用你探查他人职业的能力。"
 	role_type = MAFIA_SPECIAL
 	hud_icon = "hudthoughtfeeder"
 	winner_award = /datum/award/achievement/mafia/thoughtfeeder

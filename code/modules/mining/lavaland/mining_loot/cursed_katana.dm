@@ -1,13 +1,13 @@
-#define ATTACK_STRIKE "Hilt Strike"
-#define ATTACK_SLICE "Wide Slice"
-#define ATTACK_DASH "Dash Attack"
-#define ATTACK_CUT "Tendon Cut"
-#define ATTACK_CLOAK "Dark Cloak"
-#define ATTACK_SHATTER "Shatter"
+#define ATTACK_STRIKE "剑柄击"
+#define ATTACK_SLICE "横扫斩"
+#define ATTACK_DASH "突进攻击"
+#define ATTACK_CUT "割腱"
+#define ATTACK_CLOAK "暗影斗篷"
+#define ATTACK_SHATTER "碎裂"
 
 /obj/item/organ/cyberimp/arm/toolkit/shard
-	name = "dark spoon shard"
-	desc = "An eerie metal shard surrounded by dark energies...of soup drinking. You probably don't think you should have been able to find this."
+	name = "黑暗汤匙碎片"
+	desc = "一片被黑暗能量环绕的诡异金属碎片……喝汤的能量。你大概觉得自己本不该找到这东西。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "cursed_katana_organ"
 	organ_flags = ORGAN_ORGANIC | ORGAN_FROZEN | ORGAN_UNREMOVABLE
@@ -17,7 +17,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/shard/attack_self(mob/user, modifiers)
 	. = ..()
-	to_chat(user, span_userdanger("The mass goes up your arm and goes inside it!"))
+	to_chat(user, span_userdanger("那团物质顺着你的手臂向上，钻了进去！"))
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	var/index = user.get_held_index_of_item(src)
 	swap_zone(IS_LEFT_INDEX(index) ? BODY_ZONE_L_ARM : BODY_ZONE_R_ARM)
@@ -28,8 +28,8 @@
 	return
 
 /obj/item/organ/cyberimp/arm/toolkit/shard/katana
-	name = "dark shard"
-	desc = "An eerie metal shard surrounded by dark energies."
+	name = "黑暗碎片"
+	desc = "一片被黑暗能量环绕的诡异金属碎片。"
 	items_to_create = list(/obj/item/cursed_katana)
 
 /obj/item/organ/cyberimp/arm/toolkit/shard/katana/Retract()
@@ -37,7 +37,7 @@
 	if(!katana || katana.shattered)
 		return FALSE
 	if(!katana.drew_blood)
-		to_chat(owner, span_userdanger("[katana] lashes out at you in hunger!"))
+		to_chat(owner, span_userdanger("[katana] 因饥饿而向你挥砍！"))
 		playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 		owner.apply_damage(25, BRUTE, hand, wound_bonus = 10, sharpness = SHARP_EDGED)
 	katana.drew_blood = FALSE
@@ -45,9 +45,9 @@
 	return ..()
 
 /obj/item/cursed_katana
-	name = "cursed katana"
-	desc = "A katana used to seal something vile away long ago. \
-	Even with the weapon destroyed, all the pieces containing the creature have coagulated back together to find a new host."
+	name = "诅咒武士刀"
+	desc = "一把很久以前用于封印某种邪恶存在的武士刀。 \
+	即便武器已被毁，所有封存着那生物的部分仍重新凝结在一起，去寻找新的宿主。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "cursed_katana"
 	icon_angle = -45
@@ -59,8 +59,8 @@
 	block_sound = 'sound/items/weapons/parry.ogg'
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_HUGE
-	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击着", "劈砍着", "切片着", "撕扯着", "割裂着", "撕裂着", "切丁着", "切割着")
+	attack_verb_simple = list("攻击", "劈砍", "切片", "撕扯", "割裂", "撕裂", "切丁", "切割")
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | FREEZE_PROOF
 	var/shattered = FALSE
@@ -73,8 +73,8 @@
 		ATTACK_CLOAK = list(COMBO_STEPS = list(LEFT_ATTACK, RIGHT_ATTACK, LEFT_ATTACK, RIGHT_ATTACK), COMBO_PROC = PROC_REF(cloak)),
 		ATTACK_SHATTER = list(COMBO_STEPS = list(RIGHT_ATTACK, LEFT_ATTACK, RIGHT_ATTACK, LEFT_ATTACK), COMBO_PROC = PROC_REF(shatter)),
 	)
-	var/list/alt_continuous = list("stabs", "pierces", "impales")
-	var/list/alt_simple = list("stab", "pierce", "impale")
+	var/list/alt_continuous = list("捅刺着", "刺穿着", "贯穿")
+	var/list/alt_simple = list("捅刺", "刺穿", "贯穿")
 
 /obj/item/cursed_katana/Initialize(mapload)
 	. = ..()
@@ -85,14 +85,14 @@
 		/datum/component/combo_attacks, \
 		combos = combo_list, \
 		max_combo_length = 4, \
-		examine_message = span_notice("<i>There seem to be inscriptions on it... you could examine them closer?</i>"), \
-		reset_message = "you return to neutral stance", \
+		examine_message = span_notice("<i>上面似乎刻有铭文……你可以凑近仔细查看？</i>"), \
+		reset_message = "你回到了中立架势", \
 		can_attack_callback = CALLBACK(src, PROC_REF(can_combo_attack)) \
 	)
 
 /obj/item/cursed_katana/examine(mob/user)
 	. = ..()
-	. += drew_blood ? span_nicegreen("It's sated... for now.") : span_danger("It will not be sated until it tastes blood.")
+	. += drew_blood ? span_nicegreen("它满足了……暂时。") : span_danger("不尝到鲜血，它就不会满足。")
 
 /obj/item/cursed_katana/dropped(mob/user)
 	. = ..()
@@ -115,15 +115,15 @@
 	return target.stat != DEAD && target != user
 
 /obj/item/cursed_katana/proc/strike(mob/living/target, mob/user)
-	user.visible_message(span_warning("[user] strikes [target] with [src]'s hilt!"),
-		span_notice("You hilt strike [target]!"))
-	to_chat(target, span_userdanger("You've been struck by [user]!"))
+	user.visible_message(span_warning("[user] 用 [src] 的剑柄击打 [target]！"),
+		span_notice("你用剑柄击打 [target]！"))
+	to_chat(target, span_userdanger("你被 [user] 击中了！"))
 	playsound(src, 'sound/items/weapons/genhit3.ogg', 50, TRUE)
 	RegisterSignal(target, COMSIG_MOVABLE_IMPACT, PROC_REF(strike_throw_impact))
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	target.throw_at(throw_target, 5, 3, user, FALSE, gentle = TRUE)
 	target.apply_damage(damage = 17, exposed_wound_bonus = 10)
-	to_chat(target, span_userdanger("You've been struck by [user]!"))
+	to_chat(target, span_userdanger("你被 [user] 击中了！"))
 	user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
 /obj/item/cursed_katana/proc/strike_throw_impact(mob/living/source, atom/hit_atom, datum/thrownthing/thrownthing)
@@ -141,8 +141,8 @@
 	return NONE
 
 /obj/item/cursed_katana/proc/slice(mob/living/target, mob/user)
-	user.visible_message(span_warning("[user] does a wide slice!"),
-		span_notice("You do a wide slice!"))
+	user.visible_message(span_warning("[user] 施展了横扫斩！"),
+		span_notice("你施展了横扫斩！"))
 	playsound(src, 'sound/items/weapons/bladeslice.ogg', 50, TRUE)
 	user.do_item_attack_animation(target, used_item = src, animation_type = ATTACK_ANIMATION_SLASH)
 	var/turf/user_turf = get_turf(user)
@@ -154,15 +154,15 @@
 		for(var/mob/living/additional_target in turf)
 			if(user.Adjacent(additional_target) && additional_target.density)
 				additional_target.apply_damage(damage = 15, sharpness = SHARP_EDGED, exposed_wound_bonus = 10)
-				to_chat(additional_target, span_userdanger("You've been sliced by [user]!"))
+				to_chat(additional_target, span_userdanger("你被 [user] 斩中了！"))
 	target.apply_damage(damage = 5, sharpness = SHARP_EDGED, wound_bonus = 10)
 
 /obj/item/cursed_katana/proc/cloak(mob/living/target, mob/user)
 	user.alpha = 150
 	user.SetInvisibility(INVISIBILITY_OBSERVER, id=type) // so hostile mobs cant see us or target us
 	user.add_sight(SEE_SELF) // so we can see us
-	user.visible_message(span_warning("[user] vanishes into thin air!"),
-		span_notice("You enter the dark cloak."))
+	user.visible_message(span_warning("[user] 消失得无影无踪！"),
+		span_notice("你进入了暗影斗篷。"))
 	new /obj/effect/temp_visual/mook_dust(get_turf(src))
 	playsound(src, 'sound/effects/magic/smoke.ogg', 50, TRUE)
 	if(ishostile(target))
@@ -175,15 +175,15 @@
 	user.alpha = 255
 	user.RemoveInvisibility(type)
 	user.clear_sight(SEE_SELF)
-	user.visible_message(span_warning("[user] appears from thin air!"),
-		span_notice("You exit the dark cloak."))
+	user.visible_message(span_warning("[user] 凭空出现！"),
+		span_notice("你退出了暗影斗篷。"))
 	playsound(src, 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/mook_dust(get_turf(src))
 
 /obj/item/cursed_katana/proc/cut(mob/living/target, mob/user)
-	user.visible_message(span_warning("[user] cuts [target]'s tendons!"),
-		span_notice("You tendon cut [target]!"))
-	to_chat(target, span_userdanger("Your tendons have been cut by [user]!"))
+	user.visible_message(span_warning("[user] 割断了 [target] 的肌腱！"),
+		span_notice("你割断了 [target] 的肌腱！"))
+	to_chat(target, span_userdanger("你的肌腱被 [user] 割断了！"))
 	user.do_item_attack_animation(target, used_item = src, animation_type = ATTACK_ANIMATION_SLASH)
 	target.apply_damage(damage = 15, sharpness = SHARP_EDGED, wound_bonus = 15)
 	user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
@@ -195,9 +195,9 @@
 		status.add_stacks(6)
 
 /obj/item/cursed_katana/proc/dash(mob/living/target, mob/user)
-	user.visible_message(span_warning("[user] dashes through [target]!"),
-		span_notice("You dash through [target]!"))
-	to_chat(target, span_userdanger("[user] dashes through you!"))
+	user.visible_message(span_warning("[user] 突进穿过 [target]！"),
+		span_notice("你突进穿过 [target]！"))
+	to_chat(target, span_userdanger("[user] 突进穿过了你！"))
 	playsound(src, 'sound/effects/magic/blink.ogg', 50, TRUE)
 	target.apply_damage(damage = 17, sharpness = SHARP_POINTY, exposed_wound_bonus = 10)
 	var/turf/dash_target = get_turf(target)
@@ -213,19 +213,19 @@
 	do_teleport(user, dash_target, channel = TELEPORT_CHANNEL_MAGIC)
 
 /obj/item/cursed_katana/proc/shatter(mob/living/target, mob/user)
-	user.visible_message(span_warning("[user] shatters [src] over [target]!"),
-		span_notice("You shatter [src] over [target]!"))
-	to_chat(target, span_userdanger("[user] shatters [src] over you!"))
+	user.visible_message(span_warning("[user] 在 [target] 身上击碎了 [src]！"),
+		span_notice("你在 [target] 身上击碎了 [src]！"))
+	to_chat(target, span_userdanger("[user] 在你身上击碎了 [src]！"))
 	target.apply_damage(damage = ismining(target) ? 75 : 35, wound_bonus = 20)
 	user.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 	playsound(src, 'sound/effects/glass/glassbr3.ogg', 100, TRUE)
 	shattered = TRUE
 	moveToNullspace()
-	balloon_alert(user, "katana shattered")
+	balloon_alert(user, "武士刀已碎裂")
 	addtimer(CALLBACK(src, PROC_REF(coagulate), user), 45 SECONDS)
 
 /obj/item/cursed_katana/proc/coagulate(mob/user)
-	balloon_alert(user, "katana coagulated")
+	balloon_alert(user, "武士刀已凝结复原")
 	shattered = FALSE
 	playsound(src, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 

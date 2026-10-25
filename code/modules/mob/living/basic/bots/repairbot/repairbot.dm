@@ -1,7 +1,7 @@
 
 /mob/living/basic/bot/repairbot
-	name = "\improper Repairbot"
-	desc = "I can fix it!"
+	name = "\improper 维修机器人"
+	desc = "我能修好它！"
 	icon = 'icons/mob/silicon/aibots.dmi'
 	icon_state = "repairbot1"
 	base_icon_state = "repairbot"
@@ -20,7 +20,7 @@
 	additional_access = /datum/id_trim/job/station_engineer
 	ai_controller = /datum/ai_controller/basic_controller/bot/repairbot
 	mob_size = MOB_SIZE_SMALL
-	possessed_message = "You are a repairbot, cursed to prolong the swiss-cheesening of this death metal trap!"
+	possessed_message = "你是一台维修机器人，注定要不停修补这座千疮百孔的死亡金属陷阱，勉强吊住它的命！"
 	///our iron stack
 	var/obj/item/stack/sheet/iron/our_iron
 	///our glass stack
@@ -114,19 +114,19 @@
 		var/obj/item/stack/our_sheet = locate(content) in src
 		if(isnull(our_sheet))
 			if(!user.transferItemToLoc(potential_stack, src))
-				user.balloon_alert(user, "stuck to your hand!")
+				user.balloon_alert(user, "黏在你手上了！")
 				return
-			balloon_alert(user, "inserted")
+			balloon_alert(user, "已放入")
 			return
 		if(our_sheet.amount >= our_sheet.max_amount)
-			user?.balloon_alert(user, "full!")
+			user?.balloon_alert(user, "装满了！")
 			return
 		if(!our_sheet.can_merge(potential_stack))
-			user?.balloon_alert(user, "not suitable!")
+			user?.balloon_alert(user, "不适用！")
 			return
 		var/atom/movable/to_move = potential_stack.split_stack(min(our_sheet.max_amount - our_sheet.amount, potential_stack.amount))
 		to_move.forceMove(src)
-		balloon_alert(user, "inserted")
+		balloon_alert(user, "已放入")
 		return
 
 /mob/living/basic/bot/repairbot/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
@@ -210,7 +210,7 @@
 
 /mob/living/basic/bot/repairbot/proc/attempt_use_stack(obj/item/stack_to_use, atom/target)
 	if(!isdatum(stack_to_use))
-		to_chat(src, span_warning("You do not have anymore [stack_to_use]!"))
+		to_chat(src, span_warning("你没有更多的 [stack_to_use] 了！"))
 		return
 	stack_to_use.melee_attack_chain(src, target)
 
@@ -359,13 +359,13 @@
 	carried.set_bot(src)
 	if(carried.icon_state == "toolbox_default")
 		carried.add_atom_colour(toolbox_color, FIXED_COLOUR_PRIORITY)
-	user.visible_message(span_warning("[user] scoops up [src]!"))
+	user.visible_message(span_warning("[user] 把 [src] 一把捞了起来！"))
 	user.put_in_hands(carried)
 
 /obj/item/carried_repairbot
-	desc = "A most robust bot!"
-	attack_verb_continuous = list("robusts")
-	attack_verb_simple = list("robust")
+	desc = "一台极其强劲的机器人！"
+	attack_verb_continuous = list("猛捶")
+	attack_verb_simple = list("猛捶")
 	hitsound = 'sound/items/weapons/smash.ogg'
 	drop_sound = 'sound/items/handling/toolbox/toolbox_drop.ogg'
 	pickup_sound = 'sound/items/handling/toolbox/toolbox_pickup.ogg'
@@ -391,7 +391,7 @@
 /obj/item/carried_repairbot/proc/release_bot(bypass_delete = FALSE)
 	if(!isnull(our_bot))
 		our_bot.forceMove(drop_location())
-		our_bot.balloon_alert_to_viewers("plops down")
+		our_bot.balloon_alert_to_viewers("噗通落地")
 	if(!bypass_delete)
 		qdel(src)
 

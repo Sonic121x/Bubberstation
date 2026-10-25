@@ -1,11 +1,11 @@
 /datum/job/coroner
 	title = JOB_CORONER
-	description = "Perform autopsies whenever needed, \
-		update medical records accordingly, apply formaldehyde."
+	description = "按需进行尸检，\
+		相应更新医疗记录，涂抹甲醛。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Head of Personnel and the Chief Medical Officer"
+	supervisors = "人事主管与首席医疗官"
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "CORONER"
 
@@ -42,7 +42,7 @@
 
 	job_flags = STATION_JOB_FLAGS
 
-	rpg_title = "Undertaker"
+	rpg_title = "殡葬师"
 
 /datum/outfit/job/coroner
 	name = "Coroner"

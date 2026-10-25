@@ -123,7 +123,7 @@
 	if(get_dist(controller.pawn, living_target) > 1)
 		return AI_BEHAVIOR_INSTANT
 	var/mob/living/living_pawn = controller.pawn
-	living_pawn.manual_emote("celebrates with [living_target]!")
+	living_pawn.manual_emote("与 [living_target] 一起庆祝！")
 	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/mob, emote), "flip")
 	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/mob, emote), "beep")
 	return start_async()

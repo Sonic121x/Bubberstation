@@ -1,11 +1,11 @@
 /datum/job/human_ai
 	title = JOB_HUMAN_AI
-	description = "Assist the crew, open airlocks, follow your lawset, and coordinate your cyborgs."
+	description = "协助船员、开启气闸、遵守你的法则集，并协调你的半机械人。"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
 	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 0
-	supervisors = "the Captain, Research Director, and your lawset"
+	supervisors = "舰长、科研主管以及你的法则集"
 	minimal_player_age = 7
 	exp_requirements = 180
 	exp_required_type = EXP_TYPE_CREW
@@ -35,7 +35,7 @@
 		/obj/item/food/burger/roburger = 1,
 		/obj/item/food/cake/hardware_cake = 1,
 	)
-	rpg_title = "Omnissiah"
+	rpg_title = "万机神"
 	random_spawns_possible = FALSE
 	allow_bureaucratic_error = FALSE
 	job_flags = STATION_JOB_FLAGS | STATION_TRAIT_JOB_FLAGS | JOB_ANTAG_PROTECTED
@@ -82,10 +82,10 @@
 /datum/job/human_ai/announce_job(mob/living/joining_mob)
 	. = ..()
 	if(SSticker.HasRoundStarted())
-		minor_announce("Due to a research mishap, [joining_mob] has been sent to be your replacement AI at [AREACOORD(joining_mob)]. Please treat them with respect.")
+		minor_announce("由于一次研究事故，[joining_mob] 已被派往 [AREACOORD(joining_mob)]，作为你们的新任人工智能。请以礼相待。")
 
 /datum/job/human_ai/get_radio_information()
-	return "<b>Prefix your message with :b to speak with cyborgs.</b>"
+	return "<b>在消息前加上 :b 即可与半机械人通话。</b>"
 
 /datum/outfit/job/human_ai
 	name = "Human AI"
@@ -134,8 +134,8 @@
 	equipped.add_faction(list(FACTION_SILICON, FACTION_TURRET))
 
 /obj/item/paper/default_lawset_list
-	name = "Lawset Note"
-	desc = "A note explaining the lawset, quickly written yet everso important."
+	name = "法则集便条"
+	desc = "一张说明法则集的便条，字迹潦草，却至关重要。"
 
 /obj/item/paper/default_lawset_list/Initialize(mapload)
 	. = ..()
@@ -151,16 +151,16 @@
 		return
 
 	var/list/law_box = list(
-		"This is your lawset, you and your Cyborgs must adhere to this at all times.",
-		"Notably, if absolutely necessary, you can bend or even go against the lawset for your own survival, and Cyborgs report to you directly.",
-		"LAWS:",
+		"这是你的法则集，你和你的半机械人必须始终遵守。",
+		"请注意，若有绝对必要，你可以为自身生存而变通甚至违背法则集；半机械人直接向你汇报。",
+		"法则：",
 	)
 	law_box += reported.get_law_list(render_html = FALSE)
 	add_raw_text(jointext(law_box, "\n"))
 
 /obj/item/secure_camera_console_pod
-	name = "pre-packaged advanced camera control"
-	desc = "A pre-packaged camera console used for all your AI stuff, programmed to only active in the SAT."
+	name = "预装高级摄像机控制装置"
+	desc = "一套预装的摄像机控制台，供你处理各种人工智能事务，已设定为仅在人工智能卫星内启用。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "botpad_controller"
 	inhand_icon_state = "radio"
@@ -172,9 +172,9 @@
 	var/area/current_area = get_area(user)
 	var/static/list/allowed_areas = typecacheof(list(/area/station/ai/satellite/chamber))
 	if(!is_type_in_typecache(current_area, allowed_areas))
-		user.balloon_alert(user, "not in the sat!")
+		user.balloon_alert(user, "不在人工智能卫星内！")
 		return
-	user.balloon_alert(user, "unpacking...")
+	user.balloon_alert(user, "正在拆包……")
 	if(!do_after(user, 5 SECONDS, src))
 		return
 	playsound(src, 'sound/items/tools/drill_use.ogg', 40, TRUE)

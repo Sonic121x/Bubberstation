@@ -15,15 +15,15 @@
 	unique_name = TRUE
 	can_buckle_to = FALSE
 	initial_language_holder = /datum/language_holder/construct
-	death_message = "collapses in a shattered heap."
+	death_message = "碎成一地残骸倒下。"
 
-	speak_emote = list("hisses")
-	response_help_continuous = "thinks better of touching"
-	response_help_simple = "think better of touching"
-	response_disarm_continuous = "flails at"
-	response_disarm_simple = "flail at"
-	response_harm_continuous = "punches"
-	response_harm_simple = "punch"
+	speak_emote = list("嘶声说")
+	response_help_continuous = "不敢碰"
+	response_help_simple = "不敢碰"
+	response_disarm_continuous = "胡乱挥手打"
+	response_disarm_simple = "胡乱挥手打"
+	response_harm_continuous = "拳击"
+	response_harm_simple = "拳击"
 	melee_attack_cooldown = CLICK_CD_MELEE
 
 	// Vivid red, cause cult theme
@@ -34,7 +34,7 @@
 	/// List of spells that this construct can cast
 	var/list/construct_spells = list()
 	/// Flavor text shown to players when they spawn as this construct
-	var/playstyle_string = "You are a generic construct. Your job is to not exist, and you should probably adminhelp this."
+	var/playstyle_string = "你是一个通用构装体。你的职责是不存在，你大概应该向管理员报告这个问题。"
 	/// The construct's master
 	var/mob/construct_master = null
 	/// Whether this construct is currently seeking nar nar
@@ -73,8 +73,8 @@
 			valid_targets_typecache = typecacheof(list(/mob/living/basic/construct, /mob/living/basic/shade)),\
 			valid_biotypes = MOB_MINERAL | MOB_SPIRIT,\
 			self_targeting = can_repair_self ? HEALING_TOUCH_ANYONE : HEALING_TOUCH_NOT_SELF,\
-			action_text = "%SOURCE% begins repairing %TARGET%'s dents.",\
-			complete_text = "%TARGET%'s dents are repaired.",\
+			action_text = "%SOURCE% 开始修补 %TARGET% 的凹陷。",\
+			complete_text = "%TARGET% 的凹陷已经补好了。",\
 			show_health = TRUE,\
 			heal_color = COLOR_CULT_RED,\
 		)
@@ -126,9 +126,9 @@
 	. = list()
 	if(health < maxHealth)
 		if(health >= maxHealth/2)
-			. += span_warning("[p_They()] look[p_s()] slightly dented.")
+			. += span_warning("[p_They()] 看起来有轻微凹陷。")
 		else
-			. += span_warning(span_bold("[p_They()] look[p_s()] severely dented!"))
+			. += span_warning(span_bold("[p_They()] 看起来凹陷得很严重！"))
 
 	return .
 
@@ -140,5 +140,5 @@
 
 /// Construct ectoplasm. Largely a placeholder, since the death drop element needs a unique list.
 /obj/item/ectoplasm/construct
-	name = "blood-red ectoplasm"
-	desc = "Has a pungent metallic smell."
+	name = "血红灵质"
+	desc = "散发着刺鼻的金属气味。"

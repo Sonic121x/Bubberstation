@@ -4,8 +4,8 @@
 
 //watcher
 /obj/item/crusher_trophy/watcher_wing
-	name = "watcher wing"
-	desc = "A wing ripped from a watcher. Suitable as a trophy for a kinetic crusher."
+	name = "守望者之翼"
+	desc = "从守望者身上撕下的翅膀。适合作为动能粉碎器的战利品。"
 	icon_state = "watcher_wing"
 	denied_type = /obj/item/crusher_trophy/watcher_wing
 	trophy_id = TROPHY_WATCHER
@@ -14,7 +14,7 @@
 	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 10, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/crusher_trophy/watcher_wing/effect_desc()
-	return "mark detonation to prevent certain creatures from using certain attacks for <b>[bonus_value*0.1]</b> second\s"
+	return "标记引爆时，使某些生物在 <b>[bonus_value*0.1]</b> 秒内无法使用某些攻击"
 
 /obj/item/crusher_trophy/watcher_wing/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -30,8 +30,8 @@
 
 //magmawing watcher
 /obj/item/crusher_trophy/magma_wing
-	name = "magmawing watcher wing"
-	desc = "A still-searing wing from a magmawing watcher. Suitable as a trophy for a kinetic crusher."
+	name = "熔岩翼守望者之翼"
+	desc = "取自熔岩翼守望者的翅膀，至今仍灼热逼人。适合作为动能粉碎器的战利品。"
 	icon_state = "magma_wing"
 	denied_type = /obj/item/crusher_trophy/magma_wing
 	wildhunter_drops = list(/obj/item/stack/sheet/sinew/magmawing = 3)
@@ -44,7 +44,7 @@
 	return ..()
 
 /obj/item/crusher_trophy/magma_wing/effect_desc()
-	return "attacks of marked enemies to cause mark detonation"
+	return "被标记的敌人发动攻击时引发标记引爆"
 
 /obj/item/crusher_trophy/magma_wing/remove_from(obj/item/kinetic_crusher/crusher, mob/living/user)
 	. = ..()
@@ -94,8 +94,8 @@
 
 //icewing watcher
 /obj/item/crusher_trophy/ice_wing
-	name = "icewing watcher wing"
-	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
+	name = "冰翼守望者之翼"
+	desc = "取自冰翼守望者、经过精心保存的冰冻翅膀。适合作为动能粉碎器的战利品。"
 	icon_state = "ice_wing"
 	bonus_value = 2
 	denied_type = /obj/item/crusher_trophy/ice_wing
@@ -103,7 +103,7 @@
 	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 6, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 3)
 
 /obj/item/crusher_trophy/ice_wing/effect_desc()
-	return "user to backstep [bonus_value] tile\s when detonating a mark"
+	return "引爆标记时，使用者后退 [bonus_value] 格"
 
 /obj/item/crusher_trophy/ice_wing/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -123,8 +123,8 @@
 
 //legion
 /obj/item/crusher_trophy/legion_skull
-	name = "legion skull"
-	desc = "A dead and lifeless legion skull. Suitable as a trophy for a kinetic crusher."
+	name = "军团头骨"
+	desc = "一颗死寂无生气的军团头骨。适合作为动能粉碎器的战利品。"
 	icon_state = "legion_skull"
 	denied_type = /obj/item/crusher_trophy/legion_skull
 	bonus_value = 3
@@ -132,7 +132,7 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/crusher_trophy/legion_skull/effect_desc()
-	return "a kinetic crusher to recharge <b>[bonus_value*0.1]</b> second\s faster"
+	return "动能粉碎器的充能速度加快 <b>[bonus_value*0.1]</b> 秒"
 
 /obj/item/crusher_trophy/legion_skull/add_to(obj/item/kinetic_crusher/pkc, mob/living/user)
 	. = ..()
@@ -146,8 +146,8 @@
 
 // Goliath - Increases damage as your health decreases.
 /obj/item/crusher_trophy/goliath_tentacle
-	name = "goliath tentacle"
-	desc = "A sliced-off goliath tentacle. Suitable as a trophy for a kinetic crusher."
+	name = "歌利亚触手"
+	desc = "一条被切下来的歌利亚触手。适合作为动能粉碎器的战利品。"
 	icon_state = "goliath_tentacle"
 	denied_type = /obj/item/crusher_trophy/goliath_tentacle
 	bonus_value = 2
@@ -158,7 +158,7 @@
 	var/missing_health_ratio = 0.1
 
 /obj/item/crusher_trophy/goliath_tentacle/effect_desc()
-	return "mark detonation to do <b>[bonus_value]</b> more damage for every <b>[1 / missing_health_ratio]</b> health you are missing"
+	return "标记引爆时，你每损失 <b>[1 / missing_health_ratio]</b> 点生命，就额外造成 <b>[bonus_value]</b> 点伤害"
 
 /obj/item/crusher_trophy/goliath_tentacle/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -172,9 +172,9 @@
 
 // Lobstrosity - Rebukes targets, increasing their click cooldown.
 /obj/item/crusher_trophy/lobster_claw
-	name = "lobster claw"
+	name = "龙虾爪"
 	icon_state = "lobster_claw"
-	desc = "A lobster claw. Suitable as a trophy for a kinetic crusher."
+	desc = "一只龙虾爪。适合作为动能粉碎器的战利品。"
 	denied_type = /obj/item/crusher_trophy/lobster_claw
 	trophy_id = TROPHY_LOBSTER_CLAW
 	bonus_value = 1
@@ -182,7 +182,7 @@
 	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 12, /datum/material/bone = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/item/crusher_trophy/lobster_claw/effect_desc()
-	return "mark detonation to briefly rebuke the target for [bonus_value] second[bonus_value > 1 ? "s" : ""]"
+	return "标记引爆时，短暂斥责目标，持续 [bonus_value] 秒"
 
 /obj/item/crusher_trophy/lobster_claw/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -190,29 +190,29 @@
 
 // Brimdemon - makes a funny sound, the most essential trophy out of all
 /obj/item/crusher_trophy/brimdemon_fang
-	name = "brimdemon's fang"
+	name = "硫磺恶魔之牙"
 	icon_state = "brimdemon_fang"
-	desc = "A fang from a brimdemon's corpse."
+	desc = "取自硫磺恶魔尸体的獠牙。"
 	denied_type = /obj/item/crusher_trophy/brimdemon_fang
 	trophy_id = TROPHY_BRIMDEMON_FANG
 	// No wildhunter drop to prevent refresh cheese
 	/// Cartoon punching vfx
-	var/static/list/comic_phrases = list("BOOM", "BANG", "KABLOW", "KAPOW", "OUCH", "BAM", "KAPOW", "WHAM", "POW", "KABOOM")
+	var/static/list/comic_phrases = list("轰", "砰", "轰隆", "啪", "哎哟", "乓", "啪", "砰", "嘭", "轰隆")
 
 /obj/item/crusher_trophy/brimdemon_fang/effect_desc()
-	return "mark detonation to create visual and audiosensory effects at the target"
+	return "标记引爆时，在目标处产生视觉与听觉特效"
 
 /obj/item/crusher_trophy/brimdemon_fang/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
-	target.loc.balloon_alert_to_viewers("[pick(comic_phrases)]!")
+	target.loc.balloon_alert_to_viewers("[pick(comic_phrases)]！")
 	playsound(target, 'sound/mobs/non-humanoids/brimdemon/brimdemon_crush.ogg', 100)
 
 // Bileworm
 /obj/item/crusher_trophy/bileworm_spewlet
-	name = "bileworm spewlet"
+	name = "胆汁虫幼崽"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "bileworm_spewlet"
-	desc = "A baby bileworm. Suitable as a trophy for a kinetic crusher."
+	desc = "一只胆汁虫宝宝。适合作为动能粉碎器的战利品。"
 	denied_type = /obj/item/crusher_trophy/bileworm_spewlet
 	wildhunter_drops = list(/obj/item/stack/sheet/animalhide/bileworm = 3)
 	custom_materials = list(/datum/material/gold = SHEET_MATERIAL_AMOUNT * 12)
@@ -237,7 +237,7 @@
 	crusher.remove_item_action(ability)
 
 /obj/item/crusher_trophy/bileworm_spewlet/effect_desc()
-	return "mark detonation launches projectiles in cardinal directions on a 10 second cooldown. Also gives you an AOE when mining minerals"
+	return "标记引爆时向四个正方向发射投射物，冷却 10 秒。采矿时还能产生范围挖掘效果"
 
 /obj/item/crusher_trophy/bileworm_spewlet/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -261,7 +261,7 @@
 	return ..()
 
 /obj/projectile/bileworm_acid // basically only used by the crusher trophy
-	name = "acidic bile"
+	name = "酸性胆汁"
 	damage = 20
 	speed = 0.5
 	range = 20
@@ -292,8 +292,8 @@
 
 // demonic watcher
 /obj/item/crusher_trophy/ice_demon_cube
-	name = "demonic cube"
-	desc = "A stone cold cube dropped from an ice demon."
+	name = "恶魔方块"
+	desc = "从冰霜恶魔身上掉落的冰冷石块。"
 	icon_state = "ice_demon_cube"
 	denied_type = /obj/item/crusher_trophy/ice_demon_cube
 	trophy_id = TROPHY_ICE_DEMON
@@ -303,7 +303,7 @@
 	COOLDOWN_DECLARE(summon_cooldown)
 
 /obj/item/crusher_trophy/ice_demon_cube/effect_desc()
-	return "mark detonation to unleash demonic ice clones upon the target"
+	return "标记引爆时，向目标释放恶魔冰霜分身"
 
 /obj/item/crusher_trophy/ice_demon_cube/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -329,14 +329,14 @@
 // Wolf
 
 /obj/item/crusher_trophy/wolf_ear
-	name = "wolf ear"
-	desc = "It's a wolf ear."
+	name = "狼耳"
+	desc = "这是一只狼耳。"
 	icon_state = "wolf_ear"
 	trophy_id = TROPHY_WOLF_EAR
 	denied_type = /obj/item/crusher_trophy/wolf_ear
 
 /obj/item/crusher_trophy/wolf_ear/effect_desc()
-	return "mark detonation to gain a slight speed boost temporarily"
+	return "标记引爆时，短暂获得小幅速度提升"
 
 /obj/item/crusher_trophy/wolf_ear/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -344,14 +344,14 @@
 
 // Polar bear - If you're hurt, you attack twice when you detonate a mark
 /obj/item/crusher_trophy/bear_paw
-	name = "polar bear paw"
-	desc = "It's a polar bear paw."
+	name = "北极熊掌"
+	desc = "这是一只北极熊掌。"
 	icon_state = "bear_paw"
 	trophy_id = TROPHY_BEAR_PAW
 	denied_type = /obj/item/crusher_trophy/bear_paw
 
 /obj/item/crusher_trophy/bear_paw/effect_desc()
-	return "mark detonation to attack twice if you are below half your life"
+	return "生命值低于一半时，标记引爆可攻击两次"
 
 /obj/item/crusher_trophy/bear_paw/on_mark_detonation(mob/living/target, mob/living/user, obj/item/kinetic_crusher/pkc)
 	. = ..()
@@ -363,15 +363,15 @@
 
 // Raptor - Your shots now go through your allied mobs. You monster.
 /obj/item/crusher_trophy/raptor_feather
-	name = "raptor feather"
-	desc = "A feather of an innocent raptor. You'd go to hell for this one, if you weren't already mining in it."
+	name = "迅猛龙羽毛"
+	desc = "一根无辜迅猛龙的羽毛。你会为此下地狱的——如果你不是已经在那里挖矿了的话。"
 	icon_state = "raptor_feather"
 	denied_type = /obj/item/crusher_trophy/raptor_feather
 	trophy_id = TROPHY_RAPTOR_FEATHER
 	wildhunter_drops = list(/obj/item/food/meat/slab/chicken = 1)
 
 /obj/item/crusher_trophy/raptor_feather/effect_desc()
-	return "your shots to go through your allies"
+	return "你的射击可以穿过友方生物"
 
 /obj/item/crusher_trophy/raptor_feather/on_projectile_fire(obj/projectile/destabilizer/marker, mob/living/user)
 	marker.ignore_allies = TRUE

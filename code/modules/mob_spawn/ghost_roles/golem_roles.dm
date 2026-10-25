@@ -3,17 +3,17 @@
 
 //Golem shells: Spawns in Free Golem ships in lavaland. Ghosts become mineral golems and are advised to spread personal freedom.
 /obj/effect/mob_spawn/ghost_role/human/golem
-	name = "inert free golem shell"
-	desc = "A humanoid shape, empty, lifeless, and full of potential."
+	name = "惰性的自由魔像外壳"
+	desc = "一个人形轮廓，空无一物，毫无生气，却充满可能。"
 	icon = 'icons/mob/shells.dmi'
 	icon_state = "shell_complete"
 	mob_species = /datum/species/golem
 	anchored = FALSE
 	move_resist = MOVE_FORCE_NORMAL
 	density = FALSE
-	prompt_name = "a free golem"
-	you_are_text = "You are a Free Golem. Your family worships The Liberator."
-	flavour_text = "In his infinite and divine wisdom, he set your clan free to travel the stars with a single declaration: \"Yeah go do whatever.\""
+	prompt_name = "一只自由魔像"
+	you_are_text = "你是一只自由魔像。你的家族崇拜解放者。"
+	flavour_text = "以他那无穷而神圣的智慧，他仅凭一句宣告便让你的氏族自由地漫游星海：“行吧，想干嘛干嘛去。”"
 	spawner_job_path = /datum/job/free_golem
 	/// Typepath to a material to feed to the golem as soon as it is built
 	var/initial_type
@@ -30,9 +30,9 @@
 	var/area/init_area = get_area(src)
 	if(!mapload && init_area)
 		notify_ghosts(
-			"\A golem shell has been completed in \the [init_area.name].",
+			"一具魔像外壳已在 \the [init_area.name] 中完成。",
 			source = src,
-			header = "Golem Shell",
+			header = "魔像外壳",
 			click_interact = TRUE,
 			ignore_key = POLL_IGNORE_GOLEM,
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
@@ -50,13 +50,13 @@
 
 /// Gives lavaland golems some noble ideas, and enslaved ones a master
 /obj/effect/mob_spawn/ghost_role/human/golem/proc/give_directive(mob/living/new_spawn)
-	new_spawn.log_message("possessed a free golem shell.", LOG_GAME)
-	log_admin("[key_name(new_spawn)] possessed a free golem shell.")
+	new_spawn.log_message("占据了一只自由魔像外壳。", LOG_GAME)
+	log_admin("[key_name(new_spawn)] 占据了一只自由魔像外壳。")
 
 	if(is_station_level(new_spawn.z))
 		return
-	to_chat(new_spawn, "Build golem shells in the autolathe, and feed refined mineral sheets to the shells to bring them to life! \
-		You are generally a peaceful group unless provoked.")
+	to_chat(new_spawn, "用自动车床制造魔像外壳，再向外壳投放精炼矿板，就能让它们活过来！\
+		除非被挑衅，你们一般是个和平的群体。")
 	try_keep_home(new_spawn)
 
 /// Makes free golems slow and sad on the space station
@@ -68,9 +68,9 @@
 
 // Subtype which can yell at other golems
 /obj/effect/mob_spawn/ghost_role/human/golem/adamantine
-	name = "dust-caked free golem shell"
-	desc = "A humanoid shape, empty, lifeless, and full of potential."
-	prompt_name = "a free golem"
+	name = "覆满灰尘的自由魔像外壳"
+	desc = "一个人形轮廓，空无一物，毫无生气，却充满可能。"
+	prompt_name = "一只自由魔像"
 
 /obj/effect/mob_spawn/ghost_role/human/golem/adamantine/special(mob/living/new_spawn, mob/mob_possessor, apply_prefs)
 	. = ..()
@@ -82,10 +82,10 @@
 
 // Subtype which follows orders
 /obj/effect/mob_spawn/ghost_role/human/golem/servant
-	name = "inert servant golem shell"
-	prompt_name = "a servant golem"
-	you_are_text = "You are a golem."
-	flavour_text = "You are highly resistant to heat and cold as well as blunt trauma. You must consume minerals to maintain motion. You are unable to wear clothes, but can still use most tools."
+	name = "惰性的仆从魔像外壳"
+	prompt_name = "一只仆从魔像"
+	you_are_text = "你是一只魔像。"
+	flavour_text = "你对高温、严寒以及钝器创伤都具有很强的抗性。你必须摄入矿物才能维持行动。你无法穿戴衣物，但仍能使用大多数工具。"
 	spawner_job_path = /datum/job/servant_golem
 	/// Weakref to the creator of this golem shell.
 	var/datum/weakref/owner_ref
@@ -99,18 +99,18 @@
 /obj/effect/mob_spawn/ghost_role/human/golem/servant/give_directive(mob/living/new_spawn)
 	var/mob/living/real_owner = owner_ref?.resolve()
 	if(QDELETED(real_owner))
-		new_spawn.log_message("possessed a servant golem shell with no owner.", LOG_GAME)
-		log_admin("[key_name(new_spawn)] possessed a servant golem shell with no owner.")
+		new_spawn.log_message("占据了没有主人的仆从魔像外壳。", LOG_GAME)
+		log_admin("[key_name(new_spawn)] 占据了没有主人的仆从魔像外壳。")
 		return // Guess you're free now
 	if(isnull(new_spawn.mind))
 		CRASH("[type] created a golem without a mind.")
 
 	new_spawn.mind.enslave_mind_to_creator(real_owner)
-	to_chat(new_spawn, span_userdanger("Serve [real_owner.real_name], and assist [real_owner.p_them()] in completing [real_owner.p_their()] goals at any cost."))
+	to_chat(new_spawn, span_userdanger("不惜一切代价服侍 [real_owner.real_name]，并协助 [real_owner.p_them()] 实现 [real_owner.p_their()] 目标。"))
 
 /obj/effect/mob_spawn/ghost_role/human/golem/servant/name_mob(mob/living/spawned_mob, forced_name)
 	if(owner_ref?.resolve())
-		forced_name =  "Golem ([rand(1,999)])"
+		forced_name =  "魔像（[rand(1,999)]）"
 	return ..()
 
 
@@ -121,7 +121,7 @@
 
 	if(user.combat_mode)
 		return
-	to_chat(user, span_notice("You begin prying load-bearing chunks from the completed shell."))
+	to_chat(user, span_notice("你开始从完成的外壳上撬下承重石块。"))
 	playsound(user, 'sound/items/tools/crowbar.ogg', 70)
 
 	if(do_after(user, delay = deconstruct_time, target = src))
@@ -131,7 +131,7 @@
 		else
 			new /obj/item/stack/sheet/iron/five(get_turf(src))
 
-		to_chat(user, span_notice("The Golem crumbles in on itself!"))
+		to_chat(user, span_notice("魔像自身坍缩了！"))
 		playsound(src, 'sound/effects/rock/rock_break.ogg', 60)
 		qdel(src)
 

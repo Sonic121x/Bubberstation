@@ -37,20 +37,20 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		return
 	var/time_remaining = SSticker.GetTimeLeft()
 	if(time_remaining > 0)
-		. += "Time To Start: [round(time_remaining/10)]s"
+		. += "开始时间：[round(time_remaining/10)] 秒"
 	else if(time_remaining == -10)
-		. += "Time To Start: DELAYED"
+		. += "开始时间：已延迟"
 	else
-		. += "Time To Start: SOON"
+		. += "开始时间：即将开始"
 
-	. += "Players: [LAZYLEN(GLOB.clients)]"
-	. += "Players Ready: [SSticker.totalPlayersReady]"
+	. += "玩家：[LAZYLEN(GLOB.clients)]"
+	. += "已准备玩家：[SSticker.totalPlayersReady]"
 	if(client.holder)
-		. += "Admins Ready: [SSticker.total_admins_ready] / [length(GLOB.admins)]" // BUBBER ADDITION END - /tg/ removed this in #90572, but we still use a custom lobby screen
+		. += "已准备管理员：[SSticker.total_admins_ready] / [length(GLOB.admins)]" // BUBBER ADDITION END - /tg/ removed this in #90572, but we still use a custom lobby screen
 
 #define SERVER_HOPPER_TRAIT "server_hopper"
 
-GAME_VERB_PROC_DESC(/mob/dead, server_hop, "Server Hop", "Jump to the other server", "OOC")
+GAME_VERB_PROC_DESC(/mob/dead, server_hop, "服务器跳转", "跳转到另一台服务器", "OOC")
 	if(HAS_TRAIT(src, TRAIT_NO_TRANSFORM)) // in case the round is ending and a cinematic is already playing we don't wanna clash with that (yes i know)
 		return
 	var/list/our_id = CONFIG_GET(string/cross_comms_name)
@@ -59,22 +59,22 @@ GAME_VERB_PROC_DESC(/mob/dead, server_hop, "Server Hop", "Jump to the other serv
 	switch(length(csa))
 		if(0)
 			UNASSIGN_GAME_VERB(src, /mob/dead, server_hop)
-			to_chat(src, span_notice("Server Hop has been disabled."))
+			to_chat(src, span_notice("服务器跳转功能已禁用。"))
 		if(1)
 			pick = csa[1]
 		else
-			pick = tgui_input_list(src, "Server to jump to", "Server Hop", csa)
+			pick = tgui_input_list(src, "要跳转到的服务器", "服务器跳转", csa)
 
 	if(isnull(pick))
 		return
 
 	var/addr = csa[pick]
 
-	if(tgui_alert(usr, "Jump to server [pick] ([addr])?", "Server Hop", list("Yes", "No")) != "Yes")
+	if(tgui_alert(usr, "是否跳转到服务器 [pick]（[addr]）？", "服务器跳转", list("Yes", "No")) != "Yes")
 		return
 
 	var/client/hopper = client
-	to_chat(hopper, span_notice("Sending you to [pick]."))
+	to_chat(hopper, span_notice("正在将你送往 [pick]。"))
 	var/atom/movable/screen/splash/fade_in = new(null, null, hopper, FALSE)
 	fade_in.fade(FALSE)
 

@@ -1,21 +1,21 @@
 /mob/living/basic/deer
-	name = "doe"
-	desc = "A gentle, peaceful forest animal. How did this get into space?"
+	name = "母鹿"
+	desc = "温顺平和的森林动物。它是怎么跑到太空里来的？"
 	icon_state = "deer-doe"
 	icon_living = "deer-doe"
 	icon_dead = "deer-doe-dead"
 	gender = FEMALE
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	speak_emote = list("grunts", "grunts lowly")
+	speak_emote = list("低吼", "低沉地低吼")
 	butcher_results = list(/obj/item/food/meat/slab/grassfed = 3)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently nudges"
-	response_disarm_simple = "gently nudges aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "bucks"
-	attack_verb_simple = "buck"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推了推"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "用角顶"
+	attack_verb_simple = "用角顶"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	health = 75
 	maxHealth = 75

@@ -108,34 +108,34 @@ GLOBAL_DATUM_INIT(ghost_menu, /datum/ghost_menu, new)
 
 	data["hud_info"] = list(
 		list(
-			"name" = "Data HUDs",
+			"name" = "数据 HUD",
 			"enabled" = (user.ghost_hud_flags & GHOST_DATA_HUDS),
 			"flag" = GHOST_DATA_HUDS,
-			"tooltip" = "Grants you Med/Sec/Diag HUDs.",
+			"tooltip" = "为你提供医疗、安保和诊断 HUD。",
 		),
 		list(
-			"name" = "Ghost Vision",
+			"name" = "幽灵视觉",
 			"enabled" = (user.ghost_hud_flags & GHOST_VISION),
 			"flag" = GHOST_VISION,
-			"tooltip" = "Allows you to see ghost-only things (ex: smuggler satchels, countdowns, camera eyes).",
+			"tooltip" = "让你看到仅幽灵可见的事物（例如：走私者挎包、倒计时、摄像眼）。",
 		),
 		list(
-			"name" = "Health Scanner",
+			"name" = "健康扫描仪",
 			"enabled" = (user.ghost_hud_flags & GHOST_HEALTH),
 			"flag" = GHOST_HEALTH,
-			"tooltip" = "Allows you to perform a health scan by clicking on someone.",
+			"tooltip" = "允许你通过点击某人进行健康扫描。",
 		),
 		list(
-			"name" = "Chemical Scanner",
+			"name" = "化学扫描仪",
 			"enabled" = (user.ghost_hud_flags & GHOST_CHEM),
 			"flag" = GHOST_CHEM,
-			"tooltip" = "Allows you to perform a chemical scan by clicking on someone.",
+			"tooltip" = "允许你通过点击某人进行化学扫描。",
 		),
 		list(
-			"name" = "Gas Scanner",
+			"name" = "气体扫描仪",
 			"enabled" = (user.ghost_hud_flags & GHOST_GAS),
 			"flag" = GHOST_GAS,
-			"tooltip" = "Allows you to perform a gas scan by clicking on a tile/atmos machine.",
+			"tooltip" = "允许你通过点击地砖或大气设备进行气体扫描。",
 		),
 	)
 
@@ -152,7 +152,7 @@ GLOBAL_DATUM_INIT(ghost_menu, /datum/ghost_menu, new)
 
 /datum/ghost_menu/proc/tray_view(mob/dead/observer/user)
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !user.client?.holder)
-		to_chat(user, span_notice("That verb is currently globally disabled."))
+		to_chat(user, span_notice("该动词目前已被全局禁用。"))
 		return
 	t_ray_scan(user)
 
@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(ghost_menu, /datum/ghost_menu, new)
 
 /datum/ghost_menu/proc/set_view(mob/dead/observer/user, new_view)
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !user.client?.holder)
-		to_chat(user, span_notice("That verb is currently globally disabled."))
+		to_chat(user, span_notice("该动词目前已被全局禁用。"))
 		return TRUE
 	var/max_view = user.client.prefs.unlock_content ? GHOST_MAX_VIEW_RANGE_MEMBER : GHOST_MAX_VIEW_RANGE_DEFAULT
 	if(max_view >= new_view && new_view < GHOST_MIN_VIEW_RANGE)

@@ -1,7 +1,7 @@
 /mob/living/basic/heretic_summon
-	name = "Eldritch Demon"
-	real_name = "Eldritch Demon"
-	desc = "A horror from beyond this realm, summoned by bad code."
+	name = "邪异恶魔"
+	real_name = "邪异恶魔"
+	desc = "来自此界之外的恐怖之物，由糟糕的代码召唤而来。"
 	icon = 'icons/mob/nonhuman-player/eldritch_mobs.dmi'
 	faction = list(FACTION_HERETIC)
 	basic_mob_flags = DEL_ON_DEATH
@@ -15,13 +15,13 @@
 	melee_attack_cooldown = CLICK_CD_MELEE
 
 	attack_sound = 'sound/items/weapons/punch1.ogg'
-	response_help_continuous = "thinks better of touching"
-	response_help_simple = "think better of touching"
-	response_disarm_continuous = "flails at"
-	response_disarm_simple = "flail at"
-	response_harm_continuous = "rips"
-	response_harm_simple = "tear"
-	death_message = "implodes into itself."
+	response_help_continuous = "想了想还是没敢碰"
+	response_help_simple = "想了想还是没敢碰"
+	response_disarm_continuous = "胡乱挥手打"
+	response_disarm_simple = "胡乱挥手打"
+	response_harm_continuous = "撕扯"
+	response_harm_simple = "撕扯"
+	death_message = "向内坍缩成了一团。"
 
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
@@ -29,7 +29,7 @@
 
 	combat_mode = TRUE
 	ai_controller = null
-	speak_emote = list("screams")
+	speak_emote = list("尖叫道")
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/heretic_summon/Initialize(mapload)

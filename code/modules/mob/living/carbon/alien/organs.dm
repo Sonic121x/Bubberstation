@@ -3,7 +3,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 5, /datum/reagent/toxin/acid = 10)
 
 /obj/item/organ/alien/plasmavessel
-	name = "plasma vessel"
+	name = "等离子囊"
 	icon_state = "plasma"
 	w_class = WEIGHT_CLASS_NORMAL
 	zone = BODY_ZONE_CHEST
@@ -24,7 +24,7 @@
 	var/plasma_rate = 5
 
 /obj/item/organ/alien/plasmavessel/large
-	name = "large plasma vessel"
+	name = "大型等离子囊"
 	icon_state = "plasma_large"
 	w_class = WEIGHT_CLASS_BULKY
 	stored_plasma = 200
@@ -35,7 +35,7 @@
 	plasma_rate = 10
 
 /obj/item/organ/alien/plasmavessel/small
-	name = "small plasma vessel"
+	name = "小型等离子囊"
 	icon_state = "plasma_small"
 	w_class = WEIGHT_CLASS_SMALL
 	stored_plasma = 100
@@ -43,7 +43,7 @@
 	plasma_rate = 2.5
 
 /obj/item/organ/alien/plasmavessel/small/tiny
-	name = "tiny plasma vessel"
+	name = "微型等离子囊"
 	icon_state = "plasma_tiny"
 	w_class = WEIGHT_CLASS_TINY
 	max_plasma = 100
@@ -102,7 +102,7 @@
 #define QUEEN_DEATH_DEBUFF_DURATION 2400
 
 /obj/item/organ/alien/hivenode
-	name = "hive node"
+	name = "虫巢节点"
 	icon_state = "hivenode"
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_XENO_HIVENODE
@@ -126,13 +126,13 @@
 	if(!owner || owner.stat == DEAD)
 		return
 	if(isalien(owner)) //Different effects for aliens than humans
-		to_chat(owner, span_userdanger("Your Queen has been struck down!"))
-		to_chat(owner, span_danger("You are struck with overwhelming agony! You feel confused, and your connection to the hivemind is severed."))
+		to_chat(owner, span_userdanger("你的女王已被击倒！"))
+		to_chat(owner, span_danger("一阵排山倒海的剧痛袭来！你感到意识混乱，与虫巢意识的连接被切断了。"))
 		owner.emote("roar")
 		owner.Stun(200) //Actually just slows them down a bit.
 
 	else if(ishuman(owner)) //Humans, being more fragile, are more overwhelmed by the mental backlash.
-		to_chat(owner, span_danger("You feel a splitting pain in your head, and are struck with a wave of nausea. You cannot hear the hivemind anymore!"))
+		to_chat(owner, span_danger("你感到头部一阵撕裂般的剧痛，随即涌起一阵恶心。你再也听不到虫巢意识的声音了！"))
 		owner.emote("scream")
 		owner.Paralyze(100)
 
@@ -151,13 +151,13 @@
 	recent_queen_death = FALSE
 	if(!owner) //In case the xeno is butchered or subjected to surgery after death.
 		return
-	to_chat(owner, span_noticealien("The pain of the queen's death is easing. You begin to hear the hivemind again."))
+	to_chat(owner, span_noticealien("女王之死带来的剧痛正在消退。你开始重新听到虫巢意识的声音。"))
 	owner.clear_alert(ALERT_XENO_NOQUEEN)
 
 #undef QUEEN_DEATH_DEBUFF_DURATION
 
 /obj/item/organ/alien/resinspinner
-	name = "resin spinner"
+	name = "树脂纺器"
 	icon_state = "spinner-x"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_XENO_RESINSPINNER
@@ -165,7 +165,7 @@
 
 
 /obj/item/organ/alien/acid
-	name = "acid gland"
+	name = "酸腺"
 	icon_state = "acid"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_XENO_ACIDGLAND
@@ -173,7 +173,7 @@
 
 
 /obj/item/organ/alien/neurotoxin
-	name = "neurotoxin gland"
+	name = "神经毒素腺"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_XENO_NEUROTOXINGLAND
@@ -181,7 +181,7 @@
 
 
 /obj/item/organ/alien/eggsac
-	name = "egg sac"
+	name = "卵囊"
 	icon_state = "eggsac"
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_XENO_EGGSAC
@@ -190,7 +190,7 @@
 
 /// The stomach that lets aliens eat people/things
 /obj/item/organ/stomach/alien
-	name = "alien stomach"
+	name = "异形胃"
 	icon_state = "stomach-x"
 	w_class = WEIGHT_CLASS_BULKY
 	actions_types = list(/datum/action/cooldown/alien/regurgitate)
@@ -234,11 +234,11 @@
 	if(!prob(40))
 		return
 	var/atom/play_from = owner || src
-	var/stomach_text = owner ? "\the [owner]'s stomach" : "\the [src]"
+	var/stomach_text = owner ? "[owner] 的胃" : "[src]"
 	if(prob(25))
-		play_from.audible_message(span_warning("You hear something rumbling inside [stomach_text]..."), \
-			span_warning("You hear something rumbling."), 4,\
-			self_message = span_userdanger("Something is rumbling inside your stomach!"))
+		play_from.audible_message(span_warning("你听到 [stomach_text] 里传来隆隆的响动……"), \
+			span_warning("你听到阵阵隆隆声。"), 4,\
+			self_message = span_userdanger("你的胃里有什么东西在翻腾！"))
 
 	if(user.client)
 		user.client.move_delay = world.time + 1.5 SECONDS
@@ -252,7 +252,7 @@
 		var/list/attack_verbs = pokie.attack_verb_continuous
 		impact = rand(round(dmg / 4), dmg)
 		attack_name = pokie.name
-		attack_verb = length(attack_verbs) ? "[pick(attack_verbs)]" : "attacks"
+		attack_verb = length(attack_verbs) ? "[pick(attack_verbs)]" : "攻击"
 
 	if(!impact)
 		return
@@ -269,8 +269,8 @@
 		if(damage_ratio < part_dam_ratio)
 			damage_ratio = part_dam_ratio
 
-	play_from.visible_message(span_danger("[user] [attack_verb] [stomach_text] wall with the [attack_name]!"), \
-			span_userdanger("[user] [attack_verb] your stomach wall with the [attack_name]!"))
+	play_from.visible_message(span_danger("[user] 用 [attack_name] [attack_verb] [stomach_text] 的胃壁！"), \
+			span_userdanger("[user] 用 [attack_name] [attack_verb] 你的胃壁！"))
 
 	// At 100% damage, the stomach burts
 	// Otherwise, we give them a -50% -> 50% chance scaling with damage dealt
@@ -297,18 +297,18 @@
 		return
 	// Failure condition
 	if(isalienadult(user))
-		play_from.visible_message(span_danger("[user] blows a hole in [stomach_text] and escapes!"), \
-			span_userdanger("As your hive's food bursts out of your stomach, one thought fills your mind. \"Oh, so this is how the other side feels\""))
+		play_from.visible_message(span_danger("[user] 在 [stomach_text] 上炸开一个洞逃了出去！"), \
+			span_userdanger("当虫巢的食物从你的胃里破体而出，你脑中只剩一个念头：“哦，原来在另一边是这种滋味。”"))
 	else // Just to be safe ya know?
-		play_from.visible_message(span_danger("[user] blows a hole in [stomach_text] and escapes!"), \
-			span_userdanger("[user] escapes from your [stomach_text]. Hell, that hurts."))
+		play_from.visible_message(span_danger("[user] 在 [stomach_text] 上炸开一个洞逃了出去！"), \
+			span_userdanger("[user] 从 [stomach_text] 里逃了出去。见鬼，真疼。"))
 
 	playsound(get_turf(play_from), 'sound/mobs/non-humanoids/alien/alien_explode.ogg', 100, extrarange = 4)
 	eject_stomach(border_diamond_range_turfs(play_from, 6), 5, 1.5, 1, 8)
 	shake_camera(user, 1 SECONDS, 3)
 	if(owner)
 		shake_camera(owner, 2, 5)
-		owner.investigate_log("has been gibbed by something inside [owner.p_their()] stomach.", INVESTIGATE_DEATHS)
+		owner.investigate_log("被 [owner.p_their()] 胃里的某个东西炸成了碎块。", INVESTIGATE_DEATHS)
 		owner.gib(DROP_ALL_REMAINS)
 	qdel(src)
 

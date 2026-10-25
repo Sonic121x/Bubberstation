@@ -24,8 +24,8 @@
 #define RESTRICT_CONFIRMATION (1<<11)
 
 /obj/machinery/ore_silo
-	name = "ore silo"
-	desc = "An all-in-one bluespace storage and transmission system for the station's mineral distribution needs."
+	name = "矿石筒仓"
+	desc = "集蓝空间储存与传输于一体的系统，满足空间站的矿物分配需求。"
 	icon = 'icons/obj/machines/ore_silo.dmi'
 	icon_state = "silo"
 	density = TRUE
@@ -54,18 +54,18 @@
 	)
 	///List of announcement messages for silo restrictions
 	var/static/alist/announcement_messages = alist(
-		BAN_ATTEMPT_FAILURE_NO_ACCESS = "ACCESS ENFORCEMENT FAILURE: $SILO_USER_NAME lacks supply command authority.",
-		BAN_ATTEMPT_FAILURE_CHALLENGING_DA_CHIEF = "ACCESS ENFORCEMENT FAILURE: $SILO_USER_NAME attempting subversion of supply command authority.",
-		BAN_ATTEMPT_FAILURE_SOULLESS_MACHINE = "$SILO_USER_NAME INTERFACE_EXCEPTION -> BANNED_USERS+=\[$TARGET_NAME\] => NO_OP",
-		BAN_CONFIRMATION = "ACCESS ENFORCEMENT CONFIRMATION\[$SILO_USER_NAME\]: $TARGET_NAME banned from ore silo access.",
-		UNBAN_CONFIRMATION = "ACCESS ENFORCEMENT CONFIRMATION\[$SILO_USER_NAME\]: $TARGET_NAME unbanned from ore silo access.",
+		BAN_ATTEMPT_FAILURE_NO_ACCESS = "权限强制执行失败：$SILO_USER_NAME 缺少补给指挥权限。",
+		BAN_ATTEMPT_FAILURE_CHALLENGING_DA_CHIEF = "权限强制执行失败：$SILO_USER_NAME 试图篡夺补给指挥权限。",
+		BAN_ATTEMPT_FAILURE_SOULLESS_MACHINE = "$SILO_USER_NAME 接口异常 -> BANNED_USERS+=\[$TARGET_NAME\] => 无操作",
+		BAN_CONFIRMATION = "权限强制执行确认\[$SILO_USER_NAME\]：$TARGET_NAME 已被禁止访问矿石筒仓。",
+		UNBAN_CONFIRMATION = "权限强制执行确认\[$SILO_USER_NAME\]：$TARGET_NAME 已被解除矿石筒仓访问禁令。",
 		FAILED_OPERATION_SUSPICIOUS = "NULL_ACCOUNT_RESOLVE_PTR_#?",
-		FAILED_OPERATION_NO_BANK_ID = "ACCESS ENFORCEMENT FAILURE: No account ID found. Please contact a banker.",
-		UNRESTRICT_FAILURE_NO_ACCESS = "ID ACCESS REQUIREMENT ENFORCED: $SILO_USER_NAME lacks supply command authority; ID ACCESS REQUIREMENT REMOVAL FAILED.",
-		UNRESTRICT_FAILURE_SOULLESS_MACHINE = "$SILO_USER_NAME INTERFACE_EXCEPTION -> ID_ACCESS_REQUIREMENT = !ID_ACCESS_REQUIREMENT => NO_OP",
-		RESTRICT_CONFIRMATION = "ID ACCESS REQUIREMENT ROUTINE STARTED: $SILO_USER_NAME has enforced ID read requirement for this ore silo.",
-		UNRESTRICT_CONFIRMATION = "ID ACCESS REQUIREMENT ROUTINE SUSPENDED: $SILO_USER_NAME has removed ID read requirement for this ore silo.",
-		RESTRICT_FAILURE = "ID ACCESS REQUIREMENT ROUTINE FAILED TO START: $SILO_USER_NAME()"
+		FAILED_OPERATION_NO_BANK_ID = "权限强制执行失败：未找到账户 ID。请联系银行职员。",
+		UNRESTRICT_FAILURE_NO_ACCESS = "ID 准入要求已强制执行：$SILO_USER_NAME 缺少补给指挥权限；ID 准入要求解除失败。",
+		UNRESTRICT_FAILURE_SOULLESS_MACHINE = "$SILO_USER_NAME 接口异常 -> ID_ACCESS_REQUIREMENT = !ID_ACCESS_REQUIREMENT => 无操作",
+		RESTRICT_CONFIRMATION = "ID 准入要求程序已启动：$SILO_USER_NAME 已为此矿石筒仓启用 ID 读取要求。",
+		UNRESTRICT_CONFIRMATION = "ID 准入要求程序已挂起：$SILO_USER_NAME 已移除此矿石筒仓的 ID 读取要求。",
+		RESTRICT_FAILURE = "ID 准入要求程序启动失败：$SILO_USER_NAME()"
 	)
 
 /obj/machinery/ore_silo/Initialize(mapload)
@@ -124,10 +124,10 @@
 
 /obj/machinery/ore_silo/examine(mob/user)
 	. = ..()
-	. += span_notice("It can be linked to techfabs, circuit printers and protolathes with a multitool.")
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("可用多功能工具将其与科技制造机、电路打印机和原型车床连接。")
+	. += span_notice("其维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "关闭" : "打开"]。")
 	if(panel_open)
-		. += span_notice("The whole machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("整台机器可以被[EXAMINE_HINT("撬开")]拆解。")
 
 /obj/machinery/ore_silo/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
@@ -135,15 +135,15 @@
 		return
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_MULTITOOL)
-		context[SCREENTIP_CONTEXT_LMB] = "Log Silo"
+		context[SCREENTIP_CONTEXT_LMB] = "登记筒仓"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/ore_silo/proc/on_item_consumed(datum/material_container/container, obj/item/item_inserted, last_inserted_id, mats_consumed, amount_inserted, atom/context, alist/user_data)
@@ -166,7 +166,7 @@
 
 /obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
 	I.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已保存到多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 
@@ -213,15 +213,15 @@
 	if(user_data[SILICON_OVERRIDE] || user_data[CHAMELEON_OVERRIDE] || astype(user_data["accesses"], /list)?.Find(ACCESS_QM))
 		return COMPONENT_ORE_SILO_ALLOW
 	if(user_data[ID_READ_FAILURE])
-		physical_receptacle.say("SILO ERR: ID interface failure. Please contact the Head of Personnel.")
+		physical_receptacle.say("筒仓错误：ID 接口故障。请联系人事主管。")
 		return COMPONENT_ORE_SILO_DENY
 	if(!user_data["account_id"] || !isnum(user_data["account_id"]))
 		if(prob(5))
-			physical_receptacle.say("SILO ERR: Bank account ID not found. Initiating anti-communist silo-access policy.")
-		physical_receptacle.say("SILO ERR: No account ID found. Please contact Head of Personnel.")
+			physical_receptacle.say("筒仓错误：未找到银行账户 ID。正在启动反共产主义筒仓准入策略。")
+		physical_receptacle.say("筒仓错误：未找到账户 ID。请联系人事主管。")
 		return COMPONENT_ORE_SILO_DENY
 	if(banned_users.Find(user_data["account_id"]))
-		physical_receptacle.say("SILO ERR: You are banned from using this ore silo.")
+		physical_receptacle.say("筒仓错误：你已被禁止使用此矿石筒仓。")
 		return COMPONENT_ORE_SILO_DENY
 	return COMPONENT_ORE_SILO_ALLOW
 
@@ -233,7 +233,7 @@
 /obj/machinery/ore_silo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "OreSilo", "Ore Silo Control")
+		ui = new(user, src, "OreSilo", "矿石筒仓控制")
 		ui.open()
 
 /obj/machinery/ore_silo/ui_static_data(mob/user)
@@ -252,7 +252,7 @@
 				"icon" = icon2base64(icon(initial(parent.icon), initial(parent.icon_state), frame = 1)),
 				"name" = parent.name,
 				"on_hold" = !!holds[remote],
-				"location" = get_area_name(parent, TRUE),
+				"location" = chinese_area_display(get_area_name(parent, TRUE)),
 			)
 		)
 
@@ -351,7 +351,7 @@
 		CRASH("Bad arguments passed to [callee]")
 	var/emagged = obj_flags & EMAGGED
 	if((isAI(user) || iscyborg(user) || isdrone(user)) && !emagged)
-		to_chat(user, span_danger("A scroll of red text occludes your vision: ACCESS ENFORCEMENT _disabled_ for SILICON INTERFACE."))
+		to_chat(user, span_danger("一片红色文字遮蔽了你的视野：面向 SILICON INTERFACE 的权限强制执行已_禁用_。"))
 		user.flash_act(intensity = 1, affect_silicon = TRUE)
 		handle_access_action_feedback(
 			BAN_ATTEMPT_FAILURE_SOULLESS_MACHINE,
@@ -367,7 +367,7 @@
 	// like ban people who haven't joined the round yet
 	var/haxxor_card_ban_immunity = !isnull(target_user_data[CHAMELEON_OVERRIDE])
 
-	to_chat(user, span_warning("You press the button to [target_is_banned ? "un" : ""]ban [target_user_data["name"]]'s account..."))
+	to_chat(user, span_warning("你按下按钮，[target_is_banned ? "解除" : ""]封禁 [target_user_data["name"]] 的账户……"))
 	// No feedback if emagged
 	if(emagged)
 		if(!haxxor_card_ban_immunity && isnum(target_bank_id))
@@ -566,7 +566,7 @@
 /datum/ore_silo_log/New(obj/machinery/M, _action, _amount, _noun, list/mats=list(), alist/user_data)
 	timestamp = round_timestamp()
 	machine_name = M.name
-	area_name = get_area_name(M, TRUE)
+	area_name = chinese_area_display(get_area_name(M, TRUE))
 	action = _action
 	amount = _amount
 	noun = _noun
@@ -619,5 +619,5 @@
 		var/val = round(materials[key]) / SHEET_MATERIAL_AMOUNT
 		msg += separator
 		separator = ", "
-		msg += "[amount < 0 ? "-" : "+"][val] [M.name]"
+		msg += "[amount < 0 ? "-" : "+"][val] [chinese_material_display(M.name)]"
 	return msg.Join()

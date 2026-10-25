@@ -9,7 +9,7 @@
 	data["powerStatus"] = bot_mode_flags & BOT_MODE_ON
 	data["locked"] = bot_access_flags & BOT_COVER_LOCKED
 	data["siliconUser"] = HAS_SILICON_ACCESS(user)
-	data["mode"] = mode ? "[mode]" : "Ready"
+	data["mode"] = mode ? "[mode]" : "就绪"
 	data["modeStatus"] = ""
 	switch(mode)
 		if(BOT_IDLE, BOT_DELIVER, BOT_GO_HOME)
@@ -59,18 +59,18 @@
 		if("destination")
 			var/new_dest
 			if(pda)
-				new_dest = tgui_input_list(user, "Enter Destination", "Mulebot Settings", GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_DESTINATION_BEACON])
+				new_dest = tgui_input_list(user, "输入目的地", "骡子货运机器人设置", GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_DESTINATION_BEACON])
 			else
 				new_dest = params["value"]
 			if(new_dest)
 				set_destination(new_dest)
 		if("setid")
-			var/new_id = tgui_input_text(user, "Enter ID", "ID Assignment", id, max_length = MAX_NAME_LEN)
+			var/new_id = tgui_input_text(user, "输入编号", "编号分配", id, max_length = MAX_NAME_LEN)
 			if(new_id)
 				set_id(new_id)
-				name = "\improper MULEbot [new_id]"
+				name = "\improper 骡子货运机器人 [new_id]"
 		if("sethome")
-			var/new_home = tgui_input_list(user, "Enter Home", "Mulebot Settings", GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_HOME_BEACON])
+			var/new_home = tgui_input_list(user, "输入基地地点", "骡子货运机器人设置", GLOB.deliverybeacontags, ai_controller.blackboard[BB_MULEBOT_HOME_BEACON])
 			if(new_home)
 				ai_controller.set_blackboard_key(BB_MULEBOT_HOME_BEACON, new_home)
 		if("unload")

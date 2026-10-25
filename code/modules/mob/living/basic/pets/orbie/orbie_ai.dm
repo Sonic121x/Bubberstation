@@ -58,7 +58,7 @@
 	if(QDELETED(target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
-	living_pawn.manual_emote("plays with [target]!")
+	living_pawn.manual_emote("和 [target] 玩耍！")
 	living_pawn.spin(spintime = 4, speed = 1)
 	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/mob, ClickOn), target)
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
@@ -101,8 +101,8 @@
 
 ///command to make our pet turn its lights on, we need to be level 2 to activate this ability
 /datum/pet_command/untargeted_ability/pet_lights
-	command_name = "Lights"
-	command_desc = "Toggle your pet's lights!"
+	command_name = "灯光"
+	command_desc = "开关你宠物的灯光！"
 	radial_icon = 'icons/mob/simple/pets.dmi'
 	radial_icon_state = "orbie_lights_action"
 	speech_commands = list("lights", "light", "toggle")
@@ -115,20 +115,20 @@
 	return ..()
 
 /datum/pet_command/use_ability/pet_lights/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to toggle its lights!"
+	return "示意 [living_pet] 开关灯光！"
 
 /datum/pet_command/use_ability/take_photo
-	command_name = "Photo"
-	command_desc = "Make your pet take a photo!"
+	command_name = "拍照"
+	command_desc = "让你的宠物拍一张照片！"
 	radial_icon = 'icons/obj/art/camera.dmi'
 	radial_icon_state = "camera"
 	speech_commands = list("photo", "picture", "image")
-	command_feedback = "Readys camera mode"
+	command_feedback = "已准备相机模式"
 	pet_ability_key = BB_PHOTO_ABILITY
 	targeting_strategy_key = BB_TARGETING_STRATEGY
 
 /datum/pet_command/use_ability/take_photo/retrieve_command_text(atom/living_pet, atom/target)
-	return isnull(target) ? null : "signals [living_pet] to take a photo of [target]!"
+	return isnull(target) ? null : "示意 [living_pet] 给 [target] 拍张照片！"
 
 
 /datum/pet_command/use_ability/take_photo/execute_action(datum/ai_controller/controller)
@@ -138,8 +138,8 @@
 	return ..()
 
 /datum/pet_command/perform_trick_sequence
-	command_name = "Trick Sequence"
-	command_desc = "A trick sequence programmable through your PDA!"
+	command_name = "特技序列"
+	command_desc = "可通过你的 PDA 编程的特技序列！"
 
 /datum/pet_command/perform_trick_sequence/find_command_in_text(spoken_text, check_verbosity = FALSE)
 	var/mob/living/living_pawn = weak_parent.resolve()
@@ -151,7 +151,7 @@
 	return findtext(spoken_text, text_command)
 
 /datum/pet_command/perform_trick_sequence/light/retrieve_command_text(atom/living_pet, atom/target)
-	return "signals [living_pet] to dance!"
+	return "示意 [living_pet] 跳舞！"
 
 /datum/pet_command/perform_trick_sequence/execute_action(datum/ai_controller/controller)
 	var/mob/living/living_pawn = controller.pawn

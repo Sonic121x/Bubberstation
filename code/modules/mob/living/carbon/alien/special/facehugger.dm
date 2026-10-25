@@ -13,8 +13,8 @@
 #define FACEHUGGER_DEAD 3
 
 /obj/item/clothing/mask/facehugger
-	name = "alien"
-	desc = "It has some sort of a tube at the end of its tail."
+	name = "异形"
+	desc = "它的尾巴末端长着某种管子。"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "facehugger"
 	base_icon_state = "facehugger"
@@ -31,7 +31,7 @@
 	// SKYRAT EDIT ADDITION START
 	special_desc_requirement = EXAMINE_CHECK_JOB
 	special_desc_jobs = list("Scientist, Research Director")
-	special_desc = "This alien is an extremely dangerous life form capable of creating a xenomorph. You would know well not to approach without full body biological protection."
+	special_desc = "这只异形是一种极其危险的生命体，能够孕育出异形。你很清楚，没有全身生物防护就绝不该靠近它。"
 	// SKYRAT EDIT ADDITION END
 	slowdown = 2
 	clothing_traits = list(TRAIT_FORCE_WHISPER)
@@ -87,11 +87,11 @@
 		return
 	switch(facehugger_state)
 		if(FACEHUGGER_DEAD, FACEHUGGER_ASLEEP)
-			. += span_bolddanger("[src] is not moving.")
+			. += span_bolddanger("[src] 一动不动。")
 		if(FACEHUGGER_AWAKE)
-			. += span_bolddanger("[src] seems to be active!")
+			. += span_bolddanger("[src] 似乎处于活跃状态！")
 	if (sterile)
-		. += span_bolddanger("It looks like the proboscis has been removed.")
+		. += span_bolddanger("看起来它的口器已经被摘除了。")
 
 /obj/item/clothing/mask/facehugger/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
 	return (exposed_temperature > 300)
@@ -160,21 +160,21 @@
 	if(istype(target.wear_mask, /obj/item/clothing/mask/facehugger))
 		return FALSE
 	// passed initial checks - time to leap!
-	target.visible_message(span_danger("[src] leaps at [target]'s face!"), \
-						span_userdanger("[src] leaps at your face!"))
+	target.visible_message(span_danger("[src] 朝 [target] 的脸扑了过去！"), \
+						span_userdanger("[src] 朝你的脸扑了过来！"))
 
 	// probiscis-blocker handling
 	if(target.is_mouth_covered(ITEM_SLOT_HEAD))
-		target.visible_message(span_danger("[src] smashes against [target]'s [target.head]!"), \
-							span_userdanger("[src] smashes against your [target.head]!"))
+		target.visible_message(span_danger("[src] 撞在 [target] 的 [target.head] 上！"), \
+							span_userdanger("[src] 撞在你的 [target.head] 上！"))
 		die()
 		return FALSE
 
 	if(target.wear_mask)
 		var/obj/item/worn_mask = target.wear_mask
 		if(target.dropItemToGround(worn_mask))
-			target.visible_message(span_danger("[src] tears [worn_mask] off of [target]'s face!"), \
-								span_userdanger("[src] tears [worn_mask] off of your face!"))
+			target.visible_message(span_danger("[src] 把 [worn_mask] 从 [target] 的脸上扯了下来！"), \
+								span_userdanger("[src] 把 [worn_mask] 从你的脸上扯了下来！"))
 
 	if(!target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1))
 		log_combat(target, src, "failed facehugged by")
@@ -187,7 +187,7 @@
 		return
 
 	if(!IS_UNCONSCIOUS(victim)) //sorry bro you gotta be awake
-		victim.say("AAAA!!") //triggers muffled speech and also visual feedback i guess
+		victim.say("啊啊啊！！") //triggers muffled speech and also visual feedback i guess
 	// early returns and validity checks done: attach.
 	attached++
 	//ensure we detach once we no longer need to be attached
@@ -212,8 +212,8 @@
 		return
 
 	if(!sterile)
-		target.visible_message(span_danger("[src] falls limp after violating [target]'s face!"), \
-								span_userdanger("[src] falls limp after violating your face!"))
+		target.visible_message(span_danger("[src] 在侵犯了 [target] 的脸之后瘫软下来！"), \
+								span_userdanger("[src] 在侵犯了你的脸之后瘫软下来！"))
 
 		die()
 		icon_state = "[base_icon_state]_impregnated"
@@ -222,14 +222,14 @@
 		var/obj/item/bodypart/chest/LC = target.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || IS_ORGANIC_LIMB(LC)) && !target.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 			new /obj/item/organ/body_egg/alien_embryo(target)
-			target.log_message("was impregnated by a facehugger", LOG_GAME)
-			target.log_message("was impregnated by a facehugger", LOG_VICTIM, log_globally = FALSE)
+			target.log_message("被抱脸虫寄生了", LOG_GAME)
+			target.log_message("被抱脸虫寄生了", LOG_VICTIM, log_globally = FALSE)
 			if(target.stat != DEAD && istype(target.buckled, /obj/structure/bed/nest)) //Handles toggling the nest sustenance status effect if the user was already buckled to a nest.
 				target.apply_status_effect(/datum/status_effect/nest_sustenance)
 
 	else
-		target.visible_message(span_danger("[src] violates [target]'s face!"), \
-								span_userdanger("[src] violates your face!"))
+		target.visible_message(span_danger("[src] 侵犯了 [target] 的脸！"), \
+								span_userdanger("[src] 侵犯了你的脸！"))
 
 /obj/item/clothing/mask/facehugger/proc/go_active()
 	if(facehugger_state == FACEHUGGER_DEAD || facehugger_state == FACEHUGGER_AWAKE)
@@ -258,7 +258,7 @@
 	inhand_icon_state = "facehugger_inactive"
 	facehugger_state = FACEHUGGER_DEAD
 
-	visible_message(span_danger("[src] curls up into a ball!"))
+	visible_message(span_danger("[src] 蜷缩成一团！"))
 
 	// chest maybe because getting slammed in the chest would knock it off your face while dead
 	AddComponent(/datum/component/knockoff, knockoff_chance = 40, target_zones = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST), slots_knockoffable = slot_flags)
@@ -267,7 +267,7 @@
 	if(!real || sterile || facehugger_state == FACEHUGGER_DEAD || user.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 		return ..()
 	if(user.get_item_by_slot(slot_flags) == src)
-		to_chat(user, span_userdanger("[src] is latched on too tight! Get help or wait for it to let go!"))
+		to_chat(user, span_userdanger("[src] 吸得太紧了！快叫人帮忙，或者等它自己松开！"))
 		return FALSE
 	return ..()
 
@@ -278,7 +278,7 @@
 	if(!real || sterile || user.get_organ_by_type(/obj/item/organ/body_egg/alien_embryo))
 		return ..()
 	if(wearer.get_item_by_slot(slot_flags) == src && facehugger_state != FACEHUGGER_DEAD)
-		to_chat(user, span_userdanger("[src] is latched on too tight! Get help or wait for it to let go!"))
+		to_chat(user, span_userdanger("[src] 吸得太紧了！快叫人帮忙，或者等它自己松开！"))
 		return
 	return ..()
 
@@ -301,19 +301,19 @@
 	SIGNAL_HANDLER
 	if(facehugger_state != FACEHUGGER_AWAKE)
 		return NONE
-	to_chat(user, span_danger("There's something moving inside of \the [letter]!"))
+	to_chat(user, span_danger("有什么东西正在 [letter] 里面动！"))
 	leap_to(user)
 	return COMPONENT_TRAITOR_MAIL_HANDLED
 
 /obj/item/clothing/mask/facehugger/lamarr
-	name = "Lamarr"
-	desc = "The Research Director's pet, a domesticated and debeaked alien. Friendly, but may still try to couple with your head."
+	name = "拉玛"
+	desc = "科研主管的宠物，一只被驯化并拔去口器的异形。性情友善，但仍可能试图和你的脑袋交配。"
 	sterile = TRUE
 	slowdown = 1.5 //lamarr is too fat after being fed in captivity to effectively slow people down or something
 	// SKYRAT EDIT ADDITION START: job-restricted examine text
 	special_desc_requirement = EXAMINE_CHECK_ROLE
 	special_desc_roles = list("ROLE_ALIEN")
-	special_desc = "This young one has been cruelly mutilated. It lacks the capability to fill a host with our sisters."
+	special_desc = "这个幼体遭到了残忍的残害。它已不具备把我们的姐妹们植入宿主体内的能力。"
 	// SKYRAT EDIT ADDITION END
 
 /obj/item/clothing/mask/facehugger/dead
@@ -330,7 +330,7 @@
 
 /obj/item/clothing/mask/facehugger/toy
 	inhand_icon_state = "facehugger_inactive"
-	desc = "A toy often used to play pranks on other miners by putting it in their beds. It takes a bit to recharge after latching onto something."
+	desc = "一种玩具，矿工们常把它塞进别人的床铺来恶作剧。吸住东西之后需要一点时间重新充能。"
 	real = FALSE
 	sterile = TRUE
 	tint = 3 //Makes it feel more authentic when it latches on

@@ -1,5 +1,5 @@
 /obj/effect/sliding_puzzle
-	name = "Sliding puzzle generator"
+	name = "滑块拼图生成器"
 	icon = 'icons/obj/toys/balloons.dmi' //mapping
 	icon_state = "syndballoon"
 	invisibility = INVISIBILITY_ABSTRACT
@@ -195,8 +195,8 @@
 		make_solvable()
 
 /obj/structure/puzzle_element
-	name = "mysterious pillar"
-	desc = "Puzzling..."
+	name = "神秘石柱"
+	desc = "令人费解……"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "puzzle_pillar"
 	anchored = FALSE
@@ -287,8 +287,8 @@
 
 /obj/effect/sliding_puzzle/prison/Destroy()
 	if(prisoner)
-		to_chat(prisoner,span_userdanger("With the cube broken by force, you can feel your body falling apart."))
-		prisoner.investigate_log("has died from their prison puzzle being destroyed.", INVESTIGATE_DEATHS)
+		to_chat(prisoner,span_userdanger("随着方块被强行破坏，你能感觉到自己的身体正在崩解。"))
+		prisoner.investigate_log("因自己的牢狱拼图被摧毁而死亡。", INVESTIGATE_DEATHS)
 		prisoner.death()
 		qdel(prisoner)
 	. = ..()
@@ -315,8 +315,8 @@
 	return
 
 /obj/item/prisoncube
-	name = "prison cube"
-	desc = "Dusty cube with humanoid imprint on it."
+	name = "牢狱方块"
+	desc = "布满灰尘的方块，上面印着人形轮廓。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "prison_cube"
 
@@ -329,13 +329,13 @@
 	if(istype(carbon_victim) && (carbon_victim.handcuffed || IS_UNCONSCIOUS_OR_CRIT(carbon_victim)))
 		user.do_attack_animation(carbon_victim)
 		if(!puzzle_imprison(carbon_victim))
-			to_chat(user, span_warning("[src] does nothing."))
+			to_chat(user, span_warning("[src] 没有任何反应。"))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_warning("You trap [carbon_victim] in the prison cube!"))
+		to_chat(user, span_warning("你把 [carbon_victim] 困在了牢狱方块中！"))
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("[src] only accepts restrained or unconscious prisoners."))
+	to_chat(user, span_notice("[src] 只接受被束缚或失去意识的囚犯。"))
 	return ITEM_INTERACT_BLOCKING
 
 /proc/puzzle_imprison(mob/living/prisoner)
@@ -348,7 +348,7 @@
 	//First grab the prisoner and move them temporarily into the generator so they won't get thrown around.
 	ADD_TRAIT(prisoner, TRAIT_NO_TRANSFORM, cube.element_type)
 	prisoner.forceMove(cube)
-	to_chat(prisoner,span_userdanger("You're trapped by the prison cube! You will remain trapped until someone solves it."))
+	to_chat(prisoner,span_userdanger("你被牢狱方块困住了！在有人解开它之前，你无法脱身。"))
 
 	//Clear the area from objects (and cube user)
 	var/list/things_to_throw = list()

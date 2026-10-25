@@ -1,8 +1,8 @@
 //These objects are used in the cardinal sin-themed ruins (i.e. Gluttony, Pride...)
 
 /obj/effect/gluttony //Gluttony's wall: Used in the Gluttony ruin. Only lets the overweight through.
-	name = "gluttony's wall"
-	desc = "Only those who truly indulge may pass."
+	name = "暴食之墙"
+	desc = "唯有真正沉溺于口腹之欲者方可通行。"
 	anchored = TRUE
 	density = TRUE
 	icon_state = "blob"
@@ -14,18 +14,18 @@
 	if(ishuman(mover))
 		var/mob/living/carbon/human/H = mover
 		if(H.nutrition >= NUTRITION_LEVEL_FAT)
-			H.visible_message(span_warning("[H] pushes through [src]!"), span_notice("You've seen and eaten worse than this."))
+			H.visible_message(span_warning("[H] 挤过了 [src]！"), span_notice("你见过、也吃过比这更糟糕的东西。"))
 			return TRUE
 		else
-			to_chat(H, span_warning("You're repulsed by even looking at [src]. Only a pig could force themselves to go through it."))
+			to_chat(H, span_warning("光是看着 [src] 你就感到恶心。只有猪才逼得自己钻过去。"))
 	if(istype(mover, /mob/living/basic/morph))
 		return TRUE
 
 //can't be bothered to do sloth right now, will make later
 
 /obj/item/knife/envy //Envy's knife: Found in the Envy ruin. Attackers take on the appearance of whoever they strike.
-	name = "envy's knife"
-	desc = "Their success will be yours."
+	name = "嫉妒之刃"
+	desc = "他们的成功将归于你。"
 	icon = 'icons/obj/weapons/stabby.dmi'
 	icon_state = "envyknife"
 	inhand_icon_state = "envyknife"
@@ -49,5 +49,5 @@
 	H.dna.copy_dna(user.dna, COPY_DNA_SE|COPY_DNA_SPECIES)
 	user.updateappearance(mutcolor_update=1)
 	user.domutcheck()
-	user.visible_message(span_warning("[user]'s appearance shifts into [H]'s!"), \
-	span_bolddanger("[H.p_They()] think[H.p_s()] [H.p_theyre()] <i>sooo</i> much better than you. Not anymore, [H.p_they()] won't."))
+	user.visible_message(span_warning("[user] 的外貌变成了 [H] 的模样！"), \
+	span_bolddanger("[H.p_They()] 觉得 [H.p_theyre()] 比你<i>强得多</i>。不会再这样了，[H.p_they()] 再也没法这么想了。"))

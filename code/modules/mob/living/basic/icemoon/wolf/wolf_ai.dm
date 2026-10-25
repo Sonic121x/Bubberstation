@@ -7,11 +7,11 @@
 		BB_BASIC_MOB_FLEE_DISTANCE = 30,
 		BB_VISION_RANGE = 9,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_EMOTE = "unleashes a chilling howl, calling for aid!",
+		BB_REINFORCEMENTS_EMOTE = "发出一声令人胆寒的嚎叫，呼唤支援！",
 		BB_OWNER_SELF_HARM_RESPONSES = list(
-			"*me howls in dissaproval.",
-			"*me whines sadly.",
-			"*me attempts to take your hand in its mouth."
+			"*我 不满地嚎叫。",
+			"*我 伤心地呜咽。",
+			"*我 试着用嘴叼起你的手。"
 		)
 	)
 

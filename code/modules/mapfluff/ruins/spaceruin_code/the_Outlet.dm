@@ -1,36 +1,36 @@
 /// lore papers
 /obj/item/paper/fluff/ruins/the_outlet/amos_note
-	name = "a Formal complaint from Amos Rodriguez"
-	default_raw_text = "Ugh, if i Have to put up with any more stupid bullshit here i am going to lose my mind.<BR> Calebs been riding my ass about not treating customers with due respect and i couldn't give less of a shit honestly, for fucks sakes every time a customer needs to go to the bathroom i have to give them my ID card because the authentication was done by Caleb himself the dumb bastard.<BR><BR> If that wasn't enough i always get complaints from customers about how they keep hearing scratching on the walls while they're doing their business, and i thought caleb was the only crazy asshole around here!<BR><BR> I think i'm going to put in my two weeks notice here soon, i just can't handle this place anymore."
+	name = "阿莫斯·罗德里格斯的一封正式投诉"
+	default_raw_text = "唉，要是我还得在这儿忍受更多这种愚蠢的破事，我就要疯了。<BR> 卡莱布一直拿我没给顾客应有的尊重这事训我，说实话我一点儿也不在乎，真是的，每次顾客要上厕所，我都得把自己的 ID 卡给他们，因为认证是卡莱布那蠢货亲自搞的。<BR><BR> 这还不算完，顾客总跟我抱怨他们上厕所时老听见墙里有抓挠声，我还以为卡莱布是这儿唯一的疯子呢！<BR><BR> 我看我很快就得递辞呈了，这地方我实在受不了了。"
 
 /obj/item/paper/fluff/ruins/the_outlet/warning_notice
-	name = "Warning to the cashiers"
-	default_raw_text = "it has come to my attention that some people cannot keep their hands where they should be, and have been trying to enter the merchandise storage room.<BR> The Merchandise storage room is off limits for a reason, and no its not because we have a horde of treasure from a long lost civilization, or because me and my wife are actually aliens sent to your asteroid colonies to harvest your organs.<BR> we keep all of our organic fabrics and materials at a consistent temperature to ensure their quality for when we hand craft the costumes and outfits we sell, and we can't run the risk of ever, and i mean EVER, having them exposed to the atmospherics outside of their contained room.<BR> This will serve as the one and final warning, if you are caught trying to enter the merchandise storage from here on out, we will fire you on the spot, and call the authorities to have them process you for breaking and entering."
+	name = "致收银员的警告"
+	default_raw_text = "我注意到有些人管不住自己的手，一直试图进入商品储藏室。<BR> 商品储藏室禁止入内是有原因的，不，不是因为里面藏着一个失落文明的宝藏，也不是因为我和我妻子其实是外星人，被派到你们的小行星殖民地来收割器官。<BR> 我们把所有有机布料和材料都保存在恒定的温度下，以确保我们手工制作的、出售的服装和装束品质如一，我们绝不能冒任何风险，我是说任何风险，让它们暴露在储藏室之外的大气环境中。<BR> 这是第一次也是最后一次警告。从今往后，若有人被发现试图进入商品储藏室，我们将当场解雇，并通知当局以非法入侵罪处理你。"
 
 /obj/item/paper/fluff/ruins/the_outlet/tanners_steps
-	name = "Formula for the perfect Leather"
-	default_raw_text = "After years of extensive research, i've finally perfected my method of dissection in order to achieve the highest quality of leather possible.<BR> Premium Quality, No ripples, No spotting, No discoloration, perfect every time.<BR> i'm jotting this down now so i don't forget later, so heres the steps as it follows: <BR><BR> First things first, make sure your subject cannot resist, either sedate them fully or sever the muscles in their calves and wrists. This step is very important, Sedation produces a less quality product but is usually easier to work around. If you're in a hurry use sedation, otherwise just sever the muscles, as its produces a much better product overall.<BR><BR> now that the subject has been pacified by your method of choice for today take your scalpel and follow the markers on the following sketches:<BR><BR>*The notes section is full of Complex diagrams and sketches of surgical procedures and their differences in the steps taken between lizards and humans. the paper smells faintly of formaldehyde and rot.*"
+	name = "完美皮革的配方"
+	default_raw_text = "经过多年深入研究，我终于完善了自己的解剖方法，以获得尽可能最高品质的皮革。<BR> 顶级品质，无褶皱、无斑点、无变色，每次都完美无瑕。<BR> 我现在把它记下来，免得以后忘了，步骤如下：<BR><BR> 首先，确保你的对象无法反抗，要么让他们完全镇静，要么切断他们小腿和手腕上的肌肉。这一步非常重要。镇静产出的产品品质稍差，但通常更容易操作。如果你赶时间，就用镇静；否则就直接切断肌肉，因为总体上产出的产品要好得多。<BR><BR> 既然对象已被你今天选定的方法制服，那就拿起你的手术刀，按照下面草图上的标记下手：<BR><BR>*笔记部分满是复杂的外科手术图解和素描，以及蜥蜴人与人类在操作步骤上的差异。纸张散发着淡淡的甲醛和腐臭气味。*"
 
 /obj/item/paper/crumpled/bloody/ruins/the_outlet/concerned_note
-	name = "barely legible note"
-	default_raw_text = "Calebs starting to really freak me out.<BR> His obsession with making the perfect clothes has hit an all time high, and i'm starting to get worried that he's gotten into drugs or something even worse with the way he's been acting around me and everyone else lately.<BR> Just the other day he snapped at my friend denise because she tripped on our rug and dropped her glass of wine, i said it was no big deal and that we could steam-clean it out, but Caleb started seeing red and tried to put his hands on her!<BR><BR> I had to smack him in the face to get him off of her long enough for me to talk some sense into him. I just hope i can work this out with him, we've had our rough times together but i still love him like you wouldn't believe.<BR><BR> Hopefully he'll listen to reaso- <BR><BR>*The rest is unreadable, a large swath of blood and dirt covering the bottom of the page.*"
+	name = "几乎无法辨认的便条"
+	default_raw_text = "卡莱布开始真的让我毛骨悚然了。<BR> 他对做出完美衣服的痴迷达到了前所未有的程度，看他最近对我和其他人那副样子，我开始担心他是不是沾上了毒品，或者更糟的东西。<BR> 就在前几天，他冲我的朋友丹妮丝发火，因为她被我们的地毯绊倒，摔了手里的酒杯。我说这没什么大不了，蒸汽清洗一下就好，但卡莱布顿时火冒三丈，还想对她动手！<BR><BR> 我只好扇了他一巴掌，才让他从她身上离开，好让我有机会跟他讲道理。我只希望能和他把这件事解决，我们一起经历过艰难时光，但我还是爱他，爱得你难以想象。<BR><BR> 希望他能听进道理——<BR><BR>*其余部分无法辨认，页面底部被一大片血污和泥土覆盖。*"
 
 /obj/item/paper/crumpled/bloody/ruins/the_outlet/final_regrets
-	name = "my final goodbyes"
-	default_raw_text = "To whomever reads this note: <BR><BR> I have committed unspeakable acts in the name of my passion.<BR> I have kidnapped, maimed, and killed so many people over the past 14 years i fear that i have irreparably damaged any hopes of recovery for the people who have had the misfortune to meet me. <BR><BR> Please do not mistake this note as some ill conceived notion of repentance for my grievous actions, no, i don't feel bad for what i've done, not at all. <BR><BR> I've become tired of toiling day in and day out in my trade, so i'm setting my sights higher, through this sacrifice of flesh and bone my soul transcends this realm and into the geometer. <BR><BR><BR><strong> you'd better hope i don't find what i'm looking for. </strong> <BR><BR>*the rest of the page is caked in a thick layer of blood. sigils and indecipherable text line the bottom, but you can't make anything out in particular.*"
+	name = "我最后的告别"
+	default_raw_text = "致读到这张便条的人：<BR><BR> 我以我热爱的名义，犯下了无法言说的行径。<BR> 过去 14 年里，我绑架、残害、杀害了那么多人，我恐怕已经给那些不幸遇见我的人造成了无可挽回的伤害。<BR><BR> 请不要把这张便条误解为对我罪行的某种拙劣悔悟，不，我一点也不为自己做过的事感到愧疚。<BR><BR> 我已厌倦日复一日地为我的手艺操劳，所以我要把目光投向更高处；借着这次血肉的献祭，我的灵魂将超越此界，进入几何之神。<BR><BR><BR><strong> 你最好祈祷我找不到我要找的东西。 </strong> <BR><BR>*页面其余部分糊着厚厚一层血。底部排列着印记和无法辨认的文字，但你分辨不出任何具体的含义。*"
 
 // lore ID cards
 /obj/item/card/id/away/the_outlet
-	name = "Amos Rodriguez"
-	desc = "an Older model Civilian ID card, this one has the initials \ A.R.\ emblazoned on the back, it seems to be brand new minus it being covered in dust."
+	name = "阿莫斯·罗德里格斯"
+	desc = "一张旧型号的民用 ID 卡，背面印着姓名缩写 \ A.R.\ ，除了布满灰尘之外，看起来崭新如初。"
 	trim = /datum/id_trim/away/the_outlet
 
 /obj/item/card/id/away/the_outlet/angry_assistant_manager
-	name = "Mary Whittaker"
-	desc = "an Older model Civilian ID card, this one has the initials \ M.W. \ emblazoned on the back, the card smells vaguely of lavender and seems fairly well worn."
+	name = "玛丽·惠特克"
+	desc = "一张旧型号的民用 ID 卡，背面印着姓名缩写 \ M.W. \ ，卡片散发着淡淡的薰衣草香，磨损得比较厉害。"
 	trim = /datum/id_trim/away/the_outlet/angry_assistant_manager
 
 /obj/item/card/id/away/the_outlet/mad_manager
-	name = "Caleb Whittaker"
-	desc = "an Older model Civilian ID card, this one has the initials \ C.W. \ emblazoned on the back, it has a thin film of grime and what appears to be blood coating its front."
+	name = "卡莱布·惠特克"
+	desc = "一张旧型号的民用 ID 卡，背面印着姓名缩写 \ C.W. \ ，正面覆着一层薄薄的污垢，似乎还有血迹。"
 	trim = /datum/id_trim/away/the_outlet/mad_manager

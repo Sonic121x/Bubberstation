@@ -1,6 +1,6 @@
 /mob/living/basic/mothroach
-	name = "mothroach"
-	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
+	name = "蛾蟑"
+	desc = "这是多次尝试把蛾人与蟑螂进行基因混合后诞生的可爱副产物。"
 	icon_state = "mothroach"
 	icon_living = "mothroach"
 	icon_dead = "mothroach_dead"
@@ -18,16 +18,16 @@
 	gold_core_spawnable = FRIENDLY_SPAWN
 	worn_slot_flags = ITEM_SLOT_HEAD
 
-	verb_say = "flutters"
-	verb_ask = "flutters inquisitively"
-	verb_exclaim = "flutters loudly"
-	verb_yell = "flutters loudly"
-	response_disarm_continuous = "shoos"
-	response_disarm_simple = "shoo"
-	response_harm_continuous = "hits"
-	response_harm_simple = "hit"
-	response_help_continuous = "pats"
-	response_help_simple = "pat"
+	verb_say = "扑扇翅膀"
+	verb_ask = "好奇地扑扇翅膀"
+	verb_exclaim = "大声扑扇翅膀"
+	verb_yell = "大声扑扇翅膀"
+	response_disarm_continuous = "驱赶"
+	response_disarm_simple = "驱赶"
+	response_harm_continuous = "拍打"
+	response_harm_simple = "拍打"
+	response_help_continuous = "轻拍"
+	response_help_simple = "轻拍"
 
 	faction = list(FACTION_NEUTRAL)
 
@@ -78,8 +78,8 @@
 		playsound(loc, 'sound/mobs/humanoids/moth/scream_moth.ogg', 50, TRUE)
 
 /mob/living/basic/mothroach/bar
-	name = "mothroach bartender"
-	desc = "A mothroach serving drinks. Look at him go."
+	name = "蛾蟑酒保"
+	desc = "一只在端酒水的蛾蟑。看它跑得多欢。"
 	icon_state = "barroach"
 	icon_living = "barroach"
 	icon_dead = "barroach_dead"

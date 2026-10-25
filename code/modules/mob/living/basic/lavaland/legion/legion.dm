@@ -3,8 +3,8 @@
  * Legion skulls heal allies, bite enemies, and infest dying humans to make more legions.
  */
 /mob/living/basic/mining/legion
-	name = "legion"
-	desc = "You can still see what was once a human under the shifting mass of corruption."
+	name = "军团"
+	desc = "在翻涌的腐化团块之下，你仍能看出那曾经是一个人。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
@@ -18,12 +18,12 @@
 	obj_damage = 60
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_verb_continuous = "lashes out at"
-	attack_verb_simple = "lash out at"
-	speak_emote = list("gurgles")
+	attack_verb_continuous = "挥鞭抽向"
+	attack_verb_simple = "挥鞭抽向"
+	speak_emote = list("咕噜作响")
 	attack_sound = 'sound/items/weapons/pierce.ogg'
-	throw_blocked_message = "bounces harmlessly off of"
-	death_message = "wails in chorus and dissolves into quivering flesh."
+	throw_blocked_message = "被弹开，未能伤及"
+	death_message = "齐声哀嚎，随后溶解成一团颤抖的血肉。"
 	ai_controller = /datum/ai_controller/basic_controller/legion
 	/// What kind of mob do we spawn?
 	var/brood_type = /mob/living/basic/mining/legion_brood
@@ -82,7 +82,7 @@
 	gender = consumed.gender
 	if (!ismonkey(consumed) || consumed == GLOB.the_one_and_only_punpun)
 		name = consumed.real_name
-	consumed.investigate_log("has been killed by hivelord infestation.", INVESTIGATE_DEATHS)
+	consumed.investigate_log("被虫巢领主侵染致死。", INVESTIGATE_DEATHS)
 	consumed.death()
 	consumed.extinguish_mob()
 	consumed.fully_heal(HEAL_DAMAGE)
@@ -92,7 +92,7 @@
 	ai_controller?.set_blackboard_key(BB_LEGION_CORPSE, consumed)
 	ai_controller?.set_blackboard_key(BB_LEGION_RECENT_LINES, consumed.copy_recent_speech(line_chance = 80))
 	stored_mob = consumed
-	visible_message(span_warning("[src] staggers to [p_their()] feet!"))
+	visible_message(span_warning("[src] 摇摇晃晃地撑着 [p_their()] 身体站了起来！"))
 	if (prob(75))
 		return
 	// Congratulations you have won a special prize: cancer
@@ -111,8 +111,8 @@
 
 /// Like a Legion but it's an adorable snowman
 /mob/living/basic/mining/legion/snow
-	name = "snow legion"
-	desc = "You can vaguely see what was once a human under the densely packed snow. Cute, but macabre."
+	name = "雪地军团"
+	desc = "在压实厚重的雪层下，你隐约能看出那曾经是一个人。可爱，却又阴森。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "snowlegion"
 	icon_living = "snowlegion"
@@ -133,8 +133,8 @@
 
 /// Like a Legion but shorter and faster
 /mob/living/basic/mining/legion/dwarf
-	name = "dwarf legion"
-	desc = "You can still see what was once a rather small human under the shifting mass of corruption."
+	name = "矮小军团"
+	desc = "在翻涌的腐化团块之下，你仍能看出那曾经是个身材矮小的人。"
 	icon_state = "dwarf_legion"
 	icon_living = "dwarf_legion"
 	icon_dead = "dwarf_legion"
@@ -145,8 +145,8 @@
 
 /// Like a Legion but larger and spawns regular Legions, not currently used anywhere and very soulful
 /mob/living/basic/mining/legion/large
-	name = "myriad"
-	desc = "A legion of legions, a dead end to whatever form the Necropolis was attempting to create."
+	name = "万身军团"
+	desc = "由军团组成的军团，死灵之都试图塑造的形态最终走到的死路。"
 	icon = 'icons/mob/simple/lavaland/64x64megafauna.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
@@ -169,7 +169,7 @@
 		spawn_types = list(/mob/living/basic/mining/legion),\
 		spawn_time = 20 SECONDS,\
 		max_spawned = 3,\
-		spawn_text = "peels itself off from",\
+		spawn_text = "从本体上剥落下来，源自",\
 		faction = faction,\
 	)
 

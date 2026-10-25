@@ -330,26 +330,26 @@
 /datum/job/proc/get_spawn_message_information(alt_title = title) // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: /datum/job/proc/get_spawn_message_information()
 	SHOULD_CALL_PARENT(TRUE)
 	var/list/info = list()
-	info += "<b>You are the [alt_title].</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
+	info += "<b>你是 [alt_title]。</b>\n" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "<b>You are the [title].</b>\n"
 	var/related_policy = get_policy(policy_override || title)
 	var/radio_info = get_radio_information()
 	if(related_policy)
 		info += related_policy
 	if(supervisors)
-		info += "As the [alt_title == title ? alt_title : "[alt_title] ([title])"] you answer directly to [supervisors]. Special circumstances may change this." // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
+		info += "作为 [alt_title == title ? alt_title : "[alt_title]（[title]）"]，你直接向 [supervisors] 负责。特殊情况可能会改变这一关系。" // SKYRAT EDIT CHANGE - ALTERNATIVE_JOB_TITLES - ORIGINAL: info += "As the [title] you answer directly to [supervisors]. Special circumstances may change this."
 	if(radio_info)
 		info += radio_info
 	if(req_admin_notify)
 		info += "<b>You are playing a job that is important for Game Progression. \
 			If you have to disconnect, please notify the admins via adminhelp.</b>"
 	if(CONFIG_GET(number/minimal_access_threshold))
-		info += span_boldnotice("As this station was initially staffed with a \
-			[CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] \
-			have been added to your ID card.")
+		info += span_boldnotice("由于本空间站最初的人员配置为 \
+			[CONFIG_GET(flag/jobs_have_minimal_access) ? "全员编制，仅包含你岗位所需的权限" : "骨干预备编制，可能已额外添加了一些权限"] \
+			这些权限已被添加到你的身份卡中。")
 	//SKYRAT EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
 	if(alt_title != title)
-		info += span_warning("Remember that alternate titles are purely for flavor and roleplay.")
-		info += span_doyourjobidiot("Do not use your \"[alt_title]\" alt title as an excuse to forego your duties as a [title].")
+		info += span_warning("请记住，候补职称纯粹用于增添风味和角色扮演。")
+		info += span_doyourjobidiot("不要用你的“[alt_title]”候补职称作为逃避 [title] 职责的借口。")
 	//SKYRAT EDIT END
 
 	return info
@@ -357,7 +357,7 @@
 /// Returns information pertaining to this job's radio.
 /datum/job/proc/get_radio_information()
 	if(job_flags & JOB_CREW_MEMBER)
-		return "<b>Prefix your message with :h to speak on your department's radio. To see other prefixes, look closely at your headset.</b>"
+		return "<b>在消息前加上 :h 即可在部门无线电上发言。要查看其他前缀，请仔细查看你的耳机。</b>"
 
 /datum/outfit/job
 	name = "Standard Gear"
@@ -514,7 +514,7 @@
 
 
 /datum/job/proc/get_captaincy_announcement(mob/living/captain)
-	return "Due to extreme staffing shortages, newly promoted Acting Captain [captain.real_name] on deck!"
+	return "由于严重的人手短缺，新晋代理舰长 [captain.real_name] 已到任！"
 
 
 /// Returns an atom where the mob should spawn in.
@@ -554,7 +554,7 @@
 		spawn_point.used = TRUE
 		break
 	if(!.)
-		log_mapping("Job [title] ([type]) couldn't find a round start spawn point.")
+		log_mapping("职业 [title]（[type]）找不到回合开始出生点。")
 
 /// Finds a valid latejoin spawn point, checking for events and special conditions.
 /datum/job/proc/get_latejoin_spawn_point()
@@ -682,7 +682,7 @@
 
 		mmi.name = "[initial(mmi.name)]: [organic_name]"
 		if(mmi.brain)
-			mmi.brain.name = "[organic_name]'s brain"
+			mmi.brain.name = "[organic_name] 的大脑"
 		if(mmi.brainmob)
 			mmi.brainmob.real_name = organic_name //the name of the brain inside the cyborg is the robotized human's name.
 			mmi.brainmob.name = organic_name

@@ -30,9 +30,9 @@
 //Evolving
 
 /datum/action/innate/slime/evolve
-	name = "Evolve"
+	name = "进化"
 	button_icon_state = "slimegrow"
-	desc = "This will let you evolve from baby to adult slime."
+	desc = "这将让你从幼年史莱姆进化为成年史莱姆。"
 	life_stage_required = SLIME_LIFE_STAGE_BABY
 	needs_growth = TRUE
 	nutrition_cost = SLIME_EVOLUTION_COST
@@ -41,22 +41,22 @@
 /datum/action/innate/slime/evolve/Activate()
 	if(IS_UNCONSCIOUS_OR_CRIT(owner))
 		if(owner.stat == DEAD)
-			owner.balloon_alert(owner, "dead!")
+			owner.balloon_alert(owner, "已死亡！")
 		else if(IS_UNCONSCIOUS(owner))
-			owner.balloon_alert(owner, "unconscious!")
+			owner.balloon_alert(owner, "昏迷中！")
 		else
-			owner.balloon_alert(owner, "in critical!")
+			owner.balloon_alert(owner, "濒死中！")
 		return FALSE
 
 	var/mob/living/basic/slime/slime_owner = owner
 	if(slime_owner.life_stage == SLIME_LIFE_STAGE_ADULT)
-		slime_owner.balloon_alert(slime_owner, "already adult!")
+		slime_owner.balloon_alert(slime_owner, "已经是成年体！")
 		return
 	if(slime_owner.amount_grown < SLIME_EVOLUTION_THRESHOLD)
-		slime_owner.balloon_alert(slime_owner, "need to grow!")
+		slime_owner.balloon_alert(slime_owner, "还需要成长！")
 		return
 	if(slime_owner.nutrition < nutrition_cost)
-		slime_owner.balloon_alert(slime_owner, "need food!")
+		slime_owner.balloon_alert(slime_owner, "需要食物！")
 		return
 
 	slime_owner.adjust_nutrition(-nutrition_cost)
@@ -70,9 +70,9 @@
 //Reproduction
 
 /datum/action/innate/slime/reproduce
-	name = "Reproduce"
+	name = "繁殖"
 	button_icon_state = "slimesplit"
-	desc = "This will make you split into four slimes."
+	desc = "这会使你分裂成四只史莱姆。"
 	life_stage_required = SLIME_LIFE_STAGE_ADULT
 	needs_growth = TRUE
 
@@ -85,22 +85,22 @@
 
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
 		if(stat == DEAD)
-			balloon_alert(src, "dead!")
+			balloon_alert(src, "已死亡！")
 		else if(IS_UNCONSCIOUS(src))
-			balloon_alert(src, "unconscious!")
+			balloon_alert(src, "昏迷中！")
 		else
-			balloon_alert(src, "in critical!")
+			balloon_alert(src, "濒死中！")
 		return FALSE
 
 	if(!isopenturf(loc))
-		balloon_alert(src, "not here!")
+		balloon_alert(src, "这里不行！")
 
 	if(life_stage != SLIME_LIFE_STAGE_ADULT)
-		balloon_alert(src, "not adult!")
+		balloon_alert(src, "还不是成年体！")
 		return
 
 	if(amount_grown < SLIME_EVOLUTION_THRESHOLD)
-		balloon_alert(src, "need growth!")
+		balloon_alert(src, "需要继续成长！")
 		return
 
 	var/list/friends_list = list()
@@ -113,7 +113,7 @@
 
 	overcrowded = length(friends_list) >= SLIME_OVERCROWD_AMOUNT
 	if(overcrowded)
-		balloon_alert(src, "overcrowded!")
+		balloon_alert(src, "太拥挤了！")
 		return
 
 	var/new_nutrition = floor(nutrition * 0.9)

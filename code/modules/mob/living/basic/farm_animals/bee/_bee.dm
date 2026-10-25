@@ -6,24 +6,24 @@
 #define BEE_FOODGROUPS RAW | MEAT | GORE | BUGS //! the bee food contents
 
 /mob/living/basic/bee
-	name = "bee"
-	desc = "Buzzy buzzy bee, stingy sti- Ouch!"
+	name = "蜜蜂"
+	desc = "嗡嗡嗡的蜜蜂，会蜇人的小……哎哟！"
 	icon_state = ""
 	icon_living = ""
 	icon = 'icons/mob/simple/bees.dmi'
 	gender = FEMALE
-	speak_emote = list("buzzes")
+	speak_emote = list("嗡嗡叫")
 
 	melee_damage_lower = 1
 	melee_damage_upper = 1
-	attack_verb_continuous = "stings"
-	attack_verb_simple = "sting"
-	response_help_continuous = "shoos"
-	response_help_simple = "shoo"
-	response_disarm_continuous = "swats away"
-	response_disarm_simple = "swat away"
-	response_harm_continuous = "squashes"
-	response_harm_simple = "squash"
+	attack_verb_continuous = "蜇"
+	attack_verb_simple = "蜇"
+	response_help_continuous = "驱赶"
+	response_help_simple = "驱赶"
+	response_disarm_continuous = "拍开"
+	response_disarm_simple = "拍开"
+	response_harm_continuous = "压扁"
+	response_harm_simple = "压扁"
 
 	speed = 1
 	maxHealth = 10
@@ -81,7 +81,7 @@
 		reee[beegent.type] = 5
 	holder.AddComponentFrom(SOURCE_EDIBLE_INNATE, /datum/component/edible, reee, null, BEE_FOODGROUPS, 10, 0, list("bee"), null, 10)
 	SEND_SIGNAL(src, COMSIG_LIVING_SCOOPED_UP, picker, holder)
-	picker.visible_message(span_warning("[picker] scoops up [src]!"))
+	picker.visible_message(span_warning("[picker] 把 [src] 舀了起来！"))
 	picker.put_in_hands(holder)
 
 /mob/living/basic/bee/will_escape_storage()
@@ -91,7 +91,7 @@
 	. = ..()
 
 	if(isnull(beehome))
-		. += span_warning("This bee is homeless!")
+		. += span_warning("这只蜜蜂无家可归！")
 
 /mob/living/basic/bee/Destroy()
 	if(beehome)
@@ -208,8 +208,8 @@
 		. = TRUE
 
 /mob/living/basic/bee/queen
-	name = "queen bee"
-	desc = "She's the queen of bees, BZZ BZZ!"
+	name = "蜂后"
+	desc = "她是蜂群的蜂后，嗡嗡嗡嗡！"
 	icon_base = "queen"
 	is_queen = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/queen_bee
@@ -218,7 +218,7 @@
 	return FALSE
 
 /mob/living/basic/bee/toxin
-	desc = "This bee is holding some sort of fluid."
+	desc = "这只蜜蜂携带着某种液体。"
 
 /mob/living/basic/bee/toxin/Initialize(mapload)
 	. = ..()
@@ -240,8 +240,8 @@
 	new /obj/effect/temp_visual/despawn_effect(get_turf(src), /* copy_from = */ src)
 
 /obj/item/queen_bee
-	name = "queen bee"
-	desc = "She's the queen of bees, BZZ BZZ!"
+	name = "蜂后"
+	desc = "她是蜂群的蜂后，嗡嗡嗡嗡！"
 	icon_state = "queen_item"
 	inhand_icon_state = ""
 	icon = 'icons/mob/simple/bees.dmi'
@@ -279,29 +279,29 @@
 		if(queen?.beegent)
 			new_bee.queen.assign_reagent(queen.beegent) //Bees use the global singleton instances of reagents, so we don't need to worry about one bee being deleted and her copies losing their reagents.
 		user.put_in_active_hand(new_bee)
-		user.visible_message(span_notice("[user] injects [src] with royal bee jelly, causing it to split into two bees, MORE BEES!"),span_warning("You inject [src] with royal bee jelly, causing it to split into two bees, MORE BEES!"))
+		user.visible_message(span_notice("[user] 将蜂王浆注入 [src]，使其分裂成两只蜜蜂，蜜蜂更多了！"),span_warning("你将蜂王浆注入 [src]，使其分裂成两只蜜蜂，蜜蜂更多了！"))
 		return
 	var/datum/reagent/chemical = needle.reagents.get_master_reagent()
 	if(isnull(chemical))
 		return
 	if(!(chemical.chemical_flags & REAGENT_CAN_BE_SYNTHESIZED))
-		to_chat(user, span_warning("[chemical.name] cannot be inserted into a bee's genome!"))
+		to_chat(user, span_warning("[chemical.name] 无法插入蜜蜂的基因组！"))
 		return
 	if(chemical.type == queen.beegent?.type)
-		to_chat(user, span_warning("[queen] already has this chemical!"))
+		to_chat(user, span_warning("[queen] 已经含有这种化学物质了！"))
 		return
 	if(!(needle.reagents.has_reagent(chemical.type, 5)))
-		to_chat(user, span_warning("You don't have enough units of that chemical to modify the bee's DNA!"))
+		to_chat(user, span_warning("这种化学物质的量不足以修改这只蜜蜂的 DNA！"))
 		return
 	needle.reagents.remove_reagent(chemical.type, 5)
 	var/datum/reagent/bee_chem = GLOB.chemical_reagents_list[chemical.type]
 	queen.assign_reagent(bee_chem)
-	user.visible_message(span_warning("[user] injects [src]'s genome with [chemical.name], mutating its DNA!"),span_warning("You inject [src]'s genome with [chemical.name], mutating its DNA!"))
+	user.visible_message(span_warning("[user] 将 [chemical.name] 注入 [src] 的基因组，使其 DNA 发生突变！"),span_warning("你将 [chemical.name] 注入 [src] 的基因组，使其 DNA 发生突变！"))
 	name = queen.name
 
 /obj/item/queen_bee/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] eats [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	user.say("IT'S HIP TO EAT BEES!")
+	user.visible_message(span_suicide("[user] 吃掉了 [src]！看来 [user.p_theyre()] 想自杀！"))
+	user.say("吃蜜蜂才时髦！")
 	qdel(src)
 	return TOXLOSS
 
@@ -312,8 +312,8 @@
 	queen = new(src)
 
 /obj/item/trash/bee
-	name = "bee"
-	desc = "No wonder the bees are dying out, you monster."
+	name = "蜜蜂"
+	desc = "难怪蜜蜂会灭绝，你这个怪物。"
 	icon = 'icons/mob/simple/bees.dmi'
 	icon_state = "bee_item"
 	///the reagent the bee carry
@@ -351,7 +351,7 @@
 /obj/item/trash/bee/proc/use_lazarus(datum/source, obj/item/lazarus_injector/injector, mob/user)
 	SIGNAL_HANDLER
 	if(injector.revive_type != SENTIENCE_ORGANIC)
-		balloon_alert(user, "invalid creature!")
+		balloon_alert(user, "生物无效！")
 		return
 	var/mob/living/basic/bee/revived_bee = new bee_type (drop_location())
 	if(beegent)

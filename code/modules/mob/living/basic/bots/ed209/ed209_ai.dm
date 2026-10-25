@@ -29,13 +29,13 @@
 	var/datum/action/cooldown/bot_announcement/announcement = blackboard[BB_ANNOUNCE_ABILITY]
 	var/static/list/lines_to_pick = list(
 		DEFAULT_LINES = list(
-			"Scumbag alert!",
-			"Threat detected!"
+			"发现人渣！",
+			"检测到威胁！"
 		),
 		SPECIAL_LINES = list(
-			"Why y'all causin trouble in my town?",
-			"Fill your hands, you son of a bitch.",
-			"Aint nobody causin trouble in MY jurisdiction."
+			"你们为什么要在我镇上惹麻烦？",
+			"把枪掏出来吧，你这狗娘养的。",
+			"没人能在我的地盘上惹麻烦。"
 		)
 
 	)

@@ -6,12 +6,12 @@
 	if(!(bot_access_flags & BOT_COVER_MAINTS_OPEN) || user.combat_mode)
 		return
 	if(!cell)
-		to_chat(user, span_warning("[src] doesn't have a power cell!"))
+		to_chat(user, span_warning("[src] 里没有电池！"))
 		return ITEM_INTERACT_BLOCKING
 	cell.add_fingerprint(user)
 	user.visible_message(
-		span_notice("[user] crowbars [cell] out from [src]."),
-		span_notice("You pry [cell] out of [src]."),
+		span_notice("[user] 用撬棍把 [cell] 从 [src] 里撬了出来。"),
+		span_notice("你把 [cell] 从 [src] 里撬了出来。"),
 	)
 	if(Adjacent(user) && !issilicon(user))
 		user.put_in_hands(cell)
@@ -22,13 +22,13 @@
 /mob/living/basic/bot/mulebot/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/stock_parts/power_store/cell) && (bot_access_flags & BOT_COVER_MAINTS_OPEN))
 		if(cell)
-			to_chat(user, span_warning("[src] already has a power cell!"))
+			to_chat(user, span_warning("[src] 里已经装有电池了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 		user.visible_message(
-			span_notice("[user] inserts \a [cell] into [src]."),
-			span_notice("You insert [cell] into [src]."),
+			span_notice("[user] 将 \a [cell] 插入了 [src]。"),
+			span_notice("你将 [cell] 插入 [src]。"),
 		)
 		return ITEM_INTERACT_SUCCESS
 	if(is_wire_tool(tool) && (bot_access_flags & BOT_COVER_MAINTS_OPEN))

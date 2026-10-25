@@ -1,6 +1,6 @@
 /mob/living/basic/mining/ice_whelp
-	name = "ice whelp"
-	desc = "The offspring of an ice drake, weak in comparison but still terrifying."
+	name = "冰霜幼龙"
+	desc = "冰霜龙的幼崽，相比之下很弱小，但依然令人恐惧。"
 	icon = 'icons/mob/simple/icemoon/icemoon_monsters.dmi'
 	icon_state = "ice_whelp"
 	icon_living = "ice_whelp"
@@ -23,9 +23,9 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 
-	attack_verb_continuous = "chomps"
-	attack_verb_simple = "chomp"
-	death_message = "collapses on its side."
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "啃咬"
+	death_message = "侧身倒下。"
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
@@ -69,20 +69,20 @@
 
 /// Carve a stone into a beautiful self-portrait
 /mob/living/basic/mining/ice_whelp/proc/create_sculpture(atom/target)
-	balloon_alert(src, "sculpting...")
+	balloon_alert(src, "雕刻中……")
 	if(!do_after(src, 5 SECONDS, target = target))
 		return
 	var/obj/structure/statue/custom/dragon_statue = new(get_turf(target))
 	dragon_statue.set_visuals(src)
-	dragon_statue.name = "statue of [src]"
-	dragon_statue.desc = "Let this serve as a warning."
+	dragon_statue.name = "[src] 的雕像"
+	dragon_statue.desc = "就让这作为警告吧。"
 	dragon_statue.set_anchored(TRUE)
 	qdel(target)
 
 /// Gib and consume our fellow ice drakes
 /mob/living/basic/mining/ice_whelp/proc/cannibalize_victim(mob/living/target)
 	start_pulling(target)
-	balloon_alert(src, "devouring...")
+	balloon_alert(src, "吞食中……")
 	if(!do_after(src, 5 SECONDS, target))
 		return
 	target.gib(DROP_ALL_REMAINS)
@@ -90,8 +90,8 @@
 
 ///Ash whelp, the "lava" variant of ice whelps.
 /mob/living/basic/mining/ice_whelp/ash
-	name = "ash whelp"
-	desc = "The offspring of an ash drake, weak in comparison but still terrifying."
+	name = "灰烬幼龙"
+	desc = "灰烬龙的幼崽，相比之下很弱小，但依然令人恐惧。"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "ash_whelp"
 	icon_living = "ash_whelp"

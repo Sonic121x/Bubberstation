@@ -56,17 +56,17 @@ GLOBAL_PROTECT(exp_to_update)
 
 /client/proc/get_exp_living(pure_numeric = FALSE)
 	if(!prefs.exp || !prefs.exp[EXP_TYPE_LIVING])
-		return pure_numeric ? 0 : "No data"
+		return pure_numeric ? 0 : "无数据"
 	var/exp_living = text2num(prefs.exp[EXP_TYPE_LIVING])
 	return pure_numeric ? exp_living : get_exp_format(exp_living)
 
 /proc/get_exp_format(expnum)
 	if(expnum > 60)
-		return num2text(round(expnum / 60)) + "h"
+		return num2text(round(expnum / 60)) + " 小时"
 	else if(expnum > 0)
-		return num2text(expnum) + "m"
+		return num2text(expnum) + " 分钟"
 	else
-		return "0h"
+		return "0 小时"
 
 /datum/controller/subsystem/blackbox/proc/update_exp(mins)
 	if(!SSdbcore.Connect())

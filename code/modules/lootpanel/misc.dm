@@ -13,10 +13,10 @@
 		var/version = owner.byond_version
 		if(build < 515 || (build == 515 && version < 1635))
 			to_chat(owner.mob, boxed_message(span_info("\
-				<span class='bolddanger'>Your version of Byond doesn't support fast image loading.</span>\n\
-				Detected: [version].[build]\n\
-				Required version for this feature: <b>515.1635</b> or later.\n\
-				Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.\n\
+				<span class='bolddanger'>你的 BYOND 版本不支持快速图像加载。</span>\n\
+				检测到：[version].[build]\n\
+				此功能所需版本：<b>515.1635</b> 或更高。\n\
+				请访问 <a href=\"https://secure.byond.com/download\">BYOND 官方网站</a> 获取最新版 BYOND。\n\
 			")))
 
 			notified = TRUE

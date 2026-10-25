@@ -1,23 +1,23 @@
 /mob/living/basic/sheep
-	name = "sheep"
-	desc = "Known for their soft wool and use in sacrificial rituals. Big fan of grass."
+	name = "绵羊"
+	desc = "以柔软的羊毛和祭祀用途闻名。草的忠实爱好者。"
 	icon = 'icons/mob/simple/sheep.dmi'
 	icon_state = "sheep"
 	icon_dead = "sheep_dead"
 	base_icon_state = "sheep"
 	gender = FEMALE
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST
-	speak_emote = list("baas","bleats")
+	speak_emote = list("咩咩叫","咩叫")
 	speed = 1.1
 	butcher_results = list(/obj/item/food/meat/slab/grassfed = 3)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	attack_verb_continuous = "kicks"
-	attack_verb_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	attack_verb_continuous = "踢"
+	attack_verb_simple = "踢"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	attack_vis_effect = ATTACK_EFFECT_KICK
 	health = 50
@@ -35,7 +35,7 @@
 		harvest_tool = /obj/item/razor, \
 		fed_item = /obj/item/food/grown/grass, \
 		produced_item_typepath = /obj/item/stack/sheet/cotton/wool, \
-		produced_item_desc = "soft wool", \
+		produced_item_desc = "柔软羊毛", \
 		max_ready = 10, \
 		item_generation_wait = 3 MINUTES, \
 		item_reduction_time = 30 SECONDS, \
@@ -59,14 +59,14 @@
 
 	if(cult_converted)
 		for(var/mob/living/cultist as anything in invokers)
-			to_chat(cultist, span_cult_italic("[src] has already been sacrificed!"))
+			to_chat(cultist, span_cult_italic("[src] 已经被献祭过了！"))
 		return STOP_SACRIFICE|SILENCE_SACRIFICE_MESSAGE
 
 	for(var/mob/living/cultist as anything in invokers)
-		to_chat(cultist, span_cult_italic("This feels a bit too cliché, don't you think?"))
+		to_chat(cultist, span_cult_italic("这感觉有点太老套了，你不觉得吗？"))
 
 	cult_converted = TRUE
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "BAAAAAAAAH!")
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "咩啊啊啊啊啊！")
 	update_appearance(UPDATE_ICON)
 	return STOP_SACRIFICE
 
@@ -85,9 +85,9 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("baaa", "baaaAAAAAH!", "baaah"),
-			BB_EMOTE_HEAR = list("bleats."),
-			BB_EMOTE_SEE = list("shakes her head.", "stares into the distance."),
+			BB_EMOTE_SAY = list("咩——", "咩啊啊啊啊！", "咩啊"),
+			BB_EMOTE_HEAR = list("咩咩叫着。"),
+			BB_EMOTE_SEE = list("摇了摇头。", "望着远方。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/sheep/sheep1.ogg', 'sound/mobs/non-humanoids/sheep/sheep2.ogg', 'sound/mobs/non-humanoids/sheep/sheep3.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),

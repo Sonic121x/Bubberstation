@@ -1,8 +1,8 @@
-#define PET_OPTION_DOG "Dog"
-#define PET_OPTION_CAT "Cat"
-#define PET_OPTION_FOX "Fox"
-#define PET_OPTION_VERMIN "Vermin"
-#define PET_OPTION_BIRD "Bird"
+#define PET_OPTION_DOG "犬类"
+#define PET_OPTION_CAT "猫类"
+#define PET_OPTION_FOX "狐类"
+#define PET_OPTION_VERMIN "鼠虫类"
+#define PET_OPTION_BIRD "鸟类"
 
 GLOBAL_LIST_INIT(pet_options, list(
 	PET_OPTION_DOG = list(
@@ -59,10 +59,10 @@ GLOBAL_LIST_INIT(pet_options, list(
 	)
 	///list of carrier colors we can pick from
 	var/static/list/possible_colors = list(
-		"Blue" = COLOR_BLUE,
-		"Red" = COLOR_RED,
-		"Yellow" = COLOR_YELLOW,
-		"Green" = COLOR_GREEN,
+		"蓝色" = COLOR_BLUE,
+		"红色" = COLOR_RED,
+		"黄色" = COLOR_YELLOW,
+		"绿色" = COLOR_GREEN,
 	)
 
 /datum/pet_customization/New(client/player_client)

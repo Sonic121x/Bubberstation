@@ -1,6 +1,6 @@
 /mob/living/basic/wizard
-	name = "Space Wizard"
-	desc = "A wizard is never early. Nor is he late. He arrives exactly at the worst possible moment."
+	name = "太空巫师"
+	desc = "巫师从不早到，也从不迟到。他总是在最糟糕的时刻准时现身。"
 	icon = 'icons/mob/simple/simple_human.dmi'
 	icon_state = "wizard"
 	icon_living = "wizard"
@@ -12,8 +12,8 @@
 	health = 100
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "出拳"
+	attack_verb_simple = "出拳"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	combat_mode = TRUE
 	habitable_atmos = list("min_oxy" = 5, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)

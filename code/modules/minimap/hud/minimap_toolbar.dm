@@ -71,7 +71,7 @@
 	return FALSE
 
 /atom/movable/screen/minimap_toolbar_button/draw
-	desc = "Left-drag on the map to draw."
+	desc = "在地图上按住左键拖动即可绘制。"
 
 /atom/movable/screen/minimap_toolbar_button/draw/on_mouse_drag(x, y)
 	if(isnull(display) || isnull(display.drawing))
@@ -127,7 +127,7 @@
 /atom/movable/screen/minimap_toolbar_button/erase
 	icon_state = "erase"
 	button_slot = 4
-	desc = "Left-drag on the map to erase."
+	desc = "在地图上按住左键拖动即可擦除。"
 	mouse_icon = 'icons/ui_icons/minimap/minimap_mouse/draw_erase.dmi'
 
 /atom/movable/screen/minimap_toolbar_button/erase/on_mouse_drag(x, y)
@@ -160,7 +160,7 @@
 /atom/movable/screen/minimap_toolbar_button/clear
 	icon_state = "clear"
 	button_slot = 5
-	desc = "Clear all drawings."
+	desc = "清除所有绘制。"
 
 /atom/movable/screen/minimap_toolbar_button/clear/is_active()
 	return FALSE
@@ -173,7 +173,7 @@
 /atom/movable/screen/minimap_toolbar_button/label
 	icon_state = "label"
 	button_slot = 6
-	desc = "Toggle label mode. Click the map to place a label. Right-click a nearby label on the map to remove it. Right-click this button to clear all labels."
+	desc = "切换标注模式。点击地图放置标注。右键点击地图上附近的标注可将其移除。右键点击此按钮可清除所有标注。"
 	mouse_icon = 'icons/ui_icons/minimap/minimap_mouse/label.dmi'
 
 /atom/movable/screen/minimap_toolbar_button/label/on_click(icon_x, icon_y, right_click)

@@ -42,7 +42,7 @@
 	var/bottom_z = used_z
 	while(SSmapping.multiz_levels?[bottom_z]?[Z_LEVEL_DOWN]) // just keep going down
 		bottom_z--
-	var/text = "Floor<br/>[(used_z - bottom_z) + 1]"
+	var/text = "层<br/>[(used_z - bottom_z) + 1]"
 	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
 
 /atom/movable/screen/minimap_z_up

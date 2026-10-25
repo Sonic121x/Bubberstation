@@ -19,12 +19,12 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
  * Library Public Computer
  */
 /obj/machinery/computer/libraryconsole
-	name = "library visitor console"
+	name = "图书馆访客终端"
 	icon_state = MAP_SWITCH("oldcomp", "/obj/machinery/computer/pod/old")
 	icon_screen = "library"
 	icon_keyboard = null
 	circuit = /obj/item/circuitboard/computer/libraryconsole
-	desc = "Checked out books MUST be returned on time."
+	desc = "借出的书籍必须按时归还。"
 	anchored_tabletop_offset = 8
 	///The current book id we're searching for
 	var/book_id = null
@@ -113,20 +113,20 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 			return TRUE
 		if("search")
 			if(!prevent_db_spam())
-				say("Database cables refreshing. Please wait a moment.")
+				say("数据库线缆正在刷新，请稍候。")
 				return
 			INVOKE_ASYNC(src, PROC_REF(update_db_info))
 			return TRUE
 		if("switch_page")
 			if(!prevent_db_spam())
-				say("Database cables refreshing. Please wait a moment.")
+				say("数据库线缆正在刷新，请稍候。")
 				return
 			search_page = sanitize_page_input(params["page"], search_page, page_count)
 			INVOKE_ASYNC(src, PROC_REF(update_db_info))
 			return TRUE
 		if("clear_data") //The cap just walked in on your browsing, quick! delete it!
 			if(!prevent_db_spam())
-				say("Database cables refreshing. Please wait a moment.")
+				say("数据库线缆正在刷新，请稍候。")
 				return
 			title = initial(title)
 			author = initial(author)
@@ -275,11 +275,11 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 // It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it.
 // It's December 25th, 2014, and this is STILL here, and it's STILL relevant. Kill me
 /obj/machinery/computer/libraryconsole/bookmanagement
-	name = "book inventory management console"
-	desc = "Librarian's command station."
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	name = "书籍库存管理终端"
+	desc = "图书管理员的指挥台。"
+	verb_say = "哔哔"
+	verb_ask = "哔哔"
+	verb_exclaim = "哔哔"
 	pass_flags = PASSTABLE
 
 	icon_state = MAP_SWITCH("oldcomp", "/obj/machinery/computer/pod/old")
@@ -363,7 +363,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 					data["checkouts"] += list(list(
 						"id" = id,
 						"ref" = checkout_ref,
-						"borrower" = loan.loanedto || "N/A",
+						"borrower" = loan.loanedto || "无",
 						"overdue" = (timedue <= 0),
 						"due_in_minutes" = timedue,
 						"title" = loan.book_data.get_title(),
@@ -498,7 +498,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 			return TRUE
 		if("upload")
 			if(!prevent_db_spam())
-				say("Database cables refreshing. Please wait a moment.")
+				say("数据库线缆正在刷新，请稍候。")
 				return
 			var/upload_category = params["category"]
 			if(!(upload_category in SSlibrary.upload_categories)) //Nice try
@@ -509,20 +509,20 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		if("news_post")
 			// We grey out the button UI-side, but let's just be safe to guard against spammy spammers.
 			if(!COOLDOWN_FINISHED(src, newscaster_cooldown))
-				say("Not enough time has passed since the last news post. Please wait.")
+				say("距上次发布新闻的时间太短了，请稍候。")
 				return
 			if(!GLOB.news_network)
-				say("No news network found on station. Aborting.")
+				say("站内未找到新闻网络，正在中止。")
 			var/datum/feed_channel/library_channel = GLOB.news_network.network_channels_by_name[LIBRARY_NEWSFEED]
 			if(isnull(library_channel))
-				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "Library", "The official station book club!", null)
+				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "图书馆", "空间站官方读书会！", null)
 
 			var/obj/machinery/libraryscanner/scan = get_scanner()
 			if(!scan)
-				say("No nearby scanner detected. Aborting.")
+				say("未检测到附近的扫描器，正在中止。")
 				return
 			GLOB.news_network.submit_article(scan.cache.content, "[scan.cache.author]: [scan.cache.title]", LIBRARY_NEWSFEED, null)
-			say("Upload complete. Your uploaded title is now available on station newscasters.")
+			say("上传完成。你上传的书名现在已可在站内新闻播报器上查看。")
 			COOLDOWN_START(src, newscaster_cooldown, NEWSCASTER_COOLDOWN)
 			return TRUE
 		if("print_book")
@@ -553,19 +553,19 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 	var/obj/item/barcodescanner/scanner = tool
 	if(scanner.computer_ref?.resolve() == src)
-		balloon_alert(user, "already connected!")
+		balloon_alert(user, "已经连接了！")
 		return ITEM_INTERACT_BLOCKING
 
 	scanner.computer_ref = WEAKREF(src)
-	balloon_alert(user, "scanner connected")
-	audible_message(span_hear("[src] lets out a low, short blip."))
+	balloon_alert(user, "扫描器已连接")
+	audible_message(span_hear("[src] 发出一声低沉短促的哔声。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/libraryconsole/bookmanagement/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(!density || obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "forbidden knowledge unlocked")
+	balloon_alert(user, "禁忌知识已解锁")
 	return TRUE
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/set_screen_state(new_state)
@@ -582,57 +582,57 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/print_forbidden_lore(mob/user)
 	can_spawn_lore = FALSE
 	new /obj/item/melee/cultblade/dagger(get_turf(src))
-	to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a sinister dagger sitting on the desk. You don't even remember where it came from..."))
-	user.visible_message(span_warning("[user] stares at the blank screen for a few moments, [user.p_their()] expression frozen in fear. When [user.p_they()] finally awaken[user.p_s()] from it, [user.p_they()] look[user.p_s()] a lot older."), vision_distance = 2)
+	to_chat(user, span_warning("你的理智几乎撑不住在宝库浏览窗口中度过的那几秒。当你停止浏览时，唯一能让你记起这一切的，就是桌上那把阴森森的匕首。你甚至不记得它是从哪儿来的……"))
+	user.visible_message(span_warning("[user] 盯着空白的屏幕看了片刻，[user.p_their()]表情凝固在恐惧之中。当[user.p_they()]终于回过神来时，看上去一下子苍老了许多。"), vision_distance = 2)
 	if(ishuman(user))
 		var/mob/living/carbon/human/fool = user
 		fool.age = clamp(fool.age + 10, AGE_MIN, AGE_MAX) //Fuck you
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/shun_the_corp(mob/user)
 	can_spawn_lore = FALSE
-	to_chat(user, span_warning("You click off the page in a rush, and the machine hums back to normal, the tab gone..."))
+	to_chat(user, span_warning("你慌忙关掉了那个页面，机器嗡鸣着恢复正常，那个标签页消失了……"))
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/upload_from_scanner(upload_category)
 	var/obj/machinery/libraryscanner/scan = get_scanner()
 	if(!scan)
-		say("No nearby scanner detected.")
+		say("未检测到附近的扫描器。")
 		return
 	if(!scan.cache)
-		say("No cached book found. Aborting upload.")
+		say("未找到缓存的书籍，正在中止上传。")
 		return
 	if (!SSdbcore.Connect())
-		say("Connection to Archive has been severed. Aborting.")
+		say("与档案库的连接已中断，正在中止。")
 		return
 	var/datum/book_info/book = scan.cache
 	if(!book.title)
-		say("No title detected. Aborting")
+		say("未检测到标题，正在中止")
 		return
 	if(!book.author)
-		say("No author detected. Aborting")
+		say("未检测到作者，正在中止")
 		return
 	if(!book.content)
-		say("No content detected. Aborting")
+		say("未检测到内容，正在中止")
 		return
-	var/msg = "has uploaded the book titled [book.title], [length(book.content)] signs"
+	var/msg = "上传了标题为[book.title]的书籍，共 [length(book.content)] 个字符"
 	var/datum/db_query/query_library_upload = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("library")] (author, title, content, category, ckey, datetime, round_id_created)
 		VALUES (:author, :title, :content, :category, :ckey, Now(), :round_id)
 	"}, list("title" = book.title, "author" = book.author, "content" = book.content, "category" = upload_category, "ckey" = usr.ckey, "round_id" = GLOB.round_id))
 	if(!query_library_upload.Execute())
 		qdel(query_library_upload)
-		say("Database error encountered uploading to Archive")
+		say("上传档案库时遇到数据库错误")
 		return
 	usr.log_message(msg, LOG_GAME)
 	qdel(query_library_upload)
 	library_updated()
-	say("Upload Complete. Uploaded title will be available for printing in a moment")
+	say("上传完成。上传的书名稍后即可用于打印")
 	update_db_info()
 
 /// Call this proc to attempt a print. It will return false if the print failed, true otherwise, longside some ux
 /// Accepts a callback to call when the print "finishes"
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/attempt_print(datum/callback/call_after)
 	if(!COOLDOWN_FINISHED(src, printer_cooldown))
-		say("Printer currently unavailable, please wait a moment.")
+		say("打印机当前不可用，请稍候。")
 		return FALSE
 	COOLDOWN_START(src, printer_cooldown, PRINTER_COOLDOWN)
 	playsound(src, 'sound/machines/printer.ogg', 50)
@@ -656,7 +656,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 
 /obj/machinery/computer/libraryconsole/bookmanagement/proc/print_book(id)
 	if (!SSdbcore.Connect())
-		say("Connection to Archive has been severed. Aborting.")
+		say("与档案库的连接已中断，正在中止。")
 		can_connect = FALSE
 		return
 
@@ -666,7 +666,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	)
 	if(!query_library_print.Execute())
 		qdel(query_library_print)
-		say("PRINTER ERROR! Failed to print document (0x0000000F)")
+		say("打印机错误！无法打印文档（0x0000000F）")
 		return
 
 	while(query_library_print.NextRow())
@@ -675,15 +675,15 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		var/content = query_library_print.item[4]
 		if(!QDELETED(src))
 			var/obj/item/book/printed_book = new(get_turf(src))
-			printed_book.name = "Book: [title]"
+			printed_book.name = "书：[title]"
 			printed_book.book_data = new()
 			var/datum/book_info/fill = printed_book.book_data
 			fill.set_title(title, trusted = TRUE)
 			fill.set_author(author, trusted = TRUE)
 			fill.set_content(content, trusted = TRUE)
 			printed_book.gen_random_icon_state()
-			visible_message(span_notice("[src]'s printer hums as it produces a completely bound book. How did it do that?"))
-			log_paper("[key_name(usr)] has printed \"[title]\" (id: [id]) by [author] from a book management console.")
+			visible_message(span_notice("[src]的打印机嗡嗡作响，产出了一本装订完好的书。它到底是怎么做到的？"))
+			log_paper("[key_name(usr)] 从书籍管理终端打印了“[title]”（id: [id]），作者 [author]。")
 		break
 	qdel(query_library_print)
 
@@ -691,11 +691,11 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
  * Library Scanner
  */
 /obj/machinery/libraryscanner
-	name = "scanner control interface"
+	name = "扫描器控制界面"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "bigscanner"
 	base_icon_state = "bigscanner"
-	desc = "It's an industrial strength book scanner. Perfect!"
+	desc = "这是一台工业级强度的书籍扫描器。完美！"
 	circuit = /obj/item/circuitboard/machine/libraryscanner
 	density = TRUE
 	var/obj/item/book/held_book
@@ -758,7 +758,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	switch(action)
 		if("scan")
 			if(cache?.compare(held_book.book_data))
-				say("This book is already in my internal cache")
+				say("这本书已经在我内部的缓存里了")
 				return
 			cache = held_book.book_data.return_copy()
 			flick("bigscanner1", src)
@@ -776,11 +776,11 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
  * Book binder
  */
 /obj/machinery/bookbinder
-	name = "book binder"
+	name = "书籍装订机"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state = "binder"
 	base_icon_state = "binder"
-	desc = "Only intended for binding paper products."
+	desc = "只用于装订纸质制品。"
 	circuit = /obj/item/circuitboard/machine/bookbinder
 	density = TRUE
 
@@ -808,7 +808,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	if(isidcard(tool))
 		var/obj/item/card/id/idcard = tool
 		scanned_name = idcard.registered_name
-		balloon_alert(user, "scanned")
+		balloon_alert(user, "已扫描")
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -818,19 +818,19 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		return
 
 	if(busy)
-		to_chat(user, span_warning("The book binder is busy. Please wait for completion of previous operation."))
+		to_chat(user, span_warning("装订机正忙。请等待上一项操作完成。"))
 		return
 
 	if(!scanned_name)
-		scanned_name = "unknown author"
-		say("No ID detected. Please scan your ID if you would like to be credited for this book. Otherwise please enter your paper again.")
+		scanned_name = "未知作者"
+		say("未检测到 ID。如果你想在这本书上署名，请扫描你的 ID。否则请重新放入你的纸张。")
 		return
 
 	if(!user.transferItemToLoc(draw_from, src))
 		return
 
-	user.visible_message(span_notice("[user] loads some paper into [src]."), span_notice("You load some paper into [src]."))
-	audible_message(span_hear("[src] begins to hum as it warms up its printing drums."))
+	user.visible_message(span_notice("[user] 往[src]里放入了一些纸张。"), span_notice("你往[src]里放入了一些纸张。"))
+	audible_message(span_hear("[src] 开始嗡鸣，预热它的打印鼓。"))
 	busy = TRUE
 	playsound(src, 'sound/machines/printer.ogg', 50)
 	flick("binder1", src)
@@ -845,11 +845,11 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 		draw_from.forceMove(drop_location())
 		return
 
-	visible_message(span_notice("[src] whirs as it prints and binds a new book."))
+	visible_message(span_notice("[src] 转动着，打印并装订出一本新书。"))
 	var/obj/item/book/bound_book = new(loc)
 	bound_book.book_data.set_content_using_paper(draw_from)
 	bound_book.book_data.set_author(scanned_name, trusted = FALSE)
-	bound_book.name = "Print Job #" + "[rand(100, 999)]"
+	bound_book.name = "打印作业 #" + "[rand(100, 999)]"
 	bound_book.gen_random_icon_state()
 	scanned_name = null
 

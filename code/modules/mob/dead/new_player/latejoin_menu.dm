@@ -10,7 +10,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 	for(var/datum/job/job as anything in SSjob.joinable_occupations)
 		jobs += job.title
 
-	var/input_contents = input(user, "Pick a job to join as:", "Latejoin Job Selection") as null|anything in jobs
+	var/input_contents = input(user, "选择要加入的职业：", "中途加入职业选择") as null|anything in jobs
 
 	if(!input_contents)
 		return
@@ -31,12 +31,12 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			user.jobs_menu_mounted = FALSE
 			addtimer(CALLBACK(src, PROC_REF(scream_at_player), user), 5 SECONDS)
 
-		ui = new(user, src, "JobSelection", "Latejoin Menu")
+		ui = new(user, src, "JobSelection", "中途加入菜单")
 		ui.open()
 
 /datum/latejoin_menu/proc/scream_at_player(mob/dead/new_player/player)
 	if(!player.jobs_menu_mounted)
-		to_chat(player, span_notice("If the late join menu isn't showing, hold CTRL while clicking the join button!"))
+		to_chat(player, span_notice("如果中途加入菜单没有显示，请按住 CTRL 再点击加入按钮！"))
 
 /datum/latejoin_menu/ui_data(mob/user)
 	var/mob/dead/new_player/owner = user
@@ -49,9 +49,9 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 	if(SSshuttle.emergency)
 		switch(SSshuttle.emergency.mode)
 			if(SHUTTLE_ESCAPE)
-				data["shuttle_status"] = "The station has been evacuated."
+				data["shuttle_status"] = "空间站已完成疏散。"
 			if(SHUTTLE_CALL, SHUTTLE_DOCKED, SHUTTLE_IGNITING, SHUTTLE_ESCAPE)
-				data["shuttle_status"] = "The station is currently undergoing evacuation procedures."
+				data["shuttle_status"] = "空间站当前正在进行疏散程序。"
 
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
@@ -145,17 +145,17 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 				params["job"] = job
 
 			if(!SSticker?.IsRoundInProgress())
-				tgui_alert(owner, "The round is either not ready, or has already finished...", "Oh No!")
+				tgui_alert(owner, "回合尚未准备好，或者已经结束了……", "糟糕！")
 				return TRUE
 
 			if(SSlag_switch.measures[DISABLE_NON_OBSJOBS])
-				tgui_alert(owner, "There is an administrative lock on entering the game for non-observers!", "Oh No!")
+				tgui_alert(owner, "管理员已锁定非观察者加入游戏！", "糟糕！")
 				return TRUE
 
 			// SKYRAT EDIT ADDITION START - Flavourtext requirement
 			if(CONFIG_GET(flag/min_flavor_text))
 				if(length_char(owner.client.prefs.read_preference(/datum/preference/text/flavor_text)) < CONFIG_GET(number/flavor_text_character_requirement))
-					to_chat(owner, span_notice("You need at least [CONFIG_GET(number/flavor_text_character_requirement)] characters of flavor text to join the round. You have [length_char(owner.client.prefs.read_preference(/datum/preference/text/flavor_text))] characters."))
+					to_chat(owner, span_notice("你需要至少 [CONFIG_GET(number/flavor_text_character_requirement)] 个字符的角色背景文本才能加入回合。你目前有 [length_char(owner.client.prefs.read_preference(/datum/preference/text/flavor_text))] 个字符。"))
 					return
 			// SKYRAT EDIT END
 
@@ -170,7 +170,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 
 			if(SSticker.queued_players.len && !(ckey(owner.key) in GLOB.admin_datums))
 				if((living_player_count() >= relevant_cap) || (owner != SSticker.queued_players[1]))
-					tgui_alert(owner, "The server is full!", "Oh No!")
+					tgui_alert(owner, "服务器已满！", "糟糕！")
 					return TRUE
 
 			// SAFETY: AttemptLateSpawn has it's own sanity checks. This is perfectly safe.
@@ -203,20 +203,20 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 			dept_data += job_datum.title
 
 	if(dept_data.len <= 0) //Congratufuckinglations
-		tgui_alert(owner, "There are literally no random jobs available for you on this server, ahelp for assistance.", "Oh No!")
+		tgui_alert(owner, "这台服务器上确实没有任何可供你随机的职业，请通过 ahelp 寻求帮助。", "糟糕！")
 		return
 
 	var/random_job
 
 	while(random_job != JOB_CHOICE_YES)
 		if(dept_data.len <= 0)
-			tgui_alert(owner, "It seems that there are no more random jobs available for you!", "Oh No!")
+			tgui_alert(owner, "看来已经没有更多可供你随机的职业了！", "糟糕！")
 			return
 
 		var/random = pick_n_take(dept_data)
 		var/list/random_job_options = list(JOB_CHOICE_YES, JOB_CHOICE_REROLL, JOB_CHOICE_CANCEL)
 
-		random_job = tgui_alert(owner, "[random]?", "Random Job", random_job_options)
+		random_job = tgui_alert(owner, "[random]?", "随机职业", random_job_options)
 
 		if(random_job == JOB_CHOICE_CANCEL)
 			return

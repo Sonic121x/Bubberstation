@@ -1,16 +1,16 @@
 // Cleaving saw
 
 /obj/item/melee/cleaving_saw
-	name = "cleaving saw"
-	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
+	name = "劈砍锯"
+	desc = "这把锯能高效地放野兽的血，还能变形为一把利用离心力的长劈刀。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	icon_state = "cleaving_saw"
 	inhand_icon_state = "cleaving_saw"
 	worn_icon_state = "cleaving_saw"
-	attack_verb_continuous = list("attacks", "saws", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "saw", "slice", "tear", "lacerate", "rip", "dice", "cut")
+	attack_verb_continuous = list("攻击着", "锯切着", "切片着", "撕扯着", "割裂着", "撕裂着", "切丁着", "切割着")
+	attack_verb_simple = list("攻击", "锯切", "切片", "撕扯", "割裂", "撕裂", "切丁", "切割")
 	force = 12
 	throwforce = 20
 	inhand_x_dimension = 64
@@ -42,19 +42,19 @@
 		sharpness_on = sharpness, \
 		hitsound_on = hitsound, \
 		w_class_on = w_class, \
-		attack_verb_continuous_on = list("cleaves", "swipes", "slashes", "chops"), \
-		attack_verb_simple_on = list("cleave", "swipe", "slash", "chop"), \
+		attack_verb_continuous_on = list("劈开着", "横打着", "斩击着", "砍剁着"), \
+		attack_verb_simple_on = list("劈开", "横扫", "斩击", "砍剁"), \
 	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
 
 /obj/item/melee/cleaving_saw/examine(mob/user)
 	. = ..()
-	. += span_notice("It is [HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "open, will cleave enemies in a wide arc and deal additional damage to fauna":"closed, and can be used for rapid consecutive attacks that cause fauna to bleed"].")
-	. += span_notice("Both modes will build up existing bleed effects, doing a burst of high damage if the bleed is built up high enough.")
-	. += span_notice("Transforming it immediately after an attack causes the next attack to come out faster.")
+	. += span_notice("它处于[HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "展开状态，会以宽阔弧线劈砍敌人，并对动物造成额外伤害" : "闭合状态，可用于快速连续攻击，使动物流血"]。")
+	. += span_notice("两种模式都会累积已有的流血效果，若流血叠得足够高，便会爆发一次高额伤害。")
+	. += span_notice("在攻击后立刻变形，可让下一次攻击更快出手。")
 
 /obj/item/melee/cleaving_saw/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is [HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "closing [src] on [user.p_their()] neck" : "opening [src] into [user.p_their()] chest"]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 正[HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE) ? "把 [src] 合上，夹住自己的脖子" : "把 [src] 张开，插进自己的胸膛"]！看起来是想自杀了！"))
 	attack_self(user)
 	return BRUTELOSS
 
@@ -112,15 +112,15 @@
 
 	user.changeNext_move(CLICK_CD_MELEE * 0.25)
 	if(user)
-		balloon_alert(user, "[active ? "opened" : "closed"] [src]")
+		balloon_alert(user, "[active ? "已展开" : "已闭合"] [src]")
 	playsound(src, 'sound/effects/magic/clockwork/fellowship_armory.ogg', 35, TRUE, frequency = 90000 - (active * 30000))
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 // Wildhunter's butchering knife
 
 /obj/item/knife/hunting/wildhunter
-	name = "wildhunter's butchering knife"
-	desc = "A magical knife made out of ashen stone. It was used to butcher local fauna by best hunters. Cuts everything to the simplest."
+	name = "野猎者的屠宰刀"
+	desc = "一把用灰岩制成的魔法刀。曾是最好的猎手用来屠宰当地动物的工具。能把一切切成最简单的形态。"
 	icon = 'icons/obj/weapons/stabby_wide.dmi'
 	inhand_icon_state = "wildhuntingknife"
 	icon_state = "wildhuntingknife"
@@ -129,8 +129,8 @@
 	wound_bonus = 15
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("slices", "hunts", "butchers", "pierces")
-	attack_verb_simple = list("slice", "hunt", "butcher", "pierce")
+	attack_verb_continuous = list("切片着", "狩猎着", "屠宰着", "刺穿着")
+	attack_verb_simple = list("切片", "狩猎", "屠宰", "刺穿")
 
 //best butchering tool
 /obj/item/knife/hunting/wildhunter/set_butchering()
@@ -151,7 +151,7 @@
 	var/obj/item/crusher_trophy/trophy = interacting_with
 	if(!length(trophy.wildhunter_drops))
 		return NONE
-	balloon_alert(user, "cutting trophy...")
+	balloon_alert(user, "正在切割战利品……")
 	if(!do_after(user, 4 SECONDS, trophy))
 		return ITEM_INTERACT_BLOCKING
 	for (var/path, count in trophy.wildhunter_drops)

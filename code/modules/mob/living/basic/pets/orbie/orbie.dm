@@ -1,8 +1,8 @@
 #define ORBIE_MAXIMUM_HEALTH 300
 
 /mob/living/basic/orbie
-	name = "Orbie"
-	desc = "An orb shaped hologram."
+	name = "欧比"
+	desc = "一个球形的全息影像。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "orbie"
 	icon_living = "orbie"
@@ -24,7 +24,7 @@
 	pull_force = MOVE_FORCE_NONE
 	minimum_survivable_temperature = TCMB
 	maximum_survivable_temperature = INFINITY
-	death_message = "fades out of existence!"
+	death_message = "从现实中消散了！"
 	ai_controller = /datum/ai_controller/basic_controller/orbie
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
 	///are we happy or not?

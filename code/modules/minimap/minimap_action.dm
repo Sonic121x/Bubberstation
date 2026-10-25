@@ -1,6 +1,6 @@
 
 /datum/action/minimap
-	name = "Toggle Minimap"
+	name = "切换小地图"
 	button_icon = 'icons/hud/implants.dmi'
 	button_icon_state = "minimap"
 	/// Mob currently bound to z-change signal handling for auto-hide behavior.
@@ -28,7 +28,7 @@
 	// Toggle off if already visible.
 	if(has_minimap_huds(hud))
 		remove_huds(hud)
-		to_chat(clicker, span_notice("Minimap hidden."))
+		to_chat(clicker, span_notice("小地图已隐藏。"))
 		return
 
 	if(SEND_SIGNAL(clicker, COMSIG_MINIMAP_ACTION_TRIGGER) & COMSIG_MINIMAP_ACTION_TRIGGER_CANCEL)
@@ -36,17 +36,17 @@
 
 	var/anchor_z = get_anchor_z_level(clicker?.z)
 	if(is_forbidden_minimap_z(anchor_z))
-		to_chat(clicker, span_warning("The minimap cannot be used on this z-level."))
-		clicker.balloon_alert(clicker, "invalid z-level!")
+		to_chat(clicker, span_warning("无法在该 Z 层使用小地图。"))
+		clicker.balloon_alert(clicker, "无效的 Z 层！")
 		return
 	var/display_z = get_opening_display_z_level(anchor_z, clicker?.z)
 
 	var/datum/minimap/minimap = get_minimap_for_z(display_z)
 	if(isnull(minimap))
-		clicker.balloon_alert(clicker, "no minimap generated")
+		clicker.balloon_alert(clicker, "尚未生成小地图")
 		return
 	add_huds(hud, minimap, isnull(fixed_z_level) ? null : display_z)
-	to_chat(clicker, span_notice("Minimap shown."))
+	to_chat(clicker, span_notice("小地图已显示。"))
 
 /datum/action/minimap/Grant(mob/grant_to)
 	. = ..()
@@ -109,7 +109,7 @@
 	var/anchor_z = get_anchor_z_level(new_z_level)
 	if(is_forbidden_minimap_z(anchor_z))
 		remove_huds(owner_hud)
-		to_chat(owner_mob, span_warning("The minimap closes on this z-level."))
+		to_chat(owner_mob, span_warning("进入该 Z 层时小地图会关闭。"))
 		return
 	if(isnull(fixed_z_level))
 		return

@@ -2,10 +2,10 @@
  * Stabilising serum prevents monster organs from decaying before you can use them.
  */
 /obj/item/mining_stabilizer
-	name = "stabilizing serum"
+	name = "稳定血清"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bottle19"
-	desc = "Inject certain types of monster organs with this stabilizer to prevent their rapid decay."
+	desc = "将这种稳定剂注入特定种类的怪物器官，可防止其迅速腐坏。"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/mining_stabilizer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
@@ -13,14 +13,14 @@
 		return NONE
 	var/obj/item/organ/monster_core/target_core = interacting_with
 	if (!istype(target_core))
-		balloon_alert(user, "invalid target!")
+		balloon_alert(user, "目标无效！")
 		return ITEM_INTERACT_BLOCKING
 
 	if (!target_core.preserve())
-		balloon_alert(user, "organ decayed!")
+		balloon_alert(user, "器官已腐坏！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "organ stabilized")
+	balloon_alert(user, "器官已稳定")
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -30,9 +30,9 @@
  * These should usually do something both when used in-hand, or when implanted into someone.
  */
 /obj/item/organ/monster_core
-	name = "monster core"
-	desc = "All that remains of a monster. This abstract item should not spawn. \
-		It will rapidly decay into uselessness. but don't worry because it's already useless."
+	name = "怪物核心"
+	desc = "一只怪物残留下来的全部。这件抽象物品不应自然生成。 \
+		它会迅速腐坏至毫无用处。不过别担心，因为它本来就没用。"
 	icon = 'icons/obj/medical/organs/mining_organs.dmi'
 	icon_state = "hivelord_core"
 	actions_types = list(/datum/action/cooldown/monster_core_action)
@@ -70,15 +70,15 @@
 	var/estimated_time_left = round(timeleft(decay_timer), 1 MINUTES)
 	switch(estimated_time_left)
 		if(4 MINUTES)
-			. += span_notice("It's fresh and still pulsating with the last vestiges of life.")
+			. += span_notice("它很新鲜，仍带着生命最后残迹的搏动。")
 		if(3 MINUTES)
-			. += span_notice("It still looks pretty fresh.")
+			. += span_notice("看上去仍然相当新鲜。")
 		if(2 MINUTES)
-			. += span_notice("It's not as fresh as could be.")
+			. += span_notice("它已经不那么新鲜了。")
 		if(1 MINUTES)
-			. += span_notice("Signs of decay are starting to set in. It might not be good for much longer.")
+			. += span_notice("腐坏的迹象开始显现。它恐怕撑不了多久了。")
 		if(0 SECONDS to 1 MINUTES)
-			. += span_warning("Signs of decay have set in, but it still looks alive. It's probably about to become unusable really quickly.")
+			. += span_warning("腐坏迹象已经出现，但看上去仍有生机。它大概很快就会彻底不能用了。")
 
 /obj/item/organ/monster_core/Destroy(force)
 	deltimer(decay_timer)
@@ -88,18 +88,18 @@
 	. = ..()
 
 	if (inert)
-		to_chat(target_carbon, span_notice("[src] breaks down as you try to insert it."))
+		to_chat(target_carbon, span_notice("[src] 在你试图植入时崩解了。"))
 		qdel(src)
 		return FALSE
 	if (!decay_timer)
 		return TRUE
 	preserve(TRUE)
-	target_carbon.visible_message(span_notice("[src] stabilizes as it's inserted."))
+	target_carbon.visible_message(span_notice("[src] 在植入后稳定了下来。"))
 	return TRUE
 
 /obj/item/organ/monster_core/on_mob_remove(mob/living/carbon/target_carbon, special, movement_flags)
 	if (!inert && !special)
-		target_carbon?.visible_message(span_notice("[src] rapidly decays as it's removed."))
+		target_carbon?.visible_message(span_notice("[src] 在取出后迅速腐坏了。"))
 		go_inert()
 	return ..()
 
@@ -125,7 +125,7 @@
 	inert = TRUE
 	deltimer(decay_timer)
 	decay_timer = null
-	name = "decayed [name]"
+	name = "腐坏的 [name]"
 	update_appearance()
 	return TRUE
 
@@ -170,16 +170,16 @@
  */
 /obj/item/organ/monster_core/proc/try_apply(atom/target, mob/user)
 	if (!isliving(target))
-		balloon_alert(user, "invalid target!")
+		balloon_alert(user, "目标无效！")
 		return
 	if (inert)
-		balloon_alert(user, "organ decayed!")
+		balloon_alert(user, "器官已腐坏！")
 		return
 	var/mob/living/live_target = target
 	if (live_target.stat == DEAD)
-		balloon_alert(user, "they're dead!")
+		balloon_alert(user, "目标已死亡！")
 		return
-	balloon_alert(user, "applied organ")
+	balloon_alert(user, "已应用器官")
 	apply_to(target, user)
 
 /**

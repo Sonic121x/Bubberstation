@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/resurface
-	name = "Resurface"
-	desc = "Burrow underground, and then move to a new location near your target. Must spew bile to refresh."
+	name = "重新钻出"
+	desc = "钻入地下，再移动到目标附近的新位置。必须喷吐胆汁才能刷新。"
 	shared_cooldown = MOB_SHARED_COOLDOWN_1 | MOB_SHARED_COOLDOWN_2
 	/// Damage tracker var for bileworms
 	var/jump_damaged = FALSE
@@ -26,7 +26,7 @@
 /datum/action/cooldown/mob_cooldown/resurface/proc/burrow(mob/living/burrower, atom/target, force = FALSE)
 	var/turf/unburrow_turf = get_unburrow_turf(burrower, target)
 	if (!unburrow_turf) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(burrower, span_warning("Couldn't burrow anywhere near the target!"))
+		to_chat(burrower, span_warning("目标附近找不到可以钻行的位置！"))
 		if(burrower.ai_controller?.ai_status == AI_STATUS_ON)
 			//this is a valid reason to give up on a target
 			burrower.ai_controller.clear_blackboard_key(BB_CURRENT_TARGET)
@@ -99,8 +99,8 @@
 		return chosen_one
 
 /datum/action/cooldown/mob_cooldown/bileworm_spew
-	name = "Spew Bile"
-	desc = "Spew a barrage of bile globs."
+	name = "喷吐胆汁"
+	desc = "喷出一连串胆汁团。"
 	shared_cooldown = MOB_SHARED_COOLDOWN_1 | MOB_SHARED_COOLDOWN_2
 	cooldown_time = 3 SECONDS
 	/// Sound played when firing a projectile
@@ -150,7 +150,7 @@
 			playsound(firer, projectile_sound, 70)
 
 /obj/effect/bileworm_acid
-	name = "acidic bile"
+	name = "酸性胆汁"
 	icon = 'icons/obj/weapons/guns/projectiles.dmi'
 	icon_state = "bile_glob"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -219,7 +219,7 @@
 
 		hit_something = TRUE
 		victim.apply_damage(damage, BURN, null, blocked, wound_bonus = CANT_WOUND)
-		to_chat(victim, span_userdanger("You're hit by [src]!"))
+		to_chat(victim, span_userdanger("你被 [src] 击中了！"))
 
 	for (var/obj/thing in target)
 		if (!thing.uses_integrity || !thing.density)
@@ -263,27 +263,27 @@
 	velocity = generator(GEN_BOX, list(-2, 2), list(2, 4), NORMAL_RAND)
 
 /datum/action/cooldown/mob_cooldown/devour
-	name = "Devour"
-	desc = "Burrow underground, and then move to your target to consume them. Short cooldown, but your target must be unconscious."
+	name = "吞噬"
+	desc = "钻入地下，再移动到目标身边将其吞食。冷却很短，但目标必须处于昏迷状态。"
 	shared_cooldown = MOB_SHARED_COOLDOWN_2
 
 /datum/action/cooldown/mob_cooldown/devour/Activate(atom/target_atom)
 	if(target_atom == owner)
-		to_chat(owner, span_warning("You can't eat yourself!"))
+		to_chat(owner, span_warning("你不能吃掉自己！"))
 		return
 	if(!isliving(target_atom))
-		to_chat(owner, span_warning("That's not food!"))
+		to_chat(owner, span_warning("那可不是食物！"))
 		return
 	var/mob/living/living_target = target_atom
 	if(!IS_UNCONSCIOUS(living_target))
-		to_chat(owner, span_warning("No way you're eating that while it's still kicking! It should at least be unconscious first."))
+		to_chat(owner, span_warning("它还在挣扎呢，你怎么可能吃得下去！至少得先让它昏迷。"))
 		return
 	burrow_and_devour(owner, living_target)
 
 /datum/action/cooldown/mob_cooldown/devour/proc/burrow_and_devour(mob/living/devourer, mob/living/target)
 	var/turf/devour_turf = get_turf(target)
 	if(!istype(devour_turf, /turf/open/misc)) // means all the turfs nearby are station turfs or something, not lavaland
-		to_chat(devourer, span_warning("Your target is on something you can't burrow through!"))
+		to_chat(devourer, span_warning("你的目标所在的位置你钻不过去！"))
 		return //this will give up on devouring the target which is fine by me
 	playsound(devourer, 'sound/effects/break_stone.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/mook_dust(get_turf(devourer))
@@ -297,10 +297,10 @@
 	REMOVE_TRAIT(devourer, TRAIT_GODMODE, REF(src))
 	devourer.RemoveInvisibility(type)
 	if(!(target in devour_turf))
-		to_chat(devourer, span_warning("Someone stole your dinner!"))
+		to_chat(devourer, span_warning("有人抢走了你的晚餐！"))
 		return
-	to_chat(target, span_userdanger("You are consumed by [devourer]!"))
-	devourer.visible_message(span_warning("[devourer] consumes [target]!"))
+	to_chat(target, span_userdanger("你被 [devourer] 吞食了！"))
+	devourer.visible_message(span_warning("[devourer] 吞食了 [target]！"))
 	devourer.fully_heal()
 	playsound(devourer, 'sound/effects/splat.ogg', 50, TRUE)
 	//to be received on death

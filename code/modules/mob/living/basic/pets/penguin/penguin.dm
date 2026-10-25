@@ -4,12 +4,12 @@
 	icon = 'icons/mob/simple/penguins.dmi'
 	gender = FEMALE
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "bops"
-	response_disarm_simple = "bop"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻敲"
+	response_disarm_simple = "轻敲"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 
 	faction = list(FACTION_NEUTRAL)
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_AQUATIC
@@ -27,7 +27,7 @@
 /datum/emote/penguin/honk
 	key = "honk"
 	key_third_person = "honks"
-	message = "honks happily!"
+	message = "开心地鸣叫着！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/pet/penguin/Initialize(mapload)
@@ -105,9 +105,9 @@
 	cut_overlay("penguin_egg_overlay")
 
 /mob/living/basic/pet/penguin/emperor
-	name = "emperor penguin"
-	real_name = "penguin"
-	desc = "Emperor of all she surveys."
+	name = "帝企鹅"
+	real_name = "企鹅"
+	desc = "她目之所及，皆是她的帝国。"
 	icon_state = "penguin"
 	icon_living = "penguin"
 	icon_dead = "penguin_dead"
@@ -117,7 +117,7 @@
 	can_lay_eggs = FALSE
 
 /mob/living/basic/pet/penguin/emperor/shamebrero
-	name = "shamebrero penguin"
+	name = "羞帽企鹅"
 	icon_state = "penguin_shamebrero"
 	icon_living = "penguin_shamebrero"
 	gold_core_spawnable = NO_SPAWN
@@ -127,9 +127,9 @@
 	can_lay_eggs = FALSE
 
 /mob/living/basic/pet/penguin/baby
-	name = "penguin chick"
-	real_name = "penguin"
-	desc = "Can't fly and barely waddles, yet the prince of all chicks."
+	name = "企鹅幼崽"
+	real_name = "企鹅"
+	desc = "不会飞，走路也摇摇晃晃，却是所有幼崽中的王子。"
 	icon_state = "penguin_baby"
 	icon_living = "penguin_baby"
 	icon_dead = "penguin_baby_dead"

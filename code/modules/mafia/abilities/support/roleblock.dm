@@ -5,8 +5,8 @@
  * This is done before anything else.
  */
 /datum/mafia_ability/roleblock
-	name = "Advise"
-	ability_action = "give legal counsel to"
+	name = "建议"
+	ability_action = "提供法律咨询"
 	action_priority = COMSIG_MAFIA_NIGHT_PRE_ACTION_PHASE
 
 /datum/mafia_ability/roleblock/perform_action_target(datum/mafia_controller/game, datum/mafia_role/day_target)

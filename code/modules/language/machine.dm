@@ -1,6 +1,6 @@
 /datum/language/machine
 	name = "Encoded Audio Language"
-	desc = "An efficient language of encoded tones developed by synthetics and cyborgs."
+	desc = "一种由合成人与半机械人开发的、高效的编码音调语言。"
 	spans = list(SPAN_ROBOT)
 	key = "6"
 	flags = LANGUAGE_NO_STUTTER

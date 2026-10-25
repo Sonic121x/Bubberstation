@@ -15,8 +15,8 @@
 	)
 
 /mob/living/basic/living_limb_flesh
-	name = "living flesh"
-	desc = "A vaguely leg or arm shaped flesh abomination. It pulses, like a heart."
+	name = "活体血肉"
+	desc = "一坨大致呈腿状或臂状的肉块怪物。它像心脏一样搏动着。"
 	icon = 'icons/mob/simple/animal.dmi'
 	icon_state = "limb"
 	icon_living = "limb"
@@ -29,8 +29,8 @@
 	maxHealth = 20
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	attack_verb_continuous = "tries desperately to attach to"
-	attack_verb_simple = "try to attach to"
+	attack_verb_continuous = "拼命试图附着到"
+	attack_verb_simple = "拼命试图附着到"
 	mob_biotypes = MOB_ORGANIC | MOB_SPECIAL
 	ai_controller = /datum/ai_controller/basic_controller/living_limb_flesh
 	/// the meat bodypart we are currently inside, used to like drain nutrition and dismember and shit
@@ -62,7 +62,7 @@
 		return
 	var/mob/living/carbon/human/victim = current_bodypart.owner
 	if(SPT_PROB(LIVING_FLESH_WARN_CHANCE, SSMOBS_DT))
-		to_chat(victim, span_warning("The skin on your [current_bodypart.plaintext_zone] crawls."))
+		to_chat(victim, span_warning("你 [current_bodypart.plaintext_zone] 上的皮肤蠕动起来。"))
 
 	victim.adjust_nutrition(-1.5)
 
@@ -73,7 +73,7 @@
 		if(HAS_TRAIT(victim, TRAIT_IMMOBILIZED))
 			return
 		step(victim, pick(GLOB.cardinals))
-		to_chat(victim, span_warning("Your [current_bodypart.plaintext_zone] moves on its own!"))
+		to_chat(victim, span_warning("你的 [current_bodypart.plaintext_zone] 自己动了起来！"))
 		return
 
 	var/list/candidates = list()
@@ -90,11 +90,11 @@
 		return
 
 	if (!prob(victim.combat_mode ? LIVING_FLESH_COMBAT_TOUCH_CHANCE : LIVING_FLESH_TOUCH_CHANCE) && candidate.can_be_pulled(user = victim, force = victim.pull_force))
-		victim.visible_message(span_warning("[victim]'s [current_bodypart.plaintext_zone] suddenly fastens around [candidate]!"))
+		victim.visible_message(span_warning("[victim] 的 [current_bodypart.plaintext_zone] 突然紧紧缠住了 [candidate]！"))
 		INVOKE_ASYNC(victim, TYPE_PROC_REF(/atom/movable, start_pulling), candidate, supress_message = TRUE)
 		return
 
-	victim.visible_message(span_warning("[victim]'s [current_bodypart.plaintext_zone] suddenly spasms towards [candidate]!"))
+	victim.visible_message(span_warning("[victim] 的 [current_bodypart.plaintext_zone] 突然抽搐着朝 [candidate] 伸去！"))
 	var/active_hand = victim.active_hand_index
 	var/new_index = (current_bodypart.body_zone == BODY_ZONE_L_ARM) ? LEFT_HANDS : RIGHT_HANDS
 	if (active_hand != new_index)
@@ -142,9 +142,9 @@
 			part_type = /obj/item/bodypart/leg/right/flesh
 
 	if (!isnull(target_part))
-		target.visible_message(span_danger("[src] tears off [target]'s [target_part.plaintext_zone] and attaches itself in [target_part.p_their()] place!"), span_userdanger("[src] tears off your [target_part.plaintext_zone] and attaches itself in [target_part.p_their()] place!"))
+		target.visible_message(span_danger("[src] 撕下了 [target] 的 [target_part.plaintext_zone]，并附着到了原来的位置上！"), span_userdanger("[src] 撕下了你的 [target_part.plaintext_zone]，并附着到了原来的位置上！"))
 	else
-		target.visible_message(span_danger("[src] attaches itself to where [target]'s [target.parse_zone_with_bodypart(target_zone)] used to be!"), span_userdanger("[src] attaches itself to where your [target.parse_zone_with_bodypart(target_zone)] used to be!"))
+		target.visible_message(span_danger("[src] 附着到了 [target] 原本 [target.parse_zone_with_bodypart(target_zone)] 所在的位置！"), span_userdanger("[src] 附着到了你原本 [target.parse_zone_with_bodypart(target_zone)] 所在的位置！"))
 
 	var/obj/item/bodypart/new_bodypart = new part_type()
 	forceMove(new_bodypart)
@@ -159,7 +159,7 @@
 	if(!detach_self())
 		return
 	var/turf/our_location = get_turf(src)
-	our_location.visible_message(span_warning("[part_owner][part_owner.p_s()] [current_bodypart.plaintext_zone] begins to convulse wildly!"))
+	our_location.visible_message(span_warning("[part_owner] 的 [current_bodypart.plaintext_zone] 开始剧烈抽搐起来！"))
 
 /mob/living/basic/living_limb_flesh/proc/owner_died(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -196,7 +196,7 @@
 /mob/living/basic/living_limb_flesh/proc/wake_up(atom/limb)
 	if(QDELETED(src))
 		return
-	visible_message(span_warning("[src] begins flailing around!"))
+	visible_message(span_warning("[src] 开始胡乱挥舞起来！"))
 	Shake(6, 6, 0.5 SECONDS)
 	ai_controller.clear_forced_off()
 	forceMove(limb.drop_location())

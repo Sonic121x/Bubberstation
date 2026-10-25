@@ -1,6 +1,6 @@
 /datum/language/nekomimetic
 	name = "Nekomimetic"
-	desc = "To the casual observer, this language is an incomprehensible mess of broken Japanese. To the felinids, it's somehow comprehensible."
+	desc = "对普通旁观者而言，这门语言只是一堆支离破碎、无法理解的日语。但对猫人来说，它却莫名其妙地能听懂。"
 	key = "f"
 	space_chance = 15
 	sentence_chance = 0

@@ -12,22 +12,22 @@
 
 /datum/emote/brain/alarm
 	key = "alarm"
-	message = "sounds an alarm."
+	message = "发出警报声。"
 
 /datum/emote/brain/alert
 	key = "alert"
-	message = "lets out a distressed noise."
+	message = "发出痛苦的声音。"
 
 /datum/emote/brain/flash
 	key = "flash"
-	message = "blinks their lights."
+	message = "闪烁着灯光。"
 	emote_type = EMOTE_VISIBLE
 
 /datum/emote/brain/notice
 	key = "notice"
-	message = "plays a loud tone."
+	message = "播放响亮的提示音。"
 
 /datum/emote/brain/whistle
 	key = "whistle"
-	key_third_person = "whistles"
-	message = "whistles."
+	key_third_person = "吹口哨"
+	message = "吹了声口哨。"

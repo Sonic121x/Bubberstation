@@ -3,48 +3,48 @@
 /////////// thederelict items
 
 /obj/item/paper/fluff/ruins/thederelict/equipment
-	default_raw_text = "If the equipment breaks there should be enough spare parts in our engineering storage near the north east solar array."
-	name = "Equipment Inventory"
+	default_raw_text = "如果设备损坏，我们东北侧太阳能阵列附近的工程仓库里应该有足够的备件。"
+	name = "设备清单"
 
 /obj/item/paper/fluff/ruins/thederelict/syndie_mission
-	name = "Mission Objectives"
-	default_raw_text = "The Syndicate have cunningly disguised a Syndicate Uplink as your PDA. Simply enter the code \"678 Bravo\" into the ringtone select to unlock its hidden features. <br><br><b>Objective #1</b>. Kill the God damn AI in a fire blast that it rocks the station. <b>Success!</b>  <br><b>Objective #2</b>. Escape alive. <b>Failed.</b>"
+	name = "任务目标"
+	default_raw_text = "辛迪加巧妙地把一个辛迪加上行链路伪装成了你的 PDA。只需在铃声选择中输入代码“678 Bravo”，即可解锁其隐藏功能。<br><br><b>目标 #1</b>。用一场震撼全站的爆炸火焰干掉那该死的人工智能。<b>成功！</b>  <br><b>目标 #2</b>。活着逃离。<b>失败。</b>"
 
 /obj/item/paper/fluff/ruins/thederelict/nukie_objectives
-	name = "Objectives of a Nuclear Operative"
-	default_raw_text = "<b>Objective #1</b>: Destroy the station with a nuclear device."
+	name = "核爆特工的目标"
+	default_raw_text = "<b>目标 #1</b>：用核装置摧毁空间站。"
 
 /obj/item/paper/crumpled/bloody/ruins/thederelict/unfinished
-	name = "unfinished paper scrap"
-	desc = "Looks like someone started shakily writing a will in space common, but were interrupted by something bloody..."
-	default_raw_text = "I, Victor Belyakov, do hereby leave my _- "
+	name = "未完成的纸片"
+	desc = "看起来有人用太空通用语哆哆嗦嗦地开始写遗嘱，但被什么血腥的东西打断了……"
+	default_raw_text = "我，维克托·别利亚科夫，特此将我的 _- "
 
 /obj/item/paper/fluff/ruins/thederelict/vaultraider
-	name = "Vault Raider Objectives"
-	default_raw_text = "<b>Objectives #1</b>: Find out what is hidden in Kosmicheskaya Stantsiya 13s Vault"
+	name = "金库劫掠者目标"
+	default_raw_text = "<b>目标 #1</b>：查明十三号宇宙空间站的金库里藏着什么"
 
 ///The Derelict Terminals
 /obj/machinery/computer/terminal/derelict/bridge
 	icon_screen = "comm"
 	icon_keyboard = "tech_key"
-	content = list("Central Command Status Summary -- Impending Doom -- Your station is somehow in the middle of hostile territory, in clear view of any enemy of the corporation. Your likelihood to survive is low, \
-	and station destruction is expected and almost inevitable. Secure any sensitive material and neutralize any enemy you will come across. It is important that you at least try to maintain the station. \
-	Good luck. -- Special Orders for KC13: Our military presence is inadequate in your sector. We need you to construct BSA-87 Artillery position aboard your station. Base parts are available for shipping via cargo. \
-	-Nanotrasen Naval Command -- Identified Shift Divergences: Overflow bureaucracy mistake - It seems for some reason we put out the wrong job-listing for the overflow role this shift...I hope you like captains.")
+	content = list("中央指挥部状态摘要 -- 末日将至 -- 你的空间站不知怎么落在了敌对领土中央，公司的一切敌人都能一眼望见它。你生还的可能性很低，\
+	空间站被摧毁是意料之中且几乎不可避免的。保护好任何敏感材料，消灭你遇到的一切敌人。至少尽力维持空间站运转，这一点很重要。\
+	祝你好运。-- KC13 特别命令：我方在你所在星区的军事力量不足。我们需要你在站内建造 BSA-87 火炮阵地。基地组件可通过货运订购。\
+	-纳米传讯海军指挥部 -- 已识别的班次偏差：溢出岗位官僚失误 - 看来不知为何，我们这班给溢出岗位发布了错误的招聘启事……希望你喜欢当舰长。")
 
 /obj/machinery/computer/terminal/derelict/cargo
-	content = list("INTER-MAIL - #789 - Cargo Technician I. Miller -> J. Holmes -- Jake, with all due respect, I don't know how you guys can keep this shit up. Robotics has made not one, but THREE AIs, \
-	and at least one of them either has combat upgrades or isn't telling us the whole story. Not that we can even get close enough to tell, mind, they're doing everything in their power to keep us away. It's \
-	unnerving. Meanwhile, a little birdie tells me one of your officers has been spending all shift trying to get their baton back from the clown with.. lethal force. This place is a fucking powder keg, Jake, \
-	you know as well as I do. Either stop fucking around or we'll take matters into our own hands.")
+	content = list("内部邮件 - #789 - 货运技术员 I. 米勒 -> J. 霍姆斯 -- 杰克，恕我直言，我真不知道你们这帮人是怎么把这破事撑下去的。机器人部门造了不是一个，而是三个人工智能，\
+	而且其中至少有一个要么装了战斗升级，要么没把实情全告诉我们。倒不是说我们靠近得了去分辨，他们正想尽办法把我们挡在外面。这很\
+	让人不安。与此同时，有小道消息说你们的一名警官整班都在想从那个小丑手里把警棍要回来……用的是致命武力。杰克，这地方就是个他妈的火药桶，\
+	你我都清楚。要么别他妈瞎搞了，要么我们就自己动手解决。")
 
 /obj/machinery/computer/terminal/derelict/security
-	content = list("INTER-MAIL - #790 - Cargo Technician J. Holmes -> I. Miller -- HOT SINGLE SILICONS IN YOUR AREA, CLICK ->HERE<- FOR MORE INFORMATION!")
+	content = list("内部邮件 - #790 - 货运技术员 J. 霍姆斯 -> I. 米勒 -- 你所在区域有火辣单身硅基生命体，点击 ->此处<- 获取更多信息！")
 
 /// Vault controller for use on the derelict/KS13.
 /obj/machinery/computer/vaultcontroller
-	name = "vault controller"
-	desc = "It seems to be powering and controlling the vault locks."
+	name = "金库控制器"
+	desc = "它似乎正在为金库门锁供电，并控制着它们。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/vaultcontroller")
 	icon_screen = "power"
 	icon_keyboard = "power_key"
@@ -62,7 +62,7 @@
 
 /obj/machinery/computer/monitor/examine(mob/user)
 	. = ..()
-	. += span_notice("It appears to be powered via a cable connector.")
+	. += span_notice("它似乎通过一根线缆连接器供电。")
 
 //Checks for cable connection, charges if possible.
 /obj/machinery/computer/vaultcontroller/process()
@@ -170,12 +170,12 @@
 
 ///Overrides screwdriver act to prevent all deconstruction and hacking. Override for extra tuff fluff
 /obj/machinery/door/airlock/vault/derelict/screwdriver_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_danger("The robust make of [src] makes it impossible to access the panel in any way!"))
+	to_chat(user, span_danger("[src] 坚固的做工让人无论如何都无法打开面板！"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/structure/fluff/oldturret
-	name = "broken turret"
-	desc = "An obsolete model of turret, long non-functional."
+	name = "损坏的炮塔"
+	desc = "一种过时的炮塔型号，早已无法运作。"
 	icon = 'icons/obj/weapons/turrets.dmi'
 	icon_state = "turretCover"
 	density = TRUE
@@ -186,70 +186,70 @@
 /// https://www.youtube.com/watch?v=7M-JPH5SOmI (old video)
 /// https://www.youtube.com/watch?v=FHH1vfY6HTA (new video)
 /obj/item/tape/captains_log
-	name = "captain's log"
-	desc = "A dusty old tape."
+	name = "舰长日志"
+	desc = "一盘积满灰尘的旧磁带。"
 	icon_state = "tape_blue"
 	used_capacity = 10 MINUTES // so the tape is full and can't be recorded over
 	storedinfo = list( // the captain recorded this in several segements
 		// 1st monologue (start of shift)
-		"\[00:01\] Every single day I spend on this station",
-		"\[00:07\] I become more and more certain that this was some kind of macabre punishment assignment",
-		"\[00:17\] I don't know what I did to deserve being consigned to this glued together ball of orbital wreckage",
-		"\[00:28\] But someones got it out for me",
-		"\[00:36\] On the station I may well be called 'Captain'",
-		"\[00:42\] But the title brings with it all the prestige and responsibility of some kind of fucking manchild kindergarten teacher",
-		"\[00:55\] To think Nanotrasen loves to call this hellhole:",
-		"\[01:03\] A state of the art orbital plasma research facility",
-		"\[01:10\] If I remember correctly though",
-		"\[01:15\] It was all about the plasma",
-		"\[01:19\] It was like the new oil",
-		"\[01:25\] As soon as we got all the fun exploration and discovery shit out of the way",
-		"\[01:35\] We started drilling",
-		"\[01:40\] All the companies and industries wanted to guzzle it up",
-		"\[01:48\] Despite the fact we knew jack shit about it and still don't",
-		"\[01:55\] But that didn't stop them",
-		"\[01:59\] (clicking sound)",
+		"\[00:01\] 我在这座空间站上度过的每一天",
+		"\[00:07\] 都让我越发确信，这不过是某种毛骨悚然的惩罚性差事",
+		"\[00:17\] 我不知道自己究竟做了什么，才被发配到这颗用胶水粘起来的轨道残骸球上",
+		"\[00:28\] 但肯定有人看我不顺眼",
+		"\[00:36\] 在站里，我或许确实被称作“舰长”",
+		"\[00:42\] 可这个头衔带来的全部威望和责任，也就跟一个他妈给巨婴当幼儿园老师的家伙差不多",
+		"\[00:55\] 想想纳米传讯还爱把这鬼地方叫作：",
+		"\[01:03\] 最先进的轨道等离子研究设施",
+		"\[01:10\] 不过要是我没记错的话",
+		"\[01:15\] 一切都围绕着等离子体",
+		"\[01:19\] 它就像是新时代的石油",
+		"\[01:25\] 等我们把那些有趣的探索和发现烂事都搞定之后",
+		"\[01:35\] 我们就开始钻井了",
+		"\[01:40\] 所有公司和产业都想把它大口吞下",
+		"\[01:48\] 尽管我们对它一无所知，至今也还是不懂",
+		"\[01:55\] 但这拦不住他们",
+		"\[01:59\] （咔嗒声）",
 		// 2nd monologue (early shift)
-		"\[15:05\] So they give me a crew of scientists and engineers to research and harness this so called plasma",
-		"\[15:15\] Not to mention the INCOMPETENT security",
-		"\[15:20\] The HOMICIDAL chef",
-		"\[15:25\] SUSPICIOUS fucking detective",
-		"\[15:29\] USELESS clown",
-		"\[15:35\] And BATSHIT fucking janitors",
-		"\[15:46\] That includes the crotchety fucking IBM piece of shit we're supposed to call an AI",
-		"\[15:52\] And its legion of cyborg assholes",
-		"\[15:58\] If this wasn't bad enough there is the wizards federation to worry about",
-		"\[16:06\] Crazy bastards",
-		"\[16:10\] What can be worse than a bunch of plasma-humping-space-freaks?",
-		"\[16:17\] The syndicate",
-		"\[16:21\] Hell bent on nuking everything we've accomplished to kingdom come",
-		"\[16:27\] Yet the crew still goes about their daily business",
-		"\[16:33\] Constantly looking over their shoulder in suspicion of one another",
-		"\[16:40\] And who wouldn't? Even the monkeys on board for genetic testing are monitored 24/7",
-		"\[16:52\] Despite it all though",
-		"\[16:56\] These cruel, paranoid, rejects spend every waking hour perfecting their robust combat skills",
-		"\[17:00\] Or wondering in awe at the promise plasma has to offer",
-		"\[17:07\] And if things go wrong it's hardly a problem",
-		"\[17:17\] Our advanced genetics and medical staff can ensure a 2nd life in matter of minutes",
+		"\[15:05\] 于是他们给我配了一队科学家和工程师，去研究和驾驭这所谓的等离子体",
+		"\[15:15\] 更别提那帮无能的安保",
+		"\[15:20\] 那个杀人不眨眼的厨师",
+		"\[15:25\] 那个他妈形迹可疑的侦探",
+		"\[15:29\] 那个一无是处的小丑",
+		"\[15:35\] 还有那群他妈疯疯癫癫的清洁工",
+		"\[15:46\] 其中还包括我们该称之为人工智能的那台他妈的又老又倔的 IBM 破机器",
+		"\[15:52\] 以及它那群半机械人混蛋",
+		"\[15:58\] 要是这还不够糟，还有个巫师联邦要操心",
+		"\[16:06\] 一群疯杂种",
+		"\[16:10\] 还有什么比一群操等离子体的太空怪胎更糟的？",
+		"\[16:17\] 辛迪加",
+		"\[16:21\] 一心想把我们所有的成果核平到天上去",
+		"\[16:27\] 可船员们照样过着自己的日子",
+		"\[16:33\] 时刻互相猜忌，回头提防着彼此",
+		"\[16:40\] 谁不会呢？连船上用来做基因实验的猴子都被全天候监视",
+		"\[16:52\] 但尽管如此",
+		"\[16:56\] 这些残忍、多疑的废柴把醒着的每一小时都用来打磨他们强悍的战斗技巧",
+		"\[17:00\] 或者满怀敬畏地遐想等离子体所许诺的前景",
+		"\[17:07\] 就算出了岔子，也算不上什么大问题",
+		"\[17:17\] 我们先进的基因技术和医疗人员几分钟内就能给你第二条命",
 		// 3rd monologue (middle shift)
-		"\[28:03\] I don't know why i'm even recording this...",
-		"\[28:13\] I sure as hell don't need it for myself",
-		"\[28:25\] Sure, I could upload it with all the evidence and dirt i've found over the years on Nanotrasen",
-		"\[28:32\] But what's the point?",
-		"\[28:36\] Who would give a shit other than corporate making me suddenly disappear?",
-		"\[28:47\] I suppose I could send and upload it to the network and let people make their own judgements",
-		"\[28:59\] After all, i'm the one sitting out here in deep space, cruising along leisurely",
+		"\[28:03\] 我甚至不知道自己为什么要录这个……",
+		"\[28:13\] 我自己是绝对用不着它的",
+		"\[28:25\] 当然，我可以把它连同这些年我找到的关于纳米传讯的所有证据和黑料一起上传",
+		"\[28:32\] 但有什么意义呢？",
+		"\[28:36\] 除了让公司把我弄得人间蒸发，还有谁他妈会在乎？",
+		"\[28:47\] 我想我可以把它发到网络上，让人们自己做出判断",
+		"\[28:59\] 毕竟，坐在这片深空里悠哉巡航的人是我",
 		// 4th monologue (end of shift)
-		"\[47:01\] I don't care what they call me back on the station",
-		"\[47:06\] I'm not a traitor!",
-		"\[47:10\] I'm a man of principles and standards",
-		"\[47:17\] And if lives get in the way of those principles, so be it",
-		"\[47:22\] I'd say I'm the better man here",
-		"\[47:32\] Once they called me captain, but when it's all said and done",
-		"\[47:41\] I'll be a hero",
-		"\[47:45\] If you run across this transmission by chance",
-		"\[47:52\] Get your pudgy little nerd ass over to Space Station 13 and start busting heads.",
-		"\[48:00\] (farting noises)",
+		"\[47:01\] 我不在乎站里的人怎么称呼我",
+		"\[47:06\] 我不是叛徒！",
+		"\[47:10\] 我是个有原则、有底线的人",
+		"\[47:17\] 如果人命挡了这些原则的道，那就随它去吧",
+		"\[47:22\] 要我说，我才是这里更正直的那个",
+		"\[47:32\] 他们曾叫我舰长，但等一切尘埃落定",
+		"\[47:41\] 我会成为英雄",
+		"\[47:45\] 如果你偶然听到这段传输",
+		"\[47:52\] 就赶紧把你那胖乎乎的宅男屁股挪到空间站 13 来，开始砸碎别人的脑袋。",
+		"\[48:00\] （放屁声）",
 	)
 	timestamp = list(
 		// 1st monologue (start of shift)

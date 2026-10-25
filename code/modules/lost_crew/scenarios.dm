@@ -1,6 +1,6 @@
 /// Default scenario, with normal species, assignments and damages etc
 /datum/corpse_damage_class/station
-	area_lore = "I was working in a space station"
+	area_lore = "我那时在一座空间站上工作。"
 	weight = 15
 	possible_character_types = list(/datum/corpse_character/mostly_roundstart = 1)
 	possible_character_assignments = list(

@@ -1,7 +1,7 @@
 /datum/job/lawyer
 	title = JOB_LAWYER
-	description = "Advocate for prisoners, create law-binding contracts, \
-		ensure Security is following protocol and Space Law."
+	description = "为囚犯辩护，订立具有法律效力的合同，\
+		确保安保部门遵守规程与太空法。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -21,7 +21,7 @@
 	departments_list = list(
 		/datum/job_department/service,
 		)
-	rpg_title = "Magistrate"
+	rpg_title = "治安法官"
 	family_heirlooms = list(/obj/item/gavelhammer, /obj/item/book/manual/wiki/security_space_law)
 
 	job_flags = STATION_JOB_FLAGS

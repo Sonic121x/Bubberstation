@@ -1,17 +1,17 @@
 /obj/item/skillchip/musical
-	name = "\improper Old Copy of \"Space Station 13: The Musical\""
-	desc = "An old copy of \"Space Station 13: The Musical\", \
-		ran on the station's 100th anniversary...Or maybe it was the 200th?"
-	skill_name = "Memory of a Musical"
-	skill_description = "Allows you to hit that high note, like those that came a century before us."
+	name = "\improper 旧版《空间站 13：音乐剧》"
+	desc = "一张旧的《空间站 13：音乐剧》拷贝， \
+		曾在空间站百年庆典上放映……又或者是两百周年？"
+	skill_name = "音乐剧的记忆"
+	skill_description = "让你能唱出那个高音，就像一世纪前的人们那样。"
 	skill_icon = FA_ICON_MUSIC
-	activate_message = span_notice("You feel like you could \u2669 sing a soooong! \u266B")
-	deactivate_message = span_notice("The musical fades from your mind, leaving you with a sense of nostalgia.")
+	activate_message = span_notice("你觉得自己能 \u2669 高唱一曲！ \u266B")
+	deactivate_message = span_notice("那部音乐剧从你脑海中淡去，只留下一丝怀旧之情。")
 	custom_premium_price = PAYCHECK_CREW * 4
 
 /obj/item/skillchip/musical/Initialize(mapload, is_removable)
 	. = ..()
-	name = replacetext(name, "Old", round(CURRENT_STATION_YEAR - pick(50, 100, 150, 200, 250), 5))
+	name = replacetext(name, "旧版", round(CURRENT_STATION_YEAR - pick(50, 100, 150, 200, 250), 5))
 
 /obj/item/skillchip/musical/on_activate(mob/living/carbon/user, silent = FALSE)
 	. = ..()
@@ -70,22 +70,22 @@
 
 /obj/item/skillchip/musical/examine(mob/user)
 	. = ..()
-	. += span_tinynoticeital("Huh, looks like it'd fit in a skillchip adapter.")
+	. += span_tinynoticeital("咦，看来它正好能装进技能芯片转接器里。")
 
 /obj/item/skillchip/musical/examine_more(mob/user)
 	. = ..()
 	var/list/songs = list()
-	songs += "&bull; \"The Ballad of Space Station 13\""
-	songs += "&bull; \"The Captain's Call\""
-	songs += "&bull; \"A Mime's Lament\""
-	songs += "&bull; \"Banned from Cargo\""
-	songs += "&bull; \"Botany Blues\""
-	songs += "&bull; \"Clown Song\""
-	songs += "&bull; \"Elegy to an Engineer\""
-	songs += "&bull; \"Medical Malpractitioner\""
-	songs += "&bull; \"Security Strike\""
-	songs += "&bull; \"Send for the Shuttle\""
-	songs += "&bull;  And one song scratched out..."
+	songs += "&bull; “空间站 13 叙事曲”"
+	songs += "&bull; “舰长的召唤”"
+	songs += "&bull; “默剧演员的哀歌”"
+	songs += "&bull; “被货运部封禁”"
+	songs += "&bull; “植物学蓝调”"
+	songs += "&bull; “小丑之歌”"
+	songs += "&bull; “工程师挽歌”"
+	songs += "&bull; “医疗失职者”"
+	songs += "&bull; “安保罢工”"
+	songs += "&bull; “快叫穿梭机来”"
+	songs += "&bull;  还有一首被划掉了……"
 
-	. += span_notice("<i>On the back of the chip, you see a list of songs:</i>")
+	. += span_notice("<i>在芯片背面，你看到一份歌曲列表：</i>")
 	. += span_smallnotice("<i>[jointext(songs, "<br>")]</i>")

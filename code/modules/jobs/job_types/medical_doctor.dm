@@ -1,7 +1,7 @@
 /datum/job/doctor
 	title = JOB_MEDICAL_DOCTOR
-	description = "Save lives, run around the station looking for victims, \
-		scan everyone in sight."
+	description = "拯救生命，满空间站奔跑寻找伤者，\
+		见人就扫描。"
 	faction = FACTION_STATION
 	total_positions = 6
 	spawn_positions = 4
@@ -35,7 +35,7 @@
 		/obj/effect/spawner/random/medical/organs = 5,
 		/obj/effect/spawner/random/medical/memeorgans = 1
 	)
-	rpg_title = "Cleric"
+	rpg_title = "牧师"
 	job_flags = STATION_JOB_FLAGS
 
 

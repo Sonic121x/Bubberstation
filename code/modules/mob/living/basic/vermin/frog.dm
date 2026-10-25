@@ -1,29 +1,29 @@
 /mob/living/basic/frog
-	name = "frog"
-	desc = "They seem a little sad."
+	name = "青蛙"
+	desc = "它看起来有点伤心。"
 	icon_state = "frog"
 	icon_living = "frog"
 	icon_dead = "frog_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_AQUATIC
-	verb_say = "ribbits"
-	verb_ask = "ribbits inquisitively"
-	verb_exclaim = "croaks"
-	verb_yell = "croaks loudly"
+	verb_say = "呱呱叫"
+	verb_ask = "好奇地呱呱叫"
+	verb_exclaim = "呱叫"
+	verb_yell = "大声呱叫"
 	maxHealth = 15
 	health = 15
 	speed = 1.1
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	obj_damage = 10
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "啃咬"
+	attack_verb_simple = "啃咬"
 	melee_attack_cooldown = 2.5 SECONDS
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "pokes"
-	response_disarm_simple = "poke"
-	response_harm_continuous = "splats"
-	response_harm_simple = "splat"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "戳"
+	response_disarm_simple = "戳"
+	response_harm_continuous = "压扁"
+	response_harm_simple = "压扁"
 	density = FALSE
 	faction = list(FACTION_HOSTILE, FACTION_MAINT_CREATURES)
 	attack_sound = 'sound/mobs/non-humanoids/frog/reee.ogg'
@@ -61,7 +61,7 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_FROG, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 	AddElement(/datum/element/can_be_held)
 	if (minion_type)
-		AddElement(/datum/element/regal_rat_minion, converted_path = minion_type, success_balloon = "ribbit", pet_commands = GLOB.regal_rat_minion_commands)
+		AddElement(/datum/element/regal_rat_minion, converted_path = minion_type, success_balloon = "呱呱", pet_commands = GLOB.regal_rat_minion_commands)
 
 /mob/living/basic/frog/proc/on_entered(datum/source, entered as mob|obj)
 	SIGNAL_HANDLER
@@ -72,8 +72,8 @@
 		playsound(src, stepped_sound, vol = 50, vary = TRUE)
 
 /mob/living/basic/frog/rare
-	name = "rare frog"
-	desc = "They seem a little smug."
+	name = "稀有青蛙"
+	desc = "它看起来有点得意。"
 	icon_state = "rare_frog"
 	icon_living = "rare_frog"
 	icon_dead = "rare_frog_dead"
@@ -84,8 +84,8 @@
 
 /// These frogs would REALLY rather like to get at your blood basically by any means possible
 /mob/living/basic/frog/crazy
-	name = "trash frog"
-	desc = "They seem a little mad."
+	name = "垃圾青蛙"
+	desc = "它看起来有点发疯。"
 	icon_state = "frog_trash"
 	icon_living = "frog_trash"
 	icon_dead = "frog_trash_dead"
@@ -99,8 +99,8 @@
 	ai_controller = /datum/ai_controller/basic_controller/frog/trash
 
 /mob/living/basic/frog/crazy/rare
-	name = "crazy frog"
-	desc = "They look hopping mad."
+	name = "疯狂青蛙"
+	desc = "它看起来气得直跳。"
 	icon_state = "rare_frog_trash"
 	icon_living = "rare_frog_trash"
 	icon_dead = "rare_frog_trash_dead"
@@ -111,16 +111,16 @@
 
 /// The cold doesn't bother him
 /mob/living/basic/frog/icemoon_facility
-	name = "Peter Jr."
-	desc = "They seem a little cold."
+	name = "小彼得"
+	desc = "它看起来有点冷。"
 	minimum_survivable_temperature = BODYTEMP_COLD_ICEBOX_SAFE
 	pressure_resistance = 200
 	habitable_atmos = null
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/frog/icemoon_facility/crazy
-	name = "Crazy Pete"
-	desc = "The cold is really getting to him."
+	name = "疯狂的皮特"
+	desc = "寒冷真的让它受不了了。"
 	icon_state = "frog_trash"
 	icon_living = "frog_trash"
 	icon_dead = "frog_trash_dead"
@@ -129,8 +129,8 @@
 
 /// Frog spawned by leapers which explodes on attack
 /mob/living/basic/frog/suicide
-	name = "suicide frog"
-	desc = "Driven by sheer will."
+	name = "自爆青蛙"
+	desc = "全凭意志驱动。"
 	icon_state = "frog_trash"
 	icon_living = "frog_trash"
 	icon_dead = "frog_trash_dead"
@@ -157,8 +157,8 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_OWNER_SELF_HARM_RESPONSES = list(
-			"*me licks its own eyeballs in disapproval.",
-			"*me croaks sadly."
+			"*me 不赞同地舔了舔自己的眼球。",
+			"*me 悲伤地呱叫。"
 		)
 	)
 

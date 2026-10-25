@@ -1,9 +1,9 @@
 /obj/machinery/door/puzzle/keycard/library
-	name = "wooden door"
-	desc = "A dusty, scratched door with a thick lock attached."
+	name = "木门"
+	desc = "一扇布满灰尘、满是划痕的门，上面挂着一把厚重的锁。"
 	icon = 'icons/obj/doors/puzzledoor/wood.dmi'
 	puzzle_id = "library"
-	open_message = "The door opens with a loud creak."
+	open_message = "门伴随着响亮的吱呀声打开了。"
 
 /obj/machinery/door/puzzle/keycard/library/animation_length(animation)
 	switch(animation)
@@ -18,26 +18,26 @@
 			return 1.2 SECONDS
 
 /obj/item/keycard/library
-	name = "golden key"
-	desc = "A dull, golden key."
+	name = "金钥匙"
+	desc = "一把暗淡的金钥匙。"
 	icon_state = "golden_key"
 	puzzle_id = "library"
 
 /obj/item/paper/crumpled/bloody/fluff/stations/lavaland/library/warning
-	name = "ancient note"
-	default_raw_text = "<b>Here lies the vast collection of He Who Knows Ten Thousand Things. Damned be those who seek its knowledge for power.</b>"
+	name = "古老便条"
+	default_raw_text = "<b>此处安放着“知晓万物者”浩繁的藏书。愿那些为求力量而觊觎其知识者永受诅咒。</b>"
 
 /obj/item/paper/crumpled/fluff/stations/lavaland/library/diary
-	name = "diary entry 13"
-	default_raw_text = "It has been a week since the library was buried, and I haven't seen the owl since. I am so hungry that I can barely muster the energy to think, let alone write. The knowledge seekers seem unaffected."
+	name = "日记第 13 篇"
+	default_raw_text = "图书馆被掩埋已经一周了，从那以后我就再没见过那只猫头鹰。我饿得几乎连思考的力气都没有，更别说写字了。那些求知者似乎没受影响。"
 
 /obj/item/paper/crumpled/fluff/stations/lavaland/library/diary2
-	name = "diary entry 18"
-	default_raw_text = "I've lost track of time. I lack the strength to even pick up books off the shelves. To think, after all this time spent searching for the library, I will die before I can so much as graze the depths of its knowledge."
+	name = "日记第 18 篇"
+	default_raw_text = "我已经记不清时间了。我连从书架上拿书的力气都没有。想想看，花了这么久寻找这座图书馆，我却要在窥见其知识深处之前就死去。"
 
 /obj/item/feather
-	name = "feather"
-	desc = "A dark, wilting feather. It seems as old as time."
+	name = "羽毛"
+	desc = "一根深色、枯萎的羽毛。它看起来与时间本身一样古老。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "feather"
 	force = 0

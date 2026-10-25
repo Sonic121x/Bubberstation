@@ -5,21 +5,21 @@
  */
 
 /obj/effect/mob_spawn/ghost_role/drone
-	name = "drone shell"
-	desc = "A shell of a maintenance drone, an expendable robot built to perform station repairs."
+	name = "无人机外壳"
+	desc = "一台维护无人机的外壳，这是一种为执行空间站维修而制造的一次性机器人。"
 	icon = 'icons/mob/silicon/drone.dmi'
 	icon_state = "drone_maint_hat" //yes reuse the _hat state.
 	layer = BELOW_MOB_LAYER
 	density = FALSE
-	mob_name = "drone"
+	mob_name = "无人机"
 	///Type of drone that will be spawned
 	mob_type = /mob/living/basic/drone
 	role_ban = ROLE_DRONE
 	show_flavor = FALSE
-	prompt_name = "maintenance drone"
-	you_are_text = "You are a Maintenance Drone."
-	flavour_text = "Born out of science, your purpose is to maintain Space Station 13. Maintenance Drones can become the backbone of a healthy station."
-	important_text = "You MUST read and follow your laws carefully."
+	prompt_name = "维护无人机"
+	you_are_text = "你是一台维护无人机。"
+	flavour_text = "你诞生于科学，你的使命是维护空间站 13。维护无人机可以成为一座健康空间站的支柱。"
+	important_text = "你必须仔细阅读并遵守你的法律。"
 	spawner_job_path = /datum/job/maintenance_drone
 
 /obj/effect/mob_spawn/ghost_role/drone/Initialize(mapload)
@@ -27,9 +27,9 @@
 	var/area/area = get_area(src)
 	if(area)
 		notify_ghosts(
-			"A drone shell has been created in \the [area.name].",
+			"\the [area.name] 中出现了一个无人机外壳。",
 			source = src,
-			header = "Drone Shell Created",
+			header = "无人机外壳已生成",
 			click_interact = TRUE,
 			ignore_key = POLL_IGNORE_DRONE,
 			notify_flags = (GHOST_NOTIFY_IGNORE_MAPLOAD),
@@ -53,6 +53,6 @@
 		var/minutes_left = required_playtime - current_playtime
 		var/playtime_left = DisplayTimeText(minutes_left * (1 MINUTES))
 		if(!silent)
-			to_chat(user, span_danger("You need to play [playtime_left] more as [required_role] to spawn as a Maintenance Drone!"))
+			to_chat(user, span_danger("你还需要以 [required_role] 身份游玩 [playtime_left] 才能作为维护无人机出生！"))
 		return FALSE
 	return ..()

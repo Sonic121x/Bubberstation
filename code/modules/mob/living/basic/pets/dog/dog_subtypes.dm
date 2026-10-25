@@ -1,9 +1,9 @@
 //Less exciting dog breeds
 
 /mob/living/basic/pet/dog/pug
-	name = "\improper pug"
-	real_name = "pug"
-	desc = "They're a pug."
+	name = "\improper 巴哥犬"
+	real_name = "巴哥犬"
+	desc = "它是一只巴哥犬。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "pug"
 	icon_living = "pug"
@@ -19,16 +19,16 @@
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_PUG, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
 
 /mob/living/basic/pet/dog/pug/mcgriff
-	name = "McGriff"
-	real_name = "McGriff"
-	desc = "This dog can tell something smells around here, and that something is CRIME!"
+	name = "麦格里夫"
+	real_name = "麦格里夫"
+	desc = "这只狗能闻出这附近有什么气味不对劲，而那股气味就是犯罪！"
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
 /mob/living/basic/pet/dog/bullterrier
-	name = "\improper bull terrier"
-	real_name = "bull terrier"
-	desc = "They're a bull terrier."
+	name = "\improper 牛头梗"
+	real_name = "牛头梗"
+	desc = "它是一只牛头梗。"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "bullterrier"
 	icon_living = "bullterrier"
@@ -39,16 +39,16 @@
 	held_state = "bullterrier"
 
 /mob/living/basic/pet/dog/bullterrier/lavaland_party
-	name = "Saint Nick's Helpful Associate"
-	desc = "Undergraduate in 'Being a Good Boy'."
+	name = "圣尼古拉斯的得力助手"
+	desc = "“做个乖孩子”专业的在读本科生。"
 	habitable_atmos = null
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 
 /mob/living/basic/pet/dog/bullterrier/guarddog //hostile dog variant for space ruins
-	name = "\improper guard dog"
-	real_name = "guard dog"
-	desc = "A vicious bull terrier. They look aggressive and territorial."
+	name = "\improper 看门狗"
+	real_name = "看门狗"
+	desc = "一只凶悍的牛头梗。它看起来充满攻击性，领地意识极强。"
 	collar_icon_state = "spiked"
 	//slightly weaker than a bear, but not as slow
 	health = 60
@@ -75,9 +75,9 @@
 	ai_movement = /datum/ai_movement/basic_avoidance
 
 /mob/living/basic/pet/dog/breaddog //Most of the code originates from Cak
-	name = "Kobun"
-	real_name = "Kobun"
-	desc = "It is a dog made out of bread. 'The universe is definitely half full'."
+	name = "科本"
+	real_name = "科本"
+	desc = "它是一只由面包做成的狗。“宇宙绝对是半满的。”"
 	icon_state = "breaddog"
 	icon_living = "breaddog"
 	icon_dead = "breaddog_dead"
@@ -88,8 +88,8 @@
 	damage_coeff = list(BRUTE = 3, BURN = 3, TOX = 1, STAMINA = 1, OXY = 1)
 	butcher_results = list(/obj/item/organ/brain = 1, /obj/item/organ/heart = 1, /obj/item/food/breadslice/plain = 3,  \
 	/obj/item/food/meat/slab = 2)
-	response_harm_continuous = "takes a bite out of"
-	response_harm_simple = "take a bite out of"
+	response_harm_continuous = "咬了一口"
+	response_harm_simple = "咬一口"
 	attacked_sound = 'sound/items/eatfood.ogg'
 	held_state = "breaddog"
 	worn_slot_flags = ITEM_SLOT_HEAD
@@ -102,13 +102,13 @@
 	if(!candidate || !candidate.brainmob || !candidate.brainmob.mind)
 		return
 	candidate.brainmob.mind.transfer_to(src)
-	to_chat(src, "[span_boldbig("You are a bread dog!")]<b> You're a harmless dog/bread hybrid that everyone loves. People can take bites out of you if they're hungry, but you regenerate health \
-	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. You should go around and bring happiness and \
-	free bread to the station!	'I’m not alone, and you aren’t either'</b>")
-	var/default_name = "Kobun"
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "You are \the [src]. Would you like to change your name to something else?", "Name change", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	to_chat(src, "[span_boldbig("你是一只面包狗！")]<b> 你是一只人见人爱的无害狗面包混合体。大家饿了都能咬你几口，但你的生命恢复得极快， \
+	所以这通常无关紧要。除了这类伤害外，你异常坚韧，几乎根本死不了。你应该四处走走， \
+	为空间站带来欢乐和免费的面包！	“我并不孤单，你也不是”</b>")
+	var/default_name = "科本"
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "你是 \the [src]。你想改成别的名字吗？", "更改名字", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice("Your name is now <b>[new_name]</b>!"))
+		to_chat(src, span_notice("你的名字现在是 <b>[new_name]</b>！"))
 		name = new_name
 		real_name = new_name
 

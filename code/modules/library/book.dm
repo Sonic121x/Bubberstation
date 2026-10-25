@@ -1,14 +1,14 @@
 /obj/item/book
-	name = "book"
-	desc = "Crack it open, inhale the musk of its pages, and learn something new."
+	name = "书"
+	desc = "翻开它，深吸书页的陈年墨香，学点新东西吧。"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
 	worn_icon_state = "book"
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL  //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
-	attack_verb_continuous = list("bashes", "whacks", "educates")
-	attack_verb_simple = list("bash", "whack", "educate")
+	attack_verb_continuous = list("猛砸", "重击", "教育")
+	attack_verb_simple = list("砸", "敲", "教导")
 	resistance_flags = FLAMMABLE
 	drop_sound = 'sound/items/handling/book_drop.ogg'
 	pickup_sound = 'sound/items/handling/book_pickup.ogg'
@@ -43,7 +43,7 @@
 /obj/item/book/examine(mob/user)
 	. = ..()
 	if(carved)
-		. += span_notice("[src] has been hollowed out.")
+		. += span_notice("[src] 已被掏空。")
 
 /obj/item/book/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item))
@@ -57,19 +57,19 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(IS_WRITING_UTENSIL(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Vandalize"
+		context[SCREENTIP_CONTEXT_LMB] = "涂改"
 		if(is_carving_tool(held_item))
-			context[SCREENTIP_CONTEXT_RMB] = "Carve out"
+			context[SCREENTIP_CONTEXT_RMB] = "掏空"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(is_carving_tool(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Carve out"
+		context[SCREENTIP_CONTEXT_LMB] = "掏空"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
 /// Gets the context to add for clicking the book inhand. Returns null if none.
 /obj/item/book/proc/get_attack_self_context(mob/living/user)
-	return "Read"
+	return "阅读"
 
 /obj/item/book/ui_static_data(mob/user)
 	var/list/data = list()
@@ -91,18 +91,18 @@
 /// Proc that checks if the user is capable of reading the book, for UI interactions and otherwise. Returns TRUE if they can, FALSE if they can't.
 /obj/item/book/proc/can_read_book(mob/living/user)
 	if(user.is_blind())
-		to_chat(user, span_warning("You are blind and can't read anything!"))
+		to_chat(user, span_warning("你双目失明，什么都读不了！"))
 		return FALSE
 
 	if(!user.can_read(src))
 		return FALSE
 
 	if(carved)
-		balloon_alert(user, "book is carved out!")
+		balloon_alert(user, "书已被掏空！")
 		return FALSE
 
 	if(!length(book_data.get_content()))
-		balloon_alert(user, "book is blank!")
+		balloon_alert(user, "书是空白的！")
 		return FALSE
 
 	return TRUE
@@ -124,7 +124,7 @@
 		return
 
 	playsound(user, 'sound/items/handling/paper_pickup.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	user.visible_message(span_notice("[user] opens a book titled \"[book_data.title]\" and begins reading intently."))
+	user.visible_message(span_notice("[user] 翻开一本名为“[book_data.title]”的书，开始专心阅读。"))
 	credit_book_to_reader(user)
 	display_content(user)
 
@@ -142,13 +142,13 @@
 	if(!user.can_perform_action(src) || !user.can_write(tool, TRUE))
 		return FALSE
 	if(user.is_blind())
-		to_chat(user, span_warning("As you are trying to write on the book, you suddenly feel very stupid!"))
+		to_chat(user, span_warning("正当你试着在书上写字时，你突然觉得自己蠢透了！"))
 		return FALSE
 	if(unique)
-		to_chat(user, span_warning("These pages don't seem to take the ink well! Looks like you can't modify it."))
+		to_chat(user, span_warning("这些书页似乎不太吃墨！看来你没法修改它。"))
 		return FALSE
 	if(carved)
-		to_chat(user, span_warning("The book has been carved out! There is nothing to be vandalized."))
+		to_chat(user, span_warning("这本书已被掏空！没有什么可涂改的了。"))
 		return FALSE
 	return TRUE
 
@@ -176,29 +176,29 @@
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
 
-	var/choice = tgui_input_list(usr, "What would you like to change?", "Book Alteration", list("Title", "Contents", "Author", "Cancel"))
+	var/choice = tgui_input_list(usr, "你想修改什么？", "书籍修改", list("标题", "内容", "作者", "取消"))
 	if(isnull(choice))
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
 
 	switch(choice)
-		if("Title")
+		if("标题")
 			return vandalize_title(user, tool)
-		if("Contents")
+		if("内容")
 			return vandalize_contents(user, tool)
-		if("Author")
+		if("作者")
 			return vandalize_author(user, tool)
 
 	return NONE
 
 /obj/item/book/proc/vandalize_title(mob/living/user, obj/item/tool)
-	var/newtitle = reject_bad_text(tgui_input_text(user, "Write a new title", "Book Title", max_length = 30))
+	var/newtitle = reject_bad_text(tgui_input_text(user, "写入新的标题", "书籍标题", max_length = 30))
 	if(!newtitle)
-		balloon_alert(user, "invalid input!")
+		balloon_alert(user, "输入无效！")
 		return ITEM_INTERACT_BLOCKING
 	if(length_char(newtitle) > 30)
-		balloon_alert(user, "too long!")
+		balloon_alert(user, "太长了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -209,9 +209,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/book/proc/vandalize_contents(mob/living/user, obj/item/tool)
-	var/content = tgui_input_text(user, "Write your book's contents (HTML NOT allowed)", "Book Contents", max_length = MAX_PAPER_LENGTH, multiline = TRUE)
+	var/content = tgui_input_text(user, "写入书籍的内容（不允许使用 HTML）", "书籍内容", max_length = MAX_PAPER_LENGTH, multiline = TRUE)
 	if(!content)
-		balloon_alert(user, "invalid input!")
+		balloon_alert(user, "输入无效！")
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -221,9 +221,9 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/book/proc/vandalize_author(mob/living/user, obj/item/tool)
-	var/author = tgui_input_text(user, "Write the author's name", "Author Name", max_length = MAX_NAME_LEN)
+	var/author = tgui_input_text(user, "写入作者的姓名", "作者姓名", max_length = MAX_NAME_LEN)
 	if(!author)
-		balloon_alert(user, "invalid input!")
+		balloon_alert(user, "输入无效！")
 		return ITEM_INTERACT_BLOCKING
 	if(!can_vandalize(user, tool))
 		return ITEM_INTERACT_BLOCKING
@@ -235,15 +235,15 @@
 /// Called when user clicks on the book with a carving utensil. Attempts to carve the book.
 /obj/item/book/proc/carving_act(mob/living/user, obj/item/tool)
 	if(carved)
-		balloon_alert(user, "already carved!")
+		balloon_alert(user, "已经掏空了！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "carving out...")
+	balloon_alert(user, "正在掏空……")
 	if(!do_after(user, 3 SECONDS, target = src))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "carved out")
+	balloon_alert(user, "已掏空")
 	playsound(src, 'sound/effects/cloth_rip.ogg', vol = 75, vary = TRUE)
 	carve_out()
 	return ITEM_INTERACT_SUCCESS
@@ -261,16 +261,16 @@
 /// Does not inherit from /obj/item/book because the only similarities between the two are the concept of "being a book"
 /// When designing a UI book you can send a "play_flip_sound" act to play the page turn sound
 /obj/item/tgui_book
-	name = "book"
-	desc = "Must be one of those new fangled electronic books."
+	name = "书"
+	desc = "想必就是那种新潮的电子书吧。"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="book"
 	worn_icon_state = "book"
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL  //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
-	attack_verb_continuous = list("bashes", "whacks", "educates")
-	attack_verb_simple = list("bash", "whack", "educate")
+	attack_verb_continuous = list("猛砸", "重击", "教育")
+	attack_verb_simple = list("砸", "敲", "教导")
 	resistance_flags = FLAMMABLE
 	drop_sound = 'sound/items/handling/book_drop.ogg'
 	pickup_sound = 'sound/items/handling/book_pickup.ogg'
@@ -304,9 +304,9 @@
 
 /obj/item/tgui_book/manual/dsm
 	name = "\improper SDSM-35" // 35 was picked based on the current edition plus the average years between edition divided by 500
-	desc = "The Space Diagnostic and Statistical Manual of Mental Disorders, \
-		a comprehensive book on all known mental disorders. \
-		On its 35th edition - though it's due for an update..."
+	desc = "太空精神障碍诊断与统计手册， \
+		一本全面介绍所有已知精神障碍的著作。 \
+		现已出到第 35 版——不过也早该更新了……"
 	icon_state = "book8"
 	ui_name = "DSMBook"
 
@@ -347,8 +347,8 @@
 
 		for(var/datum/addiction/addiction_type as anything in GLOB.addictions)
 			var/list/trauma_data = list()
-			trauma_data["full_name"] = "[capitalize(addiction_type::name)] Addiction"
-			trauma_data["scan_name"] = "[addiction_type::name] addiction"
+			trauma_data["full_name"] = "[capitalize(addiction_type::name)] 成瘾"
+			trauma_data["scan_name"] = "[addiction_type::name]成瘾"
 			trauma_data["desc"] = addiction_type::description
 			trauma_data["symptoms"] = addiction_type::symptoms
 			trauma_data["id"] = addiction_type
@@ -357,8 +357,8 @@
 		for(var/phobia_type, phobia_name in GLOB.phobia_types)
 			var/list/trauma_data = list()
 			trauma_data["full_name"] = phobia_name
-			trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc] of [phobia_type]"
-			trauma_data["desc"] = "Patient is irrationally afraid of [phobia_type]."
+			trauma_data["scan_name"] = "[/datum/brain_trauma/mild/phobia::scan_desc]，涉及[phobia_type]"
+			trauma_data["desc"] = "患者对[phobia_type]有不理性的恐惧。"
 			trauma_data["symptoms"] = /datum/brain_trauma/mild/phobia::symptoms
 			trauma_data["id"] = "[/datum/brain_trauma/mild/phobia]/[phobia_type]"
 			trauma_info += list(trauma_data)
@@ -371,10 +371,10 @@
 			ASSERT_DATA(trauma_data, "id")
 			// these start as null, so there is a chance they are missing
 			if(!trauma_data["desc"])
-				trauma_data["desc"] = "No description recorded - this is an error. Report this lack of research."
+				trauma_data["desc"] = "未记录描述——这是一个错误。请报告这项研究的缺失。"
 				stack_trace("[type] - [trauma_data["id"]] lacks a description!")
 			if(!trauma_data["symptoms"])
-				trauma_data["symptoms"] = "No symptoms recorded - this is an error. Report this lack of research."
+				trauma_data["symptoms"] = "未记录症状——这是一个错误。请报告这项研究的缺失。"
 				stack_trace("[type] - [trauma_data["id"]] lacks symptom information!")
 
 	data["traumas"] = trauma_info
@@ -382,9 +382,9 @@
 
 /obj/item/tgui_book/manual/idc
 	name = "\improper IDC-27" // 27 was picked based on the current edition plus the average years between edition divided by 500
-	desc = "The Interplanetary Classification of Diseases, \
-		a comprehensive book on all known diseases and ailments. \
-		On its 27th edition - though it's due for an update..."
+	desc = "行星际疾病分类， \
+		一本全面介绍所有已知疾病与病症的著作。 \
+		现已出到第 27 版——不过也早该更新了……"
 	icon_state = "book7"
 	ui_name = "IDCBook"
 
@@ -404,36 +404,36 @@
 			disease_data["agent"] = disease_type::agent
 			disease_data["name"] = disease_type::name
 			disease_data["desc"] = disease_type::desc
-			disease_data["illness"] = "N/A"
+			disease_data["illness"] = "无"
 			disease_data["spread_by"] = disease_type::spread_text || get_disease_spread_text(disease_type::spread_flags)
 			disease_data["cured_by"] = disease_type::cure_text
 			disease_data["id"] = disease_type
-			disease_data["level"] = "N/A"
+			disease_data["level"] = "无"
 			disease_info += list(disease_data)
 
 		for(var/datum/symptom/symptom_type as anything in valid_subtypesof(/datum/symptom))
 			var/list/symptom_data = list()
-			symptom_data["form"] = "Symptom"
-			symptom_data["agent"] = "N/A"
+			symptom_data["form"] = "症状"
+			symptom_data["agent"] = "无"
 			symptom_data["name"] = symptom_type::name
 			symptom_data["desc"] = symptom_type::desc
 			symptom_data["illness"] = symptom_type::illness
-			symptom_data["spread_by"] = "N/A"
+			symptom_data["spread_by"] = "无"
 			symptom_data["cured_by"] = symptom_type::symptom_cure::name
 			symptom_data["id"] = symptom_type
 			symptom_data["level"] = "[symptom_type::level]"
 			disease_info += list(symptom_data)
 
 		var/list/advanced_virus_info = list(
-			"form" = "Virus",
-			"agent" = "Microbes",
-			"name" = "Advanced Disease",
-			"desc" = "A catch-all category for diseases that are too complex to document in their entirety. \
-				The Virology department is known for bio-engineering these diseases, as such their danger can vary wildly. \
-				These diseases are often a combination of various symptoms, each cataloged in this book individually.",
-			"illness" = "N/A",
-			"spread_by" = "Varies by symptom combination",
-			"cured_by" = "Varies by symptom combination",
+			"form" = "病毒",
+			"agent" = "微生物",
+			"name" = "高级疾病",
+			"desc" = "一个统称类别，用于收录那些过于复杂、无法完整记录的疾病。 \
+				病毒学部门以对这些疾病进行生物工程改造而闻名，因此它们的危险性差异极大。 \
+				这类疾病通常是多种症状的组合，每一种症状都在本书中单独收录。",
+			"illness" = "无",
+			"spread_by" = "因症状组合而异",
+			"cured_by" = "因症状组合而异",
 			"id" = /datum/disease/advance,
 		)
 		disease_info += list(advanced_virus_info)
@@ -449,10 +449,10 @@
 			ASSERT_DATA(disease_data, "id")
 			// these start as null, so there is a chance they are missing
 			if(!disease_data["desc"])
-				disease_data["desc"] = "No description recorded - this is an error. Report this lack of research."
+				disease_data["desc"] = "未记录描述——这是一个错误。请报告这项研究的缺失。"
 				stack_trace("[type] - [disease_data["id"]] lacks a description!")
 			if(!disease_data["cured_by"] && !ispath(disease_data["id"], /datum/symptom))
-				disease_data["cured_by"] = "Unknown"
+				disease_data["cured_by"] = "未知"
 				stack_trace("[type] - [disease_data["id"]] lacks cure information!")
 
 	data["diseases"] = disease_info

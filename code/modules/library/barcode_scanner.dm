@@ -3,10 +3,10 @@
 #define BARCODE_SCANNER_INVENTORY "inventory"
 
 /obj/item/barcodescanner
-	name = "barcode scanner"
+	name = "条码扫描器"
 	icon = 'icons/obj/service/library.dmi'
 	icon_state ="scanner"
-	desc = "A fabulous tool if you need to scan a barcode."
+	desc = "如果你需要扫描条码，这可是一样绝妙的小工具。"
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -27,16 +27,16 @@
 
 	switch(scan_mode)
 		if(BARCODE_SCANNER_CHECKIN)
-			context[SCREENTIP_CONTEXT_LMB] = "Check in"
+			context[SCREENTIP_CONTEXT_LMB] = "归还"
 		if(BARCODE_SCANNER_CHECKOUT)
-			context[SCREENTIP_CONTEXT_LMB] = "Check out"
+			context[SCREENTIP_CONTEXT_LMB] = "借出"
 		if(BARCODE_SCANNER_INVENTORY)
-			context[SCREENTIP_CONTEXT_LMB] = "Add to inventory"
+			context[SCREENTIP_CONTEXT_LMB] = "加入库存"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/barcodescanner/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(held_item == src)
-		context[SCREENTIP_CONTEXT_LMB] = "Toggle scanning mode"
+		context[SCREENTIP_CONTEXT_LMB] = "切换扫描模式"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -48,7 +48,7 @@
 /obj/item/barcodescanner/proc/interact_with_book(obj/item/book/target_book, mob/living/user)
 	var/obj/machinery/computer/libraryconsole/bookmanagement/linked_computer = computer_ref?.resolve()
 	if(isnull(linked_computer))
-		user.balloon_alert(user, "not connected to computer!")
+		user.balloon_alert(user, "未连接计算机！")
 		return ITEM_INTERACT_BLOCKING
 
 	switch(scan_mode)
@@ -60,11 +60,11 @@
 					continue
 				checkouts -= checkout_ref
 				linked_computer.checkout_update()
-				balloon_alert(user, "checked in")
+				balloon_alert(user, "已归还")
 				playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 				return ITEM_INTERACT_SUCCESS
 
-			user.balloon_alert(user, "isn't checked out!")
+			user.balloon_alert(user, "并未借出！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(BARCODE_SCANNER_CHECKOUT)
@@ -72,23 +72,23 @@
 			for(var/checkout_ref in checkouts)
 				var/datum/borrowbook/maybe_ours = checkouts[checkout_ref]
 				if(target_book.book_data.compare(maybe_ours.book_data))
-					user.balloon_alert(user, "already checked out!")
+					user.balloon_alert(user, "已被借出！")
 					return ITEM_INTERACT_BLOCKING
 			for(var/copy_ref in linked_computer.inventory)
 				if(!target_book.book_data.compare(linked_computer.inventory[copy_ref]))
 					continue
 				linked_computer.checking_out_book = target_book.book_data
-				balloon_alert(user, "set for check out")
+				balloon_alert(user, "已设为借出")
 				playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 				return ITEM_INTERACT_SUCCESS
-			user.balloon_alert(user, "not in inventory!")
+			user.balloon_alert(user, "不在库存中！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(BARCODE_SCANNER_INVENTORY)
 			var/datum/book_info/our_copy = target_book.book_data.return_copy()
 			linked_computer.inventory[ref(our_copy)] = our_copy
 			linked_computer.inventory_update()
-			balloon_alert(user, "added to inventory")
+			balloon_alert(user, "已加入库存")
 			playsound(src, 'sound/items/barcodebeep.ogg', 20, FALSE)
 			return ITEM_INTERACT_SUCCESS
 
@@ -99,18 +99,18 @@
 	if(.)
 		return
 	if(!computer_ref?.resolve())
-		balloon_alert(user, "connect to computer!")
+		balloon_alert(user, "请连接计算机！")
 		return
 	switch(scan_mode)
 		if(BARCODE_SCANNER_CHECKIN)
 			scan_mode = BARCODE_SCANNER_CHECKOUT
-			balloon_alert(user, "check-out mode")
+			balloon_alert(user, "借出模式")
 		if(BARCODE_SCANNER_CHECKOUT)
 			scan_mode = BARCODE_SCANNER_INVENTORY
-			balloon_alert(user, "inventory adding mode")
+			balloon_alert(user, "库存添加模式")
 		if(BARCODE_SCANNER_INVENTORY)
 			scan_mode = BARCODE_SCANNER_CHECKIN
-			balloon_alert(user, "check-in mode")
+			balloon_alert(user, "归还模式")
 	playsound(loc, 'sound/items/click.ogg', 20, TRUE)
 
 #undef BARCODE_SCANNER_CHECKIN

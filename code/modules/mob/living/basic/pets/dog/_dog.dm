@@ -19,18 +19,18 @@
 
 /mob/living/basic/pet/dog
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "bops"
-	response_disarm_simple = "bop"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
-	speak_emote = list("barks", "woofs")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻拍"
+	response_disarm_simple = "轻拍"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
+	speak_emote = list("汪汪叫", "吠叫")
 	faction = list(FACTION_NEUTRAL)
 	ai_controller = /datum/ai_controller/basic_controller/dog
 	// The dog attack pet command can raise melee attack above 0
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	melee_attack_cooldown = 0.8 SECONDS
@@ -61,7 +61,7 @@
 /datum/emote/dog/woof
 	key = "woof"
 	key_third_person = "woof"
-	message = "woofs happily!"
+	message = "开心地汪汪叫！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/pet/dog/Initialize(mapload)
@@ -72,7 +72,7 @@
 	ADD_TRAIT(src, TRAIT_COLORBLIND, INNATE_TRAIT)
 	AddElement(/datum/element/pet_bonus, "woof")
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
-	AddElement(/datum/element/unfriend_attacker, untamed_reaction = "%SOURCE% fixes %TARGET% with a look of betrayal.")
+	AddElement(/datum/element/unfriend_attacker, untamed_reaction = "%SOURCE% 用一种被背叛的眼神盯着 %TARGET%。")
 	AddElement(/datum/element/can_be_held)
 	var/static/list/food_types = list(
 		/obj/item/food/meat/slab/human/mutant/skeleton,
@@ -87,38 +87,38 @@
 
 ///Updates dog speech and emotes
 /mob/living/basic/pet/dog/proc/update_dog_speech(list/speech_data)
-	speech_data[BB_EMOTE_SAY] = string_list(list("YAP", "Woof!", "Bark!", "AUUUUUU"))
-	speech_data[BB_EMOTE_HEAR] = string_list(list("barks!", "woofs!", "yaps.","pants."))
-	speech_data[BB_EMOTE_SEE] = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
+	speech_data[BB_EMOTE_SAY] = string_list(list("汪汪！", "汪！", "吠！", "嗷呜呜呜"))
+	speech_data[BB_EMOTE_HEAR] = string_list(list("汪汪叫！", "吠叫！", "汪汪地叫。","喘着气。"))
+	speech_data[BB_EMOTE_SEE] = string_list(list("摇了摇头。", "追着自己的尾巴。","打了个哆嗦。"))
 
 
 /// Populates BB_BASIC_MOB_SPEAK_LINES with the dog's current speech data for BT random speech.
 /// Subtypes override this to apply fashion accessories or variant speech.
 /mob/living/basic/pet/dog/proc/update_dog_speak_blackboard(datum/ai_controller/controller)
 	var/list/speech_data = list()
-	speech_data[BB_EMOTE_SAY] = list("YAP", "Woof!", "Bark!", "AUUUUUU")
-	speech_data[BB_EMOTE_HEAR] = list("barks!", "woofs!", "yaps.", "pants.")
-	speech_data[BB_EMOTE_SEE] = list("shakes [p_their()] head.", "chases [p_their()] tail.", "shivers.")
+	speech_data[BB_EMOTE_SAY] = list("汪汪！", "汪！", "吠！", "嗷呜呜呜")
+	speech_data[BB_EMOTE_HEAR] = list("汪汪叫！", "吠叫！", "汪汪地叫。", "喘着气。")
+	speech_data[BB_EMOTE_SEE] = list("摇了摇头。", "追着自己的尾巴。", "打了个哆嗦。")
 	speech_data[BB_SPEAK_CHANCE] = 1
 	controller.override_blackboard_key(BB_BASIC_MOB_SPEAK_LINES, speech_data)
 
 ///Proc to run on a successful taming attempt
 /mob/living/basic/pet/dog/tamed(mob/living/tamer, atom/food)
 	. = ..()
-	visible_message(span_notice("[src] licks at [tamer] in a friendly manner!"))
+	visible_message(span_notice("[src] 友好地舔了舔 [tamer]！"))
 
 /// A dog bone fully heals a dog, and befriends it if it's not your friend.
 /obj/item/dog_bone
-	name = "jumbo dog bone"
-	desc = "A tasty femur full of juicy marrow, the perfect gift for your best friend."
+	name = "超大号狗骨头"
+	desc = "一根美味的股骨，里面满是多汁的骨髓，送给你最好的朋友再合适不过。"
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "skeletonmeat"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)
 	force = 3
 	throwforce = 5
-	attack_verb_continuous = list("attacks", "bashes", "batters", "bludgeons", "whacks")
-	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
+	attack_verb_continuous = list("敲打", "猛砸", "连击", "重击", "拍击")
+	attack_verb_simple = list("敲打", "猛砸", "连击", "重击", "拍击")
 
 /obj/item/dog_bone/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (!isdog(target) || user.combat_mode)

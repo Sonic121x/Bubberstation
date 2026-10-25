@@ -5,15 +5,15 @@
  * This is one time use, we'll delete ourselves once done.
  */
 /datum/mafia_ability/reveal_role
-	name = "Reveal"
-	ability_action = "psychologically evaluate"
+	name = "揭露"
+	ability_action = "评估"
 
 /datum/mafia_ability/reveal_role/perform_action_target(datum/mafia_controller/game, datum/mafia_role/day_target)
 	. = ..()
 	if(!.)
 		return FALSE
 
-	host_role.send_message_to_player(span_warning("You have revealed the true nature of the [target_role]!"))
+	host_role.send_message_to_player(span_warning("你揭露了 [target_role] 的真实身份！"))
 	target_role.reveal_role(game, verbose = TRUE)
 	return TRUE
 

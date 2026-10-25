@@ -1,10 +1,10 @@
 /mob/living/basic/skeleton
-	name = "reanimated skeleton"
-	desc = "A real bonefied skeleton, doesn't seem like it wants to socialize."
+	name = "复生骷髅"
+	desc = "一副货真价实的骷髅，看起来不太想和人打交道。"
 	gender = NEUTER
 	icon = 'icons/mob/simple/simple_human.dmi'
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID|MOB_SKELETAL
-	speak_emote = list("rattles")
+	speak_emote = list("发出咔嗒声")
 	maxHealth = 40
 	health = 40
 	basic_mob_flags = DEL_ON_DEATH
@@ -13,8 +13,8 @@
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/slash.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	faction = list(FACTION_SKELETON)
@@ -22,7 +22,7 @@
 	lighting_cutoff_red = 15
 	lighting_cutoff_green = 25
 	lighting_cutoff_blue = 35
-	death_message = "collapses into a pile of bones!"
+	death_message = "坍成一堆白骨！"
 	ai_controller = /datum/ai_controller/basic_controller/skeleton
 	/// Loot this mob drops on death.
 	var/list/loot = list(/obj/effect/decal/remains/human)
@@ -58,17 +58,17 @@
 	return get_generic_humanoid_static_appearance()
 
 /mob/living/basic/skeleton/settler
-	name = "undead settler"
-	desc = "The reanimated remains of some poor settler."
+	name = "亡灵拓荒者"
+	desc = "某个可怜拓荒者的复生遗骸。"
 	maxHealth = 55
 	health = 55
 	melee_damage_lower = 17
 	melee_damage_upper = 20
-	attack_verb_continuous = "jabs"
-	attack_verb_simple = "jab"
+	attack_verb_continuous = "刺击"
+	attack_verb_simple = "刺击"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
-	death_message = "collapses into a pile of bones, its gear falling to the floor!"
+	death_message = "坍成一堆白骨，身上的装备散落一地！"
 	loot = list(
 		/obj/effect/decal/remains/human,
 		/obj/item/spear,
@@ -84,8 +84,8 @@
 	shoes = /obj/item/clothing/shoes/winterboots
 
 /mob/living/basic/skeleton/templar
-	name = "undead templar"
-	desc = "The reanimated remains of a holy templar knight."
+	name = "亡灵圣殿骑士"
+	desc = "一位神圣圣殿骑士的复生遗骸。"
 	maxHealth = 150
 	health = 150
 	speed = 2
@@ -93,16 +93,16 @@
 	obj_damage = 50
 	melee_damage_lower = 25
 	melee_damage_upper = 30
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
-	death_message = "collapses into a pile of bones, its gear clanging as it hits the ground!"
+	death_message = "坍成一堆白骨，装备哐当一声砸在地上！"
 	loot = list(
 		/obj/effect/decal/remains/human,
 		/obj/item/clothing/suit/chaplainsuit/armor/templar,
 		/obj/item/clothing/head/helmet/chaplain,
-		/obj/item/claymore/weak{name = "holy sword"}
+		/obj/item/claymore/weak{name = "圣剑"}
 	)
 	outfit = /datum/outfit/templar
 
@@ -113,8 +113,8 @@
 	r_hand = /obj/item/claymore/weak
 
 /mob/living/basic/skeleton/ice
-	name = "ice skeleton"
-	desc = "A reanimated skeleton protected by a thick sheet of natural ice armor. Looks slow, though."
+	name = "冰骷髅"
+	desc = "一具复生骷髅，外层覆盖着厚厚的天然冰甲。不过看起来行动迟缓。"
 	speed = 5
 	maxHealth = 75
 	health = 75
@@ -122,8 +122,8 @@
 	loot = list(/obj/effect/decal/remains/human{color = rgb(114,228,250)})
 
 /mob/living/basic/skeleton/plasmaminer
-	name = "shambling miner"
-	desc = "A plasma-soaked miner, their exposed limbs turned into a grossly incandescent bone seemingly made of plasma."
+	name = "蹒跚矿工"
+	desc = "一名浸透等离子体的矿工，裸露的肢体已化为仿佛由等离子体构成的炽亮白骨。"
 	icon_state = "plasma_miner"
 	icon_living = "plasma_miner"
 	icon_dead = "plasma_miner"
@@ -133,13 +133,13 @@
 	melee_damage_upper = 20
 	light_color = LIGHT_COLOR_PURPLE
 	light_range = 2
-	death_message = "collapses into a pile of bones, their suit dissolving among the plasma!"
+	death_message = "坍成一堆白骨，防护服在等离子体中溶解殆尽！"
 	loot = list(/obj/effect/decal/remains/plasma)
 	outfit = /datum/outfit/plasma_miner
 	species = /datum/species/plasmaman
 
 /mob/living/basic/skeleton/plasmaminer/jackhammer
-	desc = "A plasma-soaked miner, their exposed limbs turned into a grossly incandescent bone seemingly made of plasma. They seem to still have their mining tool in their hand, gripping tightly."
+	desc = "一名浸透等离子体的矿工，裸露的肢体已化为仿佛由等离子体构成的炽亮白骨。他们手里似乎还紧紧握着采矿工具。"
 	icon_state = "plasma_miner_tool"
 	icon_living = "plasma_miner_tool"
 	icon_dead = "plasma_miner_tool"
@@ -147,8 +147,8 @@
 	health = 185
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attack_verb_continuous = "blasts"
-	attack_verb_simple = "blast"
+	attack_verb_continuous = "轰击"
+	attack_verb_simple = "轰击"
 	attack_sound = 'sound/items/weapons/sonic_jackhammer.ogg'
 	attack_vis_effect = null
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)

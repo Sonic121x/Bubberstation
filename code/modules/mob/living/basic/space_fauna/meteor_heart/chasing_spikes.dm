@@ -1,7 +1,7 @@
 /// An ability which makes spikes come out of the ground towards your target
 /datum/action/cooldown/mob_cooldown/chasing_spikes
-	name = "impaling tendril"
-	desc = "Send a spiked subterranean tendril chasing after your target."
+	name = "穿刺卷须"
+	desc = "射出一条长满尖刺的地下卷须，追向你的目标。"
 	button_icon = 'icons/mob/simple/meteor_heart.dmi'
 	button_icon_state = "spike"
 	cooldown_time = 10 SECONDS
@@ -29,13 +29,13 @@
 
 /// An invisible effect which chases a target, spawning spikes every so often.
 /obj/effect/temp_visual/effect_trail/spike_chaser
-	name = "spike chaser"
+	name = "尖刺追击者"
 	spawned_effect = /obj/effect/temp_visual/emerging_ground_spike
 
 /// A spike comes out of the ground, dealing damage after a short delay
 /obj/effect/temp_visual/emerging_ground_spike
-	name = "bone spike"
-	desc = "A sharp spur of bone erupting from the ground!"
+	name = "骨刺"
+	desc = "一根从地面刺出的锋利骨刺！"
 	icon = 'icons/mob/simple/meteor_heart.dmi'
 	icon_state = "spike"
 	duration = 1 SECONDS
@@ -87,5 +87,5 @@
 
 	var/target_zone = victim.resting ? BODY_ZONE_CHEST : pick_weight(standing_damage_zones)
 	victim.apply_damage(impale_damage, damagetype = BRUTE, def_zone = target_zone, wound_bonus = impale_wound_bonus, sharpness = SHARP_POINTY)
-	to_chat(victim, span_userdanger("You've been impaled by \a [src]!"))
+	to_chat(victim, span_userdanger("你被 \a [src] 刺穿了！"))
 	return TRUE

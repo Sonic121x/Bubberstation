@@ -1,7 +1,7 @@
 
 /obj/item/instrument/piano_synth
-	name = "synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	name = "合成器"
+	desc = "一台先进的电子合成器，可当作多种乐器使用。"
 	icon_state = "synth"
 	inhand_icon_state = "synth"
 	allowed_instrument_ids = "piano"
@@ -21,8 +21,8 @@
 	song.ui_interact(user)
 
 /obj/item/instrument/piano_synth/headphones
-	name = "headphones"
-	desc = "Unce unce unce unce. Boop!"
+	name = "耳机"
+	desc = "咚次咚次咚次咚次。嘟！"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/ears_lefthand.dmi'
@@ -57,8 +57,8 @@
 	icon_state = "[initial(icon_state)][song?.playing ? "_on" : null]"
 
 /obj/item/instrument/piano_synth/headphones/spacepods
-	name = "\improper Nanotrasen space pods"
-	desc = "Flex your money, AND ignore what everyone else says, all at once!"
+	name = "\improper 纳米传讯太空豆耳机"
+	desc = "既能炫出你的财力，又能同时对别人的话充耳不闻！"
 	icon_state = "spacepods"
 	worn_icon = 'icons/mob/clothing/ears.dmi'
 	inhand_icon_state = null
@@ -68,8 +68,8 @@
 	custom_premium_price = PAYCHECK_CREW * 36 //Save up 5 shifts worth of pay just to lose it down a drainpipe on the sidewalk
 
 /obj/item/circuit_component/synth
-	display_name = "Synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	display_name = "合成器"
+	desc = "一台先进的电子合成器，可当作多种乐器使用。"
 
 	/// The song, represented in latin alphabet A to G, that'll be played when play is triggered.
 	var/datum/port/input/song
@@ -106,22 +106,22 @@
 	var/obj/item/instrument/piano_synth/synth
 
 /obj/item/circuit_component/synth/populate_ports()
-	song = add_input_port("Song", PORT_TYPE_LIST(PORT_TYPE_STRING), trigger = PROC_REF(import_song))
-	play = add_input_port("Play", PORT_TYPE_SIGNAL, trigger = PROC_REF(start_playing))
-	stop = add_input_port("Stop", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop_playing))
-	repetitions = add_input_port("Repetitions", PORT_TYPE_NUMBER, trigger = PROC_REF(set_repetitions))
+	song = add_input_port("歌曲", PORT_TYPE_LIST(PORT_TYPE_STRING), trigger = PROC_REF(import_song))
+	play = add_input_port("播放", PORT_TYPE_SIGNAL, trigger = PROC_REF(start_playing))
+	stop = add_input_port("停止", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop_playing))
+	repetitions = add_input_port("重复次数", PORT_TYPE_NUMBER, trigger = PROC_REF(set_repetitions))
 	beats_per_min = add_input_port("BPM", PORT_TYPE_NUMBER, trigger = PROC_REF(set_bpm))
-	selected_instrument = add_option_port("Selected Instrument", SSinstruments.synthesizer_instrument_ids, trigger = PROC_REF(set_instrument))
-	volume = add_input_port("Volume", PORT_TYPE_NUMBER, trigger = PROC_REF(set_volume))
-	volume_dropoff = add_input_port("Volume Dropoff Threshold", PORT_TYPE_NUMBER, trigger = PROC_REF(set_dropoff))
-	note_shift = add_input_port("Note Shift", PORT_TYPE_NUMBER, trigger = PROC_REF(set_note_shift))
-	sustain_mode = add_option_port("Note Sustain Mode", SSinstruments.note_sustain_modes, trigger = PROC_REF(set_sustain_mode))
-	sustain_value = add_input_port("Note Sustain Value", PORT_TYPE_NUMBER, trigger = PROC_REF(set_sustain_value))
-	note_decay = add_input_port("Held Note Decay", PORT_TYPE_NUMBER, trigger = PROC_REF(set_sustain_decay))
+	selected_instrument = add_option_port("选定乐器", SSinstruments.synthesizer_instrument_ids, trigger = PROC_REF(set_instrument))
+	volume = add_input_port("音量", PORT_TYPE_NUMBER, trigger = PROC_REF(set_volume))
+	volume_dropoff = add_input_port("音量衰减阈值", PORT_TYPE_NUMBER, trigger = PROC_REF(set_dropoff))
+	note_shift = add_input_port("音高偏移", PORT_TYPE_NUMBER, trigger = PROC_REF(set_note_shift))
+	sustain_mode = add_option_port("音符延音模式", SSinstruments.note_sustain_modes, trigger = PROC_REF(set_sustain_mode))
+	sustain_value = add_input_port("音符延音数值", PORT_TYPE_NUMBER, trigger = PROC_REF(set_sustain_value))
+	note_decay = add_input_port("按住音符衰减", PORT_TYPE_NUMBER, trigger = PROC_REF(set_sustain_decay))
 
-	is_playing = add_output_port("Currently Playing", PORT_TYPE_BOOLEAN)
-	started_playing = add_output_port("Started Playing", PORT_TYPE_SIGNAL)
-	stopped_playing = add_output_port("Stopped Playing", PORT_TYPE_SIGNAL)
+	is_playing = add_output_port("当前正在播放", PORT_TYPE_BOOLEAN)
+	started_playing = add_output_port("开始播放", PORT_TYPE_SIGNAL)
+	stopped_playing = add_output_port("停止播放", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/synth/register_shell(atom/movable/shell)
 	. = ..()
@@ -198,5 +198,5 @@
 	synth.song.full_sustain_held_note = !!synth.song.full_sustain_held_note
 
 /obj/item/circuit_component/synth/headphones
-	display_name = "Headphones"
-	desc = "An advanced electronic device that plays music into your ears."
+	display_name = "耳机"
+	desc = "一台先进的电子设备，能把音乐直接送进你的耳朵。"

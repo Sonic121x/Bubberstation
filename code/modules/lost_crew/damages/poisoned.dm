@@ -18,5 +18,5 @@
 	body.reagents.metabolize(body, 2 * metabolisations_per_unit * reagents_to_add, liverless = FALSE, dead = FALSE)
 
 /datum/corpse_damage/cause_of_death/poison/venom
-	cause_of_death = "when I got bit by a spider!"
+	cause_of_death = "就在那时，我被蜘蛛咬了一口！"
 	poison = /datum/reagent/toxin/venom

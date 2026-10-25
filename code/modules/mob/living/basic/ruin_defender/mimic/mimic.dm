@@ -9,10 +9,10 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 
 /mob/living/basic/mimic
 	abstract_type = /mob/living/basic/mimic
-	response_help_continuous = "touches"
-	response_help_simple = "touch"
-	response_disarm_continuous = "pushes"
-	response_disarm_simple = "push"
+	response_help_continuous = "触摸"
+	response_help_simple = "触摸"
+	response_disarm_continuous = "推搡"
+	response_disarm_simple = "推搡"
 	speed = 6
 	maxHealth = 250
 	health = 250
@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	melee_damage_lower = 8
 	melee_damage_upper = 12
 	attack_sound = 'sound/items/weapons/punch1.ogg'
-	speak_emote = list("creaks")
+	speak_emote = list("嘎吱作响")
 
 	unsuitable_cold_damage = 0
 	unsuitable_heat_damage = 0
@@ -40,8 +40,8 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(!. || !knockdown_people || !prob(15) || !istype(target))
 		return
 	target.Paralyze(4 SECONDS)
-	target.visible_message(span_danger("\The [src] knocks down \the [target]!"), \
-		span_userdanger("\The [src] knocks you down!"))
+	target.visible_message(span_danger("\The [src] 撞倒了 \the [target]！"), \
+		span_userdanger("\The [src] 把你撞倒了！"))
 
 
 // ****************************
@@ -50,15 +50,15 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 
 // Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
 /mob/living/basic/mimic/crate
-	name = "crate"
-	desc = "A very hostile rectangular steel crate."
+	name = "板条箱"
+	desc = "一个极具敌意的长方形钢制板条箱。"
 	icon = 'icons/obj/storage/crates.dmi'
 	icon_state = "crate"
 	base_icon_state = "crate"
 	icon_living = "crate"
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	speak_emote = list("clatters")
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
+	speak_emote = list("发出哐当声")
 	layer = BELOW_MOB_LAYER
 	ai_controller = /datum/ai_controller/basic_controller/mimic_crate
 	/// are we open
@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	if(user.combat_mode)
 		return ..()
 	if(trigger())
-		to_chat(user, span_danger("As you try to open [src] it [length(contents) ? "stiffens up and " : ""]nearly clamps down on your fingers!"))
+		to_chat(user, span_danger("当你想要打开 [src] 时，它[length(contents) ? "绷直了身子，" : ""]差点夹住你的手指！"))
 		return TRUE
 	toggle_open(user)
 	return TRUE
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 		return FALSE
 	if(ai_controller.ai_status != AI_STATUS_OFF)
 		return FALSE
-	visible_message(span_danger("[src] starts to move!"))
+	visible_message(span_danger("[src] 开始动了起来！"))
 	REMOVE_TRAIT(src, TRAIT_AI_PAUSED, INNATE_TRAIT)
 	ai_controller.clear_forced_off()
 	if(length(contents))
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 /mob/living/basic/mimic/crate/proc/toggle_open(mob/user)
 	if(locked)
 		if(user)
-			balloon_alert(user, "too stiff!")
+			balloon_alert(user, "太僵硬了！")
 		return
 	if(!opened)
 		ADD_TRAIT(src, TRAIT_UNDENSE, MIMIC_TRAIT)
@@ -230,14 +230,14 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 /mob/living/basic/mimic/crate/xenobio
 	health = 210
 	maxHealth = 210
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
-	speak_emote = list("clatters")
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
+	speak_emote = list("发出哐当声")
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /datum/action/innate/mimic_lock
-	name = "Lock/Unlock"
-	desc = "Toggle preventing yourself from being opened or closed."
+	name = "锁定/解锁"
+	desc = "切换是否阻止自己被打开或关闭。"
 	button_icon = 'icons/hud/radial.dmi'
 	button_icon_state = "radial_lock"
 	background_icon_state = "bg_default"
@@ -247,9 +247,9 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	var/mob/living/basic/mimic/crate/mimic = owner
 	mimic.locked = !mimic.locked
 	if(!mimic.locked)
-		to_chat(mimic, span_warning("You loosen up, allowing yourself to be opened and closed."))
+		to_chat(mimic, span_warning("你放松了下来，允许别人打开或关闭你。"))
 	else
-		to_chat(mimic, span_warning("You stiffen up, preventing anyone from opening or closing you."))
+		to_chat(mimic, span_warning("你绷紧了身子，谁也无法打开或关闭你。"))
 
 // ****************************
 // COPYING (actually imitates target object) MIMIC
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(animatable_blacklist, typecacheof(list(
 	return ..()
 
 /mob/living/basic/mimic/copy/wabbajack(what_to_randomize, change_flags = WABBAJACK)
-	visible_message(span_warning("[src] resists polymorphing into a new creature!"))
+	visible_message(span_warning("[src] 抵抗住了变成新生物的变形！"))
 
 /mob/living/basic/mimic/copy/animate_atom_living(mob/living/owner)
 	change_owner(owner)

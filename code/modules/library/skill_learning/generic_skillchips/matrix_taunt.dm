@@ -1,14 +1,14 @@
 #define TAUNT_STAMINA_COST 19
 
 /obj/item/skillchip/matrix_taunt
-	name = "BULLET_DODGER skillchip"
-	desc = "Overclock, override and overload your kinesthesic senses, proprioception and reflexes for a small window of time to \
-		automatically dodge fired projectiles. Activated by performing a taunt."
-	skill_name = "Taunt 2 Dodge"
-	skill_description = "At the cost of stamina, your taunts can also be used to dodge incoming projectiles."
+	name = "BULLET_DODGER 技能芯片"
+	desc = "在短暂的时间窗口内超频、覆写并过载你的运动感觉、本体感受与反射，从而 \
+		自动躲开射来的投射物。做出嘲讽动作即可激活。"
+	skill_name = "嘲讽闪避"
+	skill_description = "以消耗体力为代价，你的嘲讽动作也能用来躲避来袭的投射物。"
 	skill_icon = FA_ICON_SPINNER
-	activate_message = span_notice("You feel the urge to taunt scenically as if you are the 'Chosen One'.")
-	deactivate_message = span_notice("The urge to taunt goes away.")
+	activate_message = span_notice("你感到一股想要戏剧性地嘲讽对手的冲动，仿佛自己就是“天选之人”。")
+	deactivate_message = span_notice("嘲讽的冲动消失了。")
 
 /obj/item/skillchip/matrix_taunt/on_activate(mob/living/carbon/user, silent = FALSE)
 	. = ..()
@@ -25,7 +25,7 @@
 	if(key != "taunt" || !intentional)
 		return
 	if((source.maxHealth - (source.get_stamina_loss() + TAUNT_STAMINA_COST)) <= source.crit_threshold)
-		source.balloon_alert(source, "too tired!")
+		source.balloon_alert(source, "太累了！")
 		return COMPONENT_CANT_EMOTE
 
 /obj/item/skillchip/matrix_taunt/proc/on_taunt(mob/living/source)

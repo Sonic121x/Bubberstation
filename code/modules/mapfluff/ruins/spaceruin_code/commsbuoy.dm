@@ -1,42 +1,42 @@
 /obj/structure/fluff/commsbuoy_receiver
-	name = "interstellar receiver"
-	desc = "A dish-shaped component of the Comms Buoy used to detect and record interstellar signals."
+	name = "星际接收器"
+	desc = "通讯浮标上的碟形组件，用于探测并记录星际信号。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "broadcast receiver"
 
 /obj/structure/fluff/commsbuoy_processor
-	name = "comms buoy processor unit"
-	desc = "This machine is used to process and unscramble interstellar transmissions, to then be relayed and broadcast."
+	name = "通讯浮标处理单元"
+	desc = "这台机器用于处理并解码星际传输，随后再转发和广播。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "processor"
 
 /obj/structure/fluff/commsbuoy_broadcaster
-	name = "interstellar broadcaster"
-	desc = "A dish-shaped component of the  Comms Buoy used to broadcast processed interstellar signals."
+	name = "星际广播器"
+	desc = "通讯浮标上的碟形组件，用于广播经过处理的星际信号。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "broadcaster"
 
 /obj/structure/fluff/sat_dish
-	name = "satellite dish"
-	desc = "I wonder if they get any sports channels out here."
+	name = "卫星天线"
+	desc = "不知道这地方能不能收到什么体育频道。"
 	density = FALSE
 	deconstructible = TRUE
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "sat_dish"
 
 /obj/item/keycard/nt_commsbuoy
-	name = "Nanotrasen comms buoy keycard"
-	desc = "A keycard with the NT logo prominently displayed. The last user broke off the end; the card can still swipe, but this won't insert \
-	into any chip readers now. On the back, mostly obscured by dried blood, the text \"SPINWARD\" is printed, followed by an illegible ID string."
+	name = "纳米传讯通讯浮标钥匙卡"
+	desc = "一张醒目地印着纳米传讯标志的钥匙卡。上一位使用者把末端折断了；卡片仍能刷卡，但现在无法 \
+	插入任何芯片读取器。背面大部分被干涸的血迹遮住，印着“顺旋”字样，后面跟着一串无法辨认的 ID 字符。"
 	color = "#4c80b1"
 	puzzle_id = "nt_commsbuoy"
 
 /obj/machinery/door/puzzle/keycard/nt_commsbuoy
-	name = "secure airlock"
+	name = "安全气闸"
 	puzzle_id = "nt_commsbuoy"
 
 /area/ruin/space/nt_commsbuoy
-	name = "\improper Nanotrasen Comms Buoy"
+	name = "\improper 纳米传讯通讯浮标"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 	default_gravity = ZERO_GRAVITY
 	ambientsounds = list(
@@ -54,215 +54,215 @@
 	color = COLOR_BLUE_GRAY
 
 /obj/item/paper/fluff/ruins/nt_commsbuoy/table_of_contents
-	name = "Table of Contents: NT-EBCB Model 7"
-	desc = "The Table of Contents page, text mostly faded. Rest of handbook not included."
+	name = "目录：NT-EBCB 7 型"
+	desc = "目录页，文字大多已褪色。手册其余部分不在这里。"
 	default_raw_text = {"
-	<center><h3>Nanotrasen Extraorbital Bluespace Communications Buoy Operations Manual</h3>
-	<h5><i>PROPERTY OF NANOTRASEN. DO NOT DISTRIBUTE.</i></h5></center>
+	<center><h3>纳米传讯轨道外蓝空间通讯浮标操作手册</h3>
+	<h5><i>纳米传讯财产。请勿分发。</i></h5></center>
 	<hr>
-	<h4>Table of Contents</h4>
-	Legal Disclaimers: p1-p6 <br>
-	How to Sign: Nondisclosure Agreement: p7 <br>
-	Main and Secondary Dish: p8-p10 <br>
-	Standard Operation Codes: p11 <br>
-	Local-Network Array: p12-p13 <br>
-	Interstellar Relay: p14-p27 <br>
-	Maintinence: p28-p46 <br>
-	Common Error Codes: p47 <br>
-	Contacting NT Tech Support: p48-54 <br>
+	<h4>目录</h4>
+	法律免责声明：第 1-6 页 <br>
+	如何签署：保密协议：第 7 页 <br>
+	主天线与副天线：第 8-10 页 <br>
+	标准操作代码：第 11 页 <br>
+	本地网络阵列：第 12-13 页 <br>
+	星际中继：第 14-27 页 <br>
+	维护保养：第 28-46 页 <br>
+	常见错误代码：第 47 页 <br>
+	联系纳米传讯技术支持：第 48-54 页 <br>
 	<hr>
-	<i>(The page is torn straight along the end of the Table of Contents... wish they'd left the actual Contents.)</i>
+	<i>（这一页正好沿着目录末尾被撕下……真希望他们把真正的目录留下了。）</i>
 	"}
 
 /obj/item/paper/fluff/ruins/nt_commsbuoy/torn_page
-	name = "Page 33: NT-EBCB Model 7"
-	desc = "Page 33, torn out and annotated with lots of underlining."
+	name = "第 33 页：NT-EBCB 7 型"
+	desc = "第 33 页，被撕了下来，上面有许多下划线标注。"
 	default_raw_text = {"
-	<center><h5><i>PROPERTY OF NANOTRASEN. DO NOT DISTRIBUTE.</i></h5></center>
+	<center><h5><i>纳米传讯财产。请勿分发。</i></h5></center>
 	<hr>
-	... is listing any of the mentioned Operation or Error codes. If the shown error is \
-	not listed in the manual, please refer to pages 48/54 to contact a Nanotrasen Techician for direct assistance. <br>
-	<center><h4>Realigning the Satellite Dish</hr></center>
-	Now that you have identified the Error code as an alignment issue, repairs will follow a simple step-by-step list. Be sure to follow the \
-	list precisely, as additional damage may occur while the dish is misaligned. <br>
-	1. Assess the outside of the Comms Buoy for any damage or indication of impact to the dish. If any is found, refer to the Replacement Parts subsection\
-	on page 43. <br>
-	2. Before entering the Comms Buoy, collect the Nanotrasen Comms Buoy keycard provided in the front of this manual. This keycard is vital to \
-	the repair process, operational efficiency of the Buoy, and in disabling the automated defensive system. <br>
-	3. Display this card prominently on your persons. This can be done with an official Nanotrasen neck lanyard or Nanotrasen clip-on retractible laynard, \
-	worn on your collar, attached to a breast pocket, or on your waist. <br>
-	4. Enter the Comms Buoy from the designated airlock. There is no system aboard to recycle air, so keep internals and a suit handy in case \
-	the Comms Buoy has depressurized. <br>
-	5. Immediately upon entering the room, be sure to disable the Automated Defense System (refer to page 29). \
-	<b>Failiure to follow this step may risk injury or even death.</b> <br>
-	6. Proceed to the terminal corresponding to the misaligned disk - the Primary Dish controller (pages 8/9) can be located in the room past the Local-Network Array (pages 12/13), \
-	while the one closest to the airlock will control the Secondary Dish (page 10). <br>
-	7. Insert the Nanotrasen Comms Buoy keycard into the slot along the bottom right of the terminal (refer to diagram RD-2).
+	……列出任何上述操作代码或错误代码。如果所示错误未 \
+	列在手册中，请参阅第 48/54 页，联系纳米传讯技术员以获得直接协助。 <br>
+	<center><h4>重新对准卫星天线</hr></center>
+	既然你已确定该错误代码属于对准问题，维修将按一份简单的分步清单进行。请务必严格 \
+	按照清单操作，因为在天线未对准时可能造成额外损坏。 <br>
+	1. 检查通讯浮标外部是否有任何损坏，或天线是否受到撞击的迹象。如发现损坏，请参阅第 43 页的 \
+	更换零件小节。 <br>
+	2. 进入通讯浮标之前，请取走本手册前部附带的纳米传讯通讯浮标钥匙卡。这张钥匙卡对 \
+	维修过程、浮标的运行效率，以及关闭自动防御系统都至关重要。 <br>
+	3. 将此卡醒目地佩戴在身上。可以使用官方的纳米传讯颈挂绳或纳米传讯夹式可伸缩挂绳， \
+	挂在衣领、胸前口袋或腰间。 <br>
+	4. 从指定气闸进入通讯浮标。浮标上没有空气循环系统，因此请随身携带内部供氧设备与太空服，以防 \
+	通讯浮标已经失压。 <br>
+	5. 进入房间后，务必立即关闭自动防御系统（参阅第 29 页）。 \
+	<b>未执行此步骤可能导致受伤甚至死亡。</b> <br>
+	6. 前往与未对准天线相对应的终端——主天线控制器（第 8/9 页）位于本地网络阵列（第 12/13 页）之后的房间里， \
+	而最靠近气闸的那台将控制副天线（第 10 页）。 <br>
+	7. 将纳米传讯通讯浮标钥匙卡插入终端右下方的插槽（参见图 RD-2）。
 	<hr>
-	(The back of the page is covered in blood. A shame, now you can't see the diagram...)
+	（页面背面沾满了血。真可惜，现在你看不到示意图了……）
 	"}
 
 /obj/item/paper/fluff/ruins/nt_commsbuoy/inspection
-	name = "Spinward-NT-EBCB Inspection Report"
-	desc = "A few notes from the pre-activation inspection. Probably shouldn't still be here post-activation."
+	name = "顺旋-NT-EBCB 检查报告"
+	desc = "激活前检查留下的几则笔记。激活后这本不该还留在这里。"
 	default_raw_text = {"
-	<center><h3>"SS13-Relay" Spinward NT-EBCB Pre-Activation Inspection</h3></center>
+	<center><h3>“SS13 中继站”顺旋 NT-EBCB 激活前检查</h3></center>
 	<hr>
-	Alright, just a few notes for consideration before we launch this new model. Would really appreciate review and action on the listed items. <br>
-	- Open space on the exterior chassis. Nanotrasen insignia and paint? <u>Could sell advertising space?</u> <br>
-	- The Primary Dish has proven to be sufficient for even severe network loads. Offloading half of its processing to the Secondary just creates \
-	a fault risk; isn't this meant to be a backup? Why are we using it at all times? <br>
-	- Interstellar Relay has some outdated encryption. This sat shouldn't have even <b>left</b> CC until this was updated. <br>
-	- <b>Please reconsider deployment location.</b> SS13's local space is not secure enough for untested comms equipment. Combine with above \
-	note about encryption, this is a <b>serious security risk.</b> <br>
-	- Turrets are functioning as expected, read the ID correctly as long as the full barcode is unobscured. However, please review: location of \
-	turrets. Critical consoles are in the firing line and NOT laser-resistant. No, a backup recorder in the Main Dish is not sufficient. <br>
-	- A note of praise: including a manual with each satellite is very good. Better recommendation might be a console, or something similar \
-	which people can't just tear off the corkboard. <br>
-	- I fixed the breaker while I was aboard; it was routing 2kW into lighting and blew them all out. Simple wiring fault. Fix before launching \
-	other Model-7s to prevent power issues. <br>
-	- While it's not a habitable satellite, a fax machine might have been handy. Now I have to make sure not to lose these notes during the return \
-	trip.
+	好吧，在发射这个新型号之前，只有几点意见供考虑。非常希望你们能审阅并对所列事项采取行动。 <br>
+	- 外部机壳上留有空白。纳米传讯徽标和涂装？<u>能不能把这块广告位卖出去？</u> <br>
+	- 主天线已证明即使在严重网络负载下也足够用。把一半处理任务分给副天线只会带来 \
+	故障风险；副天线不是本就该作为备用吗？为什么我们一直用它？ <br>
+	- 星际中继的加密有些过时。在这次更新完成之前，这颗卫星甚至不该<b>离开</b>中央指挥部。 <br>
+	- <b>请重新考虑部署位置。</b>SS13 所在的本地区域对于未经测试的通讯设备来说不够安全。结合上面 \
+	关于加密的问题，这构成<b>严重的安全风险。</b> <br>
+	- 炮塔功能符合预期，只要完整条码没有被遮挡，就能正确读取 ID。但是，请复核：炮塔的 \
+	位置。关键控制台就在射线上，而且并不防激光。不，主机箱里放个备用记录仪是不够的。 <br>
+	- 一点表扬：每颗卫星都附上一本手册非常好。更好的建议是配一台控制台或类似的东西， \
+	让人们没法直接把它从公告板上撕下来。 <br>
+	- 我在船上时顺手修好了断路器；它把 2kW 电力导入照明线路，把灯全烧了。简单的接线故障。发射 \
+	其他 7 型之前请先修好，以免出现供电问题。 <br>
+	- 虽然这不是一颗可居住的卫星，但要是有一台传真机也许会方便些。现在我得确保在返程途中 \
+	别把这些笔记弄丢了。
 	<hr>
-	<center><h5><i>PROPERTY OF NANOTRASEN. DO NOT DISTRIBUTE.</i></h5></center>
+	<center><h5><i>纳米传讯财产。请勿分发。</i></h5></center>
 	"}
 
 /obj/machinery/computer/terminal/nt_commsbuoy
-	name = "satellite dish operations terminal"
+	name = "卫星天线操作终端"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/terminal/nt_commsbuoy")
 	icon_screen = "comm"
 	tguitheme = "ntos"
-	upperinfo = "SATELLITE DISH OPERATIONS READOUT"
+	upperinfo = "卫星天线操作读数"
 	content = list(
-		"<b>10/07/2563</b> - Inbound Packet Stability - FAIL <br>\
-		<i>Please realign dish!</i><hr>",
-		"<b>17/07/2563</b> - Inbound Packet Stability - FAIL <br>\
-		<i>Please realign dish!</i><hr>",
-		"<b>19/07/2563</b> - Outbound Packet Stability - SUCCESS <hr>",
-		"<b>24/07/2563</b> - Inbound Packet Stability - FAIL <br>\
-		<i>Please realign dish!</i><hr>",
-		"<b>02/08/2563</b> - Inbound Packet Stability - FAIL <br>\
-		<i>Please realign dish!</i><hr>",
-		"<b>09/08/2563</b> - Inbound Packet Stability - FAIL <br>\
-		<i>Please realign dish!</i><hr>",
-		"<b>13/08/2563</b> - Secondary Dish reports manual alignment changes. <br>\
-		<i>If this was not intentional, please check the exterior for signs of impact damage!</i><hr>",
-		"<b>13/08/2563</b> - Outbound Packet Stability - SUCCESS <hr>",
-		"<b>14/08/2563</b> - Inbound Packet Stability - SUCCESS <br>\
-		<i>Forwarding to Processor for signal restoration.</i><br>\
-		... <i>Signal restored, Inbound relayed to Outbound</i><br>\
-		... Outbound Packet Stability - SUCCESS <hr>",
-		"<b>15/08/2563</b> - Outbound Packet Stability - SUCCESS <hr>",
+		"<b>10/07/2563</b> - 入站数据包稳定性——失败 <br>\
+		<i>请重新对准天线！</i><hr>",
+		"<b>17/07/2563</b> - 入站数据包稳定性——失败 <br>\
+		<i>请重新对准天线！</i><hr>",
+		"<b>19/07/2563</b> - 出站数据包稳定性——成功 <hr>",
+		"<b>24/07/2563</b> - 入站数据包稳定性——失败 <br>\
+		<i>请重新对准天线！</i><hr>",
+		"<b>02/08/2563</b> - 入站数据包稳定性——失败 <br>\
+		<i>请重新对准天线！</i><hr>",
+		"<b>09/08/2563</b> - 入站数据包稳定性——失败 <br>\
+		<i>请重新对准天线！</i><hr>",
+		"<b>13/08/2563</b> - 副天线报告发生手动对准变更。<br>\
+		<i>如果并非有意为之，请检查外部是否有撞击损坏的迹象！</i><hr>",
+		"<b>13/08/2563</b> - 出站数据包稳定性——成功 <hr>",
+		"<b>14/08/2563</b> - 入站数据包稳定性——成功 <br>\
+		<i>正在转发至处理器以恢复信号。</i><br>\
+		…… <i>信号已恢复，入站信号已转发出站</i><br>\
+		…… 出站数据包稳定性——成功 <hr>",
+		"<b>15/08/2563</b> - 出站数据包稳定性——成功 <hr>",
 	)
 
 /obj/machinery/computer/terminal/nt_commsbuoy/blackbox
-	name = "blackbox transcription terminal"
-	upperinfo = "BLACKBOX TRANSCRIPT - 13/08/2563"
+	name = "黑匣子转录终端"
+	upperinfo = "黑匣子转录——13/08/2563"
 	content = list(
-		"<i>Notice: this transcript was generated by Nanotrasen speech-to-text. By reading this transcript you are hereby agreeing to the speech-to-text terms \
-		of service, and agree that any fault or inaccuracies in transcriptions legally falls entirely on the speaker.</i><hr>",
-		"11:07 - <b>NTSS WAKAHIRU</b><br> \
-		Yeah, we're close enough. Passing within about a thousand meters of that Buoy that's been having trouble. We can re-route to check on it, I've got \
-		an extraorbital engineer aboard. <i>Hell, guy's already looking for the right handbook.</i><br>",
-		"11:08 - <b>NANOTRASEN TRAFFIC CONTROL</b><br> \
-		Approved, Wakahiru. Redirect per the updated charts coming in on your CDTI, keep your speed below sub-light until further notice. ETA will be 27 minutes. \
-		Be sure to follow all Company regulations during repairs, these systems are extremely sensitive and you will be held liable for any new damages.",
-		"11:10 - <b>NTSS WAKAHIRU</b><br> \
-		Adjusting course now, and already printing out the waivers. Clearing Broadband.",
-		"<i>11:11 -  <b>NTSS WAKAHIRU - Local</b></i><br> \
-		Operations to the Bridge, repeat, Operations to the Bridge.<hr>",
-		"11:34 - <b>(TRANSPONDER INACTIVE)</b><br> \
-		Control, I've got a, uh- fish or something chewing through my NAV array, can you guys dispatch a team or something? Bring a, like, big net?",
-		"11:37 - <b>NANOTRASEN TRAFFIC CONTROL</b><br> \
-		Negative. Your Transponder is inactive - stop all operations, a Security patrol is being dispatched to your location.",
-		"11:37 - <b>(TRANSPONDER INACTIVE)</b><br> \
-		<i>Y'know what, that's close enough.</i> Make sure that they bring some repair tools with them. <i>And a harpoon.</i><hr>",
-		"<i>11:40 - <b>NTSS WAKAHIRU - Local</b></i><br> \
-		Allllllright, guys, we're at the reported Buoy. NT's Traffic-Con said they've been getting messy data through the relay, too messy to forward. \
-		Probably just a misaligned dish. Operations will be dispatching the Away team soon, but otherwise just keep doing whatever it is you're doing.",
-		"<i>11:47 - <b>Unidentified - Local</b></i><br> \
-		This is Away to Wakahiru, how read.",
-		"<i>11:47 - <b>NTSS WAKAHIRU - Local</b></i><br> \
-		Loud and clear Away. What's the hold-up?",
-		"<i>11:48 - <b>Unidentified - Local</b></i><br> \
-		Yeah, uh, this access card doesn't seem to be working on the dish controller. Kept the turrets tame and opened the front door, but \
-		the console's not responding to it. Lost that manual page I brought with me too... <i>Huh?</i> One second- <i>Oh, insert it entirely? I don't think- Dude- dude, I know how to put a card into a reader, just let me-</i>",
-		"11:50 - <b>NT-EBCB-7 ARRAY</b><br> \
-		ALERT. LIFE FORMS DETECTED WITHOUT VALID IDENTIFICATION. INITIATING DEFENSIVE PROTOCOL.",
-		"<i>11:50 - <b>Unidentified - Local</b></i><br> \
-		SHIIIIIT!! GET THE CARD BACK OUT OF THE CONSOLE! GET IT OUT! G-",
-		"11:51 - <b>NT-EBCB-7 ARRAY</b><br> \
-		ALL LIFE FORMS ELIMINATED. HAVE A SECURE DAY!<hr>",
-		"12:07 - <b>NTSS WAKAHIRU</b><br> \
-		NT-TC, this is the NTSS Wakahiru. You're, uh... going to need to dispatch a cleanup crew to that satellite. Sending you our Operations report now.",
+		"<i>注意：本转录由纳米传讯语音转文字系统生成。阅读本转录即表示你同意语音转文字服务 \
+		条款，并同意转录中的任何错误或不准确之处在法律上完全由说话者承担。</i><hr>",
+		"11:07 - <b>NTSS 瓦卡希鲁号</b><br> \
+		对，足够近了。我们正从那个一直出问题的浮标约一千米范围内经过。我们可以改道去看看，我船上有一名 \
+		轨道外工程师。<i>见鬼，这家伙已经在找对应的手册了。</i><br>",
+		"11:08 - <b>纳米传讯交通管制</b><br> \
+		批准，瓦卡希鲁号。请按你 CDTI 上收到的更新航图改道，在另行通知前保持低于亚光速的速度。预计到达时间 27 分钟。 \
+		维修期间务必遵守公司所有规定，这些系统极其敏感，任何新的损坏都将由你承担责任。",
+		"11:10 - <b>NTSS 瓦卡希鲁号</b><br> \
+		正在调整航向，免责声明也已经打印出来了。结束宽带通讯。",
+		"<i>11:11 -  <b>NTSS 瓦卡希鲁号 - 本地</b></i><br> \
+		行动组到舰桥，重复，行动组到舰桥。<hr>",
+		"11:34 - <b>（应答器未激活）</b><br> \
+		管制，我这有，呃——有条鱼还是什么东西在啃我的导航阵列，你们能派个队什么的来吗？带张，呃，大网？",
+		"11:37 - <b>纳米传讯交通管制</b><br> \
+		不行。你的应答器未激活——停止一切操作，一支安保巡逻队正被派往你的位置。",
+		"11:37 - <b>（应答器未激活）</b><br> \
+		<i>你知道吗，这样也差不多了。</i> 让他们带上一些维修工具。<i>还有一支鱼叉。</i><hr>",
+		"<i>11:40 - <b>NTSS 瓦卡希鲁号 - 本地</b></i><br> \
+		好——吧，各位，我们到了报告中的浮标位置。纳米传讯交管说他们通过中继收到的一直是乱糟糟的数据，乱得没法转发。 \
+		大概只是天线没对准。行动组很快会派出外勤小队，除此之外，你们该干嘛就继续干嘛。",
+		"<i>11:47 - <b>身份不明 - 本地</b></i><br> \
+		这里是外勤小队呼叫瓦卡希鲁号，请回话。",
+		"<i>11:47 - <b>NTSS 瓦卡希鲁号 - 本地</b></i><br> \
+		外勤小队，清晰响亮。怎么耽搁了？",
+		"<i>11:48 - <b>身份不明 - 本地</b></i><br> \
+		对，呃，这张通行卡好像在天线控制器上不管用。它能让炮塔保持安分，也打开了前门，但 \
+		控制台对它没反应。我把带来的那页手册也弄丢了……<i>嗯？</i> 等一下——<i>哦，要整个插进去？我觉得——兄弟——兄弟，我知道怎么把卡插进读取器，你就让我——</i>",
+		"11:50 - <b>NT-EBCB-7 阵列</b><br> \
+		警报。检测到未通过有效身份识别的生命体。启动防御协议。",
+		"<i>11:50 - <b>身份不明 - 本地</b></i><br> \
+		操——！！把卡从控制台里拔出来！拔出来！我——",
+		"11:51 - <b>NT-EBCB-7 阵列</b><br> \
+		所有生命体已清除。祝您安全的一天！<hr>",
+		"12:07 - <b>NTSS 瓦卡希鲁号</b><br> \
+		纳米传讯交管，这里是 NTSS 瓦卡希鲁号。你们，呃……得派一支清理队去那颗卫星。现在把我们的行动报告发给你们。",
 	)
 
 /obj/machinery/computer/terminal/nt_commsbuoy/relay
-	name = "long-range interstellar relay operations terminal"
-	upperinfo = "LONG-RANGE INTERSTELLAR RELAY OPERATIONS READOUT"
+	name = "远程星际中继操作终端"
+	upperinfo = "远程星际中继操作读数"
 	content = list(
-		"<b>19/07/2563</b> - Outbound Direct - <br>\
-		<i>From: totally_not_a_burner@kosmokomm.net</i> <br>\
-		<i>To: john_doe_a_deer_a_female_deer@kosmokomm.net</i> <br>\
+		"<b>19/07/2563</b> - 出站直连 - <br>\
+		<i>发件人：totally_not_a_burner@kosmokomm.net</i> <br>\
+		<i>收件人：john_doe_a_deer_a_female_deer@kosmokomm.net</i> <br>\
 		<br>\
-		im telling you! they dont monitor this relay. ive had a bug on the interstellar relay since it was launched. outdated encryption, \
-		its an easy tap. just be patient.<hr>\
-		<center><b><i>PACKET FLAGGED AS SUSPICIOUS.</b> LOGGING FOR REVIEW.</i></center><hr>",
+		我跟你说了！他们不监控这个中继。从它发射起我就在星际中继上留了后门。加密过时， \
+		很容易窃听。耐心点。<hr>\
+		<center><b><i>数据包被标记为可疑。</b> 正在记录以备审查。</i></center><hr>",
 
-		"<b>13/08/2563</b> - Outbound Direct - <br>\
-		<i>From: NT_S13TC_OFFICIAL@NTFIDspinward.nt</i> <br>\
-		<i>To: wilson_peters@NTFIDspinward.nt</i> <br>\
+		"<b>13/08/2563</b> - 出站直连 - <br>\
+		<i>发件人：NT_S13TC_OFFICIAL@NTFIDspinward.nt</i> <br>\
+		<i>收件人：wilson_peters@NTFIDspinward.nt</i> <br>\
 		<br>\
-		Hello, <br>\
-		Your ticket has been marked as Resolved with the following comment: <br>\
-		\"This is Spinward Sector 13 NT Traffic Control, reaching out to inform you that your ticket has been resolved. The relay should now \
-		be operating as expected. Please re-attempt sending that message again. If any other issue arises, open a new ticket.\" <br>\
-		Thank you for your patience and continued support. <br>\
-		<center><h5>The Spinward Project - brought to you by Nanotrasen Futures and Innovation Division, in partnership with Nanotrasen \
-		Heavy Industry.</h5></center><hr>",
+		你好，<br>\
+		你的工单已被标记为已解决，附注如下：<br>\
+		“这里是顺旋 13 星区纳米传讯交通管制，特此通知你的工单已解决。中继现在应该 \
+		已按预期运行。请重新尝试发送那条消息。如出现其他问题，请开一张新工单。” <br>\
+		感谢你的耐心与持续支持。 <br>\
+		<center><h5>顺旋计划——由纳米传讯未来与创新部呈献，与纳米传讯 \
+		重工业合作。</h5></center><hr>",
 
-		"<b>14/08/2563</b> - Inbound to Forward - <br>\
-		<i>From: wilson_peters@NTFIDspinward.nt</i> <br>\
-		<i>Relay Target: PORT_ELLIS</i> <br>\
+		"<b>14/08/2563</b> - 入站转发 - <br>\
+		<i>发件人：wilson_peters@NTFIDspinward.nt</i> <br>\
+		<i>中继目标：PORT_ELLIS</i> <br>\
 		<br>\
-		Hey. I miss you. Hope we can holo-call again soon. <br>\
-		Work's been busy. Wish you could be here for it, but I know you were adamant on getting your citizenship. I hope Gateway's been nice to you. <br>\
-		I was working on that project folder you left me, the plasma stuff. Really see why you asked to change divisions... <br>\
+		嘿。我想你。希望我们很快能再通一次全息电话。 <br>\
+		工作一直很忙。真希望你能在这儿一起经历，但我知道你执意要拿到公民身份。希望盖特威对你不错。 <br>\
+		我一直在整理你留给我的那个项目文件夹，就是等离子那些东西。我完全明白你为什么申请调部门了…… <br>\
 		<br>\
-		Regardless of the heavy topic of the research, I've made some astounding breakthroughs. A majority of this is still your notes just progressing, \
-		long-term ingestion of plasma - specifically Pudicitite - in humanoid species. I really had hoped these projections weren't so accurate. \
-		Guess it just shows your dazzling intellect... as dark as this is. <br>\
+		撇开研究这个沉重的话题不谈，我取得了不少惊人的突破。其中大部分仍是你笔记的延续， \
+		长期摄入等离子——具体来说是 Pudicitite——对人形物种的影响。我真希望这些预测没那么准确。 \
+		看来这只能说明你的头脑多么出众……尽管这事如此阴暗。 <br>\
 		<br>\
-		That doomed assistant you had on observation finally expired. The constant medium-level exposure, even treated with a myriad of medications, \
-		left the Amygdala extremely malformed like we were seeing prior. Additionally, it entirely and irrepairably destroyed every neural pathway in \
-		the Hypothalamus, leaving the subject on a direct path to literally burning out. <br>\
-		The damage to their bodily temperature regulation wasn't the focus, nor did I get much opportunity to make it one. Security had to kill them \
-		pre-emptively; their Amygdala is engorged and stained with purple and white streaks (almost as vibrant as your scales). Whatever this damage \
-		truly is seems to have contributed to overstimulation and amplified emotional responses to the testing. <br>\
+		你那个负责观察的倒霉助手终于死了。持续的中等强度暴露，即便用各种药物治疗， \
+		也让杏仁核像我们之前看到的那样严重畸形。此外，它还彻底且不可逆地摧毁了 \
+		下丘脑中的每一条神经通路，使受试者径直走向彻底的烧毁。 <br>\
+		他们体温调节受损并不是重点，我也没多少机会把它变成重点。安保不得不 \
+		先发制人地杀了他们；他们的杏仁核肿胀，布满紫色和白色的条纹（几乎和你鳞片的颜色一样鲜艳）。不管这种损伤 \
+		到底是什么，似乎都导致了过度兴奋和对测试的情绪反应放大。 <br>\
 		<br>\
-		It's... a perfect storm. The loss of control of emotional responses in tandem with the exaggurated environmental stimuli. I've already pushed \
-		a few of the results up as high as I can and advised we push towards improving our plasma filtration, especially in masks. Specifically \
-		the Mining gas masks, as your papers mentioned - the elevated gas exposure makes them a high risk group. <br>\
-		My peers over here are already adjusting their testing to boost this to Central's attention so that other stations might \
-		contribute to improving our protections from this. <br>\
+		这……是一场完美的风暴。情绪反应失控，再加上被夸大的环境刺激。我已经 \
+		尽可能把一些结果上报到最高层，并建议我们推进等离子过滤的改进，尤其是在面罩方面。具体来说 \
+		是采矿防毒面具，就像你论文里提到的——更高的气体暴露使他们成为高风险群体。 <br>\
+		我这里的同僚已经在调整他们的测试，以把这件事提到中央指挥部的注意范围内，好让其他空间站也能 \
+		为改进我们对此的防护做出贡献。 <br>\
 		<br>\
-		I know you told me to stop messaging you, especially about this - but I thought you deserved to know, of all people. You were right. You were \
-		always right. Please... respond. Even just to tell me if *I* did something right. <br>\
-		<center><h5>The Spinward Project - brought to you by Nanotrasen Futures and Innovation Division, in partnership with Nanotrasen Heavy Industry.</h5></center><hr>",
+		我知道你让我别再给你发消息，尤其是关于这件事——但我觉得，尤其是你，应该知道。你是对的。你 \
+		一直都是对的。请你……回我一句。哪怕只是告诉我，*我* 有没有做对什么。 <br>\
+		<center><h5>顺旋计划——由纳米传讯未来与创新部呈献，与纳米传讯重工业合作。</h5></center><hr>",
 
-		"<b>15/08/2563</b> - Outbound Direct - <br>\
-		<i>From: totally_not_a_burner@kosmokomm.net</i> <br>\
-		<i>To: john_doe_a_deer_a_female_deer@kosmokomm.net</i> <br>\
+		"<b>15/08/2563</b> - 出站直连 - <br>\
+		<i>发件人：totally_not_a_burner@kosmokomm.net</i> <br>\
+		<i>收件人：john_doe_a_deer_a_female_deer@kosmokomm.net</i> <br>\
 		<br>\
-		IM THE BEST HACKER IN THE GALAXY. youre paying me TRIPLE for that, holy CRAP the syndicate are going to pay us so much. actually you owe me \
-		at least half the profits. no no over half i did all the work. <br>\
-		(Attached data file: WEGOTIT.syndzip)<hr>\
-		<center><i><b>PACKET FLAGGED AS SUSPICIOUS.</b> BEGINNING TRACE.</i></center> \
-		<h5>ORIGIN TRACED. NT-DAP DISPATCHED. <br>\
-		DESTINATION TRACED. NT-DAP DISPATCHED. <br>\
-		DATA FILE SCANNED AND FORWARDED TO NT-DAP. <br>\
+		我是全银河最厉害的黑客。这活儿你得付我三倍价钱，我的天，辛迪加会付我们一大笔钱。其实你至少得给我 \
+		一半的利润。不不，超过一半，活都是我干的。 <br>\
+		（附带数据文件：WEGOTIT.syndzip）<hr>\
+		<center><i><b>数据包被标记为可疑。</b> 开始追踪。</i></center> \
+		<h5>来源已追踪。NT-DAP 已派出。<br>\
+		目的地已追踪。NT-DAP 已派出。<br>\
+		数据文件已扫描并转发至 NT-DAP。<br>\
 		<br>\
-		FILE ORIGIN TRACED TO NT STATION. LOCKDOWN INITIATED. <br>\
-		SECURITY ADVISORY RAISED TO: RED STAR. <br>\
-		NT-DAP DISPATCHED. TARGET: wilson_peters.</h5><hr>",
+		文件来源追踪至一处纳米传讯空间站。已启动封锁。<br>\
+		安保警戒级别提升至：红星。<br>\
+		已派出 NT-DAP。目标：wilson_peters。</h5><hr>",
 	)

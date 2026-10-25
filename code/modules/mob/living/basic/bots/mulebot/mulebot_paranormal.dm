@@ -1,6 +1,6 @@
 /mob/living/basic/bot/mulebot/paranormal
-	name = "\improper GHOULbot"
-	desc = "A rather ghastly looking... Multiple Utility Load Effector bot? It only seems to accept paranormal forces, and for this reason is fucking useless."
+	name = "\improper 食尸鬼机器人"
+	desc = "一台看起来相当阴森的……多用途载货执行机器人？它似乎只接受超自然力量，正因如此它毫无用处。"
 	icon_state = "paranormalmulebot0"
 	base_icon_state = "paranormalmulebot"
 	///avoid the utterly miniscule chance of infinite looping
@@ -17,7 +17,7 @@
 /mob/living/basic/bot/mulebot/paranormal/get_load_name() //Don't reveal the name of ghosts so we can't metagame who died and all that.
 	. = ..()
 	if(. && isobserver(load))
-		return "Unknown"
+		return "未知"
 
 /mob/living/basic/bot/mulebot/paranormal/load(atom/movable/movable_atom)
 	if(load || movable_atom.anchored)
@@ -27,7 +27,7 @@
 		return
 
 	if(isobserver(movable_atom))
-		visible_message(span_warning("A ghostly figure appears on [src]!"))
+		visible_message(span_warning("一道幽灵般的身影出现在 [src] 上！"))
 		movable_atom.forceMove(src)
 		RegisterSignal(movable_atom, COMSIG_MOVABLE_MOVED, PROC_REF(ghost_moved))
 
@@ -56,6 +56,6 @@
 ///Handles the ghosts moving out from the mule
 /mob/living/basic/bot/mulebot/paranormal/proc/ghost_moved()
 	SIGNAL_HANDLER
-	visible_message(span_notice("The ghostly figure vanishes..."))
+	visible_message(span_notice("那道幽灵般的身影消失了……"))
 	UnregisterSignal(load, COMSIG_MOVABLE_MOVED)
 	unload()

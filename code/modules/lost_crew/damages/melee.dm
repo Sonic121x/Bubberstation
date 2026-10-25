@@ -20,7 +20,7 @@
 
 /datum/corpse_damage/cause_of_death/melee_weapon/esword
 	weapon = /obj/item/melee/energy/sword
-	cause_of_death = "when I was attacked by a filthy traitor!"
+	cause_of_death = "就在那时，我被一个龌龊的叛徒袭击了！"
 
 /datum/corpse_damage/cause_of_death/melee_weapon/esword/get_weapon(mob/living/carbon/human/body)
 	. = ..()
@@ -31,14 +31,14 @@
 
 /datum/corpse_damage/cause_of_death/melee_weapon/changeling
 	weapon = /obj/item/melee/arm_blade
-	cause_of_death = "when I was attacked by a terrifying changeling!"
+	cause_of_death = "就在那时，我被一个可怕的变形怪袭击了！"
 
 /datum/corpse_damage/cause_of_death/melee_weapon/toolbox
-	cause_of_death = "when some worthless assistant toolboxed me!"
+	cause_of_death = "就在那时，某个一无是处的助手用工具箱砸了我！"
 	weapon = /obj/item/storage/toolbox
 
 /datum/corpse_damage/cause_of_death/melee_weapon/heretic
-	cause_of_death = "when a flipping heretic attacked me!"
+	cause_of_death = "就在那时，一个混账异教徒袭击了我！"
 
 /datum/corpse_damage/cause_of_death/melee_weapon/heretic/get_weapon(mob/living/carbon/human/body)
 	var/obj/item/melee/sickly_blade/blade = pick(subtypesof(/obj/item/melee/sickly_blade)) //pick a random blade, can be a bunch of fun stuff

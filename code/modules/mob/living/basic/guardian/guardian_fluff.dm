@@ -4,9 +4,9 @@
  */
 /datum/guardian_fluff
 	/// What name do we apply before one has been selected?
-	var/name = "Guardian Spirit"
+	var/name = "守护灵"
 	/// Mob description to apply
-	var/desc = "A mysterious being that stands by its charge, ever vigilant."
+	var/desc = "一个神秘的存在，始终守护着它的主人，从不懈怠。"
 	/// Are we magical or technological? Mostly just used to pick a surname
 	var/fluff_type = GUARDIAN_MAGIC
 	/// What speech bubble do we use?
@@ -16,28 +16,28 @@
 	/// What is the icon state for our coloured overlay?
 	var/overlay_state = "magic"
 	/// Emote used for speaking
-	var/list/speak_emote = list("hisses")
+	var/list/speak_emote = list("嘶嘶作响")
 	/// Verb shown to viewers when attacking
-	var/attack_verb_continuous = "punches"
+	var/attack_verb_continuous = "挥拳猛击"
 	/// Verb shown to attacker when attacking
-	var/attack_verb_simple = "punch"
+	var/attack_verb_simple = "挥拳猛击"
 	/// Sound played when we attack
 	var/attack_sound = 'sound/items/weapons/punch1.ogg'
 	/// Visible effect when we attack
 	var/attack_vis_effect = ATTACK_EFFECT_PUNCH
 	/// An associative list of type of guardian to some kind of descriptive text to show on appearance.
 	var/guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "...And draw the Space Ninja, a lethal and invisible assassin.",
-		GUARDIAN_CHARGER = "...And draw the Hunter, alien master of rapid assault.",
-		GUARDIAN_DEXTROUS = "...And draw the Monkey, ascendant beast who has learned to use tools.",
-		GUARDIAN_EXPLOSIVE = "...And draw the Scientist, herald of explosive death.",
-		GUARDIAN_GASEOUS = "...And draw the Atmospheric Technician, veiled in a purple haze.",
-		GUARDIAN_GRAVITOKINETIC = "...And draw the Singularity, a terrible, irresistible force..",
-		GUARDIAN_LIGHTNING = "...And draw the Supermatter, a shockingly lethal font of power.",
-		GUARDIAN_PROTECTOR = "...And draw the Corgi, a stalwart protector that never leaves the side of its charge.",
-		GUARDIAN_RANGED = "...And draw the Watcher, impaling its prey from afar.",
-		GUARDIAN_STANDARD = "...And draw the Assistant, faceless but never to be underestimated.",
-		GUARDIAN_SUPPORT = "...And draw the Paramedic, arbiter of life and death.",
+		GUARDIAN_ASSASSIN = "……抽到了太空忍者，一位致命而隐形的刺客。",
+		GUARDIAN_CHARGER = "……抽到了猎人，快速突袭的外星大师。",
+		GUARDIAN_DEXTROUS = "……抽到了猴子，学会了使用工具的进阶野兽。",
+		GUARDIAN_EXPLOSIVE = "……抽到了科学家，爆炸性死亡的先驱。",
+		GUARDIAN_GASEOUS = "……抽到了大气技术员，笼罩在紫色迷雾之中。",
+		GUARDIAN_GRAVITOKINETIC = "……抽到了奇点，一股可怕而不可抗拒的力量……",
+		GUARDIAN_LIGHTNING = "……抽到了超物质，一泓令人震惊的致命能量之源。",
+		GUARDIAN_PROTECTOR = "……抽到了柯基，一位寸步不离主人的坚定守护者。",
+		GUARDIAN_RANGED = "……抽到了守望者，从远处刺穿猎物。",
+		GUARDIAN_STANDARD = "……抽到了助手，面目模糊却绝不可小觑。",
+		GUARDIAN_SUPPORT = "……抽到了急救员，生死的仲裁者。",
 	)
 
 /// Applies relevant visual properties to our guardian
@@ -58,67 +58,67 @@
 
 /// Output an appropriate fluff string for our guardian when it is created
 /datum/guardian_fluff/proc/get_fluff_string(guardian_type)
-	return span_holoparasite(guardian_fluff[guardian_type] || "You bring forth a glitching abomination, something which should not be! Please contact a coder about it.")
+	return span_holoparasite(guardian_fluff[guardian_type] || "你召唤出了一只故障的可憎之物，这本不该存在！请联系程序员处理。")
 
 /// Used by holoparasites in the Traitor uplink
 /datum/guardian_fluff/tech
-	name = "Holoparasite"
+	name = "全息寄生体"
 	fluff_type = GUARDIAN_TECH
 	bubble_icon = "holo"
 	icon_state = "techbase"
 	overlay_state = "tech"
 	guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "Boot sequence complete. Stealth modules loaded. Holoparasite swarm online.",
-		GUARDIAN_CHARGER = "Boot sequence complete. Overclocking motive engines. Holoparasite swarm online.",
-		GUARDIAN_DEXTROUS = "Boot sequence complete. Armed combat routines loaded. Holoparasite swarm online.",
-		GUARDIAN_EXPLOSIVE = "Boot sequence complete. Payload generator online. Holoparasite swarm online.",
-		GUARDIAN_GASEOUS = "Boot sequence complete. Atmospheric projectors operational. Holoparasite swarm online.",
-		GUARDIAN_GRAVITOKINETIC = "Boot sequence complete. Gravitic engine spinning up. Holoparasite swarm online.",
-		GUARDIAN_LIGHTNING = "Boot sequence complete. Tesla projectors charged. Holoparasite swarm online.",
-		GUARDIAN_PROTECTOR = "Boot sequence complete. Bodyguard routines loaded. Holoparasite swarm online.",
-		GUARDIAN_RANGED = "Boot sequence complete. Flechette launchers operational. Holoparasite swarm online.",
-		GUARDIAN_STANDARD = "Boot sequence complete. CQC suite engaged. Holoparasite swarm online.",
-		GUARDIAN_SUPPORT = "Boot sequence complete. Medical suite active. Holoparasite swarm online.",
+		GUARDIAN_ASSASSIN = "启动程序完成。隐匿模块已加载。全息寄生体群已上线。",
+		GUARDIAN_CHARGER = "启动程序完成。动力引擎超频中。全息寄生体群已上线。",
+		GUARDIAN_DEXTROUS = "启动程序完成。武装战斗程序已加载。全息寄生体群已上线。",
+		GUARDIAN_EXPLOSIVE = "启动程序完成。载荷发生器已上线。全息寄生体群已上线。",
+		GUARDIAN_GASEOUS = "启动程序完成。大气投影器运行中。全息寄生体群已上线。",
+		GUARDIAN_GRAVITOKINETIC = "启动程序完成。重力引擎加速启动中。全息寄生体群已上线。",
+		GUARDIAN_LIGHTNING = "启动程序完成。特斯拉投射器充能完毕。全息寄生体群已上线。",
+		GUARDIAN_PROTECTOR = "启动程序完成。保镖程序已加载。全息寄生体群已上线。",
+		GUARDIAN_RANGED = "启动程序完成。飞镖发射器运行中。全息寄生体群已上线。",
+		GUARDIAN_STANDARD = "启动程序完成。近身格斗套件已启用。全息寄生体群已上线。",
+		GUARDIAN_SUPPORT = "启动程序完成。医疗套件已激活。全息寄生体群已上线。",
 	)
 
 /// Used by powerminers found in necropolis chests
 /datum/guardian_fluff/miner
-	name = "Power Miner"
+	name = "能量矿工"
 	icon_state = "minerbase"
 	overlay_state = "miner"
 	guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "The shard reveals... Glass, a sharp but fragile ambusher.",
-		GUARDIAN_CHARGER = "The shard reveals... Titanium, a lightweight, agile fighter.",
-		GUARDIAN_DEXTROUS = "The shard reveals... Gold, a malleable hoarder of treasure.",
-		GUARDIAN_EXPLOSIVE = "The shard reveals... Gibtonite, volatile and surprising.",
-		GUARDIAN_GASEOUS = "The shard reveals... Plasma, the bringer of flame.",
-		GUARDIAN_GRAVITOKINETIC = "The shard reveals... Bananium, a manipulator of motive forces.",
-		GUARDIAN_LIGHTNING = "The shard reveals... Iron, a conductive font of lightning.",
-		GUARDIAN_PROTECTOR = "The shard reveals... Uranium, dense and resistant.",
-		GUARDIAN_RANGED = "The shard reveals... Diamond, projecting a million sharp edges.",
-		GUARDIAN_STANDARD = "The shard reveals... Plastitanium, a powerful fighter.",
-		GUARDIAN_SUPPORT = "The shard reveals... Bluespace, master of relocation.",
+		GUARDIAN_ASSASSIN = "碎片揭示了……玻璃，锋利却脆弱的伏击者。",
+		GUARDIAN_CHARGER = "碎片揭示了……钛，轻盈敏捷的战士。",
+		GUARDIAN_DEXTROUS = "碎片揭示了……黄金，可塑的财宝囤积者。",
+		GUARDIAN_EXPLOSIVE = "碎片揭示了……爆裂矿，易爆而令人意外。",
+		GUARDIAN_GASEOUS = "碎片揭示了……等离子体，火焰的带来者。",
+		GUARDIAN_GRAVITOKINETIC = "碎片揭示了……香蕉矿，动力的操纵者。",
+		GUARDIAN_LIGHTNING = "碎片揭示了……铁，导电的闪电之源。",
+		GUARDIAN_PROTECTOR = "碎片揭示了……铀，致密而坚韧。",
+		GUARDIAN_RANGED = "碎片揭示了……钻石，投射出百万锋刃。",
+		GUARDIAN_STANDARD = "碎片揭示了……塑钛，强大的战士。",
+		GUARDIAN_SUPPORT = "碎片揭示了……蓝空间，位移的大师。",
 	)
 
 /// Used by holocarp spawned by admins
 /datum/guardian_fluff/carp
-	name = "Holocarp"
+	name = "全息鲤鱼"
 	fluff_type = GUARDIAN_TECH
-	desc = "A mysterious fish that swims by its charge, ever fingilant."
+	desc = "一条神秘的鱼，游弋在主人身边，永远保持警觉。"
 	icon_state = null // Handled entirely by the overlay
 	bubble_icon = "holo"
 	overlay_state = "carp"
-	speak_emote = list("gnashes")
+	speak_emote = list("磨着牙")
 	guardian_fluff = list(
-		GUARDIAN_ASSASSIN = "CARP CARP CARP! Caught one! It's an assassin carp! Just when you thought it was safe to go back to the water... which is unhelpful, because we're in space.",
-		GUARDIAN_CHARGER = "CARP CARP CARP! Caught one! It's a charger carp which likes running at people. But it doesn't have any legs...",
-		GUARDIAN_DEXTROUS = "CARP CARP CARP! You caught one! It's a dextrous carp ready to slap people with a fish, once it picks one up.",
-		GUARDIAN_EXPLOSIVE = "CARP CARP CARP! Caught one! It's an explosive carp! You two are going to have a blast.",
-		GUARDIAN_GASEOUS = "CARP CARP CARP! You caught one! It's a gaseous carp, but don't worry it actually smells pretty good!",
-		GUARDIAN_GRAVITOKINETIC = "CARP CARP CARP! Caught one! It's a gravitokinetic carp! Now do you understand the gravity of the situation?",
-		GUARDIAN_LIGHTNING = "CARP CARP CARP! Caught one! It's a lightning carp! What a shocking result!",
-		GUARDIAN_PROTECTOR = "CARP CARP CARP! You caught one! Wait, no... it caught you! The fisher has become the fishy...",
-		GUARDIAN_RANGED = "CARP CARP CARP! You caught one! It's a ranged carp! It has been collecting glass shards in preparation for this moment.",
-		GUARDIAN_STANDARD = "CARP CARP CARP! You caught one! This one is a little generic and disappointing... Better punch through some walls to ease the tension.",
-		GUARDIAN_SUPPORT = "CARP CARP CARP! You caught a support carp! Now it's here, now you're over there!",
+		GUARDIAN_ASSASSIN = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条刺客鲤鱼！正当你以为回到水里就安全了……可惜这没用，因为我们在太空里。",
+		GUARDIAN_CHARGER = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条喜欢朝人猛冲的冲锋鲤鱼。可它没有腿……",
+		GUARDIAN_DEXTROUS = "鲤鱼鲤鱼鲤鱼！你抓到一条！是一条灵巧鲤鱼，只要捡起一条鱼，就准备拿鱼抽人。",
+		GUARDIAN_EXPLOSIVE = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条爆炸鲤鱼！你们俩一定会炸翻天。",
+		GUARDIAN_GASEOUS = "鲤鱼鲤鱼鲤鱼！你抓到一条！是一条气态鲤鱼，不过别担心，它闻起来其实挺香的！",
+		GUARDIAN_GRAVITOKINETIC = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条重力动能鲤鱼！现在你明白局势有多严重了吧？",
+		GUARDIAN_LIGHTNING = "鲤鱼鲤鱼鲤鱼！抓到一条！是一条闪电鲤鱼！结果真是令人震惊！",
+		GUARDIAN_PROTECTOR = "鲤鱼鲤鱼鲤鱼！你抓到一条！等等，不……是它抓到了你！渔夫反倒成了鱼饵……",
+		GUARDIAN_RANGED = "鲤鱼鲤鱼鲤鱼！你抓到一条！是一条远程鲤鱼！它一直在收集玻璃碎片，为这一刻做准备。",
+		GUARDIAN_STANDARD = "鲤鱼鲤鱼鲤鱼！你抓到一条！这条有点普通，令人失望……最好去捶穿几堵墙来缓解一下紧张。",
+		GUARDIAN_SUPPORT = "鲤鱼鲤鱼鲤鱼！你抓到了一条辅助鲤鱼！现在它在这边，你却在那边了！",
 	)

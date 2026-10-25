@@ -2,7 +2,7 @@
 // many thanks to https://casualscrolls.fandom.com/wiki/Dunmeri_language, for providing this list of syllables
 /datum/language/shadowtongue
 	name = "Shadowtongue"
-	desc = "What a grand and intoxicating innocence."
+	desc = "多么宏大而令人沉醉的天真啊。"
 	key = "x"
 	space_chance = 40
 	sentence_chance = 0

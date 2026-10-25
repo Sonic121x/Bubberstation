@@ -14,13 +14,13 @@
  * It will also automatically grant you one stack every 30 seconds if you are on lavaland.
  */
 /obj/item/organ/monster_core/brimdust_sac
-	name = "brimdust sac"
-	desc = "A strange organ from a brimdemon. You can shake it out to coat yourself in explosive powder."
+	name = "硫磺尘囊"
+	desc = "来自硫磺恶魔的奇特器官。你可以把它抖出来，让自己裹满爆炸性粉末。"
 	icon_state = "brim_sac"
 	icon_state_preserved = "brim_sac_stable"
 	icon_state_inert = "brim_sac_decayed"
-	desc_preserved = "A strange organ from a brimdemon. It is preserved, allowing you to coat yourself in its explosive contents at your leisure."
-	desc_inert = "A decayed brimdemon organ. There's nothing usable left inside it."
+	desc_preserved = "来自硫磺恶魔的奇特器官。它得到了完好保存，你可以随时让自己裹满其中的爆炸性物质。"
+	desc_inert = "一只腐朽的硫磺恶魔器官。里面已经没有能用的东西了。"
 	user_status = /datum/status_effect/stacking/brimdust_coating
 	actions_types = list(/datum/action/cooldown/monster_core_action/exhale_brimdust)
 	/// You will gain a stack of the buff every x seconds
@@ -89,10 +89,10 @@
 	var/mutable_appearance/dust_overlay
 
 /atom/movable/screen/alert/status_effect/brimdust_coating
-	name = "Brimdust Coating"
-	desc = "You %STACKS% explosive dust, kinetic impacts will cause it to detonate! \
-		The explosion will not harm you as long as you're not under atmospheric pressure. \
-		Click this alert to shake off the dust."
+	name = "硫磺尘涂层"
+	desc = "你 %STACKS% 爆炸性粉尘，动能冲击会使其爆炸！ \
+		只要你不在大气压环境中，爆炸就不会伤到你。 \
+		点击此提示以抖落粉尘。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "brimdemon_1"
 
@@ -102,11 +102,11 @@
 	var/dust_amount_string
 	switch(dust.stacks)
 		if (3)
-			dust_amount_string = "are heavily caked in"
+			dust_amount_string = "身上厚厚地裹满了"
 		if (2)
-			dust_amount_string = "have a generous coating of"
+			dust_amount_string = "身上覆盖着一层"
 		if (1)
-			dust_amount_string = "are lightly sprinkled with"
+			dust_amount_string = "身上只撒着薄薄一层"
 
 	desc = replacetext(desc, "%STACKS%", dust_amount_string)
 	return ..()
@@ -117,7 +117,7 @@
 		return
 	if(!owner.can_resist())
 		return
-	owner.balloon_alert(owner, "shaking off the dust...")
+	owner.balloon_alert(owner, "正在抖落粉尘……")
 	var/datum/status_effect/stacking/brimdust_coating/dust = attached_effect
 	if (!do_after(owner, dust.stacks * 1.5 SECONDS, owner))
 		return
@@ -204,7 +204,7 @@
 		return
 	if(!COOLDOWN_FINISHED(src, explosion_cooldown))
 		return
-	owner.visible_message(span_boldwarning("The brimstone dust surrounding [owner] ignites!"))
+	owner.visible_message(span_boldwarning("环绕 [owner] 的硫磺粉尘被点燃了！"))
 	addtimer(CALLBACK(src, PROC_REF(explode)), 0.25 SECONDS)
 	COOLDOWN_START(src, explosion_cooldown, delay_between_explosions)
 
@@ -240,17 +240,17 @@
 /datum/status_effect/brimdust_concussion/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/brimdust_concussion)
-	to_chat(owner, span_warning("You are knocked off balance by the explosion!"))
+	to_chat(owner, span_warning("爆炸让你失去了平衡！"))
 
 /datum/status_effect/brimdust_concussion/on_remove()
 	. = ..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/brimdust_concussion)
-	to_chat(owner, span_notice("You find your balance."))
+	to_chat(owner, span_notice("你重新稳住了身体。"))
 
 /// Action used by the brimdust sac
 /datum/action/cooldown/monster_core_action/exhale_brimdust
-	name = "Exhale Brimdust"
-	desc = "Cough out a choking cloud of explosive brimdust to coat those nearby."
+	name = "喷吐硫磺尘"
+	desc = "咳出一团令人窒息的爆炸性硫磺尘，覆盖附近的人。"
 	button_icon_state = "brim_sac_stable"
 	cooldown_time = 90 SECONDS
 

@@ -1,8 +1,8 @@
 #define SHRIMP_HARM_RESPONSES list(\
-	"*me stares blankly.",\
-	"*me stares shrimply.",\
-	"*me gives a confused look.",\
-	"*me chitters unpleasantly.",\
+	"*me 茫然地瞪着。",\
+	"*me 像只虾一样瞪着。",\
+	"*me 露出困惑的表情。",\
+	"*me 发出难听的唧唧声。",\
 )
 
 /datum/ai_controller/basic_controller/lobstrosity
@@ -20,7 +20,7 @@
 		BB_TARGET_PRIORITY_TRAIT = TRAIT_SCARY_FISHERMAN,
 		BB_OWNER_SELF_HARM_RESPONSES = SHRIMP_HARM_RESPONSES,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("chitters."),
+			BB_EMOTE_HEAR = list("唧唧作响。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/insect/chitter.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),
@@ -49,7 +49,7 @@
 		BB_TARGET_PRIORITY_TRAIT = TRAIT_SCARY_FISHERMAN,
 		BB_OWNER_SELF_HARM_RESPONSES = SHRIMP_HARM_RESPONSES,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_HEAR = list("chitters."),
+			BB_EMOTE_HEAR = list("唧唧作响。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/insect/chitter.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),

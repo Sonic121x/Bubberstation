@@ -1,11 +1,11 @@
 /datum/job/psychologist
 	title = JOB_PSYCHOLOGIST
-	description = "Advocate sanity, self-esteem, and teamwork in a station \
-		staffed with headcases."
+	description = "在这座尽是疯子的空间站上，\
+		倡导理智、自尊与团队合作。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Head of Personnel and the Chief Medical Officer"
+	supervisors = "人事主管与首席医疗官"
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "PSYCHOLOGIST"
 
@@ -29,7 +29,7 @@
 		/obj/item/storage/pill_bottle/happy = 5,
 		/obj/item/gun/syringe = 1
 	)
-	rpg_title = "Snake Oil Salesman"
+	rpg_title = "蛇油推销员"
 	job_flags = STATION_JOB_FLAGS
 
 

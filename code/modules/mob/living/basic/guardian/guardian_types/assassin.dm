@@ -5,15 +5,15 @@
 	guardian_type = GUARDIAN_ASSASSIN
 	melee_damage_lower = 15
 	melee_damage_upper = 15
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "挥砍"
+	attack_verb_simple = "挥砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	sharpness = SHARP_POINTY
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, STAMINA = 0, OXY = 1)
-	playstyle_string = span_holoparasite("As an <b>assassin</b> type you do medium damage and have no damage resistance, but can enter stealth, massively increasing the damage of your next attack and causing it to ignore armor. Stealth is broken when you attack or take damage.")
-	creator_name = "Assassin"
-	creator_desc = "Does medium damage and takes full damage, but can enter stealth, causing its next attack to do massive damage and ignore armor. However, it becomes briefly unable to recall after attacking from stealth."
+	playstyle_string = span_holoparasite("作为<b>刺客</b>型，你造成中等伤害且没有伤害抗性，但可以进入潜行，大幅提升下一次攻击的伤害并使其无视护甲。攻击或受到伤害时潜行会解除。")
+	creator_name = "刺客"
+	creator_desc = "造成中等伤害并承受全额伤害，但可以进入潜行，使其下一次攻击造成巨额伤害并无视护甲。不过，从潜行中攻击后，它会短暂无法被召回。"
 	creator_icon = "assassin"
 	toggle_button_type = /datum/action/cooldown/guardian/toggle_mode/assassin
 	/// How long to put stealth on cooldown if we are forced out?
@@ -28,13 +28,13 @@
 	var/stealthed = has_status_effect(/datum/status_effect/guardian_stealth)
 	var/datum/action/cooldown/guardian/toggle_mode/assassin/stealth_ability = locate() in actions
 	if (stealthed)
-		to_chat(src, span_bolddanger("You exit stealth."))
+		to_chat(src, span_bolddanger("你退出了潜行。"))
 		remove_status_effect(/datum/status_effect/guardian_stealth)
 		if(stealth_ability)
 			stealth_ability.build_all_button_icons()
 		return
 	if (!is_deployed())
-		to_chat(src, span_bolddanger("You have to be manifested to enter stealth!"))
+		to_chat(src, span_bolddanger("你必须先显形才能进入潜行！"))
 		return
 	apply_status_effect(/datum/status_effect/guardian_stealth)
 	if(stealth_ability)
@@ -43,7 +43,7 @@
 /// Called when we are removed from stealth involuntarily
 /mob/living/basic/guardian/assassin/proc/on_forced_unstealth(mob/living/source)
 	SIGNAL_HANDLER
-	visible_message(span_danger("\The [src] suddenly appears!"))
+	visible_message(span_danger("[src] 突然显现！"))
 	COOLDOWN_START(src, manifest_cooldown, 4 SECONDS)
 	var/datum/action/cooldown/guardian/toggle_mode/assassin/stealth_ability = locate() in actions
 	if(stealth_ability)
@@ -67,7 +67,7 @@
 		basic_owner.armour_penetration = 100
 		basic_owner.wound_bonus = stealth_wound_bonus
 		basic_owner.obj_damage = 0
-	to_chat(owner, span_bolddanger("You enter stealth, empowering your next attack."))
+	to_chat(owner, span_bolddanger("你进入潜行，强化了你的下一次攻击。"))
 	animate(owner, alpha = 15, time = 0.5 SECONDS)
 
 	RegisterSignals(owner, list(COMSIG_GUARDIAN_RECALLED, COMSIG_HOSTILE_POST_ATTACKINGTARGET), PROC_REF(forced_exit))

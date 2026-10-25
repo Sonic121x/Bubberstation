@@ -1,6 +1,6 @@
 /obj/machinery/power/manufacturing/lathe // this is a heavily gutted autolathe
-	name = "manufacturing lathe"
-	desc = "Lathes the set recipe until it runs out of resources. Only accepts sheets or other kinds of material stacks."
+	name = "制造车床"
+	desc = "按设定的配方进行车削，直到资源耗尽。只接受板材或其他类型的材料堆。"
 	icon_state = "lathe"
 	circuit = /obj/item/circuitboard/machine/manulathe
 	/// power cost for lathing
@@ -39,11 +39,11 @@
 /obj/machinery/power/manufacturing/lathe/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "Dump all contained materials"
+		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "倒出所有储存的材料"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/manufacturing/lathe/click_ctrl_shift(mob/living/user)
-	balloon_alert_to_viewers("materials dumped")
+	balloon_alert_to_viewers("材料已倒出")
 	materials.retrieve_all()
 
 /obj/machinery/power/manufacturing/lathe/RefreshParts()
@@ -57,14 +57,14 @@
 	var/datum/design/design
 	if(!isnull(design_id))
 		design = SSresearch.techweb_design_by_id(design_id)
-	. += span_notice("It is set to print [!isnull(design) ? design.name : "nothing, set with a multitool"].")
+	. += span_notice("它当前设定为打印 [!isnull(design) ? design.name : "无，请使用多功能工具设置"]。")
 	if(isnull(design))
 		return
-	. += span_notice("It needs:")
+	. += span_notice("它需要：")
 	for(var/valid_type, amount in design.materials)
 		var/atom/ingredient = valid_type
 
-		. += "[amount / SHEET_MATERIAL_AMOUNT] sheets of [initial(ingredient.name)]"
+		. += "[amount / SHEET_MATERIAL_AMOUNT] 张[initial(ingredient.name)]板材"
 
 /obj/machinery/power/manufacturing/lathe/update_overlays()
 	. = ..()
@@ -94,7 +94,7 @@
 	for(var/id in stored_research.researched_designs)
 		var/datum/design/design = SSresearch.techweb_design_by_id(id)
 		name_to_id[design.name] = id
-	var/result = tgui_input_list(user, "Select Design", "Select Design", sort_list(name_to_id))
+	var/result = tgui_input_list(user, "选择设计", "选择设计", sort_list(name_to_id))
 	if(isnull(result))
 		return ITEM_INTERACT_FAILURE
 	design_id = name_to_id[result]

@@ -1,6 +1,6 @@
 /mob/living/basic/stoat
-	name = "stoat"
-	desc = "A natural born vermin exterminator... a janitor's best friend."
+	name = "白鼬"
+	desc = "天生的害兽清除者……清洁工最好的朋友。"
 	icon_state = "stoat"
 	icon_living = "stoat"
 	icon_dead = "stoat_dead"
@@ -15,12 +15,12 @@
 	maxHealth = 40
 	melee_damage_lower = 6
 	melee_damage_upper = 9
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	verb_say = "chips"
-	verb_ask = "chips curiously"
-	verb_exclaim = "chips loudly"
-	verb_yell = "chips loudly"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	verb_say = "鸣叫"
+	verb_ask = "好奇地鸣叫"
+	verb_exclaim = "大声鸣叫"
+	verb_yell = "大声鸣叫"
 	speed = -0.25
 	faction = list(FACTION_NEUTRAL)
 	ai_controller = /datum/ai_controller/basic_controller/stoat
@@ -54,8 +54,8 @@
 		add_breeding_component()
 
 	var/static/list/display_emote = list(
-		BB_EMOTE_SAY = list("Chirp chirp chirp!"),
-		BB_EMOTE_SEE = list("sweeps its tail!", "jumps around!", "licks its fur!"),
+		BB_EMOTE_SAY = list("啾啾啾！"),
+		BB_EMOTE_SEE = list("甩动尾巴！", "四处蹦跳！", "舔舐毛发！"),
 		BB_SPEAK_CHANCE = 2,
 		BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/stoat/stoat_sounds.ogg'),
 	)
@@ -73,9 +73,9 @@
 	)
 
 /mob/living/basic/stoat/kit
-	name = "\improper stoat kit"
-	real_name = "stoat"
-	desc = "An apex predator, but friend-shaped, and tiny..."
+	name = "\improper 白鼬幼崽"
+	real_name = "白鼬"
+	desc = "顶级掠食者，但长得很友善，而且小小一只……"
 	icon_state = "kit_stoat"
 	icon_living = "kit_stoat"
 	icon_dead = "kit_stoat_dead"

@@ -1,6 +1,6 @@
 /mob/living/basic/alien
-	name = "alien hunter"
-	desc = "Hiss!"
+	name = "异形猎手"
+	desc = "嘶嘶！"
 	icon = 'icons/mob/nonhuman-player/alien.dmi'
 	icon_state = "alienh"
 	icon_living = "alienh"
@@ -30,17 +30,17 @@
 	speed = 0
 	obj_damage = 60
 
-	speak_emote = list("hisses")
+	speak_emote = list("嘶声叫")
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "挥爪劈砍"
+	attack_verb_simple = "劈砍"
 
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	gold_core_spawnable = NO_SPAWN
 	death_sound = 'sound/mobs/non-humanoids/hiss/hiss6.ogg'
-	death_message = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	death_message = "发出逐渐微弱、喉音浓重的尖啸，绿色的血液从口中涌出……"
 
 	habitable_atmos = null
 	unsuitable_atmos_damage = FALSE
@@ -73,7 +73,7 @@
 		return FALSE
 	if(locate(/obj/structure/alien/weeds/node) in get_turf(src))
 		return FALSE
-	visible_message(span_alertalien("[src] plants some alien weeds!"))
+	visible_message(span_alertalien("[src] 种下了一些异形杂草！"))
 	new /obj/structure/alien/weeds/node(loc)
 	return TRUE
 
@@ -83,7 +83,7 @@
 		return FALSE
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
 		return FALSE
-	visible_message(span_alertalien("[src] lays an egg!"))
+	visible_message(span_alertalien("[src] 产下了一枚卵！"))
 	new /obj/structure/alien/egg(loc)
 	return TRUE
 

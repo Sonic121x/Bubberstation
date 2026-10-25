@@ -10,8 +10,8 @@
 #define TURF_BLOCKED_BY_BOULDER -1
 
 /obj/machinery/brm
-	name = "boulder retrieval matrix"
-	desc = "A teleportation matrix used to retrieve boulders excavated by mining NODEs from ore vents."
+	name = "巨石回收矩阵"
+	desc = "一种传送矩阵，用于回收由采矿 NODE 从矿脉中开采出的巨石。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "brm"
 	base_icon_state = "brm"
@@ -41,36 +41,36 @@
 	. = NONE
 
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Teleport single boulder"
-		context[SCREENTIP_CONTEXT_RMB] = "Toggle [toggled_on ? "Off" : "On"] automatic boulder retrieval"
+		context[SCREENTIP_CONTEXT_LMB] = "传送单块巨石"
+		context[SCREENTIP_CONTEXT_RMB] = "切换自动巨石回收：[toggled_on ? "关闭" : "开启"]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(!isnull(held_item))
 		if(held_item.tool_behaviour == TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-			context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+			context[SCREENTIP_CONTEXT_LMB] = "拆解"
 			return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/brm/examine(mob/user)
 	. = ..()
-	. += span_notice("The small screen reads there are [span_boldnotice("[SSore_generation.available_boulders.len] boulders")] available to teleport.")
-	. += span_notice("Can collect up to <b>[boulders_processing_max] boulders</b> at a time.")
-	. += span_notice("Automatic boulder retrieval can be toggled [EXAMINE_HINT("[toggled_on ? "Off" : "On"]")] with [EXAMINE_HINT("Right Click")].")
+	. += span_notice("小屏幕上显示有 [span_boldnotice("[SSore_generation.available_boulders.len] 块巨石")] 可供传送。")
+	. += span_notice("一次最多可收集 <b>[boulders_processing_max] 块巨石</b>。")
+	. += span_notice("自动巨石回收可通过[EXAMINE_HINT("右键点击")]切换为[EXAMINE_HINT("[toggled_on ? "关闭" : "开启"]")]。")
 
 	if(anchored)
-		. += span_notice("It's [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("它已[EXAMINE_HINT("固定")]在原位。")
 	else
-		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] to start operations.")
+		. += span_warning("需要先[EXAMINE_HINT("固定")]才能开始运作。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "拧上" : "拧开"]。")
 
 	if(panel_open)
-		. += span_notice("The whole machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("整台机器可以[EXAMINE_HINT("用撬棍")]撬开。")
 
 /obj/machinery/brm/update_icon_state()
 	icon_state = base_icon_state
@@ -123,9 +123,9 @@
 
 	var/result = pre_collect_boulder()
 	if(result == TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "没有空间！")
 	else if(result)
-		balloon_alert(user, "teleporting...")
+		balloon_alert(user, "传送中……")
 	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
 
 	return TRUE
@@ -143,10 +143,10 @@
 	if(!COOLDOWN_FINISHED(src, manual_teleport_cooldown))
 		return FALSE
 	if(panel_open)
-		balloon_alert(user, "close panel first!")
+		balloon_alert(user, "请先关闭面板！")
 		return FALSE
 	if(batch_processing)
-		balloon_alert(user, "batch still processing!")
+		balloon_alert(user, "该批次仍在处理中！")
 		return FALSE
 	playsound(src, MANUAL_TELEPORT_SOUND, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return TRUE
@@ -160,9 +160,9 @@
 
 	var/result = pre_collect_boulder()
 	if(result == TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "没有空间！")
 	else if(result)
-		balloon_alert(user, "teleporting...")
+		balloon_alert(user, "传送中……")
 
 	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
 
@@ -177,9 +177,9 @@
 
 	var/result = pre_collect_boulder()
 	if(result == TURF_BLOCKED_BY_BOULDER)
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "没有空间！")
 	else if(result)
-		balloon_alert(user, "teleporting...")
+		balloon_alert(user, "传送中……")
 
 	COOLDOWN_START(src, manual_teleport_cooldown, TELEPORTATION_TIME)
 
@@ -190,7 +190,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor it first!")
+		balloon_alert(user, "请先固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	toggle_auto_on(user)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -206,10 +206,10 @@
 	PRIVATE_PROC(TRUE)
 
 	if(panel_open)
-		balloon_alert(user, "close panel first!")
+		balloon_alert(user, "请先关闭面板！")
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor it first!")
+		balloon_alert(user, "请先固定！")
 		return
 	if(!is_operational || machine_stat & (BROKEN | NOPOWER))
 		return
@@ -226,7 +226,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "unanchored!")
+		balloon_alert(user, "未固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	toggle_auto_on(user)
@@ -239,7 +239,7 @@
 	if(!user.can_perform_action(src, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!anchored)
-		balloon_alert(user, "unanchored!")
+		balloon_alert(user, "未固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	toggle_auto_on(user)
@@ -283,7 +283,7 @@
 	if(!SSore_generation.available_boulders.len)
 		if(feedback)
 			playsound(loc, 'sound/machines/synth/synth_no.ogg', 30 , TRUE)
-			balloon_alert_to_viewers("no boulders to collect!")
+			balloon_alert_to_viewers("没有可收集的巨石！")
 		batch_processing = FALSE
 		return FALSE
 
@@ -295,7 +295,7 @@
 	random_boulder.forceMove(drop_location())
 	random_boulder.pixel_x = rand(-2, 2)
 	random_boulder.pixel_y = rand(-2, 2)
-	balloon_alert_to_viewers("boulder appears!")
+	balloon_alert_to_viewers("巨石出现了！")
 	use_energy(active_power_usage)
 
 	//try again if we have more boulders to work with

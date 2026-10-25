@@ -3,9 +3,9 @@
 	alert = FALSE
 
 /obj/item/freeze_cube
-	name = "freeze cube"
-	desc = "A block of semi-clear ice treated with chemicals to behave as a throwable weapon. \
-		Somehow, it does not transfer its freezing temperatures until it comes into contact with a living creature."
+	name = "冰冻方块"
+	desc = "一块经过化学处理、可当作投掷武器使用的半透明冰块。\
+		不知为何，它在接触活物之前不会传递自身的低温。"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "freeze_cube"
 	inhand_icon_state = "freeze_cube"
@@ -16,7 +16,7 @@
 
 /obj/item/freeze_cube/examine(mob/user)
 	. = ..()
-	. += span_notice("Throw this at objects or creatures to freeze them, it will boomerang back so be cautious!")
+	. += span_notice("将此物掷向物体或生物即可将其冻结，它会飞回来，所以小心点！")
 
 /obj/item/freeze_cube/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, gentle, quickstart = TRUE, throw_type_path = /datum/thrownthing)
 	. = ..()
@@ -41,7 +41,7 @@
 		var/obj/hit_object = hit_atom
 		var/success = hit_object.freeze()
 		if(!success && hit_object.resistance_flags & FREEZE_PROOF)
-			hit_object.visible_message(span_warning("[hit_object] is freeze-proof!"))
+			hit_object.visible_message(span_warning("[hit_object] 防冻！"))
 
 	else if(isliving(hit_atom))
 		var/mob/living/hit_mob = hit_atom

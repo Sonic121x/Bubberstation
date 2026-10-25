@@ -3,7 +3,7 @@
 
 //Transmit: the revenant's only direct way to communicate. Sends a single message silently to a single mob
 /datum/action/cooldown/spell/list_target/telepathy/revenant
-	name = "Revenant Transmit"
+	name = "亡魂传讯"
 	background_icon_state = "bg_revenant"
 	overlay_icon_state = "bg_revenant_border"
 
@@ -63,8 +63,8 @@
 
 //Overload Light: Breaks a light that's online and sends out lightning bolts to all nearby people.
 /datum/action/cooldown/spell/aoe/revenant/overload
-	name = "Overload Lights"
-	desc = "Directs a large amount of essence into nearby electrical lights, causing lights to shock those nearby."
+	name = "过载灯光"
+	desc = "将大量精华注入附近的电灯，使灯光电击附近的人。"
 	button_icon_state = "overload_lights"
 	cooldown_time = 20 SECONDS
 
@@ -83,7 +83,7 @@
 		if(!light.on)
 			continue
 
-		light.visible_message(span_boldwarning("[light] suddenly flares brightly and begins to spark!"))
+		light.visible_message(span_boldwarning("[light] 骤然爆亮，开始迸出火花！"))
 		do_sparks(4, FALSE, light)
 		new /obj/effect/temp_visual/revenant(get_turf(light))
 		addtimer(CALLBACK(src, PROC_REF(overload_shock), light, caster), 2 SECONDS)
@@ -102,8 +102,8 @@
 
 //Defile: Corrupts nearby stuff, unblesses floor tiles.
 /datum/action/cooldown/spell/aoe/revenant/defile
-	name = "Defile"
-	desc = "Twists and corrupts the nearby area as well as dispelling holy auras on floors."
+	name = "亵渎"
+	desc = "扭曲并腐化附近的区域，同时驱散地面上的神圣光环。"
 	button_icon_state = "defile"
 	cooldown_time = 15 SECONDS
 	aoe_radius = 4
@@ -220,8 +220,8 @@
 	for(var/obj/item/reagent_containers/hypospray/medipen/cursed_medipen in target_turf)
 		turf_was_defiled = TRUE
 		// the default medipen subtype is epinephrine so we need to use generic hardcoded name/desc
-		cursed_medipen.name = "medipen"
-		cursed_medipen.desc = "A rapid and safe way to inject reagents into patients for personnel without advanced medical knowledge."
+		cursed_medipen.name = "医疗注射笔"
+		cursed_medipen.desc = "一种快速而安全的试剂注射方式，供没有高级医学知识的人员为病人注射使用。"
 	for(var/obj/item/reagent_containers/medigel/cursed_medigel in target_turf)
 		turf_was_defiled = TRUE
 		cursed_medigel.name = /obj/item/reagent_containers/medigel::name
@@ -272,8 +272,8 @@
 
 //Malfunction: Makes bad stuff happen to robots and machines.
 /datum/action/cooldown/spell/aoe/revenant/malfunction
-	name = "Malfunction"
-	desc = "Corrupts and damages nearby machines and mechanical objects."
+	name = "故障"
+	desc = "腐化并损坏附近的机器与机械装置。"
 	button_icon_state = "malfunction"
 	cooldown_time = 20 SECONDS
 
@@ -294,7 +294,7 @@
 			continue
 		if(human.can_block_magic(antimagic_flags))
 			continue
-		to_chat(human, span_revenwarning("You feel [pick("your sense of direction flicker out", "a stabbing pain in your head", "your mind fill with static")]."))
+		to_chat(human, span_revenwarning("你感觉[pick("方向感忽明忽暗", "头部像被刺了一刀", "脑中充满了静电噪声")]。"))
 		new /obj/effect/temp_visual/revenant(human.loc)
 		human.emp_act(EMP_HEAVY)
 	for(var/obj/thing in victim)
@@ -314,8 +314,8 @@
 
 //Blight: Infects nearby humans and in general messes living stuff up.
 /datum/action/cooldown/spell/aoe/revenant/blight
-	name = "Blight"
-	desc = "Causes nearby living things to waste away."
+	name = "枯萎"
+	desc = "使附近的活物逐渐衰败。"
 	button_icon_state = "blight"
 	cooldown_time = 20 SECONDS
 
@@ -328,7 +328,7 @@
 		if(mob == caster)
 			continue
 		if(mob.can_block_magic(antimagic_flags))
-			to_chat(caster, span_warning("The spell had no effect on [mob]!"))
+			to_chat(caster, span_warning("法术对 [mob] 没有效果！"))
 			continue
 		new /obj/effect/temp_visual/revenant(mob.loc)
 		if(iscarbon(mob))
@@ -343,7 +343,7 @@
 						blight.stage++
 				if(!blightfound)
 					H.ForceContractDisease(new /datum/disease/revblight(), FALSE, TRUE)
-					to_chat(H, span_revenminor("You feel [pick("suddenly sick", "a surge of nausea", "like your skin is <i>wrong</i>")]."))
+					to_chat(H, span_revenminor("你感觉[pick("突然很不舒服", "一阵猛烈的恶心", "自己的皮肤<i>不对劲</i>")]。"))
 			else
 				if(mob.reagents)
 					mob.reagents.add_reagent(/datum/reagent/toxin/plasma, 5)
@@ -364,9 +364,9 @@
 		tray.set_toxic(rand(45, 55))
 
 /datum/action/cooldown/spell/aoe/revenant/haunt_object
-	name = "Haunt Object"
-	desc = "Empower nearby objects to you with ghostly energy, causing them to attack nearby mortals. \
-		Items closer to you are more likely to be haunted."
+	name = "物品作祟"
+	desc = "以幽灵能量灌注附近的物品，驱使它们攻击附近的活人。\
+		离你越近的物品越容易被作祟。"
 	button_icon_state = "r_haunt"
 	max_targets = 7
 	aoe_radius = 5
@@ -409,14 +409,14 @@
 		haunt_color = "#823abb", \
 		haunt_duration = rand(1 MINUTES, 3 MINUTES), \
 		aggro_radius = aoe_radius - 1, \
-		spawn_message = span_revenwarning("[victim] begins to float and twirl into the air as it glows a ghastly purple!"), \
-		despawn_message = span_revenwarning("[victim] falls back to the ground, stationary once more."), \
+		spawn_message = span_revenwarning("[victim] 散发出惨紫色的光芒，开始漂浮旋转着升上空中！"), \
+		despawn_message = span_revenwarning("[victim] 落回地面，重新静止下来。"), \
 	)
 
 //Vortex: Causes storage objects to dump their contents and nearby objects to get sucked into the center
 /datum/action/cooldown/spell/aoe/revenant/vortex
-	name = "Vortex"
-	desc = "Causes nearby objects to dump their contents and get sucked towards your location."
+	name = "漩涡"
+	desc = "使附近的物品倒出内容物，并将它们吸向你所在的位置。"
 	button_icon_state = "r_vortex"
 	cooldown_time = 15 SECONDS
 	aoe_radius = 1 // only dump contents close by
@@ -443,8 +443,8 @@
 
 //Vortex: Throws nearby objects away with a large force
 /datum/action/cooldown/spell/aoe/revenant/vortex/scatter
-	name = "Scatter"
-	desc = "Causes nearby objects to dump their contents and get thrown away from your location."
+	name = "四散"
+	desc = "使附近的物品倒出内容物，并将它们从你所在的位置抛飞出去。"
 	button_icon_state = "r_scatter"
 	cooldown_time = 25 SECONDS
 	unlock_amount = 60

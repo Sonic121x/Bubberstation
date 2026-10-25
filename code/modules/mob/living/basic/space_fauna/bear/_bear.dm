@@ -1,7 +1,7 @@
 //Space bears!
 /mob/living/basic/bear
-	name = "space bear"
-	desc = "You don't need to be faster than a space bear, you just need to outrun your crewmates."
+	name = "太空熊"
+	desc = "你不需要跑得比太空熊快，你只需要跑得比自己的船员同伴快。"
 	icon_state = "bear"
 	icon_living = "bear"
 	icon_dead = "bear_dead"
@@ -9,10 +9,10 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	butcher_results = list(/obj/item/food/meat/slab/bear = 5, /obj/item/stack/sheet/animalhide/bear = 2)
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推到一边"
+	response_disarm_simple = "轻轻推到一边"
 
 	max_stamina = 120
 	maxHealth = 60
@@ -25,12 +25,12 @@
 	wound_bonus = -5
 	exposed_wound_bonus = 10 // BEAR wound bonus am i right
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	attack_verb_continuous = "抓"
+	attack_verb_simple = "抓"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
-	friendly_verb_continuous = "bear hugs"
-	friendly_verb_simple = "bear hug"
+	friendly_verb_continuous = "熊抱"
+	friendly_verb_simple = "熊抱"
 
 	faction = list(FACTION_RUSSIAN, FACTION_BEAR)
 
@@ -70,21 +70,21 @@
 
 //SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
 /mob/living/basic/bear/hudson
-	name = "Hudson"
+	name = "哈德逊"
 	gender = MALE
-	desc = "Feared outlaw, this guy is one bad news bear." //I'm sorry...
+	desc = "令人生畏的不法之徒，这家伙是头十足的坏消息熊。" //I'm sorry...
 
 /mob/living/basic/bear/snow
-	name = "space polar bear"
+	name = "太空北极熊"
 	icon_state = "snowbear"
 	icon_living = "snowbear"
 	icon_dead = "snowbear_dead"
-	desc = "It's a polar bear, in space, but not actually in space."
+	desc = "一只北极熊，在太空里，但其实并不在太空里。"
 
 /mob/living/basic/bear/snow/misha
-	name = "Misha"
-	real_name = "Misha"
-	desc = "Tamed and trained by the Head of Security. Only beasts are above deceit."
+	name = "米沙"
+	real_name = "米沙"
+	desc = "由安保主管驯服并训练。唯有野兽才不屑于欺诈。"
 	gold_core_spawnable = NO_SPAWN
 	maxHealth = 250
 	health = 250
@@ -92,8 +92,8 @@
 	status_flags = CANPUSH | CANSTUN
 
 /mob/living/basic/bear/snow/ancient
-	name = "ancient polar bear"
-	desc = "A grizzled old polar bear, its hide thick enough to make it impervious to almost all weapons."
+	name = "远古北极熊"
+	desc = "一头毛发斑白的年迈北极熊，它的皮厚到几乎能免疫所有武器。"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/bear/snow/ancient/Initialize(mapload)
@@ -101,8 +101,8 @@
 	ADD_TRAIT(src, TRAIT_GODMODE, INNATE_TRAIT)
 
 /mob/living/basic/bear/russian
-	name = "combat bear"
-	desc = "A ferocious brown bear decked out in armor plating, a red star with yellow outlining details the shoulder plating."
+	name = "战斗熊"
+	desc = "一头披挂着装甲板的凶猛棕熊，肩甲上绘着一颗描黄边的红星。"
 	icon_state = "combatbear"
 	icon_living = "combatbear"
 	icon_dead = "combatbear_dead"
@@ -118,11 +118,11 @@
 	armored = TRUE
 
 /mob/living/basic/bear/butter //The mighty companion to Cak. Several functions used from it.
-	name = "Terrygold"
+	name = "特里戈尔德"
 	icon_state = "butterbear"
 	icon_living = "butterbear"
 	icon_dead = "butterbear_dead"
-	desc = "I can't believe its not a bear!"
+	desc = "我不敢相信这竟然不是熊！"
 	faction = list(FACTION_NEUTRAL, FACTION_RUSSIAN)
 	obj_damage = 11
 	melee_damage_lower = 0
@@ -130,15 +130,15 @@
 	melee_attack_cooldown = CLICK_CD_MELEE
 	sharpness = NONE //it's made of butter
 	armour_penetration = 0
-	response_harm_continuous = "takes a bite out of"
-	response_harm_simple = "take a bite out of"
+	response_harm_continuous = "咬了一口"
+	response_harm_simple = "咬一口"
 	attacked_sound = 'sound/items/eatfood.ogg'
-	death_message = "loses its false life and collapses!"
+	death_message = "失去了虚假的生命，瘫倒在地！"
 	butcher_results = list(/obj/item/food/butter = 6, /obj/item/food/meat/slab = 3, /obj/item/organ/brain = 1, /obj/item/organ/heart = 1)
 	attack_sound = 'sound/items/weapons/slap.ogg'
 	attack_vis_effect = ATTACK_EFFECT_DISARM
-	attack_verb_simple = "slap"
-	attack_verb_continuous = "slaps"
+	attack_verb_simple = "拍"
+	attack_verb_continuous = "拍"
 	//just ensuring the mats contained by the bear when spawned are the same of when crafted
 	custom_materials = list(/datum/material/meat = MEATSLAB_MATERIAL_AMOUNT * 5)
 
@@ -170,13 +170,13 @@
 	var/datum/mind/candidate_mind = candidate.brainmob.mind
 	candidate_mind.transfer_to(src)
 	candidate_mind.grab_ghost()
-	to_chat(src, "[span_boldbig("You are a butter bear!")]<b> You're a mostly harmless bear/butter hybrid that everyone loves. People can take bites out of you if they're hungry, but you regenerate health \
-	so quickly that it generally doesn't matter. You're remarkably resilient to any damage besides this and it's hard for you to really die at all. You should go around and bring happiness and \
-	free butter to the station!</b>")
-	var/default_name = "Terrygold"
-	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "You are \the [src]. Would you like to change your name to something else?", "Name change", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
+	to_chat(src, "[span_boldbig("你是一只黄油熊！")]<b> 你是一只基本无害的熊与黄油混合体，人人都爱你。别人饿了可以从你身上咬几口，但你的生命值回复得 \
+	太快了，所以通常无所谓。除此之外你对任何伤害都异常坚韧，几乎根本死不了。你应当四处走动，为空间站带来快乐和 \
+	免费的黄油！</b>")
+	var/default_name = "特里戈尔德"
+	var/new_name = sanitize_name(reject_bad_text(tgui_input_text(src, "你是 \the [src]。你想把名字改成别的吗？", "更改名字", default_name, MAX_NAME_LEN)), cap_after_symbols = FALSE)
 	if(new_name)
-		to_chat(src, span_notice("Your name is now <b>[new_name]</b>!"))
+		to_chat(src, span_notice("你的名字现在是 <b>[new_name]</b>！"))
 		name = new_name
 
 /mob/living/basic/bear/butter/UnarmedAttack(atom/target, proximity_flag, list/modifiers) //Makes the butter bear's attacks against vertical targets slip said targets
@@ -188,4 +188,4 @@
 		return
 	victim.Knockdown(20)
 	playsound(loc, 'sound/misc/slip.ogg', 15)
-	victim.visible_message(span_danger("[victim] slips on [src]'s butter!"))
+	victim.visible_message(span_danger("[victim] 踩到 [src] 的黄油滑倒了！"))

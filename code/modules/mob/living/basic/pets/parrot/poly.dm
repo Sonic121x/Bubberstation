@@ -13,8 +13,8 @@
 
 /// The classically famous compadre to the Chief Engineer, Poly.
 /mob/living/basic/parrot/poly
-	name = "Poly"
-	desc = "Poly the Parrot. An expert on quantum cracker theory."
+	name = "波利"
+	desc = "鹦鹉波利。量子饼干理论的专家。"
 	gold_core_spawnable = NO_SPAWN
 	speech_probability_rate = 6
 
@@ -78,21 +78,21 @@
 	phrases_to_return += read_memory() // must come first!!!
 	// now add some valuable lines every poly should have
 	phrases_to_return += list(
-		":e Check the crystal, you chucklefucks!",
-		":e OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE",
-		":e WHO TOOK THE DAMN MODSUITS?",
-		":e Wire the solars, you lazy bums!",
-		"Poly wanna cracker!",
+		":e 去看看晶体，你们这帮蠢货！",
+		":e 天啊它快要解聚了，快叫穿梭机！",
+		":e 谁把该死的 MOD 外骨骼拿走了？",
+		":e 去接太阳能板的线，你们这帮懒鬼！",
+		"波利想要饼干！",
 	)
 	switch(determine_special_poly())
 		if(POLY_DEFAULT)
-			phrases_to_return += pick("...alive?", "This isn't parrot heaven!", "I live, I die, I live again!", "The void fades!")
+			phrases_to_return += pick("……我活着？", "这里不是鹦鹉天堂！", "我活着，我死去，我又活了！", "虚空消散了！")
 		if(POLY_LONGEST_SURVIVAL)
-			phrases_to_return += pick("...[longest_survival].", "The things I've seen!", "I have lived many lives!", "What are you before me?")
+			phrases_to_return += pick("……[longest_survival]。", "我见过的那些东西啊！", "我已活过许多世！", "你在我面前算什么？")
 		if(POLY_BEATING_DEATHSTREAK)
-			phrases_to_return += pick("What are you waiting for!", "Violence breeds violence!", "Blood! Blood!", "Strike me down if you dare!")
+			phrases_to_return += pick("你还在等什么！", "暴力催生暴力！", "血！血！", "有胆就砍死我！")
 		if(POLY_CONSECUTIVE_ROUND)
-			phrases_to_return += pick("...again?", "No, It was over!", "Let me out!", "It never ends!")
+			phrases_to_return += pick("……又来？", "不，明明已经结束了！", "放我出去！", "永远没个尽头！")
 
 	return phrases_to_return
 
@@ -100,11 +100,11 @@
 	. = ..()
 	switch(determine_special_poly())
 		if(POLY_LONGEST_SURVIVAL)
-			desc += " Old as sin, and just as loud. Claimed to be [rounds_survived]."
+			desc += " 老得像罪孽一样，嗓门也一样大。据称已有 [rounds_survived] 岁。"
 		if(POLY_BEATING_DEATHSTREAK)
-			desc += " The squawks of [-rounds_survived] dead parrots ring out in your ears..."
+			desc += " [-rounds_survived] 只死鹦鹉的聒噪在你耳边回响……"
 		if(POLY_CONSECUTIVE_ROUND)
-			desc += " Over [rounds_survived] shifts without a \"terrible\" \"accident\"!"
+			desc += " 已连续 [rounds_survived] 个班次没有发生“可怕”的“意外”了！"
 
 /mob/living/basic/parrot/poly/update_icon()
 	. = ..()
@@ -188,8 +188,8 @@
 	ears = new /obj/item/radio/headset/headset_eng(src)
 
 /mob/living/basic/parrot/poly/ghost
-	name = "The Ghost of Poly"
-	desc = "Doomed to squawk the Earth."
+	name = "波利的幽灵"
+	desc = "注定要在人间聒噪不息。"
 	color = "#FFFFFF77"
 	sentience_type = SENTIENCE_BOSS //This is so players can't mindswap into ghost poly to become a literal god
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
@@ -212,7 +212,7 @@
 		forceMove(get_turf(target))
 		return FALSE
 	if(ishuman(loc))
-		balloon_alert(src, "already possessing!")
+		balloon_alert(src, "已经附身着呢！")
 		return FALSE
 	forceMove(target)
 	return TRUE

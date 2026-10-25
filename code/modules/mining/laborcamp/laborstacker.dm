@@ -1,8 +1,8 @@
 /**********************Prisoners' Console**************************/
 
 /obj/machinery/mineral/labor_claim_console
-	name = "point claim console"
-	desc = "A stacking console with an electromagnetic writer, used to track ore mined by prisoners."
+	name = "积分领取控制台"
+	desc = "一台带有电磁写入器的堆叠控制台，用于记录囚犯开采的矿石。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
@@ -60,14 +60,14 @@
 		var/obj/item/card/id/advanced/prisoner/worn_prisoner_id = worn_id
 		data["id_points"] = worn_prisoner_id.points
 		if(!worn_prisoner_id.goal)
-			data["status_info"] = "No goal set!"
+			data["status_info"] = "未设定目标！"
 		else if(worn_prisoner_id.points >= worn_prisoner_id.goal)
 			can_go_home = TRUE
-			data["status_info"] = "Goal met!"
+			data["status_info"] = "目标已达成！"
 		else
-			data["status_info"] = "You are [(worn_prisoner_id.goal - worn_prisoner_id.points)] points away."
+			data["status_info"] = "你还差 [(worn_prisoner_id.goal - worn_prisoner_id.points)] 积分。"
 	else
-		data["status_info"] = "No Prisoner ID detected."
+		data["status_info"] = "未检测到囚犯 ID。"
 		data["id_points"] = 0
 
 	if(stacking_machine)
@@ -99,39 +99,39 @@
 				var/obj/item/card/id/advanced/prisoner/worn_prisoner_id = worn_id
 				worn_prisoner_id.points += stacking_machine.points
 				stacking_machine.points = 0
-				say("Points transferred.")
+				say("积分已转移。")
 				return TRUE
 			else
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("No valid id for point transfer detected.")
+					say("未检测到可用于转移积分的有效 ID。")
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 
 		if("move_shuttle")
 			if(isnull(SSshuttle.getShuttle("laborcamp")))
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("Shuttle not found.")
+					say("未找到穿梭机。")
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				return
 
 			var/list/labor_shuttle_mobs = find_labor_shuttle_mobs()
 			if(length(labor_shuttle_mobs) > 1 || labor_shuttle_mobs[1] != user_mob)
 				if(COOLDOWN_FINISHED(src, say_cooldown))
-					say("Prisoners may only be released one at a time.")
+					say("囚犯一次只能释放一人。")
 					COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				return
 
 			switch(SSshuttle.moveShuttle("laborcamp", "laborcamp_home", TRUE))
 				if(1)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say("Shuttle not found.")
+						say("未找到穿梭机。")
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				if(2)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say("Shuttle already at station.")
+						say("穿梭机已在空间站。")
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				if(3)
 					if(COOLDOWN_FINISHED(src, say_cooldown))
-						say("No permission to dock could be granted.")
+						say("未能获得停泊许可。")
 						COOLDOWN_START(src, say_cooldown, 2 SECONDS)
 				else
 					if(!(obj_flags & EMAGGED))
@@ -139,8 +139,8 @@
 						target?.wanted_status = WANTED_PAROLE
 
 						aas_config_announce(/datum/aas_config_entry/security_labor_stacker, list("PERSON" = user_mob.real_name), src, list(RADIO_CHANNEL_SECURITY))
-					user_mob.log_message("has completed their labor points goal and is now sending the gulag shuttle back to the station.", LOG_GAME)
-					say("Labor sentence finished, shuttle returning.")
+					user_mob.log_message("已完成劳动积分目标，正在把劳改营穿梭机送回空间站。", LOG_GAME)
+					say("劳役刑期结束，穿梭机正在返回。")
 					initiated_launch = TRUE
 					return TRUE
 
@@ -160,7 +160,7 @@
 
 	if(initiated_launch && length(find_labor_shuttle_mobs()) > 1)
 		initiated_launch = FALSE
-		say("Takeoff aborted. Prisoners may only be released one at a time.")
+		say("起飞中止。囚犯一次只能释放一人。")
 		return BLOCK_SHUTTLE_MOVE
 
 /obj/machinery/mineral/labor_claim_console/proc/locate_stacking_machine()
@@ -173,15 +173,15 @@
 		return FALSE
 
 	obj_flags |= EMAGGED
-	balloon_alert(user, "id authenticator short-circuited")
-	visible_message(span_warning("[src] lets out a few sparks!"))
+	balloon_alert(user, "ID 验证器短路了")
+	visible_message(span_warning("[src] 冒出了几颗火花！"))
 	do_sparks(2, TRUE, src)
 	return TRUE
 
 /**********************Prisoner Collection Unit**************************/
 
 /obj/machinery/mineral/stacking_machine/laborstacker
-	name = "labor camp collection unit"
+	name = "劳改营收集装置"
 	force_connect = TRUE
 	damage_deflection = 21 //otherwise prisoners will destroy it
 	///Idle points sitting in the machine left to be claimed.
@@ -212,8 +212,8 @@
 /**********************Point Lookup Console**************************/
 
 /obj/machinery/mineral/labor_points_checker
-	name = "points checking console"
-	desc = "A console used by prisoners to check the progress on their quotas. Simply swipe a prisoner ID."
+	name = "积分查询控制台"
+	desc = "供囚犯查询配额进度的控制台。刷一下囚犯 ID 即可。"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
@@ -230,19 +230,19 @@
 
 	var/obj/item/card/id/advanced/prisoner/prisoner_id = tool
 	if(!prisoner_id.goal) //no goal to reach
-		say("No goal required for this ID.")
+		say("此 ID 无需达成目标。")
 		return ITEM_INTERACT_BLOCKING
 
-	say("ID: [prisoner_id.registered_name].")
-	say("Points Collected: [prisoner_id.points] / [prisoner_id.goal].")
-	say("Collect points by bringing smelted minerals to the Labor Shuttle stacking machine. Reach your quota to earn your release.")
+	say("ID：[prisoner_id.registered_name]。")
+	say("已收集积分：[prisoner_id.points] / [prisoner_id.goal]。")
+	say("把冶炼好的矿物送到劳改穿梭机堆叠机即可收集积分。达到配额即可获释。")
 	return ITEM_INTERACT_SUCCESS
 
 /datum/aas_config_entry/security_labor_stacker
-	name = "Security Alert: Labor Camp Release"
+	name = "安保警报：劳改营释放"
 	announcement_lines_map = list(
-		"Message" = "%PERSON returned to the station. Minerals and Prisoner ID card ready for retrieval."
+		"Message" = "%PERSON 已返回空间站。矿物与囚犯 ID 卡可供领取。"
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the name of the prisoner."
+		"PERSON" = "将替换为囚犯的名字。"
 	)

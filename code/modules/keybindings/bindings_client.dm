@@ -21,17 +21,17 @@ GAME_VERB_NATIVE_INSTANT(/client, keyDown, "keyDown", null, _key as text, mousep
 			keysend_tripped = TRUE
 			next_keysend_trip_reset = world.time + (2 SECONDS)
 		else
-			to_chat(src, span_userdanger("Flooding keysends! This could have been caused by lag, or due to a plugged-in game controller. You have been disconnected from the server automatically."))
-			log_admin("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
-			message_admins("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
+			to_chat(src, span_userdanger("按键洪泛！这可能是由卡顿引起的，也可能是插着游戏手柄导致的。你已被服务器自动断开连接。"))
+			log_admin("客户端 [ckey] 因按键洪泛被自动踢出；可能是滥用，但也可能是卡顿尖峰。")
+			message_admins("客户端 [ckey] 因按键洪泛被自动踢出；可能是滥用，但也可能是卡顿尖峰。")
 			qdel(src)
 			return
 
 	///Check if the key is short enough to even be a real key
 	if(LAZYLEN(_key) > MAX_KEYPRESS_COMMANDLENGTH)
-		to_chat(src, span_userdanger("Invalid KeyDown detected! You have been disconnected from the server automatically."))
-		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
-		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
+		to_chat(src, span_userdanger("检测到无效的按键按下事件！你已被服务器自动断开连接。"))
+		log_admin("客户端 [ckey] 刚刚尝试发送无效按键。按键消息长度超过 [MAX_KEYPRESS_COMMANDLENGTH] 个字符，因疑似滥用而自动踢出。")
+		message_admins("客户端 [ckey] 刚刚尝试发送无效按键。按键消息长度超过 [MAX_KEYPRESS_COMMANDLENGTH] 个字符，因疑似滥用而自动踢出。")
 		qdel(src)
 		return
 

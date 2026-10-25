@@ -1,9 +1,9 @@
 /obj/item/skillchip/job/roboticist
-	name = "Cyborg C1-RCU-1T skillchip"
-	desc = "A roboticist's second best friend."
+	name = "半机械人 C1-RCU-1T 技能芯片"
+	desc = "机器人专家的第二好伙伴。"
 	auto_traits = list(TRAIT_KNOW_ROBO_WIRES)
-	skill_name = "Cyborg Circuitry"
-	skill_description = "Recognise cyborg wire layouts and understand their functionality at a glance."
+	skill_name = "半机械人电路"
+	skill_description = "一眼辨认半机械人的线路布局，并理解其功能。"
 	skill_icon = "sitemap"
-	activate_message = span_notice("You suddenly comprehend the secrets behind cyborg circuitry.")
-	deactivate_message = span_notice("Cyborg circuitry stops making sense as images of coloured wires fade from your mind.")
+	activate_message = span_notice("你突然领悟了半机械人电路背后的奥秘。")
+	deactivate_message = span_notice("随着彩色线路的影像从你脑海中褪去，半机械人电路又变得难以理解了。")

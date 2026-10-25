@@ -5,8 +5,8 @@
  * Can be folded up and carried. Click it to draw a random tool.
  */
 /obj/item/surgery_tray
-	name = "surgery tray"
-	desc = "A DeForest-brand medical cart. It is a folding model, meaning the wheels on the bottom can be retracted and the body used as a tray."
+	name = "手术托盘"
+	desc = "德福雷斯特品牌的医疗推车。这是可折叠型号，底部轮子可以收起，车身则当作托盘使用。"
 	icon = 'icons/obj/medical/medicart.dmi'
 	icon_state = "tray"
 	w_class = WEIGHT_CLASS_BULKY
@@ -38,8 +38,8 @@
 
 /obj/item/surgery_tray/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_LMB] = "Take a random tool"
-	context[SCREENTIP_CONTEXT_RMB] = "Take a specific tool"
+	context[SCREENTIP_CONTEXT_LMB] = "随机取一件工具"
+	context[SCREENTIP_CONTEXT_RMB] = "取指定工具"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/surgery_tray/update_icon_state()
@@ -49,17 +49,17 @@
 /obj/item/surgery_tray/update_desc()
 	. = ..()
 	if(is_portable)
-		desc = "The wheels and bottom storage of this medical cart have been stowed away, \
-			leaving a cumbersome tray in its place."
+		desc = "这辆医疗推车的轮子和底部储物空间已收起，\
+			只留下一张笨重的托盘。"
 	else
 		desc = initial(desc)
 
 /obj/item/surgery_tray/examine(mob/living/carbon/human/user)
 	. = ..()
 	. += is_portable \
-		? span_notice("You can click and drag it to yourself to pick it up, then use it in your hand to make it a cart!") \
-		: span_notice("You can click and drag it to yourself to turn it into a tray!")
-	. += span_notice("The top is <b>screwed</b> on.")
+		? span_notice("你可以点击并把它拖到自己身上拾起，然后在手中使用它，使其变成推车！") \
+		: span_notice("你可以点击并把它拖到自己身上，使其变成托盘！")
+	. += span_notice("顶部是<b>用螺丝</b>固定的。")
 
 /obj/item/surgery_tray/update_overlays()
 	. = ..()
@@ -101,7 +101,7 @@
 	is_portable = new_mode
 	density = !is_portable
 	if(user)
-		user.visible_message(span_notice("[user] [is_portable ? "retracts" : "extends"] [src]'s wheels."), span_notice("You [is_portable ? "retract" : "extend"] [src]'s wheels."))
+		user.visible_message(span_notice("[user] [is_portable ? "收起" : "展开"]了 [src] 的轮子。"), span_notice("你[is_portable ? "收起" : "展开"]了 [src] 的轮子。"))
 
 	if(is_portable)
 		interaction_flags_item |= INTERACT_ITEM_ATTACK_HAND_PICKUP
@@ -125,10 +125,10 @@
 		return
 	var/turf/open/placement_turf = get_turf(user)
 	if(isgroundlessturf(placement_turf) || isclosedturf(placement_turf))
-		balloon_alert(user, "can't deploy!")
+		balloon_alert(user, "无法展开！")
 		return TRUE
 	if(!user.transferItemToLoc(src, placement_turf))
-		balloon_alert(user, "tray stuck!")
+		balloon_alert(user, "托盘卡住了！")
 		return TRUE
 	set_tray_mode(FALSE, user)
 	return
@@ -137,7 +137,7 @@
 	if(!user.can_perform_action(src, NEED_HANDS))
 		return ..()
 	if(!length(contents))
-		balloon_alert(user, "empty!")
+		balloon_alert(user, "空的！")
 	else
 		var/obj/item/grabbies = pick(contents)
 		if(atom_storage.remove_single(user, grabbies, drop_location()))
@@ -147,11 +147,11 @@
 /obj/item/surgery_tray/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	tool.play_tool_sound(src)
-	to_chat(user, span_notice("You begin taking apart [src]."))
+	to_chat(user, span_notice("你开始拆解 [src]。"))
 	if(!tool.use_tool(src, user, 1 SECONDS))
 		return
 	deconstruct(TRUE)
-	to_chat(user, span_notice("[src] has been taken apart."))
+	to_chat(user, span_notice("[src] 已被拆解。"))
 
 /obj/item/surgery_tray/dump_contents()
 	var/atom/drop_point = drop_location()
@@ -188,9 +188,9 @@
 	is_portable = FALSE
 
 /obj/item/surgery_tray/full/morgue
-	name = "autopsy tray"
-	desc = "A DeForest-brand surgery tray, made for use in morgues. It is a folding model, \
-		meaning the wheels on the bottom can be extended outwards, making it a cart."
+	name = "尸检托盘"
+	desc = "德福雷斯特品牌的手术托盘，专为太平间使用而设计。这是可折叠型号，\
+		底部轮子可以向外展开，使其变成推车。"
 	starting_items = list(
 		/obj/item/blood_filter/cruel,
 		/obj/item/bonesetter/cruel,
@@ -228,7 +228,7 @@
 	)
 
 /obj/effect/spawner/surgery_tray
-	name = "surgery tray spawner"
+	name = "手术托盘生成器"
 	icon = 'icons/obj/medical/medicart.dmi'
 	icon_state = "tray"
 	/// Tray to usually spawn in.
@@ -246,24 +246,24 @@
 	new tray_to_spawn(loc, TRUE)
 
 /obj/effect/spawner/surgery_tray/full
-	name = "full surgery tray spawner"
+	name = "满配手术托盘生成器"
 	icon_state = "tray"
 	tray_to_spawn = /obj/item/surgery_tray/full
 	rare_toolbox_replacement = /obj/item/storage/toolbox/medical/full
 
 /obj/effect/spawner/surgery_tray/full/deployed
-	name = "full deployed tray spawner"
+	name = "满配展开托盘生成器"
 	icon_state = "medicart"
 	tray_to_spawn = /obj/item/surgery_tray/full
 
 /obj/effect/spawner/surgery_tray/full/morgue
-	name = "full autopsy tray spawner"
+	name = "满配尸检托盘生成器"
 	icon_state = "tray"
 	tray_to_spawn = /obj/item/surgery_tray/full/morgue
 	rare_toolbox_replacement = /obj/item/storage/toolbox/medical/coroner
 	toolbox_chance = 3 // tray is rarer, so toolbox is more common
 
 /obj/effect/spawner/surgery_tray/full/morgue/deployed
-	name = "full deployed autopsy tray spawner"
+	name = "满配展开尸检托盘生成器"
 	icon_state = "medicart"
 	tray_to_spawn = /obj/item/surgery_tray/full/morgue/deployed

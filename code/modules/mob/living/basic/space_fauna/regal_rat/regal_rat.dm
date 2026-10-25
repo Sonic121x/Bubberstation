@@ -2,8 +2,8 @@
 
 /// The cheesiest, most crowned rat of them all. Regent superior of all rats in maintenance... at least until someone else tries to encroach on their claim.
 /mob/living/basic/regal_rat
-	name = "feral regal rat"
-	desc = "An evolved rat, created through some strange science. They lead nearby rats with deadly efficiency to protect their kingdom."
+	name = "野性鼠王"
+	desc = "一只由某种奇怪科学造就的进化老鼠。它们以致命的效率统领周围的老鼠，守护自己的王国。"
 	icon_state = "regalrat"
 	icon_living = "regalrat"
 	icon_dead = "regalrat_dead"
@@ -15,19 +15,19 @@
 
 	butcher_results = list(/obj/item/food/meat/slab/mouse = 2, /obj/item/clothing/head/costume/crown = 1)
 
-	response_help_continuous = "glares at"
-	response_help_simple = "glare at"
-	response_disarm_continuous = "skoffs at"
-	response_disarm_simple = "skoff at"
-	response_harm_continuous = "slashes"
-	response_harm_simple = "slash"
+	response_help_continuous = "瞪着"
+	response_help_simple = "瞪着"
+	response_disarm_continuous = "嗤笑着"
+	response_disarm_simple = "嗤笑"
+	response_harm_continuous = "抓挠"
+	response_harm_simple = "抓挠"
 
 	obj_damage = 10
 	melee_damage_lower = 13
 	melee_damage_upper = 15
 	melee_attack_cooldown = CLICK_CD_MELEE
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "抓挠"
+	attack_verb_simple = "抓挠"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 
 	// Slightly brown red, for the eyes
@@ -59,9 +59,9 @@
 	AddComponent(\
 		/datum/component/ghost_direct_control,\
 		poll_candidates = poll_ghosts,\
-		role_name = "the Regal Rat, cheesy be their crown",\
+		role_name = "鼠王，愿其王冠永浸奶酪之香",\
 		poll_ignore_key = POLL_IGNORE_REGAL_RAT,\
-		assumed_control_message = "You are an independent, invasive force on the station! Hoard coins, trash, cheese, and the like from the safety of darkness!",\
+		assumed_control_message = "你是空间站上一股独立的入侵势力！在黑暗的庇护下囤积硬币、垃圾、奶酪之类的东西！",\
 		after_assumed_control = CALLBACK(src, PROC_REF(became_player_controlled)),\
 		poll_chat_border_icon = /obj/item/food/cheese/wedge,\
 	)
@@ -85,14 +85,14 @@
 		return
 
 	if(isregalrat(user))
-		. += span_warning("Who is this foolish false king? This will not stand!")
+		. += span_warning("这是哪个愚蠢的伪王？绝不能就这么算了！")
 		return
 
 	if(ismouse(user))
 		if(user.faction_check_atom(src, exact_match = TRUE))
-			. += span_notice("This is your king. Long live [p_their()] majesty!")
+			. += span_notice("这就是你的国王。愿 [p_their()] 陛下万寿无疆！")
 		else
-			. += span_warning("This is a false king! Strike [p_them()] down!")
+			. += span_warning("这是个伪王！快把 [p_them()] 打倒！")
 		return
 
 	. += special_moniker
@@ -108,9 +108,9 @@
 /// Triggers an alert to all ghosts that the rat has become player controlled.
 /mob/living/basic/regal_rat/proc/became_player_controlled()
 	notify_ghosts(
-		"All rise for [name], ascendant to the throne in \the [get_area(src)].",
+		"全体起立，向在 \the [get_area(src)] 登上王位的 [name] 致敬。",
 		source = src,
-		header = "Sentient Rat Created",
+		header = "智慧老鼠已诞生",
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
 	)
 
@@ -124,49 +124,49 @@
 /mob/living/basic/regal_rat/proc/grant_titles()
 	// The title conveyed upon us thanks to our position.
 	var/static/list/titles = list(
-		"Bojar",
-		"Emperor",
-		"King",
-		"Lord",
-		"Master",
-		"Overlord",
-		"Prince",
-		"Shogun",
-		"Supreme",
-		"Tsar",
+		"波雅尔",
+		"皇帝",
+		"国王",
+		"领主",
+		"主人",
+		"霸主",
+		"亲王",
+		"幕府将军",
+		"至尊",
+		"沙皇",
 	)
 
 	// The domain which we have conquered by inheritance or sheer force.
 	var/static/list/kingdoms = list(
-		"Cheese",
-		"Garbage",
-		"Maintenance",
-		"Miasma",
-		"Plague",
-		"Trash",
-		"Vermin",
+		"奶酪",
+		"垃圾",
+		"维修区",
+		"瘴气",
+		"瘟疫",
+		"废品",
+		"害虫",
 	)
 
 	// The descriptor of our character.
 	var/static/list/descriptors = list(
-		"Big Cheese",
-		"Brute",
-		"Champion of All Mislaid Creatures",
-		"Foul",
-		"Great",
-		"Grey",
-		"Horrible",
-		"Populator",
-		"Powerful",
-		"Quiet",
-		"Vain",
+		"大人物",
+		"蛮夫",
+		"所有失物生灵的守护者",
+		"污秽",
+		"伟大",
+		"灰暗",
+		"可怖",
+		"繁衍者",
+		"强大",
+		"沉默",
+		"虚荣",
 	)
 
 	var/selected_title = pick(titles)
 	var/selected_kingdom = pick(kingdoms)
 
-	name = "[selected_title] [selected_kingdom], the [pick(descriptors)]" // ex "Tsar Maintenance, the Brute"
-	special_moniker = "You better not screw with [p_their()] [selected_kingdom]... How do you become a [selected_title] of that anyways?"
+	name = "[selected_kingdom][selected_title]，人称[pick(descriptors)]" // ex "Tsar Maintenance, the Brute"
+	special_moniker = "你最好别招惹 [p_their()] 的 [selected_kingdom]……话说，怎么才能当上 [selected_title] 呢？"
 
 /// Checks if we are able to attack this object, as well as send out the signal to see if we get any special regal rat interactions.
 /mob/living/basic/regal_rat/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
@@ -198,11 +198,11 @@
 
 	var/mob/living/living_target = the_target
 	if(IS_DEAD_OR_FAKING(living_target))
-		balloon_alert(src, "already dead!")
+		balloon_alert(src, "已经死了！")
 		return FALSE
 
 	if(living_target.faction_check_atom(src, exact_match = TRUE))
-		balloon_alert(src, "one of your soldiers!")
+		balloon_alert(src, "这是你的士兵！")
 		return FALSE
 
 	return TRUE
@@ -220,16 +220,16 @@
 		return FALSE
 
 	visible_message(
-		span_warning("[src] starts licking [target] passionately!"),
-		span_notice("You start licking [target]..."),
-		span_warning("You hear a disgusting slurping sound..."),
+		span_warning("[src] 开始深情地舔舐 [target]！"),
+		span_notice("你开始舔舐 [target]……"),
+		span_warning("你听到一阵令人作呕的吮吸声……"),
 	)
 
 	if (!do_after(src, 2 SECONDS, target, interaction_key = REGALRAT_INTERACTION))
 		return TRUE // don't return false here because they tried to lick and the do_after was interrupted, otherwise cancelling the do_after will make them hit the target.
 
 	target.reagents.add_reagent(/datum/reagent/rat_spit, rand(1,3), no_react = TRUE)
-	balloon_alert(src, "licked")
+	balloon_alert(src, "舔过了")
 	return TRUE
 
 /**
@@ -242,7 +242,7 @@
  */
 /mob/living/basic/regal_rat/proc/cheese_heal(obj/item/target, amount, message)
 	if(health >= maxHealth)
-		balloon_alert(src, "you feel full!")
+		balloon_alert(src, "你感觉很饱！")
 		return
 
 	to_chat(src, message)

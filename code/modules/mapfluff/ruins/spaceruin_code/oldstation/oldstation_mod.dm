@@ -1,6 +1,6 @@
 /obj/machinery/mod_installer
-	name = "modular outerwear device installator"
-	desc = "An ancient machine that mounts a MOD unit onto the occupant."
+	name = "模块化外衣装置安装器"
+	desc = "一台古老的机器，能把 MOD 单元装配到舱内的人身上。"
 	icon = 'icons/obj/machines/mod_installer.dmi'
 	icon_state = "mod_installer"
 	base_icon_state = "mod_installer"
@@ -96,9 +96,9 @@
 /obj/machinery/mod_installer/relaymove(mob/living/user, direction)
 	var/message
 	if(busy)
-		message = "it won't budge!"
+		message = "它纹丝不动！"
 	else if(IS_UNCONSCIOUS_OR_CRIT(user))
-		message = "you don't have the energy!"
+		message = "你没有力气了！"
 	if(!isnull(message))
 		if (COOLDOWN_FINISHED(src, message_cooldown))
 			COOLDOWN_START(src, message_cooldown, 5 SECONDS)
@@ -111,6 +111,6 @@
 		close_machine()
 		return
 	else if(busy)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "它锁住了！")
 		return
 	open_machine()

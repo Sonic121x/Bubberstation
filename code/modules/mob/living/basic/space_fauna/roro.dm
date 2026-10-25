@@ -1,6 +1,6 @@
 /mob/living/basic/roro
-	name = "roro"
-	desc = "A little round, sharp beaked alien. It bears a striking resemblance to insulated gloves."
+	name = "罗罗"
+	desc = "一种圆滚滚、尖嘴巴的小外星生物。它长得非常像绝缘手套。"
 	icon_state = "roro"
 	icon_living = "roro"
 	icon_dead = "roro_dead"
@@ -13,20 +13,20 @@
 		/obj/item/clothing/gloves/color/yellow = 1
 	)
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "shoos"
-	response_disarm_simple = "shoo"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "驱赶"
+	response_disarm_simple = "驱赶"
 
 	melee_damage_lower = 1
 	melee_damage_upper = 4
-	attack_verb_continuous = "nips"
-	attack_verb_simple = "nip"
+	attack_verb_continuous = "轻咬"
+	attack_verb_simple = "轻咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	melee_attack_cooldown = 0.5 SECONDS
-	speak_emote = list("warbles")
+	speak_emote = list("啼鸣")
 
 	unsuitable_atmos_damage = 0
 	unsuitable_cold_damage = 0
@@ -44,7 +44,7 @@
 /datum/emote/roro/warble
 	key = "warble"
 	key_third_person = "warbles"
-	message = "warbles happily!"
+	message = "愉快地啼鸣！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = SFX_RORO_WARBLE

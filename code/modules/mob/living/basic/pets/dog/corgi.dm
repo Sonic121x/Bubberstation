@@ -1,9 +1,9 @@
 //CORGIS!
 
 /mob/living/basic/pet/dog/corgi
-	name = "\improper corgi"
-	real_name = "corgi"
-	desc = "They're a corgi."
+	name = "\improper 柯基"
+	real_name = "柯基"
+	desc = "它是一只柯基。"
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
@@ -87,7 +87,7 @@
 /mob/living/basic/pet/dog/corgi/examine(mob/user)
 	. = ..()
 	if(access_card)
-		. += "There appears to be [icon2html(access_card, user)] \a [access_card] pinned to [p_them()]."
+		. += "似乎有一枚 [icon2html(access_card, user)] \a [access_card] 别在 [p_them()] 身上。"
 
 /**
  * Corgis get full protection from their equipped fashion items if attacked in a way that passes def_zone,
@@ -117,23 +117,23 @@
 		return ..()
 
 	if(shaved)
-		to_chat(user, span_warning("You can't shave this corgi, [p_they()] [p_have()] already been shaved!"))
+		to_chat(user, span_warning("你不能给这只柯基剃毛，[p_they()] 已经被剃过了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!can_be_shaved)
-		to_chat(user, span_warning("You can't shave this corgi, [p_they()] [p_do()]n't have a fur coat!"))
+		to_chat(user, span_warning("你不能给这只柯基剃毛，[p_they()] 根本没有毛皮！"))
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] starts to shave [src] using \the [tool]."),
-		span_notice("You start to shave [src] using \the [tool]..."),
-		span_hear("You hear electric buzzing."),
+		span_notice("[user] 开始用 \the [tool] 给 [src] 剃毛。"),
+		span_notice("你开始用 \the [tool] 给 [src] 剃毛……"),
+		span_hear("你听到电动的嗡鸣声。"),
 	)
 
 	if(!do_after(user, 5 SECONDS, target = src))
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] shaves [src]'s hair using \the [tool]."))
+	user.visible_message(span_notice("[user] 用 \the [tool] 剃掉了 [src] 的毛。"))
 	playsound(get_turf(src), 'sound/items/hair-clippers.ogg', 20, TRUE)
 	shaved = TRUE
 	icon_living = "[icon_living]_shaved"
@@ -229,24 +229,24 @@
 /mob/living/basic/pet/dog/corgi/proc/place_on_head(obj/item/item_to_add, mob/living/user)
 	if(inventory_head)
 		if(user)
-			balloon_alert(user, "already wearing a hat!")
+			balloon_alert(user, "已经戴着帽子了！")
 		return FALSE
 
 	if(isnull(item_to_add))
 		if (!isnull(user))
-			user.visible_message(span_notice("[user] pets [src]."), span_notice("You rest your hand on [src]'s head for a moment."))
+			user.visible_message(span_notice("[user] 抚摸了 [src]。"), span_notice("你把手放在 [src] 的头上停留了片刻。"))
 			if(flags_1 & HOLOGRAM_1)
 				return
 			user.add_mood_event(REF(src), /datum/mood_event/pet_animal, src)
 		return FALSE
 
 	if(user && !user.temporarilyRemoveItemFromInventory(item_to_add))
-		to_chat(user, span_warning("\The [item_to_add] is stuck to your hand, you cannot put it on [src]'s head!"))
+		to_chat(user, span_warning("\The [item_to_add] 粘在你手上了，没法放到 [src] 的头上！"))
 		return FALSE
 
 	//Various hats and items (worn on his head) change Ian's behaviour. His attributes are reset when a hat is removed.
 	if(!ispath(item_to_add.dog_fashion, /datum/dog_fashion/head))
-		to_chat(user, span_warning("You set [item_to_add] on [src]'s head, but it falls off!"))
+		to_chat(user, span_warning("你把 [item_to_add] 放到 [src] 的头上，但它掉了下来！"))
 		item_to_add.forceMove(drop_location())
 		if(prob(25))
 			step_rand(item_to_add)
@@ -255,12 +255,12 @@
 
 	if (user)
 		if(IS_DEAD_OR_FAKING(src))
-			to_chat(user, span_notice("There is merely a dull, lifeless look in [real_name]'s eyes as you put \the [item_to_add] on [p_them()]."))
+			to_chat(user, span_notice("当你把 \the [item_to_add] 放到 [p_them()] 身上时，[real_name] 的眼中只有黯淡无神的目光。"))
 		else
 			user.visible_message(
-				span_notice("[user] puts [item_to_add] on [real_name]'s head. [src] looks at [user] and barks once."),
-				span_notice("You put [item_to_add] on [real_name]'s head. [src] gives you a peculiar look, then wags [p_their()] tail once and barks."),
-				span_hear("You hear a friendly-sounding bark."),
+				span_notice("[user] 把 [item_to_add] 戴在 [real_name] 的头上。[src] 看了 [user] 一眼，叫了一声。"),
+				span_notice("你把 [item_to_add] 戴在 [real_name] 的头上。[src] 用奇怪的眼神看了看你，然后摇了一下尾巴，叫了一声。"),
+				span_hear("你听到一声友善的吠叫。"),
 			)
 
 	item_to_add.forceMove(src)
@@ -274,7 +274,7 @@
 	name = real_name
 	desc = initial(desc)
 	// BYOND/DM doesn't support the use of initial on lists.
-	speak_emote = list("barks", "woofs")
+	speak_emote = list("汪汪叫", "吠叫")
 	desc = initial(desc)
 	set_light(0)
 
@@ -299,7 +299,7 @@
 
 ///Deadchat plays bark.
 /mob/living/basic/pet/dog/corgi/proc/bork()
-	var/emote = pick("barks!", "woofs!", "yaps.", "pants.")
+	var/emote = pick("汪汪叫！", "吠叫！", "汪汪地叫。", "喘着气。")
 	manual_emote(emote)
 
 ///Deadchat plays command that picks a new hat for Ian.
@@ -320,13 +320,13 @@
 		inventory_head.forceMove(drop_location())
 		inventory_head = null
 	place_on_head(pick(possible_headwear))
-	visible_message(span_notice("[src] puts [inventory_head] on [p_their()] own head, somehow."))
+	visible_message(span_notice("[src] 不知怎么地自己把 [inventory_head] 戴到了头上。"))
 
 ///Deadchat plays command that drops the current hat off Ian.
 /mob/living/basic/pet/dog/corgi/proc/drop_hat()
 	if(!inventory_head)
 		return
-	visible_message(span_notice("[src] vigorously shakes [p_their()] head, dropping [inventory_head] to the ground."))
+	visible_message(span_notice("[src] 用力甩了甩头，把 [inventory_head] 甩到了地上。"))
 	inventory_head.forceMove(drop_location())
 	inventory_head = null
 	update_corgi_fluff()
@@ -341,8 +341,8 @@
 //SUBTYPES!
 
 /mob/living/basic/pet/dog/corgi/exoticcorgi
-	name = "Exotic Corgi"
-	desc = "As cute as they are colorful!"
+	name = "异色柯基"
+	desc = "有多缤纷，就有多可爱！"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "corgigrey"
 	icon_living = "corgigrey"
@@ -356,16 +356,16 @@
 
 //IAN! SQUEEEEEEEEE~
 /mob/living/basic/pet/dog/corgi/ian
-	name = "Ian"
-	real_name = "Ian" //Intended to hold the name without altering it.
+	name = "伊恩"
+	real_name = "伊恩" //Intended to hold the name without altering it.
 	gender = MALE
-	desc = "He's the HoP's beloved corgi."
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "bops"
-	response_disarm_simple = "bop"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	desc = "他是人事主管心爱的柯基。"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻拍"
+	response_disarm_simple = "轻拍"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	///Tracks how many rounds did Ian survive from start to finish
@@ -398,7 +398,7 @@
 		icon_living = "old_corgi"
 		held_state = "old_corgi"
 		icon_dead = "old_corgi_dead"
-		desc = "At a ripe old age of [record_age], Ian's not as spry as he used to be, but he'll always be the HoP's beloved corgi." //RIP
+		desc = "已是 [record_age] 岁高龄的伊恩不再像从前那样灵活，但他永远都是人事主管心爱的柯基。" //RIP
 		ai_controller?.set_blackboard_key(BB_DOG_IS_SLOW, TRUE)
 		is_slow = TRUE
 		speed = 2
@@ -429,7 +429,7 @@
 	playsound(src, 'sound/effects/magic/demon_dies.ogg', 75, TRUE)
 	var/mob/living/basic/pet/dog/corgi/narsie/narsIan = new(loc)
 	narsIan.setDir(dir)
-	investigate_log("has been gibbed and replaced with Nars-Ian by Nar'Sie.", INVESTIGATE_DEATHS)
+	investigate_log("已被纳尔西撕成碎片并替换为纳尔-伊恩。", INVESTIGATE_DEATHS)
 	gib()
 
 /mob/living/basic/pet/dog/corgi/ian/Write_Memory(dead, gibbed)
@@ -486,14 +486,14 @@
 
 //NARS-IAN! SQ-Q-QooEglor-r'EEn-nl-luEEEf-f-fth-h
 /mob/living/basic/pet/dog/corgi/narsie
-	name = "Nars-Ian"
-	real_name = "Nars-Ian"
-	desc = "Ia! Ia!"
+	name = "纳尔-伊恩"
+	real_name = "纳尔-伊恩"
+	desc = "咿呀！咿呀！"
 	icon_state = "narsian"
 	icon_living = "narsian"
 	icon_dead = "narsian_dead"
 	faction = list(FACTION_NEUTRAL, FACTION_CULT)
-	speak_emote = list("growls", "barks ominously")
+	speak_emote = list("低吼", "不祥地吠叫")
 	gold_core_spawnable = NO_SPAWN
 	can_be_shaved = FALSE
 	unique_pet = TRUE
@@ -511,12 +511,12 @@
 	SIGNAL_HANDLER
 	if (!is_type_in_list(prey, edible_types) || istype(prey, type))
 		return
-	visible_message(span_warning("Dark magic resonating from [src] devours [prey]!"), \
-		"<span class='cult big bold'>DELICIOUS SOULS</span>")
+	visible_message(span_warning("从 [src] 身上回荡的黑暗魔法吞噬了 [prey]！"), \
+		"<span class='cult big bold'>美味的灵魂</span>")
 	playsound(src, 'sound/effects/magic/demon_attack1.ogg', 75, TRUE)
 	new /obj/effect/temp_visual/cult/sac(get_turf(prey))
 	narsie_act()
-	prey.investigate_log("has been sacrificed by [src].", INVESTIGATE_DEATHS)
+	prey.investigate_log("已被 [src] 献祭。", INVESTIGATE_DEATHS)
 	if (isliving(prey))
 		var/mob/living/living_sacrifice = prey
 		living_sacrifice.gib(DROP_ALL_REMAINS)
@@ -525,45 +525,45 @@
 
 /mob/living/basic/pet/dog/corgi/narsie/update_corgi_fluff()
 	. = ..()
-	speak_emote = list("growls", "barks ominously")
+	speak_emote = list("低吼", "不祥地吠叫")
 
 /mob/living/basic/pet/dog/corgi/narsie/update_dog_speech(list/speech_data)
 	speech_data[BB_EMOTE_SAY] = string_list(list("Tari'karat-pasnar!", "IA! IA!", "BRRUUURGHGHRHR"))
-	speech_data[BB_EMOTE_HEAR] = string_list(list("barks echoingly!", "woofs hauntingly!", "yaps in an eldritch manner.", "mutters something unspeakable."))
-	speech_data[BB_EMOTE_SEE] = string_list(list("communes with the unnameable.", "ponders devouring some souls.", "shakes."))
+	speech_data[BB_EMOTE_HEAR] = string_list(list("发出阵阵回声的吠叫！", "诡异地吠叫！", "以邪异的方式汪汪叫。", "嘟囔着某种不可言说之物。"))
+	speech_data[BB_EMOTE_SEE] = string_list(list("与不可名状之物交流。", "琢磨着吞噬一些灵魂。", "颤抖着。"))
 
 /mob/living/basic/pet/dog/corgi/narsie/narsie_act()
 	if(stat == DEAD) //Nar'Sie loves her doggy
-		visible_message(span_warning("[src] arises again, revived by the dark magicks!"), \
-		span_cult_large("RISE"))
+		visible_message(span_warning("[src] 在黑暗魔法的驱使下再次复活！"), \
+		span_cult_large("复活"))
 		revive(ADMIN_HEAL_ALL) //also means that a dead Nars-Ian can consume a pet and revive
 	adjust_brute_loss(-maxHealth)
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/basic/pet/dog/corgi/lisa
-	name = "Lisa"
-	real_name = "Lisa"
+	name = "丽莎"
+	real_name = "丽莎"
 	gender = FEMALE
-	desc = "She's tearing you apart."
+	desc = "她正把你撕成碎片。"
 	gold_core_spawnable = NO_SPAWN
 	unique_pet = TRUE
 	icon_state = "lisa"
 	icon_living = "lisa"
 	icon_dead = "lisa_dead"
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "bops"
-	response_disarm_simple = "bop"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻拍"
+	response_disarm_simple = "轻拍"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	held_state = "lisa"
 	strippable_inventory_slots = list(/datum/strippable_item/corgi_back, /datum/strippable_item/pet_collar, /datum/strippable_item/corgi_id) //Lisa already has a cute bow!
 
 //PUPPIES! SQUEEEEEEEEE~
 /mob/living/basic/pet/dog/corgi/puppy
-	name = "\improper corgi puppy"
-	real_name = "corgi"
-	desc = "They're a corgi puppy!"
+	name = "\improper 柯基幼犬"
+	real_name = "柯基"
+	desc = "它是一只柯基幼犬！"
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
@@ -577,15 +577,15 @@
 
 //PUPPY IAN! SQUEEEEEEEEE~
 /mob/living/basic/pet/dog/corgi/puppy/ian
-	name = "Ian"
-	real_name = "Ian"
+	name = "伊恩"
+	real_name = "伊恩"
 	gender = MALE
-	desc = "He's the HoP's beloved corgi puppy."
+	desc = "他是人事主管心爱的柯基幼犬。"
 
 /mob/living/basic/pet/dog/corgi/puppy/void //Tribute to the corgis born in nullspace
-	name = "\improper void puppy"
-	real_name = "voidy"
-	desc = "A corgi puppy that has been infused with deep space energy. It's staring back..."
+	name = "\improper 虚空幼犬"
+	real_name = "虚空仔"
+	desc = "一只注入了深空能量的柯基幼犬。它正回望着你……"
 	gender = NEUTER
 	icon_state = "void_puppy"
 	icon_living = "void_puppy"

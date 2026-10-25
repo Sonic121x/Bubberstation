@@ -1,6 +1,6 @@
 /obj/machinery/bouldertech
-	name = "bouldertech brand refining machine"
-	desc = "You shouldn't be seeing this! And bouldertech isn't even a real company!"
+	name = "巨岩科技牌精炼机"
+	desc = "你不该看到这个！再说巨岩科技根本不是什么真正的公司！"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
 	base_icon_state = "ore_redemption"
@@ -21,7 +21,7 @@
 	/// Mining points held by the machine for miners.
 	var/points_held = 0
 	///The action verb to display to players
-	var/action = "processing"
+	var/action = "处理中"
 	/// What reagent should be produced when a boost chemical is replaced by the booster_reagent?
 	var/datum/reagent/waste_chemical = /datum/reagent/water
 
@@ -61,54 +61,54 @@
 	. = CONTEXTUAL_SCREENTIP_SET
 
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Remove Boulder"
+		context[SCREENTIP_CONTEXT_RMB] = "取出巨石"
 		return
 
 	if(istype(held_item, /obj/item/boulder))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert boulder"
+		context[SCREENTIP_CONTEXT_LMB] = "放入巨石"
 	else if(istype(held_item, /obj/item/card/id) && points_held > 0)
-		context[SCREENTIP_CONTEXT_LMB] = "Claim mining points"
+		context[SCREENTIP_CONTEXT_LMB] = "领取采矿点数"
 	else if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 	else if(held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 
 /obj/machinery/bouldertech/examine(mob/user)
 	. = ..()
 
-	. += span_suppradio("The machine reads that it has [EXAMINE_HINT("[points_held] mining points")] stored. Swipe an ID to claim them.")
+	. += span_suppradio("机器显示已储存 [EXAMINE_HINT("[points_held] 采矿点数")]。刷卡即可领取。")
 
 	var/boulder_count = 0
 	for(var/obj/item/boulder/potential_boulder in contents)
 		boulder_count += 1
 
 	if(boulder_count >= 1)
-		. += span_notice("[EXAMINE_HINT("Right Click")] to manually remove a stored boulder.<br />")
+		. += span_notice("[EXAMINE_HINT("右键点击")]可手动取出储存的巨石。<br />")
 
-	. += span_info("Storage capacity = <b>[boulder_count]/[boulders_held_max] boulders</b>.")
-	. += span_info("This machine can process up to [EXAMINE_HINT("[boulders_processing_count] boulders")] at a time.")
+	. += span_info("储存容量 = <b>[boulder_count]/[boulders_held_max] 块巨石</b>。")
+	. += span_info("该机器一次最多可处理 [EXAMINE_HINT("[boulders_processing_count] 块巨石")]。")
 
 	if(anchored)
-		. += span_notice("It's [EXAMINE_HINT("anchored")] in place.")
+		. += span_notice("它已[EXAMINE_HINT("固定")]在原位。")
 	else
-		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] to start operations.")
+		. += span_warning("需要先[EXAMINE_HINT("固定")]才能开始运作。")
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("它的维护面板可以[EXAMINE_HINT("用螺丝刀")][panel_open ? "拧上" : "拧开"]。")
 
 	if(panel_open)
-		. += span_notice("The whole machine can be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("整台机器可以[EXAMINE_HINT("用撬棍")]撬开。")
 
 /obj/machinery/bouldertech/examine_more(mob/user)
 	. = ..()
 
 	var/list/datum/reagents/booster_list = get_booster_reagents()
 	if(length(booster_list))
-		. += span_notice("This machine's output is boosted by <b>chemical intake:</b><br>")
+		. += span_notice("该机器的产出可通过<b>输入化学品</b>提升：<br>")
 		for(var/datum/reagent/increment as anything in booster_list)
-			. += span_info("&bull; [increment::name]: Provides [booster_list[increment] * 10]% Boost")
-		. += span_notice("<br>Upon being boosted successfully, \the [src] will produce [EXAMINE_HINT("[waste_chemical.name]")].")
+			. += span_info("&bull; [increment::name]：提供 [booster_list[increment] * 10]% 增益")
+		. += span_notice("<br>成功获得增益后，\the [src] 会产出 [EXAMINE_HINT("[waste_chemical.name]")]。")
 
 /obj/machinery/bouldertech/update_icon_state()
 	. = ..()
@@ -229,7 +229,7 @@
 		return
 
 	if(!use_energy(active_power_usage * 1.5, force = FALSE))
-		say("Not enough energy!")
+		say("能量不足！")
 		return
 
 	maim_mob(rockman)
@@ -258,16 +258,16 @@
 				qdel(part) //This calls force_removal() with dismembered set to TRUE
 		if(!gibbing && length(deleted_part_names))
 			var/parts_text = english_list(deleted_part_names)
-			rockman.investigate_log("had [rockman.p_their()] [parts_text] which all had BIO_STONE biological state) destroyed by a [src]", INVESTIGATE_CARGO)
-			rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("Your [parts_text] are shred into bits by [src]!"))
+			rockman.investigate_log("其 [parts_text]（均具有 BIO_STONE 生物状态）被 [src] 摧毁", INVESTIGATE_CARGO)
+			rockman.visible_message(span_warning("[rockman] 被 [src] 处理了！"), span_userdanger("你的 [parts_text] 被 [src] 碾成了碎片！"))
 
 	if(gibbing)
 		gib_mob(rockman)
 
 ///Called at the end of main_mob() if they were a bodyparts-less mob or their chest was made of stone...
 /obj/machinery/bouldertech/proc/gib_mob(mob/living/rockman)
-	rockman.visible_message(span_warning("[rockman] is processed by [src]!"), span_userdanger("You get processed into bits by [src]!"))
-	rockman.investigate_log("was gibbed by [src] for having the MOB_MINERAL mob biotype", INVESTIGATE_DEATHS)
+	rockman.visible_message(span_warning("[rockman] 被 [src] 处理了！"), span_userdanger("你被 [src] 处理成了碎片！"))
+	rockman.investigate_log("因具有 MOB_MINERAL 生物类型而被 [src] 碎尸", INVESTIGATE_DEATHS)
 	rockman.gib(DROP_ALL_REMAINS)
 
 /obj/machinery/bouldertech/proc/on_entered(datum/source, atom/movable/atom_movable)
@@ -314,14 +314,14 @@
 	if(istype(tool, /obj/item/boulder))
 		var/obj/item/boulder/my_boulder = tool
 		if(!accept_boulder(my_boulder))
-			balloon_alert_to_viewers("cannot accept!")
+			balloon_alert_to_viewers("无法接收！")
 			return ITEM_INTERACT_BLOCKING
-		balloon_alert_to_viewers("accepted")
+		balloon_alert_to_viewers("已接收")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/card/id))
 		if(points_held <= 0)
-			balloon_alert_to_viewers("no points to claim!")
+			balloon_alert_to_viewers("没有可领取的点数！")
 			if(!COOLDOWN_FINISHED(src, sound_cooldown))
 				return ITEM_INTERACT_BLOCKING
 			COOLDOWN_START(src, sound_cooldown, 1.5 SECONDS)
@@ -329,14 +329,14 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/item/card/id/id_card = tool
-		var/amount = tgui_input_number(user, "How many mining points do you wish to claim? ID Balance: [id_card.registered_account.mining_points], stored mining points: [points_held]", "Transfer Points", max_value = points_held, min_value = 0, round_value = 1)
+		var/amount = tgui_input_number(user, "你想领取多少采矿点数？ID 余额：[id_card.registered_account.mining_points]，储存的采矿点数：[points_held]", "转移点数", max_value = points_held, min_value = 0, round_value = 1)
 		if(!amount)
 			return ITEM_INTERACT_BLOCKING
 		if(amount > points_held)
 			amount = points_held
 		id_card.registered_account.mining_points += amount
 		points_held = round(points_held - amount)
-		to_chat(user, span_notice("You claim [amount] mining points from \the [src] to [id_card]."))
+		to_chat(user, span_notice("你从 \the [src] 领取了 [amount] 采矿点数，转入 [id_card]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -362,18 +362,18 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || panel_open)
 		return
 	if(!anchored)
-		balloon_alert(user, "anchor it first!")
+		balloon_alert(user, "请先固定！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(panel_open)
-		balloon_alert(user, "close panel!")
+		balloon_alert(user, "请关闭面板！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/obj/item/boulder/boulder = locate(/obj/item/boulder) in src
 	if(!boulder)
-		balloon_alert_to_viewers("no boulders to remove!")
+		balloon_alert_to_viewers("没有可取出的巨石！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!remove_boulder(boulder))
-		balloon_alert_to_viewers("no space to remove!")
+		balloon_alert_to_viewers("没有空间取出！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -394,7 +394,7 @@
 	if(chosen_boulder.loc != src)
 		return
 	if(!use_energy(active_power_usage, force = FALSE))
-		say("Not enough energy!")
+		say("能量不足！")
 		return
 
 	//if boulders are kept inside because there is no space to eject them, then they could be reprocessed, lets avoid that

@@ -1,8 +1,8 @@
 // Ash drake suit
 
 /obj/item/drake_remains
-	name = "drake remains"
-	desc = "The gathered remains of a drake. It still crackles with heat, and smells distinctly of brimstone."
+	name = "龙类残骸"
+	desc = "收集起来的龙类残骸。它仍带着热度噼啪作响，散发着明显的硫磺味。"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	icon_state = "dragon"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 10)
@@ -16,9 +16,9 @@
 	return ..()
 
 /obj/item/clothing/suit/hooded/cloak/drake
-	name = "drake armour"
+	name = "龙类护甲"
 	icon_state = "dragon"
-	desc = "A suit of armour fashioned from the remains of an ash drake."
+	desc = "一套用灰烬龙残骸制成的护甲。"
 	armor_type = /datum/armor/cloak_drake
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -46,11 +46,11 @@
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/head/hooded/cloakhood/drake
-	name = "drake helm"
+	name = "龙类头盔"
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "dragon"
-	desc = "The skull of a dragon."
+	desc = "一具龙头骨。"
 	armor_type = /datum/armor/cloak_drake
 	clothing_flags = SNUG_FIT
 	cold_protection = HEAD
@@ -62,8 +62,8 @@
 // Spectral blade
 
 /obj/item/melee/ghost_sword
-	name = "\improper spectral blade"
-	desc = "A rusted and dulled blade. It doesn't look like it'd do much damage. It glows weakly."
+	name = "\improper 幽魂之刃"
+	desc = "一把锈迹斑斑、刃口钝化的刀。看起来造不成多大伤害。它微微发光。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "spectral"
 	inhand_icon_state = "spectral"
@@ -77,12 +77,12 @@
 	throwforce = 5
 	hitsound = 'sound/effects/ghost2.ogg'
 	block_sound = 'sound/items/weapons/parry.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "slices", "tears", "lacerates", "rips", "dices", "rends")
-	attack_verb_simple = list("attack", "slash", "slice", "tear", "lacerate", "rip", "dice", "rend")
+	attack_verb_continuous = list("攻击着", "劈砍着", "切片着", "撕扯着", "割裂着", "撕开着", "切丁着", "破开着")
+	attack_verb_simple = list("攻击", "劈砍", "切片", "撕扯", "割裂", "撕开", "切丁", "破开")
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/mob/dead/observer/spirits
-	var/list/alt_continuous = list("stabs", "pierces", "impales")
-	var/list/alt_simple = list("stab", "pierce", "impale")
+	var/list/alt_continuous = list("捅刺着", "刺穿着", "贯穿")
+	var/list/alt_simple = list("捅刺", "刺穿", "贯穿")
 	COOLDOWN_DECLARE(summon_cooldown)
 
 /obj/item/melee/ghost_sword/Initialize(mapload)
@@ -108,16 +108,16 @@
 
 /obj/item/melee/ghost_sword/attack_self(mob/user)
 	if(!COOLDOWN_FINISHED(src, summon_cooldown))
-		to_chat(user, span_warning("You just recently called out for aid. You don't want to annoy the spirits!"))
+		to_chat(user, span_warning("你刚刚才求过援。可别惹恼了幽灵！"))
 		return
 
 	COOLDOWN_START(src, summon_cooldown, 60 SECONDS)
-	to_chat(user, span_notice("You call out for aid, attempting to summon spirits to your side."))
+	to_chat(user, span_notice("你高声求援，试图召唤幽灵来到你身边。"))
 	notify_ghosts(
-		"[user.real_name] is raising [user.p_their()] [name], calling for your help!",
+		"[user.real_name] 举起了 [name]，呼唤你的帮助！",
 		source = user,
 		ignore_key = POLL_IGNORE_SPECTRAL_BLADE,
-		header = "Spectral blade",
+		header = "幽魂之刃",
 	)
 
 /obj/item/melee/ghost_sword/process()
@@ -145,20 +145,20 @@
 
 /obj/item/melee/ghost_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	var/ghost_counter = ghost_check()
-	user.visible_message(span_danger("[user] strikes with the force of [ghost_counter] vengeful spirits!"))
+	user.visible_message(span_danger("[user] 以 [ghost_counter] 个复仇幽灵之力发起攻击！"))
 	. = ..()
 
 /obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 	var/ghost_counter = ghost_check()
 	final_block_chance += clamp((ghost_counter * 5), 0, 75)
-	owner.visible_message(span_danger("[owner] is protected by a ring of [ghost_counter] ghosts!"))
+	owner.visible_message(span_danger("[owner] 被一圈 [ghost_counter] 个幽灵守护着！"))
 	return ..()
 
 // Dragon's blood
 
 /obj/item/dragons_blood
-	name = "bottle of dragons blood"
-	desc = "You're not actually going to drink this, are you?"
+	name = "一瓶龙血"
+	desc = "你不会真的打算喝下去吧？"
 	icon = 'icons/obj/mining_zones/artefacts.dmi'
 	icon_state = "vial"
 
@@ -171,7 +171,7 @@
 
 	switch(random)
 		if(1)
-			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a freak without the cool abilities."))
+			to_chat(user, span_danger("你的外貌变成了一只非常小的人形灰烬龙！你只是看起来像个怪胎，却没有那些厉害的能力。"))
 
 			// BUBBER EDIT CHANGE BEGIN
 			// consumer.dna.features = list(
@@ -225,14 +225,14 @@
 			wings.Insert(consumer)
 
 		if(2)
-			to_chat(user, span_danger("Your flesh begins to melt! Miraculously, you seem fine otherwise."))
+			to_chat(user, span_danger("你的血肉开始融化！奇迹般地，除此之外你似乎安然无恙。"))
 			consumer.set_species(/datum/species/skeleton)
 		if(3)
-			to_chat(user, span_danger("Power courses through you! You can now shift your form at will."))
+			to_chat(user, span_danger("力量在你体内奔涌！你现在可以随意变换形态。"))
 			var/datum/action/cooldown/spell/shapeshift/dragon/dragon_shapeshift = new(user.mind || user)
 			dragon_shapeshift.Grant(user)
 		if(4)
-			to_chat(user, span_danger("You feel like you could walk straight through lava now."))
+			to_chat(user, span_danger("你感觉自己现在可以直接走过熔岩了。"))
 			ADD_TRAIT(user, TRAIT_LAVA_IMMUNE, type)
 
 	playsound(user,'sound/items/drink.ogg', 30, TRUE)
@@ -241,8 +241,8 @@
 // Lava staff
 
 /obj/item/lava_staff
-	name = "staff of lava"
-	desc = "The ability to fill the emergency shuttle with lava. What more could you want out of life?"
+	name = "熔岩法杖"
+	desc = "能够用熔岩灌满应急穿梭机。人生还有什么不满足的？"
 	icon_state = "lavastaff"
 	inhand_icon_state = "lavastaff"
 	icon_angle = -45
@@ -254,13 +254,13 @@
 	force = 18
 	damtype = BURN
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	attack_verb_continuous = list("sears", "clubs", "burn")
-	attack_verb_simple = list("sear", "club", "burn")
+	attack_verb_continuous = list("灼烧着", "猛敲着", "燃烧着")
+	attack_verb_simple = list("灼烧", "猛敲", "燃烧")
 	hitsound = 'sound/items/weapons/sear.ogg'
 	var/turf_type = /turf/open/lava/smooth/weak
-	var/transform_string = "lava"
+	var/transform_string = "熔岩"
 	var/reset_turf_type = /turf/open/misc/asteroid/basalt
-	var/reset_string = "basalt"
+	var/reset_string = "玄武岩"
 	var/create_cooldown = 10 SECONDS
 	var/create_delay = 3 SECONDS
 	var/reset_cooldown = 5 SECONDS
@@ -293,18 +293,18 @@
 			return ITEM_INTERACT_FAILURE
 
 		COOLDOWN_START(src, use_cooldown, reset_cooldown)
-		user.visible_message(span_danger("[user] turns \the [old_name] into [reset_string]!"))
+		user.visible_message(span_danger("[user] 把 \the [old_name] 变成了 [reset_string]！"))
 		playsound(target_turf,'sound/effects/magic/fireball.ogg', 200, TRUE)
 		return ITEM_INTERACT_SUCCESS
 
 	var/obj/effect/temp_visual/lavastaff/lava_visual = new /obj/effect/temp_visual/lavastaff(target_turf)
 	lava_visual.alpha = 0
 	animate(lava_visual, alpha = 255, time = create_delay)
-	user.visible_message(span_danger("[user] points [src] at [target_turf]!"))
+	user.visible_message(span_danger("[user] 将 [src] 指向 [target_turf]！"))
 	COOLDOWN_START(src, use_cooldown, create_delay + 1)
 
 	if(!do_after(user, create_delay, target_turf))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断！")
 		COOLDOWN_RESET(src, use_cooldown)
 		qdel(lava_visual)
 		return ITEM_INTERACT_FAILURE
@@ -314,9 +314,9 @@
 		qdel(lava_visual)
 		return ITEM_INTERACT_FAILURE
 
-	user.visible_message(span_danger("[user] turns \the [old_name] into [transform_string]!"))
-	message_admins("[ADMIN_LOOKUPFLW(user)] fired the lava staff at [ADMIN_VERBOSEJMP(target_turf)]")
-	user.log_message("fired the lava staff at [AREACOORD(target_turf)].", LOG_ATTACK)
+	user.visible_message(span_danger("[user] 把 \the [old_name] 变成了 [transform_string]！"))
+	message_admins("[ADMIN_LOOKUPFLW(user)] 朝 [ADMIN_VERBOSEJMP(target_turf)] 发射了熔岩法杖")
+	user.log_message("朝 [AREACOORD(target_turf)] 发射了熔岩法杖。", LOG_ATTACK)
 	COOLDOWN_START(src, use_cooldown, create_cooldown)
 	playsound(target_turf,'sound/effects/magic/fireball.ogg', 200, TRUE)
 	qdel(lava_visual)

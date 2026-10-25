@@ -1,6 +1,6 @@
 /// A tentacle which grabs you if you don't get away from it
 /obj/effect/goliath_tentacle
-	name = "goliath tentacle"
+	name = "歌利亚触须"
 	icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	icon_state = "goliath_tentacle_spawn"
 	layer = BELOW_MOB_LAYER
@@ -68,8 +68,8 @@
 		var/obj/item/restraints/legcuffs/goliath_tentacle/trap = new trap_type(loc, victim, src)
 		if (QDELETED(trap))
 			continue
-		balloon_alert(victim, "grabbed")
-		visible_message(span_danger("[src] grabs hold of [victim]!"))
+		balloon_alert(victim, "被缠住了")
+		visible_message(span_danger("[src] 缠住了 [victim]！"))
 		victim.apply_damage(rand(min_damage, max_damage), BRUTE, pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG), wound_bonus = CANT_WOUND)
 		trapped_mobs = TRUE
 
@@ -113,8 +113,8 @@
 	trap_type = /obj/item/restraints/legcuffs/goliath_tentacle/drag
 
 /obj/item/restraints/legcuffs/goliath_tentacle
-	name = "tentacle mass"
-	desc = "A writhing tentacle constricting one of your limbs."
+	name = "触须团"
+	desc = "一条扭动不止的触须，正紧紧勒住你的肢体。"
 	icon_state = "goliath_tentacle"
 	slowdown = 4
 	breakouttime = 6 SECONDS
@@ -197,7 +197,7 @@
 		return
 
 	if (!user.can_perform_action(nearest_turf))
-		nearest_turf.balloon_alert(user, "cannot reach!")
+		nearest_turf.balloon_alert(user, "够不到！")
 		return
 
 	held_thing.melee_attack_chain(user, src, params2list(params))
@@ -237,5 +237,5 @@
 	tentacle = null
 
 /obj/effect/ebeam/goliath
-	name = "goliath tentacle"
+	name = "歌利亚触须"
 	mouse_opacity = MOUSE_OPACITY_ICON

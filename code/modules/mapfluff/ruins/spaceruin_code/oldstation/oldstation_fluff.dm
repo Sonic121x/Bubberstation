@@ -1,110 +1,110 @@
 /////////// Oldstation items
 
 /obj/item/paper/fluff/ruins/oldstation
-	name = "Cryo Awakening Report"
-	default_raw_text = "Catastrophic damage sustained to station. Powernet exhausted to reawaken crew.<br><br> \
-		Immediate Objectives: \
+	name = "低温苏醒报告"
+	default_raw_text = "空间站遭受灾难性损伤。电网电力已耗尽，用于唤醒船员。<br><br> \
+		紧急目标： \
 		<ol> \
-		<li>Activate emergency power generator.</li> \
-		<li>Lift station lockdown on the bridge.</li> \
-		<li>Locate the 'Damage Report' on the bridge for a detailed situation report.</li> \
+		<li>启动应急发电机。</li> \
+		<li>在舰桥解除空间站封锁。</li> \
+		<li>在舰桥找到“损伤报告”，以了解详细情况。</li> \
 		</ol>"
 
 /obj/item/paper/fluff/ruins/oldstation/damagereport
-	name = "Damage Report"
-	default_raw_text = "<h2>WARNING</h2> \
+	name = "损伤报告"
+	default_raw_text = "<h2>警告</h2> \
 		<ul> \
-		<li>Shields down. Space Carp invasion imminent.</li> \
-		<li>Unknown force has overtaken AI satellite and occupying Delta Station. Intent unknown. Species unknown. Numbers unknown.</li> \
+		<li>护盾已失效。太空鲤鱼入侵在即。</li> \
+		<li>不明势力已夺取 AI 卫星，并占据德尔塔站。意图不明。种类不明。数量不明。</li> \
 		</ul> \
-		<h2>Status</h2> \
+		<h2>状态</h2> \
 		<ol> \
-		<li><b>Alpha Station</b> - Destroyed.</li> \
-		<li><b>Beta Station</b> - Catastrophic Damage. Medical, destroyed. Atmospherics and Engine Core, partially destroyed.</li> \
-		<li><b>Charlie Station</b> - Multiple asteroid impacts, no loss in air pressure.</li> \
-		<li><b>Delta Station</b> - Intact.</li> \
+		<li><b>阿尔法站</b> - 已摧毁。</li> \
+		<li><b>贝塔站</b> - 灾难性损伤。医疗区已摧毁。大气与引擎核心部分摧毁。</li> \
+		<li><b>查利站</b> - 多处小行星撞击，气压无损失。</li> \
+		<li><b>德尔塔站</b> - 完好。</li> \
 		</ol> \
-		<h2>Recommended Actions</h2> \
+		<h2>建议行动</h2> \
 		<ol> \
-		<li>Locate arms at Charlie Station Security.</li> \
-		<li>Move at a sufficient distance from the windows to avoid encounters with Space Carp.</li> \
-		<li>Reestablish station powernet via Charlie Station Engineering solar array.</li> \
-		<li>Restore life support systems: atmospherics, artificial gravity, hydroponics.</li> \
-		<li>Avoid Delta Station until arrival of Nanotrasen Special Response Team.</li> \
+		<li>前往查利站安保处寻找武器。</li> \
+		<li>与窗户保持足够距离，以免遭遇太空鲤鱼。</li> \
+		<li>通过查利站工程部的太阳能阵列恢复空间站电网。</li> \
+		<li>恢复生命维持系统：大气、人工重力、水培。</li> \
+		<li>在纳米传讯特别响应小队抵达前，避免前往德尔塔站。</li> \
 		</ol>"
 
 /obj/item/paper/fluff/ruins/oldstation/protosuit
-	name = "B01-MOD modular suit Report"
-	default_raw_text = "<b>*Prototype MODsuit*</b><br><br>This is a prototype powered exoskeleton, a design not seen in hundreds of years, \
-		the first post-void war era modular suit to ever be safely utilized by an operator. \
-		This ancient clunker is still functional, though it's missing several modern-day luxuries from \
-		updated Nakamura Engineering designs. Primarily, the suit's myoelectric suit layer is entirely non-existant, \
-		and the servos do very little to help distribute the weight evenly across the wearer's body, \
-		making it slow and bulky to move in. Additionally, the armor plating never finished production aside from the shoulders, \
-		forearms, and helmet; making it useless against direct attacks. The internal heads-up display is rendered entirely in \
-		monochromatic cyan, leaving the user unable to see long distances. However, the way the helmet retracts is pretty cool."
+	name = "B01-MOD 模块化套装报告"
+	default_raw_text = "<b>*原型 MOD 套装*</b><br><br>这是一具原型动力外骨骼，这种设计已有数百年未曾出现， \
+		是虚空战争之后第一套能被操作者安全使用的模块化套装。 \
+		这台古老的笨重家伙仍能运作，不过它缺少若干来自 \
+		更新版中村工程设计的现代便利功能。主要是，这套装的肌电套装层完全不存在， \
+		而伺服机构对将重量均匀分布到穿戴者全身几乎毫无帮助， \
+		使穿着它行动又慢又笨拙。此外，装甲板除了肩部、 \
+		前臂和头盔之外从未完成生产；这使它面对直接攻击毫无用处。内部平视显示器完全是 \
+		单色青色显示，让使用者无法看清远处。不过，头盔收起的方式还挺酷的。"
 
 /obj/item/paper/fluff/ruins/oldstation/protohealth
-	name = "Health Analyzer Report"
-	default_raw_text = "<b>*Health Analyzer*</b><br><br>The portable Health Analyzer is essentially a handheld variant of a health analyzer. Years of research have concluded with this device which is \
-	capable of diagnosing even the most critical, obscure or technical injuries any humanoid entity is suffering in an easy to understand format that even a non-trained health professional \
-	can understand.<br><br>The health analyzer is expected to go into full production as standard issue medical kit."
+	name = "健康分析仪报告"
+	default_raw_text = "<b>*健康分析仪*</b><br><br>便携式健康分析仪本质上是一种手持式健康分析仪。多年研究最终造就了这台设备，它 \
+	能以连未受过训练的医疗人员都能看懂的简明格式，诊断任何人形生物遭受的哪怕最危重、最隐晦或最专业的损伤。\
+	<br><br>健康分析仪预计将全面投产，成为标准配发的医疗套件。"
 
 /obj/item/paper/fluff/ruins/oldstation/protogun
-	name = "K14 Energy Gun Report"
-	default_raw_text = "<b>*K14-Multiphase Energy Gun*</b><br><br>The K14 Prototype Energy Gun is the first Energy Rifle that has been successfully been able to not only hold a larger ammo charge \
-	than other gun models, but is capable of swapping between different energy projectile types on command with no incidents.<br><br>The weapon still suffers several drawbacks, its alternative, \
-	non laser fire mode, can only fire one round before exhausting the energy cell, the weapon also remains prohibitively expensive, nonetheless NT Market Research fully believe this weapon \
-	will form the backbone of our Energy weapon catalogue.<br><br>The K14 is expected to undergo revision to fix the ammo issues, the K15 is expected to replace the 'stun' setting with a \
-	'disable' setting in an attempt to bypass the ammo issues."
+	name = "K14 能量枪报告"
+	default_raw_text = "<b>*K14 多相能量枪*</b><br><br>K14 原型能量枪是第一把能量步枪，它不仅成功做到了比其他枪型携带更多弹药， \
+	还能在指令下在不同能量弹种之间切换，且从未出过事故。<br><br>该武器仍有若干缺陷：它的非激光 \
+	替代射击模式在耗尽能量电池前只能开一枪；该武器也依然贵得离谱，但纳米传讯市场研究部门完全相信这把武器 \
+	将成为我们能量武器目录的支柱。<br><br>K14 预计将进行修订以解决弹药问题，K15 则预计会将“眩晕”档替换为 \
+	“失效”档，以设法绕过弹药问题。"
 
 /**
  * Supermatter crystal fluff paper used in Charlie station ruin
  */
 /obj/item/paper/fluff/ruins/oldstation/protosupermatter
-	name = "Supermatter Crystal Generator"
-	default_raw_text = "<b>*Supermatter Crystal Shard*</b><br><br>Modern power generation typically comes in two forms, a Fusion Generator or a Fission Generator. Fusion provides the best space to power \
-	ratio, and is typically seen on military or high security ships and stations, however Fission reactors require the usage of expensive and rare materials in its construction. \
-	Fission generators are massive and bulky, and require a large reserve of uranium to power, however they are extremely cheap to operate and need little maintenance once \
-	\noperational.<br><br>The Supermatter aims to alter this, a functional Supermatter is essentially a gas producer that generates far more radiation than Fusion or Fission generators can ever hope to produce. "
+	name = "超物质晶体发生器"
+	default_raw_text = "<b>*超物质晶体碎片*</b><br><br>现代发电通常有两种形式：聚变发电机或裂变发电机。聚变能提供最佳的 \
+	空间功率比，常见于军用或高安保舰船与空间站；而裂变反应堆在建造上需要使用昂贵稀有的材料。 \
+	裂变发电机庞大笨重，需要大量铀储备供能，不过它们运行成本极低，一旦 \
+	\n投入运行便几乎无需维护。<br><br>超物质旨在改变这一切：一台可用的超物质本质上是一台气体发生器，其产生的辐射远超聚变或裂变发电机所能企及的水平。 "
 
 /obj/item/paper/fluff/ruins/oldstation/protoinv
-	name = "Laboratory Inventory"
-	default_raw_text = "<b>*Inventory*</b><br><br>(1)Prototype MODsuit<br><br>(1)Health Analyser<br><br>(1)Prototype Energy Gun<br><br>(1)Supermatter Crystal Shard<br><br><b>DO NOT REMOVE WITHOUT \
-	THE CAPTAIN AND RESEARCH DIRECTOR'S AUTHORISATION</b>"
+	name = "实验室清单"
+	default_raw_text = "<b>*清单*</b><br><br>（1）原型 MOD 套装<br><br>（1）健康分析仪<br><br>（1）原型能量枪<br><br>（1）超物质晶体碎片<br><br><b>未经 \
+	舰长与科研主管授权，不得取走</b>"
 
 /obj/item/paper/fluff/ruins/oldstation/generator_manual
-	name = "S.U.P.E.R.P.A.C.M.A.N.-type portable generator manual"
-	default_raw_text = "Wrench down the generator on top of a wire node connected to either a SMES input terminal or the power grid."
+	name = "S.U.P.E.R.P.A.C.M.A.N. 型便携式发电机手册"
+	default_raw_text = "用扳手把发电机固定在与 SMES 输入端或电网相连的线缆节点上。"
 
 /obj/item/paper/fluff/ruins/oldstation/protosleep
-	name = "Prototype Delivery"
-	default_raw_text = "<b>*Prototype Sleeper*</b><br><br>We have delivered the lastest in medical technology to the medical bay: circuitry for a new prototype sleeper. Looks like it didn't come with the parts to actually build it figures. Get engineering on this."
+	name = "原型交付"
+	default_raw_text = "<b>*原型休眠舱*</b><br><br>我们已把最新的医疗技术送到医疗舱：一套新型原型休眠舱的电路。看来货里没带实际建造它所需的零件，果然如此。让工程部来处理吧。"
 
 /obj/item/paper/fluff/ruins/oldstation/survivor_note
-	name = "To those who find this"
-	default_raw_text = "I was on a mission of an exploration drone reclamation, when I lost the signal. I've had just enough pressure to make it back to the station.... But this is really bad... <br><br> \
-	Beta looks like a smashed tin can, and Alpha is gone completely. I didn't manage to find anyone except those sleeping beauties and something I don't even know how to explain. The blood and gore is everywhere, those things took out the entire R&D. \
-	They're hissing and crawling behind the maintenance hatch that I welded off to not let them in.<br><br> \
-	I had a proximity sensor with me, so I donated my left cybernetic arm to make this little fella. One of janitor's bucket served as a perfect casing for him. <br><br> \
-	Here I thought that I'll die of malnutrition, when I started feeling the symptoms of hypercapnia. I will turn you off to save the battery. It's time for both us to sleep, little guy.<br><br> \
-	If you're reading this, I'm probably dead. I've opened Ramboo's maintenance pannel with my ID. Please let him help to clean up my remains..."
+	name = "致发现此信的人"
+	default_raw_text = "我当时正在执行一次勘探无人机回收任务，结果失去了信号。我剩下的气压勉强够回到空间站……但情况真的很糟…… <br><br> \
+	贝塔站看起来像个被砸扁的罐头，阿尔法站则完全没了。除了那些睡美人之外，我没能找到任何人，还遇到了一个我根本不知该怎么解释的东西。到处都是血迹和碎肉，那些东西干掉了整个研发部。 \
+	它们在我为了不让它们进来而焊死的维修舱门后面嘶嘶作响、来回爬动。<br><br> \
+	我身上带着一个接近传感器，所以我献出了我的左机械臂，做出这个小家伙。一个清洁工的桶正好成了他的完美外壳。 <br><br> \
+	我本以为自己会死于营养不良，结果却开始感觉到二氧化碳中毒的症状。为了省电，我要把你关掉了。小家伙，我们俩都该睡了。<br><br> \
+	如果你读到这个，我大概已经死了。我已经用我的 ID 打开了兰布的维修面板。请让他帮忙清理我的遗体……"
 
 /obj/item/paper/fluff/ruins/oldstation/biolab_note_molly
-	name = "Diary note - Molly"
-	default_raw_text = "It has been several months since our Molly passed away. She was our most valuable crew member, especially compared to that prick that happily threw a party to make sure `that beef won't go to waste`...<br><br> \
-	Oh, how I miss her warm milk...<br><br>I've put Molly's biopsy in the fridge and almost completed the solution.<br><br> \
-	Next steps:<ul><li>Pour the broth to the growing vat (beaker nearby)</li><li>Add one dropper of the solution</li><li>Add Molly's biopsy to the vat</li></ul> \
-	Just need to make sure to use the correct bottle this time... I'll even mark it as <b>\"Solution for Molly\"</b>, or I tend to mix things up... <br>I can already feel the endorphin release from hugging her again.<br><br> \
-	If everything goes well, I will try out those slimes the papers praising as the future of science. They say that the cell lines may be found on anything moldy and rotting, and these small blobs have crazy mutation potential when properly fed."
+	name = "日记便条——莫莉"
+	default_raw_text = "我们的莫莉去世已经好几个月了。她是我们最有价值的船员，尤其是跟那个还会开派对庆祝“那块牛肉不能浪费”的混蛋相比……<br><br> \
+	哦，我多么想念她温热的奶……<br><br>我已经把莫莉的活检样本放进冰箱，溶液也快配好了。<br><br> \
+	接下来：<ul><li>把肉汤倒进培养槽（旁边的烧杯）</li><li>加入一滴管溶液</li><li>把莫莉的活检样本放入培养槽</li></ul> \
+	只要这次确保用对瓶子就行……我甚至会把它标成 <b>“给莫莉的溶液”</b>，不然我老是搞混…… <br>我已经能感受到再次拥抱她时内啡肽的释放了。<br><br> \
+	如果一切顺利，我就要试试那些论文里誉为科学未来的史莱姆。他们说细胞系可以存在于任何发霉腐烂的东西上，而这些小团块在妥善喂养后有着疯狂的突变潜力。"
 
 /obj/item/paper/fluff/ruins/oldstation/biolab_note_emergency
-	name = "Diary note - Emergency"
-	default_raw_text = "OH GOD, the station is still creaking from a heavy impact in the port direction. The power is down, coms not responding, the air supply pipe depressurized and I can feel the artificial gravity weakening. \
-	The whole department is running around in panic. I'll just pray that engineers won't let the engine delaminate.<br><br> ...And the alien spawn have broken out of the containment area due to the impact and slipped into the vent.<br><br> \
-	I have a bad feeling about this, but I doubt that now is the right time to make guys hunt for what they call my \"pet cockroach\"... And RD is scary..."
+	name = "日记便条——紧急情况"
+	default_raw_text = "天啊，空间站还在因为左舷方向的一次重击而嘎吱作响。电力中断，通讯无响应，供气管道失压，我还能感觉到人工重力在减弱。 \
+	整个部门都在惊慌失措地四处乱跑。我只能祈祷工程师们别让引擎分层。<br><br> ……而且异形幼体因为这次撞击冲破了收容区，溜进了通风管道。<br><br> \
+	我对此有种不祥的预感，但我觉得现在不是让他们去找他们所谓的我的“宠物蟑螂”的好时机……而且科研主管很可怕……"
 
 /obj/item/paper/fluff/ruins/oldstation/apc_note
-	name = "DO NOT TOUCH!"
-	default_raw_text = "This is a spare pre-charged APC battery for emergencies ONLY. DO NOT use it for stun prods, Bob.<br><br> \
-	Note: Use crowbar to remove the APC cover and take out the malfunctioning battery."
+	name = "请勿触碰！"
+	default_raw_text = "这是仅供紧急情况使用的备用预充电 APC 电池。不要拿它做电击棒，鲍勃。<br><br> \
+	备注：用撬棍拆下 APC 外壳，取出故障电池。"

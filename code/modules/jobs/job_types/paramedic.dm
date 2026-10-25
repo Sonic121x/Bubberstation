@@ -1,7 +1,7 @@
 /datum/job/paramedic
 	title = JOB_PARAMEDIC
-	description = "Run around the station looking for patients, respond to \
-		emergencies, give patients a roller bed ride to medbay."
+	description = "满空间站奔跑寻找病患，应对紧急情况，\
+		用担架床把病患送回医疗部。"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -35,7 +35,7 @@
 		/obj/item/reagent_containers/hypospray/medipen/survival/luxury = 5,
 		/obj/item/storage/box/bandages = 5,
 	)
-	rpg_title = "Corpse Runner"
+	rpg_title = "运尸跑者"
 	job_flags = STATION_JOB_FLAGS
 
 

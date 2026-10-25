@@ -6,8 +6,8 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 #define SCYTHE_EMPOWERED 2
 
 /obj/item/organ/cyberimp/arm/toolkit/shard/scythe
-	name = "sinister shard"
-	desc = "This shard seems to be directly linked to some sinister entity. It might be your god! It also gives you a really horrible rash when you hold onto it for too long."
+	name = "邪异碎片"
+	desc = "这枚碎片似乎与某种邪异实体直接相连。说不定那就是你的神！不过要是你握得太久，它还会让你起一身可怕的皮疹。"
 	items_to_create = list(/obj/item/vorpalscythe)
 	organ_traits = list(TRAIT_MORBID)
 
@@ -23,14 +23,14 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 	if(scythe.empowerment >= SCYTHE_SATED)
 		return ..()
 
-	to_chat(owner, span_userdanger("[scythe] tears into you for your unworthy display of arrogance!"))
+	to_chat(owner, span_userdanger("[scythe] 因你这份不配的傲慢而狠狠反噬你！"))
 	playsound(owner, 'sound/effects/magic/demon_attack1.ogg', 50, TRUE)
 	owner.apply_damage(25, BRUTE, hand, wound_bonus = 10, sharpness = SHARP_EDGED)
 	return ..()
 
 /obj/item/vorpalscythe
-	name = "vorpal scythe"
-	desc = "Reap what you sow."
+	name = "斩首镰刀"
+	desc = "种什么因，收什么果。"
 	icon = 'icons/obj/weapons/staff.dmi'
 	icon_state = "vorpalscythe"
 	inhand_icon_state = "vorpalscythe"
@@ -47,8 +47,8 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 	slot_flags = null
 	obj_flags = UNIQUE_RENAME
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("chops", "slices", "cuts", "reaps")
-	attack_verb_simple = list("chop", "slice", "cut", "reap")
+	attack_verb_continuous = list("劈砍着", "切割着", "斩削着", "收割")
+	attack_verb_simple = list("劈砍", "切割", "斩削", "收割")
 	wound_bonus = 10
 	exposed_wound_bonus = 15
 	/*What state is our scythe in?
@@ -64,21 +64,21 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 
 /obj/item/vorpalscythe/examine(mob/user)
 	. = ..()
-	. += span_notice("You can perform a death knell using [src] on a human with Right-Click. If they were sentient (whether currently or at some point), [src] is empowered on a successful death knell.")
-	. += span_notice("[src] seems to have quite a bit of reach. You might be able to hit things from further away.")
+	. += span_notice("你可以用 [src] 右键点击人类施展丧钟。如果对方曾有意识（无论现在还是曾经），成功施展丧钟后 [src] 便会获得强化。")
+	. += span_notice("[src] 的触及范围似乎相当可观。你也许能从更远处攻击到目标。")
 
 	var/current_empowerment = empowerment
 	switch(current_empowerment)
 		if(SCYTHE_EMPOWERED)
-			. += span_notice("[src] is empowered and humming with energy.")
+			. += span_notice("[src] 已被强化，随能量嗡鸣。")
 		if(SCYTHE_SATED)
-			. += span_notice("[src] is sated, but still demands more. Perform the death knell!")
+			. += span_notice("[src] 已餍足，但仍渴求更多。去施展丧钟吧！")
 		else
-			. += span_notice("[src] is still. Anticipating the strike. Best not anger it by denying it the opportuntiy to taste blood.")
+			. += span_notice("[src] 静止不动，静候一击。最好别剥夺它尝血的机会，以免惹它发怒。")
 
 /obj/item/vorpalscythe/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/nullrod_core, chaplain_spawnable = FALSE, rune_remove_line = "TO DUST WITH YE!! AWAY!!") // The implant is the actual item the chappie can select
+	AddElement(/datum/element/nullrod_core, chaplain_spawnable = FALSE, rune_remove_line = "化尘去吧！！滚开！！") // The implant is the actual item the chappie can select
 	AddComponent(/datum/component/bane, affected_biotypes = MOB_PLANT, damage_multiplier = 1.5) //also good at killing plants
 	AddComponent(/datum/component/butchering, speed = 3 SECONDS, effectiveness = 125)
 	AddComponent(/datum/component/walking_aid)
@@ -109,7 +109,7 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 	var/mob/living/carbon/potential_reaping = victim
 
 	if(HAS_TRAIT(potential_reaping, TRAIT_NODISMEMBER))
-		to_chat(user, span_warning("You do not think you can behead this creature..."))
+		to_chat(user, span_warning("你觉得自己无法斩下这个生物的头……"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	var/head_name
@@ -117,7 +117,7 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 
 	reaped_head = potential_reaping.get_bodypart(check_zone(user.zone_selected))
 	if(!reaped_head)
-		to_chat(user, span_warning("There is no head to reap."))
+		to_chat(user, span_warning("这里没有可供收割的头颅。"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	head_name = reaped_head.name
 
@@ -126,15 +126,15 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 
 	if(!potential_reaping.mind) //We put this here juuuust in case there is something funky with ling checks
 		if(ismonkey(potential_reaping))
-			to_chat(user, span_warning("A pointless existence. You'll get no benefit from this death knell beyond the satisfaction of beheading this foul thing."))
+			to_chat(user, span_warning("毫无意义的存在。除了斩下这可憎之物的头所带来的满足感，你从这记丧钟中什么也得不到。"))
 			potential_empowerment = SCYTHE_WEAK
 		else
-			to_chat(user, span_warning("This soul is almost nonexistent. But [src] can still gain something from this sacrifice. A puppet."))
+			to_chat(user, span_warning("这灵魂几乎不存在。但 [src] 仍能从这份献祭中得到些东西。一具傀儡。"))
 			potential_empowerment = SCYTHE_SATED
 
 	var/death_knell_speed_mod = 1
 
-	potential_reaping.visible_message(span_danger("[user] begins to raise [src] above [potential_reaping]'s [head_name]."), span_userdanger("[user] begins to raise [src], aiming to slice off your [head_name]!"))
+	potential_reaping.visible_message(span_danger("[user] 举起 [src]，对准 [potential_reaping] 的 [head_name]。"), span_userdanger("[user] 举起 [src]，瞄准要砍下你的 [head_name]！"))
 	if(IS_UNCONSCIOUS(potential_reaping) || HAS_TRAIT(potential_reaping, TRAIT_INCAPACITATED)) //if the victim is incapacitated (due to paralysis, a stun, being in staminacrit, etc.), critted, unconscious, or dead, it's much easier to properly behead
 		death_knell_speed_mod *= 0.5
 	if(potential_reaping.stat != DEAD && potential_reaping.has_status_effect(/datum/status_effect/jitter)) //jittering will make it harder to perform the death knell, even if they're still
@@ -144,25 +144,25 @@ If the scythe isn't empowered when you sheath it, you take a heap of damage and 
 	if((potential_reaping.mob_biotypes & MOB_PLANT) || ismonkey(potential_reaping)) //And if they're a podperson/mushperson or monkey, they can just die.
 		death_knell_speed_mod *= 0.5
 
-	log_combat(user, potential_reaping, "prepared to use [src] to decapitate")
+	log_combat(user, potential_reaping, "准备用 [src] 斩首")
 
 	if(do_after(user,  15 SECONDS * death_knell_speed_mod, target = potential_reaping))
 		playsound(get_turf(potential_reaping), 'sound/items/weapons/bladeslice.ogg', 250, TRUE)
 		reaped_head.dismember()
-		user.visible_message(span_danger("[user] swings [src] down, slicing [potential_reaping]'s [head_name] clean off! You think [src] may have grown stronger!"), span_notice("As you perform the death knell on [potential_reaping], [src] gains power! For a time..."))
+		user.visible_message(span_danger("[user] 挥下 [src]，把 [potential_reaping] 的 [head_name] 齐齐斩落！你觉得 [src] 似乎变强了！"), span_notice("当你对 [potential_reaping] 施展丧钟时，[src] 获得了力量！只是暂时的……"))
 		if(potential_empowerment == SCYTHE_SATED) //We don't want actual player heads to go wandering off, but it'll be funny if a bunch of monkeyhuman heads started floating around
 			reaped_head.AddComponent(/datum/component/haunted_item, \
 				haunt_color = "#7be595", \
 				haunt_duration = 1 MINUTES, \
 				aggro_radius = null, \
-				spawn_message = span_revenwarning("[reaped_head] shudders and rises up into the air in a pale green nimbus!"), \
-				despawn_message = span_revenwarning("[reaped_head] falls back to the ground, stationary once more."), \
+				spawn_message = span_revenwarning("[reaped_head] 一阵颤抖，裹着淡绿光晕升上空中！"), \
+				despawn_message = span_revenwarning("[reaped_head] 落回地面，重新静止不动。"), \
 				throw_force_bonus = 0, \
 				throw_force_max = 0, \
 			)
 
 		scythe_empowerment(potential_empowerment)
-		log_combat(user, potential_reaping, "used [src] to decapitate")
+		log_combat(user, potential_reaping, "用 [src] 斩首")
 
 		if(HAS_MIND_TRAIT(user, TRAIT_MORBID)) //You feel good about yourself, pal?
 			user.add_mood_event("morbid_dismemberment", /datum/mood_event/morbid_dismemberment)

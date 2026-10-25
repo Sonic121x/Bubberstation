@@ -8,11 +8,11 @@
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_UNREACHABLE_LIST_COOLDOWN = 3 MINUTES,
 		BB_SALUTE_MESSAGES = list(
-			"salutes",
-			"nods in appreciation towards",
-			"mops the dirt away in the path of",
+			"敬礼，致意的对象是",
+			"赞许地点了点头，致意的对象是",
+			"把地面擦得干干净净，致意的对象是",
 		),
-		BB_FRIENDLY_MESSAGE = "empathetically acknowledges your hardwork and tough circumstances",
+		BB_FRIENDLY_MESSAGE = "深切理解你的辛勤付出与艰难处境",
 	)
 	reset_keys = list(
 		BB_ACTIVE_PET_COMMAND,
@@ -98,8 +98,8 @@
 
 ///Tells the cleanbot to go clean a target
 /datum/pet_command/clean
-	command_name = "Clean"
-	command_desc = "Command a cleanbot to clean the mess."
+	command_name = "清洁"
+	command_desc = "命令清洁机器人清理污渍。"
 	requires_pointing = TRUE
 	radial_icon = 'icons/obj/service/janitor.dmi'
 	radial_icon_state = "mop"

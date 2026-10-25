@@ -1,5 +1,5 @@
 /datum/loadout_category/suits
-	category_name = "Suits"
+	category_name = "套装"
 	category_ui_icon = FA_ICON_USER_SECRET
 	type_to_generate = /datum/loadout_item/suit
 	tab_order = /datum/loadout_category/head::tab_order + 3
@@ -44,15 +44,15 @@
 */// BUBBER EDIT REMOVAL END
 
 /datum/loadout_item/suit/hoodie_pullover
-	name = "Pullover"
+	name = "套头衫"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/pullover
 
 /datum/loadout_item/suit/hoodie_zipup
-	name = "Zipup"
+	name = "拉链衫"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat/zipup
 
 /datum/loadout_item/suit/wintercoat
-	name = "Winter Coat (Departmental)"
+	name = "冬季外套（部门款）"
 	item_path = /obj/item/clothing/suit/hooded/wintercoat
 
 /datum/loadout_item/suit/wintercoat/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE)

@@ -1,5 +1,5 @@
 /datum/corpse_damage/cause_of_death/plasmafire
-	cause_of_death = "when I got caught in a plasmafire!"
+	cause_of_death = "就在那时，我被等离子火焰吞没了！"
 	/// The max tox damage we deal
 	var/tox_damage_max = 40
 	/// Guaranteed burn damage
@@ -12,7 +12,7 @@
 	body.apply_damage(tox_damage_max * severity, TOX)
 
 /datum/corpse_damage/cause_of_death/explosion
-	cause_of_death = "when I noticed a bomb!"
+	cause_of_death = "就在那时，我注意到了一枚炸弹！"
 
 	/// The explosion severity
 	var/severity = EXPLODE_HEAVY
@@ -24,7 +24,7 @@
 		body.ex_act(EXPLODE_HEAVY)
 
 /datum/corpse_damage/cause_of_death/spaced
-	cause_of_death = "when I got spaced!"
+	cause_of_death = "就在那时，我被扔进了太空！"
 	/// Guaranteed brute and burn damage
 	var/base_damage = 90
 	/// Damage influenced by the severity

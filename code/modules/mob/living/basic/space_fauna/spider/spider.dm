@@ -2,16 +2,16 @@
  * Base type of various spider life stages
  */
 /mob/living/basic/spider
-	name = "abstract spider"
-	desc = "Furry and abstract, it makes you shudder to look at it. This one should not exist."
+	name = "抽象蜘蛛"
+	desc = "毛茸茸又抽象，光是看着它就让人发抖。这一只本不该存在。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
-	speak_emote = list("chitters")
+	speak_emote = list("吱吱叫")
 	butcher_results = list(/obj/item/food/meat/slab/spider = 2, /obj/item/food/spiderleg = 8)
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推开"
+	response_disarm_simple = "轻轻推开"
 	initial_language_holder = /datum/language_holder/spider
 	melee_attack_cooldown = CLICK_CD_MELEE
 	damage_coeff = list(BRUTE = 1, BURN = 1.25, TOX = 3, STAMINA = 1, OXY = 1)
@@ -22,8 +22,8 @@
 	combat_mode = TRUE
 	faction = list(FACTION_SPIDER)
 	pass_flags = PASSTABLE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	unique_name = TRUE
@@ -50,7 +50,7 @@
 	/// The message that the mother spider left for this spider when the egg was layed.
 	var/directive = ""
 	/// Short description of what this mob is capable of, for radial menu uses
-	var/menu_description = "Tanky and strong for the defense of the nest and other spiders."
+	var/menu_description = "耐打又强壮，负责保卫巢穴和其他蜘蛛。"
 	/// Commands you can give this spider once it is tamed
 	var/static/list/tamed_commands = list(
 		/datum/pet_command/idle,
@@ -67,7 +67,7 @@
 /datum/emote/spider/chitter
 	key = "chitter"
 	key_third_person = "chitters"
-	message = "chitters."
+	message = "发出吱吱声。"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/mobs/non-humanoids/insect/chitter.ogg'
@@ -77,7 +77,7 @@
 	add_traits(list(TRAIT_WEB_SURFER, TRAIT_FENCE_CLIMBER), INNATE_TRAIT)
 	AddElement(/datum/element/footstep, FOOTSTEP_MOB_CLAW)
 	AddElement(/datum/element/nerfed_pulling, GLOB.typecache_general_bad_things_to_easily_move)
-	AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "this tastes awful!")
+	AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "这东西太难吃了！")
 	AddElement(/datum/element/cliff_walking)
 	AddComponent(/datum/component/health_scaling_effects, min_health_slowdown = 1.5)
 	AddElement(/datum/element/basic_allergenic_attack, allergen = BUGS, allergen_chance = 20, histamine_add = 5)
@@ -195,8 +195,8 @@
  * A less than giant spider which lives in the maintenance ducts and makes them annoying to traverse.
  */
 /mob/living/basic/spider/maintenance
-	name = "duct spider"
-	desc = "Nanotrasen's imported solution to mice, comes with its own problems."
+	name = "管道蜘蛛"
+	desc = "纳米传讯引进的老鼠解决方案，不过它自己也带来了一堆麻烦。"
 	icon_state = "maint_spider"
 	icon_living = "maint_spider"
 	icon_dead = "maint_spider_dead"
@@ -214,9 +214,9 @@
 	speed = 0
 	player_speed_modifier = 0
 	web_speed = 0.25
-	menu_description = "Fragile spider variant which is not good for much other than laying webs."
-	response_harm_continuous = "splats"
-	response_harm_simple = "splat"
+	menu_description = "脆弱的蜘蛛变体，除了织网之外几乎派不上什么用场。"
+	response_harm_continuous = "拍扁"
+	response_harm_simple = "拍扁"
 	ai_controller = /datum/ai_controller/basic_controller/giant_spider/pest
 	///list of pet commands we follow
 	var/static/list/pet_commands = list(

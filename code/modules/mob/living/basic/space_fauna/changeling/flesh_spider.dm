@@ -4,18 +4,18 @@
  * Not a spider subtype because it keeps getting hit by unrelated balance changes intended for the Giant Spiders gamemode.
  */
 /mob/living/basic/flesh_spider
-	name = "flesh spider"
-	desc = "A odd fleshy creature in the shape of a spider. Its eyes are pitch black and soulless."
+	name = "血肉蜘蛛"
+	desc = "一种形似蜘蛛的古怪血肉生物。它的眼睛漆黑一片，毫无灵魂。"
 	icon = 'icons/mob/simple/arachnoid.dmi'
 	icon_state = "flesh"
 	icon_living = "flesh"
 	icon_dead = "flesh_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
-	speak_emote = list("chitters")
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	speak_emote = list("吱吱叫")
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推到一边"
+	response_disarm_simple = "轻轻推到一边"
 	damage_coeff = list(BRUTE = 1, BURN = 1.25, TOX = 4, STAMINA = 1, OXY = 1)
 	basic_mob_flags = FLAMMABLE_MOB
 	status_flags = NONE
@@ -26,8 +26,8 @@
 	melee_damage_upper = 20
 	obj_damage = 30
 	melee_attack_cooldown = CLICK_CD_MELEE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	unsuitable_cold_damage = 4
@@ -53,7 +53,7 @@
 	AddElement(/datum/element/venomous, /datum/reagent/toxin/hunterspider, 5, injection_flags = INJECT_CHECK_PENETRATE_THICK)
 	AddElement(/datum/element/web_walker, /datum/movespeed_modifier/fast_web)
 	AddElement(/datum/element/nerfed_pulling, GLOB.typecache_general_bad_things_to_easily_move)
-	AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "this tastes awful!")
+	AddElement(/datum/element/prevent_attacking_of_types, GLOB.typecache_general_bad_hostile_attack_targets, "这东西太难吃了！")
 	AddComponent(\
 		/datum/component/blood_walk,\
 		blood_type = /obj/effect/decal/cleanable/blood/bubblegum,\

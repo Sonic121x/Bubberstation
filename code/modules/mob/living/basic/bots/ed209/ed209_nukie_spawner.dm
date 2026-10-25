@@ -1,13 +1,13 @@
 /obj/item/antag_spawner/nuke_ops/ed209_nukie
-	name = "Syndicate ED209 Robot"
-	desc = "A single-use beacon designed to quickly launch reinforcement operatives into the field."
+	name = "辛迪加 ED209 机器人"
+	desc = "一座一次性信标，用于迅速将增援特工投送到战场上。"
 
 
 /obj/item/antag_spawner/nuke_ops/ed209_nukie/attack_self(mob/user)
 	if(!(check_usability(user)))
 		return
 
-	to_chat(user, span_notice("You activate [src] and wait for confirmation."))
+	to_chat(user, span_notice("你激活了 [src]，等待确认。"))
 	drop_bot()
 	do_sparks(4, TRUE, src)
 	qdel(src)

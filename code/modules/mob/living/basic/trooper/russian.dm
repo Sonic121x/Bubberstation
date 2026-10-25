@@ -1,15 +1,15 @@
 /// Russian trooper subtype
 /mob/living/basic/trooper/russian
-	name = "Russian Mobster"
-	desc = "For the Motherland!"
+	name = "俄罗斯暴徒"
+	desc = "为了祖国！"
 	speed = 1.2
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	unsuitable_cold_damage = 1
 	unsuitable_heat_damage = 1
 	faction = list(FACTION_RUSSIAN)
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "挥砍"
+	attack_verb_simple = "挥砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	initial_language_holder = /datum/language_holder/panslavic_exclusive //bubber edit; spinwarder to panslavic

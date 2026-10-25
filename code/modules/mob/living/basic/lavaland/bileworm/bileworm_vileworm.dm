@@ -1,6 +1,6 @@
 /mob/living/basic/mining/bileworm/vileworm
-	name = "vileworm"
-	desc = "Vileworms, the product of lavaland's corruptive nature on the natural fauna."
+	name = "腐胆汁虫"
+	desc = "腐胆汁虫，熔岩地带的腐化本性作用于自然生灵的产物。"
 	icon_state = "vileworm"
 	icon_living = "vileworm"
 	icon_dead = "vileworm_dead"
@@ -11,8 +11,8 @@
 	evolve_path = null
 
 /datum/action/cooldown/mob_cooldown/bileworm_spew/corrupt
-	name = "Spew Corrupted Bile"
-	desc = "Spew a barrage of corrupted bile globs."
+	name = "喷吐腐化胆汁"
+	desc = "喷出一连串腐化胆汁团。"
 	cooldown_time = 2.5 SECONDS
 	acid_type = /obj/effect/bileworm_acid/corrupt
 	additional_shots = 6

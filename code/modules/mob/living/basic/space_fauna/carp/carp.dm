@@ -11,8 +11,8 @@
  * Owned as a pet both by the HoS (sometimes) and also the Nuclear Operatives.
  */
 /mob/living/basic/carp
-	name = "space carp"
-	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	name = "太空鲤鱼"
+	desc = "一种凶猛的、长着獠牙的生物，外形类似鱼。"
 	icon = 'icons/mob/simple/carp.dmi'
 	icon_state = "base"
 	icon_living = "base"
@@ -30,13 +30,13 @@
 	melee_damage_upper = 20
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	melee_attack_cooldown = 1.5 SECONDS
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推到一边"
+	response_disarm_simple = "轻轻推到一边"
 	faction = list(FACTION_CARP)
 	butcher_results = list(/obj/item/food/fishmeat/carp = 2, /obj/item/stack/sheet/animalhide/carp = 1)
 	greyscale_config = /datum/greyscale_config/carp
@@ -91,7 +91,7 @@
 /datum/emote/carp/bloop
 	key = "bloop"
 	key_third_person = "bloops"
-	message = "bloops!"
+	message = "噗噜作响！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/carp/Initialize(mapload, mob/tamer)
@@ -108,7 +108,7 @@
 	setup_eating()
 
 	AddComponent(/datum/component/speechmod, replacements = strings("crustacean_replacement.json", "crustacean"))
-	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("gnashes")))
+	AddComponent(/datum/component/aggro_emote, emote_list = string_list(list("龇牙低吼")))
 	AddComponent(/datum/component/regenerator, outline_colour = regenerate_colour)
 	AddComponent(/datum/component/profound_fisher)
 	if (tamer)
@@ -148,7 +148,7 @@
 	if (!feedback)
 		return
 	spin(spintime = 10, speed = 1)
-	visible_message("[src] spins in a circle as it seems to bond with [tamer].")
+	visible_message("[src] 转了一圈，似乎与 [tamer] 建立了羁绊。")
 
 /// Teleport when you right click away from you
 /mob/living/basic/carp/ranged_secondary_attack(atom/atom_target, modifiers)
@@ -201,7 +201,7 @@
  * Pet carp, abstract carp which just holds some shared properties.
  */
 /mob/living/basic/carp/pet
-	speak_emote = list("squeaks")
+	speak_emote = list("吱吱叫")
 	gold_core_spawnable = NO_SPAWN
 	gender = FEMALE // Both current existing pet carp are female but you can remove this if someone else gets a male one?
 	ai_controller = /datum/ai_controller/basic_controller/carp/pet
@@ -217,9 +217,9 @@
  * Has a lot more health than a normal carp because she's meant to be a mildly more threatening pet to have to assassinate than an aging corgi.
  */
 /mob/living/basic/carp/pet/lia
-	name = "Lia"
-	real_name = "Lia"
-	desc = "A failed experiment of Nanotrasen to create weaponised carp technology. This less than intimidating carp now serves as the Head of Security's pet."
+	name = "莉娅"
+	real_name = "莉娅"
+	desc = "纳米传讯打造武器化鲤鱼技术的一次失败实验。这条毫无威慑力的鲤鱼如今成了安保主管的宠物。"
 	faction = list(FACTION_NEUTRAL)
 	maxHealth = 200
 	health = 200
@@ -238,9 +238,9 @@
  * Is very talented and also capable of holding the nuclear disk.
  */
 /mob/living/basic/carp/pet/cayenne
-	name = "Cayenne"
-	real_name = "Cayenne"
-	desc = "A failed Syndicate experiment in weaponized space carp technology, it now serves as a lovable mascot."
+	name = "卡宴"
+	real_name = "卡宴"
+	desc = "辛迪加武器化太空鲤鱼技术的一次失败实验，如今成了惹人喜爱的吉祥物。"
 	faction = list(ROLE_SYNDICATE)
 	/// Overlay to apply to display the disk
 	var/mutable_appearance/disk_overlay
@@ -286,9 +286,9 @@
 
 ///Carp-parasite from carpellosis disease
 /mob/living/basic/carp/ella
-	name = "Ella"
-	real_name = "Ella"
-	desc = "It came out of someone."
+	name = "埃拉"
+	real_name = "埃拉"
+	desc = "它是从某人身上钻出来的。"
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/carp/ella/Initialize(mapload)
@@ -297,15 +297,15 @@
 
 ///Wild carp that just vibe ya know
 /mob/living/basic/carp/passive
-	name = "false carp"
-	desc = "A close relative of the space carp which is entirely toothless and feeds by stealing its cousin's leftovers."
+	name = "假鲤鱼"
+	desc = "太空鲤鱼的近亲，完全没有牙齿，靠偷吃同类的残羹剩饭为生。"
 	icon_state = "base_friend"
 	icon_living = "base_friend"
 	icon_dead = "base_friend_dead"
 	greyscale_config = /datum/greyscale_config/carp_friend
 
-	attack_verb_continuous = "suckers"
-	attack_verb_simple = "suck"
+	attack_verb_continuous = "吸"
+	attack_verb_simple = "吸"
 
 	melee_damage_lower = 0
 	melee_damage_upper = 0

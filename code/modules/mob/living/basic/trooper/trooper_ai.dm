@@ -3,7 +3,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!"
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！"
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
@@ -12,7 +12,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!",
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！",
 		BB_CALLS_REINFORCEMENTS = TRUE,
 	)
 
@@ -21,7 +21,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!",
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！",
 		BB_CALLS_REINFORCEMENTS = TRUE
 	)
 
@@ -34,7 +34,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!",
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！",
 		BB_RANGED_SKIRMISH_MIN_DISTANCE = 3,
 		BB_RANGED_SKIRMISH_MAX_DISTANCE = 4
 	)
@@ -46,7 +46,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!",
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！",
 		BB_RANGED_SKIRMISH_MIN_DISTANCE = 2,
 		BB_RANGED_SKIRMISH_MAX_DISTANCE = 3
 	)
@@ -57,7 +57,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!",
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！",
 		BB_CALLS_REINFORCEMENTS = TRUE
 	)
 
@@ -66,7 +66,7 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
 		BB_TARGET_MINIMUM_STAT = HARD_CRIT,
-		BB_REINFORCEMENTS_SAY = "411 in progress, requesting backup!",
+		BB_REINFORCEMENTS_SAY = "411 正在处置中，请求增援！",
 		BB_RANGED_SKIRMISH_MIN_DISTANCE = 2,
 		BB_RANGED_SKIRMISH_MAX_DISTANCE = 3
 	)

@@ -1,11 +1,11 @@
 
 /mob/living/basic/snake
-	name = "snake"
-	desc = "A slithery snake. These legless reptiles are the bane of mice and adventurers alike."
+	name = "蛇"
+	desc = "一条滑溜溜的蛇。这些没有腿的爬行动物既是老鼠的克星，也是冒险者的克星。"
 	icon_state = "snake"
 	icon_living = "snake"
 	icon_dead = "snake_dead"
-	speak_emote = list("hisses")
+	speak_emote = list("嘶嘶作响")
 
 	health = 20
 	maxHealth = 20
@@ -16,17 +16,17 @@
 	//how many units of venom are injected in target per attack
 	var/venom_dose = 4
 
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "shoos"
-	response_disarm_simple = "shoo"
-	response_harm_continuous = "steps on"
-	response_harm_simple = "step on"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "驱赶"
+	response_disarm_simple = "驱赶"
+	response_harm_continuous = "踩"
+	response_harm_simple = "踩"
 
 	density = FALSE
 	pass_flags = PASSTABLE | PASSMOB
@@ -70,7 +70,7 @@
 	. = ..()
 	if(!.)
 		return
-	visible_message("[src] hisses happily as it seems to bond with [new_friend].")
+	visible_message("[src] 愉快地嘶叫着，似乎与 [new_friend] 建立起了情谊。")
 
 /// Snakes are primarily concerned with getting those tasty, tasty mice, but aren't afraid to strike back at those who attack them
 /datum/ai_controller/basic_controller/snake
@@ -78,9 +78,9 @@
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_BASIC_MOB_SPEAK_LINES = list(
-			BB_EMOTE_SAY = list("hsssss", "sssSSsssss...", "hiisssss"),
-			BB_EMOTE_HEAR = list("hisses."),
-			BB_EMOTE_SEE = list("slithers around.", "glances.", "stares."),
+			BB_EMOTE_SAY = list("嘶嘶嘶", "嘶——嘶嘶嘶……", "嘶——"),
+			BB_EMOTE_HEAR = list("发出嘶嘶声。"),
+			BB_EMOTE_SEE = list("四处滑行。", "瞥了一眼。", "盯着看。"),
 			BB_EMOTE_SOUND = list('sound/mobs/non-humanoids/snake/snake_hissing1.ogg', 'sound/mobs/non-humanoids/snake/snake_hissing2.ogg'),
 			BB_SPEAK_CHANCE = 5,
 		),

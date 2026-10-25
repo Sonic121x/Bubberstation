@@ -1,6 +1,6 @@
 /mob/living/basic/statue/mannequin
-	name = "mannequin"
-	desc = "Oh, so this is a dress-up game now."
+	name = "人体模型"
+	desc = "哦，所以现在改玩换装游戏了。"
 	icon = 'icons/mob/human/mannequin.dmi'
 	icon_state = "mannequin_wood_male"
 	icon_living = "mannequin_wood_male"
@@ -39,8 +39,8 @@
 	ai_movement = /datum/ai_movement/dumb
 
 /mob/living/basic/statue/mannequin/suspicious
-	name = "mannequin?"
-	desc = "Their eyes follow you."
+	name = "人体模型？"
+	desc = "它们的眼睛会一直跟着你转。"
 	health = 1500 //yeah uhh avoid these
 	maxHealth = 1500
 	ai_controller = /datum/ai_controller/basic_controller/suspicious_mannequin

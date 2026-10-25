@@ -17,9 +17,9 @@
 
 /datum/corpse_damage/cause_of_death/projectile/laser
 	projectile = /obj/projectile/beam/laser
-	cause_of_death = "when I got shot with lasers!"
+	cause_of_death = "就在那时，我被激光射中了！"
 
 /datum/corpse_damage/cause_of_death/projectile/bullet
 	projectile = /obj/projectile/bullet/c45
-	cause_of_death = "when I got shot with bullets!"
+	cause_of_death = "就在那时，我被子弹打中了！"
 

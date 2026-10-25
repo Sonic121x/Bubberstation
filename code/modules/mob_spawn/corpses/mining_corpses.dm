@@ -3,8 +3,8 @@
 
 //Tendril-spawned Legion remains, the charred skeletons of those whose bodies sank into laval or fell into chasms.
 /obj/effect/mob_spawn/corpse/human/charredskeleton
-	name = "charred skeletal remains"
-	mob_name = "ashen skeleton"
+	name = "烧焦的骸骨"
+	mob_name = "灰烬骷髅"
 	burn_damage = 1000
 	mob_species = /datum/species/skeleton
 
@@ -134,8 +134,8 @@
 
 /// Creates a dead legion-infested skeleton
 /obj/effect/mob_spawn/corpse/human/legioninfested/skeleton
-	name = "legion-infested skeleton"
-	mob_name = "skeleton"
+	name = "被军团寄生的骷髅"
+	mob_name = "骷髅"
 	mob_species = /datum/species/skeleton
 
 /obj/effect/mob_spawn/corpse/human/legioninfested/skeleton/select_outfit()
@@ -147,8 +147,8 @@
 
 /// Creates a dead and burned legion-infested skeleton
 /obj/effect/mob_spawn/corpse/human/legioninfested/skeleton/charred
-	name = "charred legion-infested skeleton"
-	mob_name = "charred skeleton"
+	name = "被军团寄生的烧焦骷髅"
+	mob_name = "烧焦的骷髅"
 	brute_damage = 0
 	burn_damage = 1000
 

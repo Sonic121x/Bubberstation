@@ -2,24 +2,24 @@
 //i couldn't find any map that uses these, so they're delegated to admin events for now.
 
 /obj/effect/mob_spawn/ghost_role/human/prisoner_transport
-	name = "prisoner containment sleeper"
-	desc = "A sleeper designed to put its occupant into a deep coma, unbreakable until the sleeper turns off. This one's glass is cracked and you can see a pale, sleeping face staring out."
-	prompt_name = "an escaped prisoner"
+	name = "囚犯收容休眠舱"
+	desc = "一台旨在使乘员陷入深度昏迷的休眠舱，在休眠舱关闭之前无法解除。这一台的玻璃已经裂了，你能看到一张苍白的、沉睡的面孔正朝外望着。"
+	prompt_name = "一名逃犯"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/lavalandprisoner
-	you_are_text = "You're a prisoner, sentenced to hard work in one of Nanotrasen's labor camps, but it seems as \
-	though fate has other plans for you."
-	flavour_text = "Good. It seems as though your ship crashed. You remember that you were convicted of "
+	you_are_text = "你是一名囚犯，被判处到纳米传讯的某处劳改营从事苦役，但看来命运\
+	对你另有安排。"
+	flavour_text = "很好。看来你的飞船坠毁了。你记得自己被判犯有"
 	spawner_job_path = /datum/job/escaped_prisoner
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 
 /obj/effect/mob_spawn/ghost_role/human/prisoner_transport/Initialize(mapload)
 	. = ..()
-	var/list/crimes = list("murder", "larceny", "embezzlement", "unionization", "dereliction of duty", "kidnapping", "gross incompetence", "grand theft", "collaboration with the Syndicate", \
-	"worship of a forbidden deity", "interspecies relations", "mutiny")
-	flavour_text += "[pick(crimes)]. but regardless of that, it seems like your crime doesn't matter now. You don't know where you are, but you know that it's out to kill you, and you're not going \
-	to lose this opportunity. Find a way to get out of this mess and back to where you rightfully belong - your [pick("house", "apartment", "spaceship", "station")]."
+	var/list/crimes = list("谋杀", "盗窃", "贪污", "组织工会", "玩忽职守", "绑架", "严重无能", "重大盗窃", "与辛迪加勾结", \
+	"崇拜禁忌神祇", "跨物种关系", "哗变")
+	flavour_text += "[pick(crimes)]。但不管怎样，现在看来你的罪名已经无关紧要了。你不知道自己身在何处，但你清楚这里想要你的命，而你绝不会\
+	放过这个机会。想办法从这个烂摊子里脱身，回到你本该属于的地方——你的[pick("家", "公寓", "飞船", "空间站")]。"
 
 /obj/effect/mob_spawn/ghost_role/human/prisoner_transport/Destroy()
 	new /obj/structure/fluff/empty_sleeper/syndicate(get_turf(src))
@@ -41,15 +41,15 @@
 
 //Space Hotel Staff
 /obj/effect/mob_spawn/ghost_role/human/hotel_staff //not free antag u little shits
-	name = "staff sleeper"
-	desc = "A sleeper designed for long-term stasis between guest visits."
-	prompt_name = "a hotel staff member"
+	name = "员工休眠舱"
+	desc = "一种专为客人来访间隙进行长期静滞而设计的休眠舱。"
+	prompt_name = "一名酒店员工"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/hotelstaff
-	you_are_text = "You are a staff member of a top-of-the-line space hotel!"
-	flavour_text = "Cater to visiting guests with your fellow staff, advertise the hotel, and make sure the manager doesn't fire you. Remember, the customer is always right!"
-	important_text = "Do NOT leave the hotel, as that is grounds for contract termination."
+	you_are_text = "你是顶级太空酒店的一名员工！"
+	flavour_text = "与其他员工一起招待来访的客人，为酒店做宣传，并确保经理不会解雇你。记住，顾客永远是对的！"
+	important_text = "绝对不要离开酒店，否则会被视为违约并终止合同。"
 	spawner_job_path = /datum/job/hotel_staff
 	allow_custom_character = ALL
 
@@ -66,13 +66,13 @@
 	)
 
 /obj/effect/mob_spawn/ghost_role/human/hotel_staff/security
-	name = "hotel security sleeper"
-	prompt_name = "a hotel security member"
+	name = "酒店安保休眠舱"
+	prompt_name = "一名酒店安保人员"
 	outfit = /datum/outfit/hotelstaff/security
-	you_are_text = "You are a peacekeeper."
-	flavour_text = "You have been assigned to this hotel to protect the interests of the company while keeping the peace between \
-		guests and the staff."
-	important_text = "Do NOT leave the hotel, as that is grounds for contract termination."
+	you_are_text = "你是一名治安官。"
+	flavour_text = "你被派往这家酒店，负责在维护客人与员工之间和平的同时，保护\
+		公司的利益。"
+	important_text = "绝对不要离开酒店，否则会被视为违约并终止合同。"
 
 /datum/outfit/hotelstaff/security
 	name = "Hotel Security"
@@ -88,12 +88,12 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/syndicate
-	name = "Syndicate Operative"
+	name = "辛迪加特工"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "a syndicate operative"
-	you_are_text = "You are a syndicate operative."
-	flavour_text = "You have awoken, without instruction. Death to Nanotrasen! If there are some clues around as to what you're supposed to be doing, you best follow those."
+	prompt_name = "一名辛迪加特工"
+	you_are_text = "你是一名辛迪加特工。"
+	flavour_text = "你在没有接到任何指令的情况下醒来。纳米传讯必须死！如果周围有什么线索能说明你该做什么，最好照着做。"
 	outfit = /datum/outfit/syndicate_empty
 	spawner_job_path = /datum/job/space_syndicate
 	allow_custom_character = ALL
@@ -115,20 +115,20 @@
 
 //For ghost bar.
 /obj/effect/mob_spawn/ghost_role/human/space_bar_patron
-	name = "bar cryogenics"
+	name = "酒吧低温休眠舱"
 	uses = INFINITY
-	prompt_name = "a space bar patron"
-	you_are_text = "You're a patron!"
-	flavour_text = "Hang out at the bar and chat with your buddies. Feel free to hop back in the cryogenics when you're done chatting."
+	prompt_name = "一名太空酒吧顾客"
+	you_are_text = "你是一名顾客！"
+	flavour_text = "在酒吧里消磨时间，和朋友们聊天。聊完了随时可以回到低温休眠舱。"
 	outfit = /datum/outfit/cryobartender
 	spawner_job_path = /datum/job/space_bar_patron
 	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/space_bar_patron/attack_hand(mob/user, list/modifiers)
-	var/despawn = tgui_alert(usr, "Return to cryosleep? (Warning, Your mob will be deleted!)", null, list("Yes", "No"))
+	var/despawn = tgui_alert(usr, "返回低温休眠？（警告：你的角色将被删除！）", null, list("Yes", "No"))
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return
-	user.visible_message(span_notice("[user.name] climbs back into cryosleep..."))
+	user.visible_message(span_notice("[user.name] 爬回了低温休眠舱……"))
 	qdel(user)
 
 /datum/outfit/cryobartender
@@ -142,15 +142,15 @@
 
 //Timeless prisons: Spawns in Wish Granter prisons in lavaland. Ghosts become age-old users of the Wish Granter and are advised to seek repentance for their past.
 /obj/effect/mob_spawn/ghost_role/human/exile
-	name = "timeless prison"
-	desc = "Although this stasis pod looks medicinal, it seems as though it's meant to preserve something for a very long time."
-	prompt_name = "a penitent exile"
+	name = "永恒牢狱"
+	desc = "这个静滞舱虽然看起来像是医疗设备，但似乎是为了将某种东西保存极长时间而设计的。"
+	prompt_name = "一名忏悔的流放者"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/shadow
-	you_are_text = "You are cursed."
-	flavour_text = "Years ago, you sacrificed the lives of your trusted friends and the humanity of yourself to reach the Wish Granter. Though you \
-	did so, it has come at a cost: your very body rejects the light, dooming you to wander endlessly in this horrible wasteland."
+	you_are_text = "你被诅咒了。"
+	flavour_text = "多年前，你牺牲了挚友们的性命和自己的人性，只为抵达许愿者。虽然你\
+	做到了，但代价也随之而来：你的身体排斥光明，注定要在这片可怕的荒原上无尽徘徊。"
 	spawner_job_path = /datum/job/exile
 
 /obj/effect/mob_spawn/ghost_role/human/exile/Destroy()
@@ -159,50 +159,50 @@
 
 /obj/effect/mob_spawn/ghost_role/human/exile/special(mob/living/new_spawn, mob/mob_possessor, apply_prefs)
 	. = ..()
-	new_spawn.fully_replace_character_name(null,"Wish Granter's Victim ([rand(1,999)])")
+	new_spawn.fully_replace_character_name(null,"许愿者的受害者（[rand(1,999)]）")
 	var/wish = rand(1,4)
 	var/message = ""
 	switch(wish)
 		if(1)
-			message = "<b>You wished to kill, and kill you did. You've lost track of how many, but the spark of excitement that murder once held has winked out. You feel only regret.</b>"
+			message = "<b>你许愿要杀戮，而你也确实这么做了。你已经数不清杀了多少人，但杀戮曾带给你的兴奋火花早已熄灭。你只感到悔恨。</b>"
 		if(2)
-			message = "<b>You wished for unending wealth, but no amount of money was worth this existence. Maybe charity might redeem your soul?</b>"
+			message = "<b>你许愿要无尽的财富，但再多的钱也不值得换来这样的处境。也许行善能救赎你的灵魂？</b>"
 		if(3)
-			message = "<b>You wished for power. Little good it did you, cast out of the light. You are the [gender == MALE ? "king" : "queen"] of a hell that holds no subjects. You feel only remorse.</b>"
+			message = "<b>你许愿要权力。可这没给你带来什么好处，你被逐出了光明。你是一个没有臣民的地狱的[gender == MALE ? "国王" : "女王"]。你只感到悔恨。</b>"
 		if(4)
-			message = "<b>You wished for immortality, even as your friends lay dying behind you. No matter how many times you cast yourself into the lava, you awaken in this room again within a few days. There is no escape.</b>"
+			message = "<b>你许愿要永生，哪怕你的朋友们正在你身后死去。无论你多少次投身熔岩，几天后你又会在这间屋子里醒来。无路可逃。</b>"
 	to_chat(new_spawn, span_infoplain("[message]"))
 
 /obj/effect/mob_spawn/ghost_role/human/nanotrasensoldier
-	name = "sleeper"
+	name = "休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	faction = list(FACTION_NANOTRASEN_PRIVATE)
-	prompt_name = "a private security officer"
-	you_are_text = "You are a Nanotrasen Private Security Officer!"
-	flavour_text = "If higher command has an assignment for you, it's best you follow that. Otherwise, death to The Syndicate."
+	prompt_name = "一名私人安保官"
+	you_are_text = "你是纳米传讯的一名私人安保官！"
+	flavour_text = "如果上级指挥部给你派了任务，最好照办。否则，就杀光辛迪加。"
 	outfit = /datum/outfit/nanotrasensoldier
 	allow_custom_character = ALL
 
 /obj/effect/mob_spawn/ghost_role/human/commander
-	name = "sleeper"
+	name = "休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a nanotrasen commander"
-	you_are_text = "You are a Nanotrasen Commander!"
-	flavour_text = "Upper-crusty of Nanotrasen. You should be given the respect you're owed."
+	prompt_name = "一名纳米传讯指挥官"
+	you_are_text = "你是纳米传讯的指挥官！"
+	flavour_text = "纳米传讯的上层人物。你理应得到应有的尊重。"
 	outfit = /datum/outfit/nanotrasencommander
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_APPEARANCE
 
 //space doctor, a rat with cancer, and bessie from an old removed lavaland ruin.
 
 /obj/effect/mob_spawn/ghost_role/human/doctor
-	name = "sleeper"
+	name = "休眠舱"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	prompt_name = "a space doctor"
-	you_are_text = "You are a space doctor!"
-	flavour_text = "It's your job- no, your duty as a doctor, to care and heal those in need."
+	prompt_name = "一名太空医生"
+	you_are_text = "你是一名太空医生！"
+	flavour_text = "作为医生，你的工作——不，你的职责，就是照料并治愈需要帮助的人。"
 	outfit = /datum/outfit/job/doctor
 	spawner_job_path = /datum/job/space_doctor
 	allow_custom_character = ALL
@@ -216,21 +216,21 @@
 		qdel(unwanted_item)
 
 /obj/effect/mob_spawn/ghost_role/mouse
-	name = "sleeper"
+	name = "休眠舱"
 	mob_type = /mob/living/basic/mouse
-	prompt_name = "a mouse"
-	you_are_text = "You're a mouse!"
-	flavour_text = "Uh... yep! Squeak squeak, motherfucker."
+	prompt_name = "一只老鼠"
+	you_are_text = "你是一只老鼠！"
+	flavour_text = "呃……没错！吱吱，混蛋。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
 /obj/effect/mob_spawn/ghost_role/cow
-	name = "sleeper"
-	mob_name = "Bessie"
+	name = "休眠舱"
+	mob_name = "贝茜"
 	mob_type = /mob/living/basic/cow
-	prompt_name = "a cow"
-	you_are_text = "You're a cow!"
-	flavour_text = "Go graze some grass, stinky."
+	prompt_name = "一头奶牛"
+	you_are_text = "你是一头奶牛！"
+	flavour_text = "去啃点草吧，臭家伙。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
@@ -241,16 +241,16 @@
 // snow operatives on snowdin - unfortunately seemingly removed in a map remake womp womp
 
 /obj/effect/mob_spawn/ghost_role/human/snow_operative
-	name = "sleeper"
-	prompt_name = "a snow operative"
+	name = "休眠舱"
+	prompt_name = "一名雪地特工"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	faction = list(ROLE_SYNDICATE)
 	outfit = /datum/outfit/snowsyndie
-	you_are_text = "You are a syndicate operative recently awoken from cryostasis in an underground outpost."
-	flavour_text = "Monitor Nanotrasen communications and record information. All intruders should be disposed of \
-	swiftly to assure no gathered information is stolen or lost. Try not to wander too far from the outpost as the \
-	caves can be a deadly place even for a trained operative such as yourself."
+	you_are_text = "你是一名刚从地下前哨的低温休眠中醒来的辛迪加特工。"
+	flavour_text = "监视纳米传讯的通讯并记录情报。任何入侵者都应被迅速\
+	处理掉，以确保已收集的情报不会被窃取或丢失。尽量不要离前哨太远，因为\
+	即便对像你这样训练有素的特工来说，这里的洞穴也可能是致命之地。"
 	allow_custom_character = ALL
 
 /datum/outfit/snowsyndie
@@ -267,14 +267,14 @@
 //Forgotten syndicate ship
 
 /obj/effect/mob_spawn/ghost_role/human/syndicatespace
-	name = "Syndicate Ship Crew Member"
+	name = "辛迪加船舰船员"
 	show_flavor = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "cybersun crew"
-	you_are_text = "You are a syndicate operative on old ship, stuck in hostile space."
-	flavour_text = "Your ship docks after a long time somewhere in hostile space, reporting a malfunction. You are stuck here, with Nanotrasen station nearby. Fix the ship, find a way to power it and follow your captain's orders."
-	important_text = "Obey orders given by your captain. DO NOT let the ship fall into enemy hands."
+	prompt_name = "赛博太阳船员"
+	you_are_text = "你是一名辛迪加特工，身处一艘困在敌对星域的老旧船舰上。"
+	flavour_text = "在敌对星域某处停留许久后，你的船舰因报告故障而停靠。你被困在这里，附近还有一座纳米传讯空间站。修好船舰，想办法给它供电，并服从舰长的命令。"
+	important_text = "服从舰长下达的命令。绝对不要让船舰落入敌手。"
 	outfit = /datum/outfit/syndicatespace/syndicrew
 	spawner_job_path = /datum/job/syndicate_cybersun
 	allow_custom_character = ALL
@@ -288,11 +288,11 @@
 		to_chat(new_spawn, span_bold("[policy]"))
 
 /obj/effect/mob_spawn/ghost_role/human/syndicatespace/captain
-	name = "Syndicate Ship Captain"
-	prompt_name = "a cybersun captain"
-	you_are_text = "You are the captain of an old ship, stuck in hostile space."
-	flavour_text = "Your ship docks after a long time somewhere in hostile space, reporting a malfunction. You are stuck here, with Nanotrasen station nearby. Command your crew and turn your ship into the most protected fortress."
-	important_text = "Protect the ship and secret documents in your backpack with your own life."
+	name = "辛迪加船舰舰长"
+	prompt_name = "一名赛博太阳舰长"
+	you_are_text = "你是一艘困在敌对星域的老旧船舰的舰长。"
+	flavour_text = "在敌对星域某处停留许久后，你的船舰因报告故障而停靠。你被困在这里，附近还有一座纳米传讯空间站。指挥你的船员，把船舰变成戒备最森严的堡垒。"
+	important_text = "用自己的生命保护船舰和你背包里的机密文件。"
 	outfit = /datum/outfit/syndicatespace/syndicaptain
 	spawner_job_path = /datum/job/syndicate_cybersun_captain
 	allow_custom_character = ALL

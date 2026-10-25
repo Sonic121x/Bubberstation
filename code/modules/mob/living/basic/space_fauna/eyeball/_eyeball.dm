@@ -1,6 +1,6 @@
 /mob/living/basic/eyeball
-	name = "eyeball"
-	desc = "An odd looking creature, it won't stop staring..."
+	name = "眼球"
+	desc = "一种长相古怪的生物，它一直盯着你看……"
 	icon = 'icons/mob/simple/carp.dmi'
 	icon_state = "eyeball"
 	icon_living = "eyeball"
@@ -11,10 +11,10 @@
 	gender = NEUTER
 	mob_biotypes = MOB_ORGANIC
 
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推到一边"
+	response_disarm_simple = "轻轻推到一边"
 
 	maxHealth = 30
 	health = 30
@@ -22,13 +22,13 @@
 	melee_damage_lower = 8
 	melee_damage_upper = 12
 
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	faction = list(FACTION_SPOOKY)
-	speak_emote = list("telepathically cries")
+	speak_emote = list("在心灵中哭泣")
 
 	habitable_atmos = null
 	minimum_survivable_temperature = T0C
@@ -73,7 +73,7 @@
 
 	if(istype(attack_target, /obj/item/food/grown/carrotlike/carrot))
 		adjust_brute_loss(-5)
-		to_chat(src, span_warning("You eat [attack_target]! It restores some health!"))
+		to_chat(src, span_warning("你吃掉了 [attack_target]！它恢复了一些生命值！"))
 		qdel(attack_target)
 		return TRUE
 
@@ -110,7 +110,7 @@
 /mob/living/basic/eyeball/proc/heal_eye_damage(mob/living/target, obj/item/organ/eyes/eyes)
 	if(!COOLDOWN_FINISHED(src, eye_healing))
 		return
-	to_chat(target, span_warning("[src] seems to be healing your [eyes.zone]!"))
+	to_chat(target, span_warning("[src] 似乎正在治疗你的 [eyes.zone]！"))
 	eyes.apply_organ_damage(-1 * healing_factor)
 	new /obj/effect/temp_visual/heal(get_turf(target), COLOR_HEALING_CYAN)
 	befriend(target)

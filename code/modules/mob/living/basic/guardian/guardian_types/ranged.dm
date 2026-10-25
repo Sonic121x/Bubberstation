@@ -2,15 +2,15 @@
 /mob/living/basic/guardian/ranged
 	guardian_type = GUARDIAN_RANGED
 	combat_mode = FALSE
-	friendly_verb_continuous = "quietly assesses"
-	friendly_verb_simple = "quietly assess"
+	friendly_verb_continuous = "静静地打量"
+	friendly_verb_simple = "静静地打量"
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	damage_coeff = list(BRUTE = 0.9, BURN = 0.9, TOX = 0.9, STAMINA = 0, OXY = 0.9)
 	range = 13
-	playstyle_string = span_holoparasite("As a <b>ranged</b> type, you have only light damage resistance, but are capable of spraying shards of crystal at incredibly high speed. You can also deploy surveillance snares to monitor enemy movement. Finally, you can switch to scout mode, in which you can't attack, but can move without limit.")
-	creator_name = "Ranged"
-	creator_desc = "Has two modes. Ranged; which fires a constant stream of weak, armor-ignoring projectiles. Scout; where it cannot attack, but can move through walls and is quite hard to see. Can lay surveillance snares, which alert it when crossed, in either mode."
+	playstyle_string = span_holoparasite("作为<b>远程</b>型，你只有轻微的伤害抗性，但能以极快的速度喷射水晶碎片。你还可以布置监视陷阱来监视敌人的动向。最后，你可以切换到侦察模式，在该模式下你无法攻击，但可以不受限制地移动。")
+	creator_name = "远程"
+	creator_desc = "拥有两种模式。远程：持续发射威力较低、无视护甲的攻击。侦察：无法攻击，但可以穿墙移动，且很难被发现。两种模式下都能布置监视陷阱，陷阱被经过时会通知它。"
 	creator_icon = "ranged"
 	see_invisible = SEE_INVISIBLE_LIVING
 	toggle_button_type = /datum/action/cooldown/guardian/toggle_mode
@@ -29,7 +29,7 @@
 
 /mob/living/basic/guardian/ranged/toggle_modes()
 	if(is_deployed() && !isnull(summoner))
-		balloon_alert(src, "must not be manifested!")
+		balloon_alert(src, "不能处于现身状态！")
 		return
 	if (has_status_effect(/datum/status_effect/guardian_scout_mode))
 		remove_status_effect(/datum/status_effect/guardian_scout_mode)
@@ -43,22 +43,22 @@
 			lighting_cutoff_red = 10
 			lighting_cutoff_green = 10
 			lighting_cutoff_blue = 15
-			msg = "You activate your night vision."
+			msg = "你开启夜视。"
 		if (LIGHTING_CUTOFF_MEDIUM)
 			lighting_cutoff_red = 25
 			lighting_cutoff_green = 25
 			lighting_cutoff_blue = 35
-			msg = "You increase your night vision."
+			msg = "你增强夜视。"
 		if (LIGHTING_CUTOFF_HIGH)
 			lighting_cutoff_red = 35
 			lighting_cutoff_green = 35
 			lighting_cutoff_blue = 50
-			msg = "You maximize your night vision."
+			msg = "你将夜视调至最大。"
 		else
 			lighting_cutoff_red = 0
 			lighting_cutoff_green = 0
 			lighting_cutoff_blue = 0
-			msg = "You deactivate your night vision."
+			msg = "你关闭夜视。"
 	sync_lighting_plane_cutoff()
 	to_chat(src, span_notice(msg))
 
@@ -76,7 +76,7 @@
 
 	var/mob/living/basic/guardian/guardian_mob = owner
 	guardian_mob.unleash()
-	to_chat(owner, span_bolddanger("You enter scouting mode."))
+	to_chat(owner, span_bolddanger("你进入侦察模式。"))
 	return TRUE
 
 /datum/status_effect/guardian_scout_mode/on_remove()
@@ -87,7 +87,7 @@
 		COMSIG_GUARDIAN_RECALLED,
 		COMSIG_MOB_CLICKON,
 	))
-	to_chat(owner, span_bolddanger("You return to your normal mode."))
+	to_chat(owner, span_bolddanger("你恢复正常模式。"))
 	var/mob/living/basic/guardian/guardian_mob = owner
 	guardian_mob.leash_to(owner, guardian_mob.summoner)
 
@@ -109,13 +109,13 @@
 /// We can't do any ranged attacks while in scout mode.
 /datum/status_effect/guardian_scout_mode/proc/on_ranged_attack()
 	SIGNAL_HANDLER
-	owner.balloon_alert(owner, "need to be in ranged mode!")
+	owner.balloon_alert(owner, "需处于远程模式！")
 	return COMPONENT_CANCEL_RANGED_ATTACK
 
 /// Place an invisible trap which alerts the guardian when it is crossed
 /datum/action/cooldown/mob_cooldown/guardian_alarm_snare
-	name = "Surveillance Snare"
-	desc = "Place an invisible snare which will alert you when it is crossed."
+	name = "监视陷阱"
+	desc = "布置一个隐形陷阱，有人经过时会提醒你。"
 	button_icon = 'icons/mob/actions/actions_ecult.dmi'
 	button_icon_state = "eye"
 	background_icon = 'icons/hud/guardian.dmi'
@@ -133,7 +133,7 @@
 	StartCooldown(360 SECONDS)
 
 	if (length(placed_snares) >= maximum_snares)
-		var/picked_snare = tgui_input_list(owner, "Choose a snare to replace.", "Remove Snare", sort_names(placed_snares))
+		var/picked_snare = tgui_input_list(owner, "选择要替换的陷阱。", "移除陷阱", sort_names(placed_snares))
 		if(isnull(picked_snare))
 			return FALSE
 		qdel(picked_snare)
@@ -141,7 +141,7 @@
 		StartCooldown(0)
 		return FALSE
 
-	owner.balloon_alert(owner, "snare deployed") // We need feedback because they are invisible
+	owner.balloon_alert(owner, "陷阱已布置") // We need feedback because they are invisible
 	var/turf/snare_loc = get_turf(owner)
 	var/obj/effect/abstract/surveillance_snare/new_snare = new(snare_loc, owner)
 	new_snare.assign_owner(owner)
@@ -159,15 +159,15 @@
 
 /// An invisible marker placed by a ranged guardian, alerts the owner when crossed
 /obj/effect/abstract/surveillance_snare
-	name = "surveillance snare"
-	desc = "This thing is invisible, how are you examining it?"
+	name = "监视陷阱"
+	desc = "这东西是隐形的，你怎么还在检查它？"
 	invisibility = INVISIBILITY_ABSTRACT
 	/// Who do we notify when someone steps on us?
 	var/mob/living/owner
 
 /obj/effect/abstract/surveillance_snare/Initialize(mapload, spawning_guardian)
 	. = ..()
-	name = "[get_area(src)] snare ([rand(1, 1000)])"
+	name = "[get_area(src)] 陷阱（[rand(1, 1000)]）"
 	var/static/list/loc_connections = list(COMSIG_ATOM_ENTERED = PROC_REF(on_entered))
 	AddElement(/datum/element/connect_loc, loc_connections)
 
@@ -191,7 +191,7 @@
 	if (isguardian(owner) && crossed_object == guardian_owner.summoner || guardian_owner.shares_summoner(crossed_object))
 		return
 
-	var/send_message = span_bolddanger("[crossed_object] has crossed [name].")
+	var/send_message = span_bolddanger("[crossed_object] 经过了 [name]。")
 	if (!isguardian(owner) || isnull(guardian_owner.summoner))
 		to_chat(owner, send_message)
 		return
@@ -210,7 +210,7 @@
 
 /// The glass shards we throw as a guardian. They have low damage because you can fire them very very quickly.
 /obj/projectile/guardian
-	name = "crystal spray"
+	name = "水晶喷射"
 	icon_state = "guardian"
 	damage = 5
 	damage_type = BRUTE

@@ -1,6 +1,6 @@
 /// Repeatedly throw up until there's nothing left inside, regrettably sufficiently complex that it requires its own file
 /datum/action/cooldown/mob_cooldown/goose_vomit
-	name = "Vomit"
+	name = "呕吐"
 	check_flags = AB_CHECK_CONSCIOUS | AB_CHECK_INCAPACITATED
 	button_icon_state = "vomit"
 	button_icon = 'icons/mob/simple/animal.dmi'
@@ -28,11 +28,11 @@
 		return FALSE
 	if (!length(owner.contents))
 		if (feedback)
-			owner.balloon_alert(owner, "stomach empty!")
+			owner.balloon_alert(owner, "胃里空了！")
 		return FALSE
 	if (!isliving(owner))
 		if (feedback)
-			owner.balloon_alert(owner, "you're not alive!")
+			owner.balloon_alert(owner, "你已经死了！")
 		return FALSE
 	return TRUE
 
@@ -162,7 +162,7 @@
 	/// Chance per second to emote
 	var/emote_prob = 18
 	/// What things do we do while dying
-	var/static/list/emotes = list("chokes.", "coughs.", "gasps.", "tries urgently to breathe.", "shudders violently.", "wheezes.")
+	var/static/list/emotes = list("噎住了。", "咳嗽着。", "喘不上气。", "拼命想要呼吸。", "剧烈颤抖着。", "喘息着。")
 
 /datum/status_effect/goose_choking/tick(seconds_between_ticks)
 	if (SPT_PROB(emote_prob, seconds_between_ticks))
@@ -178,7 +178,7 @@
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 	if (duration > 0)
 		return // Saved by something, although probably by dying early
-	owner.death_message = "lets out one final oxygen-deprived honk before [owner.p_they()] go[owner.p_es()] limp and lifeless.."
+	owner.death_message = "发出最后一声缺氧的嘎叫，随后 [owner.p_they()] 瘫软下去，没了气息……"
 	owner.death()
 
 /// Don't keep dying if we died

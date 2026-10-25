@@ -1,11 +1,11 @@
 /mob/living/basic/ant
-	name = "giant ant"
-	desc = "A writhing mass of ants, glued together to make an adorable pet!"
+	name = "巨型蚂蚁"
+	desc = "一团蠕动的蚂蚁粘在一起，凑成了一只可爱的小宠物！"
 	icon = 'icons/mob/simple/pets.dmi'
 	icon_state = "ant"
 	icon_living = "ant"
 	icon_dead = "ant_dead"
-	speak_emote = list("buzzes", "chitters")
+	speak_emote = list("嗡嗡叫", "吱吱叫")
 	gender = PLURAL // We are Ven-ant
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
@@ -13,17 +13,17 @@
 	obj_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 10
-	attack_verb_continuous = "bites"
-	attack_verb_simple = "bite"
+	attack_verb_continuous = "咬"
+	attack_verb_simple = "咬"
 	attack_sound = 'sound/items/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	butcher_results = list(/obj/effect/decal/cleanable/ants = 3) //It's just a bunch of ants glued together into a larger ant
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	response_harm_continuous = "kicks"
-	response_harm_simple = "kick"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "轻轻推到一边"
+	response_disarm_simple = "轻轻推到一边"
+	response_harm_continuous = "踢"
+	response_harm_simple = "踢"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	faction = list(FACTION_NEUTRAL)
 	health = 100
@@ -43,7 +43,7 @@
 /datum/emote/ant/clack
 	key = "clack"
 	key_third_person = "clacks"
-	message = "clacks happily!"
+	message = "开心地咔嗒作响！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /mob/living/basic/ant/Initialize(mapload)

@@ -1,7 +1,7 @@
 /datum/mafia_role
 	var/name = JOB_ASSISTANT
-	var/desc = "You are a crewmember without any special abilities."
-	var/win_condition = "kill all mafia and solo killing roles."
+	var/desc = "你是一名没有任何特殊能力的船员。"
+	var/win_condition = "杀光所有黑手党成员与独行杀手。"
 	var/team = MAFIA_TEAM_TOWN
 	///how the random setup chooses which roles get put in
 	var/role_type = TOWN_OVERFLOW
@@ -117,7 +117,7 @@
 ///Same as handle_speech, but for dead players.
 /datum/mafia_role/proc/handle_speech_dead(datum/source, message)
 	SIGNAL_HANDLER
-	var/message_sent = span_changeling("<b>\[DEAD CHAT\] [source]</b>: [message]")
+	var/message_sent = span_changeling("<b>\[死者聊天\] [source]</b>：[message]")
 	mafia_game_controller.send_message(message_sent, team = MAFIA_TEAM_DEAD)
 	return MOB_DEADSAY_SIGNAL_INTERCEPT
 
@@ -158,22 +158,22 @@
 /datum/mafia_role/proc/greet()
 	mafia_alert = new(body, src)
 	SEND_SOUND(body, 'sound/ambience/misc/ambifailure.ogg')
-	to_chat(body, span_danger("You are the [name]."))
+	to_chat(body, span_danger("你是[name]。"))
 	to_chat(body, span_danger("[desc]"))
 	switch(team)
 		if(MAFIA_TEAM_MAFIA)
-			to_chat(body,span_danger("You and your co-conspirators win if you outnumber crewmembers."))
+			to_chat(body,span_danger("如果你与同谋的人数超过船员，你们就获胜。"))
 		if(MAFIA_TEAM_TOWN)
-			to_chat(body,span_danger("You are a crewmember. Find out and lynch the changelings!"))
+			to_chat(body,span_danger("你是一名船员。找出并投票处决变形怪！"))
 		if(MAFIA_TEAM_SOLO)
-			to_chat(body,span_danger("You are not aligned to town or mafia. Accomplish your own objectives!"))
-	to_chat(body, "<span class='warningplain'><b>Be sure to read <a href=\"https://tgstation13.org/wiki/Mafia\">the wiki page</a> to learn more, if you have no idea what's going on.</b></span>")
+			to_chat(body,span_danger("你不属于镇民也不属于黑手党。完成你自己的目标！"))
+	to_chat(body, "<span class='warningplain'><b>如果完全不明白发生了什么，请务必阅读 <a href=\"https://tgstation13.org/wiki/Mafia\">维基页面</a> 了解详情。</b></span>")
 
 /datum/mafia_role/proc/reveal_role(datum/mafia_controller/game, verbose = FALSE)
 	if((role_flags & ROLE_REVEALED))
 		return
 	if(verbose)
-		game.send_message("<span class='big bold notice'>It is revealed that the true role of [body] [game_status == MAFIA_ALIVE ? "is" : "was"] [name]!</span>")
+		game.send_message("<span class='big bold notice'>真相揭晓：[body] 的真实身份[game_status == MAFIA_ALIVE ? "是" : "曾是"][name]！</span>")
 	var/list/oldoutfit = body.get_equipped_items()
 	for(var/thing in oldoutfit)
 		qdel(thing)
@@ -191,16 +191,16 @@
 	var/the = TRUE
 	switch(team)
 		if(MAFIA_TEAM_TOWN)
-			team_desc = "Town"
+			team_desc = "镇民"
 			team_span = "nicegreen"
 		if(MAFIA_TEAM_MAFIA)
-			team_desc = "Mafia"
+			team_desc = "黑手党"
 			team_span = "red"
 		if(MAFIA_TEAM_SOLO)
-			team_desc = "Nobody"
+			team_desc = "无阵营"
 			team_span = "comradio"
 			the = FALSE
-	result += span_notice("The [span_bold("[name]")] is aligned with [the ? "the " : ""]<span class='[team_span]'>[team_desc]</span>")
-	result += "<span class='bold notice'>\"[initial(desc)]\"</span>"
-	result += span_notice("[name] wins when they [win_condition]")
+	result += span_notice("[span_bold("[name]")] 的阵营是[the ? "" : ""]<span class='[team_span]'>[team_desc]</span>")
+	result += "<span class='bold notice'>“[initial(desc)]”</span>"
+	result += span_notice("[name] 的获胜条件：[win_condition]")
 	to_chat(clueless, result.Join("</br>"))

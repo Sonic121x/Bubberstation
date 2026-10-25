@@ -8,7 +8,7 @@
 	/// Message sent to the recovered crew, constructed from the different death lores
 	var/list/death_lore = list()
 	/// Lore we give on revival, this is the first line
-	var/area_lore = "I was doing something"
+	var/area_lore = "我当时正在做某件事。"
 	/// Weight given to this class. Setting this is all that's needed for it to be rollable
 	var/weight
 	/// Different character archetypes we can spawn
@@ -136,7 +136,7 @@
 /// This is the reason we died
 /datum/corpse_damage/cause_of_death
 	/// I was in x, [when I ....]
-	var/cause_of_death = "when I tripped and died."
+	var/cause_of_death = "就在那时，我绊了一跤，就这么死了。"
 
 /// Some post mortem damages from space vultures
 /datum/corpse_damage/post_mortem

@@ -1,6 +1,6 @@
 /datum/job/scientist
 	title = JOB_SCIENTIST
-	description = "Do experiments, perform research, feed the slimes, make bombs."
+	description = "做实验，搞科研，喂养史莱姆，制造炸弹。"
 	faction = FACTION_STATION
 	total_positions = 5
 	spawn_positions = 3
@@ -30,7 +30,7 @@
 		/obj/item/raw_anomaly_core/random = 10,
 		/obj/item/disk/design_disk/bepis = 2,
 	)
-	rpg_title = "Thaumaturgist"
+	rpg_title = "奇术师"
 	job_flags = STATION_JOB_FLAGS
 
 	job_tone = "boom"

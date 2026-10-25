@@ -1,12 +1,12 @@
 /area/ruin/space/meateor
-	name = "\improper Organic Asteroid"
+	name = "\improper 有机小行星"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /obj/item/paper/fluff/ruins/meateor/letter
-	name = "letter"
-	default_raw_text = {"We offer our sincerest congratulations, to be chosen to take this journey is an honour and privilege afforded to few.
-	<br> While you are walking in the footsteps of the divine, don't forget about the rest of us back at the farm!
-	<br> <This letter has been signed by 15 people.>"}
+	name = "信件"
+	default_raw_text = {"我们致以最诚挚的祝贺，被选中踏上这段旅程，是少数人才能享有的荣誉与特权。
+	<br> 当你行走在神明的足迹之上时，别忘了我们这些还留在农场的人！
+	<br> <这封信上有 15 个人的签名。>"}
 
 /// Tiger cultist corpse but with an exit wound
 /obj/effect/mob_spawn/corpse/human/tigercultist/perforated
@@ -22,8 +22,8 @@
 
 /// A fun drink enjoyed by the tiger cooperative, might corrode your brain if you drink the whole bottle
 /obj/item/reagent_containers/cup/glass/bottle/ritual_wine
-	name = "ritual wine"
-	desc = "A bottle filled with liquids of a dubious nature, often enjoyed by members of the Tiger Cooperative."
+	name = "仪式葡萄酒"
+	desc = "一瓶装满了性质可疑的液体，猛虎合作社的成员常常享用。"
 	icon_state = "winebottle"
 	list_reagents = list(
 		/datum/reagent/drug/mushroomhallucinogen = 25,
@@ -59,8 +59,8 @@
 
 /// A sort of loot box for organs, cut it open and find a prize
 /obj/structure/meateor_fluff/flesh_pod
-	name = "flesh pod"
-	desc = "A quivering pod of living meat. Something is pulsing inside."
+	name = "血肉荚"
+	desc = "一个颤动的活肉荚。里面有东西在搏动。"
 	icon_state = "flesh_pod"
 	max_integrity = 120
 	density = TRUE
@@ -104,7 +104,7 @@
 
 /// Cut the pod open and destroy it
 /obj/structure/meateor_fluff/flesh_pod/proc/cut_open(mob/user)
-	balloon_alert(user, "slicing...")
+	balloon_alert(user, "正在切割……")
 	if (!do_after(user, 3 SECONDS, target = src))
 		return
 	take_damage(max_integrity)
@@ -117,8 +117,8 @@
 	return ..()
 
 /obj/structure/meateor_fluff/flesh_pod_open
-	name = "flesh pod"
-	desc = "A pod of living meat, this one has been hollowed out."
+	name = "血肉荚"
+	desc = "一个活肉荚，这个已经被掏空了。"
 	icon_state = "flesh_pod_open"
 	max_integrity = 60
 
@@ -128,8 +128,8 @@
 
 /// Decorative fluff egg object
 /obj/structure/meateor_fluff/abandoned_headcrab_egg
-	name = "meaty eggs"
-	desc = "A mass of fleshy, egg-shaped nodes."
+	name = "肉蛋"
+	desc = "一团肉质的、蛋形的结节。"
 	icon_state = "eggs"
 	max_integrity = 15
 

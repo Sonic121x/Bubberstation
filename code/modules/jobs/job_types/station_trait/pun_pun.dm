@@ -1,11 +1,11 @@
 ///Special job, active during monkey day.
 /datum/job/pun_pun
 	title = JOB_PUN_PUN
-	description = "Assist the service department by serving drinks and food and entertaining the crew."
+	description = "协助服务部门提供饮品与食物，并娱乐全体船员。"
 	faction = FACTION_STATION
 	total_positions = 0
 	spawn_positions = 0
-	supervisors = "the Bartender"
+	supervisors = "调酒师"
 	spawn_type = /mob/living/carbon/human/species/monkey/punpun
 	outfit = /datum/outfit/job/pun_pun
 	config_tag = "PUN_PUN"
@@ -22,7 +22,7 @@
 		/obj/item/book/granter/sign_language = 1,
 		/obj/item/food/monkeycube = 1,
 	)
-	rpg_title = "Homunculus"
+	rpg_title = "人造人"
 	allow_bureaucratic_error = FALSE
 	job_flags = (STATION_JOB_FLAGS|STATION_TRAIT_JOB_FLAGS)&~JOB_ASSIGN_QUIRKS
 

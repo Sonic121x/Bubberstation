@@ -4,78 +4,78 @@
 // [Lore Papers]
 // clues to traps that exist in the ruin or just insights into the backstory of the place
 /obj/item/paper/fluff/ruins/hauntedtradingpost/warning
-	name = "Last Warning"
-	default_raw_text = "Next person who breaks a vending machine fucking around with those fucking toy guns gets fired on the spot. Try me. I am SICK of this shit.<BR><BR>Signed, Your Fucking Boss (Who Can Fucking Fire Your Ass)"
+	name = "最后警告"
+	default_raw_text = "下一个拿着那些该死的玩具枪乱搞、把自动售货机弄坏的人，当场开除。不信试试。我受够这狗屎了。<BR><BR>署名：你他妈的老板（完全有权他妈的开除你）"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/warning/turrets
-	name = "Warning! Important! Read this!"
-	default_raw_text = "Foam darts do not go in the defence turrets! Live ammo only!"
+	name = "警告！重要！读这个！"
+	default_raw_text = "泡沫飞镖不要装进防御炮塔！只能装实弹！"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/brainstorming
-	name = "Notes"
-	default_raw_text = "Branding: Pizza In Your Pocket (check focus groups)<BR><BR>Tomato Mozzerella Basil<BR>etc<BR><BR>Spider 17-02667 Store 31-00314<BR><BR>18,000 approx BSD<BR><BR>common allergens - ?<BR><BR><BR>6127"
+	name = "笔记"
+	default_raw_text = "品牌命名：口袋里的披萨（查一下焦点小组）<BR><BR>番茄 马苏里拉 罗勒<BR>等等<BR><BR>Spider 17-02667 门店 31-00314<BR><BR>约 18,000 BSD<BR><BR>常见过敏原——？<BR><BR><BR>6127"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/brainstorming/eureka
-	default_raw_text = "Got some ingredients from the moth trading fleet and used some of our discretionary budget to hire some factory space. Prototypes are going down well with both public and employees. If we can get central to fund mass production we'll be seeing a 18% permanant increase in regional profit according to AI. This fits the local brunch market *perfectly*."
+	default_raw_text = "从蛾族贸易舰队弄到了一些原料，又动用了我们的一部分自由支配预算租下了一些厂房空间。原型产品在公众和员工中都反响不错。如果能争取到中央为量产出资，根据 AI 的测算，我们的地区利润将永久增长 18%。这*完美*契合当地的早午餐市场。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/brainstorming/eureka2
-	default_raw_text = "Early experiments with a fully carb-free recipe going well. Taste tests are all positive, just need a way to reduce costs."
+	default_raw_text = "完全无碳水配方的早期实验进展顺利。口味测试全部正面，只差降低成本的办法。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/brainstorming/eureka3
-	default_raw_text = "PROJECT BIG DONK<BR>RnD has a few prototypes prepared.<BR>Testing will be complete by the end of the week."
+	default_raw_text = "大咚克计划<BR>研发部已经准备好了几个原型。<BR>测试将在本周末完成。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/rpgclub
-	name = "RPG Club"
-	default_raw_text = "RPG Club is every Thursday from 20:00 to 01:00 AM. Entry to the break room is strictly by invitation only during that period of time. <BR> <BR> We apologise for any inconvenience."
+	name = "RPG 俱乐部"
+	default_raw_text = "RPG 俱乐部每周四 20:00 至凌晨 01:00 举行。该时段内进入休息室严格凭邀请。 <BR> <BR> 如有不便，敬请谅解。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/rpgrules
-	name = "GM Notes"
-	default_raw_text = "Session 4 NPCS <BR> Shadow Warriors <BR> S  A  T  C  H <BR> 40 65 40 15 10 <BR><BR>Shadow Clan Underlord <BR> S  A  T  C  H <BR> 40 65 40 15 10 <BR>Note: Gets shadow magic.<BR><BR><BR>Dire Corgi <BR> S  A  T  C  H <BR> 60 25 65 25 12 <BR><BR>If they beat this let them roll on loot table 4 twice but if it's 65-70 or 15-30 make it magic boots instead."
+	name = "主持人笔记"
+	default_raw_text = "第 4 场游戏的非玩家角色 <BR> 暗影战士 <BR> S  A  T  C  H <BR> 40 65 40 15 10 <BR><BR>暗影氏族霸主 <BR> S  A  T  C  H <BR> 40 65 40 15 10 <BR>备注：会暗影魔法。<BR><BR><BR>凶暴柯基 <BR> S  A  T  C  H <BR> 60 25 65 25 12 <BR><BR>如果他们打赢了，让他们在战利品表 4 上掷两次；但如果掷出 65-70 或 15-30，就换成魔法靴。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/curatorsnote
-	name = "For Adventurers"
-	default_raw_text = "The food court and the stalls are safe, everywhere else isn't. There's safes in the stalls and I didn't have a way to open them so if you can get whatever's inside, good for you. The employees area can be entered by tailing the bots, but security systems are active back there. I got shot by a turret taking a look, and when I stitched myself up and tried the other door I walked into a booby trap and nearly lost an arm.<BR><BR>If you're investigating this signal - BEWARE.<BR>For the record, I decided nothing in there's worth the risk. If you're braver than me, good luck.<BR>Signed, Curator P."
+	name = "致冒险者"
+	default_raw_text = "美食广场和摊位是安全的，其他地方都不安全。摊位里有保险箱，我没法打开它们，所以你要是能弄到里面的东西，算你厉害。跟着机器人就能进入员工区，但那里的安保系统是开启的。我探头看了一眼就被炮塔打了一枪，等我给自己缝好伤口、试着走另一扇门时，又踩进了陷阱，差点丢了一条胳膊。<BR><BR>如果你是在调查这个信号——小心。<BR>说句实话，我觉得里面没有任何东西值得冒这个险。如果你比我勇敢，祝你好运。<BR>署名：P 馆长。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/officememo
-	name = "Memo"
-	default_raw_text = "The AI-Guided Defense System Will Stay Active Indefinitely To Protect Company Property. Please Ensure All Personal Items Are Removed From The Premises, As They Will Be Impossible To Recover If Forgotten. <BR><BR> Donk Co. Takes No Responsibility For Lost Personal Property Or Affects."
+	name = "备忘录"
+	default_raw_text = "AI 制导防御系统将无限期保持启用，以保护公司财产。请务必将所有个人物品从厂区内带走，因为一旦遗忘，将无法取回。 <BR><BR> 咚克公司对丢失的个人财产或物品概不负责。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/receipt
-	name = "Old Receipt"
-	desc = "A ratty old sales receipt printed on cheap thermal paper."
-	default_raw_text = "DONK CO OUTLET 6013<BR>YOUR SERVER TODAY WAS: COLM<BR><BR>2x DONKPOCKETPIZBOX    400<BR>1x CRYPTOGRAPHICSEQ    800<BR>2x CRYPTOGRAPHICTOY    200<BR>1x DONKPOCKETPLUSHY    120<BR><BR>TOTAL VALUE            1520<BR><BR>PAYMENT: CASH"
+	name = "旧收据"
+	desc = "一张印在廉价热敏纸上的破旧销售收据。"
+	default_raw_text = "咚克公司门店 6013<BR>今日为你服务的店员：COLM<BR><BR>2x DONKPOCKETPIZBOX    400<BR>1x CRYPTOGRAPHICSEQ    800<BR>2x CRYPTOGRAPHICTOY    200<BR>1x DONKPOCKETPLUSHY    120<BR><BR>总金额            1520<BR><BR>支付方式：现金"
 	icon_state = "paperslip"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/receipt/alternate
-	default_raw_text = "DONK CO OUTLET 6013<BR>YOUR SERVER TODAY WAS: VLAD<BR><BR>1x DONKPOCKETBERBOX    200<BR>1x GORLEXMODSUITRED    1400<BR>1x MODSUITMICROWAVE    200<BR><BR>TOTAL VALUE            1800<BR><BR>PAYMENT: CASH"
+	default_raw_text = "咚克公司门店 6013<BR>今日为你服务的店员：VLAD<BR><BR>1x DONKPOCKETBERBOX    200<BR>1x GORLEXMODSUITRED    1400<BR>1x MODSUITMICROWAVE    200<BR><BR>总金额            1800<BR><BR>支付方式：现金"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/receipt/alternate_alt
-	default_raw_text = "DONK CO OUTLET 6013<BR>YOUR SERVER TODAY WAS: COLM<BR><BR>10xDONKPOCKETORGBOX   2000<BR>4x GORLEXMODSUITRED    9600<BR>4x MODSUITMICROWAVE    800<BR><BR>TOTAL VALUE           13400<BR><BR>PAYMENT: CARD"
+	default_raw_text = "咚克公司门店 6013<BR>今日为你服务的店员：COLM<BR><BR>10xDONKPOCKETORGBOX   2000<BR>4x GORLEXMODSUITRED    9600<BR>4x MODSUITMICROWAVE    800<BR><BR>总金额           13400<BR><BR>支付方式：刷卡"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/nomodsuits
-	name = "Notice"
-	desc = "A bunch of words have been written on this slip of paper. Truly, this is the future."
-	default_raw_text = "We are SOLD OUT of modsuits."
+	name = "通知"
+	desc = "这张纸片上写了一堆字。真是的，这就是未来。"
+	default_raw_text = "我们的 MOD 套装已售罄。"
 	icon_state = "paperslip"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/oldnote
-	name = "Old Note"
-	default_raw_text = "Remember to check all the ammo before it's fed into the turrets. If the wrong caliber is loaded, the turrets will malfunction.<BR>We use 9mm ammunition ONLY."
+	name = "旧便条"
+	default_raw_text = "记得在弹药装进炮塔前检查所有弹药。如果装错口径，炮塔会故障。<BR>我们只用 9 毫米弹药。"
 
 /obj/item/paper/fluff/ruins/hauntedtradingpost/oldnote/aiclue
-	name = "Old Handwritten Note"
-	default_raw_text = "All the appliances are now hooked up to the AI. If there's any problems, report it to the Cybersun rep (Mr Satung)."
+	name = "旧手写便条"
+	default_raw_text = "所有电器现在都接入 AI 了。如果有任何问题，向赛博太阳的代表（萨通先生）报告。"
 
 // [Outpost ID Cards]
 //ID cards for the space ruin
 /obj/item/card/id/away/donk
-	name = "\improper Donk Co. ID Card"
-	desc = "A plastic card that identifies its bearer as an employee of Donk Co. There are electronic chips embedded to communicate with airlocks and other machines. It does not have a name attached."
+	name = "\improper 咚克公司 ID 卡"
+	desc = "一张塑料卡片，证明持卡人是咚克公司的员工。卡内嵌有电子芯片，用于与气闸及其他机器通讯。卡上没有附姓名。"
 	icon_state = "card_donk"
 	trim = /datum/id_trim/away/hauntedtradingpost
 
 /obj/item/card/id/away/donk/boss
-	desc = "A plastic card that identifies its bearer as a senior employee of Donk Co. There are electronic chips embedded to communicate with airlocks and other machines. It does not have a name attached."
+	desc = "一张塑料卡片，证明持卡人是咚克公司的高级员工。卡内嵌有电子芯片，用于与气闸及其他机器通讯。卡上没有附姓名。"
 	icon_state = "card_donkboss"
 	trim = /datum/id_trim/away/hauntedtradingpost/boss
 
@@ -83,8 +83,8 @@
 // loot & weird items that should only exist in hauntedtradingpost.dmm
 //aquarium with two donkfish in it
 /obj/structure/aquarium/donkfish
-	name = "office aquarium"
-	desc = "A home for captive fish. This one has 'DONK CO' engraved on the glass."
+	name = "办公室水族箱"
+	desc = "圈养鱼类的家。这一个的玻璃上刻着“咚克公司”。"
 	init_mode = AQUARIUM_MODE_SAFE
 
 /obj/structure/aquarium/donkfish/Initialize(mapload)
@@ -96,8 +96,8 @@
 
 //gimmick ketchup bottle for healing minor injuries
 /obj/item/reagent_containers/condiment/donksauce
-	name = "\improper Donk Co. Secret Sauce"
-	desc = "The famous ketchup with a highly classified recipe."
+	name = "\improper 咚克公司秘制酱"
+	desc = "那款著名的番茄酱，配方高度机密。"
 	list_reagents = list(
 		/datum/reagent/consumable/ketchup = 25,
 		/datum/reagent/medicine/omnizine = 10,
@@ -116,7 +116,7 @@
 //cyborg holobarriers that die when the boss dies, how exciting
 #define SELFDESTRUCT_QUEUE "hauntedtradingpost_sd" //make sure it matches the AI cores ID
 /obj/structure/holosign/barrier/cyborg/cybersun_ai_shield
-	desc = "A fragile holographic energy field projected by an AI core. It keeps unwanted humanoids at safe distance."
+	desc = "由 AI 核心投射的脆弱全息能量场。它能让不受欢迎的人形生物保持在安全距离之外。"
 
 /obj/structure/holosign/barrier/cyborg/cybersun_ai_shield/Initialize(mapload)
 	. = ..()
@@ -125,8 +125,8 @@
 
 //smes that produces power, until the boss dies then it self destructs and you gotta make your own power
 /obj/machinery/power/smes/magical/cybersun
-	name = "cybersun-brand power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. It looks like any other SMES unit, except this one says 'Cybersun' on it."
+	name = "赛博太阳牌电力储存单元"
+	desc = "一台高容量超导磁储能（SMES）单元。它看起来和其他 SMES 单元没什么两样，只是这一台上写着“赛博太阳”。"
 	//is this being used as part of the haunted trading post ruin? if true, will self destruct when boss dies
 	var/donk_ai_slave = FALSE
 
@@ -138,8 +138,8 @@
 //this is a trigger for traps involving doors and shutters
 //doors get closed and bolted, shutters get cycled open/closed
 /obj/machinery/button/door/invisible_tripwire
-	name = "Sonic Tripwire"
-	desc = "An invisible trigger for shutters and doors. Triggers when someone steps on the tile."
+	name = "声波绊线"
+	desc = "用于百叶窗和门的隐形触发器。有人踏上该地砖时触发。"
 	max_integrity = 50
 	invisibility = INVISIBILITY_ABSTRACT
 	anchored = TRUE
@@ -219,8 +219,8 @@
 //trap that gloms onto the first machine it finds on its tile, and lives inside it
 //then it zaps everyone who gets close. disarm by dissassembling the machine, or running out its charges
 /obj/effect/overloader_trap
-	name = "overloader trap"
-	desc = "A trap that overloads machines to electrify people who walk nearby."
+	name = "过载陷阱"
+	desc = "一种使机器过载、以电击附近行人的陷阱。"
 	alpha = 70
 	max_integrity = 50
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -290,7 +290,7 @@
 
 /obj/effect/overloader_trap/proc/trap_alerted()
 	if(host_machine in loc) //if someone breaks or moves the machine before the trap goes off, this should fail to do anything
-		visible_message(span_boldwarning("Sparks fly from [host_machine] as it shakes vigorously!"))
+		visible_message(span_boldwarning("火花从 [host_machine] 上飞溅而出，它剧烈地摇晃着！"))
 		do_sparks(number = 3, source = host_machine)
 		host_machine.Shake(2, 1, trigger_delay)
 		addtimer(CALLBACK(src, PROC_REF(trap_effect)), trigger_delay)
@@ -299,7 +299,7 @@
 	for(var/mob/living/living_mob in range(shock_range, src))
 		if(faction_check_atom(living_mob))
 			continue
-		to_chat(living_mob, span_warning("You are struck by an arc of electricity!"))
+		to_chat(living_mob, span_warning("你被一道电弧击中！"))
 		src.Beam(living_mob, icon_state = "lightning[rand(1,12)]", time = 0.5 SECONDS)
 		living_mob.electrocute_act(shock_damage, host_machine, 1, SHOCK_NOGLOVES, stun_duration, jitter_time, stutter_time)
 	for(var/obj/item/food/deadmouse in range(shock_range, src))
@@ -317,7 +317,7 @@
 //donk turret - 9mm
 /obj/machinery/porta_turret/syndicate/donk
 	//Medium speed, medium damage, fragile. Does brute damage.
-	name = "\improper Donk Co. Defense Turret"
+	name = "\improper 咚克公司防御炮塔"
 	icon_state = "donk_lethal"
 	max_integrity = 120
 	base_icon_state = "donk"
@@ -325,7 +325,7 @@
 	lethal_projectile = /obj/projectile/bullet/c9mm/blunttip
 	lethal_projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
 	stun_projectile_sound = 'sound/items/weapons/gun/pistol/shot.ogg'
-	desc = "A ballistic machine gun auto-turret with Donk Co. branding. It uses 9mm rounds."
+	desc = "一台带有咚克公司标志的弹道机枪自动炮塔。它使用 9 毫米弹药。"
 	armor_type = /datum/armor/donk_turret
 	scan_range = 6
 	shot_delay = 1 SECONDS
@@ -345,14 +345,14 @@
 //cybersun turret - plasma beam
 /obj/machinery/porta_turret/syndicate/energy/cybersun
 	//Slow speed, high damage. Does burn damage.
-	name = "\improper Cybersun Plasma Auto-turret"
+	name = "\improper 赛博太阳等离子自动炮塔"
 	icon_state = "red_lethal"
 	base_icon_state = "red"
 	stun_projectile = /obj/projectile/energy/electrode
 	stun_projectile_sound = 'sound/items/weapons/taser.ogg'
 	lethal_projectile = /obj/projectile/beam/laser/cybersun
 	lethal_projectile_sound = 'sound/items/weapons/lasercannonfire.ogg'
-	desc = "An energy gun auto-turret with Cybersun branding. It fires high-energy plasma beams that do a lot of damage, but it can be fairly slow."
+	desc = "一台带有赛博太阳标志的能量枪自动炮塔。它发射高能等离子束，伤害很高，但射速可能相当慢。"
 	armor_type = /datum/armor/syndicate_shuttle
 	scan_range = 6
 	shot_delay = 5 SECONDS
@@ -360,8 +360,8 @@
 	has_cover = TRUE
 
 /obj/projectile/beam/laser/cybersun
-	name = "plasma beam"
-	desc = "A big red plasma beam, currently in flight."
+	name = "等离子束"
+	desc = "一道巨大的红色等离子束，正在飞行中。"
 	icon_state = "lava"
 	light_color = COLOR_DARK_RED
 	damage = 30

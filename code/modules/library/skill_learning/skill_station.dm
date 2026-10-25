@@ -2,8 +2,8 @@
 #define SKILLCHIP_REMOVAL_TIME (15 SECONDS)
 
 /obj/machinery/skill_station
-	name = "\improper Skillsoft station"
-	desc = "Learn skills with only minimal chance for brain damage."
+	name = "\improper 技能软体站"
+	desc = "学习技能，仅有极低的脑损伤风险。"
 
 	icon = 'icons/obj/machines/implant_chair.dmi'
 	icon_state = "implantchair"
@@ -87,7 +87,7 @@
 	if(!istype(tool,/obj/item/skillchip))
 		return NONE
 	if(inserted_skillchip)
-		to_chat(user,span_notice("There's already a skillchip inside."))
+		to_chat(user,span_notice("里面已经装有一枚技能芯片了。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
 		return ITEM_INTERACT_BLOCKING
@@ -125,9 +125,9 @@
 	var/mob/living/carbon/carbon_occupant = occupant
 	var/implant_msg = carbon_occupant.implant_skillchip(inserted_skillchip, FALSE)
 	if(implant_msg)
-		to_chat(carbon_occupant,span_notice("Operation failed! [implant_msg]"))
+		to_chat(carbon_occupant,span_notice("操作失败！[implant_msg]"))
 	else
-		to_chat(carbon_occupant,span_notice("Operation complete!"))
+		to_chat(carbon_occupant,span_notice("操作完成！"))
 		inserted_skillchip = null
 
 	update_appearance()
@@ -138,7 +138,7 @@
 		return
 
 	if(to_be_removed.is_on_cooldown())
-		to_chat(occupant, span_notice("DANGER! Operation cannot be completed, removal is unsafe."))
+		to_chat(occupant, span_notice("危险！无法完成操作，取出过程不安全。"))
 		CRASH("Unusual error - [usr] attempted to start removal of [to_be_removed] when the interface state should not have allowed it.")
 
 	working = TRUE
@@ -154,15 +154,15 @@
 	var/mob/living/carbon/carbon_occupant = occupant
 
 	if(to_be_removed.is_on_cooldown())
-		to_chat(carbon_occupant,span_notice("Safety mechanisms activated! Skillchip cannot be safely removed."))
+		to_chat(carbon_occupant,span_notice("安全机制已启动！无法安全取出技能芯片。"))
 		return
 
 	if(!istype(carbon_occupant))
-		to_chat(carbon_occupant,span_notice("Occupant does not appear to be a carbon-based lifeform!"))
+		to_chat(carbon_occupant,span_notice("舱内对象似乎不是碳基生命体！"))
 		return
 
 	if(!carbon_occupant.remove_skillchip(to_be_removed))
-		to_chat(carbon_occupant,span_notice("Failed to remove skillchip!"))
+		to_chat(carbon_occupant,span_notice("取出技能芯片失败！"))
 		return
 
 	if(to_be_removed.removable)
@@ -170,29 +170,29 @@
 	else
 		qdel(to_be_removed)
 
-	to_chat(carbon_occupant, span_notice("Operation complete!"))
+	to_chat(carbon_occupant, span_notice("操作完成！"))
 
 /obj/machinery/skill_station/proc/toggle_chip_active(obj/item/skillchip/to_be_toggled)
 	var/mob/living/carbon/carbon_occupant = occupant
 
 	if(to_be_toggled.is_on_cooldown())
-		to_chat(carbon_occupant,span_notice("Safety mechanisms activated! Skillchip cannot be safely modified."))
+		to_chat(carbon_occupant,span_notice("安全机制已启动！无法安全修改技能芯片。"))
 		return
 
 	if(!istype(carbon_occupant))
-		to_chat(carbon_occupant,span_notice("Occupant does not appear to be a carbon-based lifeform!"))
+		to_chat(carbon_occupant,span_notice("舱内对象似乎不是碳基生命体！"))
 		return
 
 	if(to_be_toggled.is_active())
 		var/active_msg = to_be_toggled.try_deactivate_skillchip(FALSE, FALSE)
 		if(active_msg)
-			to_chat(carbon_occupant,span_notice("Failed to deactivate skillchip! [active_msg]"))
+			to_chat(carbon_occupant,span_notice("停用技能芯片失败！[active_msg]"))
 		return
 
 	// This code will fire when to_be_toggled.active is FALSE
 	var/active_msg = to_be_toggled.try_activate_skillchip(FALSE, FALSE)
 	if(active_msg)
-		to_chat(carbon_occupant,span_notice("Failed to activate skillchip! [active_msg]"))
+		to_chat(carbon_occupant,span_notice("启用技能芯片失败！[active_msg]"))
 
 /obj/machinery/skill_station/ui_data(mob/user)
 	. = ..()
@@ -221,7 +221,7 @@
 
 	// If there's no occupant, we don't need to worry about what skillchips are in their brain.
 	if(!carbon_occupant)
-		.["error"] = "No valid occupant detected. Please consult nearest medical practitioner."
+		.["error"] = "未检测到有效的舱内对象。请咨询最近的医疗人员。"
 		.["current"] = null
 		.["complexity_used"] = null
 		.["complexity_max"] = null
@@ -233,7 +233,7 @@
 
 	// If there's no brain, we don't need to worry either.
 	if(QDELETED(occupant_brain))
-		.["error"] = "Brain not detected. Please consult nearest medical practitioner."
+		.["error"] = "未检测到大脑。请咨询最近的医疗人员。"
 		.["current"] = null
 		.["complexity_used"] = null
 		.["complexity_max"] = null
@@ -285,7 +285,7 @@
 				stack_trace("[usr] tried to toggle skillchip activation when [src] was in an invalid state.")
 				return TRUE
 			if(inserted_skillchip)
-				to_chat(occupant,span_notice("You eject the skillchip."))
+				to_chat(occupant,span_notice("你弹出了技能芯片。"))
 				var/mob/living/carbon/human/H = occupant
 				H.put_in_hands(inserted_skillchip)
 				inserted_skillchip = null

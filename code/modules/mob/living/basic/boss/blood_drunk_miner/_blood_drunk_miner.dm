@@ -10,8 +10,8 @@ Difficulty: Medium
 
 */
 /mob/living/basic/boss/blood_drunk_miner
-	name = "blood-drunk miner"
-	desc = "A miner destined to wander forever, engaged in an endless hunt."
+	name = "嗜血矿工"
+	desc = "一名注定永远游荡、投身无尽狩猎的矿工。"
 	health = 1300
 	maxHealth = 1300
 	icon_state = "miner"
@@ -21,14 +21,14 @@ Difficulty: Medium
 	health_doll_icon = "miner"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_SPECIAL|MOB_MINING
 	light_color = COLOR_LIGHT_GRAYISH_RED
-	speak_emote = list("roars")
+	speak_emote = list("咆哮")
 	speed = 2.5
 	pixel_x = -16
 	base_pixel_x = -16
 	basic_mob_flags = DEL_ON_DEATH
 	default_blood_volume = BLOOD_VOLUME_NORMAL
-	gps_name = "Resonant Signal"
-	death_message = "falls to the ground, decaying into glowing particles."
+	gps_name = "共鸣信号"
+	death_message = "倒在地上，化为一团发光的粒子消散。"
 	death_sound = SFX_BODYFALL
 	move_force = MOVE_FORCE_NORMAL //Miner beeing able to just move structures like bolted doors and glass looks kinda strange
 
@@ -168,8 +168,8 @@ Difficulty: Medium
 
 	changeNext_move(CLICK_CD_MELEE)
 	victim.visible_message(
-		span_danger("[src] slashes at [victim] with [p_their()] cleaving saw!"),
-		span_userdanger("You are slashed at by [src]'s cleaving saw!"),
+		span_danger("[src] 用[p_their()]劈砍锯斩向 [victim]！"),
+		span_userdanger("你被 [src] 的劈砍锯劈中！"),
 	)
 
 	var/delay = HAS_TRAIT(miner_saw, TRAIT_TRANSFORM_ACTIVE) ? 0.5 SECONDS : 0.3 SECONDS

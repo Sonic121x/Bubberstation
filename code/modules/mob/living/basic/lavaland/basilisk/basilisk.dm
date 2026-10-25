@@ -1,11 +1,11 @@
 /// Watchers' ground-dwelling cousins, they shoot at you until they get into melee and absorb laser fire to power up.
 /mob/living/basic/mining/basilisk
-	name = "basilisk"
-	desc = "A territorial beast, covered in a diamond shell which absorbs heat. Its stare causes victims to freeze from the inside."
+	name = "蛇怪"
+	desc = "一种领地性极强的野兽，身上覆盖着能吸收热量的钻石外壳。它的凝视会让受害者的内脏冻僵。"
 	icon_state = "basilisk"
 	icon_living = "basilisk"
 	icon_dead = "basilisk_dead"
-	speak_emote = list("chimes")
+	speak_emote = list("叮当作响")
 	damage_coeff = list(BRUTE = 1, BURN = 0.1, TOX = 1, STAMINA = 0, OXY = 1)
 	mob_biotypes = parent_type::mob_biotypes | MOB_MINERAL
 	speed = 20
@@ -14,9 +14,9 @@
 	obj_damage = 60
 	melee_damage_lower = 12
 	melee_damage_upper = 12
-	attack_verb_continuous = "bites into"
-	attack_verb_simple = "bite into"
-	throw_blocked_message = "bounces off the shell of"
+	attack_verb_continuous = "咬进"
+	attack_verb_simple = "咬进"
+	throw_blocked_message = "被坚硬外壳弹开，未能伤及"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/basilisk
