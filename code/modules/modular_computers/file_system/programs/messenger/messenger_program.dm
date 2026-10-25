@@ -7,10 +7,10 @@
 
 /datum/computer_file/program/messenger
 	filename = "nt_messenger"
-	filedesc = "Direct Messenger"
+	filedesc = "直接信使"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "text"
-	extended_desc = "This program allows old-school communication with other modular devices."
+	extended_desc = "该程序可与其他模块化设备进行老式通讯。"
 	size = 0
 	undeletable = TRUE // It comes by default in tablets, can't be downloaded, takes no space and should obviously not be able to be deleted.
 	power_cell_use = NONE
@@ -164,9 +164,9 @@
 	switch(action)
 		if("PDA_ringSet")
 			var/mob/living/user = usr
-			var/new_ringtone = tgui_input_text(user, "Enter a new ringtone", "Ringtone", ringtone, max_length = MAX_MESSAGE_LEN, encode = FALSE)
+			var/new_ringtone = tgui_input_text(user, "输入新的铃声", "铃声", ringtone, max_length = MAX_MESSAGE_LEN, encode = FALSE)
 			if(!computer.can_interact(user))
-				computer.balloon_alert(user, "can't reach!")
+				computer.balloon_alert(user, "够不到！")
 				return FALSE
 			return set_ringtone(new_ringtone, user)
 
@@ -221,11 +221,11 @@
 
 		if("PDA_sendEveryone")
 			if(!sending_and_receiving)
-				to_chat(usr, span_notice("ERROR: This device has sending disabled."))
+				to_chat(usr, span_notice("错误：此设备已禁用发送功能。"))
 				return FALSE
 
 			if(!spam_mode)
-				to_chat(usr, span_notice("ERROR: This device does not have mass-messaging perms."))
+				to_chat(usr, span_notice("错误：此设备没有群发权限。"))
 				return FALSE
 
 			if(!can_send_everyone_message())
@@ -259,7 +259,7 @@
 
 		if("PDA_sendMessage")
 			if(!sending_and_receiving)
-				to_chat(usr, span_notice("ERROR: This device has sending disabled."))
+				to_chat(usr, span_notice("错误：此设备已禁用发送功能。"))
 				return FALSE
 
 			// target ref, can either be a chat in saved_chats
@@ -286,7 +286,7 @@
 					var/datum/pda_chat/target_chat = target
 					target_messenger = target_chat.recipient?.resolve()
 					if(!istype(target_messenger))
-						to_chat(usr, span_notice("ERROR: Recipient no longer exists."))
+						to_chat(usr, span_notice("错误：收件人已不存在。"))
 						return FALSE
 				else if(istype(target, /datum/computer_file/program/messenger))
 					target_messenger = target
@@ -396,12 +396,12 @@
 		return
 	var/datum/computer_file/program/messenger/target = chat.recipient?.resolve()
 	if(!istype(target) || !istype(target.computer))
-		to_chat(user, span_notice("ERROR: Recipient no longer exists."))
+		to_chat(user, span_notice("错误：收件人已不存在。"))
 		chat.recipient = null
 		chat.can_reply = FALSE
 		return
 	var/target_name = target.computer.saved_identification
-	var/input_message = tgui_input_text(user, "Enter [mime_mode ? "emojis":"a message"]. Start with # for subtle.", "NT Messaging[target_name ? " ([target_name])" : ""]", max_length = MAX_MESSAGE_LEN, encode = FALSE) // BUBBER EDIT CHANGE - SUBTLE MESSAGES
+	var/input_message = tgui_input_text(user, "输入[mime_mode ? "表情符号":"消息"]。以 # 开头为隐蔽消息。", "纳米传讯消息[target_name ? "（[target_name]）" : ""]", max_length = MAX_MESSAGE_LEN, encode = FALSE) // BUBBER EDIT CHANGE - SUBTLE MESSAGES
 	send_message(user, input_message, list(chat), subtle = subtle) // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: send_message(user, input_message, list(chat))
 
 /// Helper proc that sends a message to everyone
@@ -511,21 +511,21 @@
 
 			if(!target_chat.can_reply)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice("错误：收件人已禁用接收功能。"))
 				continue
 
 			target_messenger = target_chat.recipient?.resolve()
 
 			if(!istype(target_messenger))
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient no longer exists."))
+					to_chat(sender, span_notice("错误：收件人已不存在。"))
 				target_chat.can_reply = FALSE
 				target_chat.recipient = null
 				continue
 
 			if(!target_messenger.sending_and_receiving)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice("错误：收件人已禁用接收功能。"))
 				continue
 
 		else if(istype(target, /datum/computer_file/program/messenger))
@@ -533,7 +533,7 @@
 
 			if(!target_messenger.sending_and_receiving)
 				if(should_alert)
-					to_chat(sender, span_notice("ERROR: Recipient has receiving disabled."))
+					to_chat(sender, span_notice("错误：收件人已禁用接收功能。"))
 				continue
 
 			target_chat = find_chat_by_recipient(REF(target))
@@ -595,7 +595,7 @@
 	if(is_within_radio_jammer_range(computer) && !rigged)
 		// different message so people know it's a radio jammer
 		if(sender)
-			to_chat(sender, span_notice("ERROR: Network unavailable, please try again later."))
+			to_chat(sender, span_notice("错误：网络不可用，请稍后再试。"))
 		if(alert_able && !alert_silenced)
 			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
 		return FALSE
@@ -634,13 +634,13 @@
 	// If it didn't reach, note that fact
 	if (!signal.data["done"])
 		if(sender)
-			to_chat(sender, span_notice("ERROR: Server is not responding."))
+			to_chat(sender, span_notice("错误：服务器无响应。"))
 		if(alert_able && !alert_silenced)
 			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
 		return FALSE
 
 	// SKYRAT EDIT BEGIN - PDA messages show a visible message; again!
-	sender.visible_message(span_notice("[sender]'s PDA rings out with the soft sound of keypresses."), vision_distance = COMBAT_MESSAGE_RANGE)
+	sender.visible_message(span_notice("[sender] 的 PDA 响起轻柔的按键声。"), vision_distance = COMBAT_MESSAGE_RANGE)
 	// SKYRAT EDIT END
 
 	var/shell_addendum = ""
@@ -649,9 +649,9 @@
 		shell_addendum = "[circuit.parent.get_creator()] "
 
 	// Log in the talk log
-	source.log_talk(message, subtle ? LOG_SUBTLER : LOG_PDA, tag="[shell_addendum][rigged ? "Rigged" : ""] PDA: [computer.saved_identification] to [signal.format_target()]") // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: source.log_talk(message, LOG_PDA, tag="[shell_addendum][rigged ? "Rigged" : ""] PDA: [computer.saved_identification] to [signal.format_target()]")
+	source.log_talk(message, subtle ? LOG_SUBTLER : LOG_PDA, tag="[shell_addendum][rigged ? "伪造" : ""] PDA：[computer.saved_identification] 发给 [signal.format_target()]") // BUBBER EDIT CHANGE - SUBTLE MESSAGES - Original: source.log_talk(message, LOG_PDA, tag="[shell_addendum][rigged ? "Rigged" : ""] PDA: [computer.saved_identification] to [signal.format_target()]")
 	if(rigged)
-		log_bomber(sender, "sent a rigged PDA message (Name: [fake_name]. Job: [fake_job]) to [english_list(stringified_targets)] [sender.is_antag() ? "" : "(SENT BY NON-ANTAG)"]")
+		log_bomber(sender, "向 [english_list(stringified_targets)] 发送了一条伪造 PDA 消息（姓名：[fake_name]，职业：[fake_job]）[sender.is_antag() ? "" : "（发送者并非反派）"]")
 
 	/** BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES - Original:
 	 *  var/ghost_message = span_game_say("[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA Message --> [span_name("[signal.format_target()]")]: \"[signal.format_message()]\"")
@@ -662,7 +662,7 @@
 	 *  to_chat(listener, "[FOLLOW_LINK(listener, source)] [ghost_message]")
 	*/
 	// Show it to ghosts
-	var/public_message = "[span_name(signal.format_sender())] [rigged ? "(as [span_name(fake_name)]) Rigged " : ""]PDA Message --> [span_name("[signal.format_target()]")]: \"[signal.format_message()]\""
+	var/public_message = "[span_name(signal.format_sender())] [rigged ? "（伪造为 [span_name(fake_name)]）" : ""]PDA 消息 --> [span_name("[signal.format_target()]")]：“[signal.format_message()]”"
 	var/ghost_message = span_game_say(public_message)
 	var/list/message_listeners = GLOB.dead_player_list + GLOB.current_observers_list
 	if(!subtle)
@@ -675,9 +675,9 @@
 
 	if(sender)
 		if(subtle)
-			to_chat(sender, span_subtlepda("Subtle PDA message sent to [signal.format_target()]: \"[message]\""))
+			to_chat(sender, span_subtlepda("已向 [signal.format_target()] 发送隐蔽 PDA 消息：“[message]”"))
 		else
-			to_chat(sender, span_info("PDA message sent to [signal.format_target()]: \"[message]\""))
+			to_chat(sender, span_info("已向 [signal.format_target()] 发送 PDA 消息：“[message]”"))
 	// BUBBER EDIT CHANGE END
 
 	if (alert_able && !alert_silenced)
@@ -748,9 +748,9 @@
 		var/photo_href = signal.data["rigged"] ? "explode" : "open"
 		var/reply
 		if(is_automated)
-			reply = "\[Automated Message\]"
+			reply = "\[自动消息\]"
 		else
-			reply = "(<a href='byond://?src=[REF(src)];choice=[reply_href];skiprefresh=1;target=[REF(chat)]'>Reply</a>)"
+			reply = "（<a href='byond://?src=[REF(src)];choice=[reply_href];skiprefresh=1;target=[REF(chat)]'>回复</a>）"
 		//BUBBER EDIT BEGIN - forward PDA messages to AIs to their shells
 		var/forwarded_message = FALSE
 		if (isAI(messaged_mob))
@@ -763,14 +763,14 @@
 
 		var/inbound_message = "[signal.format_message()]"
 		if(forwarded_message)
-			inbound_message += " - Forwarded from the AI Core PDA"
+			inbound_message += " —— 转发自 AI 核心 PDA"
 		//BUBBER EDIT END - forward PDA messages to AIs to their shells
-		var/photo_message = signal.data["photo"] ? " (<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>Photo Attached</a>)" : ""
+		var/photo_message = signal.data["photo"] ? " （<a href='byond://?src=[REF(src)];choice=[photo_href];skiprefresh=1;target=[REF(chat)]'>附有照片</a>）" : ""
 		// BUBBER EDIT CHANGE BEGIN - SUBTLE MESSAGES
 		if(is_subtle)
-			to_chat(messaged_mob, span_subtlepda("[icon2html(computer, messaged_mob)] <b>Subtle PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+			to_chat(messaged_mob, span_subtlepda("[icon2html(computer, messaged_mob)] <b>来自 [sender_title] 的隐蔽 PDA 消息，</b>“[inbound_message]”[photo_message] [reply]"))
 		else
-			to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
+			to_chat(messaged_mob, span_infoplain("[icon2html(computer, messaged_mob)] <b>来自 [sender_title] 的 PDA 消息，</b>“[inbound_message]”[photo_message] [reply]"))
 		// BUBBER EDIT CHANGE END - SUBTLE MESSAGES
 
 		SEND_SIGNAL(computer, COMSIG_COMPUTER_RECEIVED_MESSAGE, sender_title, inbound_message, photo_message)

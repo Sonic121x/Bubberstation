@@ -1,11 +1,11 @@
 /datum/computer_file/program/maintenance/cool_sword
 	filename = "cool_sword"
-	filedesc = "NtOS Cursor Replacer"
+	filedesc = "NtOS 光标替换器"
 	power_cell_use = 0
 	downloader_category = PROGRAM_CATEGORY_DEVICE
-	extended_desc = "This program allows you to customize your computer's mouse cursor, \
-		but there's only one option, let's be honest. \
-		Wear your PDA in your ID slot for it to take effect."
+	extended_desc = "该程序可让你自定义电脑的鼠标光标，\
+		但说老实话，只有一个选项。\
+		将你的 PDA 佩戴在 ID 卡槽中即可生效。"
 	can_run_on_flags = PROGRAM_PDA
 	tgui_id = "NtosCursor"
 	program_open_overlay = "generic"

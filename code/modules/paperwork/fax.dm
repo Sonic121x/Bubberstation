@@ -1,9 +1,9 @@
-GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department", "NT Complaint Department", "NT Customer Relations", "Nanotrasen Tech Support", "NT Internal Affairs Dept"))
+GLOBAL_VAR_INIT(nt_fax_department, pick("NT 人力资源部", "NT 法务部", "NT 投诉部", "NT 客户关系部", "纳米传讯技术支持", "NT 内务部"))
 GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 
 /obj/machinery/fax
-	name = "Fax Machine"
-	desc = "Bluespace technologies on the application of bureaucracy."
+	name = "传真机"
+	desc = "蓝空间技术在官僚事务上的应用。"
 	icon = 'icons/obj/machines/fax.dmi'
 	icon_state = "fax"
 	density = TRUE
@@ -60,16 +60,16 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	)
 	/// List with a fake-networks(not a fax actually), for request manager.
 	var/list/special_networks = list(
-		nanotrasen = list(fax_name = "NT HR Department", fax_id = "central_command", color = "teal", emag_needed = FALSE),
-		syndicate = list(fax_name = "Sabotage Department", fax_id = "syndicate", color = "red", emag_needed = TRUE),
+		nanotrasen = list(fax_name = "NT 人力资源部", fax_id = "central_command", color = "teal", emag_needed = FALSE),
+		syndicate = list(fax_name = "破坏部", fax_id = "syndicate", color = "red", emag_needed = TRUE),
 	)
 
 /obj/machinery/fax/auto_name
-	name = "Auto-naming Fax Machine"
+	name = "自动命名传真机"
 
 /obj/machinery/fax/auto_name/Initialize(mapload)
 	var/area/current_area = get_area(src)
-	name = "[current_area.name]'s Fax Machine"
+	name = "[current_area.name]的传真机"
 	fax_name = "[current_area.name]"
 	return ..()
 
@@ -81,35 +81,35 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	REGISTER_REQUIRED_MAP_ITEM(1, 1)
 
 /obj/machinery/fax/heads/captain
-	name = "Captain's Fax Machine"
-	fax_name = "Captain's Office"
+	name = "舰长的传真机"
+	fax_name = "舰长办公室"
 
 /obj/machinery/fax/heads/hop
-	name = "Head of Personnel's Fax Machine"
-	fax_name = "Head of Personnel's Office"
+	name = "人事主管的传真机"
+	fax_name = "人事主管办公室"
 
 /obj/machinery/fax/heads/hos
-	name = "Head of Security's Fax Machine"
-	fax_name = "Head of Security's Office"
+	name = "安保主管的传真机"
+	fax_name = "安保主管办公室"
 
 /obj/machinery/fax/heads/cmo
-	name = "Chief Medical Officer's Fax Machine"
-	fax_name = "Chief Medical Officer's Office"
+	name = "首席医疗官的传真机"
+	fax_name = "首席医疗官办公室"
 
 /obj/machinery/fax/heads/rd
-	name = "Research Director's Fax Machine"
-	fax_name = "Research Director's Office"
+	name = "科研主管的传真机"
+	fax_name = "科研主管办公室"
 
 /obj/machinery/fax/heads/ce
-	name = "Chief Engineer's Fax Machine"
-	fax_name = "Chief Engineer's Office"
+	name = "总工程师的传真机"
+	fax_name = "总工程师办公室"
 
 /obj/machinery/fax/heads/qm
-	name = "Quartermaster's Fax Machine"
-	fax_name = "Quartermaster's Office"
+	name = "货运主管的传真机"
+	fax_name = "货运主管办公室"
 
 /obj/machinery/fax/admin/syndicate
-	name = "Syndicate Fax Machine"
+	name = "辛迪加传真机"
 
 /obj/machinery/fax/admin/syndicate/Initialize(mapload)
 	fax_name = "[special_networks["syndicate"]["fax_name"]]"
@@ -118,14 +118,14 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	return ..()
 
 /obj/machinery/fax/admin
-	name = "CentCom Fax Machine"
+	name = "中央指挥部传真机"
 
 /obj/machinery/fax/admin/Initialize(mapload)
 	if (!fax_name)
 		fax_name = "[GLOB.nt_fax_department]"
 	if(!fax_id)
 		fax_id = special_networks["nanotrasen"]["fax_id"]
-	name = "[fax_name] Fax Machine"
+	name = "[fax_name] 传真机"
 	visible_to_network = FALSE
 	return ..()
 
@@ -134,7 +134,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	if (!fax_id)
 		fax_id = assign_random_name()
 	if (!fax_name)
-		fax_name = "Unregistered fax " + fax_id
+		fax_name = "未注册传真 " + fax_id
 	set_wires(new /datum/wires/fax(src))
 	register_context()
 	special_networks["nanotrasen"]["fax_name"] = GLOB.nt_fax_department
@@ -154,7 +154,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/examine()
 	. = ..()
 	if(jammed)
-		. += span_notice("Its output port is jammed and needs cleaning.")
+		. += span_notice("它的出纸口卡住了，需要清理。")
 
 
 /obj/machinery/fax/on_set_is_operational(old_value)
@@ -179,13 +179,13 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
  */
 /obj/machinery/fax/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if (!panel_open && !allow_exotic_faxes)
-		balloon_alert(user, "open panel first!")
+		balloon_alert(user, "请先打开维护面板！")
 		return FALSE
 	if (!(obj_flags & EMAGGED))
 		obj_flags |= EMAGGED
 		playsound(src, 'sound/mobs/non-humanoids/dog/growl2.ogg', 50, FALSE)
-		balloon_alert(user, "migrated to syndienet 2.0")
-		to_chat(user, span_warning("An image appears on [src] screen for a moment with Ian in the cap of a Syndicate officer."))
+		balloon_alert(user, "已迁移至辛迪加网络 2.0")
+		to_chat(user, span_warning("[src] 的屏幕上闪现一幅画面：伊恩戴着辛迪加军官的帽子。"))
 		return TRUE
 	return FALSE
 
@@ -206,16 +206,16 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/multitool_act(mob/living/user, obj/item/I)
 	if (panel_open)
 		return
-	var/new_fax_name = tgui_input_text(user, "Enter a new name for the fax machine.", "New Fax Name", max_length = 128)
+	var/new_fax_name = tgui_input_text(user, "输入传真机的新名称。", "新传真机名称", max_length = 128)
 	if (!new_fax_name)
 		return ITEM_INTERACT_SUCCESS
 	if (new_fax_name != fax_name)
 		if (fax_name_exist(new_fax_name))
 			// Being able to set the same name as another fax machine will give a lot of gimmicks for the traitor.
 			if (syndicate_network != TRUE && !(obj_flags & EMAGGED))
-				to_chat(user, span_warning("There is already a fax machine with this name on the network."))
+				to_chat(user, span_warning("网络上已经有一台同名传真机了。"))
 				return ITEM_INTERACT_SUCCESS
-		user.log_message("renamed [fax_name] (fax machine) to [new_fax_name].", LOG_GAME)
+		user.log_message("把 [fax_name]（传真机）重命名为 [new_fax_name]。", LOG_GAME)
 		fax_name = new_fax_name
 	return ITEM_INTERACT_SUCCESS
 
@@ -229,7 +229,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		return ITEM_INTERACT_SUCCESS
 	if(can_load_item(tool))
 		if(loaded_item_ref?.resolve())
-			balloon_alert(user, "item already loaded!")
+			balloon_alert(user, "已经装入了物品！")
 			return ITEM_INTERACT_BLOCKING
 		loaded_item_ref = WEAKREF(tool)
 		tool.forceMove(src)
@@ -248,7 +248,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			return FALSE
 		clean_spray.reagents.remove_reagent(/datum/reagent/space_cleaner, clean_spray.amount_per_transfer_from_this)
 		playsound(loc, 'sound/effects/spray3.ogg', 50, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
-		user.visible_message(span_notice("[user] cleans \the [src]."), span_notice("You clean \the [src]."))
+		user.visible_message(span_notice("[user] 清洁了 \the [src]。"), span_notice("你清洁了 \the [src]。"))
 		jammed = FALSE
 		return TRUE
 	if (istype(item, /obj/item/soap) || istype(item, /obj/item/rag))
@@ -256,9 +256,9 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		if (istype(item, /obj/item/soap))
 			var/obj/item/soap/used_soap = item
 			cleanspeed = used_soap.cleanspeed
-		user.visible_message(span_notice("[user] starts to clean \the [src]."), span_notice("You start to clean \the [src]..."))
+		user.visible_message(span_notice("[user] 开始清洁 \the [src]。"), span_notice("你开始清洁 \the [src]……"))
 		if (do_after(user, cleanspeed, target = src))
-			user.visible_message(span_notice("[user] cleans \the [src]."), span_notice("You clean \the [src]."))
+			user.visible_message(span_notice("[user] 清洁了 \the [src]。"), span_notice("你清洁了 \the [src]。"))
 			jammed = FALSE
 		return TRUE
 	return FALSE
@@ -353,7 +353,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		if("send_special")
 			var/obj/item/paper/fax_paper = loaded_item_ref?.resolve()
 			if(!istype(fax_paper))
-				to_chat(usr, icon2html(src.icon, usr) + span_warning("Fax cannot send all above paper on this protected network, sorry."))
+				to_chat(usr, icon2html(src.icon, usr) + span_warning("抱歉，该受保护网络上的传真机无法发送上述所有纸张。"))
 				return
 
 			fax_paper.request_state = TRUE
@@ -362,11 +362,11 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			INVOKE_ASYNC(src, PROC_REF(animate_object_travel), fax_paper, "fax_receive", find_overlay_state(fax_paper, "send"))
 			playsound(src, 'sound/machines/high_tech_confirm.ogg', 50, vary = FALSE)
 
-			history_add("Send", params["name"])
+			history_add("发送", params["name"])
 
-			GLOB.requests.fax_request(usr.client, "sent a fax message from [fax_name]/[fax_id] to [params["name"]]", list("paper" = fax_paper, "destination_id" = params["id"], "sender_name" = fax_name))
+			GLOB.requests.fax_request(usr.client, "从 [fax_name]/[fax_id] 向 [params["name"]] 发送了一份传真", list("paper" = fax_paper, "destination_id" = params["id"], "sender_name" = fax_name))
 			to_chat(GLOB.admins,
-				span_adminnotice("[icon2html(src.icon, GLOB.admins)]<b><font color=green>FAX REQUEST: </font>[ADMIN_FULLMONTY(usr)]:</b> [span_linkify("sent a fax message from [fax_name]/[fax_id][ADMIN_FLW(src)] to [html_encode(params["name"])]")] [ADMIN_SHOW_PAPER(fax_paper)] [ADMIN_PRINT_FAX(fax_paper, fax_name, params["id"])]"),
+				span_adminnotice("[icon2html(src.icon, GLOB.admins)]<b><font color=green>传真请求：</font>[ADMIN_FULLMONTY(usr)]:</b> [span_linkify("从 [fax_name]/[fax_id][ADMIN_FLW(src)] 向 [html_encode(params["name"])] 发送了一份传真")] [ADMIN_SHOW_PAPER(fax_paper)] [ADMIN_PRINT_FAX(fax_paper, fax_name, params["id"])]"),
 				type = MESSAGE_TYPE_PRAYER,
 				confidential = TRUE)
 			for(var/client/staff as anything in GLOB.admins)
@@ -398,7 +398,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/proc/log_fax(obj/item/sent, destination_id, name)
 	if (istype(sent, /obj/item/paper))
 		var/obj/item/paper/sent_paper = sent
-		log_paper("[usr] has sent a fax with the message \"[sent_paper.get_raw_text()]\" to [name]/[destination_id].")
+		log_paper("[usr] 向 [name]/[destination_id] 发送了一份传真，内容为“[sent_paper.get_raw_text()]”。")
 		// BUBBER EDIT BEGIN
 		var/datum/db_query/query = SSdbcore.NewQuery({"
 		INSERT INTO [format_table_name("stored_faxes")] (sender, destination_fax_machine, message, roundid, relayed)
@@ -414,7 +414,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		query.Execute()
 		// BUBBER EDIT END
 		return
-	log_game("[usr] has faxed [sent] to [name]/[destination_id].]")
+	log_game("[usr] 已将 [sent] 传真至 [name]/[destination_id]。]")
 
 /**
  * The procedure for sending a paper to another fax machine.
@@ -432,11 +432,11 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 			continue
 		if (FAX.jammed)
 			do_sparks(5, TRUE, src)
-			balloon_alert(usr, "destination port jammed")
+			balloon_alert(usr, "目标端口卡纸")
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 			return FALSE
 		FAX.receive(loaded, fax_name)
-		history_add("Send", FAX.fax_name)
+		history_add("发送", FAX.fax_name)
 		INVOKE_ASYNC(src, PROC_REF(animate_object_travel), loaded, "fax_receive", find_overlay_state(loaded, "send"))
 		playsound(src, 'sound/machines/high_tech_confirm.ogg', 50, FALSE)
 		return TRUE
@@ -453,8 +453,8 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/proc/receive(obj/item/loaded, sender_name)
 	playsound(src, 'sound/machines/printer.ogg', 50, FALSE)
 	INVOKE_ASYNC(src, PROC_REF(animate_object_travel), loaded, "fax_receive", find_overlay_state(loaded, "receive"))
-	say("Received correspondence from [sender_name].")
-	history_add("Receive", sender_name)
+	say("收到来自 [sender_name] 的信件。")
+	history_add("接收", sender_name)
 	addtimer(CALLBACK(src, PROC_REF(vend_item), loaded), 1.9 SECONDS)
 	SEND_SIGNAL(src, COMSIG_FAX_MESSAGE_RECEIVED, sender_name)
 	if(LAZYLEN(fax_listeners))
@@ -480,9 +480,9 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	if(!length(targets))
 		return
 	var/datum/signal/subspace/messaging/tablet_message/signal = new(src, list(
-		"fakename" = "Fax Notificator",
-		"fakejob" = "PDA Program",
-		"message" = "Your fax [fax_name] has received a new message from [sender_name]",
+		"fakename" = "传真通知器",
+		"fakejob" = "PDA 程序",
+		"message" = "你的传真机 [fax_name] 收到了一条来自 [sender_name] 的新消息",
 		"targets" = targets,
 		"automated" = TRUE
 	))
@@ -559,7 +559,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
  * * history_type - Type of operation. By default, "Send" and "Receive" should be used.
  * * history_fax_name - The name of the fax machine that performed the operation.
  */
-/obj/machinery/fax/proc/history_add(history_type = "Send", history_fax_name)
+/obj/machinery/fax/proc/history_add(history_type = "发送", history_fax_name)
 	var/list/history_data = list()
 	history_data["history_type"] = history_type
 	history_data["history_fax_name"] = history_fax_name
@@ -595,48 +595,48 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	. = ..()
 	if (!held_item)
 		if (!panel_open)
-			context[SCREENTIP_CONTEXT_LMB] = "Open interface"
+			context[SCREENTIP_CONTEXT_LMB] = "打开界面"
 			return CONTEXTUAL_SCREENTIP_SET
-		context[SCREENTIP_CONTEXT_LMB] = "Manipulate wires"
+		context[SCREENTIP_CONTEXT_LMB] = "操作线路"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	switch (held_item.tool_behaviour)
 		if (TOOL_SCREWDRIVER)
 			if (panel_open)
-				context[SCREENTIP_CONTEXT_LMB] = "Close maintenance panel"
+				context[SCREENTIP_CONTEXT_LMB] = "关闭维护面板"
 				return CONTEXTUAL_SCREENTIP_SET
-			context[SCREENTIP_CONTEXT_LMB] = "Open maintenance panel"
+			context[SCREENTIP_CONTEXT_LMB] = "打开维护面板"
 			return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_WRENCH)
 			if (anchored)
-				context[SCREENTIP_CONTEXT_LMB] = "Unsecure"
+				context[SCREENTIP_CONTEXT_LMB] = "松开固定"
 				return CONTEXTUAL_SCREENTIP_SET
-			context[SCREENTIP_CONTEXT_LMB] = "Secure"
+			context[SCREENTIP_CONTEXT_LMB] = "固定"
 			return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_MULTITOOL)
 			if (panel_open)
-				context[SCREENTIP_CONTEXT_LMB] = "Pulse wires"
+				context[SCREENTIP_CONTEXT_LMB] = "脉冲线路"
 				return CONTEXTUAL_SCREENTIP_SET
-			context[SCREENTIP_CONTEXT_LMB] = "Rename in network"
+			context[SCREENTIP_CONTEXT_LMB] = "在网络上重命名"
 			return CONTEXTUAL_SCREENTIP_SET
 		if (TOOL_WIRECUTTER)
 			if (!panel_open)
 				return .
-			context[SCREENTIP_CONTEXT_LMB] = "Manipulate wires"
+			context[SCREENTIP_CONTEXT_LMB] = "操作线路"
 			return CONTEXTUAL_SCREENTIP_SET
 
 	if (jammed && is_type_in_list(held_item, list(/obj/item/reagent_containers/spray, /obj/item/soap, /obj/item/rag)))
-		context[SCREENTIP_CONTEXT_LMB] = "Clean output tray"
+		context[SCREENTIP_CONTEXT_LMB] = "清洁出纸托盘"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if (panel_open)
 		if (istype(held_item, /obj/item/card/emag))
-			context[SCREENTIP_CONTEXT_LMB] = "Remove network safeties"
+			context[SCREENTIP_CONTEXT_LMB] = "解除网络安全限制"
 			return CONTEXTUAL_SCREENTIP_SET
 		return .
 
 	if (is_allowed_type(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert into fax machine"
+		context[SCREENTIP_CONTEXT_LMB] = "放入传真机"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return .

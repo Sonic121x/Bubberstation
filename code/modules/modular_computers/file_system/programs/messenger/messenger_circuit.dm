@@ -33,17 +33,17 @@
 
 /obj/item/circuit_component/mod_program/messenger/populate_ports()
 	. = ..()
-	received_message = add_output_port("Message", PORT_TYPE_STRING)
-	sender_name = add_output_port("Sender Name", PORT_TYPE_STRING)
-	sender_job =  add_output_port("Sender Job", PORT_TYPE_STRING)
-	sender_device = add_output_port("Sender Device", PORT_TYPE_ATOM)
-	received = add_output_port("Received", PORT_TYPE_SIGNAL)
+	received_message = add_output_port("消息", PORT_TYPE_STRING)
+	sender_name = add_output_port("发送者姓名", PORT_TYPE_STRING)
+	sender_job =  add_output_port("发送者职业", PORT_TYPE_STRING)
+	sender_device = add_output_port("发送设备", PORT_TYPE_ATOM)
+	received = add_output_port("已接收", PORT_TYPE_SIGNAL)
 
-	message = add_input_port("Message", PORT_TYPE_STRING)
-	targets = add_input_port("Targets", PORT_TYPE_LIST(PORT_TYPE_ATOM))
+	message = add_input_port("消息", PORT_TYPE_STRING)
+	targets = add_input_port("目标", PORT_TYPE_LIST(PORT_TYPE_ATOM))
 
-	ring = add_input_port("Play Ringtone", PORT_TYPE_SIGNAL, trigger = PROC_REF(play_ringtone))
-	set_ring = add_input_port("Set Ringtone", PORT_TYPE_STRING, trigger = PROC_REF(set_ringtone))
+	ring = add_input_port("播放铃声", PORT_TYPE_SIGNAL, trigger = PROC_REF(play_ringtone))
+	set_ring = add_input_port("设置铃声", PORT_TYPE_STRING, trigger = PROC_REF(set_ringtone))
 
 /obj/item/circuit_component/mod_program/messenger/input_received(datum/port/port)
 	var/list/messenger_targets = list()
@@ -73,9 +73,9 @@
 
 /obj/item/circuit_component/mod_program/messenger/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Cooldown per recipient: [DisplayTimeText(MESSENGER_CIRCUIT_CD_PER_RECIPIENT)]", "orange", "stopwatch")
-	. += create_ui_notice("Minimum cooldown: [DisplayTimeText(MESSENGER_CIRCUIT_MIN_COOLDOWN)]", "orange", "stopwatch")
-	. += create_ui_notice("Maximum cooldown: [DisplayTimeText(MESSENGER_CIRCUIT_MAX_COOLDOWN)]", "orange", "stopwatch")
+	. += create_ui_notice("每位收件人的冷却：[DisplayTimeText(MESSENGER_CIRCUIT_CD_PER_RECIPIENT)]", "orange", "stopwatch")
+	. += create_ui_notice("最短冷却：[DisplayTimeText(MESSENGER_CIRCUIT_MIN_COOLDOWN)]", "orange", "stopwatch")
+	. += create_ui_notice("最长冷却：[DisplayTimeText(MESSENGER_CIRCUIT_MAX_COOLDOWN)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/mod_program/messenger/proc/message_received(datum/source, datum/signal/subspace/messaging/tablet_message/signal, message_job, message_name)
 	SIGNAL_HANDLER

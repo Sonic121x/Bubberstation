@@ -2,7 +2,7 @@
  * Photo
  */
 /obj/item/photo
-	name = "photo"
+	name = "照片"
 	icon = 'icons/obj/art/camera.dmi'
 	icon_state = "photo"
 	inhand_icon_state = "paper"
@@ -43,7 +43,7 @@
 		if(name_override)
 			name = P.picture_name
 		else
-			name = "photo - [P.picture_name]"
+			name = "照片 - [P.picture_name]"
 	if(setdesc && P.picture_desc)
 		desc = P.picture_desc
 
@@ -69,7 +69,7 @@
 	return ..()
 
 /obj/item/photo/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is taking one last look at \the [src]! It looks like [user.p_theyre()] giving in to death!"))//when you wanna look at photo of waifu one last time before you die...
+	user.visible_message(span_suicide("[user] 正在最后看一眼 \the [src]！看起来 [user.p_theyre()] 打算赴死了！"))//when you wanna look at photo of waifu one last time before you die...
 	user.emote("laugh", intentional = FALSE, forced = TRUE) // EVERY TIME I DO IT MAKES ME LAUGH
 	return OXYLOSS
 
@@ -81,7 +81,7 @@
 		return NONE
 	if(!user.can_write(tool))
 		return ITEM_INTERACT_BLOCKING
-	var/txt = tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", max_length = 128)
+	var/txt = tgui_input_text(user, "你想在背面写点什么？", "照片书写", max_length = 128)
 	if(!txt || !user.can_perform_action(src))
 		return ITEM_INTERACT_BLOCKING
 	playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
@@ -94,11 +94,11 @@
 	if(in_range(src, user) || isobserver(user))
 		show(user)
 	else
-		. += span_warning("You need to get closer to get a good look at this photo!")
+		. += span_warning("你需要靠近一些才能看清这张照片！")
 
 /obj/item/photo/proc/show(mob/user)
 	if(!istype(picture) || !picture.picture_image)
-		to_chat(user, span_warning("[src] seems to be blank..."))
+		to_chat(user, span_warning("[src] 似乎是空白的……"))
 		return
 	var/width_height = "width"
 	if(picture.psize_y > picture.psize_x)
@@ -108,16 +108,16 @@
 	user << browse("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='tmp_photo.png' [width_height]='480' style='image-rendering:pixelated' />" \
-		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\
+		+ "[scribble ? "<br>背面写着：<br><i>[scribble]</i>" : ""]"\
 		+ "</body></html>", "window=photo_showing;size=[scribble ? "480x580" : "480x480"]")
 	onclose(user, "[name]")
 
-GAME_VERB_SRC(/obj/item/photo, rename, usr, "Rename photo", null)
+GAME_VERB_SRC(/obj/item/photo, rename, usr, "重命名照片", null)
 
-	var/n_name = tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", max_length = MAX_NAME_LEN)
+	var/n_name = tgui_input_text(usr, "你想给这张照片取什么名字？", "照片命名", max_length = MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(n_name && (loc == usr || loc.loc && loc.loc == usr) && !IS_UNCONSCIOUS_OR_CRIT(usr) && !usr.incapacitated)
-		name = "photo[(n_name ? "- '[n_name]'" : null)]"
+		name = "照片[(n_name ? "- '[n_name]'" : null)]"
 	add_fingerprint(usr)
 
 /obj/item/photo/old

@@ -1,7 +1,7 @@
 ///A bluespace input pipe for plumbing
 /obj/machinery/plumbing/sender
-	name = "chemical beacon"
-	desc = "A bluespace anchor for chemicals. Does not require power. Use a multitool linked to a Chemical Recipient on this machine to start teleporting reagents."
+	name = "化学信标"
+	desc = "用于化学品的蓝空间锚点。不需要供电。用连接到化学接收器的多功能工具点击本机，即可开始传送试剂。"
 	icon_state = "beacon"
 	density = FALSE
 
@@ -14,7 +14,7 @@
 
 /obj/machinery/plumbing/sender/multitool_act(mob/living/user, obj/item/multitool/M)
 	if(!istype(M.buffer, /obj/machinery/plumbing/receiver))
-		to_chat(user, span_warning("Invalid buffer."))
+		to_chat(user, span_warning("无效的缓冲区。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(target)
@@ -22,7 +22,7 @@
 
 	set_teleport_target(M.buffer)
 
-	to_chat(user, span_green("You successfully link [src] to the [M.buffer]."))
+	to_chat(user, span_green("你成功地把 [src] 连接到了 [M.buffer]。"))
 	return ITEM_INTERACT_SUCCESS
 
 ///Lose our previous target and make our previous target lose us. Seperate proc because I feel like I'll need this again
@@ -44,9 +44,9 @@
 
 ///A bluespace output pipe for plumbing. Supports multiple recipients. Must be constructed with a circuit board
 /obj/machinery/plumbing/receiver
-	name = "chemical recipient"
-	desc = "Receives chemicals from one or more chemical beacons. Use a multitool on this machine and then all subsequent chemical beacons. Reset by opening the \
-	panel and cutting the main wire."
+	name = "化学接收器"
+	desc = "从一座或多座化学信标接收化学品。先用多功能工具点击本机，再依次点击后续的所有化学信标。重置方法：打开\
+	面板并剪断主电线。"
 	icon_state = "recipient"
 	base_icon_state = "recipient"
 
@@ -65,7 +65,7 @@
 
 /obj/machinery/plumbing/receiver/multitool_act(mob/living/user, obj/item/multitool/M)
 	M.set_buffer(src)
-	balloon_alert(user, "saved to multitool buffer")
+	balloon_alert(user, "已存入多功能工具缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/plumbing/receiver/process(seconds_per_tick)

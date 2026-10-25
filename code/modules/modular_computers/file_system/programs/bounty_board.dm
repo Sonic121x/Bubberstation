@@ -1,9 +1,9 @@
 /datum/computer_file/program/bounty_board
 	filename = "bountyboard"
-	filedesc = "Bounty Board Request Network"
+	filedesc = "赏金委托网络"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "bountyboard"
-	extended_desc = "A multi-platform network for placing requests across the station, with payment across the network being possible.."
+	extended_desc = "一个跨平台网络，可在全站发布委托，并支持通过网络进行付款。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 10
 	tgui_id = "NtosBountyBoard"
@@ -29,13 +29,13 @@
 			data["user"]["job"] = current_user.account_job.title
 			data["user"]["department"] = current_user.account_job.paycheck_department
 		else
-			data["user"]["job"] = "No Job"
+			data["user"]["job"] = "无职业"
 			data["user"]["department"] = DEPARTMENT_UNASSIGNED
 	else
 		data["user"] = list()
 		data["user"]["name"] = user.name
-		data["user"]["job"] = "N/A"
-		data["user"]["department"] = "N/A"
+		data["user"]["job"] = "无"
+		data["user"]["department"] = "无"
 	if(!networked)
 		GLOB.allbountyboards += computer
 		networked = TRUE
@@ -79,17 +79,17 @@
 				return TRUE
 			for(var/datum/station_request/i in GLOB.request_list)
 				if("[i.req_number]" == "[current_user.account_id]")
-					computer.say("Account already has active bounty.")
+					computer.say("该账户已有进行中的赏金。")
 					return TRUE
 			var/datum/station_request/curr_request = new /datum/station_request(current_user.account_holder, bounty_value,bounty_text,current_user.account_id, current_user)
 			GLOB.request_list += list(curr_request)
 			for(var/obj/i in GLOB.allbountyboards)
-				i.say("New bounty has been added!")
+				i.say("已添加新的赏金！")
 				playsound(i.loc, 'sound/effects/cashregister.ogg', 30, TRUE)
 			return TRUE
 		if("apply")
 			if(!current_user)
-				computer.say("Please swipe a valid ID first.")
+				computer.say("请先刷入有效的 ID 卡。")
 				return TRUE
 			if(current_user.account_holder == active_request.owner)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
@@ -101,14 +101,14 @@
 			if(!current_user.has_money(active_request.value) || (current_user.account_holder != active_request.owner))
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 				return
-			request_target.transfer_money(current_user, active_request.value, "Bounties: Request Completed")
-			computer.say("Paid out [active_request.value] [MONEY_NAME].")
+			request_target.transfer_money(current_user, active_request.value, "赏金：委托已完成")
+			computer.say("已支付 [active_request.value] [MONEY_NAME]。")
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("clear")
 			if(current_user)
 				current_user = null
-				computer.say("Account Reset.")
+				computer.say("账户已重置。")
 				return TRUE
 		if("deleteRequest")
 			if(!current_user)
@@ -117,7 +117,7 @@
 			if(active_request.owner != current_user.account_holder)
 				playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
 				return TRUE
-			computer.say("Deleted current request.")
+			computer.say("已删除当前委托。")
 			GLOB.request_list.Remove(active_request)
 			return TRUE
 		if("bountyVal")

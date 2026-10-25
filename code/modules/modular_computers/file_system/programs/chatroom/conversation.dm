@@ -2,7 +2,7 @@
 
 /datum/ntnet_conversation
 	///The title of the conversation, seen in the UI.
-	var/title = "Untitled Conversation"
+	var/title = "未命名会话"
 	//If a channel is strong, it cannot be renamed or deleted.
 	var/strong = FALSE
 	///The password to join a channel, set by an Administrator.
@@ -68,7 +68,7 @@
 	new_user.conversations |= src
 	active_clients.Add(new_user)
 	if(!silent)
-		add_status_message("[new_user.username] has joined the channel.")
+		add_status_message("[new_user.username] 加入了频道。")
 	// No operator, so we assume the channel was empty. Assign this user as operator, without the message, since you're the creator.
 	if(!channel_operator)
 		changeop(new_user, silent = TRUE)
@@ -83,7 +83,7 @@
 		return
 	if(leaving in active_clients)
 		active_clients.Remove(leaving)
-		add_status_message("[leaving.username] has left the channel.")
+		add_status_message("[leaving.username] 离开了频道。")
 	muted_clients -= leaving
 	offline_clients -= leaving
 
@@ -105,28 +105,28 @@
 		return
 	if(muted in muted_clients)
 		muted_clients.Remove(muted)
-		muted.computer.alert_call(muted, "You have been unmuted from [title]!", 'sound/machines/ping.ogg')
+		muted.computer.alert_call(muted, "你已被解除在 [title] 中的禁言！", 'sound/machines/ping.ogg')
 	else
 		muted_clients.Add(muted)
-		muted.computer.alert_call(muted, "You have been muted from [title]!")
+		muted.computer.alert_call(muted, "你已被在 [title] 中禁言！")
 
 /datum/ntnet_conversation/proc/ping_user(datum/computer_file/program/chatclient/pinger, datum/computer_file/program/chatclient/pinged)
 	if(pinger in muted_clients) //oh my god fuck off
 		return
-	add_status_message("[pinger.username] pinged [pinged.username].")
-	pinged.computer.alert_call(pinged, "You have been pinged in [title] by [pinger.username]!", 'sound/machines/ping.ogg')
+	add_status_message("[pinger.username] 提醒了 [pinged.username]。")
+	pinged.computer.alert_call(pinged, "[pinger.username] 在 [title] 中提醒了你！", 'sound/machines/ping.ogg')
 
 /datum/ntnet_conversation/proc/changeop(datum/computer_file/program/chatclient/newop, silent = FALSE)
 	if(!istype(newop))
 		CRASH("[src] is attempting to add [newop] as the operator, but it isn't a chat client.")
 	channel_operator = newop
 	if(!silent)
-		add_status_message("Channel operator status transferred to [newop.username].")
+		add_status_message("频道管理员权限已移交给 [newop.username]。")
 
 /datum/ntnet_conversation/proc/change_title(newtitle, datum/computer_file/program/chatclient/renamer)
 	if((channel_operator != renamer) || strong) // Not Authorised or channel cannot be editted
 		return FALSE
-	add_status_message("[renamer.username] has changed channel title from [title] to [newtitle]")
+	add_status_message("[renamer.username] 将频道标题从 [title] 改为 [newtitle]。")
 	title = newtitle
 
 #undef MAX_CHANNELS

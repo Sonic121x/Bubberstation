@@ -2,11 +2,11 @@
 
 /datum/computer_file/program/secureye
 	filename = "secureye"
-	filedesc = "SecurEye"
+	filedesc = "安保之眼"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	ui_header = "borg_mon.gif"
 	program_open_overlay = "generic"
-	extended_desc = "This program allows access to standard security camera networks."
+	extended_desc = "此程序可访问标准的安保摄像头网络。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_SECURITY)
 	can_run_on_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
@@ -36,8 +36,8 @@
 ///Syndicate subtype that has no access restrictions and is available on Syndinet
 /datum/computer_file/program/secureye/syndicate
 	filename = "syndeye"
-	filedesc = "SyndEye"
-	extended_desc = "This program allows for illegal access to security camera networks."
+	filedesc = "辛迪加之眼"
+	extended_desc = "此程序可非法访问安保摄像头网络。"
 	download_access = null
 	can_run_on_flags = PROGRAM_ALL
 	program_flags = PROGRAM_ON_SYNDINET_STORE | PROGRAM_UNIQUE_COPY
@@ -55,7 +55,7 @@
 ///Human AI subtype that has access to most networks on the station and can't be copied.
 /datum/computer_file/program/secureye/human_ai
 	filename = "Overseer"
-	filedesc = "OverSeer"
+	filedesc = "监视者"
 	run_access = list(ACCESS_MINISAT)
 	can_run_on_flags = PROGRAM_PDA
 	program_flags = PROGRAM_UNIQUE_COPY

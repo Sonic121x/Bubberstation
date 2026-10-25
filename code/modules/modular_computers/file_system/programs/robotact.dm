@@ -1,8 +1,8 @@
 /datum/computer_file/program/robotact
 	filename = "robotact"
-	filedesc = "RoboTact"
+	filedesc = "半机械人终端"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
-	extended_desc = "A built-in app for cyborg self-management and diagnostics."
+	extended_desc = "半机械人用于自我管理与诊断的内置应用。"
 	ui_header = "robotact.gif" //DEBUG -- new icon before PR
 	program_open_overlay = "command"
 	program_flags = PROGRAM_HEADER
@@ -14,7 +14,7 @@
 
 /datum/computer_file/program/robotact/on_start(mob/living/user)
 	if(!istype(computer, /obj/item/modular_computer/pda/silicon))
-		to_chat(user, span_warning("A warning flashes across \the [computer]: Device Incompatible."))
+		to_chat(user, span_warning("一条警告在 \the [computer] 上闪过：设备不兼容。"))
 		return FALSE
 	. = ..()
 	if(.)
@@ -90,7 +90,7 @@
 				"status" = other_borg.stat,
 				"shell_discon" = shell,
 				"charge" = other_borg.cell ? round(other_borg.cell.percent()) : null,
-				"module" = other_borg.model ? "[other_borg.model.name]" : "None",
+				"module" = other_borg.model ? "[other_borg.model.name]" : "无",
 				"ref" = REF(other_borg)
 			)
 			borggroup += list(cyborg_data)
@@ -140,9 +140,9 @@
 				cyborg.locked = FALSE
 				cyborg.update_icons()
 				if(cyborg.emagged)
-					cyborg.logevent("ChÃ¥vÃis cover lock has been [cyborg.locked ? "engaged" : "released"]") //"The cover interface glitches out for a split second"
+					cyborg.logevent("ChÃ¥vÃis 机壳盖锁已[cyborg.locked ? "锁定" : "解除"]") //"The cover interface glitches out for a split second"
 				else
-					cyborg.logevent("Chassis cover lock has been [cyborg.locked ? "engaged" : "released"]")
+					cyborg.logevent("机壳盖锁已[cyborg.locked ? "锁定" : "解除"]")
 
 		if("lawchannel")
 			cyborg.set_autosay()
@@ -153,8 +153,8 @@
 		if("alertPower")
 			if(!IS_UNCONSCIOUS_OR_CRIT(cyborg))
 				if(!cyborg.cell || !cyborg.cell.charge)
-					cyborg.visible_message(span_notice("The power warning light on [span_name("[cyborg]")] flashes urgently."), \
-						"You announce you are operating in low power mode.")
+					cyborg.visible_message(span_notice("[span_name("[cyborg]")] 上的电量警告灯急促闪烁。"), \
+						"你宣告自己正在低电量模式下运行。")
 					playsound(cyborg, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 
 		if("toggleSensors")

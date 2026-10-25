@@ -1,8 +1,8 @@
 //modular computer program version is located in code\modules\modular_computers\file_system\programs\powermonitor.dm, /datum/computer_file/program/power_monitor
 
 /obj/machinery/computer/monitor
-	name = "power monitoring console"
-	desc = "It monitors power levels across the station."
+	name = "电力监控控制台"
+	desc = "它监控着整座空间站的电力水平。"
 	icon_screen = "power"
 	icon_keyboard = "power_key"
 	light_color = LIGHT_COLOR_DIM_YELLOW

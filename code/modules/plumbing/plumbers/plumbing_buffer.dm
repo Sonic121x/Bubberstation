@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/buffer
-	name = "automatic buffer"
-	desc = "A chemical holding tank that waits for neighbouring automatic buffers to complete before allowing a withdrawal. Connect/reset by screwdrivering"
+	name = "自动缓冲罐"
+	desc = "一个化学储罐，会等待相邻的自动缓冲罐全部就绪后才允许抽取。用螺丝刀可连接或重置。"
 	icon_state = "buffer"
 	pass_flags_self = PASSMACHINE | LETPASSTHROW // It looks short enough.
 	buffer = 200
@@ -34,23 +34,23 @@
 
 /obj/machinery/plumbing/buffer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Reset connections"
+		context[SCREENTIP_CONTEXT_LMB] = "重置连接"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return ..()
 
 /obj/machinery/plumbing/buffer/examine(mob/user)
 	. = ..()
-	. += span_notice("It activates at a threshold of [activation_volume]u of reagents")
+	. += span_notice("当试剂达到 [activation_volume]u 的阈值时它就会启动")
 	switch(mode)
 		if(AB_UNREADY)
-			. += span_notice("It is filling up on reagents.")
+			. += span_notice("它正在补充试剂。")
 		if(AB_IDLE)
-			. += span_notice("It is waiting on other buffers to activate.")
+			. += span_notice("它正在等待其他缓冲罐启动。")
 		if(AB_READY)
-			. += span_notice("It is sending reagents.")
-	. += span_notice("Its activation threshold can be changed with by [EXAMINE_HINT("hand")].")
-	. += span_notice("Its connections can be changed with a [EXAMINE_HINT("screwdriver")].")
+			. += span_notice("它正在输送试剂。")
+	. += span_notice("可以用[EXAMINE_HINT("手")]更改它的启动阈值。")
+	. += span_notice("可以用[EXAMINE_HINT("螺丝刀")]更改它的连接。")
 
 /obj/machinery/plumbing/buffer/update_icon_state()
 	. = ..()

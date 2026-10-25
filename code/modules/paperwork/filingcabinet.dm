@@ -11,8 +11,8 @@
  * Filing Cabinets
  */
 /obj/structure/filingcabinet
-	name = "filing cabinet"
-	desc = "A large cabinet with drawers."
+	name = "档案柜"
+	desc = "一个带抽屉的大柜子。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "filingcabinet"
 	density = TRUE
@@ -20,12 +20,12 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 /obj/structure/filingcabinet/chestdrawer
-	name = "chest drawer"
+	name = "抽屉柜"
 	icon_state = "chestdrawer"
 
 /obj/structure/filingcabinet/chestdrawer/wheeled
-	name = "rolling chest drawer"
-	desc = "A small cabinet with drawers. This one has wheels!"
+	name = "带轮抽屉柜"
+	desc = "一个带抽屉的小柜子。这个还装了轮子！"
 	anchored = FALSE
 
 /obj/structure/filingcabinet/white
@@ -47,21 +47,21 @@
 	if(tool.w_class < WEIGHT_CLASS_NORMAL)
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You put [tool] in [src]."))
+		to_chat(user, span_notice("你把 [tool] 放进 [src]。"))
 		icon_state = "[initial(icon_state)]-open"
 		sleep(0.5 SECONDS)
 		icon_state = initial(icon_state)
 		return ITEM_INTERACT_SUCCESS
 	if(!user.combat_mode || (tool.item_flags & NOBLUDGEON))
-		to_chat(user, span_warning("You can't put [tool] in [src]!"))
+		to_chat(user, span_warning("你不能把 [tool] 放进 [src]！"))
 		return ITEM_INTERACT_BLOCKING
 	return NONE
 
 /obj/structure/filingcabinet/wrench_act_secondary(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You begin to [anchored ? "unwrench" : "wrench"] [src]."))
+	to_chat(user, span_notice("你开始[anchored ? "松开" : "拧紧"] [src] 的螺栓。"))
 	if(!tool.use_tool(src, user, 20, volume=50))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You successfully [anchored ? "unwrench" : "wrench"] [src]."))
+	to_chat(user, span_notice("你成功[anchored ? "松开" : "拧紧"]了 [src] 的螺栓。"))
 	set_anchored(!anchored)
 	return ITEM_INTERACT_SUCCESS
 
@@ -115,9 +115,9 @@
 			I.forceMove(loc)
 			if(prob(25))
 				step_rand(I)
-			to_chat(user, span_notice("You pull \a [I] out of [src] at random."))
+			to_chat(user, span_notice("你随机从 [src] 中抽出了 \a [I]。"))
 			return
-	to_chat(user, span_notice("You find nothing in [src]."))
+	to_chat(user, span_notice("你在 [src] 里什么也没找到。"))
 
 /*
  * Security Record Cabinets
@@ -154,15 +154,15 @@
 		return
 	for(var/datum/record/crew/record in GLOB.manifest.general)
 		var/obj/item/paper/med_record_paper = new /obj/item/paper(src)
-		var/med_record_text = "<CENTER><B>Medical Record</B></CENTER><BR>"
-		med_record_text += "Name: [record.name] Rank: [record.rank]<BR>\nGender: [record.gender]<BR>\nAge: [record.age]<BR>"
+		var/med_record_text = "<CENTER><B>医疗记录</B></CENTER><BR>"
+		med_record_text += "姓名：[record.name] 职衔：[record.rank]<BR>\n性别：[record.gender]<BR>\n年龄：[record.age]<BR>"
 		var/list/note_texts = list()
 		for(var/datum/medical_note/note as anything in record.medical_notes)
 			note_texts += note.content
-		med_record_text += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: [record.blood_type]<BR>\nDNA: [record.dna_string]<BR>\n<BR>\nPhysical Status: [record.physical_status]<BR>\nMental Status: [record.mental_status]<BR>\nMinor Disabilities: [record.minor_disabilities]<BR>\nDetails: [record.minor_disabilities_desc]<BR>\n<BR>\nMajor Disabilities: [record.major_disabilities]<BR>\nDetails: [record.major_disabilities_desc]<BR>\n<BR>\nImportant Notes:<BR>\n\t[jointext(note_texts, "<BR>\n\t")]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
+		med_record_text += "<BR>\n<CENTER><B>医疗数据</B></CENTER><BR>\n血型：[record.blood_type]<BR>\nDNA：[record.dna_string]<BR>\n<BR>\n身体状态：[record.physical_status]<BR>\n精神状态：[record.mental_status]<BR>\n轻微残疾：[record.minor_disabilities]<BR>\n详情：[record.minor_disabilities_desc]<BR>\n<BR>\n重大残疾：[record.major_disabilities]<BR>\n详情：[record.major_disabilities_desc]<BR>\n<BR>\n重要备注：<BR>\n\t[jointext(note_texts, "<BR>\n\t")]<BR>\n<BR>\n<CENTER><B>评论/日志</B></CENTER><BR>"
 		med_record_text += "</TT>"
 		med_record_paper.add_raw_text(med_record_text)
-		med_record_paper.name = "paper - '[record.name]'"
+		med_record_paper.name = "纸张 - '[record.name]'"
 		med_record_paper.update_appearance()
 		virgin = FALSE //tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.

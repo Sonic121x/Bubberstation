@@ -1,6 +1,6 @@
 /obj/item/folder/biscuit
-	name = "biscuit card"
-	desc = "A biscuit card. On the back, <b>DO NOT DIGEST</b> is printed in large lettering."
+	name = "饼干卡"
+	desc = "一张饼干卡。背面用大字印着<b>切勿吞食</b>。"
 	icon_state = "paperbiscuit"
 	bg_color = "#ffffff"
 	w_class = WEIGHT_CLASS_TINY
@@ -9,7 +9,7 @@
 	pickup_sound = 'sound/items/handling/disk_pickup.ogg'
 	contents_hidden = TRUE
 	paper_overlay_state = "paperbiscuit_paper"
-	folder_type_name = "biscuit"
+	folder_type_name = "饼干卡"
 	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
 	/// Is biscuit cracked open or not?
 	var/cracked = FALSE
@@ -37,7 +37,7 @@
 		contained_slip = arrived
 
 /obj/item/folder/biscuit/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] tries to eat [src]! [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 试图吃掉 [src]！看起来 [user.p_theyre()] 想自杀！"))
 	playsound(get_turf(user), 'sound/effects/wounds/crackandbleed.ogg', 40, TRUE) //Don't eat plastic cards kids, they get really sharp if you chew on them.
 	return BRUTELOSS
 
@@ -50,22 +50,22 @@
 /obj/item/folder/biscuit/proc/crack_check(mob/user)
 	if (cracked)
 		return TRUE
-	balloon_alert(user, "open first!")
+	balloon_alert(user, "请先打开！")
 	return FALSE
 
 /obj/item/folder/biscuit/examine()
 	. = ..()
 	if(cracked)
-		. += span_notice("It's been cracked open.")
+		. += span_notice("它已经被掰开了。")
 	else
-		. += span_notice("You'll need to crack it open to access its contents.")
+		. += span_notice("你需要把它掰开才能取出里面的东西。")
 		if(contained_slip)
-			. += "This one contains [contained_slip.name]."
+			. += "这一张里面装着 [contained_slip.name]。"
 
 /obj/item/folder/biscuit/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 	if((held_item == src) && !cracked)
-		context[SCREENTIP_CONTEXT_LMB] = "Crack open"
+		context[SCREENTIP_CONTEXT_LMB] = "掰开"
 		return CONTEXTUAL_SCREENTIP_SET
 
 //The next few checks are done to prevent you from reaching the contents or putting anything inside when it's not cracked open
@@ -89,7 +89,7 @@
 /obj/item/folder/biscuit/attack_self(mob/user)
 	add_fingerprint(user)
 	if (!cracked)
-		if (tgui_alert(user, "Do you want to crack it open?", "Biscuit Cracking", list("Yes", "No")) != "Yes")
+		if (tgui_alert(user, "你想把它掰开吗？", "掰开饼干卡", list("是", "否")) != "是")
 			return
 		cracked = TRUE
 		contents_hidden = FALSE
@@ -101,25 +101,25 @@
 
 //Corporate "confidential" biscuit cards
 /obj/item/folder/biscuit/confidential
-	name = "confidential biscuit card"
-	desc = "A confidential biscuit card. The tasteful blue color and NT logo on the front makes it look a little like a chocolate bar. \
-		On the back, <b>DO NOT DIGEST</b> is printed in large lettering."
+	name = "机密饼干卡"
+	desc = "一张机密饼干卡。正面雅致的蓝色与 NT 标志让它看起来有点像巧克力棒。 \
+		背面用大字印着<b>切勿吞食</b>。"
 	icon_state = "paperbiscuit_secret"
 	bg_color = "#355e9f"
 	custom_materials = list(/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.3)
 
 /obj/item/folder/biscuit/confidential/spare_id_safe_code
-	name = "spare ID safe code biscuit card"
+	name = "备用 ID 保险柜密码饼干卡"
 	contained_slip = /obj/item/paper/paperslip/corporate/fluff/spare_id_safe_code
 
 /obj/item/folder/biscuit/confidential/emergency_spare_id_safe_code
-	name = "spare emergency ID safe code biscuit card"
+	name = "备用应急 ID 保险柜密码饼干卡"
 	contained_slip = /obj/item/paper/paperslip/corporate/fluff/emergency_spare_id_safe_code
 
 //Biscuits which start open. Used for crafting, printing, and such
 /obj/item/folder/biscuit/unsealed
-	name = "biscuit card"
-	desc = "A biscuit card. On the back, <b>DO NOT DIGEST</b> is printed in large lettering."
+	name = "饼干卡"
+	desc = "一张饼干卡。背面用大字印着<b>切勿吞食</b>。"
 	icon_state = "paperbiscuit_cracked"
 	contents_hidden = FALSE
 	cracked = TRUE
@@ -131,12 +131,12 @@
 /obj/item/folder/biscuit/unsealed/examine()
 	. = ..()
 	if(!has_been_sealed)
-		. += span_notice("This one could be sealed <b>in hand</b>. Once sealed, the contents are inaccessible until cracked open again - but once opened this is irreversible.")
+		. += span_notice("这一张可以<b>在手中</b>封装。封装后，在再次掰开之前无法取出内容物——但一旦掰开便无法复原。")
 
 /obj/item/folder/biscuit/unsealed/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 	if((held_item == src) && !has_been_sealed)
-		context[SCREENTIP_CONTEXT_LMB] = "Seal"
+		context[SCREENTIP_CONTEXT_LMB] = "封装"
 		return CONTEXTUAL_SCREENTIP_SET
 
 //Asks if you want to seal the biscuit, after you do that it behaves like a normal paper biscuit.
@@ -146,7 +146,7 @@
 		return ..()
 	if(has_been_sealed)
 		return
-	if(tgui_alert(user, "Do you want to seal it? This can only be done once.", "Biscuit Sealing", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, "你想封装它吗？此操作只能进行一次。", "封装饼干卡", list("是", "否")) != "是")
 		return
 	cracked = FALSE
 	has_been_sealed = TRUE
@@ -156,8 +156,8 @@
 	update_appearance()
 
 /obj/item/folder/biscuit/unsealed/confidential
-	name = "confidential biscuit card"
-	desc = "A confidential biscuit card. The tasteful blue color and NT logo on the front makes it look a little like a chocolate bar. On the back, <b>DO NOT DIGEST</b> is printed in large lettering."
+	name = "机密饼干卡"
+	desc = "一张机密饼干卡。正面雅致的蓝色与 NT 标志让它看起来有点像巧克力棒。背面用大字印着<b>切勿吞食</b>。"
 	icon_state = "paperbiscuit_secret_cracked"
 	bg_color = "#355e9f"
 	sealed_icon = "paperbiscuit_secret"

@@ -1,8 +1,8 @@
 /datum/computer_file/program/scipaper_program
 	filename = "ntfrontier"
-	filedesc = "NT Frontier"
+	filedesc = "纳米传讯前沿"
 	downloader_category = PROGRAM_CATEGORY_SCIENCE
-	extended_desc = "Scientific paper publication and navigation software."
+	extended_desc = "科学论文发表与浏览软件。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 12
 	program_open_overlay = "research"
@@ -32,7 +32,7 @@
 	if(QDELETED(used_multitool.buffer) || !istype(used_multitool.buffer, /datum/techweb))
 		return ITEM_INTERACT_BLOCKING
 	linked_techweb = used_multitool.buffer
-	computer.balloon_alert(user, "buffer linked!")
+	computer.balloon_alert(user, "缓冲区已链接！")
 	return ITEM_INTERACT_SUCCESS
 
 /datum/computer_file/program/scipaper_program/proc/recheck_file_presence()
@@ -52,11 +52,11 @@
 		singular_experiment["description"] = experiment.description
 		singular_experiment["target"] = experiment.target_amount
 		if(istype(experiment, /datum/experiment/ordnance/explosive))
-			singular_experiment["suffix"] = "tiles"
-			singular_experiment["prefix"] = "Range"
+			singular_experiment["suffix"] = "格"
+			singular_experiment["prefix"] = "范围"
 		else if(istype(experiment, /datum/experiment/ordnance/gaseous))
-			singular_experiment["suffix"] = "moles"
-			singular_experiment["prefix"] = "Gas"
+			singular_experiment["suffix"] = "摩尔"
+			singular_experiment["prefix"] = "气体"
 		parsed_experiments += list(singular_experiment)
 
 	var/list/parsed_partners = list()
@@ -141,19 +141,19 @@
 				var/relations = linked_techweb.scientific_cooperation[partner.type]
 				switch (round(relations / SCIENTIFIC_COOPERATION_PURCHASE_MULTIPLIER)) // We use points to determine these
 					if(-INFINITY to 0)
-						data["relations"][partner.type] = "Nonexistant"
+						data["relations"][partner.type] = "不存在"
 					if(1 to 2499)
-						data["relations"][partner.type] = "Negligible"
+						data["relations"][partner.type] = "微不足道"
 					if(2500 to 4999)
-						data["relations"][partner.type] = "Limited"
+						data["relations"][partner.type] = "有限"
 					if(5000 to 9999)
-						data["relations"][partner.type] = "Cordial"
+						data["relations"][partner.type] = "友好"
 					if(10000 to 19999)
-						data["relations"][partner.type] = "Partners"
+						data["relations"][partner.type] = "合作伙伴"
 					if(20000 to INFINITY)
-						data["relations"][partner.type] = "Devoted"
+						data["relations"][partner.type] = "忠诚"
 					else
-						data["relations"][partner.type] = "Undefined"
+						data["relations"][partner.type] = "未定义"
 				data["purchaseableBoosts"][partner.type] = list()
 				var/displayable_nodes = linked_techweb.get_available_nodes() + linked_techweb.get_researched_nodes()
 				for(var/node_id in displayable_nodes)
@@ -221,7 +221,7 @@
 			if(partner && node)
 				var/possible_boost = partner.purchase_boost(linked_techweb, node)
 				if(possible_boost)
-					computer.say("Purchase successful[possible_boost == SCIPAPER_ALREADY_BOUGHT ? ", refunding [partner.boostable_nodes[params["purchased_boost"]]] points" : ""].")
+					computer.say("购买成功[possible_boost == SCIPAPER_ALREADY_BOUGHT ? "，已退还 [partner.boostable_nodes[params["purchased_boost"]]] 点" : ""]。")
 					playsound(computer, 'sound/machines/ping.ogg', 25)
 					return TRUE
 			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 25)
@@ -230,7 +230,7 @@
 /// Publication and adding points.
 /datum/computer_file/program/scipaper_program/proc/publish()
 	if(linked_techweb.add_scientific_paper(paper_to_be))
-		computer.say("\"[paper_to_be.title]\" has been published!")
+		computer.say("《[paper_to_be.title]》已发表！")
 		paper_to_be = new
 		UnregisterSignal(selected_file, COMSIG_COMPUTER_FILE_DELETE)
 		selected_file = null

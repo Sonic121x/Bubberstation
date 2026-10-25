@@ -4,9 +4,9 @@
 ///A program that enables the user to redeem randomly generated coupons for several cargo packs (mostly goodies).
 /datum/computer_file/program/coupon
 	filename = "couponmaster"
-	filedesc = "Coupon Master"
+	filedesc = "优惠券大师"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
-	extended_desc = "Program for receiving discounts for several cargo goodies. After redeeming a coupon, hit a photocopier with your PDA to print it."
+	extended_desc = "用于领取多种货运商品折扣的程序。兑换优惠券后，用你的 PDA 敲击复印机即可打印。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 5
 	tgui_id = "NtosCouponMaster"
@@ -56,24 +56,24 @@
 				return TRUE
 			var/datum/coupon_code/coupon = SSmodular_computers.discount_coupons[code]
 			if(isnull(coupon))
-				user_id.registered_account.bank_card_talk("Invalid coupon code.", TRUE)
+				user_id.registered_account.bank_card_talk("优惠券代码无效。", TRUE)
 				return TRUE
 			if(coupon.expires_in && coupon.expires_in < world.time)
-				user_id.registered_account.bank_card_talk("Expired coupon code.", TRUE)
+				user_id.registered_account.bank_card_talk("优惠券代码已过期。", TRUE)
 				return TRUE
 			if(coupon in user_id.registered_account.redeemed_coupons)
-				user_id.registered_account.bank_card_talk("Coupon [code] already redeemed.", TRUE)
+				user_id.registered_account.bank_card_talk("优惠券 [code] 已兑换过。", TRUE)
 				return TRUE
 			coupon.copy(user_id.registered_account)
 			var/static/list/goodbye = list(
-				"Have a wonderful day.",
-				"Don't forget to print it.",
-				"Time to get shopping!",
-				"Enjoy your discount!",
-				"Congratulations!",
-				"Bye Bye~.",
+				"祝你度过美好的一天。",
+				"别忘了打印它。",
+				"该去购物了！",
+				"尽情享受你的折扣吧！",
+				"恭喜！",
+				"再见～",
 			)
-			user_id.registered_account.bank_card_talk("Coupon [code] redeemed. [pick(goodbye)]", TRUE)
+			user_id.registered_account.bank_card_talk("优惠券 [code] 已兑换。[pick(goodbye)]", TRUE)
 			//Well, guess you're redeeming something else too.
 			if(prob(40) && computer.used_capacity < computer.max_capacity)
 				var/datum/computer_file/warez = new()
@@ -93,7 +93,7 @@
 		return FALSE
 	var/obj/item/card/id/user_id = computer.stored_id
 	if(!(user_id?.registered_account))
-		computer.balloon_alert(user, "no bank account found!")
+		computer.balloon_alert(user, "未找到银行账户！")
 		return TRUE
 	var/obj/machinery/photocopier/copier = tapped_atom
 	if(copier.check_busy(user))
@@ -103,7 +103,7 @@
 		if(!coupon.printed)
 			num_coupons++
 	if(!num_coupons)
-		computer.balloon_alert(user, "no coupon available!")
+		computer.balloon_alert(user, "没有可用的优惠券！")
 		return TRUE
 	copier.do_copies(CALLBACK(src, PROC_REF(print_coupon), user_id.registered_account), user, COUPON_PAPER_USE, COUPON_TONER_USE, num_coupons)
 	return TRUE

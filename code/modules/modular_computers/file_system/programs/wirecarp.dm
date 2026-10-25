@@ -1,9 +1,9 @@
 /datum/computer_file/program/ntnetmonitor
 	filename = "wirecarp"
-	filedesc = "WireCarp"
+	filedesc = "线鲤"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "comm_monitor"
-	extended_desc = "This program monitors stationwide NTNet network, provides access to logging systems, and allows for configuration changes"
+	extended_desc = "此程序可监控全站 NTNet 网络、提供日志系统的访问，并允许更改配置"
 	size = 12
 	run_access = list(ACCESS_NETWORK) //NETWORK CONTROL IS A MORE SECURE PROGRAM.
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET

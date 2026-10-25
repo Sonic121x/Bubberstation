@@ -5,11 +5,11 @@
 
 ///Eradication lock - Prevents people who aren't the owner of the suit from existing on the timeline via eradicating the suit with the intruder inside
 /obj/item/mod/module/eradication_lock
-	name = "MOD eradication lock module"
-	desc = "A module which remembers the original owner of the suit, even alternate universe \
-			versions. When a non-owner enters, the eradication lock will begin eradicating the suit \
-			from the timeline... with the intruder inside. Not the way you want to go, so it turns \
-			out to be a good deterrent."
+	name = "MOD 根除锁定模块"
+	desc = "一个能记住外骨骼最初主人的模块，即使是来自其他宇宙的 \
+			版本也不例外。当非主人进入时，根除锁定会开始将这套外骨骼 \
+			从时间线中抹除……连同里面的入侵者一起。这可不是你想要的死法，所以它 \
+			倒成了个不错的威慑手段。"
 	icon_state = "eradicationlock"
 	module_type = MODULE_USABLE
 	removable = FALSE
@@ -31,7 +31,7 @@
 
 /obj/item/mod/module/eradication_lock/on_use(mob/activator)
 	true_owner_ckey = mod.wearer.ckey
-	balloon_alert(activator, "user remembered")
+	balloon_alert(activator, "已记住使用者")
 	playsound(src, 'sound/items/pshoom/pshoom.ogg', 25, TRUE)
 	drain_power(use_energy_cost)
 
@@ -42,7 +42,7 @@
 	if(!true_owner_ckey || user.ckey == true_owner_ckey)
 		return NONE
 	if(user == mod.wearer)
-		to_chat(mod.wearer, span_userdanger("\"MODsuit compromised by timeline inhabitant! Eradicating...\""))
+		to_chat(mod.wearer, span_userdanger("“MOD 外骨骼已被时间线居民入侵！开始抹除……”"))
 		new /obj/structure/chrono_field(user.loc, user)
 	return MOD_CANCEL_ACTIVATE
 
@@ -51,16 +51,16 @@
 	SIGNAL_HANDLER
 
 	if(true_owner_ckey && user.ckey != true_owner_ckey)
-		to_chat(mod.wearer, span_userdanger("\"Timeline inhabitant tampering detected! Eradicating...\""))
+		to_chat(mod.wearer, span_userdanger("“检测到时间线居民的篡改行为！开始抹除……”"))
 		new /obj/structure/chrono_field(user.loc, user)
 		return MOD_CANCEL_REMOVAL
 
 ///Rewinder - Activating saves a point in time, after 10 seconds you will jump back to that state.
 /obj/item/mod/module/rewinder
-	name = "MOD rewinder module"
-	desc = "A module that can pull the user back through time given an anchor point to \
-			pull to. Very useful tool to get the job done, but keep in mind the suit locks for \
-			safety reasons while preparing a rewind."
+	name = "MOD 倒带模块"
+	desc = "一个模块，只要设定一个锚点，就能把使用者拉回过去。 \
+			这是完成工作的绝佳工具，但请记住，在准备回溯期间，外骨骼会 \
+			出于安全考虑而锁定。"
 	icon_state = "rewinder"
 	module_type = MODULE_USABLE
 	removable = FALSE
@@ -70,7 +70,7 @@
 	required_slots = list(ITEM_SLOT_BACK)
 
 /obj/item/mod/module/rewinder/on_use(mob/activator)
-	balloon_alert(activator, "anchor point set")
+	balloon_alert(activator, "锚点已设定")
 	playsound(src, 'sound/items/modsuit/time_anchor_set.ogg', 50, TRUE)
 	//stops all mods from triggering during rewinding
 	for(var/obj/item/mod/module/module as anything in mod.modules)
@@ -88,21 +88,21 @@
 ///Signal fired when wearer attempts to activate/deactivate suits
 /obj/item/mod/module/rewinder/proc/on_activate_block(datum/source, user)
 	SIGNAL_HANDLER
-	balloon_alert(user, "not while rewinding!")
+	balloon_alert(user, "回溯时无法执行！")
 	return MOD_CANCEL_ACTIVATE
 
 ///Signal fired when wearer attempts to trigger modules, if attempting while time is stopped
 /obj/item/mod/module/rewinder/proc/on_module_triggered(datum/source, mob/user)
 	SIGNAL_HANDLER
-	balloon_alert(user, "not while rewinding!")
+	balloon_alert(user, "回溯时无法执行！")
 	return MOD_ABORT_USE
 
 ///Timestopper - Need I really explain? It's the wizard's time stop, but the user channels it by not moving instead of a duration.
 /obj/item/mod/module/timestopper
-	name = "MOD timestopper module"
-	desc = "A module that can halt time in a small radius around the user... for as long as they \
-			want! Great for monologues or lunch breaks. Keep in mind moving will end the stop, and the \
-			module has a hefty cooldown period to avoid reality errors."
+	name = "MOD 时间停止模块"
+	desc = "一个能在使用者周围的小范围内停止时间的模块…… \
+			想停多久就停多久！非常适合发表长篇独白或吃午饭。请注意， \
+			移动会结束时间停止，而且该模块有很长的冷却时间，以避免现实错误。"
 	icon_state = "timestop"
 	module_type = MODULE_USABLE
 	removable = FALSE
@@ -115,7 +115,7 @@
 
 /obj/item/mod/module/timestopper/used(mob/activator)
 	if(timestop)
-		mod.balloon_alert(activator, "already freezing time!")
+		mod.balloon_alert(activator, "已经在冻结时间了！")
 		return FALSE
 	return ..()
 
@@ -138,19 +138,19 @@
 ///Signal fired when wearer attempts to trigger modules, if attempting while time is stopped
 /obj/item/mod/module/timestopper/proc/on_module_triggered(datum/source)
 	SIGNAL_HANDLER
-	balloon_alert(mod.wearer, "not while stopping time!")
+	balloon_alert(mod.wearer, "停止时间时无法执行！")
 	return MOD_ABORT_USE
 
 ///Signal fired when wearer attempts to activate/deactivate suits, if attempting while time is stopped
 /obj/item/mod/module/timestopper/proc/on_activate_block(datum/source, user)
 	SIGNAL_HANDLER
-	balloon_alert(user, "not while stopping time!")
+	balloon_alert(user, "停止时间时无法执行！")
 	return MOD_CANCEL_ACTIVATE
 
 ///Timeline Jumper - Infinite phasing. needs some special effects
 /obj/item/mod/module/timeline_jumper
-	name = "MOD timeline jumper module"
-	desc = "A module used to traverse timelines, phasing the user in and out of the stream of events."
+	name = "MOD 时间线跳跃模块"
+	desc = "一种用于穿越时间线的模块，能让使用者在事件洪流中相位进出。"
 	icon_state = "timeline_jumper"
 	module_type = MODULE_USABLE
 	removable = FALSE
@@ -165,14 +165,14 @@
 /obj/item/mod/module/timeline_jumper/used(mob/activator)
 	var/area/noteleport_check = get_area(mod.wearer)
 	if(noteleport_check && !check_teleport_valid(mod.wearer, get_turf(mod.wearer)))
-		to_chat(activator, span_danger("Some dull, universal force is between you and the [phased_mob ? "current timeline" : "stream between timelines"]."))
+		to_chat(activator, span_danger("某种沉闷的、宇宙般的力量横亘在你与[phased_mob ? "当前时间线" : "时间线之间的洪流"]之间。"))
 		return FALSE
 	return ..()
 
 /obj/item/mod/module/timeline_jumper/on_use(mob/activator)
 	if(!phased_mob)
 		//phasing out
-		mod.visible_message(span_warning("[mod.wearer] leaps out of the timeline!"))
+		mod.visible_message(span_warning("[mod.wearer] 跃出了时间线！"))
 		mod.wearer.SetAllImmobility(0)
 		mod.wearer.set_stamina_loss(0)
 		phased_mob = new(get_turf(mod.wearer.loc), mod.wearer)
@@ -182,7 +182,7 @@
 		phased_mob.eject_jaunter()
 		phased_mob = null
 		UnregisterSignal(mod, COMSIG_MOD_ACTIVATE)
-		mod.visible_message(span_warning("[mod.wearer] drops into the timeline!"))
+		mod.visible_message(span_warning("[mod.wearer] 落回了时间线！"))
 
 	//probably justifies its own sound but whatever
 	playsound(src, 'sound/items/modsuit/time_anchor_set.ogg', 50, TRUE)
@@ -191,20 +191,20 @@
 /obj/item/mod/module/timeline_jumper/proc/on_activate_block(datum/source, user)
 	SIGNAL_HANDLER
 	//has to be a to_chat because you're phased out.
-	to_chat(user, span_warning("Deactivating your suit while inbetween timelines would be a very bad idea."))
+	to_chat(user, span_warning("在时间线之间关闭你的外骨骼可是个非常糟糕的主意。"))
 	return MOD_CANCEL_ACTIVATE
 
 ///special subtype for phased mobs.
 /obj/effect/dummy/phased_mob/chrono
-	name = "reality static"
-	verb_say = "echoes"
+	name = "现实静电"
+	verb_say = "回响道"
 
 ///TEM - Lets you eradicate people.
 /obj/item/mod/module/tem
-	name = "MOD timestream eradication module"
-	desc = "The correction device of a fourth dimensional group outside time itself used to \
-			change the destination of a timeline. this device is capable of wiping a being from the \
-			timestream. They never are, they never were, they never will be."
+	name = "MOD 时间流抹除模块"
+	desc = "由时间之外的第四维度集团制造的校正装置，用于改变时间线的 \
+			终点。这台设备能够将一个存在从时间流中彻底抹去。他们将不复存在， \
+			从未存在过，也永远不会存在。"
 	icon_state = "chronogun"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -250,14 +250,14 @@
 /obj/item/mod/module/tem/proc/field_connect(obj/structure/chrono_field/field)
 	if(field.tem)
 		if(field.captured)
-			balloon_alert(mod.wearer, "already has connection!")
+			balloon_alert(mod.wearer, "已有连接！")
 		field_disconnect(field)
 		return
 	startpos = get_turf(mod.wearer)
 	src.field = field
 	field.tem = src
 	if(field.captured)
-		balloon_alert(mod.wearer, "connection estabilished")
+		balloon_alert(mod.wearer, "连接已建立")
 
 /**
  * ### field_disconnect
@@ -272,7 +272,7 @@
 		if(field.tem == src)
 			field.tem = null
 		if(field.captured)
-			balloon_alert(mod.wearer, "connection lost!")
+			balloon_alert(mod.wearer, "连接已断开！")
 	field = null
 	startpos = null
 
@@ -294,7 +294,7 @@
 	return FALSE
 
 /obj/projectile/energy/chrono_beam
-	name = "eradication beam"
+	name = "根除光束"
 	icon_state = "chronobolt"
 	range = CHRONO_BEAM_RANGE
 	///Reference to the tem... given by the tem! weakref because back in the day we didn't know about harddels- or maybe we didn't care.
@@ -310,8 +310,8 @@
 	return ..()
 
 /obj/structure/chrono_field
-	name = "eradication field"
-	desc = "An aura of time-bluespace energy."
+	name = "根除场"
+	desc = "一圈由时间-蓝空间能量构成的光环。"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	density = FALSE
@@ -350,7 +350,7 @@
 		mob_underlay = mutable_appearance(cached_icon, "frame1")
 		update_appearance()
 
-		desc = initial(desc) + "<br>[span_info("It appears to contain [target.name].")]"
+		desc = initial(desc) + "<br>[span_info("里面似乎装着 [target.name]。")]"
 	START_PROCESSING(SSobj, src)
 	return ..()
 
@@ -379,7 +379,7 @@
 			freed_movable.forceMove(drop_location())
 		qdel(src)
 	else if(timetokill <= 0)
-		to_chat(captured, span_notice("As the last essence of your being is erased from time, you are taken back to your most enjoyable memory. You feel happy..."))
+		to_chat(captured, span_notice("随着你存在的最后一丝本质被从时间中抹去，你被带回了最愉快的记忆中。你感到很快乐……"))
 		var/mob/dead/observer/ghost = captured.ghostize(can_reenter_corpse = TRUE)
 		if(captured.mind)
 			if(ghost)

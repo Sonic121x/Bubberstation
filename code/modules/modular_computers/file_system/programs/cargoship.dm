@@ -1,9 +1,9 @@
 /datum/computer_file/program/shipping
 	filename = "shipping"
-	filedesc = "GrandArk Exporter"
+	filedesc = "大方舟出口程序"
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "shipping"
-	extended_desc = "A combination printer/scanner app that enables modular computers to print barcodes for easy scanning and shipping."
+	extended_desc = "一款集打印与扫描于一体的应用，可让模块化计算机打印条形码，便于扫描与发货。"
 	size = 6
 	tgui_id = "NtosShipping"
 	program_icon = "tags"
@@ -21,7 +21,7 @@
 
 	data["has_id_slot"] = !!computer.stored_id
 	data["paperamt"] = "[computer.stored_paper] / [computer.max_paper]"
-	data["card_owner"] = computer.stored_id || "No Card Inserted."
+	data["card_owner"] = computer.stored_id || "未插入卡片。"
 	data["current_user"] = payments_acc ? payments_acc.account_holder : null
 	data["barcode_split"] = cut_multiplier * 100
 	return data
@@ -43,17 +43,17 @@
 		if("resetid")
 			payments_acc = null
 		if("setsplit")
-			var/potential_cut = input("How much would you like to pay out to the registered card?","Percentage Profit ([round(cut_min*100)]% - [round(cut_max*100)]%)") as num|null
+			var/potential_cut = input("你希望向登记的卡片支付多少利润分成？","利润分成（[round(cut_min*100)]% - [round(cut_max*100)]%）") as num|null
 			cut_multiplier = potential_cut ? clamp(round(potential_cut/100, cut_min), cut_min, cut_max) : initial(cut_multiplier)
 		if("print")
 			if(computer.stored_paper <= 0)
-				to_chat(usr, span_notice("Printer is out of paper."))
+				to_chat(usr, span_notice("打印机缺纸。"))
 				return TRUE
 			if(!payments_acc)
-				to_chat(usr, span_notice("Software error: Please set a current user first."))
+				to_chat(usr, span_notice("软件错误：请先设置当前用户。"))
 				return TRUE
 			var/obj/item/barcode/barcode = new /obj/item/barcode(get_turf(computer.ui_host()))
 			barcode.payments_acc = payments_acc
 			barcode.cut_multiplier = cut_multiplier
 			computer.stored_paper--
-			to_chat(usr, span_notice("The computer prints out a barcode."))
+			to_chat(usr, span_notice("计算机打印出一张条形码。"))

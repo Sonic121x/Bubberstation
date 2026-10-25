@@ -1,7 +1,7 @@
 ///We can empty beakers in here and everything
 /obj/machinery/plumbing/input
-	name = "input gate"
-	desc = "Can be manually filled with reagents from containers."
+	name = "输入口"
+	desc = "可以用容器手动往里面灌入试剂。"
 	icon_state = "pipe_input"
 	pass_flags_self = PASSMACHINE | LETPASSTHROW // Small
 	reagent_flags = /obj/machinery/plumbing::reagent_flags | REFILLABLE
@@ -12,8 +12,8 @@
 
 ///We can fill beakers in here and everything. we dont inheret from input because it has nothing that we need
 /obj/machinery/plumbing/output
-	name = "output gate"
-	desc = "A manual output for plumbing systems, for taking reagents directly into containers."
+	name = "输出口"
+	desc = "管道系统的手动输出端，可直接把试剂装进容器。"
 	icon_state = "pipe_output"
 	pass_flags_self = PASSMACHINE | LETPASSTHROW // Small
 	reagent_flags = /obj/machinery/plumbing::reagent_flags | DRAINABLE
@@ -25,14 +25,14 @@
 
 ///For pouring reagents from ducts directly into cups
 /obj/machinery/plumbing/output/tap
-	name = "drinking tap"
-	desc = "A manual output for plumbing systems, for taking drinks directly into glasses."
+	name = "饮水龙头"
+	desc = "管道系统的手动输出端，可直接把饮料接进杯子里。"
 	icon_state = "tap_output"
 
 ///For storing large volume of reagents
 /obj/machinery/plumbing/tank
-	name = "chemical tank"
-	desc = "A massive chemical holding tank."
+	name = "化学储罐"
+	desc = "一个巨大的化学品储罐。"
 	icon_state = "tank"
 	buffer = 400
 
@@ -42,8 +42,8 @@
 
 ///Layer manifold machine that connects a bunch of layers
 /obj/machinery/plumbing/layer_manifold
-	name = "layer manifold"
-	desc = "A plumbing manifold for layers."
+	name = "层位汇流器"
+	desc = "用于各层位管道的汇流器。"
 	icon_state = "manifold"
 	density = FALSE
 

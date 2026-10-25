@@ -1,6 +1,6 @@
 /obj/item/stock_parts/power_store/battery
-	name = "megacell"
-	desc = "A series of rechargeable electrochemical cells wired together to hold significantly more power than a standard power cell."
+	name = "电池组"
+	desc = "由多节可充电的电化学电池串联而成，能比标准电池储存多得多的电量。"
 	icon = 'icons/obj/machines/cell_charger.dmi'
 	icon_state = "cellbig"
 	cell_size_prefix = "cellbig"
@@ -24,13 +24,13 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/upgraded
-	name = "upgraded megacell"
-	desc = "A battery with a slightly higher capacity than normal!"
+	name = "升级版电池组"
+	desc = "容量比普通电池组略高的电池组！"
 	maxcharge = STANDARD_BATTERY_CHARGE * 2.5
 	chargerate = STANDARD_BATTERY_RATE * 0.5
 
 /obj/item/stock_parts/power_store/battery/high
-	name = "high-capacity megacell"
+	name = "高容量电池组"
 	icon_state = "hcellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 10
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
@@ -40,7 +40,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/super
-	name = "super-capacity megacell"
+	name = "超大容量电池组"
 	icon_state = "scellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 20
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 4)
@@ -50,7 +50,7 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/hyper
-	name = "hyper-capacity megacell"
+	name = "超高容量电池组"
 	icon_state = "hpcellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 30
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.2, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 1.5, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 1.5)
@@ -60,8 +60,8 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/bluespace
-	name = "bluespace megacell"
-	desc = "A rechargeable transdimensional megacell."
+	name = "蓝空间电池组"
+	desc = "可充电的跨次元电池组。"
 	icon_state = "bscellbig"
 	maxcharge = STANDARD_BATTERY_CHARGE * 40
 	custom_materials = list(
@@ -78,16 +78,16 @@
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/crap
-	name = "\improper Nanotrasen brand rechargeable AA megacell"
-	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
+	name = "\improper 纳米传讯牌可充 AA 电池组"
+	desc = "等离子顶盖，无人能及。" //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = STANDARD_BATTERY_CHARGE * 0.5
 
 /obj/item/stock_parts/power_store/battery/crap/empty
 	empty = TRUE
 
 /obj/item/stock_parts/power_store/battery/infinite
-	name = "infinite-capacity megacell"
-	desc = "A transdimensional megacell with an inexhaustible capacity."
+	name = "无限容量电池组"
+	desc = "容量取之不尽的跨次元电池组。"
 	icon_state = "icellbig"
 	maxcharge = INFINITY
 	chargerate = INFINITY

@@ -1,6 +1,6 @@
 /obj/item/modular_computer/laptop
-	name = "laptop"
-	desc = "A portable laptop computer."
+	name = "笔记本电脑"
+	desc = "一台便携式笔记本电脑。"
 
 	icon = 'icons/obj/devices/modular_laptop.dmi'
 	icon_state = "laptop-closed"
@@ -35,15 +35,15 @@
 /obj/item/modular_computer/laptop/examine(mob/user)
 	. = ..()
 	if(screen_on)
-		. += span_notice("Alt-click to close it.")
+		. += span_notice("按住 Alt 点击可将其合上。")
 
 /obj/item/modular_computer/laptop/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 	if(screen_on)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Close"
-		context[SCREENTIP_CONTEXT_RMB] = "Interact"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "合上"
+		context[SCREENTIP_CONTEXT_RMB] = "交互"
 	else
-		context[SCREENTIP_CONTEXT_RMB] = "Open"
+		context[SCREENTIP_CONTEXT_RMB] = "打开"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -71,7 +71,7 @@
 	else
 		return ..()
 
-GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "Toggle Open", null)
+GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "切换开合", null)
 
 	try_toggle_open(usr)
 
@@ -102,12 +102,12 @@ GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "Toggle
 
 /obj/item/modular_computer/laptop/proc/toggle_open(mob/living/user=null)
 	if(screen_on)
-		to_chat(user, span_notice("You close \the [src]."))
+		to_chat(user, span_notice("你合上了 \the [src]。"))
 		slowdown -= slowdown_open
 		update_weight_class(initial(w_class))
 		drag_slowdown = initial(drag_slowdown)
 	else
-		to_chat(user, span_notice("You open \the [src]."))
+		to_chat(user, span_notice("你打开了 \the [src]。"))
 		slowdown += slowdown_open
 		update_weight_class(w_class_open)
 		drag_slowdown = slowdown_open
@@ -121,7 +121,7 @@ GAME_VERB_SRC(/obj/item/modular_computer/laptop, open_computer, view(1), "Toggle
 	update_appearance()
 
 /obj/item/modular_computer/laptop/get_messenger_ending()
-	return "Sent from my UNIX Laptop"
+	return "发自我的 UNIX 笔记本电脑"
 
 // Laptop frame, starts empty and closed.
 /obj/item/modular_computer/laptop/buildable

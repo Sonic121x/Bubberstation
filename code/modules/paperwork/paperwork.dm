@@ -11,8 +11,8 @@
  */
 
 /obj/item/paperwork
-	name = "paperwork documents"
-	desc = "A disorganized mess of documents, research results, and investigation findings."
+	name = "公文文件"
+	desc = "一堆杂乱无章的文件、研究结果与调查发现。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "docs_part"
 	inhand_icon_state = "paper"
@@ -40,7 +40,7 @@
 /obj/item/paperwork/Initialize(mapload)
 	. = ..()
 
-	detailed_desc = span_notice("<i>As you sift through the papers, you slowly start to piece together what you're reading.</i>")
+	detailed_desc = span_notice("<i>当你翻阅这些文件时，你慢慢开始拼凑出自己正在读的内容。</i>")
 
 /obj/item/paperwork/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stamp))
@@ -51,15 +51,15 @@
 
 	if(istype(tool, stamp_requested))
 		add_stamp()
-		to_chat(user, span_notice("You skim through the papers until you find a field reading 'STAMP HERE', and complete the paperwork."))
+		to_chat(user, span_notice("你快速翻阅文件，直到找到一处写着“此处盖章”的栏位，然后把这份公文填完了。"))
 		return ITEM_INTERACT_SUCCESS
 
 	var/datum/action/item_action/chameleon/change/stamp/stamp_action = locate() in tool.actions
 	if(isnull(stamp_action))
-		to_chat(user, span_warning("You hunt through the papers for somewhere to use [tool], but can't find anything."))
+		to_chat(user, span_warning("你在文件堆里翻找可以盖 [tool] 的地方，却什么也没找到。"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("[tool] morphs into the appropriate stamp, which you use to complete the paperwork."))
+	to_chat(user, span_notice("[tool] 变成了合适的印章，你用它把公文盖完了。"))
 	stamp_action.update_look(stamp_requested)
 	add_stamp()
 	return ITEM_INTERACT_SUCCESS
@@ -73,14 +73,14 @@
 			. += detailed_desc
 		else
 			if(stamped)
-				. += span_info("It looks like these documents have already been stamped. Now they can be returned to Central Command.")
+				. += span_info("这些文件似乎已经盖过章了。现在可以把它们交回中央指挥部了。")
 			else
 				var/datum/job/stamp_title = stamp_job
 				var/title = initial(stamp_title.title)
-				. += span_info("Trying to read through it makes your head spin. Judging by the few words you can make out, this looks like a job for the [title].")
+				. += span_info("想读懂它让你头晕目眩。从勉强能辨认的几个词来看，这似乎是 [title] 的活儿。")
 
 /obj/item/paperwork/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins insulting the inefficiency of paperwork and bureaucracy. It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始痛骂公文与官僚制度的低效。看起来 [user.p_theyre()] 想自杀！"))
 
 	var/obj/item/paper/new_paper = new /obj/item/paper(get_turf(src))
 	var/turf/turf_to_throw_at = get_ranged_target_turf(get_turf(src), pick(GLOB.alldirs))
@@ -88,9 +88,9 @@
 
 	var/obj/item/bodypart/BP = user.get_bodypart(pick(BODY_ZONE_HEAD))
 	if(BP?.dismember())
-		new_paper.visible_message(span_alert("The [src] launches a sheet of paper, instantly slicing off [user]'s head!"))
+		new_paper.visible_message(span_alert("[src] 射出一张纸，瞬间削掉了 [user] 的头！"))
 	else
-		user.visible_message(span_suicide("[user] panics and starts choking to death!"))
+		user.visible_message(span_suicide("[user] 惊慌失措，开始窒息而亡！"))
 		return OXYLOSS
 
 	return MANUAL_SUICIDE
@@ -127,10 +127,10 @@
 /obj/item/paperwork/cargo/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" The papers are a mess of shipping order paperwork. There's no rhyme or reason to how these documents are sorted at all.")
-	detailed_desc += span_info(" By the looks of it, there's nothing out of the ordinary here besides a high-priority request for a second engine.")
-	detailed_desc += span_info(" The 'priority request reason' field is scribbled out, but a note in the margins reads 'we just want to try two engines, don't worry about it'.")
-	detailed_desc += span_info(" Despite how disorganized the documents are, they're all appropriately filled in. You should probably stamp this.")
+	detailed_desc += span_info(" 这些文件是一堆乱七八糟的货运订单。这些文件的排序完全毫无道理可言。")
+	detailed_desc += span_info(" 从表面看，除了一份要求追加第二台引擎的高优先级申请外，这里没什么不寻常的。")
+	detailed_desc += span_info(" “优先申请理由”一栏被涂掉了，但页边空白处有一行字：“我们就是想试试两台引擎，别担心”。")
+	detailed_desc += span_info(" 尽管文件杂乱无章，但都填写得当。你大概该给它盖个章。")
 
 /obj/item/paperwork/security
 	stamp_requested = /obj/item/stamp/head/hos
@@ -140,10 +140,10 @@
 /obj/item/paperwork/security/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" The stack of documents is related to a civil case being processed by a neighboring installation.")
-	detailed_desc += span_info(" The document requests that you review a conduct report submitted by the lawyer of the station.")
-	detailed_desc += span_info(" The case file details accusations against the station's security department, including misconduct, harassment, an-")
-	detailed_desc += span_info(" What a bunch of crap, the security team were clearly just doing what they had to. You should probably stamp this.")
+	detailed_desc += span_info(" 这叠文件与邻站正在处理的一起民事案件有关。")
+	detailed_desc += span_info(" 文件中要求你审阅一份由该站律师提交的行为报告。")
+	detailed_desc += span_info(" 案卷详细列出了对该站安保部的指控，包括失职、骚扰，以——")
+	detailed_desc += span_info(" 简直胡说八道，安保队显然只是在做必须做的事。你大概该给它盖个章。")
 
 /obj/item/paperwork/service
 	stamp_requested = /obj/item/stamp/head/hop
@@ -153,10 +153,10 @@
 /obj/item/paperwork/service/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" You begin scanning over the document. This is a standard Nanotrasen NT-435Z3 form used for requests to Central Command.")
-	detailed_desc += span_info(" Looks like a nearby station has sent in a MAXIMUM priority request for coal, in seemingly ridiculous quantities.")
-	detailed_desc += span_info(" The reason listed for the request seems to be hastily filled in -- 'Seeking alternative methods to power the station.'")
-	detailed_desc += span_info(" A MAXIMUM priority request like this is nothing to balk at. You should probably stamp this.")
+	detailed_desc += span_info(" 你开始浏览这份文件。这是纳米传讯标准的 NT-435Z3 表格，用于向中央指挥部提出申请。")
+	detailed_desc += span_info(" 看来附近某站提交了一份最高优先级的煤炭申请，数量大得离谱。")
+	detailed_desc += span_info(" 申请列出的理由似乎填得很匆忙——“正在寻找为空间站供能的其他方法。”")
+	detailed_desc += span_info(" 这种最高优先级的申请可不能等闲视之。你大概该给它盖个章。")
 
 /obj/item/paperwork/medical
 	stamp_requested = /obj/item/stamp/head/cmo
@@ -166,10 +166,10 @@
 /obj/item/paperwork/medical/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" The stack of documents appears to be a medical report from a nearby station, detailing the autopsy of an unknown xenofauna.")
-	detailed_desc += span_info(" Skipping to the end of the report reveals that the specimen was the station bartender's pet monkey.")
-	detailed_desc += span_info(" The specimen had been exposed to radiation during an 'unrelated incident with the engine', leading to its mutated form.")
-	detailed_desc += span_info(" Regardless, the autopsy results look like they could be useful. You should probably stamp this.")
+	detailed_desc += span_info(" 这叠文件似乎是邻站的一份医疗报告，详细记录了对一种未知异星动物的尸检。")
+	detailed_desc += span_info(" 直接翻到报告末尾才发现，该样本原来是该站酒保的宠物猴子。")
+	detailed_desc += span_info(" 该样本曾在“一次与引擎无关的事故”中受到辐射，因而发生了变异。")
+	detailed_desc += span_info(" 不管怎样，尸检结果看起来挺有用。你大概该给它盖个章。")
 
 
 /obj/item/paperwork/engineering
@@ -180,10 +180,10 @@
 /obj/item/paperwork/engineering/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" These papers are a power output report from a neighboring station. It details the power output and other engineering data regarding the station during a typical shift.")
-	detailed_desc += span_info(" Checking the logs, you notice the energy output and engine temperature spike dramatically, and shortly after, the surrounding department appears to be depressurized by an unknown force.")
-	detailed_desc += span_info(" Clearly the station's engineering department was testing an experimental engine setup, and had to use the air in the nearby rooms to help cool the engine. Totally.")
-	detailed_desc += span_info(" Damn, that's impressive stuff. You should probably stamp this.")
+	detailed_desc += span_info(" 这些是邻站的一份功率输出报告。它详细记录了该站在一个普通班次期间的功率输出及其他工程数据。")
+	detailed_desc += span_info(" 查看日志时，你发现能量输出与引擎温度都急剧飙升，而不久之后，周边部门似乎被某种未知力量抽成了真空。")
+	detailed_desc += span_info(" 显然该站工程部当时正在测试一套实验性引擎配置，只好用附近房间的空气来帮助冷却引擎。绝对的。")
+	detailed_desc += span_info(" 哇，这可真够厉害的。你大概该给它盖个章。")
 
 /obj/item/paperwork/research
 	stamp_requested = /obj/item/stamp/head/rd
@@ -193,10 +193,10 @@
 /obj/item/paperwork/research/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" The documents detail the results of a standard ordnance test that occured on a nearby station.")
-	detailed_desc += span_info(" As you read further, you realize something strange with the results -- The epicenter doesn't seem to be correct.")
-	detailed_desc += span_info(" If your math is correct, this explosion didn't happen at the station's ordnance site, it occured in the station's engine room.")
-	detailed_desc += span_info(" Regardless, they're still perfectly usable test results. You should probably stamp this.")
+	detailed_desc += span_info(" 文件详细记录了邻站进行的一次标准军械测试的结果。")
+	detailed_desc += span_info(" 继续往下读，你发现结果有些古怪——爆炸中心的位置似乎不对。")
+	detailed_desc += span_info(" 如果你的计算没错，这次爆炸并非发生在该站的军械场，而是发生在该站的引擎室。")
+	detailed_desc += span_info(" 不管怎样，这些仍是完全可用的测试结果。你大概该给它盖个章。")
 
 /obj/item/paperwork/captain
 	stamp_requested = /obj/item/stamp/head/captain
@@ -206,16 +206,16 @@
 /obj/item/paperwork/captain/Initialize(mapload)
 	. = ..()
 
-	detailed_desc += span_info(" The documents are an unsigned correspondence from the captain's desk of a nearby station.")
-	detailed_desc += span_info(" It seems to be a standard check-in message, reporting that the station is functioning at optimal efficiency.")
-	detailed_desc += span_info(" The message repeatedly asserts that the engine is functioning 'perfectly fine' and is generating 'buttloads' of power.")
-	detailed_desc += span_info(" Everything checks out. You should probably stamp this.")
+	detailed_desc += span_info(" 这些文件是邻站舰长办公桌发来的一份未署名通讯。")
+	detailed_desc += span_info(" 看起来是一份例行报到消息，报告该站正以最佳效率运转。")
+	detailed_desc += span_info(" 消息反复强调引擎运转“完全正常”，并且正输出“成堆的”电力。")
+	detailed_desc += span_info(" 一切都没问题。你大概该给它盖个章。")
 
 //Photocopied paperwork. These are created when paperwork, whether stamped or otherwise, is printed. If it is stamped, it can be sold to cargo at the risk of the paperwork not being accepted (which takes a small fee from cargo).
 //If it is unstamped it will lose you money like normal, unless it has been marked with a VOID stamp
 /obj/item/paperwork/photocopy
-	name = "photocopied paperwork documents"
-	desc = "An even more disorganized mess of photocopied documents and paperwork. Did these even copy in the right order?"
+	name = "复印公文文件"
+	desc = "一堆更加杂乱的复印文件与公文。这些到底有没有按正确顺序复印啊？"
 	stamp_icon = "paper_stamp-pc"
 	/// Has the photocopy been marked with a "void" stamp. Used to prevent documents from draining money if they somehow make their way to cargo.
 	var/voided = FALSE
@@ -223,23 +223,23 @@
 /obj/item/paperwork/photocopy/Initialize(mapload)
 	. = ..()
 
-	detailed_desc = span_notice("The print job on this paperwork has rendered it almost entirely unreadable.")
+	detailed_desc = span_notice("这份公文的打印质量让它几乎完全无法辨认。")
 
 /obj/item/paperwork/photocopy/examine_more(mob/user)
 	. = ..()
 
 	if(stamped)
 		if(voided)
-			. += span_notice("It looks like it's been marked as 'VOID' on the front. It's unlikely that anyone will accept these now.")
+			. += span_notice("正面似乎被标上了“作废”。现在恐怕没人会接受这些了。")
 		else
-			. += span_notice("The stamp on the front appears to be smudged and faded. Central Command will probably still accept these, right?")
+			. += span_notice("正面的印章似乎模糊褪色了。中央指挥部大概还是会接受这些吧？")
 	else
-		. += span_notice("These appear to just be a photocopy of the original documents.")
+		. += span_notice("这些看起来只是原始文件的复印件。")
 
 /obj/item/paperwork/photocopy/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/stamp/void) || stamped || voided)
 		return ..()
-	to_chat(user, span_notice("You plant the [tool] firmly onto the front of the documents."))
+	to_chat(user, span_notice("你把 [tool] 牢牢盖在文件的正面。"))
 	stamp_overlay = mutable_appearance('icons/obj/service/bureaucracy.dmi', "paper_stamp-void")
 	add_overlay(stamp_overlay)
 	voided = TRUE
@@ -250,13 +250,13 @@
 //It doesn't have any of the flavor text that the event ones spawn with.
 
 /obj/item/paperwork/ancient
-	name = "ancient paperwork"
-	desc = "A dusty, ugly mess of paper scraps. You can't recognize a single name, date, or topic mentioned within. How old are these?"
+	name = "古老公文"
+	desc = "一堆积满灰尘、难看的碎纸片。里面的名字、日期和话题你一个也认不出来。这些到底有多古老？"
 
 /obj/item/paperwork/ancient/Initialize(mapload)
 	. = ..()
 
-	detailed_desc = span_notice("It's impossible to really tell how old these are or what they're for, but Central Command might appreciate them anyway.")
+	detailed_desc = span_notice("很难说清这些有多古老、又是做什么用的，但中央指挥部或许还是乐意收下。")
 
 	var/static/list/paperwork_to_use //Make the ancient paperwork function like one of the main types
 	if(!paperwork_to_use)

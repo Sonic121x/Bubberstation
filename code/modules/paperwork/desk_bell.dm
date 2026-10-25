@@ -1,8 +1,8 @@
 // A receptionist's bell
 
 /obj/structure/desk_bell
-	name = "desk bell"
-	desc = "The cornerstone of any customer service job. You feel an unending urge to ring it."
+	name = "服务铃"
+	desc = "任何客服工作的基石。你感到一股按响它的无尽冲动。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "desk_bell"
 	layer = OBJ_LAYER
@@ -31,16 +31,16 @@
 	. = ..()
 
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "Disassemble"
+		context[SCREENTIP_CONTEXT_RMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(broken_ringer)
 		if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "Fix"
+			context[SCREENTIP_CONTEXT_LMB] = "修理"
 	else
-		var/click_context = "Ring"
+		var/click_context = "按铃"
 		if(prob(1))
-			click_context = "Annoy"
+			click_context = "骚扰"
 		context[SCREENTIP_CONTEXT_LMB] = click_context
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -49,7 +49,7 @@
 	if(!COOLDOWN_FINISHED(src, ring_cooldown) && ring_cooldown_length)
 		return TRUE
 	if(!ring_bell(user))
-		to_chat(user, span_notice("[src] is silent. Some idiot broke it."))
+		to_chat(user, span_notice("[src] 没有声音。有个白痴把它弄坏了。"))
 	if(ring_cooldown_length)
 		COOLDOWN_START(src, ring_cooldown, ring_cooldown_length)
 	return TRUE
@@ -69,10 +69,10 @@
 // Fix the clapper
 /obj/structure/desk_bell/screwdriver_act(mob/living/user, obj/item/tool)
 	if(broken_ringer)
-		balloon_alert(user, "repairing...")
+		balloon_alert(user, "正在修理……")
 		tool.play_tool_sound(src)
 		if(tool.use_tool(src, user, 5 SECONDS))
-			balloon_alert_to_viewers("repaired")
+			balloon_alert_to_viewers("已修复")
 			playsound(user, 'sound/items/tools/change_drill.ogg', 50, vary = TRUE)
 			broken_ringer = FALSE
 			times_rang = 0
@@ -82,10 +82,10 @@
 
 // Deconstruct
 /obj/structure/desk_bell/wrench_act_secondary(mob/living/user, obj/item/tool)
-	balloon_alert(user, "taking apart...")
+	balloon_alert(user, "正在拆解……")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 5 SECONDS))
-		balloon_alert(user, "disassembled")
+		balloon_alert(user, "已拆解")
 		playsound(user, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
 		if(!broken_ringer) // Drop 2 if it's not broken.
 			new/obj/item/stack/sheet/iron(drop_location())
@@ -98,9 +98,9 @@
 /obj/structure/desk_bell/proc/check_clapper(mob/living/user)
 	if(((times_rang >= 10000) || prob(times_rang/100)) && ring_cooldown_length)
 		if (user)
-			to_chat(user, span_notice("You hear [src]'s clapper fall off of its hinge. Nice job, you broke it."))
+			to_chat(user, span_notice("你听到 [src] 的铃舌从铰链上掉了下来。干得漂亮，你把它弄坏了。"))
 		else
-			audible_message(span_notice("You hear [src]'s clapper fall off of its hinge. Nice job, you broke it."))
+			audible_message(span_notice("你听到 [src] 的铃舌从铰链上掉了下来。干得漂亮，你把它弄坏了。"))
 		broken_ringer = TRUE
 
 /// Ring the bell
@@ -123,12 +123,12 @@
 // A warning to all who enter; the ringing sound STACKS. It won't be deafening because it only goes every decisecond,
 // but I did feel like my ears were going to start bleeding when I tested it with my autoclicker.
 /obj/structure/desk_bell/speed_demon
-	desc = "The cornerstone of any customer service job. This one's been modified for hyper-performance."
+	desc = "任何客服工作的基石。这一个经过了超高性能改装。"
 	ring_cooldown_length = 0
 
 /// Handheld bell
 /obj/item/inhand_desk_bell
-	name = "held desk bell"
+	name = "手持服务铃"
 	force = 1
 	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = CONDUCTS_ELECTRICITY
@@ -161,7 +161,7 @@
 	if(istype(target, /obj/vehicle/ridden/wheelchair))
 		var/obj/vehicle/ridden/wheelchair/chair = target
 		if(!chair.bell_attached)
-			context[SCREENTIP_CONTEXT_LMB] = "Attach bell to wheelchair."
+			context[SCREENTIP_CONTEXT_LMB] = "把铃装到轮椅上。"
 			return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/inhand_desk_bell/examine(mob/user)
@@ -196,9 +196,9 @@
 	var/obj/vehicle/ridden/wheelchair/chair = interacting_with
 
 	if (chair.bell_attached)
-		user.balloon_alert(user, "already has a bell!")
+		user.balloon_alert(user, "已经有一个铃了！")
 		return ITEM_INTERACT_FAILURE
-	user.balloon_alert(user, "attaching bell...")
+	user.balloon_alert(user, "正在安装铃……")
 	if (!do_after(user, 0.5 SECONDS, chair))
 		return ITEM_INTERACT_FAILURE
 

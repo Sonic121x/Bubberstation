@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 		var/width = canvas_type::width
 		var/height = canvas_type::height
 		LAZYADDASSOC(print_types, "[width]x[height]", list(
-			"displayText" = "Canvas ([width]x[height])",
+			"displayText" = "画布（[width]x[height]）",
 			"typepath" = canvas_type,
 			"width" = width,
 			"height" = height,
@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 		var/width = ICON_SIZE_X * meters
 		var/height = ICON_SIZE_Y * meters
 		LAZYADDASSOC(print_types, "[width]x[height]",  list(
-			"displayText" = "Photo Paper ([meters]m focal length)",
+			"displayText" = "相纸（[meters] 米焦距）",
 			"typepath" = /obj/item/photo,
 			"width" = width,
 			"height" = height,
@@ -29,10 +29,10 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 
 /proc/check_can_print_canvas(_typepath, _image_file, obj/item/modular_computer/computer, mob/user)
 	if(!(computer.hardware_flag & PROGRAM_CONSOLE))
-		to_chat(user, span_notice("Printing error: Canvas printing is only supported on stationary consoles."))
+		to_chat(user, span_notice("打印错误：仅固定式控制台支持打印画布。"))
 		return FALSE
 	if(computer.stored_paper < CANVAS_PAPER_COST)
-		to_chat(user, span_notice("Printing error: Your printer needs at least [CANVAS_PAPER_COST] paper to print a canvas."))
+		to_chat(user, span_notice("打印错误：你的打印机至少需要 [CANVAS_PAPER_COST] 张纸才能打印画布。"))
 		return FALSE
 	return TRUE
 
@@ -53,13 +53,13 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 	var/datum/universal_icon/blank = uni_icon('icons/blanks/32x32.dmi', "nothing", transform = transformer)
 	canvas.fill_grid_from_icon(blank.to_icon())
 	fdel(temp_file)
-	canvas.painting_metadata.medium = "Digital Art"
+	canvas.painting_metadata.medium = "数字艺术"
 	canvas.used = TRUE
 	canvas.update_icon()
 
 /proc/check_can_print_photo(_typepath, _image_file, obj/item/modular_computer/computer, mob/user)
 	if(computer.stored_paper < PHOTO_PAPER_COST)
-		to_chat(user, span_notice("Printing error: Your printer needs at least [PHOTO_PAPER_COST] paper to print a photo."))
+		to_chat(user, span_notice("打印错误：你的打印机至少需要 [PHOTO_PAPER_COST] 张纸才能打印照片。"))
 		return FALSE
 	return TRUE
 
@@ -79,15 +79,15 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 	transformer.blend_color("#ffffff", ICON_OVERLAY)
 	transformer.blend_icon(uni_icon(temp_file, ""), ICON_OVERLAY, x+1, y+1)
 	var/datum/universal_icon/blank = uni_icon('icons/blanks/32x32.dmi', "nothing", transform = transformer)
-	var/datum/picture/new_photo = new(image_file.filename, desc = "A printout of a digital image.", image = blank.to_icon(), size_x = width, size_y = height, autogenerate_icon = TRUE, author_ckey_ = image_file.author_ckey)
+	var/datum/picture/new_photo = new(image_file.filename, desc = "数字图像的打印件。", image = blank.to_icon(), size_x = width, size_y = height, autogenerate_icon = TRUE, author_ckey_ = image_file.author_ckey)
 	fdel(temp_file)
 	image_file.source_photo_or_painting = new_photo
 	photo.set_picture(new_photo, TRUE, TRUE)
 
 /datum/computer_file/program/filemanager
 	filename = "filemanager"
-	filedesc = "File Manager"
-	extended_desc = "This program allows management of files."
+	filedesc = "文件管理器"
+	extended_desc = "该程序可用于管理文件。"
 	program_open_overlay = "generic"
 	size = 8
 	program_flags = NONE
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(print_types, init_print_types())
 	if(error)
 		data["error"] = error
 	if(!computer)
-		data["error"] = "I/O ERROR: Unable to access hard drive."
+		data["error"] = "I/O 错误：无法访问硬盘。"
 	else
 		var/list/files = list()
 		for(var/datum/computer_file/F as anything in computer.stored_files)

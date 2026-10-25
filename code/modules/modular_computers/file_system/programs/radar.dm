@@ -236,8 +236,8 @@
 ///A program that tracks crew members via suit sensors
 /datum/computer_file/program/radar/lifeline
 	filename = "lifeline"
-	filedesc = "Lifeline"
-	extended_desc = "This program allows for tracking of crew members via their suit sensors."
+	filedesc = "生命线"
+	extended_desc = "此程序可通过船员的服装传感器对其进行追踪。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_MEDICAL)
 	program_icon = "heartbeat"
@@ -252,7 +252,7 @@
 		var/mob/living/carbon/human/humanoid = i
 		if(!trackable(humanoid))
 			continue
-		var/crewmember_name = "Unknown"
+		var/crewmember_name = "未知"
 		if(humanoid.wear_id)
 			var/obj/item/card/id/ID = humanoid.wear_id.GetID()
 			if(ID?.registered_name)
@@ -281,8 +281,8 @@
 ///Tracks all janitor equipment
 /datum/computer_file/program/radar/custodial_locator
 	filename = "custodiallocator"
-	filedesc = "Custodial Locator"
-	extended_desc = "This program allows for tracking of custodial equipment."
+	filedesc = "清洁定位器"
+	extended_desc = "此程序可用于追踪清洁设备。"
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	download_access = list(ACCESS_JANITOR)
 	program_icon = "broom"
@@ -302,15 +302,15 @@
 
 		if(istype(custodial_tools, /obj/item/mop))
 			var/obj/item/mop/wet_mop = custodial_tools
-			tool_name = "[wet_mop.reagents.total_volume ? "Wet" : "Dry"] [wet_mop.name]"
+			tool_name = "[wet_mop.reagents.total_volume ? "湿" : "干"] [wet_mop.name]"
 
 		if(istype(custodial_tools, /obj/structure/mop_bucket/janitorialcart))
 			var/obj/structure/mop_bucket/janitorialcart/janicart = custodial_tools
-			tool_name = "[janicart.name] - Water level: [janicart.reagents.total_volume] / [janicart.reagents.maximum_volume]"
+			tool_name = "[janicart.name] - 水位：[janicart.reagents.total_volume] / [janicart.reagents.maximum_volume]"
 
 		if(istype(custodial_tools, /mob/living/basic/bot/cleanbot))
 			var/mob/living/basic/bot/cleanbot/cleanbots = custodial_tools
-			tool_name = "[cleanbots.name] - [cleanbots.bot_mode_flags & BOT_MODE_ON ? "Online" : "Offline"]"
+			tool_name = "[cleanbots.name] - [cleanbots.bot_mode_flags & BOT_MODE_ON ? "在线" : "离线"]"
 
 		var/list/tool_information = list(
 			ref = REF(custodial_tools),
@@ -325,9 +325,9 @@
 ///A program that tracks nukes and nuclear accessories
 /datum/computer_file/program/radar/fission360
 	filename = "fission360"
-	filedesc = "Fission360"
+	filedesc = "裂变360"
 	program_open_overlay = "radarsyndicate"
-	extended_desc = "This program allows for tracking of nuclear authorization disks and warheads."
+	extended_desc = "此程序可用于追踪核弹授权磁盘与核弹头。"
 	program_flags = PROGRAM_ON_SYNDINET_STORE
 	tgui_id = "NtosRadarSyndicate"
 	program_icon = "bomb"
@@ -368,7 +368,7 @@
 	var/obj/item/disk/nuclear/disk = locate() in SSpoints_of_interest.real_nuclear_disks
 	var/list/disk_info = list(
 		ref = REF(disk),
-		name = "Nuke Auth. Disk",
+		name = "核弹授权磁盘",
 		)
 	objects += list(disk_info)
 
@@ -376,7 +376,7 @@
 	var/obj/docking_port/mobile/infiltrator = SSshuttle.getShuttle("syndicate")
 	var/list/ship_info = list(
 		ref = REF(infiltrator),
-		name = "Infiltrator",
+		name = "渗透者",
 		)
 	objects += list(ship_info)
 
@@ -386,7 +386,7 @@
 
 	for(var/obj/machinery/nuclearbomb/bomb as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/nuclearbomb))
 		if(bomb.timing)
-			examine_list += span_danger("Extreme danger. Arming signal detected. Time remaining: [bomb.get_time_left()].")
+			examine_list += span_danger("极度危险。检测到武装信号。剩余时间：[bomb.get_time_left()]。")
 	return examine_list
 
 /*
@@ -401,11 +401,11 @@
 
 	playsound(computer, 'sound/items/nuke_toy_lowpower.ogg', 50, FALSE)
 	if(isliving(computer.loc))
-		to_chat(computer.loc, span_userdanger("Your [computer.name] vibrates and lets out an ominous alarm. Uh oh."))
+		to_chat(computer.loc, span_userdanger("你的 [computer.name] 震动起来，发出不祥的警报。糟了。"))
 	else
 		computer.audible_message(
-			span_danger("[computer] vibrates and lets out an ominous alarm. Uh oh."),
-			span_notice("[computer] begins to vibrate rapidly. Wonder what that means..."),
+			span_danger("[computer] 震动起来，发出不祥的警报。糟了。"),
+			span_notice("[computer] 开始剧烈震动。不知道这意味着什么……"),
 		)
 
 
@@ -449,7 +449,7 @@
 
 /obj/item/circuit_component/mod_program/radar/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Max range for unsupported entities: [MAX_RADAR_CIRCUIT_DISTANCE] tiles", "orange", FA_ICON_BULLSEYE)
+	. += create_ui_notice("不支持的实体最大追踪范围：[MAX_RADAR_CIRCUIT_DISTANCE] 格", "orange", FA_ICON_BULLSEYE)
 
 ///Set the selected ref of the program to the target (if it exists) and update the x/y pos ports (if trackable) when triggered.
 /obj/item/circuit_component/mod_program/radar/input_received(datum/port/port)

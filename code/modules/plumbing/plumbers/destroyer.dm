@@ -2,8 +2,8 @@
 #define MAX_DISPOSAL_RATE 25
 
 /obj/machinery/plumbing/disposer
-	name = "chemical disposer"
-	desc = "Breaks down chemicals and annihilates them."
+	name = "化学销毁器"
+	desc = "分解化学物质并将其彻底湮灭。"
 	icon_state = "disposal"
 	base_icon_state = "disposal"
 	pass_flags_self = PASSMACHINE | LETPASSTHROW // Small
@@ -21,12 +21,12 @@
 
 /obj/machinery/plumbing/disposer/examine(mob/user)
 	. = ..()
-	. += span_notice("It is disposing [disposal_rate]u reagents per second.")
-	. += span_notice("Use hand to change disposal rate.")
+	. += span_notice("它每秒销毁 [disposal_rate]u 试剂。")
+	. += span_notice("用手点击可更改销毁速率。")
 
 /obj/machinery/plumbing/disposer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Set transfer rate"
+		context[SCREENTIP_CONTEXT_LMB] = "设置传输速率"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return ..()

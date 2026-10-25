@@ -2,9 +2,9 @@
 
 ///Bike Horn - Plays a bike horn sound.
 /obj/item/mod/module/bikehorn
-	name = "MOD bike horn module"
-	desc = "A shoulder-mounted piece of heavy sonic artillery, this module uses the finest femto-manipulator technology to \
-		precisely deliver an almost lethal squeeze to... a bike horn, producing a significantly memorable sound."
+	name = "MOD 自行车喇叭模块"
+	desc = "一件肩挂式的重型声波火炮，这个模块运用最精细的飞米级操控技术，\
+		精确地对……一个自行车喇叭施加近乎致命的挤压，发出令人难忘的声音。"
 	icon_state = "bikehorn"
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -19,19 +19,19 @@
 
 ///Advanced Balloon Blower - Blows a long balloon.
 /obj/item/mod/module/balloon/advanced
-	name = "MOD advanced balloon blower module"
-	desc = "A relatively new piece of technology developed by finest clown engineers to make long balloons and balloon animals \
-		at party-appropriate rate."
+	name = "MOD 高级吹气球模块"
+	desc = "一项相对较新的技术，由最优秀的小丑工程师研发，能以适合派对的速度\
+		吹出长条气球和气球动物。"
 	cooldown_time = 20 SECONDS
 	balloon_path = /obj/item/toy/balloon/long
 	blowing_time = 15 SECONDS
 
 ///Microwave Beam - Microwaves items instantly.
 /obj/item/mod/module/microwave_beam
-	name = "MOD microwave beam module"
-	desc = "An oddly domestic device, this module is installed into the user's palm, \
-		hooking up with culinary scanners located in the helmet to blast food with precise microwave radiation, \
-		allowing them to cook food from a distance, with the greatest of ease. Not recommended for use against grapes."
+	name = "MOD 微波光束模块"
+	desc = "一件古怪的家用设备，这个模块被装入使用者的掌心，\
+		与头盔里的烹饪扫描仪相连，用精确的微波辐射轰击食物，\
+		让他们能远距离烹饪食物，轻松至极。不建议用来对付葡萄。"
 	icon_state = "microwave_beam"
 	module_type = MODULE_ACTIVE
 	complexity = 1
@@ -48,7 +48,7 @@
 	if(!isitem(target))
 		return
 	if(!isturf(target.loc))
-		balloon_alert(mod.wearer, "not in storage!")
+		balloon_alert(mod.wearer, "不在储物空间里！")
 		return
 	var/obj/item/microwave_target = target
 	do_sparks(2, TRUE, mod.wearer)
@@ -56,18 +56,18 @@
 	if(microwave_target.microwave_act(microwaver = mod.wearer) & COMPONENT_MICROWAVE_SUCCESS)
 		playsound(src, 'sound/machines/microwave/microwave-end.ogg', 50, FALSE)
 	else
-		balloon_alert(mod.wearer, "can't be microwaved!")
+		balloon_alert(mod.wearer, "无法被微波加热！")
 	do_sparks(2, TRUE, microwave_target)
 	drain_power(use_energy_cost)
 
 //Waddle - Makes you waddle and squeak.
 /obj/item/mod/module/waddle
-	name = "MOD waddle module"
-	desc = "Some of the most primitive technology in use by Honk Co. This module works off an automatic intention system, \
-		utilizing its sensitivity to the pilot's often-limited brainwaves to directly read their next step, \
-		affecting the boots they're installed in. Employing a twin-linked gravitonic drive to create \
-		miniaturized etheric blasts of space-time beneath the user's feet, this enables them to... \
-		to waddle around, bouncing to and fro with a pep in their step."
+	name = "MOD 摇摆模块"
+	desc = "洪克公司在用的最原始的技术之一。这个模块依靠一套自动意图系统运作，\
+		利用它对驾驶员往往十分有限的脑波的敏感性，直接读取他们的下一步，\
+		并作用于它所安装的靴子。它采用双联重力子驱动器，在使用者脚下\
+		制造微型的时空以太爆震，让他们能够……\
+		能够摇摇摆摆地四处走动，脚步轻快地来回弹跳。"
 	icon_state = "waddle"
 	complexity = 1
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.2
@@ -93,8 +93,8 @@
 
 // recharging cleaner spray module
 /obj/item/mod/module/mister/cleaner
-	name = "MOD janitorial mister module"
-	desc = "A space cleaner mister, able to clean up messes quickly. Synthesizes its own supply over time (if active)."
+	name = "MOD 清洁喷雾模块"
+	desc = "一台太空清洁剂喷雾器，能迅速清理污渍。会随时间自行合成补给（若处于激活状态）。"
 	device = /obj/item/reagent_containers/spray/mister/janitor
 	volume = 100
 	active_power_cost = DEFAULT_CHARGE_DRAIN
@@ -111,8 +111,8 @@
 		reagents.add_reagent(/datum/reagent/space_cleaner, refill_add)
 
 /obj/item/mod/module/selfcleaner
-	name = "MOD perfumer module"
-	desc = "A small spray to clean oneself up. Has a pleasant scent."
+	name = "MOD 香水模块"
+	desc = "一小瓶用来清洁自己的喷雾。气味宜人。"
 	icon_state = "cleaner"
 	module_type = MODULE_USABLE
 	use_energy_cost = DEFAULT_CHARGE_DRAIN * 5

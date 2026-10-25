@@ -1,7 +1,7 @@
 /obj/item/camera
-	name = "camera"
+	name = "相机"
 	icon = 'icons/obj/art/camera.dmi'
-	desc = "A polaroid camera."
+	desc = "一台拍立得相机。"
 	icon_state = "camera"
 	base_icon_state = "camera"
 	inhand_icon_state = "camera"
@@ -78,34 +78,34 @@
 	return ..()
 
 /obj/item/camera/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Adjust Zoom"
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Change Printer Mode"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "调整取景范围"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "切换打印模式"
 
 	if(istype(held_item, /obj/item/camera_film))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert Film"
+		context[SCREENTIP_CONTEXT_LMB] = "装入胶卷"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/disk/holodisk))
-		context[SCREENTIP_CONTEXT_LMB] = disk ? "Swap Disks" : "Insert Disk"
+		context[SCREENTIP_CONTEXT_LMB] = disk ? "更换磁盘" : "插入磁盘"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if((isnull(held_item) || (held_item == src)) && disk)
-		context[SCREENTIP_CONTEXT_LMB] = "Eject Disk"
+		context[SCREENTIP_CONTEXT_LMB] = "弹出磁盘"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [pictures_left] photos left.")
-	. += span_notice("Alt-click to change its focusing, allowing you to set how big of an area it will capture.")
-	. += span_notice("Ctrl-click to change the printer between color and monochrome.")
-	. += span_notice("The present dimensions of the picture are [EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")]")
+	. += span_notice("还剩 [pictures_left] 张照片。")
+	. += span_notice("按住 Alt 点击可调整取景范围，设定它能拍下多大的区域。")
+	. += span_notice("按住 Ctrl 点击可让打印机在彩色与单色之间切换。")
+	. += span_notice("当前照片的尺寸为 [EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")]")
 
 	if(isnull(disk))
-		. += span_notice("It has a slot for a holorecord disk.")
+		. += span_notice("它有一个全息记录磁盘插槽。")
 	else
-		. += span_notice("It has \an [disk.name] inserted.")
+		. += span_notice("里面插着 \an [disk.name]。")
 
 /obj/item/camera/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -125,12 +125,12 @@
 
 	if(user)
 		if(loc != user)
-			to_chat(user, span_warning("You must be holding the camera to continue!"))
+			to_chat(user, span_warning("你必须手持相机才能继续！"))
 			return FALSE
-		desired_x = tgui_input_number(user, "Set camera half width Aperture", "Zoom", picture_size_x, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
+		desired_x = tgui_input_number(user, "设置相机半宽取景范围", "缩放", picture_size_x, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
 		if(!desired_x || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH|ALLOW_PAI) || loc != user)
 			return FALSE
-		desired_y = tgui_input_number(user, "Set camera half height Aperture", "Zoom", picture_size_y, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
+		desired_y = tgui_input_number(user, "设置相机半高取景范围", "缩放", picture_size_y, CAMERA_PICTURE_SIZE_HARD_LIMIT, 1)
 		if(!desired_y || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH|ALLOW_PAI) || loc != user)
 			return FALSE
 
@@ -138,7 +138,7 @@
 	picture_size_y = clamp(desired_y, 1, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
 	if(user)
-		to_chat(user, span_notice("The dimensions of the picture will be [EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")]"))
+		to_chat(user, span_notice("照片的尺寸将为 [EXAMINE_HINT("[APERTURE_TO_METERS(picture_size_x)]x[APERTURE_TO_METERS(picture_size_y)]")]"))
 
 	return TRUE
 
@@ -198,12 +198,12 @@
 
 	if(!on)
 		if(user)
-			user.balloon_alert(user, "flash still charging!")
+			user.balloon_alert(user, "闪光灯还在充电！")
 		return FALSE
 
 	if(blending)
 		if(user)
-			user.balloon_alert(user, "image still blending!")
+			user.balloon_alert(user, "画面还在合成！")
 		return FALSE
 
 	blending = TRUE
@@ -279,7 +279,7 @@
 	// do this before picture is taken so we can reveal revenants for the photo
 	steal_souls(mobs)
 
-	var/list/desc = list("This is a photo of an area of [width] meters by [height] meters.")
+	var/list/desc = list("这是一张 [width] 米 × [height] 米区域的照片。")
 	for(var/mob/mob as anything in mobs)
 		mobs_spotted += mob
 		if(mob.stat == DEAD)
@@ -297,7 +297,7 @@
 		names += "[person.name]"
 
 	var/datum/picture/picture = new(
-		"picture",
+		"照片",
 		desc.Join("<br>"),
 		mobs_spotted,
 		dead_spotted,
@@ -346,20 +346,20 @@
 	var/obj/item/photo/new_photo
 	if(user)
 		if(!pictures_left)
-			to_chat(user, span_warning("No film left."))
+			to_chat(user, span_warning("胶卷用完了。"))
 			return
 
 		new_photo = new(src, picture)
 
-		to_chat(user, span_notice("[pictures_left] photos left."))
+		to_chat(user, span_notice("还剩 [pictures_left] 张照片。"))
 
 		var/name_customized = FALSE
 		if(can_customise)
-			var/customise = tgui_alert(user, "Do you want to customize the photo?", "Customization", list("Yes", "No"))
-			if(customise == "Yes")
-				var/name1 = tgui_input_text(user, "Set a name for this photo, or leave blank.", "Name", max_length = 32)
-				var/desc1 = tgui_input_text(user, "Set a description to add to photo, or leave blank.", "Description", max_length = 128)
-				var/caption = tgui_input_text(user, "Set a caption for this photo, or leave blank.", "Caption", max_length = 256)
+			var/customise = tgui_alert(user, "你想自定义这张照片吗？", "自定义", list("是", "否"))
+			if(customise == "是")
+				var/name1 = tgui_input_text(user, "为这张照片设置名称，也可以留空。", "名称", max_length = 32)
+				var/desc1 = tgui_input_text(user, "设置要添加到照片上的描述，也可以留空。", "描述", max_length = 128)
+				var/caption = tgui_input_text(user, "为这张照片设置题注，也可以留空。", "题注", max_length = 256)
 				if(name1)
 					picture.picture_name = name1
 					name_customized = TRUE
@@ -374,12 +374,12 @@
 		var/mob/living/holder = loc
 
 		if(!pictures_left)
-			to_chat(holder, span_warning("No film left."))
+			to_chat(holder, span_warning("胶卷用完了。"))
 			return
 
 		new_photo = new(get_turf(src), picture)
 
-		to_chat(holder, span_notice("[pictures_left] photos left."))
+		to_chat(holder, span_notice("还剩 [pictures_left] 张照片。"))
 
 	new_photo.set_picture(picture, TRUE, TRUE)
 	if(CONFIG_GET(flag/picture_logging_camera))
@@ -402,7 +402,7 @@
 /obj/item/camera/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/camera_film))
 		if(pictures_left)
-			balloon_alert(user, "isn't empty!")
+			balloon_alert(user, "还不是空的！")
 			return ITEM_INTERACT_BLOCKING
 		if(!user.temporarilyRemoveItemFromInventory(tool))
 			return ITEM_INTERACT_BLOCKING
@@ -413,13 +413,13 @@
 
 	if(istype(tool, /obj/item/disk/holodisk))
 		if(!user.transferItemToLoc(tool, src))
-			balloon_alert(user, "stuck in hand!")
+			balloon_alert(user, "卡在手里了！")
 			return TRUE
 		if(disk)
 			user.put_in_hands(disk)
-			balloon_alert(user, "disks swapped!")
+			balloon_alert(user, "磁盘已更换！")
 		else
-			balloon_alert(user, "disk inserted!")
+			balloon_alert(user, "磁盘已插入！")
 		playsound(src, 'sound/machines/card_slide.ogg', 50)
 		disk = tool
 		return ITEM_INTERACT_SUCCESS
@@ -432,7 +432,7 @@
 /obj/item/camera/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(disk)
 		if(!ismob(interacting_with))
-			to_chat(user, span_warning("Invalid holodisk target."))
+			to_chat(user, span_warning("无效的全息磁盘目标。"))
 			return ITEM_INTERACT_BLOCKING
 		if(disk.record)
 			QDEL_NULL(disk.record)
@@ -456,7 +456,7 @@
 
 /obj/item/camera/item_ctrl_click(mob/user)
 	print_monochrome = !print_monochrome
-	user.balloon_alert(user, "printing [print_monochrome ? "monochrome" : "in color"]")
+	user.balloon_alert(user, "正在[print_monochrome ? "黑白" : "彩色"]打印")
 	if(silent) // Don't out your silent cameras
 		user.playsound_local(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 	else

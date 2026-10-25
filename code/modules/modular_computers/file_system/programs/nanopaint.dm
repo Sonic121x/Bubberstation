@@ -8,10 +8,10 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 
 /datum/computer_file/program/nanopaint
 	filename = "nanopaint"
-	filedesc = "NanoPaint"
+	filedesc = "纳米画板"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "generic"
-	extended_desc = "Draw pictures on your device."
+	extended_desc = "在你的设备上绘制图画。"
 	tgui_id = "NtosNanopaint"
 	program_icon = "paintbrush"
 	size = 5
@@ -39,12 +39,12 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 		"templateSizes" = GLOB.canvas_dimensions,
 		"saveableTypes" = list(
 			list(
-				"displayText" = "NanoPaint Project (.[/datum/computer_file/data/paint_project::filetype])",
+				"displayText" = "纳米画板项目（.[/datum/computer_file/data/paint_project::filetype]）",
 				"typepath" = /datum/computer_file/data/paint_project,
 				"extension" = /datum/computer_file/data/paint_project::filetype,
 			),
 			list(
-				"displayText" = "PNG Image (.[/datum/computer_file/image::filetype])",
+				"displayText" = "PNG 图像（.[/datum/computer_file/image::filetype]）",
 				"typepath" = /datum/computer_file/image,
 				"extension" = /datum/computer_file/image::filetype,
 			),
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 			INVOKE_ASYNC(src, PROC_REF(new_workspace), width, height)
 			return TRUE
 		if("openDialog")
-			dialog = list("type" = "select", "title" = "Open File", "confirmText" = "Open", "action" = "open")
+			dialog = list("type" = "select", "title" = "打开文件", "confirmText" = "打开", "action" = "open")
 			return TRUE
 		if("open")
 			if(!check_dialog("open", "select"))
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 			var/datum/computer_file/actual_file = backing_file?.resolve()
 			if(!actual_file)
 				if(!opened_file_name)
-					dialog = list("type" = "select", "title" = "Save As", "confirmText" = "Save", "action" = "saveAs")
+					dialog = list("type" = "select", "title" = "另存为", "confirmText" = "保存", "action" = "saveAs")
 					return TRUE
 				actual_file = computer.find_file_by_full_name("[opened_file_name].[opened_file_type::filetype]")
 			if(actual_file && actual_file.computer != computer && actual_file.disk_host != computer.inserted_disk)
@@ -168,7 +168,7 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 				INVOKE_ASYNC(src, PROC_REF(save_file), user, opened_file_name, opened_file_type)
 			return TRUE
 		if("saveAsDialog")
-			dialog = list("type" = "select", "title" = "Save As", "confirmText" = "Save", "action" = "saveAs")
+			dialog = list("type" = "select", "title" = "另存为", "confirmText" = "保存", "action" = "saveAs")
 			return TRUE
 		if("saveAs", "overwrite")
 			if(!check_dialog(action, action == "saveAs" ? "select" : "confirm"))
@@ -181,11 +181,11 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 			var/extension = new_file_type::filetype
 			var/datum/computer_file/existing_file
 			if(!length(new_file_name))
-				dialog = list("type" = "error", "message" = "No name specified.")
+				dialog = list("type" = "error", "message" = "未指定名称。")
 				return TRUE
 			if(saving_to_disk)
 				if(!computer.inserted_disk)
-					dialog = list("type" = "error", "message" = "[new_file_name] - The disk has been removed.")
+					dialog = list("type" = "error", "message" = "[new_file_name] —— 磁盘已被移除。")
 					return TRUE
 				if(uid)
 					existing_file = computer.find_file_by_uid(uid, computer.inserted_disk)
@@ -200,8 +200,8 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 				if(action == "saveAs")
 					dialog = list(
 						"type" = "confirm",
-						"title" = "Confirm Save As",
-						"message" = "[new_file_name] already exists. Do you want to overwrite this file?",
+						"title" = "确认另存为",
+						"message" = "[new_file_name] 已存在。是否覆盖此文件？",
 						"action" = "overwrite",
 						"params" = list("uid" = uid,
 							"name" = new_file_name,
@@ -212,10 +212,10 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 					INVOKE_ASYNC(src, PROC_REF(write_to_file), user, existing_file)
 				return TRUE
 			if(is_ic_filtered_for_pdas(new_file_name) || is_soft_ic_filtered_for_pdas(new_file_name))
-				dialog = list("type" = "error", "message" = "The entered file name violates company policy.")
+				dialog = list("type" = "error", "message" = "输入的文件名违反了公司政策。")
 				return TRUE
 			if(!filter_illegal_filename_chars(new_file_name))
-				dialog = list("type" = "error", "message" = "[new_file_name] - File names cannot include the following characters. \n \\ / : * ? \" < > |")
+				dialog = list("type" = "error", "message" = "[new_file_name] —— 文件名不能包含以下字符。\n \\ / : * ? \" < > |")
 				return TRUE
 			INVOKE_ASYNC(src, PROC_REF(save_file), user, new_file_name, new_file_type, saving_to_disk && computer.inserted_disk)
 			return TRUE
@@ -228,7 +228,7 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 	var/full_file_name = file_name + file_type::filetype
 	if(on_disk)
 		if(!computer.inserted_disk)
-			dialog = list("type" = "error", "message" = "[full_file_name] - The disk has been removed.")
+			dialog = list("type" = "error", "message" = "[full_file_name] —— 磁盘已被移除。")
 			return
 		if(uid)
 			file_being_opened = computer.find_file_by_uid(uid, computer.inserted_disk)
@@ -240,11 +240,11 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 		else
 			file_being_opened = computer.find_file_by_full_name(full_file_name)
 	if(!file_being_opened)
-		dialog = list("type" = "error", "message" = "[full_file_name] - The selected file could not be found")
+		dialog = list("type" = "error", "message" = "[full_file_name] —— 找不到所选文件")
 		return
 	var/base_supported_type = is_type_in_typecache(file_being_opened, GLOB.nanopaint_supported_filetypes)
 	if(!base_supported_type)
-		dialog = list("type" = "error", "message" = "[full_file_name] - Unsupported format")
+		dialog = list("type" = "error", "message" = "[full_file_name] —— 不支持的格式")
 		return
 	close_workspace()
 	switch(base_supported_type)
@@ -260,10 +260,10 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 			var/image_width = image.Width()
 			var/image_height = image.Height()
 			if(image_width <= 0 || image_height <= 0)
-				dialog = list("type" = "error", "message" = "[file_name] - Invalid dimensions")
+				dialog = list("type" = "error", "message" = "[file_name] —— 尺寸无效")
 				return
 			if(image_width > SANE_PHOTO_EDITING_SIZE_LIMIT || image_height > SANE_PHOTO_EDITING_SIZE_LIMIT)
-				dialog = list("type" = "error", "message" = "[file_name] - Too large")
+				dialog = list("type" = "error", "message" = "[file_name] —— 文件过大")
 				return
 			current_workspace = new(image_width, image_height)
 			fill_grid_from_icon(current_workspace.get_first_layer_pixel_data(), image)
@@ -287,8 +287,8 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 			image_file.set_source(source_photo_or_painting)
 			if(!source_photo_or_painting)
 				image_file.author_ckey = user.ckey
-				message_admins("[ADMIN_LOOKUP(user)] has saved a custom image to [computer] as [file.filename].[file.filetype].")
-				log_player_image_creation("[key_name(user)] has saved a custom image to [computer] as [file.filename].[file.filetype]", user, image_file.stored_icon)
+				message_admins("[ADMIN_LOOKUP(user)] 将一张自定义图像保存到了 [computer]，文件名为 [file.filename].[file.filetype]。")
+				log_player_image_creation("[key_name(user)] 将一张自定义图像保存到了 [computer]，文件名为 [file.filename].[file.filetype]", user, image_file.stored_icon)
 
 /datum/computer_file/program/nanopaint/proc/save_file(mob/user, name, file_type, obj/item/disk/computer/target_disk)
 	var/datum/computer_file/file = new file_type()
@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(nanopaint_supported_filetypes, zebra_typecacheof(list(\
 	if(file_stored)
 		write_to_file(user, file)
 	else
-		dialog = list("type" = "error", "message" = "[name] - Unable to save file")
+		dialog = list("type" = "error", "message" = "[name] —— 无法保存文件")
 		SStgui.update_uis(computer)
 
 /datum/computer_file/program/nanopaint/proc/close_workspace()

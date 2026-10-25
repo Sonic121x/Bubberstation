@@ -54,9 +54,9 @@ GLOBAL_LIST_EMPTY_TYPED(pda_messengers_by_name, /datum/computer_file/program/mes
 /datum/pda_chat
 	/// The cached name of the recipient, so we can
 	/// identify this chat even after the recipient is deleted
-	var/cached_name = "Unknown"
+	var/cached_name = "未知"
 	/// The cached job of the recipient
-	var/cached_job = "Unknown"
+	var/cached_job = "未知"
 	/// Weakref to the recipient messenger
 	var/datum/weakref/recipient = null
 	/// A list of messages in this chat

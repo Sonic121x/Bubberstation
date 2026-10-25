@@ -1,21 +1,21 @@
-ADMIN_VERB(makepAI, R_FUN, "Make pAI", "Specify a location to spawn a pAI device, then specify a key to play that pAI", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(makepAI, R_FUN, "生成个人 AI", "指定一个位置生成个人 AI 设备，然后指定一个 key 来扮演该个人 AI", ADMIN_CATEGORY_FUN)
 	VERB_ARG_TYPED(target, VERB_ARG_TYPE_TURF, VERB_ARG_SOURCE_VIEW, /turf)
 
 	var/list/available = list()
 	for(var/mob/player as anything in GLOB.player_list)
 		if(player.client && player.key)
 			available.Add(player)
-	var/mob/choice = tgui_input_list(user, "Choose a player to play the pAI", "Spawn pAI", sort_names(available))
+	var/mob/choice = tgui_input_list(user, "选择一名玩家来扮演个人 AI", "生成个人 AI", sort_names(available))
 	if(isnull(choice))
 		return
 
-	var/chosen_name = input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text|null
+	var/chosen_name = input(choice, "输入你的个人 AI 名称：", "个人 AI 名称", "个人 AI") as text|null
 	if (isnull(chosen_name))
 		return
 
 	if(!isobserver(choice))
-		var/confirm = tgui_alert(user, "[choice.key] isn't ghosting right now. Are you sure you want to yank them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("Yes", "No"))
-		if(confirm != "Yes")
+		var/confirm = tgui_alert(user, "[choice.key] 目前并未处于幽灵状态。确定要将其从身体中拉出并放入这个个人 AI 吗？", "生成个人 AI 确认", list("是", "否"))
+		if(confirm != "是")
 			return
 	var/obj/item/pai_card/card = new(target)
 	var/mob/living/silicon/pai/pai = new(card)

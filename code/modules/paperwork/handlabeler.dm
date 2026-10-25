@@ -1,7 +1,7 @@
 /// A mini-tool used to apply label items onto something to modify its name.
 /obj/item/hand_labeler
-	name = "hand labeler"
-	desc = "A combined label printer, applicator, and remover, all in a single portable device. Designed to be easy to operate and use."
+	name = "手持标签机"
+	desc = "集标签打印、贴附与去除功能于一体的便携设备。设计上力求操作简便。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "labeler0"
 	item_flags = NOBLUDGEON
@@ -20,11 +20,11 @@
 	VAR_FINAL/mode = FALSE
 
 /obj/item/hand_labeler/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is pointing [src] at [user.p_them()]self. [user.p_Theyre()] going to label [user.p_them()]self as a suicide!"))
+	user.visible_message(span_suicide("[user] 正把 [src] 对准自己。[user.p_Theyre()] 打算给自己贴上“自杀”的标签！"))
 	labels_left = max(labels_left - 1, 0)
 
 	var/old_real_name = user.real_name
-	user.real_name += " (suicide)"
+	user.real_name += "（自杀）"
 	// no conflicts with their identification card
 	for(var/atom/A in user.get_all_contents())
 		if(isidcard(A))
@@ -39,11 +39,11 @@
 			their_card.update_icon()
 
 	// NOT EVEN DEATH WILL TAKE AWAY THE STAIN
-	user.mind.name += " (suicide)"
+	user.mind.name += "（自杀）"
 
 	mode = 1
 	icon_state = "labeler[mode]"
-	label = "suicide"
+	label = "自杀"
 
 	return OXYLOSS
 
@@ -59,24 +59,24 @@
 
 /obj/item/hand_labeler/proc/apply_label(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!labels_left)
-		balloon_alert(user, "no labels left!")
+		balloon_alert(user, "标签用完了！")
 		return FALSE
 	if(!length(label))
-		balloon_alert(user, "no text set!")
+		balloon_alert(user, "未设置文字！")
 		return FALSE
 	if(length(interacting_with.name) + length(label) > MAX_LABEL_LEN)
-		balloon_alert(user, "label too long!")
+		balloon_alert(user, "标签太长！")
 		return FALSE
 	if(ismob(interacting_with))
-		interacting_with.balloon_alert(user, "can't label!")
+		interacting_with.balloon_alert(user, "无法贴标签！")
 		return FALSE
 
 	var/cursor_x = text2num(LAZYACCESS(modifiers, ICON_X))
 	var/cursor_y = text2num(LAZYACCESS(modifiers, ICON_Y))
-	interacting_with.balloon_alert_to_viewers("labelled")
+	interacting_with.balloon_alert_to_viewers("已贴标签")
 	user.visible_message(
-		span_notice("[user] labels [interacting_with] with \"[label]\"."),
-		span_notice("You label [interacting_with] with \"[label]\"."),
+		span_notice("[user] 在 [interacting_with] 上贴上了“[label]”标签。"),
+		span_notice("你在 [interacting_with] 上贴上了“[label]”标签。"),
 	)
 	var/obj/item/label/stick_label = new(null, label)
 	stick_label.stick_to_atom(interacting_with, cursor_x, cursor_y)
@@ -89,29 +89,29 @@
 	if(.)
 		return .
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to use [src]!"))
+		to_chat(user, span_warning("你的手不够灵巧，无法使用 [src]！"))
 		return .
 
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
-		to_chat(user, span_notice("You turn on [src]."))
+		to_chat(user, span_notice("你打开了 [src]。"))
 		//Now let them chose the text.
-		var/str = reject_bad_text(tgui_input_text(user, "Label text", "Set Label", label, MAX_NAME_LEN))
+		var/str = reject_bad_text(tgui_input_text(user, "标签文字", "设置标签", label, MAX_NAME_LEN))
 		if(!str || QDELETED(src) || !user.is_holding(src))
-			to_chat(user, span_warning("Invalid text!"))
+			to_chat(user, span_warning("无效文字！"))
 			return
 		label = str
-		to_chat(user, span_notice("You set the text to '[str]'."))
+		to_chat(user, span_notice("你把文字设为“[str]”。"))
 	else
-		to_chat(user, span_notice("You turn off [src]."))
+		to_chat(user, span_notice("你关闭了 [src]。"))
 	return TRUE
 
 /obj/item/hand_labeler/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/hand_labeler_refill))
 		return NONE
 
-	balloon_alert(user, "refilled")
+	balloon_alert(user, "已补充")
 	qdel(tool)
 	labels_left = initial(labels_left) //Yes, it's capped at its initial value
 	return ITEM_INTERACT_SUCCESS
@@ -119,12 +119,12 @@
 /obj/item/hand_labeler/examine()
 	. = ..()
 	if(labels_left > 0)
-		. += span_notice("It looks like it could label [labels_left] more thing\s.")
+		. += span_notice("看起来它还能再贴 [labels_left] 个东西。")
 	else
-		. += span_notice("It's out of labels.")
+		. += span_notice("标签用完了。")
 
 /obj/item/hand_labeler/borg
-	name = "cyborg-hand labeler"
+	name = "半机械人手持标签机"
 
 /obj/item/hand_labeler/borg/apply_label(atom/interacting_with, mob/living/silicon/robot/user, list/modifiers)
 	if(!istype(user))
@@ -148,9 +148,9 @@
 	return .
 
 /obj/item/hand_labeler_refill
-	name = "hand labeler paper roll"
+	name = "手持标签机纸卷"
 	icon = 'icons/obj/service/bureaucracy.dmi'
-	desc = "A roll of paper. Use it on a hand labeler to refill it."
+	desc = "一卷纸。对着手持标签机使用即可补充。"
 	icon_state = "labeler_refill"
 	inhand_icon_state = "electropack"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -166,8 +166,8 @@
 
 /// The label item applied when labelling something
 /obj/item/label
-	name = "label"
-	desc = "A strip of paper."
+	name = "标签"
+	desc = "一条纸。"
 	icon = 'icons/obj/toys/stickers.dmi'
 	icon_state = "label"
 	throw_range = 1
@@ -197,7 +197,7 @@
 /obj/item/label/update_name(updates)
 	. = ..()
 	if(label_name)
-		name = "label ([label_name])"
+		name = "标签（[label_name]）"
 
 /// Sets the lable_name var and performs any necessary updates to the label's appearance
 /obj/item/label/proc/update_label_name(new_label_name)
@@ -282,21 +282,21 @@
 
 	if(labeler.mode)
 		if(!length(labeler.label))
-			labeler.balloon_alert(user, "no text set!")
+			labeler.balloon_alert(user, "未设置文字！")
 			return ITEM_INTERACT_BLOCKING
 		if(labeler.label == label_name)
-			sticking_to.balloon_alert(user, "already labelled!")
+			sticking_to.balloon_alert(user, "已经贴过标签了！")
 			return ITEM_INTERACT_BLOCKING
 		if(length(initial(sticking_to.name)) + length(labeler.label) > MAX_LABEL_LEN)
-			sticking_to.balloon_alert(user, "label too long!")
+			sticking_to.balloon_alert(user, "标签太长！")
 			return ITEM_INTERACT_BLOCKING
 
 		update_label_name(labeler.label)
 		playsound(sticking_to, 'sound/items/handling/component_pickup.ogg', 20, TRUE)
-		sticking_to.balloon_alert(user, "label renamed")
+		sticking_to.balloon_alert(user, "标签已重命名")
 	else
 		playsound(sticking_to, 'sound/items/poster/poster_ripped.ogg', 20, TRUE)
-		sticking_to.balloon_alert(user, "label removed")
+		sticking_to.balloon_alert(user, "标签已取下")
 		qdel(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -312,7 +312,7 @@
 /obj/item/label/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("It has a label with some words written on it. Use a hand labeler to remove it.")
+	examine_list += span_notice("上面贴着一张写有文字的标签。用手持标签机可以取下。")
 
 /// Applies a label to the name of what we're stuck to in the format of: "parent_name (label)"
 /obj/item/label/proc/apply_label()

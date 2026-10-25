@@ -1,9 +1,9 @@
 /datum/computer_file/program/raptordex
 	filename = "raptordex"
-	filedesc = "RaptorDex"
+	filedesc = "迅猛龙图鉴"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	program_open_overlay = "bountyboard"
-	extended_desc = "Scan and analyze raptor genes."
+	extended_desc = "扫描并分析迅猛龙的基因。"
 	size = 2
 	tgui_id = "NtosRaptorDex"
 	program_icon = "crow"
@@ -56,7 +56,7 @@
 			scan_data["inherited_traits"] += GLOB.raptor_inherit_traits[index]
 
 	playsound(computer, 'sound/mobs/non-humanoids/orbie/orbie_send_out.ogg', 20)
-	my_raptor.balloon_alert(user, "scanned")
+	my_raptor.balloon_alert(user, "已扫描")
 	return TRUE
 
 /datum/computer_file/program/raptordex/ui_data(mob/user)
@@ -78,5 +78,5 @@
 	SIGNAL_HANDLER
 	if(!istype(target, /mob/living/basic/raptor))
 		return NONE
-	context[SCREENTIP_CONTEXT_RMB] = "Scan Raptor"
+	context[SCREENTIP_CONTEXT_RMB] = "扫描迅猛龙"
 	return CONTEXTUAL_SCREENTIP_SET

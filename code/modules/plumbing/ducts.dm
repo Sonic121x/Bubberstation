@@ -1,5 +1,5 @@
 /obj/machinery/duct
-	name = "fluid duct"
+	name = "流体管道"
 	icon = 'icons/obj/pipes_n_cables/hydrochem/fluid_ducts.dmi'
 	icon_state = "nduct"
 	layer = PLUMBING_PIPE_VISIBILE_LAYER
@@ -217,13 +217,13 @@
 /obj/machinery/duct/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Destroy duct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆除管道"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/duct/examine(mob/user)
 	. = ..()
-	. += span_notice("Its current color and layer are [GLOB.pipe_color_name[duct_color]] and [GLOB.plumbing_layer_names["[duct_layer]"]]. Use in-hand to change.")
-	. += span_notice("It can be [EXAMINE_HINT("wrenched")] apart.")
+	. += span_notice("它当前的颜色和层位是 [GLOB.pipe_color_name[duct_color]] 与 [GLOB.plumbing_layer_names["[duct_layer]"]]。拿在手上使用即可更改。")
+	. += span_notice("可以用[EXAMINE_HINT("扳手")]拆开。")
 
 /obj/machinery/duct/update_icon_state()
 	var/temp_icon = initial(icon_state)
@@ -250,17 +250,17 @@
 	wrench.play_tool_sound(src)
 
 	user.visible_message( \
-	"[user] ununfastens \the [src].", \
-	span_notice("You unfasten \the [src]."), \
-	span_hear("You hear ratcheting."))
+	"[user] 松开了 \the [src]。", \
+	span_notice("你松开了 \the [src]。"), \
+	span_hear("你听到棘轮转动的声音。"))
 
 	deconstruct()
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/stack/ducts
-	name = "stack of duct"
-	desc = "A stack of fluid ducts."
-	singular_name = "duct"
+	name = "一叠管道"
+	desc = "一叠流体管道。"
+	singular_name = "管道"
 	icon = 'icons/obj/pipes_n_cables/hydrochem/fluid_ducts.dmi'
 	icon_state = "ducts"
 	mats_per_unit = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*5)
@@ -287,27 +287,27 @@
 /obj/item/stack/ducts/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(held_item?.tool_behaviour == TOOL_WRENCH && isopenturf(loc))
-		context[SCREENTIP_CONTEXT_LMB] = "Wrench duct"
+		context[SCREENTIP_CONTEXT_LMB] = "用扳手铺设管道"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/stack/ducts/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	. = NONE
 	if(istype(target, /obj/machinery/duct))
-		context[SCREENTIP_CONTEXT_LMB] = "Pick duct"
+		context[SCREENTIP_CONTEXT_LMB] = "拾取管道"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/stack/ducts/examine(mob/user)
 	. = ..()
-	. += span_notice("Its current color and layer are [GLOB.pipe_color_name[duct_color]] and [GLOB.plumbing_layer_names["[duct_layer]"]]. Use in-hand to change.")
-	. += span_notice("Place on ground & [EXAMINE_HINT("wrench")] to create duct.")
+	. += span_notice("它当前的颜色和层位是 [GLOB.pipe_color_name[duct_color]] 与 [GLOB.plumbing_layer_names["[duct_layer]"]]。拿在手上使用即可更改。")
+	. += span_notice("放在地面上并用[EXAMINE_HINT("扳手")]即可铺设管道。")
 
 /obj/item/stack/ducts/attack_self(mob/user)
-	var/new_layer = tgui_input_list(user, "Select a layer", "Layer", GLOB.plumbing_layers, GLOB.plumbing_layer_names["[duct_layer]"])
+	var/new_layer = tgui_input_list(user, "选择层位", "层位", GLOB.plumbing_layers, GLOB.plumbing_layer_names["[duct_layer]"])
 	if(!user.is_holding(src))
 		return
 	if(new_layer)
 		duct_layer = GLOB.plumbing_layers[new_layer]
-	var/new_color = tgui_input_list(user, "Select a color", "Color", GLOB.pipe_paint_colors, GLOB.pipe_color_name[duct_color])
+	var/new_color = tgui_input_list(user, "选择颜色", "颜色", GLOB.pipe_paint_colors, GLOB.pipe_color_name[duct_color])
 	if(!user.is_holding(src))
 		return
 	if(new_color)
@@ -321,7 +321,7 @@
 	// Turn into a duct stack and then merge to the in-hand stack.
 	if(istype(interacting_with, /obj/machinery/duct))
 		if(amount == max_amount)
-			balloon_alert(user, "stack full!")
+			balloon_alert(user, "叠放已满！")
 			return ITEM_INTERACT_FAILURE
 		qdel(interacting_with)
 		add(1)
@@ -335,7 +335,7 @@
 		var/datum/overlap = ducting_layer_check(open_turf, duct_layer)
 		if(!isnull(overlap))
 			if(user)
-				open_turf.balloon_alert(user, "overlapping [istype(overlap, /obj/machinery/duct) ? "duct" : "machine"] detected!")
+				open_turf.balloon_alert(user, "检测到重叠的[istype(overlap, /obj/machinery/duct) ? "管道" : "机器"]！")
 			return ITEM_INTERACT_FAILURE
 
 		new /obj/machinery/duct(open_turf, duct_color, duct_layer)

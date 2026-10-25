@@ -2,8 +2,8 @@
 // Other types expand it - tablets and laptops are subtypes
 // consoles use "procssor" item that is held inside it.
 /obj/item/modular_computer
-	name = "modular microcomputer"
-	desc = "A small portable microcomputer."
+	name = "模块化微型计算机"
+	desc = "一台小巧的便携式微型计算机。"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "laptop"
 	light_on = FALSE
@@ -272,7 +272,7 @@
 /obj/item/modular_computer/get_id_examine_strings(mob/user)
 	. = ..()
 	if(stored_id)
-		. += "[src] is displaying [stored_id]:"
+		. += "[src] 正在显示 [stored_id]："
 		. += stored_id.get_id_examine_strings(user)
 
 /obj/item/modular_computer/proc/print_text(text_to_print, paper_title = "")
@@ -307,8 +307,8 @@
 	stored_id = inserting_id
 
 	if(!isnull(user))
-		to_chat(user, span_notice("You insert \the [inserting_id] into the card slot."))
-		balloon_alert(user, "inserted ID")
+		to_chat(user, span_notice("你把 \the [inserting_id] 插入卡槽。"))
+		balloon_alert(user, "已插入 ID")
 
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
@@ -338,8 +338,8 @@
 
 	alt_stored_id = secondary_id
 	if(!isnull(user))
-		to_chat(user, span_notice("You insert \the [secondary_id] into the secondary card slot."))
-		balloon_alert(user, "inserted secondary ID")
+		to_chat(user, span_notice("你把 \the [secondary_id] 插入副卡槽。"))
+		balloon_alert(user, "已插入副 ID")
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 	return TRUE
@@ -364,8 +364,8 @@
 	alt_stored_id = null
 
 	if(!silent && !isnull(user))
-		to_chat(user, span_notice("You remove \the [lost_id] from the secondary card slot."))
-		balloon_alert(user, "removed secondary ID")
+		to_chat(user, span_notice("你从副卡槽中取出 \the [lost_id]。"))
+		balloon_alert(user, "已取出副 ID")
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 	return TRUE
@@ -392,8 +392,8 @@
 	SEND_SIGNAL(src, COMSIG_MODULAR_COMPUTER_REMOVED_ID, stored_id, user) // BUBBER EDIT ADDITION - Signal on ID removal
 
 	if(!silent && !isnull(user))
-		to_chat(user, span_notice("You remove \the [lost_id] from the card slot."))
-		balloon_alert(user, "removed ID")
+		to_chat(user, span_notice("你从卡槽中取出 \the [lost_id]。"))
+		balloon_alert(user, "已取出 ID")
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 
 	if(ishuman(loc))
@@ -415,8 +415,8 @@
 	if(enabled)
 		ui_interact(user)
 	else if(isAdminGhostAI(user))
-		var/response = tgui_alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", list("Yes", "No"))
-		if(response == "Yes")
+		var/response = tgui_alert(user, "这台计算机处于关机状态。要把它打开吗？", "管理员覆盖", list("是", "否"))
+		if(response == "是")
 			turn_on(user)
 
 /obj/item/modular_computer/emp_act(severity)
@@ -430,23 +430,23 @@
 
 /obj/item/modular_computer/emag_act(mob/user, obj/item/card/emag/emag_card, forced)
 	if(!enabled && !forced)
-		balloon_alert(user, "turn it on first!")
+		balloon_alert(user, "请先开机！")
 		return FALSE
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already emagged!")
+		balloon_alert(user, "已被电磁破坏！")
 		if (emag_card)
-			to_chat(user, span_notice("You swipe \the [src] with [emag_card]. A console window fills the screen, but it quickly closes itself after only a few lines are written to it."))
+			to_chat(user, span_notice("你用 [emag_card] 划过 \the [src]。屏幕上弹出一个控制台窗口，但只写了几行字就迅速自行关闭了。"))
 		return FALSE
 
 	. = ..()
 	if(!forced)
-		add_log("manual overriding of permissions and modification of device firmware detected. Reboot and reinstall required.")
+		add_log("检测到手动覆盖权限与修改设备固件的行为。需要重启并重新安装。")
 	obj_flags |= EMAGGED
 	device_theme = PDA_THEME_SYNDICATE
 	if(user)
-		balloon_alert(user, "syndieOS loaded")
+		balloon_alert(user, "辛迪加系统已加载")
 		if (emag_card)
-			to_chat(user, span_notice("You swipe \the [src] with [emag_card]. A console window momentarily fills the screen, with white text rapidly scrolling past."))
+			to_chat(user, span_notice("你用 [emag_card] 划过 \the [src]。屏幕上短暂地弹出一个控制台窗口，白色的文字飞速滚动而过。"))
 	return TRUE
 
 /obj/item/modular_computer/examine(mob/user)
@@ -454,70 +454,70 @@
 	var/healthpercent = round((atom_integrity/max_integrity) * 100, 1)
 	switch(healthpercent)
 		if(50 to 99)
-			. += span_info("It looks slightly damaged.")
+			. += span_info("它看起来有些许损伤。")
 		if(25 to 50)
-			. += span_info("It appears heavily damaged.")
+			. += span_info("它看起来受损严重。")
 		if(0 to 25)
-			. += span_warning("It's falling apart!")
+			. += span_warning("它快要散架了！")
 
 	if(long_ranged)
-		. += "It is upgraded with an experimental long-ranged network capabilities, picking up NTNet frequencies while further away."
-	. += span_notice("It has [max_capacity] GQ of storage capacity.")
+		. += "它经过改装，具备实验性的远程网络能力，即使在较远处也能接收到 NTNet 频率。"
+	. += span_notice("它拥有 [max_capacity] GQ 的存储容量。")
 
 	if(stored_id)
 		if(Adjacent(user))
-			. += "It has \the [stored_id] card inserted in its card slot.[alt_stored_id ? "" : " [span_info("Alt-click to eject it.")]"]"
+			. += "它的卡槽里插着 \the [stored_id]。[alt_stored_id ? "" : " [span_info("按住 Alt 点击可将其弹出。")]"]"
 		else
-			. += "Its identification card slot is currently occupied."
+			. += "它的身份卡卡槽目前已被占用。"
 
 	if(alt_stored_id)
 		if(Adjacent(user))
-			. += "It has \the [alt_stored_id] card stored in its secondary card slot. [span_info("Alt-click to eject it.")]"
+			. += "它的副卡槽里存有 \the [alt_stored_id]。[span_info("按住 Alt 点击可将其弹出。")]"
 		else
-			. += "Its secondary identification card slot is currently occupied."
+			. += "它的副身份卡卡槽目前已被占用。"
 
 	if(internal_cell)
-		. += span_info("Right-click it with a screwdriver to eject the [internal_cell].")
+		. += span_info("用螺丝刀右键点击它即可取出 [internal_cell]。")
 
 /obj/item/modular_computer/examine_more(mob/user)
 	. = ..()
-	. += "Storage capacity: [used_capacity]/[max_capacity]GQ"
+	. += "存储容量：[used_capacity]/[max_capacity]GQ"
 
 	for(var/datum/computer_file/app_examine as anything in stored_files)
 		if(app_examine.on_examine(src, user))
 			. += app_examine.on_examine(src, user)
 
 	if(Adjacent(user))
-		. += span_notice("Paper level: [stored_paper] / [max_paper].")
+		. += span_notice("纸张余量：[stored_paper] / [max_paper]。")
 
 /obj/item/modular_computer/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	. = ..()
 
 	if(isidcard(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = stored_id ? "Swap ID" : "Insert ID"
+		context[SCREENTIP_CONTEXT_LMB] = stored_id ? "更换 ID" : "插入 ID"
 		if(HAS_TRAIT(src, TRAIT_MODPC_TWO_ID_SLOTS))
-			context[SCREENTIP_CONTEXT_RMB] = alt_stored_id ? "Swap Secondary ID" : "Insert Secondary ID"
+			context[SCREENTIP_CONTEXT_RMB] = alt_stored_id ? "更换副 ID" : "插入副 ID"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER && internal_cell)
-		context[SCREENTIP_CONTEXT_RMB] = "Remove Cell"
+		context[SCREENTIP_CONTEXT_RMB] = "取出电池"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_RMB] = "拆解"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(alt_stored_id)
-		context[SCREENTIP_CONTEXT_ALT_RMB] = "Remove Secondary ID"
+		context[SCREENTIP_CONTEXT_ALT_RMB] = "取出副 ID"
 		. = CONTEXTUAL_SCREENTIP_SET
 	if(stored_id) // ID get removed first before pAIs
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove ID"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "取出 ID"
 		. = CONTEXTUAL_SCREENTIP_SET
 	else if(inserted_pai)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove pAI"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "取出个人 AI"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	if(inserted_disk)
-		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "Remove Disk"
+		context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = "取出磁盘"
 		. = CONTEXTUAL_SCREENTIP_SET
 	return . || NONE
 
@@ -570,9 +570,9 @@
 	if(atom_integrity <= integrity_failure * max_integrity)
 		if(user)
 			if(issynth)
-				to_chat(user, span_warning("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
+				to_chat(user, span_warning("你向 \the [src] 发送激活信号，但它回以一个错误代码。它一定受损了。"))
 			else
-				to_chat(user, span_warning("You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again."))
+				to_chat(user, span_warning("你按下电源按钮，但计算机启动失败，屏幕上闪过一连串错误，随后又关机了。"))
 		return FALSE
 
 	if(use_energy(base_active_power_usage)) // checks if the PC is powered
@@ -582,9 +582,9 @@
 		update_appearance()
 		if(user)
 			if(issynth)
-				to_chat(user, span_notice("You send an activation signal to \the [src], turning it on."))
+				to_chat(user, span_notice("你向 \the [src] 发送激活信号，将其开启。"))
 			else
-				to_chat(user, span_notice("You press the power button and start up \the [src]."))
+				to_chat(user, span_notice("你按下电源按钮，启动了 \the [src]。"))
 			if(open_ui)
 				update_tablet_open_uis(user)
 		SEND_SIGNAL(src, COMSIG_MODULAR_COMPUTER_TURNED_ON, user)
@@ -592,9 +592,9 @@
 	else // Unpowered
 		if(user)
 			if(issynth)
-				to_chat(user, span_warning("You send an activation signal to \the [src] but it does not respond."))
+				to_chat(user, span_warning("你向 \the [src] 发送激活信号，但它毫无反应。"))
 			else
-				to_chat(user, span_warning("You press the power button but \the [src] does not respond."))
+				to_chat(user, span_warning("你按下电源按钮，但 \the [src] 毫无反应。"))
 		return FALSE
 
 // Process currently calls handle_power(), may be expanded in future if more things are added.
@@ -637,7 +637,7 @@
 	if(!call_source || !call_source.alert_able || call_source.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
 		return FALSE
 	playsound(src, sound, 50, TRUE)
-	physical.loc.visible_message(span_notice("[icon2html(physical, viewers(physical.loc))] \The [src] displays a [call_source.filedesc] notification: [alerttext]"))
+	physical.loc.visible_message(span_notice("[icon2html(physical, viewers(physical.loc))] \The [src] 上弹出了一条 [call_source.filedesc] 通知：[alerttext]"))
 
 /obj/item/modular_computer/proc/ring(ringtone, list/balloon_alertees) // bring bring
 	if(!use_energy(check_programs = FALSE))
@@ -714,7 +714,7 @@
 
 	if(isnull(program) || !istype(program)) // Program not found or it's not executable program.
 		if(user)
-			to_chat(user, span_danger("\The [src]'s screen shows \"I/O ERROR - Unable to run program\" warning."))
+			to_chat(user, span_danger("\The [src] 的屏幕上显示“输入/输出错误——无法运行程序”的警告。"))
 		return FALSE
 
 	if(active_program == program)
@@ -737,12 +737,12 @@
 
 	if(idle_threads.len > max_idle_programs)
 		if(user)
-			to_chat(user, span_danger("\The [src] displays a \"Maximal CPU load reached. Unable to run another program.\" error."))
+			to_chat(user, span_danger("\The [src] 上显示一条错误：“CPU 负载已达上限，无法运行其他程序。”"))
 		return FALSE
 
 	if(program.program_flags & PROGRAM_REQUIRES_NTNET && !get_ntnet_status()) // The program requires NTNet connection, but we are not connected to NTNet.
 		if(user)
-			to_chat(user, span_danger("\The [src]'s screen shows \"Unable to connect to NTNet. Please retry. If problem persists contact your system administrator.\" warning."))
+			to_chat(user, span_danger("\The [src] 的屏幕上显示“无法连接 NTNet。请重试。若问题持续出现，请联系系统管理员。”的警告。"))
 		return FALSE
 
 	if(!program.on_start(user))
@@ -798,7 +798,7 @@
 		soundloop.stop()
 	if(physical && loud)
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 25, FALSE)
-		physical.visible_message(span_notice("\The [src] shuts down."))
+		physical.visible_message(span_notice("\The [src] 关机了。"))
 	enabled = FALSE
 	update_appearance()
 	SEND_SIGNAL(src, COMSIG_MODULAR_COMPUTER_SHUT_DOWN, loud)
@@ -838,7 +838,7 @@
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, disabled_time))
 		if(user)
-			balloon_alert(user, "disrupted!")
+			balloon_alert(user, "已受干扰！")
 		return FALSE
 	set_light_on(!light_on)
 	update_appearance()
@@ -880,12 +880,12 @@
 /obj/item/modular_computer/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	if(internal_cell)
-		user.balloon_alert(user, "cell removed")
+		user.balloon_alert(user, "已取出电池")
 		internal_cell.forceMove(drop_location())
 		internal_cell = null
 		return ITEM_INTERACT_SUCCESS
 	else
-		user.balloon_alert(user, "no cell!")
+		user.balloon_alert(user, "没有电池！")
 
 /obj/item/modular_computer/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
@@ -893,23 +893,23 @@
 	if(!do_after(user, 2 SECONDS, target = physical))
 		return ITEM_INTERACT_BLOCKING
 	deconstruct(TRUE)
-	user.balloon_alert(user, "disassembled")
+	user.balloon_alert(user, "已拆解")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/modular_computer/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(atom_integrity == max_integrity)
-		to_chat(user, span_warning("\The [src] does not require repairs."))
+		to_chat(user, span_warning("\The [src] 不需要维修。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!tool.tool_start_check(user, amount=1))
 		return ITEM_INTERACT_SUCCESS
 
-	to_chat(user, span_notice("You begin repairing damage to \the [src]..."))
+	to_chat(user, span_notice("你开始修复 \the [src] 的损伤……"))
 	if(!tool.use_tool(src, user, 20, volume=50))
 		return ITEM_INTERACT_SUCCESS
 	atom_integrity = max_integrity
-	to_chat(user, span_notice("You repair \the [src]."))
+	to_chat(user, span_notice("你修好了 \the [src]。"))
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
@@ -955,7 +955,7 @@
 /obj/item/modular_computer/proc/money_act(mob/user, obj/item/money)
 	var/obj/item/card/id/inserted_id = stored_id?.GetID()
 	if(!inserted_id)
-		balloon_alert(user, "no ID!")
+		balloon_alert(user, "没有 ID！")
 		return ITEM_INTERACT_BLOCKING
 	return inserted_id.insert_money(money, user) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
 
@@ -965,7 +965,7 @@
 	if(!user.transferItemToLoc(card, src))
 		return ITEM_INTERACT_BLOCKING
 	inserted_pai = card
-	balloon_alert(user, "inserted pai")
+	balloon_alert(user, "已插入个人 AI")
 	if(inserted_pai.pai)
 		inserted_pai.pai.give_messenger_ability()
 	update_appearance(UPDATE_ICON)
@@ -975,30 +975,30 @@
 	if(ismachinery(physical))
 		return ITEM_INTERACT_BLOCKING
 	if(internal_cell)
-		to_chat(user, span_warning("You try to connect \the [new_cell] to \the [src], but its connectors are occupied."))
+		to_chat(user, span_warning("你试着把 \the [new_cell] 接到 \the [src] 上，但它的接口已被占用。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(new_cell, src))
 		return ITEM_INTERACT_BLOCKING
 	internal_cell = new_cell
-	to_chat(user, span_notice("You plug \the [new_cell] to \the [src]."))
+	to_chat(user, span_notice("你把 \the [new_cell] 插入了 \the [src]。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/modular_computer/proc/photo_act(mob/user, obj/item/photo/scanned_photo)
 	var/datum/picture/source_picture = scanned_photo.picture
 	var/datum/computer_file/image/image_file = new /datum/computer_file/image(source_picture.picture_image, display_name = source_picture.picture_name, source_photo_or_painting = source_picture)
 	if(!store_file(image_file, user))
-		balloon_alert(user, "no space!")
+		balloon_alert(user, "空间不足！")
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "photo scanned")
+	balloon_alert(user, "照片已扫描")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/modular_computer/proc/paper_act(mob/user, obj/item/paper/new_paper)
 	if(stored_paper >= max_paper)
-		balloon_alert(user, "no more room!")
+		balloon_alert(user, "没有更多空间了！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.temporarilyRemoveItemFromInventory(new_paper))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "inserted paper")
+	balloon_alert(user, "已插入纸张")
 	qdel(new_paper)
 	playsound(src, 'sound/machines/computer/paper_insert.ogg', 40, vary = TRUE)
 	stored_paper++
@@ -1006,7 +1006,7 @@
 
 /obj/item/modular_computer/proc/paper_bin_act(mob/user, obj/item/paper_bin/bin)
 	if(bin.total_paper <= 0)
-		balloon_alert(user, "empty bin!")
+		balloon_alert(user, "纸篓是空的！")
 		return ITEM_INTERACT_BLOCKING
 	var/papers_added //just to keep track
 	while((bin.total_paper > 0) && (stored_paper < max_paper))
@@ -1015,8 +1015,8 @@
 		bin.remove_paper()
 	if(!papers_added)
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "inserted paper")
-	to_chat(user, span_notice("Added in [papers_added] new sheets. You now have [stored_paper] / [max_paper] printing paper stored."))
+	balloon_alert(user, "已插入纸张")
+	to_chat(user, span_notice("又加入了 [papers_added] 张纸。你目前存有 [stored_paper] / [max_paper] 张打印纸。"))
 	playsound(src, 'sound/machines/computer/paper_insert.ogg', 40, vary = TRUE)
 	bin.update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -1026,9 +1026,9 @@
 		return ITEM_INTERACT_BLOCKING
 	if(inserted_disk)
 		user.put_in_hands(inserted_disk)
-		balloon_alert(user, "disks swapped")
+		balloon_alert(user, "已更换磁盘")
 	else
-		balloon_alert(user, "disk inserted")
+		balloon_alert(user, "已插入磁盘")
 	inserted_disk = disk
 	playsound(src, 'sound/machines/card_slide.ogg', 50)
 	return ITEM_INTERACT_SUCCESS
@@ -1042,7 +1042,7 @@
 	alt_stored_id?.forceMove(droploc)
 	inserted_disk?.forceMove(droploc)
 	if (!disassembled)
-		physical.visible_message(span_notice("\The [src] breaks apart!"))
+		physical.visible_message(span_notice("\The [src] 散架了！"))
 	new /obj/item/stack/sheet/iron(droploc, steel_sheet_cost * (disassembled ? 1 : 0.5))
 	relay_qdel()
 
@@ -1065,7 +1065,7 @@
 
 ///Returns a string of what to send at the end of messenger's messages.
 /obj/item/modular_computer/proc/get_messenger_ending()
-	return "Sent from my PDA"
+	return "发自我的 PDA"
 
 /obj/item/modular_computer/proc/remove_pai(mob/user)
 	if(!inserted_pai)
@@ -1074,7 +1074,7 @@
 		inserted_pai.pai.remove_messenger_ability()
 	if(user)
 		user.put_in_hands(inserted_pai)
-		balloon_alert(user, "removed pAI")
+		balloon_alert(user, "已取出个人 AI")
 	else
 		inserted_pai.forceMove(drop_location())
 	inserted_pai = null

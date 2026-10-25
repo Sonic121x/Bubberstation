@@ -14,9 +14,9 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 
 /datum/computer_file/program/virtual_pet
 	filename = "virtualpet"
-	filedesc = "Virtual Pet"
+	filedesc = "虚拟宠物"
 	downloader_category = PROGRAM_CATEGORY_GAMES
-	extended_desc = "Download your very own Orbie today!"
+	extended_desc = "今天就下载一只属于你自己的欧比吧！"
 	program_open_overlay = "generic"
 	program_flags = PROGRAM_ON_NTNET_STORE
 	size = 3
@@ -98,9 +98,9 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 	var/area/selected_area
 	///possible colors our pet can have
 	var/static/list/possible_colors= list(
-		"white" = null, //default color state
-		"light blue" = "#c3ecf3",
-		"light green" = "#b1ffe8",
+		"白色" = null, //default color state
+		"浅蓝色" = "#c3ecf3",
+		"浅绿色" = "#b1ffe8",
 	)
 	///areas we wont drop the chocolate in
 	var/static/list/restricted_areas = typecacheof(list(
@@ -156,14 +156,14 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 /datum/computer_file/program/virtual_pet/proc/on_message_receive(datum/source, sender_title, inbound_message, photo_message)
 	SIGNAL_HANDLER
 
-	var/message_to_display = "[sender_title] has sent you a message [photo_message ? "with a photo attached" : ""]: [inbound_message]!"
+	var/message_to_display = "[sender_title] 给你发来了一条消息[photo_message ? "，附有一张照片" : ""]：[inbound_message]！"
 	pet.ai_controller?.set_blackboard_key(BB_LAST_RECEIVED_MESSAGE, message_to_display)
 
 /datum/computer_file/program/virtual_pet/proc/pet_pre_clean(atom/source, mob/user)
 	SIGNAL_HANDLER
 
 	if(!COOLDOWN_FINISHED(src, on_clean_cooldown))
-		source.balloon_alert(user, "already clean!")
+		source.balloon_alert(user, "已经很干净了！")
 		return COMSIG_ATOM_CANCEL_CLEAN
 
 /datum/computer_file/program/virtual_pet/proc/on_playmate_find(datum/source)
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 	steps_counter = min(steps_counter + 1, PET_MAX_STEPS_RECORD)
 	increment_exp()
 	if(steps_counter % 2000 == 0) //every 2000 steps, announce the milestone to the world!
-		announce_global_updates(message = "has walked [steps_counter] steps!")
+		announce_global_updates(message = "已经走了 [steps_counter] 步！")
 
 /datum/computer_file/program/virtual_pet/proc/increment_exp()
 	var/modifier = 1
@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 	playsound(computer.loc, 'sound/mobs/non-humanoids/orbie/orbie_level_up.ogg', 50)
 	to_next_level += (level**2) + 500
 	SEND_SIGNAL(pet, COMSIG_VIRTUAL_PET_LEVEL_UP, level) //its a signal so different path types of virtual pets can handle leveling up differently
-	announce_global_updates(message = "has reached level [level]!")
+	announce_global_updates(message = "达到了 [level] 级！")
 
 /datum/computer_file/program/virtual_pet/proc/grant_level_abilities()
 	switch(level)
@@ -383,14 +383,14 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 	data["pet_state"] = get_pet_state()
 	data["hunger"] = hunger
 	data["maximum_hunger"] = max_hunger
-	data["pet_hat"] = (hat_type ? initial(hat_type.name) : "none")
+	data["pet_hat"] = (hat_type ? initial(hat_type.name) : "无")
 	data["can_reroll"] = COOLDOWN_FINISHED(src, area_reroll)
 	data["can_summon"] = COOLDOWN_FINISHED(src, summon_cooldown)
 	data["can_alter_appearance"] = COOLDOWN_FINISHED(src, alter_appearance_cooldown)
 	data["pet_name"] = pet.name
 	data["steps_counter"] = steps_counter
 	data["in_dropzone"] = (istype(get_area(computer), selected_area))
-	data["pet_area"] = (pet.loc != computer ? get_area_name(pet) : "Sleeping in PDA")
+	data["pet_area"] = (pet.loc != computer ? get_area_name(pet) : "在 PDA 中睡觉")
 	data["current_exp"] = current_level_progress
 	data["required_exp"] = to_next_level
 	data["happiness"] = happiness
@@ -443,7 +443,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 
 	data["hat_selections"] = list(list(
 		"hat_id" = null,
-		"hat_name" = "none",
+		"hat_name" = "无",
 	))
 
 	for(var/type_index in hat_selections)
@@ -453,7 +453,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 			if(length(SSachievements.achievements)) // The Achievements subsystem is active.
 				var/datum/award/required_cheevo = cheevo_hats[hat]
 				if(required_cheevo && !user.client.get_award_status(required_cheevo))
-					hat_name = "LOCKED"
+					hat_name = "已锁定"
 			data["hat_selections"] += list(list(
 				"hat_id" = type_index,
 				"hat_name" = hat_name,
@@ -503,7 +503,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 			else if(hat_selections[chosen_type])
 				var/datum/award/required_cheevo = cheevo_hats[chosen_type]
 				if(length(SSachievements.achievements) && required_cheevo && !ui.user.client.get_award_status(required_cheevo))
-					to_chat(ui.user, span_info("This customization requires the \"[span_bold(initial(required_cheevo.name))]\ achievement to be unlocked."))
+					to_chat(ui.user, span_info("此自定义项需要解锁“[span_bold(initial(required_cheevo.name))]”成就。"))
 				else
 					selected_hat["type"] = chosen_type
 					var/state_to_use = initial(chosen_type.worn_icon_state) || initial(chosen_type.icon_state)
@@ -584,7 +584,7 @@ GLOBAL_LIST_EMPTY(virtual_pets_list)
 /datum/computer_file/program/virtual_pet/proc/drop_feed()
 	if(!istype(get_area(computer), selected_area))
 		return
-	announce_global_updates(message = "has found a chocolate at [selected_area.name]")
+	announce_global_updates(message = "在 [selected_area.name] 找到了一块巧克力")
 	selected_area = null
 	var/obj/item/food/virtual_chocolate/chocolate = new(get_turf(computer))
 	chocolate.fade_into_nothing(life_time = 30 SECONDS) //we cant maintain its existence for too long!

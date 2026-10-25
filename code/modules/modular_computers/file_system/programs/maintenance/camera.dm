@@ -1,9 +1,9 @@
 /datum/computer_file/program/maintenance/camera
 	filename = "camera_app"
-	filedesc = "Camera"
+	filedesc = "相机"
 	program_open_overlay = "camera"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
-	extended_desc = "This program allows the taking of pictures."
+	extended_desc = "该程序可用于拍照。"
 	size = 4
 	can_run_on_flags = PROGRAM_PDA
 	tgui_id = "NtosCamera"
@@ -154,7 +154,7 @@
 				return
 			var/datum/computer_file/image/photo_file = new(
 				internal_picture.picture_image,
-				display_name = internal_picture.picture_name || "photo[picture_number]",
+				display_name = internal_picture.picture_name || "照片[picture_number]",
 				source_photo_or_painting = internal_picture
 			)
 			if(computer.store_file(photo_file, ui.user))
@@ -172,5 +172,5 @@
 			ui.user.put_in_hands(new_photo)
 			playsound(computer.physical, 'sound/machines/printer.ogg', 100, TRUE)
 			computer.stored_paper--
-			computer.visible_message(span_notice("\The [computer] prints out a paper."))
+			computer.visible_message(span_notice("[computer] 打印出一张纸。"))
 			return TRUE

@@ -13,15 +13,15 @@
 	AddElement(/datum/element/update_icon_blocker)
 	. = ..()
 	employee_name = new_employee_name
-	name = "paper- [employee_name] employment contract"
-	add_raw_text("<center>Conditions of Employment</center>\
+	name = "纸张 - [employee_name] 雇佣合同"
+	add_raw_text("雇佣条款</center>\
 	<BR><BR><BR><BR>\
-	This Agreement is made and entered into as of the date of last signature below, by and between [employee_name] (hereafter referred to as SLAVE), \
-	and Nanotrasen (hereafter referred to as the omnipresent and helpful watcher of humanity).\
-	<BR>WITNESSETH:<BR>WHEREAS, SLAVE is a natural born human or humanoid, possessing skills upon which he can aid the omnipresent and helpful watcher of humanity, \
-	who seeks employment in the omnipresent and helpful watcher of humanity.<BR>WHEREAS, the omnipresent and helpful watcher of humanity agrees to sporadically provide payment to SLAVE, \
-	in exchange for permanent servitude.<BR>NOW THEREFORE in consideration of the mutual covenants herein contained, and other good and valuable consideration, the parties hereto mutually agree as follows:\
-	<BR>In exchange for paltry payments, SLAVE agrees to work for the omnipresent and helpful watcher of humanity, \
-	for the remainder of his or her current and future lives.<BR>Further, SLAVE agrees to transfer ownership of his or her soul to the loyalty department of the omnipresent and helpful watcher of humanity.\
-	<BR>Should transfership of a soul not be possible, a lien shall be placed instead.\
-	<BR>Signed,<BR><i>[employee_name]</i>")
+	本协议自下方最后签署之日起，由 [employee_name]（以下简称“奴隶”）与 \
+	纳米传讯（以下简称“无所不在而乐于助人的人类守望者”）共同订立。\
+	<BR>兹证明：<BR>鉴于，奴隶为天生的人类或人形生物，具备可协助无所不在而乐于助人的人类守望者的技能， \
+	并希望在无所不在而乐于助人的人类守望者处谋求工作。<BR>鉴于，无所不在而乐于助人的人类守望者同意不定期向奴隶支付报酬， \
+	以换取永久劳役。<BR>因此，鉴于本协议所载的相互约定以及其他良好且有价值的对价，双方特此相互约定如下：\
+	<BR>作为微薄报酬的交换，奴隶同意为无所不在而乐于助人的人类守望者工作， \
+	直至其当前及未来人生的余下岁月。<BR>此外，奴隶同意将其灵魂的所有权转让给无所不在而乐于助人的人类守望者的忠诚部。\
+	<BR>若灵魂无法转让，则应改为设定留置权。\
+	<BR>签署：<BR><i>[employee_name]</i>")

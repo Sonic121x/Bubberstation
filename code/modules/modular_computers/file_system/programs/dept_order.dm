@@ -3,11 +3,11 @@ GLOBAL_VAR(department_cd_override)
 
 /datum/computer_file/program/department_order
 	filename = "dept_order"
-	filedesc = "Departmental Orders"
+	filedesc = "部门订购"
 	can_run_on_flags = PROGRAM_CONSOLE
 	downloader_category = PROGRAM_CATEGORY_SUPPLY
 	program_open_overlay = "request"
-	extended_desc = "Allows for departments to order supplied from Cargo for free, with a cooldown between orders."
+	extended_desc = "允许各部门免费向货运部订购补给，订单之间有冷却时间。"
 	size = 10
 	tgui_id = "NtosDeptOrder"
 	program_icon = FA_ICON_CART_FLATBED
@@ -144,10 +144,10 @@ GLOBAL_VAR(department_cd_override)
 
 		var/new_dept_type = find_department_to_link(computer.stored_id)
 		if(isnull(new_dept_type))
-			computer.physical.balloon_alert(orderer, "no department found!")
+			computer.physical.balloon_alert(orderer, "未找到部门！")
 			playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		else
-			computer.physical.balloon_alert(orderer, "linked")
+			computer.physical.balloon_alert(orderer, "已链接")
 			playsound(computer, 'sound/machines/ping.ogg', 30, TRUE)
 			set_linked_department(new_dept_type)
 		return TRUE
@@ -159,7 +159,7 @@ GLOBAL_VAR(department_cd_override)
 	var/list/id_card_access = id_card?.GetAccess() || list()
 
 	if(length(use_access & id_card_access) <= 0)
-		computer.physical.balloon_alert(orderer, "access denied!")
+		computer.physical.balloon_alert(orderer, "权限不足！")
 		playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return TRUE
 
@@ -167,7 +167,7 @@ GLOBAL_VAR(department_cd_override)
 		if(isnull(department_order) || !(department_order in SSshuttle.shopping_list))
 			return TRUE
 		if(LAZYLEN(download_access & id_card_access) <= 0)
-			computer.physical.balloon_alert(orderer, "requires head of staff access!")
+			computer.physical.balloon_alert(orderer, "需要部门主管权限！")
 			playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 			return TRUE
 
@@ -190,12 +190,12 @@ GLOBAL_VAR(department_cd_override)
 	var/datum/job_department/linked_department_real = SSjob.get_department_type(linked_department)
 	var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 	if(isnull(pack))
-		computer.physical.say("Something went wrong!")
+		computer.physical.say("出现了问题！")
 		CRASH("requested supply pack id \"[id]\" not found!")
 	if(!can_see_pack(pack) || !(pack.group in linked_department_real.associated_cargo_groups))
 		return
-	var/name = "*None Provided*"
-	var/rank = "*None Provided*"
+	var/name = "*未提供*"
+	var/rank = "*未提供*"
 	var/ckey = orderer.ckey
 	if(ishuman(orderer))
 		var/mob/living/carbon/human/human_orderer = orderer
@@ -203,7 +203,7 @@ GLOBAL_VAR(department_cd_override)
 		rank = human_orderer.get_assignment(hand_first = TRUE)
 	else if(HAS_SILICON_ACCESS(orderer))
 		name = orderer.real_name
-		rank = "Silicon"
+		rank = "硅基单位"
 	var/already_signalled = !!department_order
 	var/chosen_delivery_area
 	for(var/delivery_area_type in linked_department_real.department_delivery_areas)
@@ -213,7 +213,7 @@ GLOBAL_VAR(department_cd_override)
 
 	if(SSshuttle.supply.get_order_count(pack) == OVER_ORDER_LIMIT)
 		playsound(computer, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
-		computer.physical.say("ERROR: No more then [CARGO_MAX_ORDER] of any pack may be ordered at once!")
+		computer.physical.say("错误：单次最多只能订购 [CARGO_MAX_ORDER] 份同种货箱！")
 		return
 
 	department_order = new(
@@ -221,7 +221,7 @@ GLOBAL_VAR(department_cd_override)
 		orderer = name,
 		orderer_rank = rank,
 		orderer_ckey = ckey,
-		reason = "Departmental Order",
+		reason = "部门订购",
 		paying_account = null,
 		department_destination = chosen_delivery_area,
 		coupon = null,
@@ -233,7 +233,7 @@ GLOBAL_VAR(department_cd_override)
 	if(!alert_silenced && alert_able)
 		aas_config_announce(/datum/aas_config_entry/department_orders, list("ORDER" = pack.name, "PERSON" = name), computer.physical, list(radio_channel), "Order Placed")
 		aas_config_announce(/datum/aas_config_entry/department_orders_cargo, list("DEPARTMENT" = linked_department.department_name), computer.physical, list(RADIO_CHANNEL_SUPPLY))
-	computer.physical.say("Order processed. Cargo will deliver the crate when it comes in on their shuttle. NOTICE: Heads of staff may override the order.")
+	computer.physical.say("订单已处理。货箱到站后货运部会随穿梭机送达。注意：部门主管可以否决该订单。")
 	calculate_cooldown(pack.cost)
 
 /// Signal when the supply shuttle begins to spawn orders. We forget the current order preventing it from being overridden (since it's already past the point of no return on undoing the order)
@@ -256,7 +256,7 @@ GLOBAL_VAR(department_cd_override)
 	if(!check_cooldown() || alert_silenced || !alert_able)
 		return
 	aas_config_announce(/datum/aas_config_entry/department_orders, list(), computer.physical, list(radio_channel), "Cooldown Reset")
-	computer.alert_call(src, "Order cooldown expired!", 'sound/machines/ping.ogg')
+	computer.alert_call(src, "订购冷却已结束！", 'sound/machines/ping.ogg')
 
 /// Checks if the cooldown is up and resets it if so.
 /datum/computer_file/program/department_order/proc/check_cooldown()
@@ -266,21 +266,21 @@ GLOBAL_VAR(department_cd_override)
 	return FALSE
 
 /datum/aas_config_entry/department_orders
-	name = "Departmental: Order Announcement"
+	name = "部门：订购公告"
 	announcement_lines_map = list(
-		"Order Placed" = "A department order has been placed by %PERSON for %ORDER.",
-		"Cooldown Reset" = "Department order cooldown has expired! A new order may now be placed!",
+		"Order Placed" = "已由 %PERSON 下达了一份 %ORDER 的部门订单。",
+		"Cooldown Reset" = "部门订购冷却已结束！现在可以下达新订单了！",
 	)
 	vars_and_tooltips_map = list(
-		"ORDER" = "will be replaced with the package name",
-		"PERSON" = "with the orderer's name",
+		"ORDER" = "将被替换为货箱名称",
+		"PERSON" = "替换为订货人姓名",
 	)
 
 /datum/aas_config_entry/department_orders_cargo
-	name = "Cargo Alert: New Departmental Order"
+	name = "货运提醒：新的部门订单"
 	announcement_lines_map = list(
-		"Message" = "New %DEPARTMENT departmental order has been placed"
+		"Message" = "已下达新的 %DEPARTMENT 部门订单"
 	)
 	vars_and_tooltips_map = list(
-		"DEPARTMENT" = "will be replaced with orderer's department."
+		"DEPARTMENT" = "将被替换为订货人所属部门。"
 	)

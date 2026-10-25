@@ -1,8 +1,8 @@
 /datum/computer_file/program/ntnetdownload
 	filename = "ntsoftwarehub"
-	filedesc = "NT Software Hub"
+	filedesc = "纳米传讯软件中心"
 	program_open_overlay = "generic"
-	extended_desc = "This program allows downloads of software from official NT repositories"
+	extended_desc = "该程序可从纳米传讯官方仓库下载软件"
 	undeletable = TRUE
 	size = 4
 	program_flags = PROGRAM_REQUIRES_NTNET
@@ -57,13 +57,13 @@
 	ui_header = "downloader_running.gif"
 
 	if(PRG in SSmodular_computers.available_station_software)
-		generate_network_log("Began downloading file [PRG.filename].[PRG.filetype] from NTNet Software Repository.")
+		generate_network_log("开始从 NTNet 软件仓库下载文件 [PRG.filename].[PRG.filetype]。")
 		hacked_download = FALSE
 	else if(PRG in SSmodular_computers.available_antag_software)
-		generate_network_log("Began downloading file **ENCRYPTED**.[PRG.filetype] from unspecified server.")
+		generate_network_log("开始从不明服务器下载文件 **已加密**.[PRG.filetype]。")
 		hacked_download = TRUE
 	else
-		generate_network_log("Began downloading file [PRG.filename].[PRG.filetype] from unspecified server.")
+		generate_network_log("开始从不明服务器下载文件 [PRG.filename].[PRG.filetype]。")
 		hacked_download = FALSE
 
 	downloaded_file = PRG.clone()
@@ -76,7 +76,7 @@
 /datum/computer_file/program/ntnetdownload/proc/abort_file_download()
 	if(!downloaded_file)
 		return
-	generate_network_log("Aborted download of file [hacked_download ? "**ENCRYPTED**" : "[downloaded_file.filename].[downloaded_file.filetype]"].")
+	generate_network_log("已中止文件 [hacked_download ? "**已加密**" : "[downloaded_file.filename].[downloaded_file.filetype]"] 的下载。")
 	downloaded_file = null
 	download_completion = FALSE
 	ui_header = null
@@ -85,10 +85,10 @@
 /datum/computer_file/program/ntnetdownload/proc/complete_file_download()
 	if(!downloaded_file)
 		return
-	generate_network_log("Completed download of file [hacked_download ? "**ENCRYPTED**" : "[downloaded_file.filename].[downloaded_file.filetype]"].")
+	generate_network_log("已完成文件 [hacked_download ? "**已加密**" : "[downloaded_file.filename].[downloaded_file.filetype]"] 的下载。")
 	if(!computer || !computer.store_file(downloaded_file, download_user?.resolve()))
 		// The download failed
-		downloaderror = "I/O ERROR - Unable to save file. Check whether you have enough free space on your hard drive and whether your hard drive is properly connected. If the issue persists contact your system administrator for assistance."
+		downloaderror = "I/O 错误——无法保存文件。请检查硬盘上是否有足够的可用空间，以及硬盘是否正确连接。如果问题仍然存在，请联系系统管理员寻求帮助。"
 	downloaded_file = null
 	download_completion = FALSE
 	ui_header = "downloader_finished.gif"

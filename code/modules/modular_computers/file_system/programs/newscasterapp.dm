@@ -1,10 +1,10 @@
 /datum/computer_file/program/newscaster
 	filename = "newscasterapp"
-	filedesc = "Newscaster"
+	filedesc = "新闻播报器"
 	download_access = list(ACCESS_LIBRARY)
 	downloader_category = PROGRAM_CATEGORY_GAMES
 	program_open_overlay = "bountyboard"
-	extended_desc = "This program allows any user to access the Newscaster network from anywhere."
+	extended_desc = "该程序可让任何用户随时随地访问新闻播报网络。"
 	size = 2
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	tgui_id = "NtosNewscaster"

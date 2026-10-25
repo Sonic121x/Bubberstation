@@ -1,6 +1,6 @@
 /obj/item/folder
-	name = "folder"
-	desc = "A folder."
+	name = "文件夹"
+	desc = "一个文件夹。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = WEIGHT_CLASS_SMALL
@@ -22,10 +22,10 @@
 	/// icon_state of overlay for papers inside of this folder
 	var/paper_overlay_state = "folder_paper"
 	/// Name to display for use-on-item screentips, to avoid overly long screentips.
-	var/folder_type_name = "folder"
+	var/folder_type_name = "文件夹"
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] begins filing an imaginary death warrant! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] 开始起草一份想象中的死亡令！看起来 [user.p_theyre()] 想自杀！"))
 	return OXYLOSS
 
 /obj/item/folder/Initialize(mapload)
@@ -45,12 +45,12 @@
 /obj/item/folder/examine()
 	. = ..()
 	if(length(contents) && !contents_hidden)
-		. += span_notice("<b>Right-click</b> to remove [contents[1]].")
+		. += span_notice("<b>右键点击</b>以取出 [contents[1]]。")
 
 /obj/item/folder/add_item_context(obj/item/source, list/context, atom/target, mob/living/user)
 	if(is_type_in_typecache(target, folder_insertables))
 		// As this is shown on the paper, we clarify we are picking it up.
-		context[SCREENTIP_CONTEXT_LMB] = "Insert into [folder_type_name]"
+		context[SCREENTIP_CONTEXT_LMB] = "放入[folder_type_name]中"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -58,13 +58,13 @@
 	if(isnull(held_item))
 		return NONE
 	if(is_type_in_typecache(held_item, folder_insertables))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert"
+		context[SCREENTIP_CONTEXT_LMB] = "放入"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(IS_WRITING_UTENSIL(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Rename"
+		context[SCREENTIP_CONTEXT_LMB] = "重命名"
 		return CONTEXTUAL_SCREENTIP_SET
 	if((held_item.tool_behaviour == TOOL_KNIFE || held_item.tool_behaviour == TOOL_WIRECUTTER) && !contents.len)
-		context[SCREENTIP_CONTEXT_LMB] = "Cut apart"
+		context[SCREENTIP_CONTEXT_LMB] = "剪开"
 		return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -72,7 +72,7 @@
 	if(istype(Item))
 		Item.forceMove(user.loc)
 		user.put_in_hands(Item)
-		to_chat(user, span_notice("You remove [Item] from [src]."))
+		to_chat(user, span_notice("你把 [Item] 从 [src] 中取出。"))
 		update_icon()
 
 /obj/item/folder/attack_hand(mob/user, list/modifiers)
@@ -102,15 +102,15 @@
 
 /obj/item/folder/nameformat(input, user)
 	playsound(src, SFX_WRITING_PEN, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, SOUND_FALLOFF_EXPONENT + 3, ignore_walls = FALSE)
-	return"folder[(input ? " - '[input]'" : null)]"
+	return"文件夹[(input ? " - '[input]'" : null)]"
 
 
 /obj/item/folder/proc/sharp_thing_act(mob/user, obj/item/sharp_tool)
 	if(contents.len)
-		balloon_alert(user, "empty [src] first!")
+		balloon_alert(user, "请先清空 [src]！")
 		return ITEM_INTERACT_BLOCKING
 
-	balloon_alert(user, "cut apart")
+	balloon_alert(user, "剪开")
 	qdel(src)
 	user.put_in_hands(new /obj/item/stack/sheet/cardboard)
 	return ITEM_INTERACT_SUCCESS

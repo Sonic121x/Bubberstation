@@ -1,8 +1,8 @@
 /// PDA themes that you can find in maintenance. Once installed by a player, it'll become available to them on future rounds as well.
 /datum/computer_file/program/maintenance/theme
 	filename = "theme"
-	filedesc = "Theme holder"
-	extended_desc = "Holds a theme you can add to your Modular PC to set in the Themify application. Makes the application use more space"
+	filedesc = "主题容器"
+	extended_desc = "内含一个可添加到模块化电脑、并在主题工坊应用中设定的主题。会使应用占用更多空间"
 	size = 2
 	abstract_type = /datum/computer_file/program/maintenance/theme
 
@@ -17,7 +17,7 @@
 
 /datum/computer_file/program/maintenance/theme/New()
 	. = ..()
-	filename = "[theme_name] Theme"
+	filename = "[theme_name] 主题"
 
 /datum/computer_file/program/maintenance/theme/can_store_file(obj/item/modular_computer/potential_host)
 	. = ..()

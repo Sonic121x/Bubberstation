@@ -1,6 +1,6 @@
 /obj/item/disk/computer/maintenance
-	name = "maintenance data disk"
-	desc = "A data disk forgotten in the depths of maintenance, might have some useful program on it."
+	name = "维护区数据磁盘"
+	desc = "一张被遗弃在维护区深处的数据磁盘，里面或许有些有用的程序。"
 
 /// Medical health analyzer app
 /obj/item/disk/computer/maintenance/scanner
