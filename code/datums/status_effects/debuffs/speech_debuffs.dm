@@ -143,7 +143,7 @@
 	if(. == original_word || !should_stutter())
 		return
 	var/datum/brain_trauma/special/obsessed/obsession_trauma = get_obsession()
-	to_chat(owner, span_warning("Being near [obsession_trauma.obsession.real_name] makes you nervous and stutter..."))
+	to_chat(owner, span_warning("靠近[obsession_trauma.obsession.real_name]让你紧张得结巴起来……"))
 	COOLDOWN_START(src, stutter_cooldown, rand(4, 8) SECONDS)
 
 /datum/status_effect/speech/stutter/obsession/proc/get_obsession()

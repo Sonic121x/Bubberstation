@@ -1,8 +1,8 @@
 /// The limbgrower. Makes organd and limbs with synthflesh and chems.
 /// See [limbgrower_designs.dm] for everything we can make.
 /obj/machinery/limbgrower
-	name = "limb grower"
-	desc = "It grows new limbs using Synthflesh."
+	name = "肢体培育机"
+	desc = "使用合成肉液培育新的肢体。"
 	icon = 'icons/obj/machines/limbgrower.dmi'
 	icon_state = "limbgrower_idleoff"
 	base_icon_state = "limbgrower"
@@ -44,14 +44,14 @@
 
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 			. = CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 			. = CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/disk/design_disk/limbs))
-		context[SCREENTIP_CONTEXT_LMB] = "Load limb designs"
+		context[SCREENTIP_CONTEXT_LMB] = "加载肢体设计"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 /// Emagging a limbgrower allows you to build synthetic armblades.
@@ -61,7 +61,7 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	update_static_data(user)
-	balloon_alert(user, "illegal limb production enabled")
+	balloon_alert(user, "非法肢体生产已启用")
 	return TRUE
 
 /obj/machinery/limbgrower/ui_interact(mob/user, datum/tgui/ui)
@@ -150,9 +150,9 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/disk/design_disk/limbs))
-		user.visible_message(span_notice("[user] begins to load \the [tool] in \the [src]..."),
-			span_notice("You begin to load designs from \the [tool]..."),
-			span_hear("You hear the clatter of a floppy drive."))
+		user.visible_message(span_notice("[user]开始将[tool]载入[src]……"),
+			span_notice("你开始从[tool]加载设计……"),
+			span_hear("你听见软盘驱动器的咔嗒声。"))
 		busy = TRUE
 		var/obj/item/disk/design_disk/limbs/limb_design_disk = tool
 		if(do_after(user, 2 SECONDS, target = src))
@@ -223,7 +223,7 @@
 			for(var/reagent_id in consumed_reagents_list)
 				consumed_reagents_list[reagent_id] *= production_coefficient
 				if(!reagents.has_reagent(reagent_id, consumed_reagents_list[reagent_id]))
-					audible_message(span_notice("[src] buzzes."))
+					audible_message(span_notice("[src]发出嗡嗡声。"))
 					playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 					return
 
@@ -249,7 +249,7 @@
 /obj/machinery/limbgrower/proc/build_item(list/modified_consumed_reagents_list)
 	for(var/reagent_id in modified_consumed_reagents_list)
 		if(!reagents.has_reagent(reagent_id, modified_consumed_reagents_list[reagent_id]))
-			audible_message(span_notice("The [src] buzzes."))
+			audible_message(span_notice("[src]发出嗡嗡声。"))
 			playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 			break
 
@@ -279,7 +279,7 @@
 	//i need to create a body part manually using a set icon (otherwise it doesn't appear)
 	var/obj/item/bodypart/limb
 	limb = new buildpath(loc)
-	limb.name = "\improper synthetic [selected_category] [limb.plaintext_zone]"
+	limb.name = "\improper 合成[chinese_footprint_species_display(selected_category)][chinese_body_zone_display(limb.plaintext_zone)]"
 	limb.limb_id = selected_category
 	limb.species_color = "#62A262"
 	limb.update_icon_dropped()
@@ -313,7 +313,7 @@
 /obj/machinery/limbgrower/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[reagents.maximum_volume]u</b> of reagents.<br>Reagent consumption rate at <b>[production_coefficient * 100]%</b>.")
+		. += span_notice("状态显示屏显示：最多储存 <b>[reagents.maximum_volume]u</b> 试剂。<br>试剂消耗率为 <b>[production_coefficient * 100]%</b>。")
 
 /**
  * Check if the limb grower is currently busy.
@@ -325,7 +325,7 @@
 /obj/machinery/limbgrower/proc/check_busy(mob/user)
 	. = busy
 	if(.)
-		to_chat(user, span_warning("The limb grower is busy. Please wait for completion of previous operation."))
+		to_chat(user, span_warning("肢体培育机正忙。请等待上一次操作完成。"))
 
 /*
  * Checks our reagent list to see if a design can be built.
@@ -341,7 +341,7 @@
 	return TRUE
 
 /obj/machinery/limbgrower/fullupgrade //Inherently cheaper organ production. This is to NEVER be inherently emagged, no valids.
-	desc = "It grows new limbs using Synthflesh. This alien model seems more efficient."
+	desc = "使用合成肉液培育新的肢体。这款外星型号似乎更加高效。"
 	circuit = /obj/item/circuitboard/machine/limbgrower/fullupgrade
 
 /obj/machinery/limbgrower/fullupgrade/Initialize(mapload)

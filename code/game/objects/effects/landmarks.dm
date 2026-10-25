@@ -648,129 +648,129 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 
 //Command
 /obj/effect/landmark/navigate_destination/bridge
-	location = "Bridge"
+	location = "舰桥"
 
 /obj/effect/landmark/navigate_destination/hop
-	location = "Head of Personnel's Office"
+	location = "人事主管办公室"
 
 /obj/effect/landmark/navigate_destination/vault
-	location = "Vault"
+	location = "金库"
 
 /obj/effect/landmark/navigate_destination/teleporter
-	location = "Teleporter"
+	location = "传送机"
 
 /obj/effect/landmark/navigate_destination/gateway
-	location = "Gateway"
+	location = "星门"
 
 /obj/effect/landmark/navigate_destination/eva
-	location = "EVA Storage"
+	location = "舱外活动装备库"
 
 /obj/effect/landmark/navigate_destination/aiupload
-	location = "AI Upload"
+	location = "AI 上传室"
 
 /obj/effect/landmark/navigate_destination/minisat_access_ai
-	location = "AI MiniSat Access"
+	location = "AI 卫星通道"
 
 /obj/effect/landmark/navigate_destination/minisat_access_tcomms
-	location = "Telecomms MiniSat Access"
+	location = "电信卫星通道"
 
 /obj/effect/landmark/navigate_destination/minisat_access_tcomms_ai
-	location = "AI and Telecomms MiniSat Access"
+	location = "AI 与电信卫星通道"
 
 /obj/effect/landmark/navigate_destination/tcomms
-	location = "Telecommunications"
+	location = "电信室"
 
 //Departments
 /obj/effect/landmark/navigate_destination/sec
-	location = "Security"
+	location = "安保部"
 
 /obj/effect/landmark/navigate_destination/det
-	location = "Detective's Office"
+	location = "侦探办公室"
 
 /obj/effect/landmark/navigate_destination/research
-	location = "Research"
+	location = "科研部"
 
 /obj/effect/landmark/navigate_destination/engineering
-	location = "Engineering"
+	location = "工程部"
 
 /obj/effect/landmark/navigate_destination/techstorage
-	location = "Technical Storage"
+	location = "技术储藏室"
 
 /obj/effect/landmark/navigate_destination/atmos
-	location = "Atmospherics"
+	location = "大气部"
 
 /obj/effect/landmark/navigate_destination/med
-	location = "Medical"
+	location = "医疗部"
 
 /obj/effect/landmark/navigate_destination/chemfactory
-	location = "Chemistry Factory"
+	location = "化学工厂"
 
 /obj/effect/landmark/navigate_destination/cargo
-	location = "Cargo"
+	location = "货运部"
 
 //Common areas
 /obj/effect/landmark/navigate_destination/bar
-	location = "Bar"
+	location = "酒吧"
 
 /obj/effect/landmark/navigate_destination/dorms
-	location = "Dormitories"
+	location = "宿舍"
 
 /obj/effect/landmark/navigate_destination/court
-	location = "Courtroom"
+	location = "法庭"
 
 /obj/effect/landmark/navigate_destination/tools
-	location = "Tool Storage"
+	location = "工具储藏室"
 
 /obj/effect/landmark/navigate_destination/library
-	location = "Library"
+	location = "图书馆"
 
 /obj/effect/landmark/navigate_destination/chapel
-	location = "Chapel"
+	location = "教堂"
 
 /obj/effect/landmark/navigate_destination/minisat_access_chapel_library
-	location = "Chapel and Library MiniSat Access"
+	location = "教堂与图书馆卫星通道"
 
 //Service
 /obj/effect/landmark/navigate_destination/kitchen
-	location = "Kitchen"
+	location = "厨房"
 
 /obj/effect/landmark/navigate_destination/hydro
-	location = "Hydroponics"
+	location = "水培室"
 
 /obj/effect/landmark/navigate_destination/janitor
-	location = "Janitor's Closet"
+	location = "清洁工储藏室"
 
 /obj/effect/landmark/navigate_destination/lawyer
-	location = "Lawyer's Office"
+	location = "律师办公室"
 
 //Shuttle docks
 /obj/effect/landmark/navigate_destination/dockarrival
-	location = "Arrival Shuttle Dock"
+	location = "入站穿梭机停靠区"
 
 /obj/effect/landmark/navigate_destination/dockesc
-	location = "Escape Shuttle Dock"
+	location = "逃生穿梭机停靠区"
 
 /obj/effect/landmark/navigate_destination/dockescpod
-	location = "Escape Pod Dock"
+	location = "逃生舱停靠区"
 
 /obj/effect/landmark/navigate_destination/dockescpod1
-	location = "Escape Pod 1 Dock"
+	location = "1 号逃生舱停靠区"
 
 /obj/effect/landmark/navigate_destination/dockescpod2
-	location = "Escape Pod 2 Dock"
+	location = "2 号逃生舱停靠区"
 
 /obj/effect/landmark/navigate_destination/dockescpod3
-	location = "Escape Pod 3 Dock"
+	location = "3 号逃生舱停靠区"
 
 /obj/effect/landmark/navigate_destination/dockescpod4
-	location = "Escape Pod 4 Dock"
+	location = "4 号逃生舱停靠区"
 
 /obj/effect/landmark/navigate_destination/dockaux
-	location = "Auxiliary Dock"
+	location = "辅助停靠区"
 
 //Maint
 /obj/effect/landmark/navigate_destination/incinerator
-	location = "Incinerator"
+	location = "焚化炉"
 
 /obj/effect/landmark/navigate_destination/disposals
-	location = "Disposals"
+	location = "废物处理区"

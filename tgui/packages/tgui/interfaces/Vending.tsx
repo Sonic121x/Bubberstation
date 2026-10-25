@@ -13,7 +13,7 @@ import { capitalizeAll, createSearch } from 'tgui-core/string';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { getLayoutState, LAYOUT, LayoutToggle } from './common/LayoutToggle';
-
+import { machineChoiceDisplay } from './common/machineChoiceDisplay';
 type StockItem = {
   amount: number;
   free: boolean;
@@ -161,8 +161,8 @@ export const UserDetails = () => {
         </Stack.Item>
         <Stack.Item>
           {user
-            ? `${user.name || 'Unknown'} | ${user.job}`
-            : 'No ID detected! Contact the Head of Personnel.'}
+            ? `${user.name || '未知'} | ${machineChoiceDisplay(user.job)}`
+            : '未检测到 ID 卡！请联系人事主管。'}
         </Stack.Item>
       </Stack>
     </NoticeBox>

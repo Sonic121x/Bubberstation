@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/aimodule
 	name = "AI module spawner"
-	desc = "State laws human."
+	desc = "人类，陈述你的法则。"
 	icon_state = "circuit"
 	spawn_loot_double = FALSE
 	spawn_loot_count = 3

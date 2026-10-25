@@ -23,6 +23,6 @@
 	SEND_SOUND(owner, 'sound/effects/hallucinations/i_see_you1.ogg')
 
 /atom/movable/screen/alert/status_effect/temporary_xray
-	name = "Eldritch Sight"
-	desc = "You get a glimpse of something new..."
+	name = "异界视野"
+	desc = "你瞥见了某种新事物……"
 	icon_state = "influence"

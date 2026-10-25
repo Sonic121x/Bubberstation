@@ -11,8 +11,8 @@
 #define KIOSK_SCANNING_REAGENTS (1<<3)
 
 /obj/machinery/medical_kiosk
-	name = "medical kiosk"
-	desc = "A freestanding medical kiosk, which can provide a wide range of medical analysis for diagnosis."
+	name = "自助医疗终端"
+	desc = "独立式自助医疗终端，可提供多种医学分析以辅助诊断。"
 	icon = 'icons/obj/machines/medical_kiosk.dmi'
 	icon_state = "kiosk"
 	base_icon_state = "kiosk"
@@ -47,20 +47,20 @@
 	var/screentip_change = FALSE
 
 	if(!held_item && scanner_wand)
-		context[SCREENTIP_CONTEXT_RMB] = "Pick up scanner wand"
+		context[SCREENTIP_CONTEXT_RMB] = "拿起扫描棒"
 		return screentip_change = TRUE
 
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "固定"
 		return screentip_change = TRUE
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_CROWBAR && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return screentip_change = TRUE
 	if(istype(held_item) && held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = panel_open ? "Close panel" : "Open panel"
+		context[SCREENTIP_CONTEXT_LMB] = panel_open ? "关闭面板" : "打开面板"
 		return screentip_change = TRUE
 	if(istype(held_item, /obj/item/scanner_wand))
-		context[SCREENTIP_CONTEXT_LMB] = "Return the scanner wand"
+		context[SCREENTIP_CONTEXT_LMB] = "归还扫描棒"
 		return screentip_change = TRUE
 
 /obj/machinery/medical_kiosk/proc/inuse()  //Verifies that the user can use the interface, followed by showing medical information.
@@ -73,7 +73,7 @@
 	if(card?.registered_account?.account_job?.paycheck_department == payment_department)
 		use_energy(active_power_usage)
 		paying_customer = TRUE
-		say("Hello, esteemed medical staff!")
+		say("您好，尊敬的医护人员！")
 		return
 	var/bonus_fee = pandemonium ? rand(10,30) : 0
 	if(attempt_charge(src, paying, bonus_fee) & COMPONENT_OBJ_CANCEL_CHARGE )
@@ -81,7 +81,7 @@
 	use_energy(active_power_usage)
 	paying_customer = TRUE
 	icon_state = "[base_icon_state]_active"
-	say("Thank you for your patronage!")
+	say("感谢惠顾！")
 	return
 
 /obj/machinery/medical_kiosk/proc/clearScans() //Called it enough times to be it's own proc
@@ -124,20 +124,20 @@
 
 	var/obj/item/scanner_wand/wand = tool
 	if(scanner_wand)
-		balloon_alert(user, "already has a wand!")
+		balloon_alert(user, "已有扫描棒！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.transferItemToLoc(tool, src))
-		balloon_alert(user, "stuck to your hand!")
+		balloon_alert(user, "卡在手上了！")
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] snaps [tool] onto [src]!"))
-	balloon_alert(user, "wand returned")
+	user.visible_message(span_notice("[user]将[tool]扣回了[src]上！"))
+	balloon_alert(user, "扫描棒已归还")
 	//This will be the scanner returning scanner_wand's selected_target variable and assigning it to the altPatient var
 	if(wand.selected_target)
 		var/datum/weakref/target_ref = WEAKREF(wand.return_patient())
 		if(patient_ref != target_ref)
 			clearScans()
 		patient_ref = target_ref
-		user.visible_message(span_notice("[wand.return_patient()] has been set as the current patient."))
+		user.visible_message(span_notice("[wand.return_patient()]已被设为当前患者。"))
 		wand.selected_target = null
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	scanner_wand = tool
@@ -150,14 +150,14 @@
 	if(!ishuman(user) || !user.can_perform_action(src))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!scanner_wand)
-		balloon_alert(user, "no scanner wand!")
+		balloon_alert(user, "没有扫描棒！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!user.put_in_hands(scanner_wand))
-		balloon_alert(user, "scanner wand falls!")
+		balloon_alert(user, "扫描棒掉落了！")
 		scanner_wand = null
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	user.visible_message(span_notice("[user] unhooks the [scanner_wand] from [src]."))
-	balloon_alert(user, "scanner pulled")
+	user.visible_message(span_notice("[user]从[src]取下了[scanner_wand]。"))
+	balloon_alert(user, "扫描棒已取下")
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
 	scanner_wand = null
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -172,8 +172,8 @@
 		return
 	if(user)
 		if (emag_card)
-			user.visible_message(span_warning("[user] waves a suspicious card by the [src]'s biometric scanner!"))
-		balloon_alert(user, "sensors overloaded")
+			user.visible_message(span_warning("[user]在[src]的生物识别扫描仪旁晃了一张可疑的卡！"))
+		balloon_alert(user, "传感器已过载")
 	obj_flags |= EMAGGED
 	var/obj/item/circuitboard/board = circuit
 	board.obj_flags |= EMAGGED //Mirrors emag status onto the board as well.
@@ -183,25 +183,25 @@
 /obj/machinery/medical_kiosk/examine(mob/user)
 	. = ..()
 	if(scanner_wand == null)
-		. += span_notice("\The [src] is missing its scanner.")
+		. += span_notice("[src]缺少扫描棒。")
 	else
-		. += span_notice("\The [src] has its scanner clipped to the side. Right Click to remove.")
+		. += span_notice("[src]的扫描棒夹在侧面。右键点击可取下。")
 
 /obj/machinery/medical_kiosk/ui_interact(mob/user, datum/tgui/ui)
 	var/patient_distance = 0
 	if(!ishuman(user))
-		to_chat(user, span_warning("[src] is unable to interface with non-humanoids!"))
+		to_chat(user, span_warning("[src]无法与非类人生物交互！"))
 		if (ui)
 			ui.close()
 		return
 	var/mob/living/carbon/human/patient = patient_ref?.resolve()
 	patient_distance = get_dist(src.loc, patient)
 	if(patient == null)
-		say("Scanner reset.")
+		say("扫描仪已复位。")
 		patient_ref = WEAKREF(user)
 	else if(patient_distance>5)
 		patient_ref = null
-		say("Patient out of range. Resetting biometrics.")
+		say("患者超出范围。正在重置生物识别数据。")
 		clearScans()
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -218,7 +218,7 @@
 	if(!patient)
 		return
 	var/patient_name = patient.name
-	var/patient_status = "Alive."
+	var/patient_status = "存活。"
 	var/max_health = patient.maxHealth
 	var/total_health = patient.health
 	var/brute_loss = patient.get_brute_loss()
@@ -227,55 +227,55 @@
 	var/oxy_loss = patient.get_oxy_loss()
 	var/chaos_modifier = 0
 
-	var/sickness = "Patient does not show signs of disease."
-	var/sickness_data = "Not Applicable."
+	var/sickness = "患者没有患病迹象。"
+	var/sickness_data = "不适用。"
 
-	var/bleed_status = "Patient is not currently bleeding."
-	var/blood_status = " Patient either has no blood, or does not require it to function."
+	var/bleed_status = "患者目前没有出血。"
+	var/blood_status = "患者没有血液，或不依赖血液维持生命。"
 	var/blood_percent = round((patient.get_blood_volume(apply_modifiers = TRUE) / BLOOD_VOLUME_NORMAL) * 100)
 	var/datum/blood_type/blood_type = patient.get_bloodtype()
-	var/blood_name = "error"
+	var/blood_name = "错误"
 	var/blood_warning = " "
 	var/blood_alcohol = patient.get_blood_alcohol_content()
 
 	for(var/thing in patient.diseases) //Disease Information
 		var/datum/disease/disease = thing
 		if(!(disease.visibility_flags & HIDDEN_SCANNER))
-			sickness = "Warning: Patient is harboring some form of viral disease. Seek further medical attention."
+			sickness = "警告：患者携带某种病毒性疾病。请寻求进一步诊治。"
 			var/cure_text = disease.cure_text
 			if(istype(disease, /datum/disease/advance))
 				var/datum/disease/advance/advanced_disease = disease
 				cure_text = advanced_disease.generate_cure_text(2)
-			sickness_data = "\nName: [disease.name].\nType: [disease.spread_text].\nStage: [disease.stage]/[disease.max_stages].\nCure: [cure_text]"
+			sickness_data = "\n名称：[disease.name]。\n传播方式：[disease.spread_text]。\n阶段：[disease.stage]/[disease.max_stages]。\n疗法：[cure_text]"
 
 	if(patient.can_bleed()) //Blood levels Information
-		blood_name = LOWER_TEXT(blood_type.get_blood_name())
+		blood_name = chinese_scanner_label(LOWER_TEXT(blood_type.get_blood_name()))
 		if(patient.is_bleeding())
-			bleed_status = " Patient is currently bleeding!"
+			bleed_status = "患者目前正在出血！"
 
 		if(blood_percent <= 80)
-			blood_warning = " Patient has [blood_percent <= 60 ? "DANGEROUSLY low" : "low"] [blood_name] levels."
+			blood_warning = "患者的[blood_name]水平[blood_percent <= 60 ? "极低，情况危险" : "偏低"]。"
 			var/list/treatments = list()
 			if(blood_percent <= 60)
-				treatments += "[blood_name] transfusion"
+				treatments += "输注[blood_name]"
 			else if(!HAS_TRAIT(patient, TRAIT_NOHUNGER))
-				treatments += "a large meal"
+				treatments += "饱餐一顿"
 			if(blood_type.restoration_chem)
-				treatments += "[LOWER_TEXT(blood_type.restoration_chem::name)] supplements"
+				treatments += "补充[blood_type.restoration_chem::name]"
 				if(blood_percent <= 60 && blood_type.restoration_chem == /datum/reagent/iron)
-					treatments += "saline-glucose immediately"
+					treatments += "立即使用葡萄糖盐水"
 
 			if (length(treatments))
-				blood_warning += " Seek [english_list(treatments, and_text = " or ")]"
+				blood_warning += "建议[english_list(treatments, comma_text = "、", and_text = "或")]。"
 
 			if (blood_percent <= 60)
-				blood_warning += " Ignoring treatment may lead to death!"
+				blood_warning += "不接受治疗可能导致死亡！"
 
-		blood_status = "Patient [blood_name] levels are currently reading [blood_percent]%.[blood_type.get_type() ? " Patient has [blood_type.get_type()] type [blood_name]." : ""][blood_warning]"
+		blood_status = "患者当前的[blood_name]水平为 [blood_percent]%。[blood_type.get_type() ? "患者的[blood_name]类型为 [blood_type.get_type()]。" : ""][blood_warning]"
 
-	var/trauma_status = "Patient is free of unique brain trauma."
+	var/trauma_status = "患者没有特殊脑部创伤。"
 	var/brain_loss = patient.get_organ_loss(ORGAN_SLOT_BRAIN)
-	var/brain_status = "Brain patterns normal."
+	var/brain_status = "脑活动模式正常。"
 	if(LAZYLEN(patient.get_traumas()))
 		var/list/trauma_text = list()
 		for(var/t in patient.get_traumas())
@@ -287,23 +287,23 @@
 			var/trauma_desc = ""
 			switch(trauma.resilience)
 				if(TRAUMA_RESILIENCE_SURGERY)
-					trauma_desc += "severe "
+					trauma_desc += "严重的"
 				if(TRAUMA_RESILIENCE_LOBOTOMY)
-					trauma_desc += "deep-rooted "
+					trauma_desc += "根深蒂固的"
 				// SKYRAT EDIT CHANGE BEGIN - Curable permanent traumas
 				if(TRAUMA_RESILIENCE_MAGIC)
-					trauma_desc += "soul-bound "
+					trauma_desc += "灵魂绑定的"
 				if(TRAUMA_RESILIENCE_ABSOLUTE)
-					trauma_desc += "permanent "
+					trauma_desc += "永久的"
 				// SKYRAT EDIT CHANGE END
 			trauma_desc += trauma.scan_desc
 			trauma_text += trauma_desc
-		trauma_status = "Cerebral traumas detected: patient appears to be suffering from [english_list(trauma_text)]."
+		trauma_status = "检测到脑部创伤：患者似乎患有[english_list(trauma_text, comma_text = "、", and_text = "和")]。"
 
 	var/chemical_list = list()
 	var/overdose_list = list()
 	var/addict_list = list()
-	var/hallucination_status = "Patient is not hallucinating."
+	var/hallucination_status = "患者没有出现幻觉。"
 
 	if(patient.reagents.reagent_list.len) //Chemical Analysis details.
 		for(var/r in patient.reagents.reagent_list)
@@ -329,35 +329,35 @@
 		addict_list += list(list("name" = initial(addiction_type.name)))
 
 	if (patient.has_status_effect(/datum/status_effect/hallucination))
-		hallucination_status = "Subject appears to be hallucinating. Suggested treatments: Antipsychotic medication, [/datum/reagent/medicine/haloperidol::name] or [/datum/reagent/medicine/synaptizine::name]."
+		hallucination_status = "患者似乎出现了幻觉。建议疗法：抗精神病药物、[/datum/reagent/medicine/haloperidol::name]或[/datum/reagent/medicine/synaptizine::name]。"
 
 	if(IS_DEAD_OR_FAKING(patient))  //Patient status checks.
-		patient_status = "Dead."
+		patient_status = "死亡。"
 	if((brute_loss+fire_loss+tox_loss+oxy_loss) >= 80)
-		patient_status = "Gravely Injured"
+		patient_status = "伤势危重"
 	else if((brute_loss+fire_loss+tox_loss+oxy_loss) >= 40)
-		patient_status = "Injured"
+		patient_status = "受伤"
 	else if((brute_loss+fire_loss+tox_loss+oxy_loss) >= 20)
-		patient_status = "Lightly Injured"
+		patient_status = "轻伤"
 	if(pandemonium || user.has_status_effect(/datum/status_effect/hallucination))
 		patient_status = pick(
-			"The only kiosk is kiosk, but is the only patient, patient?",
-			"Breathing manually.",
-			"Contact NTOS site admin.",
-			"97% carbon, 3% natural flavoring",
-			"The ebb and flow wears us all in time.",
-			"It's Lupus. You have Lupus.",
-			"Undergoing monkey disease.",
+			"终端终归是终端，病人到底有没有耐心？",
+			"正在手动呼吸。",
+			"请联系 NTOS 站点管理员。",
+			"97% 碳，3% 天然香料",
+			"时光的潮起潮落终将磨损我们所有人。",
+			"是狼疮。你得了狼疮。",
+			"正在经历猴病。",
 		)
 
 	if((brain_loss) >= 100)   //Brain status checks.
-		brain_status = "Grave brain damage detected."
+		brain_status = "检测到危重脑损伤。"
 	else if((brain_loss) >= 50)
-		brain_status = "Severe brain damage detected."
+		brain_status = "检测到严重脑损伤。"
 	else if((brain_loss) >= 20)
-		brain_status = "Brain damage detected."
+		brain_status = "检测到脑损伤。"
 	else if((brain_loss) >= 1)
-		brain_status = "Mild brain damage detected."  //You may have a miiiild case of severe brain damage.
+		brain_status = "检测到轻度脑损伤。"  //You may have a miiiild case of severe brain damage.
 
 	if(pandemonium)
 		chaos_modifier = 1

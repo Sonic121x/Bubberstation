@@ -2,17 +2,17 @@
 /datum/status_effect/song
 	id = "pleaseno"
 	alert_type = null
-	var/aura_desc = "useless, buggy"
+	var/aura_desc = "毫无用处、故障不断"
 
 /datum/status_effect/song/on_apply()
-	owner.visible_message(span_notice("[owner] is coated with a [aura_desc] aura!"))
+	owner.visible_message(span_notice("[owner]笼罩在[aura_desc]的光环中！"))
 	//removes every other song subtype except itself
 	for(var/overridden_song_type in subtypesof(/datum/status_effect/song) - type)
 		owner.remove_status_effect(overridden_song_type)
 	return ..()
 
 /datum/status_effect/song/on_remove()
-	owner.visible_message(span_warning("[owner]'s [aura_desc] aura fades away..."))
+	owner.visible_message(span_warning("[owner]身上[aura_desc]的光环消散了……"))
 
 /datum/status_effect/song/refresh(effect)
 	duration += initial(duration) //slowly builds up, so the more times you get this status effect, the longer it lasts until it's gone.
@@ -21,7 +21,7 @@
 	id = "antimagic"
 	status_type = STATUS_EFFECT_REFRESH
 	duration = 10 SECONDS
-	aura_desc = "dull"
+	aura_desc = "暗淡"
 
 /datum/status_effect/song/antimagic/on_apply()
 	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, TRAIT_STATUS_EFFECT(id))
@@ -33,13 +33,13 @@
 	return ..()
 
 /datum/status_effect/song/antimagic/get_examine_text()
-	return span_notice("[owner.p_They()] seem[owner.p_s()] to be covered in a dull, grey aura.")
+	return span_notice("[owner]似乎笼罩在暗淡的灰色光环中。")
 
 /datum/status_effect/song/light
 	id = "light_song"
 	status_type = STATUS_EFFECT_REFRESH
 	duration = 1 MINUTES
-	aura_desc = "bright"
+	aura_desc = "明亮"
 	/// lighting object that makes owner glow
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj
 
@@ -52,4 +52,4 @@
 	QDEL_NULL(mob_light_obj)
 
 /datum/status_effect/song/light_song/get_examine_text()
-	return span_notice("[owner.p_They()] seem[owner.p_s()] to be covered in a glowing aura.")
+	return span_notice("[owner]似乎笼罩在闪耀的光环中。")

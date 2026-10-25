@@ -1,18 +1,18 @@
 /obj/item/etherealballdeployer
-	name = "portable ethereal disco ball"
-	desc = "Press the button for a deployment of slightly-unethical PARTY!"
+	name = "便携式以太人迪斯科球"
+	desc = "按下按钮，展开一场稍微有违伦理的派对！"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "ethdisco"
 
 /obj/item/etherealballdeployer/attack_self(mob/living/carbon/user)
 	.=..()
-	to_chat(user, span_notice("You deploy the Ethereal Disco Ball."))
+	to_chat(user, span_notice("你展开了以太人迪斯科球。"))
 	new /obj/structure/etherealball(user.loc)
 	qdel(src)
 
 /obj/structure/etherealball
-	name = "ethereal disco ball"
-	desc = "The ethics of this discoball are questionable."
+	name = "以太人迪斯科球"
+	desc = "这个迪斯科球在伦理上值得质疑。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "ethdisco_head_0"
 	anchored = TRUE
@@ -36,14 +36,14 @@
 
 	if(TurnedOn)
 		TurnOff()
-		to_chat(user, span_notice("You turn the disco ball off!"))
+		to_chat(user, span_notice("你关闭了迪斯科球！"))
 	else
 		TurnOn()
-		to_chat(user, span_notice("You turn the disco ball on!"))
+		to_chat(user, span_notice("你打开了迪斯科球！"))
 
 /obj/structure/etherealball/click_alt(mob/living/carbon/human/user)
 	set_anchored(!anchored)
-	to_chat(user, span_notice("You [anchored ? null : "un"]lock the disco ball."))
+	to_chat(user, span_notice("你[anchored ? "锁定" : "解锁"]了迪斯科球。"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/etherealball/proc/TurnOn()

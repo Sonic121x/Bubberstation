@@ -1,6 +1,6 @@
 /obj/machinery/computer/pod
-	name = "mass driver launch control"
-	desc = "A combined blastdoor and mass driver control unit."
+	name = "质量投射器发射控制台"
+	desc = "集防爆门与质量投射器控制功能于一体的装置。"
 	processing_flags = START_PROCESSING_MANUALLY
 	/// Connected mass driver
 	var/obj/machinery/mass_driver/connected = null
@@ -37,7 +37,7 @@
 		return
 
 	if(!connected)
-		say("Cannot locate mass driver connector. Cancelling firing sequence!")
+		say("找不到质量投射器连接器，正在取消发射流程！")
 		return
 
 	for(var/obj/machinery/door/poddoor/M in range(range, src))
@@ -83,7 +83,7 @@
 	if(.)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_warning("Access denied."))
+		to_chat(usr, span_warning("访问被拒绝。"))
 		return
 
 	switch(action)
@@ -132,13 +132,13 @@
 			return TRUE
 
 /obj/machinery/computer/pod/old
-	name = "\improper DoorMex control console"
+	name = "\improper 门控迈克斯控制台"
 	icon_state = MAP_SWITCH("oldcomp", "/obj/machinery/computer/pod/old")
 	icon_screen = "library"
 	icon_keyboard = null
 
 /obj/machinery/computer/pod/old/mass_driver_controller
-	name = "\improper Mass Driver Controller"
+	name = "\improper 质量投射器控制器"
 	icon = MAP_SWITCH('icons/obj/machines/wallmounts.dmi', 'icons/obj/fluff/map_previews.dmi')
 	icon_state = MAP_SWITCH("airlock_control_standby", "/obj/machinery/computer/pod/old/mass_driver_controller")
 	icon_screen = null
@@ -161,10 +161,10 @@
 	id = MASSDRIVER_SHACK
 
 /obj/machinery/computer/pod/old/syndicate
-	name = "\improper ProComp Executive IIc"
-	desc = "The Syndicate operate on a tight budget. Operates external airlocks."
+	name = "\improper 专业计算行政型IIc"
+	desc = "辛迪加的预算很紧张。用于控制外部气闸。"
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/pod/old/swf
-	name = "\improper Magix System IV"
-	desc = "An arcane artifact that holds much magic. Running E-Knock 2.2: Sorcerer's Edition."
+	name = "\improper 魔技系统IV"
+	desc = "蕴含大量魔力的奥术器物。运行着电子敲门术2.2：巫师版。"

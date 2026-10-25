@@ -8,8 +8,8 @@
 	return 1.5
 
 /atom/movable/screen/alert/status_effect/woozy
-	name = "Woozy"
-	desc = "You feel a bit slower than usual, it seems doing things with your hands takes longer than it usually does."
+	name = "昏沉"
+	desc = "你感觉比平时迟钝了些，用手做事似乎也花费更长时间。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "woozy"
 
@@ -35,8 +35,8 @@
 	human_owner.physiology.bleed_mod /= 1.25
 
 /atom/movable/screen/alert/status_effect/high_blood_pressure
-	name = "High blood pressure"
-	desc = "Your blood pressure is real high right now ... You'd probably bleed like a stuck pig."
+	name = "高血压"
+	desc = "你现在的血压很高……一旦受伤，恐怕会血流如注。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "highbloodpressure"
 
@@ -53,13 +53,13 @@
 	duration = amplitude
 	owner.set_jitter_if_lower(100 SECONDS)
 	owner.Paralyze(duration)
-	owner.visible_message(span_warning("[owner] drops to the ground as [owner.p_they()] start[owner.p_s()] seizing up."), \
-	span_warning("[pick("You can't collect your thoughts...", "You suddenly feel extremely dizzy...", "You can't think straight...","You can't move your face properly anymore...")]"))
+	owner.visible_message(span_warning("[owner]倒在地上，开始抽搐。"), \
+	span_warning("[pick("你无法集中思绪……", "你突然感到天旋地转……", "你无法正常思考……","你无法正常控制脸部了……")]"))
 	return TRUE
 
 /atom/movable/screen/alert/status_effect/seizure
-	name = "Seizure"
-	desc = "FJOIWEHUWQEFGYUWDGHUIWHUIDWEHUIFDUWGYSXQHUIODSDBNJKVBNKDML <--- this is you right now"
+	name = "癫痫发作"
+	desc = "啊呜呃哇啊呜呃哇啊呜呃哇啊呜呃哇 ← 这就是你现在的样子"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "paralysis"
 
@@ -91,6 +91,6 @@
 	human_owner.sound_environment_override = SOUND_ENVIRONMENT_NONE
 
 /atom/movable/screen/alert/status_effect/stoned
-	name = "Stoned"
-	desc = "Cannabis is impairing your speed, motor skills, and mental cognition."
+	name = "大麻迷醉"
+	desc = "大麻正在损害你的行动速度、运动能力和认知能力。"
 	icon_state = "stoned"

@@ -1,10 +1,10 @@
 /datum/mutation/olfaction
-	name = "Transcendent Olfaction"
-	desc = "The subject's sense of smell is comparable to that of a canine."
+	name = "超凡嗅觉"
+	desc = "受试者的嗅觉可与犬类媲美。"
 	quality = POSITIVE
 	difficulty = 12
-	text_gain_indication = span_notice("Smells begin to make more sense...")
-	text_lose_indication = span_notice("Your sense of smell goes back to normal.")
+	text_gain_indication = span_notice("你开始从气味中辨认出更多信息……")
+	text_lose_indication = span_notice("你的嗅觉恢复了正常。")
 	power_path = /datum/action/cooldown/spell/olfaction
 	instability = POSITIVE_INSTABILITY_MODERATE
 	synchronizer_coeff = 1
@@ -18,9 +18,9 @@
 	to_modify.sensitivity = GET_MUTATION_SYNCHRONIZER(src)
 
 /datum/action/cooldown/spell/olfaction
-	name = "Remember the Scent"
-	desc = "Get a scent off of the item you're currently holding to track it. \
-		With an empty hand, you'll track the scent you've remembered."
+	name = "记住气味"
+	desc = "从当前手持物品上获取气味以追踪目标。\
+		空手使用时，将追踪你已记住的气味。"
 	button_icon_state = "nose"
 
 	cooldown_time = 10 SECONDS
@@ -37,11 +37,11 @@
 
 	var/mob/living/living_cast_on = cast_on
 	if(ishuman(living_cast_on) && !living_cast_on.get_bodypart(BODY_ZONE_HEAD))
-		to_chat(owner, span_warning("You have no nose!"))
+		to_chat(owner, span_warning("你没有鼻子！"))
 		return FALSE
 
 	if(HAS_TRAIT(living_cast_on, TRAIT_ANOSMIA)) //Anosmia quirk holders can't smell anything
-		to_chat(owner, span_warning("You can't smell!"))
+		to_chat(owner, span_warning("你闻不到气味！"))
 		return FALSE
 
 	return TRUE
@@ -53,8 +53,8 @@
 
 	if(air.moles[/datum/gas/miasma])
 		cast_on.adjust_disgust(sensitivity * 45)
-		to_chat(cast_on, span_warning("With your overly sensitive nose, \
-			you get a whiff of stench and feel sick! Try moving to a cleaner area!"))
+		to_chat(cast_on, span_warning("你过于灵敏的鼻子闻到一阵恶臭，\
+			令你感到恶心！试着去个干净点的地方！"))
 		return
 
 	var/atom/sniffed = cast_on.get_active_held_item()
@@ -75,30 +75,30 @@
 
 	// There are no finger prints on the atom, so nothing to track
 	if(!length(possibles))
-		to_chat(caster, span_warning("Despite your best efforts, there are no scents to be found on [sniffed]..."))
+		to_chat(caster, span_warning("尽管你努力嗅闻，还是无法从[sniffed]上找到任何气味……"))
 		return
 
-	var/mob/living/carbon/new_target = tgui_input_list(caster, "Scent to remember", "Scent Tracking", sort_names(possibles))
+	var/mob/living/carbon/new_target = tgui_input_list(caster, "选择要记住的气味", "气味追踪", sort_names(possibles))
 	if(QDELETED(src) || QDELETED(caster))
 		return
 
 	if(QDELETED(new_target))
 		// We don't have a new target OR an old target
 		if(QDELETED(old_target))
-			to_chat(caster, span_warning("You decide against remembering any scents. \
-				Instead, you notice your own nose in your peripheral vision. \
-				This goes on to remind you of that one time you started breathing manually and couldn't stop. \
-				What an awful day that was."))
+			to_chat(caster, span_warning("你决定不记住任何气味。\
+				你反倒在视野边缘注意到了自己的鼻子。\
+				这让你想起了那次开始有意识地控制呼吸，却怎么也停不下来的经历。\
+				那天可真糟糕。"))
 			tracking_ref = null
 
 		// We don't have a new target, but we have an old target to fall back on
 		else
-			to_chat(caster, span_notice("You return to tracking [old_target]. The hunt continues."))
+			to_chat(caster, span_notice("你继续追踪[old_target]。狩猎仍在继续。"))
 			on_the_trail(caster)
 		return
 
 	// We have a new target to track
-	to_chat(caster, span_notice("You pick up the scent of [new_target]. The hunt begins."))
+	to_chat(caster, span_notice("你捕捉到了[new_target]的气味。狩猎开始了。"))
 	tracking_ref = WEAKREF(new_target)
 	on_the_trail(caster)
 
@@ -108,8 +108,8 @@
 	// Either our weakref failed to resolve (our target's gone),
 	// or we never had a target in the first place
 	if(QDELETED(current_target))
-		to_chat(caster, span_warning("You're not holding anything to smell, \
-			and you haven't smelled anything you can track. You smell your skin instead; it's kinda salty."))
+		to_chat(caster, span_warning("你手中没有可供嗅闻的东西，\
+			也没有记住任何可以追踪的气味。你只好闻了闻自己的皮肤，有点咸。"))
 		tracking_ref = null
 		return
 
@@ -122,24 +122,24 @@
 	var/turf/current_target_turf = get_turf(current_target)
 	var/turf/caster_turf = get_turf(caster)
 	if(!current_target)
-		to_chat(caster, span_warning("You're not tracking a scent, but the game thought you were. \
-			Something's gone wrong! Report this as a bug."))
+		to_chat(caster, span_warning("你没有追踪任何气味，但游戏却认为你正在追踪。\
+			出问题了！请报告此错误。"))
 		stack_trace("[type] - on_the_trail was called when no tracking target was set.")
 		tracking_ref = null
 		return
 
 	if(current_target == caster)
-		to_chat(caster, span_warning("You smell out the trail to yourself. Yep, it's you."))
+		to_chat(caster, span_warning("你循着气味找到了自己。没错，就是你自己。"))
 		return
 
 	if(caster_turf.z < current_target_turf.z)
-		to_chat(caster, span_warning("The trail leads... way up above you? Huh. They must be really, really far away."))
+		to_chat(caster, span_warning("气味通向……远在你上方的地方？嗯，目标一定离你非常、非常远。"))
 		return
 
 	else if(caster_turf.z > current_target_turf.z)
-		to_chat(caster, span_warning("The trail leads... way down below you? Huh. They must be really, really far away."))
+		to_chat(caster, span_warning("气味通向……远在你下方的地方？嗯，目标一定离你非常、非常远。"))
 		return
 
-	var/direction_text = span_bold("[dir2text(get_dir(caster_turf, current_target_turf))]")
+	var/direction_text = span_bold("[chinese_direction_display(dir2text(get_dir(caster_turf, current_target_turf)))]")
 	if(direction_text)
-		to_chat(caster, span_notice("You consider [current_target]'s scent. The trail leads [direction_text]."))
+		to_chat(caster, span_notice("你仔细辨认[current_target]的气味。气味通向[direction_text]。"))

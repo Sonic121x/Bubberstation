@@ -1,12 +1,12 @@
 /datum/quirk/strong_stomach
 	name = "Strong Stomach"
-	desc = "You can eat food discarded on the ground without getting sick, and vomiting affects you less."
+	desc = "吃掉在地上的食物不会让你生病，呕吐对你的影响也更小。"
 	icon = FA_ICON_FACE_GRIN_BEAM_SWEAT
 	value = 4
 	mob_trait = TRAIT_STRONG_STOMACH
-	gain_text = span_notice("You feel like you could eat anything!")
-	lose_text = span_danger("Looking at food on the ground makes you feel a little queasy.")
-	medical_record_text = "Patient has a stronger than average immune system...to food poisoning, at least."
+	gain_text = span_notice("你觉得自己什么都吃得下！")
+	lose_text = span_danger("看着地上的食物，你有点反胃。")
+	medical_record_text = "患者的免疫系统强于常人……至少在抵御食物中毒方面如此。"
 	mail_goodies = list(
 		/obj/item/reagent_containers/applicator/pill/ondansetron,
 	)

@@ -1,8 +1,8 @@
 #define SAFETY_COOLDOWN 100
 
 /obj/machinery/recycler
-	name = "recycler"
-	desc = "A large crushing machine used to recycle small items inefficiently. There are lights on the side."
+	name = "回收机"
+	desc = "用于低效回收小件物品的大型粉碎机，侧面装有指示灯。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "grinder-o0"
 	base_icon_state = "grinder-o"
@@ -60,10 +60,10 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()
-	. += span_notice("Reclaiming <b>[amount_produced]%</b> of materials salvaged.")
-	. += {"The power light is [(machine_stat & NOPOWER) ? "off" : "on"].
-	The safety-mode light is [safety_mode ? "on" : "off"].
-	The safety-sensors status light is [obj_flags & EMAGGED ? "off" : "on"]."}
+	. += span_notice("可回收 <b>[amount_produced]%</b> 的材料。")
+	. += {"电源指示灯[(machine_stat & NOPOWER) ? "未亮起" : "亮着"]。
+	安全模式指示灯[safety_mode ? "亮着" : "未亮起"]。
+	安全传感器状态灯[obj_flags & EMAGGED ? "未亮起" : "亮着"]。"}
 
 /obj/machinery/recycler/wrench_act(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
@@ -83,7 +83,7 @@
 		safety_mode = FALSE
 		update_appearance()
 	playsound(src, SFX_SPARKS, 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	balloon_alert(user, "safeties disabled")
+	balloon_alert(user, "安全装置已禁用")
 	return FALSE
 
 /obj/machinery/recycler/update_icon_state()
@@ -151,7 +151,7 @@
 		if(thing.flags_1 & HOLOGRAM_1)
 			for(var/atom/movable/hologram_content as anything in thing.contents)
 				hologram_content.forceMove(loc) // we shouldn't qdel() the non-holographic content of the hologram.
-			visible_message(span_notice("[thing] fades away!"))
+			visible_message(span_notice("[thing]消散了！"))
 			qdel(thing)
 			continue
 
@@ -275,7 +275,7 @@
 		playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
 
 	if(iscarbon(living_mob) && !IS_UNCONSCIOUS_OR_CRIT(living_mob))
-		living_mob.say("ARRRRRRRRRRRGH!!!", forced= "recycler grinding")
+		living_mob.say("啊啊啊啊啊啊啊！！！", forced= "recycler grinding")
 
 	if(!issilicon(living_mob))
 		add_mob_blood(living_mob)
@@ -290,7 +290,7 @@
 	safety_mode = TRUE
 
 /obj/machinery/recycler/deathtrap
-	name = "dangerous old crusher"
+	name = "危险的老旧粉碎机"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	crush_damage = 120
 
@@ -300,7 +300,7 @@
 	AddElement(/datum/element/tool_blocker, TOOL_CROWBAR)
 
 /obj/item/paper/guides/recycler
-	name = "paper - 'garbage duty instructions'"
-	default_raw_text = "<h2>New Assignment</h2> You have been assigned to collect garbage from trash bins, located around the station. The crewmembers will put their trash into it and you will collect said trash.<br><br>There is a recycling machine near your closet, inside maintenance; use it to recycle the trash for a small chance to get useful minerals. Then, deliver these minerals to cargo or engineering. You are our last hope for a clean station. Do not screw this up!"
+	name = "纸张——《垃圾清理工作说明》"
+	default_raw_text = "<h2>新任务</h2>你被安排收集空间站各处垃圾桶中的垃圾。船员会把垃圾丢进去，而你负责清走。<br><br>你的柜子附近的维护通道里有一台回收机；用它回收垃圾，有小概率获得有用的矿物。随后将矿物送往货运部或工程部。你是我们保持空间站整洁的最后希望。别搞砸了！"
 
 #undef SAFETY_COOLDOWN

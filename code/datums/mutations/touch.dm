@@ -1,11 +1,11 @@
 /datum/mutation/shock
-	name = "Shock Touch"
-	desc = "The subject gains the ability to channel excess ambient electricity through their hands, allowing them to shock others in a mostly harmless manner."
+	name = "电击之触"
+	desc = "受试者能够将环境中的多余电力引导至双手，以基本无害的方式电击他人。"
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
-	text_gain_indication = span_notice("You feel power flow through your hands.")
-	text_lose_indication = span_notice("The energy in your hands subsides.")
+	text_gain_indication = span_notice("你感觉电力流过双手。")
+	text_lose_indication = span_notice("你双手中的能量消散了。")
 	power_path = /datum/action/cooldown/spell/touch/shock
 	instability = POSITIVE_INSTABILITY_MODERATE // bad stun baton
 	energy_coeff = 1
@@ -25,8 +25,8 @@
 	to_modify.stagger = TRUE
 
 /datum/action/cooldown/spell/touch/shock
-	name = "Shock Touch"
-	desc = "Channel electricity to your hand to shock people with. Mostly harmless! Mostly... "
+	name = "电击之触"
+	desc = "将电流引导至手中来电击别人。基本无害！基本上……"
 	button_icon_state = "zap"
 	sound = 'sound/items/weapons/zapbang.ogg'
 	cooldown_time = 7 SECONDS
@@ -38,8 +38,8 @@
 	var/stagger = FALSE
 
 	hand_path = /obj/item/melee/touch_attack/shock
-	draw_message = span_notice("You channel electricity into your hand.")
-	drop_message = span_notice("You let the electricity from your hand dissipate.")
+	draw_message = span_notice("你将电流引导至手中。")
+	drop_message = span_notice("你让手中的电流消散了。")
 
 /datum/action/cooldown/spell/touch/shock/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	if(iscarbon(victim))
@@ -54,8 +54,8 @@
 			carbon_victim.dropItemToGround(carbon_victim.get_inactive_held_item())
 			carbon_victim.adjust_confusion(15 SECONDS)
 			carbon_victim.visible_message(
-				span_danger("[caster] electrocutes [victim]!"),
-				span_userdanger("[caster] electrocutes you!"),
+				span_danger("[caster]电击了[victim]！"),
+				span_userdanger("[caster]电击了你！"),
 			)
 			if(stagger)
 				carbon_victim.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
@@ -65,31 +65,31 @@
 		var/mob/living/living_victim = victim
 		if(living_victim.electrocute_act(15, caster, 1, SHOCK_NOSTUN)) //We do damage here because non-carbon mobs typically ignore stamina damage.
 			living_victim.visible_message(
-				span_danger("[caster] electrocutes [victim]!"),
-				span_userdanger("[caster] electrocutes you!"),
+				span_danger("[caster]电击了[victim]！"),
+				span_userdanger("[caster]电击了你！"),
 			)
 			if(stagger)
 				living_victim.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * 2, 10 SECONDS)
 			return TRUE
 
-	to_chat(caster, span_warning("The electricity doesn't seem to affect [victim]..."))
+	to_chat(caster, span_warning("电流似乎对[victim]不起作用……"))
 	return TRUE
 
 /obj/item/melee/touch_attack/shock
-	name = "\improper shock touch"
-	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
+	name = "\improper 电击之触"
+	desc = "这有点像在长毛地毯上摩擦双脚后去电朋友，只是危险得多。"
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "zapper"
 	inhand_icon_state = "zapper"
 
 /datum/mutation/lay_on_hands
-	name = "Mending Touch"
-	desc = "The subject gains the ability to lay their hands on others to transfer a small amount of their injuries to themselves."
+	name = "抚愈之触"
+	desc = "受试者能够将手放在他人身上，将对方的少量伤势转移到自身。"
 	quality = POSITIVE
 	locked = FALSE
 	difficulty = 16
-	text_gain_indication = span_notice("Your hands feel blessed!")
-	text_lose_indication = span_notice("Your hands no longer feel blessed.")
+	text_gain_indication = span_notice("你的双手仿佛受到了祝福！")
+	text_lose_indication = span_notice("你的双手不再有受祝福的感觉了。")
 	power_path = /datum/action/cooldown/spell/touch/lay_on_hands
 	instability = POSITIVE_INSTABILITY_MAJOR
 	energy_coeff = 1
@@ -109,9 +109,9 @@
 	to_modify.synchronizer_coefficient = GET_MUTATION_SYNCHRONIZER(src)
 
 /datum/action/cooldown/spell/touch/lay_on_hands
-	name = "Mending Touch"
-	desc = "You can now lay your hands on other people to transfer a small amount of their physical injuries to yourself. \
-		For some reason, this power does not play nicely with the undead, or people with strange ideas about morality."
+	name = "抚愈之触"
+	desc = "将手放在他人身上，把对方的少量身体伤势转移到自己身上。\
+		不知为何，这种力量对亡灵或道德观念古怪的人不太友好。"
 	button_icon = 'icons/mob/actions/actions_genetic.dmi'
 	button_icon_state = "mending_touch"
 	sound = 'sound/effects/magic/staff_healing.ogg'
@@ -122,8 +122,8 @@
 	antimagic_flags = NONE
 
 	hand_path = /obj/item/melee/touch_attack/lay_on_hands
-	draw_message = span_notice("You ready your hand to transfer injuries to yourself.")
-	drop_message = span_notice("You lower your hand.")
+	draw_message = span_notice("你抬起手，准备将伤势转移到自己身上。")
+	drop_message = span_notice("你放下了手。")
 	/// Multiplies the amount healed (or damage dealt, in the case of a smite).
 	var/heal_multiplier = 1
 	/// Multiplies the incoming pain from healing. (Halved with synchronizer chromosome)
@@ -141,7 +141,7 @@
 		return .
 	var/obj/item/bodypart/transfer_limb = cast_on.get_active_hand()
 	if(!IS_ORGANIC_LIMB(transfer_limb))
-		to_chat(cast_on, span_notice("You fail to channel your mending powers through your inorganic hand."))
+		to_chat(cast_on, span_notice("你无法通过无机质的手引导治愈之力。"))
 		return FALSE
 
 	return TRUE
@@ -161,7 +161,7 @@
 	var/hurt_this_guy = determine_if_this_hurts_instead(mendicant, hurtguy)
 
 	if (hurt_this_guy && (HAS_TRAIT(mendicant, TRAIT_PACIFISM) || !mendicant.combat_mode)) //Returns if we're a pacifist and we'd hurt them, or we're not in combat mode and we'll hurt them
-		mendicant.balloon_alert(mendicant, "[hurtguy] would be hurt!")
+		mendicant.balloon_alert(mendicant, "这会伤害[hurtguy]！")
 		return FALSE
 
 	if(hurt_this_guy)
@@ -173,7 +173,7 @@
 	if(HAS_TRAIT_FROM(mendicant, TRAIT_HIPPOCRATIC_OATH, HIPPOCRATIC_OATH_TRAIT))
 		heal_multiplier *= 2
 		pain_multiplier *= 0.5
-		peaceful_message = span_boldnotice("You can feel the magic of the Rod of Aesculapius aiding your efforts!")
+		peaceful_message = span_boldnotice("你能感到阿斯克勒庇俄斯之杖的魔力正在帮助你！")
 		beam_icon = "sendbeam"
 		var/obj/item/rod_of_asclepius/rod = locate() in mendicant.contents
 		if(rod)
@@ -183,7 +183,7 @@
 	// If a normal pacifist, transfer more.
 	else if(HAS_TRAIT(mendicant, TRAIT_PACIFISM))
 		heal_multiplier *= 1.75
-		peaceful_message = span_boldnotice("Your peaceful nature helps you guide all the pain to yourself.")
+		peaceful_message = span_boldnotice("你爱好和平的天性帮助你将所有痛苦引向自己。")
 
 	if(iscarbon(hurtguy))
 		success = do_complicated_heal(mendicant, hurtguy, heal_multiplier, pain_multiplier)
@@ -210,8 +210,8 @@
 	hurtguy.update_damage_overlays()
 	mendicant.update_damage_overlays()
 
-	hurtguy.visible_message(span_notice("[mendicant] lays hands on [hurtguy]!"))
-	to_chat(hurtguy, span_boldnotice("[mendicant] lays hands on you, healing you!"))
+	hurtguy.visible_message(span_notice("[mendicant]将双手放在[hurtguy]身上！"))
+	to_chat(hurtguy, span_boldnotice("[mendicant]将双手放在你身上，为你治疗！"))
 	new /obj/effect/temp_visual/heal(get_turf(hurtguy), COLOR_VERY_PALE_LIME_GREEN)
 	return success
 
@@ -231,7 +231,7 @@
 			mendicant_organic_limbs += possible_limb
 	// None? Gtfo
 	if(!length(mendicant_organic_limbs))
-		mendicant.balloon_alert(mendicant, "no organic limbs!")
+		mendicant.balloon_alert(mendicant, "没有有机肢体！")
 		return .
 
 	// Try to use our active hand, otherwise pick at random
@@ -249,7 +249,7 @@
 		. = TRUE
 
 	if(!.)
-		hurtguy.balloon_alert(mendicant, "unhurt!")
+		hurtguy.balloon_alert(mendicant, "没有受伤！")
 
 /datum/action/cooldown/spell/touch/lay_on_hands/proc/do_complicated_heal(mob/living/carbon/mendicant, mob/living/carbon/hurtguy, heal_multiplier, pain_multiplier)
 
@@ -326,14 +326,14 @@
 		if(!blood_transferred)
 			return
 
-		to_chat(mendicant, span_notice("Your veins (and brain) feel a bit lighter."))
+		to_chat(mendicant, span_notice("你的血管（还有脑袋）感觉轻了些。"))
 		. = TRUE
 		// Because we do our own spin on it!
 		if(hurtguy.get_blood_compatibility(mendicant) == FALSE)
 			hurtguy.adjust_tox_loss((blood_transferred * 0.1) * pain_multiplier) // 1 dmg per 10 blood
-			to_chat(hurtguy, span_notice("Your veins feel thicker, but they itch a bit."))
+			to_chat(hurtguy, span_notice("你的血管充盈起来，但有点发痒。"))
 		else
-			to_chat(hurtguy, span_notice("Your veins feel thicker!"))
+			to_chat(hurtguy, span_notice("你的血管充盈起来！"))
 		return
 
 	if(hurtguy_blood < BLOOD_VOLUME_MAXIMUM)
@@ -346,16 +346,16 @@
 	if(!blood_received)
 		return
 
-	to_chat(hurtguy, span_notice("Your veins don't feel quite so swollen anymore."))
+	to_chat(hurtguy, span_notice("你的血管不再那么胀了。"))
 	. = TRUE
 	// Because we do our own spin on it!
 	if(mendicant.get_blood_compatibility(hurtguy) == FALSE)
 		mendicant.adjust_tox_loss((blood_received * 0.1) * pain_multiplier) // 1 dmg per 10 blood
-		to_chat(mendicant, span_notice("Your veins swell and itch!"))
+		to_chat(mendicant, span_notice("你的血管又胀又痒！"))
 	else
-		to_chat(mendicant, span_notice("Your veins swell!"))
+		to_chat(mendicant, span_notice("你的血管胀了起来！"))
 	if(!.)
-		mendicant.balloon_alert(hurtguy, "no damaged organic limbs!")
+		mendicant.balloon_alert(hurtguy, "没有受损的有机肢体！")
 
 
 /datum/action/cooldown/spell/touch/lay_on_hands/proc/determine_if_this_hurts_instead(mob/living/carbon/mendicant, mob/living/hurtguy)
@@ -381,12 +381,12 @@
 	var/our_smite_multiplier = smite_multiplier
 	var/evil_smite = HAS_TRAIT(smiter, TRAIT_EVIL) ? TRUE : FALSE
 	var/divine_champion = smiter.mind?.holy_role >= HOLY_ROLE_PRIEST ? TRUE : FALSE
-	var/smite_text_to_target = "lays hands on you"
+	var/smite_text_to_target = "将双手放在你身上"
 
 	if(divine_champion || HAS_TRAIT(smiter, TRAIT_SPIRITUAL))
 
 		// Defaults for possible deity. You know, just in case.
-		var/possible_deity = evil_smite ? "Satan" : "God"
+		var/possible_deity = evil_smite ? "撒旦" : "上帝"
 
 		var/mob/living/carbon/human/human_smiter = smiter
 
@@ -401,33 +401,33 @@
 		if(ishuman(human_smiter))
 			human_smiter.force_say()
 			if(evil_smite)
-				human_smiter.say("in [possible_deity]'s dark name, I COMMAND YOU TO PERISH!!!", forced = "compelled by the power of their deity")
+				human_smiter.say("以[possible_deity]的黑暗之名，我命你灭亡！！！", forced = "compelled by the power of their deity")
 			else
-				human_smiter.say("By [possible_deity]'s might, I SMITE YOU!!!", forced = "compelled by the power of their deity")
+				human_smiter.say("以[possible_deity]之威，我降罚于你！！！", forced = "compelled by the power of their deity")
 		our_smite_multiplier *= divine_champion ? 5 : 1 //good luck surviving this if they're a chap
 
 	if(evil_smite)
-		motherfucker_to_hurt.visible_message(span_warning("[smiter] snaps [smiter.p_their()] fingers in front of [motherfucker_to_hurt]'s face, and [motherfucker_to_hurt]'s body twists violently from an unseen force!"))
+		motherfucker_to_hurt.visible_message(span_warning("[smiter]在[motherfucker_to_hurt]面前打了个响指，一股无形的力量使[motherfucker_to_hurt]的身体猛烈扭曲！"))
 		motherfucker_to_hurt.apply_damage(10 * our_smite_multiplier, BRUTE, spread_damage = TRUE, wound_bonus = 5 * our_smite_multiplier)
 		motherfucker_to_hurt.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH * our_smite_multiplier, 25 SECONDS)
 		smiter.emote("snap")
-		smite_text_to_target = "crushes you psychically with a snap of [smiter.p_their()] fingers"
+		smite_text_to_target = "打了个响指，用精神力量碾压你"
 	else
-		motherfucker_to_hurt.visible_message(span_warning("[smiter] lays hands on [motherfucker_to_hurt], but it shears [motherfucker_to_hurt.p_them()] with a brilliant energy!"))
+		motherfucker_to_hurt.visible_message(span_warning("[smiter]将双手放在[motherfucker_to_hurt]身上，却释放出耀眼的能量灼伤了对方！"))
 		motherfucker_to_hurt.apply_damage(10 * our_smite_multiplier, BURN, spread_damage = TRUE, wound_bonus = 5 * our_smite_multiplier)
 		motherfucker_to_hurt.adjust_fire_stacks(3 * our_smite_multiplier)
 		motherfucker_to_hurt.ignite_mob()
 
 	motherfucker_to_hurt.update_damage_overlays()
 
-	to_chat(motherfucker_to_hurt, span_bolddanger("[smiter] [smite_text_to_target], hurting you!"))
+	to_chat(motherfucker_to_hurt, span_bolddanger("[smiter][smite_text_to_target]，使你受到了伤害！"))
 	motherfucker_to_hurt.emote("scream")
 	new /obj/effect/temp_visual/explosion(get_turf(motherfucker_to_hurt), evil_smite ? LIGHT_COLOR_BLOOD_MAGIC : LIGHT_COLOR_HOLY_MAGIC)
 	. = TRUE
 
 /obj/item/melee/touch_attack/lay_on_hands
-	name = "mending touch"
-	desc = "Unlike in your favorite tabletop games, you sadly can't cast this on yourself, so you can't use that as a Scapegoat." // mayus is reference. if you get it you're cool
+	name = "抚愈之触"
+	desc = "遗憾的是，这和你最喜欢的桌游不同，不能对自己施放，所以也不能拿自己当替罪羊。" // mayus is reference. if you get it you're cool
 	icon = 'icons/obj/weapons/hand.dmi'
 	icon_state = "greyscale"
 	color = COLOR_VERY_PALE_LIME_GREEN

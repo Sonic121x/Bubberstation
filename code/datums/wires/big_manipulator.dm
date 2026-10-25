@@ -1,6 +1,6 @@
 /datum/wires/big_manipulator
 	holder_type = /obj/machinery/big_manipulator
-	proper_name = "Big_Manipulator"
+	proper_name = "大型机械臂"
 
 /datum/wires/big_manipulator/New(atom/holder)
 	wires = list(
@@ -21,9 +21,9 @@
 /datum/wires/big_manipulator/get_status()
 	var/obj/machinery/big_manipulator/holder_manipulator = holder
 	var/list/status = list()
-	status += "The big light bulb [holder_manipulator.power_access_wire_cut ? "is off" : "is glowing [holder_manipulator.on ? "green" : "red"]"]."
-	status += "The small light bulb [holder_manipulator.held_object ? "is glowing bright green" : "is off"]."
-	status += "The number on the display shows [length(holder_manipulator.tasks)]."
+	status += "大灯泡[holder_manipulator.power_access_wire_cut ? "熄灭" : "发出[holder_manipulator.on ? "绿色" : "红色"]光芒"]。"
+	status += "小灯泡[holder_manipulator.held_object ? "发出明亮的绿光" : "熄灭"]。"
+	status += "显示屏上的数字是[length(holder_manipulator.tasks)]。"
 	return status
 
 /datum/wires/big_manipulator/on_pulse(wire)

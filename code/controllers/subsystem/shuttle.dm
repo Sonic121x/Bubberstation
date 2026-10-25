@@ -1084,7 +1084,7 @@ SUBSYSTEM_DEF(shuttle)
 				"templates" = list())
 
 		var/list/L = list()
-		L["name"] = S.name
+		L["name"] = chinese_template_display(S.name)
 		L["shuttle_id"] = S.shuttle_id
 		L["port_id"] = S.port_id
 		L["description"] = S.description

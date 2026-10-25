@@ -4,8 +4,8 @@
 #define SCREAM_TIME 3 SECONDS
 
 /obj/machinery/dna_infuser
-	name = "\improper DNA infuser"
-	desc = "A defunct genetics machine for merging foreign DNA with a subject's own."
+	name = "\improper DNA融合器"
+	desc = "一种已被淘汰的遗传学设备，用于将外源DNA与受试者自身的DNA融合。"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "infuser"
 	base_icon_state = "infuser"
@@ -37,39 +37,39 @@
 /obj/machinery/dna_infuser/examine(mob/user)
 	. = ..()
 	if(!occupant)
-		. += span_notice("Requires [span_bold("a subject")].")
+		. += span_notice("需要[span_bold("一名受试者")]。")
 	else
-		. += span_notice("\"[span_bold(occupant.name)]\" is inside the infusion chamber.")
+		. += span_notice("\"[span_bold(occupant.name)]\"位于融合舱内。")
 	if(!infusing_from)
-		. += span_notice("Missing [span_bold("an infusion source")].")
+		. += span_notice("缺少[span_bold("融合源")]。")
 	else
-		. += span_notice("[span_bold(infusing_from.name)] is in the infusion slot.")
-	. += span_notice("To operate: Obtain dead creature. Depending on size, drag or drop into the infuser slot.")
-	. += span_notice("Subject enters the chamber, someone activates the machine. Voila! One of your organs has... changed!")
-	. += span_notice("Alt-click to eject the infusion source, if one is inside.")
+		. += span_notice("[span_bold(infusing_from.name)]位于融合槽内。")
+	. += span_notice("操作方法：获取死亡生物，按其大小拖入或放入融合槽。")
+	. += span_notice("受试者进入舱内，再由他人启动机器。瞧！你的一个器官……变了！")
+	. += span_notice("Alt点击可弹出其中的融合源。")
 	if(max_tier_allowed < DNA_INFUSER_MAX_TIER)
-		. += span_boldnotice("Right now, the DNA Infuser can only infuse Tier [max_tier_allowed] entries.")
+		. += span_boldnotice("DNA融合器目前最高只能融合[max_tier_allowed]级条目。")
 	else
-		. += span_boldnotice("Maximum tier unlocked. All DNA entries are possible.")
-	. += span_notice("Examine further for more information.")
+		. += span_boldnotice("已解锁最高等级，可融合所有DNA条目。")
+	. += span_notice("进一步检查可获得更多信息。")
 
 /obj/machinery/dna_infuser/examine_more(mob/user)
 	. = ..()
-	. += span_notice("If you infuse a Tier [DNA_MUTANT_TIER_ONE] entry until it unlocks the bonus, it will upgrade the maximum tier and allow more complicated infusions.")
-	. += span_notice("The maximum level it can reach is Tier [DNA_INFUSER_MAX_TIER].")
+	. += span_notice("持续融合[DNA_MUTANT_TIER_ONE]级条目直至解锁加成，即可提升最高等级，允许进行更复杂的融合。")
+	. += span_notice("最高可提升至[DNA_INFUSER_MAX_TIER]级。")
 
 /obj/machinery/dna_infuser/interact(mob/user)
 	if(user == occupant)
 		toggle_open(user)
 		return
 	if(infusing)
-		balloon_alert(user, "not while it's on!")
+		balloon_alert(user, "运行时无法操作！")
 		return
 	if(occupant && infusing_from)
 		if(!occupant.can_infuse(user))
 			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 35, vary = TRUE)
 			return
-		balloon_alert(user, "starting DNA infusion...")
+		balloon_alert(user, "正在开始DNA融合……")
 		start_infuse()
 		return
 	toggle_open(user)
@@ -77,20 +77,20 @@
 /obj/machinery/dna_infuser/proc/start_infuse()
 	var/mob/living/carbon/human/human_occupant = occupant
 	infusing = TRUE
-	visible_message(span_notice("[src] hums to life, beginning the infusion process!"))
+	visible_message(span_notice("[src]嗡鸣着启动，开始了融合过程！"))
 
 	infusing_into = infusing_from.get_infusion_entry()
 	var/fail_title = ""
 	var/fail_explanation = ""
 	if(istype(infusing_into, /datum/infuser_entry/fly))
-		fail_title = "Unknown DNA"
-		fail_explanation = "Unknown DNA. Consult the \"DNA infusion book\"."
+		fail_title = "未知DNA"
+		fail_explanation = "未知DNA。请查阅《DNA融合指南》。"
 	if(infusing_into.tier > max_tier_allowed)
 		infusing_into = GLOB.infuser_entries[/datum/infuser_entry/fly]
-		fail_title = "Overcomplexity"
-		fail_explanation = "DNA too complicated to infuse. The machine needs to infuse simpler DNA first."
+		fail_title = "过于复杂"
+		fail_explanation = "DNA过于复杂，无法融合。机器需要先融合更简单的DNA。"
 	playsound(src, 'sound/machines/blender.ogg', 50, vary = TRUE)
-	to_chat(human_occupant, span_danger("Little needles repeatedly prick you!"))
+	to_chat(human_occupant, span_danger("细针反复刺入你的身体！"))
 	human_occupant.take_overall_damage(10)
 	human_occupant.add_mob_memory(/datum/memory/dna_infusion, protagonist = human_occupant, deuteragonist = infusing_from, mutantlike = infusing_into.infusion_desc)
 	Shake(duration = INFUSING_TIME)
@@ -102,16 +102,16 @@
 	var/mob/living/carbon/human/human_occupant = occupant
 	if(human_occupant.infuse_organ(infusing_into, infusing_from))
 		check_tier_progression(human_occupant)
-		to_chat(occupant, span_danger("You feel yourself becoming more... [infusing_into.infusion_desc]?"))
+		to_chat(occupant, span_danger("你感觉自己变得更加……[infusing_into.infusion_desc]？"))
 	infusing = FALSE
 	infusing_into = null
 	QDEL_NULL(infusing_from)
 	playsound(src, 'sound/machines/microwave/microwave-end.ogg', 100, vary = FALSE)
 	if(fail_explanation)
 		playsound(src, 'sound/machines/printer.ogg', 100, TRUE)
-		visible_message(span_notice("[src] prints an error report."))
+		visible_message(span_notice("[src]打印出一份错误报告。"))
 		var/obj/item/paper/printed_paper = new /obj/item/paper(loc)
-		printed_paper.name = "error report - '[fail_title]'"
+		printed_paper.name = "错误报告——'[fail_title]'"
 		printed_paper.add_raw_text(fail_explanation)
 		printed_paper.update_appearance()
 	toggle_open()
@@ -126,7 +126,7 @@
 	)
 		max_tier_allowed++
 		playsound(src, 'sound/machines/ding.ogg', 50, TRUE)
-		visible_message(span_notice("[src] dings as it records the results of the full infusion."))
+		visible_message(span_notice("[src]叮的一声，记录下完整融合的结果。"))
 
 /obj/machinery/dna_infuser/update_icon_state()
 	//out of order
@@ -148,14 +148,14 @@
 /obj/machinery/dna_infuser/proc/toggle_open(mob/user)
 	if(panel_open)
 		if(user)
-			balloon_alert(user, "close panel first!")
+			balloon_alert(user, "先关闭面板！")
 		return
 	if(state_open)
 		close_machine()
 		return
 	else if(infusing)
 		if(user)
-			balloon_alert(user, "not while it's on!")
+			balloon_alert(user, "运行时无法操作！")
 		return
 	open_machine(drop = FALSE)
 	//we set drop to false to manually call it with an allowlist
@@ -174,7 +174,7 @@
 	if(!is_valid_infusion(tool, user))
 		return ..() //research scanning is so back
 	if(!user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning("[tool] is stuck to your hand!"))
+		to_chat(user, span_warning("[tool]黏在你的手上了！"))
 		return ITEM_INTERACT_BLOCKING
 	infusing_from = tool
 	return ITEM_INTERACT_SUCCESS
@@ -183,12 +183,12 @@
 	if(IS_UNCONSCIOUS_OR_CRIT(user))
 		if(COOLDOWN_FINISHED(src, message_cooldown))
 			COOLDOWN_START(src, message_cooldown, 4 SECONDS)
-			to_chat(user, span_warning("[src]'s door won't budge!"))
+			to_chat(user, span_warning("[src]的舱门纹丝不动！"))
 		return
 	if(infusing)
 		if(COOLDOWN_FINISHED(src, message_cooldown))
 			COOLDOWN_START(src, message_cooldown, 4 SECONDS)
-			to_chat(user, span_danger("[src]'s door won't budge while all the needles are infusing you!"))
+			to_chat(user, span_danger("针头正在为你进行融合时，[src]的舱门无法打开！"))
 		return
 	open_machine(drop = FALSE)
 	//we set drop to false to manually call it with an allowlist
@@ -205,26 +205,26 @@
 /// Verify that the given infusion source/mob is a dead creature.
 /obj/machinery/dna_infuser/proc/is_valid_infusion(atom/movable/target, mob/user)
 	if(infusing_from)
-		balloon_alert(user, "empty the machine first!")
+		balloon_alert(user, "先清空机器！")
 		return FALSE
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(living_target.stat != DEAD)
-			balloon_alert(user, "only dead creatures!")
+			balloon_alert(user, "只能放入死亡生物！")
 			return FALSE
 	else if(!HAS_TRAIT(target, TRAIT_VALID_DNA_INFUSION))
-		balloon_alert(user, "only creatures!")
+		balloon_alert(user, "只能放入生物！")
 		return FALSE
 	return TRUE
 
 /obj/machinery/dna_infuser/click_alt(mob/user)
 	if(infusing)
-		balloon_alert(user, "not while it's on!")
+		balloon_alert(user, "运行时无法操作！")
 		return CLICK_ACTION_BLOCKING
 	if(!infusing_from)
-		balloon_alert(user, "no sample to eject!")
+		balloon_alert(user, "没有可弹出的样本！")
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "ejected sample")
+	balloon_alert(user, "样本已弹出")
 	infusing_from.forceMove(get_turf(src))
 	infusing_from = null
 	return CLICK_ACTION_SUCCESS

@@ -1,11 +1,11 @@
 /datum/quirk/pineapple_liker
 	name = "Ananas Affinity"
-	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
+	desc = "你非常喜爱菠萝属的水果。那份甜美似乎永远都吃不够！"
 	icon = FA_ICON_THUMBS_UP
 	value = 0
-	gain_text = span_notice("You feel an intense craving for pineapple.")
-	lose_text = span_notice("Your feelings towards pineapples seem to return to a lukewarm state.")
-	medical_record_text = "Patient demonstrates a pathological love of pineapple."
+	gain_text = span_notice("你无比渴望吃菠萝。")
+	lose_text = span_notice("你对菠萝的态度似乎又变得平淡了。")
+	medical_record_text = "患者表现出对菠萝病态的喜爱。"
 	mail_goodies = list(/obj/item/food/pizzaslice/pineapple)
 
 /datum/quirk/pineapple_liker/add(client/client_source)

@@ -1,11 +1,11 @@
 /datum/quirk/foreigner
 	name = "Foreigner"
-	desc = "You're not from around here. You don't know Galactic Common!"
+	desc = "你不是本地人。你不懂银河通用语！"
 	icon = FA_ICON_LANGUAGE
 	value = 0
-	gain_text = span_notice("The words being spoken around you don't make any sense.")
-	lose_text = span_notice("You've developed fluency in Galactic Common.")
-	medical_record_text = "Patient does not speak Galactic Common and may require an interpreter."
+	gain_text = span_notice("你完全听不懂周围的人在说什么。")
+	lose_text = span_notice("你已经能流利地使用银河通用语了。")
+	medical_record_text = "患者不会说银河通用语，可能需要翻译。"
 	mail_goodies = list(/obj/item/taperecorder) // for translation
 
 /datum/quirk/foreigner/add(client/client_source)

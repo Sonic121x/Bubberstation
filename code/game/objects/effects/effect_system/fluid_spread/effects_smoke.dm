@@ -2,7 +2,7 @@
  * A fluid which spreads through the air affecting every mob it engulfs.
  */
 /obj/effect/particle_effect/fluid/smoke
-	name = "smoke"
+	name = "烟雾"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke"
 	pixel_x = -32
@@ -233,7 +233,7 @@
 
 /// Green smoke that makes you cough.
 /obj/effect/particle_effect/fluid/smoke/bad/green
-	name = "green smoke"
+	name = "绿色烟雾"
 	color = COLOR_VIBRANT_LIME
 	opacity = FALSE
 
@@ -243,7 +243,7 @@
 
 /// Black smoke that makes you cough. (Actually dark grey)
 /obj/effect/particle_effect/fluid/smoke/bad/black
-	name = "black smoke"
+	name = "黑色烟雾"
 	color = "#383838"
 	opacity = FALSE
 
@@ -257,7 +257,7 @@
 
 /// Light blue, transparent smoke which is usually paired with a blast that chills every turf in the area.
 /obj/effect/particle_effect/fluid/smoke/freezing
-	name = "nanofrost smoke"
+	name = "纳米霜冻烟雾"
 	color = "#B2FFFF"
 	opacity = FALSE
 
@@ -312,7 +312,7 @@
 			if(!isnull(comp.welded) && !comp.welded) //must be an unwelded vent pump or vent scrubber.
 				comp.welded = TRUE
 				comp.update_appearance()
-				comp.visible_message(span_danger("[comp] is frozen shut!"))
+				comp.visible_message(span_danger("[comp]被冻住了！"))
 
 	// Extinguishes everything in the turf
 	for(var/mob/living/potential_tinder in chilly)
@@ -450,13 +450,13 @@
 	if(!carry.my_atom?.fingerprintslast)
 		// Deathmatch has way too much smoke to log
 		if(!istype(carry.my_atom, /obj/machinery/plumbing) && !(fluid_area.area_flags & QUIET_LOGS))
-			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
+			message_admins("烟雾：([ADMIN_VERBOSEJMP(location)])[contained]。无关联账号。")
 		log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
 		return
 
 	var/mob/bomber = get_mob_by_key(carry.my_atom.fingerprintslast)
 	if(!istype(carry.my_atom, /obj/machinery/plumbing) && !(fluid_area.area_flags & QUIET_LOGS)) // I like to be able to see my logs thank you
-		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Key: [bomber ? "[ADMIN_LOOKUPFLW(bomber)] " : carry.my_atom.fingerprintslast].")
+		message_admins("烟雾：([ADMIN_VERBOSEJMP(location)])[contained]。账号：[bomber ? "[ADMIN_LOOKUPFLW(bomber)] " : carry.my_atom.fingerprintslast]。")
 	log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
 
 /datum/effect_system/fluid_spread/smoke/chem/Destroy()

@@ -1,8 +1,8 @@
 
 /obj/effect/timestop
 	anchored = TRUE
-	name = "chronofield"
-	desc = "ZA WARUDO"
+	name = "时间力场"
+	desc = "世界，时间停止！"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	layer = FLY_LAYER

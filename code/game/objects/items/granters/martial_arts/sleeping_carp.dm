@@ -1,23 +1,23 @@
 /obj/item/book/granter/martial/carp
 	martial = /datum/martial_art/the_sleeping_carp
-	name = "mysterious scroll"
-	martial_name = "sleeping carp"
-	desc = "A scroll filled with strange markings. It seems to be drawings of some sort of martial art."
-	greet = span_sciradio("You have learned the ancient martial art of the Sleeping Carp! Your hand-to-hand combat has become much more effective, and you are now able to deflect any projectiles \
-		directed toward you while in Combat Mode. You are also able to sometimes dodge melee and unarmed attacks against you, but only as long as you dress in appropriate martial arts clothing. Or \
-		carp-themed clothing. Your body has also hardened itself, granting extra protection against lasting wounds that would otherwise mount during extended combat. However, you are also unable to \
-		use any ranged weaponry. You can learn more about your newfound art by using the Recall Teachings verb in the Sleeping Carp tab.")
+	name = "神秘卷轴"
+	martial_name = "睡鲤拳"
+	desc = "一卷写满奇怪标记的卷轴，似乎是某种武术的图解。"
+	greet = span_sciradio("你学会了古老的睡鲤拳！你的徒手格斗能力大幅增强，在战斗模式下能够偏转\
+		射向你的任何弹体。只要穿着合适的武术服装，或以鲤鱼为主题的服装，\
+		你也有机会闪避近战与徒手攻击。你的身体变得更加坚韧，能更好地抵御持久战中不断累积的长期创伤。不过，你也将无法\
+		使用任何远程武器。在睡鲤拳标签页使用‘回忆教诲’指令，可以进一步了解新学会的武术。")
 	icon = 'icons/obj/scrolls.dmi'
 	icon_state = "sleepingcarp"
 	worn_icon_state = "scroll"
 	remarks = list(
-		"Wait, a high protein diet is really all it takes to become stabproof...?",
-		"Overwhelming force, immovable object...",
-		"Focus... And you'll be able to incapacitate any foe in seconds...",
-		"I must pierce armor for maximum damage...",
-		"I don't think this would combine with other martial arts...",
-		"Become one with the carp...",
-		"Glub...",
+		"等等，只要吃高蛋白饮食就能刀枪不入……？",
+		"无坚不摧之力，岿然不动之物……",
+		"集中精神……你就能在数秒内让任何敌人失去行动能力……",
+		"必须穿透护甲才能造成最大伤害……",
+		"我觉得这不能和其他武术结合使用……",
+		"与鲤鱼融为一体……",
+		"咕噜……",
 	)
 
 /obj/item/book/granter/martial/carp/on_reading_finished(mob/living/carbon/user)
@@ -27,8 +27,8 @@
 /obj/item/book/granter/martial/carp/update_appearance(updates)
 	. = ..()
 	if(uses <= 0)
-		name = "empty scroll"
-		desc = "It's completely blank."
+		name = "空白卷轴"
+		desc = "上面一片空白。"
 		icon_state = "blankscroll"
 	else
 		name = initial(name)

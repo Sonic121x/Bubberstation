@@ -88,8 +88,8 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(select_equipment, R_FUN, "Select Equipment", /mob)
 
 /datum/select_equipment/proc/outfit_entry(category, identifier, name, priority=FALSE, custom_entry=FALSE)
 	if(custom_entry)
-		return list("category" = category, "ref" = identifier, "name" = name, "priority" = priority)
-	return list("category" = category, "path" = identifier, "name" = name, "priority" = priority)
+		return list("category" = category, "ref" = identifier, "name" = chinese_outfit_display(name), "priority" = priority)
+	return list("category" = category, "path" = identifier, "name" = chinese_outfit_display(name), "priority" = priority)
 
 /datum/select_equipment/proc/make_outfit_entries(category="General", list/outfit_list)
 	var/list/entries = list()

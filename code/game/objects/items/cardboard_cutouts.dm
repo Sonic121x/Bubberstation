@@ -1,7 +1,7 @@
 //Cardboard cutouts! They're man-shaped and can be colored with a crayon to look like a human in a certain outfit, although it's limited, discolored, and obvious to more than a cursory glance.
 /obj/item/cardboard_cutout
-	name = "cardboard cutout"
-	desc = "A vaguely humanoid cardboard cutout. It's completely blank."
+	name = "人形纸板"
+	desc = "一块大致呈人形的纸板，上面一片空白。"
 	icon = 'icons/obj/art/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	w_class = WEIGHT_CLASS_BULKY
@@ -49,7 +49,7 @@
 /obj/item/cardboard_cutout/attack_hand(mob/living/user, list/modifiers)
 	if(!user.combat_mode || pushed_over || !isturf(loc))
 		return ..()
-	user.visible_message(span_warning("[user] pushes over [src]!"), span_danger("You push over [src]!"))
+	user.visible_message(span_warning("[user]推倒了[src]！"), span_danger("你推倒了[src]！"))
 	playsound(src, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 	push_over()
 
@@ -64,7 +64,7 @@
 
 /obj/item/cardboard_cutout/proc/push_over()
 	appearance = initial(appearance)
-	desc = "[initial(desc)] It's been pushed over."
+	desc = "[initial(desc)]它被推倒了。"
 	icon_state = "cutout_pushed_over"
 	remove_atom_colour(FIXED_COLOUR_PRIORITY)
 	pushed_over = TRUE
@@ -73,7 +73,7 @@
 /obj/item/cardboard_cutout/attack_self(mob/living/user)
 	if(!pushed_over)
 		return
-	to_chat(user, span_notice("You right [src]."))
+	to_chat(user, span_notice("你扶起了[src]。"))
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state) //This resets a cutout to its blank state - this is intentional to allow for resetting
@@ -118,8 +118,8 @@
 
 	for (var/datum/cardboard_cutout/cutout_subtype as anything in subtypesof(/datum/cardboard_cutout))
 		var/datum/cardboard_cutout/cutout = get_cardboard_cutout_instance(cutout_subtype)
-		appearances_by_name[cutout.name] = cutout
-		possible_appearances[cutout.name] = image(icon = cutout.preview_appearance)
+		appearances_by_name[chinese_cardboard_cutout_display(cutout.name)] = cutout
+		possible_appearances[chinese_cardboard_cutout_display(cutout.name)] = image(icon = cutout.preview_appearance)
 
 	var/new_appearance = show_radial_menu(user, src, possible_appearances, custom_check = CALLBACK(src, PROC_REF(check_menu), user, crayon), radius = 36, require_near = TRUE)
 	if(!new_appearance)
@@ -128,7 +128,7 @@
 		return FALSE
 	if(!check_menu(user, crayon))
 		return FALSE
-	user.visible_message(span_notice("[user] gives [src] a new look."), span_notice("Voila! You give [src] a new look."))
+	user.visible_message(span_notice("[user]给[src]换了个新造型。"), span_notice("大功告成！你给[src]换了个新造型。"))
 	crayon.use_charges(1)
 	crayon.check_empty(user)
 	alpha = 255
@@ -152,14 +152,14 @@
 	if(user.incapacitated)
 		return FALSE
 	if(pushed_over)
-		to_chat(user, span_warning("Right [src] first!"))
+		to_chat(user, span_warning("先扶起[src]！"))
 		return FALSE
 	if(!crayon || !user.is_holding(crayon))
 		return FALSE
 	if(crayon.check_empty(user))
 		return FALSE
 	if(crayon.is_capped)
-		to_chat(user, span_warning("Take the cap off first!"))
+		to_chat(user, span_warning("先取下笔帽！"))
 		return FALSE
 	return TRUE
 
@@ -180,9 +180,9 @@
 	/// A flat appearance, with only one direction, that we apply to the cardboard cutout.
 	var/image/applied_appearance
 	/// The base name we actually give to to the cardboard cutout. Can be overridden in get_name().
-	var/applied_name = "boardjak"
+	var/applied_name = "纸板脸"
 	/// The desc we give to the cardboard cutout.
-	var/applied_desc = "A cardboard cutout of a boardjak."
+	var/applied_desc = "一块画着呆滞表情的人形纸板。"
 	/// If we're not using dynamic generation (for non-humans), we can set a direct icon to give.
 	var/direct_icon = null
 	/// Same as direct_icon, but icon_state!
@@ -223,8 +223,8 @@
 
 /datum/cardboard_cutout/assistant
 	name = "Assistant"
-	applied_name = "John Greytide"
-	applied_desc = "A cardboard cutout of an assistant."
+	applied_name = "约翰·灰潮"
+	applied_desc = "一块助理造型的人形纸板。"
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/generic_assistant
 
 /datum/cardboard_cutout/assistant/get_name()
@@ -233,7 +233,7 @@
 /datum/cardboard_cutout/clown
 	name = "Clown"
 	applied_name = "HONK"
-	applied_desc = "A cardboard cutout of a clown. You get the feeling that it should be in a corner."
+	applied_desc = "一块小丑造型的人形纸板。你总觉得它应该待在角落里。"
 	outfit = /datum/outfit/job/clown
 
 /datum/cardboard_cutout/clown/get_name()
@@ -242,7 +242,7 @@
 /datum/cardboard_cutout/mime
 	name = "Mime"
 	applied_name = "..."
-	applied_desc = "...(A cardboard cutout of a mime.)"
+	applied_desc = "……（一块默剧演员造型的人形纸板。）"
 	outfit = /datum/outfit/job/mime
 
 /datum/cardboard_cutout/mime/get_name()
@@ -250,38 +250,38 @@
 
 /datum/cardboard_cutout/traitor
 	name = "Traitor"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a traitor."
+	applied_name = "未知"
+	applied_desc = "一块叛徒造型的人形纸板。"
 	outfit = /datum/outfit/traitor_cutout
 
 /datum/cardboard_cutout/traitor/get_name()
-	return pick("Unknown", "Captain")
+	return pick("未知", "舰长")
 
 /datum/cardboard_cutout/nuclear_operative
 	name = "Nuclear Operative"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a nuclear operative."
+	applied_name = "未知"
+	applied_desc = "一块核爆特工造型的人形纸板。"
 	outfit = /datum/outfit/syndicate/full
 
 /datum/cardboard_cutout/nuclear_operative/get_name()
-	return pick("Unknown", "COMMS", "Telecomms", "AI", "stealthy op", "STEALTH", "sneakybeaky", "MEDIC", "Medic")
+	return pick("未知", "通讯", "电信", "AI", "潜行特工", "隐秘", "偷偷摸摸", "军医", "医护")
 
 /datum/cardboard_cutout/cultist
 	name = "Cultist"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a cultist."
+	applied_name = "未知"
+	applied_desc = "一块血教徒造型的人形纸板。"
 	outfit = /datum/outfit/cult_cutout
 
 /datum/cardboard_cutout/revolutionary
 	name = "Revolutionary"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a revolutionary."
+	applied_name = "未知"
+	applied_desc = "一块革命者造型的人形纸板。"
 	outfit = /datum/outfit/rev_cutout
 
 /datum/cardboard_cutout/wizard
 	name = "Wizard"
-	applied_name = "wizard"
-	applied_desc = "A cardboard cutout of a wizard."
+	applied_name = "巫师"
+	applied_desc = "一块巫师造型的人形纸板。"
 	outfit = /datum/outfit/wizard/bookless
 
 /datum/cardboard_cutout/wizard/get_name()
@@ -289,8 +289,8 @@
 
 /datum/cardboard_cutout/nightmare
 	name = "Nightmare"
-	applied_name = "nightmare"
-	applied_desc = "A cardboard cutout of a nightmare."
+	applied_name = "梦魇"
+	applied_desc = "一块梦魇造型的人形纸板。"
 	species = /datum/species/shadow/nightmare
 
 /datum/cardboard_cutout/nightmare/get_name()
@@ -298,8 +298,8 @@
 
 /datum/cardboard_cutout/xenomorph
 	name = "Xenomorph"
-	applied_name = "alien hunter"
-	applied_desc = "A cardboard cutout of a xenomorph."
+	applied_name = "异形猎手"
+	applied_desc = "一块异形造型的人形纸板。"
 	direct_icon = 'icons/mob/nonhuman-player/alien.dmi'
 	direct_icon_state = "alienh"
 
@@ -308,8 +308,8 @@
 
 /datum/cardboard_cutout/xenomorph_maid
 	name = "Xenomorph Maid"
-	applied_name = "lusty xenomorph maid"
-	applied_desc = "A cardboard cutout of a xenomorph maid."
+	applied_name = "欲火异形女仆"
+	applied_desc = "一块异形女仆造型的人形纸板。"
 	direct_icon = 'icons/mob/nonhuman-player/alien.dmi'
 	direct_icon_state = "maid"
 
@@ -318,8 +318,8 @@
 
 /datum/cardboard_cutout/ash_walker
 	name = "Ash Walker"
-	applied_name = "lizard"
-	applied_desc = "A cardboard cutout of an ash walker."
+	applied_name = "蜥蜴"
+	applied_desc = "一块灰行者造型的人形纸板。"
 	species = /datum/species/lizard/ashwalker
 	outfit = /datum/outfit/ashwalker/spear
 
@@ -328,8 +328,8 @@
 
 /datum/cardboard_cutout/death_squad
 	name = "Deathsquad Officer"
-	applied_name = "deathsquad officer"
-	applied_desc = "A cardboard cutout of a death commando."
+	applied_name = "死亡小队军官"
+	applied_desc = "一块死亡突击队员造型的人形纸板。"
 	outfit = /datum/outfit/centcom/death_commando
 
 /datum/cardboard_cutout/death_squad/get_name()
@@ -337,58 +337,58 @@
 
 /datum/cardboard_cutout/ian
 	name = "Ian"
-	applied_name = "Ian"
-	applied_desc = "A cardboard cutout of the HoP's beloved corgi."
+	applied_name = "伊恩"
+	applied_desc = "一块人事主管心爱的柯基犬造型的纸板。"
 	direct_icon = 'icons/mob/simple/pets.dmi'
 	direct_icon_state = "corgi"
 
 /datum/cardboard_cutout/slaughter_demon
 	name = "Slaughter Demon"
-	applied_name = "slaughter demon"
-	applied_desc = "A cardboard cutout of a slaughter demon."
+	applied_name = "屠戮恶魔"
+	applied_desc = "一块屠戮恶魔造型的人形纸板。"
 	direct_icon = 'icons/mob/simple/demon.dmi'
 	direct_icon_state = "slaughter_demon"
 
 /datum/cardboard_cutout/laughter_demon
 	name = "Laughter Demon"
-	applied_name = "laughter demon"
-	applied_desc = "A cardboard cutout of a laughter demon."
+	applied_name = "欢笑恶魔"
+	applied_desc = "一块欢笑恶魔造型的人形纸板。"
 	direct_icon = 'icons/mob/simple/demon.dmi'
 	direct_icon_state = "bow_demon"
 
 /datum/cardboard_cutout/security_officer
 	name = "Private Security Officer"
-	applied_name = "Private Security Officer"
-	applied_desc = "A cardboard cutout of a private security officer."
+	applied_name = "私人安保人员"
+	applied_desc = "一块私人安保人员造型的人形纸板。"
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/nanotrasensoldier
 
 /datum/cardboard_cutout/heretic
 	name = "Heretic"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a Heretic."
+	applied_name = "未知"
+	applied_desc = "一块异教徒造型的人形纸板。"
 	outfit = /datum/outfit/heretic_hallucination
 
 /datum/cardboard_cutout/changeling
 	name = "Changeling"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a Changeling."
+	applied_name = "未知"
+	applied_desc = "一块变形怪造型的人形纸板。"
 	outfit = /datum/outfit/changeling
 
 /datum/cardboard_cutout/pirate
 	name = "Pirate"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a space pirate."
+	applied_name = "未知"
+	applied_desc = "一块太空海盗造型的人形纸板。"
 	outfit = /datum/outfit/pirate/space/captain/cardboard
 
 /datum/cardboard_cutout/ninja
 	name = "Space Ninja"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of a space ninja."
+	applied_name = "未知"
+	applied_desc = "一块太空忍者造型的人形纸板。"
 	outfit = /datum/outfit/ninja
 
 /datum/cardboard_cutout/abductor
 	name = "Abductor Agent"
-	applied_name = "Unknown"
-	applied_desc = "A cardboard cutout of an abductor agent."
+	applied_name = "未知"
+	applied_desc = "一块绑架者特工造型的人形纸板。"
 	species = /datum/species/abductor
 	outfit = /datum/outfit/abductor/agent/cardboard

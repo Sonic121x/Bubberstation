@@ -436,7 +436,7 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	return pick(get_choices())
 
 /datum/preference/choiced/compile_constant_data()
-	var/list/data = list()
+	var/list/data = list(CHOICED_PREFERENCE_DISPLAY_NAMES = chinese_accessory_choice_names(get_choices()))
 
 	var/list/choices = list()
 

@@ -19,7 +19,7 @@ ADMIN_VERB(outfit_manager, R_DEBUG|R_ADMIN, "Outfit Manager", "View and edit out
 	if(istype(varoutfit))
 		vv = length(varoutfit.vv_values)
 	return list(
-		"name" = "[outfit.name] [vv ? "(VV)" : ""]",
+		"name" = "[chinese_outfit_display(outfit.name)] [vv ? "(VV)" : ""]",
 		"ref" = REF(outfit),
 	)
 

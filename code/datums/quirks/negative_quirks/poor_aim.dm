@@ -1,9 +1,9 @@
 /datum/quirk/poor_aim
 	name = "Stormtrooper Aim"
-	desc = "You've never hit anything you were aiming for in your life."
+	desc = "你这辈子从没打中过自己瞄准的东西。"
 	icon = FA_ICON_BULLSEYE
 	value = -4
-	medical_record_text = "Patient possesses a strong tremor in both hands."
+	medical_record_text = "患者双手有严重震颤。"
 	hardcore_value = 3
 	mail_goodies = list(/obj/item/cardboard_cutout) // for target practice
 

@@ -1,6 +1,6 @@
 ADMIN_VERB(map_template_load, R_DEBUG, "Map Template - Place", "Place a map template at your current location.", ADMIN_CATEGORY_DEBUG)
 	var/datum/map_template/template
-	var/map = tgui_input_list(user, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template", sort_list(SSmapping.map_templates))
+	var/map = chinese_template_choice(user, "选择要放置在当前位置的地图模板", "放置地图模板", sort_list(SSmapping.map_templates))
 	if(!map)
 		return
 	template = SSmapping.map_templates[map]
@@ -33,7 +33,7 @@ ADMIN_VERB(map_template_load, R_DEBUG, "Map Template - Place", "Place a map temp
 						template.post_load(P)
 						break
 
-			message_admins(span_adminnotice("[key_name_admin(user)] has placed a map template ([template.name]) at [ADMIN_COORDJMP(T)]"))
+			message_admins(span_adminnotice("[key_name_admin(user)]在[ADMIN_COORDJMP(T)]放置了地图模板（[chinese_template_display(template.name)]）。"))
 		else
 			to_chat(user, "Failed to place map", confidential = TRUE)
 	user.images -= preview

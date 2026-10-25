@@ -1,10 +1,10 @@
 /datum/quirk/tin_man
 	name = "Tin Man"
-	desc = "Oops! All Prosthetics! Due to some truly cruel cosmic punishment, most of your internal organs have been replaced with surplus prosthetics."
+	desc = "哎呀！全是义体！仿佛受到了宇宙极其残酷的惩罚，你的大部分内脏都被换成了廉价库存义体器官。"
 	icon = FA_ICON_USER_GEAR
 	value = -6
-	medical_record_text = "During physical examination, patient was found to have numerous low-budget prosthetic internal organs. \
-		<b>Removal of these organs is known to be dangerous to the patient as well as the practitioner.</b>"
+	medical_record_text = "体检发现患者装有多个廉价义体内脏。\
+		<b>移除这类器官可能同时危及患者与操作者。</b>"
 	hardcore_value = 6
 	mail_goodies = list(/obj/item/storage/organbox)
 
@@ -33,5 +33,5 @@
 		new_organ.Insert(human_holder, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/quirk/tin_man/post_add()
-	to_chat(quirk_holder, span_bolddanger("Most of your internal organs have been replaced with surplus prosthetics. They are fragile and will easily come apart under duress. \
-	Additionally, any EMP will make them stop working entirely."))
+	to_chat(quirk_holder, span_bolddanger("你的大部分内脏已被换成廉价库存义体器官。它们非常脆弱，受力时很容易散架。\
+	此外，任何电磁脉冲都会使它们完全停止工作。"))

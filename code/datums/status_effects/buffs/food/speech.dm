@@ -13,10 +13,10 @@
 		/datum/component/speechmod, \
 		replacements = strings("italian_replacement.json", "italian"), \
 		end_string = list(
-			" Ravioli, ravioli, give me the formuoli!",
-			" Mamma-mia!",
-			" Mamma-mia! That's a spicy meat-ball!",
-			" La la la la la funiculi funicula!"
+			" 意饺意饺，秘方拿来！",
+			" 妈妈咪呀！",
+			" 妈妈咪呀！这肉丸真辣！",
+			" 啦啦啦啦啦，乘缆车上山去！"
 			), \
 		end_string_chance = 3 \
 		)
@@ -26,8 +26,8 @@
 	QDEL_NULL(speechmod)
 
 /atom/movable/screen/alert/status_effect/italian_speech
-	name = "Linguini Embrace"
-	desc = "You feel a sudden urge to gesticulate wildly."
+	name = "扁意面的拥抱"
+	desc = "你突然很想夸张地比手画脚。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "food_italian"
 
@@ -43,9 +43,9 @@
 		/datum/component/speechmod, \
 		replacements = strings("french_replacement.json", "french"), \
 		end_string = list(
-			" Honh honh honh!",
-			" Honh!",
-			" Zut Alors!"
+			" 哼哼哼！",
+			" 哼！",
+			" 岂有此理！"
 			), \
 		end_string_chance = 3, \
 		)
@@ -55,7 +55,7 @@
 	QDEL_NULL(speechmod)
 
 /atom/movable/screen/alert/status_effect/french_speech
-	name = "Café Chic"
-	desc = "Suddenly, everything seems worthy of a passionate debate."
+	name = "法式咖啡风情"
+	desc = "突然间，一切都值得热烈辩论一番。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "food_french"

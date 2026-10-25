@@ -1,8 +1,8 @@
 
 /obj/effect/anomaly/bhole
-	name = "vortex anomaly"
+	name = "漩涡异常体"
 	icon_state = "vortex"
-	desc = "That's a nice station you have there. It'd be a shame if something happened to it."
+	desc = "你这空间站可真不错。要是出了什么事，那就太可惜了。"
 	anomaly_core = /obj/item/assembly/signaler/anomaly/vortex
 
 /obj/effect/anomaly/bhole/anomalyEffect()

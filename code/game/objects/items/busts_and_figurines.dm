@@ -1,14 +1,14 @@
 /obj/item/statuebust
-	name = "bust"
-	desc = "A priceless ancient marble bust, the kind that belongs in a museum." //or you can hit people with it
+	name = "半身像"
+	desc = "价值连城的古代大理石半身像，就该放在博物馆里的那种。" //or you can hit people with it
 	icon = 'icons/obj/art/statue.dmi'
 	icon_state = "bust"
 	force = 15
 	throwforce = 10
 	throw_speed = 5
 	throw_range = 2
-	attack_verb_continuous = list("busts")
-	attack_verb_simple = list("bust")
+	attack_verb_continuous = list("砸击")
+	attack_verb_simple = list("砸击")
 	var/impressiveness = 45
 
 /obj/item/statuebust/Initialize(mapload)
@@ -17,8 +17,8 @@
 	AddElement(/datum/element/beauty, 1000)
 
 /obj/item/statuebust/hippocratic
-	name = "hippocrates bust"
-	desc = "A bust of the famous Greek physician Hippocrates of Kos, often referred to as the father of western medicine."
+	name = "希波克拉底半身像"
+	desc = "著名的科斯岛希腊医生希波克拉底的半身像，他常被称为西方医学之父。"
 	icon_state = "hippocratic"
 	impressiveness = 50
 	// If it hits the prob(reference_chance) chance, this is set to TRUE. Adds medical HUD when wielded, but has a 10% slower attack speed and is too bloody to make an oath with.
@@ -34,17 +34,17 @@
 /obj/item/statuebust/hippocratic/Initialize(mapload)
 	. = ..()
 	if(prob(reference_chance))
-		name = "Solemn Vow"
-		desc = "Art lovers will cherish the bust of Hippocrates, commemorating a time when medics still thought doing no harm was a good idea."
+		name = "庄严誓言"
+		desc = "艺术爱好者会珍爱这尊希波克拉底半身像，纪念医护人员还认为不伤害他人是个好主意的时代。"
 		attack_speed = CLICK_CD_SLOW
 		reference = TRUE
 
 /obj/item/statuebust/hippocratic/examine(mob/user)
 	. = ..()
 	if(reference)
-		. += span_notice("You could activate the bust in-hand to swear or forswear a Hippocratic Oath... but it seems like somebody decided it was more of a Hippocratic Suggestion. This thing is caked with bits of blood and gore.")
+		. += span_notice("你本可以手持半身像激活它，宣读或撤回希波克拉底誓言……但看来有人只把它当成希波克拉底的建议。这东西上面糊满了血迹和碎肉。")
 		return
-	. += span_notice("You can activate the bust in-hand to swear or forswear a Hippocratic Oath! This has no effects except pacifism or bragging rights. Does not remove other sources of pacifism. Do not eat.")
+	. += span_notice("你可以手持半身像激活它，宣读或撤回希波克拉底誓言！除了让你成为和平主义者或获得吹嘘的资本外，没有其他效果。不会移除其他来源的和平主义。请勿食用。")
 
 /obj/item/statuebust/hippocratic/equipped(mob/living/carbon/human/user, slot)
 	..()
@@ -60,61 +60,61 @@
 
 /obj/item/statuebust/hippocratic/attack_self(mob/user)
 	if(!iscarbon(user))
-		to_chat(user, span_warning("You remember how the Hippocratic Oath specifies 'my fellow human beings' and realize that it's completely meaningless to you."))
+		to_chat(user, span_warning("你想起希波克拉底誓言特指的是‘我的人类同胞’，意识到它对你毫无意义。"))
 		return
 
 	if(reference)
-		to_chat(user, span_warning("As you prepare yourself to swear the Oath, you realize that doing so on a blood-caked bust is probably not a good idea."))
+		to_chat(user, span_warning("你正准备宣誓，却意识到对着一尊糊满鲜血的半身像这样做，恐怕不是个好主意。"))
 		return
 
 	if(!COOLDOWN_FINISHED(src, oath_cd))
-		to_chat(user, span_warning("You've sworn or forsworn an oath too recently to undo your decisions. The bust looks at you with disgust."))
+		to_chat(user, span_warning("你刚刚才宣誓或撤回誓言，现在还不能反悔。半身像厌恶地望着你。"))
 		return
 
 	COOLDOWN_START(src, oath_cd, 5 MINUTES)
 
 	if(HAS_TRAIT_FROM(user, TRAIT_PACIFISM, type))
-		to_chat(user, span_warning("You've already sworn a vow. You start preparing to rescind it..."))
+		to_chat(user, span_warning("你已经立下誓言，现在开始准备撤回它……"))
 		if(do_after(user, 5 SECONDS, target = user))
-			user.say("Yeah this Hippopotamus thing isn't working out. I quit!", forced = "hippocratic hippocrisy")
+			user.say("好吧，这什么希波河马的玩意儿行不通。我不干了！", forced = "hippocratic hippocrisy")
 			REMOVE_TRAIT(user, TRAIT_PACIFISM, type)
 
 	// they can still do it for rp purposes
 	if(HAS_TRAIT_NOT_FROM(user, TRAIT_PACIFISM, type))
-		to_chat(user, span_warning("You already don't want to harm people, this isn't going to do anything!"))
+		to_chat(user, span_warning("你本来就不愿伤害他人，这不会起任何作用！"))
 
 
-	to_chat(user, span_notice("You remind yourself of the Hippocratic Oath's contents and prepare to swear yourself to it..."))
+	to_chat(user, span_notice("你回想起希波克拉底誓言的内容，准备宣誓……"))
 	if(do_after(user, 4 SECONDS, target = user))
-		user.say("I swear to fulfill, to the best of my ability and judgment, this covenant:", forced = "hippocratic oath")
+		user.say("我宣誓，将尽我所能，运用我的判断，恪守以下誓约：", forced = "hippocratic oath")
 	else
 		return fuck_it_up(user)
 	if(do_after(user, 2 SECONDS, target = user))
-		user.say("I will apply, for the benefit of the sick, all measures that are required, avoiding those twin traps of overtreatment and therapeutic nihilism.", forced = "hippocratic oath")
+		user.say("我将为病人的福祉，采取一切必要措施，避免过度治疗与放弃治疗这两种陷阱。", forced = "hippocratic oath")
 	else
 		return fuck_it_up(user)
 	if(do_after(user, 3 SECONDS, target = user))
-		user.say("I will remember that I remain a member of society, with special obligations to all my fellow human beings, those sound of mind and body as well as the infirm.", forced = "hippocratic oath")
+		user.say("我将牢记，我始终是社会的一员，对所有人类同胞负有特殊的责任，无论他们身心健康，还是体弱多病。", forced = "hippocratic oath")
 	else
 
 		return fuck_it_up(user)
 	if(do_after(user, 3 SECONDS, target = user))
-		user.say("If I do not violate this oath, may I enjoy life and art, respected while I live and remembered with affection thereafter. May I always act so as to preserve the finest traditions of my calling and may I long experience the joy of healing those who seek my help.", forced = "hippocratic oath")
+		user.say("倘若我不违背此誓言，愿我得享生活与艺术之乐，生前受人尊敬，身后受人爱戴与怀念。愿我的一切行为始终维护医道最优良的传统，愿我长久享受治愈求助者的喜悦。", forced = "hippocratic oath")
 	else
 		return fuck_it_up(user)
 
-	to_chat(user, span_notice("Contentment, understanding, and purpose washes over you as you finish the oath. You consider for a second the concept of harm and shudder."))
+	to_chat(user, span_notice("誓言结束时，满足、理解与使命感涌上心头。你稍一想到伤害他人，便不寒而栗。"))
 	ADD_TRAIT(user, TRAIT_PACIFISM, type)
 
 // Bully the guy for fucking up.
 /obj/item/statuebust/hippocratic/proc/fuck_it_up(mob/living/carbon/user)
-	to_chat(user, span_warning("You forget what comes next like a dumbass. The Hippocrates bust looks down on you, disappointed."))
+	to_chat(user, span_warning("你像个傻子一样忘了后面的词。希波克拉底半身像失望地俯视着你。"))
 	user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 2)
 	COOLDOWN_RESET(src, oath_cd)
 
 /obj/item/maneki_neko
-	name = "Maneki-Neko"
-	desc = "A figurine of a cat holding a coin, said to bring fortune and wealth, and perpetually moving its paw in a beckoning gesture."
+	name = "招财猫"
+	desc = "一只拿着钱币的猫咪摆件，据说能带来好运和财富，始终挥动着爪子作招手状。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "maneki-neko"
 	w_class = WEIGHT_CLASS_SMALL
@@ -122,8 +122,8 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	attack_verb_continuous = list("bashes", "beckons", "hit")
-	attack_verb_simple = list("bash", "beckon", "hit")
+	attack_verb_continuous = list("砸击", "招呼", "击打")
+	attack_verb_simple = list("砸击", "招呼", "击打")
 
 /obj/item/maneki_neko/Initialize(mapload)
 	. = ..()

@@ -6,27 +6,27 @@
 
 /// If a material has this property, it is flammable and has reduced fire protection.
 /datum/material_property/flammability
-	name = "Flammability"
+	name = "可燃性"
 	id = MATERIAL_FLAMMABILITY
 
 /datum/material_property/flammability/get_descriptor(value)
 	switch(value)
 		if (0)
-			return "fireproof"
+			return "防火"
 		if (0 to 1)
-			return "nonflammable"
+			return "不燃"
 		if (1 to 2)
-			return "mostly nonflammable"
+			return "基本不燃"
 		if (2 to 3)
-			return "slightly fire-resistant"
+			return "略有阻燃性"
 		if (3 to 4)
-			return "flammable"
+			return "可燃"
 		if (4 to 6)
-			return "highly flammable"
+			return "易燃"
 		if (6 to 8)
-			return "extremely flammable"
+			return "极易燃烧"
 		if (8 to INFINITY)
-			return "insanely flammable"
+			return "异常易燃"
 
 /datum/material_property/flammability/attach_to(datum/material/material)
 	. = ..()
@@ -51,7 +51,7 @@
 #define URANIUM_RADIOACTIVITY 4
 
 /datum/material_property/radioactivity
-	name = "Radioactivity"
+	name = "放射性"
 	id = MATERIAL_RADIOACTIVITY
 
 /datum/material_property/radioactivity/get_descriptor(value)
@@ -59,15 +59,15 @@
 		if (0)
 			return null
 		if (0 to 2)
-			return "slightly radioactive"
+			return "略有放射性"
 		if (2 to 4)
-			return "radioactive"
+			return "具有放射性"
 		if (4 to 6)
-			return "highly radioactive"
+			return "具有强放射性"
 		if (6 to 8)
-			return "extremely radioactive"
+			return "具有极强放射性"
 		if (8 to INFINITY)
-			return "insanely radioactive"
+			return "具有异常强烈的放射性"
 
 /datum/material_property/radioactivity/attach_to(datum/material/material)
 	. = ..()
@@ -90,14 +90,14 @@
 
 /// Applies firestacks to affected mobs
 /datum/material_property/firestacker
-	name = "Igniting"
+	name = "引燃"
 	id = MATERIAL_FIRESTACKER
 
 /datum/material_property/firestacker/get_descriptor(value)
-	return "igniting"
+	return "引燃"
 
 /datum/material_property/firestacker/get_tooltip(value)
-	return "Applies [value] firestacks to affected mobs"
+	return "为受影响的生物增加[value]层火焰"
 
 /datum/material_property/firestacker/attach_to(datum/material/material)
 	. = ..()
@@ -122,14 +122,14 @@
 
 /// Deals additional burn damage to mobs with the UNHOLY_BANEABLE trait (just vampires right now), property times material volume value determines damage
 /datum/material_property/unholy_bane
-	name = "Unholy Creatures' Bane"
+	name = "邪祟克星"
 	id = MATERIAL_UNHOLY_BANE
 
 /datum/material_property/unholy_bane/get_descriptor(value)
-	return "unholy creatures' bane"
+	return "邪祟克星"
 
 /datum/material_property/unholy_bane/get_tooltip(value)
-	return "Deals [value * 0.5] to [value * 2] additional burn damage to unholy creatures such as vampires (based on material volume) on contact"
+	return "接触吸血鬼等邪祟生物时，根据材料体积造成[value * 0.5]至[value * 2]点额外烧伤"
 
 /datum/material_property/unholy_bane/attach_to(datum/material/material)
 	. = ..()
@@ -156,20 +156,20 @@
 	if(armor_block > 50)
 		return
 
-	to_chat(target, span_userdanger("Contact with [object] sears your undead flesh!"))
+	to_chat(target, span_userdanger("接触[object]灼伤了你的亡灵躯体！"))
 	playsound(target, SFX_SIZZLE, 33, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	target.apply_damage(burn_damage, BURN, def_zone, armor_block, wound_bonus = 10, attacking_item = object, attack_direction = get_dir(user, target), wound_clothing = FALSE)
 
 /// Teleports targets who come into active contact with the material around, property value determines teleport radius and damage taken per teleport
 /datum/material_property/teleporting
-	name = "Teleporting"
+	name = "传送"
 	id = MATERIAL_TELEPORTING
 
 /datum/material_property/teleporting/get_descriptor(value)
-	return "dimensionally unstable"
+	return "维度不稳定"
 
 /datum/material_property/teleporting/get_tooltip(value)
-	return "Randomly teleports whoever comes into contact with it in a [value] tile radius"
+	return "将接触者随机传送到[value]格半径内的位置"
 
 /datum/material_property/teleporting/attach_to(datum/material/material)
 	. = ..()
@@ -207,11 +207,11 @@
 
 /// Makes all contact count as skin contact
 /datum/material_property/penetrating
-	name = "Penetrating"
+	name = "穿透"
 	id = MATERIAL_PENETRATING
 
 /datum/material_property/penetrating/get_descriptor(value)
-	return "dimensionally penetrating"
+	return "维度穿透"
 
 /datum/material_property/penetrating/get_tooltip(value)
-	return "Ignores all means of skin protection when triggering other material effects"
+	return "触发其他材料效果时，无视所有皮肤防护措施"

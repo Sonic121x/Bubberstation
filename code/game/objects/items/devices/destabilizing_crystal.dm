@@ -1,7 +1,7 @@
 /obj/item/destabilizing_crystal
-	name = "destabilizing crystal"
-	desc = "A crystal that can be used to destabilize the supermatter to cause a resonance cascade. Carefully apply this on \
-		a fully stable supermatter crystal and start the delamination. Prevent anyone from stopping you."
+	name = "失稳水晶"
+	desc = "能够使超物质失稳并引发共振级联的水晶。小心地将它用在\
+		完全稳定的超物质晶体上，启动分层崩解。阻止任何人妨碍你。"
 	icon = 'icons/obj/machines/engine/supermatter.dmi'
 	icon_state = "destabilizing_crystal"
 	w_class = WEIGHT_CLASS_NORMAL

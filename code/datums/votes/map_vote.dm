@@ -1,6 +1,6 @@
 /datum/vote/map_vote
 	name = "Map"
-	default_message = "Vote for next round's map!"
+	default_message = "投票选择下一轮地图！"
 	count_method = VOTE_COUNT_METHOD_SINGLE
 	winner_method = VOTE_WINNER_METHOD_NONE
 	display_statistics = FALSE
@@ -18,12 +18,12 @@
 	if(length(choices) == 1) // Only one choice, no need to vote. Let's just auto-rotate it to the only remaining map because it would just happen anyways.
 		var/datum/map_config/change_me_out = global.config.maplist[choices[1]]
 		finalize_vote(choices[1])// voted by not voting, very sad.
-		to_chat(world, span_boldannounce("The map vote has been skipped because there is only one map left to vote for. \
-			The map has been changed to [change_me_out.map_name]."))
+		to_chat(world, span_boldannounce("由于只剩一张可选地图，地图投票已跳过。\
+			地图已更改为[change_me_out.map_name]。"))
 		return FALSE
 	if(length(choices) == 0)
-		to_chat(world, span_boldannounce("A map vote was called, but there are no maps to vote for! \
-			Players, complain to the admins. Admins, complain to the coders."))
+		to_chat(world, span_boldannounce("已发起地图投票，但没有可供投票的地图！\
+			请玩家联系管理员，管理员再联系开发人员。"))
 		return FALSE
 
 	return TRUE
@@ -40,7 +40,7 @@
 		return .
 
 	if(SSmap_vote.next_map_config)
-		return "The next map has already been selected."
+		return "下一轮地图已经选定。"
 
 	// The below case will be caught in create_vote() if the vote is being forced
 	// This ensures proper map rotation if there aren't enough votable maps for whatever reason
@@ -50,7 +50,7 @@
 	var/list/new_choices = SSmap_vote.get_valid_map_vote_choices()
 	var/num_choices = length(new_choices)
 	if(num_choices <= 1)
-		return "There [num_choices == 1 ? "is only one map" : "are no maps"] to choose from."
+		return "[num_choices == 1 ? "只有一张地图" : "没有地图"]可供选择。"
 
 	return VOTE_AVAILABLE
 

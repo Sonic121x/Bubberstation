@@ -1,5 +1,5 @@
 /obj/effect/powerup
-	name = "power-up"
+	name = "强化道具"
 	icon = 'icons/effects/effects.dmi'
 	density = FALSE
 	anchored = TRUE
@@ -53,12 +53,12 @@
 	return TRUE
 
 /obj/effect/powerup/health
-	name = "health pickup"
-	desc = "Blessing from the havens."
+	name = "生命补给"
+	desc = "来自天堂的祝福。"
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "backpack-medical"
 	respawn_time = 30 SECONDS
-	pickup_message = "Health restored!"
+	pickup_message = "生命值已恢复！"
 	pickup_sound = 'sound/effects/magic/staff_healing.ogg'
 	/// How much the pickup heals when picked up
 	var/heal_amount = 50
@@ -77,18 +77,18 @@
 		target.heal_ordered_damage(heal_amount, list(BRUTE, BURN))
 
 /obj/effect/powerup/health/full
-	name = "mega health pickup"
-	desc = "Now this is what I'm talking about."
+	name = "超级生命补给"
+	desc = "这才像话。"
 	icon_state = "duffel-medical"
 	full_heal = TRUE
 
 /obj/effect/powerup/ammo
-	name = "ammo pickup"
-	desc = "You like revenge, right? Everybody likes revenge! Well, let's go get some!"
+	name = "弹药补给"
+	desc = "你喜欢复仇，对吧？人人都喜欢复仇！那就去报个痛快吧！"
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "ammobox"
 	respawn_time = 30 SECONDS
-	pickup_message = "Ammunition reloaded!"
+	pickup_message = "弹药已补充！"
 	pickup_sound = 'sound/items/weapons/gun/shotgun/rack.ogg'
 
 /obj/effect/powerup/ammo/trigger(mob/living/target)
@@ -107,8 +107,8 @@
 	lifetime = 30 SECONDS
 
 /obj/effect/powerup/speed
-	name = "Lightning Orb"
-	desc = "You feel faster just looking at it."
+	name = "闪电宝珠"
+	desc = "只是看着它，你就感觉自己快了起来。"
 	icon_state = "speed"
 	pickup_sound = 'sound/effects/magic/lightningshock.ogg'
 
@@ -119,8 +119,8 @@
 	target.apply_status_effect(/datum/status_effect/lightningorb)
 
 /obj/effect/powerup/mayhem
-	name = "Orb of Mayhem"
-	desc = "You feel angry just looking at it."
+	name = "暴乱宝珠"
+	desc = "只是看着它，你就感到愤怒。"
 	icon_state = "impact_laser"
 
 /obj/effect/powerup/mayhem/trigger(mob/living/target)

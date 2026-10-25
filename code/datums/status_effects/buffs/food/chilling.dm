@@ -8,8 +8,8 @@
 		owner.adjust_bodytemperature(-2.75 * strength * seconds_between_ticks, min_temp = minimum_temp)
 
 /atom/movable/screen/alert/status_effect/icecream_chilling
-	name = "Cooling Off"
-	desc = "Nothing beats a cup of ice cream during hot, plasma-flooded day..."
+	name = "消暑"
+	desc = "在炎热又充满等离子体的日子里，没什么比一杯冰淇淋更棒了……"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "food_icecream"
 

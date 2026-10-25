@@ -2,9 +2,9 @@
 // Only one should exist ideally, if other types are created they must have different camera_networks
 // Broadcasts its surroundings to entertainment monitors and its audio to entertainment radio channel
 /obj/item/broadcast_camera
-	name = "broadcast camera"
-	desc = "A large camera that streams its live feed and audio to entertainment monitors across the station, allowing everyone to watch the broadcast."
-	desc_controls = "Right-click to change the broadcast name. Alt-click to toggle microphone."
+	name = "直播摄像机"
+	desc = "一台大型摄像机，将实时画面与声音传输到空间站各处的娱乐显示器，让所有人都能观看直播。"
+	desc_controls = "右键点击更改直播名称，按住 Alt 点击开关麦克风。"
 	icon = 'icons/obj/service/broadcast.dmi'
 	icon_state = "broadcast_cam0"
 	base_icon_state = "broadcast_cam"
@@ -25,7 +25,7 @@
 	/// Is the microphone turned on
 	var/active_microphone = TRUE
 	/// The name of the broadcast
-	var/broadcast_name = "Curator News"
+	var/broadcast_name = "馆长新闻"
 	/// The networks it broadcasts to, default is CAMERANET_NETWORK_CURATOR
 	var/list/camera_networks = list(CAMERANET_NETWORK_CURATOR)
 	/// Range of the camera
@@ -59,12 +59,12 @@
 
 /obj/item/broadcast_camera/attack_self_secondary(mob/user, modifiers)
 	. = ..()
-	broadcast_name = tgui_input_text(user = user, title = "Broadcast Name", message = "What will be the name of your broadcast?", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
+	broadcast_name = tgui_input_text(user = user, title = "直播名称", message = "你的直播叫什么名字？", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
 
 /obj/item/broadcast_camera/examine(mob/user)
 	. = ..()
-	. += span_notice("Broadcast name is <b>[broadcast_name]</b>")
-	. += span_notice("The microphone is <b>[active_microphone ? "On" : "Off"]</b>")
+	. += span_notice("直播名称为<b>[broadcast_name]</b>。")
+	. += span_notice("麦克风<b>[active_microphone ? "已开启" : "已关闭"]</b>。")
 
 /obj/item/broadcast_camera/on_enter_storage(datum/storage/master_storage)
 	. = ..()
@@ -90,8 +90,8 @@
 	internal_camera.internal_light = FALSE
 	internal_camera.view_range = camera_range
 	internal_camera.network = camera_networks
-	internal_camera.c_tag = "LIVE: [broadcast_name]"
-	start_broadcasting_network(camera_networks, "[broadcast_name] is now LIVE!")
+	internal_camera.c_tag = "直播：[broadcast_name]"
+	start_broadcasting_network(camera_networks, "[broadcast_name]开始直播了！")
 
 	// INTERNAL RADIO
 	internal_radio = new(src)
@@ -100,7 +100,7 @@
 
 	set_light_on(TRUE)
 	playsound(source = src, soundin = 'sound/machines/terminal/terminal_processing.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
-	balloon_alert_to_viewers("live!")
+	balloon_alert_to_viewers("直播中！")
 
 /// When deactivating the camera
 /obj/item/broadcast_camera/proc/on_deactivating()
@@ -113,13 +113,13 @@
 
 	set_light_on(FALSE)
 	playsound(source = src, soundin = 'sound/machines/terminal/terminal_prompt_deny.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
-	balloon_alert_to_viewers("offline")
+	balloon_alert_to_viewers("已离线")
 
 /obj/item/broadcast_camera/click_alt(mob/user)
 	active_microphone = !active_microphone
 
 	/// Text popup for letting the user know that the microphone has changed state
-	balloon_alert(user, "microphone [active_microphone ? "" : "de"]activated")
+	balloon_alert(user, "麦克风[active_microphone ? "已开启" : "已关闭"]")
 
 	///If the radio exists as an object, set its state accordingly
 	if(active)
@@ -134,7 +134,7 @@
 /obj/item/broadcast_camera/cargo
 	slowdown = 0.3
 	item_flags = parent_type::item_flags | SLOWS_WHILE_IN_HAND
-	broadcast_name = "Camera Broadcast"
+	broadcast_name = "摄像机直播"
 	camera_range = 5
 
 /obj/item/broadcast_camera/cargo/Initialize(mapload)

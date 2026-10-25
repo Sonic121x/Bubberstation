@@ -2,7 +2,7 @@ import { Box, Button, Icon, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 type AirlockControllerData = {
   airlockState: string;
   sensorPressure: number;
@@ -22,7 +22,7 @@ export const AirlockController = (props) => {
   const { airlockState, pumpStatus, interiorStatus, exteriorStatus } = data;
   const currentStatus: AirlockStatus = getAirlockStatus(airlockState);
   const nameToUpperCase = (str: string) =>
-    str.replace(/^\w/, (c) => c.toUpperCase());
+    batchThreeDisplay(str.replace(/^\w/, (c) => c.toUpperCase()));
 
   return (
     <Window width={500} height={190}>
@@ -126,37 +126,37 @@ const getAirlockStatus = (airlockState): AirlockStatus => {
   switch (airlockState) {
     case 'inopen':
       return {
-        primary: 'Interior Airlock Open',
+        primary: '内侧气闸已打开',
         icon: '',
         color: 'good',
       };
     case 'pressurize':
       return {
-        primary: 'Cycling to Interior Airlock',
+        primary: '正循环至内侧气闸',
         icon: 'fan',
         color: 'average',
       };
     case 'closed':
       return {
-        primary: 'Inactive',
+        primary: '未运行',
         icon: '',
         color: 'white',
       };
     case 'depressurize':
       return {
-        primary: 'Cycling to Exterior Airlock',
+        primary: '正循环至外侧气闸',
         icon: 'fan',
         color: 'average',
       };
     case 'outopen':
       return {
-        primary: 'Exterior Airlock Open',
+        primary: '外侧气闸已打开',
         icon: 'exclamation-triangle',
         color: 'bad',
       };
     default:
       return {
-        primary: 'Unknown',
+        primary: '未知',
         icon: '',
         color: 'average',
       };

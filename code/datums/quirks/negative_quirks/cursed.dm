@@ -1,12 +1,12 @@
 /datum/quirk/cursed
 	name = "Cursed"
-	desc = "You are cursed with bad luck. You are much more likely to suffer from accidents and mishaps. When it rains, it pours."
+	desc = "你受到了厄运诅咒，遭遇事故和意外的概率大幅增加。真是祸不单行。"
 	icon = FA_ICON_CLOUD_SHOWERS_HEAVY
 	value = -8
 	mob_trait = TRAIT_CURSED
-	gain_text = span_danger("You feel like you're going to have a bad day.")
-	lose_text = span_notice("You feel like you're going to have a good day.")
-	medical_record_text = "Patient is cursed with bad luck."
+	gain_text = span_danger("你觉得今天会很倒霉。")
+	lose_text = span_notice("你觉得今天会很顺利。")
+	medical_record_text = "患者受到了厄运诅咒。"
 	hardcore_value = 8
 
 /datum/quirk/cursed/add(client/client_source)

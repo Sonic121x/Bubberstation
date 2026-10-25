@@ -33,7 +33,7 @@
 
 ///The alert given to silicons being watched.
 /atom/movable/screen/alert/being_recorded
-	name = "Recorded"
-	desc = "Someone is currently watching your internal camera through a camera console."
+	name = "正在被监视"
+	desc = "有人正在通过监控控制台观看你的内置摄像头画面。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "recording"

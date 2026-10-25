@@ -1,6 +1,6 @@
 /obj/machinery/computer/station_alert
-	name = "station alert console"
-	desc = "Used to access the station's automated alert system."
+	name = "空间站警报控制台"
+	desc = "用于访问空间站自动警报系统。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/atmos_alert")
 	icon_screen = "alert:0"
 	icon_keyboard = "atmos_key"
@@ -16,7 +16,7 @@
 			alert_areas = (GLOB.the_station_areas + typesof(/area/mine))
 		alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER), SSmapping.levels_by_trait(ZTRAIT_STATION), alert_areas)
 	else
-		name = "local alert console"
+		name = "本地警报控制台"
 		alert_control = new(src, list(ALARM_ATMOS, ALARM_FIRE, ALARM_POWER), list(z), title = name)
 	RegisterSignals(alert_control.listener, list(COMSIG_ALARM_LISTENER_TRIGGERED, COMSIG_ALARM_LISTENER_CLEARED), PROC_REF(update_alarm_display))
 	return ..()

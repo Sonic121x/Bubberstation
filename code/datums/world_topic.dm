@@ -92,7 +92,7 @@
 	keyword = "Ahelp"
 
 /datum/world_topic/ahelp_relay/Run(list/input)
-	relay_msg_admins(span_adminnotice("<b><font color=red>HELP: </font> [input["source"]] [input["message_sender"]]: [input["message"]]</b>"))
+	relay_msg_admins(span_adminnotice("<b><font color=red>求助：</font> [input["source"]] [input["message_sender"]]：[input["message"]]</b>"))
 
 /datum/world_topic/comms_console
 	keyword = "Comms_Console"
@@ -119,13 +119,13 @@
 	var/extended_time_display = DisplayTimeText(EXTENDED_CROSS_SECTOR_CANCEL_TIME)
 	var/normal_time_display = DisplayTimeText(CROSS_SECTOR_CANCEL_TIME)
 
-	var/message = "<b color='orange'>CROSS-SECTOR MESSAGE (INCOMING):</b> [input["sender_ckey"]] (from [input["source"]]) is about to send \
-			the following message (will autoapprove in [soft_filter_passed ? "[extended_time_display]" : "[normal_time_display]"]): \
-			<b><a href='byond://?src=[REF(src)];reject_cross_comms_message=[timer_id]'>REJECT</a></b><br><br>\
+	var/message = "<b color='orange'>跨星区传入消息：</b>[input["sender_ckey"]]（来自[input["source"]]）即将发送\
+			以下消息（将在[soft_filter_passed ? "[extended_time_display]" : "[normal_time_display]"]后自动批准）：\
+			<b><a href='byond://?src=[REF(src)];reject_cross_comms_message=[timer_id]'>拒绝</a></b><br><br>\
 			[input["message"]]"
 
 	if(soft_filter_passed)
-		message += "<br><br><b>NOTE: This message passed the soft filter on the origin server! The time was automatically expanded to [extended_time_display].</b>"
+		message += "<br><br><b>注意：此消息通过了来源服务器的软过滤器！等待时间已自动延长至[extended_time_display]。</b>"
 
 	message_admins(span_adminnotice(message))
 
@@ -137,19 +137,19 @@
 	if (href_list["reject_cross_comms_message"])
 		if (!usr.client?.holder)
 			log_game("[key_name(usr)] tried to reject an incoming cross-comms message without being an admin.")
-			message_admins("[key_name(usr)] tried to reject an incoming cross-comms message without being an admin.")
+			message_admins("[key_name(usr)]试图在没有管理员权限的情况下拒绝传入的跨站通信消息。")
 			return
 
 		var/timer_id = href_list["reject_cross_comms_message"]
 		if (!(timer_id in timers))
-			to_chat(usr, span_warning("It's too late!"))
+			to_chat(usr, span_warning("太迟了！"))
 			return
 
 		deltimer(timer_id)
 		LAZYREMOVE(timers, timer_id)
 
 		log_admin("[key_name(usr)] has cancelled the incoming cross-comms message.")
-		message_admins("[key_name(usr)] has cancelled the incoming cross-comms message.")
+		message_admins("[key_name(usr)]取消了传入的跨站通信消息。")
 
 		return TRUE
 
@@ -159,8 +159,8 @@
 
 	LAZYREMOVE(timers, timer_id)
 
-	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
-	message_admins("Receiving a message from [input["sender_ckey"]] at [input["source"]]")
+	minor_announce(input["message"], "收到来自[input["message_sender"]]的消息")
+	message_admins("收到来自[input["source"]]的[input["sender_ckey"]]的消息")
 	for(var/obj/machinery/computer/communications/communications_console in GLOB.shuttle_caller_list)
 		communications_console.override_cooldown()
 
@@ -169,7 +169,7 @@
 
 /datum/world_topic/news_report/Run(list/input)
 
-	priority_announce(input["message"], "Breaking Update From [input["message_sender"]]") //SKYRAT EDIT CHANGE
+	priority_announce(input["message"], "来自[input["message_sender"]]的突发消息") //SKYRAT EDIT CHANGE
 
 /datum/world_topic/adminmsg
 	keyword = "adminmsg"
@@ -182,7 +182,7 @@
 
 /datum/world_topic/namecheck/Run(list/input)
 	log_admin("world/Topic Name Check: [input["sender"]] on [input["namecheck"]]")
-	message_admins("Name checking [input["namecheck"]] from [input["sender"]] (World topic)")
+	message_admins("[input["sender"]]正在检查姓名[input["namecheck"]]（World topic）")
 
 	return keywords_lookup(input["namecheck"], 1)
 
@@ -260,9 +260,9 @@
 	input["timer_id"] = timer_id
 	LAZYADD(timers, timer_id)
 
-	var/message = "<b color='orange'>Cross-sector channel creation (Incoming):</b> [input["author_ckey"]] is about to create a cross-sector \
-			newscaster channel \"[input["message"]]\" (will autoapprove in [DisplayTimeText(message_delay)]): \
-			<b><a href='byond://?src=[REF(src)];reject_channel_creation=[timer_id]'>REJECT</a></b>"
+	var/message = "<b color='orange'>传入的跨星区频道创建请求：</b>[input["author_ckey"]]即将创建跨星区\
+			新闻终端频道\"[input["message"]]\"（将在[DisplayTimeText(message_delay)]后自动批准）：\
+			<b><a href='byond://?src=[REF(src)];reject_channel_creation=[timer_id]'>拒绝</a></b>"
 
 	message_admins(span_adminnotice(message))
 
@@ -277,23 +277,23 @@
 
 	if (!usr.client?.holder)
 		log_game("tried to reject the creation of an incoming cross-sector newscaster channel without being an admin.", LOG_ADMIN)
-		message_admins("[key_name(usr)] tried to reject the creation of an incoming cross-sector newscaster channel without being an admin.")
+		message_admins("[key_name(usr)]试图在没有管理员权限的情况下拒绝传入的跨星区新闻终端频道创建请求。")
 		return
 
 	if (!(timer_id in timers))
-		to_chat(usr, span_warning("It's too late!"))
+		to_chat(usr, span_warning("太迟了！"))
 		return
 
 	deltimer(timer_id)
 	LAZYREMOVE(timers, timer_id)
 
 	log_admin("[key_name(usr)] has cancelled the creation of an incoming cross-sector newscaster channel.")
-	message_admins("[key_name(usr)] has cancelled the creation of an incoming cross-sector newscaster channel.")
+	message_admins("[key_name(usr)]取消了传入的跨星区新闻终端频道创建请求。")
 	return TRUE
 
 /datum/world_topic/create_news_channel/proc/create_channel(list/input)
 	LAZYREMOVE(timers, input["timer_id"])
-	message_admins("[input["author_ckey"]] has crated a cross-sector newscaster channel titled \"[input["message"]]\"")
+	message_admins("[input["author_ckey"]]创建了名为\"[input["message"]]\"的跨星区新闻终端频道")
 	GLOB.news_network.create_feed_channel(input["message"], input["author"], input["desc"], locked = TRUE, receiving_cross_sector = TRUE)
 
 /datum/world_topic/create_news_article
@@ -309,5 +309,5 @@
 	if(isnull(chosen_channel)) // No channel with a matching name, abort
 		return
 
-	message_admins(span_adminnotice("Incoming cross-sector newscaster article by [author_key] in channel [channel_name]."))
+	message_admins(span_adminnotice("收到[author_key]在[channel_name]频道发布的跨星区新闻终端文章。"))
 	GLOB.news_network.submit_article(msg, author, channel_name)

@@ -4,8 +4,8 @@
 #define UNKNOWN_JOB_ID 998
 
 /obj/machinery/computer/crew
-	name = "crew monitoring console"
-	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
+	name = "船员监控控制台"
+	desc = "用于监控多数船员制服内置并已开启的健康传感器。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/crew")
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
@@ -17,8 +17,8 @@
 	AddComponent(/datum/component/usb_port, typecacheof(list(/obj/item/circuit_component/medical_console_data), only_root_path = TRUE))
 
 /obj/item/circuit_component/medical_console_data
-	display_name = "Crew Monitoring Data"
-	desc = "Outputs the medical statuses of people on the crew monitoring computer, where it can then be filtered with a Select Query component."
+	display_name = "船员监控数据"
+	desc = "输出船员监控计算机上人员的医疗状态，之后可使用选择查询组件筛选数据。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved
@@ -199,7 +199,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		var/turf/T = get_turf(user)
 		z = T.z
 	. = list(
-		"sensors" = update_data(z),
+		"sensors" = update_data(z), "areaDisplay" = chinese_area_display(return_mapping = TRUE), "jobDisplay" = chinese_job_display(return_mapping = TRUE),
 		"link_allowed" = HAS_AI_ACCESS(user),
 	)
 

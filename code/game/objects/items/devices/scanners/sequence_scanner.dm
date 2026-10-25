@@ -1,12 +1,12 @@
 /obj/item/sequence_scanner
-	name = "genetic sequence scanner"
+	name = "基因序列扫描仪"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "gene"
 	inhand_icon_state = "healthanalyzer"
 	worn_icon_state = "healthanalyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	desc = "A hand-held scanner for analyzing someones gene sequence on the fly. Use on a DNA console to update the internal database."
+	desc = "用于快速分析基因序列的手持扫描仪。对DNA控制台使用可更新内部数据库。"
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
@@ -29,18 +29,18 @@
 
 /obj/item/sequence_scanner/examine(mob/user)
 	. = ..()
-	. += span_notice("Use primary attack to scan mutations, Secondary attack to scan genetic makeup")
+	. += span_notice("主攻击扫描突变，次攻击扫描遗传组成。")
 	if(LAZYLEN(genetic_makeup_buffer) > 0)
-		. += span_notice("It has the genetic makeup of \"[genetic_makeup_buffer["name"]]\" stored inside its buffer")
+		. += span_notice("缓冲区中存储着\"[genetic_makeup_buffer["name"]]\"的遗传组成。")
 
 /obj/item/sequence_scanner/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/machinery/computer/dna_console))
 		var/obj/machinery/computer/dna_console/console = interacting_with
 		if(console.stored_research)
-			to_chat(user, span_notice("[name] linked to central research database."))
+			to_chat(user, span_notice("[name]已连接中央研究数据库。"))
 			discovered = console.stored_research.discovered_mutations
 		else
-			to_chat(user,span_warning("No database to update from."))
+			to_chat(user,span_warning("没有可供更新的数据库。"))
 		return ITEM_INTERACT_SUCCESS
 
 	if(!isliving(interacting_with))
@@ -50,19 +50,19 @@
 
 	//no scanning if its a husk or DNA-less Species
 	if (!HAS_TRAIT(interacting_with, TRAIT_GENELESS) && !HAS_TRAIT(interacting_with, TRAIT_BADDNA))
-		user.visible_message(span_notice("[user] analyzes [interacting_with]'s genetic sequence."))
-		balloon_alert(user, "sequence analyzed")
+		user.visible_message(span_notice("[user]分析了[interacting_with]的基因序列。"))
+		balloon_alert(user, "序列分析完成")
 		playsound(user, 'sound/items/healthanalyzer.ogg', 50) // close enough
 		gene_scan(interacting_with, user)
 		return ITEM_INTERACT_SUCCESS
 
-	user.visible_message(span_notice("[user] fails to analyze [interacting_with]'s genetic sequence."), span_warning("[interacting_with] has no readable genetic sequence!"))
+	user.visible_message(span_notice("[user]未能分析[interacting_with]的基因序列。"), span_warning("[interacting_with]没有可读取的基因序列！"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/sequence_scanner/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/machinery/computer/dna_console))
 		var/obj/machinery/computer/dna_console/console = interacting_with
-		var/buffer_index = tgui_input_number(user, "Slot:", "Which slot to export:", 1, LAZYLEN(console.genetic_makeup_buffer), 1)
+		var/buffer_index = tgui_input_number(user, "槽位：", "选择导出槽位：", 1, LAZYLEN(console.genetic_makeup_buffer), 1)
 		console.genetic_makeup_buffer[buffer_index] = genetic_makeup_buffer
 		return ITEM_INTERACT_SUCCESS
 
@@ -73,16 +73,16 @@
 
 	//no scanning if its a husk, DNA-less Species or DNA that isn't able to be copied by a changeling/disease
 	if (!HAS_TRAIT(interacting_with, TRAIT_GENELESS) && !HAS_TRAIT(interacting_with, TRAIT_BADDNA) && !HAS_TRAIT(interacting_with, TRAIT_NO_DNA_COPY))
-		user.visible_message(span_warning("[user] is scanning [interacting_with]'s genetic makeup."))
+		user.visible_message(span_warning("[user]正在扫描[interacting_with]的遗传组成。"))
 		if(!do_after(user, 3 SECONDS, interacting_with))
-			balloon_alert(user, "scan failed!")
-			user.visible_message(span_warning("[user] fails to scan [interacting_with]'s genetic makeup."))
+			balloon_alert(user, "扫描失败！")
+			user.visible_message(span_warning("[user]未能扫描[interacting_with]的遗传组成。"))
 			return ITEM_INTERACT_BLOCKING
 		makeup_scan(interacting_with, user)
-		balloon_alert(user, "makeup scanned")
+		balloon_alert(user, "遗传组成扫描完成")
 		return ITEM_INTERACT_SUCCESS
 
-	user.visible_message(span_notice("[user] fails to analyze [interacting_with]'s genetic makeup."), span_warning("[interacting_with] has no readable genetic makeup!"))
+	user.visible_message(span_notice("[user]未能分析[interacting_with]的遗传组成。"), span_warning("[interacting_with]没有可读取的遗传组成！"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/sequence_scanner/attack_self(mob/user)
@@ -104,7 +104,7 @@
 		LAZYSET(buffer, mutation.type, GET_SEQUENCE(mutation.type))
 		active_mutations.Add(mutation.type)
 
-	to_chat(user, span_notice("Subject [target.name]'s DNA sequence has been saved to buffer."))
+	to_chat(user, span_notice("受检者[target.name]的DNA序列已保存至缓冲区。"))
 	for(var/mutation in buffer)
 		//highlight activated mutations
 		if(LAZYFIND(active_mutations, mutation))
@@ -118,7 +118,7 @@
 		return
 
 	genetic_makeup_buffer = list(
-	"label"="Analyzer Slot:[target.real_name]",
+	"label"="分析仪槽位：[target.real_name]",
 	"UI"=target.dna.unique_identity,
 	"UE"=target.dna.unique_enzymes,
 	"UF"=target.dna.unique_features,
@@ -132,7 +132,7 @@
 	for(var/mutation in buffer)
 		options += get_display_name(mutation)
 
-	var/answer = tgui_input_list(user, "Analyze Potential", "Sequence Analyzer", sort_list(options))
+	var/answer = tgui_input_list(user, "分析潜在突变", "序列分析仪", sort_list(options))
 	if(isnull(answer))
 		return
 	if(!ready || !user.can_perform_action(src, NEED_LITERACY|NEED_LIGHT|FORBID_TELEKINESIS_REACH))
@@ -164,7 +164,7 @@
 /obj/item/sequence_scanner/proc/get_display_name(mutation)
 	var/datum/mutation/mutation_instance = GET_INITIALIZED_MUTATION(mutation)
 	if(!mutation_instance)
-		return "ERROR"
+		return "错误"
 	if(mutation in discovered)
 		return  "[mutation_instance.name] ([mutation_instance.alias])"
 	else

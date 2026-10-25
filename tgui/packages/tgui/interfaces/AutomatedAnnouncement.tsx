@@ -14,7 +14,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { chineseDisplay } from '../localization/zhDisplay';
+import { batchThreeDisplay as chineseDisplay } from '../localization/batchThreeDisplay';
 type AASConfigEntry = {
   name: string;
   entryRef: string;

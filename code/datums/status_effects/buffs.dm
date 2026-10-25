@@ -23,8 +23,8 @@
 		linked_alert.icon_state = "her_grace"
 
 /atom/movable/screen/alert/status_effect/his_grace
-	name = "His Grace"
-	desc = "His Grace hungers, and you must feed Him."
+	name = "圣恩"
+	desc = "圣恩饥饿难耐，你必须喂饱祂。"
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 
@@ -33,19 +33,19 @@
 	var/datum/status_effect/his_grace/HG = attached_effect
 	var/His = HG.word
 	var/Him = HG.word2
-	name = "[His] Grace"
-	desc = "[His] Grace hungers, and you must feed [Him]."
+	name = "圣恩"
+	desc = "圣恩饥饿难耐，你必须喂饱[Him == "Her" ? "她" : "祂"]。"
 	icon_state = "[LOWER_TEXT(His)]_grace"
-	desc += "<br><font size=3><b>Current Bloodthirst: [HG.bloodlust]</b></font>\
-	<br>Becomes undroppable at <b>[HIS_GRACE_FAMISHED]</b>\
-	<br>Will consume you at <b>[HIS_GRACE_CONSUME_OWNER]</b>"
+	desc += "<br><font size=3><b>当前嗜血度：[HG.bloodlust]</b></font>\
+	<br>达到 <b>[HIS_GRACE_FAMISHED]</b> 时无法丢下\
+	<br>达到 <b>[HIS_GRACE_CONSUME_OWNER]</b> 时将吞噬你"
 	return ..()
 
 /datum/status_effect/his_grace/on_apply()
 	owner.add_stun_absorption(
 		source = id,
 		priority = 3,
-		self_message = span_boldwarning("[word] Grace protects you from the stun!"),
+		self_message = span_boldwarning("圣恩保护你免受眩晕！"),
 	)
 	return ..()
 
@@ -79,17 +79,17 @@
 	alert_type = /atom/movable/screen/alert/status_effect/wish_granters_gift
 
 /datum/status_effect/wish_granters_gift/on_apply()
-	to_chat(owner, span_notice("Death is not your end! The Wish Granter's energy suffuses you, and you begin to rise..."))
+	to_chat(owner, span_notice("死亡并非你的终点！许愿者的能量充盈全身，你开始重新站起……"))
 	return ..()
 
 /datum/status_effect/wish_granters_gift/on_remove()
 	owner.revive(ADMIN_HEAL_ALL)
-	owner.visible_message(span_warning("[owner] appears to wake from the dead, having healed all wounds!"), span_notice("You have regenerated."))
+	owner.visible_message(span_warning("[owner]似乎死而复生，所有伤口都已愈合！"), span_notice("你已再生。"))
 
 
 /atom/movable/screen/alert/status_effect/wish_granters_gift
-	name = "Wish Granter's Immortality"
-	desc = "You are being resurrected!"
+	name = "许愿者的不朽赐福"
+	desc = "你正在复活！"
 	icon_state = "wish_granter"
 
 /datum/status_effect/blooddrunk
@@ -99,8 +99,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
 
 /atom/movable/screen/alert/status_effect/blooddrunk
-	name = "Blood-Drunk"
-	desc = "You are drunk on blood! Your pulse thunders in your ears! Nothing can harm you!" //not true, and the item description mentions its actual effect
+	name = "醉血"
+	desc = "你沉醉于鲜血！脉搏在耳边轰鸣！什么都伤不了你！" //not true, and the item description mentions its actual effect
 	icon_state = "blooddrunk"
 
 /datum/status_effect/blooddrunk/on_apply()
@@ -177,8 +177,8 @@
 	linked_alert?.icon_state = "fleshmend"
 
 /atom/movable/screen/alert/status_effect/fleshmend
-	name = "Fleshmend"
-	desc = "Our wounds are rapidly healing. <i>This effect is prevented if we are on fire.</i>"
+	name = "血肉修复"
+	desc = "我们的伤口正在迅速愈合。<i>着火时此效果会被阻止。</i>"
 	icon_state = "fleshmend"
 
 /datum/status_effect/exercised
@@ -239,7 +239,7 @@
 	var/exhaustion_limit = new_owner.mind?.get_skill_modifier(/datum/skill/athletics, SKILL_VALUE_MODIFIER)
 	if(duration + bonus_time >= exhaustion_limit)
 		duration = exhaustion_limit
-		to_chat(new_owner, span_userdanger("Your muscles are exhausted! Might be a good idea to sleep..."))
+		to_chat(new_owner, span_userdanger("你的肌肉疲惫不堪！也许该睡一觉了……"))
 		INVOKE_ASYNC(new_owner, TYPE_PROC_REF(/mob, emote), "scream")
 		return // exhaustion_limit
 
@@ -264,8 +264,8 @@
 	owner.clear_mood_event("exercise")
 
 /atom/movable/screen/alert/status_effect/exercised
-	name = "Exercise"
-	desc = "You feel well exercised! Sleeping will improve your fitness."
+	name = "锻炼"
+	desc = "你感觉锻炼得很充分！睡眠将提高你的体能。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "exercised"
 
@@ -308,7 +308,7 @@
 	owner.remove_traits(list(TRAIT_PACIFISM, TRAIT_HIPPOCRATIC_OATH, TRAIT_MEDICAL_HUD), HIPPOCRATIC_OATH_TRAIT)
 
 /datum/status_effect/hippocratic_oath/get_examine_text()
-	return span_notice("[owner.p_They()] seem[owner.p_s()] to have an aura of healing and helpfulness about [owner.p_them()].")
+	return span_notice("[owner]周身似乎散发着治愈与助人的气息。")
 
 /datum/status_effect/hippocratic_oath/tick(seconds_between_ticks)
 	if(owner.stat == DEAD)
@@ -331,11 +331,11 @@
 					else
 						consume_owner() //we can't regrow, abort abort
 						return
-					to_chat(itemUser, span_notice("Your arm suddenly grows back with the Rod of Asclepius still attached!"))
+					to_chat(itemUser, span_notice("你的手臂突然重新长出，阿斯克勒庇俄斯之杖仍附着其上！"))
 				else
 					//Otherwise get rid of whatever else is in their hand and return the rod to said hand
 					itemUser.put_in_hand(newRod, hand, forced = TRUE)
-					to_chat(itemUser, span_notice("The Rod of Asclepius suddenly grows back out of your arm!"))
+					to_chat(itemUser, span_notice("阿斯克勒庇俄斯之杖突然又从你的手臂中长了出来！"))
 			//Because a servant of medicines stops at nothing to help others, lets keep them on their toes and give them an additional boost.
 			if(itemUser.health < itemUser.maxHealth)
 				new /obj/effect/temp_visual/heal(get_turf(itemUser), "#375637")
@@ -350,12 +350,12 @@
 				itemUser.updatehealth()
 
 /datum/status_effect/hippocratic_oath/proc/consume_owner()
-	owner.visible_message(span_notice("[owner]'s soul is absorbed into the rod, relieving the previous snake of its duty."))
+	owner.visible_message(span_notice("[owner]的灵魂被法杖吸收，让原先的蛇卸下了职责。"))
 	var/list/chems = list(/datum/reagent/medicine/sal_acid, /datum/reagent/medicine/c2/convermol, /datum/reagent/medicine/oxandrolone)
 	var/mob/living/basic/snake/spawned = new(owner.loc, pick(chems))
-	spawned.name = "Asclepius's Snake"
-	spawned.real_name = "Asclepius's Snake"
-	spawned.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
+	spawned.name = "阿斯克勒庇俄斯之蛇"
+	spawned.real_name = "阿斯克勒庇俄斯之蛇"
+	spawned.desc = "一条曾被困于阿斯克勒庇俄斯之杖上的神秘蛇，如今终于卸下重担。与普通蛇不同，它的咬伤会注入具有轻微治疗效果的化学物质。"
 	new /obj/effect/decal/cleanable/ash(owner.loc)
 	new /obj/item/rod_of_asclepius(owner.loc)
 	owner.investigate_log("has been consumed by the Rod of Asclepius.", INVESTIGATE_DEATHS)
@@ -376,8 +376,8 @@
 		owner.add_mood_event("goodmusic", /datum/mood_event/goodmusic)
 
 /atom/movable/screen/alert/status_effect/regenerative_core
-	name = "Regenerative Core Tendrils"
-	desc = "You can move faster than your broken body could normally handle!"
+	name = "再生核心触须"
+	desc = "你的移动速度超出了这具残破身体通常能承受的极限！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_icon = 'icons/obj/medical/organs/mining_organs.dmi'
 	overlay_state = "legion_core_stable"
@@ -412,16 +412,16 @@
 /datum/status_effect/lightningorb/on_apply()
 	. = ..()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/status_effect/yellow_orb)
-	to_chat(owner, span_notice("You feel fast!"))
+	to_chat(owner, span_notice("你感觉身手飞快！"))
 
 /datum/status_effect/lightningorb/on_remove()
 	. = ..()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/yellow_orb)
-	to_chat(owner, span_notice("You slow down."))
+	to_chat(owner, span_notice("你慢了下来。"))
 
 /atom/movable/screen/alert/status_effect/lightningorb
-	name = "Lightning Orb"
-	desc = "The speed surges through you!"
+	name = "闪电球"
+	desc = "速度的力量涌遍全身！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "lightningorb"
 
@@ -434,7 +434,7 @@
 
 /datum/status_effect/mayhem/on_apply()
 	. = ..()
-	to_chat(owner, "<span class='reallybig redtext'>RIP AND TEAR</span>")
+	to_chat(owner, "<span class='reallybig redtext'>撕碎一切</span>")
 	SEND_SOUND(owner, sound('sound/effects/hallucinations/veryfar_noise.ogg'))
 	owner.cause_hallucination( \
 		/datum/hallucination/delusion/preset/demon, \
@@ -456,7 +456,7 @@
 		owner.reagents.add_reagent(/datum/reagent/medicine/adminordrazine, 25)
 
 	owner.log_message("entered a blood frenzy", LOG_ATTACK)
-	to_chat(owner, span_narsiesmall("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, NO TEAM MATES OR ALLEGIANCES! KILL THEM ALL!"))
+	to_chat(owner, span_narsiesmall("杀！杀！杀！你已没有盟友，没有队友，没有效忠对象！把他们全杀光！"))
 
 	var/datum/client_colour/colour = owner.add_client_colour(/datum/client_colour/bloodlust, REF(src))
 	QDEL_IN(colour, 1.1 SECONDS)
@@ -464,7 +464,7 @@
 
 /datum/status_effect/mayhem/on_remove()
 	. = ..()
-	to_chat(owner, span_notice("Your bloodlust seeps back into the bog of your subconscious and you regain self control."))
+	to_chat(owner, span_notice("你的嗜血欲望退回潜意识的泥沼，你重新掌控了自己。"))
 	owner.log_message("exited a blood frenzy", LOG_ATTACK)
 	QDEL_NULL(chainsaw)
 
@@ -522,8 +522,8 @@
 	. = ..()
 	var/health_increase = round(max(fragile_mob_health_buff, historic_max_health * health_buff_modifier))
 	owner.maxHealth += health_increase
-	owner.balloon_alert_to_viewers("health buffed")
-	to_chat(owner, span_nicegreen("You feel healthy, like if your body is little stronger than it was a moment ago."))
+	owner.balloon_alert_to_viewers("生命力增强")
+	to_chat(owner, span_nicegreen("你感觉很健康，身体似乎比刚才强健了一些。"))
 
 	if(isanimal(owner))	//dumb animals have their own proc for healing.
 		var/mob/living/simple_animal/healthy_animal = owner
@@ -533,7 +533,7 @@
 
 /datum/status_effect/limited_buff/health_buff/maxed_out()
 	. = ..()
-	to_chat(owner, span_warning("You don't feel any healthier."))
+	to_chat(owner, span_warning("你没有觉得更健康。"))
 
 /datum/status_effect/nest_sustenance
 	id = "nest_sustenance"
@@ -559,8 +559,8 @@
 
 
 /atom/movable/screen/alert/status_effect/nest_sustenance
-	name = "Nest Vitalization"
-	desc = "The resin seems to pulsate around you. It seems to be sustaining your vital functions. You feel ill..."
+	name = "巢穴续命"
+	desc = "周围的树脂似乎在搏动，维持着你的生命机能。你感到不适……"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "nest_life"
 
@@ -639,8 +639,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/radiation_immunity
 
 /atom/movable/screen/alert/status_effect/radiation_immunity
-	name = "Radiation shielding"
-	desc = "You're immune to radiation, get settled quick!"
+	name = "辐射屏蔽"
+	desc = "你暂时免疫辐射，赶快安顿下来！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "radiation_shield"
 
@@ -671,8 +671,8 @@
 	owner.heal_overall_damage(brute = 1, burn = 1, required_bodytype = BODYTYPE_ORGANIC)
 
 /atom/movable/screen/alert/status_effect/shadow_regeneration
-	name = "Shadow Regeneration"
-	desc = "Bathed in soothing darkness, you will slowly heal yourself"
+	name = "暗影再生"
+	desc = "沐浴在舒缓的黑暗中，你将缓慢恢复伤势。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "lightless"
 
@@ -725,12 +725,12 @@
 	alert_type = null
 
 /datum/status_effect/rev_resilience/on_apply()
-	to_chat(owner, span_warning("You feel your revolutionary spirit surging! You feel like nothing the oppressors could throw at you could wound your pride!"))
+	to_chat(owner, span_warning("你的革命精神高涨！你感觉压迫者无论使出什么手段，都伤不了你的骄傲！"))
 	owner.add_traits(list(TRAIT_HARDLY_WOUNDED,TRAIT_ANALGESIA,TRAIT_FEARLESS), TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/rev_resilience/on_remove()
-	to_chat(owner, span_notice("You feel your surge of revolutionary zeal fade. You hope you don't get shot in the foot..."))
+	to_chat(owner, span_notice("你感觉高涨的革命热情消退了。希望脚上别挨枪子儿……"))
 	owner.remove_traits(list(TRAIT_HARDLY_WOUNDED,TRAIT_ANALGESIA,TRAIT_FEARLESS), TRAIT_STATUS_EFFECT(id))
 
 //status effect granted when taking attack damage while metabolizing synthpax

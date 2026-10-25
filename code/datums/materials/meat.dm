@@ -1,7 +1,7 @@
 ///It's gross, gets the name of its owner, and is all kinds of fucked up
 /datum/material/meat
 	name = "meat"
-	desc = "Meat"
+	desc = "肉。"
 	id = /datum/material/meat // So the bespoke versions are categorized under this
 	color = rgb(214, 67, 67)
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC
@@ -121,7 +121,7 @@
 	if(!istype(source))
 		return FALSE
 
-	name = "[source?.name ? "[source.name]'s" : "mystery"] [initial(name)]"
+	name = "[source?.name ? "[source.name]的" : "不明来源的"][chinese_material_display(initial(name))]"
 
 	if(source.real_name)
 		subjectname = source.real_name
@@ -147,7 +147,7 @@
 	if(!istype(source))
 		return FALSE
 
-	name = "[source?.name || "mystery"] [initial(name)]"
+	name = "[source?.name || "不明来源的"][chinese_material_display(initial(name))]"
 
 	if(source.exotic_bloodtype)
 		var/datum/blood_type/blood_type = get_blood_type(source.exotic_bloodtype)
@@ -166,7 +166,7 @@
 		return FALSE
 
 	var/list/blood_data = source.data
-	name = "[blood_data["real_name"] || "mystery"] [initial(name)]"
+	name = "[blood_data["real_name"] || "不明来源的"][chinese_material_display(initial(name))]"
 	var/datum/blood_type/blood_type = blood_data[BLOOD_DATA_TYPE]
 	if(blood_type && blood_type.get_color() != BLOOD_COLOR_RED)
 		var/list/transition_filter = color_transition_filter(blood_type.get_color())

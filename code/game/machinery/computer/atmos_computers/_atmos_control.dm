@@ -1,7 +1,7 @@
 /// GENERAL AIR CONTROL (a.k.a atmos computer)
 /obj/machinery/computer/atmos_control
-	name = "atmospherics monitoring"
-	desc = "Used to monitor the station's atmospherics sensors."
+	name = "大气监控台"
+	desc = "用于监控空间站的大气传感器。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/atmos_control")
 	icon_screen = "tank"
 	icon_keyboard = "atmos_key"
@@ -82,7 +82,7 @@
 		available_devices[GLOB.station_gas_chambers[chamber_identifier]] = chamber_identifier
 
 	// As long as we dont put any funny chars in the strings it should match.
-	var/new_name = tgui_input_list(user, "Select the device set", "Reconnect", available_devices)
+	var/new_name = tgui_input_list(user, "选择设备组", "重新连接", available_devices)
 	if(isnull(new_name))
 		return FALSE
 	var/new_id = available_devices[new_name]
@@ -93,7 +93,7 @@
 	atmos_chambers[new_id] = new_name
 	last_chamber_id = new_id
 
-	name = new_name + (control ? " Control" : " Monitor")
+	name = new_name + (control ? "控制台" : "监控台")
 
 	return TRUE
 

@@ -60,7 +60,7 @@
 	if(scanpower <= SCANPOWER_BASIC)
 		return
 	render_list += "<span class='info ml-1'>"
-	render_list += conditional_tooltip("Subject is hallucinating.", "Supply antipsychotic medication, such as [/datum/reagent/medicine/haloperidol::name] or [/datum/reagent/medicine/synaptizine::name].", tochat)
+	render_list += conditional_tooltip("受检者正在产生幻觉。", "请给予抗精神病药物，例如[/datum/reagent/medicine/haloperidol::name]或[/datum/reagent/medicine/synaptizine::name]。", tochat)
 	render_list += "</span><br>"
 
 /// Signal proc for [COMSIG_CARBON_CHECKING_BODYPART],

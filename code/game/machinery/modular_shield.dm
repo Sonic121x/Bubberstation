@@ -1,6 +1,6 @@
 /obj/machinery/modular_shield_generator
-	name = "modular shield generator"
-	desc = "A forcefield generator, it seems more stationary than its cousins. It can't handle G-force and will require frequent reboots when built on mobile craft."
+	name = "模块化护盾发生器"
+	desc = "一台力场发生器，比同类设备更适合固定部署。它无法承受过载加速度，安装在移动载具上时需要频繁重启。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "gen_recovering_closed"
 	density = TRUE
@@ -74,7 +74,7 @@
 	var/icon_type = "gen"
 
 	///The name modular shield console tgui's see us as
-	var/display_name = "Shield Generator"
+	var/display_name = "护盾发生器"
 
 /obj/machinery/modular_shield_generator/power_change()
 	. = ..()
@@ -112,7 +112,7 @@
 		activate_shields()
 
 /datum/wires/modular_shield_generator
-	proper_name = "Modular shield generator"
+	proper_name = "模块化护盾发生器"
 	randomize = FALSE
 	holder_type = /obj/machinery/modular_shield_generator
 
@@ -152,7 +152,7 @@
 
 /obj/machinery/modular_shield_generator/multitool_act(mob/living/user, obj/item/multitool/multi)
 	multi.set_buffer(src)
-	balloon_alert(user, "saved to buffer")
+	balloon_alert(user, "已存入缓冲区")
 	return ITEM_INTERACT_SUCCESS
 
 ///toggles the forcefield on and off
@@ -390,8 +390,8 @@
 		random_shield.alpha = max(255 * (stored_strength/max_strength), 40)
 
 /obj/machinery/modular_shield_generator/gate
-	name = "modular shield gate"
-	desc = "A forcefield generator that can deploy a flat wall, it seems more stationary than its cousins. It can't handle G-force and will require frequent reboots when built on mobile craft."
+	name = "模块化护盾门"
+	desc = "能够展开平面屏障的力场发生器，比同类设备更适合固定部署。它无法承受过载加速度，安装在移动载具上时需要频繁重启。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "gate_recovering_closed"
 	density = FALSE
@@ -399,7 +399,7 @@
 	internal_penalty = FALSE
 	layer = GIB_LAYER
 	icon_type = "gate"
-	display_name = "Shield Gate"
+	display_name = "护盾门"
 
 /obj/machinery/modular_shield_generator/gate/ui_interact(mob/user, datum/tgui/ui)
 	return
@@ -447,8 +447,8 @@
 //Start of other machines
 ///The general code used for machines that want to connect to the network
 /obj/machinery/modular_shield/module
-	name = "modular shield debugger" //Filler name and sprite for testing
-	desc = "This is filler for testing you shouldn't see this."
+	name = "模块化护盾调试器" //Filler name and sprite for testing
+	desc = "这是测试用的占位物，你不应该看见它。"
 	icon = 'icons/obj/machines/mech_bay.dmi'
 	icon_state = "recharge_port"
 	density = TRUE
@@ -488,9 +488,9 @@
 	. = ..()
 
 	if(isnull(shield_generator) && isnull(connected_node))
-		. += "It can be loosened and rotated with a screwdriver and wrench. It can be connected to a node or generator with a multitool."
+		. += "可以用螺丝刀和扳手松开并旋转它。可以用多功能工具将它连接到节点或发生器。"
 		return
-	. += "It can be loosed and rotated with a screwdriver and wrench, rotating it will sever its connection."
+	. += "可以用螺丝刀和扳手松开并旋转它，旋转会切断其连接。"
 
 /obj/machinery/modular_shield/module/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
@@ -499,9 +499,9 @@
 	tool.play_tool_sound(src, 50)
 	update_icon_state()
 	if(panel_open)
-		balloon_alert(user, "hatch opened")
+		balloon_alert(user, "舱盖已打开")
 		return TRUE
-	balloon_alert(user, "hatch closed")
+	balloon_alert(user, "舱盖已关闭")
 	return TRUE
 
 /obj/machinery/modular_shield/module/multitool_act(mob/living/user, obj/item/tool)
@@ -544,7 +544,7 @@
 /obj/machinery/modular_shield/module/proc/try_connect(user)
 
 	if(shield_generator || connected_node)
-		balloon_alert(user, "already connected to something!")
+		balloon_alert(user, "已经连接了其他设备！")
 		update_icon_state()
 		return
 
@@ -553,7 +553,7 @@
 	if(shield_generator)
 
 		LAZYOR(shield_generator.connected_modules, (src))
-		balloon_alert(user, "connected to generator")
+		balloon_alert(user, "已连接发生器")
 		update_icon_state()
 		shield_generator.calculate_boost()
 		return
@@ -566,7 +566,7 @@
 		if(!connected_node.allow_boosters && is_booster)
 			connected_node = null
 			update_icon_state()
-			balloon_alert(user, "cant connect")
+			balloon_alert(user, "无法连接")
 			return
 
 		LAZYOR(connected_node.connected_through_us, (src))
@@ -574,19 +574,19 @@
 		shield_generator = connected_node.shield_generator
 		if(shield_generator)
 			LAZYOR(shield_generator.connected_modules, (src))
-			balloon_alert(user, "connected to generator")
+			balloon_alert(user, "已连接发生器")
 			update_icon_state()
 			shield_generator.calculate_boost()
 			return
 		update_icon_state()
-		balloon_alert(user, "connected to node")
+		balloon_alert(user, "已连接节点")
 		return
 	update_icon_state()
-	balloon_alert(user, "no connection!")
+	balloon_alert(user, "未连接！")
 
 /obj/machinery/modular_shield/module/node
-	name = "modular shield node"
-	desc = "A waist high mess of humming pipes and wires that extend the modular shield network."
+	name = "模块化护盾节点"
+	desc = "一团齐腰高、嗡嗡作响的管线，用于扩展模块化护盾网络。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "node_off_closed"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.5
@@ -666,8 +666,8 @@
 		connected.update_icon_state()
 
 /obj/machinery/modular_shield/module/node/cable
-	name = "modular shield cable"
-	desc = "An ankle high mess of cables packed as low as possible at the cost of lacking connection components necessary for anything other than nodes and the generator itself."
+	name = "模块化护盾电缆"
+	desc = "一团仅脚踝高的电缆，尽可能压低了高度，代价是缺少其他连接组件，只能连接节点和发生器本身。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "cable_node_closed_r_b_l"
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.1
@@ -692,8 +692,8 @@
 	icon_state = "cable_node_[panel_open ? "open" : "closed"]_[connected_right ? "r" : "nr"]_[connected_back ? "b" : "nb"]_[connected_left ? "l" : "nl"]"
 
 /obj/machinery/modular_shield/module/charger
-	name = "modular shield charger"
-	desc = "A machine that somehow fabricates hardlight using electrons."
+	name = "模块化护盾充能器"
+	desc = "一台以某种方式利用电子制造硬光的机器。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "charger_off_closed"
 	is_booster = TRUE
@@ -720,8 +720,8 @@
 		shield_generator.calculate_boost()
 
 /obj/machinery/modular_shield/module/relay
-	name = "modular shield relay"
-	desc = "It helps the shield generator project farther out."
+	name = "模块化护盾中继器"
+	desc = "帮助护盾发生器向更远处投射护盾。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "relay_off_closed"
 	is_booster = TRUE
@@ -748,8 +748,8 @@
 		shield_generator.calculate_boost()
 
 /obj/machinery/modular_shield/module/well
-	name = "modular shield well"
-	desc = "A device used to hold more hardlight for the modular shield generator."
+	name = "模块化护盾储能井"
+	desc = "为模块化护盾发生器储存更多硬光的装置。"
 	icon = 'icons/obj/machines/modular_shield_generator.dmi'
 	icon_state = "well_off_closed"
 	is_booster = TRUE
@@ -777,15 +777,15 @@
 
 //The shield itself
 /obj/structure/emergency_shield/modular
-	name = "modular energy shield"
-	desc = "An energy shield with varying configurations."
+	name = "模块化能量护盾"
+	desc = "可采用多种配置的能量护盾。"
 	color = "#00ffff"
 	density = FALSE
 	alpha = 100
 	flags_1 = PREVENT_CLICK_UNDER_1
 	explosion_block = 2
 	resistance_flags = INDESTRUCTIBLE //the shield itself is indestructible or at least should be
-	no_damage_feedback = "weakening the generator sustaining it"
+	no_damage_feedback = "削弱维持它的发生器"
 	can_atmos_pass = ATMOS_PASS_NO
 
 	///The shield generator sustaining us

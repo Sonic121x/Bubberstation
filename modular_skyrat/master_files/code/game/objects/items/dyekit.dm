@@ -48,7 +48,7 @@
 			return
 
 		var/list/choices = beard_or_hair == "Hair" ? SSaccessories.hair_gradients_list : SSaccessories.facial_hair_gradients_list
-		var/new_grad_style = tgui_input_list(user, "Choose a color pattern:", "Dye Spray", choices)
+		var/new_grad_style = chinese_accessory_choice(user, "选择渐变图案：", "染发喷雾", choices)
 		if(!new_grad_style || !user.can_perform_action(src, NEED_DEXTERITY))
 			return
 

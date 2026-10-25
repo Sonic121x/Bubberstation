@@ -9,11 +9,11 @@
 	for(var/crafting_recipe_type in crafting_recipe_types)
 		user.mind.teach_crafting_recipe(crafting_recipe_type)
 		var/datum/crafting_recipe/recipe = GLOB.cooking_recipes_by_typepath[crafting_recipe_type] || GLOB.crafting_recipes_by_typepath[crafting_recipe_type]
-		to_chat(user, span_notice("You learned how to make [recipe.name]."))
+		to_chat(user, span_notice("你学会了制作[recipe.name]。"))
 
 /obj/item/book/granter/crafting_recipe/dusting
 	icon_state = "book1"
 
 /obj/item/book/granter/crafting_recipe/dusting/recoil(mob/living/user)
-	to_chat(user, span_warning("The book turns to dust in your hands."))
+	to_chat(user, span_warning("书在你手中化为了尘埃。"))
 	qdel(src)

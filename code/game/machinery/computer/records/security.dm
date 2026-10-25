@@ -6,8 +6,8 @@
 #define MAX_CRIME_NAME_LEN 24
 
 /obj/machinery/computer/records/security
-	name = "security records console"
-	desc = "Used to view and edit personnel's security records."
+	name = "安保记录控制台"
+	desc = "用于查看和编辑人员的安保记录。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/warrant")
 	icon_screen = "security"
 	icon_keyboard = "security_key"
@@ -23,8 +23,8 @@
 	req_one_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/records/security/laptop
-	name = "security laptop"
-	desc = "A cheap Nanotrasen security laptop, it functions as a security records console. It's bolted to the table."
+	name = "安保笔记本电脑"
+	desc = "廉价的纳米传讯安保笔记本电脑，可充当安保记录控制台。它用螺栓固定在桌上。"
 	icon_state = MAP_SWITCH("laptop", "/obj/machinery/computer/records/security/laptop")
 	icon_screen = "seclaptop"
 	icon_keyboard = "laptop_key"
@@ -32,7 +32,7 @@
 	projectiles_pass_chance = 100
 
 /obj/machinery/computer/records/security/laptop/syndie
-	desc = "A cheap, jailbroken security laptop. It functions as a security records console. It's bolted to the table."
+	desc = "廉价且已越狱的安保笔记本电脑，可充当安保记录控制台。它用螺栓固定在桌上。"
 	req_one_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/records/security/Initialize(mapload, obj/item/circuitboard/C)
@@ -213,13 +213,13 @@
 /obj/machinery/computer/records/security/proc/add_crime(mob/user, datum/record/crew/target, list/params)
 	var/input_name = strip_html_full(params["name"], MAX_CRIME_NAME_LEN)
 	if(!input_name)
-		to_chat(usr, span_warning("You must enter a name for the crime."))
+		to_chat(usr, span_warning("必须输入罪名。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
 		return FALSE
 
 	var/max = CONFIG_GET(number/maxfine)
 	if(params["fine"] > max)
-		to_chat(usr, span_warning("The maximum fine is [max] [MONEY_NAME]."))
+		to_chat(usr, span_warning("罚款上限为[max][MONEY_NAME]。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 75, TRUE)
 		return FALSE
 
@@ -241,7 +241,7 @@
 	var/datum/crime/citation/new_citation = new(name = input_name, details = input_details, author = usr, fine = params["fine"])
 
 	target.citations += new_citation
-	new_citation.alert_owner(user, src, target.name, "You have been issued a [params["fine"]][MONEY_SYMBOL] citation for [input_name]. Fines are payable at Security.")
+	new_citation.alert_owner(user, src, target.name, "你因[input_name]收到一张金额为[params["fine"]][MONEY_SYMBOL]的罚单。可前往安保部缴纳罚款。")
 	investigate_log("New Citation: <strong>[input_name]</strong> Fine: [params["fine"]] | Added to [target.name] by [key_name(user)]", INVESTIGATE_RECORDS)
 	SSblackbox.ReportCitation(REF(new_citation), user.ckey, user.real_name, target.name, input_name, input_details, params["fine"])
 
@@ -342,18 +342,18 @@
 /// Handles printing records via UI. Takes the params from UI_act.
 /obj/machinery/computer/records/security/proc/print_record(mob/user, datum/record/crew/target, list/params)
 	if(printing)
-		balloon_alert(user, "printer busy")
+		balloon_alert(user, "打印机忙碌中")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	printing = TRUE
-	balloon_alert(user, "printing")
+	balloon_alert(user, "正在打印")
 	playsound(src, 'sound/machines/printer.ogg', 100, TRUE)
 
 	var/obj/item/printable
 	var/input_alias = strip_html_full(params["alias"], MAX_NAME_LEN) || target.name
-	var/input_description = strip_html_full(params["desc"], MAX_BROADCAST_LEN) || "No further details."
-	var/input_header = strip_html_full(params["head"], 8) || capitalize(params["type"])
+	var/input_description = strip_html_full(params["desc"], MAX_BROADCAST_LEN) || "无更多详情。"
+	var/input_header = strip_html_full(params["head"], 8) || (params["type"] == "missing" ? "寻人启事" : params["type"] == "wanted" ? "通缉令" : "犯罪记录")
 
 	switch(params["type"])
 		if("missing")
@@ -365,16 +365,16 @@
 		if("wanted")
 			var/list/crimes = target.crimes
 			if(!length(crimes))
-				balloon_alert(user, "no crimes")
+				balloon_alert(user, "没有犯罪记录")
 				return FALSE
 
-			input_description += "\n\n<b>WANTED FOR:</b>"
+			input_description += "\n\n<b>通缉事由：</b>"
 			for(var/datum/crime/incident in crimes)
 				if(!incident.valid)
-					input_description += "<b>--REDACTED--</b>"
+					input_description += "<b>--已删节--</b>"
 					continue
-				input_description += "\n<bCrime:</b> [incident.name]\n"
-				input_description += "<b>Details:</b> [incident.details]\n"
+				input_description += "\n<b>罪名：</b>[incident.name]\n"
+				input_description += "<b>详情：</b>[incident.details]\n"
 
 			var/obj/item/photo/mugshot = target.get_front_photo()
 			var/obj/item/poster/wanted/wanted_poster = new(null, null, mugshot.picture.picture_image, input_alias, input_description, input_header)
@@ -400,8 +400,8 @@
  * Security circuit component
  */
 /obj/item/circuit_component/arrest_console_data
-	display_name = "Security Records Data"
-	desc = "Outputs the security records data, where it can then be filtered with a Select Query component"
+	display_name = "安保记录数据"
+	desc = "输出安保记录数据，之后可使用选择查询组件筛选。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved
@@ -463,8 +463,8 @@
 
 	records.set_output(new_table)
 /obj/item/circuit_component/arrest_console_arrest
-	display_name = "Security Records Set Status"
-	desc = "Receives a table to use to set people's arrest status. Table should be from the security records data component. If New Status port isn't set, the status will be decided by the options."
+	display_name = "安保记录状态设置"
+	desc = "接收表格并设置人员的逮捕状态。表格应来自安保记录数据组件。若未设置新状态端口，则按选项决定状态。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The targets to set the status of.
@@ -530,7 +530,7 @@
 	if(successful_set > 0)
 		investigate_log("[names_of_entries.Join(", ")] have been set to [status_to_set] by [parent.get_creator()].", INVESTIGATE_RECORDS)
 		if(successful_set > COMP_SECURITY_ARREST_AMOUNT_TO_FLAG)
-			message_admins("[successful_set] security entries have been set to [status_to_set] by [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
+			message_admins("[parent.get_creator_admin()]将[successful_set]条安保记录设为[chinese_record_value_display(status_to_set)]。[ADMIN_COORDJMP(src)]")
 		update_all_security_huds()
 
 #undef COMP_SECURITY_ARREST_AMOUNT_TO_FLAG

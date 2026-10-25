@@ -164,7 +164,7 @@
 	make_table()
 
 /obj/item/loot_table_maker/attack_self(mob/user)
-	to_chat(user, "Loot pool re-rolled.")
+	to_chat(user, "战利品池已重新随机生成。")
 	make_table()
 
 /obj/item/loot_table_maker/proc/make_table()

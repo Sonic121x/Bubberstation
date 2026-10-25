@@ -3,10 +3,10 @@
 #define TRANSIT_PIPEDISPENSER 2
 
 /obj/machinery/pipedispenser
-	name = "pipe dispenser"
+	name = "管道分配机"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "pipe_d"
-	desc = "Dispenses countless types of pipes. Very useful if you need pipes."
+	desc = "提供种类繁多的管道。需要管道时非常有用。"
 	density = TRUE
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_OFFLINE
 	interaction_flags_mouse_drop = NEED_DEXTERITY
@@ -53,7 +53,7 @@
 			r += list(list("pipe_name" = info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTH))
 			// if this is bendable, add the bent version of the pipe (disposals)
 			if (info.dirtype == PIPE_BENDABLE)
-				r += list(list("pipe_name" = "Bent " + info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTHEAST))
+				r += list(list("pipe_name" = "弯曲" + info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTHEAST))
 		data["categories"] += list(list("cat_name" = c, "recipes" = r))
 	var/list/init_directions = list("north" = FALSE, "south" = FALSE, "east" = FALSE, "west" = FALSE)
 	for(var/direction in GLOB.cardinals)
@@ -107,7 +107,7 @@
 
 						var/obj/structure/disposalconstruct/disposal_out = new (loc, p_type)
 						if(!disposal_out.can_place())
-							to_chat(usr, span_warning("There's not enough room to build that here!"))
+							to_chat(usr, span_warning("这里没有足够空间建造它！"))
 							qdel(disposal_out)
 							return
 
@@ -138,7 +138,7 @@
 			if (ISNOTSTUB(target_dir))
 				p_init_dir = target_dir
 			else
-				to_chat(usr, span_warning("\The [src]'s screen flashes a warning: Can't configure a pipe to only connect in one direction."))
+				to_chat(usr, span_warning("[src]的屏幕闪出警告：不能将管道配置为仅向一个方向连接。"))
 
 		if("init_reset")
 			p_init_dir = ALL_CARDINALS
@@ -155,7 +155,7 @@
 	add_fingerprint(user)
 	if (!istype(tool, /obj/item/pipe) && !istype(tool, /obj/item/pipe_meter))
 		return NONE
-	to_chat(usr, span_notice("You put [tool] back into [src]."))
+	to_chat(usr, span_notice("你将[tool]放回了[src]。"))
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -175,10 +175,10 @@
 
 
 /obj/machinery/pipedispenser/disposal
-	name = "disposal pipe dispenser"
+	name = "废物管道分配机"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "pipe_d"
-	desc = "Dispenses pipes that will ultimately be used to move trash around."
+	desc = "提供最终用于运送垃圾的管道。"
 	density = TRUE
 	category = DISPOSAL_PIPEDISPENSER
 
@@ -198,11 +198,11 @@
 //transit tube dispenser
 //inherit disposal for the dragging proc
 /obj/machinery/pipedispenser/disposal/transit_tube
-	name = "transit tube dispenser"
+	name = "运输管道分配机"
 	icon = 'icons/obj/machines/lathes.dmi'
 	icon_state = "pipe_d"
 	density = TRUE
-	desc = "Dispenses pipes that will move beings around."
+	desc = "提供用于运送生物的管道。"
 	category = TRANSIT_PIPEDISPENSER
 
 #undef ATMOS_PIPEDISPENSER

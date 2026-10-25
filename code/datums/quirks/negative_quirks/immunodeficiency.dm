@@ -1,12 +1,12 @@
 /datum/quirk/item_quirk/immunodeficiency
 	name = "Immunodeficiency"
-	desc = "Whether by chronic illness or genetic happenstance, your body is a 24/7 Bed and Breakfast for bacteria, viruses, and parasites of all kinds. Even with your prescribed immunity boosters, you'll fare worse than most others."
+	desc = "无论是慢性病还是遗传因素所致，你的身体都成了各种细菌、病毒和寄生虫全天候包吃包住的旅馆。即使服用处方免疫增强药物，你的抵抗力仍不如大多数人。"
 	icon = FA_ICON_MASK_FACE
 	value = -10
 	mob_trait = TRAIT_IMMUNODEFICIENCY
-	gain_text = span_danger("Just the thought of illness makes you feverish.")
-	lose_text = span_notice("Your immune system miraculously reasserts itself.")
-	medical_record_text = "Patient is afflicted with chronic immunodeficiency."
+	gain_text = span_danger("光是想到生病，你就觉得发起烧来。")
+	lose_text = span_notice("你的免疫系统奇迹般地恢复了功能。")
+	medical_record_text = "患者患有慢性免疫缺陷。"
 	mail_goodies = list(
 		/obj/item/reagent_containers/syringe/antiviral,
 		/obj/item/healthanalyzer/simple/disease

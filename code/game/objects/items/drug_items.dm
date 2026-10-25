@@ -1,21 +1,21 @@
 /obj/item/food/drug
-	name = "generic drug"
-	desc = "I am error"
+	name = "通用毒品"
+	desc = "我是错误"
 	icon = 'icons/obj/medical/drugs.dmi'
 	abstract_type = /obj/item/food/drug
 	foodtypes = GROSS
 	food_flags = FOOD_FINGER_FOOD
 	max_volume = 50
 	eat_time = 1 SECONDS
-	tastes = list("drugs" = 2, "chemicals" = 1)
-	eatverbs = list("gnaw" = 1)
+	tastes = list("毒品" = 2, "化学品" = 1)
+	eatverbs = list("啃咬" = 1)
 	bite_consumption = 10
 	w_class = WEIGHT_CLASS_TINY
 	preserved_food = TRUE
 
 /obj/item/food/drug/saturnx
-	name = "saturnX glob"
-	desc = "A congealed glob of pure saturnX.\nThis compound was first discovered during the infancy of cloaking technology and at the time thought to be a promising candidate agent. It was withdrawn for consideration after the researchers discovered a slew of associated safety issues including thought disorders and hepatoxicity.\nIt has since attained some limited popularity as a street drug."
+	name = "土星X凝块"
+	desc = "一团凝固的纯土星X。\n这种化合物在隐形技术发展初期被发现，当时被认为是一种很有潜力的候选药剂。研究人员发现其会引发思维障碍、肝毒性等一系列安全问题后，便将其淘汰。\n此后，它作为街头毒品在小范围内流行起来。"
 	icon_state = "saturnx_glob" //tell kryson to sprite two more variants in the future.
 	food_reagents = list(/datum/reagent/drug/saturnx = 10)
 
@@ -24,8 +24,8 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/food/drug/moon_rock
-	name = "moon rock"
-	desc = "A small hard lump of kronkaine freebase.\nIt is said the average kronkaine addict causes as much criminal damage as four cat burglars, two arsonists and one rabid pit bull terrier combined.\n\nNotorious in the medical community for causing dangerous interactions with purging meds!"
+	name = "月岩"
+	desc = "一小块坚硬的克隆卡因游离碱。\n据说，一个普通克隆卡因瘾君子造成的犯罪破坏，相当于四名飞贼、两名纵火犯和一只发狂的比特犬加在一起。\n\n它会与清除体内药物的药剂产生危险相互作用，因此在医学界臭名昭著！"
 	icon_state = "moon_rock1"
 	food_reagents = list(/datum/reagent/drug/kronkaine = 10)
 
@@ -36,8 +36,8 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/reagent_containers/cup/blastoff_ampoule
-	name = "bLaSToFF ampoule" //stylized name
-	desc = "A small ampoule. The liquid inside appears to be boiling violently.\nYou suspect it contains bLasSToFF; the drug thought to be the cause of the infamous Luna nightclub mass casualty incident."
+	name = "升·天安瓿" //stylized name
+	desc = "一支小安瓿，里面的液体似乎正在剧烈沸腾。\n你怀疑里面装着升·天，这种毒品被认为是臭名昭著的月神夜总会群体伤亡事件的元凶。"
 	icon = 'icons/obj/medical/drugs.dmi'
 	icon_state = "blastoff_ampoule"
 	base_icon_state = "blastoff_ampoule"
@@ -80,10 +80,10 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/food/drug/meth_crystal
-	name = "crystal meth"
-	desc = "A clear, sad, fake looking crystal substance."
+	name = "冰毒结晶"
+	desc = "一种透明、寒酸、看起来像假货的结晶物质。"
 	icon_state = "meth_crystal1"
-	tastes = list("awfulness", "burning")
+	tastes = list("恶心", "灼烧")
 	force = 3
 	throwforce = 4
 	embed_type = /datum/embedding/meth
@@ -120,11 +120,11 @@
 	reagents.add_reagent(/datum/reagent/drug/methamphetamine, 10)
 
 /obj/item/food/drug/opium
-	name = "opium"
-	desc = "A little of it, taken as much as a grain of ervum is a pain-easer, and a sleep-causer, and a digester... \
-	but being drank too much it hurts, making spacemen lethargical, and it kills."
+	name = "鸦片"
+	desc = "服用少许，仅如一粒野豌豆，便可止痛、助眠、促消化……\
+	但若服用过量，则有害处，使太空人昏沉嗜睡，甚至致死。"
 	icon_state = "opium1"
-	tastes = list("amber", "a bitter vanilla")
+	tastes = list("琥珀", "苦香草")
 	food_reagents = list(
 		/datum/reagent/medicine/morphine = 10,
 		/datum/reagent/consumable/sugar = 1
@@ -133,9 +133,9 @@
 /obj/item/food/drug/opium/examine()
 	. = ..()
 	if(reagents.get_reagent_amount(/datum/reagent/medicine/morphine) >= 10)
-		. += span_notice("The opium is large and rich in fragrance; it needs no further refinement.")
+		. += span_notice("这块鸦片体积大、香气浓郁，无需继续提炼。")
 	else
-		. += span_notice("The opium is still small, and can be pressed together with more to increase its potency and richness.")
+		. += span_notice("这块鸦片还很小，可以与更多鸦片压合，提高效力和浓度。")
 
 /obj/item/food/drug/opium/Initialize(mapload) // For narcotics and black market purchases, pure and proper.
 	. = ..()
@@ -155,7 +155,7 @@
 
 		var/current = reagents.get_reagent_amount(/datum/reagent/medicine/morphine)
 		if(current >= 10)
-			to_chat(user, span_notice("This chunk can't hold any more."))
+			to_chat(user, span_notice("这块已经无法再容纳更多了。"))
 			return TRUE
 
 		var/capacity_left = 10 - current
@@ -166,11 +166,11 @@
 			if(overflow > 0)
 				reagents.trans_to(other, overflow)
 
-			to_chat(user, span_notice("You press the chunks of opium together, enriching them."))
+			to_chat(user, span_notice("你将几块鸦片压合在一起，使其更加浓缩。"))
 			if(!other.reagents.total_volume)
 				qdel(other)
 		else
-			to_chat(user, span_notice("The opium cannot be pressed together further."))
+			to_chat(user, span_notice("这些鸦片无法进一步压合。"))
 
 		return TRUE
 

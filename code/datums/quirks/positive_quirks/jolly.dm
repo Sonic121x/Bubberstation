@@ -1,11 +1,11 @@
 /datum/quirk/jolly
 	name = "Jolly"
-	desc = "You sometimes just feel happy, for no reason at all."
+	desc = "你有时会无缘无故地感到快乐。"
 	icon = FA_ICON_GRIN
 	value = 4
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_MOODLET_BASED|QUIRK_PROCESSES|QUIRK_TRAUMALIKE
-	medical_record_text = "Patient demonstrates constant euthymia irregular for environment. It's a bit much, to be honest."
-	medical_symptom_text = "Exhibits persistent feelings of happiness and elevated mood, which may lead to unrealistic optimism and risk-taking behaviors."
+	medical_record_text = "患者始终情绪愉快，与所处环境不相符。说实话，有点过头了。"
+	medical_symptom_text = "持续感到快乐、情绪高涨，可能导致不切实际的乐观和冒险行为。"
 	mail_goodies = list(/obj/item/clothing/mask/joy)
 
 /datum/quirk/jolly/process(seconds_per_tick)

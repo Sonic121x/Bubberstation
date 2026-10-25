@@ -8,7 +8,7 @@ import {
 
 import { BasicInput } from './BasicInput';
 import { OPTION_DROPDOWN_LARGE_CHAR_AMOUNT } from './constants';
-
+import { batchThreeDisplay } from '../../localization/batchThreeDisplay';
 export const FUNDAMENTAL_DATA_TYPES = {
   string: (props) => {
     const { name, value, setValue, color } = props;
@@ -93,9 +93,9 @@ export const FUNDAMENTAL_DATA_TYPES = {
       <Dropdown
         className="IntegratedCircuit__BlueBorder"
         color={'transparent'}
-        options={data}
+        options={data.map((value) => ({ value, displayText: batchThreeDisplay(value) }))}
         onSelected={setValue}
-        selected={value}
+        selected={value} displayText={batchThreeDisplay(value)}
         menuWidth={large ? '200px' : undefined}
       />
     );

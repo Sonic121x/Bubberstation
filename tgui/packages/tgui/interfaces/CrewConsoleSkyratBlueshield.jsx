@@ -5,7 +5,7 @@ import { Box, Button, Icon, Section, Table } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
-
+import { areaDisplay, recordDisplay } from '../localization/batchThreeDisplay';
 const HEALTH_COLOR_BY_LEVEL = [
   '#17d568',
   '#c4cf2d',
@@ -128,8 +128,8 @@ const CrewTableEntry = (props) => {
   return (
     <Table.Row>
       <Table.Cell bold={jobIsHead(ijob)} color={jobToColor(ijob)}>
-        {name}
-        {assignment !== undefined ? ` (${assignment})` : ''}
+        {name === 'Unknown' ? '未知' : name}
+        {assignment !== undefined ? ` (${recordDisplay(assignment, data)})` : ''}
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {is_robot ? <Icon name="wrench" color="#B7410E" size={1} /> : ''}
@@ -178,7 +178,7 @@ const CrewTableEntry = (props) => {
       </Table.Cell>
       <Table.Cell>
         {area !== undefined ? (
-          area
+          areaDisplay(area, data)
         ) : (
           <Icon name="question" color="#ffffff" size={1} />
         )}

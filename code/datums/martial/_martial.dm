@@ -1,6 +1,6 @@
 /datum/martial_art
 	/// Player readable name of the martial art
-	var/name = "Martial Art"
+	var/name = "武术"
 	/// ID of the martial art
 	var/id = ""
 	/// The streak of attacks the user has performed
@@ -19,7 +19,7 @@
 	VAR_PRIVATE/datum/weakref/current_target
 
 	/// Path to verb to display help text for this martial art.
-	var/help_verb = "Remember the Basics"
+	var/help_verb = "回顾基础招式"
 	/// If TRUE, this martial art smashes tables when performing table slams and head smashes
 	var/smashes_tables = FALSE
 	/// If TRUE, a combo meter will be displayed on the HUD for the current streak
@@ -428,11 +428,11 @@
 	var/datum/martial_art/next = GET_NEXT_MARTIAL_ART(src)
 
 	if(current.locked_to_use)
-		to_chat(src, span_warning("You can't stop practicing [current]! It's too ingrained in your muscle memory."))
+		to_chat(src, span_warning("你无法停止使用[current]！它已经深深刻进了你的肌肉记忆。"))
 		return
 
 	switch_style(current, next)
-	to_chat(src, span_notice("You stop practicing [current] and start practicing [next]."))
+	to_chat(src, span_notice("你停止使用[current]，改为使用[next]。"))
 
 /// Deactivates the current martial art and activates the next one.
 /mob/living/proc/switch_style(datum/martial_art/current_martial, datum/martial_art/next_martial)

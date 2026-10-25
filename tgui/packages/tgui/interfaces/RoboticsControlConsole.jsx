@@ -9,7 +9,7 @@ import {
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 export const RoboticsControlConsole = (props) => {
   const { act, data } = useBackend();
   const [tab, setTab] = useSharedState('tab', 1);
@@ -130,7 +130,7 @@ const Cyborgs = (props) => {
                 : 'Not Found'}
             </Box>
           </LabeledList.Item>
-          <LabeledList.Item label="Model">{cyborg.module}</LabeledList.Item>
+          <LabeledList.Item label="Model">{batchThreeDisplay(cyborg.module)}</LabeledList.Item>
           <LabeledList.Item label="Master AI">
             <Box color={cyborg.synchronization ? 'default' : 'average'}>
               {cyborg.synchronization || 'None'}

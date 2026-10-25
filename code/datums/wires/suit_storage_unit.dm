@@ -1,6 +1,6 @@
 /datum/wires/suit_storage_unit
 	holder_type = /obj/machinery/suit_storage_unit
-	proper_name = "Suit Storage Unit"
+	proper_name = "防护服储存单元"
 
 /datum/wires/suit_storage_unit/New(atom/holder)
 	wires = list(
@@ -20,8 +20,8 @@
 /datum/wires/suit_storage_unit/get_status()
 	var/obj/machinery/suit_storage_unit/SSU = holder
 	var/list/status = list()
-	status += "The UV bulb is [SSU.uv_super ? "glowing" : "dim"]."
-	status += "The service light is [SSU.safeties ? "off" : "on"]."
+	status += "紫外线灯泡[SSU.uv_super ? "发出亮光" : "十分暗淡"]。"
+	status += "维护指示灯[SSU.safeties ? "熄灭" : "亮起"]。"
 	return status
 
 /datum/wires/suit_storage_unit/on_pulse(wire)

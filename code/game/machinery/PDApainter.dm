@@ -1,7 +1,7 @@
 /// Basic machine used to paint PDAs and re-trim ID cards.
 /obj/machinery/pdapainter
-	name = "\improper Tablet & ID Painter"
-	desc = "A painting machine that can be used to paint PDAs and trim IDs. To use, simply insert the item and choose the desired preset."
+	name = "\improper 平板与 ID 卡涂装机"
+	desc = "可为 PDA 涂装、为 ID 卡设置饰边的机器。只需插入物品并选择所需预设即可。"
 	icon = 'icons/obj/machines/pda.dmi'
 	icon_state = "pdapainter"
 	base_icon_state = "pdapainter"
@@ -106,26 +106,26 @@
 
 /obj/machinery/pdapainter/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Open UI"
+		context[SCREENTIP_CONTEXT_LMB] = "打开界面"
 		if(stored_pda)
-			context[SCREENTIP_CONTEXT_RMB] = "Eject PDA"
+			context[SCREENTIP_CONTEXT_RMB] = "弹出 PDA"
 		else if(stored_id_card)
-			context[SCREENTIP_CONTEXT_RMB] = "Eject ID"
+			context[SCREENTIP_CONTEXT_RMB] = "弹出 ID 卡"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/modular_computer/pda))
-		context[SCREENTIP_CONTEXT_LMB] = "[stored_pda ? "Swap" : "Insert"] PDA"
+		context[SCREENTIP_CONTEXT_LMB] = "[stored_pda ? "替换" : "插入"] PDA"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(isidcard(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = "[stored_id_card ? "Swap" : "Insert"] ID"
+		context[SCREENTIP_CONTEXT_LMB] = "[stored_id_card ? "替换" : "插入"] ID 卡"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	switch(held_item.tool_behaviour)
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Una" : "A"]nchor"
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除固定" : "固定"]"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_WELDER)
-			context[SCREENTIP_CONTEXT_LMB] = "Repair"
+			context[SCREENTIP_CONTEXT_LMB] = "修理"
 			return CONTEXTUAL_SCREENTIP_SET
 	return NONE
 
@@ -137,10 +137,10 @@
 
 /obj/machinery/pdapainter/welder_act(mob/living/user, obj/item/tool)
 	if(!(machine_stat & BROKEN) && (atom_integrity >= max_integrity))
-		balloon_alert(user, "isn't broken!")
+		balloon_alert(user, "没有损坏！")
 		return ITEM_INTERACT_BLOCKING
 	if(!tool.tool_start_check(user, amount = 1))
-		balloon_alert(user, "not enough fuel!")
+		balloon_alert(user, "燃料不足！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.use_tool(src, user, 40, volume = 50))
@@ -148,7 +148,7 @@
 
 	set_machine_stat(machine_stat & ~BROKEN)
 	atom_integrity = max_integrity
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/pdapainter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -185,7 +185,7 @@
 
 	if(stored_pda)
 		eject_pda(user)
-		balloon_alert(user, "swapped")
+		balloon_alert(user, "已替换")
 
 	stored_pda = new_pda
 	new_pda.add_fingerprint(user)
@@ -218,9 +218,9 @@
  */
 /obj/machinery/pdapainter/proc/insert_id_card(obj/item/card/id/new_id_card, mob/living/user)
 	if(!new_id_card.trim_changeable)
-		balloon_alert(user, "rejected!")
+		balloon_alert(user, "已拒绝！")
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
-		to_chat(user, span_warning("This ID card does not appear to be compatible with the ID Painter."))
+		to_chat(user, span_warning("这张 ID 卡似乎与 ID 卡涂装机不兼容。"))
 		return FALSE
 
 	if(user && !user.transferItemToLoc(new_id_card, src, silent = FALSE))
@@ -230,7 +230,7 @@
 
 	if(stored_id_card)
 		eject_id_card(user)
-		balloon_alert(user, "swapped")
+		balloon_alert(user, "已替换")
 
 	stored_id_card = new_id_card
 	new_id_card.add_fingerprint(user)
@@ -360,7 +360,7 @@
 				if(SSid_access.apply_trim_to_card(stored_id_card, path, copy_access = FALSE))
 					return TRUE
 
-				to_chat(usr, span_warning("The trim you selected could not be added to \the [stored_id_card]. You will need a rarer ID card to imprint that trim data."))
+				to_chat(usr, span_warning("无法将所选饰边添加到[stored_id_card]。你需要更稀有的 ID 卡才能写入该饰边数据。"))
 
 			return TRUE
 		if("reset_card")
@@ -373,25 +373,25 @@
 
 /// Security departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/security
-	name = "\improper Security PDA & ID Painter"
+	name = "\improper 安保 PDA 与 ID 卡涂装机"
 	target_dept = REGION_SECURITY
 
 /// Medical departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/medbay
-	name = "\improper Medbay PDA & ID Painter"
+	name = "\improper 医疗 PDA 与 ID 卡涂装机"
 	target_dept = REGION_MEDBAY
 
 /// Science departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/research
-	name = "\improper Research PDA & ID Painter"
+	name = "\improper 科研 PDA 与 ID 卡涂装机"
 	target_dept = REGION_RESEARCH
 
 /// Engineering departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/engineering
-	name = "\improper Engineering PDA & ID Painter"
+	name = "\improper 工程 PDA 与 ID 卡涂装机"
 	target_dept = REGION_ENGINEERING
 
 /// Supply departmental variant. Limited to PDAs defined in the SSid_access.sub_department_managers_tgui data structure.
 /obj/machinery/pdapainter/supply
-	name = "\improper Supply PDA & ID Painter"
+	name = "\improper 补给 PDA 与 ID 卡涂装机"
 	target_dept = REGION_SUPPLY

@@ -1,6 +1,6 @@
 /obj/item/fake_identity_kit
-	name = "fake identity kit"
-	desc = "All of the paperwork you need to get a fresh start and a perfect alibi, plus a little digital assistance to insert you into crew records."
+	name = "假身份套件"
+	desc = "重新开始和打造完美不在场证明所需的全套文件，还附带一点数字技术支持，将你录入船员档案。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "docs_mulligan"
 	w_class = WEIGHT_CLASS_TINY
@@ -10,16 +10,16 @@
 
 /obj/item/fake_identity_kit/examine_more(mob/user)
 	. = ..()
-	. += span_info("Using this kit after exposure to Mulligan serum will create a fake identity for your new appearance.")
-	. += span_info("This will add you to various station manifests, create an Assistant-level ID card, and announce your arrival over the radio.")
+	. += span_info("使用重塑血清后再使用此套件，即可为你的新容貌创建假身份。")
+	. += span_info("这会将你添加到空间站的各类名册中，生成一张助理权限的ID卡，并通过广播宣布你的到来。")
 
 /obj/item/fake_identity_kit/attack_self(mob/living/carbon/human/user, modifiers)
 	. = ..()
 	if (!ishuman(user))
-		balloon_alert(user, "can't pass as employee!")
+		balloon_alert(user, "无法冒充员工！")
 		return
 	if (find_record(user.real_name))
-		balloon_alert(user, "records already exist!")
+		balloon_alert(user, "档案已经存在！")
 		return
 
 	user.temporarilyRemoveItemFromInventory(src)
@@ -55,9 +55,9 @@
 		), qdel_on_fail = FALSE, indirect_action = TRUE)
 	if (isnull(placed_in))
 		fake_id.forceMove(user.drop_location())
-		to_chat(user, span_warning("You drop your new ID card on the ground."))
+		to_chat(user, span_warning("你把新ID卡丢在了地上。"))
 	else
-		to_chat(user, span_notice("You quickly put your new ID card [placed_in]."))
+		to_chat(user, span_notice("你迅速把新ID卡放[placed_in]。"))
 
 	user.update_ID_card()
 
@@ -80,18 +80,18 @@
 		), qdel_on_fail = FALSE, indirect_action = TRUE)
 		if (isnull(returned_to))
 			fake_id.forceMove(user.drop_location())
-			to_chat(user, span_warning("You drop your old ID card on the ground."))
+			to_chat(user, span_warning("你把旧ID卡丢在了地上。"))
 		else
-			to_chat(user, span_notice("You stash your old ID card [returned_to]."))
+			to_chat(user, span_notice("你把旧ID卡藏[returned_to]。"))
 
 	var/obj/item/arrival_announcer/announcer = new(user.drop_location())
 	user.put_in_hands(announcer)
-	to_chat(user, span_notice("You quickly eat the leftover paperwork, leaving only the signaller used to announce your arrival on the station."))
+	to_chat(user, span_notice("你迅速吞掉剩下的文件，只留下用于宣布你抵达空间站的信号器。"))
 	qdel(src)
 
 /obj/item/arrival_announcer
-	name = "arrivals announcement signaller"
-	desc = "A radio signaller which uses a backdoor in the NT announcement system to trigger a fake announcement that you have just arrived there, then self-destructs."
+	name = "抵达播报信号器"
+	desc = "利用纳米传讯播报系统的后门发送虚假抵达通知的无线信号器，使用后会自行销毁。"
 	icon_state = "signaller"
 	inhand_icon_state = "signaler"
 	icon = 'icons/obj/devices/new_assemblies.dmi'
@@ -107,10 +107,10 @@
 	var/name = user.real_name
 	var/datum/record/manifest_data = find_record(name)
 	if (isnull(manifest_data))
-		balloon_alert(user, "no records found!")
+		balloon_alert(user, "未找到档案！")
 		return
 	var/job = manifest_data.rank
-	if (tgui_alert(user, "Announce arrival of [name] as [job]?", "Are you ready?", list("Yes", "No"), timeout = 30 SECONDS) != "Yes")
+	if (tgui_alert(user, "宣布[chinese_job_display(job)][name]抵达？", "准备好了吗？", list("是", "否"), timeout = 30 SECONDS) != "是")
 		return
 	if (QDELETED(src) || !user.can_perform_action(src, interaction_flags_click))
 		return

@@ -7,7 +7,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
-
+import { areaDisplay } from '../../localization/batchThreeDisplay';
 import { useBackend } from '../../backend';
 import {
   type RequestMessage,
@@ -15,7 +15,7 @@ import {
   type RequestsData,
   RequestType,
 } from './types';
-
+import { machineChoiceDisplay } from '../common/machineChoiceDisplay';
 export const MessageViewTab = (props) => {
   const { act, data } = useBackend<RequestsData>();
   const { messages = [] } = data;
@@ -31,7 +31,7 @@ export const MessageViewTab = (props) => {
 };
 
 const MessageDisplay = (props: { message: RequestMessage }) => {
-  const { act } = useBackend();
+  const { act, data } = useBackend<RequestsData>();
   const { message } = props;
   const append_list_keys = message.appended_list
     ? Object.keys(message.appended_list)
@@ -40,18 +40,18 @@ const MessageDisplay = (props: { message: RequestMessage }) => {
     <Stack.Item>
       <Section
         title={
-          message.request_type +
-          ' from ' +
-          message.sender_department +
-          ', ' +
+          machineChoiceDisplay(message.request_type) +
+          '，来自' +
+          machineChoiceDisplay(areaDisplay(message.sender_department, data)) +
+          '，' +
           message.received_time
         }
       >
         {message.priority === RequestPriority.HIGH && (
-          <NoticeBox>High Priority</NoticeBox>
+          <NoticeBox>高优先级</NoticeBox>
         )}
         {message.priority === RequestPriority.EXTREME && (
-          <NoticeBox danger>!!!Extreme Priority!!!</NoticeBox>
+          <NoticeBox danger>！！！极高优先级！！！</NoticeBox>
         )}
         <BlockQuote>
           {decodeHtmlEntities(message.content)}
@@ -66,18 +66,18 @@ const MessageDisplay = (props: { message: RequestMessage }) => {
           )}
         </BlockQuote>
         <LabeledList>
-          <LabeledList.Item label="Message Verified By">
-            {message.message_verified_by || 'Not Verified'}
+          <LabeledList.Item label="消息认证人">
+            {message.message_verified_by || '未认证'}
           </LabeledList.Item>
-          <LabeledList.Item label="Message Stamped By">
-            {message.message_stamped_by || 'Not Stamped'}
+          <LabeledList.Item label="消息盖章人">
+            {message.message_stamped_by || '未盖章'}
           </LabeledList.Item>
         </LabeledList>
         {message.request_type !== RequestType.ORE_UPDATE && (
           <Section>
             <Button
               icon="reply"
-              content="Quick Reply"
+              content="快速回复"
               onClick={() => {
                 act('quick_reply', {
                   reply_recipient: message.sender_department,

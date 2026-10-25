@@ -1,7 +1,7 @@
 /// Wall mounted mining weather tracker
 /obj/machinery/mining_weather_monitor
-	name = "barometric monitor"
-	desc = "A machine monitoring atmospheric data from mining environments. Provides warnings about incoming weather fronts."
+	name = "气压监测仪"
+	desc = "监测矿区环境大气数据的机器，可对即将到来的天气锋面发出预警。"
 	icon = 'icons/obj/devices/miningradio.dmi'
 	icon_state = "wallmount"
 	light_power = 1
@@ -43,8 +43,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/mining_weather_monitor, 28)
 GLOBAL_LIST_EMPTY(weather_towers)
 
 /obj/machinery/power/weather_tower
-	name = "doppler radar tower"
-	desc = "A tower that monitors atmospheric data from mining environments. Provides warnings about incoming weather fronts."
+	name = "多普勒雷达塔"
+	desc = "监测矿区环境大气数据的雷达塔，可对即将到来的天气锋面发出预警。"
 	icon = 'icons/obj/mining_zones/terrain.dmi'
 	icon_state = "radar"
 	base_icon_state = "radar"
@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(weather_towers)
 		update_appearance()
 	SSmachines.processing_early += src
 	LAZYADD(GLOB.weather_towers["[src.z]"], src)
-	AddComponent(/datum/component/gps, "Radar Tower")
+	AddComponent(/datum/component/gps, "雷达塔")
 
 /obj/machinery/power/weather_tower/Destroy()
 	LAZYREMOVE(GLOB.weather_towers["[src.z]"], src)
@@ -112,14 +112,14 @@ GLOBAL_LIST_EMPTY(weather_towers)
 	if(isnull(core))
 		name = initial(name)
 	else
-		name = "anomalous [initial(name)]"
+		name = "异常[initial(name)]"
 
 /obj/machinery/power/weather_tower/examine(mob/user)
 	. = ..()
 	if(isnull(core))
-		. += span_info("It has a slot in which you could install a weather anomaly core.")
+		. += span_info("它有一个插槽，可安装天气异常核心。")
 	else
-		. += span_info("It has \a [core] installed, unlocking weather control.")
+		. += span_info("已安装[core]，解锁了天气控制功能。")
 
 /obj/machinery/power/weather_tower/ui_interact(mob/user, datum/tgui/ui)
 	if(isnull(core))
@@ -151,7 +151,7 @@ GLOBAL_LIST_EMPTY(weather_towers)
 	for(var/datum/weather/ongoing as anything in get_active_weather_on_z())
 		data["active_weather_on_z"] += list(list(
 			"id" = REF(ongoing),
-			"name" = capitalize(ongoing.name),
+			"name" = chinese_weather_display(ongoing.name),
 			"desc" = ongoing.desc,
 		))
 
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(weather_towers)
 	for(var/datum/weather/weather_type as anything in get_summonable_weather_types())
 		summonable_weather_types += list(list(
 			"id" = weather_type,
-			"name" = capitalize(weather_type::name),
+			"name" = chinese_weather_display(weather_type::name),
 			"desc" = weather_type::desc,
 		))
 
@@ -189,20 +189,20 @@ GLOBAL_LIST_EMPTY(weather_towers)
 /obj/machinery/power/weather_tower/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/assembly/signaler/anomaly))
 		if(!isnull(core))
-			to_chat(user, span_warning("The weather core slot is already occupied."))
+			to_chat(user, span_warning("天气核心插槽已被占用。"))
 			return ITEM_INTERACT_FAILURE
 
 		if(!istype(tool, /obj/item/assembly/signaler/anomaly/weather))
-			to_chat(user, span_warning("[tool] probably won't do anything useful within [src]."))
+			to_chat(user, span_warning("[tool]放进[src]里大概起不了什么作用。"))
 			return ITEM_INTERACT_FAILURE
 
 		if(!user.transferItemToLoc(tool, src))
-			to_chat(user, span_warning("You can't seem to part ways with [tool]."))
+			to_chat(user, span_warning("你似乎无法放下[tool]。"))
 			return ITEM_INTERACT_FAILURE
 
 		core = tool
 		update_appearance()
-		to_chat(user, span_notice("You install [tool] into [src]."))
+		to_chat(user, span_notice("你将[tool]装入了[src]。"))
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
@@ -297,18 +297,18 @@ GLOBAL_LIST_EMPTY(weather_towers)
 
 	var/success = !!weather
 	if(success)
-		visible_message(span_notice("The [src] hums as it summons a [weather]."))
+		visible_message(span_notice("[src]嗡嗡作响，召唤了[chinese_weather_display(weather.name)]。"))
 		use_core_charge(charge_amount)
 		COOLDOWN_START(src, summon_weather_cd, 8 MINUTES)
 		COOLDOWN_START(src, clear_weather_cd, 4 MINUTES)
 		if(is_station)
-			notify_ghosts("Someone summoned weather on the station!", src)
+			notify_ghosts("有人在空间站上召唤了天气！", src)
 			log_game("[user ? key_name(user) : "Unknown"] summoned [weather.name] weather on the station using [src] [AREACOORD(src)].")
-			message_admins("[user ? ADMIN_LOOKUPFLW(user) : "Unknown"] summoned [weather.name] weather on the station using [src] [ADMIN_COORDJMP(src)].")
+			message_admins("[user ? ADMIN_LOOKUPFLW(user) : "未知来源"]使用[src]在空间站上召唤了[chinese_weather_display(weather.name)]，[ADMIN_COORDJMP(src)]。")
 		else
 			log_game("[user ? key_name(user) : "Unknown"] summoned [weather.name] weather using [src] [AREACOORD(src)].")
 	else
-		audible_message(span_warning("The [src] emits a frustrated buzz as nothing happens."))
+		audible_message(span_warning("[src]发出沮丧的嗡鸣声，什么也没发生。"))
 		COOLDOWN_START(src, summon_weather_cd, 1 MINUTES)
 
 	return success
@@ -320,7 +320,7 @@ GLOBAL_LIST_EMPTY(weather_towers)
 
 	core.charges -= amount
 	if(core.charges <= 0)
-		visible_message(span_boldwarning("[core] expends all of its energy and disintegrates!"))
+		visible_message(span_boldwarning("[core]耗尽了所有能量，随即瓦解！"))
 		new /obj/effect/decal/cleanable/ash/large(loc)
 		QDEL_NULL(core)
 

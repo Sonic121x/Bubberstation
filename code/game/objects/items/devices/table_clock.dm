@@ -2,8 +2,8 @@
 #define MAX_CLOCK_REPAIRS 2
 
 /obj/item/table_clock
-	name = "table clock"
-	desc = "An annoying clock that keeps you sane through tireless nights."
+	name = "座钟"
+	desc = "一只恼人的钟，在漫漫不眠之夜陪你保持清醒。"
 	icon = 'icons/obj/fluff/general.dmi'
 	icon_state = "table_clock"
 	inhand_icon_state = "table_clock"
@@ -29,11 +29,11 @@
 /obj/item/table_clock/examine(mob/user)
 	. = ..()
 	if(broken)
-		. += span_info("It appears to be currently broken. You can use it in-hand to repair it.")
+		. += span_info("它似乎已经坏了。拿在手中使用即可修理。")
 	else
-		. += span_info("The current NST (local) time is: [server_timestamp(ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))].")
+		. += span_info("当前NST（本地）时间：[server_timestamp(ic_time = TRUE, twelve_hour_clock = user.client?.prefs.read_preference(/datum/preference/toggle/twelve_hour))]。")
 		if(user.is_literate())
-			. += span_info("That means it is currently [round_timestamp()] into the shift.")
+			. += span_info("也就是说，本班次已经过了[round_timestamp()]。")
 
 /obj/item/table_clock/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
@@ -41,9 +41,9 @@
 		return
 	if(break_clock(break_sound = 'sound/effects/magic/clockwork/ark_activation.ogg'))
 		user.visible_message(
-			span_warning("[user] smashes \the [src] so hard it stops breaking!"),
-			span_bolddanger("I can't stand this stupid machine anymore! Shut up already!"),
-			span_notice("You hear repeated smashing!"),
+			span_warning("[user]狠狠砸坏了[src]，让它再也没法坏一次！"),
+			span_bolddanger("我再也受不了这台蠢机器了！快闭嘴！"),
+			span_notice("你听到连续的砸击声！"),
 		)
 
 /obj/item/table_clock/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback, force, gentle, quickstart, throw_type_path = /datum/thrownthing)
@@ -55,15 +55,15 @@
 /obj/item/table_clock/interact(mob/user)
 	. = ..()
 	if(!broken)
-		to_chat(user, span_warning("Touch the clock? And risk breaking it? Are you crazy??"))
+		to_chat(user, span_warning("碰这只钟？冒着弄坏它的风险？你疯了吗？？"))
 		return
 	if(times_broken > MAX_CLOCK_REPAIRS)
-		user.balloon_alert(user, "clock unrepairable!")
+		user.balloon_alert(user, "座钟无法修复！")
 		return
-	user.balloon_alert(user, "fixing clock...")
+	user.balloon_alert(user, "正在修理座钟……")
 	if(!do_after(user, 10 SECONDS, src))
 		return
-	user.balloon_alert(user, "clock repaired!")
+	user.balloon_alert(user, "座钟已修复！")
 	broken = FALSE
 	soundloop.start()
 	update_appearance(UPDATE_ICON)

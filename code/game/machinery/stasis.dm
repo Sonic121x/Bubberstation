@@ -1,7 +1,7 @@
 #define STASIS_TOGGLE_COOLDOWN 50
 /obj/machinery/stasis
-	name = "lifeform stasis unit"
-	desc = "A not so comfortable looking bed with some nozzles at the top and bottom. It will keep someone in stasis."
+	name = "生命体停滞装置"
+	desc = "一张看起来不太舒服的床，头尾装着一些喷嘴，能使躺在上面的人进入停滞状态。"
 	icon = 'icons/obj/machines/stasis.dmi'
 	icon_state = "stasis"
 	base_icon_state = "stasis"
@@ -44,7 +44,7 @@
 
 /obj/machinery/stasis/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to [stasis_enabled ? "turn off" : "turn on"] the machine.")
+	. += span_notice("按住 Alt 点击即可[stasis_enabled ? "关闭" : "开启"]机器。")
 
 /obj/machinery/stasis/proc/play_power_sound()
 	var/_running = stasis_running()
@@ -62,9 +62,9 @@
 	stasis_enabled = !stasis_enabled
 	stasis_can_toggle = world.time + STASIS_TOGGLE_COOLDOWN
 	playsound(src, 'sound/machines/click.ogg', 60, TRUE)
-	user.visible_message(span_notice("\The [src] [stasis_enabled ? "powers on" : "shuts down"]."), \
-				span_notice("You [stasis_enabled ? "power on" : "shut down"] \the [src]."), \
-				span_hear("You hear a nearby machine [stasis_enabled ? "power on" : "shut down"]."))
+	user.visible_message(span_notice("[src][stasis_enabled ? "启动" : "关闭"]了。"), \
+				span_notice("你[stasis_enabled ? "启动" : "关闭"]了[src]。"), \
+				span_hear("你听到附近一台机器[stasis_enabled ? "启动" : "关闭"]的声音。"))
 	play_power_sound()
 	update_appearance()
 	return CLICK_ACTION_SUCCESS

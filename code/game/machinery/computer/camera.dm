@@ -1,8 +1,8 @@
 #define DEFAULT_MAP_SIZE 15
 
 /obj/machinery/computer/security
-	name = "security camera console"
-	desc = "Used to access the various cameras on the station."
+	name = "安保监控控制台"
+	desc = "用于访问空间站的各个摄像头。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/warrant")
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
@@ -87,7 +87,7 @@
 	return data
 
 /obj/machinery/computer/security/ui_static_data()
-	var/list/data = list()
+	var/list/data = list("areaDisplay" = chinese_area_display(return_mapping = TRUE))
 	data["network"] = network
 	data["mapRef"] = cam_screen.assigned_map
 	data["cameras"] = SScameras.get_available_cameras_data(network)
@@ -189,16 +189,16 @@
 
 // SECURITY MONITORS
 /obj/machinery/computer/security/wooden_tv
-	name = "security camera monitor"
-	desc = "An old TV hooked into the station's camera network."
+	name = "安保监控显示器"
+	desc = "连接至空间站监控网络的旧电视。"
 	icon_state = MAP_SWITCH("television", "/obj/machinery/computer/security/wooden_tv")
 	icon_keyboard = null
 	icon_screen = "detective_tv"
 	pass_flags = PASSTABLE
 
 /obj/machinery/computer/security/mining
-	name = "outpost camera console"
-	desc = "Used to access the various cameras on the outpost."
+	name = "前哨站监控控制台"
+	desc = "用于访问前哨站的各个摄像头。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/security/mining")
 	icon_screen = "mining"
 	icon_keyboard = "mining_key"
@@ -206,26 +206,26 @@
 	circuit = /obj/item/circuitboard/computer/mining
 
 /obj/machinery/computer/security/research
-	name = "research camera console"
-	desc = "Used to access the various cameras in science."
+	name = "科研监控控制台"
+	desc = "用于访问科研部门的各个摄像头。"
 	network = list(CAMERANET_NETWORK_RD)
 	circuit = /obj/item/circuitboard/computer/research
 
 /obj/machinery/computer/security/hos
-	name = "\improper Head of Security's camera console"
-	desc = "A custom security console with added access to the labor camp network."
+	name = "\improper 安保主管的监控控制台"
+	desc = "额外具备劳改营网络访问权限的定制安保控制台。"
 	network = list(CAMERANET_NETWORK_SS13, CAMERANET_NETWORK_LABOR)
 	circuit = null
 
 /obj/machinery/computer/security/labor
-	name = "labor camp monitoring"
-	desc = "Used to access the various cameras on the labor camp."
+	name = "劳改营监控台"
+	desc = "用于访问劳改营的各个摄像头。"
 	network = list(CAMERANET_NETWORK_LABOR)
 	circuit = null
 
 /obj/machinery/computer/security/qm
-	name = "\improper Quartermaster's camera console"
-	desc = "A console with access to the mining, auxiliary base and vault camera networks."
+	name = "\improper 货运主管的监控控制台"
+	desc = "可访问矿区、辅助基地和金库监控网络的控制台。"
 	network = list(CAMERANET_NETWORK_MINE, CAMERANET_NETWORK_AUXBASE, CAMERANET_NETWORK_VAULT)
 	circuit = null
 

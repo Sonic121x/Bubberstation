@@ -1,14 +1,14 @@
 #define ALERT_DELAY (50 SECONDS)
 
 /obj/machinery/newscaster
-	name = "newscaster"
-	desc = "A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
+	name = "新闻终端"
+	desc = "纳米传讯授权的标准新闻处理终端，供商业空间站使用。所有对你毫无用处的新闻，一应俱全！"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "newscaster_off"
 	base_icon_state = "newscaster"
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	verb_say = "哔哔说道"
+	verb_ask = "哔哔问道"
+	verb_exclaim = "哔哔喊道"
 	armor_type = /datum/armor/machinery_newscaster
 	max_integrity = 200
 	integrity_failure = 0.25
@@ -228,8 +228,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	data["channelAuthor"] = current_channel?.author
 
 	if(!current_channel)
-		data["channelAuthor"] = "Nanotrasen Inc"
-		data["channelDesc"] = "Welcome to Newscaster Net. Interface & News networks Operational."
+		data["channelAuthor"] = "纳米传讯公司"
+		data["channelDesc"] = "欢迎使用新闻终端网络。界面与新闻网络运行正常。"
 		data["channelLocked"] = TRUE
 		data["receivingCrossSector"] = FALSE
 	else
@@ -304,7 +304,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 		if("createStory")
 			if(!current_channel)
-				balloon_alert(user, "select a channel first!")
+				balloon_alert(user, "请先选择频道！")
 				return TRUE
 			var/current_channel_id = params["current"]
 			create_story(user, channel_id = current_channel_id)
@@ -350,7 +350,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 				var/mob/living/living_user = user
 				id_card = living_user.get_idcard(hand_first = TRUE)
 			if(!(admin_access in id_card?.GetAccess()))
-				say("Clearance not found.")
+				say("未找到相应权限。")
 				return TRUE
 			var/questionable_message = params["messageID"]
 			for(var/datum/feed_message/iterated_feed_message as anything in current_channel.messages)
@@ -364,7 +364,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 				var/mob/living/living_user = user
 				id_card = living_user.get_idcard(hand_first = TRUE)
 			if(!(admin_access in id_card?.GetAccess()))
-				say("Clearance not found.")
+				say("未找到相应权限。")
 				return TRUE
 			var/questionable_message = params["messageID"]
 			for(var/datum/feed_message/iterated_feed_message in current_channel.messages)
@@ -378,7 +378,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 				var/mob/living/living_user = user
 				id_card = living_user.get_idcard(hand_first = TRUE)
 			if(!(admin_access in id_card?.GetAccess()))
-				say("Clearance not found.")
+				say("未找到相应权限。")
 				return TRUE
 			var/selected_channel_id = (params["channel"])
 			if(isnull(selected_channel_id))
@@ -420,14 +420,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = tgui_input_text(user, "Write the Criminal's Name", "Warrent Alert Handler", "John Doe", max_length = MAX_NAME_LEN, multiline = FALSE)
+			var/temp_name = tgui_input_text(user, "填写罪犯姓名", "通缉警报管理", "无名氏", max_length = MAX_NAME_LEN, multiline = FALSE)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = tgui_input_text(user, "Write the Criminal's Crimes", "Warrent Alert Handler", "Unknown", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
+			var/temp_desc = tgui_input_text(user, "填写罪犯罪行", "通缉警报管理", "未知", max_length = MAX_BROADCAST_LEN, multiline = TRUE)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -466,7 +466,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			if(current_user || newscaster_username)
 				current_user = null
 				newscaster_username = null
-				say("Account Reset.")
+				say("账户已重置。")
 				return TRUE
 
 		if("deleteRequest")
@@ -496,7 +496,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	if(!user.temporarilyRemoveItemFromInventory(tool))
 		return ITEM_INTERACT_BLOCKING
 	paper_remaining++
-	to_chat(user, span_notice("You insert [tool] into [src]! It now holds [paper_remaining] sheet\s of paper."))
+	to_chat(user, span_notice("你将[tool]放入了[src]！现在共有 [paper_remaining] 张纸。"))
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -509,31 +509,31 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		return
 	. = ITEM_INTERACT_SUCCESS
 	if(!(machine_stat & BROKEN))
-		to_chat(user, span_notice("[src] does not need repairs."))
+		to_chat(user, span_notice("[src]不需要修理。"))
 		return
 	if(!tool.tool_start_check(user, amount=1))
 		return
-	user.balloon_alert_to_viewers("started welding...", "started repairing...")
-	audible_message(span_hear("You hear welding."))
+	user.balloon_alert_to_viewers("开始焊接……", "开始修理……")
+	audible_message(span_hear("你听见焊接声。"))
 	if(!tool.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(needs_repair))))
-		user.balloon_alert_to_viewers("stopped welding!", "interrupted the repair!")
+		user.balloon_alert_to_viewers("停止焊接！", "修理已中断！")
 		return
-	user.balloon_alert_to_viewers("repaired [src]")
+	user.balloon_alert_to_viewers("修好了[src]")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 
 /obj/machinery/newscaster/wrench_act(mob/living/user, obj/item/tool)
-	to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [src]..."))
+	to_chat(user, span_notice("你开始[anchored ? "解除[src]的固定" : "固定[src]"]……"))
 	if(!tool.use_tool(src, user, 60, volume=50))
 		return
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	if((machine_stat & BROKEN))
-		to_chat(user, span_warning("The broken remains of [src] fall on the ground."))
+		to_chat(user, span_warning("[src]破碎的残骸掉到了地上。"))
 		new /obj/item/stack/sheet/iron(loc, 5)
 		new /obj/item/shard(loc)
 		new /obj/item/shard(loc)
 	else
-		to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
+		to_chat(user, span_notice("你[anchored ? "解除了[src]的固定" : "固定了[src]"]。"))
 		new /obj/item/wallframe/newscaster(loc)
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS
@@ -562,7 +562,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 /obj/machinery/newscaster/attack_paw(mob/living/user, list/modifiers)
 	if(!user.combat_mode)
-		to_chat(user, span_warning("The newscaster controls are far too complicated for your tiny brain!"))
+		to_chat(user, span_warning("新闻终端的控制对你的小脑瓜来说实在太复杂了！"))
 	else
 		take_damage(5, BRUTE, MELEE)
 
@@ -602,9 +602,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			else
 				targetcam = R.aicamera
 		else
-			to_chat(user, span_warning("You cannot interface with silicon photo uploading!"))
+			to_chat(user, span_warning("你无法使用硅基单位的照片上传接口！"))
 		if(!targetcam.stored.len)
-			to_chat(user, span_bolddanger("No images saved."))
+			to_chat(user, span_bolddanger("没有已保存的图像。"))
 			return
 		var/datum/picture/selection = targetcam.selectpicture(user)
 		if(selection)
@@ -616,7 +616,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
  */
 /obj/machinery/newscaster/proc/print_paper(mob/user)
 	if(paper_remaining <= 0)
-		balloon_alert_to_viewers("out of paper!")
+		balloon_alert_to_viewers("纸张用尽！")
 		return TRUE
 	SSblackbox.record_feedback("amount", "newspapers_printed", 1)
 	var/obj/item/newspaper/new_newspaper = new(loc)
@@ -637,13 +637,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 /obj/machinery/newscaster/proc/news_alert(channel)
 	if(channel)
 		alert = TRUE
-		say("Breaking news from [channel]!")
+		say("来自[channel]的突发新闻！")
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 75, TRUE)
 		update_appearance()
 		addtimer(CALLBACK(src, PROC_REF(remove_alert)), ALERT_DELAY, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	else
-		say("Attention! Wanted issue distributed!")
+		say("注意！通缉公告已发布！")
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 75, TRUE)
 
 /**
@@ -665,27 +665,27 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 	var/datum/feed_channel/potential_channel = GLOB.news_network.network_channels_by_name[channel_name]
 	if(potential_channel)
-		tgui_alert(user, "ERROR: Feed channel with that name already exists on the Network.", list("Okay"))
+		tgui_alert(user, "错误：网络上已存在同名新闻频道。", list("确定"))
 		return TRUE
 
 	var/list/hard_filter_result = is_ic_filtered(channel_name)
 	if(hard_filter_result)
-		tgui_alert(user, "Your channel name contains: (\"[hard_filter_result[CHAT_FILTER_INDEX_WORD]]\"), which is not allowed on this server.")
+		tgui_alert(user, "你的频道名称包含本服务器禁止使用的词语：“[hard_filter_result[CHAT_FILTER_INDEX_WORD]]”。")
 		return TRUE
 
-	var/choice = tgui_alert(user, "Please confirm feed channel creation","Network Channel Handler", list("Confirm", "Cancel"))
+	var/choice = tgui_alert(user, "请确认创建新闻频道","网络频道管理", list("确认", "取消"))
 	creating_channel = FALSE
-	if(choice != "Confirm")
+	if(choice != "确认")
 		update_static_data(user)
 		return
 
 	var/approval_time = CROSS_SECTOR_CANCEL_TIME
 	var/list/soft_filter_result = is_soft_ooc_filtered(channel_name)
 	if(soft_filter_result)
-		if(tgui_alert(user,"Your channel name contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to use it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user,"你的频道名称包含“[soft_filter_result[CHAT_FILTER_INDEX_WORD]]”。“[soft_filter_result[CHAT_FILTER_INDEX_REASON]]”。确定要使用吗？", "敏感词提醒", list("是", "否")) != "是")
 			return
-		message_admins("[ADMIN_LOOKUPFLW(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \
-			They may be using a disallowed term for a cross-station newscaster channel. Increasing delay time to reject.\n\n Channel name: \"[html_encode(channel_name)]\"")
+		message_admins("[ADMIN_LOOKUPFLW(user)]确认使用了触发软过滤的词语“[soft_filter_result[CHAT_FILTER_INDEX_WORD]]”。\
+			该用户可能在跨站新闻频道名称中使用了禁用词。已延长等待时间，以便拒绝创建。\n\n频道名称：“[html_encode(channel_name)]”")
 		log_admin_private("[key_name(user)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \
 			They may be using a disallowed term for a cross-station newscaster channel. Increasing delay time to reject.\n\n Channel name: \"[channel_name]\"")
 		approval_time = EXTENDED_CROSS_SECTOR_CANCEL_TIME
@@ -700,9 +700,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	to_chat(
 		GLOB.admins,
 		span_adminnotice( \
-			"<b color='orange'>Cross-sector channel creation (OUTGOING):</b> [ADMIN_LOOKUPFLW(user)] is about to create a cross-sector \
-			newscaster channel \"[html_encode(channel_name)]\" (will autoapprove in [DisplayTimeText(approval_time)]): \
-			<b><a href='byond://?src=[REF(src)];reject_channel_creation=1'>REJECT</a></b>"\
+			"<b color='orange'>跨星区频道创建（发出）：</b>[ADMIN_LOOKUPFLW(user)]即将创建跨星区\
+			新闻频道“[html_encode(channel_name)]”（将在[DisplayTimeText(approval_time)]后自动批准）：\
+			<b><a href='byond://?src=[REF(src)];reject_channel_creation=1'>拒绝</a></b>"\
 		)
 	)
 	channel_approval_timer = addtimer(CALLBACK(src, PROC_REF(finish_channel_creation), user, channel_locked, TRUE, approval_time), approval_time, TIMER_STOPPABLE)
@@ -720,18 +720,18 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 	if (!usr.client?.holder)
 		usr.log_message("tried to reject the creation of a cross-sector newscaster channel without being an admin.", LOG_ADMIN)
-		message_admins("[key_name(usr)] tried to reject the creation of a cross-sector newscaster channel without being an admin.")
+		message_admins("[key_name(usr)]并非管理员，却试图拒绝创建跨星区新闻频道。")
 		return
 
 	if (isnull(channel_approval_timer))
-		to_chat(usr, span_warning("It's too late!"))
+		to_chat(usr, span_warning("已经太迟了！"))
 		return
 
 	deltimer(channel_approval_timer)
 	channel_approval_timer = null
 
 	log_admin("[key_name(usr)] has cancelled the creation of a cross-sector newscaster channel.")
-	message_admins("[key_name(usr)] has cancelled the creation of a cross-sector newscaster channel.")
+	message_admins("[key_name(usr)]取消了跨星区新闻频道的创建。")
 	return TRUE
 
 /**
@@ -762,7 +762,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 			existing_authors += iterated_feed_channel.author
 	if(!newscaster_username || (newscaster_username in existing_authors))
 		creating_channel = FALSE
-		tgui_alert(user, "ERROR: User cannot be found or already has an owned feed channel.", list("Okay"))
+		tgui_alert(user, "错误：找不到用户，或用户已经拥有新闻频道。", list("确定"))
 		return TRUE
 	creating_channel = TRUE
 	return TRUE
@@ -781,7 +781,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	if(current_channel.receiving_cross_sector)
 		return
 
-	var/temp_message = tgui_input_text(user, "Write your Feed story", "Network Channel Handler", feed_channel_message, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
+	var/temp_message = tgui_input_text(user, "撰写你的新闻报道", "网络频道管理", feed_channel_message, max_length = MAX_MESSAGE_LEN, multiline = TRUE)
 	if(length(temp_message) <= 1)
 		return TRUE
 
@@ -799,15 +799,15 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
  */
 /obj/machinery/newscaster/proc/toggle_photo(mob/user)
 	if(current_image)
-		balloon_alert(user, "current photo cleared.")
+		balloon_alert(user, "当前照片已清除。")
 		current_image = null
 		return TRUE
 
 	attach_photo(user)
 	if(current_image)
-		balloon_alert(user, "photo selected.")
+		balloon_alert(user, "照片已选择。")
 	else
-		balloon_alert(user, "no photo identified.")
+		balloon_alert(user, "未识别到照片。")
 
 /obj/machinery/newscaster/proc/clear_wanted_issue(mob/user)
 	var/obj/item/card/id/id_card
@@ -815,7 +815,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		var/mob/living/living_user = user
 		id_card = living_user.get_idcard(hand_first = TRUE)
 	if(!(security_access in id_card?.GetAccess()))
-		say("Clearance not found.")
+		say("未找到相应权限。")
 		return TRUE
 	GLOB.news_network.wanted_issue.active = FALSE
 	return TRUE
@@ -830,7 +830,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 	if(active_request?.owner != current_user.account_holder)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
-	say("Deleted current request.")
+	say("已删除当前请求。")
 	GLOB.request_list.Remove(active_request)
 
 /**
@@ -843,12 +843,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		return TRUE
 	for(var/datum/station_request/iterated_station_request as anything in GLOB.request_list)
 		if(iterated_station_request.req_number == current_user.account_id)
-			say("Account already has active bounty.")
+			say("账户已有生效的悬赏。")
 			return TRUE
 	var/datum/station_request/curr_request = new /datum/station_request(current_user.account_holder, bounty_value,bounty_text,current_user.account_id, current_user)
 	GLOB.request_list += list(curr_request)
 	for(var/obj/iterated_bounty_board as anything in GLOB.allbountyboards)
-		iterated_bounty_board.say("New bounty added!")
+		iterated_bounty_board.say("已添加新悬赏！")
 		playsound(iterated_bounty_board.loc, 'sound/effects/cashregister.ogg', 30, TRUE)
 /**
  * This sorts through the current list of bounties, and confirms that the intended request found is correct.
@@ -856,7 +856,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
  */
 /obj/machinery/newscaster/proc/apply_to_bounty()
 	if(!current_user)
-		say("No ID detected.")
+		say("未检测到 ID 卡。")
 		return TRUE
 	if(current_user.account_holder == active_request.owner)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 20, TRUE)
@@ -877,13 +877,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 		playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		return TRUE
 	payment_target.transfer_money(current_user, active_request.value, "Bounty Request")
-	say("Paid out [active_request.value] [MONEY_NAME].")
+	say("已支付 [active_request.value] [MONEY_NAME]。")
 	GLOB.request_list.Remove(active_request)
 	qdel(active_request)
 
 /obj/item/wallframe/newscaster
-	name = "newscaster frame"
-	desc = "Used to build newscasters, just secure to the wall."
+	name = "新闻终端框架"
+	desc = "用于建造新闻终端，固定到墙上即可。"
 	icon_state = "newscaster_assembly"
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 7)
 	result_path = /obj/machinery/newscaster

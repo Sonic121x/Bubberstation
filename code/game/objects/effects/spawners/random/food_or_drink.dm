@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/food_or_drink
 	name = "food or drink loot spawner"
-	desc = "Nom nom nom"
+	desc = "啊呜啊呜。"
 
 /obj/effect/spawner/random/food_or_drink/donkpockets
 	name = "donk pocket box spawner"

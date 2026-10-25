@@ -6,7 +6,7 @@
 	var/job_title = mob.mind?.assigned_role.title || "Unknown"
 
 	var/station_name = station_name()
-	var/area_name = get_area_name(mob, format_text = TRUE) || "Unknown Location"
+	var/area_name = chinese_area_display(get_area_name(mob, format_text = TRUE)) || "未知位置"
 	var/time_date = server_timestamp(format = "YYYY-MM-DD hh:mm:ss", ic_time = TRUE)
 
 	var/text = {"

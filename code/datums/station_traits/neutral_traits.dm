@@ -1,24 +1,24 @@
 ///This station traits gives 5 bananium sheets to the clown (and every dead clown out there in deep space or lavaland).
 /datum/station_trait/bananium_shipment
-	name = "Bananium Shipment"
+	name = "香蕉矿货运"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
-	report_message = "Rumors has it that the clown planet has been sending support packages to clowns in this system."
+	report_message = "据传，小丑星球一直在向本星系的小丑发送援助包裹。"
 	trait_to_give = STATION_TRAIT_BANANIUM_SHIPMENTS
 
 /datum/station_trait/bananium_shipment/get_pulsar_message()
-	var/advisory_string = "Advisory Level: <b>Clown Planet</b></center><BR>"
-	advisory_string += "Your sector's advisory level is Clown Planet! Our bike horns have picked up on a large bananium stash. Clowns show a large influx of clowns on your station. We highly advise you to slip any threats to keep Honkotrasen assets within the Banana Sector. The Department of Intelligence advises defending chemistry from any clowns that are trying to make baldium or space lube."
+	var/advisory_string = "预警等级：<b>小丑星球</b></center><BR>"
+	advisory_string += "你所在星区的预警等级为小丑星球！我们的自行车喇叭侦测到了大量香蕉矿。小丑数据显示，大批小丑正涌入你站。强烈建议滑倒一切威胁，以保全香蕉星区内的滑稽传讯资产。情报部门建议守住化学室，防止小丑制造脱发剂或太空润滑油。"
 	return advisory_string
 
 /datum/station_trait/unnatural_atmosphere
-	name = "Unnatural atmospherical properties"
+	name = "异常大气性质"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "System's local planet has irregular atmospherical properties."
+	report_message = "本星系的行星大气性质异常。"
 	trait_to_give = STATION_TRAIT_UNNATURAL_ATMOSPHERE
 
 	// This station trait modifies the atmosphere, which is too far past the time admins are able to revert it
@@ -26,31 +26,31 @@
 
 /// Upgrades pun-pun into a big ass gorrilla.
 /datum/station_trait/pun_pun_gym_day
-	name = "Pun Pun Gym Day"
+	name = "潘潘健身日"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 1
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "Following a clerical error in our primate requisition form, your bar's simian has been upgraded to a bigger primate. We have elected not to correct this."
+	report_message = "由于灵长类申领表出现文书错误，你站酒吧的猴子被升级成了更大的灵长类动物。我们决定不予纠正。"
 	trait_to_give = STATION_TRAIT_PUN_PUN_GYM_DAY
 	blacklist = list(/datum/station_trait/job/pun_pun) //We should make these two work together later, itd be funny.
 
 
 /datum/station_trait/spider_infestation
-	name = "Spider Infestation"
+	name = "蜘蛛泛滥"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
-	report_message = "We have introduced a natural countermeasure to reduce the number of rodents on board your station."
+	report_message = "我们引入了天然防治手段，以减少你站的啮齿动物数量。"
 	trait_to_give = STATION_TRAIT_SPIDER_INFESTATION
 
 /datum/station_trait/unique_ai
-	name = "Unique AI"
+	name = "独特 AI"
 	trait_type = STATION_TRAIT_NEUTRAL
 	trait_flags = parent_type::trait_flags | STATION_TRAIT_REQUIRES_AI
 	weight = 5
 	show_in_report = TRUE
-	report_message = "For experimental purposes, this station AI might show divergence from default lawset. Do not meddle with this experiment, we've removed \
-		access to your set of alternative upload modules because we know you're already thinking about meddling with this experiment."
+	report_message = "出于实验目的，本站 AI 的法则集可能与默认设置不同。请勿干涉实验，我们已移除\
+		你们对备用上传模块的访问权限，因为我们知道你们已经在打干涉实验的主意了。"
 	trait_to_give = STATION_TRAIT_UNIQUE_AI
 
 /datum/station_trait/unique_ai/on_round_start()
@@ -59,12 +59,12 @@
 		ai.show_laws()
 
 /datum/station_trait/ian_adventure
-	name = "Ian's Adventure"
+	name = "伊恩的冒险"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = FALSE
 	cost = STATION_TRAIT_COST_LOW
-	report_message = "Ian has gone exploring somewhere in the station."
+	report_message = "伊恩去空间站里的某处探险了。"
 
 /datum/station_trait/ian_adventure/on_round_start()
 	for(var/mob/living/basic/pet/dog/corgi/dog in GLOB.mob_list)
@@ -119,20 +119,20 @@
 		qdel(old_dog)
 
 /datum/station_trait/glitched_pdas
-	name = "PDA glitch"
+	name = "PDA 故障"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 5
 	show_in_report = TRUE
 	cost = STATION_TRAIT_COST_MINIMAL
-	report_message = "Something seems to be wrong with the PDAs issued to you all this shift. Nothing too bad though."
+	report_message = "本班次配发的 PDA 似乎出了点问题。不过没什么大碍。"
 	trait_to_give = STATION_TRAIT_PDA_GLITCHED
 
 /datum/station_trait/announcement_intern
-	name = "Announcement Intern"
+	name = "广播实习生"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 1
 	show_in_report = TRUE
-	report_message = "Please be nice to him."
+	report_message = "请对他友善一点。"
 	blacklist = list(/datum/station_trait/announcement_medbot, /datum/station_trait/birthday)
 
 /datum/station_trait/announcement_intern/New()
@@ -140,16 +140,16 @@
 	SSstation.announcer = /datum/centcom_announcer/intern
 
 /datum/station_trait/announcement_intern/get_pulsar_message()
-	var/advisory_string = "Advisory Level: <b>(TITLE HERE)</b></center><BR>"
-	advisory_string += "(Copy/Paste the summary provided by the Threat Intelligence Office in this field. You shouldn't have any trouble with this just make sure to replace this message before hitting the send button. Also, make sure there's coffee ready for the meeting at 06:00 when you're done.)"
+	var/advisory_string = "预警等级：<b>（在此填入标题）</b></center><BR>"
+	advisory_string += "（将威胁情报办公室提供的概要复制粘贴到此处。这应该没什么难度，只要记得按发送键前替换掉这条消息。另外，做完后记得为 06:00 的会议准备好咖啡。）"
 	return advisory_string
 
 /datum/station_trait/announcement_medbot
-	name = "Announcement \"System\""
+	name = "广播“系统”"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 1
 	show_in_report = TRUE
-	report_message = "Our announcement system is under scheduled maintanance at the moment. Thankfully, we have a backup."
+	report_message = "广播系统目前正在进行计划维护。幸好我们还有备用方案。"
 	blacklist = list(/datum/station_trait/announcement_intern, /datum/station_trait/birthday)
 
 /datum/station_trait/announcement_medbot/New()
@@ -157,12 +157,12 @@
 	SSstation.announcer = /datum/centcom_announcer/medbot
 
 /datum/station_trait/colored_assistants
-	name = "Colored Assistants"
+	name = "彩衣助手"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 10
 	show_in_report = TRUE
 	cost = STATION_TRAIT_COST_MINIMAL
-	report_message = "Due to a shortage in standard issue jumpsuits, we have provided your assistants with one of our backup supplies."
+	report_message = "由于制式连身服短缺，我们为你站助手配发了一批备用服装。"
 	blacklist = list(/datum/station_trait/assistant_gimmicks)
 
 /datum/station_trait/colored_assistants/New()
@@ -172,11 +172,11 @@
 	GLOB.colored_assistant = new new_colored_assistant_type
 
 /datum/station_trait/birthday
-	name = "Employee Birthday"
+	name = "员工生日"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 2
 	show_in_report = TRUE
-	report_message = "We here at Nanotrasen would all like to wish Employee Name a very happy birthday"
+	report_message = "纳米传讯全体同仁祝员工姓名生日快乐！"
 	trait_to_give = STATION_TRAIT_BIRTHDAY
 	blacklist = list(/datum/station_trait/announcement_intern, /datum/station_trait/announcement_medbot) //Overiding the annoucer hides the birthday person in the annoucement message.
 	///Variable that stores a reference to the person selected to have their birthday celebrated.
@@ -199,7 +199,7 @@
 	. = ..()
 	if(birthday_override_ckey)
 		if(!check_valid_override())
-			message_admins("Attempted to make [birthday_override_ckey] the birthday person but they are not a valid station role. A random birthday person has be selected instead.")
+			message_admins("尝试将[birthday_override_ckey]设为寿星，但其并非有效的空间站角色。已改为随机选择寿星。")
 
 	if(!birthday_person)
 		var/list/birthday_options = list()
@@ -228,8 +228,8 @@
 
 
 /datum/station_trait/birthday/proc/announce_birthday()
-	report_message = "We here at Nanotrasen would all like to wish [birthday_person ? birthday_person_name : "Employee Name"] a very happy birthday."
-	priority_announce("Happy birthday to [birthday_person ? birthday_person_name : "Employee Name"]! Nanotrasen wishes you a very happy [birthday_person ? thtotext(birthday_person.age + 1) : "255th"] birthday.")
+	report_message = "纳米传讯全体同仁祝[birthday_person ? birthday_person_name : "员工姓名"]生日快乐。"
+	priority_announce("祝[birthday_person ? birthday_person_name : "员工姓名"]生日快乐！纳米传讯祝你[birthday_person ? birthday_person.age + 1 : "255"]岁生日快乐。")
 	if(birthday_person)
 		playsound(birthday_person, 'sound/items/party_horn.ogg', 50)
 		birthday_person.add_mood_event("birthday", /datum/mood_event/birthday)
@@ -266,19 +266,19 @@
 			spawned_mob.equip_to_storage(birthday_invite, ITEM_SLOT_BACK, indirect_action = TRUE) //Just incase someone spawns with both hands full.
 
 /obj/item/birthday_invite
-	name = "birthday invitation"
-	desc = "A card stating that it's someone's birthday today."
+	name = "生日邀请函"
+	desc = "一张写着今天是某人生日的卡片。"
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/birthday_invite/proc/setup_card(birthday_name)
-	desc = "A card stating that its [birthday_name]'s birthday today."
+	desc = "一张写着今天是[birthday_name]生日的卡片。"
 	icon_state = "paperslip_words"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 
 /obj/item/clothing/head/costume/party
-	name = "party hat"
-	desc = "A crappy paper hat that you are REQUIRED to wear."
+	name = "派对帽"
+	desc = "一顶你必须戴上的劣质纸帽。"
 	icon_state = "party_hat"
 	greyscale_config =  /datum/greyscale_config/party_hat
 	greyscale_config_worn = /datum/greyscale_config/party_hat/worn
@@ -298,18 +298,18 @@
 	return ..()
 
 /obj/item/clothing/head/costume/party/festive
-	name = "festive paper hat"
+	name = "节日纸帽"
 	icon_state = "xmashat_grey"
 	greyscale_config = /datum/greyscale_config/festive_hat
 	greyscale_config_worn = /datum/greyscale_config/festive_hat/worn
 
 /datum/station_trait/scryers
-	name = "Scryers"
+	name = "占卜通讯器"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 2
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "Nanotrasen has chosen your station for an experiment - everyone has free scryers! Use these to talk to other people easily and privately."
+	report_message = "纳米传讯选中了你站进行实验——人人免费配发占卜通讯器！用它轻松、私密地与他人交谈。"
 
 /datum/station_trait/scryers/New()
 	. = ..()
@@ -335,12 +335,12 @@
 	spawned.equip_to_slot_or_del(new_scryer, ITEM_SLOT_NECK, initial = FALSE)
 
 /datum/station_trait/wallets
-	name = "Wallets!"
+	name = "钱包！"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = TRUE
 	weight = 5
 	cost = STATION_TRAIT_COST_MINIMAL
-	report_message = "It has become temporarily fashionable to use a wallet, so everyone on the station has been issued one."
+	report_message = "使用钱包暂时成了潮流，因此站内每个人都获发了一个。"
 
 /datum/station_trait/wallets/New()
 	. = ..()
@@ -376,21 +376,21 @@
 
 /// Tells the area map generator to ADD MORE TREEEES
 /datum/station_trait/forested
-	name = "Forested"
+	name = "林木茂盛"
 	trait_type = STATION_TRAIT_NEUTRAL
 	trait_to_give = STATION_TRAIT_FORESTED
 	trait_flags = STATION_TRAIT_PLANETARY
 	weight = 10
 	show_in_report = TRUE
-	report_message = "There sure are a lot of trees out there."
+	report_message = "外面的树可真多。"
 
 /datum/station_trait/linked_closets
-	name = "Closet Anomaly"
+	name = "储物柜异常"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = TRUE
 	weight = 1
-	report_message = "We've reports of loose bluespace streams affecting your station's lockers and closets. \
-		You might lose some of your belongings... or gain some new ones!"
+	report_message = "据报告，游离的蓝空间流正在影响你站的储物柜。\
+		你可能会丢失一些物品……也可能得到新的！"
 
 /datum/station_trait/linked_closets/on_round_start()
 	. = ..()
@@ -414,7 +414,7 @@
 
 /// A trait that lets players choose whether they want pro-skub or anti-skub (or neither), and receive the appropriate equipment.
 /datum/station_trait/skub
-	name = "The Great Skub Contention"
+	name = "斯库布大论战"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = FALSE
 	weight = 2
@@ -513,9 +513,9 @@
 
 /// Crew don't ever spawn as enemies of the station. Obsesseds, blob infection, space changelings etc can still happen though
 /datum/station_trait/background_checks
-	name = "Station-Wide Background Checks"
-	report_message = "We replaced the intern doing your crew's background checks with a trained screener for this shift! \
-		That said, our enemies may just find another way to infiltrate the station, so be careful."
+	name = "全站背景审查"
+	report_message = "本班次，我们用一名受过训练的审查员，替换了负责船员背景审查的实习生！\
+		不过，敌人可能会另寻途径潜入空间站，所以仍需小心。"
 	trait_type = STATION_TRAIT_NEUTRAL
 	weight = 1
 	show_in_report = TRUE
@@ -582,8 +582,8 @@
 */// BUBBER EDIT REMOVAL END
 /// We're pulling a Jim Kramer with this one boys
 /datum/station_trait/gmm_spotlight
-	name = "GMM Economic Spotlight"
-	report_message = "This shift, the Galactic Mineral Market is doing a showcase on your crew's affulence! Every paycheck, the station newscasters will alert the crew who has the most credits."
+	name = "银河矿产市场财富聚焦"
+	report_message = "本班次，银河矿产市场将展示船员们的财富！每次发薪时，空间站新闻终端都会公布谁拥有最多信用点。"
 	trait_type = STATION_TRAIT_NEUTRAL
 	trait_to_give = STATION_TRAIT_ECONOMY_ALERTS
 	weight = 2

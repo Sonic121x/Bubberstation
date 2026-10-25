@@ -1,6 +1,6 @@
 import type { BooleanLike } from 'tgui-core/react';
-
-export type MedicalRecordData = {
+import type { BatchDisplayData } from '../../localization/batchThreeDisplay';
+export type MedicalRecordData = BatchDisplayData & {
   assigned_view: string;
   authenticated: BooleanLike;
   station_z: BooleanLike;

@@ -1,7 +1,7 @@
 /obj/item/lipstick
 	gender = PLURAL
-	name = "red lipstick"
-	desc = "A generic brand of lipstick."
+	name = "红色口红"
+	desc = "一支普通牌子的口红。"
 	icon =  'modular_skyrat/modules/salon/icons/items.dmi' //SKYRAT EDIT CHANGE - ORIGINAL: icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "lipstick"
 	base_icon_state = "lipstick"
@@ -30,7 +30,7 @@
 
 /obj/item/lipstick/examine(mob/user)
 	. = ..()
-	. += "Alt-click to change the style."
+	. += "按住 Alt 点击可更改涂抹样式。"
 
 /obj/item/lipstick/update_icon_state()
 	icon_state = "[base_icon_state][open ? "_uncap" : null]"
@@ -51,20 +51,20 @@
 
 /obj/item/lipstick/proc/display_radial_menu(mob/living/carbon/human/user)
 	var/style_options = list(
-		UPPER_LIP = icon('icons/hud/radial.dmi', UPPER_LIP),
-		MIDDLE_LIP = icon('icons/hud/radial.dmi', MIDDLE_LIP),
-		LOWER_LIP = icon('icons/hud/radial.dmi', LOWER_LIP),
+		"上唇" = icon('icons/hud/radial.dmi', UPPER_LIP),
+		"双唇" = icon('icons/hud/radial.dmi', MIDDLE_LIP),
+		"下唇" = icon('icons/hud/radial.dmi', LOWER_LIP),
 	)
 	var/pick = show_radial_menu(user, src, style_options, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!pick)
 		return TRUE
 
 	switch(pick)
-		if(MIDDLE_LIP)
+		if("双唇")
 			style = "lipstick"
-		if(LOWER_LIP)
+		if("下唇")
 			style = "lipstick_lower"
-		if(UPPER_LIP)
+		if("上唇")
 			style = "lipstick_upper"
 	return TRUE
 
@@ -76,38 +76,38 @@
 	return TRUE
 
 /obj/item/lipstick/purple
-	name = "purple lipstick"
+	name = "紫色口红"
 	lipstick_color = COLOR_PURPLE
 
 /obj/item/lipstick/jade
-	name = "jade lipstick"
+	name = "翡翠色口红"
 	lipstick_color = COLOR_JADE
 
 /obj/item/lipstick/blue
-	name = "blue lipstick"
+	name = "蓝色口红"
 	lipstick_color = COLOR_BLUE
 
 /obj/item/lipstick/green
-	name = "green lipstick"
+	name = "绿色口红"
 	lipstick_color = COLOR_GREEN
 
 /obj/item/lipstick/white
-	name = "white lipstick"
+	name = "白色口红"
 	lipstick_color = COLOR_WHITE
 
 /obj/item/lipstick/black
-	name = "black lipstick"
+	name = "黑色口红"
 	lipstick_color = COLOR_BLACK
 
 /obj/item/lipstick/black/death
-	name = "\improper Kiss of Death"
-	desc = "An incredibly potent tube of lipstick made from the venom of the dreaded Yellow Spotted Space Lizard, as deadly as it is chic. Try not to smear it!"
+	name = "\improper 死亡之吻"
+	desc = "一支用可怕的黄斑太空蜥蜴毒液制成的剧毒口红，时髦与致命并存。尽量别涂花了！"
 	lipstick_trait = TRAIT_KISS_OF_DEATH
 	random_spawn = FALSE
 
 /obj/item/lipstick/syndie
-	name = "syndie lipstick"
-	desc = "Syndicate branded lipstick with a killer dose of kisses. Observe safety regulations!"
+	name = "辛迪加口红"
+	desc = "辛迪加牌口红，带来致命之吻。请遵守安全规定！"
 	icon_state = "slipstick"
 	base_icon_state = "slipstick"
 	lipstick_color = COLOR_SYNDIE_RED
@@ -115,7 +115,7 @@
 	random_spawn = FALSE
 
 /obj/item/lipstick/random
-	name = "lipstick"
+	name = "口红"
 	icon_state = "random_lipstick"
 
 /obj/item/lipstick/random/Initialize(mapload)
@@ -133,7 +133,7 @@
 	update_appearance()
 
 /obj/item/lipstick/attack_self(mob/user)
-	to_chat(user, span_notice("You twist [src] [open ? "closed" : "open"]."))
+	to_chat(user, span_notice("你旋[open ? "关" : "开"]了[src]。"))
 	open = !open
 	update_appearance(UPDATE_ICON)
 
@@ -142,29 +142,29 @@
 		return
 
 	if(!ishuman(M))
-		to_chat(user, span_warning("Where are the lips on that?"))
+		to_chat(user, span_warning("它的嘴唇在哪儿？"))
 		return
 
 	var/mob/living/carbon/human/target = M
 	if(target.is_mouth_covered())
-		to_chat(user, span_warning("Remove [ target == user ? "your" : "[target.p_their()]" ] mask!"))
+		to_chat(user, span_warning("先摘下[ target == user ? "你的" : "[target]的" ]面罩！"))
 		return
 	if(target.lip_style) //if they already have lipstick on
-		to_chat(user, span_warning("You need to wipe off the old lipstick first!"))
+		to_chat(user, span_warning("你需要先擦掉原来的口红！"))
 		return
 
 	if(target == user)
-		user.visible_message(span_notice("[user] does [user.p_their()] lips with \the [src]."), \
-			span_notice("You take a moment to apply \the [src]. Perfect!"))
+		user.visible_message(span_notice("[user]给自己涂上了[src]。"), \
+			span_notice("你花了点时间涂上[src]。完美！"))
 		target.update_lips(style, lipstick_color, lipstick_trait)
 		return
 
-	user.visible_message(span_warning("[user] begins to do [target]'s lips with \the [src]."), \
-		span_notice("You begin to apply \the [src] on [target]'s lips..."))
+	user.visible_message(span_warning("[user]开始给[target]涂[src]。"), \
+		span_notice("你开始往[target]的嘴唇上涂[src]……"))
 	if(!do_after(user, 2 SECONDS, target = target))
 		return
-	user.visible_message(span_notice("[user] does [target]'s lips with \the [src]."), \
-		span_notice("You apply \the [src] on [target]'s lips."))
+	user.visible_message(span_notice("[user]给[target]涂上了[src]。"), \
+		span_notice("你给[target]的嘴唇涂上了[src]。"))
 	target.update_lips(style, lipstick_color, lipstick_trait)
 
 //you can wipe off lipstick with paper!
@@ -174,20 +174,20 @@
 
 	var/mob/living/carbon/human/target = M
 	if(target == user)
-		to_chat(user, span_notice("You wipe off the lipstick with [src]."))
+		to_chat(user, span_notice("你用[src]擦掉了口红。"))
 		target.update_lips(null)
 		return
-	user.visible_message(span_warning("[user] begins to wipe [target]'s lipstick off with \the [src]."), \
-		span_notice("You begin to wipe off [target]'s lipstick..."))
+	user.visible_message(span_warning("[user]开始用[src]擦掉[target]的口红。"), \
+		span_notice("你开始擦掉[target]的口红……"))
 	if(!do_after(user, 1 SECONDS, target = target))
 		return
-	user.visible_message(span_notice("[user] wipes [target]'s lipstick off with \the [src]."), \
-		span_notice("You wipe off [target]'s lipstick."))
+	user.visible_message(span_notice("[user]用[src]擦掉了[target]的口红。"), \
+		span_notice("你擦掉了[target]的口红。"))
 	target.update_lips(null)
 
 /obj/item/razor
-	name = "electric razor"
-	desc = "The latest and greatest power razor born from the science of shaving."
+	name = "电动剃须刀"
+	desc = "剃须科学孕育出的最新、最出色的电动剃须刀。"
 	icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "razor"
 	inhand_icon_state = "razor"
@@ -340,8 +340,8 @@
 */
 
 /obj/item/razor/surgery
-	name = "surgical razor"
-	desc = "A medical grade razor. Its precision blades provide a clean shave for surgical preparation."
+	name = "手术剃毛刀"
+	desc = "一把医用剃毛刀，精密刀片可在术前准备时剃净毛发。"
 	icon = 'icons/obj/cosmetic.dmi'
 	icon_state = "medrazor"
 

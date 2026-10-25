@@ -6,7 +6,7 @@ type Props = {
   color?: string;
   field: string;
   target_ref: string;
-  text: string;
+  text: string; displayText?: string;
 };
 
 /**
@@ -21,7 +21,7 @@ type Props = {
  *
  */
 export const EditableText = (props: Props) => {
-  const { color, field, target_ref, text } = props;
+  const { color, field, target_ref, text, displayText } = props;
   if (!field) return;
 
   const { act } = useBackend();
@@ -54,7 +54,7 @@ export const EditableText = (props: Props) => {
           }}
           onClick={() => setEditing(true)}
         >
-          {!text ? '(none)' : text}
+          {!text ? '(none)' : (displayText ?? text)}
         </Box>
       </Stack.Item>
       <Stack.Item>

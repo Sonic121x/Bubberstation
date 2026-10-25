@@ -1,5 +1,5 @@
 /datum/wires/atmosshieldgen
-	proper_name = "Atmos Shield Generator"
+	proper_name = "气密护盾发生器"
 	randomize = FALSE
 	holder_type = /obj/machinery/atmos_shield_gen
 

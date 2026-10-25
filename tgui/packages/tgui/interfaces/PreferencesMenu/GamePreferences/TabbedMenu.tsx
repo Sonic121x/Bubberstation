@@ -1,6 +1,6 @@
 import { type ComponentProps, type ReactNode, useRef } from 'react';
 import { Button, type Flex, Input, Section, Stack } from 'tgui-core/components';
-
+import { batchThreeDisplay } from '../../../localization/batchThreeDisplay';
 type TabbedMenuProps = {
   categoryEntries: [string, ReactNode[]][];
   contentProps?: ComponentProps<typeof Flex>;
@@ -37,7 +37,7 @@ export function TabbedMenu(props: TabbedMenuProps) {
                   currentSection.scrollTop = offsetTop;
                 }}
               >
-                {category}
+                {batchThreeDisplay(category)}
               </Button>
             </Stack.Item>
           ))}
@@ -73,7 +73,7 @@ export function TabbedMenu(props: TabbedMenuProps) {
                   categoryRefs.current[category] = ref;
                 }}
               >
-                <Section fill title={category}>
+                <Section fill title={batchThreeDisplay(category)}>
                   {children}
                 </Section>
               </div>

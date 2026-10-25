@@ -10,7 +10,7 @@ Simple datum which is instanced once per type and is used for every object of sa
 	/// What the material is referred to as IC.
 	var/name = "material"
 	/// A short description of the material. Not used anywhere, yet...
-	var/desc = "its..stuff."
+	var/desc = "这是……某种材料。"
 	/// What the material is indexed by in the SSmaterials.materials list. Defaults to the type of the material.
 	var/id = null
 

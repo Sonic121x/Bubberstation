@@ -3,77 +3,77 @@
 	var/phrase_sound = null
 
 /datum/hailer_phrase/emag
-	phrase_text = "FUCK YOUR CUNT YOU SHIT EATING COCKSTORM AND EAT A DONG FUCKING ASS RAMMING SHIT FUCK EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS OF FUCK AND POO AND SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FUCK ASS WANKER FROM THE DEPTHS OF SHIT."
+	phrase_text = "操你妈的烂逼，你这吃屎的鸡巴风暴！给老子吞根鸡巴，操烂你的屁眼，把鸡巴塞满你那张欠操的脸，再拉出一堆狗屎一样的堕胎烂货！屎都塞进你屁眼里，你这从粪坑深处爬出来的鸡巴屎猴、欠操的烂屁股、只会打飞机的废物！"
 	phrase_sound = "emag"
 
 /datum/hailer_phrase/halt
-	phrase_text = "HALT! HALT! HALT!"
+	phrase_text = "站住！站住！站住！"
 	phrase_sound = "halt"
 
 /datum/hailer_phrase/bobby
-	phrase_text = "Stop in the name of the Law."
+	phrase_text = "以法律的名义，站住。"
 	phrase_sound = "bobby"
 
 /datum/hailer_phrase/compliance
-	phrase_text = "Compliance is in your best interest."
+	phrase_text = "配合执法对你最有利。"
 	phrase_sound = "compliance"
 
 /datum/hailer_phrase/justice
-	phrase_text = "Prepare for justice!"
+	phrase_text = "准备接受正义的制裁！"
 	phrase_sound = "justice"
 
 /datum/hailer_phrase/running
-	phrase_text = "Running will only increase your sentence."
+	phrase_text = "逃跑只会加重你的刑期。"
 	phrase_sound = "running"
 
 /datum/hailer_phrase/dontmove
-	phrase_text = "Don't move, Creep!"
+	phrase_text = "别动，混账！"
 	phrase_sound = "dontmove"
 
 /datum/hailer_phrase/floor
-	phrase_text = "Down on the floor, Creep!"
+	phrase_text = "趴在地上，混账！"
 	phrase_sound = "floor"
 
 /datum/hailer_phrase/robocop
-	phrase_text = "Dead or alive you're coming with me."
+	phrase_text = "不论死活，你都得跟我走。"
 	phrase_sound = "robocop"
 
 /datum/hailer_phrase/god
-	phrase_text = "God made today for the crooks we could not catch yesterday."
+	phrase_text = "上帝创造今天，就是为了抓住那些昨天漏网的罪犯。"
 	phrase_sound = "god"
 
 /datum/hailer_phrase/freeze
-	phrase_text = "Freeze, Scum Bag!"
+	phrase_text = "不许动，人渣！"
 	phrase_sound = "freeze"
 
 /datum/hailer_phrase/imperial
-	phrase_text = "Stop right there, criminal scum!"
+	phrase_text = "站在那儿别动，犯罪人渣！"
 	phrase_sound = "imperial"
 
 /datum/hailer_phrase/bash
-	phrase_text = "Stop or I'll bash you."
+	phrase_text = "站住，否则我就揍你。"
 	phrase_sound = "bash"
 
 /datum/hailer_phrase/harry
-	phrase_text = "Go ahead, make my day."
+	phrase_text = "来吧，让我痛快一回。"
 	phrase_sound = "harry"
 
 /datum/hailer_phrase/asshole
-	phrase_text = "Stop breaking the law, ass hole."
+	phrase_text = "别再犯法了，混蛋。"
 	phrase_sound = "asshole"
 
 /datum/hailer_phrase/stfu
-	phrase_text = "You have the right to shut the fuck up."
+	phrase_text = "你有权闭上你那张臭嘴。"
 	phrase_sound = "stfu"
 
 /datum/hailer_phrase/shutup
-	phrase_text = "Shut up crime!"
+	phrase_text = "闭嘴吧，罪恶！"
 	phrase_sound = "shutup"
 
 /datum/hailer_phrase/super
-	phrase_text = "Face the wrath of the golden bolt."
+	phrase_text = "承受金色闪电的怒火吧。"
 	phrase_sound = "super"
 
 /datum/hailer_phrase/dredd
-	phrase_text = "I am, the LAW!"
+	phrase_text = "我，就是法律！"
 	phrase_sound = "dredd"

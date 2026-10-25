@@ -10,7 +10,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/terrified
 
 /datum/status_effect/terrified/on_apply()
-	to_chat(owner, span_alert("The darkness closes in around you, shadows dance around the corners of your vision... It feels like something is watching you!"))
+	to_chat(owner, span_alert("黑暗从四周逼近，阴影在你的视野边缘舞动……仿佛有什么东西正在盯着你！"))
 	owner.emote("scream")
 	owner.AddComponentFrom("terrified", /datum/component/fearful, list(/datum/terror_handler/simple_source/nyctophobia/terrified), TERROR_INITIAL_AMOUNT)
 	return TRUE
@@ -24,8 +24,8 @@
 
 /// The status effect popup for the terror status effect
 /atom/movable/screen/alert/status_effect/terrified
-	name = "Terrified!"
-	desc = "You feel a supernatural darkness settle in around you, overwhelming you with panic! Get into the light!"
+	name = "惊恐万分！"
+	desc = "超自然的黑暗笼罩了你，令你陷入无尽恐慌！快去有光的地方！"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "terrified"
 

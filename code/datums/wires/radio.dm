@@ -1,6 +1,6 @@
 /datum/wires/radio
 	holder_type = /obj/item/radio
-	proper_name = "Radio"
+	proper_name = "无线电"
 
 /datum/wires/radio/New(atom/holder)
 	wires = list(

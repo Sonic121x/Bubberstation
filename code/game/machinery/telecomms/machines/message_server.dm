@@ -1,6 +1,6 @@
 // A decorational representation of SSblackbox, usually placed alongside the message server. Also contains a traitor theft item.
 /obj/machinery/blackbox_recorder
-	name = "Blackbox Recorder"
+	name = "黑匣子记录仪"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "blackbox"
 	density = TRUE
@@ -27,24 +27,24 @@
 		if(Adjacent(user))
 			user.put_in_hands(stored)
 		stored = null
-		to_chat(user, span_notice("You remove the blackbox from [src]. The tapes stop spinning."))
+		to_chat(user, span_notice("你从[src]中取出黑匣子。磁带停止了转动。"))
 		update_appearance()
 		return
 	else
-		to_chat(user, span_warning("It seems that the blackbox is missing..."))
+		to_chat(user, span_warning("黑匣子似乎不见了……"))
 		return
 
 /obj/machinery/blackbox_recorder/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/blackbox))
 		return NONE
 	if(stored)
-		to_chat(user, span_warning("There's already a blackbox in \the [src].")) //something's gone wrong to get here, but you know, it could happen
+		to_chat(user, span_warning("[src]中已经有一个黑匣子了。")) //something's gone wrong to get here, but you know, it could happen
 		return ITEM_INTERACT_BLOCKING
 	if(HAS_TRAIT(tool, TRAIT_NODROP) || !user.transferItemToLoc(tool, src))
-		to_chat(user, span_warning("[tool] is stuck to your hand!"))
+		to_chat(user, span_warning("[tool]粘在你的手上了！"))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] clicks [tool] into [src]!"), \
-	span_notice("You press the device into [src], and it clicks into place. The tapes begin spinning again."))
+	user.visible_message(span_notice("[user]把[tool]咔哒一声装进了[src]！"), \
+	span_notice("你把装置压进[src]，它咔哒一声卡入原位。磁带重新转动起来。"))
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	stored = tool
 	update_appearance()
@@ -61,8 +61,8 @@
 	return ..()
 
 /obj/item/blackbox
-	name = "\proper the blackbox"
-	desc = "A strange relic, capable of recording data on extradimensional vertices. It lives inside the blackbox recorder for safe keeping."
+	name = "\proper 黑匣子"
+	desc = "一种奇异的遗物，可在超维顶点上记录数据。通常存放在黑匣子记录仪中妥善保管。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "blackcube"
 	inhand_icon_state = "blackcube"
@@ -79,8 +79,8 @@
  * require the message server.
  */
 /obj/machinery/telecomms/message_server
-	name = "Messaging Server"
-	desc = "A machine that processes and routes PDA and request console messages."
+	name = "消息服务器"
+	desc = "处理并转发PDA与请求控制台消息的机器。"
 	icon_state = "message_server"
 	telecomms_type = /obj/machinery/telecomms/message_server
 	density = TRUE
@@ -101,16 +101,16 @@
 	/// List of all the computers monitoring this server
 	var/list/obj/machinery/computer/message_monitor/listening_computers = list()
 
-#define MESSAGE_SERVER_FUNCTIONING_MESSAGE "This is an automated message. The messaging system is functioning correctly."
+#define MESSAGE_SERVER_FUNCTIONING_MESSAGE "这是一条自动消息。消息系统运行正常。"
 
 /obj/machinery/telecomms/message_server/Initialize(mapload)
 	. = ..()
 	if (calibrating)
 		calibrating += world.time
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "Calibrating... Estimated wait time: [rand(3, 9)] minutes.")
-		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", "This is an automated message. System calibration started at [server_timestamp(ic_time = TRUE)] (PT: [round_timestamp()]).")
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), "校准中……预计等待时间：[rand(3, 9)]分钟。")
+		pda_msgs += new /datum/data_tablet_msg("系统管理员", "system", "这是一条自动消息。系统校准开始于[server_timestamp(ic_time = TRUE)]（游戏时间：[round_timestamp()]）。")
 	else
-		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
+		pda_msgs += new /datum/data_tablet_msg("系统管理员", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
 
 /obj/machinery/telecomms/message_server/Destroy()
 	for(var/obj/machinery/computer/message_monitor/monitor in listening_computers)
@@ -121,13 +121,13 @@
 /obj/machinery/telecomms/message_server/examine(mob/user)
 	. = ..()
 	if(calibrating)
-		. += span_warning("It's still calibrating.")
+		. += span_warning("它仍在校准中。")
 
 /obj/machinery/telecomms/message_server/process()
 	. = ..()
 	if(calibrating && calibrating <= world.time)
 		calibrating = 0
-		pda_msgs += new /datum/data_tablet_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
+		pda_msgs += new /datum/data_tablet_msg("系统管理员", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
 
 #undef MESSAGE_SERVER_FUNCTIONING_MESSAGE
 
@@ -204,7 +204,7 @@ GLOBAL_VAR(preset_station_message_server_key)
 /// Returns a string representing the target of this message, formatted properly.
 /datum/signal/subspace/messaging/tablet_message/proc/format_target()
 	if (data["everyone"])
-		return "Everyone"
+		return "所有人"
 
 	var/datum/computer_file/program/messenger/target_app = data["targets"][1]
 	var/obj/item/modular_computer/target = target_app.computer
@@ -239,11 +239,11 @@ GLOBAL_VAR(preset_station_message_server_key)
 /// Log datums stored by the message server.
 /datum/data_tablet_msg
 	/// Who sent the message.
-	var/sender = "Unspecified"
+	var/sender = "未指定"
 	/// Who was targeted by the message.
-	var/recipient = "Unspecified"
+	var/recipient = "未指定"
 	/// The transfered message.
-	var/message = "Blank"
+	var/message = "空白"
 	/// The attached photo path, if any.
 	var/picture_asset_key
 	/// Whether or not it's an automated message. Defaults to `FALSE`.
@@ -269,15 +269,15 @@ GLOBAL_VAR(preset_station_message_server_key)
 
 /datum/data_rc_msg
 	/// The department that sent the request.
-	var/sender_department = "Unspecified"
+	var/sender_department = "未指定"
 	/// The department that was targeted by the request.
-	var/receiving_department = "Unspecified"
+	var/receiving_department = "未指定"
 	/// The message of the request.
-	var/message = "Blank"
+	var/message = "空白"
 	/// The stamp that authenticated this message, if any.
-	var/stamp = "Unstamped"
+	var/stamp = "未盖章"
 	/// The ID that authenticated this message, if any.
-	var/id_auth = "Unauthenticated"
+	var/id_auth = "未认证"
 	/// The priority of this request.
 	var/priority = REQUEST_PRIORITY_NORMAL
 

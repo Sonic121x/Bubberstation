@@ -14,7 +14,7 @@ import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 enum VoteConfig {
   None = -1,
   Disabled = 0,
@@ -75,7 +75,7 @@ export const VotePanel = (props) => {
   if (currentVote) {
     windowTitle +=
       ': ' +
-      (currentVote.question || currentVote.vote.name).replace(/^\w/, (c) =>
+      (currentVote.question || batchThreeDisplay(currentVote.vote.name)).replace(/^\w/, (c) =>
         c.toUpperCase(),
       );
   }
@@ -199,7 +199,7 @@ const VoteOptions = (props) => {
               <Stack.Item>
                 <Tooltip content={option.message}>
                   <BlockQuote style={{ lineHeight: '1.7em' }}>
-                    {option.name} Vote
+                    {batchThreeDisplay(option.name)}投票
                   </BlockQuote>
                 </Tooltip>
               </Stack.Item>

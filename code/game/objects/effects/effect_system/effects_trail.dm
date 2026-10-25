@@ -87,7 +87,7 @@
 	effect_type = /obj/effect/particle_effect/steam
 
 /obj/effect/particle_effect/ion_trails
-	name = "ion trails"
+	name = "离子尾迹"
 	icon_state = "ion_trails"
 	anchored = TRUE
 
@@ -109,6 +109,6 @@
 	qdel_in_time = 2.3 SECONDS
 
 /obj/effect/particle_effect/smoke_trail
-	name = "smoke trails"
+	name = "烟雾尾迹"
 	icon_state = "smoke_trail"
 	anchored = TRUE

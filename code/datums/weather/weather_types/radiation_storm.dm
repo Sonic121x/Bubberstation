@@ -1,12 +1,12 @@
 //Radiation storms occur when the station passes through an irradiated area, and irradiate anyone not standing in protected areas (maintenance, emergency storage, etc.)
 /datum/weather/rad_storm
 	name = "radiation storm"
-	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
+	desc = "一团强辐射云穿过此地，使毫无防护者受到辐射伤害。"
 
 	telegraph_duration = 40 SECONDS
-	telegraph_message = span_danger("The air begins to grow warm.")
+	telegraph_message = span_danger("空气开始变暖。")
 
-	weather_message = span_userdanger("<i>You feel waves of heat wash over you! Find shelter!</i>")
+	weather_message = span_userdanger("<i>你感觉阵阵热浪扫过全身！快寻找掩蔽！</i>")
 	weather_overlay = "ash_storm"
 	weather_duration_lower = 1 MINUTES
 	weather_duration_upper = 2.5 MINUTES
@@ -14,7 +14,7 @@
 	weather_sound = 'sound/announcer/alarm/bloblarm.ogg'
 
 	end_duration = 10 SECONDS
-	end_message = span_notice("The air seems to be cooling off again.")
+	end_message = span_notice("空气似乎又开始降温了。")
 
 	area_type = /area
 	protected_areas = list(
@@ -82,7 +82,7 @@
 /datum/weather/rad_storm/end()
 	if(..())
 		return
-	priority_announce("The station has passed the radiation belt, please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Radiation Alert Cleared", ANNOUNCER_RADIATIONPASSED) // BUBBER EDIT CHANGE
+	priority_announce("空间站已通过辐射带。如出现任何异常症状，请前往医务室。维修区即将恢复正常门禁。", "辐射警报解除", ANNOUNCER_RADIATIONPASSED) // BUBBER EDIT CHANGE
 	status_alarm(FALSE)
 
 /datum/weather/rad_storm/proc/do_mutate(mob/living/carbon/human/mutant)

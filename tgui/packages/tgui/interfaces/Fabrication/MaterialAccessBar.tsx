@@ -6,7 +6,7 @@ import { classes } from 'tgui-core/react';
 
 import { MaterialIcon } from './MaterialIcon';
 import type { Material } from './Types';
-
+import { materialDisplay } from '../../localization/batchThreeDisplay';
 // by popular demand of discord people (who are always right and never wrong)
 // this is completely made up
 const MATERIAL_RARITY: Record<string, number> = {
@@ -86,7 +86,7 @@ const MaterialCounter = (props: MaterialCounterProps) => {
   const sheets = material.amount / SHEET_MATERIAL_AMOUNT;
 
   return (
-    <div
+    <div title={materialDisplay(material.name)}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       className={classes([

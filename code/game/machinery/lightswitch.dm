@@ -1,10 +1,10 @@
 /// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
-	name = "light switch"
+	name = "照明开关"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "light-nopower"
 	base_icon_state = "light"
-	desc = "Make dark."
+	desc = "让灯熄灭。"
 	power_channel = AREA_USAGE_LIGHT
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.02
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -35,7 +35,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	if(!area)
 		area = get_area(src)
 	if(autoname)
-		name = "light switch ([area.name])"
+		name = "照明开关（[chinese_area_display(area.name)]）"
 	if(mapload)
 		find_and_mount_on_atom()
 	register_context()
@@ -44,10 +44,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 /obj/machinery/light_switch/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_LMB] = area.lightswitch ? "Flick off" : "Flick on"
+		context[SCREENTIP_CONTEXT_LMB] = area.lightswitch ? "关闭" : "开启"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 	return .
 
@@ -72,8 +72,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
-	. += "It is [(machine_stat & NOPOWER) ? "unpowered" : (area.lightswitch ? "on" : "off")]."
-	. += span_notice("It's <b>screwed</b> and secured to the wall.")
+	. += "它目前[(machine_stat & NOPOWER) ? "没有电力" : (area.lightswitch ? "已开启" : "已关闭")]。"
+	. += span_notice("它用<b>螺丝</b>固定在墙上。")
 
 /obj/machinery/light_switch/interact(mob/user)
 	. = ..()
@@ -81,10 +81,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	set_lights(!area.lightswitch)
 
 /obj/machinery/light_switch/screwdriver_act(mob/living/user, obj/item/tool)
-	user.visible_message(span_notice("[user] starts unscrewing [src]..."), span_notice("You start unscrewing [src]..."))
+	user.visible_message(span_notice("[user]开始拧松[src]的螺丝……"), span_notice("你开始拧松[src]的螺丝……"))
 	if(!tool.use_tool(src, user, 40, volume = 50))
 		return ITEM_INTERACT_BLOCKING
-	user.visible_message(span_notice("[user] unscrews [src]!"), span_notice("You detach [src] from the wall."))
+	user.visible_message(span_notice("[user]拧松了[src]的螺丝！"), span_notice("你将[src]从墙上拆下。"))
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	deconstruct(TRUE)
 	return ITEM_INTERACT_SUCCESS
@@ -119,8 +119,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	new /obj/item/wallframe/light_switch(loc)
 
 /obj/item/wallframe/light_switch
-	name = "light switch"
-	desc = "An unmounted light switch. Attach it to a wall to use."
+	name = "照明开关"
+	desc = "尚未安装的照明开关。固定到墙上即可使用。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "light-nopower"
 	result_path = /obj/machinery/light_switch
@@ -128,8 +128,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26)
 	pixel_shift = 26
 
 /obj/item/circuit_component/light_switch
-	display_name = "Light Switch"
-	desc = "Allows to control the lights of an area."
+	display_name = "照明开关"
+	desc = "允许控制某个区域的照明。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
 	///If the lights should be turned on or off when the trigger is triggered.

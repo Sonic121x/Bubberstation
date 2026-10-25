@@ -18,7 +18,7 @@ import { CrimeWatcher } from './CrimeWatcher';
 import { getSecurityRecord } from './helpers';
 import { RecordPrint } from './RecordPrint';
 import type { SecurityRecordsData } from './types';
-
+import { recordDisplay } from '../../localization/batchThreeDisplay';
 /** Views a selected record. */
 export const SecurityRecordView = (props) => {
   const foundRecord = getSecurityRecord();
@@ -134,14 +134,14 @@ const RecordInfo = (props) => {
                     tooltip={CRIMESTATUS2DESC[button] || ''}
                     tooltipPosition="bottom-start"
                   >
-                    {button[0]}
+                    {recordDisplay(button, data)}
                   </Button>
                 );
               })}
               label="Status"
             >
               <Box color={CRIMESTATUS2COLOR[wanted_status]}>
-                {wanted_status}
+                {recordDisplay(wanted_status, data)}
               </Box>
             </LabeledList.Item>
           </LabeledList>
@@ -154,7 +154,7 @@ const RecordInfo = (props) => {
               <EditableText field="name" target_ref={crew_ref} text={name} />
             </LabeledList.Item>
             <LabeledList.Item label="Job">
-              <EditableText field="rank" target_ref={crew_ref} text={rank} />
+              <EditableText field="rank" target_ref={crew_ref} text={rank} displayText={recordDisplay(rank, data)} />
             </LabeledList.Item>
             {/* <LabeledList.Item label="Age"> // ORIGINAL */}
             {/* SKYRAT EDIT CHANGE BEGIN - Chronological age */}
@@ -195,14 +195,14 @@ const RecordInfo = (props) => {
               <EditableText
                 field="species"
                 target_ref={crew_ref}
-                text={species}
+                text={species} displayText={recordDisplay(species, data)}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Gender">
               <EditableText
                 field="gender"
                 target_ref={crew_ref}
-                text={gender}
+                text={gender} displayText={recordDisplay(gender, data)}
               />
             </LabeledList.Item>
             <LabeledList.Item color="good" label="Fingerprint">

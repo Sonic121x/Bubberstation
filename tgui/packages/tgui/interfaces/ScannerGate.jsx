@@ -9,7 +9,7 @@ import { chineseDisplay } from 'tgui/localization/zhDisplay';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
-
+import { machineChoiceDisplay } from './common/machineChoiceDisplay';
 const DISEASE_THEASHOLD_LIST = [
   'Positive',
   'Harmless',
@@ -60,42 +60,42 @@ export const ScannerGate = (props) => {
 
 const SCANNER_GATE_ROUTES = {
   Off: {
-    title: 'Scanner Mode: Off',
+    title: '扫描模式：关闭',
     component: () => ScannerGateOff,
   },
   Wanted: {
-    title: 'Scanner Mode: Wanted',
+    title: '扫描模式：通缉',
     component: () => ScannerGateWanted,
   },
   Guns: {
-    title: 'Scanner Mode: Guns',
+    title: '扫描模式：枪械',
     component: () => ScannerGateGuns,
   },
   Mindshield: {
-    title: 'Scanner Mode: Mindshield',
+    title: '扫描模式：心灵护盾',
     component: () => ScannerGateMindshield,
   },
   Disease: {
-    title: 'Scanner Mode: Disease',
+    title: '扫描模式：疾病',
     component: () => ScannerGateDisease,
   },
   Species: {
-    title: 'Scanner Mode: Species',
+    title: '扫描模式：物种',
     component: () => ScannerGateSpecies,
   },
   Nutrition: {
-    title: 'Scanner Mode: Nutrition',
+    title: '扫描模式：营养',
     component: () => ScannerGateNutrition,
   },
   //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
   Gender: {
-    title: 'Scanner Mode: Gender',
+    title: '扫描模式：性别',
     component: () => ScannerGateGender,
   },
   //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
   // BUBBER EDIT START - NANITES
   Nanites: {
-    title: 'Scanner Mode: Nanites',
+    title: '扫描模式：纳米机器人',
     component: () => ScannerGateNanites,
   },
   // BUBBER EDIT END - NANITES
@@ -113,7 +113,7 @@ const ScannerGateControl = (props) => {
         scan_mode !== 'Off' && (
           <Button
             icon="arrow-left"
-            content="back"
+            content="返回"
             onClick={() => act('set_mode', { new_mode: 'Off' })}
           />
         )
@@ -128,39 +128,39 @@ const ScannerGateOff = (props) => {
   const { act, data } = useBackend();
   return (
     <>
-      <Box mb={2}>Select a scanning mode below.</Box>
+      <Box mb={2}>请在下方选择扫描模式。</Box>
       <Box>
         <Button
-          content="Wanted"
+          content="通缉"
           onClick={() => act('set_mode', { new_mode: 'Wanted' })}
         />
         <Button
-          content="Guns"
+          content="枪械"
           onClick={() => act('set_mode', { new_mode: 'Guns' })}
         />
         <Button
-          content="Mindshield"
+          content="心灵护盾"
           onClick={() => act('set_mode', { new_mode: 'Mindshield' })}
         />
         <Button
-          content="Disease"
+          content="疾病"
           onClick={() => act('set_mode', { new_mode: 'Disease' })}
         />
         <Button
-          content="Species"
+          content="物种"
           onClick={() => act('set_mode', { new_mode: 'Species' })}
         />
         <Button //  SKYRAT EDIT START - MORE SCANNER GATE OPTIONS
-          content="Gender"
+          content="性别"
           onClick={() => act('set_mode', { new_mode: 'Gender' })} //  SKYRAT EDIT END - MORE SCANNER GATE OPTIONS
         />
         <Button
-          content="Nutrition"
+          content="营养"
           onClick={() => act('set_mode', { new_mode: 'Nutrition' })}
         />
         {/* BUBBER EDIT START - NANITES */}
         <Button
-          content="Nanites"
+          content="纳米机器人"
           onClick={() => act('set_mode', { new_mode: 'Nanites' })}
         />
         {/* BUBBER EDIT END - NANITES */}
@@ -175,8 +175,8 @@ const ScannerGateWanted = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        warrants for their arrest.
+        当受扫描者{reverse ? '未被' : '被'}
+        通缉时触发。
       </Box>
       <ScannerGateMode />
     </>
@@ -189,8 +189,8 @@ const ScannerGateGuns = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        guns.
+        当受扫描者{reverse ? '未携带' : '携带'}
+        枪械时触发。
       </Box>
       <ScannerGateMode />
     </>
@@ -203,8 +203,8 @@ const ScannerGateMindshield = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        mindshield.
+        当受扫描者{reverse ? '没有' : '拥有'}
+        心灵护盾时触发。
       </Box>
       <ScannerGateMode />
     </>
@@ -217,8 +217,8 @@ const ScannerGateDisease = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        disease equal or worse than {chineseDisplay(disease_threshold)}.
+        当受扫描者{reverse ? '未患有' : '患有'}
+        严重程度达到或超过{chineseDisplay(disease_threshold)}的疾病时触发。
       </Box>
       <Box mb={2}>
         {DISEASE_THEASHOLD_LIST.map((threshold) => (
@@ -248,10 +248,10 @@ const ScannerGateSpecies = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned is {reverse ? 'not' : ''} of the{' '}
-        {species.specie_name} species.
+        当受扫描者{reverse ? '不属于' : '属于'}
+        {species.specie_name}物种时触发。
         {target_zombie
-          ? ' All zombie types will be detected, including dormant zombies.'
+          ? ' 将检测所有僵尸类型，包括休眠僵尸。'
           : null}
       </Box>
       <Box mb={2}>
@@ -283,15 +283,15 @@ const ScannerGateNutrition = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} the{' '}
-        {nutrition.name} nutrition level.
+        当受扫描者{reverse ? '不处于' : '处于'}
+        {machineChoiceDisplay(nutrition.name)}营养状态时触发。
       </Box>
       <Box mb={2}>
         {TARGET_NUTRITION_LIST.map((nutrition) => (
           <Button.Checkbox
             key={nutrition.name}
             checked={nutrition.value === target_nutrition}
-            content={nutrition.name}
+            content={machineChoiceDisplay(nutrition.name)}
             onClick={() =>
               act('set_target_nutrition', {
                 new_nutrition: nutrition.name,
@@ -311,12 +311,12 @@ const ScannerGateNanites = (props, context) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} nanite
-        cloud {nanite_cloud}.
+        当受扫描者{reverse ? '未连接' : '已连接'}纳米机器人云端
+        {nanite_cloud}时触发。
       </Box>
       <Box mb={2}>
         <LabeledList>
-          <LabeledList.Item label="Cloud ID">
+          <LabeledList.Item label="云端 ID">
             <NumberInput
               value={nanite_cloud}
               width="65px"
@@ -349,14 +349,14 @@ const ScannerGateGender = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned is {reverse ? 'not' : ''} a {gender.name}.
+        当受扫描者{reverse ? '不是' : '是'}{machineChoiceDisplay(gender.name)}时触发。
       </Box>
       <Box mb={2}>
         {TARGET_GENDER_LIST.map((gender) => (
           <Button.Checkbox
             key={gender.name}
             checked={gender.value === target_gender}
-            content={gender.name}
+            content={machineChoiceDisplay(gender.name)}
             onClick={() =>
               act('set_target_gender', {
                 new_gender: gender.name,
@@ -375,9 +375,9 @@ const ScannerGateMode = (props) => {
   const { reverse } = data;
   return (
     <LabeledList>
-      <LabeledList.Item label="Scanning Mode">
+      <LabeledList.Item label="扫描模式">
         <Button
-          content={reverse ? 'Inverted' : 'Default'}
+          content={reverse ? '反向' : '默认'}
           icon={reverse ? 'random' : 'long-arrow-alt-right'}
           onClick={() => act('toggle_reverse')}
           color={reverse ? 'bad' : 'good'}

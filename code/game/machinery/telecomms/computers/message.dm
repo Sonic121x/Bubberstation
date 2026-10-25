@@ -9,8 +9,8 @@
 #define MSG_MON_SCREEN_HACKED 3
 
 /obj/machinery/computer/message_monitor
-	name = "message monitor console"
-	desc = "Used to monitor the crew's PDA messages, as well as request console messages."
+	name = "消息监控控制台"
+	desc = "用于监控船员的 PDA 消息以及请求控制台消息。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/telecomms/server")
 	icon_screen = "comm_logs"
 	circuit = /obj/item/circuitboard/computer/message_monitor
@@ -21,7 +21,7 @@
 	/// 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
 	var/screen = MSG_MON_SCREEN_MAIN
 	/// The message that shows on the main menu.
-	var/message = "System bootup complete. Please select an option."
+	var/message = "系统启动完毕，请选择一项操作。"
 	/// Error message to display in the interface.
 	var/error_message = ""
 	/// Notice message to display in the interface.
@@ -60,7 +60,7 @@
 /obj/machinery/computer/message_monitor/screwdriver_act(mob/living/user, obj/item/I)
 	if(obj_flags & EMAGGED)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
-		to_chat(user, span_warning("It is too hot to mess with!"))
+		to_chat(user, span_warning("太烫了，没法操作！"))
 		return TRUE
 	return ..()
 
@@ -68,7 +68,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	if(isnull(linked_server))
-		to_chat(user, span_notice("A no server error appears on the screen."))
+		to_chat(user, span_notice("屏幕上出现了找不到服务器的错误提示。"))
 		return FALSE
 
 	obj_flags |= EMAGGED
@@ -79,7 +79,7 @@
 	monitor_key_paper.add_raw_text("<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>")
 	var/time = 100 * length(linked_server.decryptkey)
 	addtimer(CALLBACK(src, PROC_REF(unemag_console)), time)
-	error_message = "%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!"
+	error_message = "严重错误 // 正在重启！<正在加载备用输入输出>——请稍候！"
 	linked_server.toggled = FALSE
 	return TRUE
 
@@ -121,7 +121,7 @@
 	return data
 
 /obj/machinery/computer/message_monitor/ui_static_data(mob/user)
-	var/list/data = list()
+	var/list/data = list("areaDisplay" = chinese_area_display(null, TRUE))
 	data["is_on_station"] = is_on_station()
 	return data
 
@@ -152,11 +152,11 @@
 				return TRUE
 
 			if(linked_server.decryptkey != authPass)
-				error_message = "ALERT: Incorrect decryption key!"
+				error_message = "警报：解密密钥错误！"
 				return TRUE
 
 			authenticated = TRUE
-			success_message = "YOU SUCCESSFULLY LOGGED IN!"
+			success_message = "登录成功！"
 
 			return TRUE
 		if("link_server")
@@ -165,23 +165,23 @@
 				message_servers += message_server
 
 			if(length(message_servers) > 1)
-				var/selected_server = tgui_input_list(usr, "Please select a server", "Server Selection", message_servers)
+				var/selected_server = tgui_input_list(usr, "请选择服务器", "选择服务器", message_servers)
 				if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 					screen = MSG_MON_SCREEN_MAIN
 					return TRUE
 				set_linked_server(selected_server)
 				if(linked_server)
-					notice_message = "NOTICE: Server selected."
+					notice_message = "提示：已选择服务器。"
 			else if(length(message_servers) == 1)
 				set_linked_server(message_servers[1])
-				notice_message = "NOTICE: Only Single Server Detected - Server selected."
+				notice_message = "提示：仅检测到一台服务器，已自动选择。"
 			else
-				error_message = "ALERT: No server detected."
+				error_message = "警报：未检测到服务器。"
 			screen = MSG_MON_SCREEN_MAIN
 			return TRUE
 		if("turn_server")
 			if(!is_server_responsive())
-				error_message = "ALERT: No server detected."
+				error_message = "警报：未检测到服务器。"
 				return TRUE
 
 			linked_server.toggled = !linked_server.toggled
@@ -194,42 +194,42 @@
 			return TRUE
 		if("clear_message_logs")
 			linked_server.pda_msgs = list()
-			notice_message = "NOTICE: Logs cleared."
+			notice_message = "提示：记录已清空。"
 			return TRUE
 		if("clear_request_logs")
 			linked_server.rc_msgs = list()
-			notice_message = "NOTICE: Logs cleared."
+			notice_message = "提示：记录已清空。"
 			return TRUE
 		if("set_key")
 			if(!is_on_station())
 				return TRUE
 
-			var/dkey = tgui_input_text(usr, "Please enter the decryption key", "Telecomms Decryption", max_length = 16)
+			var/dkey = tgui_input_text(usr, "请输入解密密钥", "电信解密", max_length = 16)
 			if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 				return TRUE
 			if(dkey && dkey != "")
 				if(linked_server.decryptkey == dkey)
-					var/newkey = tgui_input_text(usr, "Please enter the new key (3 - 16 characters max)", "New Key", max_length = 16)
+					var/newkey = tgui_input_text(usr, "请输入新密钥（3—16个字符）", "新密钥", max_length = 16)
 					if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 						return TRUE
 					if(length(newkey) <= 3)
-						notice_message = "NOTICE: Decryption key too short!"
+						notice_message = "提示：解密密钥过短！"
 					else if(newkey && newkey != "")
 						linked_server.decryptkey = newkey
-					notice_message = "NOTICE: Decryption key set."
+					notice_message = "提示：已设置解密密钥。"
 				else
-					error_message = "ALERT: Incorrect decryption key!"
+					error_message = "警报：解密密钥错误！"
 			return TRUE
 		if("return_home")
 			screen = MSG_MON_SCREEN_MAIN
 			return TRUE
 		if("delete_message")
 			linked_server.pda_msgs -= locate(params["ref"]) in linked_server.pda_msgs
-			success_message = "Log Deleted!"
+			success_message = "记录已删除！"
 			return TRUE
 		if("delete_request")
 			linked_server.rc_msgs -= locate(params["ref"]) in linked_server.rc_msgs
-			success_message = "Log Deleted!"
+			success_message = "记录已删除！"
 			return TRUE
 		if("connect_server")
 			if(linked_server)
@@ -239,8 +239,8 @@
 				break
 			return TRUE
 		if("send_fake_message")
-			var/sender = tgui_input_text(usr, "What is the sender's name?", "Sender", max_length = MAX_NAME_LEN)
-			var/job = tgui_input_text(usr, "What is the sender's job?", "Job", max_length = 60)
+			var/sender = tgui_input_text(usr, "发件人叫什么名字？", "发件人", max_length = MAX_NAME_LEN)
+			var/job = tgui_input_text(usr, "发件人的职业是什么？", "职业", max_length = 60)
 
 			var/recipient
 			var/list/tablet_to_messenger = list()
@@ -254,19 +254,19 @@
 				viewable_tablets += message_app.computer
 				tablet_to_messenger[message_app.computer] = message_app
 			if(length(viewable_tablets) > 0)
-				recipient = tgui_input_list(usr, "Select a tablet from the list", "Tablet Selection", viewable_tablets)
+				recipient = tgui_input_list(usr, "从列表中选择平板电脑", "选择平板电脑", viewable_tablets)
 			else
 				recipient = null
 
-			var/message = tgui_input_text(usr, "Please enter your message", "Message", max_length = MAX_MESSAGE_LEN)
+			var/message = tgui_input_text(usr, "请输入消息", "消息", max_length = MAX_MESSAGE_LEN)
 			if(isnull(sender) || sender == "")
-				sender = "UNKNOWN"
+				sender = "未知"
 
 			if(isnull(recipient))
-				notice_message = "NOTICE: No recipient selected!"
+				notice_message = "提示：未选择收件人！"
 				return TRUE
 			if(isnull(message) || message == "")
-				notice_message = "NOTICE: No message entered!"
+				notice_message = "提示：未输入消息！"
 				return TRUE
 			if(QDELETED(src) || !is_operational || !usr.can_interact_with(src))
 				return TRUE
@@ -279,14 +279,14 @@
 			))
 			// This will log the signal and transmit it to the target
 			linked_server.receive_information(signal, null)
-			usr.log_message("(Tablet: [name] | [usr.real_name]) sent \"[message]\" to [signal.format_target()]", LOG_PDA)
+			usr.log_message("（平板电脑：[name] | [usr.real_name]）向[signal.format_target()]发送了“[message]”", LOG_PDA)
 			return TRUE
 		// Malfunction AI and cyborgs can hack console. This will authenticate the console, but you need to wait password selection
 		if("hack")
 			var/time = 10 SECONDS * length(linked_server.decryptkey)
 			addtimer(CALLBACK(src, PROC_REF(unemag_console)), time)
 			screen = MSG_MON_SCREEN_HACKED
-			error_message = "%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!"
+			error_message = "严重错误 // 正在重启！<正在加载备用输入输出>——请稍候！"
 			linked_server.toggled = FALSE
 			authenticated = TRUE
 			return TRUE
@@ -311,7 +311,7 @@
 /// Monitor decryption key paper
 
 /obj/item/paper/monitorkey
-	name = "monitor decryption key"
+	name = "监控器解密密钥"
 
 /obj/item/paper/monitorkey/Initialize(mapload, obj/machinery/telecomms/message_server/server)
 	. = ..()
@@ -324,7 +324,7 @@
  * Handles printing the monitor key for a given server onto this piece of paper.
  */
 /obj/item/paper/monitorkey/proc/print(obj/machinery/telecomms/message_server/server)
-	add_raw_text("<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is <b>[server.decryptkey]</b>.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one.")
+	add_raw_text("<center><h2>每日密钥重置</h2></center><br>新的消息监控器密钥为<b>[server.decryptkey]</b>。<br>请妥善保密，别让小丑拿到。<br>必要时请将密码改得更安全。")
 	add_overlay("paper_words")
 	update_appearance()
 

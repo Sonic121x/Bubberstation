@@ -2,15 +2,15 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system
 	density = TRUE
-	name = "\improper Automated Announcement System"
-	desc = "An automated announcement system that handles minor announcements over the radio."
+	name = "\improper 自动公告系统"
+	desc = "通过无线电发布日常公告的自动公告系统。"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "AAS_On"
 	base_icon_state = "AAS"
 
-	verb_say = "coldly states"
-	verb_ask = "queries"
-	verb_exclaim = "alarms"
+	verb_say = "冷淡地陈述"
+	verb_ask = "询问"
+	verb_exclaim = "发出警报"
 
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.05
 
@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 /obj/machinery/announcement_system/multitool_act(mob/living/user, obj/item/tool)
 	if(!panel_open || !(machine_stat & EMPED))
 		return ITEM_INTERACT_BLOCKING
-	to_chat(user, span_notice("You reset [src]'s firmware."))
+	to_chat(user, span_notice("你重置了[src]的固件。"))
 	set_machine_stat(machine_stat & ~EMPED)
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		return FALSE
 	obj_flags |= EMAGGED
 	act_up()
-	balloon_alert(user, "announcement strings corrupted")
+	balloon_alert(user, "公告文本已损坏")
 	return TRUE
 
 /obj/machinery/announcement_system/ui_interact(mob/user, datum/tgui/ui)
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!usr.can_perform_action(src, ALLOW_SILICON_REACH))
 		return
 	if(machine_stat & EMPED)
-		visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
+		visible_message(span_warning("[src]嗡嗡作响。"), span_hear("你听见一声微弱的嗡鸣。"))
 		playsound(src.loc, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
 		return
 
@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 				update_appearance()
 		if("Text")
 			if(!(params["lineKey"] in config.announcement_lines_map))
-				message_admins("[ADMIN_LOOKUPFLW(usr)] tried to set announcement line for nonexisting line in the [config.name] for AAS. Probably href injection. Received line: [html_encode(params["lineKey"])]")
+				message_admins("[ADMIN_LOOKUPFLW(usr)]试图设置自动公告系统的[config.name]中不存在的公告行，可能是 href 注入。收到的行：[html_encode(params["lineKey"])]")
 				log_game("[key_name(usr)] tried to mess with AAS. For [config.name] he tried to edit nonexistend [params["lineKey"]]")
 				return
 			var/new_message = trim(html_encode(params["newText"]), MAX_AAS_LENGTH)
@@ -161,9 +161,9 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		return
 
 	if (machine_stat & EMPED)
-		to_chat(user, span_warning("[src]'s firmware appears to be malfunctioning!"))
+		to_chat(user, span_warning("[src]的固件似乎出现了故障！"))
 		if (!isAI(user))	// Deus Ex Machina goes without multitool in his default complectation.
-			to_chat(user, span_warning("However, you can reset it with [EXAMINE_HINT("multitool")], while its [EXAMINE_HINT("panel is open")]!"))
+			to_chat(user, span_warning("不过，你可以在[EXAMINE_HINT("打开面板")]后，用[EXAMINE_HINT("多功能工具")]重置它！"))
 		return FALSE
 
 /// If AAS can't broadcast message, it shouldn't be picked by randomizer.
@@ -237,11 +237,11 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	announcer.announce(aas_config_entry_type, variables_map, channels, announcement_line, command_span)
 
 /datum/aas_config_entry
-	var/name = "AAS configurable entry"
+	var/name = "自动公告系统配置项"
 	// Should we broadcast this announcement?
 	var/enabled = TRUE
 	// The announcement message. Key will be displayed in the UI.
-	var/list/announcement_lines_map = list("Message" = "This is a default announcement line.")
+	var/list/announcement_lines_map = list("Message" = "这是一条默认公告。")
 	// Goes before tooltips for vars, mainly used if announcement has no replacable vars
 	var/general_tooltip
 	// Contains all replacable vars and their tooltips
@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		announcement_message = announcement_lines_map[announcement_lines_map[1]]
 	// Replace variables with their value
 	for(var/variable in vars_and_tooltips_map)
-		announcement_message = replacetext_char(announcement_message, "%[variable]", variables_map[variable] || "\[NO DATA\]")
+		announcement_message = replacetext_char(announcement_message, "%[variable]", variables_map[variable] || "\[无数据\]")
 	return announcement_message
 
 /// Called when the announcement system is emagged or EMPed.
@@ -277,12 +277,12 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 */
 
 /datum/aas_config_entry/arrival
-	name = "Global: Arrival Announcement"
+	name = "全站：到站公告"
 	announcement_lines_map = list(
-		"Message" = "%PERSON has signed up as %RANK")
+		"Message" = "%PERSON已报到，担任%RANK。")
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with their name.",
-		"RANK" = "with their job."
+		"PERSON" = "将替换为其姓名。",
+		"RANK" = "将替换为其职位。"
 	)
 
 /datum/aas_config_entry/arrival/act_up()
@@ -290,17 +290,17 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if (.)
 		return
 
-	announcement_lines_map["Message"] = pick("#!@%ERR-34%2 CANNOT LOCAT@# JO# F*LE!",
-		"CRITICAL ERROR 99.",
-		"ERR)#: DA#AB@#E NOT F(*ND!")
+	announcement_lines_map["Message"] = pick("#!@%错误-34%2 无法定@#职#文*件！",
+		"严重错误 99。",
+		"错)误#：未找*到数#据@#库！")
 
 /datum/aas_config_entry/newhead
-	name = "Departmental: Head Announcement"
+	name = "部门：主管公告"
 	announcement_lines_map = list(
-		"Message" = "%PERSON, %RANK, is the department head.")
+		"Message" = "%RANK %PERSON是本部门主管。")
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with their name.",
-		"RANK" = "with their job."
+		"PERSON" = "将替换为其姓名。",
+		"RANK" = "将替换为其职位。"
 	)
 
 /datum/aas_config_entry/newhead/act_up()
@@ -308,16 +308,16 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if (.)
 		return
 
-	announcement_lines_map["Message"] = pick("OV#RL()D: \[UNKNOWN??\] DET*#CT)D!",
-		"ER)#R - B*@ TEXT F*O(ND!",
-		"AAS.exe is not responding. NanoOS is searching for a solution to the problem.")
+	announcement_lines_map["Message"] = pick("过#载()：检*#测)到\[未知？？\]！",
+		"错)#误 - 发*现@损*坏文本！",
+		"AAS.exe 未响应。NanoOS 正在查找解决方案。")
 
 /datum/aas_config_entry/researched_node
-	name = "Science Alert: Research Node Announcement"
+	name = "科研提示：研究节点公告"
 	announcement_lines_map = list(
-		"Message" = "The %NODE techweb node has been researched")
+		"Message" = "科技网节点%NODE已研究完成。")
 	vars_and_tooltips_map = list(
-		"NODE" = "will be replaced with the researched node."
+		"NODE" = "将替换为已研究的节点。"
 	)
 
 /datum/aas_config_entry/researched_node/act_up()
@@ -327,23 +327,23 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 	announcement_lines_map["Message"] = pick(
 		replacetext(/datum/aas_config_entry/researched_node::announcement_lines_map["Message"], "%NODE", /datum/techweb_node/mech_clown::display_name),
-		"R/NT1M3 A= ANNOUN-*#nt_SY!?EM.dm, LI%£ 86: N=0DE NULL!",
+		"运/行错1误 A= ANNOUN-*#nt_SY!?EM.dm，第%£86行：节=0点为空！",
 		"BEPIS BEPIS BEPIS",
-		"ERR)#R - B*@ TEXT F*O(ND!")
+		"错)#误 - 发*现@损*坏文本！")
 
 /datum/aas_config_entry/arrivals_broken
-	name = "Engineering Alert: Arrivals Shuttle Malfunction Announcement"
+	name = "工程提示：到站穿梭机故障公告"
 	announcement_lines_map = list(
-		"Message" = "The arrivals shuttle has been damaged. Docking for repairs...")
-	general_tooltip = "Broadcasted, when arrivals shuttle docks for repairs. No replacable variables provided."
+		"Message" = "到站穿梭机受损。正在停靠维修……")
+	general_tooltip = "到站穿梭机停靠维修时广播。没有可替换变量。"
 	modifiable = FALSE
 
 /datum/aas_config_entry/announce_officer
-	name = "Security Alert: Officer Arrival Announcement"
+	name = "安保提示：安保员到站公告"
 	announcement_lines_map = list(
-		"Message" = "Officer %OFFICER has been assigned to %DEPARTMENT.")
+		"Message" = "安保员%OFFICER已被分配至%DEPARTMENT。")
 	vars_and_tooltips_map = list(
-		"OFFICER" = "will be replaced with the officer's name.",
-		"DEPARTMENT" = "with the department they were assigned to."
+		"OFFICER" = "将替换为安保员的姓名。",
+		"DEPARTMENT" = "将替换为其分配到的部门。"
 	)
 	modifiable = FALSE

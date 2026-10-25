@@ -91,7 +91,7 @@
 		quirk_info[sanitize_css_class_name(quirk_name)] = list(
 			"description" = initial(quirk.desc),
 			"icon" = initial(quirk.icon),
-			"name" = quirk_name,
+			"name" = quirk_name, "display_name" = chinese_quirk_display(quirk_name),
 			"value" = initial(quirk.value),
 			"customizable" = constant_data?.is_customizable(),
 			"customization_options" = customization_options,

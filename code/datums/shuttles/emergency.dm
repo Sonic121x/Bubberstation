@@ -48,8 +48,8 @@
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
 	name = "Build your own shuttle kit"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
-	admin_notes = "No brig, no medical facilities."
+	description = "献给富有开拓精神的穿梭机工程师！购买后，船架即会对接，但起飞仍需像往常一样通过呼叫穿梭机获得授权。附带建筑材料。"
+	admin_notes = "没有禁闭室，没有医疗设施。"
 	credit_cost = CARGO_CRATE_VALUE * 5
 	who_can_purchase = list(ACCESS_CAPTAIN, ACCESS_CE)
 	occupancy_limit = "Flexible"
@@ -57,8 +57,8 @@
 /datum/map_template/shuttle/emergency/constructionbig
 	suffix = "constructionbig"
 	name = "Build your own CRUISER kit"
-	description = "This is the big brother of the construction kit, with more space for your shuttle-building ideas! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials."
-	admin_notes = "No brig, no medical facilities."
+	description = "这是建造套件的加大版，为你的穿梭机设计提供更多空间！购买后，船架即会对接，但起飞仍需像往常一样通过呼叫穿梭机获得授权。附带建筑材料。"
+	admin_notes = "没有禁闭室，没有医疗设施。"
 	credit_cost = CARGO_CRATE_VALUE * 30
 	who_can_purchase = list(ACCESS_CAPTAIN, ACCESS_CE)
 	occupancy_limit = "Flexible and more"
@@ -66,21 +66,21 @@
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
 	name = "Asteroid Station Emergency Shuttle"
-	description = "A respectable mid-sized shuttle that first saw service shuttling Nanotrasen crew to and from their asteroid belt embedded facilities."
+	description = "一艘可靠的中型穿梭机，最初用于往返运送纳米传讯小行星带设施的船员。"
 	credit_cost = CARGO_CRATE_VALUE * 6
 	occupancy_limit = "50"
 
 /datum/map_template/shuttle/emergency/venture
 	suffix = "venture"
 	name = "Venture Emergency Shuttle"
-	description = "A mid-sized shuttle for those who like a lot of space for their legs."
+	description = "一艘适合喜欢宽敞腿部空间的乘客的中型穿梭机。"
 	credit_cost = CARGO_CRATE_VALUE * 10
 	occupancy_limit = "45"
 
 /datum/map_template/shuttle/emergency/humpback
 	suffix = "humpback"
 	name = "Humpback Emergency Shuttle"
-	description = "A repurposed cargo hauling and salvaging ship, for sightseeing and tourism. Has a bar. Complete with a 2 minute vacation plan to carp territory."
+	description = "一艘改作观光旅游用途的货运打捞船。配有酒吧，还附送两分钟的太空鲤鱼领地度假行程。"
 	credit_cost = CARGO_CRATE_VALUE * 12
 	occupancy_limit = "30"
 	events = list(
@@ -93,33 +93,33 @@
 /datum/map_template/shuttle/emergency/bar
 	suffix = "bar"
 	name = "The Emergency Escape Bar"
-	description = "Features include sentient bar staff (a Bardrone and a Barmaid), bathroom, a quality lounge for the heads, and a large gathering table."
-	admin_notes = "Bardrone and Barmaid have TRAIT_GODMODE (basically invincibility), will be automatically sentienced by the fun balloon at 60 seconds before arrival. \
-	Has medical facilities."
+	description = "配有自主意识的酒吧员工（一台酒吧无人机和一名女招待）、卫生间、供主管使用的高档休息室，以及一张大型聚会桌。"
+	admin_notes = "酒吧无人机和女招待拥有 TRAIT_GODMODE（基本无敌），将在抵达前 60 秒被趣味气球自动赋予意识。\
+	有医疗设施。"
 	credit_cost = CARGO_CRATE_VALUE * 10
 	occupancy_limit = "30"
 
 /datum/map_template/shuttle/emergency/pod
 	suffix = "pod"
 	name = "Emergency Pods"
-	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
-	admin_notes = "For player punishment."
+	description = "我们没想到这么快就要撤离。手头只有两个逃生舱。"
+	admin_notes = "用于惩罚玩家。"
 	who_can_purchase = null
 	occupancy_limit = "10"
 
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
 	name = "Mother Russia Bleeds"
-	description = "Dis is a high-quality shuttle, da. Many seats, lots of space, all equipment! Even includes entertainment! Such as lots to drink, and a fighting arena for drunk crew to have fun! If arena not fun enough, simply press button of releasing bears. Do not worry, bears trained not to break out of fighting pit, so totally safe so long as nobody stupid or drunk enough to leave door open. Try not to let asimov babycons ruin fun!"
-	admin_notes = "Includes a small variety of weapons. And bears. Only captain-access can release the bears. Bears won't smash the windows themselves, but they can escape if someone lets them."
+	description = "这可是高品质穿梭机，达！座位多、空间大、设备齐！还有娱乐！比如海量酒水，以及供喝醉船员玩乐的搏斗场！如果还不够好玩，就按下放熊按钮。别担心，熊都训练过，不会冲出斗兽场，只要没人蠢到或醉到把门敞开，就绝对安全。别让阿西莫夫法则的小机器人扫了兴！"
+	admin_notes = "带有少量各类武器，以及熊。只有舰长权限能放熊。熊不会自己打碎窗户，但有人放行时仍能逃出来。"
 	credit_cost = CARGO_CRATE_VALUE * 10 // While the shuttle is rusted and poorly maintained, trained bears are costly.
 	occupancy_limit = "40"
 
 /datum/map_template/shuttle/emergency/meteor
 	suffix = "meteor"
 	name = "Asteroid With Engines Strapped To It"
-	description = "A hollowed out asteroid with engines strapped to it, the hollowing procedure makes it very difficult to hijack but is very expensive. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
-	admin_notes = "This shuttle will likely crush escape, killing anyone there."
+	description = "一颗挖空后绑上引擎的小行星。挖空工艺使它极难被劫持，但价格昂贵。由于体积庞大且难以操纵，这艘穿梭机可能损坏对接区。"
+	admin_notes = "这艘穿梭机很可能碾毁撤离区，杀死其中所有人。"
 	credit_cost = CARGO_CRATE_VALUE * 30
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	occupancy_limit = "CONDEMNED"
@@ -127,8 +127,8 @@
 /datum/map_template/shuttle/emergency/monastery
 	suffix = "monastery"
 	name = "Grand Corporate Monastery"
-	description = "Originally built for a public station, this grand edifice to religion, due to budget cuts, is now available as an escape shuttle for the right... donation. Due to its large size and callous owners, this shuttle may cause collateral damage."
-	admin_notes = "WARNING: This shuttle WILL destroy a fourth of the station, likely picking up a lot of objects with it."
+	description = "这座宏伟的宗教建筑原本为公共空间站修建，因预算削减，如今只要提供适当的……捐款，就能用作逃生穿梭机。由于体积庞大且业主冷酷无情，它可能造成附带损害。"
+	admin_notes = "警告：这艘穿梭机必定摧毁四分之一的空间站，并很可能裹挟大量物体。"
 	emag_only = TRUE
 	credit_cost = EMAG_LOCKED_SHUTTLE_COST * 1.8
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 5)
@@ -138,9 +138,9 @@
 /datum/map_template/shuttle/emergency/luxury
 	suffix = "luxury"
 	name = "Luxury Shuttle"
-	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
-	extra_desc = "This shuttle costs 500 credits to board."
-	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
+	description = "一艘配有室内游泳池的豪华金色穿梭机。每名登船船员需携带 500 信用点，可用现金或矿物硬币支付。"
+	extra_desc = "登上这艘穿梭机需支付 500 信用点。"
+	admin_notes = "由于未付款船员的容身空间有限，这艘穿梭机可能引发骚乱。"
 	emag_only = TRUE
 	credit_cost = EMAG_LOCKED_SHUTTLE_COST
 	occupancy_limit = "75"
@@ -148,9 +148,9 @@
 /datum/map_template/shuttle/emergency/medisim
 	suffix = "medisim"
 	name = "Medieval Reality Simulation Dome"
-	description = "A state of the art simulation dome, loaded onto your shuttle! Watch and laugh at how petty humanity used to be before it reached the stars. Guaranteed to be at least 40% historically accurate."
-	prerequisites = "A special holodeck simulation must be loaded before this shuttle can be purchased."
-	admin_notes = "Ghosts can spawn in and fight as knights or archers. The CTF auto restarts, so no admin intervention necessary."
+	description = "将最先进的模拟穹顶装上你的穿梭机！看看人类在迈向群星前有多么渺小可笑。保证至少有 40% 符合史实。"
+	prerequisites = "购买此穿梭机前，必须先加载一个特殊的全息甲板模拟。"
+	admin_notes = "幽灵可以作为骑士或弓箭手加入战斗。夺旗游戏会自动重启，无需管理员干预。"
 	credit_cost = 20000
 	occupancy_limit = "30"
 
@@ -160,8 +160,8 @@
 /datum/map_template/shuttle/emergency/discoinferno
 	suffix = "discoinferno"
 	name = "Disco Inferno"
-	description = "The glorious results of centuries of plasma research done by Nanotrasen employees. This is the reason why you are here. Get on and dance like you're on fire, burn baby burn!"
-	admin_notes = "Flaming hot. The main area has a dance machine as well as plasma floor tiles that will be ignited by players every single time."
+	description = "纳米传讯员工数百年等离子研究的辉煌成果。这就是你来此的原因。上船吧，像着了火一样热舞，燃烧吧宝贝！"
+	admin_notes = "火热无比。主区域有跳舞机和等离子地砖，玩家每次都会把它们点燃。"
 	emag_only = TRUE
 	credit_cost = EMAG_LOCKED_SHUTTLE_COST
 	occupancy_limit = "10"
@@ -169,9 +169,9 @@
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
 	name = "The Arena"
-	description = "The crew must pass through an otherworldly arena to board this shuttle. Expect massive casualties."
-	prerequisites = "The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
-	admin_notes = "RIP AND TEAR."
+	description = "船员必须穿过异界竞技场才能登上这艘穿梭机。预计伤亡惨重。"
+	prerequisites = "必须追踪并消灭血腥信号的源头，才能解锁此穿梭机。"
+	admin_notes = "撕碎一切。"
 	credit_cost = CARGO_CRATE_VALUE * 20
 	occupancy_limit = "1/2"
 	/// Whether the arena z-level has been created
@@ -194,7 +194,7 @@
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"
 	name = "Birdboat Station Emergency Shuttle"
-	description = "Though a little on the small side, this shuttle is feature complete, which is more than can be said for the pattern of station it was commissioned for."
+	description = "这艘穿梭机虽有些小，但功能齐全，比起它原本服务的那种空间站强多了。"
 	credit_cost = CARGO_CRATE_VALUE * 2
 	occupancy_limit = "25"
 
@@ -202,72 +202,72 @@
 	suffix = "box"
 	name = "Box Station Emergency Shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 4
-	description = "The gold standard in emergency exfiltration, this tried and true design is equipped with everything the crew needs for a safe flight home."
+	description = "紧急撤离的黄金标准。这一久经考验的设计配齐了船员安全返航所需的一切。"
 	occupancy_limit = "45"
 
 /datum/map_template/shuttle/emergency/donut
 	suffix = "donut"
 	name = "Donutstation Emergency Shuttle"
-	description = "The perfect spearhead for any crude joke involving the station's shape, this shuttle supports a separate containment cell for prisoners and a compact medical wing."
-	admin_notes = "Has airlocks on both sides of the shuttle and will probably intersect near the front on some stations that build past departures."
+	description = "这艘穿梭机非常适合拿空间站的形状开粗俗玩笑，配有独立囚犯拘留室和紧凑的医疗区。"
+	admin_notes = "两侧均有气闸；某些在离站区外延伸建造的空间站，可能在船首附近发生重叠。"
 	credit_cost = CARGO_CRATE_VALUE * 5
 	occupancy_limit = "60"
 
 /datum/map_template/shuttle/emergency/clown
 	suffix = "clown"
 	name = "Snappop(tm)!"
-	description = "Hey kids and grownups! \
-	Are you bored of DULL and TEDIOUS shuttle journeys after you're evacuating for probably BORING reasons. Well then order the Snappop(tm) today! \
-	We've got fun activities for everyone, an all access cockpit, and no boring security brig! Boo! Play dress up with your friends! \
-	Collect all the bedsheets before your neighbour does! Check if the AI is watching you with our patent pending \"Peeping Tom AI Multitool Detector\" or PEEEEEETUR for short. \
-	Have a fun ride!"
-	admin_notes = "Brig is replaced by anchored greentext book surrounded by lavaland chasms, stationside door has been removed to prevent accidental dropping. No brig."
+	description = "各位小朋友和大朋友！\
+	你是不是受够了因为无聊的理由撤离之后，那枯燥乏味的穿梭机旅途？那就马上订购啪嗒响(tm)！\
+	我们有适合所有人的趣味活动、人人都能进入的驾驶舱，而且没有无聊的安保禁闭室！嘘！和朋友一起玩换装吧！\
+	抢在邻居之前收集所有床单！用我们正在申请专利的“偷窥狂 AI 多功能工具探测器”，简称 PEEEEEETUR，检查 AI 是否在监视你。\
+	祝你旅途愉快！"
+	admin_notes = "禁闭室被一本固定的绿字胜利书取代，周围是熔岩地带的深渊；靠站一侧的门已移除，以防意外跌落。没有禁闭室。"
 	credit_cost = CARGO_CRATE_VALUE * 16
 	occupancy_limit = "HONK"
 
 /datum/map_template/shuttle/emergency/cramped
 	suffix = "cramped"
 	name = "Secure Transport Vessel 5 (STV5)"
-	description = "Well, looks like CentCom only had this ship in the area, they probably weren't expecting you to need evac for a while. \
-	Probably best if you don't rifle around in whatever equipment they were transporting. I hope you're friendly with your coworkers, because there is very little space in this thing.\n\
+	description = "看来中央指挥部在附近只有这艘船，他们大概没想到你们这么快就需要撤离。\
+	最好别乱翻他们原本运送的设备。希望你和同事们相处融洽，因为这东西里的空间小得可怜。\n\
 	\n\
-	Contains contraband armory guns, maintenance loot, and abandoned crates!"
-	admin_notes = "Due to origin as a solo piloted secure vessel, has an active GPS onboard labeled STV5. Has roughly as much space as Hi Daniel, except with explosive crates."
+	内含违禁军械枪支、维护区杂物和废弃货箱！"
+	admin_notes = "原为单人驾驶的安全运输船，因此船上有一台标记为 STV5 的运行中 GPS。空间与嗨丹尼尔号大致相当，但带有爆炸货箱。"
 	occupancy_limit = "5"
 
 /datum/map_template/shuttle/emergency/meta
 	suffix = "meta"
 	name = "Meta Station Emergency Shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 8
-	description = "A fairly standard shuttle, though larger and slightly better equipped than the Box Station variant."
+	description = "一艘相当标准的穿梭机，但比 Box 站版本更大，设备也稍好一些。"
 	occupancy_limit = "45"
 
 /datum/map_template/shuttle/emergency/kilo
 	suffix = "kilo"
 	name = "Kilo Station Emergency Shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 10
-	description = "A fully functional shuttle including a complete infirmary, storage facilities and regular amenities."
+	description = "一艘功能齐全的穿梭机，配有完整医务室、储存设施和常规生活设施。"
 	occupancy_limit = "55"
 
 /datum/map_template/shuttle/emergency/mini
 	suffix = "mini"
 	name = "Ministation emergency shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 2
-	description = "Despite its namesake, this shuttle is actually only slightly smaller than standard, and still complete with a brig and medbay."
+	description = "虽然名字叫迷你，这艘穿梭机其实只比标准型号略小，仍配有完整的禁闭室和医疗区。"
 	occupancy_limit = "35"
 
 /datum/map_template/shuttle/emergency/tram
 	suffix = "tram"
 	name = "Tram Station Emergency Shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 4
-	description = "A train but in space, choo choo!"
+	description = "太空里的火车，呜呜！"
 	occupancy_limit = "35"
 
 /datum/map_template/shuttle/emergency/birdshot
 	suffix = "birdshot"
 	name = "Birdshot Station Emergency Shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 2
-	description = "We pulled this one out of Mothball just for you!"
+	description = "我们特地为你把这艘封存的老船翻了出来！"
 	occupancy_limit = "40"
 
 
@@ -275,13 +275,13 @@
 	suffix = "catwalk"
 	name = "Catwalk Station Emergency Shuttle"
 	credit_cost = CARGO_CRATE_VALUE * 5
-	description = "A standard sized shuttle, featuring a medbay and brig, along with an elevated bridge."
+	description = "一艘标准尺寸的穿梭机，配有医疗区、禁闭室以及抬高的舰桥。"
 	occupancy_limit = "40"
 
 /datum/map_template/shuttle/emergency/wawa
 	suffix = "wawa"
 	name = "Wawa Stand-in Emergency Shuttle"
-	description = "Due to a recent clerical error in the funding department, a lot of funding went to lizard plushies. Due to the costs, Nanotrasen has supplied a nearby garbage truck as a stand-in. Better learn how to share spots."
+	description = "由于财务部门近期的文书失误，大量资金被用于购买蜥蜴毛绒玩具。出于成本考虑，纳米传讯调来了附近的一辆垃圾车代用。最好学会与别人挤一挤。"
 	credit_cost = CARGO_CRATE_VALUE * 6
 	occupancy_limit = "25"
 
@@ -289,11 +289,11 @@
 	suffix = "scrapheap"
 	name = "Standby Evacuation Vessel \"Scrapheap Challenge\""
 	credit_cost = CARGO_CRATE_VALUE * -18
-	description = "Comrade! We see you are having trouble with money, yes? If you have money issue, very little money, we are looking for good shuttle, emergency shuttle. You take best in sector shuttle, we take yours, you get money, da? Please do not lean on window, fragile like fina china. -Ivan"
-	admin_notes = "A randomly assembled, modular abomination. May have no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight. When bought, gives a good influx of money, but can only be bought if the budget is literally 0 credits."
+	description = "同志！看来你缺钱，对吧？如果你有资金问题，钱很少，我们正在找好穿梭机，紧急穿梭机。你拿走星区里最好的船，我们拿走你的，你还能拿钱，达？请勿倚靠窗户，像精瓷一样脆。——伊万"
+	admin_notes = "随机拼装的模块化怪胎。可能没有可用医疗区、缺少舱段，还有极脆的窗户。却出奇地气密。购买时会获得一大笔钱，但只有预算恰好为 0 信用点时才能买。"
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 	occupancy_limit = "30"
-	prerequisites = "This shuttle is only offered for purchase when the station is low on funds."
+	prerequisites = "只有空间站资金不足时，才会出售此穿梭机。"
 
 /datum/map_template/shuttle/emergency/scrapheap/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_SCRAPHEAP]
@@ -304,10 +304,10 @@
 /datum/map_template/shuttle/emergency/narnar
 	suffix = "narnar"
 	name = "Shuttle 667"
-	description = "Looks like this shuttle may have wandered into the darkness between the stars on route to the station. Let's not think too hard about where all the bodies came from."
-	admin_notes = "Contains real cult ruins, mob eyeballs, and inactive constructs. Cult mobs will automatically be sentienced by fun balloon. \
-	Cloning pods in 'medbay' area are showcases and nonfunctional."
-	prerequisites = "A mysterious cult rune will need to be banished before this shuttle can be summoned."
+	description = "看来这艘穿梭机在前往空间站途中，可能误入了群星之间的黑暗。还是别深究这些尸体从哪来吧。"
+	admin_notes = "带有真正的血教遗迹、眼球生物和未激活的构装体。趣味气球会自动赋予血教生物意识。\
+	“医疗区”的克隆舱只是陈列品，无法使用。"
+	prerequisites = "必须先驱逐一个神秘的血教符文，才能召唤此穿梭机。"
 	credit_cost = 6667 ///The joke is the number so no defines
 	occupancy_limit = "666"
 
@@ -317,31 +317,31 @@
 /datum/map_template/shuttle/emergency/pubby
 	suffix = "pubby"
 	name = "Pubby Station Emergency Shuttle"
-	description = "A train but in space! Complete with a first, second class, brig and storage area."
-	admin_notes = "Choo choo motherfucker!"
+	description = "太空里的火车！一等舱、二等舱、禁闭室和储存区一应俱全。"
+	admin_notes = "呜呜，混蛋！"
 	credit_cost = CARGO_CRATE_VALUE * 2
 	occupancy_limit = "50"
 
 /datum/map_template/shuttle/emergency/cere
 	suffix = "cere"
 	name = "Cere Station Emergency Shuttle"
-	description = "The large, beefed-up version of the box-standard shuttle. Includes an expanded brig, fully stocked medbay, enhanced cargo storage with mech chargers, \
-	an engine room stocked with various supplies, and a crew capacity of 80+ to top it all off. Live large, live Cere."
-	admin_notes = "Seriously big, even larger than the Delta shuttle."
+	description = "Box 标准穿梭机的大型加强版。配有扩大的禁闭室、物资齐全的医疗区、带机甲充电器的增强货仓、\
+	备有各类物资的引擎室，甚至能容纳八十多名船员。大气生活，尽在 Cere。"
+	admin_notes = "真的很大，比 Delta 穿梭机还大。"
 	credit_cost = CARGO_CRATE_VALUE * 20
 	occupancy_limit = "110"
 
 /datum/map_template/shuttle/emergency/supermatter
 	suffix = "supermatter"
 	name = "Hyperfractal Gigashuttle"
-	description = "\"I dunno, this seems kinda needlessly complicated.\"\n\
-	\"This shuttle has very a very high safety record, according to CentCom Officer Cadet Yins.\"\n\
-	\"Are you sure?\"\n\
-	\"Yes, it has a safety record of N-A-N, which is apparently larger than 100%.\""
-	admin_notes = "Supermatter that spawns on shuttle is special anchored 'hugbox' supermatter that cannot take damage and does not take in or emit gas. \
-	Outside of admin intervention, it cannot explode. \
-	It does, however, still dust anything on contact, emits high levels of radiation, and induce hallucinations in anyone looking at it without protective goggles. \
-	Emitters spawn powered on, expect admin notices, they are harmless."
+	description = "“我不太懂，但这看起来复杂得毫无必要。”\n\
+	“据中央指挥部军官学员因斯说，这艘穿梭机的安全记录极其优秀。”\n\
+	“你确定？”\n\
+	“确定，它的安全记录是 N-A-N，显然比 100% 还高。”"
+	admin_notes = "船上生成的超物质是固定的特殊“安全版”超物质，不会受损，也不会吸入或释放气体。\
+	除非管理员干预，否则不会爆炸。\
+	但接触它仍会化为灰烬，它也会释放大量辐射，让未戴防护镜直视它的人产生幻觉。\
+	发射器初始已通电，预计会触发管理员提示，但它们无害。"
 	emag_only = TRUE
 	credit_cost = EMAG_LOCKED_SHUTTLE_COST
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
@@ -350,9 +350,9 @@
 /datum/map_template/shuttle/emergency/imfedupwiththisworld
 	suffix = "imfedupwiththisworld"
 	name = "Oh, Hi Daniel"
-	description = "How was space work today? Oh, pretty good. We got a new space station and the company will make a lot of money. What space station? I cannot tell you; it's space confidential. \
-	Aw, come space on. Why not? No, I can't. Anyway, how is your space roleplay life?"
-	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
+	description = "今天的太空工作怎么样？哦，挺好。我们有了新空间站，公司会赚很多钱。什么空间站？不能告诉你，这是太空机密。\
+	哎，太空别这样。为什么不能？不行，就是不能。话说回来，你的太空角色扮演生活怎么样？"
+	admin_notes = "非常小，只有一道气闸和木墙。能出什么事呢？"
 	emag_only = TRUE
 	credit_cost = EMAG_LOCKED_SHUTTLE_COST
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
@@ -361,39 +361,39 @@
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"
 	name = "NES Port"
-	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known Nanotrasen facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
+	description = "纳米传讯紧急穿梭机港（简称 NES Port）用于其他不太知名的纳米传讯设施，内部更加开阔，可容纳更多人，但船载设施较少。"
 	credit_cost = CARGO_CRATE_VALUE
 	occupancy_limit = "40"
 
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
 	name = "Uncle Pete's Rollerdome"
-	description = "Developed by a member of Nanotrasen's R&D crew that claims to have travelled from the year 2028. \
-	He says this shuttle is based off an old entertainment complex from the 1990s, though our database has no records on anything pertaining to that decade."
-	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
+	description = "由一位自称从 2028 年穿越而来的纳米传讯研发人员开发。\
+	他说这艘穿梭机以二十世纪九十年代的一座老娱乐场为原型，不过我们的数据库里没有那个年代的任何记录。"
+	admin_notes = "只有九十年代的孩子才记得。使用紧急逃生酒吧的趣味气球和无人机。"
 	credit_cost = CARGO_CRATE_VALUE * 30
 	occupancy_limit = "5"
 
 /datum/map_template/shuttle/emergency/basketball
 	suffix = "bballhooper"
 	name = "Basketballer's Stadium"
-	description = "Hoop, man, hoop! Get your shooting game on with this sleek new basketball stadium! Do keep in mind that several other features \
-	that you may expect to find common-place on other shuttles aren't present to give you this sleek stadium at an affordable cost. \
-	It also wasn't manufactured to deal with the form-factor of some of your stations... good luck with that."
-	admin_notes = "A larger shuttle built around a basketball stadium: entirely impractical but just a complete blast!"
+	description = "投篮，伙计，投篮！在这座时髦的新篮球馆里大显身手吧！但请记住，为了以实惠价格提供这座球馆，\
+	其他穿梭机上常见的某些设施并未配备。\
+	它的设计也没考虑某些空间站的外形……祝你好运。"
+	admin_notes = "围绕篮球馆建造的大型穿梭机：完全不实用，但乐趣十足！"
 	credit_cost = CARGO_CRATE_VALUE * 10
 	occupancy_limit = "30"
 
 /datum/map_template/shuttle/emergency/wabbajack
 	suffix = "wabbajack"
 	name = "NT Lepton Violet"
-	description = "The research team based on this vessel went missing one day, and no amount of investigation could discover what happened to them. \
-	The only occupants were a number of dead rodents, who appeared to have clawed each other to death. \
-	Needless to say, no engineering team wanted to go near the thing, and it's only being used as an Emergency Escape Shuttle because there is literally nothing else available."
-	admin_notes = "If the crew can solve the puzzle, they will wake the wabbajack statue. It will likely not end well. There's a reason it's boarded up. Maybe they should have just left it alone."
+	description = "驻扎在这艘船上的研究小组某天失踪了，无论如何调查，都没能查明他们的遭遇。\
+	船上只剩一些啮齿动物尸体，似乎是互相撕抓而死。\
+	不用说，没有工程队愿意靠近它。之所以把它用作紧急逃生穿梭机，只是因为实在没有别的可用。"
+	admin_notes = "如果船员解开谜题，就会唤醒瓦巴杰克雕像。多半不会有好下场。它被封起来是有原因的，或许不去碰它才对。"
 	credit_cost = CARGO_CRATE_VALUE * 30
 	occupancy_limit = "30"
-	prerequisites = "This shuttle requires an act of magical polymorphism to occur before it can be purchased."
+	prerequisites = "必须先发生一次魔法变形，才能购买此穿梭机。"
 
 /datum/map_template/shuttle/emergency/wabbajack/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_WABBAJACK]
@@ -401,123 +401,123 @@
 /datum/map_template/shuttle/emergency/omega
 	suffix = "omega"
 	name = "Omegastation Emergency Shuttle"
-	description = "On the smaller size with a modern design, this shuttle is for the crew who like the cosier things, while still being able to stretch their legs."
+	description = "这艘采用现代设计的小型穿梭机，适合喜欢温馨环境又希望能伸展双腿的船员。"
 	credit_cost = CARGO_CRATE_VALUE * 2
 	occupancy_limit = "30"
 
 /datum/map_template/shuttle/emergency/cruise
 	suffix = "cruise"
 	name = "The NTSS Independence"
-	description = "Ordinarily reserved for special functions and events, the Cruise Shuttle Independence can bring a summery cheer to your next station evacuation for a 'modest' fee!"
-	admin_notes = "This motherfucker is BIG. You might need to force dock it."
+	description = "独立号游轮穿梭机通常只用于特殊典礼和活动，如今只收取一笔“适中”的费用，就能为你的下次空间站撤离带来夏日欢乐！"
+	admin_notes = "这玩意儿他妈的大得离谱。可能需要强制对接。"
 	credit_cost = CARGO_CRATE_VALUE * 100
 	occupancy_limit = "80"
 
 /datum/map_template/shuttle/emergency/monkey
 	suffix = "nature"
 	name = "Dynamic Environmental Interaction Shuttle"
-	description = "A large shuttle with a center biodome that is flourishing with life. Frolic with the monkeys! (Extra monkeys are stored on the bridge.)"
-	admin_notes = "Pretty freakin' large, almost as big as Raven or Cere. Exercise caution with it."
+	description = "一艘中央配有生机勃勃生态穹顶的大型穿梭机。和猴子们一起玩耍吧！（舰桥还存放着额外的猴子。）"
+	admin_notes = "相当大，几乎和渡鸦号或 Cere 一样大。使用时小心。"
 	credit_cost = CARGO_CRATE_VALUE * 16
 	occupancy_limit = "45"
 
 /datum/map_template/shuttle/emergency/casino
 	suffix = "casino"
 	name = "Lucky Jackpot Casino Shuttle"
-	description = "A luxurious casino packed to the brim with everything you need to start new gambling addictions!"
-	admin_notes = "The ship is a bit chunky, so watch where you park it."
+	description = "一座豪华赌场，装满了让你染上新赌瘾所需的一切！"
+	admin_notes = "船体有些臃肿，注意停靠位置。"
 	credit_cost = 7777
 	occupancy_limit = "85"
 
 /datum/map_template/shuttle/emergency/shadow
 	suffix = "shadow"
 	name = "The NTSS Shadow"
-	description = "Guaranteed to get you somewhere FAST. With a custom-built plasma engine, this bad boy will put more distance between you and certain danger than any other!"
-	admin_notes = "The aft of the ship has a plasma tank that starts ignited. May get released by crew. The plasma windows next to the engine heaters will also erupt into flame, and also risk getting released by crew."
+	description = "保证飞快地把你送到某处。凭借定制等离子引擎，这家伙比任何船都更能让你远离迫在眉睫的危险！"
+	admin_notes = "船尾有一个初始已点燃的等离子储罐，可能被船员释放。引擎加热器旁的等离子窗也会燃烧，同样有被船员放出的风险。"
 	credit_cost = CARGO_CRATE_VALUE * 50
 	occupancy_limit = "40"
 
 /datum/map_template/shuttle/emergency/fish
 	suffix = "fish"
 	name = "Angler's Choice Emergency Shuttle"
-	description = "Trades such amenities as 'storage space' and 'sufficient seating' for an artificial environment ideal for fishing, plus ample supplies (also for fishing)."
-	admin_notes = "There's a chasm in it, it has railings but that won't stop determined players."
+	description = "牺牲“储物空间”和“充足座位”等设施，换取理想的人工垂钓环境和充足物资（也是用来钓鱼的）。"
+	admin_notes = "里面有一道深渊，虽然有护栏，但拦不住铁了心的玩家。"
 	credit_cost = CARGO_CRATE_VALUE * 10
 	occupancy_limit = "35"
 
 /datum/map_template/shuttle/emergency/lance
 	suffix = "lance"
 	name = "The Lance Crew Evacuation System"
-	description = "A brand new shuttle by Nanotrasen's finest in shuttle-engineering, it's designed to tactically slam into a destroyed station, dispatching threats and saving crew at the same time! Be careful to stay out of its path."
-	admin_notes = "WARNING: This shuttle is designed to crash into the station. It has turrets, similar to the raven."
+	description = "由纳米传讯最优秀的穿梭机工程师设计的全新船型，专为战术性撞入受损空间站而造，同时消灭威胁并救出船员！注意避开它的行进路线。"
+	admin_notes = "警告：这艘穿梭机就是用来撞进空间站的。和渡鸦号一样配有炮塔。"
 	credit_cost = CARGO_CRATE_VALUE * 70
 	occupancy_limit = "50"
 
 /datum/map_template/shuttle/emergency/tranquility
 	suffix = "tranquility"
 	name = "The Tranquility Relocation Shuttle"
-	description = "A large shuttle, covered in flora and comfortable resting areas. The perfect way to end a peaceful shift"
-	admin_notes = "it's pretty big, and comfy. Be careful when placing it down!"
+	description = "一艘遍布植物与舒适休息区的大型穿梭机。为平静的轮班画上完美句号。"
+	admin_notes = "相当大，也很舒适。放置时请小心！"
 	credit_cost = CARGO_CRATE_VALUE * 25
 	occupancy_limit = "40"
 
 /datum/map_template/shuttle/emergency/hugcage
 	suffix = "hugcage"
 	name = "Hug Relaxation Shuttle"
-	description = "A small cozy shuttle with plenty of beds for tired or sensitive spacemen, and a box for pillow-fights."
-	admin_notes = "Has a sentience fun balloon for pets."
+	description = "一艘温馨的小型穿梭机，为疲倦或敏感的太空人准备了许多床铺，还备有一盒枕头大战用品。"
+	admin_notes = "有一个可赋予宠物意识的趣味气球。"
 	credit_cost = CARGO_CRATE_VALUE * 16
 	occupancy_limit = "20"
 
 /datum/map_template/shuttle/emergency/fame
 	suffix = "fame"
 	name = "Hall of Fame Shuttle"
-	description = "A grandiose shuttle that has a red carpet leading to the hall of fame. Are you worthy to stand among the best spessmen in existence?"
-	admin_notes = "Designed around persistence from memories, trophies, photos, and statues."
+	description = "一艘华丽的穿梭机，红毯直通名人堂。你有资格与最优秀的太空人并肩而立吗？"
+	admin_notes = "围绕记忆、奖杯、照片和雕像的跨局保存而设计。"
 	credit_cost = CARGO_CRATE_VALUE * 25
 	occupancy_limit = "55"
 
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
 	name = "Delta Station Emergency Shuttle"
-	description = "A large shuttle for a large station, this shuttle can comfortably fit all your overpopulation and crowding needs. Complete with all facilities plus additional equipment."
-	admin_notes = "Go big or go home."
+	description = "大空间站就配大穿梭机，轻松应对人口过多和拥挤需求。设施齐全，还带有额外装备。"
+	admin_notes = "要么做大，要么回家。"
 	credit_cost = CARGO_CRATE_VALUE * 15
 	occupancy_limit = "75"
 
 /datum/map_template/shuttle/emergency/northstar
 	suffix = "northstar"
 	name = "North Star Emergency Shuttle"
-	description = "A rugged shuttle meant for long-distance transit from the tips of the frontier to Central Command and back. \
-	moderately comfortable and large, but cramped."
+	description = "一艘坚固的穿梭机，用于边疆尽头与中央指挥部之间的长途往返运输。\
+	大小和舒适度尚可，但很拥挤。"
 	credit_cost = CARGO_CRATE_VALUE * 14
 	occupancy_limit = "55"
 
 /datum/map_template/shuttle/emergency/nebula
 	suffix = "nebula"
 	name = "Nebula Station Emergency Shuttle"
-	description = "AAn excellent luxury shuttle for transporting a large number of passengers. \
-	It is richly equipped with bushes and free oxygen"
+	description = "一艘适合运送大量乘客的出色豪华穿梭机。\
+	配有丰富的灌木和免费氧气。"
 	credit_cost = CARGO_CRATE_VALUE * 18
 	occupancy_limit = "80"
 
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
 	name = "CentCom Raven Cruiser"
-	description = "The CentCom Raven Cruiser is a former high-risk salvage vessel, now repurposed into an emergency escape shuttle. \
-	Once first to the scene to pick through warzones for valuable remains, it now serves as an excellent escape option for stations under heavy fire from outside forces. \
-	This escape shuttle boasts shields and numerous anti-personnel turrets guarding its perimeter to fend off meteors and enemy boarding attempts."
-	admin_notes = "Comes with turrets that will target anything without the neutral faction (nuke ops, xenos etc, but not pets)."
+	description = "中央指挥部渡鸦号巡洋舰原是一艘执行高风险任务的打捞船，如今改作紧急逃生穿梭机。\
+	它曾总是率先进入战区搜寻有价值的残骸，现在则是遭受外敌猛烈炮击的空间站的绝佳撤离选择。\
+	这艘逃生穿梭机配有护盾，以及守卫四周的大量反步兵炮塔，用以抵挡陨石和敌人登船。"
+	admin_notes = "配备的炮塔会攻击所有不属于中立阵营的目标（核爆特工、异形等，但不包括宠物）。"
 	credit_cost = CARGO_CRATE_VALUE * 60
 	occupancy_limit = "CLASSIFIED"
 
 /datum/map_template/shuttle/emergency/zeta
 	suffix = "zeta"
 	name = "Tr%nPo2r& Z3TA"
-	description = "A glitch appears on your monitor, flickering in and out of the options laid before you. \
-	It seems strange and alien..."
-	prerequisites = "You will need to research special alien technology to access the signal."
-	admin_notes = "Has alien surgery tools, and a void core that provides unlimited power."
+	description = "显示器上出现了一处故障，在眼前的选项中时隐时现。\
+	它显得陌生而异样……"
+	prerequisites = "你需要研究特殊外星科技，才能接入该信号。"
+	admin_notes = "配有外星手术工具，以及提供无限能源的虚空核心。"
 	credit_cost = CARGO_CRATE_VALUE * 16
 	occupancy_limit = "xxx"
 
@@ -527,11 +527,11 @@
 /datum/map_template/shuttle/emergency/tombstone
 	suffix = "tombstone"
 	name = "The NTSS Tombstone"
-	description = "Specifically commissioned for cleanups involving bio hazards, zombie outbreaks, or flesh-eating plagues. Features burial plots, reinforced morgue trays, and a crematorium. It's safe, airtight, and ensures you won't bite your coworkers during transit!"
-	admin_notes = "The aft of the ship has a miasma tank behind the curator room. May get released by crew. There are also random spawners in the crypt graves that has a chance to spawn a one use spectral musical instrument."
+	description = "专为生物危害、僵尸爆发或食肉瘟疫的清理工作订造。配有墓地、加固停尸托盘和火葬炉。安全、气密，保证你在运输途中咬不到同事！"
+	admin_notes = "船尾馆长室后有一个瘴气储罐，可能被船员释放。墓穴内还有随机生成器，有机会生成一次性的幽灵乐器。"
 	credit_cost = CARGO_CRATE_VALUE * 15
 	occupancy_limit = "40"
-	prerequisites = "This shuttle requires a biohazard outbreak to occur before it can be purchased."
+	prerequisites = "必须先发生生物危害事件，才能购买此穿梭机。"
 
 /datum/map_template/shuttle/emergency/tombstone/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_TOMBSTONE]
@@ -539,9 +539,9 @@
 /datum/map_template/shuttle/emergency/ark
 	suffix = "ark"
 	name = "The Ark"
-	description = "A specialized mobile zoo and research transport. The main passenger lounges are built directly alongside containment cells housing various friendly, exotic, and hostile alien specimens."
-	prerequisites = "You will need to obtain all samples for the station's DNA Vault goal."
-	admin_notes = "Packed with various fauna, including hostile and passive exotic mobs in enclosures."
+	description = "一艘专用的移动动物园和科研运输船。主要乘客休息室紧邻收容舱，其中关着各类友善、奇异和敌对的外星生物样本。"
+	prerequisites = "你需要收集空间站 DNA 宝库目标所需的全部样本。"
+	admin_notes = "装载了各种动物，包括围栏中的敌对和温顺珍奇生物。"
 	credit_cost = CARGO_CRATE_VALUE * 25
 	occupancy_limit = "70"
 

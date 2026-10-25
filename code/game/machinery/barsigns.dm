@@ -1,6 +1,6 @@
 /obj/machinery/barsign // All Signs are 64 by 32 pixels, they take two tiles
-	name = "bar sign"
-	desc = "A bar sign which has not been initialized, somehow. Complain at a coder!"
+	name = "酒吧招牌"
+	desc = "不知为何尚未初始化的酒吧招牌。去找程序员投诉吧！"
 	icon = 'icons/obj/machines/barsigns.dmi'
 	icon_state = "empty"
 	req_access = list(ACCESS_BAR)
@@ -115,10 +115,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	if(.)
 		return
 	if(!allowed(user))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 		return
 	if(machine_stat & (NOPOWER|BROKEN|EMPED))
-		balloon_alert(user, "controls are unresponsive!")
+		balloon_alert(user, "控制装置无响应！")
 		return
 	pick_sign(user)
 
@@ -126,11 +126,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	tool.play_tool_sound(src)
 	panel_open = !panel_open
 	if(panel_open)
-		balloon_alert(user, "panel opened")
+		balloon_alert(user, "面板已打开")
 		set_sign(new /datum/barsign/hiddensigns/signoff)
 		return ITEM_INTERACT_SUCCESS
 
-	balloon_alert(user, "panel closed")
+	balloon_alert(user, "面板已关闭")
 
 	if(machine_stat & (NOPOWER|BROKEN) || !chosen_sign)
 		set_sign(new /datum/barsign/hiddensigns/signoff)
@@ -141,7 +141,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /obj/machinery/barsign/wrench_act(mob/living/user, obj/item/tool)
 	if(!panel_open)
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "请先打开面板！")
 		return ITEM_INTERACT_BLOCKING
 
 	tool.play_tool_sound(src)
@@ -156,25 +156,25 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 	if(istype(tool, /obj/item/blueprints) && !change_area_name)
 		if(!panel_open)
-			balloon_alert(user, "open the panel first!")
+			balloon_alert(user, "请先打开面板！")
 			return ITEM_INTERACT_BLOCKING
 
 		change_area_name = TRUE
-		balloon_alert(user, "sign registered")
+		balloon_alert(user, "招牌已注册")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/stack/cable_coil) && panel_open)
 		var/obj/item/stack/cable_coil/wire = tool
 
 		if(atom_integrity >= max_integrity)
-			balloon_alert(user, "doesn't need repairs!")
+			balloon_alert(user, "不需要维修！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!wire.use(2))
-			balloon_alert(user, "need two cables!")
+			balloon_alert(user, "需要两段电缆！")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert(user, "repaired")
+		balloon_alert(user, "已修复")
 		atom_integrity = max_integrity
 		set_machine_stat(machine_stat & ~BROKEN)
 		update_appearance()
@@ -201,10 +201,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /obj/machinery/barsign/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(machine_stat & (NOPOWER|BROKEN|EMPED))
-		balloon_alert(user, "controls are unresponsive!")
+		balloon_alert(user, "控制装置无响应！")
 		return FALSE
 
-	balloon_alert(user, "illegal barsign loaded")
+	balloon_alert(user, "已加载非法酒吧招牌")
 	addtimer(CALLBACK(src, PROC_REF(finish_emag_act)), 10 SECONDS)
 	return TRUE
 
@@ -213,7 +213,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	set_sign(new /datum/barsign/hiddensigns/syndibarsign)
 
 /obj/machinery/barsign/proc/pick_sign(mob/user)
-	var/picked_name = tgui_input_list(user, "Available Signage", "Bar Sign", sort_list(get_bar_names()))
+	var/picked_name = tgui_input_list(user, "可用招牌", "酒吧招牌", sort_list(get_bar_names()))
 	if(isnull(picked_name))
 		return
 	set_sign_by_name(picked_name)
@@ -245,284 +245,284 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 
 /datum/barsign/New()
 	if(!desc)
-		desc = "It displays \"[name]\"."
+		desc = "上面显示着“[name]”。"
 
 // Specific bar signs.
 
 /datum/barsign/maltesefalcon
-	name = "Maltese Falcon"
+	name = "马耳他之鹰"
 	icon_state = "maltesefalcon"
-	desc = "The Maltese Falcon, Space Bar and Grill."
+	desc = "马耳他之鹰，太空酒吧与烧烤餐厅。"
 	neon_color = "#5E8EAC"
 
 /datum/barsign/thebark
-	name = "The Bark"
+	name = "汪汪酒吧"
 	icon_state = "thebark"
-	desc = "Ian's bar of choice."
+	desc = "伊恩最爱的酒吧。"
 	neon_color = "#f7a604"
 
 /datum/barsign/harmbaton
-	name = "The Harmbaton"
+	name = "伤害警棍"
 	icon_state = "theharmbaton"
-	desc = "A great dining experience for both security members and assistants."
+	desc = "为安保人员和助理提供同样出色的用餐体验。"
 	neon_color = "#ff7a4d"
 
 /datum/barsign/thesingulo
-	name = "The Singulo"
+	name = "奇点酒吧"
 	icon_state = "thesingulo"
-	desc = "Where people go that'd rather not be called by their name."
+	desc = "不想被人叫出名字的人常来的地方。"
 	neon_color = "#E600DB"
 
 /datum/barsign/thedrunkcarp
-	name = "The Drunk Carp"
+	name = "醉鲤鱼"
 	icon_state = "thedrunkcarp"
-	desc = "Don't drink and swim."
+	desc = "喝酒不开游，游泳不喝酒。"
 	neon_color = "#a82196"
 
 /datum/barsign/scotchservinwill
-	name = "Scotch Servin Willy's"
+	name = "威利的苏格兰酒馆"
 	icon_state = "scotchservinwill"
-	desc = "Willy sure moved up in the world from clown to bartender."
+	desc = "从小丑变成酒保，威利可真是出人头地了。"
 	neon_color = "#fee4bf"
 
 /datum/barsign/officerbeersky
-	name = "Officer Beersky's"
+	name = "比尔斯基警官酒馆"
 	icon_state = "officerbeersky"
-	desc = "Man eat a dong, these drinks are great."
+	desc = "他妈的，这些酒真好喝。"
 	neon_color = "#16C76B"
 
 /datum/barsign/thecavern
-	name = "The Cavern"
+	name = "洞窟酒吧"
 	icon_state = "thecavern"
-	desc = "Fine drinks while listening to some fine tunes."
+	desc = "听着好曲，品着好酒。"
 	neon_color = "#0fe500"
 
 /datum/barsign/theouterspess
-	name = "The Outer Spess"
+	name = "外太空酒吧"
 	icon_state = "theouterspess"
-	desc = "This bar isn't actually located in outer space."
+	desc = "这家酒吧其实并不在外太空。"
 	neon_color = "#30f3cc"
 
 /datum/barsign/slipperyshots
-	name = "Slippery Shots"
+	name = "滑滑小酒杯"
 	icon_state = "slipperyshots"
-	desc = "Slippery slope to drunkenness with our shots!"
+	desc = "喝上我们的小杯烈酒，一路滑向酩酊大醉！"
 	neon_color = "#70DF00"
 
 /datum/barsign/thegreytide
-	name = "The Grey Tide"
+	name = "灰潮酒吧"
 	icon_state = "thegreytide"
-	desc = "Abandon your toolboxing ways and enjoy a lazy beer!"
+	desc = "放下打人的工具箱，悠闲地喝杯啤酒！"
 	neon_color = "#00F4D6"
 
 /datum/barsign/honkednloaded
-	name = "Honked 'n' Loaded"
+	name = "滑稽满膛"
 	icon_state = "honkednloaded"
-	desc = "Honk."
+	desc = "滑稽。"
 	neon_color = "#FF998A"
 
 /datum/barsign/le_cafe_silencieux
-	name = "Le Café Silencieux"
+	name = "寂静咖啡馆"
 	icon_state = "le_cafe_silencieux"
 	desc = "..."
 	neon_color = "#ffffff"
 
 /datum/barsign/thenest
-	name = "The Nest"
+	name = "巢穴酒吧"
 	icon_state = "thenest"
-	desc = "A good place to retire for a drink after a long night of crime fighting."
+	desc = "打击犯罪忙了一夜后，来这里歇脚喝一杯再好不过。"
 	neon_color = "#4d6796"
 
 /datum/barsign/thecoderbus
-	name = "The Coderbus"
+	name = "程序员巴士"
 	icon_state = "thecoderbus"
-	desc = "A very controversial bar known for its wide variety of constantly-changing drinks."
+	desc = "一家争议颇多的酒吧，以品种繁多、不断变化的饮品闻名。"
 	neon_color = "#ffffff"
 
 /datum/barsign/theadminbus
-	name = "The Adminbus"
+	name = "管理员巴士"
 	icon_state = "theadminbus"
-	desc = "An establishment visited mainly by space-judges. It isn't bombed nearly as much as court hearings."
+	desc = "主要由太空法官光顾的场所。这里遭到轰炸的频率可比庭审低多了。"
 	neon_color = "#ffffff"
 
 /datum/barsign/oldcockinn
-	name = "The Old Cock Inn"
+	name = "老公鸡客栈"
 	icon_state = "oldcockinn"
-	desc = "Something about this sign fills you with despair."
+	desc = "这块招牌不知为何让你满心绝望。"
 	neon_color = "#a4352b"
 
 /datum/barsign/thewretchedhive
-	name = "The Wretched Hive"
+	name = "罪恶蜂巢"
 	icon_state = "thewretchedhive"
-	desc = "Legally obligated to instruct you to check your drinks for acid before consumption."
+	desc = "依法提醒：饮用前请检查饮品中是否含酸。"
 	neon_color = "#26b000"
 
 /datum/barsign/robustacafe
-	name = "The Robusta Cafe"
+	name = "罗布斯塔咖啡馆"
 	icon_state = "robustacafe"
-	desc = "Holder of the 'Most Lethal Barfights' record 5 years uncontested."
+	desc = "连续五年稳居“最致命酒吧斗殴”纪录榜首。"
 	neon_color = "#c45f7a"
 
 /datum/barsign/emergencyrumparty
-	name = "The Emergency Rum Party"
+	name = "紧急朗姆派对"
 	icon_state = "emergencyrumparty"
-	desc = "Recently relicensed after a long closure."
+	desc = "长期停业后，最近终于重新获批开业。"
 	neon_color = "#f90011"
 
 /datum/barsign/combocafe
-	name = "The Combo Cafe"
+	name = "组合咖啡馆"
 	icon_state = "combocafe"
-	desc = "Renowned system-wide for their utterly uncreative drink combinations."
+	desc = "以毫无创意的饮品组合闻名整个星系。"
 	neon_color = "#33ca40"
 
 /datum/barsign/vladssaladbar
-	name = "Vlad's Salad Bar"
+	name = "弗拉德的沙拉吧"
 	icon_state = "vladssaladbar"
-	desc = "Under new management. Vlad was always a bit too trigger happy with that shotgun."
+	desc = "现已更换经营者。弗拉德总是太爱扣动那把霰弹枪的扳机。"
 	neon_color = "#306900"
 
 /datum/barsign/theshaken
-	name = "The Shaken"
+	name = "摇出来的酒吧"
 	icon_state = "theshaken"
-	desc = "This establishment does not serve stirred drinks."
+	desc = "本店不供应搅拌调制的饮品。"
 	neon_color = "#dcd884"
 
 /datum/barsign/thealenath
-	name = "The Ale' Nath"
+	name = "艾尔纳斯啤酒馆"
 	icon_state = "thealenath"
-	desc = "All right, buddy. I think you've had EI NATH. Time to get a cab."
+	desc = "好了，伙计。我看你已经喝得艾尔纳斯了。该叫出租车了。"
 	neon_color = "#ed0000"
 
 /datum/barsign/thealohasnackbar
-	name = "The Aloha Snackbar"
+	name = "阿罗哈小吃吧"
 	icon_state = "alohasnackbar"
-	desc = "A tasteful, inoffensive tiki bar sign."
+	desc = "一块雅致而不得罪人的提基酒吧招牌。"
 	neon_color = ""
 
 /datum/barsign/thenet
-	name = "The Net"
+	name = "网罗酒吧"
 	icon_state = "thenet"
-	desc = "You just seem to get caught up in it for hours."
+	desc = "你似乎总会在这里一泡就是好几个小时。"
 	neon_color = "#0e8a00"
 
 /datum/barsign/maidcafe
-	name = "Maid Cafe"
+	name = "女仆咖啡馆"
 	icon_state = "maidcafe"
-	desc = "Welcome back, master!"
+	desc = "欢迎回来，主人！"
 	neon_color = "#ff0051"
 
 /datum/barsign/the_lightbulb
-	name = "The Lightbulb"
+	name = "灯泡咖啡馆"
 	icon_state = "the_lightbulb"
-	desc = "A cafe popular among moths and moffs. Once shut down for a week after the bartender used mothballs to protect her spare uniforms."
+	desc = "深受飞蛾和蛾人欢迎的咖啡馆。曾因酒保用樟脑丸保护备用制服而停业一周。"
 	neon_color = "#faff82"
 
 /datum/barsign/goose
-	name = "The Loose Goose"
+	name = "放飞大鹅"
 	icon_state = "goose"
-	desc = "Drink till you puke and/or break the laws of reality!"
+	desc = "喝到吐，或者喝到打破现实法则，或者两样都来！"
 	neon_color = "#00cc33"
 
 /datum/barsign/maltroach
-	name = "Maltroach"
+	name = "麦芽蛾蟑"
 	icon_state = "maltroach"
-	desc = "Mothroaches politely greet you into the bar, or are they greeting each other?"
+	desc = "蛾蟑们礼貌地迎接你进酒吧，还是它们只是在互相问好？"
 	neon_color = "#649e8a"
 
 /datum/barsign/rock_bottom
-	name = "Rock Bottom"
+	name = "人生谷底"
 	icon_state = "rock-bottom"
-	desc = "When it feels like you're stuck in a pit, might as well have a drink."
+	desc = "感觉自己身陷低谷时，不如喝一杯。"
 	neon_color = "#aa2811"
 
 /datum/barsign/orangejuice
-	name = "Oranges' Juicery"
+	name = "橙子果汁铺"
 	icon_state = "orangejuice"
-	desc = "For those who wish to be optimally tactful to the non-alcoholic population."
+	desc = "献给那些想对不喝酒的人体贴周到的顾客。"
 	neon_color = COLOR_ORANGE
 
 /datum/barsign/tearoom
-	name = "Little Treats Tea Room"
+	name = "小点心茶室"
 	icon_state = "little_treats"
-	desc = "A delightfully relaxing tearoom for all the fancy lads in the cosmos."
+	desc = "为宇宙中所有讲究的绅士准备的惬意茶室。"
 	neon_color = COLOR_LIGHT_ORANGE
 
 /datum/barsign/assembly_line
-	name = "The Assembly Line"
+	name = "流水线酒吧"
 	icon_state = "the-assembly-line"
-	desc = "Where every drink is masterfully crafted with industrial efficiency!"
+	desc = "每一杯饮品都以工业效率精心调制！"
 	neon_color = "#ffffff"
 
 /datum/barsign/bargonia
-	name = "Bargonia"
+	name = "酒吧共和国"
 	icon_state = "bargonia"
-	desc = "The warehouse yearns for a higher calling... so Supply has declared BARGONIA!"
+	desc = "仓库渴望更伟大的使命……于是补给部宣布酒吧共和国成立！"
 	neon_color = COLOR_WHITE
 
 /datum/barsign/cult_cove
-	name = "Cult Cove"
+	name = "邪教海湾"
 	icon_state = "cult-cove"
-	desc = "Nar'Sie's favourite retreat"
+	desc = "纳尔西最爱的度假胜地。"
 	neon_color = COLOR_RED
 
 /datum/barsign/neon_flamingo
-	name = "Neon Flamingo"
+	name = "霓虹火烈鸟"
 	icon_state = "neon-flamingo"
-	desc = "A bus for all but the flamboyantly challenged."
+	desc = "一辆欢迎所有人上车的巴士，缺乏张扬天赋的人除外。"
 	neon_color = COLOR_PINK
 
 /datum/barsign/slowdive
-	name = "Slowdive"
+	name = "缓缓下潜"
 	icon_state = "slowdive"
-	desc = "First stop out of hell, last stop before heaven."
+	desc = "离开地狱的第一站，进入天堂前的最后一站。"
 	neon_color = COLOR_RED
 
 /datum/barsign/the_red_mons
-	name = "The Red Mons"
+	name = "红山酒吧"
 	icon_state = "the-red-mons"
-	desc = "Drinks from the Red Planet."
+	desc = "来自红色星球的饮品。"
 	neon_color = COLOR_RED
 
 /datum/barsign/the_rune
-	name = "The Rune"
+	name = "符文酒吧"
 	icon_state = "therune"
-	desc = "Reality Shifting drinks."
+	desc = "扭转现实的饮品。"
 	neon_color = COLOR_RED
 
 /datum/barsign/the_wizard
-	name = "The Wizard"
+	name = "巫师酒吧"
 	icon_state = "the-wizard"
-	desc = "Magical mixes."
+	desc = "魔法调酒。"
 	neon_color = COLOR_RED
 
 /datum/barsign/months_moths_moths
-	name = "Moths Moths Moths"
+	name = "蛾蛾蛾"
 	icon_state = "moths-moths-moths"
-	desc = "LIVE MOTHS!"
+	desc = "活蛾！"
 	neon_color = COLOR_RED
 
 /datum/barsign/coldones
-	name = "Cold Ones"
+	name = "来杯冰的"
 	icon_state = "cold-ones"
-	desc = "That's what they call the yogurt effect."
+	desc = "这就是所谓的酸奶效应。"
 	neon_color = ""
 
 /datum/barsign/doctorsorders
-	name = "Doctor's Orders"
+	name = "遵医嘱"
 	icon_state = "doctors-orders"
-	desc = "For over-the-counter painkillers."
+	desc = "供应非处方止痛药。"
 	neon_color = ""
 
 /datum/barsign/wrongturn
-	name = "Wrong Turn"
+	name = "拐错弯"
 	icon_state = "wrong-turn"
-	desc = "You don't feel lost. Nothing a few drinks cant fix, though."
+	desc = "你并不觉得迷路了。不过没什么是喝上几杯解决不了的。"
 	neon_color = ""
 
 /datum/barsign/punpunspub
-	name = "Punpun's Pub"
+	name = "潘潘酒馆"
 	icon_state = "pun-puns-pub"
-	desc = "After everything he's been through? I'd want to be near booze too."
+	desc = "经历了他经历的那些事？换我也想守着酒过日子。"
 	neon_color = ""
 
 // Hidden signs list below this point
@@ -531,21 +531,21 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 	hidden = TRUE
 
 /datum/barsign/hiddensigns/empbarsign
-	name = "EMP'd"
+	name = "电磁脉冲损坏"
 	icon_state = "empbarsign"
-	desc = "Something has gone very wrong."
+	desc = "某处出了严重问题。"
 	rename_area = FALSE
 
 /datum/barsign/hiddensigns/syndibarsign
-	name = "Syndi Cat"
+	name = "辛迪猫"
 	icon_state = "syndibarsign"
-	desc = "Syndicate or die."
+	desc = "加入辛迪加，否则就去死。"
 	neon_color = "#ff0000"
 
 /datum/barsign/hiddensigns/signoff
-	name = "Off"
+	name = "关闭"
 	icon_state = "empty"
-	desc = "This sign doesn't seem to be on."
+	desc = "这块招牌似乎没有开启。"
 	rename_area = FALSE
 	light_mask = FALSE
 
@@ -557,8 +557,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign/all_access, 32)
 
 /obj/item/wallframe/barsign
-	name = "bar sign frame"
-	desc = "Used to help draw the rabble into your bar. Some assembly required."
+	name = "酒吧招牌框架"
+	desc = "用来吸引人群光顾你的酒吧。需要组装。"
 	icon = 'icons/obj/machines/wallmounts.dmi'
 	icon_state = "barsign"
 	result_path = /obj/machinery/barsign
@@ -569,7 +569,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign/all_access, 32)
 
 /obj/item/wallframe/barsign/Initialize(mapload)
 	. = ..()
-	desc += " Can be registered with a set of [span_bold("station blueprints")] to associate the sign with the area it occupies."
+	desc += "可使用[span_bold("空间站蓝图")]注册，将招牌与其所在区域关联。"
 
 /obj/item/wallframe/barsign/try_build(turf/on_wall, mob/user)
 	. = ..()
@@ -577,9 +577,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign/all_access, 32)
 		return .
 
 	if(isopenturf(get_step(on_wall, EAST))) //This takes up 2 tiles so we want to make sure we have two tiles to hang it from.
-		balloon_alert(user, "needs more support!")
+		balloon_alert(user, "需要更多支撑！")
 		return FALSE
 
 /obj/item/wallframe/barsign/all_access
-	desc = "Used to help draw the rabble into your bar. Some assembly required. This one doesn't have an access lock."
+	desc = "用来吸引人群光顾你的酒吧。需要组装。这个没有权限锁。"
 	result_path = /obj/machinery/barsign/all_access

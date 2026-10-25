@@ -8,53 +8,53 @@ Intended to push a creepy, mad scientist/doctor vibe, or someone who is downrigh
 // Positive Events - We did something unsavory in the name of mad science
 
 /datum/mood_event/morbid_dismemberment
-	description = "Nothing quite as satisfying as a clean dismemberment!"
+	description = "没有什么比利落地肢解更令人满足了！"
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/morbid_dissection_success
-	description = "I take pride in my work. Nobody can dissect a body quite like I can."
+	description = "我为自己的手艺感到骄傲。没人能像我这样解剖尸体。"
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/morbid_abominable_surgery_success
-	description = "Picasso himself would struggle to match with a brush what I can do with a knife."
+	description = "就连毕加索亲自拿起画笔，也难以比肩我刀下的杰作。"
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/morbid_revival_success
-	description = "IT LIVES! AH HA HA HA HA!!"
+	description = "它活了！啊哈哈哈哈！！"
 	mood_change = 6
 	timeout = 8 MINUTES
 
 /datum/mood_event/morbid_graverobbing
-	description = "The dead have no need for possessions. I, on the other hand, am very much alive and very much in need."
+	description = "死人不需要财物。而我还活得好好的，也正需要这些东西。"
 	mood_change = 2
 	timeout = 2 MINUTES
 
 /datum/mood_event/morbid_hauntium
-	description = "I feel a better connection with the spirits, I love this!"
+	description = "我与灵魂的联系更紧密了，我喜欢这种感觉！"
 	mood_change = 3
 	timeout = 6 MINUTES
 
 /datum/mood_event/morbid_aquarium_good
-	description = "Eh eh, all the fish are sleeping..."
+	description = "嘿嘿，所有的鱼都睡着了……"
 	mood_change = 3
 	timeout = 90 SECONDS
 
 // Negative Events - We helped someone stay alive.
 
 /datum/mood_event/morbid_tend_wounds
-	description = "Why must I waste my talents on this trivial nonsense? Tending to breathers is a waste of effort."
+	description = "我为什么要把才华浪费在这种无聊的小事上？照顾还在喘气的家伙纯属白费力气。"
 	mood_change = -2
 	timeout = 2 MINUTES
 
 /datum/mood_event/morbid_saved_life
-	description = "I could have done so much more with their corpse than I could have saving their useless life. Dreadful."
+	description = "比起挽救那条没用的性命，我本可以拿尸体做更多事情。真糟糕。"
 	mood_change = -6
 	timeout = 2 MINUTES
 
 /datum/mood_event/morbid_aquarium_bad
-	description = "Watching fish in an aquarium is lousy."
+	description = "看水族箱里的鱼真没劲。"
 	mood_change = -3
 	timeout = 90 SECONDS

@@ -7,8 +7,8 @@
 /datum/status_effect/organ_set_bonus/carp
 	id = "organ_set_bonus_carp"
 	organs_needed = 4
-	bonus_activate_text = span_notice("Carp DNA is deeply infused with you! You've learned how to propel yourself through space!")
-	bonus_deactivate_text = span_notice("Your DNA is once again mostly yours, and so fades your ability to space-swim...")
+	bonus_activate_text = span_notice("太空鲤鱼的 DNA 已与你深度融合！你学会了在太空中游动！")
+	bonus_deactivate_text = span_notice("你的 DNA 再次以自身为主，在太空中游动的能力也随之消失了……")
 	bonus_traits = list(TRAIT_SPACEWALK)
 	bonus_biotype = MOB_AQUATIC
 	limb_texture = /datum/bodypart_texture/carpskin
@@ -17,8 +17,8 @@
 ///Carp lungs! You can breathe in space! Oh... you can't breathe on the station, you need low oxygen environments.
 /// Inverts behavior of lungs. Bypasses suffocation due to space / lack of gas, but also allows Oxygen to suffocate.
 /obj/item/organ/lungs/carp
-	name = "mutated carp-lungs"
-	desc = "Carp DNA infused into what was once some normal lungs."
+	name = "突变鲤鱼肺"
+	desc = "一对原本正常的肺，融合了太空鲤鱼的 DNA。"
 	// Oxygen causes suffocation.
 	safe_oxygen_min = 0
 	safe_oxygen_max = 15
@@ -32,15 +32,15 @@
 
 /obj/item/organ/lungs/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their neck has odd gills.", BODY_ZONE_HEAD)
+	AddElement(/datum/element/noticable_organ, "颈部长着奇怪的鳃。", BODY_ZONE_HEAD)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 
 ///occasionally sheds carp teeth, stronger melee (bite) attacks, but you can't cover your mouth anymore.
 /obj/item/organ/tongue/carp
-	name = "mutated carp-jaws"
-	desc = "Carp DNA infused into what was once some normal teeth."
+	name = "突变鲤鱼颚"
+	desc = "一副原本正常的牙齿，融合了太空鲤鱼的 DNA。"
 
-	say_mod = "gnashes"
+	say_mod = "咬牙说道"
 
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/tongue/carp"
@@ -50,7 +50,7 @@
 
 /obj/item/organ/tongue/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their teeth are big and sharp.", BODY_ZONE_PRECISE_MOUTH)
+	AddElement(/datum/element/noticable_organ, "牙齿硕大而尖锐。", BODY_ZONE_PRECISE_MOUTH)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 
 /obj/item/organ/tongue/carp/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
@@ -103,15 +103,15 @@
 	. += /datum/language/carptongue
 
 /obj/item/knife/carp
-	name = "carp tooth"
-	desc = "Looks sharp. Sharp enough to poke someone's eye out. Holy fuck it's big."
+	name = "鲤鱼牙齿"
+	desc = "看起来很尖。尖到能戳瞎人的眼睛。妈的，这牙可真大。"
 	icon_state = "carptooth"
 	icon_angle = -45
 
 ///carp brain. you need to occasionally go to a new zlevel. think of it as... walking your dog!
 /obj/item/organ/brain/carp
-	name = "mutated carp-brain"
-	desc = "Carp DNA infused into what was once a normal brain."
+	name = "突变鲤鱼脑"
+	desc = "一颗原本正常的大脑，融合了太空鲤鱼的 DNA。"
 
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/brain/carp"
@@ -130,7 +130,7 @@
 /obj/item/organ/brain/carp/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_They seem%PRONOUN_s unable to stay still.")
+	AddElement(/datum/element/noticable_organ, "看起来一刻也闲不住。")
 
 /obj/item/organ/brain/carp/on_mob_insert(mob/living/carbon/brain_owner)
 	. = ..()
@@ -156,8 +156,8 @@
 
 /// makes you cold resistant, but heat-weak.
 /obj/item/organ/heart/carp
-	name = "mutated carp-heart"
-	desc = "Carp DNA infused into what was once a normal heart."
+	name = "突变鲤鱼心脏"
+	desc = "一颗原本正常的心脏，融合了太空鲤鱼的 DNA。"
 
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/organ/heart/carp"
@@ -169,7 +169,7 @@
 
 /obj/item/organ/heart/carp/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/noticable_organ, "%PRONOUN_Their skin has small patches of scales growing on it.", BODY_ZONE_CHEST)
+	AddElement(/datum/element/noticable_organ, "皮肤上长着小片鳞片。", BODY_ZONE_CHEST)
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
 	AddElement(/datum/element/update_icon_blocker)
 

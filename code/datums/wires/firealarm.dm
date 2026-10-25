@@ -1,6 +1,6 @@
 /datum/wires/firealarm
 	holder_type = /obj/machinery/firealarm
-	proper_name = "Fire Alarm"
+	proper_name = "火灾警报器"
 
 /datum/wires/firealarm/New(atom/holder)
 	wires = list(
@@ -18,7 +18,7 @@
 /datum/wires/firealarm/get_status()
 	var/obj/machinery/airalarm/alarm = holder
 	var/list/status = list()
-	status += "The thermal sensor light is [alarm.my_area?.fire_detect ? "on" : "off"]."
+	status += "热传感器指示灯[alarm.my_area?.fire_detect ? "亮起" : "熄灭"]。"
 	return status
 
 /datum/wires/firealarm/on_pulse(wire, mob/living/user)

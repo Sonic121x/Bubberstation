@@ -1,46 +1,46 @@
 /datum/wires/airlock
 	holder_type = /obj/machinery/door/airlock
-	proper_name = "Generic Airlock"
+	proper_name = "通用气闸"
 
 /datum/wires/airlock/secure
-	proper_name = "High Security Airlock"
+	proper_name = "高安保气闸"
 	randomize = TRUE
 
 /datum/wires/airlock/maint
 	dictionary_key = /datum/wires/airlock/maint
-	proper_name = "Maintenance Airlock"
+	proper_name = "维修区气闸"
 
 /datum/wires/airlock/command
 	dictionary_key = /datum/wires/airlock/command
-	proper_name = "Command Airlock"
+	proper_name = "指挥部气闸"
 
 /datum/wires/airlock/service
 	dictionary_key = /datum/wires/airlock/service
-	proper_name = "Service Airlock"
+	proper_name = "服务部气闸"
 
 /datum/wires/airlock/security
 	dictionary_key = /datum/wires/airlock/security
-	proper_name = "Security Airlock"
+	proper_name = "安保部气闸"
 
 /datum/wires/airlock/engineering
 	dictionary_key = /datum/wires/airlock/engineering
-	proper_name = "Engineering Airlock"
+	proper_name = "工程部气闸"
 
 /datum/wires/airlock/medbay
 	dictionary_key = /datum/wires/airlock/medbay
-	proper_name = "Medbay Airlock"
+	proper_name = "医疗部气闸"
 
 /datum/wires/airlock/science
 	dictionary_key = /datum/wires/airlock/science
-	proper_name = "Science Airlock"
+	proper_name = "科研部气闸"
 
 /datum/wires/airlock/ai
 	dictionary_key = /datum/wires/airlock/ai
-	proper_name = "AI Airlock"
+	proper_name = "AI气闸"
 
 /datum/wires/airlock/cargo
 	dictionary_key = /datum/wires/airlock/cargo
-	proper_name = "Cargo Airlock"
+	proper_name = "货运部气闸"
 
 /datum/wires/airlock/New(atom/holder)
 	wires = list(
@@ -86,18 +86,18 @@
 /datum/wires/airlock/get_status()
 	var/obj/machinery/door/airlock/A = holder
 	var/list/status = list()
-	status += "The door bolts [A.locked ? "have engaged!" : "have disengaged."]"
-	status += "The test light is [A.hasPower() ? "on" : "off"]."
-	status += "The AI connection light is [A.aiControlDisabled || (A.obj_flags & EMAGGED) ? "off" : "on"]."
-	status += "The check wiring light is [A.safe ? "off" : "on"]."
-	status += "The timer is powered [A.autoclose ? "on" : "off"]."
-	status += "The speed light is [A.normalspeed ? "on" : "off"]."
-	status += "The emergency light is [A.emergency ? "on" : "off"]."
+	status += "门栓[A.locked ? "已落下！" : "已升起。"]"
+	status += "测试灯[A.hasPower() ? "亮起" : "熄灭"]。"
+	status += "AI连接指示灯[A.aiControlDisabled || (A.obj_flags & EMAGGED) ? "熄灭" : "亮起"]。"
+	status += "线路检查指示灯[A.safe ? "熄灭" : "亮起"]。"
+	status += "计时器[A.autoclose ? "已通电" : "已断电"]。"
+	status += "速度指示灯[A.normalspeed ? "亮起" : "熄灭"]。"
+	status += "紧急指示灯[A.emergency ? "亮起" : "熄灭"]。"
 
 	if(A.unres_latch)
-		status += "The unrestricted exit display is [A.unres_sides ? "indicating that it is letting people pass from the [dir2text(REVERSE_DIR(A.unres_sides))]" : "faintly flickering"]."
+		status += "自由通行显示屏[A.unres_sides ? "显示允许从[chinese_direction_display(dir2text(REVERSE_DIR(A.unres_sides)))]通行" : "正在微弱闪烁"]。"
 	else
-		status += "The unrestricted exit display is completely inactive."
+		status += "自由通行显示屏完全没有反应。"
 
 	return status
 

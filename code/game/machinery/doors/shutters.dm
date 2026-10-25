@@ -1,7 +1,7 @@
 /obj/machinery/door/poddoor/shutters
 	gender = PLURAL
-	name = "shutters"
-	desc = "Heavy duty mechanical shutters with an atmospheric seal that keeps them airtight once closed."
+	name = "卷帘门"
+	desc = "重型机械卷帘门，带有密封结构，关闭后可保持气密。"
 	icon = 'icons/obj/doors/shutters.dmi'
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
@@ -41,7 +41,7 @@
 	custom_materials = list(/datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5)
 
 /obj/machinery/door/poddoor/shutters/indestructible
-	name = "hardened shutters"
+	name = "强化卷帘门"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/door/poddoor/shutters/indestructible/preopen
@@ -50,8 +50,8 @@
 	opacity = FALSE
 
 /obj/machinery/door/poddoor/shutters/radiation
-	name = "radiation shutters"
-	desc = "Lead-lined shutters with a radiation hazard symbol. Whilst this won't stop you getting irradiated, especially by a supermatter crystal, it will stop radiation travelling as far."
+	name = "防辐射卷帘门"
+	desc = "带有辐射危险标志的铅衬卷帘门。它无法完全阻止你受到辐射，尤其是超物质晶体的辐射，但能缩短辐射的传播距离。"
 	icon = 'icons/obj/doors/shutters_radiation.dmi'
 	icon_state = "closed"
 	rad_insulation = RAD_EXTREME_INSULATION
@@ -80,8 +80,8 @@
 	rad_insulation = RAD_EXTREME_INSULATION
 
 /obj/machinery/door/poddoor/shutters/window
-	name = "windowed shutters"
-	desc = "A shutter with a thick see-through polycarbonate window."
+	name = "带窗卷帘门"
+	desc = "带有厚实透明聚碳酸酯窗的卷帘门。"
 	icon = 'icons/obj/doors/shutters_window.dmi'
 	icon_state = "closed"
 	opacity = FALSE
@@ -92,7 +92,7 @@
 	density = FALSE
 
 /obj/machinery/door/poddoor/shutters/window/indestructible
-	name = "hardened windowed shutters"
+	name = "强化带窗卷帘门"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/door/poddoor/shutters/window/indestructible/preopen
@@ -109,5 +109,5 @@
 	opacity = FALSE
 
 /obj/machinery/door/poddoor/shutters/syndicate/indestructible
-	name = "hardened syndicate shutters"
+	name = "强化辛迪加卷帘门"
 	resistance_flags = INDESTRUCTIBLE

@@ -3,7 +3,7 @@ ADMIN_VERB(run_weather, R_ADMIN|R_FUN, "Run Weather", "Triggers specific weather
 	var/list/weather_choices = list()
 	if(!length(weather_choices))
 		for(var/datum/weather/weather_type as anything in valid_subtypesof(/datum/weather))
-			weather_choices[initial(weather_type.type)] = weather_type
+			weather_choices["[chinese_weather_display(weather_type::name)] ([initial(weather_type.type)])"] = weather_type
 
 	var/datum/weather/weather_choice = tgui_input_list(user, "Choose a weather to run", "Weather", weather_choices)
 	if(!weather_choice)

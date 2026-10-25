@@ -9,8 +9,8 @@
 // Powersink - used to drain station power
 
 /obj/item/powersink
-	name = "power sink"
-	desc = "A power sink which drains energy from electrical systems and converts it to heat. Ensure short workloads and ample time to cool down if used in high energy systems."
+	name = "电力虹吸器"
+	desc = "从供电系统吸取能量并将其转化为热量的装置。用于高能系统时，务必短时运转并留出充分的冷却时间。"
 	icon = 'icons/obj/devices/syndie_gadget.dmi'
 	icon_state = "powersink0"
 	inhand_icon_state = "electronic"
@@ -37,9 +37,9 @@
 /obj/item/powersink/examine(mob/user)
 	. = ..()
 	if(mode)
-		. += "\The [src] is bolted to the floor."
+		. += "[src]用螺栓固定在地板上。"
 	if((in_range(user, src) || isobserver(user)) && internal_heat > max_heat * 0.5)
-		. += span_danger("[src] is warping the air above it. It must be very hot.")
+		. += span_danger("[src]上方的空气都扭曲了。它一定非常烫。")
 
 /obj/item/powersink/set_anchored(anchorvalue)
 	. = ..()
@@ -81,26 +81,26 @@
 		if(isturf(T) && T.underfloor_accessibility >= UNDERFLOOR_INTERACTABLE)
 			attached = locate() in T
 			if(!attached)
-				to_chat(user, span_warning("\The [src] must be placed over an exposed, powered cable node!"))
+				to_chat(user, span_warning("必须把[src]放在裸露且通电的电缆节点上！"))
 			else
 				set_mode(CLAMPED_OFF)
 				user.visible_message( \
-					"[user] attaches \the [src] to the cable.", \
-					span_notice("You bolt \the [src] into the floor and connect it to the cable."),
-					span_hear("You hear some wires being connected to something."))
+					"[user]把[src]接到了电缆上。", \
+					span_notice("你把[src]固定在地板上，并接上电缆。"),
+					span_hear("你听到有人在连接电线。"))
 		else
-			to_chat(user, span_warning("\The [src] must be placed over an exposed, powered cable node!"))
+			to_chat(user, span_warning("必须把[src]放在裸露且通电的电缆节点上！"))
 	else
 		set_mode(DISCONNECTED)
 		user.visible_message( \
-			"[user] detaches \the [src] from the cable.", \
-			span_notice("You unbolt \the [src] from the floor and detach it from the cable."),
-			span_hear("You hear some wires being disconnected from something."))
+			"[user]断开了[src]与电缆的连接。", \
+			span_notice("你松开[src]与地板连接的螺栓，并拔掉电缆。"),
+			span_hear("你听到有人在断开电线连接。"))
 
 /obj/item/powersink/screwdriver_act(mob/living/user, obj/item/tool)
 	user.visible_message( \
-		"[user] messes with \the [src] for a bit.", \
-		span_notice("You can't fit the screwdriver into \the [src]'s bolts! Try using a wrench."))
+		"[user]摆弄了一会儿[src]。", \
+		span_notice("螺丝刀拧不动[src]的螺栓！试试扳手。"))
 	return TRUE
 
 /obj/item/powersink/attack_paw(mob/user, list/modifiers)
@@ -119,23 +119,23 @@
 
 		if(CLAMPED_OFF)
 			user.visible_message( \
-				"[user] activates \the [src]!", \
-				span_notice("You activate \the [src]."),
-				span_hear("You hear a click."))
-			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(src)]")
+				"[user]启动了[src]！", \
+				span_notice("你启动了[src]。"),
+				span_hear("你听到咔哒一声。"))
+			message_admins("[ADMIN_LOOKUPFLW(user)]在[ADMIN_VERBOSEJMP(src)]启动了电力虹吸器")
 			user.log_message("activated a powersink", LOG_GAME)
 			notify_ghosts(
-				"[user.real_name] has activated a power sink!",
+				"[user.real_name]启动了电力虹吸器！",
 				source = src,
-				header = "Shocking News!",
+				header = "电力惊报！",
 			)
 			set_mode(OPERATING)
 
 		if(OPERATING)
 			user.visible_message( \
-				"[user] deactivates \the [src]!", \
-				span_notice("You deactivate \the [src]."),
-				span_hear("You hear a click."))
+				"[user]关闭了[src]！", \
+				span_notice("你关闭了[src]。"),
+				span_hear("你听到咔哒一声。"))
 			user.log_message("deactivated the powersink", LOG_GAME)
 			set_mode(CLAMPED_OFF)
 
@@ -151,7 +151,7 @@
 		air_update_turf(FALSE, FALSE)
 	if(warning_given && internal_heat < max_heat * 0.75)
 		warning_given = FALSE
-		message_admins("Power sink at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) has cooled down and will not explode.")
+		message_admins("位于([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>跳转</a>)的电力虹吸器已冷却，不会爆炸。")
 	if(mode != OPERATING && internal_heat < MINIMUM_HEAT)
 		internal_heat = 0
 		STOP_PROCESSING(SSobj, src)
@@ -188,11 +188,11 @@
 	if(internal_heat > max_heat * ALERT / 100)
 		if (!warning_given)
 			warning_given = TRUE
-			message_admins("Power sink at ([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) has reached [ALERT]% of max heat. Explosion imminent.")
+			message_admins("位于([x],[y],[z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>跳转</a>)的电力虹吸器已达到最大热容量的[ALERT]%。即将爆炸。")
 			notify_ghosts(
-				"[src] is about to reach critical heat capacity!",
+				"[src]即将达到临界热容量！",
 				source = src,
-				header = "Power Sunk",
+				header = "电力虹吸",
 			)
 		playsound(src, 'sound/effects/screech.ogg', 100, TRUE, TRUE)
 

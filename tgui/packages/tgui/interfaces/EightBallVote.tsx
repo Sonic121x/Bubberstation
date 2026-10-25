@@ -12,7 +12,7 @@ import { toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { machineChoiceDisplay } from './common/machineChoiceDisplay';
 type Data = {
   answers: Answer[];
   question: string;
@@ -35,12 +35,12 @@ export function EightBallVote(props) {
       <Window.Content pb={'2.5em'}>
         {!shaking ? (
           <NoticeBox danger textAlign={'center'}>
-            No question is currently being asked.
+            当前没有人提问。
           </NoticeBox>
         ) : (
           <>
             <NoticeBox success textAlign={'center'}>
-              A question is currently being asked!
+              有人正在提问！
             </NoticeBox>
             <EightBallVoteQuestion />
           </>
@@ -82,7 +82,7 @@ function EightBallVoteQuestion(props) {
                 })
               }
             >
-              {toTitleCase(answer.answer)}
+              {machineChoiceDisplay(toTitleCase(answer.answer))}
             </Button>
             <Box bold textAlign="center" fontSize="30px">
               {answer.amount}

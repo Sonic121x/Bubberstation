@@ -1,6 +1,6 @@
 /datum/material/pizza
 	name = "pizza"
-	desc = "~Jamme, jamme, n'coppa, jamme ja! Jamme, jamme, n'coppa jamme ja, funi-culi funi-cala funi-culi funi-cala!! Jamme jamme ja funiculi funicula!~"
+	desc = "～走吧，走吧，向上走呀！走吧，走吧，向上走呀，缆车上，缆车下，缆车上，缆车下！！走吧走吧，缆车上上下下！～"
 	color = "#FF9F23"
 	mat_flags = MATERIAL_BASIC_RECIPES | MATERIAL_CLASS_ORGANIC
 	mat_properties = list(

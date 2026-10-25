@@ -3,10 +3,10 @@
 #define MAX_NETWORK_ID_LENGTH 15
 
 /obj/machinery/computer/telecomms/server
-	name = "telecommunications server monitoring console"
+	name = "电信服务器监控控制台"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/telecomms/server")
 	icon_screen = "comm_logs"
-	desc = "Has full access to all details and record of the telecommunications network it's monitoring."
+	desc = "可完整访问所监控电信网络的所有详情和记录。"
 
 	/// Current screen the user is viewing
 	var/screen = MAIN_VIEW
@@ -52,7 +52,7 @@
 
 				var/datum/language/language = packet.parameters["language"]
 				var/datum/language/language_instance = GLOB.language_datum_instances[language]
-				packet_out["language"] = language_instance.name
+				packet_out["language"] = chinese_language_display(language_instance.name)
 				var/message_out = ""
 				var/message_in = packet.parameters["message"]
 				if(universal_translate || user.has_language(language))
@@ -62,31 +62,31 @@
 					// Language unknown: scramble
 					message_out = "\"[language_instance.scramble_paragraph(message_in, user.get_partially_understood_languages())]\""
 				else
-					message_out = "(Unintelligible)"
+					message_out = "（无法理解）"
 				packet_out["message"] = message_out
 
 				var/mob/mobtype = packet.parameters["mobtype"]
-				var/race = "Unidentifiable"
+				var/race = "无法识别"
 				if(ispath(mobtype, /mob/living/carbon/human) || ispath(mobtype, /mob/living/brain))
-					race = "Humanoid"
+					race = "人形生物"
 
 				// NT knows a lot about slimes, but not aliens. Can identify slimes
 				else if(ispath(mobtype, /mob/living/basic/slime))
-					race = "Slime"
+					race = "史莱姆"
 
 				// sometimes M gets deleted prematurely for AIs... just check the job
 				else if(ispath(mobtype, /mob/living/silicon) || packet.parameters["job"] == JOB_AI)
-					race = "Artificial Life"
+					race = "人工生命"
 
 				else if(isobj(mobtype))
-					race = "Machinery"
+					race = "机械"
 
 				else if(ispath(mobtype, /mob/living/simple_animal))
-					race = "Domestic Animal"
+					race = "家养动物"
 
 				packet_out["race"] = race
 				packet_out["source"] = packet.parameters["name"]
-				packet_out["job"] = packet.parameters["job"]
+				packet_out["job"] = chinese_job_display(packet.parameters["job"])
 				packet_out["type"] = packet.input_type
 				packet_out["ref"] = REF(packet)
 
@@ -110,11 +110,11 @@
 			var/new_network = params["network_id"]
 
 			if(length(new_network) > MAX_NETWORK_ID_LENGTH)
-				error_message = "OPERATION FAILED: NETWORK ID TOO LONG."
+				error_message = "操作失败：网络 ID 过长。"
 				return
 
 			if(servers.len > 0)
-				error_message = "OPERATION FAILED: BUFFER ALREADY POPULATED. PLEASE CLEAR THE BUFFER."
+				error_message = "操作失败：缓冲区已有内容，请先清空。"
 				return
 
 			network = new_network
@@ -123,7 +123,7 @@
 				if(server.network == network)
 					servers.Add(server)
 			if(servers.len == 0)
-				error_message = "OPERATION FAILED: UNABLE TO LOCATE ANY SERVERS IN NETWORK [network]."
+				error_message = "操作失败：在网络[network]中找不到任何服务器。"
 				return
 			return
 		if("clear_buffer")
@@ -133,7 +133,7 @@
 		if("view_server")
 			SelectedServer = locate(params["server"])
 			if(!SelectedServer)
-				error_message = "OPERATION FAILED: UNABLE TO LOCATE SERVER."
+				error_message = "操作失败：找不到服务器。"
 				return
 			screen = SERVER_VIEW
 			return
@@ -147,13 +147,13 @@
 			// Delete a packet from server logs
 			var/datum/comm_log_entry/packet = locate(params["ref"])
 			if(!(packet in SelectedServer.log_entries))
-				error_message = "OPERATION FAILED: PACKET NOT FOUND."
+				error_message = "操作失败：找不到数据包。"
 				return
 			if(!src.allowed(usr) && !(obj_flags & EMAGGED))
-				error_message = "OPERATION FAILED: ACCESS DENIED."
+				error_message = "操作失败：权限不足。"
 				return
 			SelectedServer.log_entries.Remove(packet)
-			error_message = "SUCCESSFULLY DELETED [packet.name]."
+			error_message = "已成功删除[packet.name]。"
 			qdel(packet)
 			return
 	return FALSE

@@ -7,10 +7,10 @@ import {
   Stack,
   TextArea,
 } from 'tgui-core/components';
-
+import { areaDisplay } from '../../localization/batchThreeDisplay';
 import { useBackend, useLocalState } from '../../backend';
 import { RequestPriority, type RequestsData, RequestType } from './types';
-
+import { machineChoiceDisplay } from '../common/machineChoiceDisplay';
 export const MessageWriteTab = (props) => {
   const { act, data } = useBackend<RequestsData>();
   const {
@@ -48,7 +48,7 @@ export const MessageWriteTab = (props) => {
               setRequestType(RequestType.ASSISTANCE);
             }}
           >
-            Request Assistance
+            请求援助
           </Button>
         </Stack.Item>
         <Stack.Item grow>
@@ -61,7 +61,7 @@ export const MessageWriteTab = (props) => {
               setRequestType(RequestType.SUPPLIES);
             }}
           >
-            Request Supplies
+            请求物资
           </Button>
         </Stack.Item>
         <Stack.Item grow>
@@ -74,7 +74,7 @@ export const MessageWriteTab = (props) => {
               setRequestType(RequestType.INFORMATION);
             }}
           >
-            Relay Information
+            转达信息
           </Button>
         </Stack.Item>
       </Stack>
@@ -82,27 +82,27 @@ export const MessageWriteTab = (props) => {
         {requestType === RequestType.ASSISTANCE && (
           <Dropdown
             width="100%"
-            options={sorted_assistance}
-            selected={recipient}
-            placeholder="Pick a Recipient"
+            options={sorted_assistance.map((value) => ({ value, displayText: machineChoiceDisplay(areaDisplay(value, data)) }))}
+            selected={recipient} displayText={machineChoiceDisplay(areaDisplay(recipient, data))}
+            placeholder="选择收件人"
             onSelected={(value) => setRecipient(value)}
           />
         )}
         {requestType === RequestType.SUPPLIES && (
           <Dropdown
             width="100%"
-            options={sorted_supply}
-            selected={recipient}
-            placeholder="Pick a Recipient"
+            options={sorted_supply.map((value) => ({ value, displayText: machineChoiceDisplay(areaDisplay(value, data)) }))}
+            selected={recipient} displayText={machineChoiceDisplay(areaDisplay(recipient, data))}
+            placeholder="选择收件人"
             onSelected={(value) => setRecipient(value)}
           />
         )}
         {requestType === RequestType.INFORMATION && (
           <Dropdown
             width="100%"
-            options={sorted_information}
-            selected={recipient}
-            placeholder="Pick a Recipient"
+            options={sorted_information.map((value) => ({ value, displayText: machineChoiceDisplay(areaDisplay(value, data)) }))}
+            selected={recipient} displayText={machineChoiceDisplay(areaDisplay(recipient, data))}
+            placeholder="选择收件人"
             onSelected={(value) => setRecipient(value)}
           />
         )}
@@ -111,7 +111,7 @@ export const MessageWriteTab = (props) => {
         <Stack.Item grow>
           <Button
             icon="envelope"
-            content="Normal Priority"
+            content="普通优先级"
             key={RequestPriority.NORMAL}
             fluid
             selected={priority === RequestPriority.NORMAL}
@@ -121,7 +121,7 @@ export const MessageWriteTab = (props) => {
         <Stack.Item grow>
           <Button
             icon="exclamation"
-            content="High Priority"
+            content="高优先级"
             key={RequestPriority.HIGH}
             fluid
             selected={priority === RequestPriority.HIGH}
@@ -132,7 +132,7 @@ export const MessageWriteTab = (props) => {
           <Stack.Item grow>
             <Button
               icon="burst"
-              content="EXTREME PRIORITY"
+              content="极高优先级"
               key={RequestPriority.EXTREME}
               fluid
               selected={priority === RequestPriority.EXTREME}
@@ -147,7 +147,7 @@ export const MessageWriteTab = (props) => {
         maxLength={1025}
         value={messageText}
         onChange={setMessageText}
-        placeholder="Type your message..."
+        placeholder="输入消息……"
       />
       <Section>
         <Stack fill justify="space-between">
@@ -169,15 +169,15 @@ export const MessageWriteTab = (props) => {
                 resetMessage();
               }}
             >
-              Send message
+              发送消息
             </Button>
           </Stack.Item>
           <Stack.Item>
             <Button icon="id-card" onClick={() => act('verify_id')}>
-              {authentication_data.message_verified_by || 'Not verified'}
+              {authentication_data.message_verified_by || '未认证'}
             </Button>
             <Button icon="stamp" onClick={() => act('stamp')}>
-              {authentication_data.message_stamped_by || 'Not stamped'}
+              {authentication_data.message_stamped_by || '未盖章'}
             </Button>
           </Stack.Item>
         </Stack>
@@ -188,7 +188,7 @@ export const MessageWriteTab = (props) => {
             resetMessage();
           }}
         >
-          Discard message
+          丢弃消息
         </Button>
       </Section>
     </Section>

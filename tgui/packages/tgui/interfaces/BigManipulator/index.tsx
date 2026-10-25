@@ -16,16 +16,16 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import type { ManipulatorData, ManipulatorTask } from './types';
-
+import { batchThreeDisplay } from '../../localization/batchThreeDisplay';
 const TASK_TYPE_LABELS: Record<string, string> = {
-  pickup: 'Pick up...',
-  drop: 'Drop...',
-  throw: 'Throw...',
-  use: 'Use held...',
-  interact: 'Interact...',
-  move: 'Move...',
-  wait: 'Wait...',
-  stop: 'Stop...',
+  pickup: '拾取……',
+  drop: '放下……',
+  throw: '投掷……',
+  use: '使用手持物……',
+  interact: '交互……',
+  move: '移动……',
+  wait: '等待……',
+  stop: '停止……',
 };
 
 const TASK_TYPE_ICONS: Record<string, string> = {
@@ -245,7 +245,7 @@ function TaskEditModal(props: TaskEditModalProps) {
                 {isPickup && (
                   <ConfigRow
                     label="Eagerness"
-                    content={task.pickup_eagerness ?? '—'}
+                    content={batchThreeDisplay(task.pickup_eagerness ?? '—')}
                     onClick={() => adjust('cycle_pickup_eagerness')}
                     tooltip="Wait for dropoff slot or pick up immediately"
                   />
@@ -255,7 +255,7 @@ function TaskEditModal(props: TaskEditModalProps) {
                     {task.task_type === 'drop' && (
                       <ConfigRow
                         label="Overflow"
-                        content={task.overflow_status ?? '—'}
+                        content={batchThreeDisplay(task.overflow_status ?? '—')}
                         onClick={() => adjust('cycle_overflow_status')}
                         tooltip="Cycle overflow behaviour"
                       />
@@ -415,7 +415,7 @@ const TaskList = () => {
                 new_strategy: tasking_strategy === 'Sequential' ? 'Strict order' : 'Sequential',
               })}
             >
-              {tasking_strategy}
+              {batchThreeDisplay(tasking_strategy)}
             </Button>
             <Button
               icon="arrows-spin"

@@ -2,8 +2,8 @@
 
 /// AI module which gives some specific malf ai ability when installed in a law rack
 /obj/item/ai_module/upgrade
-	name = "ai upgrade module"
-	desc = "An AI Module for installing upgrades to an AI."
+	name = "AI 升级模块"
+	desc = "用于为 AI 安装升级的模块。"
 	icon_state = "mcontroller"
 
 	///The upgrade that will be applied to the AI when installed
@@ -21,7 +21,7 @@
 
 /obj/item/ai_module/upgrade/examine(mob/user)
 	. = ..()
-	. += span_info("Must be inserted into a module rack to function.")
+	. += span_info("必须插入模块架才能工作。")
 
 /obj/item/ai_module/upgrade/silicon_linked_to_installed(mob/living/silicon/lawed)
 	if(!isAI(lawed))
@@ -53,8 +53,8 @@
 
 /// AI module which gives some ALL malf ai abilities when installed in a law rack
 /obj/item/ai_module/combat
-	name = "combat software module"
-	desc = "A highly illegal, highly dangerous upgrade for artificial intelligence units, granting them a variety of powers as well as the ability to hack APCs."
+	name = "战斗软件模块"
+	desc = "用于人工智能的高度非法且极其危险的升级，赋予它们多种能力，以及入侵区域电力控制器的能力。"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "secmodschematic"
 
@@ -64,15 +64,15 @@
 
 /obj/item/ai_module/combat/examine(mob/user)
 	. = ..()
-	. += span_warning("Must be inserted into a module rack to function.")
+	. += span_warning("必须插入模块架才能工作。")
 
 /obj/item/ai_module/combat/log_install(mob/living/user, obj/machinery/ai_law_rack/rack)
 	. = ..()
-	message_admins("[ADMIN_LOOKUPFLW(user)] has installed [src] into [ADMIN_VERBOSEJMP(rack)] ([rack.log_status()])")
+	message_admins("[ADMIN_LOOKUPFLW(user)]将[src]安装进了[ADMIN_VERBOSEJMP(rack)]（[rack.log_status()]）。")
 
 /obj/item/ai_module/combat/log_uninstall(mob/living/user, obj/machinery/ai_law_rack/rack)
 	. = ..()
-	message_admins("[ADMIN_LOOKUPFLW(user)] has removed [src] from [ADMIN_VERBOSEJMP(rack)] ([rack.log_status()])")
+	message_admins("[ADMIN_LOOKUPFLW(user)]从[ADMIN_VERBOSEJMP(rack)]移除了[src]（[rack.log_status()]）。")
 
 /obj/item/ai_module/combat/silicon_linked_to_installed(mob/living/silicon/lawed)
 	if(!isAI(lawed))
@@ -80,8 +80,8 @@
 	var/mob/living/silicon/ai/combatai = lawed
 	if(combatai.malf_picker)
 		return
-	to_chat(combatai, span_userdanger("Your module rack has been upgraded with combat software!"))
-	to_chat(combatai, span_danger("Your current laws and objectives remain unchanged.")) //this unlocks malf powers, but does not give the license to plasma flood
+	to_chat(combatai, span_userdanger("你的模块架已升级战斗软件！"))
+	to_chat(combatai, span_danger("你的现有法则和目标保持不变。")) //this unlocks malf powers, but does not give the license to plasma flood
 	combatai.add_malf_picker()
 	combatai.hack_software = TRUE
 
@@ -102,8 +102,8 @@
 
 //Lipreading
 /obj/item/ai_module/upgrade/surveillance
-	name = "surveillance software upgrade"
-	desc = "An illegal software package that will allow an artificial intelligence to 'hear' from its cameras via lip reading and hidden microphones."
+	name = "监控软件升级"
+	desc = "非法软件包，允许人工智能通过读唇和隐藏麦克风，从摄像头中“听到”声音。"
 	upgrade_type = /datum/ai_module/malf/upgrade/eavesdrop
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,
@@ -119,8 +119,8 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/ai_module/upgrade/power_transfer
-	name = "power transfer upgrade"
-	desc = "A legal upgrade that allows an artificial intelligence to directly provide power to APCs from a distance"
+	name = "电力传输升级"
+	desc = "合法升级，允许人工智能从远处直接为区域电力控制器供电。"
 	upgrade_type = /datum/ai_module/power_apc
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5,

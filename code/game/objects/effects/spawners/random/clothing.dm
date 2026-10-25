@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/clothing
 	name = "clothing loot spawner"
-	desc = "Time to look pretty."
+	desc = "该打扮漂亮了。"
 	icon_state = "hat"
 
 /obj/effect/spawner/random/clothing/costume
@@ -71,7 +71,7 @@
 
 /obj/effect/spawner/random/clothing/gloves
 	name = "random gloves"
-	desc = "These gloves are supposed to be a random color..."
+	desc = "这些手套应该是随机颜色的……"
 	icon_state = "gloves"
 	loot = list(
 		/obj/item/clothing/gloves/color/orange,
@@ -88,7 +88,7 @@
 
 /obj/effect/spawner/random/clothing/lizardboots
 	name = "random lizard boot quality"
-	desc = "Which ever gets picked, the lizard race loses"
+	desc = "无论选中哪个，输的都是蜥蜴族。"
 	icon_state = "lizard_boots"
 	loot = list(
 		/obj/item/clothing/shoes/cowboy/lizard = 7,
@@ -187,18 +187,18 @@
 /obj/effect/spawner/random/clothing/funny_hats
 	name = "random hat spawner"
 	icon_state = "hat"
-	desc = "This is the update that ruined Spacestation 13 forever. I can't believe what the TG Coders have done. \
-		They've added fucking HATS! HATS!!! In MY competitive-roleplay-action-click-shooter-stabber-against-two-sides-to-detonate-the-payload game? \
-		This isn't what I signed up for and why I supported this game! My game is chugging with every update to this stupid project and \
-		I can't fucking stand it anymore. And instead of fixing the bugs or getting rid of the exploits, they just keep adding more \
-		fucking hats so that the dumbasses that keep feeding into the coders bullshit will eat it up and ignore the glaring problems with it. \
-		They've stopped caring. We've not had a REAL update in almost 5 years of development! Just removals! It's been all downhill since cloning and stuns were removed. \
-		And frankly, I don't know what to do. There isn't any other competitive-roleplay-action-click-shooter-stabber-against-two-sides-to-detonate-the-payload game \
-		out there that isn't trying to get my donator money just so I can have a single sprite added to the game and autoequipped to my character. \
-		Next thing you know, the coders are going to have us PAY for these goddamn pixels on our character! Imagine having to pay for extra pixels! \
-		I'm fucking DONE WITH THIS GAME! I'M THROUGH WITH THIS SHIT! FUCK THE CODERS! I JUST WANT TO PLAY MY COMPETITIVE-ROLEPLAY-ACTION-\
-		CLICK-SHOOTER-STABBER-AGAINST-TWO-SIDES-TO-DETONATE-THE-PAYLOAD GAME THAT ISN'T DRAGGED DOWN BY HORRIBLE ADMINS THAT BAN ME WHEN I SAY \
-		CERTAIN WORDS THAT I AM ENTITLED TO SAY ON THE INTERNET! I'M THROUGH WITH THIS! I'M GOING TO GO PLAY A PURE, GENUINE GAME. WITH NO FUCKING HATS!"
+	desc = "这次更新永远毁掉了十三号空间站。我简直不敢相信 TG 程序员都干了什么。\
+		他们居然加了他妈的帽子！帽子！！！在我的竞技角色扮演动作点击射击互捅两军对垒引爆目标游戏里？\
+		这根本不是我入坑和支持这款游戏的原因！这破项目每更新一次，我的游戏就更卡一点，\
+		我他妈再也受不了了。他们不修错误、不堵漏洞，反而只顾继续添加\
+		该死的帽子，好让那些吃程序员这套鬼话的蠢货照单全收，对明摆着的问题视而不见。\
+		他们已经不在乎了。开发了快五年，我们没见过一次真正的更新！只有删除！自从克隆和眩晕被移除，一切就每况愈下。\
+		说真的，我也不知道该怎么办。别的竞技角色扮演动作点击射击互捅两军对垒引爆目标游戏\
+		也无非想骗我的赞助钱，换来在游戏里加一张图，再自动穿到我的角色身上。\
+		接下来你就会发现，程序员竟要我们为角色身上这些该死的像素付钱！想象一下，为多几个像素付钱！\
+		老子不玩这破游戏了！受够这坨屎了！去他妈的程序员！我只想玩我的竞技角色扮演动作\
+		点击射击互捅两军对垒引爆目标游戏，不要被那些烂管理员毁掉——我一说某些\
+		我在网上有权说的词，他们就封我！我受够了！我要去玩纯粹、真正的游戏。没有他妈的帽子！"
 	loot = list(
 		/obj/item/clothing/head/costume/powdered_wig,
 		/obj/item/clothing/head/costume/cueball,

@@ -12,19 +12,19 @@
 	if(SSticker.HasRoundStarted())
 		return
 
-	message_admins("An alien egg has been delivered to [ADMIN_VERBOSEJMP(spawn_turf)].")
+	message_admins("一枚异形卵已送达[ADMIN_VERBOSEJMP(spawn_turf)]。")
 	log_game("An alien egg has been delivered to [AREACOORD(spawn_turf)]")
 
 	var/datum/command_footnote/footnote = new()
-	footnote.message = "We have entrusted your crew with a research specimen in [get_area(src)]. \
-		Remember to follow all safety precautions when dealing with the specimen."
-	footnote.signature = "Central Command"
+	footnote.message = "我们已将一份研究样本交由贵站船员保管，位于[get_area(src)]。\
+		处理样本时请务必遵守所有安全防范措施。"
+	footnote.signature = "中央指挥部"
 
 	GLOB.communications_controller.command_report_footnotes += footnote
 
 /obj/structure/alien/egg/delivery
-	name = "xenobiological specimen egg"
-	desc = "A large mottled egg, sent as a part of a Xenobiological Research Initiative by the higher-ups. Handle with care!"
+	name = "异种生物卵样本"
+	desc = "一枚巨大的斑驳卵，是上级异种生物研究计划送来的样本。请小心处理！"
 	max_integrity = 300
 
 /obj/structure/alien/egg/delivery/Initialize(mapload)

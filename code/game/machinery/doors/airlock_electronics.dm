@@ -1,5 +1,5 @@
 /obj/item/electronics/airlock
-	name = "airlock electronics"
+	name = "气闸电子组件"
 	req_access = list(ACCESS_MAINT_TUNNELS)
 	/// A list of all granted accesses
 	var/list/accesses = list()
@@ -20,7 +20,7 @@
 
 /obj/item/electronics/airlock/examine(mob/user)
 	. = ..()
-	. += span_notice("Has a neat <i>selection menu</i> for modifying airlock access levels.")
+	. += span_notice("带有方便的<i>选择菜单</i>，可修改气闸的访问权限。")
 
 /**
  * Create a copy of the electronics

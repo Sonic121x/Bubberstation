@@ -159,7 +159,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 			beard_dresser.set_facial_hairstyle("Shaved", update = TRUE)
 		return
 
-	var/new_style = tgui_input_list(beard_dresser, "Select a facial hairstyle", "Grooming", SSaccessories.facial_hairstyles_list)
+	var/new_style = chinese_accessory_choice(beard_dresser, "选择胡须样式", "梳妆", SSaccessories.facial_hairstyles_list)
 
 	if(isnull(new_style) || !can_use_mirror(beard_dresser))
 		return
@@ -172,7 +172,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	beard_dresser.set_facial_hairstyle(new_style, update = TRUE)
 
 /obj/structure/mirror/proc/change_hair(mob/living/carbon/human/hairdresser)
-	var/new_style = tgui_input_list(hairdresser, "Select a hairstyle", "Grooming", SSaccessories.hairstyles_list)
+	var/new_style = chinese_accessory_choice(hairdresser, "选择发型", "梳妆", SSaccessories.hairstyles_list)
 	if(isnull(new_style) || !can_use_mirror(hairdresser))
 		return
 	if(HAS_TRAIT(hairdresser, TRAIT_BALD))
@@ -390,7 +390,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror/broken, 28)
 	cursable = FALSE
 
 /obj/structure/mirror/magic/change_beard(mob/living/carbon/human/beard_dresser) // magical mirrors do nothing but give you the damn beard
-	var/new_style = tgui_input_list(beard_dresser, "Select a facial hairstyle", "Grooming", SSaccessories.facial_hairstyles_list)
+	var/new_style = chinese_accessory_choice(beard_dresser, "选择胡须样式", "梳妆", SSaccessories.facial_hairstyles_list)
 	if(isnull(new_style) || !can_use_mirror(beard_dresser))
 		return
 

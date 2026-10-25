@@ -2,7 +2,7 @@ import { Button, Dropdown, Section, Stack } from 'tgui-core/components';
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
-
+import { machineChoiceDisplay } from './common/machineChoiceDisplay';
 export const PaintingMachine = (props) => {
   const { act, data } = useBackend();
 
@@ -22,13 +22,13 @@ export const PaintingMachine = (props) => {
     <Window width={500} height={620}>
       <Window.Content scrollable>
         <Section
-          title="PDA Painter"
+          title="PDA 涂装机"
           buttons={
             <>
               <Button.Confirm
                 disabled={!hasPDA}
-                content="Paint PDA"
-                confirmContent="Confirm?"
+                content="涂装 PDA"
+                confirmContent="确认？"
                 onClick={() =>
                   act('trim_pda', {
                     selection: selectedPDA,
@@ -37,8 +37,8 @@ export const PaintingMachine = (props) => {
               />
               <Button.Confirm
                 disabled={!hasPDA}
-                content="Reset Imprint"
-                confirmContent="Confirm?"
+                content="重置身份绑定"
+                confirmContent="确认？"
                 onClick={() => {
                   act('reset_pda');
                 }}
@@ -59,19 +59,19 @@ export const PaintingMachine = (props) => {
           </Stack>
         </Section>
         <Section
-          title="ID Trim Imprinter"
+          title="ID 卡饰边写入机"
           buttons={
             <>
               <Button.Confirm
                 disabled={!hasID}
-                content="Reset ID Account"
-                confirmContent="Confirm?"
+                content="重置 ID 卡账户"
+                confirmContent="确认？"
                 onClick={() => act('reset_card')}
               />
               <Button.Confirm
                 disabled={!hasID}
-                content="Imprint ID Trim"
-                confirmContent="Confirm?"
+                content="写入 ID 卡饰边"
+                confirmContent="确认？"
                 onClick={(sel) =>
                   act('trim_card', {
                     selection: selectedTrim,
@@ -81,8 +81,8 @@ export const PaintingMachine = (props) => {
               <Button
                 icon="question-circle"
                 tooltip={
-                  'WARNING: This is destructive' +
-                  ' and will wipe ALL access on the card.'
+                  '警告：此操作具有破坏性，' +
+                  '将清除卡片上的所有通行权限。'
                 }
                 tooltipPosition="left"
               />
@@ -131,9 +131,9 @@ export const PainterDropdown = (props) => {
   return (
     <Dropdown
       width="100%"
-      selected={selectedOption}
+      selected={selectedOption} displayText={machineChoiceDisplay(selectedOption)}
       options={Object.keys(options).map((path) => {
-        return options[path];
+        return { value: options[path], displayText: machineChoiceDisplay(options[path]) };
       })}
       onSelected={(sel) => setSelectedOption(sel)}
     />

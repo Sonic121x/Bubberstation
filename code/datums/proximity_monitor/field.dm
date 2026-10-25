@@ -165,8 +165,8 @@
 
 //DEBUG FIELD ITEM
 /obj/item/multitool/field_debug
-	name = "strange multitool"
-	desc = "Seems to project a colored field!"
+	name = "奇怪的多功能工具"
+	desc = "似乎能够投射出一片彩色力场！"
 	apc_scanner = FALSE
 	var/operating = FALSE
 	var/range_to_use = 5
@@ -184,7 +184,7 @@
 
 /obj/item/multitool/field_debug/attack_self(mob/user)
 	operating = !operating
-	to_chat(user, span_notice("You turn [src] [operating? "on":"off"]."))
+	to_chat(user, span_notice("你[operating? "开启":"关闭"]了[src]。"))
 	if(!istype(current) && operating)
 		setup_debug_field()
 	else if(!operating)

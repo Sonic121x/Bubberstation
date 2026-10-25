@@ -1,12 +1,12 @@
 /datum/quirk/pyromania
 	name = "Pyromania"
-	desc = "Fire is fascinating to you. You feel happier when around fire, and are generally a bit more resilient to heat and flames."
+	desc = "火焰令你着迷。待在火边会让你更开心，你也更能抵抗高温和火焰。"
 	icon = FA_ICON_FIRE
 	value = 6
-	gain_text = span_warning("You feel a burning desire to start fires.")
-	lose_text = span_notice("You realize just how dangerous fire can be.")
-	medical_record_text = "Patient has a fascination with fire, and exhibits a compulsive desire to start fires."
-	medical_symptom_text = "Experiences an uncontrollable urge to start fires and a fascination with flames."
+	gain_text = span_warning("你产生了强烈的纵火欲望。")
+	lose_text = span_notice("你意识到了火焰有多危险。")
+	medical_record_text = "患者痴迷于火焰，并表现出强迫性的纵火欲望。"
+	medical_symptom_text = "无法控制纵火冲动，并对火焰十分着迷。"
 	quirk_flags = QUIRK_PROCESSES|QUIRK_TRAUMALIKE|QUIRK_HUMAN_ONLY
 	/// Heat damage reduction
 	var/damage_mod = 0.67
@@ -16,7 +16,7 @@
 	COOLDOWN_DECLARE(start_fire_cd)
 
 /datum/quirk/pyromania/post_add()
-	var/pyro_policy = get_policy("[type]") || "Please note that your [LOWER_TEXT(name)] does NOT give you any additional right to spread fires."
+	var/pyro_policy = get_policy("[type]") || "请注意，纵火癖并不赋予你任何额外的纵火权限。"
 	to_chat(quirk_holder, span_info(pyro_policy))
 
 /datum/quirk/pyromania/add(client/client_source)
@@ -48,7 +48,7 @@
 		for(var/obj/item/lighter/lighter in quirk_holder.held_items)
 			if(lighter.lit)
 				continue
-			to_chat(quirk_holder, span_warning("You impulsively strike [lighter], trying to start a flame..."))
+			to_chat(quirk_holder, span_warning("你冲动地打着[lighter]，试图点起火焰……"))
 			lighter.attack_self(quirk_holder)
 			COOLDOWN_START(src, start_fire_cd, 4 SECONDS)
 			break
@@ -92,7 +92,7 @@
 	return fire_size
 
 /datum/mood_event/pyromania
-	description = "Lovely, warm fire..."
+	description = "可爱又温暖的火焰……"
 	mood_change = 1
 
 /datum/mood_event/pyromania/add_effects(fire_size = 0)

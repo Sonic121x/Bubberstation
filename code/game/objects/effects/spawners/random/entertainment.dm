@@ -1,10 +1,10 @@
 /obj/effect/spawner/random/entertainment
 	name = "entertainment loot spawner"
-	desc = "It's time to paaaaaarty!"
+	desc = "狂欢时间到！"
 
 /obj/effect/spawner/random/entertainment/arcade
 	name = "spawn random arcade machine"
-	desc = "Automagically transforms into a random arcade machine. If you see this while in a shift, please create a bug report."
+	desc = "自动变成一台随机街机。如果你在当班时看到此物，请提交错误报告。"
 	icon_state = "arcade"
 	loot = list(
 		/obj/machinery/computer/arcade/orion_trail = 49,
@@ -14,7 +14,7 @@
 
 /obj/effect/spawner/random/entertainment/slot_machine
 	name = "spawn random slot machine"
-	desc = "Automagically transforms into a random slot machine. If you see this while in a shift, please create a bug report."
+	desc = "自动变成一台随机老虎机。如果你在当班时看到此物，请提交错误报告。"
 	icon_state = "arcade"
 	loot = list( // syndie slots omitted
 		/obj/machinery/computer/slot_machine = 20,

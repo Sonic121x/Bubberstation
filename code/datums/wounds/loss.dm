@@ -12,8 +12,8 @@
 	threshold_minimum = WOUND_DISMEMBER_OUTRIGHT_THRESH // not actually used since dismembering is handled differently, but may as well assign it since we got it
 
 /datum/wound/loss
-	name = "Dismemberment Wound"
-	desc = "oof ouch!!"
+	name = "断肢伤"
+	desc = "呃啊，好痛！！"
 
 	sound_effect = 'sound/effects/dismember.ogg'
 	severity = WOUND_SEVERITY_LOSS
@@ -35,14 +35,14 @@
 	var/self_msg
 
 	if(dismembered_part.body_zone == BODY_ZONE_CHEST)
-		occur_text = "is split open, causing [victim.p_their()] internal organs to spill out!"
-		self_msg = "is split open, causing your internal organs to spill out!"
+		occur_text = "裂开了，内脏流了一地！"
+		self_msg = "裂开了，内脏流了一地！"
 	else
 		occur_text = dismembered_part.get_dismember_message(wounding_type, outright)
 
-	var/msg = span_bolddanger("[victim]'s [dismembered_part.plaintext_zone] [occur_text]")
+	var/msg = span_bolddanger("[victim]的[chinese_body_zone_display(dismembered_part.plaintext_zone)][occur_text]")
 
-	victim.visible_message(msg, span_userdanger("Your [dismembered_part.plaintext_zone] [self_msg ? self_msg : occur_text]"))
+	victim.visible_message(msg, span_userdanger("你的[chinese_body_zone_display(dismembered_part.plaintext_zone)][self_msg ? self_msg : occur_text]"))
 
 	loss_wounding_type = wounding_type
 
@@ -61,25 +61,25 @@
 	if(outright)
 		switch(wounding_type)
 			if(WOUND_BLUNT)
-				occur_text = "is outright smashed to a gross pulp, severing it completely!"
+				occur_text = "被彻底砸成了肉泥，完全断离！"
 			if(WOUND_SLASH)
-				occur_text = "is outright slashed off, severing it completely!"
+				occur_text = "被直接斩下，完全断离！"
 			if(WOUND_PIERCE)
-				occur_text = "is outright blasted apart, severing it completely!"
+				occur_text = "被直接轰碎，完全断离！"
 			if(WOUND_BURN)
-				occur_text = "is outright incinerated, falling to dust!"
+				occur_text = "被彻底焚毁，化作尘埃！"
 	else
 		var/bone_text = get_internal_description()
 		var/tissue_text = get_external_description()
 
 		switch(wounding_type)
 			if(WOUND_BLUNT)
-				occur_text = "is shattered through the last [bone_text] holding it together, severing it completely!"
+				occur_text = "最后相连的[chinese_body_material_display(bone_text)]被打碎，完全断离！"
 			if(WOUND_SLASH)
-				occur_text = "is slashed through the last [tissue_text] holding it together, severing it completely!"
+				occur_text = "最后相连的[chinese_body_material_display(tissue_text)]被斩断，完全断离！"
 			if(WOUND_PIERCE)
-				occur_text = "is pierced through the last [tissue_text] holding it together, severing it completely!"
+				occur_text = "最后相连的[chinese_body_material_display(tissue_text)]被贯穿，完全断离！"
 			if(WOUND_BURN)
-				occur_text = "is completely incinerated, falling to dust!"
+				occur_text = "被完全焚毁，化作尘埃！"
 
 	return occur_text

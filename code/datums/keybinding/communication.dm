@@ -4,7 +4,7 @@
 /datum/keybinding/client/communication/say
 	hotkey_keys = list("T")
 	name = SAY_CHANNEL
-	full_name = "IC Say"
+	full_name = "角色内发言"
 	keybind_signal = COMSIG_KB_CLIENT_SAY_DOWN
 
 /datum/keybinding/client/communication/say/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -22,7 +22,7 @@
 	//hotkey_keys = list("Y") // ORIGINAL
 	hotkey_keys = list(";") // SKYRAT EDIT CHANGE - CUSTOMIZATION
 	name = RADIO_CHANNEL
-	full_name = "IC Radio (;)"
+	full_name = "角色内无线电（;）"
 	keybind_signal = COMSIG_KB_CLIENT_RADIO_DOWN
 
 /datum/keybinding/client/communication/radio/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -39,7 +39,7 @@
 /datum/keybinding/client/communication/ooc
 	hotkey_keys = list("O")
 	name = OOC_CHANNEL
-	full_name = "Out Of Character Say (OOC)"
+	full_name = "角色外发言（OOC）"
 	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
 
 /datum/keybinding/client/communication/ooc/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -56,7 +56,7 @@
 /datum/keybinding/client/communication/me
 	hotkey_keys = list("M")
 	name = ME_CHANNEL
-	full_name = "Custom Emote (/Me)"
+	full_name = "自定义动作（/Me）"
 	keybind_signal = COMSIG_KB_CLIENT_ME_DOWN
 
 /datum/keybinding/client/communication/me/down(client/user, turf/target, mousepos_x, mousepos_y)
@@ -73,8 +73,8 @@
 /datum/keybinding/client/communication/pray
 	hotkey_keys = list("P")
 	name = PRAY_CHANNEL
-	full_name = "Pray"
-	description = "Allows you to directly send a message to your deity (Admins) in an IC manner."
+	full_name = "祈祷"
+	description = "以角色身份直接向你信仰的神祇（管理员）发送消息。"
 	keybind_signal = COMSIG_KB_CLIENT_PRAY_DOWN
 
 /datum/keybinding/client/communication/pray/down(client/user, turf/target, mousepos_x, mousepos_y)

@@ -2,7 +2,7 @@
 //yep you guessed it back at it again with another datum singleton.
 /datum/orion_event
 	var/name = "this displays the events name"
-	var/text = "this displays a blurb about the event"
+	var/text = "此处显示事件简介"
 	///pickweight to show up. will still be in the events pool if added to the events list but not RANDOM, only triggered.
 	var/weight = 0
 	///buttons to pick in response to the event. Don't worry, orion js will handle the rest
@@ -64,10 +64,10 @@
 ///Engine Breakdown - spend one engine part or wait 3 days (harmless emag effect)
 /datum/orion_event/engine_part
 	name = "Engine Breakdown"
-	text = "Oh no! The engine has broken down! \
-	You can repair it with an engine part, or you \
-	can make repairs for 3 days."
-	emag_message = span_warning("You hear some large object lurch to a halt right behind you! When you go to look, nothing's there...")
+	text = "糟了！引擎坏了！\
+	你可以用一个引擎零件修好它，\
+	也可以花三天时间进行维修。"
+	emag_message = span_warning("你听见身后某个庞然大物猛地停了下来！回头一看，却什么都没有……")
 	emag_sound = 'sound/effects/creak/creak1.ogg'
 	weight = 2
 	event_responses = list()
@@ -91,9 +91,9 @@
 ///Malfunction - spend one engine part or wait 3 days (emag effect randomizes some stats)
 /datum/orion_event/electronic_part
 	name = "Malfunction"
-	text = "The ship's systems are malfunctioning! \
-	You can replace the broken electronics with spares, \
-	or you can spend 3 days troubleshooting the AI."
+	text = "飞船系统出现故障！\
+	你可以用备用电子零件替换损坏部件，\
+	也可以花三天时间排查 AI 的故障。"
 	weight = 2
 	//set by select
 	event_responses = list()
@@ -114,7 +114,7 @@
 
 /datum/orion_event/electronic_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	playsound(game, 'sound/effects/empulse.ogg', 50, TRUE)
-	game.visible_message(span_danger("[game] malfunctions, randomizing in-game stats!"))
+	game.visible_message(span_danger("[game]发生故障，游戏中的数值被随机打乱！"))
 	var/oldfood = game.food
 	var/oldfuel = game.fuel
 	game.food = rand(10,80) / rand(1,2)
@@ -124,9 +124,9 @@
 
 /datum/orion_event/electronic_part/proc/revert_random(obj/machinery/computer/arcade/orion_trail/game, oldfood, oldfuel)
 	if(oldfuel > game.fuel && oldfood > game.food)
-		game.audible_message(span_danger("[game] lets out a somehow reassuring chime."))
+		game.audible_message(span_danger("[game]发出一声莫名令人安心的提示音。"))
 	else if(oldfuel < game.fuel || oldfood < game.food)
-		game.audible_message(span_danger("[game] lets out a somehow ominous chime."))
+		game.audible_message(span_danger("[game]发出一声莫名不祥的提示音。"))
 	game.food = oldfood
 	game.fuel = oldfuel
 	playsound(game, 'sound/machines/chime.ogg', 50, TRUE)
@@ -136,9 +136,9 @@
 ///Collision - spend one engine part or wait 3 days (has a nasty emag effect)
 /datum/orion_event/hull_part
 	name = "Collision"
-	text = "Something hit us! Looks like there's some hull damage. \
-	You can repair the damage with hull plates, or you can spend \
-	the next 3 days welding scrap together."
+	text = "有什么东西撞上了我们！船壳似乎受损了。\
+	你可以用船壳板修复损伤，\
+	也可以花三天时间把废料焊接起来。"
 	weight = 2
 	event_responses = list()
 
@@ -158,18 +158,18 @@
 
 /datum/orion_event/hull_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	if(prob(10+gamer_skill))
-		game.say("Something slams into the floor around [game] - luckily, it didn't get through!")
+		game.say("有什么东西猛地撞上[game]附近的地板——幸好没有撞穿！")
 		playsound(game, 'sound/effects/bang.ogg', 50, TRUE)
 		return
 	playsound(game, 'sound/effects/bang.ogg', 100, TRUE)
 	for(var/turf/open/floor/smashed in orange(1, game))
 		smashed.ScrapeAway()
-	game.say("Something slams into the floor around [game], exposing it to space!")
+	game.say("有什么东西撞穿了[game]附近的地板，使这里暴露在太空中！")
 	if(game.hull)
 		addtimer(CALLBACK(src, PROC_REF(fix_floor), game), 1 SECONDS)
 
 /datum/orion_event/hull_part/proc/fix_floor(obj/machinery/computer/arcade/orion_trail/game)
-	game.say("A new floor suddenly appears around [game]. What the hell?")
+	game.say("[game]周围突然出现了一块新地板。这是什么鬼？")
 	playsound(game, 'sound/items/weapons/genhit.ogg', 100, TRUE)
 	for(var/turf/open/space/fixed in orange(1, game))
 		fixed.place_on_top(/turf/open/floor/plating)
@@ -179,8 +179,8 @@
 
 /datum/orion_event/old_ship
 	name = "Derelict Ship"
-	text = "Your crew spots an old ship floating through space. \
-	It might have some supplies, but then again it looks rather unsafe."
+	text = "你的船员发现一艘旧飞船漂浮在太空中。\
+	里面也许有些补给，但看起来相当危险。"
 	weight = 2
 	event_responses = list(BUTTON_EXPLORE_SHIP, BUTTON_LEAVE_THE_DERELICT)
 
@@ -212,23 +212,23 @@
 			var/oldfuel = rand(4,10)
 			game.food += oldfood
 			game.fuel += oldfuel
-			text = "As you look through it you find some supplies and a living person! \
-			[rescued] was rescued from the abandoned ship! You also found [oldfood] Food and [oldfuel] Fuel."
+			text = "搜寻时，你找到了些补给和一个活人！\
+			你从废弃飞船上救出了[rescued]！还找到了[oldfood]份食物和[oldfuel]份燃料。"
 			event_responses += BUTTON_WELCOME_ABOARD
 		if(15 to 35)
 			var/lostfuel = rand(4,7)
 			var/deadname = game.remove_crewmember()
 			game.fuel -= lostfuel
-			text = "[deadname] was lost deep in the wreckage, and your own vessel lost [lostfuel] Fuel maneuvering to the abandoned ship."
+			text = "[deadname]在残骸深处失踪了，而你的飞船在靠近废弃飞船时消耗了[lostfuel]份燃料。"
 			event_responses += BUTTON_WHERE_DID_YOU_GO
 		if(36 to 65)
 			var/oldfood = rand(5,11)
 			game.food += oldfood
 			game.engine++
-			text = "You found [oldfood] Food and some parts amongst the wreck."
+			text = "你在残骸中找到了[oldfood]份食物和一些零件。"
 			event_responses += BUTTON_A_GOOD_FIND
 		else
-			text = "As you look through the wreck you cannot find much of use."
+			text = "你搜遍了残骸，却没找到多少有用的东西。"
 			event_responses += BUTTON_CONTINUE_TRAVELS
 
 /datum/orion_event/exploring_derelict/response(obj/machinery/computer/arcade/orion_trail/game, choice)
@@ -244,25 +244,25 @@
 
 /datum/orion_event/raiders/on_select(obj/machinery/computer/arcade/orion_trail/game, gamer_skill, gamer_skill_level, gamer_skill_rands)
 	..()
-	text = "Raiders have come aboard your ship! "
+	text = "掠夺者登上了你的飞船！"
 	if(prob(50))
 		var/sfood = rand(1,10)
 		var/sfuel = rand(1,10)
 		game.food -= sfood
 		game.fuel -= sfuel
-		text += "They have stolen [sfood] Food and [sfuel] Fuel."
+		text += "他们抢走了[sfood]份食物和[sfuel]份燃料。"
 	else if(prob(10))
 		var/deadname = game.remove_crewmember()
-		text += "[deadname] tried to fight back, but was killed."
+		text += "[deadname]试图反抗，却被杀死了。"
 	else
-		text += "Fortunately, you fended them off without any trouble."
+		text += "幸运的是，你毫不费力地击退了他们。"
 
 /datum/orion_event/raiders/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	if(prob(50-gamer_skill))
-		to_chat(usr, span_userdanger("You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?"))
+		to_chat(usr, span_userdanger("你听见战斗的喊声、靴子踩踏冰冷金属的声音、痛苦的尖叫，以及空气泄出的呼啸。你快疯了吗？"))
 		gamer.adjust_hallucinations(60 SECONDS)
 	else
-		to_chat(usr, span_userdanger("Something strikes you from behind! It hurts like hell and feel like a blunt weapon, but nothing is there..."))
+		to_chat(usr, span_userdanger("有什么东西从背后击中了你！疼得要命，像是钝器，可那里什么都没有……"))
 		gamer.take_bodypart_damage(30)
 		playsound(game, 'sound/items/weapons/genhit2.ogg', 100, TRUE)
 
@@ -275,7 +275,7 @@
 /datum/orion_event/illness/on_select(obj/machinery/computer/arcade/orion_trail/game, gamer_skill, gamer_skill_level, gamer_skill_rands)
 	..()
 	var/deadname = game.remove_crewmember()
-	text = "A deadly illness has been contracted! [deadname] was killed by the disease."
+	text = "有人感染了致命疾病！[deadname]死于这种疾病。"
 
 /datum/orion_event/illness/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	var/maxSeverity = 3
@@ -283,14 +283,14 @@
 		maxSeverity = 2 //part of gitting gud is rng mitigation
 	var/severity = rand(1,maxSeverity) //pray to RNGesus. PRAY, PIGS
 	if(severity == 1)
-		to_chat(gamer, span_userdanger("You suddenly feel slightly nauseated.") )
+		to_chat(gamer, span_userdanger("你突然感到有点恶心。") )
 		gamer.adjust_disgust(50)
 	if(severity == 2)
-		to_chat(usr, span_userdanger("You suddenly feel extremely nauseated and hunch over until it passes."))
+		to_chat(usr, span_userdanger("你突然感到极度恶心，弯下腰，直到不适消退。"))
 		gamer.adjust_disgust(110)
 		gamer.Stun(60)
 	if(severity >= 3) //you didn't pray hard enough
-		to_chat(gamer, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
+		to_chat(gamer, span_warning("一股强烈的恶心感席卷了你。你弯下腰，胃里的东西正准备来一次壮观的喷发。"))
 		gamer.adjust_disgust(150) //max this bitch out so they barf a lot
 		gamer.Stun(100)
 
@@ -299,8 +299,8 @@
 
 /datum/orion_event/flux
 	name = "Flux"
-	text = "This region of space is highly turbulent. If we go \
-	slowly we may avoid more damage, but if we keep our speed we won't waste supplies."
+	text = "这片太空的乱流十分剧烈。减速前进\
+	或许可以避免更多损伤，而保持速度则不会浪费补给。"
 	weight = 1
 	event_responses = list(BUTTON_KEEP_SPEED, BUTTON_SLOW_DOWN)
 
@@ -316,10 +316,10 @@
 
 /datum/orion_event/flux/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	if(prob(25 + gamer_skill))//withstand the wind with your GAMER SKILL
-		to_chat(gamer, span_userdanger("A violent gale blows past you, and you barely manage to stay standing!"))
+		to_chat(gamer, span_userdanger("一阵狂风从你身旁掠过，你勉强站稳了脚跟！"))
 		return
 	gamer.Paralyze(60)
-	game.say("A sudden gust of powerful wind slams [gamer] into the floor!")
+	game.say("一阵突如其来的强风将[gamer]掀翻在地！")
 	gamer.take_bodypart_damage(25)
 	playsound(game, 'sound/items/weapons/genhit.ogg', 100, TRUE)
 
@@ -330,9 +330,9 @@
 
 /datum/orion_event/changeling_infiltration/on_select(obj/machinery/computer/arcade/orion_trail/game, gamer_skill, gamer_skill_level, gamer_skill_rands)
 	. = ..()
-	text = "Strange reports warn of changelings infiltrating crews on trips to Orion..."
+	text = "奇怪的报告警告称，有变形怪混进了前往猎户座的船员中……"
 	if(game.settlers.len <= 2)
-		text += " But your crew's chance of reaching Orion is so slim the changelings likely avoided your ship..."
+		text += "不过，你的船员抵达猎户座的希望如此渺茫，变形怪大概避开了你的飞船……"
 		if(prob(10)) // "likely", I didn't say it was guaranteed! //worst outcome too because changeling controls don't even enable
 			game.lings_aboard = min(++game.lings_aboard,2)
 	else
@@ -342,7 +342,7 @@
 		else if(prob(70))
 			game.lings_aboard = min(++game.lings_aboard,2)
 
-		text += " You have reasonable suspicion there may be a changeling. Some menu options have been changed."
+		text += "你有充分理由怀疑船上存在变形怪。部分菜单选项已更改。"
 		game.lings_suspected = TRUE
 
 /datum/orion_event/changeling_attack
@@ -353,21 +353,21 @@
 	. = ..()
 	text = ""
 	if(game.lings_aboard <= 0) //shouldn't trigger, but hey.
-		text = "Haha, fooled you, there are no changelings on board! (You should report this to a coder :S )"
+		text = "哈哈，骗到你了，船上没有变形怪！（你应该向程序员报告这个问题 :S）"
 		return
 	var/ling1 = game.remove_crewmember()
 	var/ling2 = ""
 	if(game.lings_aboard >= 2)
 		ling2 = game.remove_crewmember()
 	if(ling2)
-		text = " [ling1] and [ling2]'s arms twist and contort into grotesque blades!"
+		text = "[ling1]和[ling2]的手臂扭曲变形，化作骇人的利刃！"
 	else
-		text = " [ling1]'s arm twists and contorts into a grotesque blade!"
+		text = "[ling1]的手臂扭曲变形，化作骇人的利刃！"
 
 	var/chance2attack = game.alive*20
 	if(!prob(chance2attack))
-		text += " [pick("Sensing unfavorable odds", "After a failed attack", "Suddenly breaking nerve")], \
-		the changeling[ling2 ? "s":""] vanish[ling2 ? "" : "es"] into space through the airlocks! You're safe... for now."
+		text += "[pick("察觉胜算渺茫", "一次攻击失败后", "突然失去勇气后")]，\
+		变形怪[ling2 ? "们":""]穿过气闸逃进了太空！你安全了……暂时如此。"
 		if(ling2)
 			game.lings_aboard = max(0,game.lings_aboard-2)
 		else
@@ -378,20 +378,20 @@
 	if(prob(chancetokill))
 		var/deadguy = game.remove_crewmember()
 		var/murder_text = pick(
-			"The changeling[ling2 ? "s" : ""] bring[ling2 ? "" : "s"] down [deadguy] and disembowel[ling2 ? "" : "s"] them in a spray of gore!", \
-			"[ling2 ? pick(ling1, ling2) : ling1] corners [deadguy] and impales them through the stomach!", \
-			"[ling2 ? pick(ling1, ling2) : ling1] decapitates [deadguy] in a single cleaving arc!")
+			"变形怪[ling2 ? "们" : ""]扑倒[deadguy]，将其开膛破肚，鲜血四溅！", \
+			"[ling2 ? pick(ling1, ling2) : ling1]将[deadguy]逼入角落，刺穿了其腹部！", \
+			"[ling2 ? pick(ling1, ling2) : ling1]一记横斩便砍下了[deadguy]的头！")
 		text += " [murder_text]"
 	else
-		text += " You valiantly fight off the changeling[ling2 ? "s":""]!"
+		text += "你英勇地击退了变形怪[ling2 ? "们":""]！"
 		if(ling2)
 			game.food += 30
 			game.lings_aboard = max(0, game.lings_aboard - 2)
 		else
 			game.food += 15
 			game.lings_aboard = max(0, game.lings_aboard - 1)
-		text += " Well, it's perfectly good food... \
-			You cut the changeling[ling2 ? "s" : ""] into meat, gaining [ling2 ? "30" : "15"] Food!"
+		text += "嗯，这可是上好的食物……\
+			你将变形怪[ling2 ? "们" : ""]切成肉块，获得了[ling2 ? "30" : "15"]份食物！"
 
 #define BUTTON_SPEED_PAST "Speed Past"
 #define BUTTON_GO_AROUND "Go Around"
@@ -399,10 +399,10 @@
 ///Black Hole - final  (emag can spawn singulo, see death event)
 /datum/orion_event/black_hole
 	name = "Looming Black Hole"
-	text = "Sensors indicate that a black hole's gravitational field is \
-	affecting the region of space we were headed through. We could stay \
-	of course, but risk of being overcome by its gravity, or we could \
-	change course to go around, which will take longer."
+	text = "传感器显示，一个黑洞的引力场\
+	正在影响我们即将经过的空域。我们可以保持航线，\
+	但可能被它的引力吞噬；也可以\
+	改变航线绕过去，不过会花更长时间。"
 	event_responses = list(BUTTON_SPEED_PAST, BUTTON_GO_AROUND)
 
 /datum/orion_event/black_hole/response(obj/machinery/computer/arcade/orion_trail/game, choice)
@@ -422,23 +422,23 @@
 ///You died to a black hole, have some fluff text
 /datum/orion_event/black_hole_death
 	name = "Event Horizon"
-	text = "As you jet the shuttle forward, you realize you underestimated the \
-	pull of the black hole. Try as you may, you cannot escape its stellar force. \
-	It isn't long before you pass the event horizon, and you close your eyes, readying \
-	to be torn apart as your ship begins to buckle under the pull."
+	text = "当你加速推进穿梭机时，才意识到自己低估了\
+	黑洞的引力。无论如何挣扎，都无法摆脱这股巨力。\
+	不久后你便越过了事件视界。你闭上双眼，准备迎接\
+	撕裂一切的力量，飞船在引力下开始扭曲变形。"
 	event_responses = list(BUTTON_OH)
 
 /datum/orion_event/black_hole_death/response(obj/machinery/computer/arcade/orion_trail/game, choice)
-	game.set_game_over(usr, "You were swept away into the black hole.")
+	game.set_game_over(usr, "你被卷入了黑洞。")
 	..()
 
 /datum/orion_event/black_hole_death/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/gamer)
 	if(game.obj_flags & EMAGGED)
 		playsound(game.loc, 'sound/effects/supermatter.ogg', 100, TRUE)
-		game.say("A miniature black hole suddenly appears in front of [game], devouring [gamer] alive!")
+		game.say("一个微型黑洞突然出现在[game]前，将[gamer]活活吞噬！")
 		gamer.Stun(200, ignore_canstun = TRUE) //you can't run :^)
 		var/black_hole = new /obj/singularity/orion(gamer.loc)
-		addtimer(CALLBACK(game, TYPE_PROC_REF(/atom/movable, say), "[black_hole] winks out, just as suddenly as it appeared."), 5 SECONDS)
+		addtimer(CALLBACK(game, TYPE_PROC_REF(/atom/movable, say), "[black_hole]突然消失，和它出现时一样突兀。"), 5 SECONDS)
 		QDEL_IN(black_hole, 5 SECONDS)
 
 #define BUTTON_DOCK "Dock"
@@ -446,9 +446,9 @@
 ///You found a space port!
 /datum/orion_event/space_port
 	name = "Space Port"
-	var/normal_arrival = "You have spotted a small pocket of civilization \
-	along the Orion Trail. A friendly hailing from the nearby space port \
-	assures that you can dock to rest and prepare for the travels ahead."
+	var/normal_arrival = "你在猎户座之路上发现了一小片文明聚居地。\
+	附近太空港发来友好的呼叫，\
+	欢迎你停靠休整，为接下来的旅程做好准备。"
 	weight = 2
 	event_responses = list(BUTTON_DOCK)
 
@@ -458,9 +458,9 @@
 	if(game.fuel > 20 && game.food > 20) //but you don't need one
 		text = normal_arrival
 		return
-	text = "The workers at the Port are shocked at the state of \
-	your pioneers. With supplies that low, they take pity on you and \
-	your crew, generously giving you some free supplies! "
+	text = "太空港的工作人员被你的拓荒者们\
+	凄惨的处境震惊了。看到补给如此短缺，他们同情你和\
+	你的船员，慷慨地赠送了一些免费补给！"
 
 
 	var/pity_fuel = 10
@@ -471,9 +471,9 @@
 		pity_fuel = 25
 	if(freecrew)
 		game.add_crewmember()
-	text += "(+[pity_food] fuel, +[pity_fuel] food)"
+	text += "（燃料+[pity_fuel]，食物+[pity_food]）"
 	if(freecrew)
-		text += " A worker at the Port is inspired by your determination, and joins your crew!"
+		text += "一名太空港工人被你的决心打动，加入了你的船员队伍！"
 	game.fuel += pity_fuel
 	game.food += pity_food
 
@@ -484,9 +484,9 @@
 ///You found the midway mark!
 /datum/orion_event/space_port/tau_ceti
 	name = "Tau Ceti Beta"
-	normal_arrival = "You have reached the halfway point in your journey, the largest space port \
-	along the trail: Tau Ceti Beta. It bustles with activity and life. It gives you hope \
-	of finding your future at Orion."
+	normal_arrival = "你抵达了旅程的中点，也是沿途最大的太空港：\
+	鲸鱼座τ星贝塔港。这里繁忙而充满生机，让你重新燃起了\
+	在猎户座开创未来的希望。"
 	//triggered by getting halfway
 	weight = 0
 
@@ -506,23 +506,23 @@
 	if(prob(success))
 		fuel = rand(5 + gamer_skill_rands,15 + gamer_skill_rands)
 		food = rand(5 + gamer_skill_rands,15 + gamer_skill_rands)
-		text = "You successfully raided the spaceport! You gained [fuel] Fuel and [food] Food! (+[fuel] fuel, +[food] food)"
+		text = "你成功洗劫了太空港！获得了[fuel]份燃料和[food]份食物！（燃料+[fuel]，食物+[food]）"
 		usr?.mind?.adjust_experience(/datum/skill/gaming, 10)
 	else
 		fuel = rand(-5,-15)
 		food = rand(-5,-15)
-		text = "You failed to raid the spaceport! You lost [fuel*-1] Fuel and [food*-1] Food in your scramble to escape! ([fuel] fuel, [food] food)"
+		text = "你洗劫太空港失败了！仓皇逃跑时损失了[fuel*-1]份燃料和[food*-1]份食物！（燃料[fuel]，食物[food]）"
 
 		//your chance of lose a crewmember is 1/2 your chance of success
 		//this makes higher % failures hurt more, don't get cocky space cowboy!
 		if(prob(success*5))
 			var/lost_crew = game.remove_crewmember()
 			if(!game.settlers.len)
-				game.set_game_over(usr, "You were gunned down by space port security.")
+				game.set_game_over(usr, "你被太空港安保人员击毙了。")
 				return ..()
-			text = "You failed to raid the spaceport! You lost [fuel*-1] Fuel and [food*-1] Food, AND [lost_crew] in your scramble to escape! ([fuel]fuel, [food] food, -Crew)"
+			text = "你洗劫太空港失败了！仓皇逃跑时损失了[fuel*-1]份燃料、[food*-1]份食物，还失去了[lost_crew]！（燃料[fuel]，食物[food]，船员减少）"
 			if(game.obj_flags & EMAGGED)
-				game.say("WEEWOO! WEEWOO! Spaceport security en route!")
+				game.say("呜哇！呜哇！太空港安保正在赶来！")
 				playsound(game, 'sound/items/weeoo1.ogg', 100, FALSE)
 				for(var/i in 1 to 3)
 					var/mob/living/basic/trooper/syndicate/ranged/smg/orion/spaceport_security = new(get_turf(game))

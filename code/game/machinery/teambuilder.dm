@@ -2,8 +2,8 @@
  * Simple admin tool that enables players to be assigned to a VERY SHITTY, very visually distinct team, quickly and affordably.
  */
 /obj/machinery/teambuilder
-	name = "Teambuilding Machine"
-	desc = "A machine that, when passed, colors you based on the color of your team. Lead free!"
+	name = "分队染色机"
+	desc = "经过这台机器时，它会按你所属队伍的颜色为你染色。不含铅！"
 	icon = 'icons/obj/machines/telepad.dmi'
 	icon_state = "lpad-idle"
 	density = FALSE
@@ -27,7 +27,7 @@
 
 /obj/machinery/teambuilder/examine_more(mob/user)
 	. = ..()
-	. += span_notice("You see a hastily written note on the side, it says '1215-1217, PICK A SIDE'.")
+	. += span_notice("侧面有张匆忙写下的纸条，上面写着“1215—1217，选一边站”。")
 
 /obj/machinery/teambuilder/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
@@ -45,15 +45,15 @@
 		Radio.set_frequency(team_radio)
 
 /obj/machinery/teambuilder/red
-	name = "Teambuilding Machine (Red)"
-	desc = "A machine that, when passed, colors you based on the color of your team. Go red team!"
+	name = "分队染色机（红队）"
+	desc = "经过这台机器时，它会按你所属队伍的颜色为你染色。红队加油！"
 	humans_only = TRUE
 	team_color = COLOR_RED
 	team_radio = FREQ_CTF_RED
 
 /obj/machinery/teambuilder/blue
-	name = "Teambuilding Machine (Blue)"
-	desc = "A machine that, when passed, colors you based on the color of your team. Go blue team!"
+	name = "分队染色机（蓝队）"
+	desc = "经过这台机器时，它会按你所属队伍的颜色为你染色。蓝队加油！"
 	humans_only = TRUE
 	team_color = COLOR_BLUE
 	team_radio = FREQ_CTF_BLUE

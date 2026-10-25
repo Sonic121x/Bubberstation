@@ -1,7 +1,7 @@
 
 /obj/item/tgui_book/manual/infuser
-	name = "\improper DNA infusion book"
-	desc = "An entire book on how to not turn yourself into a fly mutant."
+	name = "\improper DNA融合指南"
+	desc = "一整本讲解如何避免把自己变成苍蝇变种人的书。"
 	w_class = WEIGHT_CLASS_TINY
 
 	ui_name = "InfuserBook"

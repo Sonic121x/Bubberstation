@@ -1,25 +1,25 @@
 /obj/effect/decal/remains
-	name = "remains"
+	name = "遗骸"
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 
 /obj/effect/decal/remains/acid_act()
-	visible_message(span_warning("[src] dissolve[gender == PLURAL?"":"s"] into a puddle of sizzling goop!"))
+	visible_message(span_warning("[src]溶成了一滩滋滋作响的黏液！"))
 	playsound(src, 'sound/items/tools/welder.ogg', 150, TRUE)
 	new /obj/effect/decal/cleanable/greenglow(drop_location())
 	qdel(src)
 	return TRUE
 
 /obj/effect/decal/remains/human
-	desc = "They look like human remains. They have a strange aura about them."
+	desc = "看起来是人类的遗骸。散发着一股奇怪的气息。"
 	icon_state = "remains"
 
 /obj/effect/decal/remains/human/NeverShouldHaveComeHere(turf/here_turf)
 	return !istype(here_turf, /obj/structure/closet/crate/grave/filled) && ..()
 
 /obj/effect/decal/remains/human/smokey
-	name = "remains of Charles Morlbaro"
-	desc = "I guess we figured out what happened to the guy who lives here. You'd best tread lightly around this..."
+	name = "查尔斯·莫尔巴罗的遗骸"
+	desc = "看来我们知道住在这里的人遭遇了什么。在这附近最好轻手轻脚……"
 	///Our proximity monitor, for detecting nearby looters.
 	var/datum/proximity_monitor/proximity_monitor
 	///The reagent we will release when our remains are disturbed.
@@ -48,13 +48,13 @@
 
 ///Releases a cloud of smoke based on the randomly generated reagent in Initialize().
 /obj/effect/decal/remains/human/smokey/proc/release_smoke(mob/living/smoke_releaser)
-	visible_message(span_warning("[smoke_releaser] disturbs [src], which releases a huge cloud of gas!"))
+	visible_message(span_warning("[smoke_releaser]扰动了[src]，使其释放出一大团气体！"))
 	do_chem_smoke(2, src, get_turf(src), that_shit_that_killed_saddam, 15)
 
 ///Subtype of smokey remains used for rare maintenance spawns.
 /obj/effect/decal/remains/human/smokey/maintenance
-	name = "smokey remains"
-	desc = "They look like human remains. They have a strange, smokey aura about them... You should tread lightly when walking near this."
+	name = "冒烟的遗骸"
+	desc = "看起来是人类的遗骸。周围笼罩着奇怪的烟雾……在附近行走时应该放轻脚步。"
 
 /obj/effect/decal/remains/human/smokey/maintenance/Initialize(mapload)
 	. = ..()
@@ -67,17 +67,17 @@
 	return isclosedturf(here_turf)
 
 /obj/effect/decal/remains/xeno
-	desc = "They look like the remains of something... alien. They have a strange aura about them."
+	desc = "看起来是某种……外星生物的遗骸。散发着一股奇怪的气息。"
 	icon_state = "remainsxeno"
 
 /obj/effect/decal/remains/xeno/larva
 	icon_state = "remainslarva"
 
 /obj/effect/decal/remains/robot
-	desc = "They look like the remains of something mechanical. They have a strange aura about them."
+	desc = "看起来是某种机械的残骸。散发着一股奇怪的气息。"
 	icon = 'icons/mob/silicon/robots.dmi'
 	icon_state = "remainsrobot"
 
 /obj/effect/decal/cleanable/blood/gibs/robot_debris/old
-	name = "dusty robot debris"
-	desc = "Looks like nobody has touched this in a while."
+	name = "积灰的机器人残骸"
+	desc = "看起来已经很久没人碰过了。"

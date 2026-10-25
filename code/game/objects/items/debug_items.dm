@@ -3,8 +3,8 @@
 	abstract_type = /obj/item/debug
 
 /obj/item/debug/human_spawner
-	name = "human spawner"
-	desc = "Spawn a human by aiming at a turf and clicking. Use in hand to change type."
+	name = "人类生成器"
+	desc = "瞄准地面点击即可生成人类。手持使用可更改类型。"
 	icon = 'icons/obj/weapons/guns/magic.dmi'
 	icon_state = "nothingwand"
 	inhand_icon_state = "wand"
@@ -29,12 +29,12 @@
 	. = ..()
 	if(!user.client)
 		return
-	var/choice = input("Select a species", "Human Spawner", null) in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
+	var/choice = input("选择物种", "人类生成器", null) in sortTim(GLOB.species_list, GLOBAL_PROC_REF(cmp_text_asc))
 	selected_species = GLOB.species_list[choice]
 
 /obj/item/debug/omnitool
-	name = "omnitool"
-	desc = "The original hypertool, born before them all. Use it in hand to unleash its true power."
+	name = "全能工具"
+	desc = "诞生于一切之前的初代超级工具。手持使用，释放它真正的力量。"
 	icon = 'icons/obj/weapons/club.dmi'
 	icon_state = "hypertool"
 	inhand_icon_state = "hypertool"
@@ -46,7 +46,7 @@
 
 /obj/item/debug/omnitool/examine()
 	. = ..()
-	. += " The mode is: [tool_behaviour]"
+	. += "当前模式：[tool_behaviour]"
 
 /obj/item/debug/omnitool/proc/check_menu(mob/user)
 	if(!istype(user))
@@ -67,35 +67,35 @@
 	tool_behaviour = tool_result
 
 /obj/item/debug/omnitool/item_spawner
-	name = "spawntool"
+	name = "生成工具"
 	color = COLOR_ADMIN_PINK
 
 /obj/item/debug/omnitool/item_spawner/attack_self(mob/user)
 	if(!user || !user.client)
 		return
-	var/path = text2path(tgui_input_text(user, "Insert an item typepath to spawn", "ADMINS ONLY. FUCK AROUND AND FIND OUT."))
+	var/path = text2path(tgui_input_text(user, "输入要生成的物品类型路径", "仅限管理员。乱来后果自负。"))
 	if(!path)
 		return
-	var/choice = tgui_alert(user, "Subtypes only?",, list("Yes", "No"))
+	var/choice = tgui_alert(user, "仅生成子类型？",, list("是", "否"))
 	if(!choice)
 		return
 	if(!user.client.holder)
 		if(!isliving(user))
 			return
 		var/mob/living/living_user = user
-		to_chat(user, span_warning("As you try to use [src], you hear strange tearing sounds, as if the coder gods were attempting to reach out and choke you themselves."))
+		to_chat(user, span_warning("你尝试使用[src]时，听到奇怪的撕裂声，仿佛程序员诸神正试图亲自伸手掐死你。"))
 		playsound(src, 'sound/effects/dimensional_rend.ogg')
 		sleep(4 SECONDS)
-		var/confirmation = tgui_alert(user, "Are you certain you want to do that?", "Admins Only. Last Chance.", list("Yes", "No"))
-		if(!confirmation || confirmation == ("No"))
+		var/confirmation = tgui_alert(user, "你确定要这样做吗？", "仅限管理员。最后机会。", list("是", "否"))
+		if(!confirmation || confirmation == ("否"))
 			return
 		if(!user.client.holder) //safety if the admin readmined to save their ass lol.
-			to_chat(user, span_reallybig("You shouldn't have done that..."))
+			to_chat(user, span_reallybig("你不该那么做的……"))
 			playsound(src, 'sound/mobs/non-humanoids/cyborg/borg_deathsound.ogg')
 			sleep(3 SECONDS)
 			living_user.investigate_log("has been gibbed by [src].", INVESTIGATE_DEATHS)
 			living_user.gib(DROP_ALL_REMAINS)
 			return
 	var/turf/loc_turf = get_turf(src)
-	for(var/spawn_atom in (choice == "No" ? typesof(path) : subtypesof(path)))
+	for(var/spawn_atom in (choice == "否" ? typesof(path) : subtypesof(path)))
 		new spawn_atom(loc_turf)

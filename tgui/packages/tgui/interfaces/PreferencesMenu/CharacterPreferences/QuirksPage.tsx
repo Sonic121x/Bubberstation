@@ -161,7 +161,7 @@ function QuirkDisplay(props: QuirkDisplayProps) {
                 }}
               >
                 <Stack.Item grow basis="content">
-                  <b>{name}</b>
+                  <b>{quirk.display_name || name}</b>
                 </Stack.Item>
 
                 <Stack.Item>
@@ -271,7 +271,7 @@ function QuirkPopper(props: QuirkPopperProps) {
           <Button
             selected={customizationExpanded}
             icon="cog"
-            tooltip="Customize"
+            tooltip="自定义"
             style={{
               float: 'right',
             }}
@@ -329,7 +329,7 @@ function QuirkPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const server_data = useServerPrefs();
   if (!server_data) return;
-  const quirkSearch = createSearch(searchQuery, (quirk: Quirk) => quirk.name);
+  const quirkSearch = createSearch(searchQuery, (quirk: Quirk) => `${quirk.display_name || ''} ${quirk.name}`);
   const {
     max_positive_quirks: maxPositiveQuirks,
     quirk_blacklist: quirkBlacklist,
@@ -370,9 +370,9 @@ function QuirkPage() {
 
     if (quirk.value > 0) {
       if (maxPositiveQuirks !== -1 && positiveQuirks >= maxPositiveQuirks) {
-        return "You can't have any more positive quirks!";
+        return '你无法再添加更多正面特质！';
       } else if (pointsEnabled && balance + quirk.value > 0) {
-        return 'You need a negative quirk to balance this out!';
+        return '你需要一个负面特质来平衡点数！';
       }
     }
 
@@ -390,12 +390,12 @@ function QuirkPage() {
           incompatibleQuirk !== quirk.name &&
           selectedQuirkNames.indexOf(incompatibleQuirk) !== -1
         ) {
-          return `This is incompatible with ${incompatibleQuirk}!`;
+          return `这与${quirks.find(([, entry]) => entry.name === incompatibleQuirk)?.[1].display_name || incompatibleQuirk}不兼容！`;
         }
       }
     }
     if (data.species_disallowed_quirks.includes(quirk.name)) {
-      return 'This quirk is incompatible with your selected species.';
+      return '此特质与你选择的种族不兼容。';
     }
     return;
   }
@@ -404,7 +404,7 @@ function QuirkPage() {
     const quirk = quirkInfo[quirkName];
 
     if (pointsEnabled && balance - quirk.value > 0) {
-      return 'You need to remove a positive quirk first!';
+      return '你需要先移除一个正面特质！';
     }
 
     return;
@@ -416,7 +416,7 @@ function QuirkPage() {
         <Stack vertical fill align="center">
           <Stack.Item>
             {maxPositiveQuirks > 0 ? (
-              <Box fontSize="1.3em">Positive Quirks</Box>
+              <Box fontSize="1.3em">正面特质</Box>
             ) : (
               <Box mt={pointsEnabled ? 3.4 : 0} />
             )}
@@ -434,12 +434,12 @@ function QuirkPage() {
 
           <Stack.Item>
             <Box as="b" fontSize="1.6em">
-              Available Quirks
+              可选特质
             </Box>
           </Stack.Item>
           <Stack.Item>
             <Input
-              placeholder="Search quirks..."
+              placeholder="搜索特质……"
               width="200px"
               value={searchQuery}
               onChange={setSearchQuery}
@@ -490,7 +490,7 @@ function QuirkPage() {
         <Stack vertical fill align="center">
           <Stack.Item>
             {pointsEnabled ? (
-              <Box fontSize="1.3em">Quirk Balance</Box>
+              <Box fontSize="1.3em">特质点数余额</Box>
             ) : (
               <Box mt={maxPositiveQuirks > 0 ? 3.4 : 0} />
             )}
@@ -504,7 +504,7 @@ function QuirkPage() {
           </Stack.Item>
           <Stack.Item>
             <Box as="b" fontSize="1.6em">
-              Current Quirks
+              当前特质
             </Box>
           </Stack.Item>
           <Stack.Item p={1.5} /> {/* Filler to better align the menu*/}
@@ -565,7 +565,7 @@ export function QuirkPersonalityPage() {
               align="center"
               fontSize="14px"
             >
-              Quirks
+              特质
             </Button>
           </Stack.Item>
           <Stack.Item grow>
@@ -576,7 +576,7 @@ export function QuirkPersonalityPage() {
               align="center"
               fontSize="14px"
             >
-              Personality
+              性格
             </Button>
           </Stack.Item>
         </Stack>

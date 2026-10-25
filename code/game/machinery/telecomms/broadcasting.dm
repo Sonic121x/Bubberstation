@@ -208,13 +208,13 @@
 
 	var/spans_part = ""
 	if(length(spans))
-		spans_part = "(spans:"
+		spans_part = "（文字样式："
 		for(var/span in spans)
 			spans_part = "[spans_part] [span]"
-		spans_part = "[spans_part] ) "
+		spans_part = "[spans_part]） "
 
 	var/lang_name = data["language"]
-	var/log_text = "\[[get_radio_name(frequency)]\] [spans_part]\"[message]\" (language: [lang_name])"
+	var/log_text = "\[[chinese_radio_channel_display(get_radio_name(frequency))]\] [spans_part]“[message]”（语言：[chinese_language_display(lang_name)]）"
 
 	var/mob/source_mob = virt.source
 

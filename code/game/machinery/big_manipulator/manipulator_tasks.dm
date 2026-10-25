@@ -1,5 +1,5 @@
 /datum/manipulator_task
-	var/name = "task"
+	var/name = "任务"
 
 /datum/manipulator_task/proc/can_run(obj/machinery/big_manipulator/manipulator)
 	return FALSE
@@ -17,7 +17,7 @@
 // ===== WAIT =====
 
 /datum/manipulator_task/simple/wait
-	name = "wait"
+	name = "等待"
 	var/time_seconds = 1
 
 /datum/manipulator_task/simple/wait/can_run(obj/machinery/big_manipulator/manipulator)
@@ -43,16 +43,16 @@
 // ===== STOP =====
 
 /datum/manipulator_task/simple/stop
-	name = "stop"
+	name = "停止"
 	var/sub_name = ""
 
 /datum/manipulator_task/simple/stop/New(..., serialized_data)
 	var/static/list/preset_sub_names = list(
-		"while at it.",
-		"and step away.",
-		"in the name of common sense.",
-		"just stop.",
-		"enough of this.",
+		"就此收手。",
+		"然后退开。",
+		"凭点常识吧。",
+		"停下就好。",
+		"已经够了。",
 	)
 	sub_name = pick(preset_sub_names)
 	if(serialized_data)
@@ -73,7 +73,7 @@
 // ===== MOVE =====
 
 /datum/manipulator_task/cargo/move
-	name = "move"
+	name = "移动"
 
 /datum/manipulator_task/cargo/move/fill_priority_list(manipulator_tier)
 	return list()
@@ -245,7 +245,7 @@
 // ===== PICKUP =====
 
 /datum/manipulator_task/cargo/pickup
-	name = "pickup"
+	name = "拾取"
 	var/pickup_eagerness = PICKUP_CAN_WAIT
 
 /datum/manipulator_task/cargo/pickup/fill_priority_list(manipulator_tier)
@@ -360,7 +360,7 @@
 // Pickup iterates by this type to find a target point.
 
 /datum/manipulator_task/cargo/dropoff_base
-	name = "dropoff"
+	name = "卸下"
 
 /datum/manipulator_task/cargo/dropoff_base/proc/can_accept(atom/movable/target)
 	if(!is_valid())
@@ -403,7 +403,7 @@
 // ===== DROP =====
 
 /datum/manipulator_task/cargo/dropoff_base/drop
-	name = "drop"
+	name = "放下"
 	var/overflow_status = POINT_OVERFLOW_ALLOWED
 
 /datum/manipulator_task/cargo/dropoff_base/drop/fill_priority_list(manipulator_tier)
@@ -451,7 +451,7 @@
 // ===== THROW =====
 
 /datum/manipulator_task/cargo/dropoff_base/throw
-	name = "throw"
+	name = "投掷"
 	var/throw_range = 1
 
 /datum/manipulator_task/cargo/dropoff_base/throw/can_accept(atom/movable/target)
@@ -478,7 +478,7 @@
 // ===== USE =====
 
 /datum/manipulator_task/cargo/dropoff_base/use
-	name = "use"
+	name = "使用"
 	var/worker_combat_mode = FALSE
 	var/worker_use_rmb = FALSE
 	var/skip_anchored = FALSE
@@ -521,7 +521,7 @@
 // ===== INTERACT (empty hand) =====
 
 /datum/manipulator_task/cargo/interact
-	name = "interact"
+	name = "交互"
 	var/worker_combat_mode = FALSE
 	var/worker_use_rmb = FALSE
 	var/skip_anchored = FALSE

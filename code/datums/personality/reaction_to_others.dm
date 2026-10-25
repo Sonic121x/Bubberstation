@@ -1,40 +1,40 @@
 /datum/personality/callous
 	savefile_key = "callous"
-	name = "Callous"
-	desc = "I don't care much about what happens to other people."
-	pos_gameplay_desc = "Does not mind seeing death"
-	neg_gameplay_desc = "Prefers not to help people"
+	name = "冷酷"
+	desc = "我不太在乎别人遭遇了什么。"
+	pos_gameplay_desc = "不介意目睹死亡"
+	neg_gameplay_desc = "不愿帮助他人"
 	groups = list(PERSONALITY_GROUP_DEATH)
 
 /datum/personality/compassionate
 	savefile_key = "compassionate"
-	name = "Compassionate"
-	desc = "I like giving a hand to those in need."
-	pos_gameplay_desc = "Likes helping people"
-	neg_gameplay_desc = "Seeing death affects your mood more"
+	name = "富有同情心"
+	desc = "我喜欢向有需要的人伸出援手。"
+	pos_gameplay_desc = "喜欢帮助他人"
+	neg_gameplay_desc = "目睹死亡对你的情绪影响更大"
 	groups = list(PERSONALITY_GROUP_DEATH, PERSONALITY_GROUP_MISANTHROPY)
 
 /datum/personality/empathetic
 	savefile_key = "empathetic"
-	name = "Empathetic" // according to google "empathic" means you understand other people, while "empathetic" means you feel what they feel
-	desc = "Other people's feelings are important to me."
-	pos_gameplay_desc = "Likes seeing other people happy"
-	neg_gameplay_desc = "Dislikes seeing other people sad"
+	name = "感同身受" // according to google "empathic" means you understand other people, while "empathetic" means you feel what they feel
+	desc = "别人的感受对我很重要。"
+	pos_gameplay_desc = "看到别人开心会感到愉快"
+	neg_gameplay_desc = "看到别人难过会感到不快"
 	groups = list(PERSONALITY_GROUP_OTHERS)
 
 /datum/personality/misanthropic
 	savefile_key = "misanthropic"
-	name = "Misanthropic"
-	desc = "We should have never entered the stars."
-	pos_gameplay_desc = "Likes seeing other people sad"
-	neg_gameplay_desc = "Dislikes seeing other people happy"
+	name = "厌世"
+	desc = "我们根本就不该踏入星海。"
+	pos_gameplay_desc = "看到别人难过会感到愉快"
+	neg_gameplay_desc = "看到别人开心会感到不快"
 	groups = list(PERSONALITY_GROUP_OTHERS, PERSONALITY_GROUP_MISANTHROPY)
 
 /datum/personality/aloof
 	savefile_key = "aloof"
-	name = "Aloof"
-	desc = "Why is everyone so touchy? I'd rather be left alone."
-	neg_gameplay_desc = "Dislikes being grabbed, touched, or hugged"
+	name = "疏离"
+	desc = "为什么大家都这么喜欢动手动脚？我宁愿一个人待着。"
+	neg_gameplay_desc = "不喜欢被抓住、触碰或拥抱"
 	personality_trait = TRAIT_BADTOUCH
 
 /datum/personality/aloof/apply_to_mob(mob/living/who)

@@ -39,12 +39,12 @@
 
 	var/turf/our_turf = get_turf(src)
 	if (our_turf && is_station_level(our_turf.z))
-		SSblackbox.record_feedback("tally", "station_mess_created", 1, name)
+		SSblackbox.record_feedback("tally", "station_mess_created", 1, chinese_cleanable_stat_name(src))
 
 /obj/effect/decal/cleanable/Destroy()
 	var/turf/our_turf = get_turf(src)
 	if (our_turf && is_station_level(our_turf.z))
-		SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, name)
+		SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, chinese_cleanable_stat_name(src))
 	return ..()
 
 /obj/effect/decal/cleanable/proc/add_diseases(list/datum/disease/diseases)
@@ -100,14 +100,14 @@
 		return NONE
 
 	if (!lazy_init_reagents()?.total_volume)
-		to_chat(user, span_notice("[src] isn't thick enough to scoop up!"))
+		to_chat(user, span_notice("[src]太稀薄，无法舀起！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if (!reagents.trans_to(tool, reagents.total_volume, transferred_by = user))
-		to_chat(user, span_warning("[tool] is full!"))
+		to_chat(user, span_warning("[tool]已经满了！"))
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You scoop up [reagents.total_volume > 0 ? "some of " : ""]\the [src] into \the [tool]!"))
+	to_chat(user, span_notice("你把[reagents.total_volume > 0 ? "一部分" : ""][src]舀进了[tool]！"))
 	if (!reagents.total_volume) //scooped up all of it
 		qdel(src)
 	return ITEM_INTERACT_SUCCESS

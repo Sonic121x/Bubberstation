@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { type BooleanLike, classes } from 'tgui-core/react';
-import { capitalize } from 'tgui-core/string';
+import { materialDisplay } from '../localization/batchThreeDisplay';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -81,7 +81,7 @@ export const Autolathe = (props) => {
                         {filteredMaterials.map((material) => (
                           <LabeledList.Item
                             key={material.name}
-                            label={capitalize(material.name)}
+                            label={materialDisplay(material.name)}
                           >
                             <Stack fill>
                               <Stack.Item grow>

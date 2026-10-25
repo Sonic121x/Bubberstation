@@ -4,15 +4,15 @@
 
 /datum/quirk/spacer_born
 	name = "Spacer"
-	desc = "You were born in space, and have never known the comfort of a planet's gravity. Your body has adapted to this. \
-		You are more comfortable in zero and artificial gravity and are more resistant to the effects of space, \
-		but travelling to a planet's surface for an extended period of time will make you feel sick."
-	gain_text = span_notice("You feel at home in space.")
-	lose_text = span_danger("You feel homesick.")
+	desc = "你出生于太空，从未体验过行星重力带来的舒适。你的身体已经适应了这种生活。\
+		你在零重力和人工重力下更加自在，也更能抵御太空环境的影响，\
+		但在行星表面待得太久会让你感到不适。"
+	gain_text = span_notice("太空让你有家的感觉。")
+	lose_text = span_danger("你感到思乡了。")
 	icon = FA_ICON_USER_ASTRONAUT
 	value = 5
 	quirk_flags = QUIRK_CHANGES_APPEARANCE //SKYRAT EDIT CHANGE - ORIGINAL: quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
-	medical_record_text = "Patient is well-adapted to non-terrestrial environments."
+	medical_record_text = "患者十分适应非行星环境。"
 	mail_goodies = list(
 		/obj/item/storage/pill_bottle/ondansetron,
 		/obj/item/reagent_containers/applicator/pill/gravitum,
@@ -71,14 +71,14 @@
 	var/datum/bank_account/spacer_account = quirk_holder.get_bank_account()
 	if(!isnull(spacer_account))
 		spacer_account.payday_modifier *= 1.25
-		to_chat(quirk_holder, span_info("Given your background as a Spacer, \
-			you are awarded with a 25% hazard pay bonus due to your [on_a_planet ?  "station" : "occupational"] assignment."))
+		to_chat(quirk_holder, span_info("考虑到你身为太空居民的背景，\
+			由于你的[on_a_planet ?  "驻站" : "职业"]安排，你将获得 25% 的危险津贴。"))
 
 	// Supply them with some patches to help out on their new assignment
 	var/obj/item/storage/pill_bottle/ondansetron/disgust_killers = new()
-	disgust_killers.desc += " Best to take one when travelling to a planet's surface."
+	disgust_killers.desc += " 前往行星表面时最好用一片。"
 	if(quirk_holder.equip_to_storage(disgust_killers, ITEM_SLOT_BACK, indirect_action = TRUE, del_on_fail = TRUE))
-		to_chat(quirk_holder, span_info("You have[isnull(spacer_account) ? " " : " also "]been given some anti-emetic patches to assist in adjusting to planetary gravity."))
+		to_chat(quirk_holder, span_info("你[isnull(spacer_account) ? "" : "还"]获得了一些止吐贴片，帮助你适应行星重力。"))
 
 /datum/quirk/spacer_born/remove()
 	UnregisterSignal(quirk_holder, COMSIG_MOVABLE_Z_CHANGED)
@@ -153,7 +153,7 @@
 	afflicted.add_mood_event("spacer", /datum/mood_event/spacer/on_planet)
 	afflicted.add_movespeed_modifier(/datum/movespeed_modifier/spacer/on_planet)
 	afflicted.remove_status_effect(/datum/status_effect/spacer) // removes the wellness effect.
-	to_chat(afflicted, span_danger("You feel a bit sick under the gravity here."))
+	to_chat(afflicted, span_danger("这里的重力让你有些不适。"))
 
 /**
  * Ran after remaining on a planet for too long.
@@ -176,7 +176,7 @@
 	afflicted.add_movespeed_modifier(movespeed_mod_picked)
 
 	if(!skip_timers)
-		to_chat(afflicted, span_danger("You've been here for too long. The gravity really starts getting to you."))
+		to_chat(afflicted, span_danger("你在这里待得太久了。重力开始让你难以承受。"))
 
 // Going back into space
 
@@ -204,7 +204,7 @@
 	afflicted.remove_status_effect(/datum/status_effect/spacer)
 	afflicted.clear_mood_event("spacer")
 	// Does not remove the movement modifier yet, it lingers until you fully recover
-	to_chat(afflicted, span_green("You start feeling better now that you're back in space."))
+	to_chat(afflicted, span_green("回到太空后，你开始感觉好些了。"))
 
 /**
  * Ran when living back in space, or just no-grav in general, for a long enough period.
@@ -221,7 +221,7 @@
 	afflicted.add_mood_event("spacer", /datum/mood_event/spacer/in_space)
 	afflicted.add_movespeed_modifier(/datum/movespeed_modifier/spacer/in_space)
 	if(!skip_timers)
-		to_chat(afflicted, span_green("You feel better."))
+		to_chat(afflicted, span_green("你感觉好多了。"))
 
 // On a planet but has no gravity
 
@@ -248,7 +248,7 @@
 	afflicted.add_mood_event("spacer", /datum/mood_event/spacer/on_planet/low_grav)
 	afflicted.add_movespeed_modifier(/datum/movespeed_modifier/spacer/in_space)
 	if(!skip_timers && !was_in_space)
-		to_chat(afflicted, span_green("You feel like you're back in space!"))
+		to_chat(afflicted, span_green("你感觉自己又回到了太空！"))
 
 #undef LAST_STATE_PLANET
 #undef LAST_STATE_SPACE

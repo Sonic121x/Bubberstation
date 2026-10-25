@@ -140,10 +140,10 @@ handles linking back and forth.
 	. = NONE
 	if (!QDELETED(M.buffer) && istype(M.buffer, /obj/machinery/ore_silo))
 		if (silo == M.buffer)
-			to_chat(user, span_warning("[parent] is already connected to [silo]!"))
+			to_chat(user, span_warning("[parent]已经连接到[silo]了！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!check_z_level(M.buffer))
-			to_chat(user, span_warning("[parent] is too far away to get a connection signal!"))
+			to_chat(user, span_warning("[parent]距离太远，无法接收到连接信号！"))
 			return ITEM_INTERACT_BLOCKING
 
 		var/obj/machinery/ore_silo/new_silo = M.buffer
@@ -164,7 +164,7 @@ handles linking back and forth.
 		if(!(mat_container_flags & MATCONTAINER_NO_INSERT))
 			RegisterSignal(parent, COMSIG_ATOM_ITEM_INTERACTION, PROC_REF(on_item_insert))
 			RegisterSignal(parent, COMSIG_ATOM_ITEM_INTERACTION_SECONDARY, PROC_REF(on_secondary_insert))
-		to_chat(user, span_notice("You connect [parent] to [silo] from the multitool's buffer."))
+		to_chat(user, span_notice("你根据多功能工具缓冲区中的信息，将[parent]连接到了[silo]。"))
 		return ITEM_INTERACT_SUCCESS
 
 /datum/remote_materials/proc/on_item_insert(datum/source, mob/living/user, obj/item/target)
@@ -220,10 +220,10 @@ handles linking back and forth.
 	if (!istype(movable_parent))
 		return FALSE
 	if (!mat_container) //no silolink & local storage not supported
-		movable_parent.say("No access to material storage, please contact the quartermaster.")
+		movable_parent.say("无法访问材料仓储，请联系货运主管。")
 		return FALSE
 	if(check_hold && on_hold()) //silo on hold
-		movable_parent.say("Mineral access is on hold, please contact the quartermaster.")
+		movable_parent.say("矿物访问权限已暂停，请联系货运主管。")
 		return FALSE
 	if(SEND_SIGNAL(movable_parent, COMSIG_ORE_SILO_PERMISSION_CHECKED, user_data, movable_parent) & COMPONENT_ORE_SILO_DENY)
 		return FALSE

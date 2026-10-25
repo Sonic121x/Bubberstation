@@ -4,8 +4,8 @@
 
 ///Pad for the Civilian Bounty Control.
 /obj/machinery/piratepad/civilian
-	name = "civilian bounty pad"
-	desc = "A machine designed to send civilian bounty targets to centcom."
+	name = "民用悬赏传送平台"
+	desc = "用于将民用悬赏目标送往中央指挥部的机器。"
 	layer = TABLE_LAYER
 	resistance_flags = FIRE_PROOF
 	circuit = /obj/item/circuitboard/machine/bountypad
@@ -27,9 +27,9 @@
 
 ///Computer for assigning new civilian bounties, and sending bounties for collection.
 /obj/machinery/computer/piratepad_control/civilian
-	name = "civilian bounty control terminal"
-	desc = "A console for assigning civilian bounties to inserted ID cards, and for controlling the bounty pad for export."
-	status_report = "Ready for delivery."
+	name = "民用悬赏控制终端"
+	desc = "用于向插入的身份卡分配民用悬赏，并控制悬赏平台出口货物的控制台。"
+	status_report = "准备就绪，可以发运。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/piratepad_control/civilian")
 	icon_screen = "civ_bounty"
 	icon_keyboard = "id_key"
@@ -52,7 +52,7 @@
 
 /obj/machinery/computer/piratepad_control/multitool_act(mob/living/user, obj/item/multitool/I)
 	if(istype(I) && istype(I.buffer,/obj/machinery/piratepad/civilian))
-		to_chat(user, span_notice("You link [src] with [I.buffer] in [I] buffer."))
+		to_chat(user, span_notice("你将[src]连接到了[I]缓冲区中的[I.buffer]。"))
 		pad_ref = WEAKREF(I.buffer)
 		return TRUE
 
@@ -71,14 +71,14 @@
 	if(sending)
 		return FALSE
 	if(!inserted_scan_id)
-		status_report = "Please insert your ID first."
+		status_report = "请先插入身份卡。"
 		playsound(loc, 'sound/machines/synth/synth_no.ogg', 30 , TRUE)
 		return FALSE
 	if(!inserted_scan_id.registered_account.civilian_bounty)
-		status_report = "Please accept a new civilian bounty first."
+		status_report = "请先接受一项新的民用悬赏。"
 		playsound(loc, 'sound/machines/synth/synth_no.ogg', 30 , TRUE)
 		return FALSE
-	status_report = "Civilian Bounty: "
+	status_report = "民用悬赏："
 	var/obj/machinery/piratepad/civilian/pad = pad_ref?.resolve()
 	for(var/atom/movable/possible_shippable in get_turf(pad))
 		if(possible_shippable == pad)
@@ -90,10 +90,10 @@
 			if(possible_shippable_item.item_flags & ABSTRACT)
 				continue
 		if(inserted_scan_id.registered_account.civilian_bounty.applies_to(possible_shippable))
-			status_report += "Target Applicable."
+			status_report += "目标符合要求。"
 			playsound(loc, 'sound/machines/synth/synth_yes.ogg', 30 , TRUE)
 			return
-	status_report += "Not Applicable."
+	status_report += "不符合要求。"
 	playsound(loc, 'sound/machines/synth/synth_no.ogg', 30 , TRUE)
 
 
@@ -140,11 +140,11 @@
 				qdel(possible_shippable)
 
 	if(active_count >= 1)
-		status_report += "Bounty Target[active_count > 1 ? "s" : ""] Found x[active_count]. "
+		status_report += "找到[active_count]个悬赏目标。"
 
 		SStgui.update_uis(src)	//update Ui data to display how much of the bounty remains
 	else
-		status_report = "No applicable target found. Aborting. "
+		status_report = "未找到符合要求的目标。已中止。"
 		stop_sending()
 
 	active_count = 0 // We'll just re-use this for the second message setter.
@@ -162,20 +162,20 @@
 				for(var/datum/bank_account/helper in stack_item.contribution)
 					if(istype(helper?.civilian_bounty, stack_item.type))
 						helper.reset_bounty(inserted_scan_id)
-						helper.bank_card_talk("Your [stack_item.name] bounty has been completed for matching the completed station bounty!")
+						helper.bank_card_talk("你的[stack_item.name]悬赏与已完成的空间站悬赏一致，因此也已完成！")
 			else
 				id_account.reset_bounty(inserted_scan_id)
 
 			var/obj/item/bounty_cube/reward = new /obj/item/bounty_cube(drop_location())
 			reward.set_up(stack_item, inserted_scan_id)
 	if(active_count >= 1)
-		status_report += "x[active_count] Bount[active_count > 1 ? "ies" : "y"] completed! \
-			Please give your bounty cube[active_count > 1 ? "s" : ""] to cargo for your automated payout shortly. "
+		status_report += "已完成[active_count]项悬赏！\
+			请将悬赏方块交给货运部，以尽快自动领取报酬。"
 
 	if(check_global)
 		update_global_bounty_list(round(CIV_BOUNTY_BASELINE + (SSeconomy.civ_bounty_tracker / 3)), FALSE)
 
-	pad.visible_message(span_notice("[pad] activates!"))
+	pad.visible_message(span_notice("[pad]启动了！"))
 	pad.finish_sending()
 	playsound(loc, 'sound/machines/synth/synth_yes.ogg', 30 , TRUE)
 	sending = FALSE
@@ -188,10 +188,10 @@
 		return FALSE
 	if((id_account.civilian_bounty || id_account.bounties) && !COOLDOWN_FINISHED(id_account, bounty_timer))
 		var/time_left = DisplayTimeText(COOLDOWN_TIMELEFT(id_account, bounty_timer), round_seconds_to = 1)
-		balloon_alert(user, "try again in [time_left]!")
+		balloon_alert(user, "请在[time_left]后重试！")
 		return FALSE
 	if(!inserted_scan_id.trim)
-		say("Requesting ID card has no job assignment registered!")
+		say("发起请求的身份卡未登记职位！")
 		return FALSE
 
 	var/list/datum/bounty/crumbs = inserted_scan_id.trim.generate_bounty_list()
@@ -316,8 +316,8 @@
 		else
 			id_eject(user, target)
 
-	user.visible_message(span_notice("[user] inserts \the [card_to_insert] into \the [src]."),
-						span_notice("You insert \the [card_to_insert] into \the [src]."))
+	user.visible_message(span_notice("[user]将[card_to_insert]插入了[src]。"),
+						span_notice("你将[card_to_insert]插入了[src]。"))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 	ui_interact(user)
 	return TRUE
@@ -325,12 +325,12 @@
 ///Removes A stored ID card.
 /obj/machinery/computer/piratepad_control/civilian/proc/id_eject(mob/user, obj/item/target)
 	if(!target)
-		to_chat(user, span_warning("That slot is empty!"))
+		to_chat(user, span_warning("那个插槽是空的！"))
 		return FALSE
 	else
 		try_put_in_hand(target, user)
-		user.visible_message(span_notice("[user] gets \the [target] from \the [src]."), \
-							span_notice("You get \the [target] from \the [src]."))
+		user.visible_message(span_notice("[user]从[src]中取出了[target]。"), \
+							span_notice("你从[src]中取出了[target]。"))
 		playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 		inserted_scan_id = null
 		return TRUE
@@ -368,7 +368,7 @@
 		if(enable_high_priority && prob(HIGH_PRIORITY_BOUNTY_ODDS))
 			new_bounty.high_priority = TRUE
 			new_bounty.description += "</br>\
-				This bounty is marked as <b>high priority</b>, and will reward <b>1.5x</b> the normal payout!"
+				此悬赏被标记为<b>高优先级</b>，报酬为正常金额的<b>1.5倍</b>！"
 	return jobs_picked
 
 /// Performs several global bounty updates in a row on a callback loop, adding one each time.
@@ -393,23 +393,23 @@
  */
 /obj/machinery/computer/piratepad_control/civilian/proc/print_sheet(mob/living/user)
 	if(!COOLDOWN_FINISHED(src, sheet_printer_cooldown))
-		balloon_alert(user, "printer spooling!")
+		balloon_alert(user, "打印机正在准备！")
 		return FALSE
 
 	var/obj/item/paper/paper = new(loc)
-	paper.name = "paper - Bounties"
+	paper.name = "纸张——悬赏"
 
 	var/list/printout_text = list()
-	printout_text += "<center><h2>Nanotrasen Cargo Bounties</h2></center>"
+	printout_text += "<center><h2>纳米传讯货运悬赏</h2></center>"
 
 	for(var/datum/bounty/current_bounty in GLOB.shared_crew_bounties)
 		if(current_bounty.claimed)
 			continue
 		printout_text += {"<h3>[current_bounty.name]</h3>
 			<ul>
-			<li>Quantity requested: <i>[current_bounty.print_required()]</i>
-			<li>Reward: <b>[current_bounty.get_bounty_reward()]</b> cr.</li>
-			<li>Cut: <b>[round(BOUNTY_CUT_STANDARD * current_bounty.get_bounty_reward())]</b> cr.</li>
+			<li>所需数量：<i>[current_bounty.print_required()]</i>
+			<li>报酬：<b>[current_bounty.get_bounty_reward()]</b>信用点。</li>
+			<li>分成：<b>[round(BOUNTY_CUT_STANDARD * current_bounty.get_bounty_reward())]</b>信用点。</li>
 			</ul>"}
 	paper.add_raw_text(printout_text.Join(""))
 	paper.update_appearance()
@@ -420,14 +420,14 @@
 
 ///Beacon to launch a new bounty setup when activated.
 /obj/item/civ_bounty_beacon
-	name = "civilian bounty beacon"
-	desc = "N.T. approved civilian bounty beacon, toss it down and you will have a bounty pad and computer delivered to you."
+	name = "民用悬赏信标"
+	desc = "纳米传讯认证的民用悬赏信标，扔下它就会送来一座悬赏平台和一台计算机。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
 	var/uses = 2
 
 /obj/item/civ_bounty_beacon/attack_self()
-	loc.visible_message(span_warning("\The [src] begins to beep loudly!"))
+	loc.visible_message(span_warning("[src]开始发出响亮的哔哔声！"))
 	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 1 SECONDS)
 
 /obj/item/civ_bounty_beacon/proc/launch_payload()

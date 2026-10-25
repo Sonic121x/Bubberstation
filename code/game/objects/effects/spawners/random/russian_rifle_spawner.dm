@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/sakhno
 	name = "sakhno rifle spawner"
-	desc = "Mosin? Never heard of her!"
+	desc = "莫辛？没听说过她！"
 	icon_state = "pistol"
 	loot = list(
 		/obj/item/gun/ballistic/rifle/boltaction/surplus = 80,

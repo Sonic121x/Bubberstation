@@ -2,7 +2,7 @@ import { Box, Button, Divider, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 const buttonWidth = 2;
 
 const goodstyle = {
@@ -385,7 +385,7 @@ const ORION_STATUS_NORMAL = (props) => {
           <Stack fill textAlign="center" vertical>
             <Stack.Item grow>
               <Box bold fontSize="15px">
-                {(!!eventname && eventname) || locationInfo[turns - 1].title}
+                {(!!eventname && batchThreeDisplay(eventname)) || locationInfo[turns - 1].title}
               </Box>
               <br />
               <Box fontSize="15px">
@@ -401,7 +401,7 @@ const ORION_STATUS_NORMAL = (props) => {
                       lineHeight={3}
                       width={16}
                       icon={variousButtonIcons[button]}
-                      content={button}
+                      content={batchThreeDisplay(button)}
                       onClick={() => act(button)}
                     />
                   </Stack.Item>

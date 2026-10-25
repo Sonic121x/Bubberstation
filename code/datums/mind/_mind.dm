@@ -245,24 +245,24 @@
 	if(href_list["remove_antag"])
 		var/datum/antagonist/A = locate(href_list["remove_antag"]) in antag_datums
 		if(!istype(A))
-			to_chat(usr,span_warning("Invalid antagonist ref to be removed."))
+			to_chat(usr,span_warning("要移除的反派引用无效。"))
 			return
 		A.admin_remove(usr)
 
 	if(href_list["open_antag_vv"])
 		var/datum/antagonist/to_vv = locate(href_list["open_antag_vv"]) in antag_datums
 		if(!istype(to_vv))
-			to_chat(usr, span_warning("Invalid antagonist ref to be vv'd."))
+			to_chat(usr, span_warning("要查看变量的反派引用无效。"))
 			return
 		usr.client?.debug_variables(to_vv)
 
 	if (href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role.title) as null|anything in sort_list(SSjob.name_occupations)
+		var/new_role = chinese_job_choice(usr, "选择新职业", "分配职业", sort_list(SSjob.name_occupations), assigned_role.title)
 		if(isnull(new_role))
 			return
 		var/datum/job/new_job = SSjob.get_job(new_role)
 		if (!new_job)
-			to_chat(usr, span_warning("Job not found."))
+			to_chat(usr, span_warning("未找到该职业。"))
 			return
 		set_assigned_role(new_job)
 
@@ -281,7 +281,7 @@
 					objective_pos = A.objectives.Find(old_objective)
 					break
 			if(!old_objective)
-				to_chat(usr,"Invalid objective.")
+				to_chat(usr,"目标无效。")
 				return
 		else
 			if(href_list["target_antag"])
@@ -295,10 +295,10 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in sort_list(antag_datums) + "(new custom antag)"
+						var/datum/antagonist/target = input("将目标分配给哪个反派：", "反派", "（新建自定义反派）") as null|anything in sort_list(antag_datums) + "（新建自定义反派）"
 						if (QDELETED(target))
 							return
-						else if(target == "(new custom antag)")
+						else if(target == "（新建自定义反派）")
 							target_antag = add_antag_datum(/datum/antagonist/custom)
 						else
 							target_antag = target
@@ -310,7 +310,7 @@
 			if(old_objective.name in GLOB.admin_objective_list)
 				def_value = old_objective.name
 
-		var/selected_type = input("Select objective type:", "Objective type", def_value) as null|anything in GLOB.admin_objective_list
+		var/selected_type = chinese_objective_choice(usr, "选择目标类型：", "目标类型", GLOB.admin_objective_list, def_value)
 		selected_type = GLOB.admin_objective_list[selected_type]
 		if (!selected_type)
 			return
@@ -321,8 +321,8 @@
 			new_objective.owner = src
 			new_objective.admin_edit(usr)
 			target_antag.objectives += new_objective
-			message_admins("[key_name_admin(usr)] added a new objective for [current]: [new_objective.explanation_text]")
-			log_admin("[key_name(usr)] added a new objective for [current]: [new_objective.explanation_text]")
+			message_admins("[key_name_admin(usr)]为[current]新增了目标：[new_objective.explanation_text]")
+			log_admin("[key_name(usr)]为[current]新增了目标：[new_objective.explanation_text]")
 		else
 			if(old_objective.type == selected_type)
 				//Edit the old
@@ -335,8 +335,8 @@
 				new_objective.admin_edit(usr)
 				target_antag.objectives -= old_objective
 				target_antag.objectives.Insert(objective_pos, new_objective)
-			message_admins("[key_name_admin(usr)] edited [current]'s objective to [new_objective.explanation_text]")
-			log_admin("[key_name(usr)] edited [current]'s objective to [new_objective.explanation_text]")
+			message_admins("[key_name_admin(usr)]将[current]的目标修改为：[new_objective.explanation_text]")
+			log_admin("[key_name(usr)]将[current]的目标修改为：[new_objective.explanation_text]")
 
 	else if (href_list["obj_delete"])
 		var/datum/objective/objective
@@ -346,11 +346,11 @@
 				A.objectives -= objective
 				break
 		if(!objective)
-			to_chat(usr,"Invalid objective.")
+			to_chat(usr,"目标无效。")
 			return
 		//qdel(objective) Needs cleaning objective destroys
-		message_admins("[key_name_admin(usr)] removed an objective for [current]: [objective.explanation_text]")
-		log_admin("[key_name(usr)] removed an objective for [current]: [objective.explanation_text]")
+		message_admins("[key_name_admin(usr)]移除了[current]的目标：[objective.explanation_text]")
+		log_admin("[key_name(usr)]移除了[current]的目标：[objective.explanation_text]")
 
 	else if(href_list["obj_completed"])
 		var/datum/objective/objective
@@ -360,10 +360,10 @@
 				objective = objective
 				break
 		if(!objective)
-			to_chat(usr,"Invalid objective.")
+			to_chat(usr,"目标无效。")
 			return
 		objective.completed = !objective.completed
-		log_admin("[key_name(usr)] toggled the win state for [current]'s objective: [objective.explanation_text]")
+		log_admin("[key_name(usr)]切换了[current]的目标完成状态：[objective.explanation_text]")
 
 	else if(href_list["obj_prompt_custom"])
 		var/datum/antagonist/target_antag
@@ -378,27 +378,27 @@
 				if(1)
 					target_antag = antag_datums[1]
 				else
-					var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in sort_list(antag_datums) + "(new custom antag)"
+					var/datum/antagonist/target = input("将目标分配给哪个反派：", "反派", "（新建自定义反派）") as null|anything in sort_list(antag_datums) + "（新建自定义反派）"
 					if (QDELETED(target))
 						return
-					else if(target == "(new custom antag)")
+					else if(target == "（新建自定义反派）")
 						target_antag = add_antag_datum(/datum/antagonist/custom)
 					else
 						target_antag = target
-		var/replace_existing = input("Replace existing objectives?","Replace objectives?") in list("Yes", "No")
+		var/replace_existing = input("替换现有目标吗？","替换目标？") in list("是", "否")
 		if (isnull(replace_existing))
 			return
-		replace_existing = replace_existing == "Yes"
+		replace_existing = replace_existing == "是"
 		var/replace_escape
 		if (!replace_existing)
 			replace_escape = FALSE
 		else
-			replace_escape = input("Replace survive/escape/martyr objectives?","Replace objectives?") in list("Yes", "No")
+			replace_escape = input("替换存活、逃生或殉道目标吗？","替换目标？") in list("是", "否")
 			if (isnull(replace_escape))
 				return
-			replace_escape = replace_escape == "Yes"
+			replace_escape = replace_escape == "是"
 		target_antag.submit_player_objective(retain_existing = !replace_existing, retain_escape = !replace_escape, force = TRUE)
-		log_admin("[key_name(usr)] prompted [current] to enter their own objectives for [target_antag].")
+		log_admin("[key_name(usr)]提示[current]为[target_antag]输入自定义目标。")
 
 	else if (href_list["silicon"])
 		switch(href_list["silicon"])
@@ -406,16 +406,16 @@
 				var/mob/living/silicon/robot/R = current
 				if (istype(R))
 					R.SetEmagged(0)
-					message_admins("[key_name_admin(usr)] has unemag'ed [R].")
-					log_admin("[key_name(usr)] has unemag'ed [R].")
+					message_admins("[key_name_admin(usr)]解除了[R]的电磁破坏状态。")
+					log_admin("[key_name(usr)]解除了[R]的电磁破坏状态。")
 
 			if("unemagcyborgs")
 				if(isAI(current))
 					var/mob/living/silicon/ai/ai = current
 					for (var/mob/living/silicon/robot/R in ai.connected_robots)
 						R.SetEmagged(0)
-					message_admins("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
-					log_admin("[key_name(usr)] has unemag'ed [ai]'s Cyborgs.")
+					message_admins("[key_name_admin(usr)]解除了[ai]所连接半机械人的电磁破坏状态。")
+					log_admin("[key_name(usr)]解除了[ai]所连接半机械人的电磁破坏状态。")
 
 	else if (href_list["common"])
 		switch(href_list["common"])
@@ -425,46 +425,46 @@
 			if("takeuplink")
 				take_uplink()
 				wipe_memory_type(/datum/memory/key/traitor_uplink/implant)
-				log_admin("[key_name(usr)] removed [current]'s uplink.")
+				log_admin("[key_name(usr)]移除了[current]的上行链路。")
 			if("crystals")
 				if(check_rights(R_FUN))
 					var/datum/component/uplink/U = find_syndicate_uplink()
 					if(U)
 						var/crystals = tgui_input_number(
 							user = usr,
-							message = "Amount of telecrystals for [key]",
-							title = "Syndicate uplink",
+							message = "[key]的传送水晶数量",
+							title = "辛迪加上行链路",
 							default = U.uplink_handler.telecrystals,
 						)
 						if(isnum(crystals))
 							U.uplink_handler.set_telecrystals(crystals)
-							message_admins("[key_name_admin(usr)] changed [current]'s telecrystal count to [crystals].")
-							log_admin("[key_name(usr)] changed [current]'s telecrystal count to [crystals].")
+							message_admins("[key_name_admin(usr)]将[current]的传送水晶数量改为[crystals]。")
+							log_admin("[key_name(usr)]将[current]的传送水晶数量改为[crystals]。")
 			if("progression")
 				if(!check_rights(R_FUN))
 					return
 				var/datum/component/uplink/uplink = find_syndicate_uplink()
 				if(!uplink)
 					return
-				var/progression = input("Set new progression points for [key]","Syndicate uplink", uplink.uplink_handler.progression_points) as null | num
+				var/progression = input("设置[key]的新进展点数","辛迪加上行链路", uplink.uplink_handler.progression_points) as null | num
 				if(isnull(progression))
 					return
 				uplink.uplink_handler.progression_points = progression
-				message_admins("[key_name_admin(usr)] changed [current]'s progression point count to [progression].")
-				log_admin("[key_name(usr)] changed [current]'s progression point count to [progression].")
+				message_admins("[key_name_admin(usr)]将[current]的进展点数改为[progression]。")
+				log_admin("[key_name(usr)]将[current]的进展点数改为[progression]。")
 			if("uplink")
 				var/datum/antagonist/traitor/traitor_datum = has_antag_datum(/datum/antagonist/traitor)
 				if(!give_uplink(antag_datum = traitor_datum || null))
-					to_chat(usr, span_danger("Equipping a syndicate failed!"))
-					log_admin("[key_name(usr)] tried and failed to give [current] an uplink.")
+					to_chat(usr, span_danger("配发辛迪加装备失败！"))
+					log_admin("[key_name(usr)]尝试为[current]提供上行链路，但失败了。")
 				else
-					log_admin("[key_name(usr)] gave [current] an uplink.")
+					log_admin("[key_name(usr)]为[current]提供了上行链路。")
 			//SKYRAT EDIT ADDITION BEGIN -- EXPLOITABLES
 			if("toggle_exploitables")
 				has_exploitables_override = !has_exploitables_override //First we set the override to be the opposite of whatever it was apon execution, then we
 				handle_exploitables() // use ternaries to convert this into true/false for admin logs.
-				log_admin("[key_name(usr)] toggled [current]'s exploitables override to [(has_exploitables_override) ? "true" : "false"].")
-				message_admins("[key_name(usr)] toggled [current]'s exploitables override to [(has_exploitables_override) ? "true" : "false"].")
+				log_admin("[key_name(usr)]将[current]的可利用情报覆盖设置改为[(has_exploitables_override) ? "启用" : "禁用"]。")
+				message_admins("[key_name(usr)]将[current]的可利用情报覆盖设置改为[(has_exploitables_override) ? "启用" : "禁用"]。")
 			//SKYRAT EDIT ADDITION END
 
 	else if (href_list["obj_announce"])
@@ -474,7 +474,7 @@
 	else if (href_list["reroll_antag"])
 		var/datum/antagonist/antag = locate(href_list["reroll_antag"]) in antag_datums
 		if(!istype(antag))
-			to_chat(usr, span_warning("Invalid antagonist ref to be removed."))
+			to_chat(usr, span_warning("要移除的反派引用无效。"))
 			return
 
 		SSgamemode.reroll_antagonist(antag_name = name, existing_antag = antag)

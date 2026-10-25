@@ -20,8 +20,8 @@
 	owner.remove_status_effect(type, source)
 
 /atom/movable/screen/alert/status_effect/hooked
-	name = "Snagged By Hook"
-	desc = "You're being caught like a fish by some asshat! Click to safely remove the hook or move away far enough to snap it off."
+	name = "被鱼钩钩住"
+	desc = "某个混蛋把你当鱼钓住了！点击以安全取下鱼钩，或走得足够远将鱼线扯断。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "hooked"
 	clickable_glow = TRUE
@@ -32,11 +32,11 @@
 		return
 	if(!owner.can_resist())
 		return
-	owner.balloon_alert(owner, "removing hook...")
+	owner.balloon_alert(owner, "正在取下鱼钩……")
 	var/datum/status_effect/grouped/hooked/effect = owner.has_status_effect(attached_effect.type)
 	if(!effect.try_unhook())
 		return
-	owner.balloon_alert(owner, "hook removed")
+	owner.balloon_alert(owner, "鱼钩已取下")
 	var/datum/beam/held/rand_source = pick(effect.sources)
 	qdel(rand_source)
 
@@ -57,7 +57,7 @@
 	return do_after(owner, 10 SECONDS, extra_checks = CALLBACK(src, PROC_REF(still_exists)), interaction_key = DOAFTER_SOURCE_REMOVING_HOOK)
 
 /atom/movable/screen/alert/status_effect/hooked/jaws
-	name = "Snagged By Jaws"
-	desc = "You've been snagged by some sort of beartrap-slash-fishing-hook-gizmo! Click to safely remove the hook or move away far enough to snap it off."
+	name = "被夹钩咬住"
+	desc = "某种捕兽夹与鱼钩混合的玩意儿夹住了你！点击以安全取下钩子，或走得足够远将鱼线扯断。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "hooked_jaws"

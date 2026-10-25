@@ -64,45 +64,45 @@
 /datum/getrev/proc/GetTestMergeInfo(header = TRUE)
 	if(!testmerge.len)
 		return ""
-	. = header ? "The following pull requests are currently test merged:<br>" : ""
+	. = header ? "当前测试合并了以下拉取请求：<br>" : ""
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.head_commit
-		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
+		var/details = "：“" + html_encode(tm.title) + "”，作者：" + html_encode(tm.author) + "，提交：" + html_encode(copytext_char(cm, 1, 11))
 		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
 
-GAME_VERB_DESC(/client, showrevinfo, "Show Server Revision", "Check the current server code revision", "OOC")
+GAME_VERB_DESC(/client, showrevinfo, "查看服务器版本", "查看当前服务器的代码版本", "OOC")
 
 	var/list/msg = list()
 	// Round ID
 	if(GLOB.round_id)
-		msg += "<b>Round ID:</b> [GLOB.round_id]"
+		msg += "<b>回合 ID：</b> [GLOB.round_id]"
 
-	msg += "<b>BYOND Version:</b> [world.byond_version].[world.byond_build]"
+	msg += "<b>BYOND 版本：</b> [world.byond_version].[world.byond_build]"
 	if(DM_VERSION != world.byond_version || DM_BUILD != world.byond_build)
-		msg += "<b>Compiled with BYOND Version:</b> [DM_VERSION].[DM_BUILD]"
+		msg += "<b>编译所用 BYOND 版本：</b> [DM_VERSION].[DM_BUILD]"
 
 	// Revision information
 	var/datum/getrev/revdata = GLOB.revdata
-	msg += "<b>Server revision compiled on:</b> [revdata.date]"
+	msg += "<b>服务器版本编译日期：</b> [revdata.date]"
 	var/pc = revdata.originmastercommit
 	if(pc)
-		msg += "<b>Master commit:</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
+		msg += "<b>主分支提交：</b> <a href=\"[CONFIG_GET(string/githuburl)]/commit/[pc]\">[pc]</a>"
 	if(length(revdata.testmerge))
 		msg += revdata.GetTestMergeInfo()
 	if(revdata.commit && revdata.commit != revdata.originmastercommit)
-		msg += "<b>Local commit:</b> [revdata.commit]"
+		msg += "<b>本地提交：</b> [revdata.commit]"
 	else if(!pc)
-		msg += "No commit information"
+		msg += "无提交信息"
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "<b>TGS version</b>: [version.raw_parameter]"
-		msg += "<b>DMAPI version</b>: [TGS_DMAPI_VERSION]"
+		msg += "<b>TGS 版本</b>：[version.raw_parameter]"
+		msg += "<b>DMAPI 版本</b>：[TGS_DMAPI_VERSION]"
 
 	// Game mode odds
-	msg += "<br><b>Current Informational Settings:</b>"
-	msg += "<b>Protect Authority Roles From Traitor:</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "Yes" : "No"]"
-	msg += "<b>Protect Assistant Role From Traitor:</b> [CONFIG_GET(flag/protect_assistant_from_antagonist) ? "Yes" : "No"]"
-	msg += "<b>Enforce Human Authority:</b> [CONFIG_GET(string/human_authority) ? "Yes" : "No"]"
-	msg += "<b>Allow Latejoin Antagonists:</b> [CONFIG_GET(flag/allow_latejoin_antagonists) ? "Yes" : "No"]"
-	to_chat(src, fieldset_block("Server Revision Info", span_infoplain(jointext(msg, "<br>")), "boxed_message"), type = MESSAGE_TYPE_INFO)
+	msg += "<br><b>当前设置：</b>"
+	msg += "<b>禁止管理职位成为叛徒：</b> [CONFIG_GET(flag/protect_roles_from_antagonist) ? "是" : "否"]"
+	msg += "<b>禁止助理成为叛徒：</b> [CONFIG_GET(flag/protect_assistant_from_antagonist) ? "是" : "否"]"
+	msg += "<b>强制由人类担任管理职位：</b> [CONFIG_GET(string/human_authority) ? "是" : "否"]"
+	msg += "<b>允许迟到玩家成为反派：</b> [CONFIG_GET(flag/allow_latejoin_antagonists) ? "是" : "否"]"
+	to_chat(src, fieldset_block("服务器版本信息", span_infoplain(jointext(msg, "<br>")), "boxed_message"), type = MESSAGE_TYPE_INFO)

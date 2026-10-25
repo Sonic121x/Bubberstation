@@ -141,7 +141,7 @@
 		return "Use [copytext_char(value, 3)]"
 	if(ispath(action_type, /datum/action/innate/linked_speech) && endswith(value, "传话"))
 		return "[copytext_char(value, 1, -2)] Speech"
-	return value
+	return chinese_batch_three_action_storage_name(value, action_type)
 
 #ifdef UNIT_TESTS
 /datum/unit_test/chinese_action_layout_keys/Run()

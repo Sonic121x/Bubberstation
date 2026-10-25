@@ -43,7 +43,7 @@
 /obj/item/clothing/head/hair_tie/examine(mob/user)
 	. = ..()
 	if(picked_hairstyle)
-		. += span_notice("Wearing it will change your hairstyle to '[picked_hairstyle]'.")
+		. += span_notice("佩戴后会将你的发型改为‘[chinese_accessory_display(picked_hairstyle)]’。")
 	. += span_notice("<b>Use in hand</b> to pick a new hairstyle.")
 	. += span_notice("<b>Alt-click</b> [src] to fling it.")
 
@@ -53,11 +53,11 @@
 	return ..()
 
 /obj/item/clothing/head/hair_tie/attack_self(mob/user)
-	var/hair_id = tgui_input_list(user, "How does your hair look when its up?", "Pick!", SSaccessories.hairstyles_list)
+	var/hair_id = chinese_accessory_choice(user, "扎起头发后想要什么造型？", "选择发型", SSaccessories.hairstyles_list)
 	if(!hair_id || hair_id == "Bald")
 		balloon_alert(user, "error!")
 		return
-	balloon_alert(user, "[hair_id]")
+	balloon_alert(user, "[chinese_accessory_display(hair_id)]")
 	picked_hairstyle = hair_id
 
 /obj/item/clothing/head/hair_tie/equipped(mob/living/carbon/human/user, slot)

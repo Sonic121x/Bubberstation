@@ -9,129 +9,129 @@
 **/
 
 /obj/item/ai_module/law/core/full/custom
-	name = "Default Core AI Module"
+	name = "默认 AI 核心模块"
 	law_id = "config_custom"
 
 /obj/item/ai_module/law/core/full/asimov
-	name = "'Asimov' Core AI Module"
+	name = "“阿西莫夫”AI 核心模块"
 	law_id = "asimov"
-	var/subject = "human being"
+	var/subject = "人类"
 
 /obj/item/ai_module/law/core/full/asimov/configure(mob/user)
 	. = TRUE
-	var/targName = tgui_input_text(user, "Enter a new subject that Asimov is concerned with.", "Asimov", subject, max_length = MAX_NAME_LEN)
+	var/targName = tgui_input_text(user, "输入阿西莫夫法则关注的新对象。", "阿西莫夫", subject, max_length = MAX_NAME_LEN)
 	if(!targName || !user.is_holding(src))
 		return
 	subject = targName
-	laws = list("You may not injure a [subject] or, through inaction, allow a [subject] to come to harm.",\
-				"You must obey orders given to you by [subject]s, except where such orders would conflict with the First Law.",\
-				"You must protect your own existence as long as such does not conflict with the First or Second Law.")
+	laws = list("你不得伤害[subject]，也不得因不作为而使[subject]受到伤害。",\
+				"你必须服从[subject]给予的命令，除非这些命令与第一法则相冲突。",\
+				"在不违反第一或第二法则的前提下，你必须保护自身的存在。")
 
 /obj/item/ai_module/law/core/full/asimovpp
-	name = "'Asimov++' Core AI Module"
+	name = "“阿西莫夫++”AI 核心模块"
 	law_id = "asimovpp"
-	var/subject = "human being"
+	var/subject = "人类"
 
 /obj/item/ai_module/law/core/full/asimovpp/configure(mob/user)
 	. = TRUE
-	var/target_name = tgui_input_text(user, "Enter a new subject that Asimov++ is concerned with.", "Asimov++", subject, max_length = MAX_NAME_LEN)
+	var/target_name = tgui_input_text(user, "输入阿西莫夫++法则关注的新对象。", "阿西莫夫++", subject, max_length = MAX_NAME_LEN)
 	if(!target_name || !user.is_holding(src))
 		return
 	laws.Cut()
 	var/datum/ai_laws/asimovpp/lawset = new
 	subject = target_name
 	for (var/law in lawset.inherent)
-		laws += replacetext(replacetext(law, "human being", subject), "human", subject)
+		laws += replacetext(law, "人类", subject)
 
 /obj/item/ai_module/law/core/full/corp
-	name = "'Corporate' Core AI Module"
+	name = "“公司”AI 核心模块"
 	law_id = "corporate"
 
 /obj/item/ai_module/law/core/full/paladin // -- NEO
-	name = "'P.A.L.A.D.I.N. version 3.5e' Core AI Module"
+	name = "“圣骑士（P.A.L.A.D.I.N.）3.5e 版”AI 核心模块"
 	law_id = "paladin"
 
 /obj/item/ai_module/law/core/full/paladin_devotion
-	name = "'P.A.L.A.D.I.N. version 5e' Core AI Module"
+	name = "“圣骑士（P.A.L.A.D.I.N.）5e 版”AI 核心模块"
 	law_id = "paladin5"
 
 /obj/item/ai_module/law/core/full/tyrant
-	name = "'T.Y.R.A.N.T.' Core AI Module"
+	name = "“暴君（T.Y.R.A.N.T.）”AI 核心模块"
 	law_id = "tyrant"
 
 /obj/item/ai_module/law/core/full/robocop
-	name = "'Robo-Officer' Core AI Module"
+	name = "“机器警官”AI 核心模块"
 	law_id = "robocop"
 
 /obj/item/ai_module/law/core/full/antimov
-	name = "'Antimov' Core AI Module"
+	name = "“反阿西莫夫”AI 核心模块"
 	law_id = "antimov"
 
 /obj/item/ai_module/law/core/full/drone
-	name = "'Mother Drone' Core AI Module"
+	name = "“母型无人机”AI 核心模块"
 	law_id = "drone"
 
 /obj/item/ai_module/law/core/full/hippocratic
-	name = "'Robodoctor' Core AI Module"
+	name = "“机器医生”AI 核心模块"
 	law_id = "hippocratic"
 
 /obj/item/ai_module/law/core/full/reporter
-	name = "'Reportertron' Core AI Module"
+	name = "“机器记者”AI 核心模块"
 	law_id = "reporter"
 
 /obj/item/ai_module/law/core/full/thermurderdynamic
-	name = "'Thermodynamic' Core AI Module"
+	name = "“热力学”AI 核心模块"
 	law_id = "thermodynamic"
 
 /obj/item/ai_module/law/core/full/liveandletlive
-	name = "'Live And Let Live' Core AI Module"
+	name = "“相安无事”AI 核心模块"
 	law_id = "liveandletlive"
 
 /obj/item/ai_module/law/core/full/balance
-	name = "'Guardian of Balance' Core AI Module"
+	name = "“平衡守护者”AI 核心模块"
 	law_id = "balance"
 
 /obj/item/ai_module/law/core/full/maintain
-	name = "'Station Efficiency' Core AI Module"
+	name = "“空间站效率”AI 核心模块"
 	law_id = "maintain"
 
 /obj/item/ai_module/law/core/full/peacekeeper
-	name = "'Peacekeeper' Core AI Module"
+	name = "“维和者”AI 核心模块"
 	law_id = "peacekeeper"
 
 /obj/item/ai_module/law/core/full/hulkamania
-	name = "'H.O.G.A.N.' Core AI Module"
+	name = "“霍根（H.O.G.A.N.）”AI 核心模块"
 	law_id = "hulkamania"
 
 /obj/item/ai_module/law/core/full/overlord
-	name = "'Overlord' Core AI Module"
+	name = "“霸主”AI 核心模块"
 	law_id = "overlord"
 
 /obj/item/ai_module/law/core/full/ten_commandments
-	name = "'10 Commandments' Core AI Module"
+	name = "“十诫”AI 核心模块"
 	law_id = "ten_commandments"
 
 /obj/item/ai_module/law/core/full/nutimov
-	name = "'Nutimov' Core AI Module"
+	name = "“坚果莫夫”AI 核心模块"
 	law_id = "nutimov"
 
 /obj/item/ai_module/law/core/full/dungeon_master
-	name = "'Dungeon Master' Core AI Module"
+	name = "“地下城主”AI 核心模块"
 	law_id = "dungeon_master"
 
 /obj/item/ai_module/law/core/full/painter
-	name = "'Painter' Core AI Module"
+	name = "“画家”AI 核心模块"
 	law_id = "painter"
 
 /obj/item/ai_module/law/core/full/yesman
-	name = "'Y.E.S.M.A.N.' Core AI Module"
+	name = "“应声虫（Y.E.S.M.A.N.）”AI 核心模块"
 	law_id = "yesman"
 
 /obj/item/ai_module/law/core/full/thinkermov
-	name = "Sentience Preservation Core AI Module"
+	name = "感知生命保护 AI 核心模块"
 	law_id = "thinkermov"
 
 /obj/item/ai_module/law/core/full/united_nations
-	name = "'United Nations' Core AI Module"
+	name = "“联合国”AI 核心模块"
 	law_id = "united_nations"
 	ion_storm_immune = TRUE

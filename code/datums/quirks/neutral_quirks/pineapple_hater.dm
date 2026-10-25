@@ -1,11 +1,11 @@
 /datum/quirk/pineapple_hater
 	name = "Ananas Aversion"
-	desc = "You find yourself greatly detesting fruits of the ananas genus. Serious, how the hell can anyone say these things are good? And what kind of madman would even dare put it on a pizza!?"
+	desc = "你极度厌恶菠萝属的水果。说真的，怎么会有人觉得这东西好吃？又是哪个疯子竟敢把它放在披萨上！？"
 	icon = FA_ICON_THUMBS_DOWN
 	value = 0
-	gain_text = span_notice("You find yourself pondering what kind of idiot actually enjoys pineapples...")
-	lose_text = span_notice("Your feelings towards pineapples seem to return to a lukewarm state.")
-	medical_record_text = "Patient is correct to think that pineapple is disgusting."
+	gain_text = span_notice("你开始琢磨，到底是什么样的傻子会喜欢吃菠萝……")
+	lose_text = span_notice("你对菠萝的态度似乎又变得平淡了。")
+	medical_record_text = "患者认为菠萝很恶心，这是正确的。"
 	mail_goodies = list( // basic pizza slices
 		/obj/item/food/pizzaslice/margherita,
 		/obj/item/food/pizzaslice/meat,

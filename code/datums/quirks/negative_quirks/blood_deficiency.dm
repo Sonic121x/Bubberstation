@@ -1,11 +1,11 @@
 /datum/quirk/blooddeficiency
 	name = "Blood Deficiency"
-	desc = "Your body can't produce enough blood to sustain itself."
+	desc = "你的身体无法制造足够的血液来维持自身。"
 	icon = FA_ICON_TINT
 	value = -8
-	gain_text = span_danger("You feel your vigor slowly fading away.")
-	lose_text = span_notice("You feel vigorous again.")
-	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
+	gain_text = span_danger("你感觉活力正在慢慢流失。")
+	lose_text = span_notice("你又感觉充满活力了。")
+	medical_record_text = "患者因造血不足而需要定期接受失血治疗。"
 	hardcore_value = 8
 	mail_goodies = list(/obj/item/reagent_containers/blood/o_minus) // universal blood type that is safe for all
 	/// Minimum amount of blood the paint is set to

@@ -1,6 +1,6 @@
 import { Icon } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
+import { materialDisplay } from '../../localization/batchThreeDisplay';
 const MATERIAL_ICONS: Record<string, [number, string][]> = {
   iron: [
     [0, 'sheet-metal'],
@@ -86,7 +86,7 @@ export const MaterialIcon = (props: MaterialIconProps) => {
   }
 
   return (
-    <div className={'FabricatorMaterialIcon'}>
+    <div className={'FabricatorMaterialIcon'} title={materialDisplay(materialName)}>
       {icons.map(([_, iconState], idx) => (
         <div
           key={idx}

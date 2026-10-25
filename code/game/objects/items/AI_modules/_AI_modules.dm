@@ -3,7 +3,7 @@
 
 /// Generic item that can be slotted into an AI law rack to give it functionality.
 /obj/item/ai_module
-	name = "\improper AI module"
+	name = "\improper AI 模块"
 	icon = 'icons/obj/devices/circuitry_n_data.dmi'
 	icon_state = "std_mod"
 	base_icon_state = "std_mod"
@@ -58,7 +58,7 @@
 
 /// When slotted into an AI law rack, adds laws! The bread and butter of AI modules.
 /obj/item/ai_module/law
-	desc = "An AI Module for programming laws to an AI."
+	desc = "用于向 AI 写入法则的 AI 模块。"
 	/// This is where our laws get put at for the module
 	/// Assoc list, key = law text, value = is this an ion law
 	var/list/laws = list()
@@ -90,7 +90,7 @@
 /obj/item/ai_module/law/examine(mob/user)
 	. = ..()
 	if(ioned)
-		. += "This module has been damaged and should be repaired with a [EXAMINE_HINT("multitool")]."
+		. += "此模块已损坏，应使用[EXAMINE_HINT("多功能工具")]修复。"
 
 	var/examine_laws = display_laws()
 	if(examine_laws)
@@ -99,10 +99,10 @@
 /obj/item/ai_module/law/multitool_act(mob/living/user, obj/item/tool)
 	if(!ioned)
 		return NONE
-	balloon_alert(user, "repairing ion damage...")
+	balloon_alert(user, "正在修复离子损伤……")
 	if(!tool.use_tool(ismachinery(loc) ? loc : src, user, 4 SECONDS, volume = 25, extra_checks = CALLBACK(src, PROC_REF(multitool_cb), loc, user, tool)))
 		return ITEM_INTERACT_BLOCKING
-	balloon_alert(user, "module repaired")
+	balloon_alert(user, "模块已修复")
 	set_ioned(FALSE)
 	set_laws(saved_laws)
 	saved_laws = null
@@ -187,7 +187,7 @@
 		assembled_laws += "\"[law]\"<br>"
 
 	if(assembled_laws)
-		return "<b>Programmed Law[(length(laws) > 1) ? "s" : ""]:</b><br>[assembled_laws]"
+		return "<b>已写入法则：</b><br>[assembled_laws]"
 
 	return null
 
@@ -199,7 +199,7 @@
 	return
 
 /obj/item/ai_module/law/core
-	desc = "An AI Module for programming core laws to an AI."
+	desc = "用于向 AI 写入核心法则的 AI 模块。"
 	custom_materials = list(/datum/material/diamond = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ai_module/law/core/apply_to_combined_lawset(datum/ai_laws/combined_lawset)
@@ -215,7 +215,7 @@
 		// removing core laws temporarily stuns the silicon to let people swap cores without immediately getting blasted
 		if(!parent_rack.rack_stun(bot))
 			continue
-		to_chat(bot, span_userdanger("Core module removed. Recalculating directives..."))
+		to_chat(bot, span_userdanger("核心模块已移除。正在重新计算指令……"))
 
 /obj/item/ai_module/law/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums
@@ -262,7 +262,7 @@
 	. = ..()
 	var/datum/ai_laws/default_laws = get_round_default_lawset()
 	default_laws = new default_laws()
-	name = "'[default_laws.name]' Core AI Module"
+	name = "“[default_laws.name]”AI 核心模块"
 	laws = default_laws.inherent
 
 /obj/item/ai_module/law/core/round_default_fallback/handle_unique_ai()

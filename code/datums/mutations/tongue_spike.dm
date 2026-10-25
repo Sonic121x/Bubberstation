@@ -1,8 +1,8 @@
 /datum/mutation/tongue_spike
-	name = "Tongue Spike"
-	desc = "The subject gains the ability to voluntary shoot their tongue out as a deadly weapon."
+	name = "舌刺"
+	desc = "受试者能够主动射出舌头，将其化为致命武器。"
 	quality = POSITIVE
-	text_gain_indication = span_notice("Your feel like you can throw your voice.")
+	text_gain_indication = span_notice("你觉得自己能把舌头弹射出去。")
 	instability = POSITIVE_INSTABILITY_MINI // worthless. also serves as a bit of a hint that it's not good
 	power_path = /datum/action/cooldown/spell/tongue_spike
 
@@ -10,8 +10,8 @@
 	synchronizer_coeff = 1
 
 /datum/action/cooldown/spell/tongue_spike
-	name = "Launch spike"
-	desc = "Shoot your tongue out in the direction you're facing, embedding it and dealing damage until they remove it."
+	name = "发射舌刺"
+	desc = "朝面向的方向射出舌头，使其嵌入目标体内并持续造成伤害，直到被取出。"
 	button_icon = 'icons/mob/actions/actions_genetic.dmi'
 	button_icon_state = "spike"
 
@@ -27,12 +27,12 @@
 /datum/action/cooldown/spell/tongue_spike/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(HAS_TRAIT(cast_on, TRAIT_NODISMEMBER))
-		to_chat(cast_on, span_notice("You concentrate really hard, but nothing happens."))
+		to_chat(cast_on, span_notice("你竭尽全力集中精神，但什么也没发生。"))
 		return
 
 	var/obj/item/organ/tongue/to_fire = locate() in cast_on.organs
 	if(!to_fire)
-		to_chat(cast_on, span_notice("You don't have a tongue to shoot!"))
+		to_chat(cast_on, span_notice("你没有可以射出的舌头！"))
 		return
 
 	to_fire.Remove(cast_on, special = TRUE)
@@ -41,8 +41,8 @@
 	spike.throw_at(get_edge_target_turf(cast_on, cast_on.dir), 14, 4, cast_on)
 
 /obj/item/hardened_spike
-	name = "biomass spike"
-	desc = "Hardened biomass, shaped into a spike. Very pointy!"
+	name = "生物质尖刺"
+	desc = "硬化成尖刺状的生物质。非常锋利！"
 	icon = 'icons/obj/weapons/thrown.dmi'
 	icon_state = "tonguespike"
 	icon_angle = 45
@@ -69,7 +69,7 @@
 		morph_back()
 
 /obj/item/hardened_spike/proc/morph_back()
-	visible_message(span_warning("[src] cracks and twists, changing shape!"))
+	visible_message(span_warning("[src]裂开并扭曲，改变了形状！"))
 	for(var/obj/tongue as anything in contents)
 		tongue.forceMove(get_turf(src))
 	qdel(src)
@@ -88,10 +88,10 @@
 		tongue_spike.morph_back()
 
 /datum/mutation/tongue_spike/chem
-	name = "Chem Spike"
-	desc = "The subject gains the ability to voluntary shoot their tongue out as biomass, allowing a long range transfer of chemicals."
+	name = "化学舌刺"
+	desc = "受试者能够主动将舌头化为生物质射出，远距离输送化学物质。"
 	quality = POSITIVE
-	text_gain_indication = span_notice("Your feel like you can really connect with people by throwing your voice.")
+	text_gain_indication = span_notice("你觉得把舌头射出去就能与别人建立切实的联系。")
 	instability = POSITIVE_INSTABILITY_MINOR // slightly less worthless. slightly.
 	locked = TRUE
 	power_path = /datum/action/cooldown/spell/tongue_spike/chem
@@ -99,18 +99,18 @@
 	synchronizer_coeff = 1
 
 /datum/action/cooldown/spell/tongue_spike/chem
-	name = "Launch chem spike"
-	desc = "Shoot your tongue out in the direction you're facing, \
-		embedding it for a very small amount of damage. \
-		While the other person has the spike embedded, \
-		you can transfer your chemicals to them."
+	name = "发射化学舌刺"
+	desc = "朝面向的方向射出舌头，\
+		使其嵌入目标体内并造成极少量伤害。\
+		只要尖刺仍嵌在对方体内，\
+		你就能将自身的化学物质输送给对方。"
 	button_icon_state = "spikechem"
 
 	spike_path = /obj/item/hardened_spike/chem
 
 /obj/item/hardened_spike/chem
-	name = "chem spike"
-	desc = "Hardened biomass, shaped into... something."
+	name = "化学舌刺"
+	desc = "硬化的生物质，塑成了……某种形状。"
 	icon_state = "tonguespikechem"
 	throwforce = 2
 	embed_type = /datum/embedding/tongue_spike/chem
@@ -129,8 +129,8 @@
 	chem_action.transferred_ref = WEAKREF(victim)
 	chem_action.Grant(fired_by)
 
-	to_chat(fired_by, span_notice("Link established! Use the \"Transfer Chemicals\" ability \
-		to send your chemicals to the linked target!"))
+	to_chat(fired_by, span_notice("连接已建立！使用“输送化学物质”能力，\
+		将你体内的化学物质输送给连接的目标！"))
 
 /datum/embedding/tongue_spike/chem/stop_embedding()
 	. = ..()
@@ -139,13 +139,13 @@
 	if(!istype(fired_by))
 		return
 
-	to_chat(fired_by, span_warning("Link lost!"))
+	to_chat(fired_by, span_warning("连接已断开！"))
 	var/datum/action/send_chems/chem_action = locate() in fired_by.actions
 	qdel(chem_action)
 
 /datum/action/send_chems
-	name = "Transfer Chemicals"
-	desc = "Send all of your reagents into whomever the chem spike is embedded in. One use."
+	name = "输送化学物质"
+	desc = "将你体内的全部试剂输送给化学舌刺嵌入的目标。仅可使用一次。"
 	background_icon_state = "bg_spell"
 	button_icon = 'icons/mob/actions/actions_genetic.dmi'
 	button_icon_state = "spikechemswap"
@@ -170,7 +170,7 @@
 	if(!ishuman(transferred))
 		return FALSE
 
-	to_chat(transferred, span_warning("You feel a tiny prick!"))
+	to_chat(transferred, span_warning("你感到轻微的针刺感！"))
 	transferer.reagents.trans_to(transferred, transferer.reagents.total_volume, transferred_by = transferer)
 
 	var/obj/item/hardened_spike/chem/chem_spike = target
@@ -179,6 +179,6 @@
 	var/mob/living/carbon/spike_owner = chem_spike.get_embed()?.owner
 	// Message first because it'll shift back into a tongue right after moving
 	if (istype(spike_owner))
-		spike_owner.visible_message(span_notice("[chem_spike] falls out of [spike_owner]!"))
+		spike_owner.visible_message(span_notice("[chem_spike]从[spike_owner]体内脱落了！"))
 	chem_spike.forceMove(get_turf(chem_spike))
 	return TRUE

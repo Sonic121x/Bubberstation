@@ -19,8 +19,8 @@
 
 ///Machine that lets you play roulette. Odds are pre-defined to be the same as European Roulette without the "En Prison" rule
 /obj/machinery/roulette
-	name = "Roulette Table"
-	desc = "A computerized roulette table. Swipe your ID to play or register yourself as owner!"
+	name = "轮盘赌桌"
+	desc = "电脑化轮盘赌桌。刷身份卡即可下注，或将自己登记为所有者！"
 	icon = 'icons/obj/machines/roulette.dmi'
 	icon_state = "idle"
 	density = TRUE
@@ -131,33 +131,33 @@
 		playsound(src, 'sound/machines/terminal/terminal_success.ogg', 50, TRUE)
 
 	if(machine_stat & MAINT || !on || locked)
-		to_chat(user, span_notice("The machine appears to be disabled."))
+		to_chat(user, span_notice("机器似乎已被禁用。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!player_card.registered_account)
-		say("You don't have a bank account!")
+		say("你没有银行账户！")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(!my_card)
-		var/msg = tgui_input_text(user, "Name of your roulette wheel", "Roulette Customization", "Roulette Machine", max_length = MAX_NAME_LEN)
+		var/msg = tgui_input_text(user, "为你的轮盘赌机命名", "自定义轮盘赌机", "轮盘赌机", max_length = MAX_NAME_LEN)
 		if(!msg)
 			return ITEM_INTERACT_BLOCKING
 		name = msg
-		desc = "Owned by [player_card.registered_account.account_holder], draws directly from [user.p_their()] account."
+		desc = "归[player_card.registered_account.account_holder]所有，直接从所有者的账户扣款。"
 		my_card = player_card
 		RegisterSignal(my_card, COMSIG_QDELETING, PROC_REF(on_my_card_deleted))
-		to_chat(user, span_notice("You link the wheel to your account."))
+		to_chat(user, span_notice("你将轮盘赌机绑定到了自己的账户。"))
 		power_change()
 		return ITEM_INTERACT_SUCCESS
 
 	if(IS_DEPARTMENTAL_CARD(player_card)) // Are they using a department ID
-		say("You cannot gamble with the department budget!")
+		say("不能用部门经费赌博！")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 
 	if(player_card.registered_account.account_balance < chosen_bet_amount) //Does the player have enough funds
-		say("You do not have the funds to play! Lower your bet or get more money.")
+		say("你的资金不足！请降低赌注或筹集更多资金。")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 		return ITEM_INTERACT_BLOCKING
 
@@ -245,16 +245,16 @@
 
 	var/is_winner = check_win(bet_type, bet_amount, rolled_number) //Predetermine if we won
 	var/color = numbers["[rolled_number]"] //Weird syntax, but dict uses strings.
-	var/result = "[rolled_number] [color]" //e.g. 31 black
+	var/result = "[rolled_number] [chinese_color_display(color)]" //e.g. 31 black
 
-	say("The result is: [result]")
+	say("结果为：[result]")
 
 	playing = FALSE
 	update_icon(ALL, potential_payout, color, rolled_number, is_winner)
 	handle_color_light(color)
 
 	if(!is_winner)
-		say("You lost! Better luck next time.")
+		say("你输了！祝你下次好运。")
 		playsound(src, 'sound/machines/synth/synth_no.ogg', 50)
 		if(isliving(user) && (user in viewers(src)))
 			var/mob/living/living_user = user
@@ -265,7 +265,7 @@
 	var/account_balance = my_card?.registered_account?.account_balance
 	potential_payout = (account_balance >= potential_payout) ? potential_payout : account_balance
 
-	say("You have won [potential_payout] [MONEY_NAME]! Congratulations!")
+	say("恭喜！你赢得了[potential_payout][MONEY_NAME]！")
 	playsound(src, 'sound/machines/synth/synth_yes.ogg', 50)
 	if(isliving(user) && (user in viewers(src)))
 		var/mob/living/living_user = user
@@ -379,7 +379,7 @@
 /obj/machinery/roulette/proc/check_owner_funds(payout)
 	if(my_card.registered_account.account_balance >= payout)
 		return TRUE //We got the betting amount
-	say("The bank account of [my_card.registered_account.account_holder] does not have enough funds to pay out the potential prize, contact them to fill up their account or lower your bet!")
+	say("[my_card.registered_account.account_holder]的银行账户余额不足以支付可能产生的奖金，请联系对方充值，或降低你的赌注！")
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 30, TRUE)
 	return FALSE
 
@@ -431,15 +431,15 @@
 /obj/machinery/roulette/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(machine_stat & MAINT)
-		to_chat(user, span_notice("You start re-attaching the top section of [src]..."))
+		to_chat(user, span_notice("你开始重新安装[src]的上盖……"))
 		if(I.use_tool(src, user, 30, volume=50))
-			to_chat(user, span_notice("You re-attach the top section of [src]."))
+			to_chat(user, span_notice("你重新装好了[src]的上盖。"))
 			set_machine_stat(machine_stat & ~MAINT)
 			icon_state = "idle"
 	else
-		to_chat(user, span_notice("You start welding the top section from [src]..."))
+		to_chat(user, span_notice("你开始焊下[src]的上盖……"))
 		if(I.use_tool(src, user, 30, volume=50))
-			to_chat(user, span_notice("You removed the top section of [src]."))
+			to_chat(user, span_notice("你拆下了[src]的上盖。"))
 			set_machine_stat(machine_stat | MAINT)
 			icon_state = "open"
 
@@ -449,8 +449,8 @@
 	return ..()
 
 /obj/item/roulette_wheel_beacon
-	name = "roulette wheel beacon"
-	desc = "N.T. approved roulette wheel beacon, toss it down and you will have a complementary roulette wheel delivered to you."
+	name = "轮盘赌机信标"
+	desc = "纳米传讯认证的轮盘赌机信标，扔下后即可获赠一台送货上门的轮盘赌机。"
 	icon = 'icons/obj/machines/floor.dmi'
 	icon_state = "floor_beacon"
 	var/used
@@ -458,7 +458,7 @@
 /obj/item/roulette_wheel_beacon/attack_self()
 	if(used)
 		return
-	loc.visible_message(span_warning("\The [src] begins to beep loudly!"))
+	loc.visible_message(span_warning("[src]开始大声鸣叫！"))
 	used = TRUE
 	addtimer(CALLBACK(src, PROC_REF(launch_payload)), 4 SECONDS)
 

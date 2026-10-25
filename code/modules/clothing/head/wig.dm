@@ -50,13 +50,13 @@
 	hair_overlay.overlays += emissive_blocker(hair_overlay.icon, hair_overlay.icon_state, src, alpha = hair_overlay.alpha)
 
 /obj/item/clothing/head/wig/attack_self(mob/user)
-	var/new_style = tgui_input_list(user, "Select a hairstyle", "Wig Styling", SSaccessories.hairstyles_list - "Bald")
+	var/new_style = chinese_accessory_choice(user, "选择发型", "假发造型", SSaccessories.hairstyles_list - "Bald")
 	var/newcolor = adjustablecolor ? tgui_color_picker(usr,"","Choose Color",color) : null
 	if(!user.can_perform_action(src))
 		return
 	if(new_style && new_style != hairstyle)
 		hairstyle = new_style
-		user.visible_message(span_notice("[user] changes \the [src]'s hairstyle to [new_style]."), span_notice("You change \the [src]'s hairstyle to [new_style]."))
+		user.visible_message(span_notice("[user]把[src]的发型改成了[chinese_accessory_display(new_style)]。"), span_notice("你把[src]的发型改成了[chinese_accessory_display(new_style)]。"))
 	if(newcolor && newcolor != color) // only update if necessary
 		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	update_appearance()
@@ -89,7 +89,7 @@
 		selected_hairstyle_color = "[target.hair_color]"
 
 	if(selected_hairstyle)
-		to_chat(user, span_notice("You adjust the [src] to look just like [target.name]'s [selected_hairstyle]."))
+		to_chat(user, span_notice("你调整了[src]，让它看起来就像[target.name]的[chinese_accessory_display(selected_hairstyle)]发型。"))
 		add_atom_colour(selected_hairstyle_color, FIXED_COLOUR_PRIORITY)
 		hairstyle = selected_hairstyle
 		update_appearance()

@@ -24,7 +24,7 @@ import {
 import { getMedicalRecord, getQuirkStrings } from './helpers';
 import { NoteKeeper } from './NoteKeeper';
 import type { MedicalRecordData } from './types';
-
+import { recordDisplay } from '../../localization/batchThreeDisplay';
 /** Views a selected record. */
 export const MedicalRecordView = (props) => {
   const foundRecord = getMedicalRecord();
@@ -97,7 +97,7 @@ export const MedicalRecordView = (props) => {
               <EditableText field="name" target_ref={crew_ref} text={name} />
             </LabeledList.Item>
             <LabeledList.Item label="Job">
-              <EditableText field="job" target_ref={crew_ref} text={rank} />
+              <EditableText field="job" target_ref={crew_ref} text={rank} displayText={recordDisplay(rank, data)} />
             </LabeledList.Item>
             {/* <LabeledList.Item label="Age"> // ORIGINAL */}
             {/* SKYRAT EDIT CHANGE BEGIN - Chronological age */}
@@ -138,14 +138,14 @@ export const MedicalRecordView = (props) => {
               <EditableText
                 field="species"
                 target_ref={crew_ref}
-                text={species}
+                text={species} displayText={recordDisplay(species, data)}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Gender">
               <EditableText
                 field="gender"
                 target_ref={crew_ref}
-                text={gender}
+                text={gender} displayText={recordDisplay(gender, data)}
               />
             </LabeledList.Item>
             <LabeledList.Item label="DNA">
@@ -183,14 +183,14 @@ export const MedicalRecordView = (props) => {
                     tooltipPosition="bottom-start"
                     width={!isSelected ? '3.0rem' : 3.0}
                   >
-                    {button[0]}
+                    {recordDisplay(button, data)[0]}
                   </Button>
                 );
               })}
               label="Physical Status"
             >
               <Box color={PHYSICALSTATUS2COLOR[physical_status]}>
-                {physical_status}
+                {recordDisplay(physical_status, data)}
               </Box>
             </LabeledList.Item>
             {physical_status === 'Deceased' && (
@@ -230,14 +230,14 @@ export const MedicalRecordView = (props) => {
                     tooltipPosition="bottom-start"
                     width={!isSelected ? '3.0rem' : 3.0}
                   >
-                    {button[0]}
+                    {recordDisplay(button, data)[0]}
                   </Button>
                 );
               })}
               label="Mental Status"
             >
               <Box color={MENTALSTATUS2COLOR[mental_status]}>
-                {mental_status}
+                {recordDisplay(mental_status, data)}
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Minor Disabilities">

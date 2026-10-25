@@ -1,19 +1,19 @@
 /obj/item/book/granter/action/spell/knock
 	granted_action = /datum/action/cooldown/spell/aoe/knock
-	action_name = "knock"
+	action_name = "敲击术"
 	icon_state ="bookknock"
-	desc = "This book is hard to hold closed properly."
+	desc = "这本书很难合严。"
 	remarks = list(
-		"Open Sesame!",
-		"So THAT'S the magic password!",
-		"Slow down, book. I still haven't finished this page...",
-		"The book won't stop moving!",
-		"I think this is hurting the spine of the book...",
-		"I can't get to the next page, it's stuck t- I'm good, it just turned to the next page on its own.",
-		"Yeah, staff of doors does the same thing. Go figure...",
+		"芝麻开门！",
+		"原来这就是魔法口令！",
+		"慢一点，书。我还没读完这一页……",
+		"这本书动个不停！",
+		"我觉得这样会弄坏书脊……",
+		"我翻不了下一页，它粘……没事了，它自己翻页了。",
+		"对，开门法杖也能干这事。真有意思……",
 	)
 
 /obj/item/book/granter/action/spell/knock/recoil(mob/living/user)
 	. = ..()
-	to_chat(user, span_warning("You're knocked down!"))
+	to_chat(user, span_warning("你被击倒了！"))
 	user.Paralyze(4 SECONDS)

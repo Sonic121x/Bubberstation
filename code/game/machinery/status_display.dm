@@ -12,13 +12,13 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display
-	name = "status display"
+	name = "状态显示屏"
 	desc = null
 	icon = 'icons/obj/machines/status_display.dmi' //// SKYRAT EDIT CHANGE - ICON OVERRIDDEN IN SKYRAT AESTHETICS - SEE MODULE
 	icon_state = "frame"
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	verb_say = "哔哔提示"
+	verb_ask = "哔哔提示"
+	verb_exclaim = "哔哔提示"
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
 
@@ -43,8 +43,8 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	VAR_PRIVATE/obj/item/radio/entertainment/speakers/speakers
 
 /obj/item/wallframe/status_display
-	name = "status display frame"
-	desc = "Used to build status displays, just secure to the wall."
+	name = "状态显示屏框架"
+	desc = "用于建造状态显示屏，将其固定在墙上即可。"
 	icon_state = "unanchoredstatusdisplay"
 	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 7)
 	result_path = /obj/machinery/status_display/evac
@@ -57,11 +57,11 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 
 /obj/machinery/status_display/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "正在[anchored ? "松开" : "固定"]……")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "已[anchored ? "松开" : "固定"]")
 		deconstruct()
 		return TRUE
 
@@ -69,12 +69,12 @@ GLOBAL_DATUM_INIT(status_font, /datum/font, new /datum/font/tiny_unicode/size_12
 	if(user.combat_mode)
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it doesn't need repairs!")
+		balloon_alert(user, "不需要修理！")
 		return TRUE
-	user.balloon_alert_to_viewers("repairing display...", "repairing...")
+	user.balloon_alert_to_viewers("正在修理显示屏……", "正在修理……")
 	if(!tool.use_tool(src, user, 4 SECONDS, amount = 0, volume=50))
 		return TRUE
-	balloon_alert(user, "repaired")
+	balloon_alert(user, "已修复")
 	atom_integrity = max_integrity
 	set_machine_stat(machine_stat & ~BROKEN)
 	update_appearance()
@@ -253,19 +253,19 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 /obj/machinery/status_display/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(active_displays))
-		. += span_notice("<hr>It's currently broadcasting. You can see...")
+		. += span_notice("<hr>它正在播放画面。你能看到……")
 		var/has_any = FALSE
 		for(var/obj/effect/abstract/greenscreen_display/display as anything in active_displays)
 			for(var/atom/movable/thing as anything in display.displaying)
 				. += span_notice("&bull; \A [thing.name]")
 				has_any = TRUE
 		if(!has_any)
-			. += span_notice("&bull; Nothing.")
+			. += span_notice("&bull; 什么也没有。")
 
 	var/obj/effect/overlay/status_display_text/message1_overlay = get_status_text(message_key_1)
 	var/obj/effect/overlay/status_display_text/message2_overlay = get_status_text(message_key_2)
 	if (message1_overlay || message2_overlay)
-		. += "<hr>The display says:"
+		. += "<hr>显示屏上写着："
 		if (message1_overlay.message)
 			. += "\t<tt>[html_encode(message1_overlay.message)]</tt>"
 		if (message2_overlay.message)
@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(key_to_status_display)
 /obj/machinery/status_display/proc/display_shuttle_status(obj/docking_port/mobile/shuttle)
 	if(!shuttle)
 		// the shuttle is missing - no processing
-		set_messages("shutl","not in service")
+		set_messages("穿梭机","暂停服务")
 		return PROCESS_KILL
 	else if(shuttle.timer)
 		var/line1 = shuttle.getModeStr()
@@ -583,7 +583,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 				if(isnull(speakers))
 					speakers = new(src)
 					// not seen, primarily for VV
-					speakers.name = "[name] speakers"
+					speakers.name = "[name]扬声器"
 					// to allow centcom cameras to reach the station
 					speakers.special_channels |= RADIO_SPECIAL_CENTCOM
 					speakers.set_frequency(FREQ_STATUS_DISPLAYS)
@@ -664,7 +664,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// Supply display which shows the status of the supply shuttle.
 /obj/machinery/status_display/supply
-	name = "supply display"
+	name = "补给状态显示屏"
 	current_mode = SD_MESSAGE
 	text_color = COLOR_DISPLAY_ORANGE
 	header_text_color = COLOR_DISPLAY_YELLOW
@@ -680,12 +680,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 	if(!SSshuttle.supply)
 		// Might be missing in our first update on initialize before shuttles
 		// have loaded. Cross our fingers that it will soon return.
-		line1 = "shutl"
-		line2 = "not in service"
+		line1 = "穿梭机"
+		line2 = "暂停服务"
 	else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
 		if(is_station_level(SSshuttle.supply.z))
-			line1 = "CARGO"
-			line2 = "Docked"
+			line1 = "货运"
+			line2 = "已停靠"
 		else
 			line1 = ""
 			line2 = ""
@@ -697,7 +697,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// General-purpose shuttle status display.
 /obj/machinery/status_display/shuttle
-	name = "shuttle display"
+	name = "穿梭机状态显示屏"
 	current_mode = SD_MESSAGE
 	var/shuttle_id
 
@@ -728,8 +728,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/evac, 32)
 
 /// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai
-	name = "\improper AI display"
-	desc = "A small screen which the AI can use to present itself."
+	name = "\improper AI 显示屏"
+	desc = "可供 AI 展示自身形象的小屏幕。"
 	current_mode = SD_PICTURE
 	var/emotion = AI_DISPLAY_DONT_GLOW
 	var/frequency = FREQ_STATUS_DISPLAYS
@@ -795,8 +795,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/status_display/ai, 32)
 			update_appearance()
 
 /obj/item/circuit_component/status_display
-	display_name = "Status Display"
-	desc = "Output text and pictures to a status display."
+	display_name = "状态显示屏"
+	desc = "将文字和图片输出到状态显示屏。"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/option/command
@@ -1010,9 +1010,9 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 
 /// A stationary object which "records" anyone who is in front of it and broadcasts them to all status displays
 /obj/machinery/greenscreen_camera
-	name = "captain-caster"
-	desc = "A camera that can be used to display whomever is in front of it across all status displays. \
-		Pair with a greenscreen for best results."
+	name = "舰长直播摄像机"
+	desc = "可以将镜头前的人物画面播放到所有状态显示屏上的摄像机。\
+		搭配绿幕使用效果最佳。"
 	density = FALSE
 	icon = 'icons/obj/machines/stationary_camera.dmi'
 	icon_state = "camera"
@@ -1042,7 +1042,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 
 /obj/machinery/greenscreen_camera/examine(mob/user)
 	. = ..()
-	. += span_notice("It's currently [isnull(display) ? "not " : ""]broadcasting. <i>Click it to change that.</i>")
+	. += span_notice("当前[isnull(display) ? "未在" : "正在"]直播。<i>点击即可切换。</i>")
 
 /obj/machinery/greenscreen_camera/interact(mob/user)
 	. = ..()
@@ -1059,7 +1059,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 		activate_feed()
 		if(isnull(display))
 			playsound(src, 'sound/machines/terminal/terminal_on.ogg', 33, TRUE, frequency = 0.5)
-			balloon_alert_to_viewers("no backdrop, can't broadcast!")
+			balloon_alert_to_viewers("没有背景幕，无法直播！")
 			return
 		playsound(src, 'sound/machines/terminal/terminal_on.ogg', 33, FALSE)
 		use_power = ACTIVE_POWER_USE
@@ -1067,7 +1067,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 		deactivate_feed()
 		playsound(src, 'sound/machines/terminal/terminal_off.ogg', 33, FALSE)
 		use_power = IDLE_POWER_USE
-	balloon_alert_to_viewers("feed [isnull(display) ? "de" : ""]activated")
+	balloon_alert_to_viewers("直播已[isnull(display) ? "关闭" : "开启"]")
 
 /obj/machinery/greenscreen_camera/proc/activate_feed()
 	greenscreen_turf = find_displayed_turf()
@@ -1077,7 +1077,7 @@ GLOBAL_LIST_EMPTY_TYPED(greenscreen_displays, /obj/effect/abstract/greenscreen_d
 	new /obj/effect/abstract/greenscreen_location_indicator(greenscreen_turf)
 	mic = new(src)
 	// not seen, primarily for VV
-	mic.name = "[name] microphone"
+	mic.name = "[name]麦克风"
 	// allows centcom cameras to reach the station + keeps transmission active even if comms are out
 	mic.special_channels |= RADIO_SPECIAL_CENTCOM
 	mic.set_frequency(FREQ_STATUS_DISPLAYS)

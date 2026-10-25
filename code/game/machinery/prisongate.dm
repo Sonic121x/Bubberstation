@@ -4,8 +4,8 @@
 #define SKIP_EXIT null
 
 /obj/machinery/prisongate
-	name = "prison gate scanner"
-	desc = "A hardlight gate with an ID scanner attached to the side. Good at deterring even the most persistent temporarily embarrassed employee."
+	name = "监狱门禁扫描器"
+	desc = "侧面装有 ID 扫描器的硬光门。即使是最执着、暂时身陷囹圄的员工，也能有效拦住。"
 	icon = 'icons/obj/machines/sec.dmi'
 	icon_state = "prisongate_on"
 	/// roughly the same health/armor as an airlock
@@ -34,14 +34,14 @@
 /obj/machinery/prisongate/power_change()
 	. = ..()
 	if(!powered())
-		visible_message(span_notice("[src] momentarily flickers before the hardlight barrier loses cohesion and dissipates into thin air!"))
+		visible_message(span_notice("[src]短暂闪烁，随后硬光屏障失去凝聚力，消散在空气中！"))
 		gate_active = FALSE
 		flick("prisongate_turningoff", src)
 		icon_state = "prisongate_off"
 		update_use_power(IDLE_POWER_USE)
 	else
 		gate_active = TRUE
-		visible_message(span_notice("[src] whirrs back to life as its hardlight barrier fills the space between it."))
+		visible_message(span_notice("[src]嗡鸣着恢复运作，硬光屏障重新填满门间的空隙。"))
 		flick("prisongate_turningon", src)
 		icon_state = "prisongate_on"
 		update_use_power(ACTIVE_POWER_USE)
@@ -54,7 +54,7 @@
 		var/obj/structure/cargobay = gate_toucher
 		for(var/mob/living/stowaway in cargobay.contents) //nice try bub
 			if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-				say("Stowaway detected in internal contents. Access denied.")
+				say("检测到内部藏有偷渡者。拒绝通行。")
 				playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 				COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 			return FALSE
@@ -63,14 +63,14 @@
 		return TRUE
 	if(allowed(the_toucher))
 		if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-			say("Brig clearance detected. Access granted.")
+			say("检测到监牢权限。允许通行。")
 			playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 			COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 		return TRUE
 
 	else if(the_toucher.pulledby && allowed(the_toucher.pulledby))
 		if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-			say("Brig escort detected. Access granted.")
+			say("检测到监牢押送人员。允许通行。")
 			playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 			COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 		return TRUE
@@ -83,7 +83,7 @@
 				return FALSE
 
 	if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-		to_chat(the_toucher, span_warning("You try to push through the hardlight barrier with little effect."))
+		to_chat(the_toucher, span_warning("你试图推开硬光屏障，却几乎毫无效果。"))
 		COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 	return FALSE
 
@@ -91,37 +91,37 @@
 	if(!prison_id.timed)
 		return SKIP_EXIT
 	if(prison_id.time_to_assign)
-		say("Prison ID with active sentence detected. Please enjoy your stay in our corporate rehabilitation center, [prison_id.registered_name]!")
+		say("检测到刑期尚未结束的囚犯 ID 卡。[prison_id.registered_name]，祝您在本公司的矫正中心度过愉快时光！")
 		playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 		prison_id.time_left = prison_id.time_to_assign
 		prison_id.time_to_assign = initial(prison_id.time_to_assign)
 		prison_id.start_timer()
 		return ALLOW_EXIT
 	if(prison_id.time_left <= 0)
-		say("Prison ID with served sentence detected. Access granted.")
+		say("检测到已服刑完毕的囚犯 ID 卡。允许通行。")
 		prison_id.timed = FALSE //disables the id check from earlier so you can't just throw it back into perma for mass escapes
 		playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 		return ALLOW_EXIT
 	if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-		say("Prison ID with ongoing sentence detected. Access denied.")
+		say("检测到刑期尚未结束的囚犯 ID 卡。拒绝通行。")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 		COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 	return BLOCK_EXIT
 
 /obj/machinery/prisongate/labour
-	name = "labor camp gate scanner"
+	name = "劳改营门禁扫描器"
 
 /obj/machinery/prisongate/labour/allow_prisoner_id(obj/item/card/id/advanced/prisoner/prison_id)
 	if(!prison_id.goal)
 		return SKIP_EXIT
 	if(prison_id.points >= prison_id.goal)
 		if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-			say("All points served. Access granted.")
+			say("已完成全部劳动积分。允许通行。")
 			playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
 			COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 		return ALLOW_EXIT
 	if(COOLDOWN_FINISHED(src, spam_cooldown_time))
-		say("[prison_id.goal - prison_id.points] point\s remaining on sentence. Access denied.")
+		say("刑期尚余 [prison_id.goal - prison_id.points] 点劳动积分。拒绝通行。")
 		playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, FALSE)
 		COOLDOWN_START(src, spam_cooldown_time, SPAM_CD)
 	return BLOCK_EXIT

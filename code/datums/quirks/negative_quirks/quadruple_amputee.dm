@@ -1,9 +1,9 @@
 /datum/quirk/quadruple_amputee
 	name = "Quadruple Amputee"
-	desc = "Oops! All Prosthetics! Due to some truly cruel cosmic punishment, all your limbs have been replaced with surplus prosthetics."
+	desc = "哎呀！全是义肢！仿佛受到了宇宙极其残酷的惩罚，你的四肢全被换成了廉价库存义肢。"
 	icon = "tg-prosthetic-full"
 	value = -6
-	medical_record_text = "During physical examination, patient was found to have all low-budget prosthetic limbs."
+	medical_record_text = "体检发现患者四肢均为廉价义肢。"
 	hardcore_value = 6
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
 	mail_goodies = list(/obj/item/weldingtool/mini, /obj/item/stack/cable_coil/five)
@@ -16,8 +16,8 @@
 	human_holder.del_and_replace_bodypart(new /obj/item/bodypart/leg/right/robot/surplus, special = TRUE)
 
 /datum/quirk/quadruple_amputee/post_add()
-	to_chat(quirk_holder, span_bolddanger("All your limbs have been replaced with surplus prosthetics. They are fragile and will easily come apart under duress. \
-	Additionally, you need to use a welding tool and cables to repair them, instead of sutures and regenerative mesh."))
+	to_chat(quirk_holder, span_bolddanger("你的四肢全被换成了廉价库存义肢。它们非常脆弱，受力时很容易散架。\
+	此外，你需要用焊接工具和电缆来修理它们，而不是缝合线和再生网。"))
 
 /datum/quirk/quadruple_amputee/remove()
 	if(QDELING(quirk_holder))

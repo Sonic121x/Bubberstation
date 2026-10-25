@@ -1,12 +1,12 @@
 /datum/quirk/bilingual
 	name = "Bilingual"
-	desc = "Over the years you've picked up an extra language!"
+	desc = "多年来，你学会了另一门语言！"
 	icon = FA_ICON_GLOBE
 	value = 4
 	mob_trait = TRAIT_BILINGUAL //BUBBER EDIT ADDITION: Marks down that you're bilingual
-	gain_text = span_notice("Some of the words of the people around you certainly aren't common. Good thing you studied for this.")
-	lose_text = span_notice("You seem to have forgotten your second language.")
-	medical_record_text = "Patient speaks multiple languages."
+	gain_text = span_notice("周围的人说的有些词显然不是通用语。幸好你学过。")
+	lose_text = span_notice("你似乎忘记了自己的第二语言。")
+	medical_record_text = "患者会说多种语言。"
 	mail_goodies = list(/obj/item/taperecorder, /obj/item/clothing/head/beret/frenchberet, /obj/item/clothing/mask/fakemoustache/italian)
 
 /* //BUBBER EDIT REMOVAL: MAKING THIS DO THE SAME THING AS LINGUIST

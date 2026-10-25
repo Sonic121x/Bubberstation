@@ -1,6 +1,6 @@
 /datum/action/swap_arts
-	name = "Remember the Basics" //this is dynamic, uses `update_button_name`
-	desc = "LMB: See your movelist. RMB: Swap artstyle, if you have more than one."
+	name = "回顾基础招式" //this is dynamic, uses `update_button_name`
+	desc = "左键：查看招式列表。右键：若你掌握多种流派，则切换流派。"
 	background_icon_state = "bg_martial_arts"
 	button_icon_state = "martial"
 
@@ -21,7 +21,7 @@
 	name = "[current_used_art.help_verb]"
 	var/mob/living/living_owner = owner
 	if(LAZYLEN(living_owner.martial_arts) >= 2)
-		name += "/Swap Style"
+		name += "/切换流派"
 	return ..()
 
 /datum/action/swap_arts/Trigger(mob/living/clicker, trigger_flags)
@@ -32,7 +32,7 @@
 		return TRUE
 	var/help_information = current_used_art.get_style_help()
 	if(isnull(help_information))
-		to_chat(clicker, span_notice("[current_used_art.name] doesn't have any combat information!"))
+		to_chat(clicker, span_notice("[current_used_art.name]没有可供查看的战斗说明！"))
 		return TRUE
 	for(var/info in help_information)
 		to_chat(clicker, info)

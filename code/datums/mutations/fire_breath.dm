@@ -1,11 +1,11 @@
 /datum/mutation/firebreath
-	name = "Fire Breath"
-	desc = "The subject can breathe fire at will."
+	name = "火焰吐息"
+	desc = "受试者能够随意喷吐火焰。"
 	quality = POSITIVE
 	difficulty = 12
 	locked = TRUE
-	text_gain_indication = span_notice("Your throat is burning!")
-	text_lose_indication = span_notice("Your throat is cooling down.")
+	text_gain_indication = span_notice("你的喉咙烧得厉害！")
+	text_lose_indication = span_notice("你的喉咙冷却了下来。")
 	power_path = /datum/action/cooldown/spell/cone/staggered/fire_breath
 	instability = POSITIVE_INSTABILITY_MODERATE
 	energy_coeff = 1
@@ -26,8 +26,8 @@
 	to_modify.self_throw_range += 1 // the breath throws the user back more
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath
-	name = "Fire Breath"
-	desc = "You breathe a cone of fire directly in front of you."
+	name = "火焰吐息"
+	desc = "向正前方喷吐锥形火焰。"
 	button_icon_state = "fireball0"
 	sound = 'sound/effects/magic/demon_dies.ogg' //horrifying lizard noises
 
@@ -56,7 +56,7 @@
 
 	our_lizard.adjust_fire_stacks(cone_levels)
 	our_lizard.ignite_mob()
-	to_chat(our_lizard, span_warning("Something in front of your mouth catches fire!"))
+	to_chat(our_lizard, span_warning("挡在你嘴前的东西着火了！"))
 
 /datum/action/cooldown/spell/cone/staggered/fire_breath/after_cast(atom/cast_on)
 	. = ..()

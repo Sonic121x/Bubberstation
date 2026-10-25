@@ -1,13 +1,13 @@
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
-	desc = "You suffer from a severe disorder that causes very vivid hallucinations and trouble expressing your ideas. \
-		Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. \
-		THIS IS NOT A LICENSE TO GRIEF."
+	desc = "你患有一种严重障碍，会产生极其逼真的幻觉，也难以表达自己的想法。\
+		心智破坏毒素可以抑制这些症状，而你免疫其致幻效果。\
+		这并不意味着你可以恶意破坏游戏。"
 	icon = FA_ICON_GRIN_TONGUE_WINK
 	value = -8
 	gain_text = span_userdanger("...")
-	lose_text = span_notice("You feel in tune with the world again.")
-	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations, and may have trouble speaking."
+	lose_text = span_notice("你感觉自己又与世界协调一致了。")
+	medical_record_text = "患者患有急性现实解离综合征，会产生逼真的幻觉，也可能有言语表达困难。"
 	hardcore_value = 6
 	mail_goodies = list(/obj/item/storage/pill_bottle/lsdpsych)
 	/// Weakref to the trauma we give out
@@ -34,7 +34,7 @@
 	added_trama_ref = WEAKREF(added_trauma)
 
 /datum/quirk/insanity/post_add()
-	var/rds_policy = get_policy("[type]") || "Please note that your [LOWER_TEXT(name)] does NOT give you any additional right to attack people or cause chaos."
+	var/rds_policy = get_policy("[type]") || "请注意，[chinese_quirk_display(name)]并不赋予你攻击他人或制造混乱的额外权限。"
 	// I don't /think/ we'll need this, but for newbies who think "roleplay as insane" = "license to kill", it's probably a good thing to have.
 	to_chat(quirk_holder, span_big(span_info(rds_policy)))
 

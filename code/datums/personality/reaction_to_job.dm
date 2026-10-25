@@ -23,9 +23,9 @@
 
 /datum/personality/department/analytical
 	savefile_key = "analytical"
-	name = "Analytical"
-	desc = "When it comes to making decisions, I tend to be more impersonal."
-	neut_gameplay_desc = "Prefers working in systemic environments like engineering, research, or medical"
+	name = "善于分析"
+	desc = "做决定时，我更倾向于客观判断。"
+	neut_gameplay_desc = "偏好工程、科研或医疗等有系统性流程的工作环境"
 	applicable_areas = list(
 		/datum/job_department/engineering::primary_work_area,
 		/datum/job_department/science::primary_work_area,
@@ -34,9 +34,9 @@
 
 /datum/personality/department/impulsive
 	savefile_key = "impulsive"
-	name = "Impulsive"
-	desc = "I'm better making stuff up as I go along."
-	neut_gameplay_desc = "Prefers working in social environments like cargo, command, security, or service"
+	name = "即兴行事"
+	desc = "我更擅长边做边想。"
+	neut_gameplay_desc = "偏好货运、指挥、安保或服务等需要与人打交道的工作环境"
 	applicable_areas = list(
 		/datum/job_department/cargo::primary_work_area,
 		/datum/job_department/command::primary_work_area,

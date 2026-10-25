@@ -1,10 +1,10 @@
-#define AI_CORE_BRAIN(X) X.braintype == "Android" ? "brain" : "MMI"
+#define AI_CORE_BRAIN(X) X.braintype == "Android" ? "大脑" : "人机接口"
 #define UPDATE_STATE(new_state) state = new_state; update_appearance(UPDATE_ICON_STATE)
 #define CHECK_STATE_CALLBACK(maintained_state) CALLBACK(src, PROC_REF(check_state), maintained_state)
 
 /obj/structure/ai_core/welder_act(mob/living/user, obj/item/tool)
 	if(state != CORE_STATE_EMPTY)
-		balloon_alert(user, "frame has to be empty!")
+		balloon_alert(user, "框架必须为空！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!tool.tool_start_check(user, 1))
@@ -19,7 +19,7 @@
 /obj/structure/ai_core/can_be_unfasten_wrench(mob/user, silent)
 	if(state >= CORE_STATE_FINISHED)
 		if(!silent)
-			balloon_alert(user, "can't be unanchored while operational!")
+			balloon_alert(user, "运行时无法解除固定！")
 		return FAILED_UNFASTEN
 
 	return ..()
@@ -36,31 +36,31 @@
 /obj/structure/ai_core/screwdriver_act(mob/living/user, obj/item/tool)
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			balloon_alert(user, "nothing to screw in there!")
+			balloon_alert(user, "没有可拧紧的东西！")
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CIRCUIT)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CIRCUIT)))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, "board secured")
+			balloon_alert(user, "电路板已固定")
 			UPDATE_STATE(CORE_STATE_SCREWED)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_SCREWED)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_SCREWED)))
 				return ITEM_INTERACT_BLOCKING
-			balloon_alert(user, "board unsecured")
+			balloon_alert(user, "电路板已松开")
 			UPDATE_STATE(CORE_STATE_CIRCUIT)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_CABLED)
-			balloon_alert(user, "can't reach the board!")
+			balloon_alert(user, "够不到电路板！")
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_GLASSED)
 			if(!anchored)
-				balloon_alert(user, "isn't anchored!")
+				balloon_alert(user, "尚未固定！")
 				return ITEM_INTERACT_BLOCKING
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_GLASSED)))
 				return ITEM_INTERACT_BLOCKING
 			if(suicide_check())
-				balloon_alert(user, "processor is completely useless!")
+				balloon_alert(user, "处理器完全无法使用！")
 				return ITEM_INTERACT_BLOCKING
 
 			var/atom/movable/alert_source = src
@@ -68,33 +68,33 @@
 				alert_source = ai_structure_to_mob() || alert_source
 			else
 				UPDATE_STATE(CORE_STATE_FINISHED)
-			alert_source.balloon_alert(user, "connected monitor[core_mmi?.brainmob?.mind ? " and neural network" : ""]")
+			alert_source.balloon_alert(user, "已连接显示器[core_mmi?.brainmob?.mind ? "和神经网络" : ""]")
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_FINISHED)
 			if(!core_mmi?.brainmob?.mind || suicide_check())
-				balloon_alert(user, "processor is inactive!")
+				balloon_alert(user, "处理器未激活！")
 				return ITEM_INTERACT_BLOCKING
 
 			if(!anchored)
-				balloon_alert(user, "anchor it first!")
+				balloon_alert(user, "先将其固定！")
 				return ITEM_INTERACT_BLOCKING
 
-			balloon_alert(user, "connecting neural network...")
+			balloon_alert(user, "正在连接神经网络……")
 			if(!tool.use_tool(src, user, 10 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_FINISHED)))
 				return ITEM_INTERACT_BLOCKING
 
 			var/atom/movable/alert_source = ai_structure_to_mob()
 			if(!alert_source)
-				balloon_alert(user, "processor is inactive!")
+				balloon_alert(user, "处理器未激活！")
 				return ITEM_INTERACT_BLOCKING
 
-			alert_source.balloon_alert(user, "connected neural network")
+			alert_source.balloon_alert(user, "已连接神经网络")
 			return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/crowbar_act(mob/living/user, obj/item/tool)
 	switch(state)
 		if(CORE_STATE_EMPTY)
-			balloon_alert(user, "nothing to pry out!")
+			balloon_alert(user, "没有可撬出的东西！")
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CIRCUIT)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CIRCUIT)))
@@ -104,11 +104,11 @@
 			UPDATE_STATE(CORE_STATE_EMPTY)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_SCREWED)
-			balloon_alert(user, "won't budge!")
+			balloon_alert(user, "纹丝不动！")
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CABLED)
 			if(!core_mmi)
-				balloon_alert(user, "nothing to pry out!")
+				balloon_alert(user, "没有可撬出的东西！")
 				return ITEM_INTERACT_BLOCKING
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CABLED)) || !core_mmi)
 				return ITEM_INTERACT_BLOCKING
@@ -124,17 +124,17 @@
 			UPDATE_STATE(CORE_STATE_CABLED)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_FINISHED)
-			balloon_alert(user, "display is on!")
+			balloon_alert(user, "显示器还开着！")
 			return ITEM_INTERACT_SUCCESS
 
 /obj/structure/ai_core/wirecutter_act(mob/living/user, obj/item/tool)
 	switch(state)
 		if(CORE_STATE_EMPTY to CORE_STATE_CIRCUIT)
-			balloon_alert(user, "nothing to cut!")
+			balloon_alert(user, "没有可剪断的东西！")
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_CABLED)
 			if(core_mmi)
-				balloon_alert(user, "[AI_CORE_BRAIN(core_mmi)] in the way!")
+				balloon_alert(user, "[AI_CORE_BRAIN(core_mmi)]挡住了！")
 				return ITEM_INTERACT_BLOCKING
 
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_CABLED)) || core_mmi)
@@ -144,7 +144,7 @@
 			UPDATE_STATE(CORE_STATE_SCREWED)
 			return ITEM_INTERACT_SUCCESS
 		if(CORE_STATE_GLASSED)
-			balloon_alert(user, "nothing left to cut!")
+			balloon_alert(user, "没有剩余可剪断的东西！")
 			return ITEM_INTERACT_BLOCKING
 		if(CORE_STATE_FINISHED)
 			if(!tool.use_tool(src, user, 0 SECONDS, 0, 50, CHECK_STATE_CALLBACK(CORE_STATE_FINISHED)))
@@ -184,10 +184,10 @@
 		return FALSE
 
 	if(cable.get_amount() < 5)
-		balloon_alert(user, "not enough [cable::name]!")
+		balloon_alert(user, "[cable::name]不足！")
 		return FALSE
 
-	balloon_alert(user, "adding cable...")
+	balloon_alert(user, "正在添加电缆……")
 	if(!cable.use_tool(src, user, 2 SECONDS, 5, 50, CHECK_STATE_CALLBACK(CORE_STATE_SCREWED)))
 		return FALSE
 
@@ -199,19 +199,19 @@
 		return FALSE
 
 	if(!mmi.brain_check(user))
-		var/wants_install = (tgui_alert(user, "This [AI_CORE_BRAIN(mmi)] is inactive, would you like to make an inactive AI?", "Installing AI [AI_CORE_BRAIN(mmi)]", list("Yes", "No")) == "Yes")
+		var/wants_install = (tgui_alert(user, "这个[AI_CORE_BRAIN(mmi)]未激活，要制造一个未激活的 AI 吗？", "安装 AI [AI_CORE_BRAIN(mmi)]", list("是", "否")) == "是")
 		if(!wants_install)
 			return FALSE
 		if(QDELETED(src) || QDELETED(user) || QDELETED(mmi) || !user.is_holding(mmi) || !Adjacent(user))
 			return FALSE
 		if(mmi.brainmob && HAS_TRAIT(mmi.brainmob, TRAIT_SUICIDED))
-			balloon_alert(user, "[AI_CORE_BRAIN(mmi)] is useless!")
+			balloon_alert(user, "[AI_CORE_BRAIN(mmi)]无法使用！")
 			return FALSE
 	else
 		var/mob/living/brain/mmi_brainmob = mmi.brainmob
 		if(!CONFIG_GET(flag/allow_ai) || (mmi_brainmob && is_banned_from(mmi_brainmob.ckey, JOB_AI)))
 			if(!QDELETED(src) && !QDELETED(user) && !QDELETED(mmi) && user.is_holding(mmi) && Adjacent(user))
-				balloon_alert(user, "[mmi] won't fit!")
+				balloon_alert(user, "[mmi]放不进去！")
 			return FALSE
 
 	if(state != CORE_STATE_CABLED)
@@ -228,10 +228,10 @@
 		return FALSE
 
 	if(!core_mmi)
-		balloon_alert(user, "needs a processor!")
+		balloon_alert(user, "需要处理器！")
 		return FALSE
 	if(glass.get_amount() < 2)
-		balloon_alert(user, "not enough [glass::name]!")
+		balloon_alert(user, "[glass::name]不足！")
 		return FALSE
 
 	if(!glass.use_tool(src, user, 2 SECONDS, 2, 50, CHECK_STATE_CALLBACK(CORE_STATE_CABLED)) || !core_mmi)

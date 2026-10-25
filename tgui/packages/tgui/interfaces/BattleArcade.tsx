@@ -3,7 +3,7 @@ import { Box, Button, Image, Section } from 'tgui-core/components';
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { batchThreeDisplay } from '../localization/batchThreeDisplay';
 type Data = {
   all_worlds: string[];
   attack_types: AttackTypeData[];
@@ -176,7 +176,7 @@ const BattlePanel = (props) => {
           tooltip={attack.tooltip}
           onClick={() => act(attack.name)}
         >
-          {attack.name}
+          {batchThreeDisplay(attack.name)}
         </Button>
       ))}
       <Button.Confirm

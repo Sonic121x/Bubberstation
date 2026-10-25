@@ -5,7 +5,7 @@
 	/// The name of the quirk
 	var/name = "Test Quirk"
 	/// The description of the quirk
-	var/desc = "This is a test quirk."
+	var/desc = "这是一个测试特质。"
 	/// What the quirk is worth in preferences, zero = neutral / free
 	var/value = 0
 	/// Flags related to this quirk.
@@ -243,7 +243,7 @@
 		open_backpack = TRUE
 
 	if(notify_player)
-		LAZYADD(where_items_spawned, span_boldnotice("You have \a [quirk_item] [where]. [flavour_text]"))
+		LAZYADD(where_items_spawned, span_boldnotice("你的[quirk_item][chinese_quirk_location_display(where)]。[flavour_text]"))
 
 /datum/quirk/item_quirk/post_add()
 	if(open_backpack)

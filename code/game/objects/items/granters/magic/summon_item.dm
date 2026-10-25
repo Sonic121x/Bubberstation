@@ -1,19 +1,19 @@
 /obj/item/book/granter/action/spell/summonitem
 	granted_action = /datum/action/cooldown/spell/summonitem
-	action_name = "instant summons"
+	action_name = "即时召回"
 	icon_state ="booksummons"
-	desc = "This book is bright and garish, very hard to miss."
+	desc = "这本书色彩鲜艳花哨，让人很难忽视。"
 	remarks = list(
-		"I can't look away from the book!",
-		"The words seem to pop around the page...",
-		"I just need to focus on one item...",
-		"Make sure to have a good grip on it when casting...",
-		"Slow down, book. I still haven't finished this page...",
-		"Sounds pretty great with some other magical artifacts...",
-		"Magicians must love this one.",
+		"我的目光离不开这本书！",
+		"文字似乎在书页上四处跳动……",
+		"我只需要专注于一件物品……",
+		"施法时一定要把它握紧……",
+		"慢一点，书。我还没读完这一页……",
+		"听起来和其他魔法神器搭配起来会很棒……",
+		"魔术师一定喜欢这个。",
 	)
 
 /obj/item/book/granter/action/spell/summonitem/recoil(mob/living/user)
 	. = ..()
-	to_chat(user,span_warning("[src] suddenly vanishes!"))
+	to_chat(user,span_warning("[src]突然消失了！"))
 	qdel(src)

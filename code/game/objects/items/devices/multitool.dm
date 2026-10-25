@@ -11,8 +11,8 @@
 
 
 /obj/item/multitool //SKYRAT EDIT - ICON OVERRIDDEN BY AESTHETICS - SEE MODULE
-	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors. You can activate it in-hand to locate the nearest APC."
+	name = "多功能工具"
+	desc = "用脉冲测试线路，判断该剪哪一根。医生不推荐这样做。手持激活可以定位最近的区域电力控制器。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "multitool"
 	inhand_icon_state = "multitool"
@@ -46,7 +46,7 @@
 
 /obj/item/multitool/examine(mob/user)
 	. = ..()
-	. += span_notice("Its buffer [buffer ? "contains [buffer]." : "is empty."]")
+	. += span_notice("其缓冲区[buffer ? "存有[buffer]。" : "为空。"]")
 
 /obj/item/multitool/attack_self(mob/user, list/modifiers)
 	. = ..()
@@ -73,7 +73,7 @@
 	var/area/local_area = get_area(src)
 	var/obj/machinery/power/apc/power_controller = local_area.apc
 	if(!power_controller)
-		user.balloon_alert(user, "couldn't find apc!")
+		user.balloon_alert(user, "未找到区域电力控制器！")
 		return
 
 	var/dist = get_dist(src, power_controller)
@@ -83,7 +83,7 @@
 
 	switch(dist)
 		if (0)
-			user.balloon_alert(user, "found apc!")
+			user.balloon_alert(user, "找到区域电力控制器！")
 			return
 		if(1 to 5)
 			arrow_color = COLOR_GREEN
@@ -119,7 +119,7 @@
 		INVOKE_ASYNC(our_hud, TYPE_PROC_REF(/datum/hud, show_hud), our_hud.hud_version)
 
 /obj/item/multitool/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] puts the [src] to [user.p_their()] chest. It looks like [user.p_theyre()] trying to pulse [user.p_their()] heart off!"))
+	user.visible_message(span_suicide("[user]把[src]贴在自己胸前。看起来[user.p_they()]想用脉冲让自己的心脏停止跳动！"))
 	return OXYLOSS//there's a reason it wasn't recommended by doctors
 
 /**
@@ -176,14 +176,14 @@
 	. = ..()
 	if(!hud_on)
 		return
-	. += span_notice("You can right-click to scan for nearby unseen spots. They will be shown for exactly 8 seconds due to battery limitations.")
+	. += span_notice("右键点击可扫描附近的监控盲区。由于电量限制，盲区只会显示8秒。")
 	switch(detect_state)
 		if(PROXIMITY_NONE)
-			. += span_green("No AI should be currently looking at you. Keep on your clandestine activities.")
+			. += span_green("目前应该没有AI在观察你。继续你的秘密活动吧。")
 		if(PROXIMITY_NEAR)
-			. += span_warning("An AI is getting uncomfortably close. Maybe time to drop what youre doing.")
+			. += span_warning("一个AI正在逼近，近得令人不安。也许该停下手里的事了。")
 		if(PROXIMITY_ON_SCREEN)
-			. += span_danger("An AI is (probably) looking at you. You should probably hide this.")
+			. += span_danger("一个AI（很可能）正在看着你。最好把这东西藏起来。")
 
 /obj/item/multitool/ai_detect/Destroy()
 	if(hud_on && ismob(loc))
@@ -227,7 +227,7 @@
 /obj/item/multitool/ai_detect/proc/toggle_hud(mob/user)
 	hud_on = !hud_on
 	if(user)
-		to_chat(user, span_notice("You toggle the ai detection feature on [src] [hud_on ? "on" : "off"]."))
+		to_chat(user, span_notice("你[hud_on ? "开启" : "关闭"]了[src]的AI侦测功能。"))
 	if(hud_on)
 		START_PROCESSING(SSfastprocess, src)
 		show_hud(user)
@@ -272,7 +272,7 @@
 	if(isnull(user?.client)) // the monkey incident of 2564
 		return
 	if(!COOLDOWN_FINISHED(src, static_scan_cd))
-		balloon_alert(user, "recharging!")
+		balloon_alert(user, "充能中！")
 		return
 	cleanup_static()
 	var/turf/our_turf = get_turf(src)
@@ -291,7 +291,7 @@
 			new_images += img
 	user.client.images |= new_images
 	static_viewer = WEAKREF(user.client)
-	balloon_alert(user, "nearby unseen spots shown")
+	balloon_alert(user, "已显示附近的监控盲区")
 	static_disappear_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_static)), 8 SECONDS, TIMER_STOPPABLE)
 	COOLDOWN_START(src, static_scan_cd, 4 SECONDS)
 
@@ -324,8 +324,8 @@
 	static_disappear_timer = null
 
 /obj/item/multitool/abductor
-	name = "alien multitool"
-	desc = "An omni-technological interface."
+	name = "外星多功能工具"
+	desc = "兼容各种技术的通用接口。"
 	icon = 'icons/obj/antags/abductor.dmi'
 	icon_state = "multitool"
 	inside_belt_icon_state = "multitool_alien"
@@ -333,8 +333,8 @@
 	toolspeed = 0.1
 
 /obj/item/multitool/cyborg
-	name = "electronic multitool"
-	desc = "Optimised version of a regular multitool. Streamlines processes handled by its internal microchip."
+	name = "电子多功能工具"
+	desc = "普通多功能工具的优化版本。内置微芯片能更高效地处理各项操作。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	icon_angle = 0

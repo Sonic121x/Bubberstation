@@ -6,7 +6,7 @@
 	sign_up_button = TRUE
 	abstract_type = /datum/station_trait/job
 	/// What tooltip to show on the button
-	var/button_desc = "Sign up to gain some kind of unusual job, not available in most rounds."
+	var/button_desc = "报名担任大多数回合中无法选择的特殊职业。"
 	/// How many positions to spawn?
 	var/position_amount = 1
 	/// Type of job to enable
@@ -71,8 +71,8 @@
 
 /// Adds a gorilla to the cargo department, replacing the sloth and the mech
 /datum/station_trait/job/cargorilla
-	name = "Cargo Gorilla"
-	button_desc = "Sign up to become the Cargo Gorilla, a peaceful shepherd of boxes."
+	name = "货运大猩猩"
+	button_desc = "报名成为货运大猩猩，一位和平的箱子牧者。"
 	weight = 1
 	show_in_report = FALSE // Selective attention test. Did you spot the gorilla?
 	job_to_add = /datum/job/cargo_gorilla
@@ -156,10 +156,10 @@
 	new /obj/item/storage/box/coffeepack(picked_turf)
 */
 /datum/station_trait/job/veteran_advisor
-	name = "Veteran Advisor"
-	button_desc = "Sign up to become a DISABLED but hard boiled Veteran Advisor of Nanotrasen Security Force. Advise HoS and Captain, train Officers, all while fighting your PTSD."
+	name = "老兵顾问"
+	button_desc = "报名成为纳米传讯安保部队身有残疾但意志坚强的老兵顾问。为安保主管和舰长提供建议，训练安保官，同时与自己的创伤后应激障碍抗争。"
 	weight = 2
-	report_message = "Veteran Security Advisor has been assigned to your station to help with Security matters."
+	report_message = "一名资深安保顾问已被派往你站，协助处理安保事务。"
 	show_in_report = TRUE
 	job_to_add = /datum/job/veteran_advisor
 
@@ -170,11 +170,11 @@
 */
 
 /datum/station_trait/job/human_ai
-	name = "Human AI"
-	button_desc = "Sign up to become the \"AI\"."
+	name = "人类 AI"
+	button_desc = "报名成为“AI”。"
 	weight = 1
 	trait_flags = parent_type::trait_flags | STATION_TRAIT_REQUIRES_AI
-	report_message = "Our recent technological advancements in machine Artificial Intelligence has proven futile. In the meantime, we're sending an Intern to help out."
+	report_message = "我们近期在机器人工智能领域的技术进展被证明毫无成效。暂时先派一名实习生来帮忙。"
 	show_in_report = TRUE
 	job_to_add = /datum/job/human_ai
 	trait_to_give = STATION_TRAIT_HUMAN_AI
@@ -238,10 +238,10 @@
 	new /obj/machinery/fax/auto_name(picked_turf)
 
 /datum/station_trait/job/pun_pun
-	name = "Pun Pun is a Crewmember"
-	button_desc = "Ook ook ah ah, sign up to play as the bartender's monkey."
+	name = "潘潘也是船员"
+	button_desc = "呜呜啊啊，报名扮演酒保的猴子。"
 	weight = 0 //Unrollable by default, available all day during monkey day.
-	report_message = "We've evaluated the bartender's monkey to have the mental capacity of the average crewmember. As such, we made them one."
+	report_message = "经评估，酒保的猴子智力与普通船员相当。因此，我们正式将它录用为船员。"
 	show_in_report = TRUE
 	job_to_add = /datum/job/pun_pun
 

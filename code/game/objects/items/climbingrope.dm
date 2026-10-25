@@ -1,6 +1,6 @@
 /obj/item/climbing_hook
-	name = "climbing hook"
-	desc = "Standard hook with rope to scale up holes. The rope is of average quality, but due to your weight amongst other factors, may not withstand extreme use."
+	name = "攀爬钩"
+	desc = "附有绳索的标准攀爬钩，用于爬出洞口。绳索质量一般，受你的体重等因素影响，可能无法承受高强度使用。"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "climbingrope"
 	inhand_icon_state = "crowbar_brass"
@@ -11,8 +11,8 @@
 	reach = 2
 	throw_range = 4
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb_continuous = list("whacks", "flails", "bludgeons")
-	attack_verb_simple = list("whack", "flail", "bludgeon")
+	attack_verb_continuous = list("敲打", "挥打", "重击")
+	attack_verb_simple = list("敲打", "挥打", "重击")
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
 	///climb time
@@ -22,8 +22,8 @@
 /obj/item/climbing_hook/examine(mob/user)
 	. = ..()
 	var/list/look_binds = user.client.prefs.key_bindings["look up"]
-	. += span_notice("Firstly, look upwards by holding <b>[english_list(look_binds, nothing_text = "(nothing bound)", and_text = " or ", comma_text = ", or ")]!</b>")
-	. += span_notice("Then, click solid ground (or lattice/catwalk) adjacent to the hole above you.")
+	. += span_notice("首先，按住<b>[english_list(look_binds, nothing_text = "（未绑定按键）", and_text = "或", comma_text = "、")]向上看！</b>")
+	. += span_notice("然后点击你上方洞口旁的坚实地面（或格栅/栈道）。")
 
 /obj/item/climbing_hook/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(HAS_TRAIT(interacting_with, TRAIT_COMBAT_MODE_SKIP_INTERACTION))
@@ -40,14 +40,14 @@
 	var/turf/user_turf = get_turf(user)
 	var/turf/trans_vertical = interacting_with.z > user.z ? GET_TURF_ABOVE(user_turf) : GET_TURF_ABOVE(interacting_with)
 	if(target_blocked(interacting_with, trans_vertical))
-		balloon_alert(user, "cant get there!")
+		balloon_alert(user, "无法到达那里！")
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(interacting_with, trans_vertical) > reach - 1) //is our rope long enough?
-		balloon_alert(user, "too far!")
+		balloon_alert(user, "太远了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/away_dir = get_dir(trans_vertical, interacting_with)
-	user.visible_message(span_notice("[user] begins climbing [interacting_with.z > user.z ? "up" : "down"] with [src]."), span_notice("You get to work on properly hooking [src] and going [interacting_with.z > user.z ? "up" : "down"]."))
+	user.visible_message(span_notice("[user]开始用[src]向[interacting_with.z > user.z ? "上" : "下"]攀爬。"), span_notice("你开始固定好[src]，准备向[interacting_with.z > user.z ? "上" : "下"]攀爬。"))
 	// BUBBER EDIT BEGIN - climbsound
 	playsound(interacting_with, climbsound, 50) //plays twice so people above and below can hear
 	playsound(user_turf, climbsound, 50)
@@ -91,19 +91,19 @@
 	return FALSE
 
 /obj/item/climbing_hook/emergency
-	name = "emergency climbing hook"
-	desc = "An emergency climbing hook to scale up holes."
+	name = "应急攀爬钩"
+	desc = "用于爬出洞口的应急攀爬钩。"
 	climb_time = 4 SECONDS
 
 /obj/item/climbing_hook/syndicate
-	name = "suspicious climbing hook"
-	desc = "REALLY suspicious climbing hook to scale up holes. The hook has a syndicate logo engraved on it, and the rope has sinister mechanical mechanisms to assist with climbing away from nefarious activities."
+	name = "可疑攀爬钩"
+	desc = "用于爬出洞口的极其可疑的攀爬钩。钩子上刻着辛迪加标志，绳索配有阴险的机械机构，帮助你在干完坏事后迅速攀爬逃离。"
 	icon_state = "climbingrope_s"
 	climb_time = 0.75 SECONDS
 
 /obj/item/climbing_hook/infinite //debug stuff
-	name = "infinite climbing hook"
-	desc = "A plasteel hook, with rope. Upon closer inspection, the rope appears to be made out of plasteel woven into regular rope, amongst many other reinforcements."
+	name = "无限攀爬钩"
+	desc = "附有绳索的塑钢钩。仔细观察，绳索似乎将塑钢编入普通绳中，还进行了许多其他加固。"
 	climb_time = 0.1 SECONDS
 
 /obj/effect/temp_visual/climbing_hook

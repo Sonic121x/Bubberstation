@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/exotic
 	name = "exotic spawner"
-	desc = "Super duper rare stuff."
+	desc = "超级稀有的好东西。"
 
 /obj/effect/spawner/random/exotic/technology
 	name = "technology spawner"
@@ -118,10 +118,10 @@
 	)
 
 /obj/item/mod/module/energy_shield/prototype
-	name = "MOD prototype energy shield"
-	desc = "An early prototype of energy shield adapted for use inside of a MOD, the energy shield before this saw \
-	extensive use in now defunct construction, combat, and mining exosuits with exosuits being something between a \
-	modsuit and a mech with most still functioning exosuits either being in a museaum or a military parade"
+	name = "MOD 原型能量护盾"
+	desc = "为安装在 MOD 模块化外骨骼内而改造的早期能量护盾原型。此前这种护盾\
+	广泛用于现已淘汰的建筑、战斗和采矿外骨骼，其定位介于\
+	MOD 模块化外骨骼与机甲之间。大多数仍能运作的这类外骨骼如今只出现在博物馆或阅兵式上。"
 	recharge_start_delay = 30 SECONDS
 	max_charges = 2
 	charge_increment_delay = 30 SECONDS

@@ -13,7 +13,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { telecommsDisplay } from './common/telecommsDisplay';
 export const Telecomms = (props) => {
   const { act, data } = useBackend();
   const {
@@ -37,17 +37,17 @@ export const Telecomms = (props) => {
   const linked = data.linked || [];
   const frequencies = data.frequencies || [];
   return (
-    <Window title={id} width={400} height={600}>
+    <Window title={telecommsDisplay(id)} width={400} height={600}>
       <Window.Content scrollable>
-        {!multitool && <NoticeBox>Use a multitool to make changes.</NoticeBox>}
-        <Section title="Settings">
+        {!multitool && <NoticeBox>使用多功能工具进行更改。</NoticeBox>}
+        <Section title="设置">
           <LabeledList>
             <LabeledList.Item
-              label="Power"
+              label="电源"
               buttons={
                 <Button
                   icon={toggled ? 'power-off' : 'times'}
-                  content={toggled ? 'On' : 'Off'}
+                  content={toggled ? '开启' : '关闭'}
                   color={toggled ? 'good' : 'bad'}
                   disabled={!multitool}
                   onClick={() => act('toggle')}
@@ -55,7 +55,7 @@ export const Telecomms = (props) => {
               }
             />
             <LabeledList.Item
-              label="Identification String"
+              label="标识字符串"
               buttons={
                 <Input
                   width={13}
@@ -65,7 +65,7 @@ export const Telecomms = (props) => {
               }
             />
             <LabeledList.Item
-              label="Network"
+              label="网络"
               buttons={
                 <Input
                   width={10}
@@ -76,12 +76,12 @@ export const Telecomms = (props) => {
               }
             />
             <LabeledList.Item
-              label="Prefabrication"
+              label="预配置"
               buttons={
                 <Button
                   icon={prefab ? 'check' : 'times'}
                   color={prefab ? 'good' : 'bad'}
-                  content={prefab ? 'True' : 'False'}
+                  content={prefab ? '是' : '否'}
                   disabled={'True'}
                 />
               }
@@ -91,10 +91,10 @@ export const Telecomms = (props) => {
         {!!(toggled && multitool) && (
           <Box>
             {type === 'bus' && (
-              <Section title="Bus">
+              <Section title="总线">
                 <Table>
                   <Table.Row>
-                    <Table.Cell>Change Frequency:</Table.Cell>
+                    <Table.Cell>更改频率：</Table.Cell>
                     <Table.Cell>
                       {channels.find(
                         (channel) => channel.freq === changefrequency,
@@ -110,9 +110,9 @@ export const Telecomms = (props) => {
                         >
                           [
                           {
-                            channels.find(
+                            telecommsDisplay(channels.find(
                               (channel) => channel.freq === changefrequency,
-                            ).name
+                            ).name)
                           }
                           ]
                         </Box>
@@ -139,27 +139,27 @@ export const Telecomms = (props) => {
               </Section>
             )}
             {type === 'relay' && (
-              <Section title="Relay">
+              <Section title="中继器">
                 <Button
-                  content={'Receiving'}
+                  content={'接收'}
                   icon={receiving ? 'volume-up' : 'volume-mute'}
                   color={receiving ? '' : 'bad'}
                   onClick={() => act('receive')}
                 />
                 <Button
-                  content={'Broadcasting'}
+                  content={'广播'}
                   icon={broadcasting ? 'microphone' : 'microphone-slash'}
                   color={broadcasting ? '' : 'bad'}
                   onClick={() => act('broadcast')}
                 />
               </Section>
             )}
-            <Section title="Linked Network Entities">
+            <Section title="已连接的网络实体">
               <Table>
                 {linked.map((entry) => (
                   <Table.Row key={entry.id} className="candystripe">
                     <Table.Cell bold>
-                      {entry.index}. {entry.id} ({entry.name})
+                      {entry.index}. {telecommsDisplay(entry.id)} ({telecommsDisplay(entry.name)})
                     </Table.Cell>
                     {!!multitool && (
                       <Button
@@ -173,7 +173,7 @@ export const Telecomms = (props) => {
                 ))}
               </Table>
             </Section>
-            <Section title="Filtered Frequencies">
+            <Section title="筛选频率">
               <Table>
                 {frequencies.map((entry) => (
                   <Table.Row key={frequencies.i} className="candystripe">
@@ -190,8 +190,8 @@ export const Telecomms = (props) => {
                         >
                           [
                           {
-                            channels.find((channel) => channel.freq === entry)
-                              .name
+                            telecommsDisplay(channels.find((channel) => channel.freq === entry)
+                              .name)
                           }
                           ]
                         </Box>
@@ -210,7 +210,7 @@ export const Telecomms = (props) => {
                 ))}
                 {!!multitool && (
                   <Table.Row className="candystripe" collapsing>
-                    <Table.Cell>Add Frequency</Table.Cell>
+                    <Table.Cell>添加频率</Table.Cell>
                     <Table.Cell>
                       {channels.find(
                         (channel) => channel.freq === frequency,
@@ -226,9 +226,9 @@ export const Telecomms = (props) => {
                         >
                           [
                           {
-                            channels.find(
+                            telecommsDisplay(channels.find(
                               (channel) => channel.freq === frequency,
-                            ).name
+                            ).name)
                           }
                           ]
                         </Box>
@@ -257,7 +257,7 @@ export const Telecomms = (props) => {
             </Section>
             {type === 'server' && (
               <Section
-                title="Frequencies Settings"
+                title="频率设置"
                 buttons={
                   <Button
                     icon="plus"
@@ -273,7 +273,7 @@ export const Telecomms = (props) => {
                         <Flex.Item bold>{freq.frequency / 10} kHz</Flex.Item>
                         <Flex.Item>
                           <Box inline color={freq.color} ml={2}>
-                            [{freq.name}]
+                            [{telecommsDisplay(freq.name)}]
                           </Box>
                         </Flex.Item>
                         <Flex.Item>
@@ -309,29 +309,29 @@ export const Telecomms = (props) => {
               </Section>
             )}
             {!!multitool && (
-              <Section title="Multitool">
+              <Section title="多功能工具">
                 {!!multibuff && (
                   <Box bold m={1}>
-                    Current Buffer: {multibuff}
+                    当前缓冲区：{telecommsDisplay(multibuff)}
                   </Box>
                 )}
                 <LabeledControls m={1}>
                   <Button
                     icon={'plus'}
-                    content={'Add Machine'}
+                    content={'添加机器'}
                     disabled={!multitool}
                     onClick={() => act('buffer')}
                   />
                   <Button
                     icon={'link'}
-                    content={'Link'}
+                    content={'连接'}
                     disabled={!multibuff}
                     onClick={() => act('link')}
                   />
                   <Button
                     icon="times"
                     color="bad"
-                    content={'Flush'}
+                    content={'清空'}
                     disabled={!multibuff}
                     onClick={() => act('flush')}
                   />

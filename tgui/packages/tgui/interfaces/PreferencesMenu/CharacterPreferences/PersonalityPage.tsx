@@ -29,14 +29,14 @@ function getButtonColors(
     return {
       backgroundColor: 'rgba(64, 34, 34, 0.5)',
       borderColor: 'darkred',
-      tooltip: `You cannot select this personality with ${invalid}.`,
+      tooltip: `此性格不能与${invalid}同时选择。`,
     };
   }
   if (disabled) {
     return {
       backgroundColor: 'rgba(64, 64, 64, 0.5)',
       borderColor: '#666666',
-      tooltip: 'You are at the maximum number of personalities.',
+      tooltip: '你已达到性格数量上限。',
     };
   }
   if (selected) {
@@ -186,7 +186,7 @@ function isIncompatible(
       if (personalityIncompatibilities[group].includes(selectedTypePath)) {
         return (
           getPersonalityName(allPersonalities, selectedTypePath) ||
-          'an unknown personality'
+          '未知性格'
         );
       }
     }
@@ -238,7 +238,7 @@ function getAllSelectedPersonalitiesString(
     }
   }
   if (personalityNames.length === 0) {
-    return 'You have no personality.';
+    return '你没有选择性格。';
   }
   personalityNames.sort((a, b) => (a < b ? -1 : 1));
   let finalString = '';
@@ -246,17 +246,17 @@ function getAllSelectedPersonalitiesString(
     finalString += personalityNames[i];
     if (i < personalityNames.length - 1) {
       if (personalityNames.length > 2) {
-        finalString += ', ';
+        finalString += '、';
       }
     }
     if (i === personalityNames.length - 2) {
       if (finalString[finalString.length - 1] !== ' ') {
         finalString += ' ';
       }
-      finalString += 'and ';
+      finalString += '和';
     }
   }
-  return `You are ${finalString}.`;
+  return `你的性格：${finalString}。`;
 }
 
 export function PersonalityPage() {
@@ -335,8 +335,8 @@ export function PersonalityPage() {
                   <Icon name="exclamation-triangle" mr={1} />
                 </Flex.Item>
                 <Flex.Item>
-                  Mood is disabled on this server. You can still select
-                  personalities, but they will have no effect.
+                  本服务器已禁用情绪系统。你仍可选择
+                  性格，但它们不会产生效果。
                 </Flex.Item>
               </Flex>
             </NoticeBox>
@@ -345,7 +345,7 @@ export function PersonalityPage() {
         <Stack.Item mb={1}>
           <Input
             fluid
-            placeholder="Search..."
+            placeholder="搜索……"
             value={searchQuery}
             onChange={(v) => setSearchQuery(v)}
           />

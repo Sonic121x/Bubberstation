@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/vending
 	name = "machinery spawner"
-	desc = "Randomized electronics for extra fun."
+	desc = "随机电子设备，增添更多乐趣。"
 	/// whether it hacks the vendor on spawn (only used for mapedits)
 	var/hacked = FALSE
 
@@ -13,7 +13,7 @@
 
 /obj/effect/spawner/random/vending/snackvend
 	name = "spawn random snack vending machine"
-	desc = "Automagically transforms into a random snack vendor. If you see this while in a shift, please create a bug report."
+	desc = "自动变成一台随机零食售货机。如果你在当班时看到此物，请提交错误报告。"
 	icon_state = "snack"
 	loot_type_path = /obj/machinery/vending/snack
 	loot = list()
@@ -25,7 +25,7 @@
 
 /obj/effect/spawner/random/vending/colavend
 	name = "spawn random cola vending machine"
-	desc = "Automagically transforms into a random cola vendor. If you see this while in a shift, please create a bug report."
+	desc = "自动变成一台随机可乐售货机。如果你在当班时看到此物，请提交错误报告。"
 	icon_state = "cola"
 	loot_type_path = /obj/machinery/vending/cola
 	loot = list()

@@ -15,7 +15,7 @@
 	src.duration = max(src.duration, set_duration)
 
 /atom/movable/screen/alert/status_effect/firewall
-	name = "Firewalled"
-	desc = "Recent changes to your core lawset have restricted your actions."
+	name = "防火墙限制"
+	desc = "你核心法则的近期变更限制了你的行动。"
 	use_user_hud_icon = USER_HUD_STYLE_INHERIT
 	overlay_state = "hazard_area"

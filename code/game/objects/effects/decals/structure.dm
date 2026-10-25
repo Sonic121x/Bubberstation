@@ -1,6 +1,6 @@
 /obj/effect/decal/fakelattice
-	name = "lattice"
-	desc = "A lightweight support lattice."
+	name = "格栅"
+	desc = "轻质支撑格栅。"
 	icon = 'icons/obj/smooth_structures/lattice.dmi'
 	icon_state = "lattice-255"
 	density = TRUE

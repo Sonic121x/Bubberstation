@@ -1,9 +1,9 @@
 /datum/mutation/antenna
-	name = "Antenna"
-	desc = "The subject sprouts an antenna, which is known to allow them to access common radio channels without any external devices."
+	name = "触角天线"
+	desc = "受试者长出一根天线，无需外部设备即可接入公共无线电频道。"
 	quality = POSITIVE
-	text_gain_indication = span_notice("You feel an antenna sprout from your forehead.")
-	text_lose_indication = span_notice("Your antenna shrinks back down.")
+	text_gain_indication = span_notice("你感到额头上长出了一根天线。")
+	text_lose_indication = span_notice("你的天线缩了回去。")
 	instability = POSITIVE_INSTABILITY_MINOR
 	difficulty = 8
 	mutation_icon_state = "antenna"
@@ -11,14 +11,14 @@
 	var/datum/weakref/radio_weakref
 
 /obj/item/implant/radio/antenna
-	name = "internal antenna organ"
-	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
+	name = "内置天线器官"
+	desc = "天线位于体内的器官部分。科学界还没给它起个像样的名字。"
 	icon = 'icons/obj/devices/voice.dmi'//maybe make a unique sprite later. not important
 	icon_state = "walkietalkie"
 
 /obj/item/implant/radio/antenna/Initialize(mapload)
 	. = ..()
-	radio.name = "internal antenna"
+	radio.name = "内置天线"
 
 /datum/mutation/antenna/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
@@ -36,11 +36,11 @@
 		QDEL_NULL(linked_radio)
 
 /datum/mutation/mindreader
-	name = "Mind Reader"
-	desc = "The subject can look into the recent memories of others."
+	name = "读心者"
+	desc = "受试者能够窥探他人近期的记忆。"
 	quality = POSITIVE
-	text_gain_indication = span_notice("You hear distant voices at the corners of your mind.")
-	text_lose_indication = span_notice("The distant voices fade.")
+	text_gain_indication = span_notice("你的意识深处响起了遥远的声音。")
+	text_lose_indication = span_notice("遥远的声音消失了。")
 	power_path = /datum/action/cooldown/spell/pointed/mindread
 	instability = POSITIVE_INSTABILITY_MINOR
 	difficulty = 8
@@ -49,8 +49,8 @@
 	layer_used = FRONT_MUTATIONS_LAYER
 
 /datum/action/cooldown/spell/pointed/mindread
-	name = "Mindread"
-	desc = "Read the target's mind."
+	name = "读心"
+	desc = "读取目标的思想。"
 	button_icon_state = "mindread"
 	school = SCHOOL_PSYCHIC
 	cooldown_time = 5 SECONDS
@@ -76,13 +76,13 @@
 		return FALSE
 	var/mob/living/living_cast_on = cast_on
 	if(!living_cast_on.mind)
-		to_chat(owner, span_warning("[cast_on] has no mind to read!"))
+		to_chat(owner, span_warning("[cast_on]没有可供读取的心智！"))
 		return FALSE
 	if(living_cast_on.stat == DEAD)
-		to_chat(owner, span_warning("[cast_on] is dead!"))
+		to_chat(owner, span_warning("[cast_on]已经死了！"))
 		return FALSE
 	if(living_cast_on.mob_biotypes & MOB_ROBOTIC)
-		to_chat(owner, span_warning("[cast_on] is robotic, you can't read [cast_on.p_their()] mind!"))
+		to_chat(owner, span_warning("[cast_on]是机械生命体，你无法读取其思想！"))
 		return FALSE
 
 	return TRUE
@@ -90,48 +90,48 @@
 /datum/action/cooldown/spell/pointed/mindread/cast(mob/living/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags, charge_cost = 0))
-		to_chat(owner, span_warning("As you reach into [cast_on]'s mind, \
-			you are stopped by a mental blockage. It seems you've been foiled."))
+		to_chat(owner, span_warning("当你试图进入[cast_on]的心智时，\
+			一道精神屏障挡住了你。看来你失败了。"))
 		return
 
 	if(cast_on == owner)
-		to_chat(owner, span_warning("You plunge into your mind... Yep, it's your mind."))
+		to_chat(owner, span_warning("你深入自己的心智……没错，这就是你自己的心智。"))
 		return
 
 	if(cast_on.has_status_effect(/datum/status_effect/heretic_passive/moon))
-		to_chat(owner, span_hypnophrase(span_bolddanger("YOU SEEK THE TRUTH? I WILL SHOW YOU EVERYTHING.")))
+		to_chat(owner, span_hypnophrase(span_bolddanger("你渴求真相？我会让你看清一切。")))
 		if(isliving(owner))
 			var/mob/living/reader = owner
 			reader.apply_status_effect(/datum/status_effect/moon_converted)
 		return
 
 	if(HAS_TRAIT(cast_on, TRAIT_EVIL))
-		to_chat(owner, span_warning("As you reach into [cast_on]'s mind, \
-			you feel the overwhelming emptiness within. A truly evil being. \
-			[HAS_TRAIT(owner, TRAIT_EVIL) ? "It's nice to find someone who is like-minded." : "What is wrong with this person?"]"))
+		to_chat(owner, span_warning("当你进入[cast_on]的心智时，\
+			你感受到了其中无边的空虚。这是一个真正邪恶的存在。\
+			[HAS_TRAIT(owner, TRAIT_EVIL) ? "能找到志同道合的人真不错。" : "这个人到底怎么回事？"]"))
 
 	var/list/log_info = list()
-	var/list/discovered_info = list("<i>You plunge into [cast_on]'s mind and discover...</i>")
+	var/list/discovered_info = list("<i>你深入[cast_on]的心智，发现了……</i>")
 	if(prob(20))
 		// chance to alert the read-ee
-		to_chat(cast_on, span_danger("You feel something foreign enter your mind."))
-		log_info += "Target alerted!"
+		to_chat(cast_on, span_danger("你感觉有什么外来的东西侵入了你的心智。"))
+		log_info += "目标已察觉！"
 
 	var/list/recent_speech = cast_on.copy_recent_speech(copy_amount = 3, line_chance = 50)
 	if(length(recent_speech))
-		discovered_info += "...Drifting memories of past conversations:"
+		discovered_info += "……往日对话的零碎记忆："
 		var/list/speech_block = list()
 		for(var/spoken_memory in recent_speech)
 			speech_block += "&emsp;\"[spoken_memory]\"..."
-			log_info += "Recent speech: \"[spoken_memory]\""
+			log_info += "近期发言：\"[spoken_memory]\""
 		discovered_info += jointext(speech_block, "<br>")
 
 	if(iscarbon(cast_on))
 		var/mob/living/carbon/carbon_cast_on = cast_on
-		discovered_info += "...Intent to <b>[carbon_cast_on.combat_mode ? "harm" : "help"]</b>."
-		discovered_info += "...True identity of <b>[carbon_cast_on.mind.name]</b>."
-		log_info += "Intent: \"[carbon_cast_on.combat_mode ? "harm" : "help"]\""
-		log_info += "Identity: \"[carbon_cast_on.mind.name]\""
+		discovered_info += "……意图<b>[carbon_cast_on.combat_mode ? "伤害" : "帮助"]</b>他人。"
+		discovered_info += "……真实身份为<b>[carbon_cast_on.mind.name]</b>。"
+		log_info += "意图：\"[carbon_cast_on.combat_mode ? "伤害" : "帮助"]\""
+		log_info += "身份：\"[carbon_cast_on.mind.name]\""
 
 	to_chat(owner, boxed_message(span_notice(jointext(discovered_info, "<br>"))))
 	log_combat(owner, cast_on, "mind read (cast intentionally)", null, "info: [english_list(log_info, and_text = ", ")]")
@@ -158,15 +158,15 @@
 	if(QDELETED(examiner))
 		return
 	if(antimagic)
-		to_chat(examiner, boxed_message(span_warning("You attempt to analyze [examined]'s current thoughts, but fail to penetrate [examined.p_their()] mind - It seems you've been foiled.")))
+		to_chat(examiner, boxed_message(span_warning("你试图分析[examined]此刻的想法，却无法进入其心智——看来你失败了。")))
 		return
 
 	var/list/log_info = list()
 	if(prob(10))
-		to_chat(examined, span_danger("You feel something foreign enter your mind."))
-		log_info += "Target alerted!"
+		to_chat(examined, span_danger("你感觉有什么外来的东西侵入了你的心智。"))
+		log_info += "目标已察觉！"
 
-	to_chat(examiner, boxed_message(span_notice("<i>You analyze [examined]'s current thoughts...</i><br>&emsp;\"[read_text]\"...")))
-	log_info += "Current thought: \"[read_text]\""
+	to_chat(examiner, boxed_message(span_notice("<i>你分析着[examined]此刻的想法……</i><br>&emsp;\"[read_text]\"……")))
+	log_info += "当前想法：\"[read_text]\""
 
 	log_combat(examiner, examined, "mind read (triggered on examine)", null, "info: [english_list(log_info, and_text = ", ")]")

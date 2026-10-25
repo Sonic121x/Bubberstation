@@ -1,24 +1,24 @@
 // Note: BYOND is object oriented. There is no reason for this to be copy/pasted blood code.
 
 /obj/effect/decal/cleanable/blood/xeno
-	name = "pool of acid"
+	name = "一滩酸液"
 	// This is fetched in /datum/blood_type/xeno/set_up_blood() for all blood decals with default desc
-	desc = "It's green and acidic. It looks like... <i>blood?</i>"
+	desc = "绿色的酸性液体。看起来像……<i>血？</i>"
 	color = /datum/blood_type/xeno::color // For mapper sanity
 
 /obj/effect/decal/cleanable/blood/xeno/get_default_blood_type()
 	return get_blood_type(BLOOD_TYPE_XENO)
 
 /obj/effect/decal/cleanable/blood/splatter/xeno
-	name = "pool of acid"
+	name = "一滩酸液"
 	color = /datum/blood_type/xeno::color // For mapper sanity
 
 /obj/effect/decal/cleanable/blood/splatter/xeno/get_default_blood_type()
 	return get_blood_type(BLOOD_TYPE_XENO)
 
 /obj/effect/decal/cleanable/blood/gibs/xeno
-	name = "xeno gibs"
-	desc = "Gnarly..."
+	name = "异形碎肉"
+	desc = "惨不忍睹……"
 	icon_state = "xgib1"
 	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6")
 	color = /datum/blood_type/xeno::color // For mapper sanity

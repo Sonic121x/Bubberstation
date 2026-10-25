@@ -1,6 +1,6 @@
 /datum/wires/mod
 	holder_type = /obj/item/mod/control
-	proper_name = "MOD control unit"
+	proper_name = "MOD控制单元"
 
 /datum/wires/mod/New(atom/holder)
 	wires = list(WIRE_HACK, WIRE_DISABLE, WIRE_SHOCK, WIRE_INTERFACE)
@@ -16,10 +16,10 @@
 /datum/wires/mod/get_status()
 	var/obj/item/mod/control/mod = holder
 	var/list/status = list()
-	status += "The orange light is [mod.seconds_electrified ? "on" : "off"]."
-	status += "The red light is [mod.malfunctioning ? "off" : "blinking"]."
-	status += "The green light is [mod.locked ? "on" : "off"]."
-	status += "The yellow light is [mod.interface_break ? "off" : "on"]."
+	status += "橙灯[mod.seconds_electrified ? "亮起" : "熄灭"]。"
+	status += "红灯[mod.malfunctioning ? "熄灭" : "正在闪烁"]。"
+	status += "绿灯[mod.locked ? "亮起" : "熄灭"]。"
+	status += "黄灯[mod.interface_break ? "熄灭" : "亮起"]。"
 	return status
 
 /datum/wires/mod/on_pulse(wire)

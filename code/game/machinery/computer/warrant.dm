@@ -1,6 +1,6 @@
 /obj/machinery/computer/warrant
-	name = "security warrant console"
-	desc = "Used to view outstanding warrants."
+	name = "安保罚单控制台"
+	desc = "用于查看尚未缴清的罚单。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/warrant")
 	icon_screen = "security"
 	icon_keyboard = "security_key"
@@ -88,44 +88,44 @@
 		return FALSE
 
 	if(!isliving(user) || issilicon(user))
-		to_chat(user, span_warning("ACCESS DENIED"))
+		to_chat(user, span_warning("访问被拒绝"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/mob/living/player = user
 	var/obj/item/card/id/auth = player.get_idcard(TRUE)
 	if(!auth)
-		to_chat(user, span_warning("ACCESS DENIED: No ID card detected."))
+		to_chat(user, span_warning("访问被拒绝：未检测到身份证。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/datum/bank_account/account = auth.registered_account
 	if(!account?.account_holder || account.account_holder == "Unassigned")
-		to_chat(user, span_warning("ACCESS DENIED: No account linked to ID."))
+		to_chat(user, span_warning("访问被拒绝：身份证未关联账户。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
 	var/amount = params["amount"]
-	if(!amount || !isnum(amount) || amount <= 0 || amount > warrant.fine || !account.adjust_money(-amount, "Paid fine for [target.name]"))
-		to_chat(user, span_warning("ACCESS DENIED: Invalid amount."))
+	if(!amount || !isnum(amount) || amount <= 0 || amount > warrant.fine || !account.adjust_money(-amount, "为[target.name]缴纳罚款"))
+		to_chat(user, span_warning("访问被拒绝：金额无效。"))
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
-	account.bank_card_talk("You have paid [amount][MONEY_SYMBOL] towards [target.name]'s fine of [warrant.fine][MONEY_SYMBOL].")
+	account.bank_card_talk("你为[target.name]总额[warrant.fine][MONEY_SYMBOL]的罚款支付了[amount][MONEY_SYMBOL]。")
 	log_econ("[amount][MONEY_SYMBOL] was transferred from [user]'s transaction to [target.name]'s [warrant.fine][MONEY_SYMBOL] fine")
 	SSblackbox.record_feedback("amount", "credits_transferred", amount)
 	warrant.pay_fine(amount)
 
 	if(amount >= 100 && target?.name != user)
 		var/list/titles = list(
-			"An anonymous benefactor",
-			"A generous citizen",
-			"A kind soul",
-			"A good samaritan",
-			"A friendly face",
-			"A helpful stranger",
+			"一位匿名恩人",
+			"一位慷慨的公民",
+			"一位好心人",
+			"一位乐善好施的人",
+			"一位友善的人",
+			"一位热心的陌生人",
 		)
-		warrant.alert_owner(user, src, target.name, "[pick(titles)] has paid [amount][MONEY_SYMBOL] towards your fine.")
+		warrant.alert_owner(user, src, target.name, "[pick(titles)]为你的罚款支付了[amount][MONEY_SYMBOL]。")
 
 	var/datum/bank_account/sec_account = SSeconomy.get_dep_account(ACCOUNT_SEC)
 	sec_account.adjust_money(amount)
@@ -134,7 +134,7 @@
 	if(warrant.fine != 0 || target.name == user)
 		return TRUE
 
-	warrant.alert_owner(user, src, target.name, "One of your outstanding warrants has been completely paid.")
+	warrant.alert_owner(user, src, target.name, "你的一张待缴罚单已全额付清。")
 	warrant.valid = FALSE
 	return TRUE
 
@@ -149,7 +149,7 @@
 /// Prints a bounty for a listed fine.
 /obj/machinery/computer/warrant/proc/print_bounty(mob/user, list/params)
 	if(printing)
-		balloon_alert(user, "printer busy")
+		balloon_alert(user, "打印机忙碌中")
 		playsound(src, 'sound/machines/terminal/terminal_error.ogg', 100, TRUE)
 		return FALSE
 
@@ -161,21 +161,21 @@
 	if(!warrant?.fine)
 		return FALSE
 
-	var/bounty_text = "<center><h2><b>Bounty for [target.name]</b><h2></center><BR>"
-	bounty_text += "<center>Wanted for [warrant.name]</h2></center><br><br>"
-	bounty_text += "<b>Details:</b><br>[warrant.details]<br>"
-	bounty_text += "<b>Issued to:</b><br>[usr]<br>"
-	bounty_text += "<b>Issued on:</b><br>[warrant.time]<br>"
-	bounty_text += "<b>Comments:</b><br>[!target.security_note ? "None." : target.security_note]<br><br>"
-	bounty_text += "<center><b>FINE:</b> [warrant.fine] [MONEY_NAME]</center>"
+	var/bounty_text = "<center><h2><b>[target.name]的悬赏单</b><h2></center><BR>"
+	bounty_text += "<center>通缉事由：[warrant.name]</h2></center><br><br>"
+	bounty_text += "<b>详情：</b><br>[warrant.details]<br>"
+	bounty_text += "<b>发给：</b><br>[usr]<br>"
+	bounty_text += "<b>签发时间：</b><br>[warrant.time]<br>"
+	bounty_text += "<b>备注：</b><br>[!target.security_note ? "无。" : target.security_note]<br><br>"
+	bounty_text += "<center><b>罚款：</b>[warrant.fine][MONEY_NAME]</center>"
 
 	printing = TRUE
-	balloon_alert(user, "printing")
+	balloon_alert(user, "正在打印")
 	playsound(src, 'sound/machines/printer.ogg', 100, TRUE)
 
 	var/obj/item/paper/bounty = new(null)
-	bounty.name = "Bounty for [target.name]"
-	bounty.desc = "A [warrant.fine][MONEY_SYMBOL] bounty for [target.name]."
+	bounty.name = "[target.name]的悬赏单"
+	bounty.desc = "针对[target.name]的[warrant.fine][MONEY_SYMBOL]悬赏单。"
 	bounty.add_raw_text(bounty_text)
 	bounty.update_icon()
 

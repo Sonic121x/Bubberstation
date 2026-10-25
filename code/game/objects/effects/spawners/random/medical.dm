@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/medical
 	name = "medical loot spawner"
-	desc = "Doc, gimmie something good."
+	desc = "医生，给我来点好东西。"
 
 /obj/effect/spawner/random/medical/minor_healing
 	name = "minor healing spawner"

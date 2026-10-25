@@ -1,10 +1,10 @@
 /obj/machinery/jukebox
-	name = "jukebox"
-	desc = "A classic music player."
+	name = "点唱机"
+	desc = "经典的音乐播放器。"
 	icon = 'icons/obj/machines/music.dmi'
 	icon_state = "jukebox"
 	base_icon_state = "jukebox"
-	verb_say = "states"
+	verb_say = "宣布"
 	density = TRUE
 	req_access = list(ACCESS_BAR)
 	processing_flags = START_PROCESSING_MANUALLY
@@ -25,9 +25,9 @@
 /obj/machinery/jukebox/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "解除固定" : "固定"
 		return CONTEXTUAL_SCREENTIP_SET
-	context[SCREENTIP_CONTEXT_RMB] = "Toggle Playing"
+	context[SCREENTIP_CONTEXT_RMB] = "切换播放"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/jukebox/Destroy()
@@ -38,7 +38,7 @@
 /obj/machinery/jukebox/examine(mob/user)
 	. = ..()
 	if(music_player.active_song_sound)
-		. += "Now playing: [music_player.selection.song_name]"
+		. += "正在播放：[music_player.selection.song_name]"
 
 /obj/machinery/jukebox/wrench_act(mob/living/user, obj/item/tool)
 	if(!isnull(music_player.active_song_sound))
@@ -64,14 +64,14 @@
 	if(isobserver(user))
 		return ..()
 	if(!anchored)
-		balloon_alert(user, "must be anchored!")
+		balloon_alert(user, "必须先固定！")
 		return UI_CLOSE
 	if(!allowed(user))
-		balloon_alert(user, "access denied!")
+		balloon_alert(user, "访问被拒绝！")
 		user.playsound_local(src, 'sound/machines/compiler/compiler-failure.ogg', 20, TRUE)
 		return UI_CLOSE
 	if(!length(music_player.songs))
-		to_chat(user,span_warning("Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue."))
+		to_chat(user,span_warning("错误：你站没有获授权的曲目。请向中央指挥部申请解决此问题。"))
 		user.playsound_local(src, 'sound/machines/compiler/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	return ..()
@@ -98,7 +98,7 @@
 
 		if("select_track")
 			if(!isnull(music_player.active_song_sound))
-				to_chat(user, span_warning("Error: You cannot change the song until the current one is over."))
+				to_chat(user, span_warning("错误：当前曲目结束前无法切换歌曲。"))
 				return TRUE
 
 			var/datum/track/new_song = music_player.songs[params["track"]]
@@ -130,7 +130,7 @@
 	if(COOLDOWN_FINISHED(src, jukebox_song_cd))
 		activate_music()
 		return
-	balloon_alert(user, "on cooldown for [DisplayTimeText(COOLDOWN_TIMELEFT(src, jukebox_song_cd))]!")
+	balloon_alert(user, "还需冷却[DisplayTimeText(COOLDOWN_TIMELEFT(src, jukebox_song_cd))]！")
 	if(COOLDOWN_FINISHED(src, jukebox_error_cd))
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg', 25, TRUE)
 		COOLDOWN_START(src, jukebox_error_cd, 15 SECONDS)
@@ -167,8 +167,8 @@
 	req_access = null
 
 /obj/machinery/jukebox/disco
-	name = "radiant dance machine mark IV"
-	desc = "The first three prototypes were discontinued after mass casualty incidents."
+	name = "炫光舞蹈机IV型"
+	desc = "前三代原型机在造成重大伤亡事件后停产。"
 	icon_state = "disco"
 	base_icon_state = "disco"
 	req_access = list(ACCESS_ENGINEERING)
@@ -180,8 +180,8 @@
 	VAR_PRIVATE/list/obj/effect/overlay/sparkles/sparkles = list()
 
 /obj/machinery/jukebox/disco/indestructible
-	name = "radiant dance machine mark V"
-	desc = "Now redesigned with data gathered from the extensive disco and plasma research."
+	name = "炫光舞蹈机V型"
+	desc = "现已利用大量迪斯科与等离子体研究数据重新设计。"
 	req_access = null
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

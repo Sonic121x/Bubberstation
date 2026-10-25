@@ -1,6 +1,6 @@
 /obj/item/organ/body_egg
-	name = "body egg"
-	desc = "All slimy and yuck."
+	name = "体内寄生卵"
+	desc = "黏糊糊的，真恶心。"
 	icon_state = "innards"
 	visual = TRUE
 	zone = BODY_ZONE_CHEST
@@ -9,7 +9,7 @@
 
 /obj/item/organ/body_egg/on_find(mob/living/finder)
 	..()
-	to_chat(finder, span_warning("You found an unknown alien organism in [owner]'s [zone]!"))
+	to_chat(finder, span_warning("你在[owner]的[chinese_body_zone_display(zone)]发现了未知的外星生物！"))
 
 /obj/item/organ/body_egg/feel_for_damage(self_aware)
 	// keep these stealthy for now, revisit later

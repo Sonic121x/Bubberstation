@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/mod
 	name = "MOD module spawner"
-	desc = "Modularize this, please."
+	desc = "请把这个模块化。"
 	icon_state = "circuit"
 
 /obj/effect/spawner/random/mod/maint

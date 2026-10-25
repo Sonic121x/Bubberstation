@@ -1,6 +1,6 @@
 /obj/item/choice_beacon
-	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let CentCom know about this odd occurrence."
+	name = "自选配送信标"
+	desc = "嘿，你怎么会看到这个？！请向中央指挥部报告这一异常情况。"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "generic_delivery"
 	inhand_icon_state = "generic_delivery"
@@ -9,9 +9,9 @@
 	/// How many uses this item has before being deleted
 	var/uses = 1
 	/// Used in the deployment message - What company is sending the equipment, flavor
-	var/company_source = "Central Command"
+	var/company_source = "中央指挥部"
 	/// Used inthe deployment message - What is the company saying with their message, flavor
-	var/company_message = span_bold("Item request received. Your package is inbound, please stand back from the landing site.")
+	var/company_message = span_bold("已收到物品申请。你的包裹即将抵达，请远离着陆点。")
 
 /obj/item/choice_beacon/interact(mob/user)
 	. = ..()
@@ -38,7 +38,7 @@
 	var/list/display_names = generate_display_names()
 	if(!length(display_names))
 		return
-	var/choice = tgui_input_list(user, "Which item would you like to order?", "Select an Item", display_names)
+	var/choice = tgui_input_list(user, "你想订购哪件物品？", "选择物品", display_names)
 	if(isnull(choice) || isnull(display_names[choice]))
 		return
 	if(!can_use_beacon(user))
@@ -48,8 +48,8 @@
 
 /// Consumes a use of the beacon, sending the user a message and creating their item in the process
 /obj/item/choice_beacon/proc/consume_use(obj/choice_path, mob/living/user)
-	to_chat(user, span_hear("You hear something crackle from the beacon for a moment before a voice speaks. \
-		\"Please stand by for a message from [company_source]. Message as follows: [company_message] Message ends.\""))
+	to_chat(user, span_hear("你听到信标发出片刻的噼啪声，随后传来话音。\
+		“请接收来自[company_source]的消息。内容如下：[company_message]消息结束。”"))
 
 	spawn_option(choice_path, user)
 	uses--
@@ -58,7 +58,7 @@
 		qdel(src)
 		return
 
-	to_chat(user, span_notice("[uses] use[uses > 1 ? "s" : ""] remain[uses > 1 ? "" : "s"] on [src]."))
+	to_chat(user, span_notice("[src]还可使用[uses]次。"))
 
 /// Actually spawns the item selected by the user
 /obj/item/choice_beacon/proc/spawn_option(obj/choice_path, mob/living/user)
@@ -69,12 +69,12 @@
 	))
 
 /obj/item/choice_beacon/music
-	name = "instrument delivery beacon"
-	desc = "Summon your tool of art."
+	name = "乐器配送信标"
+	desc = "召来你的艺术工具。"
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
-	company_source = "Sophronia Broadcasting"
-	company_message = span_bold("Please enjoy your Sophronia Broadcasting's 'Spinward Idol' Musical Instrument, exactly as shown in the hit show!")
+	company_source = "索弗罗尼娅广播公司"
+	company_message = span_bold("请享用索弗罗尼娅广播公司‘顺旋偶像’乐器，与热门节目中展示的完全一致！")
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/choice_beacon/music/generate_display_names()
@@ -101,12 +101,12 @@
 	return instruments
 
 /obj/item/choice_beacon/ingredient
-	name = "ingredient delivery beacon"
-	desc = "Summon a box of ingredients to help you get started cooking."
+	name = "食材配送信标"
+	desc = "召来一箱食材，助你开始烹饪。"
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
-	company_source = "Sophronia Broadcasting"
-	company_message = span_bold("Please enjoy your Sophronia Broadcasting's 'Plasteel Chef' Ingredients Box, exactly as shown in the hit show!")
+	company_source = "索弗罗尼娅广播公司"
+	company_message = span_bold("请享用索弗罗尼娅广播公司‘塑钢主厨’食材箱，与热门节目中展示的完全一致！")
 
 /obj/item/choice_beacon/ingredient/generate_display_names()
 	var/static/list/ingredient_options
@@ -117,12 +117,12 @@
 	return ingredient_options
 
 /obj/item/choice_beacon/hero
-	name = "heroic beacon"
-	desc = "To summon heroes from the past to protect the future."
+	name = "英雄信标"
+	desc = "召来昔日英雄，守护未来。"
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
-	company_source = "Sophronia Broadcasting"
-	company_message = span_bold("Please enjoy your Sophronia Broadcasting's 'History Comes Alive branded' Costume Set, exactly as shown in the hit show!")
+	company_source = "索弗罗尼娅广播公司"
+	company_message = span_bold("请享用索弗罗尼娅广播公司‘鲜活历史’品牌服装套装，与热门节目中展示的完全一致！")
 
 /obj/item/choice_beacon/hero/generate_display_names()
 	var/static/list/hero_item_list
@@ -133,13 +133,13 @@
 	return hero_item_list
 
 /obj/item/choice_beacon/augments
-	name = "augment beacon"
-	desc = "Summons augmentations. Can be used 3 times!"
+	name = "强化植入体信标"
+	desc = "召来强化植入体，可使用 3 次！"
 	uses = 3
 	icon_state = "self_delivery"
 	inhand_icon_state = "self_delivery"
 	company_source = "S.E.L.F."
-	company_message = span_bold("Request status: Received. Package status: Delivered. Notes: To assure optimal value, use supplied Interdyne-brand autosurgeons to change implantment status.")
+	company_message = span_bold("请求状态：已接收。包裹状态：已送达。备注：为确保最佳效益，请使用随附的英特戴恩牌自动手术器改变植入状态。")
 
 /obj/item/choice_beacon/augments/generate_display_names()
 	var/static/list/augment_list
@@ -165,12 +165,12 @@
 	playsound(src, 'sound/items/weapons/emitter2.ogg', 50, extrarange = SILENCED_SOUND_EXTRARANGE)
 
 /obj/item/choice_beacon/holy
-	name = "armaments beacon"
-	desc = "Summon a set of standard issue chaplain armaments, as dictated by I.C.R.A."
+	name = "武装配送信标"
+	desc = "召来一套符合 I.C.R.A. 规定的制式牧师武装。"
 	icon_state = "icra_delivery"
 	inhand_icon_state = "icra_delivery"
-	company_source = "Interstellar Conservation of Religion Association"
-	company_message = span_bold("A choice has already been made.")
+	company_source = "星际宗教保护协会"
+	company_message = span_bold("选择已定。")
 
 /obj/item/choice_beacon/holy/can_use_beacon(mob/living/user)
 	if(user.mind?.holy_role)

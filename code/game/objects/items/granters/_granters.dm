@@ -25,10 +25,10 @@
 
 /obj/item/book/granter/attack_self(mob/living/user)
 	if(reading)
-		to_chat(user, span_warning("You're already reading this!"))
+		to_chat(user, span_warning("你已经在读这本书了！"))
 		return FALSE
 	if(user.is_blind())
-		to_chat(user, span_warning("You are blind and can't read anything!"))
+		to_chat(user, span_warning("你失明了，无法阅读！"))
 		return FALSE
 	if(!isliving(user) || !user.can_read(src))
 		return FALSE
@@ -56,16 +56,16 @@
 
 /// Called when the user starts to read the granter.
 /obj/item/book/granter/proc/on_reading_start(mob/living/user)
-	to_chat(user, span_notice("You start reading [name]..."))
+	to_chat(user, span_notice("你开始阅读[name]……"))
 	return TRUE
 
 /// Called when the reading is interrupted without finishing.
 /obj/item/book/granter/proc/on_reading_stopped(mob/living/user)
-	to_chat(user, span_notice("You stop reading..."))
+	to_chat(user, span_notice("你停止了阅读……"))
 
 /// Called when the reading is completely finished. This is where the actual granting should happen.
 /obj/item/book/granter/proc/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice("You finish reading [name]!"))
+	to_chat(user, span_notice("你读完了[name]！"))
 
 /// The actual "turning over of the page" flavor bit that happens while someone is reading the granter.
 /obj/item/book/granter/proc/turn_page(mob/living/user)
@@ -74,7 +74,7 @@
 	if(!do_after(user, reading_time, src))
 		return FALSE
 
-	to_chat(user, span_notice("[length(remarks) ? pick(remarks) : "You keep reading..."]"))
+	to_chat(user, span_notice("[length(remarks) ? pick(remarks) : "你继续阅读……"]"))
 	return TRUE
 
 /// Effects that occur whenever the book is read when it has no uses left.
@@ -95,16 +95,16 @@
 	if(!granted_action)
 		CRASH("Someone attempted to learn [type], which did not have an action set.")
 	if(locate(granted_action) in user.actions)
-		to_chat(user, span_warning("You already know all about [action_name]!"))
+		to_chat(user, span_warning("你已经完全掌握[chinese_granter_spell_display(action_name)]了！"))
 		return FALSE
 	return TRUE
 
 /obj/item/book/granter/action/on_reading_start(mob/living/user)
-	to_chat(user, span_notice("You start reading about [action_name]..."))
+	to_chat(user, span_notice("你开始阅读有关[chinese_granter_spell_display(action_name)]的内容……"))
 	return TRUE
 
 /obj/item/book/granter/action/on_reading_finished(mob/living/user)
-	to_chat(user, span_notice("You feel like you've got a good handle on [action_name]!"))
+	to_chat(user, span_notice("你觉得自己已经熟练掌握了[chinese_granter_spell_display(action_name)]！"))
 	// Action goes on the mind as the user actually learns the thing in your brain
 	var/datum/action/new_action = new granted_action(user.mind || user)
 	new_action.Grant(user)

@@ -1,30 +1,30 @@
 /datum/personality/animal_friend
 	savefile_key = "animal_friend"
-	name = "Animal Friend"
-	desc = "I love animals! They'll never leave my side."
-	pos_gameplay_desc = "Likes being around pets"
-	neg_gameplay_desc = "Seeing a pet's death affects your mood more"
+	name = "动物之友"
+	desc = "我爱动物！它们永远不会离我而去。"
+	pos_gameplay_desc = "喜欢与宠物相处"
+	neg_gameplay_desc = "目睹宠物死亡对你的情绪影响更大"
 	groups = list(PERSONALITY_GROUP_ANIMALS)
 
 /datum/personality/cat_fan
 	savefile_key = "cat_fan"
-	name = "Cat Person"
-	desc = "Cats are so cute!"
-	pos_gameplay_desc = "Likes being around cats"
-	neg_gameplay_desc = "Dislikes being around dogs"
+	name = "爱猫人士"
+	desc = "猫咪太可爱了！"
+	pos_gameplay_desc = "喜欢待在猫身边"
+	neg_gameplay_desc = "不喜欢待在狗身边"
 	groups = list(PERSONALITY_GROUP_ANIMALS)
 
 /datum/personality/dog_fan
 	savefile_key = "dog_fan"
-	name = "Dog Person"
-	desc = "Dogs are the best!"
-	pos_gameplay_desc = "Likes being around dogs"
-	neg_gameplay_desc = "Dislikes being around cats"
+	name = "爱狗人士"
+	desc = "狗狗最棒了！"
+	pos_gameplay_desc = "喜欢待在狗身边"
+	neg_gameplay_desc = "不喜欢待在猫身边"
 	groups = list(PERSONALITY_GROUP_ANIMALS)
 
 /datum/personality/animal_disliker
 	savefile_key = "animal_disliker"
-	name = "Animal Averse"
-	desc = "We can barely survive on this station, and you want to keep a pet?"
-	neg_gameplay_desc = "Dislikes being around pets"
+	name = "厌恶动物"
+	desc = "我们在这座空间站上活命都难，你还想养宠物？"
+	neg_gameplay_desc = "不喜欢与宠物相处"
 	groups = list(PERSONALITY_GROUP_ANIMALS)

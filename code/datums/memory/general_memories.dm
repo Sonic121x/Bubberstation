@@ -17,22 +17,22 @@
 	return ..()
 
 /datum/memory/surgery/get_names()
-	return list("The [surgery_type] of [deuteragonist_name] by [protagonist_name].")
+	return list("[protagonist_name]为[deuteragonist_name]进行的[surgery_type]。")
 
 /datum/memory/surgery/get_starts()
 	return list(
-		"[protagonist_name] carefully performing [surgery_type] on [deuteragonist_name]",
-		"[protagonist_name] using a bone saw on [deuteragonist_name]",
-		"[deuteragonist_name] being operated on by [protagonist_name]",
+		"[protagonist_name]小心翼翼地为[deuteragonist_name]进行[surgery_type]",
+		"[protagonist_name]正在对[deuteragonist_name]使用骨锯",
+		"[protagonist_name]正在为[deuteragonist_name]做手术",
 	)
 
 /datum/memory/surgery/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] after finishing [surgery_type].",
-		"[protagonist_name] [mood_verb] as a blood splatter lands on [protagonist_name]'s face.",
-		"[protagonist_name] [mood_verb] as the [surgery_type] continues.",
-		"[protagonist_name] [mood_verb] as they pick apart [deuteragonist_name].",
-		"[protagonist_name] [mood_verb] as they tear into [deuteragonist_name].",
+		"[protagonist_name]完成[surgery_type]后，[mood_verb]。",
+		"鲜血溅到[protagonist_name]脸上，[protagonist_name][mood_verb]。",
+		"[surgery_type]仍在继续，[protagonist_name][mood_verb]。",
+		"[protagonist_name]剖开[deuteragonist_name]的身体时，[mood_verb]。",
+		"[protagonist_name]切入[deuteragonist_name]的身体时，[mood_verb]。",
 	)
 
 /// Planted a bomb.
@@ -42,25 +42,25 @@
 	// Antaognist - The bomb that was armed
 
 /datum/memory/bomb_planted/get_names()
-	return list("The arming of [antagonist_name] by [protagonist_name].")
+	return list("[protagonist_name]启动了[antagonist_name]。")
 
 /datum/memory/bomb_planted/get_starts()
 	return list(
-		"[protagonist_name] pressing an ominous button, causing [antagonist_name] to begin beeping",
-		"[protagonist_name] slapping down [antagonist_name]",
-		"[antagonist_name] being armed by [protagonist_name]",
+		"[protagonist_name]按下一个不祥的按钮，[antagonist_name]开始发出哔哔声",
+		"[protagonist_name]重重地放下[antagonist_name]",
+		"[protagonist_name]正在启动[antagonist_name]",
 	)
 
 /datum/memory/bomb_planted/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] and begins to walk away from it.",
-		"[protagonist_name] [mood_verb] as it begins to tick.",
-		"[protagonist_name] [mood_verb] with it winding down.",
-		"beep... beep... [protagonist_name] [mood_verb]."
+		"[protagonist_name][mood_verb]，开始走远。",
+		"计时器开始滴答作响，[protagonist_name][mood_verb]。",
+		"倒计时逐渐归零，[protagonist_name][mood_verb]。",
+		"哔……哔……[protagonist_name][mood_verb]。"
 	)
 
 /datum/memory/bomb_planted/get_happy_moods()
-	return list("feels too cool to look at [antagonist_name]")
+	return list("觉得真酷的人从不回头看[antagonist_name]")
 
 /// Planted a SYNDICATE bomb.
 /datum/memory/bomb_planted/syndicate
@@ -86,26 +86,26 @@
 	high_five_type,
 	high_ten = FALSE,
 )
-	src.high_five_type = high_five_type
+	src.high_five_type = high_five_type == "high five" ? "击掌" : high_five_type == "high ten" ? "双手击掌" : high_five_type
 	src.story_value = high_ten ? STORY_VALUE_OKAY : STORY_VALUE_MEH
 	return ..()
 
 /datum/memory/high_five/get_names()
-	return list("The [high_five_type] between [protagonist_name] and [deuteragonist_name].")
+	return list("[protagonist_name]与[deuteragonist_name]的[high_five_type]。")
 
 /datum/memory/high_five/get_starts()
 	return list(
-		"[protagonist_name] and [deuteragonist_name] having a legendary [high_five_type]",
-		"[protagonist_name] giving [deuteragonist_name] a [high_five_type]",
-		"[protagonist_name] and [deuteragonist_name] giving each other a [high_five_type]",
+		"[protagonist_name]和[deuteragonist_name]来了一次堪称传奇的[high_five_type]",
+		"[protagonist_name]向[deuteragonist_name]送上一次[high_five_type]",
+		"[protagonist_name]和[deuteragonist_name]互相[high_five_type]",
 	)
 
 /datum/memory/high_five/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as the [high_five_type] connects.",
-		"[protagonist_name] [mood_verb] at all the compatriotism going on.",
-		"What a [high_five_type]! [protagonist_name] [mood_verb].",
-		"Wow! [protagonist_name] [mood_verb]!",
+		"双方成功[high_five_type]，[protagonist_name][mood_verb]。",
+		"面对这份同伴之情，[protagonist_name][mood_verb]。",
+		"多棒的一次[high_five_type]！[protagonist_name][mood_verb]。",
+		"哇！[protagonist_name][mood_verb]！",
 	)
 
 /// Was cyborgized.
@@ -115,12 +115,12 @@
 	// Protagonist - The mind of who was just cyborgized
 
 /datum/memory/was_cyborged/get_names()
-	return list("The borging of [protagonist_name].")
+	return list("[protagonist_name]被改造成了半机械人。")
 
 /datum/memory/was_cyborged/get_starts()
 	return list(
-		"[protagonist_name] having their brain put into a robot",
-		"[protagonist_name] getting turned into a bucket of bolts",
+		"[protagonist_name]的大脑被装进了机器人",
+		"[protagonist_name]被变成了一堆螺丝钉",
 	)
 
 /// Witnessed someone die nearby.
@@ -130,14 +130,14 @@
 	// Protagonist - Who died
 
 /datum/memory/witnessed_death/get_names()
-	return list("The death of [protagonist_name].")
+	return list("[protagonist_name]的死亡。")
 
 /datum/memory/witnessed_death/get_starts()
 	return list(
-		"[protagonist_name] having perished",
-		"[protagonist_name] seizing up and falling limp, their eyes appearing dead and lifeless",
-		"[protagonist_name]'s heart stopping",
-		"the death of [protagonist_name]",
+		"[protagonist_name]已经死去",
+		"[protagonist_name]浑身一僵，随后瘫软倒下，双眼失去生气",
+		"[protagonist_name]的心脏停止了跳动",
+		"[protagonist_name]迎来了死亡",
 	)
 
 /// Witnessed someone get creampied nearby.
@@ -147,19 +147,19 @@
 	// Protagonist - The mob that got pied
 
 /datum/memory/witnessed_creampie/get_names()
-	return list("The creaming of [protagonist_name].")
+	return list("[protagonist_name]被奶油糊了一脸。")
 
 /datum/memory/witnessed_creampie/get_starts()
 	return list(
-		"[protagonist_name]'s face being covered in cream",
-		"[protagonist_name] getting cream-pied",
+		"[protagonist_name]满脸都是奶油",
+		"[protagonist_name]被奶油派砸中了",
 	)
 
 /datum/memory/witnessed_creampie/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as the cream drips off their face",
-		"[protagonist_name] [mood_verb] because of their now expanded laundry task.",
-		"[protagonist_name] [mood_verb] as they lick off some of the pie",
+		"奶油从[protagonist_name]脸上滴落，[protagonist_name][mood_verb]。",
+		"想到又多了些要洗的衣服，[protagonist_name][mood_verb]。",
+		"[protagonist_name]舔了点派上的奶油，[mood_verb]。",
 	)
 
 /// Witnessed someone get splashed with squid ink.
@@ -169,19 +169,19 @@
 	// Protagonist - The mob that got pied
 
 /datum/memory/witnessed_inking/get_names()
-	return list("The inking of [protagonist_name].")
+	return list("[protagonist_name]被喷了一脸墨汁。")
 
 /datum/memory/witnessed_inking/get_starts()
 	return list(
-		"[protagonist_name]'s face being covered in squid ink",
-		"[protagonist_name] getting squid-inked",
+		"[protagonist_name]的脸上沾满了鱿鱼墨汁",
+		"[protagonist_name]被鱿鱼墨汁喷中了",
 	)
 
 /datum/memory/witnessed_inking/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as ink drips off their face",
-		"[protagonist_name] [mood_verb] because of their now expanded laundry task.",
-		"[protagonist_name] [mood_verb] as they wipe the ink off their face.",
+		"墨汁从[protagonist_name]脸上滴落，[protagonist_name][mood_verb]。",
+		"想到又多了些要洗的衣服，[protagonist_name][mood_verb]。",
+		"[protagonist_name]擦去脸上的墨汁，[mood_verb]。",
 	)
 
 /// Got slipped by something.
@@ -191,29 +191,29 @@
 	// Antagonist - The thing that did the slipping (banana peel, etc)
 
 /datum/memory/was_slipped/get_names()
-	return list("The slipping of [protagonist_name].")
+	return list("[protagonist_name]滑倒了。")
 
 /datum/memory/was_slipped/get_starts()
 	return list(
-		"[protagonist_name] not being able to keep standing when faced with [antagonist_name]",
-		"[protagonist_name] tumbling right over [antagonist_name]",
-		"[antagonist_name] which took [protagonist_name] down a notch",
+		"面对[antagonist_name]，[protagonist_name]没能站稳",
+		"[protagonist_name]在[antagonist_name]上摔了个跟头",
+		"[antagonist_name]让[protagonist_name]摔了个四脚朝天",
 	)
 
 /datum/memory/was_slipped/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they crawl up from the ground.",
-		"[protagonist_name] [mood_verb] while on the ground.",
+		"[protagonist_name]从地上爬起来，[mood_verb]。",
+		"[protagonist_name]躺在地上，[mood_verb]。",
 	)
 
 /datum/memory/was_slipped/get_sad_moods()
-	return list("doesn't even want to get up and looks depressed")
+	return list("沮丧得连爬起来都不愿意")
 
 /datum/memory/was_slipped/build_story_character(character)
 	// We can slip on turfs, so we should account for it
 	if(isturf(character))
 		var/turf/place = character
-		return "the [prob(50) ? "perilous " : ""][pick("wet", "lubed", "slippery", "cold")] [place.name]"
+		return "[prob(50) ? "危险的" : ""][pick("潮湿的", "涂满润滑剂的", "湿滑的", "冰冷的")][place.name]"
 
 	return ..()
 
@@ -224,18 +224,18 @@
 	// Protagonist - The mob losing their spaghet
 
 /datum/memory/lost_spaghetti/get_names()
-	return list("[protagonist_name]'s spaghetti blunder.")
+	return list("[protagonist_name]的意大利面糗事。")
 
 /datum/memory/lost_spaghetti/get_starts()
 	return list(
-		"[protagonist_name]'s spaghetti pouring out of their pockets",
-		"[protagonist_name]'s pockets not being able to contain their spaghetti",
+		"意大利面从[protagonist_name]的口袋里倾泻而出",
+		"[protagonist_name]的口袋已经装不下意大利面了",
 	)
 
 /datum/memory/lost_spaghetti/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as the spaghetti poured out.",
-		"[protagonist_name] [mood_verb] as they try to pick up the scraps.",
+		"意大利面倾泻而出，[protagonist_name][mood_verb]。",
+		"[protagonist_name]试图捡起散落的面条，[mood_verb]。",
 	)
 
 /// Got kissed! AHHHHH!
@@ -247,18 +247,18 @@
 	// Deuteragonist - The mob doing the kissing
 
 /datum/memory/kissed/get_names()
-	return list("the kiss blown to [protagonist_name]")
+	return list("送给[protagonist_name]的飞吻。")
 
 /datum/memory/kissed/get_starts()
 	return list(
-		"[protagonist_name]'s receiving a blown kiss from [deuteragonist_name]",
-		"[deuteragonist_name] blowing a kiss to [protagonist_name]",
+		"[protagonist_name]收到了[deuteragonist_name]的飞吻",
+		"[deuteragonist_name]向[protagonist_name]送出了飞吻",
 	)
 
 /datum/memory/kissed/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as the kiss lands on their cheek.",
-		"[protagonist_name] [mood_verb] as it happen.",
+		"飞吻落在[protagonist_name]的脸颊上，[protagonist_name][mood_verb]。",
+		"就在这一刻，[protagonist_name][mood_verb]。",
 	)
 
 /// Had some good food.
@@ -279,19 +279,19 @@
 	return ..()
 
 /datum/memory/good_food/get_names()
-	return list("A delicious [food] [protagonist_name] ate")
+	return list("[protagonist_name]吃过的美味[food]。")
 
 /datum/memory/good_food/get_starts()
 	return list(
-		"[food] changing [protagonist_name]'s outlook on food",
-		"[food] is leaving [protagonist_name] round and full",
-		"[food] leaving a long lasting impression on [protagonist_name]",
-		"[protagonist_name] enjoying an incredibly good [food]",
-		"[protagonist_name] producing a slice of life anime reaction to eating [food]",
+		"[food]改变了[protagonist_name]对美食的看法",
+		"[food]让[protagonist_name]吃得肚子圆滚滚的",
+		"[food]给[protagonist_name]留下了难忘的印象",
+		"[protagonist_name]正享用美味无比的[food]",
+		"[protagonist_name]吃下[food]后，露出了日常动画角色般夸张的反应",
 	)
 
 /datum/memory/good_food/get_moods()
-	return list("[protagonist_name] [mood_verb] as they take another bite.")
+	return list("[protagonist_name]又吃了一口，[mood_verb]。")
 
 /// Had a good drink.
 /datum/memory/good_drink
@@ -311,18 +311,18 @@
 	return ..()
 
 /datum/memory/good_drink/get_names()
-	return list("a delicious [drink] [protagonist_name] consumed")
+	return list("[protagonist_name]喝过的美味[drink]。")
 
 /datum/memory/good_drink/get_starts()
 	return list(
-		"[drink] changing [protagonist_name]'s outlook on classy drinking",
-		"[drink] leaving a long lasting impression on [protagonist_name]",
-		"[protagonist_name] enjoying an incredibly good [drink]",
-		"[protagonist_name] slurping some tasty [drink]",
+		"[drink]改变了[protagonist_name]对优雅饮酒的看法",
+		"[drink]给[protagonist_name]留下了难忘的印象",
+		"[protagonist_name]正享用美味无比的[drink]",
+		"[protagonist_name]正啜饮可口的[drink]",
 	)
 
 /datum/memory/good_drink/get_moods()
-	return list("[protagonist_name] [mood_verb] as they take another sip.")
+	return list("[protagonist_name]又喝了一口，[mood_verb]。")
 
 /// Was set on fire and started to burn.
 /datum/memory/was_burning
@@ -330,17 +330,17 @@
 	// Protagonist - The mob burning
 
 /datum/memory/was_burning/get_names()
-	return list("The burning of [protagonist_name].")
+	return list("[protagonist_name]浑身燃烧。")
 
 /datum/memory/was_burning/get_starts()
 	return list(
-		"[protagonist_name] bursting into flames",
-		"[protagonist_name] turning into a human torch",
-		"the fire that engulfed [protagonist_name]",
+		"[protagonist_name]突然燃烧起来",
+		"[protagonist_name]变成了人形火炬",
+		"大火吞没了[protagonist_name]",
 	)
 
 /datum/memory/was_burning/get_moods()
-	return list("[protagonist_name] [mood_verb] as their skin melts.")
+	return list("[protagonist_name]的皮肤逐渐融化，[protagonist_name][mood_verb]。")
 
 /// Got a limb removed by force.
 /datum/memory/was_dismembered
@@ -356,23 +356,23 @@
 	atom/antagonist,
 	obj/item/bodypart/lost_limb,
 )
-	src.lost_limb = lost_limb.plaintext_zone
+	src.lost_limb = chinese_body_zone_display(lost_limb.plaintext_zone)
 	return ..()
 
 /datum/memory/was_dismembered/get_names()
-	return list("The loss of [protagonist_name]'s [lost_limb].")
+	return list("[protagonist_name]失去了[lost_limb]。")
 
 /datum/memory/was_dismembered/get_starts()
 	return list(
-		"[protagonist_name] becoming eligible for handicapped parking",
-		"[protagonist_name]'s [lost_limb] being shot into the abyss",
-		"[protagonist_name]'s [lost_limb] flinging away",
+		"[protagonist_name]获得了使用残疾人停车位的资格",
+		"[protagonist_name]的[lost_limb]被打飞到深渊中",
+		"[protagonist_name]的[lost_limb]飞了出去",
 	)
 
 /datum/memory/was_dismembered/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] after losing [lost_limb].",
-		"Without [lost_limb], [protagonist_name] [mood_verb].",
+		"失去[lost_limb]后，[protagonist_name][mood_verb]。",
+		"[protagonist_name]没了[lost_limb]，[mood_verb]。",
 	)
 
 /// Our pet died...
@@ -383,19 +383,19 @@
 	// Deuteragonist - The pet which died
 
 /datum/memory/pet_died/get_names()
-	return list("The death of [deuteragonist_name].")
+	return list("[deuteragonist_name]的死亡。")
 
 /datum/memory/pet_died/get_starts()
 	return list(
-		"honoring [deuteragonist_name], the station's pet",
-		"[deuteragonist_name]'s funeral, which is attended by a group of crew members",
-		"a shallow hole, with [deuteragonist_name] inside",
+		"大家正在悼念空间站的宠物[deuteragonist_name]",
+		"一群船员参加了[deuteragonist_name]的葬礼",
+		"一个浅坑里躺着[deuteragonist_name]",
 	)
 
 /datum/memory/pet_died/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] without [deuteragonist_name].",
-		"Without [deuteragonist_name], [protagonist_name] [mood_verb].",
+		"失去[deuteragonist_name]后，[protagonist_name][mood_verb]。",
+		"[deuteragonist_name]已经不在了，[protagonist_name][mood_verb]。",
 	)
 
 /// The revolution was triumphant!
@@ -406,20 +406,20 @@
 	// Protagonist - The head revolutionary that won the revolution
 
 /datum/memory/revolution_rev_victory/get_names()
-	return list("The revolution of [station_name()] by [protagonist_name].")
+	return list("[protagonist_name]在[station_name()]发动的革命。")
 
 /datum/memory/revolution_rev_victory/get_starts()
 	return list(
-		"[protagonist_name] raising the flag of the revolution over the corpses of the former dictators",
-		"a flag waving above a pile of corpses with [protagonist_name] standing over it",
-		"a poster that says [station_name()] with a cross in it, hailing in a new era",
-		"a statue of the former captain toppled over, with [protagonist_name] next to it",
+		"[protagonist_name]在昔日独裁者的尸体上升起了革命旗帜",
+		"一面旗帜在尸堆上方飘扬，[protagonist_name]站在其上",
+		"一张写着[station_name()]的海报被画上了叉，宣告新时代的到来",
+		"前任舰长的雕像倒在地上，[protagonist_name]站在旁边",
 	)
 
 /datum/memory/revolution_rev_victory/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] at the fall of [station_name()].",
-		"[protagonist_name] [mood_verb] at the idea of the new era.",
+		"见证[station_name()]的陷落，[protagonist_name][mood_verb]。",
+		"想到即将到来的新时代，[protagonist_name][mood_verb]。",
 	)
 
 /// Given to heads of staff if they lose a revolution and are alive still.
@@ -429,19 +429,19 @@
 	// Protagonist - The head of staff that lost the revolution
 
 /datum/memory/revolution_heads_defeated/get_names()
-	return list("The defeat of [protagonist_name] at the hands of the revolution")
+	return list("[protagonist_name]败在了革命者手下。")
 
 /datum/memory/revolution_heads_defeated/get_starts()
 	return list(
-		"[protagonist_name] fleeing [station_name()] in shame due to the success of the revolution",
-		"[protagonist_name] looking at a camera feed of rampaging revolutionaries",
-		"a poster with [protagonist_name]'s face stratched out",
+		"革命成功了，[protagonist_name]羞愧地逃离[station_name()]",
+		"[protagonist_name]看着监控画面中横行的革命者",
+		"一张海报上，[protagonist_name]的脸被划掉了",
 	)
 
 /datum/memory/revolution_heads_defeated/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] at the fall of [station_name()].",
-		"[protagonist_name] [mood_verb] at their defeat.",
+		"见证[station_name()]的陷落，[protagonist_name][mood_verb]。",
+		"面对失败，[protagonist_name][mood_verb]。",
 	)
 
 /// Given to head revs for failing the revolution!
@@ -452,15 +452,15 @@
 
 /datum/memory/revolution_rev_defeat/get_names()
 	return list(
-		"The defeat of [protagonist_name] at the hands of the Nanotrasen",
-		"The end of [protagonist_name]'s glorious revolution",
+		"[protagonist_name]败在了纳米传讯手下。",
+		"[protagonist_name]的光荣革命走向了终结。",
 	)
 
 /datum/memory/revolution_rev_defeat/get_starts()
-	return list("[protagonist_name] fleeing [station_name()] in shame due to the failure of their revolution")
+	return list("革命失败了，[protagonist_name]羞愧地逃离[station_name()]。")
 
 /datum/memory/revolution_rev_defeat/get_moods()
-	return list("[protagonist_name] [mood_verb] at their defeat.")
+	return list("面对失败，[protagonist_name][mood_verb]。")
 
 /// Given to heads of staff, and those around them, upon defeating the revolutionaries.
 /datum/memory/revolution_heads_victory
@@ -469,16 +469,16 @@
 	// Protagonist - The head of staff that won the revolution
 
 /datum/memory/revolution_heads_victory/get_names()
-	return list("The success of [protagonist_name] and Nanotrasen over the hateful revolution")
+	return list("[protagonist_name]与纳米传讯成功镇压了可恨的革命。")
 
 /datum/memory/revolution_heads_victory/get_starts()
 	return list(
-		"[protagonist_name] dusting off their hands in victory over the revoution",
-		"the banner of Nanotrasen flying on the bridge of [station_name()] with [protagonist_name] proudly beside it",
+		"镇压革命取得胜利后，[protagonist_name]拍去了手上的灰尘",
+		"纳米传讯的旗帜在[station_name()]舰桥上飘扬，[protagonist_name]骄傲地站在旁边",
 	)
 
 /datum/memory/revolution_rev_defeat/get_moods()
-	return list("[protagonist_name] [mood_verb] over the defeat of the revolution by the hands of Nanotrasen.")
+	return list("纳米传讯击败了革命者，[protagonist_name][mood_verb]。")
 
 /// Watched someone receive a commendation medal
 /datum/memory/received_medal
@@ -504,19 +504,19 @@
 	return ..()
 
 /datum/memory/received_medal/get_names()
-	return list("The award ceremony of [medal_type] to [protagonist_name].")
+	return list("向[protagonist_name]颁发[medal_type]的仪式。")
 
 /datum/memory/received_medal/get_starts()
 	return list(
-		"[protagonist_name] accepting a [medal_type] inscribed with \"[medal_text]\" from [deuteragonist_name]",
-		"[protagonist_name] receiving a [medal_type] with the inscription \"[medal_text]\"",
-		"a [medal_type] with the inscription \"[medal_text]\" being awarded to [protagonist_name] by [deuteragonist_name]",
+		"[protagonist_name]从[deuteragonist_name]手中接过刻着\"[medal_text]\"的[medal_type]",
+		"[protagonist_name]获颁了刻着\"[medal_text]\"的[medal_type]",
+		"[deuteragonist_name]向[protagonist_name]颁发了一枚刻着\"[medal_text]\"的[medal_type]",
 	)
 
 /datum/memory/received_medal/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they receive their medal.",
-		"[protagonist_name] [mood_verb] with their newly received award.",
+		"[protagonist_name]接过勋章时，[mood_verb]。",
+		"[protagonist_name]拿着刚获得的奖章，[mood_verb]。",
 	)
 
 /// Killed a Megafauna
@@ -526,19 +526,19 @@
 	// Antagonist - The megafauna
 
 /datum/memory/megafauna_slayer/get_names()
-	return list("The slaughter of [antagonist_name].")
+	return list("[antagonist_name]被杀死了。")
 
 /datum/memory/megafauna_slayer/get_starts()
 	return list(
-		"[protagonist_name] performing the final strike on [antagonist_name], taking it down",
-		"[protagonist_name] standing with the head of [antagonist_name] in their hand",
-		"the killing of [antagonist_name], the dangerous megafauna, by [protagonist_name]",
+		"[protagonist_name]对[antagonist_name]打出了最后一击，将其击倒",
+		"[protagonist_name]站在那里，手中提着[antagonist_name]的头",
+		"[protagonist_name]杀死了危险的巨型生物[antagonist_name]",
 	)
 
 /datum/memory/megafauna_slayer/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as the blood lust fades from their eyes.",
-		"[protagonist_name] [mood_verb] as they search the corpse for valuables.",
+		"眼中的嗜血欲望逐渐消退，[protagonist_name][mood_verb]。",
+		"[protagonist_name]在尸体上搜寻贵重物品，[mood_verb]。",
 	)
 
 /// Got held at gunpoint by someone!
@@ -550,18 +550,18 @@
 	// Antagonist - The gun
 
 /datum/memory/held_at_gunpoint/get_names()
-	return list("[protagonist_name] being held at gunpoint.")
+	return list("[protagonist_name]被枪口指着。")
 
 /datum/memory/held_at_gunpoint/get_starts()
 	return list(
-		"[protagonist_name] with [antagonist_name] pressed to their skull by [deuteragonist_name]",
-		"[deuteragonist_name] whipping out [antagonist_name] and pointing it at [protagonist_name]",
+		"[deuteragonist_name]将[antagonist_name]抵在[protagonist_name]的头上",
+		"[deuteragonist_name]猛地掏出[antagonist_name]，指向[protagonist_name]",
 	)
 
 /datum/memory/held_at_gunpoint/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they are faced with the situation.",
-		"[protagonist_name] [mood_verb] as they stare down [antagonist_name]'s barrel.",
+		"面对眼前的局面，[protagonist_name][mood_verb]。",
+		"[protagonist_name]盯着[antagonist_name]的枪口，[mood_verb]。",
 	)
 
 
@@ -569,18 +569,18 @@
 	story_value = STORY_VALUE_AMAZING
 
 /datum/memory/won_jackpot/get_names()
-	return list("[protagonist_name] winning it big.")
+	return list("[protagonist_name]赢得了大奖。")
 
 /datum/memory/won_jackpot/get_starts()
 	return list(
-		"[protagonist_name] hits [deuteragonist_name]'s lever, with money symbols in their eyes.",
-		"[deuteragonist_name] plays a jingle as [protagonist_name] pulls the lever.",
+		"[protagonist_name]两眼放光地拉下了[deuteragonist_name]的拉杆。",
+		"[protagonist_name]拉下拉杆时，[deuteragonist_name]响起了一段欢快的旋律。",
 	)
 
 /datum/memory/won_jackpot/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they collect the money from the [deuteragonist_name].",
-		"[protagonist_name] [mood_verb] as [deuteragonist_name] starts spitting out money with a blare.",
+		"[protagonist_name]从[deuteragonist_name]取走奖金，[mood_verb]。",
+		"[deuteragonist_name]伴着响亮的声音开始吐出钞票，[protagonist_name][mood_verb]。",
 	)
 
 /// Saw someone get gibbed.
@@ -590,12 +590,12 @@
 	// Protagonist - Who got gibbed
 
 /datum/memory/witness_gib/get_names()
-	return list("[protagonist_name] exploding into bits.")
+	return list("[protagonist_name]炸成了碎块。")
 
 /datum/memory/witness_gib/get_starts()
 	return list(
-		"[protagonist_name] exploding into little fleshy bits",
-		"[protagonist_name] becoming flesh paste in the blink of an eye",
+		"[protagonist_name]炸成了细小的肉块",
+		"[protagonist_name]眨眼间变成了肉泥",
 	)
 
 /// Saw someone get crushed by a vending machine.
@@ -606,19 +606,19 @@
 	// Antagonist - The vendor that crushed them
 
 /datum/memory/witness_vendor_crush/get_names()
-	return list("[protagonist_name] being crushed by [antagonist_name].")
+	return list("[protagonist_name]被[antagonist_name]压住了。")
 
 /datum/memory/witness_vendor_crush/get_starts()
 	return list(
-		"[protagonist_name] being crushed by the [antagonist_name]",
-		"the [antagonist_name] that crashed on top of [protagonist_name]",
-		"the fall of [antagonist_name] onto [protagonist_name]",
+		"[antagonist_name]压住了[protagonist_name]",
+		"[antagonist_name]重重砸在[protagonist_name]身上",
+		"[antagonist_name]倒在了[protagonist_name]身上",
 	)
 
 /datum/memory/witness_vendor_crush/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they lie under the machine.",
-		"[protagonist_name] [mood_verb] as a goodie falls out of the [antagonist_name]."
+		"[protagonist_name]躺在机器下面，[mood_verb]。",
+		"一件好东西从[antagonist_name]中掉了出来，[protagonist_name][mood_verb]。"
 	)
 
 /// Saw someone get dusted by the supermatter.
@@ -629,19 +629,19 @@
 	// Antagonist - The supermatter
 
 /datum/memory/witness_supermatter_dusting/get_names()
-	return list("The dusting of [protagonist_name] by the [antagonist_name].")
+	return list("[antagonist_name]将[protagonist_name]化成了灰。")
 
 /datum/memory/witness_supermatter_dusting/get_starts()
 	return list(
-		"[protagonist_name] turning into a pile of bones after touching the [antagonist_name]",
-		"The [antagonist_name] turning [protagonist_name] into ash",
-		"The dusting of [protagonist_name] after they got too close to the [antagonist_name]",
+		"[protagonist_name]碰到[antagonist_name]后变成了一堆白骨",
+		"[antagonist_name]将[protagonist_name]化成了灰",
+		"[protagonist_name]因靠[antagonist_name]太近而灰飞烟灭",
 	)
 
 /datum/memory/witness_supermatter_dusting/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they faded way.",
-		"[protagonist_name] [mood_verb] as they are reduced to atoms.",
+		"[protagonist_name]逐渐消散，[mood_verb]。",
+		"[protagonist_name]化为原子时，[mood_verb]。",
 	)
 
 /// Played cards with another person.
@@ -676,24 +676,24 @@
 		// but meh. Someone can improve upon it in the future
 		story_players += build_story_character(player)
 
-	src.formatted_players_list = english_list(story_players, nothing_text = "no-one")
+	src.formatted_players_list = english_list(story_players, nothing_text = "没有其他人")
 	return ..()
 
 /datum/memory/playing_cards/get_names()
-	return list("The [game] of [protagonist_name] with [formatted_players_list].")
+	return list("[protagonist_name]与[formatted_players_list]玩的[game]。")
 
 /datum/memory/playing_cards/get_starts()
 	return list(
-		"[formatted_players_list] waiting for [protagonist_name] to start the [game]",
-		"The [game] has been setup by [deuteragonist_name]",
-		"[deuteragonist_name] starts shuffling the deck for the [game]",
+		"[formatted_players_list]正等着[protagonist_name]开始[game]",
+		"[deuteragonist_name]已经布置好了[game]",
+		"[deuteragonist_name]开始为[game]洗牌",
 	)
 
 /datum/memory/playing_cards/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they hold the [protagonist_held_card] for the [game].",
-		"[protagonist_name] [mood_verb] as they pickup the [protagonist_held_card].",
-		"[protagonist_name] [mood_verb] as they put down the [protagonist_held_card].",
+		"[protagonist_name]在[game]中握着[protagonist_held_card]，[mood_verb]。",
+		"[protagonist_name]拿起[protagonist_held_card]时，[mood_verb]。",
+		"[protagonist_name]放下[protagonist_held_card]时，[mood_verb]。",
 	)
 
 /// Played 52 card pickup with another person.
@@ -705,18 +705,18 @@
 	// Antagonist - The deck of cards
 
 /datum/memory/playing_card_pickup/get_names()
-	return list("[protagonist_name] tricking [deuteragonist_name] into playing 52 pickup with [antagonist_name].")
+	return list("[protagonist_name]用[antagonist_name]戏弄[deuteragonist_name]，让其捡满地的牌。")
 
 /datum/memory/playing_card_pickup/get_starts()
 	return list(
-		"[protagonist_name] tossing the [antagonist_name] at [deuteragonist_name] spilling cards all over the floor",
-		"A [antagonist_name] thrown by [protagonist_name] splatters across [deuteragonist_name] face",
+		"[protagonist_name]把[antagonist_name]扔向[deuteragonist_name]，将牌撒得满地都是",
+		"[protagonist_name]扔出的[antagonist_name]散落在[deuteragonist_name]脸上",
 	)
 
 /datum/memory/playing_card_pickup/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they taunt [deuteragonist_name].",
-		"[deuteragonist_name] [mood_verb] as they shamefully pickup the cards.",
+		"[protagonist_name]嘲弄着[deuteragonist_name]，[mood_verb]。",
+		"[deuteragonist_name]羞愧地捡着牌，[mood_verb]。",
 	)
 
 /// Saw someone play Russian Roulette.
@@ -740,7 +740,7 @@
 	rounds_loaded = 0,
 	result,
 )
-	src.aimed_at = aimed_at
+	src.aimed_at = chinese_body_zone_display(aimed_at)
 	src.rounds_loaded = rounds_loaded
 	src.result = result
 
@@ -753,17 +753,17 @@
 	return ..()
 
 /datum/memory/witnessed_russian_roulette/get_names()
-	return list("[protagonist_name] playing a game of russian roulette.")
+	return list("[protagonist_name]玩了一局俄罗斯轮盘。")
 
 /datum/memory/witnessed_russian_roulette/get_starts()
 	return list(
-		"[protagonist_name] aiming at their [aimed_at] right before they pull the trigger.",
-		"The revolver has [rounds_loaded] rounds loaded in the chamber.",
-		"[protagonist_name] is gambling their life as they spin the revolver.",
+		"[protagonist_name]将枪口对准自己的[aimed_at]，即将扣动扳机。",
+		"左轮手枪的弹巢中装有[rounds_loaded]发子弹。",
+		"[protagonist_name]转动着左轮手枪，拿自己的性命作赌注。",
 	)
 
 /datum/memory/witnessed_russian_roulette/get_moods()
-	return list("[protagonist_name] [mood_verb] as they [result] the deadly game of roulette.")
+	return list("[protagonist_name][result == "won" ? "赢得" : "输掉"]了这场致命的轮盘赌，[mood_verb]。")
 
 /// When a heretic finishes their ritual of knowledge
 /datum/memory/heretic_knowledge_ritual
@@ -771,29 +771,29 @@
 	// Protagonist = heretic
 
 /datum/memory/heretic_knowledge_ritual/get_names()
-	return list("[protagonist_name] absorbing boundless knowledge through eldritch research.")
+	return list("[protagonist_name]通过邪异研究汲取无尽知识。")
 
 /datum/memory/heretic_knowledge_ritual/get_starts()
 	return list(
-		"[protagonist_name] laying out a circle of green tar and candles",
-		"multiple books around [protagonist_name] flipping open",
-		"green and purple energy surrounding [protagonist_name]",
-		"[protagonist_name], eyes wide open and unblinking, reading a strange book",
-		"a pile of gore and viscera on a complex looking rune",
-		"a wide, strange looking circle, with [protagonist_name] sketching it"
+		"[protagonist_name]用绿色焦油和蜡烛摆出一个圆圈",
+		"[protagonist_name]周围的多本书自行翻开",
+		"绿色与紫色的能量包围着[protagonist_name]",
+		"[protagonist_name]双眼圆睁，一眨不眨地读着一本怪书",
+		"一堆血肉内脏摆在复杂的符文上",
+		"[protagonist_name]正在勾画一个宽大而怪异的圆圈"
 	)
 
 /datum/memory/heretic_knowledge_ritual/get_moods()
-	return list("[protagonist_name] [mood_verb] as their hand glows with power.")
+	return list("[protagonist_name]的手中闪耀着力量的光芒，[protagonist_name][mood_verb]。")
 
 /datum/memory/heretic_knowledge_ritual/get_happy_moods()
-	return list("cackling madly")
+	return list("疯狂地尖笑着")
 
 /datum/memory/heretic_knowledge_ritual/get_neutral_moods()
-	return list("staring blankly with a wide grin")
+	return list("咧嘴大笑，目光呆滞")
 
 /datum/memory/heretic_knowledge_ritual/get_sad_moods()
-	return list("cackling insanely")
+	return list("歇斯底里地狂笑着")
 
 /// Failed to defuse a bomb, by triggering it early.
 /datum/memory/bomb_defuse_failure
@@ -803,17 +803,17 @@
 	// Antagonist = bomb
 
 /datum/memory/bomb_defuse_failure/get_names()
-	return list("[protagonist_name] failing to defuse [antagonist_name].")
+	return list("[protagonist_name]未能拆除[antagonist_name]。")
 
 /datum/memory/bomb_defuse_failure/get_starts()
 	return list(
-		"[protagonist_name] cutting the wrong wire on [antagonist_name]",
-		"[protagonist_name] sweating nervously and shielding their face as [antagonist_name] makes a loud noise",
-		"The clock on [antagonist_name] suddenly jumping to 0 seconds"
+		"[protagonist_name]剪错了[antagonist_name]上的线",
+		"[antagonist_name]发出巨响时，[protagonist_name]紧张地冒着汗，护住了脸",
+		"[antagonist_name]上的倒计时突然跳到0秒"
 	)
 
 /datum/memory/bomb_defuse_failure/get_moods()
-	return list("[protagonist_name] [mood_verb] as they snip a wire on [antagonist_name].")
+	return list("[protagonist_name]剪断[antagonist_name]上的一根线时，[mood_verb]。")
 
 /// Succeeded in defusing a bomb!
 /datum/memory/bomb_defuse_success
@@ -835,29 +835,29 @@
 	return ..()
 
 /datum/memory/bomb_defuse_success/get_names()
-	return list("[protagonist_name] successfully defusing [antagonist_name].")
+	return list("[protagonist_name]成功拆除了[antagonist_name]。")
 
 /datum/memory/bomb_defuse_success/get_starts()
 	return list(
-		"[protagonist_name] cutting the right wire on [antagonist_name]",
-		"[protagonist_name] sweating nervously and shielding their face as [antagonist_name] makes a shrill beep",
-		"The clock on [antagonist_name] stopping at [bomb_time_left]"
+		"[protagonist_name]剪对了[antagonist_name]上的线",
+		"[antagonist_name]发出刺耳的哔声时，[protagonist_name]紧张地冒着汗，护住了脸",
+		"[antagonist_name]上的倒计时停在了[bomb_time_left]秒"
 	)
 
 /datum/memory/bomb_defuse_success/get_moods()
-	return list("[protagonist_name] [mood_verb] as they snip a wire on [antagonist_name].")
+	return list("[protagonist_name]剪断[antagonist_name]上的一根线时，[mood_verb]。")
 
 
 /datum/memory/helped_up
 	story_value = STORY_VALUE_OKAY
 
 /datum/memory/helped_up/get_names()
-	return list("[protagonist_name] gentlemanly helping up [deuteragonist_name].")
+	return list("[protagonist_name]彬彬有礼地扶起了[deuteragonist_name]。")
 
 /datum/memory/helped_up/get_starts()
 	return list(
-		"[protagonist_name] helping up [deuteragonist_name]",
-		"[deuteragonist_name] taking the hand offered graciously by [protagonist_name] to get up",
+		"[protagonist_name]正在扶起[deuteragonist_name]",
+		"[deuteragonist_name]握住[protagonist_name]礼貌伸出的手，站了起来",
 	)
 
 /// Catching a fish
@@ -866,28 +866,28 @@
 
 /datum/memory/caught_fish/get_names()
 	return list(
-		"[protagonist_name] catching an absolute honker.",
-		"[protagonist_name] caught a [deuteragonist_name].",
+		"[protagonist_name]钓上了一条大家伙。",
+		"[protagonist_name]钓上了一条[deuteragonist_name]。",
 	)
 
 /datum/memory/caught_fish/get_starts()
 	return list(
-		"[protagonist_name] reels in the line",
-		"[protagonist_name]'s eye glints, and they begin reeling",
-		"in a fishing trance, [protagonist_name] catches something",
-		"[protagonist_name] begins battle with a fish",
-		"a whole lot of fishing going on",
+		"[protagonist_name]开始收线",
+		"[protagonist_name]眼睛一亮，开始收线",
+		"[protagonist_name]沉浸在垂钓中，钓上了什么东西",
+		"[protagonist_name]开始与一条鱼较量",
+		"一场热闹的垂钓正在进行",
 	)
 
 /datum/memory/caught_fish/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as a [deuteragonist_name] flies out of the water!",
-		"[protagonist_name] [mood_verb] as they catch a [deuteragonist_name]!",
-		"[protagonist_name] [mood_verb] as they pose holding a [deuteragonist_name]!",
+		"一条[deuteragonist_name]跃出水面，[protagonist_name][mood_verb]！",
+		"[protagonist_name]钓上了一条[deuteragonist_name]，[mood_verb]！",
+		"[protagonist_name]举着[deuteragonist_name]摆姿势，[mood_verb]！",
 	)
 
 /datum/memory/caught_fish/get_sad_moods()
-	return list("partakes in therapy fishing")
+	return list("借垂钓舒缓心情")
 
 /// Becoming a mutant via infusion
 /datum/memory/dna_infusion
@@ -907,65 +907,65 @@
 
 /datum/memory/dna_infusion/get_names()
 	return list(
-		"[protagonist_name] infusing with a [deuteragonist_name].",
-		"[protagonist_name] infusing a [deuteragonist_name] into themselves.",
+		"[protagonist_name]接受了[deuteragonist_name]的基因注入。",
+		"[protagonist_name]把[deuteragonist_name]的基因注入了自己体内。",
 	)
 
 /datum/memory/dna_infusion/get_starts()
 	return list(
-		"[protagonist_name] enters a creepy DNA machine",
-		"[protagonist_name]'s partakes in some mad science",
-		"the DNA infuser closes with [protagonist_name] inside",
-		"a [deuteragonist_name] is in the infusion slot"
+		"[protagonist_name]走进了一台令人毛骨悚然的 DNA 机器",
+		"[protagonist_name]参与了疯狂的科学实验",
+		"DNA 注入器关上了门，[protagonist_name]就在里面",
+		"注入槽里放着[deuteragonist_name]"
 	)
 
 /datum/memory/dna_infusion/get_moods()
 	return list(
-		"[protagonist_name] [mood_verb] as they infuse with a [deuteragonist_name]!",
-		"[protagonist_name] [mood_verb] as they become one the [deuteragonist_name].",
-		"[protagonist_name] [mood_verb] as their DNA has [deuteragonist_name] folded into it.",
-		"[protagonist_name] becomes more [mutantlike] as they infuse with a [deuteragonist_name]!",
-		"[protagonist_name] becomes more [mutantlike] as they become one the [deuteragonist_name].",
-		"[protagonist_name] becomes more [mutantlike] as their DNA has [deuteragonist_name] folded into it.",
+		"接受[deuteragonist_name]的基因注入时，[protagonist_name][mood_verb]！",
+		"与[deuteragonist_name]融为一体时，[protagonist_name][mood_verb]。",
+		"[deuteragonist_name]的基因融入了[protagonist_name]的 DNA，[protagonist_name][mood_verb]。",
+		"接受[deuteragonist_name]的基因注入后，[protagonist_name]变得更加[mutantlike]！",
+		"与[deuteragonist_name]融为一体后，[protagonist_name]变得更加[mutantlike]。",
+		"[deuteragonist_name]的基因融入 DNA 后，[protagonist_name]变得更加[mutantlike]。",
 	)
 
 /datum/memory/dna_infusion/get_happy_moods()
 	return list(
-		"endures the pain for science",
-		"confidently winces through the pain"
+		"为了科学忍受着痛苦",
+		"自信地咬牙忍痛"
 	)
 
 /datum/memory/dna_infusion/get_neutral_moods()
 	return list(
-		"screams with pain",
-		"begins to have second thoughts"
+		"痛得尖叫起来",
+		"开始打退堂鼓"
 	)
 
 /datum/memory/dna_infusion/get_sad_moods()
-	return list("bitterly rejects their humanity")
+	return list("悲愤地抛弃了人类之身")
 
 /// Who rev'd me, so if a mindreader reads a rev, they have a clue on who to hunt down
 /datum/memory/recruited_by_headrev
 
 /datum/memory/recruited_by_headrev/get_names()
-	return list("[protagonist_name] is converted into a revolutionary by [antagonist_name]")
+	return list("[antagonist_name]将[protagonist_name]转化成了革命者。")
 
 /datum/memory/recruited_by_headrev/get_starts()
 	return list(
-		"[protagonist_name]'s mind sets itself on a singular, violent purpose as they're flashed by [antagonist_name]: Kill the heads.",
-		"[antagonist_name] lifts an odd device to [protagonist_name]'s eyes and flashes him, imprinting murderous instructions.",
+		"[antagonist_name]用闪光灯照射了[protagonist_name]，其脑中只剩下一个暴力目标：杀死主管。",
+		"[antagonist_name]举起一个奇怪的装置，对着[protagonist_name]的双眼闪光，将杀戮指令烙进了脑海。",
 	)
 
 /// Who converted into a blood brother
 /datum/memory/recruited_by_blood_brother
 
 /datum/memory/recruited_by_blood_brother/get_names()
-	return list("[protagonist_name] is converted into a blood brother by [antagonist_name]")
+	return list("[antagonist_name]将[protagonist_name]转化成了血盟兄弟。")
 
 /datum/memory/recruited_by_blood_brother/get_starts()
 	return list(
-		"[antagonist_name] acts just a bit too friendly with [protagonist_name], moments away from converting them into a blood brother.",
-		"[protagonist_name] is brought into [antagonist_name]'s life of crime and espionage.",
+		"[antagonist_name]对[protagonist_name]显得有些过分亲热，很快就要将其转化成血盟兄弟。",
+		"[protagonist_name]被[antagonist_name]带进了充满犯罪与间谍活动的生活。",
 	)
 
 /// Saw someone play Russian Roulette.
@@ -981,35 +981,35 @@
 )
 
 /datum/memory/witnessed_gods_wrath/get_names()
-	return list("[protagonist_name] suffering the wrath of [antagonist_name].")
+	return list("[protagonist_name]承受了[antagonist_name]的怒火。")
 
 /datum/memory/witnessed_gods_wrath/get_starts()
 	return list(
-		"[protagonist_name] burns [deuteragonist_name], and [antagonist_name] turns [protagonist_name] into a fine red mist.",
-		"[antagonist_name] explodes [protagonist_name] into a million pieces for defiling [deuteragonist_name].",
-		"[protagonist_name] angers [antagonist_name] by defiling [deuteragonist_name], and gets obliterated.",
+		"[protagonist_name]烧毁了[deuteragonist_name]，[antagonist_name]将[protagonist_name]化作一团细密的血雾。",
+		"[protagonist_name]亵渎了[deuteragonist_name]，[antagonist_name]因此将其炸得粉碎。",
+		"[protagonist_name]亵渎[deuteragonist_name]，激怒了[antagonist_name]，随即被彻底抹杀。",
 	)
 
 /datum/memory/witnessed_gods_wrath/get_moods()
-	return list("[protagonist_name] [mood_verb] as they get annihilated by [antagonist_name].")
+	return list("[antagonist_name]将[protagonist_name]彻底毁灭时，[protagonist_name][mood_verb]。")
 
 /datum/memory/witnessed_gods_wrath/get_happy_moods()
 	return list(
-		"cackles hysterically",
-		"laughs maniacally",
-		"grins widely",
+		"歇斯底里地尖笑着",
+		"疯狂地大笑着",
+		"咧嘴大笑",
 	)
 
 /datum/memory/witnessed_gods_wrath/get_neutral_moods()
 	return list(
-		"appears concerned",
-		"reconsiders their life decisions",
-		"has a blank expression",
+		"显得忧心忡忡",
+		"重新审视自己的人生选择",
+		"面无表情",
 	)
 
 /datum/memory/witnessed_gods_wrath/get_sad_moods()
 	return list(
-		"appears dejected",
-		"is filled with regret",
-		"winces in despair"
+		"显得垂头丧气",
+		"满心悔恨",
+		"绝望地皱起脸"
 	)

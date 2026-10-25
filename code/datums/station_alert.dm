@@ -13,7 +13,7 @@
 /datum/station_alert/ui_host(mob/user)
 	return holder
 
-/datum/station_alert/New(holder, list/alarm_types, list/listener_z_level, list/listener_areas, title = "Station Alerts", camera_view = FALSE)
+/datum/station_alert/New(holder, list/alarm_types, list/listener_z_level, list/listener_areas, title = "空间站警报", camera_view = FALSE)
 	src.holder = holder
 	src.alarm_types = alarm_types
 	src.title = title
@@ -45,7 +45,7 @@
 		for(var/alert in alerts)
 			var/list/alert_details = alerts[alert]
 			alarm_category["alerts"] += list(list(
-				"name" = get_area_name(alert_details[1], TRUE),
+				"name" = chinese_area_display(get_area_name(alert_details[1], TRUE)),
 				"cameras" = camera_view ? length(alert_details[2]) : null,
 				"sources" = camera_view ? length(alert_details[3]) : null,
 				"ref" = camera_view ? REF(alert) : null,
@@ -92,12 +92,12 @@
 			if(length(named_cameras) == 1)
 				chosen_camera = named_cameras[1]
 			else
-				chosen_camera = tgui_input_list(ai, "Choose a camera to jump to", "Camera Selection", named_cameras)
+				chosen_camera = tgui_input_list(ai, "选择要切换到的摄像头", "选择摄像头", named_cameras)
 				if(isnull(chosen_camera))
 					return
 			var/obj/machinery/camera/selected_camera = named_cameras[chosen_camera]
 			if(!selected_camera.can_use())
-				to_chat(ai, span_warning("Camera is unavailable!"))
+				to_chat(ai, span_warning("摄像头不可用！"))
 				return
 			ai.switchCamera(selected_camera)
 			return TRUE

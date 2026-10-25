@@ -264,7 +264,7 @@ function RecipeRow(props: RecipeRowProps) {
                 });
               }}
               selected={preview.selected}
-              tooltip={preview.dir_name}
+              tooltip={chineseDisplay(preview.dir_name)}
               tooltipPosition="bottom"
             />
           </Stack.Item>

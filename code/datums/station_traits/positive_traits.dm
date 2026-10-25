@@ -2,11 +2,11 @@
 #define PARTY_COOLDOWN_LENGTH_MAX (12 MINUTES)
 
 /datum/station_trait/lucky_winner
-	name = "Lucky winner"
+	name = "幸运赢家"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 1
 	show_in_report = TRUE
-	report_message = "Your station has won the grand prize of the annual station charity event. Free snacks will be delivered to the bar every now and then."
+	report_message = "你站赢得了年度空间站慈善活动的大奖。免费小吃将不时送往酒吧。"
 	trait_processes = TRUE
 	COOLDOWN_DECLARE(party_cooldown)
 
@@ -42,42 +42,42 @@
 #undef PARTY_COOLDOWN_LENGTH_MAX
 
 /datum/station_trait/galactic_grant
-	name = "Galactic grant"
+	name = "银河拨款"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Your station has been selected for a special grant. Some extra funds has been made available to your cargo department."
+	report_message = "你站获选领取特别拨款。货运部已获得一笔额外资金。"
 
 /datum/station_trait/galactic_grant/on_round_start()
 	var/datum/bank_account/cargo_bank = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	cargo_bank.adjust_money(rand(2000, 5000))
 
 /datum/station_trait/premium_internals_box
-	name = "Premium internals boxes"
+	name = "高级应急呼吸装备盒"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "The internals boxes for your crew have been upsized and filled with bonus equipment."
+	report_message = "船员的应急呼吸装备盒已加大，并装入额外装备。"
 	trait_to_give = STATION_TRAIT_PREMIUM_INTERNALS
 
 /datum/station_trait/bountiful_bounties
-	name = "Bountiful bounties"
+	name = "丰厚悬赏"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "It seems collectors in this system are extra keen to on bounties, and will pay more to see their completion."
+	report_message = "本星系的收藏家似乎格外热衷悬赏，愿意为完成订单支付更高报酬。"
 
 /datum/station_trait/bountiful_bounties/on_round_start()
 	SSeconomy.bounty_modifier *= 1.2
 
 ///A positive station trait that scatters a bunch of lit glowsticks throughout maintenance
 /datum/station_trait/glowsticks
-	name = "Glowsticks party"
+	name = "荧光棒派对"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 2
 	show_in_report = TRUE
-	report_message = "We've glowsticks upon glowsticks to spare, so we scattered some around maintenance (plus a couple floor lights)."
+	report_message = "我们的荧光棒多得用不完，于是在维护区撒了一些（还有几盏地灯）。"
 
 /datum/station_trait/glowsticks/New()
 	..()
@@ -120,23 +120,23 @@
 			stick.turn_on()
 
 /datum/station_trait/strong_supply_lines
-	name = "Strong supply lines"
+	name = "畅通补给线"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Prices are low in this system, BUY BUY BUY!"
+	report_message = "本星系物价低廉，买买买！"
 	blacklist = list(/datum/station_trait/distant_supply_lines)
 
 /datum/station_trait/strong_supply_lines/on_round_start()
 	SSeconomy.pack_price_modifier *= 0.8
 
 /datum/station_trait/filled_maint
-	name = "Filled up maintenance"
+	name = "维护区堆满杂物"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "Our workers accidentally forgot more of their personal belongings in the maintenance areas."
+	report_message = "我们的工人不小心把更多私人物品遗落在了维护区。"
 	blacklist = list(/datum/station_trait/empty_maint)
 	trait_to_give = STATION_TRAIT_FILLED_MAINT
 
@@ -144,11 +144,11 @@
 	can_revert = FALSE
 
 /datum/station_trait/quick_shuttle
-	name = "Quick Shuttle"
+	name = "快速穿梭机"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Due to proximity to our supply station, the cargo shuttle will have a quicker flight time to your cargo department."
+	report_message = "由于距离补给站较近，货运穿梭机飞往你站货运部的时间将更短。"
 	blacklist = list(/datum/station_trait/slow_shuttle)
 
 /datum/station_trait/quick_shuttle/on_round_start()
@@ -156,21 +156,21 @@
 	SSshuttle.supply.callTime *= 0.5
 
 /datum/station_trait/deathrattle_department
-	name = "deathrattled department"
+	name = "部门死亡通报"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
 	abstract_type = /datum/station_trait/deathrattle_department
 	blacklist = list(/datum/station_trait/deathrattle_all)
 
 	var/department_to_apply_to
-	var/department_name = "department"
+	var/department_name = "部门"
 	var/datum/deathrattle_group/deathrattle_group
 
 /datum/station_trait/deathrattle_department/New()
 	. = ..()
-	deathrattle_group = new("[department_name] group")
+	deathrattle_group = new("[department_name]小组")
 	blacklist += subtypesof(/datum/station_trait/deathrattle_department) - type //All but ourselves
-	report_message = "All members of [department_name] have received an implant to notify each other if one of them dies. This should help improve job-safety!"
+	report_message = "[department_name]全体成员已接受植入物，任何一人死亡时都会通知其他人。这应该能提高工作安全性！"
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
 
@@ -186,58 +186,58 @@
 
 
 /datum/station_trait/deathrattle_department/service
-	name = "Deathrattled Service"
+	name = "服务部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_SERVICE
-	department_name = "Service"
+	department_name = "服务部"
 
 /datum/station_trait/deathrattle_department/cargo
-	name = "Deathrattled Cargo"
+	name = "货运部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_CARGO
-	department_name = "Cargo"
+	department_name = "货运部"
 
 /datum/station_trait/deathrattle_department/engineering
-	name = "Deathrattled Engineering"
+	name = "工程部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_ENGINEERING
-	department_name = "Engineering"
+	department_name = "工程部"
 
 /datum/station_trait/deathrattle_department/command
-	name = "Deathrattled Command"
+	name = "指挥部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_COMMAND
-	department_name = "Command"
+	department_name = "指挥部"
 
 /datum/station_trait/deathrattle_department/science
-	name = "Deathrattled Science"
+	name = "科研部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_SCIENCE
-	department_name = "Science"
+	department_name = "科研部"
 
 /datum/station_trait/deathrattle_department/security
-	name = "Deathrattled Security"
+	name = "安保部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_SECURITY
-	department_name = "Security"
+	department_name = "安保部"
 
 /datum/station_trait/deathrattle_department/medical
-	name = "Deathrattled Medical"
+	name = "医疗部死亡通报"
 	weight = 1
 	department_to_apply_to = DEPARTMENT_BITFLAG_MEDICAL
-	department_name = "Medical"
+	department_name = "医疗部"
 
 /datum/station_trait/deathrattle_all
-	name = "Deathrattled Station"
+	name = "全站死亡通报"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
 	weight = 1
-	report_message = "All members of the station have received an implant to notify each other if one of them dies. This should help improve job-safety!"
+	report_message = "站内全体成员已接受植入物，任何一人死亡时都会通知其他人。这应该能提高工作安全性！"
 	var/datum/deathrattle_group/deathrattle_group
 
 /datum/station_trait/deathrattle_all/New()
 	. = ..()
-	deathrattle_group = new("station group")
+	deathrattle_group = new("全站小组")
 	blacklist = subtypesof(/datum/station_trait/deathrattle_department)
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_after_spawn))
 
@@ -249,11 +249,11 @@
 	implant_to_give.implant(spawned, spawned, TRUE, TRUE)
 
 /datum/station_trait/cybernetic_revolution
-	name = "Cybernetic Revolution"
+	name = "机械改造革命"
 	trait_type = STATION_TRAIT_POSITIVE
 	show_in_report = TRUE
 	weight = 1
-	report_message = "The new trends in cybernetics have come to the station! Everyone has some form of cybernetic implant."
+	report_message = "机械改造的新潮流来到了空间站！人人都有某种机械植入物。"
 	trait_to_give = STATION_TRAIT_CYBERNETIC_REVOLUTION
 	/// List of all job types with the cybernetics they should receive.
 	var/static/list/job_to_cybernetic = list(
@@ -327,26 +327,26 @@
 	cybernetic.Insert(spawned, special = TRUE, movement_flags = DELETE_IF_REPLACED)
 
 /datum/station_trait/luxury_escape_pods
-	name = "Luxury Escape Pods"
+	name = "豪华逃生舱"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
-	report_message = "Due to good performance, we've provided your station with luxury escape pods."
+	report_message = "鉴于你站表现优异，我们配发了豪华逃生舱。"
 	trait_to_give = STATION_TRAIT_BIGGER_PODS
 	blacklist = list(/datum/station_trait/cramped_escape_pods)
 
 /datum/station_trait/medbot_mania
-	name = "Advanced Medbots"
+	name = "先进医疗机器人"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
 	show_in_report = TRUE
-	report_message = "Your station's medibots have received a hardware upgrade, enabling expanded healing capabilities."
+	report_message = "你站医疗机器人的硬件已升级，治疗能力得到增强。"
 	trait_to_give = STATION_TRAIT_MEDBOT_MANIA
 
 /datum/station_trait/random_event_weight_modifier/shuttle_loans
-	name = "Loaner Shuttle"
-	report_message = "Due to an uptick in pirate attacks around your sector, there are few supply vessels in nearby space willing to assist with special requests. Expect to receive more shuttle loan opportunities, with slightly higher payouts."
+	name = "穿梭机出借"
+	report_message = "由于你所在星区周围的海盗袭击增多，附近愿意协助特殊请求的补给船寥寥无几。预计将有更多穿梭机出借机会，报酬也略高。"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 4
 	event_control_path = /datum/round_event_control/shuttle_loan
@@ -355,8 +355,8 @@
 	trait_to_give = STATION_TRAIT_LOANER_SHUTTLE
 
 /datum/station_trait/random_event_weight_modifier/wise_cows
-	name = "Wise Cow Invasion"
-	report_message = "Bluespace harmonic readings show unusual interpolative signals between your sector and agricultural sector MMF-D-02. Expect an increase in cow encounters. Encownters, if you will."
+	name = "智慧奶牛入侵"
+	report_message = "蓝空间谐波读数显示，你所在星区与农业星区 MMF-D-02 之间存在异常插值信号。预计遇到奶牛的次数将增加。可谓牛缘不断。"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 1
 	event_control_path = /datum/round_event_control/wisdomcow
@@ -364,13 +364,13 @@
 	max_occurrences_modifier = 10 //lotta cows
 
 /datum/station_trait/random_event_weight_modifier/wise_cows/get_pulsar_message()
-	var/advisory_string = "Advisory Level: <b>Cow Planet</b></center><BR>" //We're gonna go fast and we're gonna go far.
-	advisory_string += "Your sector's advisory level is Cow Planet. We don't really know what this one means -- the model we use to create these threat reports hasn't produced this result before. Watch out for cows, I guess? Good luck!"
+	var/advisory_string = "预警等级：<b>奶牛星球</b></center><BR>" //We're gonna go fast and we're gonna go far.
+	advisory_string += "你所在星区的预警等级为奶牛星球。我们也不太清楚这是什么意思——生成威胁报告的模型以前从未给出过这种结果。总之，小心奶牛？祝你好运！"
 	return advisory_string
 
 /datum/station_trait/bright_day
-	name = "Bright Day"
-	report_message = "The stars shine bright and the clouds are scarcer than usual. It's a bright day here on the Ice Moon's surface."
+	name = "晴朗之日"
+	report_message = "星光明亮，云层比平时稀少。冰月表面迎来了晴朗的一天。"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -378,16 +378,16 @@
 	trait_to_give = STATION_TRAIT_BRIGHT_DAY
 
 /datum/station_trait/shuttle_sale
-	name = "Shuttle Firesale"
-	report_message = "The Nanotrasen Emergency Dispatch team is celebrating a record number of shuttle calls in the recent quarter. Some of your emergency shuttle options have been discounted!"
+	name = "穿梭机大甩卖"
+	report_message = "纳米传讯紧急调度团队正在庆祝最近一个季度创纪录的穿梭机呼叫次数。部分紧急穿梭机现已打折！"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 4
 	trait_to_give = STATION_TRAIT_SHUTTLE_SALE
 	show_in_report = TRUE
 
 /datum/station_trait/missing_wallet
-	name = "Misplaced Wallet"
-	report_message = "A repair technician left their wallet in a locker somewhere. They would greatly appreciate if you could locate and return it to them when the shift has ended."
+	name = "遗失的钱包"
+	report_message = "一名维修技师把钱包落在了某处储物柜里。如果你能找到并在本班次结束后归还，对方将十分感激。"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	cost = STATION_TRAIT_COST_LOW
@@ -408,13 +408,13 @@
 	new_wallet.refreshID()
 
 	if(prob(35))
-		report_message += " The technician reports they last remember having their wallet around [get_area_name(new_wallet)]."
+		report_message += " 技师记得最后一次见到钱包是在[chinese_area_display(get_area_name(new_wallet))]附近。"
 
-	message_admins("A missing wallet has been placed in the [locker_to_fill] locker, in the [get_area_name(locker_to_fill)] area.")
+	message_admins("遗失的钱包已放入[chinese_area_display(get_area_name(locker_to_fill))]区域的[locker_to_fill]储物柜中。")
 
 /obj/item/card/id/advanced/technician_id
-	name = "Repair Technician ID"
-	desc = "Repair Technician? We don't have those in this sector, just a bunch of lazy engineers! This must have been from the between-shift crew..."
+	name = "维修技师 ID 卡"
+	desc = "维修技师？我们这个星区只有一群懒惰的工程师，哪来的维修技师！这一定是班次间隙的工作人员留下的……"
 	registered_name = "Pluoxium LXVII"
 	registered_age = 67
 	trim = /datum/id_trim/technician_id
@@ -427,8 +427,8 @@
 
 /// Spawns assistants with some gear, either gimmicky or functional. Maybe, one day, it will inspire an assistant to do something productive or fun
 /datum/station_trait/assistant_gimmicks
-	name = "Geared Assistants Pilot"
-	report_message = "The Nanotrassen Assistant Affairs division is performing a pilot to see if different assistant equipment helps improve productivity!"
+	name = "助手装备试点"
+	report_message = "纳米传讯助手事务部门正在开展试点，检验不同的助手装备是否有助于提高生产效率！"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 3
 	trait_to_give = STATION_TRAIT_ASSISTANT_GIMMICKS
@@ -436,6 +436,6 @@
 	blacklist = list(/datum/station_trait/colored_assistants)
 
 /datum/station_trait/random_event_weight_modifier/assistant_gimmicks/get_pulsar_message()
-	var/advisory_string = "Advisory Level: <b>Grey Sky</b></center><BR>"
-	advisory_string += "Your sector's advisory level is Grey Sky. Our sensors detect abnormal activity among the assistants assigned to your station. We advise you to closely monitor the Tool Storage, Bridge, Tech Storage, and Brig for gathering crowds or petty thievery."
+	var/advisory_string = "预警等级：<b>灰天</b></center><BR>"
+	advisory_string += "你所在星区的预警等级为灰天。传感器检测到你站助手活动异常。建议密切监视工具储藏室、舰桥、技术储藏室和禁闭室，留意聚众或小偷小摸。"
 	return advisory_string

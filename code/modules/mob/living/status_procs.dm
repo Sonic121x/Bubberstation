@@ -512,11 +512,11 @@
 			if(CAT_QUIRK_NOTES)
 				if(candidate.value < 0)
 					continue
-		dat += medical ? candidate.medical_record_text : candidate.name
+		dat += medical ? candidate.medical_record_text : chinese_quirk_display(candidate.name)
 
 	if(!length(dat))
-		return medical ? "No issues have been declared." : "None"
-	return medical ?  dat.Join("<br>") : dat.Join(", ")
+		return medical ? "未申报任何问题。" : "无"
+	return medical ?  dat.Join("<br>") : dat.Join("、")
 
 /mob/living/proc/cleanse_quirk_datums() //removes all trait datums
 	QDEL_LAZYLIST(quirks)

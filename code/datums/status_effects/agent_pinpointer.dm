@@ -3,8 +3,8 @@
 #define PINPOINTER_PING_TIME (4 SECONDS)
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer
-	name = "Target Integrated Pinpointer"
-	desc = "Even stealthier than a normal implant, it points to any assassination target you have."
+	name = "集成目标定位器"
+	desc = "比普通植入物更隐蔽，可指向你的任何暗杀目标。"
 	icon = 'icons/obj/devices/tracker.dmi'
 	icon_state = "pinon"
 

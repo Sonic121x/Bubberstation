@@ -16,7 +16,7 @@ import {
 import { JOB2ICON } from '../common/JobToIcon';
 import { isRecordMatch } from '../SecurityRecords/helpers';
 import type { MedicalRecord, MedicalRecordData } from './types';
-
+import { recordDisplay } from '../../localization/batchThreeDisplay';
 /** Displays all found records. */
 export const MedicalRecordTabs = (props) => {
   const { act, data } = useBackend<MedicalRecordData>();
@@ -28,7 +28,7 @@ export const MedicalRecordTabs = (props) => {
   const [search, setSearch] = useState('');
 
   const sorted: MedicalRecord[] = sortBy(
-    filter(records, (record) => isRecordMatch(record, search)),
+    filter(records, (record) => isRecordMatch(record, search) || recordDisplay(record.rank, data).includes(search)),
     [(record) => record.name?.toLowerCase()],
   );
 

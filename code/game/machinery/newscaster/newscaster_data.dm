@@ -158,15 +158,15 @@ GLOBAL_LIST_EMPTY(request_list)
 	/// What time was the last action taken on the feed_network?
 	var/last_action
 	/// What does this feed network say when a message/author is redacted?
-	var/redacted_text = "\[REDACTED\]"
+	var/redacted_text = "\[已删节\]"
 	/// Channel ID to use when next making a new channel, to maintain unique IDs.
 	var/next_channel_id = 1
 	/// How many messages currently exist on this feed_network? Increments as new messages are written.
 	var/message_count = 0
 
 /datum/feed_network/New()
-	create_feed_channel(NEWSCASTER_STATION_ANNOUNCEMENTS, "SS13", "Company news, staff announcements, and all the latest information. Have a secure shift!", locked = TRUE)
-	create_feed_channel(NEWSCASTER_SPACE_BETTING, "NtOS", "News from the SpaceBet PDA App! Download now and make your own bets!", locked = TRUE)
+	create_feed_channel(NEWSCASTER_STATION_ANNOUNCEMENTS, "SS13", "公司新闻、员工公告以及所有最新资讯。祝您本班次平安顺利！", locked = TRUE)
+	create_feed_channel(NEWSCASTER_SPACE_BETTING, "NtOS", "来自太空博彩 PDA 应用的新闻！立即下载，开始下注！", locked = TRUE)
 	wanted_issue = new /datum/wanted_message
 
 /datum/feed_network/proc/add_feed_channel(datum/feed_channel/new_channel)
@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(request_list)
 
 	if(chosen_channel.cross_sector)
 		// Newscaster articles could be huge, and usefulness of first 50 symbols is dubious
-		message_admins(span_adminnotice("Outgoing cross-sector newscaster article by [key_name(author_mob) || author] in channel [channel_name]."))
+		message_admins(span_adminnotice("正在发送[key_name(author_mob) || author]在[channel_name]频道发布的跨星区新闻文章。"))
 		var/list/payload = list(
 			"author" = author,
 			"author_ckey" = author_mob?.ckey,

@@ -2,7 +2,7 @@ import { Button, NoticeBox, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { RequestPriority, type RequestsData } from './types';
-
+import { machineChoiceDisplay } from '../common/machineChoiceDisplay';
 export const RequestsConsoleHeader = (props) => {
   const { act, data } = useBackend<RequestsData>();
   const { has_mail_send_error, new_message_priority } = data;
@@ -22,7 +22,7 @@ const EmergencyBox = (props) => {
     <>
       {!!emergency && (
         <NoticeBox danger>
-          {emergency} called! RETA may open doors in area to them.
+          已呼叫{machineChoiceDisplay(emergency)}！RETA 可为响应人员开启区域内的门。
         </NoticeBox>
       )}
       {!emergency && (
@@ -32,7 +32,7 @@ const EmergencyBox = (props) => {
               fluid
               color="red"
               icon="shield"
-              content="Call Security"
+              content="呼叫安保"
               onClick={() =>
                 act('set_emergency', {
                   emergency: 'Security',
@@ -45,7 +45,7 @@ const EmergencyBox = (props) => {
               fluid
               color="red"
               icon="screwdriver-wrench"
-              content="Call Engineering"
+              content="呼叫工程"
               onClick={() =>
                 act('set_emergency', {
                   emergency: 'Engineering',
@@ -58,7 +58,7 @@ const EmergencyBox = (props) => {
               fluid
               color="red"
               icon="suitcase-medical"
-              content="Call Medical"
+              content="呼叫医疗"
               onClick={() =>
                 act('set_emergency', {
                   emergency: 'Medical',
@@ -74,7 +74,7 @@ const EmergencyBox = (props) => {
 
 const ErrorNoticeBox = (props) => {
   return (
-    <NoticeBox danger>{'Error occured while sending a message!'}</NoticeBox>
+    <NoticeBox danger>{'发送消息时发生错误！'}</NoticeBox>
   );
 };
 
@@ -83,10 +83,10 @@ const MessageNoticeBox = (props) => {
   const { new_message_priority } = data;
   return (
     <NoticeBox>
-      {'You have new unread '}
-      {new_message_priority === RequestPriority.HIGH && 'PRIORITY '}
-      {new_message_priority === RequestPriority.EXTREME && 'EXTREME PRIORITY '}
-      {'messages'}
+      {'您有新的未读'}
+      {new_message_priority === RequestPriority.HIGH && '高优先级'}
+      {new_message_priority === RequestPriority.EXTREME && '极高优先级'}
+      {'消息'}
     </NoticeBox>
   );
 };

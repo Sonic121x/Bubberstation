@@ -6,19 +6,19 @@
 /datum/map_template/shuttle/escape_pod/default
 	suffix = "default"
 	name = "escape pod (Default)"
-	description = "Base escape pod with 2 tiles of interior space."
+	description = "基础逃生舱，内部空间为两格。"
 
 /datum/map_template/shuttle/escape_pod/large
 	suffix = "large"
 	name = "escape pod (Large)"
-	description = "Actually the old Pubbystation monastery shuttle."
+	description = "实际上是旧版 Pubby 站的修道院穿梭机。"
 
 /datum/map_template/shuttle/escape_pod/luxury
 	suffix = "luxury"
 	name = "escape pod (Luxury)"
-	description = "Upgraded escape pod with 3 tiles of interior space."
+	description = "升级版逃生舱，内部空间为三格。"
 
 /datum/map_template/shuttle/escape_pod/cramped
 	suffix = "cramped"
 	name = "escape pod (Cramped)"
-	description = "Downgraded escape pod that lacks a window and only has one seat, alongside lacking an emergency safe."
+	description = "缩水版逃生舱，没有窗户，只有一个座位，也没有应急保险箱。"

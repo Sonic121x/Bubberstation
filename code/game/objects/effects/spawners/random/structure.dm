@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/structure
 	name = "structure spawner"
-	desc = "Now you see me, now you don't..."
+	desc = "一会儿看得见，一会儿又不见……"
 
 ///12% chance to spawn a ouija board, or a potted plant. Btw, Wawastation has a guaranteed board.
 /obj/effect/spawner/random/structure/twelve_percent_spirit_board

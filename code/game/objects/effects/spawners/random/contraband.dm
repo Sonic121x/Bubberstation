@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/contraband
 	name = "contraband loot spawner"
-	desc = "Pstttthhh! Pass it under the table."
+	desc = "嘘！从桌子底下递过来。"
 	icon_state = "prisoner"
 	loot = list(
 		/obj/item/poster/random_contraband = 40,
@@ -39,7 +39,7 @@
 
 /obj/effect/spawner/random/contraband/plus
 	name = "contraband loot spawner plus"
-	desc = "Where'd ya find this?"
+	desc = "你从哪儿找到的？"
 	loot = list(
 		/obj/item/clothing/under/syndicate = 20,
 		/obj/item/reagent_containers/cup/bottle/thermite = 20,

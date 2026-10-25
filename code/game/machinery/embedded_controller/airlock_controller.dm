@@ -10,7 +10,7 @@
 	icon_state = "airlock_control_standby"
 	base_icon_state = "airlock_control"
 
-	name = "airlock console"
+	name = "气闸控制台"
 	density = FALSE
 
 	power_channel = AREA_USAGE_ENVIRON
@@ -279,7 +279,7 @@
 	return last_pressure
 
 /obj/machinery/airlock_controller/incinerator_ordmix
-	name = "Incinerator Access Console"
+	name = "焚烧炉门禁控制台"
 	airpump_tag = INCINERATOR_ORDMIX_DP_VENTPUMP
 	exterior_door_tag = INCINERATOR_ORDMIX_AIRLOCK_EXTERIOR
 	id_tag = INCINERATOR_ORDMIX_AIRLOCK_CONTROLLER
@@ -288,7 +288,7 @@
 	sensor_tag = INCINERATOR_ORDMIX_AIRLOCK_SENSOR
 
 /obj/machinery/airlock_controller/incinerator_atmos
-	name = "Incinerator Access Console"
+	name = "焚烧炉门禁控制台"
 	airpump_tag = INCINERATOR_ATMOS_DP_VENTPUMP
 	exterior_door_tag = INCINERATOR_ATMOS_AIRLOCK_EXTERIOR
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_CONTROLLER
@@ -297,7 +297,7 @@
 	sensor_tag = INCINERATOR_ATMOS_AIRLOCK_SENSOR
 
 /obj/machinery/airlock_controller/incinerator_syndicatelava
-	name = "Incinerator Access Console"
+	name = "焚烧炉门禁控制台"
 	airpump_tag = INCINERATOR_SYNDICATELAVA_DP_VENTPUMP
 	exterior_door_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_EXTERIOR
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_CONTROLLER

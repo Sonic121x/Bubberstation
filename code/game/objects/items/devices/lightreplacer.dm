@@ -32,8 +32,8 @@
 #define BULB_SHARDS_REQUIRED 4
 
 /obj/item/lightreplacer
-	name = "light replacer"
-	desc = "A device to automatically replace lights. Refill with broken or working light bulbs, or sheets of glass."
+	name = "灯具更换器"
+	desc = "自动更换灯具的装置。可用损坏或完好的灯泡以及玻璃板补充。"
 	icon = 'icons/obj/service/janitor.dmi'
 	icon_state = "lightreplacer"
 	inhand_icon_state = "electronic"
@@ -79,16 +79,16 @@
 
 /obj/item/lightreplacer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(uses >= max_uses)
-		user.balloon_alert(user, "already full!")
+		user.balloon_alert(user, "已经装满！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(istype(tool, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/glass_to_insert = tool
 		if(!glass_to_insert.use(LIGHTBULB_COST))
-			user.balloon_alert(user, "need [LIGHTBULB_COST] glass sheets!")
+			user.balloon_alert(user, "需要[LIGHTBULB_COST]块玻璃板！")
 			return ITEM_INTERACT_BLOCKING
 		add_uses(GLASS_SHEET_USES)
-		user.balloon_alert(user, "glass inserted")
+		user.balloon_alert(user, "玻璃已装入")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/shard))
@@ -98,7 +98,7 @@
 		var/obj/item/light/light_to_insert = tool
 		//remove from player's hand
 		if(!user.temporarilyRemoveItemFromInventory(light_to_insert))
-			user.balloon_alert(user, "stuck in your hand!")
+			user.balloon_alert(user, "粘在手上了！")
 			return ITEM_INTERACT_BLOCKING
 
 		//insert light. display message only if adding a shard did not create a new bulb else the messages will conflict
@@ -108,7 +108,7 @@
 		else if(add_shard(user))
 			display_msg = FALSE
 		if(display_msg)
-			user.balloon_alert(user, "light inserted")
+			user.balloon_alert(user, "灯具已装入")
 		qdel(light_to_insert)
 
 		return ITEM_INTERACT_SUCCESS
@@ -146,25 +146,25 @@
 				replaced_something = TRUE
 
 		if(!replaced_something)
-			user.balloon_alert(user, "nothing usable in [tool]!")
+			user.balloon_alert(user, "[tool]中没有可用材料！")
 			return ITEM_INTERACT_BLOCKING
 
-		user.balloon_alert(user, "lights inserted")
+		user.balloon_alert(user, "灯具已装入")
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
 /obj/item/lightreplacer/proc/attempt_insert_shard(mob/living/user, obj/item/shard/tool)
 	if(tool.type != /obj/item/shard) //we don't want to insert plasma, titanium or other types of shards
-		user.balloon_alert(user, "too impure!")
+		user.balloon_alert(user, "杂质太多！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.temporarilyRemoveItemFromInventory(tool))
-		user.balloon_alert(user, "stuck in your hand!")
+		user.balloon_alert(user, "粘在手上了！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(!add_shard(user)) //add_shard will display a message if it created a bulb from the shard so only display message when that does not happen
-		user.balloon_alert(user, "shard inserted")
+		user.balloon_alert(user, "碎片已装入")
 	qdel(tool)
 	return ITEM_INTERACT_SUCCESS
 
@@ -174,12 +174,12 @@
 	obj_flags |= EMAGGED
 	playsound(loc, SFX_SPARKS, 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_appearance()
-	to_chat(user, span_warning("[src]'s lights are now filled with plasma! Be careful to only install them in disabled light fixtures, lest they explode!"))
+	to_chat(user, span_warning("[src]中的灯具现在充满了等离子体！务必只安装到关闭的灯座上，否则会爆炸！"))
 	return FALSE
 
 /obj/item/lightreplacer/update_name(updates)
 	. = ..()
-	name = (obj_flags & EMAGGED) ? "shortcircuited [initial(name)]" : initial(name)
+	name = (obj_flags & EMAGGED) ? "短路的[initial(name)]" : initial(name)
 
 /obj/item/lightreplacer/update_icon_state()
 	icon_state = "[initial(icon_state)][(obj_flags & EMAGGED ? "-emagged" : "")]"
@@ -211,7 +211,7 @@
 		replace_light(target, user)
 		on_a_light = TRUE
 	if(!on_a_light) //So we don't give a balloon alert when we just used replace_light
-		user.balloon_alert(user, "[uses] lights, [bulb_shards]/[BULB_SHARDS_REQUIRED] fragments")
+		user.balloon_alert(user, "[uses]盏灯，[bulb_shards]/[BULB_SHARDS_REQUIRED]片碎片")
 
 /**
  * attempts to fix lights, flood lights & lights on a turf
@@ -236,7 +236,7 @@
 			if(bluespace_toggle)
 				user.Beam(target, icon_state = "rped_upgrade", time = 0.5 SECONDS)
 				playsound(src, 'sound/items/pshoom/pshoom.ogg', 40, 1)
-			to_chat(user, span_notice("You finish \the [frame] with a light tube."))
+			to_chat(user, span_notice("你装上灯管，完成了[frame]。"))
 			qdel(frame)
 		return TRUE
 
@@ -254,7 +254,7 @@
 	return FALSE
 
 /obj/item/lightreplacer/proc/status_string()
-	return "It has [uses] light\s remaining (plus [bulb_shards]/[BULB_SHARDS_REQUIRED] fragment\s)."
+	return "还剩[uses]盏灯（另有[bulb_shards]/[BULB_SHARDS_REQUIRED]片碎片）。"
 
 /obj/item/lightreplacer/proc/Use(mob/user)
 	if(uses <= 0)
@@ -275,7 +275,7 @@
 	if(bulb_shards >= BULB_SHARDS_REQUIRED)
 		bulb_shards = 0
 		add_uses(1)
-		to_chat(user, span_notice("\The [src] fabricates a new bulb from the broken glass it has stored. [status_string()]"))
+		to_chat(user, span_notice("[src]用储存的碎玻璃制成了新灯泡。[status_string()]"))
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
 		return TRUE
 	return FALSE
@@ -295,12 +295,12 @@
 		return FALSE
 	//If the light source is ok then what are we doing here
 	if(target.status == LIGHT_OK)
-		user.balloon_alert(user, "light already installed!")
+		user.balloon_alert(user, "灯具已经安装！")
 		return FALSE
 	//Were all out
 	if(!Use(user))
 		//This balloon alert text is a little redundant, but I want to avoid a new player "yeah i know the light is empty" moment
-		user.balloon_alert(user, "light replacer empty!")
+		user.balloon_alert(user, "灯具更换器已空！")
 		return FALSE
 
 	//remove any broken light on the fixture & add it as a shard
@@ -324,8 +324,8 @@
 	return TRUE
 
 /obj/item/lightreplacer/advanced
-	name = "high capacity light replacer"
-	desc = "A higher capacity light replacer. Refill with broken or working lightbulbs, or sheets of glass."
+	name = "大容量灯具更换器"
+	desc = "容量更大的灯具更换器。可用损坏或完好的灯泡以及玻璃板补充。"
 	icon_state = "lightreplacer_high"
 	max_uses = 50
 
@@ -334,8 +334,8 @@
 #define BLIGHTREPLACER_SPOT_LIFE (5 SECONDS)
 
 /obj/item/lightreplacer/blue
-	name = "bluespace light replacer"
-	desc = "A modified light replacer that zaps lights into place. Refill with broken or working lightbulbs, or sheets of glass."
+	name = "蓝空间灯具更换器"
+	desc = "改装过的灯具更换器，可将灯具直接传送到位。可用损坏或完好的灯泡以及玻璃板补充。"
 	icon_state = "lightreplacer_blue"
 	bluespace_toggle = TRUE
 	actions_types = list(/datum/action/item_action/lightreplacer_scan)
@@ -348,7 +348,7 @@
 
 /obj/item/lightreplacer/blue/ui_action_click(mob/user, actiontype)
 	if(!COOLDOWN_FINISHED(src, lightreplacer_spot_cooldown))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "冷却中！")
 		return
 	COOLDOWN_START(src, lightreplacer_spot_cooldown, BLIGHTREPLACER_SPOT_COOLDOWN)
 	lightreplacer_scan()
@@ -363,11 +363,11 @@
 		animate(firefly, alpha = 0, time = BLIGHTREPLACER_SPOT_LIFE, easing = CIRCULAR_EASING | EASE_IN)
 
 /datum/action/item_action/lightreplacer_scan
-	name = "Scan for broken lamps"
-	desc = "Scans the surrounding area for fixtures with broken light bulbs and marks them."
+	name = "扫描损坏灯具"
+	desc = "扫描周围区域，标记灯泡损坏的灯座。"
 
 /obj/effect/temp_visual/blue_firefly
-	name = "bluespace firefly"
+	name = "蓝空间萤火虫"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bluespace_firefly"
 	light_power = 1

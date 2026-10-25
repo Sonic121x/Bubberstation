@@ -1,6 +1,6 @@
 /datum/mutation/biotechcompat
-	name = "Biotech Compatibility"
-	desc = "The subject is compatible with biotechnology such as skillchips."
+	name = "生物技术兼容"
+	desc = "受试者能够兼容技能芯片等生物技术。"
 	quality = POSITIVE
 	instability = POSITIVE_INSTABILITY_MINI
 
@@ -15,12 +15,12 @@
 	return ..()
 
 /datum/mutation/clever
-	name = "Clever"
-	desc = "The subject's intelligence level is raised to that of the average assistant."
+	name = "聪慧"
+	desc = "受试者的智力提升至普通助理的水平。"
 	quality = POSITIVE
 	instability = POSITIVE_INSTABILITY_MODERATE // literally makes you on par with station equipment
-	text_gain_indication = span_danger("You feel a little bit smarter.")
-	text_lose_indication = span_danger("Your mind feels a little bit foggy.")
+	text_gain_indication = span_danger("你感觉聪明了一点。")
+	text_lose_indication = span_danger("你的头脑有些混沌。")
 
 /datum/mutation/clever/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()

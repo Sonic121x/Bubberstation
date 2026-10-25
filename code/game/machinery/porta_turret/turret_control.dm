@@ -1,6 +1,6 @@
 /obj/machinery/turretid
-	name = "turret control panel"
-	desc = "Used to control a room's automated defenses."
+	name = "炮塔控制面板"
+	desc = "用于控制房间的自动防御系统。"
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control"
 	base_icon_state = "control"
@@ -78,8 +78,8 @@
 /obj/machinery/turretid/examine(mob/user)
 	. += ..()
 	if(issilicon(user) && !(machine_stat & BROKEN))
-		. += span_notice("Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.")
-		. += span_notice("Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].")
+		. += span_notice("按住 Ctrl 点击[src]可[ enabled ? "禁用" : "启用"]炮塔。")
+		. += span_notice("按住 Alt 点击[src]可将炮塔设为[ lethal ? "眩晕" : "致命"]模式。")
 
 /obj/machinery/turretid/multitool_act(mob/living/user, obj/item/multitool/multi_tool)
 	. = NONE
@@ -88,7 +88,7 @@
 
 	if(multi_tool.buffer && istype(multi_tool.buffer, /obj/machinery/porta_turret))
 		turrets |= WEAKREF(multi_tool.buffer)
-		to_chat(user, span_notice("You link \the [multi_tool.buffer] with \the [src]."))
+		to_chat(user, span_notice("你将[multi_tool.buffer]与[src]连接起来。"))
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/turretid/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -104,22 +104,22 @@
 		return NONE
 
 	if(!check_access(card))
-		to_chat(user, span_alert("Access denied."))
+		to_chat(user, span_alert("访问被拒绝。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(obj_flags & EMAGGED)
-		to_chat(user, span_warning("The turret control is unresponsive!"))
+		to_chat(user, span_warning("炮塔控制装置无响应！"))
 		return ITEM_INTERACT_BLOCKING
 
 	locked = !locked
-	to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the panel."))
+	to_chat(user, span_notice("你[ locked ? "锁定" : "解锁"]了面板。"))
 	return ITEM_INTERACT_SUCCESS
 
 
 /obj/machinery/turretid/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		return FALSE
-	balloon_alert(user, "access analysis module shorted")
+	balloon_alert(user, "权限分析模块已短路")
 	obj_flags |= EMAGGED
 	locked = FALSE
 	return TRUE
@@ -133,7 +133,7 @@
 
 /obj/machinery/turretid/ui_interact(mob/user, datum/tgui/ui)
 	if(is_ai_locked(user))
-		to_chat(user, span_warning("There seems to be a firewall preventing you from accessing this device!"))
+		to_chat(user, span_warning("似乎有防火墙阻止你访问此设备！"))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -167,7 +167,7 @@
 			if(!HAS_SILICON_ACCESS(user))
 				return
 			if((obj_flags & EMAGGED) || (machine_stat & BROKEN))
-				to_chat(user, span_warning("The turret control is unresponsive!"))
+				to_chat(user, span_warning("炮塔控制装置无响应！"))
 				return
 			locked = !locked
 			return TRUE
@@ -185,7 +185,7 @@
 	lethal = !lethal
 	if (user)
 		var/enabled_or_disabled = lethal ? "disabled" : "enabled"
-		balloon_alert(user, "safeties [enabled_or_disabled]")
+		balloon_alert(user, "安全装置已[enabled_or_disabled == "enabled" ? "启用" : "禁用"]")
 		add_hiddenprint(user)
 		log_combat(user, src, "[enabled_or_disabled] lethals on")
 	updateTurrets()
@@ -194,7 +194,7 @@
 	enabled = !enabled
 	if (user)
 		var/enabled_or_disabled = enabled ? "enabled" : "disabled"
-		balloon_alert(user, "[enabled_or_disabled]")
+		balloon_alert(user, "已[enabled_or_disabled == "enabled" ? "启用" : "禁用"]")
 		add_hiddenprint(user)
 		log_combat(user, src, "[enabled ? "enabled" : "disabled"]")
 	updateTurrets()
@@ -203,7 +203,7 @@
 	shoot_cyborgs = !shoot_cyborgs
 	if (user)
 		var/status = shoot_cyborgs ? "Shooting Borgs" : "Not Shooting Borgs"
-		balloon_alert(user, LOWER_TEXT(status))
+		balloon_alert(user, shoot_cyborgs ? "射击半机械人" : "不射击半机械人")
 		add_hiddenprint(user)
 		log_combat(user, src, "[status]")
 	updateTurrets()
@@ -218,8 +218,8 @@
 	update_appearance()
 
 /obj/item/wallframe/turret_control
-	name = "turret control frame"
-	desc = "Used for building turret control panels."
+	name = "炮塔控制框架"
+	desc = "用于建造炮塔控制面板。"
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_frame"
 	result_path = /obj/machinery/turretid

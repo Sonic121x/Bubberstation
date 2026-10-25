@@ -46,9 +46,9 @@
 /datum/status_effect/temperature_over_time/get_examine_text()
 
 	if(temperature_value > 0)
-		return "[owner.p_They()] [owner.p_are()] sweating bullets!"
+		return "[owner]正在大汗淋漓！"
 
-	return "[owner.p_They()] [owner.p_are()] shivering!"
+	return "[owner]正在瑟瑟发抖！"
 
 /datum/status_effect/temperature_over_time/tick(seconds_between_ticks)
 	if((TRAIT_RESISTHEAT && temperature_value > 1) || (TRAIT_RESISTCOLD && temperature_value < 1))

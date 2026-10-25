@@ -1,12 +1,12 @@
 /datum/quirk/item_quirk/tagger
 	name = "Tagger"
-	desc = "You're an experienced artist. People will actually be impressed by your graffiti, and you can get twice as many uses out of drawing supplies in half the time."
+	desc = "你是一位经验丰富的艺术家。你的涂鸦会令旁人赞叹，而且你只需一半时间作画，绘画用品的可用次数也翻倍。"
 	icon = FA_ICON_SPRAY_CAN
 	value = 4
 	mob_trait = TRAIT_TAGGER
-	gain_text = span_notice("You know how to tag walls efficiently and quickly.")
-	lose_text = span_danger("You forget how to tag walls properly.")
-	medical_record_text = "Patient was recently seen for possible paint huffing incident."
+	gain_text = span_notice("你知道如何高效又迅速地在墙上涂鸦。")
+	lose_text = span_danger("你忘记了如何正确地在墙上涂鸦。")
+	medical_record_text = "患者近期曾因疑似吸入油漆蒸气而就诊。"
 	mail_goodies = list(
 		/obj/item/toy/crayon/spraycan,
 		/obj/item/canvas/nineteen_nineteen,

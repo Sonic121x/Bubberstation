@@ -81,7 +81,7 @@
  * A particle effect that belongs to a fluid group.
  */
 /obj/effect/particle_effect/fluid
-	name = "fluid"
+	name = "流体"
 	///	The fluid group that this particle effect belongs to.
 	var/datum/fluid_group/group
 	/// What SSfluid bucket this particle effect is currently in.
@@ -147,16 +147,16 @@
 	var/blame_msg
 	if (holder)
 		holder.transfer_fingerprints_to(flood) // This is important. If this doesn't exist thermobarics are annoying to adjudicate.
-		source_msg = "from inside of [ismob(holder) ? ADMIN_LOOKUPFLW(holder) : ADMIN_VERBOSEJMP(holder)]"
+		source_msg = "，来源为[ismob(holder) ? ADMIN_LOOKUPFLW(holder) : ADMIN_VERBOSEJMP(holder)]内部"
 		var/lastkey = holder.fingerprintslast
 		if (lastkey)
 			var/mob/scapegoat = get_mob_by_key(lastkey)
-			blame_msg = " last touched by [ADMIN_LOOKUPFLW(scapegoat)]"
+			blame_msg = "，最后接触者为[ADMIN_LOOKUPFLW(scapegoat)]"
 		else
-			blame_msg = " with no known fingerprints"
+			blame_msg = "，没有已知指纹"
 	else
-		source_msg = "with no known source"
+		source_msg = "，来源未知"
 	var/area/fluid_area = get_area(location)
 	if(!istype(holder, /obj/machinery/plumbing) && !(fluid_area.area_flags & QUIET_LOGS)) //excludes standard plumbing equipment as well as deathmatch from spamming admins with this shit
-		message_admins("\A [flood] flood started at [ADMIN_VERBOSEJMP(location)] [source_msg][blame_msg].")
+		message_admins("[flood]在[ADMIN_VERBOSEJMP(location)]开始蔓延[source_msg][blame_msg]。")
 	log_game("\A [flood] flood started at [AREACOORD(location)] [source_msg][blame_msg].")

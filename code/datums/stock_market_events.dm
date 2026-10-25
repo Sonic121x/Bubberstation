@@ -1,16 +1,16 @@
 /datum/stock_market_event
 	/// The name of the event, used to describe it in the news.
-	var/name = "Stock Market Event!"
+	var/name = "市场事件！"
 	/// A list of company names to use for the event and the circumstance.
 	var/static/list/company_name = list(
-		"Nakamura Engineering",
-		"Robust Industries, LLC",
-		"MODular Solutions",
-		"TerraGov",
-		"Australicus Industrial Mining",
-		"Nanotrasen-DeForest Corporation",
-		"Aussec Armory",
-		"Dreamland Robotics"
+		"中村工程公司",
+		"罗伯斯特工业有限责任公司",
+		"模块化解决方案公司",
+		"地球政府",
+		"澳斯特拉利库斯工业采矿公司",
+		"纳米传讯—德福雷斯特公司",
+		"奥赛克军械公司",
+		"梦境机器人公司"
 	)
 	/// A list of strings selected from the event that's used to describe the event in the news.
 	var/list/circumstance = list()
@@ -62,17 +62,17 @@
 /datum/stock_market_event/proc/create_news()
 	var/temp_company = pick(company_name)
 	var/temp_circumstance = pick(circumstance)
-	SSstock_market.news_string += "<b>[name] [temp_company]</b> [temp_circumstance]<b>[mat.name].</b><br>"
+	SSstock_market.news_string += "<b>[name] [temp_company]</b>[temp_circumstance]<b>[mat.name]</b>。<br>"
 
 
 /datum/stock_market_event/market_reset
-	name = "Market Reset!"
+	name = "市场重置！"
 	trend_value = MARKET_TREND_STABLE
 	trend_duration = 1
 	circumstance = list(
-		"was purchased by a private investment firm, resetting the price of ",
-		"restructured, resetting the price of ",
-		"has been rolled into a larger company, resetting the price of ",
+		"被一家私人投资公司收购，重置了以下材料的价格：",
+		"进行了重组，重置了以下材料的价格：",
+		"被并入一家更大的公司，重置了以下材料的价格：",
 	)
 
 /datum/stock_market_event/market_reset/start_event()
@@ -81,13 +81,13 @@
 	create_news()
 
 /datum/stock_market_event/large_boost
-	name = "Large Boost!"
+	name = "价格大涨！"
 	trend_value = MARKET_TREND_UPWARD
 	trend_duration = 4
 	circumstance = list(
-		"has just released a new product that raised the price of ",
-		"discovered a new valuable use for ",
-		"has produced a report that raised the price of ",
+		"刚发布了一款新产品，推高了以下材料的价格：",
+		"发现了以下材料一种价值极高的新用途：",
+		"发布了一份报告，推高了以下材料的价格：",
 	)
 
 /datum/stock_market_event/large_boost/start_event()
@@ -98,13 +98,13 @@
 	create_news()
 
 /datum/stock_market_event/large_drop
-	name = "Large Drop!"
+	name = "价格大跌！"
 	trend_value = MARKET_TREND_DOWNWARD
 	trend_duration = 4
 	circumstance = list(
-		"'s latest product has seen major controversy, and resulted in a price drop for ",
-		"has been hit with a major lawsuit, resulting in a price drop for ",
-		"has produced a report that lowered the price of ",
+		"的最新产品引发重大争议，导致以下材料价格下跌：",
+		"遭遇重大诉讼，导致以下材料价格下跌：",
+		"发布了一份报告，导致以下材料价格下跌：",
 	)
 
 /datum/stock_market_event/large_drop/start_event()
@@ -115,13 +115,13 @@
 	create_news()
 
 /datum/stock_market_event/hotcakes
-	name = "Selling like Hotcakes!"
+	name = "热销狂潮！"
 	trend_value = MARKET_TREND_UPWARD
 	trend_duration = 1
 	circumstance = list(
-		"has just released a new product that is dominating the market for  ",
-		"is hitting it big! Dramatically stocking and raising the price of ",
-		", in a surprise move, monopolized supply and has raised the price of ",
+		"刚发布了一款新产品，主导了以下材料的市场：",
+		"大获成功！正在大举囤积并推高以下材料的价格：",
+		"出人意料地垄断了供应，推高了以下材料的价格：",
 	)
 
 /datum/stock_market_event/hotcakes/start_event()
@@ -130,12 +130,12 @@
 	create_news()
 
 /datum/stock_market_event/lockdown
-	name = "Lockdown!"
+	name = "贸易封锁！"
 	trend_value = MARKET_TREND_DOWNWARD
 	trend_duration = 2
 	circumstance = list(
-		"is being investigated by the Galactic Trade Commission, resulting in a halt of trade for ",
-		", in a stunning move, has been embargoed by TerraGov, resulting in a halt of trade of ",
+		"正在接受银河贸易委员会调查，导致以下材料停止交易：",
+		"意外遭到地球政府禁运，导致以下材料停止交易：",
 	)
 
 /datum/stock_market_event/lockdown/handle()

@@ -1,6 +1,6 @@
 /datum/wires/apc
 	holder_type = /obj/machinery/power/apc
-	proper_name = "APC"
+	proper_name = "区域电力控制器"
 
 /datum/wires/apc/New(atom/holder)
 	wires = list(
@@ -25,12 +25,12 @@
 /datum/wires/apc/get_status()
 	var/obj/machinery/power/apc/A = holder
 	var/list/status = list()
-	status += "The interface light is [A.locked ? "red" : "green"]."
-	status += "The short indicator is [A.shorted ? "lit" : "off"]."
-	status += "The channel one light is [A.equipment ? "on" : "off"]."
-	status += "The channel two light is [A.lighting ? "on" : "off"]."
-	status += "The channel three light is [A.environ ? "on" : "off"]."
-	status += "The AI connection light is [!A.aidisabled ? "on" : "off"]."
+	status += "界面指示灯呈[A.locked ? "红色" : "绿色"]。"
+	status += "短路指示灯[A.shorted ? "亮起" : "熄灭"]。"
+	status += "一号通道指示灯[A.equipment ? "亮起" : "熄灭"]。"
+	status += "二号通道指示灯[A.lighting ? "亮起" : "熄灭"]。"
+	status += "三号通道指示灯[A.environ ? "亮起" : "熄灭"]。"
+	status += "AI连接指示灯[!A.aidisabled ? "亮起" : "熄灭"]。"
 	return status
 
 /datum/wires/apc/on_pulse(wire, user)
