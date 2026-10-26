@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/odysseus
-	desc = "A nimble DeForest Odysseus exosuit, designed and outfitted for frontline medical support and rapid response."
-	name = "\improper Odysseus"
+	desc = "一台灵巧的德福雷斯特奥德修斯机甲，专为前线医疗支援与快速响应而设计装配。"
+	name = "\improper 奥德修斯"
 	icon_state = "odysseus"
 	base_icon_state = "odysseus"
 	movedelay = 2

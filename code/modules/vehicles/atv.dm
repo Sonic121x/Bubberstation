@@ -1,7 +1,7 @@
 
 /obj/vehicle/ridden/atv
-	name = "all-terrain vehicle"
-	desc = "An all-terrain vehicle built for traversing rough terrain with ease. One of the few old-Earth technologies that are still relevant on most planet-bound outposts."
+	name = "全地形车"
+	desc = "一辆专为轻松穿越崎岖地形而打造的全地形车。这是旧地球少数至今仍适用于大多数行星前哨站的技术之一。"
 	icon_state = "atv"
 	max_integrity = 150
 	armor_type = /datum/armor/ridden_atv
@@ -37,7 +37,7 @@
 	var/obj/machinery/porta_turret/syndicate/vehicle_turret/turret = null
 
 /obj/machinery/porta_turret/syndicate/vehicle_turret
-	name = "mounted turret"
+	name = "车载炮塔"
 	scan_range = 7
 	density = FALSE
 
@@ -77,27 +77,27 @@
 		return
 	. = TRUE
 	if(DOING_INTERACTION(user, src))
-		balloon_alert(user, "you're already repairing it!")
+		balloon_alert(user, "你已经在维修它了！")
 		return
 	if(atom_integrity >= max_integrity)
-		balloon_alert(user, "it's not damaged!")
+		balloon_alert(user, "它没有损坏！")
 		return
 	if(!W.tool_start_check(user, amount=1, heat_required = HIGH_TEMPERATURE_REQUIRED))
 		return
-	user.balloon_alert_to_viewers("started welding [src]", "started repairing [src]")
-	audible_message(span_hear("You hear welding."))
+	user.balloon_alert_to_viewers("开始焊接 [src]", "开始维修 [src]")
+	audible_message(span_hear("你听见焊接声。"))
 	var/did_the_thing
 	while(atom_integrity < max_integrity)
 		if(W.use_tool(src, user, 2.5 SECONDS, volume=50))
 			did_the_thing = TRUE
 			atom_integrity += min(10, (max_integrity - atom_integrity))
-			audible_message(span_hear("You hear welding."))
+			audible_message(span_hear("你听见焊接声。"))
 		else
 			break
 	if(did_the_thing)
-		user.balloon_alert_to_viewers("[(atom_integrity >= max_integrity) ? "fully" : "partially"] repaired [src]")
+		user.balloon_alert_to_viewers("[(atom_integrity >= max_integrity) ? "完全" : "部分"]修复了 [src]")
 	else
-		user.balloon_alert_to_viewers("stopped welding [src]", "interrupted the repair!")
+		user.balloon_alert_to_viewers("停止焊接 [src]", "维修被打断了！")
 
 /obj/vehicle/ridden/atv/atom_break()
 	START_PROCESSING(SSobj, src)

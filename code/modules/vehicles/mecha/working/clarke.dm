@@ -1,7 +1,7 @@
 ///Lavaproof, fireproof, fast mech with low armor and higher energy consumption and has an internal ore box.
 /obj/vehicle/sealed/mecha/clarke
-	desc = "Combining man and machine for a better, stronger miner. Can even resist lava! Due to its tracks it cannot strafe."
-	name = "\improper Clarke"
+	desc = "结合人与机器，造就更优秀、更强壮的矿工。甚至能抵御熔岩！由于采用履带，它无法侧移。"
+	name = "\improper 克拉克"
 	icon_state = "clarke"
 	base_icon_state = "clarke"
 	max_temperature = 65000
@@ -55,8 +55,8 @@
 // Ore Box Controls
 /// Special equipment for the Clarke mech, handles moving ore without giving the mech a hydraulic clamp and cargo compartment.
 /obj/item/mecha_parts/mecha_equipment/orebox_manager
-	name = "ore storage module"
-	desc = "An automated ore box management device, complete with a built-in boulder processor."
+	name = "矿石储存模块"
+	desc = "一台自动化矿石箱管理装置，内置巨石处理器。"
 	icon_state = "mecha_bin"
 	equipment_slot = MECHA_UTILITY
 	detachable = FALSE
@@ -101,7 +101,7 @@
 			return FALSE
 		cached_ore_box.dump_box_contents()
 		playsound(chassis, 'sound/items/weapons/tap.ogg', 50, TRUE)
-		log_message("Dumped [cached_ore_box].", LOG_MECHA)
+		log_message("倒空了 [cached_ore_box]。", LOG_MECHA)
 		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/sleeper/clarke //The Clarke subtype of the sleeper is a built-in utility module
@@ -109,8 +109,8 @@
 	detachable = FALSE
 
 /datum/action/vehicle/sealed/mecha/clarke_scoop_body
-	name = "Pick up body"
-	desc = "Activate to pick up a nearby body"
+	name = "抱起尸体"
+	desc = "激活以抱起附近的尸体"
 	button_icon = 'icons/obj/devices/mecha_equipment.dmi'
 	button_icon_state = "mecha_sleeper_miner"
 
@@ -130,7 +130,7 @@
 #define SEARCH_COOLDOWN (1 MINUTES)
 
 /datum/action/vehicle/sealed/mecha/mech_search_ruins
-	name = "Search for Ruins"
+	name = "搜寻遗迹"
 	button_icon_state = "mech_search_ruins"
 	COOLDOWN_DECLARE(search_cooldown)
 
@@ -141,7 +141,7 @@
 	if(!chassis || !(owner in chassis.occupants))
 		return
 	if(!COOLDOWN_FINISHED(src, search_cooldown))
-		chassis.balloon_alert(owner, "on cooldown!")
+		chassis.balloon_alert(owner, "技能冷却中！")
 		return
 	if(!isliving(owner))
 		return
@@ -158,12 +158,12 @@
 		if(!pinpointed_ruin || get_dist(ruin_landmark, chassis) < get_dist(pinpointed_ruin, chassis))
 			pinpointed_ruin = ruin_landmark
 	if(!pinpointed_ruin)
-		chassis.balloon_alert(living_owner, "no ruins!")
+		chassis.balloon_alert(living_owner, "没有遗迹！")
 		return
 	var/datum/status_effect/agent_pinpointer/ruin_pinpointer = living_owner.apply_status_effect(/datum/status_effect/agent_pinpointer/ruin)
 	ruin_pinpointer.RegisterSignal(living_owner, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/datum/status_effect/agent_pinpointer/ruin, cancel_self))
 	ruin_pinpointer.scan_target = pinpointed_ruin
-	chassis.balloon_alert(living_owner, "pinpointing nearest ruin")
+	chassis.balloon_alert(living_owner, "正在定位最近的遗迹")
 
 /datum/status_effect/agent_pinpointer/ruin
 	duration = SEARCH_COOLDOWN * 0.5
@@ -182,7 +182,7 @@
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/ruin
-	name = "Ruin Target"
-	desc = "Searching for valuables..."
+	name = "遗迹目标"
+	desc = "正在搜寻值钱的东西……"
 
 #undef SEARCH_COOLDOWN

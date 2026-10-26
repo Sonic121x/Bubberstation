@@ -1,8 +1,8 @@
 // Most of these are just additions to allow certain cargo packs to exist. More will be on the way on additional PR's
 
 /obj/item/storage/box/techshell
-	name = "box of unloaded techshell"
-	desc = "A box of technological shells. These come unloaded and ready for custom shot loads."
+	name = "一盒未装填的科技弹壳"
+	desc = "一盒科技弹壳。它们未装填，可用于自定义弹丸装药。"
 
 /obj/item/storage/box/techshell/PopulateContents()
 	for(var/i in 1 to 7)

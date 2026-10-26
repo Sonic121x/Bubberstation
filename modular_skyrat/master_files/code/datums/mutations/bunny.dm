@@ -1,10 +1,10 @@
 /datum/mutation/strong_legs
-	name = "Strong Legs"
-	desc = "Strengtens the calves of the subject, allowing them to leap across gaps."
+	name = "强健双腿"
+	desc = "强化受试者的小腿，使其能够跃过沟壑。"
 	quality = POSITIVE
 	difficulty = 12
-	text_gain_indication = span_notice("Your leg muscles feel stronger.")
-	text_lose_indication = span_notice("Your leg muscles are weakening.")
+	text_gain_indication = span_notice("你的腿部肌肉感觉更有力了。")
+	text_lose_indication = span_notice("你的腿部肌肉正在变弱。")
 	power_path = /datum/action/cooldown/mob_cooldown/leap
 	instability = 25
 
@@ -21,8 +21,8 @@
 	ability.leap_strength += 1
 
 /datum/action/cooldown/mob_cooldown/leap
-	name = "Leap"
-	desc = "You propel yourself into the air, allowing you to cross short gaps."
+	name = "跳跃"
+	desc = "你将自身弹向空中，从而越过较短的沟壑。"
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "lace"
 	cooldown_time = 10 SECONDS
@@ -74,7 +74,7 @@
 		var/turf/new_turf = get_turf(bumped_window)
 		bumped_window.deconstruct(disassembled = FALSE)
 		source.apply_damage(damage = 5, damagetype = BRUTE)
-		source.visible_message(span_warning("[source] slams [source.p_their()] body through the window!"))
+		source.visible_message(span_warning("[source] 用身体撞穿了窗户！"))
 		for(var/obj/structure/grille/poorgrille in new_turf)
 			on_grille_bump(source, poorgrille, do_move = FALSE)
 		source.forceMove(new_turf)
@@ -87,7 +87,7 @@
 			harsh_crash = TRUE
 			var/obj/item/bodypart/affecting = source.get_bodypart(BODY_ZONE_HEAD)
 			affecting.force_wound_upwards(/datum/wound/blunt/bone/severe)
-		source.visible_message(span_warning("[source] smacks [source.p_their()] head against the window[harsh_crash ? " and cracks their skull open" : ""]! Ouch."))
+		source.visible_message(span_warning("[source] 把脑袋撞在窗户上[harsh_crash ? "，头骨都裂开了" : ""]！真疼。"))
 
 /datum/action/cooldown/mob_cooldown/leap/proc/on_grille_bump(mob/living/carbon/source, obj/structure/grille/bumped_grille, do_move = TRUE)
 	bumped_grille.shock(source, 70)
@@ -98,6 +98,6 @@
 		source.forceMove(new_turf)
 
 /obj/item/dnainjector/strong_legs
-	name = "\improper DNA injector (Strong Legs)"
-	desc = "Makes you leap like a bunny."
+	name = "\improper DNA注射器（强健双腿）"
+	desc = "让你像兔子一样蹦跳。"
 	add_mutations = list(/datum/mutation/strong_legs)

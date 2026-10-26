@@ -5,8 +5,8 @@
 #define SAUNA_WATER_PER_WATER_UNIT 5
 
 /obj/structure/sauna_oven
-	name = "sauna oven"
-	desc = "A modest sauna oven with rocks. Add some fuel, pour some water and enjoy the moment."
+	name = "桑拿炉"
+	desc = "一座朴素的桑拿炉，里面放着石头。加点燃料，泼些水，享受此刻吧。"
 	icon = 'modular_skyrat/master_files/icons/obj/structures/sauna_oven.dmi'
 	icon_state = "sauna_oven"
 	density = TRUE
@@ -19,8 +19,8 @@
 
 /obj/structure/sauna_oven/examine(mob/user)
 	. = ..()
-	. += span_notice("The rocks are [water_amount ? "moist" : "dry"].")
-	. += span_notice("There's [fuel_amount ? "some fuel" : "no fuel"] in the oven.")
+	. += span_notice("石头是[water_amount ? "湿润的" : "干燥的"]。")
+	. += span_notice("炉子里[fuel_amount ? "有一些燃料" : "没有燃料"]。")
 
 /obj/structure/sauna_oven/Destroy()
 	if(lit)
@@ -35,11 +35,11 @@
 	if(lit)
 		lit = FALSE
 		STOP_PROCESSING(SSobj, src)
-		user.visible_message(span_notice("[user] turns off [src]."), span_notice("You turn off [src]."))
+		user.visible_message(span_notice("[user] 关掉了 [src]。"), span_notice("你关掉了 [src]。"))
 	else if (fuel_amount)
 		lit = TRUE
 		START_PROCESSING(SSobj, src)
-		user.visible_message(span_notice("[user] turns on [src]."), span_notice("You turn on [src]."))
+		user.visible_message(span_notice("[user] 点燃了 [src]。"), span_notice("你点燃了 [src]。"))
 	update_icon()
 
 /obj/structure/sauna_oven/update_overlays()
@@ -53,9 +53,9 @@
 
 /obj/structure/sauna_oven/wrench_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "deconstructing...")
+	balloon_alert(user, "拆除中……")
 	if(tool.use_tool(src, user, 60, volume = 50))
-		balloon_alert(user, "deconstructed")
+		balloon_alert(user, "已拆除")
 		new /obj/item/stack/sheet/mineral/wood(get_turf(src), 30)
 		qdel(src)
 		return ITEM_INTERACT_SUCCESS
@@ -68,39 +68,39 @@
 			return ITEM_INTERACT_BLOCKING
 		if(reagent_container.reagents.has_reagent(/datum/reagent/water))
 			reagent_container.reagents.remove_reagent(/datum/reagent/water, 5)
-			user.visible_message(span_notice("[user] pours some \
-			water into [src]."), span_notice("You pour \
-			some water to [src]."))
+			user.visible_message(span_notice("[user] 往 \
+			[src] 里倒了一些水。"), span_notice("你往 \
+			[src] 里倒了些水。"))
 			water_amount += 5 * SAUNA_WATER_PER_WATER_UNIT
 			return ITEM_INTERACT_SUCCESS
 		else
-			balloon_alert(user, "no water!")
+			balloon_alert(user, "没有水！")
 			return ITEM_INTERACT_BLOCKING
 
 	else if(istype(tool, /obj/item/stack/sheet/mineral/wood))
 		var/obj/item/stack/sheet/mineral/wood/wood = tool
 		if(fuel_amount > SAUNA_MAXIMUM_FUEL)
-			balloon_alert(user, "it's full!")
+			balloon_alert(user, "已经满了！")
 			return ITEM_INTERACT_BLOCKING
 		fuel_amount += SAUNA_LOG_FUEL * wood.amount
 		wood.use(wood.amount)
-		user.visible_message(span_notice("[user] tosses some \
-			wood into [src]."), span_notice("You add \
-			some fuel to [src]."))
+		user.visible_message(span_notice("[user] 往 \
+			[src] 里扔了一些木柴。"), span_notice("你往 \
+			[src] 里加了些燃料。"))
 		return ITEM_INTERACT_SUCCESS
 
 	else if(istype(tool, /obj/item/paper_bin))
 		var/obj/item/paper_bin/paper_bin = tool
-		user.visible_message(span_notice("[user] throws [tool] into \
-			[src]."), span_notice("You add [tool] to [src].\
+		user.visible_message(span_notice("[user] 把 [tool] 扔进 \
+			[src]。"), span_notice("你把 [tool] 放进 [src]。\
 			"))
 		fuel_amount += SAUNA_PAPER_FUEL * paper_bin.total_paper
 		qdel(paper_bin)
 		return ITEM_INTERACT_SUCCESS
 
 	else if(istype(tool, /obj/item/paper))
-		user.visible_message(span_notice("[user] throws [tool] into \
-			[src]."), span_notice("You throw [tool] into [src].\
+		user.visible_message(span_notice("[user] 把 [tool] 扔进 \
+			[src]。"), span_notice("你把 [tool] 扔进 [src]。\
 			"))
 		fuel_amount += SAUNA_PAPER_FUEL
 		qdel(tool)

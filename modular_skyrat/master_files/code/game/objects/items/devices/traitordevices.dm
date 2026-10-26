@@ -1,10 +1,10 @@
 /obj/item/healthanalyzer/rad_laser
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "This syndicate-modified health analyzer can emit delayed bursts of radiation to those it scans."
+	special_desc = "这台辛迪加改装健康分析仪可以向其扫描对象发射延迟的辐射脉冲。"
 
 /obj/item/jammer
-	name = "suspicious transmitter"
-	desc = "A suspicious device vaguely resembling a radio, but without a speaker or microphone."
+	name = "可疑发射器"
+	desc = "一台隐约像无线电的可疑装置，但没有扬声器或麦克风。"
 	special_desc_requirement = EXAMINE_CHECK_JOB
 	special_desc_jobs = list("Station Engineer", "Chief Engineer", "Cyborg", "AI")
-	special_desc = "This is a black market radio jammer. Used to disrupt nearby radio communication."
+	special_desc = "这是黑市无线电干扰器，用于扰乱附近的无线电通讯。"

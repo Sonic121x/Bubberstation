@@ -1,9 +1,9 @@
 /obj/item/mutant_hand/zombie
-	name = "zombie claw"
-	desc = "A zombie's claw is its primary tool, capable of infecting \
-		humans, butchering all other living things to \
-		sustain the zombie, smashing open airlock doors and opening \
-		child-safe caps on bottles."
+	name = "僵尸爪"
+	desc = "僵尸的爪子是它的主要工具，能够感染 \
+		人类，将其他所有生物宰杀以 \
+		维持僵尸的生存，砸开气闸门，还能打开 \
+		瓶子上的儿童安全瓶盖。"
 
 	hitsound = 'sound/effects/hallucinations/growl1.ogg'
 	force = 21 // Just enough to break airlocks with melee attacks
@@ -64,10 +64,10 @@
 	if(!infection)
 		infection = new()
 		infection.Insert(target)
-		to_chat(user, span_alien("You see [target] twitch for a moment as [target.p_their()] head is covered in \a [infection] - [target.p_Theyve()] been infected."))
+		to_chat(user, span_alien("你看到 [target] 抽搐了一下，头部覆满了 \a [infection]——已被感染。"))
 
 /obj/item/mutant_hand/zombie/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is ripping [user.p_their()] brains out! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user]正把自己的脑子扯出来！看起来是在试图自杀！"))
 	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		head.dismember()
@@ -76,7 +76,7 @@
 /obj/item/mutant_hand/zombie/proc/check_feast(mob/living/target, mob/living/user)
 	if(target.stat == DEAD)
 		var/hp_gained = target.maxHealth
-		target.investigate_log("has been devoured by a zombie.", INVESTIGATE_DEATHS)
+		target.investigate_log("被僵尸吞噬了。", INVESTIGATE_DEATHS)
 		target.gib(DROP_ALL_REMAINS)
 		var/need_mob_update
 		need_mob_update = user.adjust_brute_loss(-hp_gained, updating_health = FALSE)

@@ -59,16 +59,16 @@
 	..()
 	. = TRUE
 	if(salvage_num <= 0 || !length(welder_salvage))
-		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
+		to_chat(user, span_notice("你看不到任何可以用 [I] 剪下的东西！"))
 		return
 	if(!I.use_tool(src, user, 0, volume=50))
 		return
 	if(prob(30))
-		to_chat(user, span_notice("You fail to salvage anything valuable from [src]!"))
+		to_chat(user, span_notice("你没能从 [src] 中回收任何有价值的东西！"))
 		return
 	var/type = pick(welder_salvage)
 	var/N = new type(get_turf(user))
-	user.visible_message(span_notice("[user] cuts [N] from [src]."), span_notice("You cut [N] from [src]."))
+	user.visible_message(span_notice("[user] 从 [src] 上切下了 [N]。"), span_notice("你从 [src] 上切下了 [N]。"))
 	if(!isstack(N))
 		welder_salvage -= type
 	salvage_num--
@@ -77,10 +77,10 @@
 	..()
 	. = TRUE
 	if(wires_removed)
-		to_chat(user, span_notice("You don't see anything that can be cut with [I]!"))
+		to_chat(user, span_notice("你看不到任何可以用 [I] 剪下的东西！"))
 		return
 	var/N = new /obj/item/stack/cable_coil(get_turf(user), rand(1,3))
-	user.visible_message(span_notice("[user] cuts [N] from [src]."), span_notice("You cut [N] from [src]."))
+	user.visible_message(span_notice("[user] 从 [src] 上切下了 [N]。"), span_notice("你从 [src] 上切下了 [N]。"))
 	wires_removed = TRUE
 
 /obj/structure/mecha_wreckage/crowbar_act(mob/living/user, obj/item/I)
@@ -89,10 +89,10 @@
 	if(crowbar_salvage.len)
 		var/obj/S = pick(crowbar_salvage)
 		S.forceMove(user.drop_location())
-		user.visible_message(span_notice("[user] pries [S] from [src]."), span_notice("You pry [S] from [src]."))
+		user.visible_message(span_notice("[user] 从 [src] 上撬下了 [S]。"), span_notice("你从 [src] 上撬下了 [S]。"))
 		crowbar_salvage -= S
 		return
-	to_chat(user, span_notice("You don't see anything that can be pried with [I]!"))
+	to_chat(user, span_notice("你看不到任何可以用 [I] 撬下的东西！"))
 
 /obj/structure/mecha_wreckage/transfer_ai(interaction, mob/user, mob/living/silicon/ai/ai_mob, obj/item/aicard/card)
 	if(!..())
@@ -102,20 +102,20 @@
 	if(interaction != AI_TRANS_TO_CARD) //AIs can only be transferred in one direction, from the wreck to the card.
 		return
 	if(!AI) //No AI in the wreck
-		to_chat(user, span_warning("No AI backups found."))
+		to_chat(user, span_warning("未找到 AI 备份。"))
 		return
 	cut_overlays() //Remove the recovery beacon overlay
 	AI.forceMove(card) //Move the dead AI to the card.
 	card.AI = AI
 	if(AI.client) //AI player is still in the dead AI and is connected
-		to_chat(AI, span_notice("The remains of your file system have been recovered on a mobile storage device."))
+		to_chat(AI, span_notice("你的文件系统残骸已在移动存储设备上恢复。"))
 	else //Give the AI a heads-up that it is probably going to get fixed.
-		AI.notify_revival("You have been recovered from the wreckage!", source = card)
-	to_chat(user, "[span_boldnotice("Backup files recovered")]: [AI.name] ([rand(1000,9999)].exe) salvaged from [name] and stored within local memory.")
+		AI.notify_revival("你已从残骸中被回收！", source = card)
+	to_chat(user, "[span_boldnotice("备份文件已恢复")]：[AI.name]（[rand(1000,9999)].exe）已从 [name] 中回收，并存储至本地内存。")
 	AI = null
 
 /obj/structure/mecha_wreckage/gygax
-	name = "\improper Gygax wreckage"
+	name = "\improper 吉盖克斯残骸"
 	icon_state = "gygax-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/gold, /obj/item/stack/sheet/mineral/silver, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 	parts = list(
@@ -128,35 +128,35 @@
 				)
 
 /obj/structure/mecha_wreckage/gygax/dark
-	name = "\improper Dark Gygax wreckage"
+	name = "\improper 暗黑吉盖克斯残骸"
 	icon_state = "darkgygax-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/plastitanium, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 
 /obj/structure/mecha_wreckage/marauder
-	name = "\improper Marauder wreckage"
+	name = "\improper 掠夺者残骸"
 	icon_state = "marauder-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/titanium, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 
 /obj/structure/mecha_wreckage/mauler
-	name = "\improper Mauler wreckage"
+	name = "\improper 猛击者残骸"
 	icon_state = "mauler-broken"
-	desc = "The syndicate won't be very happy about this..."
+	desc = "辛迪加对此不会太高兴的……"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/plastitanium, /obj/item/stack/sheet/mineral/diamond, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 
 /obj/structure/mecha_wreckage/seraph
-	name = "\improper Seraph wreckage"
+	name = "\improper 炽天使残骸"
 	icon_state = "seraph-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/titanium, /obj/item/stack/sheet/mineral/diamond, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 
 /obj/structure/mecha_wreckage/reticence
-	name = "\improper Reticence wreckage"
+	name = "\improper 缄默残骸"
 	icon_state = "reticence-broken"
 	color = "#87878715"
 	desc = "..."
 	welder_salvage = list(/obj/item/shard) //get it, it's a glass cannon
 
 /obj/structure/mecha_wreckage/ripley
-	name = "\improper Ripley wreckage"
+	name = "\improper 雷普利残骸"
 	icon_state = "ripley-broken"
 	welder_salvage = list(/obj/item/stack/sheet/iron, /obj/item/stack/rods)
 	parts = list(
@@ -167,15 +167,15 @@
 				/obj/item/mecha_parts/part/ripley_right_leg)
 
 /obj/structure/mecha_wreckage/ripley/mk2
-	name = "\improper Ripley MK-II wreckage"
+	name = "\improper 雷普利 MK-II 残骸"
 	icon_state = "ripleymkii-broken"
 
 /obj/structure/mecha_wreckage/ripley/paddy
-	name = "\improper Paddy wreckage"
+	name = "\improper 帕迪残骸"
 	icon_state = "paddy-broken"
 
 /obj/structure/mecha_wreckage/clarke
-	name = "\improper Clarke wreckage"
+	name = "\improper 克拉克残骸"
 	icon_state = "clarke-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/gold, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 	parts = list(
@@ -186,15 +186,15 @@
 				/obj/item/stack/conveyor)
 
 /obj/structure/mecha_wreckage/ripley/deathripley
-	name = "\improper Death-Ripley wreckage"
+	name = "\improper 死亡雷普利残骸"
 	icon_state = "deathripley-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/plastitanium, /obj/item/stack/sheet/mineral/diamond, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 	parts = null
 
 /obj/structure/mecha_wreckage/honker
-	name = "\improper H.O.N.K wreckage"
+	name = "\improper H.O.N.K 残骸"
 	icon_state = "honker-broken"
-	desc = "All is right in the universe."
+	desc = "宇宙一切安好。"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/bananium, /obj/item/grown/bananapeel, /obj/item/stack/sheet/iron)
 	parts = list(
 				/obj/item/mecha_parts/part/honker_torso,
@@ -205,7 +205,7 @@
 				/obj/item/mecha_parts/part/honker_right_leg)
 
 /obj/structure/mecha_wreckage/durand
-	name = "\improper Durand wreckage"
+	name = "\improper 杜兰德残骸"
 	icon_state = "durand-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/silver, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
 	parts = list(
@@ -217,7 +217,7 @@
 			/obj/item/mecha_parts/part/durand_right_leg)
 
 /obj/structure/mecha_wreckage/phazon
-	name = "\improper Phazon wreckage"
+	name = "\improper 相位行者残骸"
 	icon_state = "phazon-broken"
 	parts = list(
 		/obj/item/mecha_parts/part/phazon_torso,
@@ -228,7 +228,7 @@
 		/obj/item/mecha_parts/part/phazon_right_leg)
 
 /obj/structure/mecha_wreckage/savannah_ivanov
-	name = "\improper Savannah-Ivanov wreckage"
+	name = "\improper 萨凡纳-伊万诺夫残骸"
 	icon = 'icons/mob/rideables/coop_mech.dmi'
 	icon_state = "savannah_ivanov-broken"
 	welder_salvage = list(/obj/item/stack/sheet/mineral/silver, /obj/item/stack/sheet/iron, /obj/item/stack/rods)
@@ -241,7 +241,7 @@
 		/obj/item/mecha_parts/part/savannah_ivanov_right_leg)
 
 /obj/structure/mecha_wreckage/odysseus
-	name = "\improper Odysseus wreckage"
+	name = "\improper 奥德修斯残骸"
 	icon_state = "odysseus-broken"
 	parts = list(
 			/obj/item/mecha_parts/part/odysseus_torso,

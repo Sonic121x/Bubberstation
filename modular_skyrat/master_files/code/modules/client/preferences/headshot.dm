@@ -19,23 +19,23 @@
 
 	var/find_index = findtext(value, "https://")
 	if(find_index != 1)
-		to_chat(usr, span_warning("Your link must be https!"))
+		to_chat(usr, span_warning("你的链接必须使用 https！"))
 		return
 
 	if(!findtext(value, "."))
-		to_chat(usr, span_warning("Invalid link!"))
+		to_chat(usr, span_warning("链接无效！"))
 		return
 	var/list/value_split = splittext(value, ".")
 
 	// extension will always be the last entry
 	var/extension = value_split[length(value_split)]
 	if(!(extension in valid_extensions))
-		to_chat(usr, span_warning("The image must be one of the following extensions: '[english_list(valid_extensions)]'"))
+		to_chat(usr, span_warning("图片扩展名必须为以下之一：“[english_list(valid_extensions)]”"))
 		return
 
 	find_index = findtext(value, link_regex)
 	if(find_index != 9)
-		to_chat(usr, span_warning("The image must be hosted on one of the following sites: 'Catbox, Imgbox, Gyazo, Lensdump, F-List'"))
+		to_chat(usr, span_warning("图片必须托管在以下站点之一：“Catbox、Imgbox、Gyazo、Lensdump、F-List”"))
 		return
 
 	apply_headshot(value)
@@ -43,9 +43,9 @@
 
 /datum/preference/text/headshot/proc/apply_headshot(value)
 	if(stored_link[usr.ckey] != value)
-		to_chat(usr, span_notice("Please use a relatively SFW image of the head and shoulder area to maintain immersion level. Think of it as a headshot for your ID. Lastly, [span_bold("do not use a real life photo or use any image that is less than serious.")]"))
-		to_chat(usr, span_notice("If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser."))
-		to_chat(usr, span_notice("Keep in mind that the photo will be downsized to 250x250 pixels, so the more square the photo, the better it will look."))
-		log_game("[usr] has set their Headshot image to '[value]'.")
+		to_chat(usr, span_notice("请使用相对适合工作场合的头肩部图片，以维持沉浸感。可以把它当作你证件上的头像照。最后，[span_bold("切勿使用真人照片，也不要使用任何不够严肃的图片。")]"))
+		to_chat(usr, span_notice("如果照片在游戏中无法正常显示，请确认它是能在浏览器中正常打开的直链图片。"))
+		to_chat(usr, span_notice("请注意，照片会被缩小至 250x250 像素，因此照片越接近正方形，显示效果越好。"))
+		log_game("[usr] 已将头像图片设置为“[value]”。")
 	stored_link[usr.ckey] = value
 	return TRUE

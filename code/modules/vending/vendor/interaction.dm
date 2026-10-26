@@ -158,7 +158,7 @@
 
 	to_chat(user, span_notice("你为[src]装入了[restocked]件商品[credits_contained > 0 ? "，并获得 [credits_contained] [MONEY_NAME] 作为报酬。" : "。"]"))
 	var/datum/bank_account/cargo_account = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	cargo_account.adjust_money(round(credits_contained * 0.5), "售货机：补货")
+	cargo_account.adjust_money(round(credits_contained * 0.5), "售货：补货")
 	if(credits_contained >= 1)
 		var/obj/item/holochip/payday = new(src, credits_contained)
 		try_put_in_hand(payday, user)

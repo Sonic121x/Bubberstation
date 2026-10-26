@@ -39,7 +39,7 @@
 /datum/preference/choiced/bra
 	savefile_key = "bra"
 	savefile_identifier = PREFERENCE_CHARACTER
-	main_feature_name = "Bra"
+	main_feature_name = "胸罩"
 	category = PREFERENCE_CATEGORY_CLOTHING
 	should_generate_icons = TRUE
 

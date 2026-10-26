@@ -6,7 +6,7 @@
 /datum/ert/asset_protection
 	roles = list(/datum/antagonist/ert/asset_protection)
 	leader_role = /datum/antagonist/ert/asset_protection/leader
-	rename_team = "Asset Protection Team"
+	rename_team = "资产保护小队"
 	code = "Red"
-	mission = "Protect Nanotrasen's assets, crew are assets."
-	polldesc = "a Nanotrasen asset protection team"
+	mission = "保护纳米传讯的资产，船员也是资产。"
+	polldesc = "纳米传讯资产保护小队"

@@ -139,17 +139,17 @@
 	if(preferences.languages && preferences.languages.len == max_languages) // too many languages
 		return TRUE
 	var/choice = tgui_input_list(user, \
-								"Choose understanding level", \
-								title = "Language level", \
-								items = list("Understood", "Understood and Spoken"), \
-								default = "Cancel")
+								"选择掌握程度", \
+								title = "语言程度", \
+								items = list("理解", "理解并能说"), \
+								default = "取消")
 	var/flags = UNDERSTOOD_LANGUAGE
 	switch(choice)
-		if("Understood")
+		if("理解")
 			flags = UNDERSTOOD_LANGUAGE
-		if("Understood and Spoken")
+		if("理解并能说")
 			flags = UNDERSTOOD_LANGUAGE | SPOKEN_LANGUAGE
-		if("Cancel")
+		if("取消")
 			return TRUE
 	preferences.languages[name_to_language[language_name]] = flags
 	return TRUE

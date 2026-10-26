@@ -1,8 +1,8 @@
 #define OXY_CANDLE_RELEASE_TEMP (T20C + 10) // 30 celsius, it's hot. Will be even hotter with hotspot expose
 
 /obj/item/oxygen_candle
-	name = "oxygen candle"
-	desc = "A steel tube with the words 'OXYGEN - PULL CORD TO IGNITE' stamped on the side.\nA small label reads <span class='warning'>'WARNING: NOT FOR LIGHTING USE. WILL IGNITE FLAMMABLE GASSES'</span>"
+	name = "氧气蜡烛"
+	desc = "一根钢管，侧面印着“OXYGEN - PULL CORD TO IGNITE”字样。\n小标签上写着 <span class='warning'>“警告：不可用于照明。会点燃易燃气体”</span>"
 	icon = 'modular_skyrat/master_files/icons/obj/oxygen_candle.dmi'
 	icon_state = "oxycandle"
 	w_class = WEIGHT_CLASS_SMALL
@@ -14,7 +14,7 @@
 /obj/item/oxygen_candle/attack_self(mob/user)
 	if(!pulled)
 		playsound(src, 'sound/effects/fuse.ogg', 75, 1)
-		balloon_alert(user, "cord pulled")
+		balloon_alert(user, "拉绳已拉下")
 		icon_state = "oxycandle_burning"
 		pulled = TRUE
 		processing = TRUE
@@ -32,9 +32,9 @@
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 		processing = FALSE
-		name = "burnt oxygen candle"
+		name = "烧尽的氧气蜡烛"
 		icon_state = "oxycandle_burnt"
-		desc += "\nThis tube has exhausted its chemicals."
+		desc += "\n这根管子已经耗尽了化学物质。"
 
 /obj/item/oxygen_candle/Destroy()
 	if(processing)

@@ -337,20 +337,20 @@
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/can_attach(obj/vehicle/sealed/mecha/ripley/mecha, attach_right = FALSE, mob/user)
 	if(mecha.type != /obj/vehicle/sealed/mecha/ripley)
-		to_chat(user, span_warning("This conversion kit can only be applied to APLU MK-I models."))
+		to_chat(user, span_warning("此改装套件只能用于 APLU MK-I 型号。"))
 		return FALSE
 	var/obj/vehicle/sealed/mecha/ripley/workmech = mecha
 	if(LAZYLEN(workmech.cargo_hold))
-		to_chat(user, span_warning("[mecha]'s cargo hold must be empty before this conversion kit can be applied."))
+		to_chat(user, span_warning("使用此改装套件前，[mecha] 的货舱必须为空。"))
 		return FALSE
 	if(!(mecha.mecha_flags & PANEL_OPEN)) //non-removable upgrade, so lets make sure the pilot or owner has their say.
-		to_chat(user, span_warning("[mecha] panel must be open in order to allow this conversion kit."))
+		to_chat(user, span_warning("[mecha] 的面板必须处于打开状态才能使用此改装套件。"))
 		return FALSE
 	if(LAZYLEN(mecha.occupants)) //We're actually making a new mech and swapping things over, it might get weird if players are involved
-		to_chat(user, span_warning("[mecha] must be unoccupied before this conversion kit can be applied."))
+		to_chat(user, span_warning("[mecha] 必须无人乘坐才能使用此改装套件。"))
 		return FALSE
 	if(!mecha.cell) //Turns out things break if the cell is missing
-		to_chat(user, span_warning("The conversion process requires a cell installed."))
+		to_chat(user, span_warning("改装过程需要安装一块电池。"))
 		return FALSE
 	return TRUE
 
@@ -400,8 +400,8 @@
 	playsound(get_turf(newmech),'sound/items/tools/ratchet.ogg',50,TRUE)
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/paddy
-	name = "Paddy Conversion Kit"
-	desc = "A hardpoint modification kit for an Autonomous Power Loader Unit \"Ripley\" MK-I exosuit, to convert it to the Paddy lightweight security design. This kit cannot be removed, once applied."
+	name = "帕迪改装套件"
+	desc = "一套用于 APLU“雷普利”MK-I 机甲的外挂点改装套件，可将其改造为“帕迪”轻型安保型。套件一经使用便无法拆除。"
 	icon_state = "paddyupgrade"
 	mech_flags = EXOSUIT_MODULE_RIPLEY
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 5)
@@ -409,6 +409,6 @@
 
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade/paddy/can_attach(obj/vehicle/sealed/mecha/ripley/mecha, attach_right = FALSE, mob/user)
 	if(mecha.equip_by_category[MECHA_L_ARM] || mecha.equip_by_category[MECHA_R_ARM]) //Paddys can't use RIPLEY-type equipment
-		to_chat(user, span_warning("This kit cannot be applied with hardpoint equipment attached."))
+		to_chat(user, span_warning("装有外挂点装备时无法使用此套件。"))
 		return FALSE
 	return ..()

@@ -29,7 +29,7 @@
 		return
 	if((car_traits & CAN_KIDNAP) && isliving(dropping) && user != dropping)
 		var/mob/living/kidnapped = dropping
-		kidnapped.visible_message(span_warning("[user] starts forcing [kidnapped] into [src]!"))
+		kidnapped.visible_message(span_warning("[user] 开始把 [kidnapped] 强行塞进 [src]！"))
 		mob_try_forced_enter(user, kidnapped)
 	return ..()
 
@@ -38,10 +38,10 @@
 		mob_exit(future_pedestrian, silent)
 		return TRUE
 	if (escape_time > 0)
-		to_chat(user, span_notice("You push against the back of \the [src]'s trunk to try and get out."))
+		to_chat(user, span_notice("你用力推 [src] 后备箱的后壁，试图逃出去。"))
 		if(!do_after(user, escape_time, target = src))
 			return FALSE
-	to_chat(user,span_danger("[user] gets out of [src]."))
+	to_chat(user,span_danger("[user] 从 [src] 里钻了出来。"))
 	mob_exit(future_pedestrian, silent)
 	return TRUE
 
@@ -49,14 +49,14 @@
 	. = ..()
 	if(!(car_traits & CAN_KIDNAP))
 		return
-	to_chat(user, span_notice("You start opening [src]'s trunk."))
+	to_chat(user, span_notice("你开始打开 [src] 的后备箱。"))
 	if(!do_after(user, 30))
 		return
 	if(return_amount_of_controllers_with_flag(VEHICLE_CONTROL_KIDNAPPED))
-		to_chat(user, span_notice("The people stuck in [src]'s trunk all come tumbling out."))
+		to_chat(user, span_notice("被困在 [src] 后备箱里的人全都滚了出来。"))
 		dump_specific_mobs(VEHICLE_CONTROL_KIDNAPPED)
 		return
-	to_chat(user, span_notice("It seems [src]'s trunk was empty."))
+	to_chat(user, span_notice("看来 [src] 的后备箱是空的。"))
 
 ///attempts to force a mob into the car
 /obj/vehicle/sealed/car/proc/mob_try_forced_enter(mob/forcer, mob/kidnapped, silent = FALSE)
@@ -76,7 +76,7 @@
 ///Proc called when someone is forcefully stuffedd into a car
 /obj/vehicle/sealed/car/proc/mob_forced_enter(mob/kidnapped, silent = FALSE)
 	if(!silent)
-		kidnapped.visible_message(span_warning("[kidnapped] is forced into \the [src]!"))
+		kidnapped.visible_message(span_warning("[kidnapped] 被强行塞进了 [src]！"))
 		if(forced_enter_sound)
 			playsound(src, forced_enter_sound, 70, TRUE, MEDIUM_RANGE_SOUND_EXTRARANGE)
 	kidnapped.forceMove(src)
@@ -84,7 +84,7 @@
 
 /obj/vehicle/sealed/car/atom_destruction(damage_flag)
 	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE)
-	log_message("[src] exploded due to destruction", LOG_ATTACK)
+	log_message("[src] 因受损而爆炸", LOG_ATTACK)
 	return ..()
 
 /obj/vehicle/sealed/car/relaymove(mob/living/user, direction)

@@ -39,7 +39,7 @@ GLOBAL_LIST(uplink_purchase_logs_by_key) //assoc key = /datum/uplink_purchase_lo
 /datum/uplink_purchase_log/proc/TotalTelecrystalsSpent()
 	. = total_spent
 
-#define FORMAT_COST(uplink_entry) (uplink_entry.spent_cost ? "[uplink_entry.spent_cost] TC" : (uplink_entry.base_cost ? "Free" : "Surplus"))
+#define FORMAT_COST(uplink_entry) (uplink_entry.spent_cost ? "[uplink_entry.spent_cost] TC" : (uplink_entry.base_cost ? "免费" : "盈余"))
 
 /datum/uplink_purchase_log/proc/generate_render(show_key = TRUE)
 	. = ""

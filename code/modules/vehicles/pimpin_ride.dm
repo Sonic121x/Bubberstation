@@ -2,8 +2,8 @@
  * # Janicart
  */
 /obj/vehicle/ridden/janicart
-	name = "janicart (pimpin' ride)"
-	desc = "A brave janitor cyborg gave its life to produce such an amazing combination of speed and utility."
+	name = "清洁车（拉风座驾）"
+	desc = "一位勇敢的清洁工半机械人献出了生命，才造出这台速度与实用兼备的绝妙座驾。"
 	icon_state = "pussywagon"
 	key_type = /obj/item/key/janitor
 	movedelay = 1
@@ -32,7 +32,7 @@
 /obj/vehicle/ridden/janicart/examine(mob/user)
 	. = ..()
 	if (installed_upgrade)
-		. += "It has been upgraded with [installed_upgrade], which can be removed with a screwdriver."
+		. += "它已用 [installed_upgrade] 升级，可用螺丝刀拆下。"
 
 /obj/vehicle/ridden/janicart/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	. = ..()
@@ -40,12 +40,12 @@
 		return
 	if(istype(tool, /obj/item/storage/bag/trash))
 		if(trash_bag)
-			to_chat(user, span_warning("[src] already has a trashbag hooked!"))
+			to_chat(user, span_warning("[src] 上已经挂了一个垃圾袋！"))
 			return ITEM_INTERACT_BLOCKING
 		if(!user.transferItemToLoc(tool, src))
 			return ITEM_INTERACT_BLOCKING
 
-		to_chat(user, span_notice("You hook the trashbag onto [src]."))
+		to_chat(user, span_notice("你把垃圾袋挂到了 [src] 上。"))
 		trash_bag = tool
 		RegisterSignal(trash_bag, COMSIG_QDELETING, PROC_REF(bag_deleted))
 		SEND_SIGNAL(src, COMSIG_VACUUM_BAG_ATTACH, tool)
@@ -54,13 +54,13 @@
 
 	if(istype(tool, /obj/item/janicart_upgrade))
 		if(installed_upgrade)
-			to_chat(user, span_warning("[src] already has an upgrade installed! Use a screwdriver to remove it."))
+			to_chat(user, span_warning("[src] 已经安装了升级件！用螺丝刀将其拆下。"))
 			return ITEM_INTERACT_BLOCKING
 		var/obj/item/janicart_upgrade/new_upgrade = tool
 		new_upgrade.forceMove(src)
 		new_upgrade.install(src)
 		installed_upgrade = new_upgrade
-		to_chat(user, span_notice("You upgrade [src] with [new_upgrade]."))
+		to_chat(user, span_notice("你用 [new_upgrade] 升级了 [src]。"))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -76,7 +76,7 @@
 	installed_upgrade.uninstall(src)
 	installed_upgrade.forceMove(get_turf(user))
 	user.put_in_hands(installed_upgrade)
-	to_chat(user, span_notice("You remove [installed_upgrade] from [src]"))
+	to_chat(user, span_notice("你从 [src] 上取下了 [installed_upgrade]"))
 	installed_upgrade = null
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
@@ -104,38 +104,38 @@
 
 	if(!held_item)
 		if(occupant_amount() > 0)
-			context[SCREENTIP_CONTEXT_LMB] = "Dismount"
-			context[SCREENTIP_CONTEXT_RMB] = "Dismount"
+			context[SCREENTIP_CONTEXT_LMB] = "下车"
+			context[SCREENTIP_CONTEXT_RMB] = "下车"
 			if(trash_bag)
-				context[SCREENTIP_CONTEXT_RMB] = "Remove trash bag"
+				context[SCREENTIP_CONTEXT_RMB] = "取下垃圾袋"
 			if(is_key(inserted_key) && occupants.Find(user))
-				context[SCREENTIP_CONTEXT_ALT_LMB] = "Remove key"
+				context[SCREENTIP_CONTEXT_ALT_LMB] = "拔出钥匙"
 			return CONTEXTUAL_SCREENTIP_SET
 		else if(trash_bag)
-			context[SCREENTIP_CONTEXT_LMB] = "Remove trash bag"
-			context[SCREENTIP_CONTEXT_RMB] = "Remove trash bag"
+			context[SCREENTIP_CONTEXT_LMB] = "取下垃圾袋"
+			context[SCREENTIP_CONTEXT_RMB] = "取下垃圾袋"
 			return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/storage/bag/trash) && !trash_bag)
-		context[SCREENTIP_CONTEXT_LMB] = "Add trash bag"
-		context[SCREENTIP_CONTEXT_RMB] = "Add trash bag"
+		context[SCREENTIP_CONTEXT_LMB] = "装上垃圾袋"
+		context[SCREENTIP_CONTEXT_RMB] = "装上垃圾袋"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/janicart_upgrade) && !installed_upgrade)
-		context[SCREENTIP_CONTEXT_LMB] = "Install upgrade"
+		context[SCREENTIP_CONTEXT_LMB] = "安装升级件"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(istype(held_item, /obj/item/screwdriver) && installed_upgrade)
-		context[SCREENTIP_CONTEXT_LMB] = "Remove upgrade"
+		context[SCREENTIP_CONTEXT_LMB] = "拆下升级件"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(is_key(held_item) && !is_key(inserted_key))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert key"
-		context[SCREENTIP_CONTEXT_RMB] = "Insert key"
+		context[SCREENTIP_CONTEXT_LMB] = "插入钥匙"
+		context[SCREENTIP_CONTEXT_RMB] = "插入钥匙"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if (trash_bag)
-		context[SCREENTIP_CONTEXT_LMB] = "Insert into trash bag"
-		context[SCREENTIP_CONTEXT_RMB] = "Insert into trash bag"
+		context[SCREENTIP_CONTEXT_LMB] = "放入垃圾袋"
+		context[SCREENTIP_CONTEXT_RMB] = "放入垃圾袋"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /**
@@ -176,8 +176,8 @@
  *
  */
 /obj/item/janicart_upgrade
-	name = "base upgrade"
-	desc = "An abstract upgrade for mobile janicarts."
+	name = "基础升级件"
+	desc = "用于移动清洁车的抽象升级件。"
 	icon = 'icons/obj/service/janicart_upgrade.dmi'
 	icon_state = "janicart_upgrade"
 	greyscale_config = /datum/greyscale_config/janicart_upgrade
@@ -204,8 +204,8 @@
 	return FALSE
 
 /obj/item/janicart_upgrade/buffer
-	name = "floor buffer upgrade"
-	desc = "An upgrade for mobile janicarts which adds a floor buffer functionality."
+	name = "地板抛光机升级件"
+	desc = "为移动清洁车添加地板抛光功能的升级件。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/janicart_upgrade/buffer"
 	post_init_icon_state = "janicart_upgrade"
@@ -218,8 +218,8 @@
 	installee.RemoveElement(/datum/element/cleaning)
 
 /obj/item/janicart_upgrade/vacuum
-	name = "vacuum upgrade"
-	desc = "An upgrade for mobile janicarts which adds a vacuum functionality."
+	name = "吸尘器升级件"
+	desc = "为移动清洁车添加吸尘功能的升级件。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/janicart_upgrade/vacuum"
 	post_init_icon_state = "janicart_upgrade"

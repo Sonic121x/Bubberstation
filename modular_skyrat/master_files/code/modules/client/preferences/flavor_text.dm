@@ -87,7 +87,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/general/create_default_value()
-	return "PERSONAL INFORMATION \n\ Name: \n\ Species: \n\ Physical Description: Height, weight, visible age \n\ Birthdate: \n\ Homeworld: \n\ Preferred Language: \n\ Spoken Languages: \n\ Contact Info: Home, next of kin, phone number"
+	return "个人信息 \n\ 姓名： \n\ 种族： \n\ 外貌描述：身高、体重、可辨年龄 \n\ 出生日期： \n\ 母星： \n\ 首选语言： \n\ 掌握语言： \n\ 联系方式：住址、近亲、电话号码"
 
 /datum/preference/text/general/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
@@ -99,7 +99,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/medical/create_default_value()
-	return "PHYSICAL EVALUATIONS \n\ \n\ PSYCHOLOGICAL EVALUATIONS \n\ \n\ MEDICATION HISTORY \n\ \n\ SURGICAL HISTORY \n\ \n\ DOCTOR NOTES:"
+	return "体格评估 \n\ \n\ 心理评估 \n\ \n\ 用药史 \n\ \n\ 手术史 \n\ \n\ 医生备注："
 
 /datum/preference/text/medical/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE
@@ -111,7 +111,7 @@
 	maximum_value_length = MAX_FLAVOR_LEN
 
 /datum/preference/text/security/create_default_value()
-	return "EDUCATION \n\ \n\ EMPLOYMENT HISTORY \n\ Employed since: \n\ CRIMINAL HISTORY \n\ \n\ Loyalty Rating: \n\ Pressure Points: points used to control crewmember \n\ \n\ CASEWORKER NOTES:"
+	return "教育经历 \n\ \n\ 工作履历 \n\ 入职时间： \n\ 犯罪记录 \n\ \n\ 忠诚评级： \n\ 施压筹码：用于要挟该船员的点数 \n\ \n\ 案卷员备注："
 
 /datum/preference/text/security/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return FALSE

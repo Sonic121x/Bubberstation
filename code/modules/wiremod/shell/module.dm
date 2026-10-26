@@ -1,6 +1,6 @@
 /obj/item/mod/module/circuit
-	name = "MOD circuit adapter module"
-	desc = "A module shell that allows a circuit to be inserted into, and interface with, a MODsuit."
+	name = "MOD 电路适配器模块"
+	desc = "一种模块外壳，可插入电路并与 MOD 模块化外骨骼对接。"
 	module_type = MODULE_USABLE
 	complexity = 1
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.5
@@ -68,7 +68,7 @@
 	. = ..()
 	var/unnamed_action_index = 1
 	for(var/obj/item/circuit_component/equipment_action/action_comp in action_comps)
-		.[REF(action_comp)] = add_ui_configuration(action_comp.button_name.value || "Unnamed Action [unnamed_action_index++]", "pin", !!action_comp.granted_to[REF(user)])
+		.[REF(action_comp)] = add_ui_configuration(action_comp.button_name.value || "未命名动作 [unnamed_action_index++]", "pin", !!action_comp.granted_to[REF(user)])
 
 /obj/item/mod/module/circuit/configure_edit(key, value)
 	. = ..()
@@ -126,7 +126,7 @@
 		return FALSE
 	if(!mod.active || mod.activating)
 		if(mod.wearer)
-			module.balloon_alert(mod.wearer, "not active!")
+			module.balloon_alert(mod.wearer, "未激活！")
 		return FALSE
 	circuit_component.user.set_output(owner)
 	circuit_component.signal.set_output(COMPONENT_SIGNAL)
@@ -137,8 +137,8 @@
 	. = ..()
 
 /obj/item/circuit_component/mod_adapter_core
-	display_name = "MOD circuit adapter core"
-	desc = "Provides a reference to the MODsuit's occupant and allows the circuit to toggle the MODsuit."
+	display_name = "MOD 电路适配器核心"
+	desc = "提供 MOD 模块化外骨骼穿着者的引用，并允许电路切换外骨骼状态。"
 
 	/// The MODsuit module this circuit is associated with
 	var/obj/item/mod/module/attached_module
@@ -278,19 +278,19 @@
 		if(part.loc == attached_module.mod)
 			is_deployed = FALSE
 		else
-			var/part_name = "Undefined"
+			var/part_name = "未定义"
 			if(istype(part, /obj/item/clothing/head/mod))
-				part_name = "Helmet"
+				part_name = "头盔"
 			else if(istype(part, /obj/item/clothing/suit/mod))
-				part_name = "Chestplate"
+				part_name = "胸甲"
 			else if(istype(part, /obj/item/clothing/gloves/mod))
-				part_name = "Gloves"
+				part_name = "手套"
 			else if(istype(part, /obj/item/clothing/shoes/mod))
-				part_name = "Boots"
+				part_name = "靴子"
 			else if(istype(part, /obj/item/clothing/glasses/mod))
-				part_name = "Glasses"
+				part_name = "眼镜"
 			else if(istype(part, /obj/item/clothing/neck/mod))
-				part_name = "Tie"
+				part_name = "领带"
 			string_list += part_name
 	deployed_parts.set_output(string_list)
 	deployed.set_output(is_deployed)

@@ -5,7 +5,7 @@
 #define HUMAN_RIDING_LAYER (BELOW_HUMAN_HITBOX_LAYER + 0.02)
 
 /obj/golfcart_rear
-	name = "golf cart bed"
+	name = "高尔夫球车车斗"
 	icon = 'icons/obj/toys/golfcart_split.dmi'
 	icon_state = "rear_hitbox"
 	density = TRUE
@@ -104,8 +104,8 @@
 
 /obj/golfcart_rear/proc/after_escape(obj/container, mob/living/user)
 	user?.visible_message(
-		span_danger("The [container] falls off of the [src]!"),
-		span_userdanger("You knock the crate off the [src]!")
+		span_danger("[container] 从 [src] 上掉了下来！"),
+		span_userdanger("你把箱子从 [src] 上撞了下去！")
 	)
 	container.SpinAnimation(5, 1)
 	if (user && istype(container, /obj/structure/closet))
@@ -132,14 +132,14 @@
 ///Called when someone resists inside of the cargo hitch.
 /obj/golfcart_rear/relay_container_resist_act(mob/living/user, obj/container)
 	user.visible_message(
-		span_danger("[user] tries to escape the [container]!"),
-		span_userdanger("You try to escape the [container]!"),
+		span_danger("[user] 试图从 [container] 中逃出来！"),
+		span_userdanger("你试图从 [container] 中逃出来！"),
 	)
 	if (parent.has_buckled_mobs())
 		for (var/mob/driver in parent.buckled_mobs)
 			if (!parent.is_driver(driver))
 				continue
-			driver.show_message(span_userdanger("The [container] shakes violently!"))
+			driver.show_message(span_userdanger("[container] 剧烈摇晃起来！"))
 	if (istype(container, /obj/structure/closet))
 		var/obj/structure/closet/closet = container
 		if (!closet.welded)
@@ -172,24 +172,24 @@
 /obj/golfcart_rear/mouse_drop_receive(atom/dropped, mob/user, params)
 	if (!can_load(dropped))
 		if (!isliving(dropped) || (has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs))
-			balloon_alert_to_viewers("blocked!")
+			balloon_alert_to_viewers("挡住了！")
 			return
 		//Allow either 2 standing mobs or 1 lying down mob
 		//If a mob is already lying down it's obviously blocked.
 		if (has_buckled_mobs())
 			for (var/mob/living/carbon/carbon_sitter in buckled_mobs)
 				if (carbon_sitter.body_position == LYING_DOWN)
-					balloon_alert_to_viewers("blocked!")
+					balloon_alert_to_viewers("挡住了！")
 					return
 		var/mob/living/dropped_liver = dropped
 		if (dropped_liver.has_buckled_mobs())
 			//This sucks
-			balloon_alert_to_viewers("blocked!")
+			balloon_alert_to_viewers("挡住了！")
 			return
 		if (iscarbon(dropped_liver))
 			var/mob/living/carbon/dropped_carbon = dropped_liver
 			if (dropped_carbon.body_position == LYING_DOWN && has_buckled_mobs())
-				balloon_alert_to_viewers("stand up!")
+				balloon_alert_to_viewers("站起来！")
 				return
 		return ..()
 	var/obj/dropped_obj = dropped
@@ -198,7 +198,7 @@
 /obj/golfcart_rear/examine(mob/user)
 	if (!parent)
 		. = ..()
-		. += span_warning("A lone golf cart bed must be a bad omen...")
+		. += span_warning("孤零零的高尔夫球车车斗，想必是不祥之兆……")
 		return
 	return parent.examine(user)
 
@@ -353,20 +353,20 @@
 /obj/golfcart_rear/is_buckle_possible(mob/living/target, force, check_loc)
 	// these are to_viewers because you can buckle someone on their behalf
 	if (cargo)
-		balloon_alert_to_viewers("blocked!")
+		balloon_alert_to_viewers("挡住了！")
 		return FALSE
 	if (target.body_position != STANDING_UP)
 		if (has_buckled_mobs())
-			balloon_alert_to_viewers("stand up!")
+			balloon_alert_to_viewers("站起来！")
 			return FALSE
 		return ..()
 	for (var/mob/blocker in buckled_mobs)
 		if (!isliving(blocker))
-			balloon_alert_to_viewers("blocked!")
+			balloon_alert_to_viewers("挡住了！")
 			return FALSE
 		var/mob/living/living_blocker = blocker
 		if (living_blocker.body_position != STANDING_UP)
-			balloon_alert_to_viewers("blocked!")
+			balloon_alert_to_viewers("挡住了！")
 			return FALSE
 	return ..()
 

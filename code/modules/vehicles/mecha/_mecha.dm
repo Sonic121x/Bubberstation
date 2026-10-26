@@ -468,7 +468,7 @@
 		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
 			if(istype(ME, /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay))
 				continue
-			. += span_notice("[icon2html(ME, user)] \A [ME].")
+			. += span_notice("[icon2html(ME, user)] [ME]。")
 	if(mecha_flags & PANEL_OPEN)
 		if(servo)
 			. += span_notice("伺服电机使移动能耗降低 [100 - round(100 / servo.rating)]%。")

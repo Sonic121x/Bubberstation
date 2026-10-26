@@ -5,8 +5,8 @@
  * For the critters that cannot be understood, there is a sound creator in the mecha. It also has headlights.
  */
 /obj/vehicle/sealed/mecha/vim
-	name = "\improper Vim"
-	desc = "A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer."
+	name = "\improper 活力号"
+	desc = "一台纳米传讯制造的微型机甲，旨在让无可替代的空间站宠物们多活一阵子。"
 	icon_state = "vim"
 	base_icon_state = "vim"
 	max_integrity = 50
@@ -60,12 +60,12 @@
 
 /obj/vehicle/sealed/mecha/vim/mob_try_enter(mob/entering)
 	if(issilicon(entering))
-		entering.balloon_alert(entering, "can't fit inside!")
+		entering.balloon_alert(entering, "装不下！")
 		return FALSE
 
 	var/mob/living/animal_or_basic = entering
 	if(animal_or_basic.mob_size > maximum_mob_size)
-		entering.balloon_alert(entering, "can't fit inside!")
+		entering.balloon_alert(entering, "装不下！")
 		return FALSE
 
 	mob_enter(entering)
