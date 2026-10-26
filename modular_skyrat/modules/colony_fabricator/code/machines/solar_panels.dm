@@ -32,7 +32,7 @@
 // Solar panel deployable item
 
 /obj/item/flatpacked_machine/solar
-	name = "flat-packed solar panel"
+	name = "扁平包装太阳能板"
 	icon_state = "solar_panel_packed"
 	type_to_deploy = /obj/machinery/power/solar/deployable
 	deploy_time = 2 SECONDS
@@ -76,7 +76,7 @@
 // Solar tracker deployable item
 
 /obj/item/flatpacked_machine/solar_tracker
-	name = "flat-packed solar tracker"
+	name = "扁平包装太阳能追踪器"
 	icon_state = "solar_tracker_packed"
 	type_to_deploy = /obj/machinery/power/tracker/deployable
 	deploy_time = 3 SECONDS

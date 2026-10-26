@@ -3,13 +3,13 @@
 // However, the bundle gives `/datum/antagonist/clock_cultist/solo`, which is the same as `/datum/antagonist/clock_cultist`, but lacks conversion.
 
 /datum/antagonist/clock_cultist
-	name = "\improper Clock Cultist"
-	antagpanel_category = "Clock Cultist"
+	name = "\improper 发条教徒"
+	antagpanel_category = "发条教徒"
 	preview_outfit = /datum/outfit/clock/preview
 	pref_flag = ROLE_CLOCK_CULTIST
 	antag_moodlet = /datum/mood_event/cult
 	show_to_ghosts = TRUE
-	suicide_cry = ",r For Ratvar!!!"
+	suicide_cry = ",r 为了拉特瓦！！！"
 	ui_name = "AntagInfoClock"
 	/// If this one has access to conversion scriptures
 	var/can_convert = TRUE
@@ -56,7 +56,7 @@
 
 	recall.unmark_item()
 	recall.mark_item(slab)
-	to_chat(owner.current, span_brass("You re-attune yourself to a new Clockwork Slab."))
+	to_chat(owner.current, span_brass("你重新调谐到了一块新的发条石板。"))
 
 
 /datum/outfit/clock/preview
@@ -69,6 +69,6 @@
 
 
 /datum/antagonist/clock_cultist/solo
-	name = "Clock Cultist (Solo)"
+	name = "发条教徒（单人）"
 	show_to_ghosts = FALSE
 	can_convert = FALSE

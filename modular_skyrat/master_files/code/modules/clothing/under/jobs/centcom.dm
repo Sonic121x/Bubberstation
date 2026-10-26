@@ -18,14 +18,14 @@
 *	LOPLAND
 */
 /obj/item/clothing/under/rank/centcom/skyrat/lopland
-	name = "\improper Lopland corporate uniform"
-	desc = "A sleek jumpsuit worn by Lopland corporate. Its surprisingly well padded."
+	name = "\improper 洛普兰企业制服"
+	desc = "洛普兰企业人员穿着的流线型连体服。它的衬垫厚得令人意外。"
 	icon_state = "lopland_shirt"
 	worn_icon_state = "lopland_shirt"
 
 /obj/item/clothing/under/rank/centcom/skyrat/lopland/instructor
-	name = "\improper Lopland instructor's uniform"
-	desc = "A over-the-top, militaristic jumpsuit worn by Lopland-certified instructors, with a big Lopland logo slapped on the back. The amount of pockets could make a space marine cry."
+	name = "\improper 洛普兰教官制服"
+	desc = "洛普兰认证教官穿着的浮夸军装式连体服，背后还印着一个巨大的洛普兰标志。口袋的数量多到能让太空陆战队员落泪。"
 	icon_state = "lopland_tac"
 	worn_icon_state = "lopland_tac"
 

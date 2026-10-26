@@ -6,10 +6,10 @@ GLOBAL_PROTECT(mentorlog)
 	logger.Log(LOG_CATEGORY_GAME_MENTOR, text, data)
 
 /datum/admins/proc/MentorLogSecret()
-	var/dat = "<B>Mentor Log<HR></B>"
+	var/dat = "<B>导师日志<HR></B>"
 	for(var/l in GLOB.mentorlog)
 		dat += "<li>[l]</li>"
 
 	if(!GLOB.mentorlog.len)
-		dat += "No mentors have done anything this round!"
+		dat += "本回合没有导师执行任何操作！"
 	usr << browse(dat, "window=mentor_log")

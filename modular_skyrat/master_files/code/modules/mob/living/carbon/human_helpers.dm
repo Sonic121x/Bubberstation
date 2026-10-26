@@ -5,9 +5,9 @@
 	var/t_is = p_are()
 	//This checks to see if the body is revivable
 	if((key || !get_organ_by_type(/obj/item/organ/brain) || ghost?.can_reenter_corpse))
-		return span_deadsay("[t_He] [t_is] limp and unresponsive; they're still twitching on occasion, perhaps [p_they()] can still be saved..!")
+		return span_deadsay("瘫软无力、毫无反应；偶尔还会抽搐一下，也许还能被救回来……！")
 	else
-		return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life and they've degraded beyond revival...")
+		return span_deadsay("瘫软无力、毫无反应；已经没有任何生命迹象，并且已损伤到无法复苏……")
 
 ///copies over clothing preferences like underwear to another human
 /mob/living/carbon/human/copy_clothing_prefs(mob/living/carbon/human/destination)

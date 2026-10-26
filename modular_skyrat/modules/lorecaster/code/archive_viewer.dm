@@ -1,9 +1,9 @@
 /datum/computer_file/program/news_archive
 	filename = "NewsArchive"
-	filedesc = "Nanotrasen News Archives"
+	filedesc = "纳米传讯新闻档案"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "generic"
-	extended_desc = "This program lets you view out-of-circulation articles from the Nanotrasen News Network."
+	extended_desc = "本程序可让你查看纳米传讯新闻网已停止流通的文章。"
 	can_run_on_flags = PROGRAM_ALL
 	program_flags = PROGRAM_REQUIRES_NTNET
 	size = 6
@@ -40,9 +40,9 @@
 
 		// the TGUI needs _all_ of these to work
 		if(!("title" in uncompiled_stories[story]))
-			uncompiled_stories[story]["title"] = "Nanotrasen News Broadcast"
+			uncompiled_stories[story]["title"] = "纳米传讯新闻播报"
 		if(!("text" in uncompiled_stories[story]))
-			uncompiled_stories[story]["text"] = "Someone forgot to fill out the article!"
+			uncompiled_stories[story]["text"] = "有人忘了填写这篇文章！"
 		if(!("year" in uncompiled_stories[story]))
 			uncompiled_stories[story]["year"] = "[CURRENT_STATION_YEAR]"
 		if(!("month" in uncompiled_stories[story]))

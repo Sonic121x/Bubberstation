@@ -3,4 +3,4 @@
 	leader_role = /datum/antagonist/ert/odst/leader
 	rename_team = "ODST"
 	code = "Red"
-	polldesc = "a squad of specialized ODST"
+	polldesc = "一支专业 ODST 小队"

@@ -1,6 +1,6 @@
 /datum/language/xerxian
 	name = "Xerxian"
-	desc = "An evolved, streamlined form of Semitic tongues that come from the Middle East - primarily Arabic. Despite its ancient origins, it's still spoken by many cultures and colonies that came from the Arab League and general Middle Eastern regions."
+	desc = "由中东的闪米特语族——主要是阿拉伯语——演化而来的精简形式。尽管起源古老，它仍被许多源自阿拉伯联盟及整个中东地区的文化与殖民地使用。"
 	key = "a"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	syllables = list(

@@ -1,6 +1,6 @@
 /datum/species/tajaran
-	name = "Tajaran"
-	plural_form = "Tajara"
+	name = "塔亚拉"
+	plural_form = "塔亚拉"
 	id = SPECIES_TAJARAN
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,

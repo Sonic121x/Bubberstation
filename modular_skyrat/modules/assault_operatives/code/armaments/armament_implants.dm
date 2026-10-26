@@ -1,54 +1,54 @@
 /datum/armament_entry/assault_operatives/implants
-	category = "Cybernetic Implants"
+	category = "义体植入体"
 	category_item_limit = 3
 
 /datum/armament_entry/assault_operatives/implants/deathrattle
-	name = "Deathrattle Implant Kit"
-	description = "A collection of implants (and one reusable implanter) that should be injected into the team. When one of the team \
-	dies, all other implant holders receive a mental message informing them of their teammates' name \
-	and the location of their death. Unlike most implants, these are designed to be implanted \
-	in any creature, biological or mechanical."
+	name = "亡语植入体套件"
+	description = "一套植入体（外加一具可重复使用的植入器），应植入到队伍成员体内。当队伍中有人 \
+	死亡时，其余所有植入体持有者都会收到一条心灵讯息，得知队友的姓名 \
+	及其死亡地点。与大多数植入体不同，这些植入体被设计为可植入 \
+	任何生物体内，无论有机还是机械。"
 	item_type = /obj/item/storage/box/syndie_kit/imp_deathrattle
 	cost = 1
 
 /datum/armament_entry/assault_operatives/implants/microbomb
-	name = "Microbomb Implant"
-	description = "A small bomb implanted into the body. It can be activated manually, or automatically activates on death. WARNING: Permenantly destroys your body and everything you might be carrying."
+	name = "微型炸弹植入体"
+	description = "一颗植入体内的小型炸弹。可手动激活，也会在死亡时自动激活。警告：会永久摧毁你的身体以及你可能携带的一切。"
 	item_type = /obj/item/implanter/explosive
 	cost = 2
 
 /datum/armament_entry/assault_operatives/implants/storage
-	name = "Storage Implant"
-	description = "Implanted into the body and activated at will, this covert implant will open a small pocket of bluespace capable of holding two regular sized items within."
+	name = "储物植入体"
+	description = "植入体内后可按意愿激活，这个隐秘的植入体会打开一个小的蓝空间口袋，可容纳两件普通大小的物品。"
 	item_type = /obj/item/implanter/storage
 	cost = 2
 
 /datum/armament_entry/assault_operatives/implants/radio
-	name = "Radio Implant"
-	description = "Implanted into the body and activated at will, this covert implant will allow you to speak over the radio without the need of a headset."
+	name = "无线电植入体"
+	description = "植入体内后可按意愿激活，这个隐秘的植入体让你无需耳机即可通过无线电通话。"
 	item_type = /obj/item/implanter/radio/syndicate
 	cost = 1
 
 /datum/armament_entry/assault_operatives/implants/hacking
 	item_type = /obj/item/autosurgeon/syndicate/hackerman
-	name = "Hacking Arm Implant"
-	description = "An advanced arm implant that comes with cutting edge hacking tools. Perfect for the cybernetically enhanced wirerunners."
+	name = "黑客手臂植入体"
+	description = "一枚先进的手臂植入体，附带尖端黑客工具。非常适合经过义体强化的网络潜行者。"
 	cost = 2
 
 /datum/armament_entry/assault_operatives/implants/freedom
-	name = "Freedom Implant"
-	description = "Releases the user from common restraints like handcuffs and legcuffs. Comes with four charges."
+	name = "自由植入体"
+	description = "让使用者摆脱手铐、脚镣等常见束缚。附带四次使用次数。"
 	item_type = /obj/item/storage/box/syndie_kit/imp_freedom
 	cost = 3
 
 /datum/armament_entry/assault_operatives/implants/thermal
-	name = "Thermal Vision Implant"
-	description = "These cybernetic eyes will give you thermal vision."
+	name = "热成像视觉植入体"
+	description = "这些义体眼睛会赋予你热成像视觉。"
 	item_type = /obj/item/autosurgeon/syndicate/thermal_eyes
 	cost = 5
 
 /datum/armament_entry/assault_operatives/implants/nodrop
-	name = "Anti-Drop Implant"
-	description = "When activated forces your hand muscles to tightly grip the object you are holding, preventing you from dropping it involuntarily."
+	name = "防脱手植入体"
+	description = "激活后会迫使你手部肌肉紧紧抓住手中物品，防止你不由自主地将其掉落。"
 	item_type = /obj/item/autosurgeon/syndicate/nodrop
 	cost = 5

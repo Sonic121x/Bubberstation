@@ -1,10 +1,10 @@
 /obj/item/disk/nifsoft_uploader/soulcatcher
-	name = "Soulcatcher"
+	name = "灵魂捕手"
 	loaded_nifsoft = /datum/nifsoft/soulcatcher
 
 /datum/nifsoft/soulcatcher
-	name = "Soulcatcher"
-	program_desc = "The 'Soulcatcher' coreware is a near-complete upgrade of the nanomachine systems in a NIF, meant for one purpose; supposedly, channeling the dead. This upgrade, in truth, functions as a Resonance Simulation Device; an RSD for short, an instrument capable of hosting someone's consciousness, context or otherwise. 'Resonance', a term for the specific pattern of neural activity that gives way to someone's consciousness, was discovered in the early 2500s by researchers Yun-Seo Jin and Kamakshi Padmanabhan, coining what is now called 'Jin-Padmanabhan Resonance,' or 'JP/Soul Resonance.' This 'Resonance' gives off a sophont's consciousness, their sense of continuation, and their 'I am me.' This Resonance can vary in structure and 'strength' from person to person, and even change over someone's life. When the brain of a sophont undergoes death and stops neural activity, then Resonance dissipates entirely and lingering consciousness becomes essentially an echo, rapidly fading over time.\n\nThe earliest RSDs were massive machines, drawing incredible power and utilizing bleeding-edge, clunky software to 'play' someone's Resonance at 1:1 accuracy with their original brain. However, complications arose that are still being studied. Resonance is replicable and can be re-created artificially; however, like trying to duplicate genetic code, the capture needs to be extremely accurate, and rapidly put into place. Instruments such as RSDs are capable of picking up on lingering consciousness after the end of Resonance, and resuming it through artificial neural activity can give it strength to continue once more. RSDs such as Soulcatchers can only work at such a distance, otherwise running the risk of the Resonance essentially corrupting due to poor signal.\n\nIt is currently impossible to run Resonance in two places at once, because the same Resonance over two places experiences interference; like noise canceling headphones. Slimes and other gestalt consciousnesses can modulate their harmonics to a degree, bearing a partial disconnect and bringing themselves into constructive interference with similar harmonic signatures. A deepscan of the person's brain is necessary to give their consciousness 'context;' running their Resonance and capturing their consciousness alone results in a person with their same original intelligence, but zero memories or identity. These scans rapidly become outdated due to the growth of the brain, and it is prohibitively complex to store them in their entirety.\n\nThe first portable RSD, or Soulcatcher, was developed by the Spider Clan. These were initially designed for the captive interrogation of a person's consciousness without having to worry about the struggling of their body, and for dead or aging members of the mysterious group of orbital shinobi to be able to guide field operatives. These Soulcatchers are the main instrument to play Resonance, but recent advances in medical science have been leading to more. Occasionally, it is known for unusual sources of 'wild' Resonance, called Phantoms, to end up inside of the nearest Soulcatcher, a key finding its own lock; with a wide array of theories as to how these come into existence. Much as how some people intentionally become stable Engrams to achieve digital immortality, such as the witches of the Altspace Coven, it is possible for others to forcibly enter a Soulcatcher and act as a sort of Phantom by hacking their way in."
+	name = "灵魂捕手"
+	program_desc = "“灵魂捕手”核心固件是对 NIF 内纳米机器系统的近乎完全的升级，据称其唯一用途是引导亡者。而实际上，这项升级的功能相当于一台共鸣模拟装置（Resonance Simulation Device，简称 RSD），一种能够承载他人意识（无论是否有上下文）的仪器。“共鸣”是一个术语，指那种产生某人意识的特定神经活动模式，由研究人员 Yun-Seo Jin 与 Kamakshi Padmanabhan 在 2500 年代初发现，并提出了如今被称为“金-帕德曼纳班共鸣”或“JP/灵魂共鸣”的概念。这种“共鸣”承载着智慧生命的意识、他们持续存在的感受，以及他们“我就是我”的自我认知。共鸣在结构与“强度”上因人而异，甚至会在一个人的一生中发生变化。当智慧生命的大脑死亡并停止神经活动时，共鸣便会彻底消散，残存的意识基本上只剩一道回声，随时间迅速消退。\n\n最早的 RSD 是庞大的机器，耗能惊人，使用最前沿却笨重的软件，以与原大脑 1:1 的精度“播放”某人的共鸣。然而随之而来的种种并发症至今仍在研究之中。共鸣是可复制的，也能够人工重建；然而就像复制遗传密码一样，捕获过程必须极其精确，并且要迅速完成。像 RSD 这样的仪器能够在共鸣终结之后捕捉到残存的意识，而通过人工神经活动将其恢复，可以赋予它再次延续的力量。灵魂捕手这类 RSD 只能在有限的距离内运作，否则就会因为信号不良而面临共鸣本质性损坏的风险。\n\n目前不可能同时在两处运行同一段共鸣，因为同一段共鸣出现在两处会产生干扰，就像降噪耳机一样。史莱姆以及其他群体意识能在一定程度上调节自身的谐波，承受部分失谐，并使自己与相近的谐波特征形成相长干涉。必须对当事人的大脑进行深度扫描，才能为其意识提供“上下文”；仅运行其共鸣并捕获意识，得到的人会拥有与原本相同的智力，却没有任何记忆或身份。由于大脑会不断生长，这些扫描会迅速过时，而要将它们完整保存下来又极其复杂。\n\n第一台便携式 RSD，也就是灵魂捕手，由蜘蛛氏族开发。它们最初的设计用途是：在不必担心目标身体挣扎的情况下，对其意识进行囚禁式审讯；以及让这个神秘轨道忍者团体中已故或年迈的成员能够指导外勤特工。这些灵魂捕手是播放共鸣的主要仪器，但医学科学的近期进展正在催生更多手段。偶尔，被称为“幻影”的“野生”共鸣会从异常来源进入最近的灵魂捕手中，正好像一把钥匙找到了自己的锁；关于这些幻影如何产生，存在着各种各样的理论。正如有些人（例如交错空间巫团的巫师们）会有意成为稳定的印痕以实现数字永生，其他人也有可能通过入侵的方式强行进入灵魂捕手，充当某种幻影。"
 	purchase_price = 150 //RP tool
 	persistence = TRUE
 	able_to_keep = TRUE
@@ -27,7 +27,7 @@
 
 	holder = new(linked_mob)
 	var/datum/component/carrier/soulcatcher/new_soulcatcher = holder.AddComponent(/datum/component/carrier/soulcatcher/nifsoft)
-	holder.name = "[linked_mob.name]'s soulcatcher"
+	holder.name = "[linked_mob.name] 的灵魂捕手"
 
 	for(var/room in saved_carrier_rooms)
 		new_soulcatcher.create_room(room, saved_carrier_rooms[room])
@@ -114,7 +114,7 @@
 	var/nif_carrier_rooms = ""
 
 /datum/action/innate/soulcatcher
-	name = "Soulcatcher"
+	name = "灵魂捕手"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
@@ -132,6 +132,6 @@
 
 /// This is the object we use if we give a mob soulcatcher. Having the souls directly parented could cause issues.
 /obj/item/carrier_holder
-	name = "Soul Holder"
-	desc = "You probably shouldn't be seeing this..."
+	name = "灵魂容器"
+	desc = "你大概不应该看到这个东西……"
 

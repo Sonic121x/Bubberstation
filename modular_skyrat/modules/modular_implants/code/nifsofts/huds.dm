@@ -1,6 +1,6 @@
 /datum/nifsoft/hud
-	name = "Scrying Lens"
-	program_desc = "An umbrella term for all sorts of NIFsofts dealing with heads-up displays, this sort of technology dates back almost to the beginning of NIFsoft development. These 'softs are commonly used in the civilian field for integration with all sorts of activities; piloting, swordplay, scientific research, or even AI copiloting for important social interactions. While normally the nanomachines involved in the program's operation are used as a sort of artificial contact lens over the user's visual organs, Nanotrasen regulations have bid these particular forks to instead integrate with glasses the user's already wearing."
+	name = "探视镜"
+	program_desc = "这是对各类与平视显示器相关的 NIFSoft 的统称，这类技术几乎可以追溯到 NIFSoft 开发之初。这些软件在民用领域常用于整合各种活动：驾驶、剑术、科学研究，甚至为重要社交场合提供 AI 副驾。通常，程序运作所涉及的纳米机器会像人造隐形眼镜一样覆盖在使用者的视觉器官上，但纳米传讯的法规要求这些特定分支改为与使用者已佩戴的眼镜整合。"
 	compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif/standard)
 	active_mode = TRUE
 	active_cost = 0.5
@@ -46,7 +46,7 @@
 /datum/nifsoft/hud/activate()
 	var/obj/item/clothing/glasses/worn_glasses = linked_mob.get_item_by_slot(ITEM_SLOT_EYES)
 	if(eyewear_check && !active && (!istype(worn_glasses) || !HAS_TRAIT(worn_glasses, TRAIT_NIFSOFT_HUD_GRANTER)))
-		linked_mob.balloon_alert(linked_mob, "no compatible eyewear!")
+		linked_mob.balloon_alert(linked_mob, "没有兼容的眼镜！")
 		return FALSE
 
 	. = ..() // active = !active
@@ -81,7 +81,7 @@
 /datum/element/nifsoft_hud/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += span_cyan("Wearing this item in your glasses slot will allow you to use NIFSoft HUDs.")
+	examine_text += span_cyan("将此物品佩戴在眼镜栏位即可使用 NIFSoft HUD。")
 
 /datum/element/nifsoft_hud/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_ATOM_EXAMINE)
@@ -97,34 +97,34 @@
 //
 
 /datum/nifsoft/hud/job/medical
-	name = "Medical Scrying Lens"
+	name = "医疗探视镜"
 	ui_icon = "staff-snake"
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	hud_traits = list(TRAIT_MEDICAL_HUD)
 
 /datum/nifsoft/hud/job/diagnostic
-	name = "Diagnostic Scrying Lens"
+	name = "诊断探视镜"
 	ui_icon = "robot"
 	hud_traits = list(TRAIT_DIAGNOSTIC_HUD)
 
 /datum/nifsoft/hud/job/security
-	name = "Security Scrying Lens"
+	name = "安保探视镜"
 	ui_icon = "shield"
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	hud_traits = list(TRAIT_SECURITY_HUD)
 
 /datum/nifsoft/hud/job/cargo_tech
-	name = "Permit Scrying Lens"
+	name = "许可探视镜"
 	ui_icon = "gun"
 	hud_type = DATA_HUD_PERMIT
 
 /datum/nifsoft/hud/job/science
-	name = "Science Scrying Lens"
+	name = "科学探视镜"
 	ui_icon = "flask"
 	added_eyewear_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 
 /datum/nifsoft/hud/job/meson
-	name = "Meson Scrying Lens"
+	name = "介子探视镜"
 	ui_icon = "radiation"
 	added_eyewear_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_MESON_VISION)
 
@@ -133,27 +133,27 @@
 //
 
 /obj/item/disk/nifsoft_uploader/med_hud
-	name = "Medical Scrying Lens"
+	name = "医疗探视镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/medical
 
 /obj/item/disk/nifsoft_uploader/diag_hud
-	name = "Diagnostic Scrying Lens"
+	name = "诊断探视镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/diagnostic
 
 /obj/item/disk/nifsoft_uploader/sec_hud
-	name = "Security Scrying Lens"
+	name = "安保探视镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/security
 
 /obj/item/disk/nifsoft_uploader/permit_hud
-	name = "Permit Scrying Lens"
+	name = "许可探视镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/cargo_tech
 
 /obj/item/disk/nifsoft_uploader/sci_hud
-	name = "Science Scrying Lens"
+	name = "科学探视镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/science
 
 /obj/item/disk/nifsoft_uploader/meson_hud
-	name = "Meson Scrying Lens"
+	name = "介子探视镜"
 	loaded_nifsoft = /datum/nifsoft/hud/job/meson
 
 //
@@ -161,8 +161,8 @@
 //
 
 /obj/item/clothing/glasses/trickblindfold/obsolete/nif
-	name = "modernized fake blindfold"
-	desc = "A restored version of the obsolete fake blindfold, retrofitted with the proper electronics to work as a NIF HUD."
+	name = "现代化假眼罩"
+	desc = "淘汰版假眼罩的复原版本，经过改装，配备了合适的电子元件，可作为 NIF HUD 使用。"
 
 /obj/item/clothing/glasses/trickblindfold/obsolete/nif/Initialize(mapload)
 	. = ..()

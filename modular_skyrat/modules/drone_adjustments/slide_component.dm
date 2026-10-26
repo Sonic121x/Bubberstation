@@ -38,10 +38,10 @@
 	if(!do_after(user, 5 SECONDS, atom_parent))
 		return
 	user.forceMove(get_turf(atom_parent))
-	atom_parent.balloon_alert_to_viewers("something squeezes through!")
+	atom_parent.balloon_alert_to_viewers("有什么东西挤了过去！")
 
 /datum/component/sliding_under/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(!is_type_in_list(user, allowed_mobs))
 		return
-	examine_list += span_warning("Ctrl + Click [atom_parent] to slide under!")
+	examine_list += span_warning("按住 Ctrl 点击 [atom_parent] 从下方滑过！")

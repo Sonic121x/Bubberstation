@@ -2,17 +2,17 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 
 /// The stock beacon palette. One swatch per department, so a beacon can be read at a glance from across the room.
 GLOBAL_LIST_INIT(cargo_beacon_palette, list(
-	"Cargo" = COLOR_CARGO_BROWN,
-	"Command" = COLOR_COMMAND_BLUE,
-	"Engineering" = COLOR_ENGINEERING_ORANGE,
-	"Medical" = COLOR_MEDICAL_BLUE,
-	"Science" = COLOR_SCIENCE_PINK,
-	"Security" = COLOR_SECURITY_RED,
-	"Service" = COLOR_SERVICE_LIME,
+	"货运" = COLOR_CARGO_BROWN,
+	"指挥" = COLOR_COMMAND_BLUE,
+	"工程" = COLOR_ENGINEERING_ORANGE,
+	"医疗" = COLOR_MEDICAL_BLUE,
+	"科研" = COLOR_SCIENCE_PINK,
+	"安保" = COLOR_SECURITY_RED,
+	"服务" = COLOR_SERVICE_LIME,
 ))
 
 /// Palette entry that drops the user into the full 24 bit colour picker instead of a stock swatch.
-#define CARGO_BEACON_CUSTOM "Custom..."
+#define CARGO_BEACON_CUSTOM "自定义……"
 
 /// How many beacons a single teleporter can have staked out at once.
 #define CARGO_TELEPORTER_MAX_MARKERS 4
@@ -22,8 +22,8 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 #define CARGO_TELEPORTER_LIFT_DELAY (0.2 SECONDS)
 
 /obj/item/cargo_teleporter
-	name = "cargo teleporter"
-	desc = "An item that can deploy a handful of telebeacon markers, allowing them to teleport items to their beacon network afterwards."
+	name = "货运传送器"
+	desc = "一件可以布设数个传送信标的物品，之后便能将物品传送到这些信标处。"
 	icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	icon_state = "cargo_tele"
 	// no worn_icon_state on purpose. This is how the worn_icons unit test is told so
@@ -68,12 +68,12 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 
 /obj/item/cargo_teleporter/examine(mob/user)
 	. = ..()
-	. += span_notice("Use it in your hand to stake out a telebeacon. It supports [CARGO_TELEPORTER_MAX_MARKERS], and has [length(marker_children)] deployed.")
-	. += span_notice("[EXAMINE_HINT("Alt-click")] to pick a departmental colour for the next beacon it stakes out, or [EXAMINE_HINT("Ctrl-click")] to recall every beacon it owns.")
+	. += span_notice("在手中使用即可布设一个传送信标。最多支持 [CARGO_TELEPORTER_MAX_MARKERS] 个，目前已布设 [length(marker_children)] 个。")
+	. += span_notice("用 [EXAMINE_HINT("Alt 点击")] 为下一个布设的信标挑选部门颜色，或用 [EXAMINE_HINT("Ctrl 点击")] 收回它布设的所有信标。")
 	if(COOLDOWN_FINISHED(src, use_cooldown))
-		. += span_green("The capacitor light is steady green. It is ready to fire.")
+		. += span_green("电容器指示灯稳定呈绿色。它已准备好传送。")
 	else
-		. += span_warning("The capacitor light is blinking amber. [DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))] until recharge.")
+		. += span_warning("电容器指示灯闪烁着琥珀色。还需 [DisplayTimeText(COOLDOWN_TIMELEFT(src, use_cooldown))] 才能充能完毕。")
 
 /obj/item/cargo_teleporter/update_overlays()
 	. = ..()
@@ -82,14 +82,14 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	. += emissive_appearance(icon, light_state, src)
 
 /obj/item/cargo_teleporter/click_alt(mob/user)
-	var/picked = tgui_input_list(user, "Paint the next telebeacon", "[src]", GLOB.cargo_beacon_palette + CARGO_BEACON_CUSTOM)
+	var/picked = tgui_input_list(user, "为下一个传送信标上色", "[src]", GLOB.cargo_beacon_palette + CARGO_BEACON_CUSTOM)
 	if(isnull(picked) || QDELETED(src) || !user.is_holding(src))
 		return CLICK_ACTION_BLOCKING
 	if(picked == CARGO_BEACON_CUSTOM)
 		pick_painting_tool_color(user, beacon_color)
 		return CLICK_ACTION_SUCCESS
 	set_painting_tool_color(GLOB.cargo_beacon_palette[picked])
-	balloon_alert(user, "next beacon: [LOWER_TEXT(picked)]")
+	balloon_alert(user, "下一个信标：[LOWER_TEXT(picked)]")
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/cargo_teleporter/set_painting_tool_color(chosen_color)
@@ -99,30 +99,30 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 
 /obj/item/cargo_teleporter/item_ctrl_click(mob/user)
 	if(!length(marker_children))
-		balloon_alert(user, "no beacons out!")
+		balloon_alert(user, "没有已布设的信标！")
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "beacons recalled")
+	balloon_alert(user, "信标已收回")
 	recall_beacons()
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/cargo_teleporter/attack_self(mob/user, list/modifiers)
 	if(length(marker_children) >= CARGO_TELEPORTER_MAX_MARKERS)
-		balloon_alert(user, "beacon limit reached!")
+		balloon_alert(user, "已达信标上限！")
 		return
 	var/turf/stake_turf = get_turf(src)
 	if(locate(/obj/effect/decal/cleanable/cargo_mark) in stake_turf)
-		balloon_alert(user, "beacon already here!")
+		balloon_alert(user, "此处已有信标！")
 		return
 	var/obj/effect/decal/cleanable/cargo_mark/spawned_marker = new(stake_turf)
 	spawned_marker.parent_item = src
 	spawned_marker.recolor(beacon_color)
 	marker_children += spawned_marker
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
-	to_chat(user, span_notice("You stake out a telebeacon below your feet."))
+	to_chat(user, span_notice("你在脚下布设了一个传送信标。"))
 
 /obj/item/cargo_teleporter/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(istype(interacting_with, /obj/effect/decal/cleanable/cargo_mark))
-		to_chat(user, span_notice("You recall [interacting_with] using [src]."))
+		to_chat(user, span_notice("你用 [src] 收回了 [interacting_with]。"))
 		playsound(interacting_with, 'sound/machines/click.ogg', 50, TRUE)
 		qdel(interacting_with)
 		return ITEM_INTERACT_SUCCESS
@@ -130,13 +130,13 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(lifting)
 		return ITEM_INTERACT_BLOCKING
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
-		balloon_alert(user, "still recharging!")
+		balloon_alert(user, "仍在充能中！")
 		return ITEM_INTERACT_BLOCKING
 	if(!length(GLOB.cargo_marks))
-		balloon_alert(user, "no beacons deployed!")
+		balloon_alert(user, "没有已布设的信标！")
 		return ITEM_INTERACT_BLOCKING
 
-	var/obj/effect/decal/cleanable/cargo_mark/choice = tgui_input_list(user, "Select which telebeacon to send the items to?", "Telebeacon Selection", GLOB.cargo_marks)
+	var/obj/effect/decal/cleanable/cargo_mark/choice = tgui_input_list(user, "选择要把物品送往哪个传送信标？", "传送信标选择", GLOB.cargo_marks)
 	if(QDELETED(choice) || QDELETED(src) || QDELETED(interacting_with))
 		return ITEM_INTERACT_BLOCKING
 	if(get_dist(user, interacting_with) > 1 || !user.is_holding(src))
@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	if(isnull(beacon_turf) || isnull(target_turf))
 		return ITEM_INTERACT_BLOCKING
 	if(!length(get_liftable_items(target_turf)))
-		balloon_alert(user, safety_check(target_turf) ? "safety check failed!" : "no transportable cargo detected!")
+		balloon_alert(user, safety_check(target_turf) ? "安全检查未通过！" : "未检测到可传送的货物！")
 		return ITEM_INTERACT_BLOCKING
 
 	lifting = TRUE
@@ -221,11 +221,11 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)
 	if(ismob(loc))
 		var/mob/holder = loc
-		balloon_alert(holder, "ready")
+		balloon_alert(holder, "就绪")
 
 /datum/design/cargo_teleporter
-	name = "Cargo Teleporter"
-	desc = "A wonderful item that can set markers and teleport things to those markers."
+	name = "货运传送器"
+	desc = "一件奇妙的物品，可设置标记并把东西传送到这些标记处。"
 	id = "cargotele"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/cargo_teleporter
@@ -241,8 +241,8 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 
 /datum/techweb_node/cargo_teleporter
 	id = TECHWEB_NODE_CARGO_TELEPORTER
-	display_name = "Cargo Teleporter"
-	description = "We can teleport items across long distances, as long as they are not blocked."
+	display_name = "货运传送器"
+	description = "只要路径不被阻挡，我们就能把物品传送到很远的距离。"
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_THEORY)
 	design_ids = list(
 		"cargotele",
@@ -279,8 +279,8 @@ GLOBAL_LIST_INIT(cargo_beacon_palette, list(
 	animate(alpha = 0, time = duration * 0.6)
 
 /obj/effect/decal/cleanable/cargo_mark
-	name = "telebeacon"
-	desc = "A beacon staked out by a cargo teleporter, which allows targeted teleportation. Can be recalled by the cargo teleporter, or relabelled with a pen."
+	name = "传送信标"
+	desc = "由货运传送器布设的信标，可实现定向传送。可由货运传送器收回，也可用笔重新标注名称。"
 	icon = 'modular_skyrat/modules/cargo_teleporter/icons/cargo_teleporter.dmi'
 	icon_state = "marker"
 	obj_flags = UNIQUE_RENAME | RENAME_NO_DESC

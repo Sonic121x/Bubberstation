@@ -1,20 +1,20 @@
 //SPAWNERS//
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer
-	name = "Interdyne Shaft Miner"
-	you_are_text = "You are an Interdyne shaft miner, employed in a top secret research facility developing biological weapons."
+	name = "英特戴恩矿工"
+	you_are_text = "你是一名英特戴恩矿工，受雇于一座研发生物武器的绝密研究设施。"
 	outfit = /datum/outfit/lavaland_syndicate/shaftminer
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms/space
 	outfit = /datum/outfit/lavaland_syndicate/comms/space
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/shaftminer/ice
-	name = "Interdyne Shaft Miner"
-	you_are_text = "You are an Interdyne shaft miner, employed in a top secret research facility developing biological weapons."
+	name = "英特戴恩矿工"
+	you_are_text = "你是一名英特戴恩矿工，受雇于一座研发生物武器的绝密研究设施。"
 	outfit = /datum/outfit/lavaland_syndicate/shaftminer/ice
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate
-	name = "Interdyne Bioweapon Scientist"
-	you_are_text = "You are an Interdyne science technician, employed in a top secret research facility developing biological weapons."
+	name = "英特戴恩生化武器科学家"
+	you_are_text = "你是一名英特戴恩科学技术员，受雇于一座研发生物武器的绝密研究设施。"
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/ice
 	outfit = /datum/outfit/lavaland_syndicate/ice
@@ -75,8 +75,8 @@
 	r_hand = /obj/item/gun/ballistic/rifle/sniper_rifle
 
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deckofficer
-	name = "Interdyne Deck Officer"
-	you_are_text = "You are an Interdyne Deck Officer, employed in a top secret research facility developing biological weapons."
+	name = "英特戴恩甲板军官"
+	you_are_text = "你是一名英特戴恩甲板军官，受雇于一座研发生物武器的绝密研究设施。"
 	outfit = /datum/outfit/lavaland_syndicate/shaftminer/deckofficer
 
 /datum/outfit/lavaland_syndicate/shaftminer/ice
@@ -86,8 +86,8 @@
 
 //ITEMS
 /obj/structure/closet/crate/freezer/sansufentanyl
-	name = "sansufentanyl crate"
-	desc = "A freezer. Contains refrigerated Sansufentanyl, for managing Hereditary Manifold Sickness. A product of Interdyne Pharmaceuticals."
+	name = "桑苏芬太尼冷冻柜"
+	desc = "一台冷冻柜。内有冷藏的桑苏芬太尼，用于控制遗传性流形病，由英特戴恩制药公司生产。"
 
 /obj/structure/closet/crate/freezer/sansufentanyl/PopulateContents()
 	. = ..()

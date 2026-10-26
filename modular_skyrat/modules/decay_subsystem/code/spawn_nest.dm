@@ -1,4 +1,4 @@
-ADMIN_VERB(spawn_mob_spawner, R_ADMIN, "Spawn mob spawner", "Spawns a mob spawner structure at your location.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(spawn_mob_spawner, R_ADMIN, "生成生物生成器", "在你所在位置生成一个生物生成器结构。", ADMIN_CATEGORY_FUN)
 	user.holder?.spawn_mob_spawner()
 
 /datum/admins/proc/spawn_mob_spawner(chosen_mob as text)
@@ -12,21 +12,21 @@ ADMIN_VERB(spawn_mob_spawner, R_ADMIN, "Spawn mob spawner", "Spawns a mob spawne
 
 	var/list/settings = list(
 		"mainsettings" = list(
-			"mob_to_spawn" = list("desc" = "Mob to spawn", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = chosen),
-			"max_mobs" = list("desc" = "Max mobs", "type" = "number", "value" = 5),
-			"trigger_range" = list("desc" = "Trigger range", "type" = "number", "value" = 5),
-			"spawn_cooldown" = list("desc" = "Spawn cooldown", "type" = "number", "value" = 20 SECONDS),
-			"regenerate_time" = list("desc" = "Regenerate time", "type" = "number", "value" = 5 MINUTES),
-			"retaliate_cooldown" = list("desc" = "Retaliate cooldown", "type" = "number", "value" = 10 SECONDS),
-			"ghost_controllable" = list("desc" = "Ghost controllable", "type" = "boolean", "value" = "No"),
-			"passive_spawning" = list("desc" = "Passive spawning", "type" = "boolean", "value" = "No"),
-			"faction" = list("desc" = "Faction", "type" = "string", "value" = NEST_FACTION),
-			"nest_icon" = list("desc" = "Nest icon state", "type" = "string", "value" = "nest"),
-			"spawn" = list("desc" = "Spawn nest", "type" = "button", "callback" = CALLBACK(src, PROC_REF(spawn_it)), "value" = "Spawn"),
+			"mob_to_spawn" = list("desc" = "要生成的生物", "type" = "datum", "path" = "/mob/living", "subtypesonly" = TRUE, "value" = chosen),
+			"max_mobs" = list("desc" = "最大生物数", "type" = "number", "value" = 5),
+			"trigger_range" = list("desc" = "触发范围", "type" = "number", "value" = 5),
+			"spawn_cooldown" = list("desc" = "生成冷却", "type" = "number", "value" = 20 SECONDS),
+			"regenerate_time" = list("desc" = "再生时间", "type" = "number", "value" = 5 MINUTES),
+			"retaliate_cooldown" = list("desc" = "反击冷却", "type" = "number", "value" = 10 SECONDS),
+			"ghost_controllable" = list("desc" = "幽灵可控制", "type" = "boolean", "value" = "No"),
+			"passive_spawning" = list("desc" = "被动生成", "type" = "boolean", "value" = "No"),
+			"faction" = list("desc" = "阵营", "type" = "string", "value" = NEST_FACTION),
+			"nest_icon" = list("desc" = "巢穴图标状态", "type" = "string", "value" = "nest"),
+			"spawn" = list("desc" = "生成巢穴", "type" = "button", "callback" = CALLBACK(src, PROC_REF(spawn_it)), "value" = "生成"),
 		)
 	)
 
-	var/list/returned_prefs = present_pref_like_picker(usr, "Spawn mob spawner", "Spawn mob spawner", steal_focus = TRUE, timeout = 0, settings=settings)
+	var/list/returned_prefs = present_pref_like_picker(usr, "生成生物生成器", "生成生物生成器", steal_focus = TRUE, timeout = 0, settings=settings)
 
 	if (isnull(returned_prefs))
 		return FALSE

@@ -1,7 +1,7 @@
 /obj/machinery/iv_drip/health_station
-	name = "health station"
-	desc = "A wall-mounted healing mixture dispenser designed for stationary first-aid application. Old Terran tech that got silently deprecated \
-		due to a massive healthcare privatization; still utilized by the CIN-backed states."
+	name = "医疗站"
+	desc = "一种壁挂式治疗混合液分配器，专为定点急救施用而设计。这项古老的地球技术因医疗体系的大规模私有化而被悄然淘汰，\
+		但仍被 CIN 支持的国家使用。"
 	icon = 'modular_skyrat/modules/bitrunning/icons/health_station.dmi'
 	icon_state = "health_station"
 	base_icon_state = "health_station"

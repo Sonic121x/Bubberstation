@@ -13,13 +13,13 @@
 */
 
 /datum/round_event_control/cme
-	name = "Coronal Mass Ejection: Random"
+	name = "日冕物质抛射：随机"
 	typepath = /datum/round_event/cme
 	weight = 0
 	max_occurrences = 0
 	earliest_start = 45 MINUTES
 	category = EVENT_CATEGORY_SPACE
-	description = "Spawns a CME event of varied severities"
+	description = "生成一场强度不等的日冕物质抛射事件"
 
 /datum/round_event/cme
 	start_when = 6
@@ -31,53 +31,53 @@
 	var/list/cme_start_locs = list()
 
 /datum/round_event_control/cme/unknown
-	name = "Coronal Mass Ejection: Unknown"
+	name = "日冕物质抛射：未知"
 	typepath = /datum/round_event/cme/unknown
 	weight = 15
 	min_players = 75
 	max_occurrences = 1
-	description = "Spawns a CME event of a unknown severity"
+	description = "生成一场强度未知的日冕物质抛射事件"
 
 /datum/round_event/cme/unknown
 	cme_intensity = CME_UNKNOWN
 
 /datum/round_event_control/cme/minimal
-	name = "Coronal Mass Ejection: Minimal"
+	name = "日冕物质抛射：轻微"
 	typepath = /datum/round_event/cme/minimal
 	weight = 0
 	max_occurrences = 0
-	description = "Spawns a CME event of minimum severity"
+	description = "生成一场最低强度的日冕物质抛射事件"
 
 /datum/round_event/cme/minimal
 	cme_intensity = CME_MINIMAL
 
 /datum/round_event_control/cme/moderate
-	name = "Coronal Mass Ejection: Moderate"
+	name = "日冕物质抛射：中等"
 	typepath = /datum/round_event/cme/moderate
 	weight = 0
 	max_occurrences = 0
-	description = "Spawns a CME event of moderate severity"
+	description = "生成一场中等强度的日冕物质抛射事件"
 
 /datum/round_event/cme/moderate
 	cme_intensity = CME_MODERATE
 
 /datum/round_event_control/cme/extreme
-	name = "Coronal Mass Ejection: Extreme"
+	name = "日冕物质抛射：极端"
 	typepath = /datum/round_event/cme/extreme
 	weight = 0
 	min_players = 75
 	max_occurrences = 0
-	description = "Spawns a CME event of extreme severity"
+	description = "生成一场极端强度的日冕物质抛射事件"
 
 /datum/round_event/cme/extreme
 	cme_intensity = CME_EXTREME
 
 /datum/round_event_control/cme/armageddon
-	name = "Coronal Mass Ejection: Armageddon"
+	name = "日冕物质抛射：末日"
 	typepath = /datum/round_event/cme/armageddon
 	weight = 0
 	max_occurrences = 0
-	description = "Spawns a CME event of Arnageddon severity. WARNING this is round ending severe."
+	description = "生成一场末日级别的日冕物质抛射事件。警告：此级别严重到足以终结回合。"
 
 /datum/round_event/cme/armageddon
 	cme_intensity = CME_ARMAGEDDON
@@ -112,7 +112,7 @@
 			start_when = rand(CME_ARMAGEDDON_START_LOWER, CME_ARMAGEDDON_START_UPPER)
 			end_when = start_when + CME_ARMAGEDDON_END
 		else
-			message_admins("CME setup failure, aborting.")
+			message_admins("日冕物质抛射设置失败，正在中止。")
 			kill()
 
 	for(var/turf/open/floor/T in world)
@@ -122,32 +122,32 @@
 
 /datum/round_event/cme/announce(fake)
 	if(fake)
-		priority_announce("Critical Coronal mass ejection detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [rand(200, 300)] seconds. \
-		All synthetic and non-organic lifeforms should seek shelter immediately! \
-		Ensure all sensitive equipment is shielded.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+		priority_announce("检测到危急的日冕物质抛射！预期强度：[uppertext(cme_intensity)]。将在 [rand(200, 300)] 秒后撞击。\
+		所有合成生命与非有机生命体应立即寻找掩体！\
+		确保所有敏感设备得到屏蔽。", "太阳事件", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 	else
 		switch(cme_intensity)
 			if(CME_UNKNOWN)
-				priority_announce("Coronal mass ejection detected! Expected intensity: UNKNOWN. Impact in: [round((start_when * SSevents.wait) * 0.1, 0.1)] seconds. \
-				All synthetic and non-organic lifeforms should seek shelter immediately! \
-				Neutralize magnetic field bubbles at all costs.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+				priority_announce("检测到日冕物质抛射！预期强度：未知。将在 [round((start_when * SSevents.wait) * 0.1, 0.1)] 秒后撞击。\
+				所有合成生命与非有机生命体应立即寻找掩体！\
+				不惜一切代价消除磁场气泡。", "太阳事件", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 			if(CME_MINIMAL)
-				priority_announce("Coronal mass ejection detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [round((start_when * SSevents.wait) * 0.1, 0.1)] seconds. \
-				All synthetic and non-organic lifeforms should seek shelter immediately! \
-				Neutralize magnetic field bubbles at all costs.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+				priority_announce("检测到日冕物质抛射！预期强度：[uppertext(cme_intensity)]。将在 [round((start_when * SSevents.wait) * 0.1, 0.1)] 秒后撞击。\
+				所有合成生命与非有机生命体应立即寻找掩体！\
+				不惜一切代价消除磁场气泡。", "太阳事件", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 			if(CME_MODERATE)
-				priority_announce("Coronal mass ejection detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [round((start_when * SSevents.wait) * 0.1, 0.1)] seconds. \
-				All synthetic and non-organic lifeforms should seek shelter immediately! \
-				Neutralize magnetic field bubbles at all costs.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+				priority_announce("检测到日冕物质抛射！预期强度：[uppertext(cme_intensity)]。将在 [round((start_when * SSevents.wait) * 0.1, 0.1)] 秒后撞击。\
+				所有合成生命与非有机生命体应立即寻找掩体！\
+				不惜一切代价消除磁场气泡。", "太阳事件", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 			if(CME_EXTREME)
 				addtimer(CALLBACK(src, PROC_REF(cme_level_callback), SEC_LEVEL_ORANGE, TRUE, FALSE), (round((start_when * SSevents.wait) * 0.1, 0.1)) SECONDS)
-				priority_announce("Critical Coronal mass ejection detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [round((start_when * SSevents.wait) * 0.1, 0.1)] seconds. \
-				All synthetic and non-organic lifeforms should seek shelter immediately! \
-				Neutralize magnetic field bubbles at all costs.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+				priority_announce("检测到危急的日冕物质抛射！预期强度：[uppertext(cme_intensity)]。将在 [round((start_when * SSevents.wait) * 0.1, 0.1)] 秒后撞击。\
+				所有合成生命与非有机生命体应立即寻找掩体！\
+				不惜一切代价消除磁场气泡。", "太阳事件", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 			if(CME_ARMAGEDDON)
 				addtimer(CALLBACK(src, PROC_REF(cme_level_callback), SEC_LEVEL_GAMMA, TRUE, TRUE), (round((start_when * SSevents.wait) * 0.1, 0.1)) SECONDS)
-				priority_announce("Neutron Mass Ejection Detected! Expected intensity: [uppertext(cme_intensity)]. Impact in: [round((start_when * SSevents.wait) * 0.1, 0.1)] seconds. \
-				All personnel should proceed to their nearest warpgate for evacuation, the Terran Government has issued this mandatory alert.", "Solar Event", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
+				priority_announce("检测到中子质量抛射！预期强度：[uppertext(cme_intensity)]。将在 [round((start_when * SSevents.wait) * 0.1, 0.1)] 秒后撞击。\
+				所有人员应前往最近的传送门撤离，地球政府已发布此项强制警报。", "太阳事件", sound('modular_skyrat/modules/cme/sound/cme_warning.ogg'))
 
 /datum/round_event/cme/tick(seconds_between_ticks)
 	if(ISMULTIPLE(activeFor, rand(cme_frequency_lower, cme_frequency_upper)))
@@ -164,7 +164,7 @@
 			INVOKE_ASYNC(SSsecurity_level, TYPE_PROC_REF(/datum/controller/subsystem/security_level/, minimum_security_level), SEC_LEVEL_ORANGE, TRUE, FALSE)
 
 	var/area/loc_area_name = get_area(spawnpoint)
-	minor_announce("WARNING! [uppertext(intensity)] PULSE EXPECTED IN: [loc_area_name.name]", "Solar Flare Log:")
+	minor_announce("警告！预计 [uppertext(intensity)] 脉冲将出现在：[loc_area_name.name]", "太阳耀斑日志：")
 	switch(intensity)
 		if(CME_MINIMAL)
 			var/obj/effect/cme/spawnedcme = new(spawnpoint)
@@ -181,7 +181,7 @@
 
 
 /datum/round_event/cme/end()
-	minor_announce("The station has cleared the solar flare, please proceed to repair electronic failures.", "CME cleared:")
+	minor_announce("空间站已脱离太阳耀斑影响，请着手修复电子设备故障。", "日冕物质抛射已解除：")
 
 
 /*
@@ -189,8 +189,8 @@
 */
 
 /obj/effect/cme
-	desc = "A solar ejection projection."
-	name = "MINIMAL SOLAR EJECTION"
+	desc = "一道太阳抛射投影。"
+	name = "轻微太阳抛射"
 	icon = 'modular_skyrat/modules/cme/icons/cme_effect.dmi'
 	icon_state = "cme_effect"
 	color = COLOR_BLUE_LIGHT
@@ -212,7 +212,7 @@
 	var/neutralized = FALSE
 
 /obj/effect/cme/moderate
-	name = "MODERATE SOLAR EJECTION"
+	name = "中等太阳抛射"
 	color = COLOR_VIVID_YELLOW
 	light_color = COLOR_VIVID_YELLOW
 	timeleft = CME_MODERATE_BUBBLE_BURST_TIME
@@ -222,7 +222,7 @@
 	cme_heavy_range_upper = CME_MODERATE_HEAVY_RANGE_UPPER
 
 /obj/effect/cme/extreme
-	name = "EXTREME SOLAR EJECTION"
+	name = "极端太阳抛射"
 	color = COLOR_RED
 	light_color = COLOR_RED
 	timeleft = CME_EXTREME_BUBBLE_BURST_TIME
@@ -232,7 +232,7 @@
 	cme_heavy_range_upper = CME_EXTREME_HEAVY_RANGE_UPPER
 
 /obj/effect/cme/armageddon
-	name = "ARMAGEDDON SOLAR EJECTION"
+	name = "末日太阳抛射"
 	color = COLOR_VIOLET
 	light_color = COLOR_VIOLET
 	timeleft = CME_ARMAGEDDON_BUBBLE_BURST_TIME
@@ -251,7 +251,7 @@
 
 /obj/effect/cme/proc/burst()
 	if(neutralized)
-		visible_message(span_notice("[src] fizzles out into nothingness."))
+		visible_message(span_notice("[src] 嘶嘶作响，消散于无形。"))
 		new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 		qdel(src)
 		return
@@ -265,7 +265,7 @@
 
 /obj/effect/cme/armageddon/burst()
 	if(neutralized)
-		visible_message(span_notice("[src] fizzles out into nothingness."))
+		visible_message(span_notice("[src] 嘶嘶作响，消散于无形。"))
 		new /obj/effect/particle_effect/fluid/smoke/bad(loc)
 		qdel(src)
 		return

@@ -1,9 +1,9 @@
 /obj/machinery/power/rtg/portable
-	name = "radioisotope thermoelectric generator"
-	desc = "The ultimate in 'middle of nowhere' power generation. Unlike standard RTGs, this particular \
-		design of generator has forgone the heavy radiation shielding that most RTG designs include. \
-		In better news, these tend to be pretty good with making a passable trickle of power for any \
-		application."
+	name = "放射性同位素热电发电机"
+	desc = "在“荒无人烟之地”发电的终极选择。与标准 RTG 不同，这一特定\
+		设计的发电机舍弃了大多数 RTG 设计都会配备的重型辐射屏蔽。\
+		好消息是，这类发电机很擅长为各种用途提供还过得去的\
+		涓流电力。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/machines.dmi'
 	circuit = null
 	power_gen = 7500
@@ -30,7 +30,7 @@
 
 // Item for creating the arc furnace or carrying it around
 /obj/item/flatpacked_machine/rtg
-	name = "flat-packed radioisotope thermoelectric generator"
+	name = "扁平包装放射性同位素热电发电机"
 	icon_state = "rtg_packed"
 	type_to_deploy = /obj/machinery/power/rtg/portable
 	custom_materials = list(

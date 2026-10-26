@@ -12,8 +12,8 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 
 /datum/computer_file/program/nifsoft_downloader
 	filename = "nifsoftcatalog"
-	filedesc = "NIFSoft Catalog"
-	extended_desc = "A virtual storefront that allows the user to install NIFSofts and purchase various NIF related products"
+	filedesc = "NIFSoft 目录"
+	extended_desc = "一个虚拟店面，可让使用者安装 NIFSoft 并购买各种 NIF 相关产品"
 	downloader_category = PROGRAM_CATEGORY_DEVICE
 	size = 3
 	tgui_id = "NtosNifsoftCatalog"
@@ -112,27 +112,27 @@ GLOBAL_LIST_INIT(purchasable_nifsofts, list(
 
 			if(rewards_purchase)
 				if(buyer_nif.rewards_points < amount_to_charge)
-					buyer_nif.send_message("You don't have enough reward points to buy this.", alert = TRUE)
+					buyer_nif.send_message("你的奖励点数不足以购买此物品。", alert = TRUE)
 					return FALSE
 
 			else if(!paying_account.has_money(amount_to_charge))
-				paying_account.bank_card_talk("You lack the money to make this purchase.")
+				paying_account.bank_card_talk("你的钱不足以完成这笔购买。")
 				return FALSE
 
 			if(!ispath(product_to_buy, /datum/nifsoft) || !buyer_nif)
-				paying_account.bank_card_talk("You are unable to buy this.")
+				paying_account.bank_card_talk("你无法购买此物品。")
 				return FALSE
 
 			var/datum/nifsoft/installed_nifsoft = new product_to_buy(buyer_nif, rewards_purchase)
 			if(!installed_nifsoft.parent_nif)
-				paying_account.bank_card_talk("Install failed, your purchase has been refunded.")
+				paying_account.bank_card_talk("安装失败，已为你退款。")
 				return FALSE
 
 			if(rewards_purchase)
 				buyer_nif.remove_rewards_points(amount_to_charge)
-				buyer_nif.send_message("Purchase completed, [amount_to_charge] reward points have been removed from your NIF")
+				buyer_nif.send_message("购买完成，已从你的 NIF 中扣除 [amount_to_charge] 奖励点数")
 			else
-				paying_account.adjust_money(-amount_to_charge, "NIFSoft purchase")
-				paying_account.bank_card_talk("Transaction complete, you have been charged [amount_to_charge]cr.")
+				paying_account.adjust_money(-amount_to_charge, "NIFSoft 采购")
+				paying_account.bank_card_talk("交易完成，已向你收取 [amount_to_charge]cr。")
 
 			return TRUE

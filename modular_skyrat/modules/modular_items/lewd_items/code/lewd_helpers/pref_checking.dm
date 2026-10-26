@@ -19,16 +19,16 @@
 	if(!client?.prefs || (mechanic_user == src))
 		return FALSE // Clients are a fickle mistress, but also no need for any further checks if someone is doing it on themselves without the prefs to allow it.
 
-	var/message_to_log = "[src] had an ERP mechanic attempted to be used on them while their prefs were disabled"
+	var/message_to_log = "[src] 在偏好设置禁用时被人尝试使用 ERP 机制"
 	if(used_item)
-		message_to_log = "[used_item] was attempted to be used on [src] while their prefs were disabled"
+		message_to_log = "在 [src] 的偏好设置禁用时，有人尝试对其使用 [used_item]"
 
 	var/turf/parent_turf = get_turf(src)
 	if(parent_turf)
-		message_to_log += " at [loc_name(parent_turf)]"
+		message_to_log += "，地点：[loc_name(parent_turf)]"
 
 	if(mechanic_user)
-		message_to_log += ", by [mechanic_user]"
+		message_to_log += "，操作者：[mechanic_user]"
 
 	log_message(message_to_log + ".", LOG_GAME)
 
@@ -54,7 +54,7 @@
 
 		no_viewer_with_false_prefs = FALSE
 
-		viewer.log_message("[src] used a mechanic that checked for those without [pref_to_check] in view, [viewer] had the pref disabled.", LOG_GAME)
-		log_message("[src] used a mechanic that checked for those without [pref_to_check] in view, [viewer] had the pref disabled.", LOG_GAME)
+		viewer.log_message("[src] 使用了一个会检查视野内未开启 [pref_to_check] 者的机制，[viewer] 的该偏好处于禁用状态。", LOG_GAME)
+		log_message("[src] 使用了一个会检查视野内未开启 [pref_to_check] 者的机制，[viewer] 的该偏好处于禁用状态。", LOG_GAME)
 
 	return no_viewer_with_false_prefs

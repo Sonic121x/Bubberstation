@@ -1,9 +1,9 @@
 /obj/machinery/biogenerator/foodricator
-	name = "organic rations printer"
-	desc = "An advanced machine seen in frontier outposts and colonies capable of turning organic plant matter into \
-		various foods or ingredients. The best friend of a chef where deliveries are inconsistent or simply don't exist. \
-		Some of those that consume the food from this complain that the foods it makes have poor taste, though they must \
-		not appreciate being able to eat steak and eggs for breakfast with a lack of any livestock at all in the colony."
+	name = "有机口粮打印机"
+	desc = "一种在边疆前哨站与殖民地常见的先进机器，能将有机植物物质转化为\
+		各种食物或食材。在物资配送不稳定或干脆不存在的地区，它是厨师最好的朋友。\
+		有些吃过它产出的食物的人抱怨味道不佳，不过他们大概不懂得，在殖民地里连一头牲畜都没有的情况下，\
+		早餐还能吃上牛排和鸡蛋有多么难得。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/foodricator.dmi'
 	circuit = null
 	anchored = FALSE
@@ -37,7 +37,7 @@
 // Deployable item for cargo for the rations printer
 
 /obj/item/flatpacked_machine/organics_ration_printer
-	name = "organic rations printer parts kit"
+	name = "有机口粮打印机零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/foodricator.dmi'
 	icon_state = "biogenerator_parts"
 	type_to_deploy = /obj/machinery/biogenerator/foodricator

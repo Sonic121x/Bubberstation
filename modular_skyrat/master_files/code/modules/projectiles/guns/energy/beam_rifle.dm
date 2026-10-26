@@ -1,8 +1,8 @@
 /obj/item/gun/energy/event_horizon
-	name = "\improper Event Horizon anti-existential beam rifle"
-	desc = "Nanotrasen developed experimental weapons platform for accelerating heated sub-atomic particles at near-lightspeed by utilizing a\
-	blackhole generator to accelerate them past an immense gravitational field. Keep your fingers away from the barrel during firing.\
-	Might cause unexpected spaggetification"
+	name = "\improper 事件视界反存在光束步枪"
+	desc = "纳米传讯研发的实验性武器平台，利用黑洞发生器让加热的亚原子粒子穿过极强的引力场加速，\
+	从而以接近光速发射。开火时请把手指远离枪口。\
+	可能导致意外的面条化。"
 
 /obj/projectile/beam/event_horizon
 	damage = HUMAN_MAXHEALTH

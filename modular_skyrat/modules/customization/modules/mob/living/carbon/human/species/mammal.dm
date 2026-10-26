@@ -1,5 +1,5 @@
 /datum/species/mammal
-	name = "Anthromorph" //Called so because the species is so much more universal than just mammals
+	name = "兽人" //Called so because the species is so much more universal than just mammals
 	id = SPECIES_MAMMAL
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -99,11 +99,11 @@
 	return markings
 
 /datum/species/mammal/get_species_description()
-	return "This is a template species for your own creations!"
+	return "这是一个供你自行创作的模板种族！"
 
 
 /datum/species/mammal/get_species_lore()
-	return list("Make sure you fill out your own custom species lore!")
+	return list("请记得填写你自己的自定义种族背景故事！")
 
 /datum/species/mammal/prepare_human_for_preview(mob/living/carbon/human/human)
 	var/main_color = "#333333"

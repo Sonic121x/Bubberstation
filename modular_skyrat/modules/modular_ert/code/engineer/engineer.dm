@@ -1,7 +1,7 @@
 /datum/ert/fullengi
 	roles = list(/datum/antagonist/ert/engineer)
 	leader_role = /datum/antagonist/ert/engineer/red
-	rename_team = "Repairmen"
+	rename_team = "修理工"
 	code = "Orange"
-	mission = "Repair the station."
-	polldesc = "a group of engineers"
+	mission = "修复空间站。"
+	polldesc = "一群工程师"

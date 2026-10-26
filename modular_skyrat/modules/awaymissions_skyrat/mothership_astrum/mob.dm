@@ -3,8 +3,8 @@
 */
 
 /mob/living/basic/abductor
-	name = "abductor scientist"
-	desc = "From the depths of space."
+	name = "绑架者科学家"
+	desc = "来自太空深处。"
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/abductors.dmi'
 	icon_state = "abductor_scientist"
 	icon_living = "abductor_scientist"
@@ -19,8 +19,8 @@
 
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "挥拳猛击"
+	attack_verb_simple = "挥拳"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 
 	combat_mode = TRUE
@@ -48,15 +48,15 @@
 
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = "劈砍"
+	attack_verb_simple = "劈砍"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 
 
 // Tankier, more damaging variant
 /mob/living/basic/abductor/agent
-	name = "abductor agent"
+	name = "绑架者特工"
 	icon_state = "abductor_agent"
 	icon_living = "abductor_agent"
 
@@ -73,7 +73,7 @@
 */
 
 /mob/living/basic/abductor/ranged
-	name = "abductor scientist"
+	name = "绑架者科学家"
 	icon_state = "abductor_scientist_gun"
 	icon_living = "abductor_scientist_gun"
 
@@ -90,7 +90,7 @@
 
 // Tankier variant
 /mob/living/basic/abductor/ranged/agent
-	name = "abductor combat specialist"
+	name = "绑架者战斗专家"
 	icon_state = "abductor_agent_combat_gun"
 	icon_living = "abductor_agent_combat_gun"
 
@@ -104,22 +104,22 @@
  */
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/astrum
-	name = "abductor captain"
-	desc = "The one you've come here for. Finish this."
+	name = "绑架者舰长"
+	desc = "你此行的目标就是它。做个了结吧。"
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/abductors.dmi'
 	icon_state = "abductor_agent_combat"
 	icon_living = "abductor_agent_combat"
 	icon_gib = "syndicate_gib"
-	gps_name = "Captain's Signal"
+	gps_name = "舰长信号"
 	mouse_opacity = MOUSE_OPACITY_ICON
 
 	health = 1750
 	maxHealth = 1750
 	health_doll_icon = "pandora"
-	death_message = "falls to their knees before exploding into a ball of gore."
+	death_message = "跪倒在地，随后炸成一团血污。"
 
-	attack_verb_continuous = "attacks"
-	attack_verb_simple = "attack"
+	attack_verb_continuous = "攻击"
+	attack_verb_simple = "攻击"
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/astrum/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit = FALSE)
 	. = ..()

@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(cracker_reactions, cracker_reactions_list())
 
 /datum/cracker_reaction
 	var/list/requirements
-	var/name = "reaction"
+	var/name = "反应"
 	var/id = "r"
 	var/desc = ""
 	var/list/factor
@@ -37,16 +37,16 @@ GLOBAL_LIST_INIT(cracker_reactions, cracker_reactions_list())
 	return TRUE
 
 /datum/cracker_reaction/co2_cracking
-	name = "CO2 Cracking"
+	name = "CO2 裂解"
 	id = "co2_cracking"
-	desc = "Conversion of CO2 into equal amounts of O2"
+	desc = "将 CO2 转化为等量的 O2"
 	requirements = list(
 		/datum/gas/carbon_dioxide = MINIMUM_MOLE_COUNT,
 	)
 	factor = list(
-		/datum/gas/carbon_dioxide = "1 mole of CO2 gets consumed",
-		/datum/gas/oxygen = "1 mole of O2 gets produced",
-		"Location" = "Can only happen on turfs with an active CO2 cracker.",
+		/datum/gas/carbon_dioxide = "消耗 1 摩尔 CO2",
+		/datum/gas/oxygen = "产生 1 摩尔 O2",
+		"位置" = "只能发生在有正在运行的 CO2 裂解机的格子上。",
 	)
 
 /datum/cracker_reaction/co2_cracking/react(turf/location, datum/gas_mixture/air_mixture, working_power)
@@ -62,10 +62,10 @@ GLOBAL_LIST_INIT(cracker_reactions, cracker_reactions_list())
 // CO2 cracker machine itself
 
 /obj/machinery/electrolyzer/co2_cracker
-	name = "portable CO2 cracker"
-	desc = "A portable device that is the savior of many a colony on the frontier. Performing similarly to an electrolyzer, \
-		it takes in nearby gasses and breaks them into different gasses. The big draw of this one? It can crack carbon dioxide \
-		into breathable oxygen. Handy for places where CO2 is all too common, and oxygen is all too hard to find."
+	name = "便携式 CO2 裂解机"
+	desc = "一台便携设备，是边疆许多殖民地的救星。它的工作方式与电解机类似，\
+		吸入附近的气体并将其分解为不同的气体。它最大的卖点是什么？它能将二氧化碳裂解\
+		成可供呼吸的氧气。对于二氧化碳随处可见、氧气却极难寻找的地方来说十分方便。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/portable_machines.dmi'
 	circuit = null
 	working_power = 1
@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(cracker_reactions, cracker_reactions_list())
 // "parts kit" for buying these from cargo
 
 /obj/item/flatpacked_machine/co2_cracker
-	name = "CO2 cracker parts kit"
+	name = "CO2 裂解机零件包"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/parts_kits.dmi'
 	icon_state = "co2_cracker"
 	type_to_deploy = /obj/machinery/electrolyzer/co2_cracker

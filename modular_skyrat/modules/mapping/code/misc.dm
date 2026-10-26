@@ -1,6 +1,6 @@
 /obj/item/melee/sabre/luna
-	name = "Luna"
-	desc = "Forged by a madwoman, in recognition of a time, a place - she thought almost real. Various etchings of moons are inscribed onto the surface, different phases marking different parts of the blade."
+	name = "露娜"
+	desc = "一名疯女人为纪念一段她以为几乎真实存在的时间与地点锻造而成。剑身上刻满各式的月亮，不同的相标记着剑刃的不同部位。"
 	icon = 'modular_skyrat/modules/mapping/icons/obj/items/items_and_weapons.dmi'
 	lefthand_file = 'modular_skyrat/modules/mapping/icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/mapping/icons/mob/inhands/weapons/swords_righthand.dmi'

@@ -25,10 +25,10 @@
 	if(used)
 		return
 	if(ckey_whitelist && !(LOWER_TEXT(user.ckey) in ckey_whitelist))
-		alert(user, "Sorry, This spawner is not for you!", "", "Ok")
+		alert(user, "抱歉，这个生成器不是给你用的！", "", "好")
 		return
 	if(is_banned_from(user.ckey, BAN_GHOST_ROLE_SPAWNER))
-		to_chat(user, "Error, you are banned from playing ghost roles!")
+		to_chat(user, "错误：你已被禁止扮演幽灵角色！")
 		return
 	var/species_string
 	if(species_whitelist)
@@ -48,27 +48,27 @@
 				gender_string += ", "
 			gender_string += "[spec_key]"
 			first = FALSE
-	var/warning_string = "WARNING: This spawner will use your currently selected character in prefs ([user.client.prefs?.read_preference(/datum/preference/name/real_name)])\nMake sure that the character is not used as a station crew, or would have a good reason to be this role.\nDo you wanna proceed?"
+	var/warning_string = "警告：此生成器将使用你偏好设置中当前选定的角色（[user.client.prefs?.read_preference(/datum/preference/name/real_name)]）\n请确保该角色没有被用作空间站船员，或者有充分的理由担任此角色。\n你想继续吗？"
 	if(species_string)
-		warning_string += "\nThis role is restricted to those species: [species_string]"
+		warning_string += "\n此角色仅限以下种族：[species_string]"
 	if(gender_string)
-		warning_string += "\nThis role is restricted to those genders: [gender_string]"
-	var/action = tgui_alert(user, warning_string, "", list("Yes", "Yes with Alias", "No"))
-	if(!action || action == "No")
+		warning_string += "\n此角色仅限以下性别：[gender_string]"
+	var/action = tgui_alert(user, warning_string, "", list("是", "使用别名", "否"))
+	if(!action || action == "否")
 		return
 	var/alias
-	if(action == "Yes with Alias")
-		var/msg = reject_bad_name(input(usr, "Set your character's alias for this role", "Alias") as text|null)
+	if(action == "使用别名")
+		var/msg = reject_bad_name(input(usr, "设置你的角色为此身份使用的别名", "别名") as text|null)
 		if(!msg)
 			return
 		alias = msg
 	if(!user || !user.client)
 		return
 	if(species_whitelist && !(user.client.prefs?.read_preference(/datum/preference/choiced/species) in species_whitelist))
-		alert(user, "Sorry, This spawner is limited to those species: [species_string]. Please switch your character.", "", "Ok")
+		alert(user, "抱歉，此生成器仅限以下种族：[species_string]。请切换你的角色。", "", "好")
 		return
 	if(gender_whitelist && !(user.client.prefs?.read_preference(/datum/preference/choiced/gender) in gender_whitelist))
-		alert(user, "Sorry, This spawner is limited to those genders: [gender_string]. Please switch your character.", "", "Ok")
+		alert(user, "抱歉，此生成器仅限以下性别：[gender_string]。请切换你的角色。", "", "好")
 		return
 	if(used)
 		return
@@ -77,10 +77,10 @@
 /obj/character_event_spawner/proc/SpawnPerson(mob/dead/observer/user, alias)
 	if(!user || !user.client)
 		return
-	message_admins("[ADMIN_LOOKUPFLW(user)] spawned as a [job_name] by using a spawner.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 使用生成器以 [job_name] 的身份生成。")
 	used = TRUE
 	icon_state = "cryopod-open"
-	name = "opened cryogenic sleeper"
+	name = "已开启的低温休眠舱"
 	//Spawn and copify prefs
 	var/mob/living/carbon/human/H = new(src)
 	user.client.prefs.safe_transfer_prefs_to(H)
@@ -159,7 +159,7 @@
 		H.ckey = user.ckey
 
 	//Greet!
-	to_chat(H, span_big("You are the [job_name]"))
+	to_chat(H, span_big("你是 [job_name]"))
 	to_chat(H, span_bold("[flavor_text]"))
 	if(disappear_after_spawn)
 		qdel(src)

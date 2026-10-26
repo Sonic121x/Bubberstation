@@ -3,7 +3,7 @@
 	build_path = /obj/item/clothing/neck/link_scryer/loaded
 
 /datum/design/module/mod_remote
-	name = "MODsuit Remote Module"
+	name = "MOD 遥控模块"
 	id = "mod_remote_module"
 	build_path = /obj/item/mod/module/remote_control
 	materials = list(

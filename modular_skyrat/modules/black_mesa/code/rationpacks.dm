@@ -23,87 +23,87 @@
 )
 
 /obj/item/food/mre_course
-	name = "undefined MRE course"
-	desc = "Something you shouldn't see. But it's edible."
+	name = "未定义的即食口粮餐"
+	desc = "你不该看到的东西。不过它能吃。"
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/courses.dmi'
 	icon_state = "main_course"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20)
-	tastes = list("crayon powder" = 1)
+	tastes = list("蜡笔粉" = 1)
 	foodtypes = VEGETABLES | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/mre_course/main
-	name = "MRE main course"
-	desc = "Main course of the ancient military ration designed for ground troops. This one is NOTHING."
-	tastes = list("strawberry" = 1, "vanilla" = 1, "chocolate" = 1)
+	name = "即食口粮主餐"
+	desc = "古代军用口粮中为地面部队设计的主餐。这一份什么也没有。"
+	tastes = list("草莓" = 1, "香草" = 1, "巧克力" = 1)
 
 /obj/item/food/mre_course/main/beans
-	name = "MRE main course - Pork and Beans"
-	desc = "Main course of the ancient military ration designed for ground troops. This one is pork and beans covered in some tomato sauce."
-	tastes = list("beans" = 1, "pork" = 1, "tomato sauce" = 1)
+	name = "即食口粮主餐——猪肉炖豆"
+	desc = "古代军用口粮中为地面部队设计的主餐。这一份是浇着番茄酱的猪肉炖豆。"
+	tastes = list("豆子" = 1, "猪肉" = 1, "番茄酱" = 1)
 	foodtypes = MEAT | VEGETABLES
 
 /obj/item/food/mre_course/main/macaroni
-	name = "MRE main course - Macaroni and Cheese"
-	desc = "Main course of the ancient military ration designed for ground troops. This one is preboiled macaroni covered in some federal reserve cheese."
-	tastes = list("cold macaroni" = 1, "bland cheese" = 1)
+	name = "即食口粮主餐——通心粉与奶酪"
+	desc = "古代军用口粮中为地面部队设计的主餐。这一份是先煮好的通心粉，上面浇着联邦储备奶酪。"
+	tastes = list("冷通心粉" = 1, "淡而无味的奶酪" = 1)
 	foodtypes = DAIRY | GRAIN
 
 /obj/item/food/mre_course/main/rice
-	name = "MRE main course - Rice and Beef"
-	desc = "Main course of the ancient military ration designed for ground troops. This one is rice with beef, covered in gravy."
-	tastes = list("dense rice" = 1, "bits of beef" = 1, "gravy" = 1)
+	name = "即食口粮主餐——米饭与牛肉"
+	desc = "古代军用口粮中为地面部队设计的主餐。这一份是浇着肉汁的牛肉米饭。"
+	tastes = list("紧实的米饭" = 1, "牛肉碎" = 1, "肉汁" = 1)
 	foodtypes = GRAIN | MEAT
 
 /obj/item/food/mre_course/side
-	name = "MRE side course"
-	desc = "Side course of the ancient military ration designed for ground troops. This one is NOTHING."
+	name = "即食口粮配菜"
+	desc = "古代军用口粮中为地面部队设计的配菜。这一份什么也没有。"
 	icon_state = "side_dish"
 
 /obj/item/food/mre_course/side/bread
-	name = "MRE side course - Cornbread"
-	desc = "Side course of the ancient military ration designed for ground troops. This one is cornbread."
-	tastes = list("cornbread" = 1)
+	name = "即食口粮配菜——玉米面包"
+	desc = "古代军用口粮中为地面部队设计的配菜。这一份是玉米面包。"
+	tastes = list("玉米面包" = 1)
 	foodtypes = GRAIN
 
 /obj/item/food/mre_course/side/pie
-	name = "MRE side course - Meat Pie"
-	desc = "Side course of the ancient military ration designed for ground troops. This one is some meat pie."
-	tastes = list("pie dough" = 1, "ground meat" = 1, "Texas" = 1)
+	name = "即食口粮配菜——肉馅饼"
+	desc = "古代军用口粮中为地面部队设计的配菜。这一份是肉馅饼。"
+	tastes = list("馅饼皮" = 1, "碎肉" = 1, "德克萨斯" = 1)
 	foodtypes = MEAT | GRAIN
 
 /obj/item/food/mre_course/side/chicken
-	name = "MRE side course - Sweet 'n Sour Chicken"
-	desc = "Side course of the ancient military ration designed for ground troops. This one is some undefined chicken-looking meat covered in cheap reddish sauce."
-	tastes = list("bits of chicken meat" = 1, "sweet and sour sauce" = 1, "salt" = 1)
+	name = "即食口粮配菜——糖醋鸡肉"
+	desc = "古代军用口粮中为地面部队设计的配菜。这一份是某种说不清来历、长得像鸡肉的肉，裹着一层廉价的红褐色酱汁。"
+	tastes = list("鸡肉碎" = 1, "糖醋酱" = 1, "盐" = 1)
 	foodtypes = MEAT | FRIED
 
 /obj/item/food/mre_course/dessert
-	name = "MRE dessert"
-	desc = "Dessert of the ancient military ration designed for ground troops. This one is NOTHING."
+	name = "即食口粮甜点"
+	desc = "古代军用口粮中为地面部队设计的甜点。这一份什么也没有。"
 	icon_state = "dessert"
 
 /obj/item/food/mre_course/dessert/cookie
-	name = "MRE dessert - Cookie"
-	desc = "Dessert of the ancient military ration designed for ground troops. This one is a big dry cookie."
-	tastes = list("dryness" = 1, "hard cookie" = 1, "chocolate chip" = 1)
+	name = "即食口粮甜点——曲奇饼干"
+	desc = "古代军用口粮中为地面部队设计的甜点。这一份是一大块干巴巴的曲奇饼干。"
+	tastes = list("干燥" = 1, "硬曲奇" = 1, "巧克力碎" = 1)
 	foodtypes = GRAIN | SUGAR
 
 /obj/item/food/mre_course/dessert/cake
-	name = "MRE dessert - Apple Pie"
-	desc = "Dessert of the ancient military ration designed for ground troops. This one is an amorphous apple pie."
-	tastes = list("apple" = 1, "moist cake" = 1, "sugar" = 1)
+	name = "即食口粮甜点——苹果派"
+	desc = "古代军用口粮中为地面部队设计的甜点。这一份是一坨不成形的苹果派。"
+	tastes = list("苹果" = 1, "湿润的蛋糕" = 1, "糖" = 1)
 	foodtypes = GRAIN | SUGAR | FRUIT
 
 /obj/item/food/mre_course/dessert/chocolate
-	name = "MRE dessert - Dark Chocolate"
-	desc = "Dessert of the ancient military ration designed for ground troops. This one is a dark bar of chocolate."
-	tastes = list("vanilla" = 1, "artificial chocolate" = 1, "chemicals" = 1)
+	name = "即食口粮甜点——黑巧克力"
+	desc = "古代军用口粮中为地面部队设计的甜点。这一份是一板黑巧克力。"
+	tastes = list("香草" = 1, "人造巧克力" = 1, "化学物质" = 1)
 	foodtypes = JUNKFOOD | SUGAR
 
 /obj/item/storage/box/hecu_rations
-	name = "Meal, Ready-to-Eat"
-	desc = "A box containing a few rations and some chewing gum, for keeping a starving crayon-eater going."
+	name = "即食口粮"
+	desc = "一盒装着几份口粮和一些口香糖，好让饿着肚子的吃蜡笔的家伙撑下去。"
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/mre_hecu.dmi'
 	icon_state = "mre_package"
 	illustration = null
@@ -123,7 +123,7 @@
 	new /obj/item/food/spacers_sidekick(src)
 
 /obj/item/pizzabox/random
-	boxtag = "Randy's Surprise"
+	boxtag = "兰迪的惊喜"
 	boxtag_set = TRUE
 
 /obj/item/pizzabox/random/Initialize(mapload)

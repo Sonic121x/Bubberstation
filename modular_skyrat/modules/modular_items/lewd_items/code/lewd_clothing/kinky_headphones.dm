@@ -1,6 +1,6 @@
 /obj/item/clothing/ears/kinky_headphones
-	name = "kinky headphones"
-	desc = "Protect your ears from loud noises. It has a switch on the right hand side."
+	name = "情趣耳机"
+	desc = "保护你的耳朵免受巨响伤害。右侧有一个开关。"
 	icon_state = "kinkphones_pink_off"
 	base_icon_state = "kinkphones"
 	inhand_icon_state = "kinkphones_pink_off"
@@ -52,7 +52,7 @@
 	. = ..()
 	if(!(istype(user) && (slot & ITEM_SLOT_EARS)))
 		return
-	to_chat(user, span_purple("[!kinky_headphones_on ? "You can barely hear anything! Your other senses have become more apparent..." : "Strange but relaxing music fills your mind. You feel so... Calm."]"))
+	to_chat(user, span_purple("[!kinky_headphones_on ? "你几乎什么都听不见了！其他感官似乎变得更加敏锐……" : "奇怪却令人放松的音乐充满了你的脑海。你感到无比……平静。"]"))
 	ADD_TRAIT(user, TRAIT_DEAF, CLOTHING_TRAIT)
 
 //we dropping item so we not deaf now. hurray.
@@ -61,7 +61,7 @@
 	if(!(src == user.ears))
 		return
 	REMOVE_TRAIT(user, TRAIT_DEAF, CLOTHING_TRAIT)
-	to_chat(user, span_purple("You can finally hear the world around you once more."))
+	to_chat(user, span_purple("你终于又能听见周围世界的声音了。"))
 
 
 //to make it change model on click
@@ -84,11 +84,11 @@
 /obj/item/clothing/ears/kinky_headphones/proc/toggle(owner)
 	kinky_headphones_on = !kinky_headphones_on
 	update_icon()
-	to_chat(owner, span_notice("You turn the music [kinky_headphones_on ? "on. It plays relaxing music." : "off."]"))
+	to_chat(owner, span_notice("你把音乐[kinky_headphones_on ? "打开了。它播放着舒缓的音乐。" : "关掉了。"]"))
 
 /datum/action/item_action/toggle_kinky_headphones
-	name = "Toggle kinky headphones"
-	desc = "Plays some nice relaxing music"
+	name = "切换情趣耳机"
+	desc = "播放舒缓好听的音乐"
 
 /datum/action/item_action/toggle_kinky_headphones/Trigger(trigger_flags)
 	if(!..())

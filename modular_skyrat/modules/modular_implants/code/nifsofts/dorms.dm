@@ -1,12 +1,12 @@
 /obj/item/disk/nifsoft_uploader/dorms
-	name = "Grimoire Libidine"
+	name = "情欲魔典"
 	loaded_nifsoft = /datum/nifsoft/summoner/dorms
 
 /datum/nifsoft/summoner/dorms
-	name = "Grimoire Libidine"
-	program_desc = "Grimoire Libidine, a fork of the Grimoire Caeruleam code, allows users to conveniently access an extensive database of various adult toys. "
+	name = "情欲魔典"
+	program_desc = "情欲魔典是蔚蓝魔典代码的分支版本，可让用户便捷地访问一个收录各类成人玩具的庞大数据库。"
 	holographic_filter = FALSE //No RGB toys
-	name_tag = "libidine "
+	name_tag = "情欲"
 	lewd_nifsoft = TRUE
 	ui_icon = "heart"
 
@@ -62,11 +62,11 @@
 	purchase_price = 150
 
 /obj/item/disk/nifsoft_uploader/dorms/contract
-	name = "\improper Libidine Contract"
+	name = "\improper 情欲契约"
 	loaded_nifsoft = /datum/nifsoft/hypno
 	reusable = TRUE //This is set to true because of how this handles updating laws
 	///What laws will be assigned when using the NIFSoft on someone?
-	var/laws_to_assign = "Law 1: Be nice to others."
+	var/laws_to_assign = "法则 1：善待他人。"
 
 /obj/item/disk/nifsoft_uploader/dorms/contract/attempt_software_install(mob/living/carbon/human/target)
 	var/datum/nifsoft/hypno/target_nifsoft = target.find_nifsoft(/datum/nifsoft/hypno)
@@ -85,7 +85,7 @@
 	target_nifsoft.fake_laws = laws_to_assign
 
 /obj/item/disk/nifsoft_uploader/dorms/contract/attack_self(mob/user, list/modifiers)
-	var/new_law = tgui_input_text(user, "Input a new law to add", src, laws_to_assign)
+	var/new_law = tgui_input_text(user, "输入要添加的新法则", src, laws_to_assign)
 	if(!new_law)
 		return FALSE
 
@@ -93,8 +93,8 @@
 	return TRUE
 
 /datum/nifsoft/hypno
-	name = "Libidine Contract"
-	program_desc = "Once installed, the Libidine Contract compells the user to follow the rules stored in the data of the NIFSoft. \n OOC NOTE: This is strictly here for adult roleplay. None of the laws here actually need to be obeyed and you can uninstall this NIFSoft at any time."
+	name = "情欲契约"
+	program_desc = "安装后，情欲契约会迫使用户遵守储存在 NIFSoft 数据中的规则。 \n 超游提示：此内容仅用于成人角色扮演。这里的法则并不需要真正遵守，你随时可以卸载此 NIFSoft。"
 	purchase_price = 0
 	lewd_nifsoft = TRUE
 	ui_icon = "file-contract"

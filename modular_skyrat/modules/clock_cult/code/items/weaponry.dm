@@ -3,8 +3,8 @@
 #define BRASS_RIFLE_REDUCED_DELAY 0.25 SECONDS
 
 /obj/item/clockwork/weapon
-	name = "clockwork weapon"
-	desc = "Something"
+	name = "发条武器"
+	desc = "某物"
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_weapons.dmi'
 	lefthand_file = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_righthand.dmi'
@@ -15,8 +15,8 @@
 	throw_speed = 4
 	armour_penetration = 10
 	hitsound = 'sound/items/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "pokes", "jabs", "tears", "gores")
-	attack_verb_simple = list("attack", "poke", "jab", "tear", "gore")
+	attack_verb_continuous = list("攻击", "戳刺", "猛刺", "撕裂", "贯穿")
+	attack_verb_simple = list("攻击", "戳", "刺", "撕", "贯穿")
 	sharpness = SHARP_EDGED
 	/// Typecache of valid turfs to have the weapon's special effect on
 	var/static/list/effect_turf_typecache = typecacheof(list(/turf/open/floor/bronze))
@@ -53,8 +53,8 @@
 
 
 /obj/item/clockwork/weapon/brass_spear
-	name = "brass spear"
-	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
+	name = "黄铜长矛"
+	desc = "一把锋利如剃刀的黄铜长矛。它震颤着几乎无法抑制的能量。"
 	icon_state = "ratvarian_spear"
 	embed_type = /datum/embedding/spear/brass
 	throwforce = 36
@@ -66,15 +66,15 @@
 	remove_pain_mult = parent_type::remove_pain_mult + 8
 
 /obj/item/clockwork/weapon/brass_battlehammer
-	name = "brass battle-hammer"
-	desc = "A brass hammer glowing with energy."
+	name = "黄铜战锤"
+	desc = "一把散发着能量光芒的黄铜锤。"
 	base_icon_state = "ratvarian_hammer"
 	icon_state = "ratvarian_hammer0"
 	throwforce = 25
 	armour_penetration = 6
-	attack_verb_simple = list("bash", "hammer", "attack", "smash")
-	attack_verb_continuous = list("bashes", "hammers", "attacks", "smashes")
-	clockwork_desc = "Enemies hit by this will be flung back while you are on bronze tiles."
+	attack_verb_simple = list("猛击", "锤击", "攻击", "重砸")
+	attack_verb_continuous = list("猛击", "锤击", "攻击", "重砸")
+	clockwork_desc = "当站在青铜地砖上时，被你击中的敌人会被击飞。"
 	sharpness = 0
 	hitsound = 'sound/items/weapons/smash.ogg'
 
@@ -100,15 +100,15 @@
 	return ..()
 
 /obj/item/clockwork/weapon/brass_sword
-	name = "brass longsword"
-	desc = "A large sword made of brass."
+	name = "黄铜长剑"
+	desc = "一把黄铜制成的大剑。"
 	icon_state = "ratvarian_sword"
 	force = 26
 	throwforce = 20
 	armour_penetration = 12
-	attack_verb_simple = list("attack", "slash", "cut", "tear", "gore")
-	attack_verb_continuous = list("attacks", "slashes", "cuts", "tears", "gores")
-	clockwork_desc = "Enemies and mechs will be struck with a powerful electromagnetic pulse while you are on bronze tiles, with a cooldown."
+	attack_verb_simple = list("攻击", "斩击", "切割", "撕裂", "贯穿")
+	attack_verb_continuous = list("攻击", "斩击", "切割", "撕裂", "贯穿")
+	clockwork_desc = "当站在青铜地砖上时，攻击会向敌人与机甲释放强力电磁脉冲，但有冷却时间。"
 	COOLDOWN_DECLARE(emp_cooldown)
 
 
@@ -121,7 +121,7 @@
 	target.emp_act(EMP_LIGHT)
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 30 SECONDS)
-	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
+	to_chat(user, span_brass("你以电磁脉冲击中了 [target]！"))
 	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
@@ -141,17 +141,17 @@
 	target.emp_act(EMP_HEAVY)
 	new /obj/effect/temp_visual/emp/pulse(target.loc)
 	addtimer(CALLBACK(src, PROC_REF(send_message), user), 20 SECONDS)
-	to_chat(user, span_brass("You strike [target] with an electromagnetic pulse!"))
+	to_chat(user, span_brass("你以电磁脉冲击中了 [target]！"))
 	playsound(user, 'sound/effects/magic/lightningshock.ogg', 40)
 
 
 /obj/item/clockwork/weapon/brass_sword/proc/send_message(mob/living/target)
-	to_chat(target, span_brass("[src] glows, indicating the next attack will disrupt electronics of the target."))
+	to_chat(target, span_brass("[src] 发出光芒，表示下一次攻击将干扰目标的电子设备。"))
 
 
 /obj/item/gun/ballistic/bow/clockwork // SKYRAT TODO - Make Arrow icon independent from sprite
-	name = "brass bow"
-	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
+	name = "黄铜弓"
+	desc = "一把由黄铜和某些你不太理解的部件制成的弓。它散发着深邃的能量，并能自行制造箭矢。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_weapons.dmi'
 	lefthand_file = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_righthand.dmi'
@@ -168,12 +168,12 @@
 /obj/item/gun/ballistic/bow/clockwork/Initialize(mapload)
 	. = ..()
 	update_icon_state()
-	AddElement(/datum/element/clockwork_description, "Firing from brass tiles will halve the time that it takes to recharge a bolt.")
+	AddElement(/datum/element/clockwork_description, "在黄铜地砖上射击会使箭矢的装填时间减半。")
 	AddElement(/datum/element/clockwork_pickup)
 
 /obj/item/gun/ballistic/bow/clockwork/try_fire_gun(atom/target, mob/living/user, params)
 	if(!drawn || !chambered)
-		to_chat(user, span_notice("[src] must be drawn to fire a shot!"))
+		to_chat(user, span_notice("必须先拉开 [src] 才能射击！"))
 		return FALSE
 	return ..()
 
@@ -194,7 +194,7 @@
 	if(!do_after(user, 0.5 SECONDS, src))
 		return
 
-	to_chat(user, span_notice("You draw back the bowstring."))
+	to_chat(user, span_notice("你拉开了弓弦。"))
 	drawn = TRUE
 	playsound(src, 'modular_skyrat/modules/tribal_extended/sound/sound_weapons_bowdraw.ogg', 75, 0) //gets way too high pitched if the freq varies
 	update_icon()
@@ -223,15 +223,15 @@
 
 
 /obj/item/ammo_casing/arrow/clockbolt
-	name = "energy bolt"
-	desc = "An arrow made from a strange energy."
+	name = "能量箭矢"
+	desc = "由奇异能量构成的箭矢。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/ammo.dmi'
 	icon_state = "arrow_redlight"
 	projectile_type = /obj/projectile/energy/clockbolt
 
 
 /obj/projectile/energy/clockbolt
-	name = "energy bolt"
+	name = "能量箭矢"
 	icon = 'modular_skyrat/modules/clock_cult/icons/projectiles.dmi'
 	icon_state = "arrow_energy"
 	damage = 35
@@ -239,8 +239,8 @@
 
 
 /obj/item/gun/ballistic/rifle/lionhunter/clockwork
-	name = "brass rifle"
-	desc = "An antique, brass rifle made with the finest of care. It has an ornate scope in the shape of a cog built into the top."
+	name = "黄铜步枪"
+	desc = "一把精心制作的古董黄铜步枪。顶部装有一个齿轮形状的华丽瞄准镜。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_weapons_40x32.dmi'
 	lefthand_file = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_lefthand.dmi'
 	righthand_file = 'modular_skyrat/modules/clock_cult/icons/weapons/clockwork_righthand.dmi'
@@ -256,16 +256,16 @@
 
 /obj/item/gun/ballistic/rifle/lionhunter/clockwork/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/clockwork_description, "The speed of which you aim at far targets while standing on brass will be massively increased.")
+	AddElement(/datum/element/clockwork_description, "当站在黄铜地砖上时，你瞄准远处目标的速度将大幅提升。")
 	AddElement(/datum/element/clockwork_pickup)
 
 /obj/item/ammo_box/magazine/internal/boltaction/lionhunter/clockwork
-	name = "brass rifle internal magazine"
+	name = "黄铜步枪内置弹仓"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter/clock
 
 
 /obj/item/ammo_casing/strilka310/lionhunter/clock
-	name = "brass rifle round"
+	name = "黄铜步枪子弹"
 	projectile_type = /obj/projectile/bullet/strilka310/lionhunter/clock
 	min_distance = 3
 
@@ -280,7 +280,7 @@
 
 
 /obj/projectile/bullet/strilka310/lionhunter/clock
-	name = "brass .310 bullet"
+	name = "黄铜 .310 子弹"
 	// These stats are only applied if the weapon is fired fully aimed
 	// If fired without aiming or at someone too close, it will do much less
 	damage = 45
@@ -288,8 +288,8 @@
 
 
 /obj/item/ammo_box/speedloader/strilka310/lionhunter/clock
-	name = "stripper clip (.310 brass)"
-	desc = "A stripper clip that's just as brass as the rounds it holds."
+	name = "桥夹（.310 黄铜）"
+	desc = "一个桥夹，和它所装的子弹一样是黄铜的。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/weapons/ammo.dmi'
 	icon_state = "762_brass"
 	ammo_type = /obj/item/ammo_casing/strilka310/lionhunter/clock

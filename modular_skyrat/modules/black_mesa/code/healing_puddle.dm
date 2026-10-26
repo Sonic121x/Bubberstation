@@ -1,6 +1,6 @@
 /obj/structure/water_source/puddle/healing
-	name = "healing puddle"
-	desc = "By some otherworldy power, this puddle of water seems to slowly regenerate things!"
+	name = "治疗水洼"
+	desc = "在某种异界力量的作用下，这滩水似乎能缓慢地让万物再生！"
 	color = "#71ffff"
 	light_range = 3
 	light_color = "#71ffff"

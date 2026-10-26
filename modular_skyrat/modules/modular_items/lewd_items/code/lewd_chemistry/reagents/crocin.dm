@@ -1,8 +1,8 @@
 // Crocin. Basic aphrodisiac with no consequences
 /datum/reagent/drug/aphrodisiac/crocin
-	name = "crocin"
-	description = "Naturally found in the crocus and gardenia flowers, this drug acts as a natural and safe aphrodisiac."
-	taste_description = "strawberries"
+	name = "克罗辛"
+	description = "这种药物天然存在于番红花和栀子花中，是一种天然且安全的催情剂。"
+	taste_description = "草莓"
 	color = "#FFADFF"
 	life_pref_datum = /datum/preference/toggle/erp/aphro
 	arousal_adjust_amount = 1
@@ -19,9 +19,9 @@
 
 	/// A list of possible to_chat messages the chem is able to trigger
 	var/list/possible_aroused_thoughts = list(
-		"You feel frisky.",
-		"You're having trouble suppressing your urges.",
-		"You feel in the mood.",
+		"你感到有些性致勃勃。",
+		"你很难压制住自己的冲动。",
+		"你觉得来了兴致。",
 	)
 
 
@@ -50,6 +50,6 @@
 	required_reagents = list(/datum/reagent/carbon = 2, /datum/reagent/hydrogen = 2, /datum/reagent/oxygen = 2, /datum/reagent/water = 1)
 	required_temp = 280
 	is_cold_recipe = TRUE
-	mix_message = "The mixture boils off a pink vapor..."
+	mix_message = "混合物沸腾，冒出一股粉色的蒸汽……"
 	erp_reaction = TRUE
 	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_EASY

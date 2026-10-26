@@ -1,10 +1,10 @@
 /obj/item/disk/nifsoft_uploader/shapeshifter
-	name = "Polymorph"
+	name = "变形术"
 	loaded_nifsoft = /datum/nifsoft/action_granter/shapeshifter
 
 /datum/nifsoft/action_granter/shapeshifter
-	name = "Polymorph"
-	program_desc = "This program is a large-scale refitting of the nanomachine channels running over the skin of a NIF user. This allows the nanites to reach under the skin and even into the very bone structure of the host; including incorporation of mimetic materials and femto-level manipulation devices all for the purpose of allowing the user to, essentially, shapeshift on a low level. However, despite the incredible complexity behind these processes, there are still limits on the range of 'forms' a user can take. Mass can neither be created nor destroyed, after all, and you can only distribute and rearrange it in so many ways across a functioning humanoid body; meaning, the user cannot adopt forms too far out of their 'true' one."
+	name = "变形术"
+	program_desc = "该程序对分布于 NIF 使用者皮肤表面的纳米机器通道进行了大规模改造。它使纳米机器能够深入皮下，甚至进入宿主的骨骼结构；其中包括拟态材料的整合与飞米级操控装置，目的就是让使用者能够在低层次上实现变形。然而，尽管这些过程背后有着惊人的复杂性，使用者可采用的“形态”范围仍然存在限制。毕竟质量既不能被创造也不能被消灭，而在一具运作中的人形身体上，你也只能用有限的几种方式分配和重组它；这意味着使用者无法变成与自身“真实”形态相差太远的样子。"
 	compatible_nifs = list(/obj/item/organ/cyberimp/brain/nif/standard)
 	purchase_price = 350
 	buying_category = NIFSOFT_CATEGORY_COSMETIC
@@ -13,37 +13,37 @@
 
 /// The NIF version of alter form.
 /datum/action/innate/alter_form/nif
-	name = "Polymorph"
+	name = "变形术"
 	slime_restricted =  FALSE
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
 	button_icon_state = "slime"
-	shapeshift_text = "closes their eyes to focus, their body subtly shifting and contorting."
+	shapeshift_text = "闭上眼睛集中精神，身体微微变形扭动。"
 
 /datum/action/innate/alter_form/nif/change_form(mob/living/carbon/human/alterer)
 	var/selected_alteration = show_radial_menu(
 		alterer,
 		alterer,
 		list(
-			"Body Colours" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
+			"身体颜色" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "slime_rainbow"),
 			"DNA" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "dna"),
-			"Hair" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
-			"Markings" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
-			"Character" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
+			"头发" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "scissors"),
+			"纹样" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "rainbow_spraycan"),
+			"角色形象" = image(icon = 'modular_skyrat/master_files/icons/mob/actions/actions_slime.dmi', icon_state = "alter_form")
 		),
 		tooltips = TRUE,
 	)
 	if(!selected_alteration)
 		return
 	switch(selected_alteration)
-		if("Body Colours")
+		if("身体颜色")
 			alter_colours(alterer)
 		if("DNA")
 			alter_dna(alterer)
-		if("Hair")
+		if("头发")
 			alter_hair(alterer)
-		if("Markings")
+		if("纹样")
 			alter_markings(alterer)
-		if("Character")
+		if("角色形象")
 			begin_character_alteration(alterer)

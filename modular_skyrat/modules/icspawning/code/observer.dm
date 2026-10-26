@@ -10,7 +10,7 @@
 	/// Whether to spawn in with sparks or in a pod
 	var/teleport_option
 	/// Teleportation options
-	var/list/teleport_options = list("Bluespace", "Pod", "Cancel")
+	var/list/teleport_options = list("蓝空间", "空投舱", "取消")
 	/// What style of pod to use, if the option was chosen
 	var/pod_style
 	/// Assoc list of pod UI names to style datums, static so it's only built once
@@ -18,24 +18,24 @@
 	/// Whether to spawn in as your current character or a random one
 	var/character_option
 	/// Character options
-	var/list/character_options = list("Selected Character", "Random Character", "Cancel")
+	var/list/character_options = list("所选角色", "随机角色", "取消")
 	/// Which outfit to use
 	var/outfit_option
 	/// Initial list of outfits
 	var/list/outfit_options = list(
-		"Bluespace Tech (Admin)" = /datum/outfit/admin/bst,
-		"Bluespace Tech (Admin) (MODSuit)" = /datum/outfit/admin/bst/mod,
-		"Naked" = /datum/outfit,
-		"Show All" = "Show All",
+		"蓝空间技师（管理员）" = /datum/outfit/admin/bst,
+		"蓝空间技师（管理员）（MOD 外骨骼）" = /datum/outfit/admin/bst/mod,
+		"裸体" = /datum/outfit,
+		"显示全部" = "显示全部",
 	)
 	/// Whether to grant the return spell
 	var/give_return
 	/// Whether to spawn with quirks and/or loadout
 	var/give_quirks_loadout
 	/// Quirk/loadout options
-	var/list/quirk_loadout_options = list("Quirks Only", "Loadout Only", "Quirks & Loadout", "None")
+	var/list/quirk_loadout_options = list("仅特质", "仅装备配置", "特质与装备配置", "无")
 
-	teleport_option = tgui_alert(user, "How would you like to be spawned in?", "IC Quick Spawn", teleport_options)
+	teleport_option = tgui_alert(user, "你希望以何种方式进入游戏？", "游戏内快速生成", teleport_options)
 	if(!teleport_option || teleport_option == teleport_options[3])
 		return
 
@@ -45,16 +45,16 @@
 			for(var/datum/pod_style/style as anything in typesof(/datum/pod_style))
 				pod_styles[style::ui_name] = style
 
-		pod_style = tgui_input_list(user, "Which style of pod?", "IC Quick Spawn", pod_styles)
+		pod_style = tgui_input_list(user, "要哪一种空投舱样式？", "游戏内快速生成", pod_styles)
 		pod_style = pod_styles[pod_style]
 		if(!pod_style)
 			return
 
-	character_option = tgui_alert(user, "Which character to spawn as?", "IC Quick Spawn", character_options)
+	character_option = tgui_alert(user, "要以哪个角色生成？", "游戏内快速生成", character_options)
 	if(!character_option || character_option == character_options[3])
 		return
 
-	outfit_option = tgui_input_list(user, "Which outfit to use?", "IC Quick Spawn", outfit_options)
+	outfit_option = tgui_input_list(user, "要使用哪套装备配置？", "游戏内快速生成", outfit_options)
 	if(outfit_option == outfit_options[4])
 		outfit_option = user.client.robust_dress_shop_skyrat()
 	else
@@ -64,12 +64,12 @@
 
 	// The give return option is only relevant if the user is spawning in someone else
 	if(target != user)
-		give_return = tgui_alert(user, "Do you want to give them the power to return? Not recommended for non-admins.", "IC Quick Spawn", list("No", "Yes"))
+		give_return = tgui_alert(user, "你想授予其返回的能力吗？不建议给予非管理员。", "游戏内快速生成", list("否", "是"))
 		if(!give_return)
 			return
 
 	if(character_option == character_options[1])
-		give_quirks_loadout = tgui_input_list(user, "Include quirks/loadout?", "IC Quick Spawn", quirk_loadout_options)
+		give_quirks_loadout = tgui_input_list(user, "是否包含特质/装备配置？", "游戏内快速生成", quirk_loadout_options)
 		if(!give_quirks_loadout)
 			return
 
@@ -98,7 +98,7 @@
 		new_player.key = target.key
 	qdel(target)
 
-	if(give_return != "No")
+	if(give_return != "否")
 		var/datum/action/cooldown/spell/return_back/return_spell = new
 		return_spell.Grant(new_player)
 
@@ -112,7 +112,7 @@
 		new /obj/effect/pod_landingzone(current_turf, empty_pod)
 
 /client/proc/robust_dress_shop_skyrat()
-	var/list/baseoutfits = list("Custom","As Job...", "As Plasmaman...")
+	var/list/baseoutfits = list("自定义","按职业……", "按等离子人……")
 	var/list/outfits = list()
 	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job) - typesof(/datum/outfit/plasmaman)
 
@@ -121,7 +121,7 @@
 		var/datum/outfit/path_as_outfit = path
 		outfits[initial(path_as_outfit.name)] = path
 
-	var/dresscode = tgui_input_list(src, "Select outfit", "Robust quick dress shop", baseoutfits + sort_list(outfits))
+	var/dresscode = tgui_input_list(src, "选择装备配置", "强劲快速换装店", baseoutfits + sort_list(outfits))
 
 	if (isnull(dresscode))
 		return
@@ -129,35 +129,35 @@
 	if (outfits[dresscode])
 		dresscode = outfits[dresscode]
 
-	if (dresscode == "As Job...")
+	if (dresscode == "按职业……")
 		var/list/job_paths = subtypesof(/datum/outfit/job)
 		var/list/job_outfits = list()
 		for(var/path in job_paths)
 			var/datum/outfit/O = path
 			job_outfits[initial(O.name)] = path
 
-		dresscode = input("Select job equipment", "Robust quick dress shop") as null|anything in sort_list(job_outfits)
+		dresscode = input("选择职业装备", "强劲快速换装店") as null|anything in sort_list(job_outfits)
 		dresscode = job_outfits[dresscode]
 		if(isnull(dresscode))
 			return
 
-	if (dresscode == "As Plasmaman...")
+	if (dresscode == "按等离子人……")
 		var/list/plasmaman_paths = typesof(/datum/outfit/plasmaman)
 		var/list/plasmaman_outfits = list()
 		for(var/path in plasmaman_paths)
 			var/datum/outfit/O = path
 			plasmaman_outfits[initial(O.name)] = path
 
-		dresscode = input("Select plasmeme equipment", "Robust quick dress shop") as null|anything in sort_list(plasmaman_outfits)
+		dresscode = input("选择等离子人装备", "强劲快速换装店") as null|anything in sort_list(plasmaman_outfits)
 		dresscode = plasmaman_outfits[dresscode]
 		if(isnull(dresscode))
 			return
 
-	if (dresscode == "Custom")
+	if (dresscode == "自定义")
 		var/list/custom_names = list()
 		for(var/datum/outfit/req_outfit in GLOB.custom_outfits)
 			custom_names[req_outfit.name] = req_outfit
-		var/selected_name = input("Select outfit", "Robust quick dress shop") as null|anything in sort_list(custom_names)
+		var/selected_name = input("选择装备配置", "强劲快速换装店") as null|anything in sort_list(custom_names)
 		dresscode = custom_names[selected_name]
 		if(isnull(dresscode))
 			return

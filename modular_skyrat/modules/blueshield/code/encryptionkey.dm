@@ -1,5 +1,5 @@
 /obj/item/encryptionkey/heads/blueshield
-	name = "\proper the blueshield's encryption key"
+	name = "\proper 蓝盾的加密密钥"
 	icon = 'icons/map_icons/items/encryptionkey.dmi'
 	icon_state = "/obj/item/encryptionkey/heads/blueshield"
 	post_init_icon_state = "cypherkey_centcom"

@@ -1,6 +1,6 @@
 /datum/language/ashtongue
 	name = "Ashtongue"
-	desc = "A language derived from Draconic, altered and morphed into a strange tongue by the enigmatic will of the Necropolis, a half-successful attempt at patterning its own alien communication methods onto mundane races. It's become nigh-incomprehensible to speakers of the original language."
+	desc = "源自龙语，在死灵之都那神秘意志的作用下被扭曲、蜕变成一种古怪的方言——那是它试图将自身异星的交流方式套用到平凡种族身上的半成功尝试。对于原本语言的使用者来说，它如今已近乎无法理解。"
 	key = "l"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70

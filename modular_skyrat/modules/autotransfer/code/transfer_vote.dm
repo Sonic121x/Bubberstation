@@ -1,5 +1,5 @@
-#define CHOICE_TRANSFER "Initiate Crew Transfer"
-#define CHOICE_CONTINUE "Continue Playing"
+#define CHOICE_TRANSFER "发起船员转移"
+#define CHOICE_CONTINUE "继续游戏"
 
 /datum/vote/transfer_vote
 	name = "Transfer"
@@ -7,7 +7,7 @@
 		CHOICE_TRANSFER,
 		CHOICE_CONTINUE,
 	)
-	default_message = "Vote to initiate a crew transfer."
+	default_message = "投票发起船员转移。"
 
 /datum/vote/transfer_vote/toggle_votable()
 	CONFIG_SET(flag/allow_vote_transfer, !CONFIG_GET(flag/allow_vote_transfer))
@@ -24,7 +24,7 @@
 		return VOTE_AVAILABLE
 
 	if(!CONFIG_GET(flag/autotransfer) || !CONFIG_GET(flag/allow_vote_transfer))
-		return "Transfer voting is disabled."
+		return "船员转移投票已禁用。"
 
 	return VOTE_AVAILABLE
 

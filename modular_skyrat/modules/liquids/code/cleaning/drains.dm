@@ -1,9 +1,9 @@
 //Structure as this doesn't need any power to work
 /obj/structure/drain
-	name = "drain"
+	name = "排水口"
 	icon = 'modular_skyrat/modules/liquids/icons/obj/structures/drains.dmi'
 	icon_state = "drain"
-	desc = "Drainage inlet embedded in the floor to prevent flooding."
+	desc = "嵌在地板里的排水口，用来防止积水成灾。"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	density = FALSE
 	layer = GAS_SCRUBBER_LAYER
@@ -27,9 +27,9 @@
 		return TRUE
 
 	playsound(src, 'sound/items/tools/welder2.ogg', 50, TRUE)
-	to_chat(user, span_notice("You start [welded ? "unwelding" : "welding"] [src]..."))
+	to_chat(user, span_notice("你开始[welded ? "拆焊" : "焊接"] [src]……"))
 	if(I.use_tool(src, user, 20))
-		to_chat(user, span_notice("You [welded ? "unweld" : "weld"] [src]."))
+		to_chat(user, span_notice("你[welded ? "拆焊" : "焊接"]了 [src]。"))
 		welded = !welded
 		update_icon()
 		if(welded)
@@ -73,7 +73,7 @@
 	return ..()
 
 /obj/structure/drain/big
-	desc = "Drainage inlet embedded in the floor to prevent flooding. This one seems large."
+	desc = "嵌在地板里的排水口，用来防止积水成灾。这个看起来更大。"
 	icon_state = "bigdrain"
 	drain_percent = 0.3
 	drain_flat = 15

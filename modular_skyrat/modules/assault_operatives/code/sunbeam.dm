@@ -7,8 +7,8 @@
 #define SUNBEAM_OVERLAYS 16
 
 /obj/effect/sunbeam
-	name = "\improper ICARUS Sunbeam"
-	desc = "A beam of light from the sun."
+	name = "\improper ICARUS 日光束"
+	desc = "一道来自太阳的光束。"
 	icon = 'modular_skyrat/modules/assault_operatives/icons/sunbeam.dmi'
 	icon_state = "sunray_splash"
 	throwforce = 100
@@ -57,9 +57,9 @@
 		var/matrix/our_matrix = matrix()
 		our_matrix.Scale(scale_x, scale_y)
 		transform = our_matrix
-	notify_ghosts("An ICARUS sunbeam has been launched! [target_atom ? "Towards: [target_atom.name]" : ""]",
+	notify_ghosts("一道 ICARUS 日光束已发射！[target_atom ? "目标：[target_atom.name]" : ""]",
 		source = src,
-		header = "Somethings burning!",
+		header = "有东西在燃烧！",
 	)
 	soundloop = new(src, TRUE)
 
@@ -125,21 +125,21 @@
 	volume = 100
 	extra_range = 25
 
-ADMIN_VERB(spawn_sunbeam, R_FUN, "Spawn Sunbeam", "Spawns an ICARUS sunbeam at your location and sends it towards a target.", ADMIN_CATEGORY_FUN)
-	var/mob/living/target_mob = tgui_input_list(usr, "Select a mob", "Mob", GLOB.mob_living_list)
+ADMIN_VERB(spawn_sunbeam, R_FUN, "生成日光束", "在你的位置生成一道 ICARUS 日光束，并让它飞向一个目标。", ADMIN_CATEGORY_FUN)
+	var/mob/living/target_mob = tgui_input_list(usr, "选择一个生物", "生物", GLOB.mob_living_list)
 
 	if(!target_mob)
 		return
 
-	var/edit_ranges = tgui_alert(usr, "Change beam specifications?", "Beam Specifications", list("Yes", "No"))
+	var/edit_ranges = tgui_alert(usr, "要更改光束参数吗？", "光束参数", list("是", "否"))
 
-	if(edit_ranges == "Yes")
-		var/edit_range_fire = tgui_input_number(usr, "Fire range in tiles", "Fire Range", SUNBEAM_OBLITERATION_RANGE_FIRE, 20, 0)
-		var/edit_range_flatten = tgui_input_number(usr, "Flatten range in tiles", "Flatten Range", SUNBEAM_OBLITERATION_RANGE_FLATTEN, 20, 0)
-		var/edit_cooldown = tgui_input_number(usr, "Cooldown in seconds", "Cooldown", SUNBEAM_OBLITERATION_COOLDOWN, 20, 0)
-		var/edit_movement_cooldown = tgui_input_number(usr, "Movement cooldown in seconds", "Movement Cooldown", SUNBEAM_MOVEMENT_COOLDOWN, 20, 0)
-		var/edit_scale_x = tgui_input_number(usr, "Scale X", "Scale X", SUNBEAM_DEFAULT_SCALE_X, 20, 0)
-		var/edit_scale_y = tgui_input_number(usr, "Scale Y", "Scale Y", SUNBEAM_DEFAULT_SCALE_Y, 20, 0)
+	if(edit_ranges == "是")
+		var/edit_range_fire = tgui_input_number(usr, "火力范围（格）", "火力范围", SUNBEAM_OBLITERATION_RANGE_FIRE, 20, 0)
+		var/edit_range_flatten = tgui_input_number(usr, "夷平范围（格）", "夷平范围", SUNBEAM_OBLITERATION_RANGE_FLATTEN, 20, 0)
+		var/edit_cooldown = tgui_input_number(usr, "冷却时间（秒）", "冷却", SUNBEAM_OBLITERATION_COOLDOWN, 20, 0)
+		var/edit_movement_cooldown = tgui_input_number(usr, "移动冷却时间（秒）", "移动冷却", SUNBEAM_MOVEMENT_COOLDOWN, 20, 0)
+		var/edit_scale_x = tgui_input_number(usr, "X 轴缩放", "X 轴缩放", SUNBEAM_DEFAULT_SCALE_X, 20, 0)
+		var/edit_scale_y = tgui_input_number(usr, "Y 轴缩放", "Y 轴缩放", SUNBEAM_DEFAULT_SCALE_Y, 20, 0)
 
 		new /obj/effect/sunbeam(usr, target_mob, edit_movement_cooldown, edit_cooldown, edit_range_fire, edit_range_flatten, edit_scale_x, edit_scale_y)
 		return
@@ -148,18 +148,18 @@ ADMIN_VERB(spawn_sunbeam, R_FUN, "Spawn Sunbeam", "Spawns an ICARUS sunbeam at y
 
 
 /datum/round_event_control/icarus_sunbeam
-	name = "ICARUS Weapons System Ignition"
+	name = "ICARUS 武器系统点火"
 	typepath = /datum/round_event/icarus_sunbeam
 	max_occurrences = 0
 	weight = 0
 	category = EVENT_CATEGORY_SPACE
-	description = "Forces the ICARUS weapons system to fire a sunbeam at a random location. Causing massive devistation to the station."
+	description = "强制 ICARUS 武器系统向随机位置发射一道日光束，对空间站造成大规模破坏。"
 
 /datum/round_event/icarus_sunbeam
 	announce_when = 1 // Instant announcement
 
 /datum/round_event/icarus_sunbeam/announce(fake)
-	priority_announce("/// ICARUS SUNBEAM WEAPONS SYSTEM ACTIVATED, USE EXTREME CAUTION! ///", "GoldenEye Defence Network", ANNOUNCER_KLAXON)
+	priority_announce("/// ICARUS 日光束武器系统已激活，请极度小心！ ///", "黄金眼防御网络", ANNOUNCER_KLAXON)
 	alert_sound_to_playing('modular_skyrat/modules/assault_operatives/sound/sunbeam_fire.ogg')
 
 /datum/round_event/icarus_sunbeam/start()

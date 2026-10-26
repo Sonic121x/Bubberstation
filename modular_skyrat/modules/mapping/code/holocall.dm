@@ -6,7 +6,7 @@
 /obj/item/disk/holodisk/woospider //No special markings on this disk, should be a fun maint loot surprise.
 	preset_image_type = /datum/preset_holoimage/spider
 	preset_record_text = {"
-	NAME Spider
+	NAME 蜘蛛
 	DELAY 10
-	SAY Woo
+	SAY 呜
 	DELAY 20"}

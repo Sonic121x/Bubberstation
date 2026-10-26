@@ -4,7 +4,7 @@
 /* ----------------- Computers ----------------- */
 /obj/item/gps/computer/space //Subtype that runs pod computer code, with a texture to blend better with normal walls
 	icon = 'modular_skyrat/modules/mapping/icons/machinery/gps_computer.dmi'	//needs its own file for pixel size ;-;
-	name = "gps computer"
+	name = "全球定位系统电脑"
 	icon_state = "pod_computer"
 	anchored = TRUE
 	density = TRUE
@@ -14,8 +14,8 @@
 /obj/item/gps/computer/space/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(I.use_tool(src, user, 20, volume=50))
-		user.visible_message(span_warning("[user] disassembles [src]."),
-			span_notice("You start to disassemble [src]..."), span_hear("You hear clanking and banging noises."))
+		user.visible_message(span_warning("[user] 拆解了 [src]。"),
+			span_notice("你开始拆解 [src]……"), span_hear("你听到金属碰撞的叮当声。"))
 		deconstruct(TRUE)
 	return TRUE
 

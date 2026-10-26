@@ -59,7 +59,7 @@
 	if(!owner || !ishuman(owner))
 		return FALSE
 
-	to_chat(owner, span_notice("You feel the tumor inside you pulse faster as the absence of light eases its work, allowing it to knit your flesh and reconstruct your body."))
+	to_chat(owner, span_notice("你感觉到体内的肿瘤搏动得更快了，黑暗减轻了它的负担，让它得以缝合你的血肉、重塑你的身体。"))
 
 	return TRUE
 
@@ -95,7 +95,7 @@
 	if(!owner)
 		return
 
-	to_chat(owner, span_notice("You feel the pulse of the tumor in your chest returning back to normal."))
+	to_chat(owner, span_notice("你感觉到胸中肿瘤的搏动恢复了正常。"))
 
 
 /datum/status_effect/blood_regen_active/tick(seconds_between_ticks)
@@ -146,15 +146,15 @@
 
 
 /atom/movable/screen/alert/status_effect/blood_thirst_satiated
-	name = "Thirst Satiated"
-	desc = "Substitutes and taste-thin imitations keep your pale body standing, but nothing abates eternal thirst and slakes the infection quite like the real thing: Hot blood from a real sentient being."
+	name = "血渴已解"
+	desc = "替代品与味道寡淡的仿制品只能让你苍白的身体勉强支撑，但没有什么能像真正的东西那样平息永恒的口渴、解去感染的饥渴：来自真正有感知生命的热血。"
 	icon = 'icons/effects/bleed.dmi'
 	icon_state = "bleed10"
 
 
 /atom/movable/screen/alert/status_effect/blood_regen_active
-	name = "Enhanced Regeneration"
-	desc = "Being in a sufficiently dark location allows your tumor to allocate more energy to enhancing your body's natural regeneration, at the cost of blood volume proportional to the damage healed."
+	name = "强化再生"
+	desc = "身处足够黑暗的环境能让你的肿瘤分配更多能量来强化身体的自然再生，代价是消耗与治愈伤害成比例的血液量。"
 	icon = 'icons/hud/screen_alert.dmi'
 	icon_state = "template"
 

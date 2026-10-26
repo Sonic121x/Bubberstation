@@ -1,10 +1,10 @@
 #define SLAM_JAM_DELAY 15 SECONDS
 
 /obj/machinery/power/colony_ore_thumper
-	name = "ore thumper"
-	desc = "A frame with a heavy block of metal suspended atop a pipe. \
-		Must be deployed outdoors and given a wired power connection. \
-		Forces pressurized gas into the ground which brings up buried resources."
+	name = "捣矿机"
+	desc = "一个框架，管道上方悬挂着沉重的金属块。\
+		必须部署在户外，并接上有线电源。\
+		它会把加压气体压入地下，将埋藏的资源带上来。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/ore_thumper.dmi'
 	icon_state = "thumper_idle"
 	density = TRUE
@@ -76,7 +76,7 @@
 
 	if(isnull(held_item))
 		if(panel_open)
-			context[SCREENTIP_CONTEXT_LMB] = "Activate Thumper"
+			context[SCREENTIP_CONTEXT_LMB] = "启动捣矿机"
 			return CONTEXTUAL_SCREENTIP_SET
 		return NONE
 
@@ -85,14 +85,14 @@
 	. = ..()
 	var/area/thumper_area = get_area(src)
 	if(!thumper_area.outdoors)
-		. += span_notice("Its must be constructed <b>outdoors</b> to function.")
+		. += span_notice("它必须建造在<b>户外</b>才能工作。")
 	if(!istype(get_turf(src), /turf/open/misc))
-		. += span_notice("It must be constructed on <b>suitable terrain</b>, like ash, snow, or sand.")
-	. += span_notice("It must have a powered, <b>wired connection</b> running beneath it with <b>[active_power_usage / BASE_MACHINE_ACTIVE_CONSUMPTION] kW</b> of excess power to function.")
-	. += span_notice("It will produce a box of materials after it has slammed [slam_jams_needed] times.")
-	. += span_notice("Currently, it has slammed [slam_jams] / [slam_jams_needed] times needed.")
-	. += span_notice("It will stop producing resources if there are <b>too many piles of ore</b> near it.")
-	. += span_notice("The thumper cannot work if it is <b>too close to another thumper</b>, needing <b>at least [ore_spawn_range] spaces</b> in all directions between it another thumper.")
+		. += span_notice("它必须建造在<b>合适的地形</b>上，比如灰烬、雪地或沙地。")
+	. += span_notice("它下方必须有一条通电的<b>有线连接</b>，并提供 <b>[active_power_usage / BASE_MACHINE_ACTIVE_CONSUMPTION] kW</b> 的富余电力才能工作。")
+	. += span_notice("在冲击 [slam_jams_needed] 次后，它会产出一箱材料。")
+	. += span_notice("目前它已冲击 [slam_jams] / [slam_jams_needed] 次。")
+	. += span_notice("如果附近有<b>太多矿石堆</b>，它将停止产出资源。")
+	. += span_notice("如果<b>离另一台捣矿机太近</b>，捣矿机就无法工作；它与另一台捣矿机之间各个方向都<b>至少需要 [ore_spawn_range] 格</b>间距。")
 
 
 /obj/machinery/power/colony_ore_thumper/process()
@@ -104,13 +104,13 @@
 		connect_to_network()
 	if(thumping)
 		if(!see_if_we_can_work(our_turf))
-			balloon_alert_to_viewers("invalid location!")
+			balloon_alert_to_viewers("位置无效！")
 			cut_that_out()
 			return
 		if(avail(active_power_usage))
 			add_load(active_power_usage)
 		else
-			balloon_alert_to_viewers("not enough power!")
+			balloon_alert_to_viewers("电力不足！")
 			cut_that_out()
 
 /// Checks the turf we are on to make sure we are outdoors and on a misc turf
@@ -127,7 +127,7 @@
 	if(.)
 		return
 
-	to_chat(user, span_notice("You toggle [src]'s power button."))
+	to_chat(user, span_notice("你按下了 [src] 的电源按钮。"))
 
 	if(thumping)
 		cut_that_out(user)
@@ -148,10 +148,10 @@
 	var/turf/our_turf = get_turf(src)
 	var/obj/structure/cable/cable_under_us = locate() in our_turf
 	if(!cable_under_us && powernet)
-		balloon_alert(user, "not connected to wire")
+		balloon_alert(user, "未连接电缆")
 		return
 	if(!avail(active_power_usage))
-		balloon_alert(user, "not enough power")
+		balloon_alert(user, "电力不足")
 		return
 
 	thumping = TRUE
@@ -160,7 +160,7 @@
 	if(callback_tracker)
 		deltimer(callback_tracker)
 
-	balloon_alert(user, "thumper started")
+	balloon_alert(user, "捣矿机已启动")
 
 	callback_tracker = addtimer(CALLBACK(src, PROC_REF(slam_it_down)), SLAM_JAM_DELAY, TIMER_DELETE_ME | TIMER_STOPPABLE)
 
@@ -170,7 +170,7 @@
 	thumping = FALSE
 	soundloop.stop()
 	if(user)
-		balloon_alert(user, "thumper stopped")
+		balloon_alert(user, "捣矿机已停止")
 
 
 /// Makes the machine slam down, producing a box of ore if it has been slamming long enough
@@ -179,7 +179,7 @@
 		return
 	var/turf/our_turf = get_turf(src)
 	if(!see_if_we_can_work(our_turf))
-		balloon_alert_to_viewers("invalid location!")
+		balloon_alert_to_viewers("位置无效！")
 		cut_that_out()
 		return
 	// Down we go
@@ -211,13 +211,13 @@
 				break
 
 	if(nearby_ore > nearby_ore_limit)
-		balloon_alert_to_viewers("nearby ore too saturated")
+		balloon_alert_to_viewers("附近矿石堆积过多")
 		// Makes the thumper rumble around when something's wrong
 		Shake(2, 2, 2 SECONDS)
 		return
 
 	if(is_there_a_thumper_too)
-		balloon_alert_to_viewers("too close to another thumper")
+		balloon_alert_to_viewers("离另一台捣矿机太近")
 		// Makes the thumper rumble around when something's wrong
 		Shake(2, 2, 2 SECONDS)
 		return
@@ -250,7 +250,7 @@
 
 // Item for deploying ore thumpers
 /obj/item/flatpacked_machine/ore_thumper
-	name = "flat-packed ore thumper"
+	name = "平板包装的捣矿机"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/ore_thumper_item.dmi'
 	icon_state = "thumper_packed"
 	type_to_deploy = /obj/machinery/power/colony_ore_thumper
@@ -264,9 +264,9 @@
 
 /obj/item/flatpacked_machine/ore_thumper/examine(mob/user)
 	. = ..()
-	. += span_notice("Its must be constructed <b>outdoors</b> to function.")
-	. += span_notice("It must be constructed on <b>suitable terrain</b>, like ash, snow, or sand.")
-	. += span_notice("It must have a powered, <b>wired connection</b> running beneath it to function.")
+	. += span_notice("它必须建造在<b>户外</b>才能工作。")
+	. += span_notice("它必须建造在<b>合适的地形</b>上，比如灰烬、雪地或沙地。")
+	. += span_notice("它下方必须有一条通电的<b>有线连接</b>才能工作。")
 
 /obj/item/flatpacked_machine/ore_thumper/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)

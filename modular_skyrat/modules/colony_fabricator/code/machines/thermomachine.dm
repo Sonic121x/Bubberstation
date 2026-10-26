@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/deployable
-	name = "atmospheric temperature regulator"
-	desc = "A much more tame variant of the thermomachines commonly seen in station scale temperature control devices. \
-		Its upper and lower bounds for temperature are highly limited, though it has a higher than standard heat capacity \
-		and the benefit of being undeployable when you're done with it."
+	name = "大气温度调节器"
+	desc = "一种温和得多的热机变体，常见于空间站级温度控制设备。 \
+		它的温度上下限受到极大限制，但热容量高于标准水平， \
+		而且还有个好处：用完之后可以重新打包收起。"
 	circuit = null
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/machinery/atmospherics/components/unary/thermomachine/deployable"
@@ -46,7 +46,7 @@
 // Item for creating the regulator and carrying it about
 
 /obj/item/flatpacked_machine/thermomachine
-	name = "flat-packed atmospheric temperature regulator"
+	name = "扁平包装大气温度调节器"
 	icon_state = "thermomachine_packed"
 	type_to_deploy = /obj/machinery/atmospherics/components/unary/thermomachine/deployable
 	custom_materials = list(
@@ -61,5 +61,5 @@
 // Greyscale config for the light on this machine
 
 /datum/greyscale_config/thermomachine/deployable
-	name = "Deployable Thermomachine"
+	name = "可部署热机"
 	icon_file = 'modular_skyrat/modules/colony_fabricator/icons/thermomachine.dmi'

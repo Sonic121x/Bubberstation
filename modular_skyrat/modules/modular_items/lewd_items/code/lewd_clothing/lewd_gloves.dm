@@ -58,17 +58,17 @@
 	var/mob/living/wearer = mittens.loc
 	if(!isliving(wearer))
 		return
-	to_chat(wearer, span_purple("You struggle furiously with [mittens], but you're not even sure if these can come off."))
+	to_chat(wearer, span_purple("你拼命跟 [mittens] 较劲，但连它们能不能取下来都不确定。"))
 	return COMPONENT_ITEM_BLOCK_UNEQUIP
 
 /datum/component/ball_mittens_fumble/proc/get_hand_descriptor(mob/living/wearer)
 	if(!iscarbon(wearer))
-		return "chunky mitts"
+		return "粗笨的连指手套"
 	var/mob/living/carbon/human/human_wearer = wearer
 	var/obj/item/clothing/gloves/ball_mittens/mittens = human_wearer.gloves
 	if(istype(mittens) && mittens.is_paw_skin)
-		return "paws"
-	return "chunky mitts"
+		return "爪子"
+	return "粗笨的连指手套"
 
 /// Intercepts item pickups via attempt_pickup. Enforces the one-item limit and injects a short pickup delay.
 /datum/component/ball_mittens_fumble/proc/on_attempt_pickup(mob/living/wearer, obj/item/item, list/pickup_mods)
@@ -76,30 +76,30 @@
 	if(!isgun(item) && item.w_class >= max_item_size)
 		pickup_mods["delay"] = struggle_delay_min * (item.w_class - max_item_size + 2)
 		pickup_mods["fail_chance"] = min(75, (item.w_class - max_item_size) * 25)
-		to_chat(wearer, span_warning("You wrestle with [item], trying to get it between your [get_hand_descriptor(wearer)]..."))
+		to_chat(wearer, span_warning("你跟 [item] 较着劲，想把它夹进你的[get_hand_descriptor(wearer)]之间……"))
 		return
 	var/hand_desc = get_hand_descriptor(wearer)
 	var/player_msgs = list(
-		"You awkwardly wedge the [item] between your [hand_desc]...",
-		"You clumsily pin the [item] between your [hand_desc]...",
-		"You struggle to secure the [item] in your [hand_desc] before finally succeeding.",
-		"You carefully balance the [item] between your unwieldy [hand_desc]..."
+		"你笨拙地把 [item] 塞进自己的[hand_desc]之间……",
+		"你手忙脚乱地把 [item] 夹在[hand_desc]之间……",
+		"你费了好大劲，才终于把 [item] 稳稳夹在[hand_desc]里。",
+		"你小心翼翼地在笨拙的[hand_desc]之间平衡着 [item]……"
 	)
 	to_chat(wearer, span_purple(pick(player_msgs)))
 	var/public_msg
 	if(isgun(item))
 		var/gun_msgs = list(
-			"[wearer] takes hold of the [item] in defiance of common sense.",
-			"[wearer] awkwardly presses the [item] between [wearer.p_their()] [hand_desc].",
-			"[wearer] picks up the [item], awkwardly pressing [wearer.p_their()] pads against the trigger guard!"
+			"[wearer] 不顾常理地握住了 [item]。",
+			"[wearer] 笨拙地把 [item] 按在自己的[hand_desc]之间。",
+			"[wearer] 捡起了 [item]，笨拙地把掌垫按在扳机护圈上！"
 		)
 		public_msg = pick(gun_msgs)
 	else
 		var/general_msgs = list(
-			"[wearer] awkwardly secures the [item] in [wearer.p_their()] [hand_desc].",
-			"[wearer] carefully grips the [item] with [wearer.p_their()] [hand_desc].",
-			"[wearer] almost drops [item] before managing to press it between [wearer.p_their()] [hand_desc].",
-			"[wearer] carefully balances the [item] between [wearer.p_their()] [hand_desc]."
+			"[wearer] 笨拙地把 [item] 夹稳在自己的[hand_desc]里。",
+			"[wearer] 小心翼翼地用[hand_desc]攥住 [item]。",
+			"[wearer] 差点把 [item] 掉在地上，最后才勉强把它夹在自己的[hand_desc]之间。",
+			"[wearer] 小心翼翼地在自己的[hand_desc]之间平衡着 [item]。"
 		)
 		public_msg = pick(general_msgs)
 	wearer.visible_message(span_warning(public_msg))
@@ -108,7 +108,7 @@
 /datum/component/ball_mittens_fumble/proc/on_pickup_failed(mob/living/wearer, obj/item/item)
 	SIGNAL_HANDLER
 	var/hand_desc = get_hand_descriptor(wearer)
-	to_chat(wearer, span_warning("[item] slips out of your [hand_desc]!"))
+	to_chat(wearer, span_warning("[item] 从你的[hand_desc]里滑了出去！"))
 	playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
 
 /// Handles machinery interaction delay via COMSIG_MOB_MACHINERY_INTERACT.
@@ -142,7 +142,7 @@
 			wearer.throw_mode_off(THROW_MODE_TOGGLE)
 			return COMSIG_MOB_CANCEL_CLICKON
 		if(prob(5))
-			to_chat(wearer, span_purple("You try to grip the [held] with your [get_hand_descriptor(wearer)] to throw it, but it clatters noisily to the floor instead."))
+			to_chat(wearer, span_purple("你想用[get_hand_descriptor(wearer)]抓住 [held] 把它扔出去，结果它却哐当一声掉在了地上。"))
 			playsound(wearer, 'modular_skyrat/modules/modular_items/lewd_items/sounds/latex.ogg', 30, TRUE)
 			wearer.dropItemToGround(held)
 			wearer.throw_mode_off(THROW_MODE_TOGGLE)
@@ -166,9 +166,9 @@
 /datum/component/ball_mittens_fumble/proc/clothing_struggle(mob/living/wearer, obj/item/clothing/cloth)
 	var/delay = 12 SECONDS
 	var/hand_desc = get_hand_descriptor(wearer)
-	to_chat(wearer, span_purple("You struggle to remove [cloth]. It's extremely difficult with your [hand_desc]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
+	to_chat(wearer, span_purple("你费力地想把 [cloth] 脱下来。用[hand_desc]做这件事极其困难……（大约需要 [DisplayTimeText(delay)]，并且你需要站着不动。）"))
 	if(!do_after(wearer, delay, cloth, timed_action_flags = IGNORE_HELD_ITEM))
-		to_chat(wearer, span_warning("You give up on [cloth]."))
+		to_chat(wearer, span_warning("你放弃了 [cloth]。"))
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(cloth))
 		return
@@ -193,9 +193,9 @@
 
 /datum/component/ball_mittens_fumble/proc/delayed_drag_unequip(mob/living/wearer, obj/item/item)
 	var/hand_desc = get_hand_descriptor(wearer)
-	to_chat(wearer, span_purple("You carefully work at your [item] with your [hand_desc]..."))
+	to_chat(wearer, span_purple("你小心翼翼地用[hand_desc]摆弄着 [item]……"))
 	if(!do_after(wearer, struggle_delay_min, item, timed_action_flags = IGNORE_HELD_ITEM))
-		to_chat(wearer, span_warning("You give up on [item]."))
+		to_chat(wearer, span_warning("你放弃了 [item]。"))
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(item))
 		return
@@ -217,13 +217,13 @@
 			return // Item in target's hands = equip action, not a strip
 	if(!isliving(target) || !isitem(item))
 		return COMPONENT_CANT_STRIP
-	to_chat(wearer, span_purple("You fumble awkwardly at [target]'s gear with your [get_hand_descriptor(wearer)], trying to find a grip..."))
+	to_chat(wearer, span_purple("你笨拙地用[get_hand_descriptor(wearer)]摸索着 [target] 的装备，想找个能抓的地方……"))
 	INVOKE_ASYNC(src, PROC_REF(delayed_strip), wearer, target, item)
 	return COMPONENT_CANT_STRIP
 
 /datum/component/ball_mittens_fumble/proc/delayed_strip(mob/living/wearer, mob/living/target, obj/item/item)
 	if(!do_after(wearer, item.strip_delay * 2.5, target, timed_action_flags = IGNORE_HELD_ITEM))
-		to_chat(wearer, span_warning("You give up trying to remove [item] from [target]."))
+		to_chat(wearer, span_warning("你放弃了从 [target] 身上取下 [item]。"))
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(target) || QDELETED(item))
 		return
@@ -257,13 +257,13 @@
 	is_interacting = TRUE
 	var/hand_desc = get_hand_descriptor(wearer)
 	var/msg = istype(machine, /obj/machinery/vending) ? \
-		"You awkwardly mash your [hand_desc] against [machine]'s keypad..." : \
-		"You awkwardly paw at [machine] with your [hand_desc]..."
+		"你笨拙地用[hand_desc]在 [machine] 的键盘上乱按……" : \
+		"你笨拙地用[hand_desc]在 [machine] 上拍来拍去……"
 	wearer.face_atom(machine)
 	to_chat(wearer, span_purple(msg))
-	wearer.visible_message(span_warning("[wearer] awkwardly paws at [machine] with [wearer.p_their()] [hand_desc], visibly struggling to use it."))
+	wearer.visible_message(span_warning("[wearer] 笨拙地用自己的[hand_desc]在 [machine] 上乱摸，明显用得很吃力。"))
 	if(!do_after(wearer, interact_delay, machine))
-		to_chat(wearer, span_warning("You give up on [machine]."))
+		to_chat(wearer, span_warning("你放弃了 [machine]。"))
 		is_interacting = FALSE
 		return
 	if(QDELETED(src) || QDELETED(wearer) || QDELETED(machine) || get_dist(wearer, machine) > 1)
@@ -284,8 +284,8 @@
 
 /datum/atom_skin/ball_mittens_skin/cat_paws
 	preview_name = "Cat Paws"
-	new_name = "latex paw mittens"
-	new_desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
+	new_name = "乳胶爪形连指手套"
+	new_desc = "一双充气乳胶连指手套，形状像圆润的爪子。既无助又丢人。"
 	change_worn_icon_state = FALSE
 	greyscale_item_path = null
 	new_icon = 'icons/map_icons/clothing/_clothing.dmi'
@@ -328,8 +328,8 @@
 // ============================================================
 
 /obj/item/clothing/gloves/ball_mittens
-	name = "ball mittens"
-	desc = "A pair of inflatable latex mittens. Adorable and comfortable, but completely useless for anything requiring fingers. Getting these off yourself is a serious ordeal — you'll probably want help."
+	name = "球形连指手套"
+	desc = "一双充气乳胶连指手套。可爱又舒适，但任何需要手指的事都完全干不了。自己把这东西脱下来是件苦差——你多半得找人帮忙。"
 	icon_state = "ballmittens"
 	inhand_icon_state = "" // Explicitly empty - null can cause BYOND to fall back to the main icon
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_gloves.dmi'
@@ -354,9 +354,9 @@
 	if(slot != ITEM_SLOT_GLOVES)
 		return
 	if(is_paw_skin)
-		to_chat(user, span_purple("The [src] seal around your hands. You pull at them and find it completely impossible to remove them..."))
+		to_chat(user, span_purple("[src] 紧紧封住了你的双手。你用力拽，却发现根本不可能把它们取下来……"))
 	else
-		to_chat(user, span_purple("Your hands sink into [src]. Soft, round, and not particularly good at anything. As soon as you put them on, you hear them self inflate. Oh shit..."))
+		to_chat(user, span_purple("你的双手陷进了 [src]。柔软、圆润，什么都干不好。你刚一戴上，就听见它们自己充起气来。我靠……"))
 	RegisterSignal(src, COMSIG_OBJ_RESKIN, PROC_REF(on_reskin))
 	var/datum/component/ball_mittens_fumble/comp = AddComponent(/datum/component/ball_mittens_fumble)
 	comp.register_wearer(user)
@@ -376,10 +376,10 @@
 		return
 	if(is_paw_skin)
 		wearer.add_mood_event("paw_mittens", /datum/mood_event/wearing_paw_mittens)
-		to_chat(wearer, span_purple("The nanite-infused rubber shifts your hands into soft, rounded paw shapes."))
+		to_chat(wearer, span_purple("融入纳米机器人的橡胶把你的双手塑成了柔软圆润的爪子形状。"))
 	else
 		wearer.clear_mood_event("paw_mittens")
-		to_chat(wearer, span_purple("The mittens ease back into their round ball shape. Still completely useless."))
+		to_chat(wearer, span_purple("连指手套慢慢恢复成了圆球形状。依然完全没用。"))
 
 /// Opens the GAGS recolor menu for spray can use on paw mittens.
 /// gags_recolorable.open_ui() uses initial() on greyscale_config which returns null
@@ -389,10 +389,10 @@
 		return NONE
 	var/obj/item/toy/crayon/spraycan/can = tool
 	if(can.is_capped)
-		user.balloon_alert(user, "take the cap off first!")
+		user.balloon_alert(user, "先把盖子取下来！")
 		return ITEM_INTERACT_BLOCKING
 	if(can.check_empty())
-		user.balloon_alert(user, "empty!")
+		user.balloon_alert(user, "空的！")
 		return ITEM_INTERACT_BLOCKING
 	if(!user.client)
 		return ITEM_INTERACT_BLOCKING
@@ -416,7 +416,7 @@
 		return
 	can.use_charges()
 	if(can.pre_noise)
-		audible_message(span_hear("You hear spraying."))
+		audible_message(span_hear("你听到喷漆的声音。"))
 		playsound(loc, 'sound/effects/spray.ogg', 50, TRUE, 5)
 	set_greyscale(menu.split_colors)
 
@@ -438,7 +438,7 @@
 /obj/item/clothing/gloves/ball_mittens/examine(mob/user)
 	. = ..()
 	if(is_paw_skin)
-		. += span_notice("There's a paw-friendly switch on the cuff. It's currently <b>[lights_on ? "ON" : "OFF"]</b>. <a href='byond://?src=[REF(src)];toggle_lights=1'>\[Toggle\]</a>")
+		. += span_notice("袖口上有一个方便爪子按的开关。它目前是<b>[lights_on ? "开" : "关"]</b>。<a href='byond://?src=[REF(src)];toggle_lights=1'>\[切换\]</a>")
 
 /obj/item/clothing/gloves/ball_mittens/Topic(href, href_list)
 	. = ..()
@@ -450,7 +450,7 @@
 			return
 		lights_on = !lights_on
 		playsound(src, 'sound/machines/click.ogg', 30, FALSE)
-		to_chat(usr, span_notice("You turn the accent lighting [lights_on ? "on" : "off"]."))
+		to_chat(usr, span_notice("你把装饰灯[lights_on ? "打开" : "关闭"]了。"))
 		update_appearance()
 
 /obj/item/clothing/gloves/ball_mittens/proc/deferred_spawn_flavor(mob/user)
@@ -471,24 +471,24 @@
 	if(!user?.client)
 		return
 	if(is_paw_skin)
-		to_chat(user, span_purple("You look down at your paws. Round and soft and utterly useless. You blush as you think about how difficult this is going to make your day at work."))
+		to_chat(user, span_purple("你低头看着自己的爪子。圆润、柔软，而且完全没用。一想到这会让今天的工作变得多难，你就脸红了。"))
 	else
-		to_chat(user, span_purple("You look down at [src]. Why did I come to work like this?"))
+		to_chat(user, span_purple("你低头看着 [src]。我为什么要穿成这样来上班？"))
 
 /obj/item/clothing/gloves/ball_mittens/attackby(obj/item/item, mob/living/user, params)
 	if(!istype(item, /obj/item/clothing/gloves/color/yellow))
 		return ..()
 	if(siemens_coefficient == 0)
-		to_chat(user, span_warning("[src] are already insulated."))
+		to_chat(user, span_warning("[src] 已经绝缘了。"))
 		return
 	user.visible_message(
-		span_notice("[user] holds [item] up to [src] with a look of intense concentration, then discards it with a sigh."),
-		span_notice("You press [item] against [src], attempting to combine them. Halfway through you realize latex is, in fact, already an insulator. You throw away the insulated gloves.")
+		span_notice("[user] 一脸专注地把 [item] 举到 [src] 旁边，然后叹口气把它扔掉了。"),
+		span_notice("你把 [item] 按在 [src] 上，想试着把两者结合起来。做到一半你才意识到，乳胶本身就是绝缘体。你把绝缘手套扔掉了。")
 	)
 	siemens_coefficient = 0
-	name = "insulated [name]"
+	name = "绝缘[name]"
 	if(desc == initial(desc))
-		desc = "A pair of inflatable latex mittens. Someone has helpfully applied insulated gloves to them, only to realise too late that latex was already an insulator."
+		desc = "一双充气乳胶连指手套。有人好心地给它加上了绝缘手套，结果才太晚地发现乳胶本来就是绝缘体。"
 	qdel(item)
 	update_appearance()
 	return TRUE
@@ -501,11 +501,11 @@
 			stripper.put_in_hands(src)
 		return TRUE
 	var/delay = 1 MINUTES
-	to_chat(owner, span_purple("You attempt to remove [src]... (This will take around [DisplayTimeText(delay)] and you need to stand still.)"))
-	to_chat(owner, span_purple("You struggle furiously with [src], but you're not even sure if these can come off."))
+	to_chat(owner, span_purple("你尝试取下 [src]……（大约需要 [DisplayTimeText(delay)]，并且你需要站着不动。）"))
+	to_chat(owner, span_purple("你拼命跟 [src] 较劲，但连它们能不能取下来都不确定。"))
 	playsound(owner, pick('modular_zubbers/sound/lewd/rubber1.ogg', 'modular_zubbers/sound/lewd/rubber2.ogg', 'modular_zubbers/sound/lewd/rubber3.ogg'), 40, TRUE)
 	if(!do_after(owner, delay, src, timed_action_flags = IGNORE_HELD_ITEM))
-		to_chat(owner, span_purple("You give up trying to escape [src]. Maybe having [src] isn't so bad..."))
+		to_chat(owner, span_purple("你放弃了从 [src] 中挣脱。也许戴着 [src] 也没那么糟……"))
 		return FALSE
 	if(QDELETED(src) || !isliving(loc))
 		return FALSE
@@ -520,8 +520,8 @@
 // ============================================================
 
 /obj/item/clothing/gloves/ball_mittens/loadout_paw
-	name = "latex paw mittens"
-	desc = "A pair of inflatable latex mittens shaped like rounded paws. Helpless AND humiliating."
+	name = "乳胶爪形连指手套"
+	desc = "一双充气乳胶连指手套，形状像圆润的爪子。既无助又丢人。"
 	greyscale_config = /datum/greyscale_config/catgloves
 	greyscale_config_worn = /datum/greyscale_config/catgloves/worn
 	greyscale_colors = "#242329#7B48A6#15B1BF"
@@ -551,11 +551,11 @@
 // ============================================================
 
 /datum/mood_event/wearing_paw_mittens
-	description = span_purple("So-ft... Ro-und... Use-less... Lo-ve it!\n")
+	description = span_purple("软软的……圆圆的……一点用都没有……爱死了！\n")
 
 /obj/item/clothing/gloves/latex_gloves
-	name = "latex gloves"
-	desc = "Awesome looking gloves that are satisfying to the touch."
+	name = "乳胶手套"
+	desc = "外观很棒、摸起来手感也很舒服的手套。"
 	icon_state = "latexgloves"
 	inhand_icon_state = "latex_gloves"
 	w_class = WEIGHT_CLASS_SMALL

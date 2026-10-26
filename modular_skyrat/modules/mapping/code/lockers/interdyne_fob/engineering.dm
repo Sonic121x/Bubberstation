@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/interdynefob/welding_supplies
 	icon_door = "eng_weld"
 	icon_state = "eng"
-	name = "welding supplies locker"
+	name = "焊接用品储物柜"
 
 /obj/structure/closet/secure_closet/interdynefob/welding_supplies/PopulateContents()
 	..()
@@ -14,7 +14,7 @@
 /obj/structure/closet/secure_closet/interdynefob/electrical_supplies
 	icon_door = "eng_elec"
 	icon_state = "eng"
-	name = "electrical supplies locker"
+	name = "电气用品储物柜"
 
 /obj/structure/closet/secure_closet/interdynefob/electrical_supplies/PopulateContents()
 	..()
@@ -34,11 +34,11 @@
 /obj/structure/closet/secure_closet/interdynefob/engie_locker
 	icon_door = "eng_secure"
 	icon_state = "eng_secure"
-	name = "engine technician gear locker"
+	name = "引擎技师装备储物柜"
 
 /obj/item/storage/bag/garment/syndicate_engie
-	name = "engine tech's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to an engine tech."
+	name = "引擎技师的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是引擎技师的。"
 
 /obj/item/storage/bag/garment/syndicate_engie/PopulateContents()
 	new /obj/item/clothing/suit/hooded/wintercoat/engineering(src)
@@ -53,8 +53,8 @@
 	new /obj/item/clothing/glasses/hud/ar/aviator/meson(src)
 
 /obj/item/clothing/accessory/armband/engine/syndicate
-	name = "engine technician armband"
-	desc = "An armband, worn by the FOB's operatives to display which department they're assigned to."
+	name = "引擎技师臂章"
+	desc = "一条臂章，由前进基地的特工佩戴，以显示其所属部门。"
 
 /obj/structure/closet/secure_closet/interdynefob/engie_locker/PopulateContents()
 	..()

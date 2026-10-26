@@ -1,34 +1,34 @@
 /obj/item/reagent_containers/cup/bottle/crocin
-	name = "crocin bottle"
-	desc = "A bottle of mild aphrodisiac. Increases libido."
+	name = "克罗辛药瓶"
+	desc = "一瓶温和的催情剂。可提升性欲。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/crocin = 30)
 
 /obj/item/reagent_containers/cup/bottle/hexacrocin
-	name = "hexacrocin bottle"
-	desc = "A bottle of strong aphrodisiac. Increases libido. Potentially  dangerous."
+	name = "六克罗辛药瓶"
+	desc = "一瓶强效催情剂。可提升性欲。可能具有危险性。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/crocin/hexacrocin = 30)
 
 /obj/item/reagent_containers/cup/bottle/dopamine
-	name = "dopamine bottle"
-	desc = "Pure pleasure and happines in a bottle."
+	name = "多巴胺药瓶"
+	desc = "一瓶纯粹的快乐与幸福。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/dopamine = 30)
 
 /obj/item/reagent_containers/cup/bottle/camphor
-	name = "camphor bottle"
-	desc = "A bottle of mild anaphrodisiac. Reduces libido."
+	name = "樟脑药瓶"
+	desc = "一瓶温和的抑欲剂。可降低性欲。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/camphor = 30)
 
 /obj/item/reagent_containers/cup/bottle/pentacamphor
-	name = "pentacamphor bottle"
-	desc = "A bottle of strong anaphrodisiac. Reduces libido."
+	name = "五樟脑药瓶"
+	desc = "一瓶强效抑欲剂。可降低性欲。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/camphor/pentacamphor = 30)
 
 /obj/item/reagent_containers/cup/bottle/succubus_milk
-	name = "succubus milk bottle"
-	desc = "A bottle of strong breast enlargement reagent."
+	name = "魅魔乳汁药瓶"
+	desc = "一瓶强效丰胸试剂。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/succubus_milk = 30)
 
 /obj/item/reagent_containers/cup/bottle/incubus_draft
-	name = "incubus draft bottle"
-	desc = "A bottle of strong penis enlargement reagent."
+	name = "梦魔饮剂药瓶"
+	desc = "一瓶强效阴茎增大试剂。"
 	list_reagents = list(/datum/reagent/drug/aphrodisiac/incubus_draft = 30)

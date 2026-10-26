@@ -2,8 +2,8 @@
 #define VISOR_MOUNT_SLEEP_TIME 5 SECONDS
 
 /obj/item/clothing/suit/clockwork
-	name = "bronze armor"
-	desc = "A strong, bronze suit worn by the soldiers of the Ratvarian armies."
+	name = "青铜护甲"
+	desc = "拉特瓦军队士兵所穿的坚固青铜战甲。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_cuirass"
@@ -36,8 +36,8 @@
 
 
 /obj/item/clothing/suit/clockwork/speed
-	name = "robes of divinity"
-	desc = "A shiny suit, glowing with a vibrant energy. The wearer will be able to move quickly across battlefields, but will be able to withstand less damage before falling."
+	name = "神性长袍"
+	desc = "一件闪耀着勃勃能量的亮丽战甲。穿戴者能快速穿越战场，但在倒下前能承受的伤害更少。"
 	icon_state = "clockwork_cuirass_speed"
 	slowdown = -0.3
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -54,8 +54,8 @@
 	acid = 100
 
 /obj/item/clothing/suit/clockwork/cloak
-	name = "shrouding cloak"
-	desc = "A faltering cloak that bends light around it, distorting the user's appearance, making it hard to see them with the naked eye. However, it provides very little protection."
+	name = "遮蔽斗篷"
+	desc = "一件不稳定的斗篷，能弯折周围的光线，扭曲使用者的外貌，让人难以用肉眼看穿。但它提供的防护非常有限。"
 	icon_state = "clockwork_cloak"
 	armor_type = /datum/armor/clockwork_cloak
 	actions_types = list(/datum/action/item_action/toggle/clock)
@@ -131,7 +131,7 @@
 
 
 /obj/item/clothing/glasses/clockwork
-	name = "base clock glasses"
+	name = "基础发条眼镜"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_cuirass"
@@ -147,8 +147,8 @@
 
 // Thermal goggles, no protection from eye stuff
 /obj/item/clothing/glasses/clockwork/wraith_spectacles
-	name = "wraith spectacles"
-	desc = "Mystical glasses that glow with a bright energy. Some say they can see things that shouldn't be seen."
+	name = "幽魂眼镜"
+	desc = "散发着明亮能量的神秘眼镜。据说能看见本不该被看见的东西。"
 	icon_state = "wraith_specs_0"
 	base_icon_state = "wraith_specs"
 	invis_view = SEE_INVISIBLE_OBSERVER
@@ -158,7 +158,7 @@
 	color_cutoffs = list(5, 15, 5)
 	glass_colour_type = /datum/client_colour/glass_colour/yellow
 	actions_types = list(/datum/action/item_action/toggle/clock)
-	clock_desc = "Applies passive eye damage that regenerates after unequipping, grants thermal vision, and lets you see all forms of invisibility."
+	clock_desc = "持续造成眼部损伤，摘下后会逐渐恢复；提供热视觉，并让你看见所有形式的隐形。"
 	/// Who is currently wearing the goggles
 	var/mob/living/wearer
 	/// Are the glasses enabled (flipped down)
@@ -223,13 +223,13 @@
 /// The start of application of the actual effects, including eye damage
 /obj/item/clothing/glasses/clockwork/wraith_spectacles/proc/on_toggle_eyes()
 	wearer.update_sight()
-	to_chat(wearer, span_clockgray("You suddenly see so much more."))
+	to_chat(wearer, span_clockgray("你突然看见了许多此前看不见的东西。"))
 
 
 /// The stopping of effect application, will remove the wearer's eye damage a minute after
 /obj/item/clothing/glasses/clockwork/wraith_spectacles/proc/de_toggle_eyes()
 	wearer.update_sight()
-	to_chat(wearer, span_clockgray("You feel your eyes slowly readjusting."))
+	to_chat(wearer, span_clockgray("你感觉双眼正在慢慢重新适应。"))
 
 
 /obj/item/clothing/glasses/clockwork/wraith_spectacles/equipped(mob/living/user, slot)
@@ -252,15 +252,15 @@
 
 // Flash protected and generally info-granting with huds
 /obj/item/clothing/glasses/clockwork/judicial_visor
-	name = "judicial visor"
-	desc = "A purple visor gilt with Ratvarian runes, allowing a user to see, unfettered by others. The cogs on the sides look pretty tight..."
+	name = "审判面罩"
+	desc = "一副饰有拉特瓦符文的紫色面罩，能让使用者不受他人阻碍地视物。两侧的齿轮看起来拧得很紧……"
 	icon_state = "judicial_visor_0"
 	base_icon_state = "judicial_visor"
 	flash_protect = FLASH_PROTECTION_WELDER
 	strip_delay = 10 SECONDS
 	glass_colour_type = /datum/client_colour/glass_colour/purple
 	actions_types = list(/datum/action/item_action/toggle/clock)
-	clock_desc = "Binds itself to the wearer's face, but grants large sight and informational benefits while active."
+	clock_desc = "会自行束缚在佩戴者脸上，但在激活时提供大幅视觉与信息增益。"
 	/// Is this enabled
 	var/enabled = TRUE
 	/// Wearer of the visor
@@ -363,7 +363,7 @@
 			apply_to_wearer()
 
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
-		to_chat(wearer, span_userdanger("You feel the cogs on the visor clamp to the sides of your head, drilling in!"))
+		to_chat(wearer, span_userdanger("你感觉到面罩上的齿轮夹住了你的头部两侧，钻了进去！"))
 		if(damaging)
 			wearer.emote("scream")
 			wearer.Sleeping(VISOR_MOUNT_SLEEP_TIME)
@@ -382,8 +382,8 @@
 
 
 /obj/item/clothing/head/helmet/clockwork
-	name = "brass helmet"
-	desc = "A strong, brass helmet worn by the soldiers of the Ratvarian armies. Includes an integrated light-dimmer for flash protection, as well as occult-grade muffling for factory based environments."
+	name = "黄铜头盔"
+	desc = "拉特瓦军队士兵所穿的坚固黄铜头盔。内置遮光器以防护闪光，并具备适用于工厂环境的秘术级隔音。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_helmet"
@@ -409,8 +409,8 @@
 
 
 /obj/item/clothing/shoes/clockwork
-	name = "brass treads"
-	desc = "A strong pair of brass boots worn by the soldiers of the Ratvarian armies."
+	name = "黄铜战靴"
+	desc = "拉特瓦军队士兵所穿的一双坚固黄铜靴。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_treads"
@@ -421,8 +421,8 @@
 
 
 /obj/item/clothing/gloves/clockwork
-	name = "brass gauntlets"
-	desc = "A strong pair of brass gloves worn by the soldiers of the Ratvarian armies."
+	name = "黄铜护手"
+	desc = "拉特瓦军队士兵所穿的一双坚固黄铜手套。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb.dmi'
 	worn_icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_garb_worn.dmi'
 	icon_state = "clockwork_gauntlets"

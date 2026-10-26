@@ -167,7 +167,7 @@
 	// BUBBERSTATION EDIT START: TGUI COLOR PICKER
 	var/new_color = tgui_color_picker(
 		usr,
-		"Select new color",
+		"选择新颜色",
 		null,
 		preferences.body_markings[limb_slot][marking_entry_name][1],
 	)  // BUBBERSTATION EDIT END: TGUI COLOR PICKER

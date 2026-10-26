@@ -7,10 +7,10 @@
 */
 
 /datum/reagent/drug/aphrodisiac/incubus_draft
-	name = "incubus draft"
-	description = "A volatile collodial mixture derived from various masculine solutions that encourages a larger gentleman's package via a potent testosterone mix."
+	name = "梦魔饮剂"
+	description = "一种由多种雄性溶液提取的挥发性胶体混合物，借助强效睾酮配方促进男士部位的增长。"
 	color = "#888888"
-	taste_description = "chinese dragon powder"
+	taste_description = "中式龙粉"
 	overdose_threshold = 20 // ODing makes you male and shrinks female genitals if gender change prefs are enabled. Otherwise, grows a cock.
 	metabolization_rate = 0.25
 	life_pref_datum = /datum/preference/toggle/erp/penis_enlargement
@@ -18,56 +18,56 @@
 
 	/// Words for the cock when huge.
 	var/static/list/words_for_bigger_cock = list(
-		"huge",
-		"massive",
-		"gigantic",
-		"rather lengthy",
-		"colossal",
-		"hefty",
+		"巨大",
+		"硕大",
+		"庞大",
+		"十分修长",
+		"雄伟",
+		"粗壮",
 	)
 	/// Synonyms for cock.
 	var/static/list/cock_text_list = list(
-		"cock",
-		"penis",
-		"dick",
-		"member",
-		"richard",
-		"johnston",
-		"johnson",
+		"阴茎",
+		"阳具",
+		"鸡巴",
+		"男根",
+		"命根子",
+		"老二",
+		"家伙",
 	)
 	/// Synonyms for bigger cock.
 	var/static/list/bigger_cock_text_list = list(
-		"rod",
-		"shaft",
-		"cock",
-		"penis",
-		"dick",
-		"member",
-		"richard",
-		"johnston",
-		"johnson",
+		"肉棒",
+		"肉柱",
+		"阴茎",
+		"阳具",
+		"鸡巴",
+		"男根",
+		"命根子",
+		"老二",
+		"家伙",
 	)
 	/// Wording chosen to extend the cock, shown only to the mob.
 	var/static/list/cock_action_text_list = list(
-		"extends to ",
-		"grows out to ",
-		"begins to enlarge, growing to ",
-		"suddenly expands to ",
-		"lengthens out to ",
+		"伸展到",
+		"生长到",
+		"开始膨胀，长到",
+		"猛地扩张到",
+		"伸长到",
 	)
 	/// Wording chosen to be seen by other mobs, while mob is unclothed.
 	var/static/list/public_cock_action_text_list = list(
-		"expands by an inch or so.",
-		"appears to grow a bit longer.",
-		"seems a bit bigger than it was before.",
-		"suddenly lengthens about an inch or two.",
+		"膨胀了一英寸左右。",
+		"似乎又变长了一点。",
+		"看起来比之前大了一些。",
+		"突然又伸长了一两英寸。",
 	)
 	/// Wording chosen to grow the balls, shown only to the mob.
 	var/static/list/ball_action_text_list = list(
-		"begin to swell",
-		"feel heavier all of a sudden",
-		"throb as they increase in size",
-		"begin to pulse, feeling larger than they were before",
+		"开始肿胀起来",
+		"突然变得沉甸甸的",
+		"随着变大而一阵阵抽动",
+		"开始悸动，感觉比之前更大了",
 	)
 
 /datum/reagent/drug/aphrodisiac/incubus_draft/life_effects(mob/living/carbon/human/exposed_mob)
@@ -128,20 +128,20 @@
 		if(mob_penis.genital_size >= (penis_max_length - 2))
 			if(exposed_mob.dna.features["penis_sheath"] == SHEATH_SLIT)
 				if(mob_penis.aroused != AROUSAL_FULL)
-					to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
-			exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(public_cock_action_text_list)]"))
-			to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+					to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(cock_action_text_list)]约 [mob_penis.genital_size] 英寸长，周长 [mob_penis.girth] 英寸。"))
+			exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(public_cock_action_text_list)]"))
+			to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(cock_action_text_list)]约 [mob_penis.genital_size] 英寸长，周长 [mob_penis.girth] 英寸。"))
 		else
 			if(exposed_mob.dna.features["penis_sheath"] == SHEATH_SLIT)
 				if(mob_penis.aroused != AROUSAL_FULL)
-					to_chat(exposed_mob, span_purple("Your [pick(cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
-			exposed_mob.visible_message(span_notice("[exposed_mob]'s [pick(cock_text_list)] [pick(public_cock_action_text_list)]"))
-			to_chat(exposed_mob, span_purple("Your [pick(cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+					to_chat(exposed_mob, span_purple("你的[pick(cock_text_list)][pick(cock_action_text_list)]约 [mob_penis.genital_size] 英寸长，周长 [mob_penis.girth] 英寸。"))
+			exposed_mob.visible_message(span_notice("[exposed_mob]的[pick(cock_text_list)][pick(public_cock_action_text_list)]"))
+			to_chat(exposed_mob, span_purple("你的[pick(cock_text_list)][pick(cock_action_text_list)]约 [mob_penis.genital_size] 英寸长，周长 [mob_penis.girth] 英寸。"))
 	else
 		if(mob_penis.genital_size >= (penis_max_length - 2))
-			to_chat(exposed_mob, span_purple("Your [pick(words_for_bigger_cock)] [pick(bigger_cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+			to_chat(exposed_mob, span_purple("你的[pick(words_for_bigger_cock)][pick(bigger_cock_text_list)][pick(cock_action_text_list)]约 [mob_penis.genital_size] 英寸长，周长 [mob_penis.girth] 英寸。"))
 		else
-			to_chat(exposed_mob, span_purple("Your [pick(cock_text_list)] [pick(cock_action_text_list)]about [mob_penis.genital_size] inches long, and [mob_penis.girth] inches in circumference."))
+			to_chat(exposed_mob, span_purple("你的[pick(cock_text_list)][pick(cock_action_text_list)]约 [mob_penis.genital_size] 英寸长，周长 [mob_penis.girth] 英寸。"))
 
 /**
 * Helper function for the helper function used to display the messages that appear in chat while the testicles growth is occurring
@@ -160,18 +160,18 @@
 
 	// Display a different message when they reach 'enormous'
 	if(mob_testicles.genital_size <= balls_big_size)
-		to_chat(exposed_mob, span_purple("Your balls [pick(ball_action_text_list)]. They are now [mob_testicles.balls_size_to_description(mob_testicles.genital_size)]."))
+		to_chat(exposed_mob, span_purple("你的蛋蛋[pick(ball_action_text_list)]。它们现在是 [mob_testicles.balls_size_to_description(mob_testicles.genital_size)] 级别。"))
 	else if(mob_testicles.genital_size == balls_max_size)
-		to_chat(exposed_mob, span_purple("You can feel your heavy balls churn as they swell to enormous proportions!"))
+		to_chat(exposed_mob, span_purple("你能感觉到沉重的蛋蛋一阵翻搅，膨胀到了惊人的尺寸！"))
 
 // Notify the user that they're overdosing. Doesn't affect their mood.
 /datum/reagent/drug/aphrodisiac/incubus_draft/overdose_start(mob/living/carbon/human/exposed_mob)
-	to_chat(exposed_mob, span_userdanger("You feel like you took too much [name]!"))
+	to_chat(exposed_mob, span_userdanger("你觉得自己摄入了太多 [name]！"))
 	exposed_mob.add_mood_event("[type]_overdose", /datum/mood_event/minor_overdose, name)
 
 /datum/chemical_reaction/incubus_draft
 	results = list(/datum/reagent/drug/aphrodisiac/incubus_draft = 8)
 	required_reagents = list(/datum/reagent/blood = 5, /datum/reagent/medicine/c2/synthflesh = 2, /datum/reagent/carbon = 2, /datum/reagent/drug/aphrodisiac/crocin = 2, /datum/reagent/medicine/salglu_solution = 1)
-	mix_message = "the reaction gives off a spicy mist."
+	mix_message = "反应释放出一阵辛辣的雾气。"
 	erp_reaction = TRUE
 	reaction_tags = REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG | REACTION_TAG_HARD

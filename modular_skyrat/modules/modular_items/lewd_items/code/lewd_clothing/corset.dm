@@ -1,8 +1,8 @@
 #define TIGHT_SLOWDOWN 2
 
 /obj/item/clothing/suit/corset
-	name = "corset"
-	desc = "A tight latex corset. How can anybody fit in THAT?"
+	name = "束腰"
+	desc = "一件紧身乳胶束腰。怎么可能有人穿得进这种东西？"
 	icon_state = "corset"
 	inhand_icon_state = null
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_suits.dmi'
@@ -19,7 +19,7 @@
 
 /obj/item/clothing/suit/corset/click_alt(mob/user)
 	laced_tight = !laced_tight
-	to_chat(user, span_notice("You [laced_tight ? "tighten" : "loosen"] the corset, making it far [laced_tight ? "harder" : "easier"] to breathe."))
+	to_chat(user, span_notice("你[laced_tight ? "收紧" : "放松"]了束腰，呼吸因此变得[laced_tight ? "困难" : "轻松"]多了。"))
 	conditional_pref_sound(user, laced_tight ? get_sfx(SFX_CLOTH_PICKUP) : get_sfx(SFX_CLOTH_DROP), 40, TRUE)
 	. = CLICK_ACTION_SUCCESS
 	if(laced_tight)
@@ -30,11 +30,11 @@
 /obj/item/clothing/suit/corset/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(laced_tight && src == user.wear_suit)
-		to_chat(user, span_purple("The corset squeezes tightly against your ribs! Breathing suddenly feels much more difficult."))
+		to_chat(user, span_purple("束腰紧紧勒住你的肋骨！呼吸一下子变得困难了许多。"))
 
 /obj/item/clothing/suit/corset/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(laced_tight && src == user.wear_suit)
-		to_chat(user, span_purple("Phew. Now you can breathe normally."))
+		to_chat(user, span_purple("呼。现在你可以正常呼吸了。"))
 
 #undef TIGHT_SLOWDOWN

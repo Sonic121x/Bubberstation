@@ -1,41 +1,41 @@
 // Corpse definitions for Black Mesa NPCs
 
 /obj/effect/mob_spawn/corpse/human/hecu
-	name = "HECU Corpse"
+	name = "HECU 尸体"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/hecu_corpse
 
 /obj/effect/mob_spawn/corpse/human/hecu_ranged
-	name = "HECU Ranged Corpse"
+	name = "HECU 远程兵尸体"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/hecu_ranged_corpse
 
 /obj/effect/mob_spawn/corpse/human/hecu_smg
-	name = "HECU SMG Corpse"
+	name = "HECU 冲锋枪兵尸体"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/hecu_smg_corpse
 
 /obj/effect/mob_spawn/corpse/human/security_guard
-	name = "Security Guard Corpse"
+	name = "安保警卫尸体"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/security_guard_corpse
 
 /obj/effect/mob_spawn/corpse/human/security_guard/ranged
-	name = "Armed Security Guard Corpse"
+	name = "武装安保警卫尸体"
 	outfit = /datum/outfit/security_guard_ranged_corpse
 
 /obj/effect/mob_spawn/corpse/human/black_ops
-	name = "Black Ops Corpse"
+	name = "黑色行动队员尸体"
 	hairstyle = "Bald"
 	facial_hairstyle = "Shaved"
 	outfit = /datum/outfit/black_ops_corpse
 
 /obj/effect/mob_spawn/corpse/human/black_ops/ranged
-	name = "Armed Black Ops Corpse"
+	name = "武装黑色行动队员尸体"
 	outfit = /datum/outfit/black_ops_ranged_corpse
 
 // Outfits for corpses

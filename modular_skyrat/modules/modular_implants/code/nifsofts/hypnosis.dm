@@ -1,10 +1,10 @@
 /obj/item/disk/nifsoft_uploader/dorms/hypnosis
-	name = "Purpura Eye"
+	name = "紫瞳"
 	loaded_nifsoft = /datum/nifsoft/action_granter/hypnosis
 
 /datum/nifsoft/action_granter/hypnosis
-	name = "Libidine Eye"
-	program_desc = "Based on the hypnotic equipment provided by the LustWish vendor, the Libidine Eye NIFSoft allows the user to ensnare others in a hypnotic trance. ((This is intended as a tool for ERP, don't use this for gameplay reasons.))"
+	name = "情欲之眼"
+	program_desc = "情欲之眼 NIFSoft 基于 LustWish 售货机提供的催眠设备开发，可让使用者将他人诱入催眠恍惚状态。（此物品旨在用于成人角色扮演，请勿出于游戏性目的使用。）"
 	buying_category = NIFSOFT_CATEGORY_FUN
 	lewd_nifsoft = TRUE
 	purchase_price = 150
@@ -14,7 +14,7 @@
 	action_to_grant = /datum/action/innate/nif_hypnotize
 
 /datum/action/innate/nif_hypnotize
-	name = "Hypnotize"
+	name = "催眠"
 	background_icon = 'modular_skyrat/master_files/icons/mob/actions/action_backgrounds.dmi'
 	background_icon_state = "android"
 	button_icon = 'modular_skyrat/master_files/icons/mob/actions/actions_nif.dmi'
@@ -27,40 +27,40 @@
 
 	var/mob/living/carbon/human/target_human = user.pulling
 	if(!istype(target_human) || user.grab_state < GRAB_AGGRESSIVE)
-		to_chat(user, span_warning("You need to aggressively grab someone to hypnotize them."))
+		to_chat(user, span_warning("你需要以强力抓取状态抓住某人才能催眠对方。"))
 		return FALSE
 
 	if(!target_human.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis))
-		to_chat(user, span_warning("[target_human] doesn't want to be hypnotized."))
+		to_chat(user, span_warning("[target_human] 不想被催眠。"))
 		return FALSE
 
-	to_chat(user, span_notice("You begin to place [target_human] into a hypnotic trance."))
+	to_chat(user, span_notice("你开始将 [target_human] 引入催眠恍惚状态。"))
 
 	if(!do_after(user, 12 SECONDS, target_human))
 		return FALSE
 
-	var/choice = tgui_alert(target_human, "Do you believe in hypnosis? (This will allow [user] to issue hypnotic suggestions.)", "Hypnosis", list("Yes", "No"))
-	if(choice != "Yes")
-		to_chat(user, span_warning("[target_human]'s attention breaks despite your efforts. They clearly don't seem interested!"))
-		to_chat(target_human, span_warning("Your attention breaks as you realize that you don't want to listen to [user]'s suggestions."))
+	var/choice = tgui_alert(target_human, "你相信催眠吗？（这将允许 [user] 提出催眠暗示。）", "催眠", list("是", "否"))
+	if(choice != "是")
+		to_chat(user, span_warning("[target_human] 的注意力还是从你的努力中挣脱了。对方显然对此不感兴趣！"))
+		to_chat(target_human, span_warning("你的注意力回过神来，意识到自己并不想听 [user] 的暗示。"))
 		return FALSE
 
-	user.visible_message(span_purple("[target_human] falls into a deep, hypnotic slumber right at the snap of your fingers."), span_purple("You suddenly fall limp at the snap of [user]'s fingers."))
+	user.visible_message(span_purple("[target_human] 在你打响指的瞬间陷入了深深的催眠沉睡。"), span_purple("在 [user] 打响指的瞬间，你突然浑身瘫软。"))
 	user.emote("snap")
 	target_human.SetSleeping(60 SECONDS)
-	target_human.log_message("[target_human] was placed into a hypnotic sleep by [user].", LOG_GAME)
+	target_human.log_message("[target_human] 被 [user] 置入催眠沉睡。", LOG_GAME)
 
-	var/secondary_choice = tgui_alert(user, "Would you like to give [target_human] a hypnotic suggestion or release them?", "Hypnosis", list("Suggestion", "Release"))
-	while(secondary_choice == "Suggestion" && target_human.IsSleeping())
+	var/secondary_choice = tgui_alert(user, "你想给 [target_human] 一个催眠暗示，还是放开对方？", "催眠", list("暗示", "放开"))
+	while(secondary_choice == "暗示" && target_human.IsSleeping())
 		if(!in_range(user, target_human))
-			to_chat(user, span_warning("You must be in whisper range to [target_human] in order to give hypnotic suggestions."))
+			to_chat(user, span_warning("你必须处于能对 [target_human] 耳语的距离内，才能给出催眠暗示。"))
 			target_human.SetSleeping(0)
 			return FALSE
 
-		var/input_text = tgui_input_text(user, "What would you like to suggest?", "Hypnotic Suggestion")
-		to_chat(user, span_purple("You whisper into [target_human]'s ears in a soothing voice."))
+		var/input_text = tgui_input_text(user, "你想给出什么暗示？", "催眠暗示")
+		to_chat(user, span_purple("你用安抚的语气在 [target_human] 耳边低语。"))
 		to_chat(target_human, span_hypnophrase("[input_text]"))
-		secondary_choice = tgui_alert(user, "Would you like to give [target_human] an additional hypnotic suggestion or release them?", "Hypnosis", list("Suggestion", "Release"))
+		secondary_choice = tgui_alert(user, "你想再给 [target_human] 一个催眠暗示，还是放开对方？", "催眠", list("暗示", "放开"))
 
-	user.visible_message(span_purple("You wake up from your deep, hypnotic slumber. The suggestions from [user] now settled into your mind."), span_purple("[target_human] wakes up from their slumber."))
+	user.visible_message(span_purple("你从深深的催眠沉睡中醒来。[user] 的暗示已在你心中扎根。"), span_purple("[target_human] 从沉睡中醒来。"))
 	target_human.SetSleeping(0)

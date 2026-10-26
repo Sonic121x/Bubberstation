@@ -1,23 +1,23 @@
 /obj/structure/closet/secure_closet/interdynefob/prisoner_locker
-	name = "prisoner item locker"
+	name = "囚犯物品储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/structure/closet/secure_closet/interdynefob/brig_officer_locker
 	icon_door = "sec"
 	icon_state = "sec"
-	name = "brig officer gear locker"
+	name = "禁闭室军官装备储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/item/clothing/suit/toggle/jacket/sec/old/syndicate
-	name = "brig officer jacket"
+	name = "禁闭室军官夹克"
 
 /obj/item/clothing/accessory/armband/syndicate
-	name = "brig officer armband"
-	desc ="An armband, worn by the FOB's operatives to display which department they're assigned to."
+	name = "禁闭室军官臂章"
+	desc ="一条臂章，由前进基地的特工佩戴，以显示其所属部门。"
 
 /obj/item/storage/bag/garment/brig_officer
-	name = "brig officer's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to a brig officer."
+	name = "禁闭室军官的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是禁闭室军官的。"
 
 /obj/item/storage/bag/garment/brig_officer/PopulateContents()
 	new /obj/item/clothing/under/rank/security/skyrat/utility/redsec/syndicate(src)
@@ -46,7 +46,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"
-	name = "armory gear locker"
+	name = "军械库装备储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/structure/closet/secure_closet/interdynefob/armory_gear_locker/PopulateContents()
@@ -70,7 +70,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"
-	name = "armory munitions locker"
+	name = "军械库弹药储物柜"
 
 /obj/structure/closet/secure_closet/interdynefob/munitions_locker/PopulateContents()
 	..()

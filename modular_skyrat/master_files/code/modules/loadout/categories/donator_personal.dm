@@ -1,29 +1,29 @@
 /datum/loadout_item/toys/plush/miafoxplush
-	name = "silver fox plushie"
+	name = "银狐毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/fox/mia
 	//ckeywhitelist = list("fuzlet")
 
 /datum/loadout_item/toys/plush/teasefoxplush
-	name = "Teasable fox plushie"
+	name = "撩人狐狸毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/fox/kailyn
 	//ckeywhitelist = list("ratraus")
 
 /datum/loadout_item/toys/art
-	group = "Art Supplies"
+	group = "美术用品"
 	abstract_type = /datum/loadout_item/toys/art
 
 /datum/loadout_item/toys/art/drawingtablet
-	name = "Drawing Tablet"
+	name = "数位板"
 	item_path = /obj/item/canvas/drawingtablet
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/furcoat
-	name = "Leather coat with fur"
+	name = "带毛皮的皮大衣"
 	item_path = /obj/item/clothing/suit/furcoat
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/uniform/black_turtleneck
-	name = "Black turtleneck"
+	name = "黑色高领衫"
 	item_path = /obj/item/clothing/under/syndicate/tacticool/black
 	// This variant has its own icon file. The skins it inherits from tacticool point at states in the
 	// parent's file, so applying one breaks its sprite.
@@ -31,349 +31,349 @@
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/ryddid
-	name = "The Ryddid"
+	name = "里迪德"
 	item_path = /obj/item/clothing/suit/jacket/ryddid
 	//ckeywhitelist = list("grunnyyy")
 
 /datum/loadout_item/uniform/draculass
-	name = "Draculass Dress"
+	name = "德古拉小姐连衣裙"
 	item_path = /obj/item/clothing/under/costume/draculass
 	//ckeywhitelist = list("grunnyyy", "joe_duhan")
 
 /datum/loadout_item/neck/grunnyyycloak
-	name = "Black and Red cloak"
+	name = "黑红斗篷"
 	item_path = /obj/item/clothing/neck/cloak/grunnyyy
 	//ckeywhitelist = list("grunnyyy")
 
 /datum/loadout_item/suit/rax_peacekeeper_jacket
-	name = "Peacekeeper jacket"
+	name = "维和者夹克"
 	item_path = /obj/item/clothing/suit/armor/vest/warden/rax
 	//ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/uniform/rax_banded_uniform
-	name = "Banded Uniform"
+	name = "束带制服"
 	item_path = /obj/item/clothing/under/rank/security/rax
 	//ckeywhitelist = list("raxraus")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/head/goldengoggles
-	name = "Steampunk Goggles"
+	name = "蒸汽朋克护目镜"
 	item_path = /obj/item/clothing/glasses/welding/steampunk_goggles
 	//ckeywhitelist = list("goldenalpharex")
 
 /datum/loadout_item/uniform/plasmaman_jax
-	name = "XuraCorp Biohazard Underfitting"
+	name = "舒拉公司生物危害内衬服"
 	item_path = /obj/item/clothing/under/plasmaman/jax2
 	//ckeywhitelist = list("candlejax")
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR, JOB_SCIENTIST, JOB_SCIENCE_GUARD, JOB_GENETICIST)
 
 /datum/loadout_item/head/emissionhelm
-	name = "Emission's Helmet"
+	name = "伊米申头盔"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax
 	//ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/head/anahelm
-	name = "Azulean's Enviro-Helmet"
+	name = "阿祖莱亚环境头盔"
 	item_path = /obj/item/clothing/head/helmet/space/plasmaman/candlejax2
 //	ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/uniform/emissionsuit
-	name = "Emission's Suit"
+	name = "伊米申套装"
 	item_path = /obj/item/clothing/under/plasmaman/candlejax
 	//ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/uniform/anasuit
-	name = "Azulean's Enviro-Suit"
+	name = "阿祖莱亚环境服"
 	item_path = /obj/item/clothing/under/plasmaman/candlejax2
 //	ckeywhitelist = list("candlejax")
 
 /datum/loadout_item/suit/jacket/cherno
-	name = "Blue-Silvered Coat"
+	name = "银蓝大衣"
 	item_path = /obj/item/clothing/suit/jacket/cherno
 	//ckeywhitelist = list("cherno00")
 
 /datum/loadout_item/head/avipilot
-	name = "Smuggler's Flying Cap"
+	name = "走私者飞行帽"
 	item_path = /obj/item/clothing/head/avipilot
 	//ckeywhitelist = list("slippyjoe")
 
 /datum/loadout_item/uniform/britches_dress
-	name = "Britches' dress"
+	name = "布里奇斯连衣裙"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/britches
 	//ckeywhitelist = list("bloodrite")
 /datum/loadout_item/head/caligram_cap_tan
-	name = "Blacktide Tan Softcap"
+	name = "黑潮棕褐软帽"
 	item_path = /obj/item/clothing/head/caligram_cap_tan
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/uniform/caligram_fatigues_tan
-	name = "Blacktide Tan Fatigues"
+	name = "黑潮棕褐作战服"
 	item_path = /obj/item/clothing/under/jumpsuit/caligram_fatigues_tan
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/suit/caligram_parka_tan
-	name = "Blacktide Tan Coat"
+	name = "黑潮棕褐大衣"
 	item_path = /obj/item/clothing/suit/jacket/caligram_parka_tan
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 
 /datum/loadout_item/suit/caligram_parka_vest_tan
-	name = "Blacktide Armored Coat"
+	name = "黑潮装甲大衣"
 	item_path = /obj/item/clothing/suit/armor/vest/caligram_parka_vest_tan
 //	ckeywhitelist = list("farsightednightlight", "raxraus", "1ceres", "marcoalbaredaa", "itzshift_yt", "drifter7371", "AvianAviator", "Katty Kat", "Investigator77", "Dalao Azure", "Socialistion", "ChillyLobster", "Sylvara", "AmZee", "Tf4", "rb303", "Kay_Nite", "whataboutism", "taac", "Halkyon", "Lupo_di_rosa", "Merek2", "lowpowermia", "RyeanBread", "Jesterz7", "Saund_Minah", "Ruediger4")
 	restricted_roles = list(JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/suit/brasspriest
-	name = "Brasspriest Coat"
+	name = "黄铜祭司大衣"
 	item_path = /obj/item/clothing/suit/jacket/brasspriest
 //	ckeywhitelist = list("ChillyLobster")
 
 /datum/loadout_item/suit/hydrogenrobes
-	name = "Metallic-Hydrogen robes"
+	name = "金属氢长袍"
 	item_path = /obj/item/clothing/suit/jacket/hydrogenrobes
 //	ckeywhitelist = list("ChillyLobster")
 
 /datum/loadout_item/suit/wetsuit_norm
-	name = "Fitted Wetsuit"
+	name = "合身潜水服"
 	item_path = /obj/item/clothing/under/wetsuit_norm
 	ckeywhitelist = list("ChillyLobster")
 
 /datum/loadout_item/head/drake_skull
-	name = "Skull of an ashdrake"
+	name = "灰烬龙颅骨"
 	item_path = /obj/item/clothing/head/drake_skull
 	//ckeywhitelist = list("random516")
 
 /datum/loadout_item/suit/blutigen_kimono
-	name = "Blutigen Kimono"
+	name = "布卢蒂根和服"
 	item_path = /obj/item/clothing/suit/blutigen_kimono
 	//ckeywhitelist = list("random516")
 
 /datum/loadout_item/uniform/blutigen_undergarment
-	name = "Dragon Undergarment"
+	name = "龙形内衣"
 	item_path = /obj/item/clothing/under/custom/blutigen_undergarment
 	//ckeywhitelist = list("random516")
 
 /datum/loadout_item/uniform/captain_dress
-	name = "Captain's Dress"
+	name = "舰长礼服"
 	item_path = /obj/item/clothing/under/rank/captain/dress
 	//ckeywhitelist = list("netrakyram")
 	restricted_roles = list(JOB_CAPTAIN)
 
 /datum/loadout_item/uniform/netra_dress
-	name = "Black and Silver Armored Dress"
+	name = "黑银装甲连衣裙"
 	item_path = /obj/item/clothing/under/rank/blueshield/netra
 	//ckeywhitelist = list("netrakyram")
 	restricted_roles = list(JOB_CAPTAIN, JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/neck/kiaracloak
-	name = "Kiara's cloak"
+	name = "琪亚拉的斗篷"
 	item_path = /obj/item/clothing/neck/cloak/inferno
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/neck/kiaracollar
-	name = "Kiara's collar"
+	name = "琪亚拉的项圈"
 	item_path = /obj/item/clothing/neck/inferno_collar
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/toys/darksabre
-	name = "Dark Sabre"
+	name = "暗黑军刀"
 	item_path = /obj/item/toy/darksabre
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/pocket_items/darkarmor
-	name = "Dark Armor"
+	name = "暗黑护甲"
 	item_path = /obj/item/clothing/suit/armor/vest/darkcarapace
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/neck/zuliecloak
-	name = "Project: Zul-E"
+	name = "项目：祖尔-E"
 	item_path = /obj/item/clothing/suit/hooded/cloak/zuliecloak
 	//ckeywhitelist = list("asky")
 
 /datum/loadout_item/pocket_items/brightcosmos
-	name = "Bright Cosmos cigar"
+	name = "明亮宇宙雪茄"
 	item_path = /obj/item/holocigarette/cigar
 	ckeywhitelist = list("lyricalpaws")
 
 /datum/loadout_item/uniform/lannese
-	name = "Lannese Dress"
+	name = "兰尼斯连衣裙"
 	item_path = /obj/item/clothing/under/custom/lannese
 	//ckeywhitelist = list("kathrinbailey")
 
 /datum/loadout_item/uniform/lannese/vambrace
-	name = "Lannese Dress w/ Vambraces"
+	name = "兰尼斯连衣裙（带护臂）"
 	item_path = /obj/item/clothing/under/custom/lannese/vambrace
 	//ckeywhitelist = list("kathrinbailey")
 
 /datum/loadout_item/suit/scraparmour
-	name = "Scrap Armor"
+	name = "废铁护甲"
 	item_path = /obj/item/clothing/suit/scraparmour
 	//ckeywhitelist = list("hackertdog")
 
 /datum/loadout_item/uniform/mechanic
-	name = "Mechanic's Overalls"
+	name = "机械师工装裤"
 	item_path = /obj/item/clothing/under/misc/skyrat/mechanic
 	//ckeywhitelist = list("cypressb")
 
 /datum/loadout_item/uniform/mikubikini
-	name = "Starlight Singer Bikini"
+	name = "星光歌手比基尼"
 	item_path = /obj/item/clothing/under/mikubikini
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/suit/mikujacket
-	name = "Starlight Singer Jacket"
+	name = "星光歌手夹克"
 	item_path = /obj/item/clothing/suit/mikujacket
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/head/mikuhair
-	name = "Starlight Singer Hair"
+	name = "星光歌手发型"
 	item_path = /obj/item/clothing/head/mikuhair
 	//ckeywhitelist = list("grandvegeta")
 
 /datum/loadout_item/suit/delta_coat
-	name = "Grey Winter Hoodie"
+	name = "灰色冬季连帽衫"
 	item_path = /obj/item/clothing/suit/jacket/delta
 	//ckeywhitelist = list("deltatri")
 
 /datum/loadout_item/head/hubertcc
-	name = "CC Ensign's cap"
+	name = "中央指挥部少尉帽"
 	item_path = /obj/item/clothing/head/nanotrasen_consultant/hubert
 	//ckeywhitelist = list("hackertdog")
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/suit/hubertcc
-	name = "CC Ensign's armoured vest"
+	name = "中央指挥部少尉装甲背心"
 	item_path = /obj/item/clothing/suit/armor/vest/nanotrasen_consultant/hubert
 	//ckeywhitelist = list("hackertdog")
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/uniform/hubertcc
-	name = "CC Ensign's uniform"
+	name = "中央指挥部少尉制服"
 	item_path = /obj/item/clothing/under/rank/nanotrasen_consultant/hubert
 	//ckeywhitelist = list("hackertdog")
 	restricted_roles = list(JOB_NT_REP)
 
 /datum/loadout_item/head/frostyushanka
-	name = "Blue Ushanka"
+	name = "蓝色护耳帽"
 	item_path = /obj/item/clothing/head/costume/ushanka/frosty
 	//ckeywhitelist = list("cherno00")
 
 /datum/loadout_item/neck/silvercross
-	name = "Silver Cross"
+	name = "银色十字架"
 	item_path = /obj/item/clothing/neck/cross
 	//ckeywhitelist = list("m97screwsyourparents")
 
 /datum/loadout_item/suit/occult_coat
-	name = "Occult Collector's Coat"
+	name = "神秘学收藏家大衣"
 	item_path = /obj/item/clothing/suit/hooded/occult
 	//ckeywhitelist = list("gamerguy14948")
 
 /datum/loadout_item/uniform/occult_outfit
-	name = "Occult Collector's Outfit"
+	name = "神秘学收藏家套装"
 	item_path = /obj/item/clothing/under/occult
 	//ckeywhitelist = list("gamerguy14948")
 
 /datum/loadout_item/toys/plush/voodooplush
-	name = "Voodoo Doll"
+	name = "巫毒娃娃"
 	item_path = /obj/item/toy/plush/skyrat/voodoo
 	//ckeywhitelist = list("gamerguy14948")
 
 /datum/loadout_item/pocket_items/fuzzy_huglicense
-	name = "License To Hug"
+	name = "拥抱许可证"
 	item_path = /obj/item/card/fuzzy_license
 	//ckeywhitelist = list("fuzlet")
 
 /datum/loadout_item/suit/gorlex_harness
-	name = "Engine Technician Harness"
+	name = "引擎技术员背带"
 	item_path = /obj/item/clothing/suit/jacket/gorlex_harness
 	//ckeywhitelist = list("1ceres")
 
 /datum/loadout_item/pocket_items/korpstech_poster
-	name = "Korpstech Poster"
+	name = "Korpstech 海报"
 	item_path = /obj/item/poster/korpstech
 	//ckeywhitelist = list("1ceres")
 
 /datum/loadout_item/suit/tenrai_coat
-	name = "Tenrai Coat"
+	name = "天雷大衣"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/skyrat/tenrai
 	//ckeywhitelist = list("cimika")
 
 /datum/loadout_item/neck/fluffycloak
-	name = "Fluffy Cloak"
+	name = "蓬松斗篷"
 	item_path = /obj/item/clothing/neck/cloak/fluffycloak
 	//ckeywhitelist = list("realwinterfrost")
 
 /datum/loadout_item/toys/plush/zappplush
-	name = "Lil' Zapp Plushie"
+	name = "小扎普毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/zapp
 	donator_only = TRUE
 
 /datum/loadout_item/pocket_items/tacticalbrush
-	name = "Tactical Brush"
+	name = "战术发刷"
 	item_path = /obj/item/hairbrush/tactical
 	//ckeywhitelist = list("weredoggo")
 
 /datum/loadout_item/neck/fishpendant
-	name = "Fish Pendant"
+	name = "鱼形吊坠"
 	item_path = /obj/item/clothing/neck/fishpendant
 	//ckeywhitelist = list("cimika")
 
 /datum/loadout_item/toys/plush/immovable_rod_plush
-	name = "Immovable Rod Plushie"
+	name = "不可移动之杆毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/immovable_rod
 	//ckeywhitelist = list("tobjv")
 
 /datum/loadout_item/toys/plush/tesh_plush
-	name = "Squish-Me-Tesh Plush"
+	name = "捏特沙毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/tesh
 	//ckeywhitelist = list("tobjv")
 
 /datum/loadout_item/uniform/redhosneck
-	name = "Black and Red Turtleneck"
+	name = "黑红高领衫"
 	item_path = /obj/item/clothing/under/rank/security/head_of_security/alt/roselia
 	//ckeywhitelist = list("ultimarifox")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/toys/plush/roselia_plush
-	name = "Obscene Sergal Plushie"
+	name = "低俗瑟格尔毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/roselia
 	//ckeywhitelist = list("ultimarifox")
 
 /datum/loadout_item/toys/plush/plushe_winrow
-	name = "Dark and Brooding Lizard Plushie"
+	name = "阴郁蜥蜴毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/chunko/plushie_winrow
 
 /datum/loadout_item/toys/plush/plushie_star
-	name = "Star Angel Plushie"
+	name = "星辰天使毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_star
 
 /datum/loadout_item/suit/rainbowcoat
-	name = "Rainbow Coat"
+	name = "彩虹大衣"
 	item_path = /obj/item/clothing/suit/toggle/rainbowcoat
 	//ckeywhitelist = list("dudewithatude")
 
 /datum/loadout_item/head/recruiter_cap
-	name = "Recruiter's Cap"
+	name = "招募官帽"
 	item_path = /obj/item/clothing/head/recruiter_cap
 	//ckeywhitelist = list("m97screwsyourparents")
 
 /datum/loadout_item/suit/recruiter_jacket
-	name = "Recruiter's Jacket"
+	name = "招募官夹克"
 	item_path = /obj/item/clothing/suit/toggle/recruiter_jacket
 	//ckeywhitelist = list("m97screwsyourparents")
 
 /datum/loadout_item/uniform/recruiter_uniform
-	name = "Recruiter's Uniform"
+	name = "招募官制服"
 	item_path = /obj/item/clothing/under/recruiter_uniform
 	//ckeywhitelist = list("m97screwsyourparents")
 
 /datum/loadout_item/pocket_items/hypno_watch
-	name = "Pocket Watch"
+	name = "怀表"
 	item_path = /obj/item/clothing/accessory/hypno_watch
 	ckeywhitelist = list("slippyjoe")
 
 /datum/loadout_item/uniform/nt_idol
-	name = "NT Idol's Skirt"
+	name = "纳米传讯偶像短裙"
 	item_path = /obj/item/clothing/under/nt_idol_skirt
 	//ckeywhitelist = list("tetrako")
 	restricted_roles = list(JOB_NT_REP)
@@ -381,223 +381,223 @@
 //Chunko Fops were donated by SlippyJoe, who requested they are usable by everyone
 
 /datum/loadout_item/toys/plush/CFBonnie
-	name = "Chunko Fop: Blue Bunny Plushie"
+	name = "胖绅士：蓝兔毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/chunko/bonnie
 //	donator_only = TRUE
 
 /datum/loadout_item/toys/plush/CFAndrew
-	name = "Chunko Fop: Green Bunny Plushie"
+	name = "胖绅士：绿兔毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/chunko/andrew
 //	donator_only = TRUE
 
 /datum/loadout_item/toys/plush/CFInessa
-	name = "Chunko Fop: Medical Bear Plushie"
+	name = "胖绅士：医疗熊毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/chunko/inessa
 //	donator_only = TRUE
 
 /datum/loadout_item/toys/plush/plushie_chiara
-	name = "Commanding Fox Plushie"
+	name = "指挥者狐狸毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_chiara
 	//ckeywhitelist = list("srq", "superlagg")
 
 /datum/loadout_item/toys/plush/plushie_dan
-	name = "Comfy Fox Plushie"
+	name = "舒适狐狸毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_dan
 	//ckeywhitelist = list("srq", "superlagg")
 
 /datum/loadout_item/uniform/bubbly_clown
-	name = "Bubbly Clown Dress"
+	name = "活泼小丑连衣裙"
 	item_path = /obj/item/clothing/under/bubbly_clown/skirt
 	restricted_roles = list(JOB_CLOWN)
 	//ckeywhitelist = list("boisterousbeebz", "aether217")
 
 /datum/loadout_item/pocket_items/marsoc_coin
-	name = "MARSOC Challenge Coin"
+	name = "MARSOC 挑战币"
 	item_path = /obj/item/coin/donator/marsoc
 	//ckeywhitelist = list("sweetsoulbrother")
 
 /datum/loadout_item/toys/plush/plushie_jeanne
-	name = "Masked Roboticist Plushie"
+	name = "蒙面机器人学家毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/fox/plushie_jeanne
 	//ckeywhitelist = list("klb100") // Asked it to be public.
 
 /datum/loadout_item/uniform/tactichill
-	name = "Tactichill Jacket"
+	name = "战术休闲夹克"
 	item_path = /obj/item/clothing/under/tactichill
 	//ckeywhitelist = list("kaynite")
 
 /datum/loadout_item/suit/techpriest
-	name = "Techpriest Robes"
+	name = "科技祭司长袍"
 	item_path = /obj/item/clothing/suit/hooded/techpriest
 	//ckeywhitelist = list("imthinkingarbys")
 
 /datum/loadout_item/toys/plush/plushie_azyre
-	name = "Handsome Chef Plushie"
+	name = "英俊厨师毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_azyre
 	//ckeywhitelist = list("dalaoazure")
 
 /datum/loadout_item/pocket_items/khicigs
-	name = "Kitsuhana Singularity Cigarettes"
+	name = "橘花奇点香烟"
 	item_path = /obj/item/storage/fancy/cigarettes/khi
 	//ckeywhitelist = list("ultimarifox")
 
 /datum/loadout_item/uniform/bimpcap
-	name = "Formal Matte Black Captain Uniform"
+	name = "哑光黑舰长礼服"
 	item_path = /obj/item/clothing/under/bimpcap
 	restricted_roles = list(JOB_CAPTAIN)
 	//ckeywhitelist = list("razurath")
 
 /datum/loadout_item/toys/plush/plushie_razurath
-	name = "Science Shark Plushie"
+	name = "科研鲨鱼毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_razurath
 	//ckeywhitelist = list("razurath")
 
 /datum/loadout_item/toys/plush/plushie_razurath/second
-	name = "Dwarf Shark Plushie"
+	name = "矮鲨毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_razurath/second
 //	ckeywhitelist = list("razurath")
 
 /datum/loadout_item/toys/plush/plushie_elofy
-	name = "Bumbling Wolfgirl Plushie"
+	name = "笨拙狼女毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_elofy
 	//ckeywhitelist = list("october23") // Asked it to be public.
 
 /datum/loadout_item/suit/elofy
-	name = "Solar Admiral Coat"
+	name = "太阳上将大衣"
 	item_path = /obj/item/clothing/suit/armor/hos/elofy
 //	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/head/elofy
-	name = "Solar Admiral Hat"
+	name = "太阳上将帽"
 	item_path = /obj/item/clothing/head/hats/hos/elofy
 	ckeywhitelist = list("october23")
 	restricted_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/loadout_item/pocket_items/transponder
-	name = "Broken Helian Transponder"
+	name = "损坏的赫利安应答器"
 	item_path = /obj/item/donator/transponder
 //	ckeywhitelist = list("glacii")
 
 /datum/loadout_item/uniform/caged_dress
-	name = "Caged Purple Dress"
+	name = "笼式紫色连衣裙"
 	item_path = /obj/item/clothing/under/caged_dress/skirt
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/suit/shortcoat
-	name = "Short Purple Coat"
+	name = "短款紫色大衣"
 	item_path = /obj/item/clothing/suit/short_coat
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/neck/flowercollar
-	name = "Flower Collar"
+	name = "花朵项圈"
 	item_path = /obj/item/clothing/neck/flower_collar
 	//ckeywhitelist = list("thedragmeme")
 
 /datum/loadout_item/uniform/goldenkimono
-	name = "Short-Sleeved Kimono"
+	name = "短袖和服"
 	item_path = /obj/item/clothing/under/costume/skyrat/kimono/sigmar
 	//ckeywhitelist = list("sigmaralkahest")
 
 /datum/loadout_item/suit/blackraincoat
-	name = "Black Open-Faced Raincoat"
+	name = "黑色开脸雨衣"
 	item_path = /obj/item/clothing/suit/hooded/sigmarcoat
 	//ckeywhitelist = list("sigmaralkahest")
 
 /datum/loadout_item/toys/plush/plushy_syntax1112
-	name = "Lop Bunny Plushie"
+	name = "垂耳兔毛绒玩具"
 	item_path = /obj/item/toy/plush/skyrat/plushie_syntax1112
 	//ckeywhitelist = list("syntax1112")
 
 /datum/loadout_item/head/somerandomowl
-	name = "Starry Witch Hat"
+	name = "星空女巫帽"
 	item_path = /obj/item/clothing/head/costume/strigihat
 	//ckeywhitelist = list("somerandomowl")
 
 /datum/loadout_item/head/razurathhat
-	name = "Golden Nanotrasen Officer Cap"
+	name = "金色纳米传讯军官帽"
 	item_path = /obj/item/clothing/head/razurathhat
 	//ckeywhitelist = list("razurath")
 
 /datum/loadout_item/suit/razurathcoat
-	name = "Golden Nanotrasen Officer Coat"
+	name = "金色纳米传讯军官大衣"
 	item_path = /obj/item/clothing/suit/razurathcoat
 	//ckeywhitelist = list("razurath")
 
 /datum/loadout_item/suit/digicoat_glitched
-	name = "Glitched Digicoat"
+	name = "故障数码大衣"
 	item_path = /obj/item/clothing/suit/toggle/digicoat/glitched
 	//ckeywhitelist = list("razurath")
 
 /datum/loadout_item/pocket_items/masvedishcigar
-	name = "Holocigar"
+	name = "全息雪茄"
 	item_path = /obj/item/holocigarette/masvedishcigar
 	// Asked it to be public, and as such has no whitelist.
 
 /datum/loadout_item/suit/lt3_armor
-	name = "Silver Jacket Mk II"
+	name = "银色夹克 Mk II"
 	item_path = /obj/item/clothing/suit/armor/skyy
 	restricted_roles = list(JOB_HEAD_OF_PERSONNEL, JOB_NT_REP)
 
 /datum/loadout_item/suit/lt3_jacket
-	name = "Silver Jacket"
+	name = "银色夹克"
 	item_path = /obj/item/clothing/suit/jacket/skyy
 
 /datum/loadout_item/uniform/miscellaneous/lt3_jeans
-	name = "Silver Jeans"
+	name = "银色牛仔裤"
 	item_path = /obj/item/clothing/under/pants/skyy
 
 /datum/loadout_item/toys/switchcomb
-	name = "Switchblade Comb"
+	name = "弹簧刀梳"
 	item_path = /obj/item/hairbrush/switchblade
 	//ckeywhitelist = list("stonetear")
 
 /datum/loadout_item/suit/colorblockhoodie
-	name = "Color-Block Hoodie"
+	name = "撞色连帽衫"
 	item_path = /obj/item/clothing/suit/hooded/colorblockhoodie
 //	ckeywhitelist = list("lolpopomg101")
 
 /datum/loadout_item/inhand/officialcat
-	name = "Official Cat Stamp"
+	name = "官方猫咪印章"
 	item_path = /obj/item/stamp/cat
 //	ckeywhitelist = list("kathrinbailey")
 
 /datum/loadout_item/inhand/hardlight_wheelchair
-	name = "Hardlight Wheelchair Projector"
+	name = "硬光轮椅投影器"
 	item_path = /obj/item/holosign_creator/hardlight_wheelchair
 //	ckeywhitelist = list("sqnztb")
 
 /datum/loadout_item/uniform/noble_gambeson
-	name = "Noble Gambeson"
+	name = "贵族武装衣"
 	item_path = /obj/item/clothing/under/rank/civilian/chaplain/divine_archer/noble
 //	ckeywhitelist = list("grasshand")
 
 /datum/loadout_item/suit/nobility_dresscoat
-	name = "Nobility Dresscoat"
+	name = "贵族礼服大衣"
 	item_path = /obj/item/clothing/suit/toggle/labcoat/vic_dresscoat_donator
 //	ckeywhitelist = list("nikotheguydude")
 
 /datum/loadout_item/head/anubite_headpiece
-	name = "Anubite Headpiece"
+	name = "阿努比斯头饰"
 	item_path = /obj/item/clothing/head/anubite
 	//ckeywhitelist = list("vexcint")
 
 /datum/loadout_item/uniform/formal/dragon_maid
-	name = "Dragon Maid Uniform"
+	name = "龙女仆制服"
 	item_path = /obj/item/clothing/under/costume/dragon_maid
 	//ckeywhitelist = list("sigmaralkahest")
 
 /datum/loadout_item/head/catear_headphone
-	name = "Cat-Ear Headphones"
+	name = "猫耳耳机"
 	item_path = /obj/item/instrument/piano_synth/headphones/catear_headphone
 	//ckeywhitelist = list("dtfe")
 
 /datum/loadout_item/uniform/old_qm_jumpskirt
-	name = "Old Quartermaster's Jumpskirt"
+	name = "旧款货运主管连体裙"
 	item_path = /obj/item/clothing/under/rank/cargo/qm/skirt/old
 //	ckeywhitelist = list("jasohavents")
 
 /datum/loadout_item/pocket_items/toaster_implant
-	name = "Toaster Implant"
+	name = "烤面包机植入体"
 	item_path = /obj/item/implanter/toaster
 //	ckeywhitelist = list("jasohavents")

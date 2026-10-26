@@ -1,5 +1,5 @@
 /datum/design/biogen/frontier_ration/ingredients
-	name = "Frontier Rations Ingredients"
+	name = "边疆口粮食材"
 	id = DESIGN_ID_IGNORE
 	materials = list(/datum/material/biomass = 25)
 	build_path = /obj/item/food
@@ -9,33 +9,33 @@
 	)
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_egg
-	name = "Egg"
+	name = "鸡蛋"
 	id = "frontier_ration_egg"
 	build_path = /obj/item/food/egg
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_chicken
-	name = "Chicken"
+	name = "鸡肉"
 	id = "frontier_ration_chicken"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/food/meat/slab/chicken
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_mystery_meat
-	name = "Meat Product"
+	name = "肉制品"
 	id = "frontier_ration_mystery_meat"
 	materials = list(/datum/material/biomass = 50)
 	build_path = /obj/item/food/meat/slab/meatproduct
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_butter
-	name = "Butter"
+	name = "黄油"
 	id = "frontier_ration_butter"
 	build_path = /obj/item/food/butter
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_cheese
-	name = "Cheese"
+	name = "奶酪"
 	id = "frontier_ration_cheese"
 	build_path = /obj/item/food/cheese/wedge
 
 /datum/design/biogen/frontier_ration/ingredients/frontier_ration_cheese_firm
-	name = "Firm Cheese"
+	name = "硬质奶酪"
 	id = "frontier_ration_firm_cheese"
 	build_path = /obj/item/food/cheese/firm_cheese_slice

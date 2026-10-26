@@ -4,10 +4,10 @@
 #define MODE_FREEZE_ANIMATION "freeze"
 
 /obj/item/clothing/glasses/hud/ar
-	name = "\improper AR glasses"
+	name = "\improper AR 眼镜"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "glasses_regular"
-	desc = "A heads-up display that provides important info in (almost) real time. These don't really seem to work"
+	desc = "一种能（几乎）实时提供重要信息的头戴式显示器。这副眼镜似乎并不能真正工作。"
 	actions_types = list(/datum/action/item_action/toggle_mode)
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	/// Defines sound to be played upon mode switching
@@ -19,7 +19,7 @@
 	/// The current operating mode
 	var/mode
 	/// Defines messages that will be shown to the user upon switching modes (e.g. turning it on)
-	var/list/modes_msg = list(MODE_ON = "optical matrix enabled", MODE_OFF = "optical matrix disabled")
+	var/list/modes_msg = list(MODE_ON = "光学矩阵已启用", MODE_OFF = "光学矩阵已禁用")
 	/// Because initial() will not work on subtypes from within the parent we need to store a reference to the type of the glasses calling the procs
 	var/obj/item/clothing/glasses/hud/ar/glasses_type
 	/// Lazylist of traits that will not be removed if we switch modes.
@@ -140,8 +140,8 @@
 	toggle_mode(user, TRUE)
 
 /obj/item/clothing/glasses/hud/ar/aviator
-	name = "aviators"
-	desc = "A pair of designer sunglasses with electrochromatic darkening lenses!"
+	name = "飞行员眼镜"
+	desc = "一副设计师款太阳镜，配有电致变色变暗镜片！"
 	worn_icon = 'modular_skyrat/modules/modular_items/icons/modular_glasses_mob.dmi'
 	icon_state = "aviator"
 	off_state = "aviator_off"
@@ -151,23 +151,23 @@
 	tint = 0
 
 /obj/item/clothing/glasses/fake_sunglasses/aviator
-	name = "aviators"
-	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
+	name = "飞行员眼镜"
+	desc = "一副设计师款太阳镜。它似乎挡不住闪光。"
 	worn_icon = 'modular_skyrat/modules/modular_items/icons/modular_glasses_mob.dmi'
 	icon_state = "aviator"
 	icon = 'modular_skyrat/modules/modular_items/icons/modular_glasses.dmi'
 
 // Security Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/security
-	name = "security HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. This HUD has been fitted inside of a pair of sunglasses with toggleable electrochromatic tinting."
+	name = "安保 HUD 飞行员眼镜"
+	desc = "一种头戴式显示器，可扫描视野中的人形生物，并提供其证件状态与安保记录的准确数据。这款 HUD 被装进了一副带可切换电致变色镜片的太阳镜里。"
 	icon_state = "aviator_sec"
 	off_state = "aviator_sec_flash"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 	glass_colour_type = /datum/client_colour/glass_colour/red
 	modes = list(MODE_OFF_FLASH_PROTECTION, MODE_ON)
-	modes_msg = list(MODE_OFF_FLASH_PROTECTION = "flash protection mode", MODE_ON = "optical matrix enabled")
+	modes_msg = list(MODE_OFF_FLASH_PROTECTION = "防闪光模式", MODE_ON = "光学矩阵已启用")
 	custom_materials = list(
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.8,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 0.7,
@@ -177,8 +177,8 @@
 
 // Medical Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/health
-	name = "medical HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status. This HUD has been fitted inside of a pair of sunglasses."
+	name = "医疗 HUD 飞行员眼镜"
+	desc = "一种头戴式显示器，可扫描视野中的人形生物，并提供其健康状况的准确数据。这款 HUD 被装进了一副太阳镜里。"
 	icon_state = "aviator_med"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
@@ -191,8 +191,8 @@
 
 // (Normal) meson scanner Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/meson
-	name = "meson HUD aviators"
-	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions. This HUD has been fitted inside of a pair of sunglasses."
+	name = "介子 HUD 飞行员眼镜"
+	desc = "工程与采矿人员使用的头戴式显示器，可不受光照条件影响，隔着墙壁看到基础结构与地形布局。这款 HUD 被装进了一副太阳镜里。"
 	icon_state = "aviator_meson"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE)
@@ -207,8 +207,8 @@
 
 // diagnostic Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/diagnostic
-	name = "diagnostic HUD aviators"
-	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits. This HUD has been fitted inside of a pair of sunglasses."
+	name = "诊断 HUD 飞行员眼镜"
+	desc = "一种能够分析机器人与外骨骼完整性和状态的头戴式显示器。这款 HUD 被装进了一副太阳镜里。"
 	icon_state = "aviator_diagnostic"
 	flash_protect = FLASH_PROTECTION_NONE
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
@@ -221,8 +221,8 @@
 
 // Science Aviators
 /obj/item/clothing/glasses/hud/ar/aviator/science
-	name = "science aviators"
-	desc = "A pair of tacky purple aviator sunglasses that allow the wearer to recognize various chemical compounds with only a glance."
+	name = "科学飞行员眼镜"
+	desc = "一副俗气的紫色飞行员太阳镜，佩戴者只需一瞥就能辨认各种化合物。"
 	icon_state = "aviator_sci"
 	flash_protect = FLASH_PROTECTION_NONE
 	glass_colour_type = /datum/client_colour/glass_colour/purple
@@ -240,50 +240,50 @@
 	acid = 100
 
 /obj/item/clothing/glasses/hud/ar/aviator/security/prescription
-	name = "prescription security HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. This HUD has been fitted inside of a pair of sunglasses with toggleable electrochromatic tinting which. Has lenses that help correct eye sight."
+	name = "处方款安保 HUD 飞行员眼镜"
+	desc = "一种头戴式显示器，可扫描视野中的人形生物，并提供其证件状态与安保记录的准确数据。这款 HUD 被装进了一副带可切换电致变色镜片的太阳镜里，镜片有助于矫正视力。"
 	clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED, TRAIT_SECURITY_HUD)
 	permanent_clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/health/prescription
-	name = "prescription medical HUD aviators"
-	desc = "A heads-up display that scans the humanoids in view and provides accurate data about their health status. This HUD has been fitted inside of a pair of sunglasses which has lenses that help correct eye sight."
+	name = "处方款医疗 HUD 飞行员眼镜"
+	desc = "一种头戴式显示器，可扫描视野中的人形生物，并提供其健康状况的准确数据。这款 HUD 被装进了一副太阳镜里，其镜片有助于矫正视力。"
 	clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED, TRAIT_MEDICAL_HUD)
 	permanent_clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/meson/prescription
-	name = "prescription meson HUD aviators"
-	desc = "A heads-up display used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting conditions. This HUD has been fitted inside of a pair of sunglasses which has lenses that help correct eye sight."
+	name = "处方款介子 HUD 飞行员眼镜"
+	desc = "工程与采矿人员使用的头戴式显示器，可不受光照条件影响，隔着墙壁看到基础结构与地形布局。这款 HUD 被装进了一副太阳镜里，其镜片有助于矫正视力。"
 	clothing_traits = list(TRAIT_MADNESS_IMMUNE, TRAIT_NEARSIGHTED_CORRECTED)
 	permanent_clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/diagnostic/prescription
-	name = "prescription diagnostic HUD aviators"
-	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits. This HUD has been fitted inside of a pair of sunglasses which has lenses that help correct eye sight."
+	name = "处方款诊断 HUD 飞行员眼镜"
+	desc = "一种能够分析机器人与外骨骼完整性和状态的头戴式显示器。这款 HUD 被装进了一副太阳镜里，其镜片有助于矫正视力。"
 	clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED, TRAIT_DIAGNOSTIC_HUD)
 	permanent_clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
 
 /obj/item/clothing/glasses/hud/ar/aviator/science/prescription
-	name = "prescription science aviators"
-	desc = "A pair of tacky purple aviator sunglasses that allow the wearer to recognize various chemical compounds with only a glance, which has lenses that help correct eye sight."
+	name = "处方款科学飞行员眼镜"
+	desc = "一副俗气的紫色飞行员太阳镜，佩戴者只需一瞥就能辨认各种化合物；其镜片有助于矫正视力。"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER, TRAIT_NEARSIGHTED_CORRECTED)
 	permanent_clothing_traits = list(TRAIT_NEARSIGHTED_CORRECTED)
 
 // Retinal projector
 
 /obj/item/clothing/glasses/hud/ar/projector
-	name = "retinal projector"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than a visor."
+	name = "视网膜投影器"
+	desc = "一副配有扫描镜片和内置视网膜投影器的头戴式设备。它不提供任何眼部防护，但比面罩更不显眼。"
 	icon_state = "projector"
 	worn_icon = 'modular_skyrat/modules/modular_items/icons/modular_glasses_mob.dmi'
 	icon = 'modular_skyrat/modules/modular_items/icons/modular_glasses.dmi'
 	flags_cover = null /// It doesn't actually cover up any parts
 	off_state = "projector-off"
 	modes = list(MODE_OFF, MODE_ON, MODE_FREEZE_ANIMATION)
-	modes_msg = list(MODE_ON = "projector enabled", MODE_FREEZE_ANIMATION = "continuous beam mode", MODE_OFF = "projector disabled" )
+	modes_msg = list(MODE_ON = "投影器已启用", MODE_FREEZE_ANIMATION = "持续光束模式", MODE_OFF = "投影器已禁用" )
 
 /obj/item/clothing/glasses/hud/ar/projector/meson
-	name = "retinal projector meson HUD"
+	name = "视网膜投影介子 HUD"
 	icon_state = "projector_meson"
 	vision_flags = SEE_TURFS
 	color_cutoffs = list(10, 30, 10)
@@ -294,7 +294,7 @@
 	)
 
 /obj/item/clothing/glasses/hud/ar/projector/health
-	name = "retinal projector health HUD"
+	name = "视网膜投影医疗 HUD"
 	icon_state = "projector_med"
 	clothing_traits = list(TRAIT_MEDICAL_HUD)
 	custom_materials = list(
@@ -304,7 +304,7 @@
 	)
 
 /obj/item/clothing/glasses/hud/ar/projector/security
-	name = "retinal projector security HUD"
+	name = "视网膜投影安保 HUD"
 	icon_state = "projector_sec"
 	clothing_traits = list(TRAIT_SECURITY_HUD)
 	custom_materials = list(
@@ -315,7 +315,7 @@
 	)
 
 /obj/item/clothing/glasses/hud/ar/projector/diagnostic
-	name = "retinal projector diagnostic HUD"
+	name = "视网膜投影诊断 HUD"
 	icon_state = "projector_diagnostic"
 	clothing_traits = list(TRAIT_DIAGNOSTIC_HUD)
 	custom_materials = list(
@@ -325,7 +325,7 @@
 	)
 
 /obj/item/clothing/glasses/hud/ar/projector/science
-	name = "science retinal projector"
+	name = "科学视网膜投影器"
 	icon_state = "projector_sci"
 	clothing_traits = list(TRAIT_REAGENT_SCANNER, TRAIT_RESEARCH_SCANNER)
 	custom_materials = list(

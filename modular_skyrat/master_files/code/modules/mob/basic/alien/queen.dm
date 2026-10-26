@@ -1,11 +1,11 @@
 /mob/living/basic/alien/queen
-	name = "alien queen"
+	name = "异形女王"
 	icon_state = "alienqueen"
 	icon_living = "alienqueen"
 	icon_dead = "alienqueen_dead"
 
 /mob/living/basic/alien/queen/large
-	name = "alien empress"
+	name = "异形女皇"
 	icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/big_xenos.dmi'
 	icon_state = "alienqueen"
 	icon_living = "alienqueen"

@@ -42,9 +42,9 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 /datum/scripture/New()
 	. = ..()
 	if(invokers_required > 1)
-		desc += " Requires [invokers_required] invokers, should you be in a group."
+		desc += " 若身处团队中，需要 [invokers_required] 名吟诵者。"
 	if(research_required)
-		desc += " Requires research to unlock."
+		desc += " 需要研究才能解锁。"
 
 
 /datum/scripture/Destroy(force, ...)
@@ -136,11 +136,11 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 /// Check for any special requriements such as not having enough invokers, or not holding the slab
 /datum/scripture/proc/check_special_requirements(mob/user)
 	if(!invoker || !invoking_slab)
-		message_admins("No invoker for [name]")
+		message_admins("没有吟诵者来吟诵 [name]")
 		return FALSE
 
 	if(invoker.get_active_held_item() != invoking_slab && !iscyborg(invoker))
-		to_chat(invoker, span_brass("You fail to invoke [name]."))
+		to_chat(invoker, span_brass("你未能吟诵 [name]。"))
 		return FALSE
 
 	var/invokers = 0
@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 			break
 
 	if(invokers < invokers_required)
-		to_chat(invoker, span_brass("You need [invokers_required] servants to channel [name]!"))
+		to_chat(invoker, span_brass("你需要 [invokers_required] 名仆从共同引导 [name]！"))
 		return FALSE
 
 	return TRUE
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 /// Start invoking a scripture, calling end_invoke() if it doesn't finish
 /datum/scripture/proc/begin_invoke(mob/living/invoking_mob, obj/item/clockwork/clockwork_slab/slab, bypass_unlock_checks = FALSE)
 	if(invoking_mob.get_active_held_item() != slab && !iscyborg(invoking_mob))
-		to_chat(invoking_mob, span_brass("You need to have the [slab.name] in your active hand to recite scriptures."))
+		to_chat(invoking_mob, span_brass("你需要将 [slab.name] 拿在活动手中才能吟诵经文。"))
 		return
 
 	slab.invoking_scripture = src
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 	invoking_slab = slab
 
 	if(!(type in slab.purchased_scriptures) && !bypass_unlock_checks)
-		log_runtime("CLOCKCULT: Attempting to invoke a scripture that has not been unlocked. Either there is a bug, or [ADMIN_LOOKUP(invoker)] is using some wacky exploits.")
+		log_runtime("发条教团：试图吟诵尚未解锁的经文。要么是存在 bug，要么 [ADMIN_LOOKUP(invoker)] 在利用什么古怪的漏洞。")
 		end_invoke()
 		return
 
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 	if(do_after(invoking_mob, invocation_time, target = invoking_mob, extra_checks = CALLBACK(src, PROC_REF(check_special_requirements), invoking_mob)))
 		invoke()
 
-		to_chat(invoking_mob, span_brass("You invoke <b>[name]</b>."))
+		to_chat(invoking_mob, span_brass("你吟诵了 <b>[name]</b>。"))
 
 		if(end_on_invocation)
 			end_invoke()
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		if(istype(clockwork_struct, /obj/structure/destructible/clockwork/trap))
 			continue
 
-		invoker.balloon_alert(invoker, "structure already on tile!")
+		invoker.balloon_alert(invoker, "此处已有建筑！")
 		return FALSE
 
 	return TRUE
@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 //For scriptures that charge the slab, and the slab will affect something
 //(stunning etc.)
 /datum/scripture/slab
-	name = "Charge Slab"
+	name = "充能石板"
 	end_on_invocation = FALSE
 	/// Time to perform this
 	var/use_time = 1 SECONDS
@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(clock_scriptures_by_type)
 		loop_timer_id = null
 
 	if(!silent)
-		to_chat(invoker, span_brass("You are no longer invoking <b>[name]</b>."))
+		to_chat(invoker, span_brass("你不再吟诵 <b>[name]</b>。"))
 	qdel(progress)
 
 	pointed_spell.unset_click_ability(invoker)

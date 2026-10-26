@@ -1,9 +1,9 @@
-#define OPS_SUBCATEGORY_LETHAL_SIDE "Lethal"
-#define OPS_SUBCATEGORY_NONLETHAL_SIDE "Non-Lethal"
-#define OPS_SUBCATEGORY_MARTIAL_SIDE "Martial Arts"
+#define OPS_SUBCATEGORY_LETHAL_SIDE "致命"
+#define OPS_SUBCATEGORY_NONLETHAL_SIDE "非致命"
+#define OPS_SUBCATEGORY_MARTIAL_SIDE "武术"
 
 /datum/armament_entry/assault_operatives/secondary
-	category = "Side Arms"
+	category = "副武器"
 	category_item_limit = 3
 	mags_to_spawn = 3
 	cost = 3

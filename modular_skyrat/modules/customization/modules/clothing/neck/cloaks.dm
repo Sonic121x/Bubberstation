@@ -1,21 +1,21 @@
 /obj/item/clothing/neck/chaplain
-	name = "bishop's cloak"
-	desc = "Become the space pope."
+	name = "主教披风"
+	desc = "成为太空教宗吧。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "bishopcloak"
 
 /obj/item/clothing/neck/chaplain/black
-	name = "black bishop's cloak"
+	name = "黑色主教披风"
 	icon_state = "blackbishopcloak"
 
 /obj/item/clothing/neck/cloak/qm/syndie
-	name = "deck officer's cloak"
-	desc = "A cloak that represents the eternal Cargoslavia. There's little Mosin Nagant emblems woven into the fabric."
+	name = "甲板军官披风"
+	desc = "一件象征永恒货运斯拉夫的披风。布料里织入了小小的莫辛-纳甘步枪徽记。"
 
 /obj/item/clothing/neck/cowboylea
-	name = "green cowboy poncho"
-	desc = "A sand covered cloak, there seems to be a small deer head with antlers embroidered inside."
+	name = "绿色牛仔披风"
+	desc = "一件覆满沙尘的披风，内侧似乎绣着一个小小的鹿头，还带着鹿角。"
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_NECK
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
@@ -29,8 +29,8 @@
 
 //This one is greyscale :)
 /obj/item/clothing/neck/ranger_poncho
-	name = "ranger poncho"
-	desc = "Aim for the Heart, Ramon."
+	name = "游侠披风"
+	desc = "瞄准心脏，拉蒙。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/ranger_poncho"
 	post_init_icon_state = "ranger_poncho"
@@ -45,8 +45,8 @@
 	AddComponent(/datum/component/toggle_clothes, "ranger_poncho_t")
 
 /obj/item/clothing/neck/robe_cape
-	name = "robe cape"
-	desc = "A comfortable northern-style cape, draped down your back and held around your neck with a brooch. Reminds you of a sort of robe."
+	name = "长袍披风"
+	desc = "一件舒适的北方风格披风，垂在背后，用胸针固定在颈间。让你想起某种长袍。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/robe_cape"
 	post_init_icon_state = "robe_cape"
@@ -57,8 +57,8 @@
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/neck/long_cape
-	name = "long cape"
-	desc = "A graceful cloak that carefully surrounds your body."
+	name = "长披风"
+	desc = "一件优雅的披风，将你的身体周全地包裹起来。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/long_cape"
 	post_init_icon_state = "long_cape"
@@ -73,8 +73,8 @@
 	AddComponent(/datum/component/toggle_clothes, "long_cape_t")
 
 /obj/item/clothing/neck/wide_cape
-	name = "wide cape"
-	desc = "A proud, broad-shouldered cloak with which you can protect the honor of your back."
+	name = "宽披风"
+	desc = "一件气派、肩部宽阔的披风，可以用来守护你背后的荣誉。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/wide_cape"
 	post_init_icon_state = "wide_cape"

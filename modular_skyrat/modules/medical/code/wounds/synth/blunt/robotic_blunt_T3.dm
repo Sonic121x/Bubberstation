@@ -1,23 +1,23 @@
 /datum/wound/blunt/robotic/secures_internals/critical
-	name = "Collapsed Superstructure"
-	desc = "The superstructure has totally collapsed in one or more locations, causing extreme internal oscillation with every move and massive limb dysfunction"
-	treat_text = "Reforming of superstructure via either RCD or manual molding, followed by typical treatment of loosened internals. \
-				To manually mold, the limb must be aggressively grabbed and welded held to it to make it malleable (though attacking it til thermal overload may be adequate) \
-				followed by firmly grasping and molding the limb with heat-resistant gloves."
-	occur_text = "caves in on itself, damaged solder and shrapnel flying out in a miniature explosion"
-	examine_desc = "has caved in, with internal components visible through gaps in the metal"
+	name = "骨架塌陷"
+	desc = "骨架在一处或多处完全塌陷，导致每次移动都会产生剧烈的内部震荡，肢体功能严重受损"
+	treat_text = "通过 RCD 或手动塑形重建骨架，然后按常规方式处理松动的内部结构。\
+				要手动塑形，必须牢牢抓住肢体并持续用焊接工具加热使其软化（不过打到热过载或许也可以）\
+				然后用耐热手套牢牢抓住并塑造肢体。"
+	occur_text = "向内塌陷，损坏的焊锡和碎片随着一场微型爆炸飞溅而出"
+	examine_desc = "已经塌陷，金属缝隙中能看到内部组件"
 	severity = WOUND_SEVERITY_CRITICAL
-	treat_text = "Use a rapid construction device."
+	treat_text = "使用快速建造装置。"
 	disabling = TRUE
 
-	simple_treat_text = "If on the <b>chest</b>, <b>walk</b>, <b>grasp it</b>, <b>splint</b>, <b>rest</b> or <b>buckle yourself</b> to something to reduce movement effects. \
-	Afterwards, get someone, ideally a <b>robo/engi</b> to <b>firmly grasp</b> the limb and hold a <b>welder</b> to it. Then, have them <b>use their hands</b> to <b>mold the metal</b> - \
-	careful though, it's <b>hot</b>! An <b>RCD</b> can skip all this, but is hard to come by. Afterwards, have them <b>screw/wrench</b> and then <b>re-solder</b> the limb!"
+	simple_treat_text = "若位于<b>胸部</b>，<b>行走</b>、<b>抓住它</b>、<b>打夹板</b>、<b>休息</b>或将<b>自己系</b>在物体上以减少移动影响。\
+	之后找个人——最好是<b>机修/工程</b>人员——<b>牢牢抓住</b>肢体，并把<b>焊接工具</b>贴上去加热。然后让他<b>用手</b><b>塑造金属</b>——小心，很<b>烫</b>！\
+	<b>RCD</b> 可以跳过这一切，但不容易弄到。之后，让他用<b>螺丝刀/扳手</b>固定，再<b>重新焊接</b>肢体！"
 
-	homemade_treat_text = "The metal can be made <b>malleable</b> by repeated application of a welder, to a <b>severe burn</b>. Afterwards, a <b>plunger</b> can reset the metal, \
-	as can <b>percussive maintenance</b>. After the metal is reset, if <b>unable to screw/wrench</b>, <b>bone gel</b> can, over time, secure inner components at risk of <b>corrossion</b>. \
-	Alternatively, <b>crowbar</b> the limb open to expose the internals - this will make it <b>easier</b> to re-secure them, but has a <b>high risk</b> of <b>shocking</b> you, \
-	so use insulated gloves. This will <b>cripple the limb</b>, so use it only as a last resort!"
+	homemade_treat_text = "反复使用焊接工具，直到造成<b>重度烧伤</b>，就能让金属变得<b>可塑</b>。之后，<b>搋子</b>可以让金属复位，\
+	<b>敲击维护</b>也可以。金属复位后，若<b>无法用螺丝刀/扳手</b>固定，<b>骨胶</b>可以随着时间固定内部组件，但有<b>腐蚀</b>风险。\
+	或者，用<b>撬棍</b>撬开肢体以露出内部——这会让重新固定<b>更容易</b>，但有<b>很高风险</b>会让你被<b>电击</b>，\
+	所以请戴上绝缘手套。这会<b>使肢体残废</b>，因此只能作为最后手段！"
 
 	interaction_efficiency_penalty = 2.8
 	limp_slowdown = 8
@@ -105,13 +105,13 @@
 		return FALSE
 
 	if(user.grab_state < GRAB_AGGRESSIVE)
-		to_chat(user, span_warning("You must have [victim] in an aggressive grab to manipulate [victim.p_their()] [LOWER_TEXT(name)]!"))
+		to_chat(user, span_warning("你必须以强力抓取抓住 [victim]，才能摆弄其身上的[LOWER_TEXT(name)]！"))
 		return TRUE
 
-	user.visible_message(span_danger("[user] begins softly pressing against [victim]'s collapsed [limb.plaintext_zone]..."), \
-	span_notice("You begin softly pressing against [victim]'s collapsed [limb.plaintext_zone]..."), \
+	user.visible_message(span_danger("[user] 开始轻轻按压 [victim] 塌陷的[limb.plaintext_zone]……"), \
+	span_notice("你开始轻轻按压 [victim] 塌陷的[limb.plaintext_zone]……"), \
 	ignored_mobs = victim)
-	to_chat(victim, span_userdanger("[user] begins pressing against your collapsed [limb.plaintext_zone]!"))
+	to_chat(victim, span_userdanger("[user] 开始按压你塌陷的[limb.plaintext_zone]！"))
 
 	var/delay_mult = 1
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
@@ -155,25 +155,25 @@
 		else
 			chance *= 2
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 
 	if ((user != victim && user.combat_mode))
-		user.visible_message(span_bolddanger("[user] molds [their_or_other] [limb.plaintext_zone] into a really silly shape! What a goofball!"), \
-			span_danger("You maliciously mold [victim]'s [limb.plaintext_zone] into a weird shape, damaging it in the process!"), ignored_mobs = victim)
-		to_chat(victim, span_userdanger("[user] molds your [limb.plaintext_zone] into a weird shape, damaging it in the process!"))
+		user.visible_message(span_bolddanger("[user] 把[their_or_other][limb.plaintext_zone]捏成了滑稽的形状！真是个捣蛋鬼！"), \
+			span_danger("你恶意地把 [victim] 的[limb.plaintext_zone]捏成奇怪形状，并在这个过程中造成了损伤！"), ignored_mobs = victim)
+		to_chat(victim, span_userdanger("[user] 把你的[limb.plaintext_zone]捏成奇怪形状，并在这个过程中造成了损伤！"))
 
 		limb.receive_damage(brute = MOLD_METAL_SABOTAGE_BRUTE_DAMAGE, wound_bonus = CANT_WOUND, damage_source = user)
 	else if (prob(chance))
-		user.visible_message(span_green("[user] carefully molds [their_or_other] [limb.plaintext_zone] into the proper shape!"), \
-			span_green("You carefully mold [victim]'s [limb.plaintext_zone] into the proper shape!"), ignored_mobs = victim)
-		to_chat(victim, span_green("[user] carefully molds your [limb.plaintext_zone] into the proper shape!"))
-		to_chat(user, span_green("[capitalize(your_or_other)] [limb.plaintext_zone] has been molded into the proper shape! Your next step is to use a screwdriver/wrench to secure your internals."))
+		user.visible_message(span_green("[user] 小心地把[their_or_other][limb.plaintext_zone]塑造成正确的形状！"), \
+			span_green("你小心地把 [victim] 的[limb.plaintext_zone]塑造成正确的形状！"), ignored_mobs = victim)
+		to_chat(victim, span_green("[user] 小心地把你[limb.plaintext_zone]塑造成正确的形状！"))
+		to_chat(user, span_green("[capitalize(your_or_other)][limb.plaintext_zone]已被塑造成正确的形状！下一步是用螺丝刀/扳手固定内部结构。"))
 		set_superstructure_status(TRUE)
 	else
-		user.visible_message(span_danger("[user] accidentally molds [their_or_other] [limb.plaintext_zone] into the wrong shape!"), \
-			span_danger("You accidentally mold [your_or_other] [limb.plaintext_zone] into the wrong shape!"), ignored_mobs = victim)
-		to_chat(victim, span_userdanger("[user] accidentally molds your [limb.plaintext_zone] into the wrong shape!"))
+		user.visible_message(span_danger("[user] 不小心把[their_or_other][limb.plaintext_zone]捏成了错误的形状！"), \
+			span_danger("你不小心把[your_or_other][limb.plaintext_zone]捏成了错误的形状！"), ignored_mobs = victim)
+		to_chat(victim, span_userdanger("[user] 不小心把你[limb.plaintext_zone]捏成了错误的形状！"))
 
 		limb.receive_damage(brute = MOLD_METAL_FAILURE_BRUTE_DAMAGE, damage_source = user, wound_bonus = CANT_WOUND)
 
@@ -185,7 +185,7 @@
 	if (sufficiently_insulated_gloves || HAS_TRAIT(user, TRAIT_RESISTHEAT) || HAS_TRAIT(user, TRAIT_RESISTHEATHANDS))
 		return
 
-	to_chat(user, span_danger("You burn your hand on [victim]'s [limb.plaintext_zone]!"))
+	to_chat(user, span_danger("你的手被 [victim] 的[limb.plaintext_zone]烫伤了！"))
 	var/obj/item/bodypart/affecting = user.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
 	affecting?.receive_damage(burn = MOLD_METAL_HAND_BURNT_BURN_DAMAGE, damage_source = limb)
 
@@ -203,11 +203,11 @@
 	if (!welder.tool_use_check())
 		return TRUE
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 
-	user?.visible_message(span_danger("[user] carefully holds [welder] to [their_or_other] [limb.plaintext_zone], slowly heating it..."), \
-		span_warning("You carefully hold [welder] to [your_or_other] [limb.plaintext_zone], slowly heating it..."), ignored_mobs = victim)
+	user?.visible_message(span_danger("[user] 小心地把 [welder] 贴在[their_or_other][limb.plaintext_zone]上，慢慢加热……"), \
+		span_warning("你小心地把 [welder] 贴在[your_or_other][limb.plaintext_zone]上，慢慢加热……"), ignored_mobs = victim)
 
 	var/delay_mult = 1
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
@@ -219,14 +219,14 @@
 	var/wound_path = /datum/wound/burn/robotic/overheat/moderate
 	if (user != victim && user.combat_mode)
 		wound_path = /datum/wound/burn/robotic/overheat/critical // it really isnt that bad, overheat wounds are a bit funky
-		user.visible_message(span_danger("[user] heats [victim]'s [limb.plaintext_zone] aggressively, overheating it far beyond the necessary point!"), \
-			span_danger("You heat [victim]'s [limb.plaintext_zone] aggressively, overheating it far beyond the necessary point!"), ignored_mobs = victim)
-		to_chat(victim, span_userdanger("[user] heats your [limb.plaintext_zone] aggressively, overheating it far beyond the necessary point!"))
+		user.visible_message(span_danger("[user] 猛烈加热 [victim] 的[limb.plaintext_zone]，使其远超必要程度地过热！"), \
+			span_danger("你猛烈加热 [victim] 的[limb.plaintext_zone]，使其远超必要程度地过热！"), ignored_mobs = victim)
+		to_chat(victim, span_userdanger("[user] 猛烈加热你的[limb.plaintext_zone]，使其远超必要程度地过热！"))
 
 	var/datum/wound/burn/robotic/overheat/overheat_wound = new wound_path
 	overheat_wound.apply_wound(limb, wound_source = welder)
 
-	to_chat(user, span_green("[capitalize(your_or_other)] [limb.plaintext_zone] is now heated, allowing it to be molded! Your next step is to have someone physically reset the superstructure with their hands."))
+	to_chat(user, span_green("[capitalize(your_or_other)][limb.plaintext_zone]已经加热完毕，可以塑形了！下一步是找人用手把骨架复位。"))
 	return TRUE
 
 /// Cost of an RCD to quickly fix our broken in raw matter
@@ -243,11 +243,11 @@
 	var/silo_has_enough_materials = (treating_rcd.get_silo_iron() > ROBOTIC_T3_BLUNT_WOUND_RCD_SILO_COST)
 
 	if (!silo_has_enough_materials && !has_enough_matter) // neither the silo, nor the rcd, has enough
-		user?.balloon_alert(user, "not enough matter!")
+		user?.balloon_alert(user, "物质不足！")
 		return TRUE
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 
 	var/base_time = 7 SECONDS
 	var/delay_mult = 1
@@ -272,10 +272,10 @@
 	var/misused = (final_time > base_time) // if we damage the limb when we're done
 
 	if (user)
-		var/misused_text = (misused ? "<b>unsteadily</b> " : "")
+		var/misused_text = (misused ? "<b>晃晃悠悠地</b>" : "")
 
-		var/message = "[user]'s RCD whirs to life as it begins [misused_text]replacing the damaged superstructure of [their_or_other] [limb.plaintext_zone]..."
-		var/self_message = "Your RCD whirs to life as it begins [misused_text]replacing the damaged superstructure of [your_or_other] [limb.plaintext_zone]..."
+		var/message = "[user] 的 RCD 嗡嗡启动，开始[misused_text]替换[their_or_other][limb.plaintext_zone]受损的骨架……"
+		var/self_message = "你的 RCD 嗡嗡启动，开始[misused_text]替换[your_or_other][limb.plaintext_zone]受损的骨架……"
 
 		if (misused) // warning span if misused, notice span otherwise
 			message = span_danger(message)
@@ -296,9 +296,9 @@
 		return TRUE
 
 	if (user)
-		var/misused_text = (misused ? ", though it replaced a bit more than it should've..." : "!")
-		var/message = "[user]'s RCD lets out a small ping as it finishes replacing the superstructure of [their_or_other] [limb.plaintext_zone][misused_text]"
-		var/self_message = "Your RCD lets out a small ping as it finishes replacing the superstructure of [your_or_other] [limb.plaintext_zone][misused_text]"
+		var/misused_text = (misused ? "，不过替换得比应有的多了一点……" : "！")
+		var/message = "[user] 的 RCD 发出轻微的提示音，完成了对[their_or_other][limb.plaintext_zone]骨架的替换[misused_text]"
+		var/self_message = "你的 RCD 发出轻微的提示音，完成了对[your_or_other][limb.plaintext_zone]骨架的替换[misused_text]"
 		if (misused)
 			message = span_danger(message)
 			self_message = span_danger(self_message)
@@ -310,7 +310,7 @@
 		if (misused)
 			limb.receive_damage(brute = 10, damage_source = treating_rcd, wound_bonus = CANT_WOUND)
 		// the double message is fine here, since the first message also tells you if you fucked up and did some damage
-		to_chat(user, span_green("The superstructure has been reformed! Your next step is to secure the internals via a screwdriver/wrench."))
+		to_chat(user, span_green("骨架已重建完成！下一步是用螺丝刀/扳手固定内部结构。"))
 	return TRUE
 
 #undef ROBOTIC_T3_BLUNT_WOUND_RCD_COST
@@ -324,10 +324,10 @@
 	if (!treating_plunger.tool_use_check())
 		return TRUE
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	user?.visible_message(span_notice("[user] begins plunging at the dents on [their_or_other] [limb.plaintext_zone] with [treating_plunger]..."), \
-		span_green("You begin plunging at the dents on [your_or_other] [limb.plaintext_zone] with [treating_plunger]..."))
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
+	user?.visible_message(span_notice("[user] 开始用 [treating_plunger] 在[their_or_other][limb.plaintext_zone]的凹陷处反复抽吸……"), \
+		span_green("你开始用 [treating_plunger] 在[your_or_other][limb.plaintext_zone]的凹陷处反复抽吸……"))
 
 	var/delay_mult = 1
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
@@ -352,30 +352,30 @@
 		success_chance *= 1.5
 
 	if (prob(success_chance))
-		user?.visible_message(span_green("[victim]'s [limb.plaintext_zone] lets out a sharp POP as [treating_plunger] forces it into its normal position!"), \
-			span_green("[victim]'s [limb.plaintext_zone] lets out a sharp POP as your [treating_plunger] forces it into its normal position!"))
-		to_chat(user, span_green("[capitalize(your_or_other)] [limb.plaintext_zone]'s structure has been reset to it's proper position! Your next step is to secure it with a screwdriver/wrench, though bone gel would also work."))
+		user?.visible_message(span_green("[victim] 的[limb.plaintext_zone]随着 [treating_plunger] 把它顶回正常位置，发出一声清脆的“啪”！"), \
+			span_green("[victim] 的[limb.plaintext_zone]随着你的 [treating_plunger] 把它顶回正常位置，发出一声清脆的“啪”！"))
+		to_chat(user, span_green("[capitalize(your_or_other)][limb.plaintext_zone]的结构已复位到正确位置！下一步是用螺丝刀/扳手固定，骨胶也可以。"))
 		set_superstructure_status(TRUE)
 	else
-		user?.visible_message(span_danger("[victim]'s [limb.plaintext_zone] splinters from [treating_plunger]'s plunging!"), \
-			span_danger("[capitalize(your_or_other)] [limb.plaintext_zone] splinters from your [treating_plunger]'s plunging!"))
+		user?.visible_message(span_danger("[victim] 的[limb.plaintext_zone]被 [treating_plunger] 的抽吸弄得裂开了！"), \
+			span_danger("[capitalize(your_or_other)][limb.plaintext_zone]被你的 [treating_plunger] 抽吸得裂开了！"))
 		limb.receive_damage(brute = 5, damage_source = treating_plunger)
 
 	return TRUE
 
 /datum/wound/blunt/robotic/secures_internals/critical/handle_percussive_maintenance_success(attacking_item, mob/living/user)
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	victim.visible_message(span_green("[victim]'s [limb.plaintext_zone] gets smashed into a proper shape!"), \
-		span_green("Your [limb.plaintext_zone] gets smashed into a proper shape!"))
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
+	victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]被砸成了正确的形状！"), \
+		span_green("你的[limb.plaintext_zone]被砸成了正确的形状！"))
 
-	var/user_message = "[capitalize(your_or_other)] [limb.plaintext_zone]'s superstructure has been reset! Your next step is to screwdriver/wrench the internals, \
-	though if you're desperate enough to use percussive maintenance, you might want to either use a crowbar or bone gel..."
+	var/user_message = "[capitalize(your_or_other)][limb.plaintext_zone]的骨架已复位！下一步是用螺丝刀/扳手固定内部结构，\
+	不过既然你已经绝望到用敲击维护了，也许该改用撬棍或骨胶……"
 	to_chat(user, span_green(user_message))
 
 	set_superstructure_status(TRUE)
 
 /datum/wound/blunt/robotic/secures_internals/critical/handle_percussive_maintenance_failure(attacking_item, mob/living/user)
-	to_chat(victim, span_danger("Your [limb.plaintext_zone] only deforms more from the impact..."))
+	to_chat(victim, span_danger("你的[limb.plaintext_zone]被这一下砸得更变形了……"))
 	limb.receive_damage(brute = 1, damage_source = attacking_item, wound_bonus = CANT_WOUND)
 
 /datum/wound/blunt/robotic/secures_internals/critical/uses_percussive_maintenance()
@@ -390,9 +390,9 @@
 	. = ..()
 
 	if (!superstructure_remedied)
-		. = "The superstructure must be reformed."
+		. = "骨架必须重建。"
 		if (!limb_malleable())
-			. += " The limb must be heated to thermal overload, then manually molded with a firm grasp"
+			. += " 肢体必须加热到热过载，然后用牢固抓握手动塑形"
 		else
-			. += " The limb has been sufficiently heated, and can be manually molded with a firm grasp/repeated application of a low-force object"
-		. += " - OR an RCD may be used with little risk."
+			. += " 肢体已充分加热，可以用牢固抓握或反复使用低力度物体来手动塑形"
+		. += " ——或者使用 RCD，风险很小。"

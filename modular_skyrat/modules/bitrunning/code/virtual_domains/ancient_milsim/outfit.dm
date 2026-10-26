@@ -27,7 +27,7 @@
 
 /datum/id_trim/solfed_bitrun
 	trim_icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
-	assignment = "SolFed Marine"
+	assignment = "太阳联邦陆战队员"
 	trim_state = "trim_solfed"
 
 /datum/outfit/cin_soldier_corpse
@@ -82,4 +82,4 @@
 		id_card.update_label()
 
 /datum/id_trim/nri/ancient_milsim
-	assignment = "CIN Operative"
+	assignment = "CIN 特工"

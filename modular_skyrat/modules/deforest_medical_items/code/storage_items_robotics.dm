@@ -1,7 +1,7 @@
 // Pre-packed medkit for healing synths and repairing their wounds rapidly in the field
 /obj/item/storage/medkit/robotic_repair
-	name = "robotic repair equipment kit"
-	desc = "An industrial-strength plastic box filled with supplies for repairing synthetics from critical damage."
+	name = "机械修复装备包"
+	desc = "一个工业级强化塑料箱，里面装满了用于把合成体从严重损伤中修复过来的补给。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/storage.dmi'
 	icon_state = "synth_medkit"
 	inhand_icon_state = "medkit"
@@ -45,10 +45,10 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/medkit/robotic_repair/preemo
-	name = "premium robotic repair equipment kit"
-	desc = "An industrial-strength plastic box filled with supplies for repairing synthetics from critical damage. \
-		This one has extra storage on the sides for even more equipment than the standard medkit model, \
-		and can also fit smaller tools and welding gear inside."
+	name = "高级机械修复装备包"
+	desc = "一个工业级强化塑料箱，里面装满了用于把合成体从严重损伤中修复过来的补给。 \
+		这一款两侧额外增加了储物空间，比标准医疗包型号能装更多装备， \
+		还可以在里面放下更小的工具和焊接装备。"
 	icon_state = "synth_medkit_super"
 
 /obj/item/storage/medkit/robotic_repair/preemo/Initialize(mapload)

@@ -1,17 +1,17 @@
 // Machine categories
 
-#define FABRICATOR_CATEGORY_FLATPACK_MACHINES "/Flatpacked Machines"
-#define FABRICATOR_SUBCATEGORY_MANUFACTURING "/Manufacturing"
-#define FABRICATOR_SUBCATEGORY_POWER "/Power"
-#define FABRICATOR_SUBCATEGORY_MATERIALS "/Materials"
-#define FABRICATOR_SUBCATEGORY_ATMOS "/Atmospherics"
+#define FABRICATOR_CATEGORY_FLATPACK_MACHINES "/扁平包装机械"
+#define FABRICATOR_SUBCATEGORY_MANUFACTURING "/制造"
+#define FABRICATOR_SUBCATEGORY_POWER "/电力"
+#define FABRICATOR_SUBCATEGORY_MATERIALS "/材料"
+#define FABRICATOR_SUBCATEGORY_ATMOS "/大气"
 
 // Techweb node that shouldnt show up anywhere ever specifically for the fabricator to work with
 
 /datum/techweb_node/colony_fabricator_flatpacks
 	id = TECHWEB_NODE_COLONY_FLATPACKS
-	display_name = "Colony Fabricator Flatpack Designs"
-	description = "Contains all of the colony fabricator's flatpack machine designs."
+	display_name = "殖民地制造机扁平包装设计"
+	description = "包含殖民地制造机的所有扁平包装机械设计。"
 	design_ids = list(
 		"flatpack_solar_panel",
 		"flatpack_solar_tracker",
@@ -34,10 +34,10 @@
 // Lets the colony lathe make more colony lathes but at very hihg cost, for fun
 
 /datum/design/flatpack_colony_fabricator
-	name = "Flat-Packed Colony Fabricator"
-	desc = "A deployable fabricator capable of producing other flat-packed machines and other special equipment tailored for \
-		rapidly constructing functional structures given resources and power. While it cannot be upgraded, it can be repacked \
-		and moved to any location you see fit."
+	name = "扁平包装殖民地制造机"
+	desc = "一台可部署的制造机，能够生产其他扁平包装机械，以及专为在拥有资源与电力时快速建造实用结构而\
+		量身定制的特殊设备。虽然它无法升级，但可以重新打包\
+		并搬到任何你认为合适的地方。"
 	id = "flatpack_colony_fab"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -58,8 +58,8 @@
 // Solar panels and trackers
 
 /datum/design/flatpack_solar_panel
-	name = "Flat-Packed Solar Panel"
-	desc = "A deployable solar panel, able to be repacked after placement for relocation or recycling."
+	name = "扁平包装太阳能板"
+	desc = "一台可部署的太阳能板，放置后可以重新打包，以便搬迁或回收。"
 	id = "flatpack_solar_panel"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -74,8 +74,8 @@
 	construction_time = 5 SECONDS
 
 /datum/design/flatpack_solar_tracker
-	name = "Flat-Packed Solar Tracker"
-	desc = "A deployable solar tracker, able to be repacked after placement for relocation or recycling."
+	name = "扁平包装太阳能追踪器"
+	desc = "一台可部署的太阳能追踪器，放置后可以重新打包，以便搬迁或回收。"
 	id = "flatpack_solar_tracker"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -92,9 +92,9 @@
 // Arc furance
 
 /datum/design/flatpack_arc_furnace
-	name = "Flat-Packed Arc Furnace"
-	desc = "A deployable furnace for refining ores. While slower and less safe than conventional refining methods, \
-		it multiplies the output of refined materials enough to still outperform simply recycling ore."
+	name = "扁平包装电弧炉"
+	desc = "一台可部署的矿石精炼炉。虽然比传统精炼方式更慢、也更不安全， \
+		但它对精炼材料的产出倍率足以让它仍胜过简单回收矿石。"
 	id = "flatpack_arc_furnace"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -111,8 +111,8 @@
 // Power storage structures
 
 /datum/design/flatpack_power_storage
-	name = "Flat-Packed Stationary Battery"
-	desc = "A deployable station-scale power cell with an overall low capacity, but high input and output rate."
+	name = "扁平包装固定式电池"
+	desc = "一台可部署的空间站级电力电池，总容量较低，但输入输出速率很高。"
 	id = "flatpack_station_battery"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -128,8 +128,8 @@
 	construction_time = 20 SECONDS
 
 /datum/design/flatpack_power_storage_large
-	name = "Flat-Packed Large Stationary Battery"
-	desc = "A deployable station-scale power cell with an overall extremely high capacity, but low input and output rate."
+	name = "扁平包装大型固定式电池"
+	desc = "一台可部署的空间站级电力电池，总容量极高，但输入输出速率较低。"
 	id = "flatpack_station_battery_large"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -147,9 +147,9 @@
 // PACMAN generator but epic!!
 
 /datum/design/flatpack_solids_generator
-	name = "Flat-Packed S.O.F.I.E. Generator"
-	desc = "A deployable plasma-burning generator capable of outperforming even upgraded P.A.C.M.A.N. type generators, \
-		at expense of creating hot carbon dioxide exhaust."
+	name = "扁平包装 S.O.F.I.E. 发电机"
+	desc = "一台可部署的等离子燃烧发电机，性能甚至能超过升级过的 P.A.C.M.A.N. 型发电机， \
+		代价是会排出炽热的二氧化碳废气。"
 	id = "flatpack_fuel_generator"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -168,9 +168,9 @@
 // Buildable RTG that is quite radioactive
 
 /datum/design/flatpack_rtg
-	name = "Flat-Packed Radioisotope Thermoelectric Generator"
-	desc = "A deployable radioisotope generator capable of producing a practically free trickle of power. \
-		Free if you can tolerate the radiation that the machine makes while deployed, that is."
+	name = "扁平包装放射性同位素热电发电机"
+	desc = "一台可部署的放射性同位素发电机，能产生几乎免费的涓流电力。 \
+		当然，前提是你能忍受它在部署期间放出的辐射。"
 	id = "flatpack_rtg"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -189,9 +189,9 @@
 // Thermomachine with decent temperature change rate, but a limited max/min temperature
 
 /datum/design/flatpack_thermomachine
-	name = "Flat-Packed Atmospheric Temperature Regulator"
-	desc = "A deployable temperature control device for use with atmospherics pipe systems. \
-		Limited in its temperature range, however comes with a higher than normal heat capacity."
+	name = "扁平包装大气温度调节器"
+	desc = "一台可部署的温度控制设备，用于大气管道系统。 \
+		其温度范围有限，但热容量高于标准水平。"
 	id = "flatpack_thermo"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -208,9 +208,9 @@
 // Ore silo except it beeps
 
 /datum/design/flatpack_ore_silo
-	name = "Flat-Packed Ore Silo"
-	desc = "An all-in-one materials management solution. Connects resource-using machines \
-		through a network of distrobution systems."
+	name = "扁平包装矿石筒仓"
+	desc = "一体化的材料管理方案。通过分配系统网络\
+		连接各类消耗资源的机器。"
 	id = "flatpack_ore_silo"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -227,10 +227,10 @@
 // Wind turbine, produces tiny amounts of power when placed outdoors in an atmosphere, but makes significantly more if there's a storm in that area
 
 /datum/design/flatpack_turbine_team_fortress_two
-	name = "Flat-Packed Miniature Wind Turbine"
-	desc = "A deployable fabricator capable of producing other flat-packed machines and other special equipment tailored for \
-		rapidly constructing functional structures given resources and power. While it cannot be upgraded, it can be repacked \
-		and moved to any location you see fit. This one makes specialized engineering designs and tools."
+	name = "扁平包装微型风力涡轮机"
+	desc = "一台可部署的制造机，能够生产其他扁平包装机械，以及专为在拥有资源与电力时快速建造实用结构而\
+		量身定制的特殊设备。虽然它无法升级，但可以重新打包\
+		并搬到任何你认为合适的地方。这一台能制造专业的工程设计与工具。"
 	id = "flatpack_turbine_team_fortress_two"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -248,11 +248,11 @@
 // Stirling generator, kinda like a TEG but on a smaller scale and producing less insane amounts of power
 
 /datum/design/flatpack_bootleg_teg
-	name = "Flat-Packed Stirling Generator"
-	desc = "An industrial scale stirling generator. Stirling generators operate by intaking \
-		hot gasses through their inlet pipes, and being cooled by the ambient air around them. \
-		The cycling compression and expansion that this creates creates power, and this one is made \
-		to make power on the scale of small stations and outposts."
+	name = "扁平包装斯特林发电机"
+	desc = "一台工业规模的斯特林发电机。斯特林发电机通过进气管道吸入\
+		高温气体，并依靠周围的环境空气冷却来运作。\
+		由此产生的循环压缩与膨胀会发电，而这一台的设计目标\
+		是为小型空间站与前哨站规模的设施供电。"
 	id = "flatpack_bootleg_teg"
 	build_type = COLONY_FABRICATOR
 	materials = list(

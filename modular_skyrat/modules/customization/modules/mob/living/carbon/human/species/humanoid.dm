@@ -1,5 +1,5 @@
 /datum/species/humanoid
-	name = "Humanoid"
+	name = "类人"
 	id = SPECIES_HUMANOID
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -27,10 +27,10 @@
 	)
 
 /datum/species/humanoid/get_species_description()
-	return "This is a template species for your own creations!"
+	return "这是一个供你自行创作的模板种族！"
 
 /datum/species/humanoid/get_species_lore()
-	return list("Make sure you fill out your own custom species lore!")
+	return list("请记得填写你自己的自定义种族背景故事！")
 
 /datum/species/humanoid/prepare_human_for_preview(mob/living/carbon/human/human)
 	var/main_color = "#722011"

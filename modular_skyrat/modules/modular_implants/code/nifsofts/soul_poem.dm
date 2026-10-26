@@ -1,5 +1,5 @@
 /obj/item/disk/nifsoft_uploader/soul_poem
-	name = "Soul Poem"
+	name = "灵魂之诗"
 	loaded_nifsoft = /datum/nifsoft/soul_poem
 
 //Modular Persistence variables for the soul_poem NIFSoft
@@ -10,8 +10,8 @@
 	var/soul_poem_nifsoft_message
 
 /datum/nifsoft/soul_poem
-	name = "Poem of Communal Souls"
-	program_desc = "The Poem of Communal Souls was the first commission the Altspace Coven ever took; a rare occasion for their involvement in NIFSoft development. This program was originally commissioned by a then-underground group of ravers as a sort of 'social contagion' for the purpose of spreading peace, love, unity, and respect. The software operates by allowing different users running it to ambiently share 'Verses' with each other, small portions of their unique nanomachine fields that carry user-set messages; sometimes actual poetry, short biographies, or simple hope to meet and bond with other NIF users. Each trade of nanomachine packets represents a physical memory of the user who traded it, some long-time 'Poets' surrounded with a dazzling rainbow of different past messages."
+	name = "共有灵魂之诗"
+	program_desc = "《共有灵魂之诗》是交错空间巫团接下的第一份委托；她们极少涉足 NIFSoft 开发，这次算是难得一遇。该程序最初由一群当时还在地下活动的锐舞爱好者委托开发，作为一种“社交传染”，用以传播和平、爱、团结与尊重。这款软件让运行它的不同用户能够彼此环境性地分享“诗节”，即各自独特纳米机器场中携带用户自设讯息的微小片段；这些讯息有时是真正的诗歌、简短的自传，或仅仅是与其它 NIF 用户相识相交的期望。每一次纳米机器数据包的交换，都代表着交换者的一段真实记忆，一些长期的“诗人”周身环绕着由过往讯息组成的绚丽彩虹。"
 	persistence = TRUE
 	purchase_price = 0 //It came free with your NIF.
 	buying_category = NIFSOFT_CATEGORY_FUN
@@ -40,11 +40,11 @@
 		transmitted_name = linked_mob.name
 
 	if(!transmitted_message)
-		transmitted_message = "Hello, I am [transmitted_name], it's nice to meet you!"
+		transmitted_message = "你好，我是 [transmitted_name]，很高兴认识你！"
 
 	transmitted_identifier = linked_mob.ckey
 
-	add_message("soul_poem_nifsoft", name, "Hello World")
+	add_message("soul_poem_nifsoft", name, "你好，世界")
 	proximity_datum = new(linked_mob, 1)
 	proximity_datum.parent_nifsoft = WEAKREF(src)
 
@@ -66,7 +66,7 @@
 	if(!received_message || !receiving_data)
 		return FALSE
 
-	var/message_name = "Unkown User"
+	var/message_name = "未知用户"
 	if(received_name)
 		message_name = received_name
 

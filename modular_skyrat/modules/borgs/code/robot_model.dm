@@ -29,7 +29,7 @@
 
 //STANDARD
 /obj/item/robot_model/standard
-	name = "Standard"
+	name = "标准"
 	borg_skins = list(
 		"Default" = list(SKIN_ICON_STATE = "robot", SKIN_FEATURES = list(TRAIT_R_SMALL)),
 		"Marina" = list(SKIN_ICON_STATE = "marinasd", SKIN_ICON = CYBORG_ICON_STANDARD, SKIN_FEATURES = list(TRAIT_R_UNIQUEWRECK)),
@@ -311,7 +311,7 @@
 
 // CARGO
 /obj/item/robot_model/cargo
-	name = "Cargo"
+	name = "货运"
 	basic_modules = list(
 		/obj/item/stamp/granted,
 		/obj/item/stamp/denied,
@@ -361,7 +361,7 @@
 
 //SYNDICATE
 /obj/item/robot_model/syndicatejack
-	name = "Syndicate"
+	name = "辛迪加"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/extinguisher,
@@ -431,7 +431,7 @@
 
 //NINJA
 /obj/item/robot_model/ninja
-	name = "Spider Clan Assault"
+	name = "蜘蛛氏族突击型"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/katana/ninja_blade,
@@ -475,7 +475,7 @@
 	. = ..()
 
 /obj/item/robot_model/ninja/ninja_medical
-	name = "Spider Clan Medical"
+	name = "蜘蛛氏族医疗型"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/katana/ninja_blade,
@@ -501,7 +501,7 @@
 	model_select_alternate_icon = 'modular_skyrat/modules/borgs/icons/screen_cyborg.dmi'
 
 /obj/item/robot_model/ninja_saboteur
-	name = "Spider Clan Saboteur"
+	name = "蜘蛛氏族破坏型"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/katana/ninja_blade,
@@ -549,4 +549,4 @@
 
 /obj/item/robot_model/ninja_saboteur/do_transform_animation()
 	. = ..()
-	to_chat(loc, span_userdanger("While you have picked the saboteur model, that doesn't mean you are allowed to sabotage the station by delaminating the supermatter or opening all the doors to the armory, you should still ahelp to ask the permission to do that and the reason for it."))
+	to_chat(loc, span_userdanger("虽然你选择了破坏型机体，但这并不意味着你可以通过让超物质崩解或打开军械库所有大门来破坏空间站；你仍然应该先向管理员求助，询问是否允许这样做以及理由。"))

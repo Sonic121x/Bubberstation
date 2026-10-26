@@ -1,6 +1,6 @@
 /obj/structure/xen_crystal
-	name = "resonating crystal"
-	desc = "A strange resinating crystal."
+	name = "共鸣水晶"
+	desc = "一块奇怪的共鸣水晶。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/plants.dmi'
 	icon_state = "crystal"
 	light_power = 2
@@ -19,16 +19,16 @@
 /obj/structure/xen_crystal/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(harvested)
-		to_chat(user, span_warning("[src] has already been harvested!"))
+		to_chat(user, span_warning("[src] 已经被采摘过了！"))
 		return
-	to_chat(user, span_notice("You start harvesting [src]!"))
+	to_chat(user, span_notice("你开始采摘 [src]！"))
 	if(do_after(user, 5 SECONDS, src))
 		harvest(user)
 
 /obj/structure/xen_crystal/proc/harvest(mob/living/user)
 	if(harvested)
 		return
-	to_chat(user, span_notice("You harvest [src]!"))
+	to_chat(user, span_notice("你采摘了 [src]！"))
 	var/obj/item/grenade/xen_crystal/nade = new (get_turf(src))
 	nade.color = color
 	harvested = TRUE
@@ -42,8 +42,8 @@
 		icon_state = "crystal"
 
 /obj/item/grenade/xen_crystal
-	name = "xen crystal"
-	desc = "A crystal with anomalous properties."
+	name = "异星水晶"
+	desc = "一块具有异常性质的水晶。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/plants.dmi'
 	icon_state = "crystal_grenade"
 	/// What range do we effect mobs?
@@ -61,12 +61,12 @@
 		if(is_type_in_list(mob_to_neutralize, blacklisted_mobs))
 			return
 		mob_to_neutralize.add_faction(factions)
-		mob_to_neutralize.visible_message(span_green("[mob_to_neutralize] is overcome by a wave of peace and tranquility!"))
+		mob_to_neutralize.visible_message(span_green("[mob_to_neutralize] 被一阵和平与宁静的浪潮淹没了！"))
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(mob_to_neutralize))
 	qdel(src)
 
 /datum/export/xen_crystal
 	cost = CARGO_CRATE_VALUE * 6 //1200
-	unit_name = "anomalous crystal sample"
+	unit_name = "异常水晶样品"
 	export_types = list(/obj/item/grenade/xen_crystal)
 	include_subtypes = FALSE

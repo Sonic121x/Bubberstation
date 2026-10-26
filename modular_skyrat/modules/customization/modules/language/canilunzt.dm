@@ -1,6 +1,6 @@
 /datum/language/canilunzt
 	name = "Canilunzt"
-	desc = "A somewhat simple language consisting of heavily articulate barks, growls, yapping, and combined movements of the tail and ears. It's natively spoken by the Vulpkanin, although certain groups of gene modders have adopted it as a secondary form of communication. Its parlance has been loosely compared to the Germanic language group."
+	desc = "一种相对简单的语言，由咬字极为清晰的吠叫、低吼、尖鸣，以及尾巴与耳朵的组合动作构成。它是沃尔普卡宁人的母语，不过某些基因改造者群体也把它当作次要交流方式。人们粗略地将其腔调与日耳曼语族相提并论。"
 	key = "7"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 80

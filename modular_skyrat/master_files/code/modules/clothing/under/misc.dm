@@ -15,8 +15,8 @@
 */
 
 /obj/item/clothing/under/misc/skyrat/gear_harness
-	name = "gear harness"
-	desc = "A simple, inconspicuous harness replacement for a jumpsuit."
+	name = "装备背带"
+	desc = "一条简单低调的背带，可以代替连体服。"
 	icon_state = "gear_harness"
 	body_parts_covered = NONE
 	attachment_slot_override = CHEST
@@ -24,32 +24,32 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/misc/skyrat/gear_harness/eve
-	name = "collection of leaves"
-	desc = "Three leaves, designed to cover the nipples and genetalia of the wearer. A foe so proud will first the weaker seek."
+	name = "一束树叶"
+	desc = "三片树叶，用来遮住穿戴者的乳头和生殖器。骄傲的敌人总是先找弱者下手。"
 	icon_state = "eve"
 	body_parts_covered = CHEST|GROIN
 
 /obj/item/clothing/under/misc/skyrat/gear_harness/adam
-	name = "leaf"
-	desc = "A single leaf, designed to cover the genitalia of the wearer. Seek not temptation."
+	name = "一片树叶"
+	desc = "一片树叶，用来遮住穿戴者的生殖器。莫去寻求诱惑。"
 	icon_state = "adam"
 	body_parts_covered = GROIN
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 /obj/item/clothing/under/misc/skyrat/taccas
-	name = "tacticasual uniform"
-	desc = "A white wifebeater on top of some cargo pants. For when you need to carry various beers."
+	name = "战术休闲制服"
+	desc = "白色背心配一条工装裤。适合你需要随身带各种啤酒的时候。"
 	icon_state = "tac_s"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/misc/skyrat/mechanic
-	name = "mechanic's overalls"
-	desc = "An old-fashioned pair of brown overalls, along with assorted pockets and belt-loops."
+	name = "机械师工装裤"
+	desc = "一条老式棕色工装裤，附有各式口袋和裤带环。"
 	icon_state = "mechanic"
 
 /obj/item/clothing/under/misc/skyrat/utility
-	name = "general utility uniform"
-	desc = "A utility uniform worn by civilian-ranked crew."
+	name = "通用实用制服"
+	desc = "民用级别的船员穿着的实用制服。"
 	icon_state = "utility"
 	body_parts_covered = CHEST|ARMS|GROIN|LEGS
 	can_adjust = FALSE

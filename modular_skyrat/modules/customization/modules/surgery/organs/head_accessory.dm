@@ -1,6 +1,6 @@
 /obj/item/organ/head_accessory
-	name = "head accessory"
-	desc = "It goes on the head."
+	name = "头部饰品"
+	desc = "戴在头上的。"
 	icon_state = "random_fly_1"
 
 	mutantpart_key = "head_accessory"

@@ -42,39 +42,39 @@
 */
 
 /obj/item/clothing/under/dress/skirt/skyrat/swept
-	name = "swept skirt"
-	desc = "Formal skirt."
+	name = "斜摆短裙"
+	desc = "正式短裙。"
 	icon_state = "skirt_swept"
 	body_parts_covered = GROIN
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/dress/skirt/skyrat/striped_skirt
-	name = "Striped Skirt"
-	desc = "A red side-slit skirt with stripes! Comes with a matching two-tone bra."
+	name = "条纹短裙"
+	desc = "一条带条纹的红色侧开衩短裙！附赠相配的双色胸罩。"
 	icon_state = "striped_skirt"
 	body_parts_covered = CHEST|GROIN|LEGS
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/dress/skirt/skyrat/red_skirt
-	name = "Red Skirt"
-	desc = "An eye-catching knee-length red skirt, with a golden-yellow trim. Comes with a matching two-tone bra."
+	name = "红色短裙"
+	desc = "一条吸睛的及膝红裙，带金黄色滚边。附赠相配的双色胸罩。"
 	icon_state = "red_skirt"
 	body_parts_covered = CHEST|GROIN|LEGS
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/dress/skirt/skyrat/black_skirt
-	name = "Black Skirt"
-	desc = "A black side-slit skirt with a golden-yellow trim. Screams 'affluent goth'. Comes with a funky-looking matching bra."
+	name = "黑色短裙"
+	desc = "一条黑色侧开衩短裙，带金黄色滚边。浑身上下都在喊“有钱哥特”。附赠一件造型古怪的相配胸罩。"
 	icon_state = "black_skirt"
 	body_parts_covered = CHEST|GROIN|LEGS
 	can_adjust = TRUE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/dress/skirt/skyrat/turtleskirt_knit //Essentially the same as the Turtleneck Skirt but with a different texture
-	name = "cableknit skirt"
-	desc = "A casual turtleneck skirt, with a cableknit pattern."
+	name = "绞花针织短裙"
+	desc = "一条休闲的高领短裙，带有绞花针织花纹。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt/skyrat/turtleskirt_knit"
 	post_init_icon_state = "turtleskirt_knit"
@@ -87,8 +87,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/dress/skirt/skyrat/jean
-	name = "jean skirt"
-	desc = "Technically, is there much difference between these and jorts? It's just one big hole instead of two. Does that make this a jirt?"
+	name = "牛仔短裙"
+	desc = "严格来说，它和牛仔短裤真有那么大区别吗？只不过是一个大洞而不是两个。那这算不算“牛裙”？"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt/skyrat/jean"
 	post_init_icon_state = "jean_skirt"
@@ -102,8 +102,8 @@
 	body_parts_covered = GROIN
 
 /obj/item/clothing/under/dress/skirt/skyrat/lone_skirt
-	name = "skirt"
-	desc = "Just a skirt! Hope you have a tanktop to wear with this."
+	name = "短裙"
+	desc = "就是一条短裙！希望你有一件背心可以搭配。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt/skyrat/lone_skirt"
 	post_init_icon_state = "lone_skirt"
@@ -114,8 +114,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skirt/skyrat/medium
-	name = "medium skirt"
-	desc = "An appealing medium-length skirt. Top not included."
+	name = "中长裙"
+	desc = "一条迷人的中长裙。不含上衣。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt/skyrat/medium"
 	post_init_icon_state = "medium_skirt"
@@ -127,8 +127,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skirt/skyrat/long
-	name = "long skirt"
-	desc = "An appealing long skirt. At this point does it qualify as a dress?"
+	name = "长裙"
+	desc = "一条迷人的长裙。到了这个长度，它算不算连衣裙了？"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skirt/skyrat/long"
 	post_init_icon_state = "long_skirt"
@@ -145,8 +145,8 @@
 */
 
 /obj/item/clothing/under/dress/skyrat/short_dress
-	name = "short dress"
-	desc = "An extremely short dress with a lovely sash and flower - only for those with good self-confidence."
+	name = "短连衣裙"
+	desc = "一条极短的连衣裙，配有可爱的腰带和花朵——只适合自信心十足的人。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skyrat/short_dress"
 	post_init_icon_state = "short_dress"
@@ -159,33 +159,33 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/dress/skyrat/pinktutu
-	name = "pink tutu"
-	desc = "A fluffy pink tutu."
+	name = "粉色芭蕾舞裙"
+	desc = "一条蓬松的粉色芭蕾舞裙。"
 	icon_state = "pinktutu"
 
 /obj/item/clothing/under/dress/skyrat/flower
-	name = "flower dress"
-	desc = "Lovely dress. Colored like the autumn leaves."
+	name = "花朵连衣裙"
+	desc = "漂亮的连衣裙。染成秋叶一般的颜色。"
 	icon_state = "flower_dress"
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/dress/skyrat/redformal
-	name = "formal red dress"
-	desc = "Not too wide flowing, but big enough to make an impression."
+	name = "红色礼服"
+	desc = "不算太宽大飘逸，但足够醒目，能给人留下印象。"
 	icon_state = "formal_red"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/skyrat/countess
-	name = "countess dress"
-	desc = "A wide flowing dress fitting for a countess; may be prone to catching onto stuff as you pass."
+	name = "伯爵夫人礼服"
+	desc = "一条宽大飘逸、适合伯爵夫人的礼服；走过时可能会被东西挂住。"
 	icon_state = "countess"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/skyrat/strapless
-	name = "strapless dress"
-	desc = "Typical formal wear with no straps, instead opting to be tied at the waist. Most likely will need constant adjustments."
+	name = "无肩带连衣裙"
+	desc = "典型的无肩带正装，改用腰部系带固定。大概需要时不时调整一下。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skyrat/strapless"
 	post_init_icon_state = "dress_strapless"
@@ -196,8 +196,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skyrat/pentagram
-	name = "pentagram strapped dress"
-	desc = "A soft dress with straps designed to rest as a pentragram. Isn't this against NT's whole \"Authorized Religion\" stuff?"
+	name = "五芒星系带连衣裙"
+	desc = "一条柔软的连衣裙，系带被设计成五芒星的形状。这不是违反了纳米传讯那套“宗教授权”的规定吗？"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/skyrat/pentagram"
 	post_init_icon_state = "dress_pentagram"
@@ -208,8 +208,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/dress/skyrat/jute
-	name = "Jacarta Dress"
-	desc = "A thick dress with a strong rough exterior layer; lined with a soft breathable thin layer. It's loose-fitting, and has a tag inside that says 'Made in Jacarta'."
+	name = "雅加达连衣裙"
+	desc = "一条厚实的连衣裙，外层粗糙结实，内衬是柔软透气的薄层。版型宽松，里面还有一个标签写着“雅加达制造”。"
 	icon_state = "jute"
 	body_parts_covered = CHEST|GROIN|LEGS
 	can_adjust = TRUE

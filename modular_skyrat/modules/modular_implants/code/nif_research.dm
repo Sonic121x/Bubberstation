@@ -1,6 +1,6 @@
 /datum/design/nifsoft_remover
-	name = "Lopland 'Wrangler' NIF-Cutter"
-	desc = "A small device that lets the user remove NIFSofts from a NIF user."
+	name = "洛普兰“牧马人”NIF 切割器"
+	desc = "一种小型装置，可让使用者从 NIF 用户身上移除 NIFSoft。"
 	id = "nifsoft_remover"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/nifsoft_remover
@@ -15,8 +15,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/nifsoft_money_sense
-	name = "Automatic Appraisal NIFSoft"
-	desc = "A NIFSoft datadisk containing the Automatic Appraisal NIFsoft."
+	name = "自动估价 NIFSoft"
+	desc = "一张包含自动估价 NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_money_sense"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/disk/nifsoft_uploader/money_sense
@@ -32,8 +32,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/soulcatcher_device
-	name = "Evoker-Type RSD"
-	desc = "An RSD instrument that lets the user pull the consciousness from a body and store it virtually."
+	name = "唤魂型 RSD"
+	desc = "一种 RSD 仪器，可让使用者将意识从躯体中抽出并以虚拟形式储存。"
 	id = "soulcatcher_device"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/handheld_soulcatcher
@@ -48,8 +48,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/mini_soulcatcher
-	name = "Poltergeist-Type RSD"
-	desc = "A miniature version of a Soulcatcher that can be attached to various objects."
+	name = "骚灵型 RSD"
+	desc = "灵魂捕手的微型版本，可附着在各种物体上。"
 	id = "mini_soulcatcher"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/attachable_soulcatcher
@@ -75,50 +75,50 @@
 	)
 
 /datum/design/nifsoft_hud/medical
-	name = "Medical HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Medical HUD NIFsoft."
+	name = "医疗 HUD NIFSoft"
+	desc = "一张包含医疗 HUD NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_hud_medical"
 	build_path = /obj/item/disk/nifsoft_uploader/med_hud
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nifsoft_hud/security
-	name = "Security HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Security HUD NIFsoft."
+	name = "安保 HUD NIFSoft"
+	desc = "一张包含安保 HUD NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_hud_security"
 	build_path = /obj/item/disk/nifsoft_uploader/sec_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/nifsoft_hud/cargo
-	name = "Permit HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Permit HUD NIFsoft."
+	name = "许可 HUD NIFSoft"
+	desc = "一张包含许可 HUD NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_hud_cargo"
 	build_path = /obj/item/disk/nifsoft_uploader/permit_hud
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/nifsoft_hud/diagnostic
-	name = "Diagnostic HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Diagnostic HUD NIFsoft."
+	name = "诊断 HUD NIFSoft"
+	desc = "一张包含诊断 HUD NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_hud_diagnostic"
 	build_path = /obj/item/disk/nifsoft_uploader/diag_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/nifsoft_hud/science
-	name = "Science HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Science HUD NIFsoft."
+	name = "科学 HUD NIFSoft"
+	desc = "一张包含科学 HUD NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_hud_science"
 	build_path = /obj/item/disk/nifsoft_uploader/sci_hud
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/nifsoft_hud/meson
-	name = "Meson HUD NIFSoft"
-	desc = "A NIFSoft datadisk containing the Meson HUD NIFsoft."
+	name = "介子 HUD NIFSoft"
+	desc = "一张包含介子 HUD NIFSoft 的 NIFSoft 数据磁盘。"
 	id = "nifsoft_hud_meson"
 	build_path = /obj/item/disk/nifsoft_uploader/meson_hud
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/nif_hud_kit
-	name = "NIF HUD Retrofitter"
-	desc = "A kit that modifies select glasses to display HUDs for NIFs."
+	name = "NIF HUD 改装套件"
+	desc = "一套改装套件，可将部分眼镜改造为显示 NIF 的 HUD。"
 	id = "nifsoft_hud_kit"
 	build_type = PROTOLATHE | AWAY_LATHE
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SERVICE | DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SECURITY

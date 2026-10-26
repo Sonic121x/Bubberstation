@@ -2,8 +2,8 @@
 //node1, air1, network1 correspond to output
 
 /obj/machinery/atmospherics/components/binary/circulator
-	name = "circulator"
-	desc = "A gas circulating turbine and heat exchanger."
+	name = "环流器"
+	desc = "一台气体循环涡轮与热交换器。"
 	icon = 'modular_skyrat/master_files/icons/obj/machines/thermoelectric.dmi'
 	icon_state = "circ-unassembled-0"
 	density = TRUE
@@ -42,16 +42,16 @@
 /obj/machinery/atmospherics/components/binary/circulator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_RMB] = "Flip"
+		context[SCREENTIP_CONTEXT_RMB] = "翻转"
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
-			context[SCREENTIP_CONTEXT_RMB] = "Rotate"
+			context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除" : "进行"]锚定"
+			context[SCREENTIP_CONTEXT_RMB] = "旋转"
 		if(TOOL_MULTITOOL)
-			context[SCREENTIP_CONTEXT_LMB] = "Change to [mode ? "hot" : "cold"] mode"
+			context[SCREENTIP_CONTEXT_LMB] = "切换为 [mode ? "热" : "冷"]模式"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/atmospherics/components/binary/circulator/Destroy()
@@ -156,16 +156,16 @@
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
 
 	if(!panel_open)
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "先打开面板！")
 		return TRUE
 
 	if(generator)
-		balloon_alert(user, "disconnect [generator] first!")
+		balloon_alert(user, "先断开 [generator]！")
 		return TRUE
 
 	set_anchored(!anchored)
 	I.play_tool_sound(src)
-	balloon_alert(user, "you [anchored?"secure":"unsecure"] [src].")
+	balloon_alert(user, "你[anchored?"固定":"松开"]了 [src]。")
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]
 	var/obj/machinery/atmospherics/node2 = nodes[2]
@@ -218,22 +218,22 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	if(generator)
-		balloon_alert(user, "disconnect [generator] first!")
+		balloon_alert(user, "先断开 [generator]！")
 		return TRUE
 
 	mode = !mode
-	balloon_alert(user, "you set [src] to [mode?"cold":"hot"] mode.")
+	balloon_alert(user, "你把 [src] 设为[mode?"冷":"热"]模式。")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(generator)
-		balloon_alert(user, "disconnect the generator first!")
+		balloon_alert(user, "先断开发电机！")
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	balloon_alert(user, "you [panel_open?"open":"close"] the panel on [src].")
+	balloon_alert(user, "你[panel_open?"打开":"关上"]了 [src] 的面板。")
 	update_icon_nopipes()
 	return TRUE
 
@@ -249,7 +249,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)
 	if(anchored)
-		balloon_alert(user, "[src] is anchored!")
+		balloon_alert(user, "[src] 已被固定！")
 		return TRUE
 	if(!panel_open)
 		circulator_flip()
@@ -275,7 +275,7 @@
 	pixel_x = 0
 	pixel_y = 0
 
-GAME_VERB_SRC(/obj/machinery/atmospherics/components/binary/circulator, circulator_flip, oview(1), "Flip", "Object")
+GAME_VERB_SRC(/obj/machinery/atmospherics/components/binary/circulator, circulator_flip, oview(1), "翻转", "Object")
 	if(!ishuman(usr))
 		return
 	flip(usr)
@@ -289,7 +289,7 @@ GAME_VERB_SRC(/obj/machinery/atmospherics/components/binary/circulator, circulat
 // DO A FLIP
 /obj/machinery/atmospherics/components/binary/circulator/proc/flip(mob/living/carbon/human/user)
 	flipped = !flipped
-	balloon_alert(user, "you flip [src].")
+	balloon_alert(user, "你把 [src] 翻了过来。")
 	playsound(src, 'sound/items/tools/change_drill.ogg', 50)
 	update_icon_nopipes()
 

@@ -1,5 +1,5 @@
 /datum/armament_entry/hecu/misc
-	category = "Misc. Equipment"
+	category = "杂项装备"
 	category_item_limit = 24
 
 /datum/armament_entry/hecu/misc/cigarettes

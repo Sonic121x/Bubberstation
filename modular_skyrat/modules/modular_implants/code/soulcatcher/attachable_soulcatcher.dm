@@ -24,7 +24,7 @@
 /// Adds text to the examine text of the parent item, explaining that the item can be used to enable the use of NIFSoft HUDs
 /datum/component/carrier/soulcatcher/attachable/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_cyan("[source] has a soulcatcher attached to it, <b>Ctrl+Shift+Click</b> to use it.")
+	examine_text += span_cyan("[source] 上附着一个灵魂捕手，<b>Ctrl+Shift+点击</b>即可使用。")
 
 /datum/component/carrier/soulcatcher/attachable/proc/bring_up_ui(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -52,8 +52,8 @@
 	return ..()
 
 /obj/item/attachable_soulcatcher
-	name = "Poltergeist-Type RSD"
-	desc = "This device, a polymorphic nanomachine net, wraps around objects of most sizes and allows them to function as a container for Resonance. The soul in question within the vessel is imbued much like it would be in a body or a normal Soulcatcher, perceiving the world and even speaking out of their new form. The nanomachine net of the device allows for the consciousness to somewhat manipulate their container, but any large-scale movement is out of the question."
+	name = "骚灵型 RSD"
+	desc = "这台装置是一张可变形纳米机器网，能包裹大多数尺寸的物体，使其成为承载共鸣的容器。容器中的灵魂会像身处躯体或普通灵魂捕手中那样被灌注，能够感知世界，甚至通过新的形态开口说话。装置的纳米机器网让意识可以一定程度上操纵其容器，但任何大幅度的移动都是不可能的。"
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/devices.dmi'
 	icon_state = "attachable-soulcatcher"
 	w_class = WEIGHT_CLASS_SMALL
@@ -86,11 +86,11 @@
 
 /obj/item/attachable_soulcatcher/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!isitem(interacting_with) || is_type_in_list(interacting_with, blacklisted_items))
-		balloon_alert(user, "incompatible!")
+		balloon_alert(user, "不兼容！")
 		return NONE
 
 	if(interacting_with.GetComponent(/datum/component/carrier/soulcatcher))
-		balloon_alert(user, "already attached!")
+		balloon_alert(user, "已经附着过了！")
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/component/carrier/soulcatcher/new_soulcatcher = interacting_with.AddComponent(/datum/component/carrier/soulcatcher/attachable)

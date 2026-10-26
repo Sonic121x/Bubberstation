@@ -1,6 +1,6 @@
 /datum/species/skrell
-	name = "Skrell"
-	plural_form = "Skrell"
+	name = "斯克雷尔"
+	plural_form = "斯克雷尔"
 	id = SPECIES_SKRELL
 	inherent_traits = list(
 		TRAIT_ADVANCEDTOOLUSER,
@@ -78,8 +78,8 @@
 
 
 /obj/item/organ/tongue/skrell
-	name = "internal vocal sacs"
-	desc = "An Strange looking sac."
+	name = "内部声囊"
+	desc = "一个模样奇怪的囊。"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	icon_state = "tongue"
 	taste_sensitivity = 5
@@ -111,31 +111,31 @@
 	return languages_possible_skrell
 
 /obj/item/organ/heart/skrell
-	name = "skrellian heart"
+	name = "斯克雷尔心脏"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	icon_state = "heart"
 
 /obj/item/organ/brain/skrell
-	name = "spongy brain"
+	name = "海绵状大脑"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	icon_state = "brain2"
 
 /obj/item/organ/eyes/skrell
-	name = "amphibian eyes"
-	desc = "Large black orbs."
+	name = "两栖类眼睛"
+	desc = "巨大的黑色球体。"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	icon_state = "eyes"
 	eye_icon = 'modular_skyrat/modules/organs/icons/skrell_eyes.dmi'
 	flash_protect = FLASH_PROTECTION_NONE //flash buff given their weakness to brute and cold
 
 /obj/item/organ/lungs/skrell
-	name = "skrell lungs"
+	name = "斯克雷尔肺"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	icon_state = "lungs"
 	safe_plasma_max = 40
 	safe_co2_max = 40
 
-	cold_message = "You can't stand the freezing cold with every breath you take!"
+	cold_message = "你每次呼吸都受不了这种刺骨严寒！"
 	cold_level_1_threshold = 248
 	cold_level_2_threshold = 220
 	cold_level_3_threshold = 170
@@ -145,7 +145,7 @@
 	cold_damage_type = BRUTE
 
 
-	hot_message = "You can't stand the searing heat with every breath you take!"
+	hot_message = "你每次呼吸都受不了这种灼热高温！"
 	heat_level_1_threshold = 318
 	heat_level_2_threshold = 348
 	heat_level_3_threshold = 1000
@@ -155,7 +155,7 @@
 	heat_damage_type = BURN
 
 /obj/item/organ/liver/skrell
-	name = "skrell liver"
+	name = "斯克雷尔肝脏"
 	icon_state = "liver"
 	icon = 'modular_skyrat/modules/organs/icons/skrell_organ.dmi'
 	alcohol_tolerance = 5

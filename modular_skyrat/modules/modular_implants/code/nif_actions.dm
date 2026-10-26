@@ -6,7 +6,7 @@
 	check_flags = AB_CHECK_CONSCIOUS
 
 /datum/action/item_action/nif/open_menu
-	name = "Open NIF Menu"
+	name = "打开 NIF 菜单"
 	button_icon_state = "user"
 
 /datum/action/item_action/nif/open_menu/Trigger(trigger_flags)
@@ -14,15 +14,15 @@
 	var/obj/item/organ/cyberimp/brain/nif/target_nif = target
 
 	if(target_nif.calibrating)
-		target_nif.send_message("The NIF is still calibrating, please wait!", TRUE)
+		target_nif.send_message("NIF 仍在校准中，请稍候！", TRUE)
 		return FALSE
 
 	if(target_nif.durability < 1)
-		target_nif.send_message("Durability low!", TRUE)
+		target_nif.send_message("耐久度不足！", TRUE)
 		return FALSE
 
 	if(target_nif.broken)
-		target_nif.send_message("The NIF is unable to be used at this time!", TRUE)
+		target_nif.send_message("当前无法使用 NIF！", TRUE)
 		return FALSE
 
 	if(!.)

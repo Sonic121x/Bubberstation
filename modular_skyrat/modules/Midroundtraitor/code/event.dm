@@ -1,5 +1,5 @@
 /datum/dynamic_ruleset/midround/from_ghosts/lone_infiltrator
-	name = "Syndicate Boarder"
+	name = "辛迪加登船者"
 	config_tag = "Midround Lone Infiltrator"
 	preview_antag_datum = /datum/antagonist/traitor/lone_infiltrator
 	midround_type = LIGHT_MIDROUND

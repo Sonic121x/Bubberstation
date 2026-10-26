@@ -122,7 +122,7 @@
 			return TRUE
 
 		if("rename_room")
-			var/new_room_name = tgui_input_text(usr,"Choose a new name for the room", name, target_room.name)
+			var/new_room_name = tgui_input_text(usr,"为房间选择新名称", name, target_room.name)
 			if(!new_room_name)
 				return FALSE
 
@@ -130,7 +130,7 @@
 			return TRUE
 
 		if("redescribe_room")
-			var/new_room_desc = tgui_input_text(usr,"Choose a new description for the room", name, target_room.room_description, multiline = TRUE)
+			var/new_room_desc = tgui_input_text(usr,"为房间选择新描述", name, target_room.room_description, multiline = TRUE)
 			if(!new_room_desc)
 				return FALSE
 
@@ -156,7 +156,7 @@
 			return TRUE
 
 		if("modify_name")
-			var/new_name = tgui_input_text(usr,"Choose a new name to send messages as", name, target_room.outside_voice)
+			var/new_name = tgui_input_text(usr,"选择发送消息时使用的新名称", name, target_room.outside_voice)
 			if(!new_name)
 				return FALSE
 
@@ -192,7 +192,7 @@
 
 					available_rooms += carrier_component.get_open_rooms()
 
-			var/datum/carrier_room/transfer_room = tgui_input_list(usr, "Choose a room to transfer to", name, available_rooms)
+			var/datum/carrier_room/transfer_room = tgui_input_list(usr, "选择要转移到的房间", name, available_rooms)
 			if(!(transfer_room in available_rooms))
 				return FALSE
 
@@ -200,14 +200,14 @@
 			return TRUE
 
 		if("change_room_color")
-			var/new_room_color = tgui_color_picker(usr, "", "Choose Color", SOULCATCHER_DEFAULT_COLOR) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+			var/new_room_color = tgui_color_picker(usr, "", "选择颜色", SOULCATCHER_DEFAULT_COLOR) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			if(!new_room_color)
 				return FALSE
 
 			target_room.room_color = new_room_color
 
 		if("change_overlay_color")
-			var/new_overlay_color = tgui_color_picker(usr, "", "Choose Color", SOULCATCHER_DEFAULT_COLOR) // BUBBERSTATION EDIT: TGUI COLOR PICKER
+			var/new_overlay_color = tgui_color_picker(usr, "", "选择颜色", SOULCATCHER_DEFAULT_COLOR) // BUBBERSTATION EDIT: TGUI COLOR PICKER
 			// It's okay for us not to have an overlay color
 
 			target_room.overlay_color = new_overlay_color
@@ -225,13 +225,13 @@
 				if(initial(carrier_atom.vore_overlay))
 					if(disable_vore_overlays) // No, we don't want that.
 						continue
-					atom_name += " (Vore)"
+					atom_name += "（Vore）"
 
 				available_overlays[atom_name] = path
 
-			available_overlays += "None"
-			var/target_overlay = tgui_input_list(usr, "Choose a overlay to use", name, available_overlays)
-			if(target_overlay != "None")
+			available_overlays += "无"
+			var/target_overlay = tgui_input_list(usr, "选择要使用的覆盖层", name, available_overlays)
+			if(target_overlay != "无")
 				target_overlay = available_overlays[target_overlay]
 
 			if(!target_overlay)
@@ -261,14 +261,14 @@
 			return TRUE
 
 		if("change_name")
-			var/new_name = tgui_input_text(usr, "Enter a new name for [target_mob]", "Soulcatcher", target_mob)
+			var/new_name = tgui_input_text(usr, "为 [target_mob] 输入新名称", "灵魂捕手", target_mob)
 			if(!new_name)
 				return FALSE
 
 			return SEND_SIGNAL(target_mob, COMSIG_CARRIER_MOB_RENAME, new_name)
 
 		if("reset_name")
-			if(tgui_alert(usr, "Do you wish to reset [target_mob]'s name to default?", "Soulcatcher", list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, "你想将 [target_mob] 的名称重置为默认吗？", "灵魂捕手", list("Yes", "No")) != "Yes")
 				return FALSE
 
 			return SEND_SIGNAL(target_mob, COMSIG_CARRIER_MOB_RESET_NAME)
@@ -280,7 +280,7 @@
 			if(params["narration"])
 				message_sender = null
 
-			message_to_send = tgui_input_text(usr, "Input the message you want to send", name, multiline = TRUE)
+			message_to_send = tgui_input_text(usr, "输入你想发送的消息", name, multiline = TRUE)
 
 			if(!message_to_send)
 				return FALSE
@@ -293,7 +293,7 @@
 			if(!istype(soulcatcher_carrier))
 				return FALSE
 
-			if(tgui_alert(usr, "Are you sure you want to detach the soulcatcher?", parent, list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, "你确定要分离灵魂捕手吗？", parent, list("Yes", "No")) != "Yes")
 				return FALSE
 
 			soulcatcher_carrier.remove_self()
@@ -391,7 +391,7 @@
 
 	switch(action)
 		if("change_name")
-			var/new_name = tgui_input_text(usr, "Enter a new name", "Soulcatcher", name)
+			var/new_name = tgui_input_text(usr, "输入新名称", "灵魂捕手", name)
 			if(!new_name)
 				return FALSE
 
@@ -399,7 +399,7 @@
 			return TRUE
 
 		if("reset_name")
-			if(tgui_alert(usr, "Do you wish to reset your name to default?", "Soulcatcher", list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, "你想将名称重置为默认吗？", "灵魂捕手", list("Yes", "No")) != "Yes")
 				return FALSE
 
 			reset_name()

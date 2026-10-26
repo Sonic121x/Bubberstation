@@ -2,7 +2,7 @@
 #define SUMMONED_ITEM_LIGHT 2
 
 /obj/item/disk/nifsoft_uploader/summoner
-	name = "Grimoire Caeruleam"
+	name = "蔚蓝魔典"
 	loaded_nifsoft = /datum/nifsoft/summoner
 	custom_price = PAYCHECK_CREW * 3
 
@@ -10,8 +10,8 @@
 	custom_price = 0
 
 /datum/nifsoft/summoner
-	name = "Grimoire Caeruleam"
-	program_desc = "The Grimoire Caeruleam is an open-source, virtual decentralized directory of summonable objects originally developed by the Altspace Coven, a post-pagan group of witches first digitized into engrams in the year 2544. These summonable constructs, or 'Icons,' are comprised of delicate patterns of nanomachines serving as a framework and projector for hardlight; the name 'Caeruleam' referencing the blue light an Icon casts in the summoner's hand. While the Grimoire has served thousands thus far, Corporate interests have blocked all access to Icons capable of harming their assets."
+	name = "蔚蓝魔典"
+	program_desc = "蔚蓝魔典是一份开源、虚拟、去中心化的可召唤物品目录，最初由交错空间巫团开发——那是一群后异教时代的女巫，于 2544 年首次被数字化为印痕。这些可召唤的构装体被称为“图标”，由精细的纳米机器图案构成，作为硬光的框架与投影器；“Caeruleam”之名源自图标在召唤者手中投下的蓝光。尽管魔典至今已服务过数千人，但企业势力封锁了所有能够损害其资产的图标。"
 	cooldown = TRUE
 	activation_cost = 100 // Around 1/10th the energy of a standard NIF
 	buying_category = NIFSOFT_CATEGORY_FUN
@@ -21,7 +21,7 @@
 	/// Does the resulting object have a holographic like filter appiled to it?
 	var/holographic_filter = TRUE
 	/// Is there any special tag added at the begining of the resulting object name?
-	var/name_tag = "cerulean "
+	var/name_tag = "蔚蓝"
 	purchase_price = 175
 
 	///The list of items that can be summoned from the NIFSoft.
@@ -48,16 +48,16 @@
 	if(!.)
 		return FALSE
 
-	if(tgui_alert(linked_mob, "Do you wish to summon a new item or dispel an already existing item?", program_name, list("Summon", "Dispel")) == "Dispel")
+	if(tgui_alert(linked_mob, "你想召唤一件新物品，还是取消已存在的物品？", program_name, list("召唤", "取消召唤")) == "取消召唤")
 		refund_activation_cost()
 		if(!length(summoned_items))
-			linked_mob.balloon_alert(linked_mob, "you have no summoned items!")
+			linked_mob.balloon_alert(linked_mob, "你没有已召唤的物品！")
 			return FALSE
 
-		var/obj/item/choice = tgui_input_list(linked_mob, "Choose an object to desummon.", program_name, summoned_items)
+		var/obj/item/choice = tgui_input_list(linked_mob, "选择要取消召唤的物品。", program_name, summoned_items)
 
 		if(!choice)
-			linked_mob.balloon_alert(linked_mob, "you did not choose an item!")
+			linked_mob.balloon_alert(linked_mob, "你没有选择任何物品！")
 			return FALSE
 
 		summoned_items -= choice
@@ -65,7 +65,7 @@
 		return TRUE
 
 	if(length(summoned_items) >= max_summoned_items)
-		linked_mob.balloon_alert(linked_mob, "you have the max amount of items summoned!")
+		linked_mob.balloon_alert(linked_mob, "你已召唤到物品数量上限！")
 		refund_activation_cost()
 		return FALSE
 
@@ -84,7 +84,7 @@
 	new_item.name = name_tag + new_item.name
 
 	if(!linked_mob.put_in_hands(new_item))
-		linked_mob.balloon_alert(linked_mob, "[new_item] fails to materialize in your hands!")
+		linked_mob.balloon_alert(linked_mob, "[new_item] 未能在你手中成形！")
 		qdel(new_item)
 		refund_activation_cost()
 		return FALSE
@@ -155,52 +155,52 @@
 //Summonable Items
 ///A somehow wekaer version of the toy katana
 /obj/item/toy/katana/nanite
-	name = "hexblade"
-	special_desc = "One of the first groups to contribute to the Caeruleam Grimoire's repository were the Malatestan Duelists, a group of mercenary-philosophers seeking to become undisputed masters of the principal art of Cutting. Originally intended as a means of generating perfectly sharp, perfectly unbreakable, and perfectly capable of the Sanctioned Action: to cut. However, these 'blunted' prop Icons are only a mere shadow of what the Duelists originally developed, the only version of the Icon permitted by interstellar law to civilians; normally seen on convention floors or in the hands of those wishing to spar without risk."
+	name = "咒刃"
+	special_desc = "最早向蔚蓝魔典代码库贡献内容的群体之一，是马拉泰斯塔决斗者——一群雇佣兵兼哲学家，追求成为“切割”这门首要技艺无可争议的大师。这些图标最初意在生成完美锋利、完美不可折断，且完美胜任“获准行动”——即切割——的刀刃。然而，这些“钝化”的道具图标只不过是决斗者最初开发成果的一道影子，也是星际法律允许平民持有的唯一版本；通常出现在展会现场，或握在那些想无风险切磋的人手中。"
 	force = 0
 	throwforce = 0
 
 /obj/item/storage/dice/nanite
-	name = "dice set"
-	special_desc = "A gorgeous replication of a gorgeous set of dice. These were modeled after a set of dice originally in the possession of the Selenian Wargaming Society, carved from rare lunar crystals over two hundred years ago. While no one but the Prime Game Master may ever roll even a single piece from the original set, the Society has graciously donated virtual replicas to the Altspace Coven's repo, as a token of their appreciation for aid in more live-action forms of roleplay."
+	name = "骰子套装"
+	special_desc = "一套精美骰子的华丽复制品。其原型是一套两百多年前用稀有月晶雕成的骰子，原为塞勒涅战棋学会所有。虽然除首席游戏主持人外，任何人都不被允许掷出原套骰子中的哪怕一枚，但该学会仍慷慨地将虚拟复制品捐赠给交错空间巫团的代码库，以感谢其在更多真人角色扮演形式中提供的帮助。"
 
 /obj/item/toy/cards/deck/nanite
-	name = "main deck"
-	special_desc = "Another piece of gaming equipment graciously donated from the Selenian Wargaming Society, these cards employ a localized field of near-invisible nanites equipped with advanced eye tracking software; to ensure the display on the cards does not allow for peeking. Additionally, over five hundred thousand variations of the standard fifty two card deck are supported, in all known forms of writing."
+	name = "主牌组"
+	special_desc = "又一件由塞勒涅战棋学会慷慨捐赠的游戏装备。这些卡牌使用了近乎隐形的纳米机器局部场，并配备先进的眼动追踪软件，以确保卡牌显示无法被偷看。此外，标准五十二张牌组支持超过五十万种变化，涵盖所有已知文字。"
 
 /obj/item/toy/cards/deck/tarot/nanite
-	name = "tarot deck"
-	special_desc = "The seventy eight card deck historically used by occultists and esotericists, such as the witches of the Altspace Coven. Containing both the greater secrets of the Major Arcana and the lesser secrets of the Minor Arcana, the full deck is employed as a key tool in cartomancy; and it's said these cards are able to gain insight into the past, present, and future. People who use them for divination ask all sorts of topics, ranging from health to economic issues, but the Coven uses to use them as a guide for traversing their spiritual path, claiming that the non-physical nature of these digitally summonable cards allows readers higher sensitivity to fate itself."
+	name = "塔罗牌组"
+	special_desc = "这副七十八张的牌组历来为神秘学家与秘术师所用，例如交错空间巫团的女巫们。它既包含大阿卡纳的宏大奥秘，也包含小阿卡纳的细微奥秘，整副牌组是纸牌占卜的关键工具；据说这些牌能洞察过去、现在与未来。用它占卜的人会询问各式各样的话题，从健康到经济问题无所不包，但巫团则用它作为指引自身灵性道路的工具，并声称这些可由数字召唤的卡牌所具有的非物质特性，能让占卜者对命运本身更为敏感。"
 
 /obj/item/toy/cards/deck/kotahi/nanite
-	name = "kotahi deck"
-	special_desc = "Kotahi in long-haul freighters! Kotahi in low orbit! Kotahi on the floor! Kotahi like never before! For nearly six hundred years, Kotahi has dominated the card gaming category as the galaxy's #1 shedding-type card game! But how do you take a brand beloved by thousands of sophonts to the next level? With the cooperation of the Selenian Wargaming Society, we've elevated Kotahi to a brand new playing field: digitally summonable Kotahi cards, for the low low cost of 200cr, Now you know why we call it number one."
+	name = "科塔希牌组"
+	special_desc = "长途货船上玩科塔希！低轨道上玩科塔希！地板上玩科塔希！前所未有的科塔希！近六百年来，科塔希作为银河第一的接龙类卡牌游戏，始终统治着卡牌游戏品类！但如何才能让这个深受数千智慧生命喜爱的品牌更上一层楼？在塞勒涅战棋学会的合作下，我们把科塔希带上了全新的赛场：可数字召唤的科塔希卡牌，只需低至 200cr——现在你知道我们为什么称它为第一了。"
 
 /obj/item/cane/nanite
-	name = "staff"
-	special_desc = "This program was contributed by a mutual aid group, the Sapient Rights Recovery Association located in many regions across the eastern continents of Earth. Cerulean staffs employ more nanomachines than holograms, giving them a solid core and steady tip for use by the disabled. Through ample usage of sound cues to help summoners navigate the menu, a pattern was also developed for sightless individuals both by incident, birth, and biology."
+	name = "手杖"
+	special_desc = "该程序由互助团体“智慧生命权利恢复协会”贡献，该协会分布于地球东部大陆的许多地区。蔚蓝手杖使用的纳米机器多于全息影像，因此拥有坚固的核心与稳定的杖尖，供残障人士使用。通过大量音效提示帮助召唤者浏览菜单，也为因意外、先天或生理原因失明的人士开发了一套方案。"
 
 	force = 0
 	throwforce = 0
 
 /obj/item/cane/white/nanite
-	name = "white staff"
-	special_desc = "This program was contributed by a mutual aid group, the Sapient Rights Recovery Association located in many regions across the eastern continents of Earth. Cerulean staffs employ more nanomachines than holograms, giving them a solid core and steady tip for use by the disabled. Through ample usage of sound cues to help summoners navigate the menu, a pattern was also developed for sightless individuals both by incident, birth, and biology."
+	name = "白色手杖"
+	special_desc = "该程序由互助团体“智慧生命权利恢复协会”贡献，该协会分布于地球东部大陆的许多地区。蔚蓝手杖使用的纳米机器多于全息影像，因此拥有坚固的核心与稳定的杖尖，供残障人士使用。通过大量音效提示帮助召唤者浏览菜单，也为因意外、先天或生理原因失明的人士开发了一套方案。"
 
 	force = 0
 	throwforce = 0
 
 /obj/item/toy/foamblade/nanite
-	name = "armblade"
-	special_desc = "This Icon was leaked onto the Grimoire somewhat illegally. It was originally uploaded by a departing member of the Tiger Cooperative, the download text informing the summoner that this Icon was first used by the cultists for use as 'training for their biological Ascension' into shape-shifting entities. Within hours, several variants for all sorts of sapient limb configurations were forked and uploaded, this one an entirely nonlethal one."
+	name = "臂刃"
+	special_desc = "这个图标是有点非法地泄露到魔典上的。它最初由一名即将离开的猛虎合作社成员上传，下载说明告知召唤者，该图标最初被该教派用于“为他们的生物飞升”做准备，使其转变为变形实体。数小时内，针对各种智慧生命肢体构型的多个变体便被分叉并上传，而这一版是完全非致命的。"
 
 /obj/item/lighter/nanite
-	name = "catchflame"
-	special_desc = "A work of art by the standards of normal Icons, this one was worked on for five continuous years by a single summoner; now known as Neophyte Inverse after adoption of the Icon by the few physically-bodied members of the Altspace Coven. The engram's work involves the use of nanites to ignite atmospheric hydrogen molecules, the blue glow from the Icon arising from perfect and complete combustion. This allows the lighter to function exactly as a normal zippo would, the description reading '...useful for lighting hearth fires, candles, and incense; try white sage if you can order some off the net, just pray it doesn't dispel engrams lol.'"
+	name = "捕焰"
+	special_desc = "以普通图标的标准来看，这是一件艺术品：它由一位召唤者连续五年打磨而成；在少数拥有实体的交错空间巫团成员采用该图标后，此人如今被称为“逆位新人”。这件印痕作品利用纳米机器点燃大气中的氢分子，图标散发的蓝光源自完美而充分的燃烧。这让打火机的功能与普通 Zippo 完全一致，其描述写道：“……可用于点燃壁炉、蜡烛与熏香；如果能在网上订购，试试白鼠尾草，只求它别把印痕驱散了，哈哈。”"
 
 /obj/item/holocigarette/nanite
-	name = "cloudstick"
-	special_desc = "One of mankind's many attempts at ending the legacy of Big Tobacco. Contributed by a fully anonymous engram and then forked countless times into countless replications of brands and flavors, the 'Cloudstick' is more of a genre than a single Icon. Most downloadable ones even allow the summoner to change the pixelation of the smoke, to grant them a more 'detached' experience from the real thing. Several summoners report these to help them in quitting smoking, others simply commenting 'It's why I first downloaded the Catchflame.'"
+	name = "云棒"
+	special_desc = "这是人类终结“大烟草”遗产的众多尝试之一。它由一位完全匿名的印痕贡献，随后被分叉无数次，复制出无数品牌与口味，因此“云棒”更像一个品类而非单一图标。大多数可下载版本甚至允许召唤者调整烟雾的像素化程度，以获得与真烟更为“疏离”的体验。不少召唤者反馈这些有助于戒烟，另一些人则只是评论说：“这就是我最初下载捕焰的原因。”"
 
 
 #undef SUMMONED_ITEM_ALPHA

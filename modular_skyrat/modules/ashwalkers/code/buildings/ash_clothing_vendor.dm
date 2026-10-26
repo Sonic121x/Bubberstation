@@ -1,7 +1,7 @@
 /obj/machinery/vending/ashclothingvendor
-	name = "\improper Ashland Clothing Storage"
-	desc = "A large container, filled with various clothes for the Ash Walkers."
-	product_ads = "Praise the Necropolis"
+	name = "\improper 灰烬之地衣物储藏"
+	desc = "一个大型容器，装满了供灰行者穿着的各种衣物。"
+	product_ads = "赞美死灵之都"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/vending.dmi'
 	icon_state = "ashclothvendor"
 	icon_deny = "necrocrate"

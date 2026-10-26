@@ -1,11 +1,11 @@
 // Stirling generator, like a miniature TEG, pipe hot air in, and keep the air around it cold
 
 /obj/machinery/power/stirling_generator
-	name = "stirling generator"
-	desc = "An industrial scale stirling generator. Stirling generators operate by intaking \
-		hot gasses through their inlet pipes, and being cooled by the ambient air around them. \
-		The cycling compression and expansion caused by this creates power, and this one is made \
-		to make power on the scale of small stations and outposts."
+	name = "斯特林发电机"
+	desc = "一台工业规模的斯特林发电机。斯特林发电机通过进气管道吸入\
+		高温气体，并依靠周围的环境空气冷却来运作。\
+		由此产生的循环压缩与膨胀会发电，而这一台的设计目标\
+		是为小型空间站与前哨站规模的设施供电。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/stirling_generator/big_generator.dmi'
 	icon_state = "stirling"
 	density = TRUE
@@ -42,10 +42,10 @@
 
 /obj/machinery/power/stirling_generator/examine(mob/user)
 	. = ..()
-	. += span_notice("You can use a <b>wrench</b> with <b>Left-Click</b> to rotate the generator.")
-	. += span_notice("It will not work in a <b>vacuum</b> as it must be cooled by the gas around it.")
-	. += span_notice("It is currently generating <b>[current_power_generation / 1000] kW</b> of power.")
-	. += span_notice("It has a maximum power output of <b>[max_power_output / 1000] kW</b> at a temperature difference of <b>[max_efficient_heat_difference] K</b>.")
+	. += span_notice("你可以用<b>扳手</b>并<b>左键点击</b>来旋转发电机。")
+	. += span_notice("它在<b>真空</b>中无法运作，因为它必须依靠周围气体冷却。")
+	. += span_notice("它当前正在产生 <b>[current_power_generation / 1000] kW</b> 的电力。")
+	. += span_notice("在温差为 <b>[max_efficient_heat_difference] K</b> 时，它的最大输出功率为 <b>[max_power_output / 1000] kW</b>。")
 
 
 /obj/machinery/power/stirling_generator/Destroy()
@@ -112,7 +112,7 @@
 
 	wrench.play_tool_sound(src, 50)
 	setDir(turn(dir,-90))
-	to_chat(user, span_notice("You rotate [src]."))
+	to_chat(user, span_notice("你把 [src] 旋转了。"))
 	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
 	return TRUE
 
@@ -125,7 +125,7 @@
 // Item for creating stirling generators
 
 /obj/item/flatpacked_machine/stirling_generator
-	name = "flat-packed stirling generator"
+	name = "扁平包装斯特林发电机"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/stirling_generator/packed_machines.dmi'
 	icon_state = "stirling"
 	type_to_deploy = /obj/machinery/power/stirling_generator

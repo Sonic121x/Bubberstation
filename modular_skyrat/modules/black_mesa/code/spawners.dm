@@ -1,5 +1,5 @@
 /obj/effect/spawner/random/bioluminescent_plant
-	name = "random bioluminescent plant"
+	name = "随机发光植物"
 	icon_state = "plant"
 	loot = list(
 		/obj/structure/flora/biolumi/lamp,
@@ -8,7 +8,7 @@
 	)
 
 /obj/effect/spawner/random/bioluminescent_plant/weak
-	name = "random weak bioluminescent plant"
+	name = "随机弱光发光植物"
 	icon_state = "plant"
 	loot = list(
 		/obj/structure/flora/biolumi/lamp/weaklight,

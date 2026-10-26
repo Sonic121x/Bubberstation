@@ -20,8 +20,8 @@
 	/obj/item/key/collar))
 
 /obj/item/clothing/neck/human_petcollar
-	name = "pet collar"
-	desc = "It's for pets. Though you probably could wear it yourself, you'd doubtless be the subject of ridicule."
+	name = "宠物项圈"
+	desc = "这是给宠物用的。你大概也能自己戴上，但无疑会沦为笑柄。"
 	icon = 'icons/map_icons/clothing/neck.dmi'
 	icon_state = "/obj/item/clothing/neck/human_petcollar"
 	post_init_icon_state = "pet"
@@ -43,12 +43,12 @@
 		new treat_path(src)
 
 /obj/item/clothing/neck/human_petcollar/attack_self(mob/user)
-	tagname = stripped_input(user, "Would you like to change the name on the tag?", "Name your new pet", "Spot", MAX_NAME_LEN)
+	tagname = stripped_input(user, "你想更改铭牌上的名字吗？", "给你的新宠物取名", "小斑点", MAX_NAME_LEN)
 	if(tagname)
 		name = "[initial(name)] - [tagname]"
 
 /obj/item/clothing/neck/human_petcollar/leather
-	name = "leather pet collar"
+	name = "皮革宠物项圈"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/leather"
 	post_init_icon_state = "leather"
 	greyscale_config = /datum/greyscale_config/collar/leather
@@ -56,8 +56,8 @@
 	greyscale_colors = "#222222#888888#888888"
 
 /obj/item/clothing/neck/human_petcollar/choker
-	name = "choker"
-	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."
+	name = "颈圈"
+	desc = "相当时髦……前提是你刚读完人生中第一部 BDSM 题材的情色小说。"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/choker"
 	post_init_icon_state = "choker"
 	greyscale_config = /datum/greyscale_config/collar/choker
@@ -65,8 +65,8 @@
 	greyscale_colors = "#222222"
 
 /obj/item/clothing/neck/human_petcollar/thinchoker
-	name = "thin choker"
-	desc = "Like the normal one, but thinner!"
+	name = "细颈圈"
+	desc = "和普通的那个一样，只是更细！"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/thinchoker"
 	post_init_icon_state = "thinchoker"
 	greyscale_config = /datum/greyscale_config/collar/thinchoker
@@ -74,12 +74,12 @@
 	greyscale_colors = "#222222"
 
 /obj/item/key/collar
-	name = "collar key"
-	desc = "A key for a tiny lock on a collar or bag."
+	name = "项圈钥匙"
+	desc = "用来打开项圈或包上小锁的钥匙。"
 
 /obj/item/clothing/neck/human_petcollar/locked
-	name = "locked collar"
-	desc = "A collar that has a small lock on it to keep it from being removed."
+	name = "上锁项圈"
+	desc = "一个带小锁、防止被取下的项圈。"
 	treat_path = /obj/item/key/collar
 	/// Is the collar currently locked?
 	var/locked = FALSE
@@ -91,23 +91,23 @@
 
 /obj/item/clothing/neck/human_petcollar/locked/proc/try_lock(atom/source, mob/user, obj/item/attacking_item, params)
 	if(istype(attacking_item, /obj/item/key/collar))
-		to_chat(user, span_warning("With a click, the collar [locked ? "unlocks" : "locks"]!"))
+		to_chat(user, span_warning("咔哒一声，项圈[locked ? "解锁" : "上锁"]了！"))
 		locked = !locked
 	return TRUE
 
 /obj/item/clothing/neck/human_petcollar/locked/attack_hand(mob/user)
 	if(loc == user && user.get_item_by_slot(ITEM_SLOT_NECK) && locked)
-		to_chat(user, span_warning("The collar is locked! You'll need unlock the collar before you can take it off!"))
+		to_chat(user, span_warning("项圈锁上了！你需要先解锁项圈才能把它取下来！"))
 		return
 	..()
 
 /obj/item/clothing/neck/human_petcollar/locked/examine(mob/user)
 	. = ..()
-	. += "It seems to be [locked ? "locked" : "unlocked"]."
+	. += "它似乎是[locked ? "锁着的" : "未上锁"]。"
 
 /obj/item/clothing/neck/human_petcollar/locked/bell
-	name = "bell collar"
-	desc = "A loud and annoying collar for your little kitten!"
+	name = "铃铛项圈"
+	desc = "一个又吵又烦人的项圈，给你家小猫咪戴！"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/bell"
 	post_init_icon_state = "bell"
 	greyscale_config = /datum/greyscale_config/collar/bell
@@ -115,8 +115,8 @@
 	greyscale_colors = "#663300#FFCC00"
 
 /obj/item/clothing/neck/human_petcollar/locked/choker
-	name = "choker"
-	desc = "Quite fashionable... if you're somebody who's just read their first BDSM-themed erotica novel."
+	name = "颈圈"
+	desc = "相当时髦……前提是你刚读完人生中第一部 BDSM 题材的情色小说。"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/choker"
 	post_init_icon_state = "choker"
 	greyscale_config = /datum/greyscale_config/collar/choker
@@ -124,8 +124,8 @@
 	greyscale_colors = "#222222"
 
 /obj/item/clothing/neck/human_petcollar/locked/cow
-	name = "cowbell collar"
-	desc = "Don't fear the reaper, now your pet doesn't have to."
+	name = "牛铃项圈"
+	desc = "别怕死神，现在你的宠物也不用怕了。"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/cow"
 	post_init_icon_state = "cow"
 	greyscale_config = /datum/greyscale_config/collar/cow
@@ -133,8 +133,8 @@
 	greyscale_colors = "#663300#FFCC00"
 
 /obj/item/clothing/neck/human_petcollar/locked/cross
-	name = "cross collar"
-	desc = "A religious punishment, probably."
+	name = "十字架项圈"
+	desc = "大概是一种宗教惩罚。"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/cross"
 	post_init_icon_state = "cross"
 	greyscale_config = /datum/greyscale_config/collar/cross
@@ -142,8 +142,8 @@
 	greyscale_colors = "#663300#FFCC00"
 
 /obj/item/clothing/neck/human_petcollar/locked/holo
-	name = "holocollar"
-	desc = "A collar with holographic information. Like a microchip, but around the neck."
+	name = "全息项圈"
+	desc = "带有全息信息的项圈。就像微芯片，只不过戴在脖子上。"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/holo"
 	post_init_icon_state = "holo"
 	greyscale_config = /datum/greyscale_config/collar/holo
@@ -151,7 +151,7 @@
 	greyscale_colors = "#292929#3399FF"
 
 /obj/item/clothing/neck/human_petcollar/locked/leather
-	name = "leather pet collar"
+	name = "皮革宠物项圈"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/leather"
 	post_init_icon_state = "leather"
 	greyscale_config = /datum/greyscale_config/collar/leather
@@ -159,8 +159,8 @@
 	greyscale_colors = "#222222#888888#888888"
 
 /obj/item/clothing/neck/human_petcollar/locked/spike
-	name = "spiked collar"
-	desc = "A collar for a moody pet. Or a pitbull."
+	name = "尖刺项圈"
+	desc = "给脾气暴躁的宠物戴的项圈。或者给比特犬。"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/spike"
 	post_init_icon_state = "spike"
 	greyscale_config = /datum/greyscale_config/collar/spike

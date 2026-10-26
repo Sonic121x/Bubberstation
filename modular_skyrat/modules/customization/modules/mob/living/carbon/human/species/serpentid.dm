@@ -10,7 +10,7 @@
 #define SERPENTID_HEAT_THRESHOLD_3 600
 
 /datum/species/gas
-	name = "Giant Armored Serpentid"
+	name = "\improper 巨型装甲蛇形虫"
 	id = SPECIES_GAS
 	eyes_icon = 'modular_skyrat/modules/organs/icons/serpentid_eyes.dmi'
 	can_augment = FALSE
@@ -97,81 +97,81 @@
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SHIELD,
-		SPECIES_PERK_NAME = "Durable Chitin",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid chitin is very robust and protects them from pressure and low temperature hazards, while also providing decent brute resistance."
+		SPECIES_PERK_NAME = "坚韧甲壳",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫的甲壳极为坚韧，能保护它们免受压力与低温危害，同时还提供不错的钝击抗性。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_WEIGHT_HANGING,
-		SPECIES_PERK_NAME = "Heavy Skeleton",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid are large and heavy, this makes them excellent at avoiding slipping and being grabbed."
+		SPECIES_PERK_NAME = "沉重骨骼",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫体型庞大而沉重，这使它们极擅长避免滑倒和被抓住。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_USER_NINJA,
-		SPECIES_PERK_NAME = "Active Camouflage",
-		SPECIES_PERK_DESC = "The cells in a Giant Armored Serpentid's body are able to camouflage themselves to an extent, making the GAS appear translucent to the naked eye."
+		SPECIES_PERK_NAME = "主动伪装",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫体内的细胞能在一定程度上自我伪装，使 GAS 在肉眼看来呈半透明状。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_EYE,
-		SPECIES_PERK_NAME = "Shielded Eyes",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid have sensitive eyes, luckily they have eyeshields that can be used to make up for this."
+		SPECIES_PERK_NAME = "遮蔽式眼睛",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫的眼睛十分敏感，所幸它们有眼罩可以弥补这一点。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_FACE_ANGRY,
-		SPECIES_PERK_NAME = "Threat Display",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid are not good at communication, however, they can perform a threat display to show when they want to attack someone."
+		SPECIES_PERK_NAME = "威吓展示",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫不擅长交流，但它们可以做出威吓展示，表示自己想要攻击某人。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Custom Body",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid have a non-humanoid body and can't wear most clothes."
+		SPECIES_PERK_NAME = "特化身体",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫的身体并非人形，无法穿戴大多数衣物。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_TEMPERATURE_HALF,
-		SPECIES_PERK_NAME = "Cold-Blooded",
-		SPECIES_PERK_DESC = "Giant Armored Serpentid are a cold blooded species and are vulnerable to temperature changes in their environment."
+		SPECIES_PERK_NAME = "冷血",
+		SPECIES_PERK_DESC = "巨型装甲蛇形虫是冷血物种，容易受到所处环境温度变化的影响。"
 	))
 
 	return perk_descriptions
 
 /datum/species/gas/get_species_description()
 	return list(
-		"Giant Armoured Serpentids, or GAS as they are often called, are large insectoids hailing from a planet in the Tiziran Empire. \
-		They are excellent hunters, with phenomenal stealth capabilities, but are lacking in communication skills."
+		"巨型装甲蛇形虫（通常简称 GAS）是来自提兹拉帝国某颗行星的大型昆虫类生物。\
+		它们是出色的猎手，具备惊人的潜行能力，但在交流技巧上有所欠缺。"
 	)
 
 /datum/species/gas/get_species_lore()
 	return list(
-		"The Giant Armoured Serpentids are an old race of insectoid creatures from a high gravity world in the Tiziran Empire. \
-		Covered in intersecting scales, with a pair of huge claws as their main limbs, they vaguely resemble Terran mantids, though they've more \
-		in common with snakes and other reptiles from a Terran point of view.",
-		"Living in a semi-hive/colony state, GAS, as they're referred to by Nanotrasen, have a lack of self identity compared to most species, \
-		with few having a given name. This however is routinely ignored by most other races, and often they assign one to one they're working with, \
-		for ease of communication. While they live in large colonies with other GAS, up to and rarely exceeding two hundred individuals, they do not \
-		care for physical interaction with most, preferring to be left alone and given their personal space, such that they can seem aggressive even \
-		when normal actions such as a handshake or hug are offered by ignorant members of other species."
+		"巨型装甲蛇形虫是提兹拉帝国一颗高重力星球上的古老昆虫类种族。\
+		它们全身覆盖着交错的鳞片，以一对巨爪作为主要肢体，外形隐约类似地球的螳螂，但从地球人的角度来看，\
+		它们与蛇及其他爬行动物的共同点更多。",
+		"GAS 是纳米传讯对它们的称呼。它们以半蜂巢、半群落的方式生活，与大多数物种相比缺乏自我认同，\
+		很少有名字。不过其他种族通常会无视这一点，为了便于交流，常常会给正在共事的个体起一个名字。\
+		虽然它们与其他 GAS 一同生活在大型群落中，数量最多可达两百只、极少超过，但它们并不在意与多数个体的\
+		身体接触，更希望独处并被给予私人空间，因此当其他物种的无知成员做出握手或拥抱这类正常举动时，\
+		它们看起来甚至会显得具有攻击性。"
 	)
 /datum/species/gas/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
 	return
 
 /obj/item/organ/ears/serpentid
-	name = "antennae"
+	name = "触角"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "ears"
 
 /obj/item/organ/heart/serpentid
-	name = "serpentid heart"
+	name = "蛇形虫心脏"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "heart"
 	actions_types = list(/datum/action/cooldown/spell/toggle_active_camo)
@@ -186,14 +186,14 @@
 		camouflaged = FALSE
 
 /obj/item/organ/brain/serpentid
-	name = "distributed nervous system"
+	name = "分布式神经系统"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "brain"
 	actions_types = list(/datum/action/cooldown/spell/toggle_threat_display)
 
 /obj/item/organ/eyes/serpentid
-	name = "compound eyes"
-	desc = "Small orange orbs."
+	name = "复眼"
+	desc = "小小的橙色球体。"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "eyes"
 	flash_protect = FLASH_PROTECTION_HYPER_SENSITIVE
@@ -205,11 +205,11 @@
 	var/eyes_shielded
 
 /obj/item/organ/lungs/serpentid
-	name = "tracheae"
+	name = "气管"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	icon_state = "lungs"
 
-	cold_message = "You can't stand the freezing cold with every breath you take!"
+	cold_message = "你每次呼吸都受不了这种刺骨严寒！"
 	cold_level_1_threshold = SERPENTID_COLD_THRESHOLD_1
 	cold_level_2_threshold = SERPENTID_COLD_THRESHOLD_2
 	cold_level_3_threshold = SERPENTID_COLD_THRESHOLD_3
@@ -219,7 +219,7 @@
 	cold_damage_type = BRUTE
 
 
-	hot_message = "You can't stand the searing heat with every breath you take!"
+	hot_message = "你每次呼吸都受不了这种灼热高温！"
 	heat_level_1_threshold = SERPENTID_HEAT_THRESHOLD_1
 	heat_level_2_threshold = SERPENTID_HEAT_THRESHOLD_2
 	heat_level_3_threshold = SERPENTID_HEAT_THRESHOLD_3
@@ -229,7 +229,7 @@
 	heat_damage_type = BURN
 
 /obj/item/organ/liver/serpentid
-	name = "toxin filter"
+	name = "毒素过滤器"
 	icon_state = "liver"
 	icon = 'modular_skyrat/modules/organs/icons/serpentid_organs.dmi'
 	liver_resistance = 0.8 * LIVER_DEFAULT_TOX_RESISTANCE // -40%

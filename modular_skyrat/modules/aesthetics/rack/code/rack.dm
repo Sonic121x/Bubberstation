@@ -2,8 +2,8 @@
 	icon = 'modular_skyrat/modules/aesthetics/rack/icons/rack.dmi'
 
 /obj/structure/rack/shelf
-	name = "shelf"
-	desc = "A shelf, for storing things on. Conveinent!"
+	name = "货架"
+	desc = "一个搁板货架，用来放东西。真方便！"
 	icon = 'modular_skyrat/modules/aesthetics/rack/icons/rack.dmi'
 	icon_state = "shelf"
 
@@ -17,8 +17,8 @@
 
 	// Add tooltips if the item is not a wrench (wrenches handled by parent)
 	if(held_item.tool_behaviour != TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Precise placement"
-		context[SCREENTIP_CONTEXT_RMB] = "Center item"
+		context[SCREENTIP_CONTEXT_LMB] = "精确摆放"
+		context[SCREENTIP_CONTEXT_RMB] = "物品居中"
 		. |= CONTEXTUAL_SCREENTIP_SET
 
 	return .
@@ -65,8 +65,8 @@
 	remove_from_rack()
 
 /obj/structure/rack/gunrack
-	name = "gun rack"
-	desc = "A gun rack for storing guns."
+	name = "枪架"
+	desc = "一个用来存放枪械的枪架。"
 	icon_state = "gunrack"
 
 /obj/structure/rack/gunrack/Initialize(mapload)

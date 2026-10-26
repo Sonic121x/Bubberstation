@@ -1,6 +1,6 @@
 /obj/item/clothing/head/deprivation_helmet
-	name = "deprivation helmet"
-	desc = "Completely cuts off the wearer from the outside world."
+	name = "剥夺头盔"
+	desc = "将佩戴者与外界完全隔绝。"
 	icon_state = "dephelmet_pink"
 	base_icon_state = "dephelmet"
 	inhand_icon_state = "dephelmet_pinkn"
@@ -30,16 +30,16 @@
 
 //Declare action types
 /datum/action/item_action/toggle_vision
-	name = "Vision switch"
-	desc = "Makes it impossible to see anything"
+	name = "视觉开关"
+	desc = "使人完全看不见任何东西"
 
 /datum/action/item_action/toggle_hearing
-	name = "Hearing switch"
-	desc = "Makes it impossible to hear anything"
+	name = "听觉开关"
+	desc = "使人完全听不见任何声音"
 
 /datum/action/item_action/toggle_speech
-	name = "Speech switch"
-	desc = "Makes it impossible to say anything"
+	name = "言语开关"
+	desc = "使人完全说不出任何话"
 
 //Vision switcher
 /datum/action/item_action/toggle_vision/Trigger(trigger_flags)
@@ -49,7 +49,7 @@
 	var/mob/living/carbon/human/affected_human = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_human.head)
-			to_chat(usr, span_notice("You can't reach the deprivation helmet switch!"))
+			to_chat(usr, span_notice("你够不到剥夺头盔的开关！"))
 		else
 			deprivation_helmet.SwitchHelmet("vision")
 
@@ -61,7 +61,7 @@
 	var/mob/living/carbon/human/affected_human = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_human.head)
-			to_chat(usr, span_notice("You can't reach the deprivation helmet switch!"))
+			to_chat(usr, span_notice("你够不到剥夺头盔的开关！"))
 		else
 			deprivation_helmet.SwitchHelmet("hearing")
 
@@ -73,7 +73,7 @@
 	var/mob/living/carbon/human/affected_human = usr
 	if(istype(deprivation_helmet))
 		if(deprivation_helmet == affected_human.head)
-			to_chat(usr, span_notice("You can't reach the deprivation helmet switch!"))
+			to_chat(usr, span_notice("你够不到剥夺头盔的开关！"))
 		else
 			deprivation_helmet.SwitchHelmet("speech")
 
@@ -84,48 +84,48 @@
 		if(muzzle == TRUE)
 			muzzle = FALSE
 			conditional_pref_sound(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-			to_chat(usr, span_notice("Speech switch off"))
+			to_chat(usr, span_notice("言语开关已关闭"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				REMOVE_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
 				//to_chat(U, span_purple("Your mouth is free. you breathe out with relief."))
 		else
 			muzzle = TRUE
 			conditional_pref_sound(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-			to_chat(usr, span_notice("Speech switch on"))
+			to_chat(usr, span_notice("言语开关已开启"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				ADD_TRAIT(usr, TRAIT_MUTE, CLOTHING_TRAIT)
-				to_chat(usr, span_purple("Something is gagging your mouth! You can barely make a sound..."))
+				to_chat(usr, span_purple("有什么东西塞住了你的嘴！你几乎发不出声音……"))
 	if(user_client == "hearing")
 		if(earmuffs == TRUE)
 			earmuffs = FALSE
 			conditional_pref_sound(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-			to_chat(usr, span_notice("Hearing switch off"))
+			to_chat(usr, span_notice("听觉开关已关闭"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				REMOVE_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
 				//to_chat(U, span_purple("Finally you can hear the world around again."))
 		else
 			earmuffs = TRUE
 			conditional_pref_sound(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-			to_chat(usr, span_notice("Hearing switch on"))
+			to_chat(usr, span_notice("听觉开关已开启"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				ADD_TRAIT(usr, TRAIT_DEAF, CLOTHING_TRAIT)
-				to_chat(usr, span_purple("You can barely hear anything! Your other senses have become more apparent..."))
+				to_chat(usr, span_purple("你几乎什么都听不见了！其他感官似乎变得更加敏锐……"))
 	if(user_client == "vision")
 		var/mob/living/carbon/human/user = usr
 		if(prevent_vision == TRUE)
 			prevent_vision = FALSE
 			conditional_pref_sound(usr, 'sound/items/weapons/magout.ogg', 40, TRUE)
-			to_chat(usr, span_notice("Vision switch off"))
+			to_chat(usr, span_notice("视觉开关已关闭"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				user.cure_blind("deprivation_helmet_[REF(src)]")
 				//to_chat(U, span_purple("Helmet no longer restricts your vision."))
 		else
 			prevent_vision = TRUE
 			conditional_pref_sound(usr, 'sound/items/weapons/magin.ogg', 40, TRUE)
-			to_chat(usr, span_notice("Vision switch on"))
+			to_chat(usr, span_notice("视觉开关已开启"))
 			if(usr.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 				user.become_blind("deprivation_helmet_[REF(src)]")
-				to_chat(usr, span_purple("The helmet is blocking your vision! You can't make out anything on the other side..."))
+				to_chat(usr, span_purple("头盔挡住了你的视线！你完全看不清另一侧的任何东西……"))
 
 // Create radial menu
 /obj/item/clothing/head/deprivation_helmet/proc/populate_helmet_designs()
@@ -193,13 +193,13 @@
 		return
 	if(muzzle == TRUE)
 		ADD_TRAIT(user, TRAIT_MUTE, CLOTHING_TRAIT)
-		to_chat(usr, span_purple("Something is gagging your mouth! You can barely make a sound..."))
+		to_chat(usr, span_purple("有什么东西塞住了你的嘴！你几乎发不出声音……"))
 	if(earmuffs == TRUE)
 		ADD_TRAIT(user, TRAIT_DEAF, CLOTHING_TRAIT)
-		to_chat(usr, span_purple("You can barely hear anything! Your other senses have become more apparent..."))
+		to_chat(usr, span_purple("你几乎什么都听不见了！其他感官似乎变得更加敏锐……"))
 	if(prevent_vision == TRUE)
 		user.become_blind("deprivation_helmet_[REF(src)]")
-		to_chat(usr, span_purple("The helmet is blocking your vision! You can't make out anything on the other side..."))
+		to_chat(usr, span_purple("头盔挡住了你的视线！你完全看不清另一侧的任何东西……"))
 
 
 // Here goes code that heals the wearer after unequipping helmet
@@ -217,8 +217,8 @@
 	// Some stuff for unequip messages
 	if(src == user.head)
 		if(muzzle == TRUE)
-			to_chat(user, span_purple("Your mouth is free. You breathe out with relief."))
+			to_chat(user, span_purple("你的嘴自由了。你如释重负地呼出一口气。"))
 		if(earmuffs == TRUE)
-			to_chat(user, span_purple("Finally you can hear the world around you once more."))
+			to_chat(user, span_purple("你终于又能听见周围世界的声音了。"))
 		if(prevent_vision == TRUE)
-			to_chat(user, span_purple("The helmet no longer restricts your vision."))
+			to_chat(user, span_purple("头盔不再遮挡你的视线了。"))

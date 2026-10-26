@@ -1,9 +1,9 @@
 /datum/armament_entry/assault_operatives/medical
-	category = "First-Aid Supplies"
+	category = "急救用品"
 	category_item_limit = 4
 
 /datum/armament_entry/assault_operatives/medical/medkit
-	subcategory = "Medical Kits"
+	subcategory = "医疗包"
 
 /datum/armament_entry/assault_operatives/medical/medkit/basic
 	item_type = /obj/item/storage/medkit/regular
@@ -18,7 +18,7 @@
 	cost = 4
 
 /datum/armament_entry/assault_operatives/medical/injector
-	subcategory = "Chemical Autoinjectors"
+	subcategory = "化学自动注射器"
 
 /datum/armament_entry/assault_operatives/medical/injector/bloodloss
 	item_type = /obj/item/reagent_containers/hypospray/medipen/blood_loss

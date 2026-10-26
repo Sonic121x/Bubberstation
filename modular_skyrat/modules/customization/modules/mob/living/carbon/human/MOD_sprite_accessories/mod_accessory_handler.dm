@@ -136,7 +136,7 @@
 	INVOKE_ASYNC(src, PROC_REF(pick_hardlight_color), ui.user)
 
 /obj/item/mod/control/proc/pick_hardlight_color(mob/user)
-	var/new_color = tgui_color_picker(user, "Choose a hardlight color", "Hardlight Color", get_hardlight_color())
+	var/new_color = tgui_color_picker(user, "选择硬光颜色", "硬光颜色", get_hardlight_color())
 	if(!new_color || QDELETED(src) || ui_status(user, ui_state(user)) < UI_INTERACTIVE)
 		return
 	set_hardlight_color(new_color)

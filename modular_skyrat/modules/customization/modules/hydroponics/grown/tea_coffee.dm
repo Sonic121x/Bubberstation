@@ -2,13 +2,13 @@
 
 // Catnip
 /obj/item/seeds/tea/catnip
-	name = "catnip seed pack"
+	name = "猫薄荷种子包"
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-catnip"
 	growing_icon = 'modular_skyrat/master_files/icons/obj/hydroponics/growing.dmi'
-	desc = "Long stalks with flowering tips, they contain a chemical that attracts felines."
+	desc = "细长的茎秆，顶端开着花，含有一种能吸引猫科动物的化学物质。"
 	species = "catnip"
-	plantname = "Catnip Plant"
+	plantname = "猫薄荷植株"
 	icon_dead = null
 	growthstages = 3
 	product = /obj/item/food/grown/tea/catnip
@@ -17,7 +17,7 @@
 
 /obj/item/food/grown/tea/catnip
 	seed = /obj/item/seeds/tea/catnip
-	name = "catnip buds"
+	name = "猫薄荷花苞"
 	icon = 'modular_skyrat/master_files/icons/obj/hydroponics/harvest.dmi'
 	icon_state = "catnip"
 	filling_color = "#4582B4"

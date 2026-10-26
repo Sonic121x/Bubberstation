@@ -1,7 +1,7 @@
 /datum/action/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
-	name = "Horror Form"
-	desc = "We tear apart our human disguise, revealing our true form."
-	helptext = "We will become an unstoppable force of destruction. If we die in this form, we will reach equilibrium and explode into a shower of gore! We require the absorption of at least one other human, and 15 extracts of DNA."
+	name = "恐怖形态"
+	desc = "我们撕裂人类伪装，显露真正的形态。"
+	helptext = "我们将化为无可阻挡的毁灭之力。若在此形态下死亡，我们会达到平衡并爆成一团血肉！我们需要吸收至少一名其他人类，以及 15 份 DNA 提取物。"
 	button_icon = 'modular_skyrat/modules/horrorform/icons/actions_changeling.dmi'
 	button_icon_state = "horror_form"
 	background_icon_state = "bg_changeling"
@@ -19,20 +19,20 @@
 		return FALSE
 
 	user.visible_message(
-		span_warning("[user] writhes and contorts, their body expanding to inhuman proportions!"), \
-		span_danger("We begin our transformation to our true form!")
+		span_warning("[user] 扭动扭曲着身体，身躯膨胀到非人的尺寸！"), \
+		span_danger("我们开始转变为真正的形态！")
 	)
 
 	if(!do_after(user, 3 SECONDS, target = user, timed_action_flags = IGNORE_HELD_ITEM))
 		user.visible_message(
-			span_warning("[user]'s transformation abruptly reverts itself!"), \
-			span_warning("Our transformation has been interrupted!")
+			span_warning("[user] 的转变骤然退回原状！"), \
+			span_warning("我们的转变被打断了！")
 		)
 		return FALSE
 
 	user.visible_message(
-		span_warning("[user] grows into an abomination and lets out an awful scream!"), \
-		span_userdanger("We cast off our petty shell and enter our true form!")
+		span_warning("[user] 膨胀成一团憎恶之物，并发出一声可怖的尖叫！"), \
+		span_userdanger("我们抛弃渺小的躯壳，进入真正的形态！")
 	)
 
 	if(user.handcuffed)
@@ -44,7 +44,7 @@
 
 	if(istype(user.loc, /obj/structure/closet))
 		var/obj/structure/closet/closet = user.loc
-		closet.visible_message(span_warning("[closet]'s door breaks open!"))
+		closet.visible_message(span_warning("[closet] 的门被撞开了！"))
 		new /obj/effect/decal/cleanable/greenglow(closet.drop_location())
 		closet.welded = FALSE
 		closet.locked = FALSE

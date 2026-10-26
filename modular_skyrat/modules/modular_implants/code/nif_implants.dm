@@ -1,13 +1,13 @@
 ///This is the standard 'baseline' NIF model.
 /obj/item/organ/cyberimp/brain/nif/standard
-	name = "Standard Type NIF"
-	desc = "'Standard-Type' is a classification for high-quality Nanite Implant Frameworks. This category primarily includes Framework patterns with high reliability, seamless bonding with a user, and a combination of storage space and processing power to run a wide array of programs."
-	manufacturer_notes = "While countless manufacturers produce their own implementation of NIFs, open-source or not, there's less than a thousand Standard-Type models out there in the galaxy. These are the results of almost five years of improvements on older models of Frameworks, and are rather coveted due to being extremely difficult to 'homebrew."
+	name = "标准型 NIF"
+	desc = "“标准型”是对高质量纳米植入框架的等级划分。这一类别主要包括可靠性高、能与使用者无缝结合、并兼具存储空间与处理能力以运行大量程序的框架型号。"
+	manufacturer_notes = "尽管无数厂商都在生产自己的 NIF 实现，无论开源与否，全银河的标准型型号也不足一千台。它们是近五年来对旧款框架不断改良的成果，由于极难“自制”，因此相当抢手。"
 
 /obj/item/organ/cyberimp/brain/nif/roleplay_model
-	name = "Econo-Deck Type NIF"
-	desc = "'Econo-Deck' is a classification for lower-quality Nanite Implant Frameworks. Typically, these are off-brand 'economical' bootlegs of higher-quality Frameworks featuring lower-grade power cells, outdated and risky construction patterns, and far rougher calibration with a user."
-	manufacturer_notes = "Most webspaces for hobbyists or hardcore users, Corpo neurologists, and developers of 'softs such as the Altspace Coven recommend against their purchase. Despite their affordability by the layman, it's a common notion in Framework user circles that a device directly hooked into a user's nervous system is never something which should be skimped on; hence, Econo-Decks typically find themselves in the hands of the truly desperate, criminals, or coming out of workshops as 'homebrews.'"
+	name = "经济型 NIF"
+	desc = "“经济型”是对低质量纳米植入框架的等级划分。这类框架通常是高质量框架的杂牌“经济”仿制品，配备低规格电池、过时且危险的结构设计，与使用者的校准也粗糙得多。"
+	manufacturer_notes = "爱好者与硬核用户聚集的大多数网络空间、企业神经学家，以及交错空间巫团这类“软件”开发者，都建议不要购买它们。尽管普通人负担得起，但框架用户圈子里有一条共识：直接接入使用者神经系统的设备，绝不该省钱。因此，经济型框架往往落到真正走投无路的人、罪犯手中，或者作为“自制货”从工坊里流出。"
 
 	max_power_level = 500
 	max_nifsofts = 3
@@ -17,13 +17,13 @@
 
 
 /obj/item/organ/cyberimp/brain/nif/roleplay_model/cheap
-	name = "Trial-Lite Type NIF"
-	desc = "'Trial-Lite' is a classification for temporary Nanite Implant Frameworks. These are typically distributed at promotional events, for the use of single-purpose NIFsofts, or at some Corporate dealerships to offer prospective users a look into the scene. Normally, Trial-Lite frameworks do not actually 'bond' with their user, forming an extremely loose connection before dissolving into scattered and dead nanomachines within a few hours, typically exhaled."
-	manufacturer_notes = "Normally, Trial-Lite frameworks do not actually 'bond' with their user, forming an extremely loose connection before dissolving into scattered and dead nanomachines within a few hours, typically exhaled. It's so far been impossible to extend the lifespan of a Trial-Lite NIF, owing to their far inferior construction and programming."
+	name = "试用轻型 NIF"
+	desc = "“试用轻型”是对临时性纳米植入框架的等级划分。这类框架通常在推广活动中发放，用于单一用途的 NIFSoft，或在某些企业经销店中让潜在用户体验一番。通常情况下，试用轻型框架并不会真正与使用者“结合”，只是形成极其松散的联系，几小时内便会消散为散落失活的纳米机器，通常随呼气排出体外。"
+	manufacturer_notes = "通常情况下，试用轻型框架并不会真正与使用者“结合”，只是形成极其松散的联系，几小时内便会消散为散落失活的纳米机器，通常随呼气排出体外。由于其构造与编程都远逊一筹，至今仍无法延长试用轻型 NIF 的寿命。"
 	nif_persistence = FALSE
 
 /obj/item/autosurgeon/organ/nif/disposable //Disposable, as in the fact that this only lasts for one shift
-	name = "Econo-Deck Type Autosurgeon"
+	name = "经济型自动手术器"
 	starting_organ = /obj/item/organ/cyberimp/brain/nif/roleplay_model/cheap
 	uses = 1
 
@@ -32,6 +32,6 @@
 	is_calibrated = TRUE
 
 /obj/item/autosurgeon/organ/nif/ghost_role
-	name = "Enhanced Standard Type NIF Autosurgeon"
+	name = "增强标准型 NIF 自动手术器"
 	starting_organ = /obj/item/organ/cyberimp/brain/nif/standard/ghost_role
 	uses = 1

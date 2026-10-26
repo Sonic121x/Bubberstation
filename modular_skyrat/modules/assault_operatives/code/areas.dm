@@ -1,42 +1,42 @@
 /area/shuttle/syndicate/cruiser
-	name = "Syndicate Cruiser"
+	name = "辛迪加巡洋舰"
 	requires_power = FALSE
 
 /area/shuttle/syndicate/cruiser/bridge
-	name = "Syndicate Cruiser Control"
+	name = "辛迪加巡洋舰控制室"
 	color = COLOR_BLUE
 
 /area/shuttle/syndicate/cruiser/medical
-	name = "Syndicate Cruiser Medbay"
+	name = "辛迪加巡洋舰医务室"
 	color = COLOR_LIGHT_PINK
 
 /area/shuttle/syndicate/cruiser/armory
-	name = "Syndicate Cruiser Armory"
+	name = "辛迪加巡洋舰军械库"
 	color = COLOR_ORANGE
 
 /area/shuttle/syndicate/cruiser/eva
-	name = "Syndicate Cruiser EVA"
+	name = "辛迪加巡洋舰舱外活动装备室"
 	color = COLOR_GREEN
 
 /area/shuttle/syndicate/cruiser/hallway
 
 /area/shuttle/syndicate/cruiser/airlock
-	name = "Syndicate Cruiser Airlock"
+	name = "辛迪加巡洋舰气闸"
 	color = COLOR_RED
 
 /area/shuttle/syndicate/cruiser/brig
-	name = "Syndicate Cruiser Brig"
+	name = "辛迪加巡洋舰拘留区"
 	color = COLOR_BLACK
 
 /area/shuttle/syndicate/cruiser/engineering
-	name = "Syndicate Cruiser Engineering"
+	name = "辛迪加巡洋舰工程区"
 	color = COLOR_YELLOW
 
 /area/shuttle/syndicate/frigate
-	name = "Syndicate Frigate"
+	name = "辛迪加护卫舰"
 
 /area/cruiser_dock
-	name = "GoldenEye Satellite"
+	name = "黄金眼卫星"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
 	default_gravity = STANDARD_GRAVITY
@@ -44,7 +44,7 @@
 	ambientsounds = AMBIENCE_GENERIC
 
 /area/cruiser_dock/brig
-	name = "Cruiser Dock Prison"
+	name = "巡洋舰停泊区监狱"
 	color = COLOR_BLUE
 	ambientsounds = AMBIENCE_CREEPY
 /obj/machinery/door/poddoor/shutters

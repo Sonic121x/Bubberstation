@@ -1,6 +1,6 @@
 //Donator reward for UltramariFox
 /obj/item/cigarette/khi
-	name = "\improper Kitsuhana Singularity cigarette"
+	name = "\improper 基楚花奇点香烟"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "khioff"
@@ -14,7 +14,7 @@
 	icon_state = "khibutt"
 
 /obj/item/storage/fancy/cigarettes/khi
-	name = "\improper Kitsuhana Singularity packet"
+	name = "\improper 基楚花奇点烟包"
 	icon = 'modular_skyrat/master_files/icons/obj/cigarettes_khi.dmi'
 	icon_state = "khi_cig_packet"
 	base_icon_state = "khi_cig_packet"
@@ -22,11 +22,11 @@
 
 //Donator reward for Stonetear
 /obj/item/hairbrush/switchblade
-	name = "switchcomb"
+	name = "弹簧梳"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	icon_state = "switchblade"
 	base_icon_state = "switchblade"
-	desc = "A sharp, concealable, spring-loaded comb."
+	desc = "一把锋利、可藏在身上、带弹簧的梳子。"
 	hitsound = 'sound/items/weapons/genhit.ogg'
 	resistance_flags = FIRE_PROOF
 	var/extended = FALSE
@@ -46,11 +46,11 @@
 /// This makes it so you have to extend it.
 /obj/item/hairbrush/switchblade/attack(mob/target, mob/user)
 	if(!extended)
-		to_chat(user, span_warning("Try extending the blade first, silly!"))
+		to_chat(user, span_warning("先把它弹出来啊，笨蛋！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(target.stat == DEAD)
-		to_chat(user, span_warning("There isn't much point brushing someone who can't appreciate it!"))
+		to_chat(user, span_warning("给一个根本感受不到的人梳头可没什么意义！"))
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	brush(target, user)
@@ -65,8 +65,8 @@
 #define SLAP_SIDE		4
 
 /obj/item/donator/transponder
-	name = "broken Helian transponder"
-	desc = "Used by Helians to communicate with their mothership, the screen is cracked and its edges scuffed. This one has seen better days."
+	name = "损坏的赫利安应答信标"
+	desc = "赫利安人用来与母舰联络的设备，屏幕已经裂了，边缘也磨损了。这一台显然风光不再。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/custom.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/custom_w.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/donator/mob/inhands/donator_left.dmi'
@@ -98,8 +98,8 @@
 	switch(current_state)
 		if(TURN_DIAL)
 			user.visible_message(
-				"[icon2html(src, oviewers(2, user))] As [user] turns the red dial on the side of \the [src], it spits out some encrypted static and warbles before silencing itself.",
-				"[icon2html(src, user)] As you turn the red dial on the side of the device, it spits out some encrypted static and warbles before silencing itself.",
+				"[icon2html(src, oviewers(2, user))] 当 [user] 转动 \the [src] 侧面的红色旋钮时，它吐出一段加密的静电噪音，呜咽几声后归于沉寂。",
+				"[icon2html(src, user)] 当你转动装置侧面的红色旋钮时，它吐出一段加密的静电噪音，呜咽几声后归于沉寂。",
 				vision_distance=2)
 			playsound(user, 'modular_skyrat/master_files/sound/effects/bab1.ogg', 100, TRUE)
 			sparks.start()
@@ -108,8 +108,8 @@
 			return
 		if(TAP_SCREEN)
 			user.visible_message(
-				"[icon2html(src, oviewers(2, user))] [user] taps the screen of \the [src], making it light up and starting the boot sequence. \the [src] displays an error message and shuts off.",
-				"[icon2html(src, user)] You tap the device's screen, making it light up and starting the boot sequence. The device displays an error message and shuts off.",
+				"[icon2html(src, oviewers(2, user))] [user] 轻点 \the [src] 的屏幕，屏幕亮起并开始启动程序。\the [src] 显示出一条错误信息，随即关机。",
+				"[icon2html(src, user)] 你轻点装置的屏幕，屏幕亮起并开始启动程序。装置显示出一条错误信息，随即关机。",
 				vision_distance=2)
 			playsound(user, 'modular_skyrat/master_files/sound/effects/platform_call.ogg', 100, TRUE)
 			current_state = PRESS_KEYS
@@ -117,8 +117,8 @@
 			return
 		if(PRESS_KEYS)
 			user.visible_message(
-				"[icon2html(src, oviewers(2, user))] [user] presses some keys, producing some promising beeps, before a harsh buzz returns [src] to silence again.",
-				"[icon2html(src, user)] You press some keys, producing some promising beeps, before a harsh buzz returns the device to silence again.",
+				"[icon2html(src, oviewers(2, user))] [user] 按了几个键，发出几声充满希望的哔声，随后一声刺耳的嗡鸣让 [src] 重归沉寂。",
+				"[icon2html(src, user)] 你按了几个键，发出几声充满希望的哔声，随后一声刺耳的嗡鸣让装置重归沉寂。",
 				vision_distance=2)
 			sparks.start()
 			playsound(user, 'modular_skyrat/master_files/sound/effects/gmalfunction.ogg', 100, TRUE)
@@ -127,16 +127,16 @@
 			return
 		if(EXTEND_ANTENNA)
 			user.visible_message(
-				"[icon2html(src, oviewers(2, user))] [user] extends the antennae on \the [src], yielding a progress bar, but no amount of adjusting gets it to 100%. [user] returns them to normal.",
-				"[icon2html(src, user)] You extend the antennae, yielding a progress bar, but no amount of adjusting gets it to 100%. You return them to normal.",
+				"[icon2html(src, oviewers(2, user))] [user] 拉出 \the [src] 的天线，屏幕上出现了一条进度条，但怎么调整都到不了 100%。[user] 只好把天线收了回去。",
+				"[icon2html(src, user)] 你拉出天线，屏幕上出现了一条进度条，但怎么调整都到不了 100%。你只好把天线收了回去。",
 				vision_distance=2)
 			current_state = SLAP_SIDE
 			next_activate = world.time + 20
 			return
 		if(SLAP_SIDE)
 			user.visible_message(
-				"[icon2html(src, oviewers(2, user))] [user] slaps the side of \the [src] and it whirrs into life, before thunking and remains still.",
-				"[icon2html(src, user)] You slap the side of the device and it whirrs into life, before thunking and remaining still.",
+				"[icon2html(src, oviewers(2, user))] [user] 拍了拍 \the [src] 的侧面，它嗡鸣着苏醒过来，接着“咚”的一声又没了动静。",
+				"[icon2html(src, user)] 你拍了拍装置的侧面，它嗡鸣着苏醒过来，接着“咚”的一声又没了动静。",
 				vision_distance=2)
 			playsound(user, 'modular_skyrat/master_files/sound/effects/hacked.ogg', 100, TRUE)
 			sparks.start()
@@ -156,8 +156,8 @@
 
 // Donation reward for SQNZTB
 /obj/vehicle/ridden/wheelchair/hardlight
-	name = "hardlight wheelchair"
-	desc = "A wheelchair made out of hardlight, propulsed by miniaturized bluespace technology."
+	name = "硬光轮椅"
+	desc = "一台由硬光构成的轮椅，靠微型化的蓝空间技术推动。"
 	alpha = 150 // Just to help differentiate it from a real wheelchair, and to show that it's a bit squishier.
 	max_integrity = 10 //standard wheelchairs have 100, motorized 150
 	/// The projector associated with this wheelchair.
@@ -181,7 +181,7 @@
 	return ..()
 
 /obj/vehicle/ridden/wheelchair/hardlight/atom_destruction(damage_flag)
-	visible_message(span_notice("[src] flickers and vanishes as the hardlight emitters are interrupted"))
+	visible_message(span_notice("[src] 随着硬光发射器被中断而闪烁、消失了"))
 	qdel(src)
 	return ..()
 
@@ -191,7 +191,7 @@
 /obj/vehicle/ridden/wheelchair/hardlight/post_unbuckle_mob()
 	. = ..()
 
-	visible_message(span_notice("[src] flickers and disappears as the hardlight emitters disengage."))
+	visible_message(span_notice("[src] 随着硬光发射器断开而闪烁、消失了。"))
 	qdel(src)
 
 
@@ -211,8 +211,8 @@
 
 // The actual item they will be using.
 /obj/item/holosign_creator/hardlight_wheelchair
-	name = "hardlight wheelchair emitter"
-	desc = "An emitter which projects a ridable but fragile wheelchair made out of hardlight."
+	name = "硬光轮椅发射器"
+	desc = "一台能投射出可乘坐但很脆弱的硬光轮椅的发射器。"
 	icon_state = "signmaker_med"
 	holosign_type = /obj/vehicle/ridden/wheelchair/hardlight
 	max_signs = 1
@@ -220,17 +220,17 @@
 
 /obj/item/holosign_creator/hardlight_wheelchair/examine(mob/user)
 	. = ..()
-	. += span_tinynoticeital("\n<i>There's something etched on the underside of the handle, you can look again to take a closer look...</i>")
+	. += span_tinynoticeital("\n<i>手柄下面刻着些东西，你可以再查看一次凑近看看……</i>")
 
 
 /obj/item/holosign_creator/hardlight_wheelchair/examine_more(mob/user)
 	. = ..()
-	. += span_notice("<i>Etched underneath the handle is the following message:</i>\n")
-	. += span_smallnoticeital("\"I told you I would find a way to make it all easier.\" - A.H.")
+	. += span_notice("<i>手柄下方刻着这样一段话：</i>\n")
+	. += span_smallnoticeital("“我说过我会找到办法让这一切都轻松些。”——A.H.")
 
 /obj/item/instrument/piano_synth/headphones/catear_headphone
-	name = "Cat-Ear Headphones"
-	desc = "Merch of their Electric Guitarist Demi Galgan from the Singularity Shredders. It's heavily customizable and even comes with a holographic tail!"
+	name = "猫耳耳机"
+	desc = "奇点撕裂者乐队电吉他手黛米·加尔甘的周边。它高度可定制，甚至还带一条全息尾巴！"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/instrument/piano_synth/headphones/catear_headphone"
 	post_init_icon_state = "catear_headphone"

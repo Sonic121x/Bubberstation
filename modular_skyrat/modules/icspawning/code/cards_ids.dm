@@ -1,7 +1,7 @@
 // SKYRAT MODULE IC-SPAWNING https://github.com/Skyrat-SS13/Skyrat-tg/pull/104
 /obj/item/card/id/advanced/debug/bst
-	name = "\improper Bluespace ID"
-	desc = "A Bluespace ID card. Has ALL the all access, you really shouldn't have this."
+	name = "\improper 蓝空间身份卡"
+	desc = "一张蓝空间身份卡。拥有全部通行权限，你真的不该持有这东西。"
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	trim = /datum/id_trim/admin/bst

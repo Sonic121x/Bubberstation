@@ -1,5 +1,5 @@
 /datum/armament_entry/assault_operatives/explosives
-	category = "Explosive Devices"
+	category = "爆炸装置"
 	category_item_limit = 4
 	max_purchase = 4
 

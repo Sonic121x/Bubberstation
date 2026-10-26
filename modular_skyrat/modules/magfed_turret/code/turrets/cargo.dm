@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox/emergency/turret/mag_fed/toy
-	name = "toy turret kit"
-	desc = "A deployable turret designed for office warfare. Throw it in the neighboring cubicle and take cover as it does the rest. Made with a flexible, recolourable material."
+	name = "玩具炮塔套件"
+	desc = "一款为办公室战争而设计的可部署炮塔。把它扔进隔壁工位，然后躲好，剩下的交给它。由一种柔韧且可改色的材料制成。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/storage/toolbox/emergency/turret/mag_fed/toy"
 	post_init_icon_state = "toy_toolbox"
@@ -27,8 +27,8 @@
 	new /obj/item/ammo_box/magazine/toy/smg(src)
 
 /obj/machinery/porta_turret/syndicate/toolbox/mag_fed/toy
-	name = "\improper Cubicle Point-Defense Turret"
-	desc = "A small deployable turret designed to expand after being thrown. Chambered inside of it are the most frightening of rounds: foam darts."
+	name = "\improper 工位近程防御炮塔"
+	desc = "一款小型可部署炮塔，扔出后会自动展开。它膛内装填着最令人恐惧的弹药：泡沫飞镖。"
 	max_integrity = 10 //small weak thing
 	icon = 'icons/map_icons/objects.dmi'
 	icon_state = "/obj/machinery/porta_turret/syndicate/toolbox/mag_fed/toy"

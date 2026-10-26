@@ -1,5 +1,5 @@
 /datum/design/long_range_pda
-	name = "long range PDA"
+	name = "远程 PDA"
 	id = "long range pda"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT)
@@ -12,7 +12,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /obj/item/disk/design_disk/long_range_pda
-	name = "far range PDA design disk"
+	name = "远程 PDA 设计磁盘"
 
 /obj/item/disk/design_disk/long_range_pda/Initialize(mapload)
 	. = ..()

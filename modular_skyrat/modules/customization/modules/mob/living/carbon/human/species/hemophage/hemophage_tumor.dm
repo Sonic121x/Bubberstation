@@ -13,11 +13,11 @@
 
 
 /obj/item/organ/heart/hemophage
-	name = "pulsating tumor"
+	name = "搏动肿瘤"
 	icon = 'modular_skyrat/modules/organs/icons/hemophage_organs.dmi'
 	icon_state = "tumor-on"
 	base_icon_state = "tumor"
-	desc = "This pulsating organ nearly resembles a normal heart, but it's been twisted beyond any human appearance, having turned to the color of coal. The way it barely fits where the original organ was sends shivers down your spine... <i>The fact that it's what keeps them alive makes it all the more terrifying.</i>"
+	desc = "这颗搏动的器官几乎像是正常的心脏，却已被扭曲得完全不像人类器官，颜色也变成了煤炭般的漆黑。它勉强塞在原器官位置的样子让你脊背发凉……<i>而它正是让他们活下来的东西，这一点更令人恐惧。</i>"
 	actions_types = list(/datum/action/cooldown/hemophage/toggle_dormant_state)
 	/// Are we currently dormant? Defaults to PULSATING_TUMOR_ACTIVE (so FALSE).
 	var/is_dormant = PULSATING_TUMOR_ACTIVE
@@ -84,8 +84,8 @@
 	owner.blood_volume = (owner.blood_volume * FLOATING_POINT_ERROR_AVOIDING_FACTOR - bloodloss_rate * seconds_per_tick * FLOATING_POINT_ERROR_AVOIDING_FACTOR) / FLOATING_POINT_ERROR_AVOIDING_FACTOR
 
 	if(owner.blood_volume <= BLOOD_VOLUME_SURVIVE)
-		to_chat(owner, span_danger("You ran out of blood!"))
-		owner.investigate_log("starved to death from lack of blood caused by [src].", INVESTIGATE_DEATHS)
+		to_chat(owner, span_danger("你的血液耗尽了！"))
+		owner.investigate_log("因 [src] 导致的失血而死亡。", INVESTIGATE_DEATHS)
 		owner.death() // Owch! Ran out of blood.
 
 
@@ -147,7 +147,7 @@
 /obj/item/organ/heart/hemophage/proc/get_status_tab_item(mob/living/source, list/items)
 	SIGNAL_HANDLER
 
-	items += "Current blood level: [owner.blood_volume]/[max_blood_capacity]"
+	items += "当前血液量：[owner.blood_volume]/[max_blood_capacity]"
 
 /obj/item/organ/heart/hemophage/proc/has_reached_max_blood(mob/living/source, mob/living/victim)
 	SIGNAL_HANDLER

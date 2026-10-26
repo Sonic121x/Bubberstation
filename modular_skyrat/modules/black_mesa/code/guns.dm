@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/laser/marksman // Cheap replacement for a gauss rifle.
-	name = "designated marksman rifle"
-	desc = "A special laser beam sniper rifle designed by a certain now defunct research facility."
+	name = "精确射手步枪"
+	desc = "由某家如今已倒闭的研究设施设计的特殊激光束狙击步枪。"
 	icon_state = "ctfmarksman"
 	inhand_icon_state = "ctfmarksman"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/marksman
@@ -25,7 +25,7 @@
 	AddElement(/datum/element/delete_on_drop)
 
 /obj/projectile/beam/marksman
-	name = "laser beam"
+	name = "激光束"
 	damage = 70
 	armour_penetration = 30
 	hitscan = TRUE

@@ -4,9 +4,9 @@
  * Allows for interaction with an item. Drone shell only.
  */
 /obj/item/circuit_component/item_interact
-	display_name = "Item Interact"
-	desc = "A component that can force the shell to interact with an item. Only works with drone shells. Only works on items. Must be directly next to the item."
-	category = "Action"
+	display_name = "物品交互"
+	desc = "可迫使外壳与物品进行交互的元件。仅对无人机外壳有效，且仅对物品生效。必须紧邻目标物品。"
+	category = "动作"
 
 	/// Whether to use primary attack_self or secondary attack_self
 	var/datum/port/input/primary_interact

@@ -1,4 +1,4 @@
-ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lorecaster Story Manager.", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "设定播报故事", "打开设定播报故事管理器。", ADMIN_CATEGORY_EVENTS)
 	var/datum/story_manager_interface/ui = new(usr)
 	ui.ui_interact(usr)
 
@@ -34,9 +34,9 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 
 		// the TGUI needs _all_ of these to work
 		if(!("title" in uncompiled_stories[story]))
-			uncompiled_stories[story]["title"] = "Nanotrasen News Broadcast"
+			uncompiled_stories[story]["title"] = "纳米传讯新闻播报"
 		if(!("text" in uncompiled_stories[story]))
-			uncompiled_stories[story]["text"] = "Someone forgot to fill out the article!"
+			uncompiled_stories[story]["text"] = "有人忘了填写这篇文章！"
 		if(!("year" in uncompiled_stories[story]))
 			uncompiled_stories[story]["year"] = "[CURRENT_STATION_YEAR]"
 		if(!("month" in uncompiled_stories[story]))
@@ -118,7 +118,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 			)
 
 			rustg_file_write(json_encode(current_story_copy), NEWS_FILE)
-			log_admin("[usr.ckey] has published a lorecaster article with id [id].")
+			log_admin("[usr.ckey] 发布了 ID 为 [id] 的设定播报文章。")
 			current_stories = generate_stories(NEWS_FILE)
 			SSlorecaster.all_stories = current_stories.Copy()
 			ui.send_full_update()
@@ -139,7 +139,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 
 			rustg_file_write(json_encode(current_story_copy), NEWS_FILE)
 			rustg_file_write(json_encode(archive_story_copy), ARCHIVE_FILE)
-			log_admin("[usr.ckey] has archived a lorecaster article with id [id].")
+			log_admin("[usr.ckey] 归档了 ID 为 [id] 的设定播报文章。")
 			current_stories = generate_stories(NEWS_FILE)
 			SSlorecaster.all_stories = current_stories.Copy()
 			archived_stories = generate_stories(ARCHIVE_FILE)
@@ -161,7 +161,7 @@ ADMIN_VERB(lorecaster_story_manager, R_ADMIN, "Lorecaster Stories", "Open the Lo
 
 			rustg_file_write(json_encode(current_story_copy), NEWS_FILE)
 			rustg_file_write(json_encode(archive_story_copy), ARCHIVE_FILE)
-			log_admin("[usr.ckey] has re-circulated an archived lorecaster article with id [id].")
+			log_admin("[usr.ckey] 重新发布了 ID 为 [id] 的已归档设定播报文章。")
 			current_stories = generate_stories(NEWS_FILE)
 			SSlorecaster.all_stories = current_stories.Copy()
 			archived_stories = generate_stories(ARCHIVE_FILE)

@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/smart_machine_gun
-	name = "\improper M63A4 \"Smartgun\""
-	desc = "A weapon with a blistering rate of fire, so heavy that it needs to be mounted on a modsuit to wield. \
-	It's equipped with IFF technology, allowing the bullets to intentionally miss friendly targets."
+	name = "\improper M63A4“智能机枪”"
+	desc = "一种射速极快、沉重到必须安装在 MOD 模块化外骨骼上才能携行的武器。\
+	它配备了敌我识别技术，能让子弹有意避开友军目标。"
 	icon = 'modular_skyrat/modules/marines/icons/items/guns.dmi'
 	lefthand_file = 'modular_skyrat/modules/marines/icons/mobs/guns_l.dmi'
 	righthand_file = 'modular_skyrat/modules/marines/icons/mobs/guns_r.dmi'
@@ -51,9 +51,9 @@
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/examine(mob/user)
 	. = ..()
-	. += "<b>RMB with an empty hand</b> to [cover_open ? "close" : "open"] the dust cover."
+	. += "用<b>空手右键</b>来[cover_open ? "关闭" : "打开"]防尘盖。"
 	if(cover_open && magazine)
-		. += span_notice("It seems like you could use an <b>empty hand</b> to remove the magazine.")
+		. += span_notice("看来你可以用<b>空手</b>取下弹匣。")
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
@@ -62,26 +62,26 @@
 	if(!user.can_perform_action(src))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	cover_open = !cover_open
-	to_chat(user, span_notice("You [cover_open ? "open" : "close"] [src]'s cover."))
+	to_chat(user, span_notice("你[cover_open ? "打开" : "关闭"]了 [src] 的防尘盖。"))
 	playsound(src, 'sound/items/weapons/gun/l6/l6_door.ogg', 60, TRUE)
 	update_appearance()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/can_shoot()
 	if(cover_open)
-		balloon_alert_to_viewers("cover open!")
+		balloon_alert_to_viewers("防尘盖已打开！")
 		return FALSE
 	return chambered
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	if(!cover_open)
-		to_chat(user, span_warning("The cover is closed! Open it before ejecting the magazine!"))
+		to_chat(user, span_warning("防尘盖是关着的！先打开它再退出弹匣！"))
 		return
 	return ..()
 
 /obj/item/gun/ballistic/automatic/smart_machine_gun/attackby(obj/item/attack_item, mob/user, params)
 	if(!cover_open && istype(attack_item, accepted_magazine_type))
-		to_chat(user, span_warning("[src]'s dust cover prevents a magazine from being fit."))
+		to_chat(user, span_warning("[src] 的防尘盖挡着，弹匣装不上去。"))
 		return
 	..()
 
@@ -94,7 +94,7 @@
 // Magazine itself
 
 /obj/item/ammo_box/magazine/smartgun_drum
-	name = "smartgun drum (10x28mm caseless)"
+	name = "智能机枪弹鼓（10x28mm 无壳弹）"
 	icon = 'modular_skyrat/modules/marines/icons/items/ammo.dmi'
 	icon_state = "smartgun_drum"
 	ammo_type = /obj/item/ammo_casing/smart/a10x28
@@ -132,8 +132,8 @@
 	icon_state = "[initial(icon_state)]"
 
 /obj/item/ammo_casing/smart/a10x28
-	name = "10x28mm bullet"
-	desc = "A 10x28m caseless bullet."
+	name = "10x28mm 子弹"
+	desc = "一发 10x28mm 无壳子弹。"
 	icon_state = "762-casing"
 	caliber = "a10x28"
 	projectile_type = /obj/projectile/bullet/smart/a10x28
@@ -144,7 +144,7 @@
 	ignore_direct_target = TRUE
 
 /obj/projectile/bullet/smart/a10x28 // utter peashooter, but it has 6000rpm
-	name = "10x28mm bullet"
+	name = "10x28mm 子弹"
 	damage = 9
 	wound_bonus = -5
 	wound_falloff_tile = -1

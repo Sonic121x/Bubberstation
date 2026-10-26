@@ -5,12 +5,12 @@ GLOBAL_VAR_INIT(temporary_flavor_text_indicator, generate_temporary_flavor_text_
 	temporary_flavor_text_indicator.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	return temporary_flavor_text_indicator
 
-GAME_VERB_DESC(/mob/living, set_temporary_flavor, "Set Temporary Flavor Text", "Allows you to set a temporary flavor text.", "IC")
+GAME_VERB_DESC(/mob/living, set_temporary_flavor, "设置临时风味文本", "允许你设置一段临时风味文本。", "IC")
 	if(IS_UNCONSCIOUS_OR_CRIT(src))
-		to_chat(src, span_warning("You can't set your temporary flavor text now..."))
+		to_chat(src, span_warning("你现在无法设置临时风味文本……"))
 		return
 
-	var/msg = tgui_input_text(src, "Set the temporary flavor text in your 'examine' verb. This is for describing what people can tell by looking at your character.", "Temporary Flavor Text", temporary_flavor_text, max_length = MAX_FLAVOR_LEN, multiline = TRUE)
+	var/msg = tgui_input_text(src, "设置你在“检查”动作中显示的临时风味文本。此文本用于描述他人通过观察你的角色能看出的内容。", "临时风味文本", temporary_flavor_text, max_length = MAX_FLAVOR_LEN, multiline = TRUE)
 	if(msg == null)
 		return
 

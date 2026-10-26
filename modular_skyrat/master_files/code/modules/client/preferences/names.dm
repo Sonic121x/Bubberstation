@@ -1,7 +1,7 @@
 //a new name alias that can be added to ghost roles so the lone infil is not the same doctor that healed you last round.
 
 /datum/preference/name/syndicate
-	explanation = "Syndicate name"
+	explanation = "辛迪加姓名"
 	group = "backup_human"
 	savefile_key = "antag_name"
 

@@ -3,11 +3,11 @@
 	empty = TRUE
 
 /obj/machinery/power/smes/battery_pack
-	name = "stationary battery"
-	desc = "An about table-height block of power storage, commonly seen in low storage high output power applications. \
-		Smaller units such as these tend to have a respectively <b>smaller energy storage</b>, though also are capable of \
-		<b>higher maximum output</b> than some larger units. Most commonly seen being used not for their ability to store \
-		power, but rather for use in regulating power input and output."
+	name = "固定式电池"
+	desc = "一块约齐桌高的储能设备，常见于低容量、高出力的电力应用场合。\
+		像这样较小的单元通常相应地拥有<b>更小的储能容量</b>，但也能够\
+		提供比某些大型单元<b>更高的最大输出</b>。它最常见的用途并非储存\
+		电力，而是调节电力输入与输出。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/power_storage_unit/small_battery.dmi'
 	total_capacity = 7.5 * STANDARD_BATTERY_CHARGE
 	input_level_max = 400 KILO WATTS
@@ -58,7 +58,7 @@
 // Item for creating the small battery and carrying it around
 
 /obj/item/flatpacked_machine/station_battery
-	name = "flat-packed stationary battery"
+	name = "扁平包装固定式电池"
 	icon_state = "battery_small_packed"
 	type_to_deploy = /obj/machinery/power/smes/battery_pack
 	custom_materials = list(
@@ -70,11 +70,11 @@
 // Larger station batteries, hold more but have less in/output
 
 /obj/machinery/power/smes/battery_pack/large
-	name = "large stationary battery"
-	desc = "A massive block of power storage, commonly seen in high storage low output power applications. \
-		Larger units such as these tend to have a respectively <b>larger energy storage</b>, though only capable of \
-		<b>low maximum output</b> compared to smaller units. Most commonly seen as large backup batteries, or simply \
-		for large power storage where throughput is not a concern."
+	name = "大型固定式电池"
+	desc = "一块巨大的储能设备，常见于高容量、低出力的电力应用场合。\
+		像这样较大的单元通常相应地拥有<b>更大的储能容量</b>，但相比小型单元\
+		只能提供<b>较低的最大输出</b>。它最常见的用途是作为大型备用电池，或者单纯\
+		用于不在意吞吐量的大型储能。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/power_storage_unit/large_battery.dmi'
 	total_capacity = 100 * STANDARD_BATTERY_CHARGE
 	input_level_max = 50 KILO WATTS
@@ -92,7 +92,7 @@
 	adjust_charge(INFINITY)
 
 /obj/item/flatpacked_machine/large_station_battery
-	name = "flat-packed large stationary battery"
+	name = "扁平包装大型固定式电池"
 	icon_state = "battery_large_packed"
 	type_to_deploy = /obj/machinery/power/smes/battery_pack/large
 	custom_materials = list(

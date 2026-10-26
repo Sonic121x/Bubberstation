@@ -15,13 +15,13 @@
 *	UNSORTED
 */
 /obj/item/clothing/under/costume/skyrat/cavalry
-	name = "cavalry uniform"
-	desc = "Dedicate yourself to something better. To loyalty, honour, for it only dies when everyone abandons it."
+	name = "骑兵制服"
+	desc = "把自己奉献给更值得的事物吧。献给忠诚与荣誉，因为只有当所有人都背弃它时，它才会真正消亡。"
 	icon_state = "cavalry" //specifically an 1890s US Army Cavalry Uniform
 
 /obj/item/clothing/under/costume/deckers/alt //not even going to bother re-pathing this one because its such a unique case of 'TGs item has something but this alt doesnt'
-	name = "deckers maskless outfit"
-	desc = "A decker jumpsuit with neon blue coloring."
+	name = "德克无面罩套装"
+	desc = "一件霓虹蓝色的德克连体服。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
@@ -29,8 +29,8 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/costume/skyrat/bathrobe
-	name = "bathrobe"
-	desc = "A warm fluffy bathrobe, perfect for relaxing after finally getting clean."
+	name = "浴袍"
+	desc = "一件温暖蓬松的浴袍，最适合在终于洗干净之后好好放松。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/skyrat/bathrobe"
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/suit/suit.dmi'
@@ -48,21 +48,21 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/skyrat/kilt
-	name = "kilt"
-	desc = "Just so we can inheret the properties of the actual kilt."
+	name = "苏格兰短裙"
+	desc = "只是为了让这件继承正版苏格兰短裙的各项属性。"
 	icon_state = "kilt"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 
 
 /obj/item/clothing/under/costume/skyrat/kilt/royal
-	name = "royal kilt"
-	desc = "House of Stuart approved!"
+	name = "皇家苏格兰短裙"
+	desc = "斯图亚特家族认证！"
 	icon_state = "royalkilt"
 
 /obj/item/clothing/under/costume/skyrat/tac/irish
-	name = "irish tactical uniform"
-	desc = "The SAM missiles are in the sky! Faint whiffs of cheap booze and Libyan semtex come off this getup, someone was so kind as to leave a book in one of the pockets, too bad it's all in Gaelic!"
+	name = "爱尔兰战术制服"
+	desc = "防空导弹已经升空！这身行头散发着廉价烈酒和利比亚塑胶炸药的淡淡气味，还有人好心地在一个口袋里留了本书，可惜全是盖尔语！"
 	icon_state = "tactical1"
 
 /*
@@ -70,8 +70,8 @@
 */
 
 /obj/item/clothing/under/costume/skyrat/qipao
-	name = "qipao"
-	desc = "A qipao, traditionally worn in ancient Earth China by women during social events and lunar new years."
+	name = "旗袍"
+	desc = "一件旗袍，古地球中国的女性在社交场合和农历新年时传统上会穿着它。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/skyrat/qipao"
 	post_init_icon_state = "qipao"
@@ -85,8 +85,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/costume/skyrat/cheongsam
-	name = "cheongsam"
-	desc = "A cheongsam, traditionally worn in ancient Earth China by men during social events and lunar new years."
+	name = "长衫"
+	desc = "一件长衫，古地球中国的男性在社交场合和农历新年时传统上会穿着它。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/skyrat/cheongsam"
 	post_init_icon_state = "cheongsam"
@@ -100,8 +100,8 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/costume/skyrat/yukata
-	name = "yukata"
-	desc = "A traditional ancient Earth Japanese yukata, typically worn in casual settings."
+	name = "浴衣"
+	desc = "一件古地球日本传统的浴衣，通常在休闲场合穿着。"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/skyrat/yukata"
 	post_init_icon_state = "yukata"
@@ -114,13 +114,13 @@
 	gets_cropped_on_taurs = FALSE
 
 /obj/item/clothing/under/costume/skyrat/kamishimo
-	name = "kamishimo"
-	desc = "A traditional ancient Earth Japanese Kamishimo."
+	name = "裃"
+	desc = "一件古地球日本传统的裃，是武士阶层的正式礼服。"
 	icon_state = "kamishimo"
 
 /obj/item/clothing/under/costume/skyrat/kimono
-	name = "fancy kimono"
-	desc = "A traditional ancient Earth Japanese Kimono. Longer and fancier than a yukata."
+	name = "华丽和服"
+	desc = "一件古地球日本传统的和服。比浴衣更长，也更华丽。"
 	icon_state = "kimono"
 	body_parts_covered = CHEST|GROIN|ARMS
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
@@ -134,8 +134,8 @@
 */
 
 /obj/item/clothing/under/costume/skyrat/christmas
-	name = "christmas costume"
-	desc = "Can you believe it guys? Christmas. Just a lightyear away!" //Lightyear is a measure of distance I hate it being used for this joke :(
+	name = "圣诞装"
+	desc = "各位，你敢信吗？圣诞节。就在一光年之外！" //Lightyear is a measure of distance I hate it being used for this joke :(
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/skyrat/christmas"
 	post_init_icon_state = "christmas_male"
@@ -147,14 +147,14 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/skyrat/christmas/green
-	name = "green christmas costume"
-	desc = "4:00, wallow in self-pity. 4:30, stare into the abyss. 5:00, solve world hunger, tell no one. 5:30, jazzercize; 6:30, dinner with me. I can't cancel that again. 7:00, wrestle with my self-loathing. I'm booked. Of course, if I bump the loathing to 9, I could still be done in time to lay in bed, stare at the ceiling and slip slowly into madness."
+	name = "绿色圣诞装"
+	desc = "4:00，沉溺于自怜。4:30，凝视深渊。5:00，解决世界饥饿问题，谁都别告诉。5:30，去做有氧操；6:30，和我共进晚餐。这个我可不能再取消了。7:00，与自我厌恶搏斗。我的日程排满了。当然，要是把自我厌恶挪到 9 点，我还能赶得及躺回床上，盯着天花板，缓缓滑入疯狂。"
 	icon_state = "/obj/item/clothing/under/costume/skyrat/christmas/green"
 	greyscale_colors = "#1a991a#c4c2c2"
 
 /obj/item/clothing/under/costume/skyrat/christmas/croptop
-	name = "sexy christmas costume"
-	desc = "About 550 years since the release of Mariah Carey's \"All I Want For Christmas is You\", society has yet to properly recover from its repercussions. Some still keep a gun as their christmas mantlepiece, just in case she's heard singing on their rooftop late in the night..."
+	name = "性感圣诞装"
+	desc = "玛丽亚·凯莉的《圣诞节的唯一心愿》发行至今约 550 年，社会仍未从它带来的余波中真正恢复。有些人依旧在圣诞壁炉架上放一把枪，以防深夜时分听见她在自家屋顶上唱歌……"
 	icon = 'icons/map_icons/clothing/under/costume.dmi'
 	icon_state = "/obj/item/clothing/under/costume/skyrat/christmas/croptop"
 	post_init_icon_state = "christmas_female"
@@ -167,7 +167,7 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/costume/skyrat/christmas/croptop/green
-	name = "sexy green christmas costume"
-	desc = "Stupid. Ugly. Out of date. If I can't find something nice to wear I'm not going."
+	name = "性感绿色圣诞装"
+	desc = "又蠢，又丑，还过时。要是找不到像样的衣服，我就不去了。"
 	icon_state = "/obj/item/clothing/under/costume/skyrat/christmas/croptop/green"
 	greyscale_colors = "#1a991a#c4c2c2"

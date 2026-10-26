@@ -1,6 +1,6 @@
 /obj/item/organ/neck_accessory
-	name = "neck accessory"
-	desc = "It goes on the neck."
+	name = "颈部饰品"
+	desc = "戴在脖子上的。"
 	icon_state = "random_fly_1"
 
 	mutantpart_key = "neck_accessory"

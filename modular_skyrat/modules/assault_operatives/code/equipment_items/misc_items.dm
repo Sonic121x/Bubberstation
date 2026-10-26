@@ -1,6 +1,6 @@
 /obj/item/storage/pouch/medpens
-	name = "medpen pouch"
-	desc = "A pouch containing several different types of lifesaving medipens."
+	name = "自动注射笔袋"
+	desc = "一个小袋，装有数种不同的救命自动注射笔。"
 	icon = 'modular_skyrat/modules/modular_items/icons/storage.dmi'
 	icon_state = "medpen_pouch"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS

@@ -8,8 +8,8 @@
  * - Detaches from zombies on death with a chance to survive
  */
 /mob/living/basic/blackmesa/xen/headcrab
-	name = "headcrab"
-	desc = "Don't let it latch onto your hea-... hey, that's kinda cool."
+	name = "猎头蟹"
+	desc = "别让它趴到你头——……嘿，这还挺酷的。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "headcrab"
 	icon_living = "headcrab"
@@ -106,7 +106,7 @@
 		do_sparks(3, TRUE, human_target)
 
 		// Log the zombification
-		human_target.investigate_log("was zombified by [src] while unconscious.", INVESTIGATE_DEATHS)
+		human_target.investigate_log("在昏迷时被 [src] 僵尸化。", INVESTIGATE_DEATHS)
 		human_target.death(FALSE)
 
 /mob/living/basic/blackmesa/xen/headcrab/death(gibbed)
@@ -126,7 +126,7 @@
 
 	// Create the zombie at our location
 	var/mob/living/basic/blackmesa/xen/headcrab_zombie/new_zombie = new(get_turf(src))
-	new_zombie.name = "[target_human.name] zombie"
+	new_zombie.name = "[target_human.name] 僵尸"
 
 	// Copy the human's appearance
 	target_human.set_hairstyle(null, update = FALSE)
@@ -149,7 +149,7 @@
 
 	// Visual and sound feedback for zombie creation
 	playsound(new_zombie, 'modular_skyrat/modules/black_mesa/sound/mobs/headcrab/attack1.ogg', 100, FALSE)
-	visible_message(span_warning("The corpse of [target_human.name] suddenly rises, a headcrab controlling its lifeless body!"))
+	visible_message(span_warning("[target_human.name] 的尸体突然站了起来，一只猎头蟹正操控着这具毫无生气的躯体！"))
 
 	// Move the mind into the zombie, if we have one
 	if(!isnull(mind))
@@ -170,11 +170,11 @@
  */
 /mob/living/basic/blackmesa/xen/headcrab/fast
 	speed = -2
-	desc = "Don't let it latch onto your hea-... hey, that's kinda cool. This one looks faster than usual."
+	desc = "别让它趴到你头——……嘿，这还挺酷的。这只看起来比平常快。"
 
 /datum/action/cooldown/mob_cooldown/headcrab_jump
-	name = "Headcrab Leap"
-	desc = "Jump at your target"
+	name = "猎头蟹跳跃"
+	desc = "朝你的目标扑跃"
 	cooldown_time = 1 SECONDS
 	click_to_activate = TRUE
 	button_icon = 'icons/mob/actions/actions_spells.dmi'
@@ -187,7 +187,7 @@
 	if(dist > maximum_distance)
 		var/mob/living/living_owner = owner
 		if(istype(living_owner))
-			living_owner.balloon_alert(living_owner, "too far!")
+			living_owner.balloon_alert(living_owner, "太远了！")
 		return FALSE
 	. = ..()
 

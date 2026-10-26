@@ -1,6 +1,6 @@
 /mob/living/basic/pet/dog/markus
-	name = "\proper Markus"
-	desc = "The supply department's overfed yet still beloved dog."
+	name = "\proper 马库斯"
+	desc = "供应部那条被喂得过胖却依然深受喜爱的狗。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "markus"
 	icon_dead = "markus_dead"
@@ -17,7 +17,7 @@
 	var/can_breed = TRUE
 
 	/// List of possible dialogue options. This is both used by the AI and as an override when a sentient Markus speaks.
-	var/static/list/markus_speak = list("Borf!", "Boof!", "Bork!", "Bowwow!", "Burg?")
+	var/static/list/markus_speak = list("汪！", "呜汪！", "汪汪！", "汪汪汪！", "汉堡？")
 
 /mob/living/basic/pet/dog/markus/Initialize(mapload)
 	. = ..()
@@ -63,7 +63,7 @@
 
 /mob/living/basic/pet/dog/corgi/borgi
 	name = "E-N"
-	desc = "It's a borgi."
+	desc = "这是一只机械柯基。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "borgi"
 	icon_living = "borgi"
@@ -76,7 +76,7 @@
 		/obj/item/clothing/head/costume/skyrat/en = 1,
 		/obj/item/clothing/suit/corgisuit/en = 1,
 	)
-	death_message = "beeps, its mechanical parts hissing before the chassis collapses in a loud thud."
+	death_message = "发出哔哔声，机械部件嘶嘶作响，随后底盘重重地砸在地上。"
 	gold_core_spawnable = NO_SPAWN
 	can_be_shaved = FALSE
 	ai_controller = /datum/ai_controller/basic_controller/dog/borgi
@@ -247,20 +247,20 @@
 	set_light_on(TRUE)
 
 	add_fingerprint(user, TRUE)
-	investigate_log("has been gibbed due to being emagged by [user].", INVESTIGATE_DEATHS)
-	visible_message(span_boldwarning("[user] swipes a card through [target]!"), span_notice("You overload [target]s internal reactor..."))
+	investigate_log("因被 [user] 用电磁卡刷过而化为肉泥。", INVESTIGATE_DEATHS)
+	visible_message(span_boldwarning("[user] 用卡片刷过 [target]！"), span_notice("你使 [target] 的内部反应堆过载……"))
 
-	notify_ghosts("[user] has shortcircuited [target] to explode in 60 seconds!",
+	notify_ghosts("[user] 使 [target] 短路，它将在 60 秒后爆炸！",
 		source = target,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-		header = "Borgi Emagged",
+		header = "机械柯基被电磁卡控制",
 	)
 	addtimer(CALLBACK(src, PROC_REF(explode_imminent)), 50 SECONDS)
 
 	return TRUE
 
 /mob/living/basic/pet/dog/corgi/borgi/proc/explode_imminent()
-	visible_message(span_bolddanger("[src] makes an odd whining noise!"))
+	visible_message(span_bolddanger("[src] 发出奇怪的呜咽声！"))
 	do_jitter_animation(30)
 
 	addtimer(CALLBACK(src, PROC_REF(explode)), 10 SECONDS)
@@ -279,16 +279,16 @@
 	)
 
 /mob/living/basic/pet/dog/dobermann
-	name = "\improper dobermann"
-	desc = "A larger breed of dog."
+	name = "\improper 杜宾犬"
+	desc = "一种体型较大的犬种。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "dobber"
 	icon_dead = "dobbydead"
 	icon_living = "dobber"
 
 /mob/living/basic/pet/dog/pitbull
-	name = "\improper pitbull"
-	desc = "Lover of Blood. Hater of Toddlers"
+	name = "\improper 比特犬"
+	desc = "热爱鲜血。憎恨幼童。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "pitbull"
 	icon_dead = "pitbull_dead"
@@ -314,7 +314,7 @@
 /mob/living/basic/pet/dog/pitbull/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		name = pick("Crayon", "Pimpy", "Staypuft", "Bape", "BLOODSKULL", "Baby G")
+		name = pick("蜡笔", "皮普", "棉花糖人", "猿人头", "血骷髅", "小G")
 	AddElement(/datum/element/tiny_mob_hunter, MOB_SIZE_SMALL) //He eats anything that he sees as a toddler.
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_CLAW)
 	RemoveElement(/datum/element/can_be_held)

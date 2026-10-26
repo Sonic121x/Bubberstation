@@ -4,7 +4,7 @@
 */
 
 /datum/wound/muscle
-	name = "Muscle Wound"
+	name = "肌肉损伤"
 	sound_effect = 'sound/effects/wounds/blood1.ogg'
 	wound_flags = (ACCEPTS_GAUZE | SPLINT_OVERLAY)
 
@@ -38,8 +38,8 @@
 			held_item = victim.get_inactive_held_item()
 
 		if(held_item && victim.dropItemToGround(held_item))
-			victim.visible_message(span_danger("[victim] drops [held_item] in shock!"), \
-			span_warning("<b>The force on your [parse_zone(limb.body_zone)] causes you to drop [held_item]!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim] 惊得丢下了 [held_item]！"), \
+			span_warning("<b>你的[parse_zone(limb.body_zone)]受到的冲击让你丢下了 [held_item]！</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 	return ..()
 
@@ -72,7 +72,7 @@
 		if(!victim || !limb)
 			qdel(src)
 			return
-		to_chat(victim, span_green("Your [parse_zone(limb.body_zone)] has regenerated its muscle!"))
+		to_chat(victim, span_green("你的[parse_zone(limb.body_zone)]肌肉已经再生！"))
 		remove_wound()
 
 /// If we're a human who's punching something with a broken arm, we might hurt ourselves doing so
@@ -86,11 +86,11 @@
 	if(prob(severity * 15))
 		// And you have a 70% or 50% chance to actually land the blow, respectively
 		if(prob(70 - 20 * severity))
-			to_chat(victim, span_userdanger("The damaged muscle in your [parse_zone(limb.body_zone)] shoots with pain as you strike [target]!"))
+			to_chat(victim, span_userdanger("你击打 [target] 时，[parse_zone(limb.body_zone)]受损的肌肉传来一阵剧痛！"))
 			limb.receive_damage(brute=rand(1,5))
 		else
-			victim.visible_message(span_danger("[victim] weakly strikes [target] with [victim.p_their()] swollen [parse_zone(limb.body_zone)], recoiling from pain!"), \
-			span_userdanger("You fail to strike [target] as the fracture in your [parse_zone(limb.body_zone)] lights up in unbearable pain!"), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim] 用肿胀的[parse_zone(limb.body_zone)]虚弱地击打 [target]，痛得缩了回去！"), \
+			span_userdanger("你没打中 [target]，[parse_zone(limb.body_zone)]的伤处传来难以忍受的剧痛！"), vision_distance=COMBAT_MESSAGE_RANGE)
 			INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
 			victim.Stun(0.5 SECONDS)
 			limb.receive_damage(brute=rand(3,7))
@@ -98,11 +98,11 @@
 
 /// Moderate (Muscle Tear)
 /datum/wound/muscle/moderate
-	name = "Muscle Tear"
-	desc = "Patient's muscle has torn, causing serious pain and reduced limb functionality."
-	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
-	examine_desc = "appears unnaturallly red and swollen"
-	occur_text = "swells up, its skin turning red"
+	name = "肌肉撕裂"
+	desc = "患者肌肉撕裂，造成剧烈疼痛并降低肢体功能。"
+	treat_text = "在受伤肢体上紧紧打上夹板，并充分休息与睡眠。"
+	examine_desc = "看起来异常红肿"
+	occur_text = "肿了起来，皮肤发红"
 	severity = WOUND_SEVERITY_MODERATE
 	interaction_efficiency_penalty = 1.5
 	limp_slowdown = 2
@@ -122,12 +122,12 @@
 */
 
 /datum/wound/muscle/severe
-	name = "Ruptured Tendon"
+	name = "肌腱断裂"
 	sound_effect = 'sound/effects/wounds/blood2.ogg'
-	desc = "Patient's tendon has been severed, causing significant pain and near uselessness of limb."
-	treat_text = "A tight splint on the affected limb, as well as plenty of rest and sleep."
-	examine_desc = "is limp and awkwardly twitching, skin swollen and red"
-	occur_text = "twists in pain and goes limp, its tendon ruptured"
+	desc = "患者肌腱被割断，造成剧烈疼痛，肢体几乎无法使用。"
+	treat_text = "在受伤肢体上紧紧打上夹板，并充分休息与睡眠。"
+	examine_desc = "软绵绵地抽动着，皮肤红肿"
+	occur_text = "在剧痛中扭动并瘫软下来，肌腱断裂"
 	severity = WOUND_SEVERITY_SEVERE
 	interaction_efficiency_penalty = 2
 	limp_slowdown = 5

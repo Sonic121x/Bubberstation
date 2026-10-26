@@ -1,7 +1,7 @@
 //The SmartDarts themselves
 /obj/item/reagent_containers/syringe/smartdart
-	name = "SmartDart"
-	desc = "Allows the user to safely inject chemicals at a range without harming the patient."
+	name = "智能飞镖"
+	desc = "允许使用者在安全距离外注射化学物质，而不会伤害患者。"
 	volume = 10
 	icon = 'modular_skyrat/modules/medical/icons/obj/smartdarts.dmi'
 	icon_state = "dart_0"
@@ -113,13 +113,13 @@
 	var/prevention_used = smartdart.transfer_smartdart_reagents(owner, transfer_per_second * seconds_per_tick, show_message = SPT_PROB(15, seconds_per_tick))
 	if(prevention_used && !prevention_announced)
 		prevention_announced = TRUE
-		owner.visible_message(span_notice("[smartdart] lets out a short beep."), span_notice("You hear a short beep from [smartdart]."))
+		owner.visible_message(span_notice("[smartdart] 发出了一声短促的哔声。"), span_notice("你听到 [smartdart] 发出一声短促的哔声。"))
 		playsound(smartdart, 'sound/machines/ping.ogg', 50, TRUE, -1)
 
 //Code that handles the base interactions involving smartdarts
 /obj/item/reagent_containers/syringe/smartdart/interact_with_atom(atom/target, mob/living/user, list/modifiers)
 	if(target.reagents)
-		to_chat(user, span_warning("The [src] is unable to manually inject chemicals."))
+		to_chat(user, span_warning("[src] 无法手动注射化学物质。"))
 	return NONE
 //A majority of this code is from the original syringes.dm file.
 /obj/item/reagent_containers/syringe/smartdart/interact_with_atom_secondary(atom/target, mob/living/user, list/modifiers)
@@ -127,30 +127,30 @@
 		return ITEM_INTERACT_BLOCKING
 
 	if(reagents.total_volume >= reagents.maximum_volume)
-		to_chat(user, span_notice("[src] is full."))
+		to_chat(user, span_notice("[src] 已满。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(isliving(target))
-		to_chat(user, span_warning("The [src] is unable to take blood."))
+		to_chat(user, span_warning("[src] 无法采血。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target.reagents.total_volume)
-		to_chat(user, span_warning("[target] is empty!"))
+		to_chat(user, span_warning("[target] 是空的！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!target.is_drawable(user))
-		to_chat(user, span_warning("You cannot directly remove reagents from [target]!"))
+		to_chat(user, span_warning("你不能直接从 [target] 中抽取试剂！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user) // transfer from, transfer to - who cares?
-	to_chat(user, span_notice("You fill [src] with [trans] units of the solution. It now contains [reagents.total_volume] units."))
+	to_chat(user, span_notice("你向 [src] 中注入了 [trans] 单位溶液。现在它含有 [reagents.total_volume] 单位。"))
 
 	return ITEM_INTERACT_SUCCESS
 
 //The base smartdartgun
 /obj/item/gun/syringe/smartdart
-	name = "medical SmartDart gun"
-	desc = "An adjusted version of the medical syringe gun that only allows SmartDarts to be chambered."
+	name = "医疗智能飞镖枪"
+	desc = "医疗注射枪的改装版，只允许装填智能飞镖。"
 	w_class = WEIGHT_CLASS_NORMAL //I might need to look into changing this later depending on feedback
 	icon = 'modular_skyrat/modules/medical/icons/obj/dartguns.dmi'
 	icon_state = "smartdartgun"
@@ -172,14 +172,14 @@
 /obj/item/gun/syringe/smartdart/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(istype(tool, /obj/item/reagent_containers/syringe/smartdart))
 		return ..()
-	to_chat(user, span_notice("The [tool] is unable to fit inside of the [src]! Try using a <b>SmartDart</b> instead."))
+	to_chat(user, span_notice("[tool] 装不进 [src]！请改用<b>智能飞镖</b>。"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/gun/syringe/smartdart/examine(mob/user)
 	. = ..()
 
 	for(var/obj/item/reagent_containers/syringe/dart as anything in syringes)
-		. += "There is a [dart] loaded."
+		. += "已装填 [dart]。"
 
 //Smartdart projectiles
 /obj/item/ammo_casing/syringegun/dart
@@ -197,5 +197,5 @@
 			harmful = TRUE
 
 /obj/projectile/bullet/dart/syringe/dart
-	name = "SmartDart"
+	name = "智能飞镖"
 	damage = 0

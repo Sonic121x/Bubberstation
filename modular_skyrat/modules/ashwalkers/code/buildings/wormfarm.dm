@@ -1,6 +1,6 @@
 /obj/structure/wormfarm
-	name = "worm farm"
-	desc = "A wonderfully dirty barrel where worms can have a happy little life."
+	name = "蠕虫农场"
+	desc = "一只脏得恰到好处的木桶，蠕虫们可以在里面过上幸福的小日子。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/structures.dmi'
 	icon_state = "wormbarrel"
 	density = TRUE
@@ -42,26 +42,26 @@
 
 /obj/structure/wormfarm/examine(mob/user)
 	. = ..()
-	. += span_notice("<br>There are currently [current_worm]/[max_worm] worms in the barrel.")
+	. += span_notice("<br>桶里目前有 [current_worm]/[max_worm] 条蠕虫。")
 	if(current_worm < max_worm)
-		. += span_notice("You can place more worms in the barrel.")
+		. += span_notice("你可以往桶里放入更多蠕虫。")
 	if(current_worm > 0)
-		. += span_notice("You can get fertilizer by feeding the worms food.")
+		. += span_notice("给蠕虫喂食即可获得肥料。")
 
 /obj/structure/wormfarm/attack_hand(mob/living/user, list/modifiers)
 	if(in_use)
-		balloon_alert(user, "currently in use")
+		balloon_alert(user, "正在被使用")
 		return ..()
 
-	balloon_alert(user, "digging up worms")
+	balloon_alert(user, "正在挖蠕虫")
 	var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 	if(!do_after(user, 2 SECONDS * skill_modifier, src))
-		balloon_alert(user, "stopped digging")
+		balloon_alert(user, "停止挖掘")
 		in_use = FALSE
 		return ..()
 
 	if(current_worm <= 0)
-		balloon_alert(user, "no worms available")
+		balloon_alert(user, "没有可用的蠕虫")
 		in_use = FALSE
 		return ..()
 
@@ -75,25 +75,25 @@
 	//we want to check for worms first because they are a type of food as well...
 	if(istype(attacking_item, /obj/item/food/bait/worm))
 		if(current_worm >= max_worm)
-			balloon_alert(user, "too many worms in the barrel")
+			balloon_alert(user, "桶里的蠕虫太多了")
 			return
 
 		qdel(attacking_item)
-		balloon_alert(user, "worm released into barrel")
+		balloon_alert(user, "蠕虫已放入桶中")
 		current_worm++
 		return
 
 	//if it aint a worm, lets check for any other food items
 	if(istype(attacking_item, /obj/item/food))
 		if(in_use)
-			balloon_alert(user, "currently in use")
+			balloon_alert(user, "正在被使用")
 			return
 		in_use = TRUE
 
-		balloon_alert(user, "feeding the worms")
+		balloon_alert(user, "正在喂蠕虫")
 		var/skill_modifier = user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 1 SECONDS * skill_modifier, src))
-			balloon_alert(user, "stopped feeding the worms")
+			balloon_alert(user, "停止喂养蠕虫")
 			in_use = FALSE
 			return
 
@@ -103,7 +103,7 @@
 			return
 
 		qdel(attacking_item)
-		balloon_alert(user, "feeding complete, check back later")
+		balloon_alert(user, "喂养完成，请稍后再来查看")
 
 		current_food++
 		if(prob(user.mind.get_skill_modifier(/datum/skill/primitive, SKILL_PROBS_MODIFIER)))
@@ -115,7 +115,7 @@
 
 	if(istype(attacking_item, /obj/item/storage/bag/plants))
 		if(in_use)
-			balloon_alert(user, "currently in use")
+			balloon_alert(user, "正在被使用")
 			return
 		in_use = TRUE
 
@@ -134,9 +134,9 @@
 			user.mind?.adjust_experience(/datum/skill/primitive, 5)
 
 		if(ate_food)
-			balloon_alert(user, "feeding the worms")
+			balloon_alert(user, "正在喂蠕虫")
 		else
-			balloon_alert(user, "no food in the bag")
+			balloon_alert(user, "袋子里没有食物")
 		in_use = FALSE
 		return
 
@@ -145,11 +145,11 @@
 
 //produced by feeding worms food and can be ground up for plant nutriment or used directly on ash farming
 /obj/item/stack/worm_fertilizer
-	name = "worm fertilizer"
-	desc = "When you fed your worms, you should have expected this."
+	name = "蠕虫肥料"
+	desc = "你给蠕虫喂食的时候，就该料到会有这个。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/misc_tools.dmi'
 	icon_state = "fertilizer"
-	singular_name = "fertilizer"
+	singular_name = "肥料"
 	merge_type = /obj/item/stack/worm_fertilizer
 
 /obj/item/stack/worm_fertilizer/grind_results()

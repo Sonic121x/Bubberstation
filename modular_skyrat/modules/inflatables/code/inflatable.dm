@@ -6,8 +6,8 @@
 #define BOX_WALL_AMOUNT 14
 
 /obj/structure/inflatable
-	name = "inflatable wall"
-	desc = "An inflated membrane. Do not puncture. Alt+Click to deflate."
+	name = "充气墙"
+	desc = "一层充气薄膜。请勿刺破。按住 Alt 点击可放气。"
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	density = TRUE
 	anchored = TRUE
@@ -48,7 +48,7 @@
 
 /obj/structure/inflatable/attackby(obj/item/attacking_item, mob/user, params)
 	if(attacking_item.sharpness)
-		visible_message(span_danger("<b>[user] pierces [src] with [attacking_item]!</b>"))
+		visible_message(span_danger("<b>[user] 用 [attacking_item] 刺破了 [src]！</b>"))
 		deflate(TRUE)
 		return
 	return ..()
@@ -69,12 +69,12 @@
 
 	playsound(src, 'sound/machines/hiss.ogg', 75, 1)
 	if(!violent)
-		balloon_alert_to_viewers("slowly deflates!")
+		balloon_alert_to_viewers("缓缓放气！")
 		addtimer(CALLBACK(src, PROC_REF(slow_deflate_finish)), manual_deflation_time)
 		return
 
 	var/turf/inflatable_loc = get_turf(src)
-	inflatable_loc.balloon_alert_to_viewers("[src] rapidly deflates!") // just so we don't balloon alert from the qdeleted inflatable object
+	inflatable_loc.balloon_alert_to_viewers("[src] 迅速放气！") // just so we don't balloon alert from the qdeleted inflatable object
 	if(torn_type)
 		new torn_type(get_turf(src))
 	qdel(src)
@@ -85,14 +85,14 @@
 		new deflated_type(get_turf(src))
 	qdel(src)
 
-GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Object")
+GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "放气", "Object")
 	if(usr.stat || usr.can_interact())
 		return
 	deflate(FALSE)
 
 
 /obj/structure/inflatable/door
-	name = "inflatable door"
+	name = "充气门"
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	icon = 'modular_skyrat/modules/inflatables/icons/inflatable.dmi'
 	icon_state = "door_closed"
@@ -111,7 +111,7 @@ GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Obj
 	if(!user.can_interact_with(src))
 		return
 	toggle_door()
-	to_chat(user, span_notice("You [door_state ? "close" : "open"] [src]!"))
+	to_chat(user, span_notice("你[door_state ? "关闭" : "打开"]了 [src]！"))
 
 /obj/structure/inflatable/door/update_icon_state()
 	. = ..()
@@ -131,8 +131,8 @@ GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Obj
 
 // The deployable item
 /obj/item/inflatable
-	name = "inflatable wall"
-	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
+	name = "充气墙"
+	desc = "一层折叠的薄膜，激活后会迅速膨胀成大型立方体。"
 	icon = 'modular_skyrat/modules/inflatables/icons/inflatable.dmi'
 	icon_state = "folded_wall"
 	base_icon_state = "folded_wall"
@@ -152,13 +152,13 @@ GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Obj
 /obj/item/inflatable/attack_self(mob/user)
 	. = ..()
 	if(torn)
-		to_chat(user, span_warning("[src] is too damaged to function!"))
+		to_chat(user, span_warning("[src] 损坏严重，无法使用！"))
 		return
 	if(locate(structure_type) in get_turf(user))
-		to_chat(user, span_warning("There is already a wall here!"))
+		to_chat(user, span_warning("这里已经有一堵墙了！"))
 		return
 	playsound(loc, 'sound/items/zip/zip.ogg', 75, 1)
-	to_chat(user, span_notice("You inflate [src]."))
+	to_chat(user, span_notice("你给 [src] 充了气。"))
 	if(do_after(user, 1 SECONDS, src))
 		new structure_type(get_turf(user))
 		qdel(src)
@@ -167,16 +167,16 @@ GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Obj
 	if(!istype(attacking_item, /obj/item/stack/medical/wrap/sticky_tape))
 		return ..()
 	if(!torn)
-		to_chat(user, span_notice("[src] does not need repairing!"))
+		to_chat(user, span_notice("[src] 不需要修补！"))
 		return
 	var/obj/item/stack/medical/wrap/sticky_tape/attacking_tape = attacking_item
 	if(attacking_tape.use(TAPE_REQUIRED_TO_FIX, check = TRUE))
-		to_chat(user, span_danger("There is not enough of [attacking_tape]! You need at least [TAPE_REQUIRED_TO_FIX] pieces!"))
+		to_chat(user, span_danger("[attacking_tape] 不够了！你至少需要 [TAPE_REQUIRED_TO_FIX] 段！"))
 		return
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	playsound(user, 'modular_skyrat/modules/inflatables/sound/ducttape1.ogg', 50, 1)
-	to_chat(user, span_notice("You fix [src] using [attacking_tape]!"))
+	to_chat(user, span_notice("你用 [attacking_tape] 修好了 [src]！"))
 	attacking_tape.use(TAPE_REQUIRED_TO_FIX)
 	torn = FALSE
 	update_appearance()
@@ -188,18 +188,18 @@ GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Obj
 /obj/item/inflatable/examine(mob/user)
 	. = ..()
 	if(torn)
-		. += span_warning("It is badly torn, and cannot be used! The damage looks like it could be repaired with some <b>tape</b>.")
+		. += span_warning("它破损严重，无法使用！看起来可以用一些<b>胶带</b>修补。")
 
 /obj/item/inflatable/suicide_act(mob/living/user)
-	visible_message(user, span_danger("[user] starts shoving the [src] up [user.p_their()] ass! It looks like [user.p_their()] going to pull the cord, oh shit!"))
+	visible_message(user, span_danger("[user] 开始把 [src] 往自己屁股里塞！看样子就要拉绳子了，我靠！"))
 	playsound(user.loc, 'sound/machines/hiss.ogg', 75, 1)
 	new structure_type(user.loc)
 	user.gib()
 	return BRUTELOSS
 
 /obj/item/inflatable/door
-	name = "inflatable door"
-	desc = "A folded membrane which rapidly expands into a simple door on activation."
+	name = "充气门"
+	desc = "一层折叠的薄膜，激活后会迅速膨胀成一扇简易门。"
 	icon = 'modular_skyrat/modules/inflatables/icons/inflatable.dmi'
 	icon_state = "folded_door"
 	base_icon_state = "folded_door"
@@ -219,8 +219,8 @@ GAME_VERB_SRC(/obj/structure/inflatable, hand_deflate, oview(1), "Deflate", "Obj
 /// The box full of inflatables
 /obj/item/storage/inflatable
 	icon = 'modular_skyrat/modules/more_briefcases/icons/briefcases.dmi'
-	name = "inflatable barrier box"
-	desc = "Contains inflatable walls and doors."
+	name = "充气屏障箱"
+	desc = "内含充气墙和充气门。"
 	icon_state = "briefcase_inflate"
 	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/inflatables_box

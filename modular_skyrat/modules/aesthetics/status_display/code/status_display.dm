@@ -6,7 +6,7 @@
 	set_picture("default")
 
 /obj/machinery/status_display/syndie
-	name = "syndicate status display"
+	name = "辛迪加状态显示屏"
 
 /obj/machinery/status_display/syndie/post_machine_initialize()
 	. = ..()

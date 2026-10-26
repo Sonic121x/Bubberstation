@@ -2,5 +2,5 @@
 	prefix = "modular_skyrat/modules/faction/maps/shuttles/"
 	suffix = "faction"
 	who_can_purchase = null
-	name = "Faction Trader Ship"
+	name = "派系贸易船"
 	port_id = "tradership"

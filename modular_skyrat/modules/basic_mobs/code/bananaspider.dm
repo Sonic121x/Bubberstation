@@ -1,8 +1,8 @@
 // Ported from Citadel Station
 
 /mob/living/basic/banana_spider
-	name = "banana spider"
-	desc = "What the fuck is this abomination?"
+	name = "香蕉蜘蛛"
+	desc = "这他妈的到底是个什么鬼东西？"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "bananaspider"
 	icon_dead = "bananaspider_peel"
@@ -13,10 +13,10 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BUG
 	mob_size = MOB_SIZE_TINY
 	density = TRUE
-	verb_say = "chitters"
-	verb_ask = "chitters inquisitively"
-	verb_exclaim = "chitters loudly"
-	verb_yell = "chitters loudly"
+	verb_say = "嘶鸣道"
+	verb_ask = "疑惑地嘶鸣道"
+	verb_exclaim = "大声嘶鸣道"
+	verb_yell = "大声嘶鸣道"
 	basic_mob_flags = DEL_ON_DEATH
 	ai_controller = /datum/ai_controller/basic_controller/cockroach/banana_spider
 
@@ -31,8 +31,8 @@
 /datum/ai_controller/basic_controller/cockroach/banana_spider
 
 /obj/item/food/deadbanana_spider
-	name = "dead banana spider"
-	desc = "Thank god it's gone...but it does look slippery."
+	name = "死香蕉蜘蛛"
+	desc = "谢天谢地它没了……不过它看起来确实挺滑的。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "bananaspider_peel"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -47,8 +47,8 @@
 	AddComponent(/datum/component/slippery, 20)
 
 /mob/living/basic/spider/giant/badnana_spider
-	name = "badnana spider"
-	desc = "WHY WOULD GOD ALLOW THIS?!"
+	name = "坏香蕉蜘蛛"
+	desc = "神为什么会允许这种东西存在？！"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 	icon_state = "badnanaspider" // created by Coldstorm on the Skyrat Discord
 	icon_living = "badnanaspider"

@@ -9,9 +9,9 @@
  */
 
 /obj/item/circuit_component/reagent_injector_bluespace
-	display_name = "Reagent Injector (Bluespace)"
-	desc = "A component that can inject an specified amount of reagents from a BCI's bluespace reagent storage."
-	category = "BCI"
+	display_name = "试剂注射（蓝空间）"
+	desc = "一种可以从脑机接口的蓝空间试剂储存中注射指定量试剂的元件。"
+	category = "脑机接口"
 	circuit_flags = CIRCUIT_NO_DUPLICATES|CIRCUIT_REAGENT_CONTAINER_TYPE
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)

@@ -1,9 +1,9 @@
 /datum/antagonist/ert/weedkiller
-	name = "Fumigator"
+	name = "熏蒸队员"
 	outfit = /datum/outfit/ert/weedkiller
-	role = "Exterminator"
+	role = "灭除员"
 
 /datum/antagonist/ert/weedkiller/leader
-	name = "Fumigator Leader"
+	name = "熏蒸队长"
 	outfit = /datum/outfit/ert/weedkiller/leader
-	role = "Head Exterminator"
+	role = "首席灭除员"

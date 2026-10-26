@@ -10,13 +10,13 @@
 	return list("[BIO_METAL]")
 
 /datum/wound/burn/robotic/overheat
-	treat_text = "Introduction of a cold environment or lowering of body temperature."
-	treat_text_short = "Cool the patient down with low temperature chemicals or put them under a shower."
-	simple_desc = "Metals are overheated, increasing damage taken significantly and raising body temperature!"
-	simple_treat_text = "Ideally <b>cryogenics</b>, but any source of <b>low body temperature</b> can work. <b>Spraying</b> with <b>spray bottles/extinguishers/showers</b> \
-	will quickly cool the limb, but <b>cause damage</b>. <b>Hercuri</b> is <b>especially effective</b> in quick cooling. \
-	<b>Clothing</b> reduces the water/hercuri that makes it to the metal, and <b>gauze</b> binds it and <b>reduces</b> the <b>damage</b> taken."
-	homemade_treat_text = "You can also splash <b>any liquid</b> on it for a rather <b>inefficient</b> and <b>damaging</b> coolant!"
+	treat_text = "引入低温环境或降低体温。"
+	treat_text_short = "用低温化学物质给患者降温，或把患者放到淋浴下。"
+	simple_desc = "金属过热，显著增加受到的伤害并升高体温！"
+	simple_treat_text = "最好使用<b>低温医疗舱</b>，但任何能降低<b>体温</b>的方式都可行。用<b>喷雾瓶/灭火器/淋浴</b>喷洒\
+	能迅速冷却肢体，但会<b>造成损伤</b>。<b>赫库里</b>在快速降温方面<b>尤其有效</b>。\
+	<b>衣物</b>会减少到达金属的水/赫库里，而<b>纱布</b>能将其束缚住并<b>减少</b>受到的<b>损伤</b>。"
+	homemade_treat_text = "你也可以往上面泼<b>任何液体</b>，作为相当<b>低效</b>且<b>会造成损伤</b>的冷却方式！"
 
 	default_scar_file = METAL_SCAR_FILE
 
@@ -160,7 +160,7 @@
 	return LERP(starting_temperature_min, starting_temperature_max, rand()) // LERP since we deal with decimals
 
 /datum/wound/burn/robotic/get_limb_examine_description()
-	return span_warning("The metal on this limb is glowing radiantly.")
+	return span_warning("这条肢体上的金属正发出明亮的光。")
 
 /datum/wound/burn/robotic/overheat/handle_process(seconds_per_tick)
 	if (isnull(victim))
@@ -279,9 +279,9 @@
 			gauze_mult *= 0.7 // hold it down yourself
 
 		if (victim)
-			var/gauze_or_not = (!isnull(gauze) ? ", but [gauze] helps to keep it together" : "")
-			var/clothing_text = (!victim.is_location_accessible(limb.body_zone) ? ", [victim.p_their()] clothing absorbing some of the liquid" : "")
-			victim.visible_message(span_warning("[victim]'s [limb.plaintext_zone] strains from the thermal shock[clothing_text][gauze_or_not]!"))
+			var/gauze_or_not = (!isnull(gauze) ? "，不过 [gauze] 能帮忙把它固定住" : "")
+			var/clothing_text = (!victim.is_location_accessible(limb.body_zone) ? "，其衣物吸收了一部分液体" : "")
+			victim.visible_message(span_warning("[victim] 的[limb.plaintext_zone]因热冲击而绷紧[clothing_text][gauze_or_not]！"))
 			playsound(victim, 'sound/items/tools/welder.ogg', 25)
 
 		var/damage = (((abs(temp_delta) * heat_shock_delta_to_damage_ratio) * gauze_mult) * heat_shock_damage_mult) * heat_adjustment_used
@@ -295,15 +295,15 @@
 /datum/wound/burn/robotic/overheat/proc/check_temperature()
 	if (chassis_temperature <= cooling_threshold)
 		if (demotes_to)
-			victim.visible_message(span_green("[victim]'s [limb.plaintext_zone] turns a more pleasant thermal color as it cools down a little..."), span_green("Your [limb.plaintext_zone] seems to cool down a little!"))
+			victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]在稍微冷却后变成了更悦目的热色……"), span_green("你的[limb.plaintext_zone]似乎稍微冷却了一点！"))
 			replace_wound(new demotes_to(cooling_threshold - cooling_demote_buffer))
 			return TRUE
 		else
-			victim.visible_message(span_green("[victim]'s [limb.plaintext_zone] simmers gently as it returns to its usual colors!"), span_green("Your [limb.plaintext_zone] simmers gently as it returns to its usual colors!"))
+			victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]轻轻降温，恢复了原本的颜色！"), span_green("你的[limb.plaintext_zone]轻轻降温，恢复了原本的颜色！"))
 			remove_wound()
 			return TRUE
 	else if (promotes_to && chassis_temperature >= heating_threshold)
-		victim.visible_message(span_danger("[victim]'s [limb.plaintext_zone] brightens as it overheats further!"), span_userdanger("Your [limb.plaintext_zone] sizzles and brightens as it overheats further!"))
+		victim.visible_message(span_danger("[victim] 的[limb.plaintext_zone]因进一步过热而变得更亮！"), span_userdanger("你的[limb.plaintext_zone]因进一步过热而嘶嘶作响、越来越亮！"))
 		replace_wound(new promotes_to(heating_threshold + heating_promote_buffer))
 		return TRUE
 
@@ -318,32 +318,32 @@
 	var/heat_celcius = round(heating_threshold - T0C, 0.1)
 	var/heat_fahrenheit = round(heating_threshold * 1.8-459.67, 0.1)
 
-	return "Its current temperature is [span_blue("[current_temp_celcius ] &deg;C ([current_temp_fahrenheit] &deg;F)")], \
-	and needs to cool to [span_nicegreen("[cool_celcius] &deg;C ([cool_fahrenheit] &deg;F)")], but \
-	will worsen if heated to [span_purple("[heat_celcius] &deg;C ([heat_fahrenheit] &deg;F)")]."
+	return "它当前温度为 [span_blue("[current_temp_celcius ] &deg;C（[current_temp_fahrenheit] &deg;F）")]，\
+	需要冷却到 [span_nicegreen("[cool_celcius] &deg;C（[cool_fahrenheit] &deg;F）")]，但\
+	若加热到 [span_purple("[heat_celcius] &deg;C（[heat_fahrenheit] &deg;F）")] 则会恶化。"
 
 /datum/wound/burn/robotic/overheat/get_scanner_description(mob/user)
 	. = ..()
 
-	. += "\nWound status: [get_wound_status_info()]"
+	. += "\n伤口状态：[get_wound_status_info()]"
 
 /datum/wound/burn/robotic/overheat/get_simple_scanner_description(mob/user)
 	. = ..()
 
-	. += "\nWound status: [get_wound_status_info()]"
+	. += "\n伤口状态：[get_wound_status_info()]"
 
 // this wound is unaffected by cryoxadone and pyroxadone
 /datum/wound/burn/robotic/overheat/on_xadone(power)
 	return
 
 /datum/wound/burn/robotic/overheat/moderate
-	name = "Transient Overheating"
-	desc = "External metals have exceeded lower-bound thermal limits and have lost some structural integrity, increasing damage taken as well as the chance to \
-		sustain additional wounds."
-	occur_text = "lets out a slight groan as it turns a dull shade of thermal red"
-	examine_desc = "is glowing a dull thermal red and giving off heat"
-	treat_text = "Reduction of body temperature to expedite the passive heat dissipation - or, if thermal shock is to be risked, application of a fire extinguisher/shower."
-	treat_text_short = "Apply gauze or grasp limb before spraying the wound with coolant, lower body temperature, or wait."
+	name = "暂时性过热"
+	desc = "外层金属已超出热力下限并失去部分结构完整性，使得受到的伤害增加，\
+		也更容易承受额外伤口。"
+	occur_text = "随着它变成暗热红色，发出轻微的呻吟声"
+	examine_desc = "泛着暗热红光并散发出热量"
+	treat_text = "降低体温以加速被动散热——或者，若愿意冒热冲击的风险，可使用灭火器/淋浴。"
+	treat_text_short = "在向伤口喷洒冷却剂前先包扎纱布或抓住肢体，或降低体温，或等待。"
 	severity = WOUND_SEVERITY_MODERATE
 
 	damage_multiplier_penalty = 1.15 //1.15x damage taken
@@ -388,13 +388,13 @@
 	threshold_minimum = 30
 
 /datum/wound/burn/robotic/overheat/severe
-	name = "Thermal Overload"
-	desc = "Exterior plating has surpassed critical thermal levels, causing significant failure in structural integrity and overheating of internal systems."
-	occur_text = "sizzles, the externals turning a dull shade of orange"
-	examine_desc = "appears discolored and polychromatic, parts of it glowing a dull orange"
-	treat_text = "Isolation from physical hazards, and accommodation of passive heat dissipation - active cooling may be used, but temperature differentials significantly \
-		raise the risk of thermal shock."
-	treat_text_short = "Apply gauze and grasp limb before spraying the wound with coolant, or lower body temperature and wait."
+	name = "热过载"
+	desc = "外层护板已超过临界热水平，导致结构完整性严重失效，内部系统过热。"
+	occur_text = "发出嘶嘶声，外层变成暗橙色"
+	examine_desc = "表面变色斑驳，部分区域泛着暗橙色光"
+	treat_text = "隔离物理危险源，并配合被动散热——可以使用主动冷却，但温差会显著\
+		提高热冲击的风险。"
+	treat_text_short = "在向伤口喷洒冷却剂前先包扎纱布并抓住肢体，或降低体温并等待。"
 	severity = WOUND_SEVERITY_SEVERE
 
 	a_or_from = "from"
@@ -433,13 +433,13 @@
 	threshold_minimum = 80
 
 /datum/wound/burn/robotic/overheat/critical
-	name = "Runaway Exothermy"
-	desc = "Carapace is beyond melting point, causing catastrophic structural integrity failure as well as massively heating up the subject."
-	occur_text = "turns a bright shade of radiant white as it sizzles and melts"
-	examine_desc = "is a blinding shade of white, almost melting from the heat"
-	treat_text = "Immediate confinement to cryogenics, as rapid overheating and physical vulnerability may occur. Active cooling is not advised, \
-		since the thermal shock may be lethal with such a temperature differential."
-	treat_text_short = "Apply cryogenics or lower body temperature without direct exposure to cold liquid."
+	name = "内热失控"
+	desc = "外壳已超过熔点，导致结构完整性灾难性失效，并使对象体温大幅升高。"
+	occur_text = "随着它嘶嘶作响并熔化，变成刺眼的白亮色"
+	examine_desc = "白得刺眼，几乎要被高温熔化"
+	treat_text = "立即送入低温医疗舱，否则可能发生急速过热和躯体脆弱。不建议主动冷却，\
+		因为在如此巨大的温差下，热冲击可能致命。"
+	treat_text_short = "使用低温医疗舱，或在不让其直接接触冷液体的前提下降低体温。"
 	severity = WOUND_SEVERITY_CRITICAL
 
 	a_or_from = "from"

@@ -46,9 +46,9 @@
 /obj/structure/deployable_barricade/examine(mob/user)
 	. = ..()
 	if(!is_wired && can_wire)
-		. += span_info("Barbed wire could be added with some <b>cable</b>.")
+		. += span_info("可以用一些<b>电缆</b>加装铁丝网。")
 	if(is_wired)
-		. += span_info("It has barbed wire along the top.")
+		. += span_info("它顶部装有铁丝网。")
 
 /obj/structure/deployable_barricade/proc/on_try_exit(datum/source, atom/movable/leaving, direction)
 	SIGNAL_HANDLER
@@ -117,15 +117,15 @@
 	if(!is_wired)
 		return FALSE
 
-	user.visible_message(span_notice("[user] begins to remove the barbed wire on [src]."),
-	span_notice("You start removing the barbed wire on [src]."))
+	user.visible_message(span_notice("[user] 开始拆除 [src] 上的铁丝网。"),
+	span_notice("你开始拆除 [src] 上的铁丝网。"))
 
 	if(!do_after(user, 2 SECONDS, src))
 		return TRUE
 
 	playsound(src, 'sound/items/tools/wirecutter.ogg', 25, TRUE)
-	user.visible_message(span_notice("[user] removed the barbed wire on [src]."),
-	span_notice("You removed the barbed wire on [src]."))
+	user.visible_message(span_notice("[user] 拆除了 [src] 上的铁丝网。"),
+	span_notice("你拆除了 [src] 上的铁丝网。"))
 	modify_max_integrity(max_integrity - 50)
 	can_wire = TRUE
 	is_wired = FALSE
@@ -147,7 +147,7 @@
 /obj/structure/deployable_barricade/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message(span_danger("[src] explodes!"))
+			visible_message(span_danger("[src] 爆炸了！"))
 			deconstruct(FALSE)
 			return
 		if(EXPLODE_HEAVY)
@@ -202,16 +202,16 @@
 		else
 			. += image('modular_skyrat/modules/barricades/icons/barricade.dmi', icon_state = "[barricade_type]_closed_wire")
 
-GAME_VERB_SRC(/obj/structure/deployable_barricade, rotate, oview(1), "Rotate barricade counterclockwise <", "Object")
+GAME_VERB_SRC(/obj/structure/deployable_barricade, rotate, oview(1), "逆时针旋转路障 <", "物件")
 	if(anchored)
-		to_chat(usr, span_warning("It is secured to the floor, you can't turn it!"))
+		to_chat(usr, span_warning("它被固定在地板上了，你无法转动它！"))
 		return FALSE
 
 	setDir(turn(dir, 90))
 
-GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate barricade clockwise >", "Object")
+GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "顺时针旋转路障 >", "物件")
 	if(anchored)
-		to_chat(usr, span_warning("It is secured to the floor, you can't turn it!"))
+		to_chat(usr, span_warning("它被固定在地板上了，你无法转动它！"))
 		return FALSE
 
 	setDir(turn(dir, 270))
@@ -222,7 +222,7 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(anchored)
-		to_chat(usr, span_warning("It is secured to the floor, you can't turn it!"))
+		to_chat(usr, span_warning("它被固定在地板上了，你无法转动它！"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	setDir(turn(dir, 270))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -233,8 +233,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /*----------------------*/
 
 /obj/structure/deployable_barricade/snow
-	name = "snow barricade"
-	desc = "A snowdrift, carefully rammed with palms up to a relatively solid state. The architect in your head believes that it is better than nothing. In principle, you agree with him."
+	name = "雪堆路障"
+	desc = "一堆雪，被人用手掌仔细拍实到相对坚固的状态。你脑中的建筑师认为有总比没有好。原则上，你同意他的看法。"
 	icon_state = "snow_0"
 	barricade_type = "snow"
 	max_integrity = 75
@@ -249,8 +249,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /*----------------------*/
 
 /obj/structure/deployable_barricade/guardrail
-	name = "fencing"
-	desc = "A small barricade made from metal posting, designed to stop you from going places you aren't supposed to."
+	name = "围栏"
+	desc = "由金属立柱制成的小型路障，用来阻止你去不该去的地方。"
 	icon_state = "railing_0"
 	max_integrity = 150
 	armor_type = /datum/armor/deployable_barricade_guardrail
@@ -280,8 +280,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /*----------------------*/
 
 /obj/structure/deployable_barricade/wooden
-	name = "wooden barricade"
-	desc = "A wall hammered out of wooden planks may not even look very strong, but it still provides some protection."
+	name = "木质路障"
+	desc = "用木板钉成的墙看上去也许并不结实，但仍能提供一些防护。"
 	icon = 'modular_skyrat/modules/barricades/icons/barricade.dmi'
 	icon_state = "wooden"
 	max_integrity = 100
@@ -302,10 +302,10 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			return
 
 		if(D.get_amount() < 1)
-			to_chat(user, span_warning("You need at least one board to repair [src]!"))
+			to_chat(user, span_warning("你至少需要一块木板才能修理 [src]！"))
 			return
 
-		visible_message(span_notice("[user] begins to repair [src]."))
+		visible_message(span_notice("[user] 开始修理 [src]。"))
 
 		if(!do_after(user,20, src) || get_integrity() >= max_integrity)
 			return
@@ -314,7 +314,7 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			return
 
 		repair_damage(max_integrity)
-		visible_message(span_notice("[user] repairs [src]."))
+		visible_message(span_notice("[user] 修理了 [src]。"))
 
 
 /*----------------------*/
@@ -325,15 +325,15 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 #define BARRICADE_METAL_ANCHORED 1
 #define BARRICADE_METAL_FIRM 2
 
-#define BARRICADE_TYPE_BOMB "explosion-proof armor"
-#define BARRICADE_TYPE_MELEE "ballistic armor"
-#define BARRICADE_TYPE_ACID "anti-acid armor"
+#define BARRICADE_TYPE_BOMB "防爆装甲"
+#define BARRICADE_TYPE_MELEE "防弹装甲"
+#define BARRICADE_TYPE_ACID "防酸装甲"
 
 #define BARRICADE_UPGRADE_REQUIRED_SHEETS 2
 
 /obj/structure/deployable_barricade/metal
-	name = "metal barricade"
-	desc = "A durable and easily mounted barricade made from metal plates, often used for rapid fortification. Repairing it requires a welder."
+	name = "金属路障"
+	desc = "由金属板制成的耐用、易安装的路障，常用于快速筑防。修理它需要焊接工具。"
 	icon_state = "metal_0"
 	max_integrity = 200
 	armor_type = /datum/armor/deployable_barricade_metal
@@ -362,28 +362,28 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /obj/structure/deployable_barricade/metal/click_alt(mob/user)
 	if(portable_type)
 		if(anchored)
-			to_chat(user, span_warning("[src] cannot be folded up while anchored to the ground!"))
+			to_chat(user, span_warning("[src] 在固定于地面时无法折叠收起！"))
 			return CLICK_ACTION_BLOCKING
 		if(barricade_upgrade_type)
-			to_chat(user, span_warning("[src] cannot be folded up with upgrades attached, remove them first!"))
+			to_chat(user, span_warning("[src] 装有升级件时无法折叠收起，请先拆除它们！"))
 			return CLICK_ACTION_BLOCKING
 		if(get_integrity() < max_integrity)
-			to_chat(user, span_warning("[src] cannot be folded up while damaged!"))
+			to_chat(user, span_warning("[src] 受损时无法折叠收起！"))
 			return CLICK_ACTION_BLOCKING
-		user.visible_message(span_notice("[user] starts folding [src] up!"), span_notice("You start folding [src] up!"))
+		user.visible_message(span_notice("[user] 开始把 [src] 折叠收起！"), span_notice("你开始把 [src] 折叠收起！"))
 		if(do_after(user, 5 SECONDS, src))
 			if(QDELETED(src)) //Copied encase we change states.
 				return
 			if(anchored)
-				to_chat(user, span_warning("[src] cannot be folded up while anchored to the ground!"))
+				to_chat(user, span_warning("[src] 在固定于地面时无法折叠收起！"))
 				return CLICK_ACTION_BLOCKING
 			if(barricade_upgrade_type)
-				to_chat(user, span_warning("[src] cannot be folded up with upgrades attached, remove them first!"))
+				to_chat(user, span_warning("[src] 装有升级件时无法折叠收起，请先拆除它们！"))
 				return CLICK_ACTION_BLOCKING
 			if(get_integrity() < max_integrity)
-				to_chat(user, span_warning("[src] cannot be folded up while damaged!"))
+				to_chat(user, span_warning("[src] 受损时无法折叠收起！"))
 				return CLICK_ACTION_BLOCKING
-			user.visible_message(span_notice("[user] folds [src] up!"), span_notice("You neatly fold [src] up!"))
+			user.visible_message(span_notice("[user] 把 [src] 折叠收起了！"), span_notice("你利落地把 [src] 折叠收起！"))
 			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			fold_up()
 			return CLICK_ACTION_SUCCESS
@@ -423,10 +423,10 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			return attempt_barricade_upgrade(I, user, params)
 
 		if(metal_sheets.get_amount() < repair_amount)
-			to_chat(user, span_warning("You need at least two sheets of metal to repair [src]!"))
+			to_chat(user, span_warning("你至少需要两块金属板才能修理 [src]！"))
 			return FALSE
 
-		visible_message(span_notice("[user] begins to repair [src]."))
+		visible_message(span_notice("[user] 开始修理 [src]。"))
 
 		if(!do_after(user, 2 SECONDS, src) || get_integrity() >= max_integrity)
 			return FALSE
@@ -435,26 +435,26 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			return FALSE
 
 		repair_damage(max_integrity * 0.3)
-		visible_message(span_notice("[user] repairs [src]."))
+		visible_message(span_notice("[user] 修理了 [src]。"))
 	return ..()
 
 /obj/structure/deployable_barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/iron/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
-		to_chat(user, span_warning("[src] is already upgraded."))
+		to_chat(user, span_warning("[src] 已经完成升级。"))
 		return FALSE
 	if(get_integrity() < max_integrity)
-		to_chat(user, span_warning("You cannot upgrade [src] until it has been repaired!"))
+		to_chat(user, span_warning("在修理完毕之前，你不能升级 [src]！"))
 		return FALSE
 
 	if(metal_sheets.get_amount() < BARRICADE_UPGRADE_REQUIRED_SHEETS)
-		to_chat(user, span_warning("You need at least <b>[BARRICADE_UPGRADE_REQUIRED_SHEETS]</b> to upgrade [src]!"))
+		to_chat(user, span_warning("你至少需要 <b>[BARRICADE_UPGRADE_REQUIRED_SHEETS]</b> 才能升级 [src]！"))
 		return FALSE
 
 	var/static/list/cade_types = list(BARRICADE_TYPE_BOMB = image(icon = 'modular_skyrat/modules/barricades/icons/barricade.dmi', icon_state = "explosive_obj"), BARRICADE_TYPE_MELEE = image(icon = 'modular_skyrat/modules/barricades/icons/barricade.dmi', icon_state = "brute_obj"), BARRICADE_TYPE_ACID = image(icon = 'modular_skyrat/modules/barricades/icons/barricade.dmi', icon_state = "burn_obj"))
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
-	user.visible_message(span_notice("[user] starts attaching [choice] to [src]."),
-		span_notice("You start attaching [choice] to [src]."))
+	user.visible_message(span_notice("[user] 开始把[choice]安装到 [src] 上。"),
+		span_notice("你开始把[choice]安装到 [src] 上。"))
 	if(!do_after(user, 2 SECONDS, src))
 		return FALSE
 
@@ -471,8 +471,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 
 	barricade_upgrade_type = choice
 
-	user.visible_message(span_notice("[user] attaches[choice] to [src]."),
-		span_notice("You attach [choice] to [src]."))
+	user.visible_message(span_notice("[user] 把[choice]安装到了 [src] 上。"),
+		span_notice("你把[choice]安装到了 [src] 上。"))
 
 	playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 	update_icon()
@@ -481,17 +481,17 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 	. = ..()
 	switch(build_state)
 		if(BARRICADE_METAL_FIRM)
-			. += span_info("The cover plate is <b>screwed</b> in place.")
+			. += span_info("盖板已被<b>螺丝</b>固定到位。")
 		if(BARRICADE_METAL_ANCHORED)
-			. += span_info("The cover plate is <i>unscrewed</i>, but it is <b>bolted</b> to the ground.")
+			. += span_info("盖板已<i>拧下螺丝</i>，但仍被<b>螺栓</b>固定在地面上。")
 		if(BARRICADE_METAL_LOOSE)
-			. += span_info("The anchor points are <i>unbolted</i>, use a <b>crowbar</b> to disassemble it.")
+			. += span_info("锚固点已<i>卸下螺栓</i>，用<b>撬棍</b>即可拆解它。")
 
 	if(barricade_upgrade_type)
-		. += span_info("It has [barricade_upgrade_type] installed.")
+		. += span_info("它装有[barricade_upgrade_type]。")
 
 	if(portable_type)
-		. += span_info("Alt+click to fold it up into it's portable form.")
+		. += span_info("按住 Alt 点击可将其折叠为便携形态。")
 
 /obj/structure/deployable_barricade/metal/welder_act(mob/living/user, obj/item/I)
 	var/obj/item/weldingtool/welding_tool = I
@@ -500,15 +500,15 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 		return FALSE
 
 	if(get_integrity() <= max_integrity * 0.3)
-		to_chat(user, span_warning("[src] is too damaged to be repaired with a welder!"))
+		to_chat(user, span_warning("[src] 损坏过于严重，无法用焊接工具修理！"))
 		return TRUE
 
 	if(get_integrity() >= max_integrity)
-		to_chat(user, span_warning("[src] does not need repairing."))
+		to_chat(user, span_warning("[src] 不需要修理。"))
 		return TRUE
 
-	user.visible_message(span_notice("[user] starts welding the damage on [src]."),
-	span_notice("You start welding the damage on [src]."))
+	user.visible_message(span_notice("[user] 开始焊接 [src] 上的损伤。"),
+	span_notice("你开始焊接 [src] 上的损伤。"))
 	playsound(src, 'sound/items/tools/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 5 SECONDS, src))
@@ -518,11 +518,11 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 		return TRUE
 
 	if(!welding_tool.use(2))
-		to_chat(user, span_warning("Not enough fuel!"))
+		to_chat(user, span_warning("燃料不足！"))
 		return TRUE
 
-	user.visible_message(span_notice("[user] welds the damage on [src]."),
-	span_notice("You weld the damage on [src]."))
+	user.visible_message(span_notice("[user] 焊接了 [src] 上的损伤。"),
+	span_notice("你焊接了 [src] 上的损伤。"))
 	repair_damage(150)
 	update_icon()
 	playsound(src, 'sound/items/tools/welder2.ogg', 25, TRUE)
@@ -535,8 +535,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			playsound(src, 'sound/items/tools/screwdriver.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
-			user.visible_message (span_notice ("[user] secures the panel on [src]."),
-			span_notice ("You secure the panel on [src]."))
+			user.visible_message (span_notice ("[user] 将面板固定到 [src] 上。"),
+			span_notice ("你把面板固定到 [src] 上。"))
 			build_state = BARRICADE_METAL_FIRM
 			return TRUE
 
@@ -546,8 +546,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 
-			user.visible_message (span_notice ("[user] removes the panel from [src]."),
-			span_notice ("You remove the panel from [src], revealing some <b>bolts</b> beneath it."))
+			user.visible_message (span_notice ("[user] 拆下了 [src] 上的面板。"),
+			span_notice ("你拆下了 [src] 上的面板，露出下面的几颗<b>螺栓</b>。"))
 			build_state = BARRICADE_METAL_ANCHORED
 			return TRUE
 
@@ -558,8 +558,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
-			user.visible_message (span_notice ("[user] loosens the anchor bolts on [src]."),
-			span_notice ("You loosen the anchor bolts on [src]."))
+			user.visible_message (span_notice ("[user] 拧松了 [src] 上的锚固螺栓。"),
+			span_notice ("你拧松了 [src] 上的锚固螺栓。"))
 			build_state = BARRICADE_METAL_LOOSE
 			anchored = FALSE
 			modify_max_integrity(initial(max_integrity) * 0.5)
@@ -569,20 +569,20 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
-				to_chat(user, span_warning("You cannot install [src] here!"))
+				to_chat(user, span_warning("你不能在这里安装 [src]！"))
 				return TRUE
 
 			for(var/obj/structure/deployable_barricade/B in loc)
 				if(B != src && B.dir == dir)
-					to_chat(user, span_warning("There is already a barricade here."))
+					to_chat(user, span_warning("这里已经有一个路障了。"))
 					return TRUE
 
 			playsound(src, 'sound/items/tools/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, src))
 				return TRUE
 
-			user.visible_message(span_notice("[user] tightens the anchor bolts on [src]."),
-			span_notice("You tighten the anchor bolts on [src]."))
+			user.visible_message(span_notice("[user] 拧紧了 [src] 上的锚固螺栓。"),
+			span_notice("你拧紧了 [src] 上的锚固螺栓。"))
 			build_state = BARRICADE_METAL_ANCHORED
 			anchored = TRUE
 			modify_max_integrity(initial(max_integrity))
@@ -593,33 +593,33 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /obj/structure/deployable_barricade/metal/crowbar_act(mob/living/user, obj/item/I)
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
-			user.visible_message(span_notice("[user] begins to disassemble [src]."),
-			span_notice("You start to disassemble [src]."))
+			user.visible_message(span_notice("[user] 开始拆解 [src]。"),
+			span_notice("你开始拆解 [src]。"))
 
 			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
-			user.visible_message(span_notice("[user] disassembles [src]."),
-			span_notice("You disassemble [src]."))
+			user.visible_message(span_notice("[user] 拆解了 [src]。"),
+			span_notice("你拆解了 [src]。"))
 			playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 			deconstruct(TRUE)
 			return TRUE
 
 		if(BARRICADE_METAL_FIRM)
 			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
-				to_chat(user, span_warning("This barricade has no installed upgrades to remove!"))
+				to_chat(user, span_warning("这个路障没有可拆除的已安装升级件！"))
 				return TRUE
 
-			user.visible_message(span_notice("[user] begins to detach the armor plates from [src]."),
-			span_notice("You begin to detach the armor plates from [src]."))
+			user.visible_message(span_notice("[user] 开始拆下 [src] 上的装甲板。"),
+			span_notice("你开始拆下 [src] 上的装甲板。"))
 
 			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
-			user.visible_message(span_notice("[user] detaches the armor plates from [src]."),
-			span_notice("You detach the armor plates from [src]."))
+			user.visible_message(span_notice("[user] 拆下了 [src] 上的装甲板。"),
+			span_notice("你拆下了 [src] 上的装甲板。"))
 			playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
 			switch(barricade_upgrade_type)
@@ -657,8 +657,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /*----------------------*/
 
 /obj/structure/deployable_barricade/metal/plasteel
-	name = "plasteel barricade"
-	desc = "A strong plasteel barricade, it can be lowered if necessary. Use a welder to repair it."
+	name = "塑钢路障"
+	desc = "坚固的塑钢路障，必要时可以降下。用焊接工具修理它。"
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
 	stack_type = /obj/item/stack/sheet/plasteel
@@ -676,22 +676,22 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 /obj/structure/deployable_barricade/metal/plasteel/crowbar_act(mob/living/user, obj/item/I)
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
-			user.visible_message(span_notice("[user] begins to disassemble [src]."),
-			span_notice("You start to disassemble [src]."))
+			user.visible_message(span_notice("[user] 开始拆解 [src]。"),
+			span_notice("你开始拆解 [src]。"))
 
 			playsound(src, 'sound/items/tools/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, src))
 				return TRUE
 
-			user.visible_message(span_notice("[user] disassembles [src]."),
-			span_notice("You disassemble [src]."))
+			user.visible_message(span_notice("[user] 拆解了 [src]。"),
+			span_notice("你拆解了 [src]。"))
 			playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 			deconstruct(TRUE)
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
 			linked = !linked
-			user.visible_message(span_notice("[user] has [linked ? "linked" : "unlinked" ] [src]."),
-			span_notice("You [linked ? "link" : "unlink" ] [src]."))
+			user.visible_message(span_notice("[user] [linked ? "连接" : "断开"]了 [src]。"),
+			span_notice("你[linked ? "连接" : "断开"]了 [src]。"))
 			for(var/direction in GLOB.cardinals)
 				for(var/obj/structure/deployable_barricade/metal/plasteel/cade in get_step(src, direction))
 					cade.update_icon()
@@ -714,8 +714,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 	closed = !closed
 	density = !density
 
-	user?.visible_message(span_notice("[user] [closed ? "lowers" : "raises"] [src] ."),
-		span_notice("You [closed ? "lower" : "raise"] [src]."))
+	user?.visible_message(span_notice("[user] [closed ? "降下" : "升起"]了 [src]。"),
+		span_notice("你[closed ? "降下" : "升起"]了 [src]。"))
 
 	if(!linked)
 		update_icon()
@@ -753,7 +753,7 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 //An item thats meant to be a template for quickly deploying stuff like barricades
 /obj/item/quickdeploy
 	name = "C.U.C.K.S"
-	desc = "Compact Universal Complex Kinetic Self-expanding Barricade. Great for deploying quick fortifications."
+	desc = "紧凑型通用复合动能自展开路障。非常适合快速构筑防御工事。"
 	icon = 'modular_skyrat/modules/barricades/icons/barricade.dmi'
 	w_class = WEIGHT_CLASS_SMALL //While this is small, normal 50 stacks of metal is NORMAL so this is a bit on the bad space to cade ratio
 	var/delay = 0 //Delay on deploying the thing
@@ -761,10 +761,10 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 
 /obj/item/quickdeploy/examine(mob/user)
 	. = ..()
-	. += "This [src.name] is set up deploy [initial(thing_to_deploy.name)]." // initial() since thing_to_deploy is a typepath
+	. += "这个 [src.name] 被设置为部署 [initial(thing_to_deploy.name)]。" // initial() since thing_to_deploy is a typepath
 
 /obj/item/quickdeploy/attack_self(mob/user)
-	to_chat(user, span_notice("You start deploying [src] in front of you."))
+	to_chat(user, span_notice("你开始在你面前部署 [src]。"))
 	playsound(src, 'sound/items/tools/ratchet.ogg', 25, 1)
 	if(!do_after(usr, delay, src))
 		return
@@ -776,7 +776,7 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 
 /obj/item/quickdeploy/proc/can_place(mob/user)
 	if(isnull(thing_to_deploy)) //Spaghetti or wrong type spawned
-		to_chat(user, span_warning("Nothing happens... [src] must be defective."))
+		to_chat(user, span_warning("什么也没有发生……[src] 一定是坏了。"))
 		return FALSE
 	return TRUE
 
@@ -792,25 +792,25 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 
 	var/turf/mystery_turf = user.loc
 	if(!isopenturf(mystery_turf))
-		to_chat(user, span_warning("You cannot deploy [src] here!"))
+		to_chat(user, span_warning("你不能在这里部署 [src]！"))
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
 	if(placement_loc.density) //We shouldn't be building here.
-		to_chat(user, span_warning("You cannot deploy [src] here!"))
+		to_chat(user, span_warning("你不能在这里部署 [src]！"))
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_1 & ON_BORDER_1)) //dense and non-directional, end
-			to_chat(user, span_warning("There is no room deploy [src] here."))
+			to_chat(user, span_warning("这里没有空间部署 [src]。"))
 			return FALSE
 		if(thing.dir != user.dir)
 			continue
-		to_chat(user, span_warning("There is no room deploy [src] here."))
+		to_chat(user, span_warning("这里没有空间部署 [src]。"))
 		return FALSE
-	to_chat(user, span_notice("You start deploying [src]..."))
+	to_chat(user, span_notice("你开始部署 [src]……"))
 	return TRUE
 
 /obj/item/quickdeploy/barricade/plasteel
@@ -819,8 +819,8 @@ GAME_VERB_SRC(/obj/structure/deployable_barricade, revrotate, oview(1), "Rotate 
 
 /obj/item/storage/barricade
 	icon = 'modular_skyrat/modules/barricades/icons/barricade.dmi'
-	name = "C.U.C.K.S box"
-	desc = "Contains several deployable barricades."
+	name = "C.U.C.K.S 箱"
+	desc = "内含若干个可部署路障。"
 	icon_state = "box_metal"
 	w_class = WEIGHT_CLASS_NORMAL
 

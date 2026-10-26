@@ -11,7 +11,8 @@
 			"wizards/witches" = "巫师/女巫", "demons" = "恶魔", "valentines" = "情人",
 			"spies" = "间谍", "revolutionaries" = "革命者", "space pirates" = "太空海盗",
 			"Paradox Clone" = "悖论克隆体", "obsessed" = "痴迷者", "cultists" = "血教徒",
-			"clown operatives" = "小丑特工", "changelings" = "变形怪", "brainwashed victims" = "被洗脑者"
+			"clown operatives" = "小丑特工", "changelings" = "变形怪", "brainwashed victims" = "被洗脑者",
+			"assault operatives" = "突击特工"
 		)
 	return names[value] || value
 

@@ -1,6 +1,6 @@
 /datum/language/skrell
 	name = "Skrelluq"
-	desc = "Popularly known as \"Skrellian\" by foreigners, this newly-discovered language that the Skrell employ follows no traditional speech patterns. It relies on various differently-pitched warbles and low-frequency sound to construct different sentences, and is nearly inaudible to non-Skrell and anyone lacking an appropriate implant."
+	desc = "外国人通常称之为“斯克雷尔语”。这门斯克雷尔人所用、新近才被发现的语音不遵循任何传统言语模式，而是依靠各种音高各异的颤鸣与低频声响来构造不同的句子，对非斯克雷尔人以及任何缺少相应植入体的人来说几乎听不见。"
 	space_chance = 100
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	key = "K"

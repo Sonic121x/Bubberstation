@@ -14,7 +14,7 @@
 /datum/map_template/ruin/space/skyrat/interdynefob
 	name = "Space-Ruin DS-2"
 	id = "interdynefob"
-	description = "If DS-1 was so good..."
+	description = "要是 DS-1 真有那么好……"
 	suffix = "interdynefob.dmm"
 	always_place = FALSE
 
@@ -22,153 +22,153 @@
 	id = "derelictferry"
 	suffix = "derelictferry.dmm"
 	name = "Space-Ruin Derelict Ferry"
-	description = "Clearly once a ferry fielded by Central Command to send their staff to nearby stations, this ship's seen better days."
+	description = "这艘船显然曾是由中央指挥部派出的渡船，负责把人员送往附近的空间站；如今它已是风光不再。"
 
 /datum/map_template/ruin/space/skyrat/posterpandamonium
 	id = "posterpandamonium"
 	suffix = "posterpandamonium.dmm"
 	name = "Space-Ruin Abandoned Outpost"
-	description = "Whilst nicely furnished and filled with all sorts of posters, whoever once lived here seems long gone."
+	description = "这里陈设讲究，贴满了各式各样的海报，但曾经住在这里的人似乎早已不在了。"
 
 /datum/map_template/ruin/space/skyrat/prisonshuttle
 	id = "prisonshuttle"
 	suffix = "prisonshuttle.dmm"
 	name = "Space-Ruin Partisan Shuttle"
-	description = "You can faintly hear hardbass."
+	description = "你能隐约听到硬派电子乐的低音轰鸣。"
 
 /datum/map_template/ruin/space/skyrat/toystore
 	id = "toystore"
 	suffix = "toystore.dmm"
 	name = "Space-Ruin Toy Store"
-	description = "A once state-of-the-art store, now left derelict after the company behind it went bankrupt. Maybe they shouldn't have picked such a remote location."
+	description = "一家曾经最先进的商店，在其背后的公司破产后便荒废了。也许他们当初就不该选这么偏远的地方。"
 
 /datum/map_template/ruin/space/skyrat/waypointstation
 	id = "waypointstation"
 	suffix = "waypointstation.dmm"
 	name = "Space-Ruin Waypoint Station"
-	description = "Previously used as a refueling stop for larger ships, unintentional syndicate intervention has turned this station into a combat zone."
+	description = "这里曾是大船的加油补给站，而一场绝非本意的辛迪加介入把这座站变成了交战区。"
 
 /datum/map_template/ruin/space/skyrat/alientoollab
 	id = "alientoollab"
 	suffix = "alientoollab.dmm"
 	name = "Space-Ruin Abductor Replication Facility"
-	description = "A mad doctor's dreams were dashed when he finally disclosed to both his funders that each other existed, leaving behind his work for the looters."
+	description = "一位疯狂医生的梦想，在他终于让两位资助人得知彼此存在的那一刻化为泡影，只留下他的成果任掠劫者取用。"
 
 /datum/map_template/ruin/space/skyrat/codealpha
 	id = "codealpha"
 	suffix = "codealpha.dmm"
 	name = "Space-Ruin Code Alpha Supplementary Station"
-	description = "The mess hall of a once bustling supplementary station, to be deployed alongside SS13."
+	description = "一座曾经熙熙攘攘的附属站的食堂，原本应与空间站 13 一同部署。"
 
 /datum/map_template/ruin/space/skyrat/smugglies  //Excuse me sir, do you have money printers in here?
 	id = "smugglies"
 	suffix = "smugglies.dmm"
 	name = "Space-Ruin Suspicious Cargo Installation"
-	description = "*SCREECH* RDM RDM RDM"
+	description = "*刺耳尖叫* RDM RDM RDM"
 
 /datum/map_template/ruin/space/skyrat/clothing_facility
 	id = "clothing_facility"
 	suffix = "clothing_facility.dmm"
 	name = "Space-Ruin Abandoned Clothing Facility"
-	description = "A den of bad ideas. Secborgs were made here!"
+	description = "坏点子的窝。安保半机械人就是在这里造出来的！"
 
 /datum/map_template/ruin/space/skyrat/luna
 	id = "luna"
 	suffix = "luna.dmm"
 	name = "Space-Ruin Luna"
-	description = "Please note for ethical concerns all experimentation regarding writing artificial intelligence units to beleive they are A, A fictional character and B, human have been suspended. Have a pleasant shift."
+	description = "请注意：出于伦理方面的顾虑，所有旨在让人工智能单元相信自己 A、是虚构角色，B、是人类的实验均已暂停。祝你班次愉快。"
 
 /datum/map_template/ruin/space/skyrat/blackmarket
 	id = "blackmarket"
 	suffix = "blackmarket.dmm"
 	name = "Space-Ruin Black Market"
-	description = "Market's open."
+	description = "市场开张了。"
 	always_place = TRUE
 
 /datum/map_template/ruin/space/skyrat/shuttle8532
 	id = "shuttle8532"
 	suffix = "shuttle8532.dmm"
 	name = "Space-Ruin Shuttle 8532"
-	description = "While nobody can predict what space has to offer for the sailors that ride its waves, nobody is quite expecting a meteroid half the size of your shuttle to split it in half."
+	description = "虽然没人能预料太空会为航行其间的船员准备什么，但谁也不会想到一颗只有你穿梭机一半大小的流星会把它劈成两半。"
 
 /datum/map_template/ruin/space/skyrat/ghostship
 	id = "ghostship"
 	suffix = "ghostship.dmm"
 	name = "Space-Ruin Ghost Ship"
-	description = "An ancient ship, seemingly pre-bluespace in design yet retrofitted with newer systems. Seemingly just up-and-abandoned in the middle of space..."
+	description = "一艘古老的飞船，设计上似乎早于蓝空间时代，却又加装了较新的系统。它就这样被遗弃在太空中央……"
 
 /datum/map_template/ruin/space/skyrat/salvagepost
 	id = "salvagepost"
 	suffix = "salvagepost.dmm"
 	name = "Space-Ruin Pre-Bluespace Salvage Post"
-	description = "An extremely old, long forgotten post used to salvage damaged or decommissioned ships before bluespace transportation. Surprising its stayed intact so long."
+	description = "一座极其古老、早已被遗忘的站点，在蓝空间运输出现之前用于打捞受损或退役的飞船。奇怪的是，它居然撑了这么久还没散架。"
 
 /datum/map_template/ruin/space/skyrat/vaulttango
 	id = "vaulttango"
 	suffix = "vaulttango.dmm"
 	name = "Space-Ruin ARBORLINK Vault Tango"
-	description = "Nanotrasen isn't the only corporation experimenting in advanced bluespace technology."
+	description = "纳米传讯并不是唯一一家在研究先进蓝空间技术的公司。"
 
 /datum/map_template/ruin/space/skyrat/friendship
 	id = "friendship"
 	suffix = "wreckedfriendship.dmm"
 	name = "Space-Ruin NTSS Friendship"
-	description = "120 people.. one ship. It's unsurprising."
+	description = "120 个人……一艘船。这并不奇怪。"
 
 /datum/map_template/ruin/space/skyrat/homestead
 	id = "homestead"
 	suffix = "wreckedhomestead.dmm"
 	name = "Space-Ruin NTSS Homestead"
-	description = "A wrecked ship."
+	description = "一艘失事的飞船。"
 
 /datum/map_template/ruin/space/skyrat/medieval1
 	id = "medieval1"
 	suffix = "medieval1.dmm"
 	name = "Space-Ruin Medieval 1"
-	description = "A forgotten peice of history left overrun with a reminder of what brought its destruction"
+	description = "一段被遗忘的历史，如今被那场毁灭的始作俑者占据，提醒着人们它因何覆灭"
 
 /datum/map_template/ruin/space/skyrat/cargodiselost
 	id = "CargodiseLost"
 	suffix = "cargodiselost.dmm"
 	name = "Space-Ruin Cargodise Lost"
-	description = "A small crew of freight-haulers are marooned in space after pirates knock out their engines. They must survive off of the cargo on board their ship and fend off the pirate boarders on their ship."
+	description = "一小队货运船员在海盗打坏引擎后被困在太空中。他们只能靠船上的货物维生，并击退登船的海盗。"
 	unpickable = TRUE // Bubber todo - remove the epic gamer loot and bring this back
 
 /datum/map_template/ruin/space/skyrat/infestedntship
 	suffix = "scrapheap.dmm"
 	name = "Space-Ruin NT Research Vessel"
-	description = "A zombie-infested NT ship, seemingly dedicated to medical research."
+	description = "一艘被僵尸占据的纳米传讯飞船，似乎专门从事医学研究。"
 
 /datum/map_template/ruin/space/skyrat/piratefort
 	suffix = "piratefort.dmm"
 	name = "Space-Ruin Pirate Fort"
-	description = "A pirate hideout in deep space."
+	description = "一处位于深空的土匪藏身处。"
 
 /datum/map_template/ruin/space/skyrat/syndibase
 	suffix = "syndibase.dmm"
 	name = "Space-Ruin Syndicate Outpost"
-	description = "A Syndicate research outpost in deep space."
+	description = "一座位于深空的辛迪加研究前哨。"
 
 /datum/map_template/ruin/space/skyrat/crash
 	suffix = "crash.dmm"
 	name = "Space-Ruin Crashed Boat"
-	description = "A small ferry crashed into an asteroid."
+	description = "一艘撞上小行星的小型渡船。"
 
 /datum/map_template/ruin/space/skyrat/shuttlescrap
 	suffix = "shuttlescrap.dmm"
 	name = "Space-Ruin Broken Shuttle"
-	description = "A small shuttle that clearly got clipped by something."
+	description = "一艘明显被什么东西削到过的小型穿梭机。"
 
 /datum/map_template/ruin/space/skyrat/gorilla
 	suffix = "gorilla.dmm"
 	name = "Space-Ruin Gorilla"
-	description = "There is no need to be upset."
+	description = "不必难过。"
 
 /datum/map_template/ruin/space/skyrat/escapefromtarkon
 	suffix = "port_tarkon.dmm"
 	name = "Space-Ruin Port Tarkon"
 	id = "escapefromtarkon"
-	description = "An ambitious goal, A step forward, A trial run for the Tarkon drill, ment to implant mining stations within meteors. Decades of disaster have, however, left this one... Unattended for far too long."
+	description = "一个雄心勃勃的目标、一次前进、一次对塔肯钻机的试运行，旨在把采矿站植入流星之中。然而数十年的灾难让这一座……太久无人问津了。"
 	always_place = TRUE
 
 /obj/modular_map_root/port_tarkon

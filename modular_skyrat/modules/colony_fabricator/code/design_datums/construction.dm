@@ -1,13 +1,13 @@
 // Look, I had to make its name start with A so it'd be top of the list, fight me
 
-#define FABRICATOR_SUBCATEGORY_STRUCTURES "/Autofab Structures"
+#define FABRICATOR_SUBCATEGORY_STRUCTURES "/自动建造结构"
 
 // Techweb node that shouldnt show up anywhere ever specifically for the fabricator to work with
 
 /datum/techweb_node/colony_fabricator_structures
 	id = TECHWEB_NODE_COLONY_STRUCTURES
-	display_name = "Colony Fabricator Structure Designs"
-	description = "Contains all of the colony fabricator's structure designs."
+	display_name = "殖民地制造机结构设计"
+	description = "包含殖民地制造机的所有结构设计。"
 	design_ids = list(
 		"prefab_airlock_kit",
 		"prefab_manual_airlock_kit",
@@ -24,7 +24,7 @@
 // Airlock kit
 
 /datum/design/prefab_airlock_kit
-	name = "Prefab Airlock"
+	name = "预制气闸"
 	id = "prefab_airlock_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -41,7 +41,7 @@
 // Manul Airlock kit
 
 /datum/design/prefab_manual_airlock_kit
-	name = "Prefab Manual Airlock"
+	name = "预制手动气闸"
 	id = "prefab_manual_airlock_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -58,7 +58,7 @@
 // Shutters kit
 
 /datum/design/prefab_shutters_kit
-	name = "Prefab Shutters"
+	name = "预制卷帘门"
 	id = "prefab_shutters_kit"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -75,7 +75,7 @@
 // Fancy floor tiles
 
 /datum/design/prefab_floor_tile
-	name = "Prefab Floor Tile"
+	name = "预制地板砖"
 	id = "prefab_floor_tile"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -91,7 +91,7 @@
 // Fancy catwalk floor tiles
 
 /datum/design/prefab_cat_floor_tile
-	name = "Prefab Catwalk Plating"
+	name = "预制栈桥地板"
 	id = "prefab_cat_floor_tile"
 	build_type = COLONY_FABRICATOR
 	materials = list(
@@ -107,7 +107,7 @@
 // Plastic wall panels, twice the wall for the same price in plastic, efficient!
 
 /datum/design/colony_fab_plastic_wall_panel
-	name = "Plastic Paneling"
+	name = "塑料板材"
 	id = "colony_fab_plastic_wall_panel"
 	build_type = COLONY_FABRICATOR
 	materials = list(

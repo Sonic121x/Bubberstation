@@ -1,6 +1,6 @@
 /turf/open/indestructible/reebe_void
-	name = "void"
-	desc = "A white, empty void, quite unlike anything you've seen before."
+	name = "虚空"
+	desc = "一片洁白空旷的虚空，与你以往见过的任何东西都截然不同。"
 	icon_state = "reebemap"
 	layer = SPACE_LAYER
 	baseturfs = /turf/open/indestructible/reebe_void

@@ -8,8 +8,8 @@
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/energyaxe_lefthand.dmi'
 	righthand_file = 'modular_skyrat/master_files/icons/mob/energyaxe_righthand.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
-	name = "energy fire axe"
-	desc = "You aren't quite sure if this counts as a fire axe anymore, but it sure is fancy! A tag hangs off of it reading: \"property of the Gorlex Marauders\""
+	name = "能量消防斧"
+	desc = "你已经不太确定这还能不能算作消防斧了，但它确实很花哨！上面挂着一个标签，写着：“戈尔莱克斯掠夺者的财产”"
 	force = 5
 	throwforce = 15
 	light_system = OVERLAY_LIGHT
@@ -18,7 +18,7 @@
 	light_on = FALSE
 	armour_penetration = 35
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "An energized fire axe used in Syndicate bases for breaking glass, and people."
+	special_desc = "一把在辛迪加基地中用于砸碎玻璃和砸人的能量消防斧。"
 
 /obj/item/fireaxe/energy/Initialize(mapload)
 	. = ..()

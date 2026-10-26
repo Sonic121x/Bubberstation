@@ -1,6 +1,6 @@
 //ASH SURGERY
 /obj/item/cautery/ashwalker
-	name = "primitive cautery"
+	name = "原始烧灼器"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "cautery"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -12,11 +12,11 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_cautery
-	name = "Ash Cautery"
+	name = "灰烬烧灼器"
 	result = /obj/item/cautery/ashwalker
 
 /obj/item/surgicaldrill/ashwalker
-	name = "primitive surgical drill"
+	name = "原始手术钻"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "surgical_drill"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -28,11 +28,11 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_drill
-	name = "Ash Surgical Drill"
+	name = "灰烬手术钻"
 	result = /obj/item/surgicaldrill/ashwalker
 
 /obj/item/scalpel/ashwalker
-	name = "primitive scalpel"
+	name = "原始手术刀"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "scalpel"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -44,11 +44,11 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_scalpel
-	name = "Ash Scalpel"
+	name = "灰烬手术刀"
 	result = /obj/item/scalpel/ashwalker
 
 /obj/item/circular_saw/ashwalker
-	name = "primitive circular saw"
+	name = "原始圆锯"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "surgical_saw"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -60,11 +60,11 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_saw
-	name = "Ash Circular Saw"
+	name = "灰烬圆锯"
 	result = /obj/item/circular_saw/ashwalker
 
 /obj/item/retractor/ashwalker
-	name = "primitive retractor"
+	name = "原始牵开器"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "retractors"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -76,11 +76,11 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_retractor
-	name = "Ash Retractor"
+	name = "灰烬牵开器"
 	result = /obj/item/retractor/ashwalker
 
 /obj/item/hemostat/ashwalker
-	name = "primitive hemostat"
+	name = "原始止血钳"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "hemostat"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -92,11 +92,11 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_hemostat
-	name = "Ash Hemostat"
+	name = "灰烬止血钳"
 	result = /obj/item/hemostat/ashwalker
 
 /obj/item/bonesetter/ashwalker
-	name = "primitive bonesetter"
+	name = "原始接骨器"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/ashwalker_tools.dmi'
 	icon_state = "bonesetter"
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT)
@@ -108,5 +108,5 @@
 	greyscale_config_worn = null
 
 /datum/crafting_recipe/ash_recipe/ash_bonesetter
-	name = "Ash Bonesetter"
+	name = "灰烬接骨器"
 	result = /obj/item/bonesetter/ashwalker

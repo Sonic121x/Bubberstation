@@ -30,8 +30,8 @@
 #define HEV_NOTIFICATIONS list(HEV_NOTIFICATION_TEXT_AND_VOICE, HEV_NOTIFICATION_TEXT, HEV_NOTIFICATION_VOICE, HEV_NOTIFICATION_OFF)
 
 /obj/item/clothing/head/helmet/space/hev_suit
-	name = "hazardous environment suit helmet"
-	desc = "The Mark IV HEV suit helmet."
+	name = "危险环境防护服头盔"
+	desc = "马克四型 HEV 防护服的头盔。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head/helmet.dmi'
 	icon_state = "hev"
@@ -70,8 +70,8 @@
 	consume = 30
 
 /obj/item/clothing/suit/space/hev_suit
-	name = "hazardous environment suit"
-	desc = "The Mark IV HEV suit protects the user from a number of hazardous environments and has in build ballistic protection."
+	name = "危险环境防护服"
+	desc = "马克四型 HEV 防护服能保护穿戴者免受多种危险环境的侵害，并自带防弹防护。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit_digi.dmi'
@@ -175,7 +175,7 @@
 	var/armor_powered = /datum/armor/space_hev_suit/powered
 	var/heal_amount = HEV_HEAL_AMOUNT
 	var/blood_replenishment = HEV_BLOOD_REPLENISHMENT
-	var/suit_name = "HEV MARK IV"
+	var/suit_name = "HEV 马克四型"
 
 	var/list/queued_voice_lines = list()
 
@@ -213,14 +213,14 @@
 	return ..()
 
 /datum/action/item_action/hev_toggle
-	name = "Toggle HEV Suit"
+	name = "切换 HEV 防护服"
 	button_icon = 'modular_skyrat/modules/hev_suit/icons/toggles.dmi'
 	button_icon_state = "system_off"
 	background_icon = 'modular_skyrat/modules/hev_suit/icons/toggles.dmi'
 	background_icon_state = "bg_hl"
 
 /datum/action/item_action/hev_toggle_notifs
-	name = "Toggle HEV Suit Notifications"
+	name = "切换 HEV 防护服通知"
 	button_icon = 'modular_skyrat/modules/hev_suit/icons/toggles.dmi'
 	button_icon_state = "sound_VOICE_AND_TEXT"
 	background_icon = 'modular_skyrat/modules/hev_suit/icons/toggles.dmi'
@@ -230,12 +230,12 @@
 	if(!..())
 		return FALSE
 	var/obj/item/clothing/suit/space/hev_suit/my_suit = target
-	var/new_setting = tgui_input_list(my_suit.current_user, "Please select your notification settings.", "HEV Notification Settings", HEV_NOTIFICATIONS)
+	var/new_setting = tgui_input_list(my_suit.current_user, "请选择你的通知设置。", "HEV 通知设置", HEV_NOTIFICATIONS)
 
 	if(!new_setting)
 		new_setting = HEV_NOTIFICATION_TEXT_AND_VOICE
 
-	to_chat(my_suit.current_user, span_notice("[my_suit] notification mode is now [new_setting]."))
+	to_chat(my_suit.current_user, span_notice("[my_suit] 的通知模式现在是 [new_setting]。"))
 
 	my_suit.send_notifications = new_setting
 
@@ -313,7 +313,7 @@
 		return FALSE
 
 	if(activating || activated)
-		send_message("ERROR - SYSTEM [activating ? "ALREADY ACTIVATING" : "ALREADY ACTIVATED"]", HEV_COLOR_RED)
+		send_message("错误 - 系统[activating ? "已在启动中" : "已处于启动状态"]", HEV_COLOR_RED)
 		return FALSE
 
 	var/power_test = item_use_power(10, TRUE)
@@ -321,25 +321,25 @@
 		var/failure_reason
 		switch(power_test)
 			if(COMPONENT_NO_CELL)
-				failure_reason = "NO CELL INSERTED"
+				failure_reason = "未安装电池"
 			if(COMPONENT_NO_CHARGE)
-				failure_reason = "NO CELL CHARGE"
+				failure_reason = "电池无电量"
 			else
-				failure_reason = "GENERIC FAILURE"
-		send_message("ERROR - POWER SYSTEMS FAILURE - [failure_reason]", HEV_COLOR_RED)
+				failure_reason = "常规故障"
+		send_message("错误 - 电源系统故障 - [failure_reason]", HEV_COLOR_RED)
 		return FALSE
 
 	var/obj/item/clothing/head/helmet/space/hev_suit/helmet = current_user.head
 
 	if(!helmet || !istype(helmet))
-		send_message("ERROR - SUIT HELMET NOT PRESENT", HEV_COLOR_RED)
+		send_message("错误 - 未检测到配套头盔", HEV_COLOR_RED)
 		return FALSE
 
 	current_helmet = helmet
 
 	ADD_TRAIT(current_helmet, TRAIT_NODROP, "hev_trait")
 
-	send_message("ACTIVATING SYSTEMS")
+	send_message("正在启动系统")
 	activating = TRUE
 
 	if(first_use)
@@ -349,13 +349,13 @@
 
 	playsound(src, logon_sound, 50)
 
-	send_message("ESTABLISHING HELMET LINK...")
-	send_message("...ESTABLISHED", HEV_COLOR_GREEN)
+	send_message("正在建立头盔链接……")
+	send_message("……已建立", HEV_COLOR_GREEN)
 
-	send_message("CALIBRATING FIT ADJUSTMENTS...")
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
+	send_message("正在校准贴合参数……")
+	send_message("……已校准", HEV_COLOR_GREEN)
 
-	send_message("CALIBRATING REACTIVE ARMOR SYSTEMS...")
+	send_message("正在校准反应装甲系统……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(powerarmor)), 10 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/proc/use_hev_power(amount)
@@ -364,12 +364,12 @@
 		var/failure_reason
 		switch(power_test)
 			if(COMPONENT_NO_CELL)
-				failure_reason = "NO CELL INSERTED"
+				failure_reason = "未安装电池"
 			if(COMPONENT_NO_CHARGE)
-				failure_reason = "NO CELL CHARGE"
+				failure_reason = "电池无电量"
 			else
-				failure_reason = "GENERIC FAILURE"
-		send_message("ERROR - POWER SYSTEMS FAILURE - [failure_reason]", HEV_COLOR_RED)
+				failure_reason = "常规故障"
+		send_message("错误 - 电源系统故障 - [failure_reason]", HEV_COLOR_RED)
 		deactivate()
 		return FALSE
 	announce_battery()
@@ -423,8 +423,8 @@
 	user_old_oxyloss = current_user.get_oxy_loss()
 	RegisterSignal(current_user, COMSIG_MOB_RUN_ARMOR, PROC_REF(process_hit))
 	playsound(src, armor_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
-	send_message("CALIBRATING ATMOSPHERIC CONTAMINANT SENSORS...")
+	send_message("……已校准", HEV_COLOR_GREEN)
+	send_message("正在校准大气污染物传感器……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(atmospherics)), 4 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/proc/process_hit()
@@ -475,16 +475,16 @@
 /obj/item/clothing/suit/space/hev_suit/proc/atmospherics()
 	var/obj/item/tank/internals/tank = current_user.get_item_by_slot(ITEM_SLOT_SUITSTORE)
 	if(!tank || !istype(tank))
-		send_message("...FAILURE, NO TANK DETECTED", HEV_COLOR_RED)
-		send_message("CALIBRATING VITALSIGN MONITORING SYSTEMS...")
+		send_message("……失败，未检测到气瓶", HEV_COLOR_RED)
+		send_message("正在校准生命体征监测系统……")
 		timer_id = addtimer(CALLBACK(src, PROC_REF(vitalsigns)), 4 SECONDS, TIMER_STOPPABLE)
 		return
 	current_internals_tank = tank
 	ADD_TRAIT(current_internals_tank, TRAIT_NODROP, "hev_trait")
-	to_chat(current_user, span_notice("You hear a click as [current_internals_tank] is secured to your suit."))
+	to_chat(current_user, span_notice("你听到一声轻响，[current_internals_tank] 已固定到你的防护服上。"))
 	playsound(src, atmospherics_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
-	send_message("CALIBRATING VITALSIGN MONITORING SYSTEMS...")
+	send_message("……已校准", HEV_COLOR_GREEN)
+	send_message("正在校准生命体征监测系统……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(vitalsigns)), 4 SECONDS, TIMER_STOPPABLE)
 
 
@@ -497,15 +497,15 @@
 /obj/item/clothing/suit/space/hev_suit/proc/vitalsigns()
 	RegisterSignal(current_user, COMSIG_MOB_STATCHANGE, PROC_REF(stat_changed))
 	playsound(src, vitalsigns_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
-	send_message("CALIBRATING AUTOMATIC MEDICAL SYSTEMS...")
+	send_message("……已校准", HEV_COLOR_GREEN)
+	send_message("正在校准自动医疗系统……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(medical_systems)), 3 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/proc/stat_changed(datum/source, new_stat)
 	SIGNAL_HANDLER
 	if(new_stat == DEAD)
 		playsound(src, 'modular_skyrat/modules/hev_suit/sound/hev/flatline.ogg', 40)
-		internal_radio.talk_into(src, "WARNING! USER [uppertext(current_user.real_name)] VITALSIGNS HAVE FLATLINED, CURRENT POSITION: [loc.x], [loc.y], [loc.z]!", radio_channel)
+		internal_radio.talk_into(src, "警告！使用者 [uppertext(current_user.real_name)] 的生命体征已拉平，当前位置：[loc.x]、[loc.y]、[loc.z]！", radio_channel)
 		deactivate()
 
 /obj/item/clothing/suit/space/hev_suit/proc/medical_systems()
@@ -514,8 +514,8 @@
 	RegisterSignal(current_user, COMSIG_IN_RANGE_OF_IRRADIATION, PROC_REF(process_radiation))
 	START_PROCESSING(SSobj, src)
 	playsound(src, automedic_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
-	send_message("CALIBRATING DEFENSIVE WEAPON SELECTION SYSTEMS...")
+	send_message("……已校准", HEV_COLOR_GREEN)
+	send_message("正在校准防御武器选择系统……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(weaponselect)), 3 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/process(seconds_per_tick)
@@ -539,7 +539,7 @@
 
 	if(diseased)
 		send_hev_sound(biohazard_sound)
-		send_message("DISEASE CURED", HEV_COLOR_BLUE)
+		send_message("疾病已治愈", HEV_COLOR_BLUE)
 
 	handle_tank()
 
@@ -552,7 +552,7 @@
 	if(current_user.all_wounds)
 		var/datum/wound/wound2fix = current_user.all_wounds[1]
 		wound2fix.remove_wound()
-		send_message("WOUND TREATED", HEV_COLOR_BLUE)
+		send_message("伤口已处理", HEV_COLOR_BLUE)
 
 	if(world.time <= healing_current_cooldown)
 		return
@@ -572,7 +572,7 @@
 		if(use_hev_power(HEV_POWERUSE_HEAL))
 			current_user.adjust_oxy_loss(-heal_amount)
 			healing_current_cooldown = world.time + health_static_cooldown
-			send_message("ADRENALINE ADMINISTERED", HEV_COLOR_BLUE)
+			send_message("已注射肾上腺素", HEV_COLOR_BLUE)
 			send_hev_sound(morphine_sound)
 		return
 
@@ -580,7 +580,7 @@
 		if(use_hev_power(HEV_POWERUSE_HEAL))
 			current_user.adjust_brute_loss(-heal_amount)
 			healing_current_cooldown = world.time + health_static_cooldown
-			send_message("BRUTE MEDICAL ATTENTION ADMINISTERED", HEV_COLOR_BLUE)
+			send_message("已实施钝伤医疗处置", HEV_COLOR_BLUE)
 			send_hev_sound(wound_sound)
 		return
 
@@ -588,7 +588,7 @@
 		if(use_hev_power(HEV_POWERUSE_HEAL))
 			current_user.adjust_fire_loss(-heal_amount)
 			healing_current_cooldown = world.time + health_static_cooldown
-			send_message("BURN MEDICAL ATTENTION ADMINISTERED", HEV_COLOR_BLUE)
+			send_message("已实施烧伤医疗处置", HEV_COLOR_BLUE)
 			send_hev_sound(wound_sound)
 		return
 
@@ -596,7 +596,7 @@
 		if(use_hev_power(HEV_POWERUSE_HEAL))
 			current_user.adjust_tox_loss(-heal_amount)
 			healing_current_cooldown = world.time + health_static_cooldown
-			send_message("TOXIN MEDICAL ATTENTION ADMINISTERED", HEV_COLOR_BLUE)
+			send_message("已实施毒素医疗处置", HEV_COLOR_BLUE)
 			send_hev_sound(antitoxin_sound)
 		return
 
@@ -647,27 +647,27 @@
 /obj/item/clothing/suit/space/hev_suit/proc/weaponselect()
 	current_user.add_traits(list(TRAIT_GUNFLIP,TRAIT_GUN_NATURAL), "hev_trait")
 	playsound(src, weaponselect_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
-	send_message("CALIBRATING MUNITION LEVEL MONITORING SYSTEMS...")
+	send_message("……已校准", HEV_COLOR_GREEN)
+	send_message("正在校准弹药余量监测系统……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(munitions_monitoring)), 4 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/proc/munitions_monitoring()
 	//Crickets, not sure what to make this do!
 	playsound(src, munitions_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
-	send_message("CALIBRATING COMMUNICATIONS SYSTEMS...")
+	send_message("……已校准", HEV_COLOR_GREEN)
+	send_message("正在校准通讯系统……")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(comms_system)), 4 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/proc/comms_system()
 
 	playsound(src, communications_sound, 50)
-	send_message("...CALIBRATED", HEV_COLOR_GREEN)
+	send_message("……已校准", HEV_COLOR_GREEN)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(finished)), 4 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/hev_suit/proc/finished()
-	to_chat(current_user, span_notice("You feel [src] seal around your body, locking it in place!"))
+	to_chat(current_user, span_notice("你感到 [src] 在身体周围闭合密封，将你固定在位！"))
 	ADD_TRAIT(src, TRAIT_NODROP, "hev_trait")
-	send_message("ALL SYSTEMS ONLINE, WELCOME [uppertext(current_user.real_name)]", HEV_COLOR_GREEN)
+	send_message("所有系统已上线，欢迎 [uppertext(current_user.real_name)]", HEV_COLOR_GREEN)
 	playsound(src, safe_day_sound, 50)
 	activated = TRUE
 	activating = FALSE
@@ -684,7 +684,7 @@
 	if(current_internals_tank)
 		REMOVE_TRAIT(current_internals_tank, TRAIT_NODROP, "hev_trait")
 	if(current_user)
-		send_message("SYSTEMS DEACTIVATED", HEV_COLOR_RED)
+		send_message("系统已关闭", HEV_COLOR_RED)
 		current_user.remove_traits(list(TRAIT_GUNFLIP,TRAIT_GUN_NATURAL), "hev_trait")
 		UnregisterSignal(current_user, list(
 			COMSIG_ATOM_ACID_ACT,
@@ -704,8 +704,8 @@
 
 
 /obj/item/clothing/head/helmet/space/hev_suit/pcv
-	name = "powered combat helmet"
-	desc = "A deprecated combat helmet developed during the early 21th century in Sol-3, with protections rated level III-A. Contains attachment points for AN/PVS night vision goggles."
+	name = "动力战斗头盔"
+	desc = "一款于 21 世纪初在太阳系第三行星研制的淘汰战斗头盔，防护等级为 III-A 级。带有 AN/PVS 夜视仪的安装接口。"
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecucloth.dmi'
 	worn_icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_muzzled.dmi'
@@ -731,19 +731,19 @@
 	abstract_type = /datum/atom_skin/pcv_helmet
 
 /datum/atom_skin/pcv_helmet/basic
-	preview_name = "Basic"
+	preview_name = "基础"
 	new_icon_state = "hecu_helm"
 
 /datum/atom_skin/pcv_helmet/corpsman
-	preview_name = "Corpsman"
+	preview_name = "医护兵"
 	new_icon_state = "hecu_helm_medic"
 
 /datum/atom_skin/pcv_helmet/basic_black
-	preview_name = "Basic Black"
+	preview_name = "基础黑色"
 	new_icon_state = "hecu_helm_black"
 
 /datum/atom_skin/pcv_helmet/corpsman_black
-	preview_name = "Corpsman Black"
+	preview_name = "医护兵黑色"
 	new_icon_state = "hecu_helm_medic_black"
 
 /datum/armor/hev_suit_pcv
@@ -771,8 +771,8 @@
 	consume = 40
 
 /obj/item/clothing/suit/space/hev_suit/pcv
-	name = "powered combat vest"
-	desc = "An electrically charged piece of body armor, the power stiffens the suit's fibers to provide a layer of resilient armor in response to trauma received from kinetic force.  It's fitted with a geiger counter, tactical radio, a heads up display and a combat cocktail injector that allows the user to function normally even after serious injury. The concentration of mass in the lower rear side from the onboard computer makes your ass feel heavy."
+	name = "动力战斗背心"
+	desc = "一件带电荷的护甲，通电后护甲纤维会变硬，从而在受到动能冲击时提供一层富有韧性的防护。它配备了盖革计数器、战术电台、平视显示器以及战斗鸡尾酒注射器，能让使用者在重伤之后仍保持正常行动。机载计算机集中于后下方的质量让你觉得臀部沉甸甸的。"
 	icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecucloth.dmi'
 	worn_icon = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/awaymissions_skyrat/icons/hecumob_digi.dmi'
@@ -830,7 +830,7 @@
 	health_static_cooldown = PCV_COOLDOWN_HEAL
 	rads_static_cooldown = PCV_COOLDOWN_RADS
 	acid_static_cooldown = PCV_COOLDOWN_ACID
-	suit_name = "PCV MARK II"
+	suit_name = "PCV 马克二型"
 
 /obj/item/clothing/suit/space/hev_suit/pcv/Initialize(mapload)
 	. = ..()
@@ -840,19 +840,19 @@
 	abstract_type = /datum/atom_skin/pcv_vest
 
 /datum/atom_skin/pcv_vest/basic
-	preview_name = "Basic"
+	preview_name = "基础"
 	new_icon_state = "hecu_vest"
 
 /datum/atom_skin/pcv_vest/corpsman
-	preview_name = "Corpsman"
+	preview_name = "医护兵"
 	new_icon_state = "hecu_vest_medic"
 
 /datum/atom_skin/pcv_vest/basic_black
-	preview_name = "Basic Black"
+	preview_name = "基础黑色"
 	new_icon_state = "hecu_vest_black"
 
 /datum/atom_skin/pcv_vest/corpsman_black
-	preview_name = "Corpsman Black"
+	preview_name = "医护兵黑色"
 	new_icon_state = "hecu_vest_medic_black"
 
 /obj/item/clothing/suit/space/hev_suit/pcv/add_context(atom/source, list/context, obj/item/held_item, mob/user)
@@ -861,7 +861,7 @@
 	if(!reskin_component)
 		return
 	if(!reskin_component.has_skin())
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Reskin"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "更换外观"
 		return CONTEXTUAL_SCREENTIP_SET
 
 #undef HEV_COLOR_GREEN

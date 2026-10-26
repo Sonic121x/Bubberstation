@@ -1,5 +1,5 @@
 /area/ruin/powered/reebe
-	name = "Outpost of Cogs"
+	name = "齿轮前哨"
 	ambience_index = AMBIENCE_REEBE
 	area_flags = CULT_PERMITTED
 	area_flags_mapping = NONE
@@ -7,7 +7,7 @@
 	base_lighting_alpha = 135
 
 /area/ruin/powered/reebe/space
-	name = "Outpost of Cogs Space"
+	name = "齿轮前哨太空"
 	default_gravity = ZERO_GRAVITY
 	base_lighting_alpha = 255
 

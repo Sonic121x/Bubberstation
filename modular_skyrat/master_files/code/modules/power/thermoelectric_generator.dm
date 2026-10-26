@@ -1,8 +1,8 @@
 #define TEG_EFFICIENCY 0.45
 
 /obj/machinery/power/thermoelectric_generator
-	name = "thermoelectric generator"
-	desc = "It's a high efficiency thermoelectric generator."
+	name = "热电发电机"
+	desc = "一台高效率热电发电机。"
 	icon = 'modular_skyrat/master_files/icons/obj/machines/thermoelectric.dmi'
 	icon_state = "teg-unassembled"
 	density = TRUE
@@ -45,12 +45,12 @@
 		return CONTEXTUAL_SCREENTIP_SET
 	switch(held_item.tool_behaviour)
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		if(TOOL_WRENCH)
 			if (panel_open)
-				context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Unan" : "An"]chor"
+				context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "解除" : "进行"]锚定"
 			else
-				context[SCREENTIP_CONTEXT_LMB] = "Connect circulators"
+				context[SCREENTIP_CONTEXT_LMB] = "连接环流器"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/power/thermoelectric_generator/Destroy()
@@ -134,16 +134,16 @@
 	var/list/data = list()
 	data["error_message"] = null
 	if(!powernet)
-		data["error_message"] = "Unable to connect to the power network!"
+		data["error_message"] = "无法连接到电网！"
 		return data
 	if(!cold_circ && !hot_circ)
-		data["error_message"] = "Unable to locate any parts! Open and wrench the machine to connect to nearby parts."
+		data["error_message"] = "找不到任何部件！打开面板并用扳手操作机器，即可连接附近的部件。"
 		return data
 	if(!cold_circ)
-		data["error_message"] = "Unable to locate cold circulator!"
+		data["error_message"] = "找不到冷侧环流器！"
 		return data
 	if(!hot_circ)
-		data["error_message"] = "Unable to locate hot circulator!"
+		data["error_message"] = "找不到热侧环流器！"
 		return data
 
 	var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
@@ -207,31 +207,31 @@
 
 	if(!panel_open) //connect/disconnect circulators
 		if(!anchored)
-			balloon_alert(user, "anchor [src] before trying to connect the circulators!")
+			balloon_alert(user, "在尝试连接环流器之前，先固定 [src]！")
 			return TRUE
 		else
 			if(hot_circ && cold_circ)
-				balloon_alert(user, "you start removing the circulators...")
+				balloon_alert(user, "你开始拆卸环流器……")
 				if(I.use_tool(src, user, 30, volume=50))
 					null_circulators()
 					update_appearance()
-					balloon_alert(user, "you disconnect [src]'s circulator links.")
+					balloon_alert(user, "你断开了 [src] 的环流器连接。")
 					playsound(src, 'sound/misc/box_deploy.ogg', 50)
 				return TRUE
 
-			balloon_alert(user, "you attempt to attach the circulators...")
+			balloon_alert(user, "你尝试安装环流器……")
 			if(I.use_tool(src, user, 30, volume=50))
 				switch(find_circulators())
 					if(0)
-						balloon_alert(user, "no circulators found!")
+						balloon_alert(user, "没有找到环流器！")
 					if(1)
-						balloon_alert(user, "only one circulator found!")
+						balloon_alert(user, "只找到一个环流器！")
 					if(2)
-						balloon_alert(user, "you connect [src]'s circulator links.")
+						balloon_alert(user, "你接通了 [src] 的环流器连接。")
 						playsound(src, 'sound/misc/box_deploy.ogg', 50)
 						return TRUE
 					if(3)
-						balloon_alert(user, "both circulators are the same mode!")
+						balloon_alert(user, "两个环流器的模式相同！")
 				return TRUE
 
 	set_anchored(!anchored)
@@ -239,7 +239,7 @@
 	if(!anchored)
 		null_circulators()
 	connect_to_network()
-	balloon_alert(user, "you [anchored?"secure":"unsecure"] [src].")
+	balloon_alert(user, "你[anchored?"固定":"松开"]了 [src]。")
 	update_appearance()
 	return TRUE
 
@@ -248,21 +248,21 @@
 		return TRUE
 
 	if(hot_circ && cold_circ)
-		balloon_alert(user, "disconnect the circulators first!")
+		balloon_alert(user, "先断开环流器！")
 		return TRUE
 	panel_open = !panel_open
 	I.play_tool_sound(src)
-	balloon_alert(user, "you [panel_open?"open":"close"] the panel on [src].")
+	balloon_alert(user, "你[panel_open?"打开":"关上"]了 [src] 的面板。")
 	update_appearance()
 	return TRUE
 
 /obj/machinery/power/thermoelectric_generator/crowbar_act(mob/user, obj/item/I)
 
 	if(anchored)
-		balloon_alert(user, "[src] is anchored!")
+		balloon_alert(user, "[src] 已被固定！")
 		return TRUE
 	else if(!panel_open)
-		balloon_alert(user, "open the panel first!")
+		balloon_alert(user, "先打开面板！")
 		return TRUE
 	else
 		default_deconstruction_crowbar(I)

@@ -9,7 +9,7 @@
 	. = ..()
 
 	if (was_working_synth)
-		to_chat(affected_mob, span_warning("The chemicals sealing your faulty wires loses its effect!"))
+		to_chat(affected_mob, span_warning("封住你那故障线路的化学物质失效了！"))
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
@@ -22,7 +22,7 @@
 
 	if (zappiest_wound)
 		if (!was_working_synth)
-			to_chat(affected_mob, span_warning("Your damaged circuitry is encased in a insulative substance!"))
+			to_chat(affected_mob, span_warning("你受损的电路被一层绝缘物质包裹住了！"))
 			was_working_synth = TRUE
 		zappiest_wound.adjust_intensity(-clot_rate * CLOT_RATE_INTENSITY_MULT * seconds_per_tick)
 	else
@@ -34,13 +34,13 @@
 // a potent coolant that treats synthetic burns at decent efficiency. compared to hercuri its worse, but without
 // the lethal side effects, opting for a movement speed decrease instead
 /datum/reagent/dinitrogen_plasmide
-	name = "Dinitrogen Plasmide"
-	description = "A compound of nitrogen and stabilized plasma, this substance has the ability to flash-cool overheated metals \
-	while avoiding excessive damage. Being a heavy compound, it has the effect of slowing anything that metabolizes it."
+	name = "二氮等离子剂"
+	description = "一种氮与稳定等离子体的化合物，能瞬间冷却过热的金属，\
+	同时避免造成过度损伤。由于是重质化合物，它会令任何代谢它的生物行动变慢。"
 	ph = 4.8
 	specific_heat = SPECIFIC_HEAT_PLASMA * 1.2
 	color = "#b779cc"
-	taste_description = "dull plasma"
+	taste_description = "淡淡的等离子体"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	process_flags = REAGENT_ORGANIC | REAGENT_SYNTHETIC
 	overdose_threshold = 60 // it takes a lot, if youre really messed up you CAN hit this but its unlikely
@@ -50,19 +50,19 @@
 	. = ..()
 
 	affected_mob.add_movespeed_modifier(/datum/movespeed_modifier/dinitrogen_plasmide)
-	to_chat(affected_mob, span_warning("Your joints suddenly feel stiff."))
+	to_chat(affected_mob, span_warning("你的关节突然感觉僵硬。"))
 
 /datum/reagent/dinitrogen_plasmide/on_mob_end_metabolize(mob/living/affected_mob)
 	. = ..()
 
 	affected_mob.remove_movespeed_modifier(/datum/movespeed_modifier/dinitrogen_plasmide)
 	affected_mob.remove_movespeed_modifier(/datum/movespeed_modifier/dinitrogen_plasmide_overdose)
-	to_chat(affected_mob, span_warning("Your joints no longer feel stiff!"))
+	to_chat(affected_mob, span_warning("你的关节不再僵硬了！"))
 
 /datum/reagent/dinitrogen_plasmide/overdose_start(mob/living/affected_mob)
 	. = ..()
 
-	to_chat(affected_mob, span_danger("You feel like your joints are filling with some viscous fluid!"))
+	to_chat(affected_mob, span_danger("你感觉关节里正在灌入某种黏稠液体！"))
 	affected_mob.add_movespeed_modifier(/datum/movespeed_modifier/dinitrogen_plasmide_overdose)
 
 /datum/reagent/dinitrogen_plasmide/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
@@ -89,9 +89,9 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE | REACTION_TAG_HEALING
 
 /obj/item/reagent_containers/spray/dinitrogen_plasmide
-	name = "coolant spray"
-	desc = "A medical spray bottle. This one contains dinitrogen plasmide, a potent coolant commonly used to treat synthetic burns. \
-	Has the side effect of causing movement slowdown."
+	name = "冷却喷雾"
+	desc = "一个医疗喷雾瓶。这一瓶装有二氮等离子剂，一种常用于处理合成人烧伤的强效冷却剂。\
+	副作用是会导致移动速度降低。"
 	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "sprayer_med_yellow"
 	list_reagents = list(/datum/reagent/dinitrogen_plasmide = 100)

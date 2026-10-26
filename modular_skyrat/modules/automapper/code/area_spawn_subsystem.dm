@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(area_spawn)
-	name = "Area Spawn"
+	name = "区域生成"
 	ss_flags = SS_NO_FIRE
 	dependencies = list(
 		/datum/controller/subsystem/mapping
@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(area_spawn)
 			// #2, actually don't be in a nook!
 			return (totally_empty ? 10 : 0) + (4 - num_walls_found)
 
-	CRASH("Invalid area spawn mode [mode]!")
+	CRASH("无效的区域生成模式 [mode]！")
 
 /**
  * Pick a turf candidate and remove from the list.
@@ -291,7 +291,7 @@ SUBSYSTEM_DEF(area_spawn)
 
 	if(!LAZYLEN(available_turfs))
 		if(!optional)
-			log_mapping("[src.type] could not find any suitable turfs on map [SSmapping.current_map.map_name]!")
+			log_mapping("[src.type] 在地图 [SSmapping.current_map.map_name] 上找不到任何合适的地块！")
 			SSarea_spawn.failed_area_spawns += src.type
 		return
 
@@ -361,7 +361,7 @@ SUBSYSTEM_DEF(area_spawn)
 /**
  * Show overlay over area of priorities. Wall priority over open priority.
  */
-ADMIN_VERB(test_area_spawner, R_DEBUG, "Test Area Spawner", "Show area spawner placement candidates as an overlay.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(test_area_spawner, R_DEBUG, "测试区域生成器", "以叠加层显示区域生成器的放置候选位置。", ADMIN_CATEGORY_DEBUG)
 	VERB_ARG_TYPED(area, VERB_ARG_TYPE_AREA, VERB_ARG_SOURCE_WORLD, /area)
 	for(var/obj/effect/turf_test/old_test in area)
 		qdel(old_test)

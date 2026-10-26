@@ -16,7 +16,7 @@
 
 /datum/component/toggle_clothes/proc/handle_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_notice("This item is toggleable! Alt Click to toggle!")
+	examine_text += span_notice("这件物品可以切换形态！按住 Alt 点击即可切换！")
 
 /datum/component/toggle_clothes/proc/clothing_toggle(obj/item/clothing/source, mob/living/clicker)
 	SIGNAL_HANDLER
@@ -26,7 +26,7 @@
 		original_icon_state = initial(source.post_init_icon_state)
 	toggled = !toggled
 	source.icon_state = (toggled ? toggled_icon_state : original_icon_state)
-	to_chat(clicker, "You toggle \the [source]!")
+	to_chat(clicker, "你切换了 \the [source]！")
 	if(source.loc == clicker)
 		clicker.update_clothing(source.slot_flags)
 	source.update_appearance(UPDATE_ICON)

@@ -8,8 +8,8 @@
 	can_hold = typecacheof(/obj/item/reagent_containers/cup/lewd_filter)
 
 /obj/item/clothing/mask/gas/bdsm_mask
-	name = "latex gasmask"
-	desc = "A toned gas mask that completely muffles the wearer. Wearing this makes breathing a lot difficult."
+	name = "乳胶防毒面具"
+	desc = "一只紧致的防毒面具，会把佩戴者完全闷住。戴着它呼吸会困难得多。"
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_masks.dmi'
 	worn_icon_muzzled = 'modular_skyrat/master_files/icons/mob/clothing/mask_muzzled.dmi'
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_masks.dmi'
@@ -34,8 +34,8 @@
 		/datum/action/item_action/toggle_gag,
 	)
 	action_slots = ITEM_SLOT_HANDS | ITEM_SLOT_MASK
-	var/list/moans = list("Mmmph...", "Hmmphh", "Mmmfhg", "Gmmmh...") // Phrases to be said when the player attempts to talk when speech modification / voicebox is enabled.
-	var/list/moans_alt = list("Mhgm...", "Hmmmp!...", "Gmmmhp!") // Power probability phrases to be said when talking.
+	var/list/moans = list("唔姆……", "嗯呜……", "唔嗯……", "咕呜……") // Phrases to be said when the player attempts to talk when speech modification / voicebox is enabled.
+	var/list/moans_alt = list("唔！……", "姆嗯！……", "咕唔姆！") // Power probability phrases to be said when talking.
 	var/moans_alt_probability = 5 // Probability for alternative sounds to play.
 	var/temp_check = TRUE //Used to check if user unconsious to prevent choking him until he wakes up
 	/// Does the gasmask impede the user's ability to talk?
@@ -130,9 +130,9 @@
 
 /obj/item/clothing/mask/gas/bdsm_mask/proc/try_unequip(mob/user)
 	if(!do_after(user, 60 SECONDS, target = user))
-		to_chat(user, span_warning("You fail to remove the gas mask!"))
+		to_chat(user, span_warning("你没能取下防毒面具！"))
 		return FALSE
-	to_chat(user, span_notice("You remove the gas mask."))
+	to_chat(user, span_notice("你取下了防毒面具。"))
 	return TRUE
 /obj/item/clothing/mask/gas/bdsm_mask/attack_hand_secondary(mob/user, list/modifiers)
 
@@ -144,7 +144,7 @@
 	if(try_unequip(user))
 		. = ..()
 	if(.)
-		to_chat(user, span_notice("You remove the gas mask."))
+		to_chat(user, span_notice("你取下了防毒面具。"))
 
 // To make in unremovable without helping when mask is on (for MouseDrop)
 /datum/storage/pockets/small/bdsm_mask/on_mousedrop_onto(datum/source, atom/over_object, mob/user)
@@ -163,27 +163,27 @@
 		return
 	if(!try_unequip(user) || !user.putItemFromInventoryInHandIfPossible(src, hand.held_index))
 		return
-	to_chat(user, span_notice("You remove the gas mask."))
+	to_chat(user, span_notice("你取下了防毒面具。"))
 	add_fingerprint(user)
 
 /datum/storage/pockets/small/bdsm_mask/remove_single(mob/removing, obj/item/thing, atom/remove_to_loc, silent)
 	var/obj/item/clothing/mask/gas/bdsm_mask/mask = parent
 	if(!istype(mask) || !mask.is_locked(removing))
 		return ..()
-	to_chat(removing, span_warning("You can't detach the filter while the mask is locked!"))
+	to_chat(removing, span_warning("面具锁定时你无法拆下滤芯！"))
 	return FALSE
 
 /datum/storage/pockets/small/bdsm_mask/attempt_insert(obj/item/to_insert, mob/user, override, force, messages)
 	var/obj/item/clothing/mask/gas/bdsm_mask/mask = parent
 	if(!istype(mask) || !mask.is_locked(user))
 		return ..()
-	to_chat(user, span_warning("You can't attach a filter while the mask is locked!"))
+	to_chat(user, span_warning("面具锁定时你无法装上滤芯！"))
 	return FALSE
 
 // Breathing valve control button
 /datum/action/item_action/toggle_breathcontrol
-	name = "Toggle breath control filter"
-	desc = "Makes breathing through this mask far harder. Use with caution."
+	name = "切换呼吸控制滤阀"
+	desc = "使透过面具呼吸变得困难得多。请谨慎使用。"
 
 // Trigger thing for manual breath
 /datum/action/item_action/toggle_breathcontrol/Trigger(trigger_flags)
@@ -194,8 +194,8 @@
 		mask.check(owner)
 
 /datum/action/item_action/toggle_gag
-	name = "Toggle gag"
-	desc = "Toggles whether or not the wearer is able to speak."
+	name = "切换口塞"
+	desc = "切换佩戴者是否能够说话。"
 
 /datum/action/item_action/toggle_gag/Trigger(trigger_flags)
 	if(!..())
@@ -205,8 +205,8 @@
 		mask.check_gag(owner)
 
 /datum/action/item_action/mask_inhale
-	name = "Inhale oxygen"
-	desc = "You must inhale oxygen!"
+	name = "吸入氧气"
+	desc = "你必须吸入氧气！"
 
 // Open the valve when press the button
 /datum/action/item_action/mask_inhale/Trigger(trigger_flags)
@@ -244,7 +244,7 @@
 				time_to_choke_left = time_to_choke
 				breath_status = TRUE
 				affected_human.try_lewd_autoemote("inhale")
-			to_chat(affected_human, span_purple("You suddenly find it much harder to breathe!."))
+			to_chat(affected_human, span_purple("你突然发现呼吸变得困难多了！"))
 			START_PROCESSING(SSobj, src)
 			time_to_choke_left = time_to_choke
 
@@ -258,14 +258,14 @@
 // To check if player already have this mask on and trying to change mode
 /obj/item/clothing/mask/gas/bdsm_mask/proc/check(mob/living/carbon/user)
 	if(!istype(user) || src == user.get_item_by_slot(ITEM_SLOT_MASK))
-		to_chat(user, span_notice("You can't reach the air filter switch!"))
+		to_chat(user, span_notice("你够不到空气滤阀的开关！"))
 		return
 	toggle(user)
 
 // Switch the mask valve to the opposite state
 /obj/item/clothing/mask/gas/bdsm_mask/proc/toggle(mob/living/carbon/user)
 	mask_on = !mask_on
-	to_chat(user, span_notice("You turn the air filter [mask_on ? "on. Use with caution!" : "off. Now it's safe to wear."]"))
+	to_chat(user, span_notice("你把空气滤阀[mask_on ? "打开了。请谨慎使用！" : "关掉了。现在戴着它很安全。"]"))
 	conditional_pref_sound(user, mask_on ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_mob_action_buttonss()
@@ -280,13 +280,13 @@
 /obj/item/clothing/mask/gas/bdsm_mask/proc/check_gag(user)
 	var/mob/living/carbon/affected_carbon = user
 	if(istype(src) && src == affected_carbon.get_item_by_slot(ITEM_SLOT_MASK))
-		to_chat(user, span_notice("You can't reach the gag switch!"))
+		to_chat(user, span_notice("你够不到口塞的开关！"))
 	else
 		toggle_gag(affected_carbon)
 
 /obj/item/clothing/mask/gas/bdsm_mask/proc/toggle_gag(user)
 	speech_disabled = !speech_disabled
-	to_chat(user, span_notice("You [speech_disabled ? "disable" : "enable"] the gag on the mask."))
+	to_chat(user, span_notice("你[speech_disabled ? "关掉" : "开启"]了面具上的口塞。"))
 	update_mob_action_buttonss()
 	update_icon()
 
@@ -331,8 +331,8 @@
 
 // Here goes code for lewd gasmask filter
 /obj/item/reagent_containers/cup/lewd_filter
-	name = "gasmask filter"
-	desc = "A strange looking air filter. It may not be a good idea to breathe this in..."
+	name = "防毒面具滤芯"
+	desc = "一个外形奇怪的空气滤芯。把这东西吸进去恐怕不是什么好主意……"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	icon_state = "filter_pink"
 	w_class = WEIGHT_CLASS_SMALL
@@ -356,11 +356,11 @@
 	abstract_type = /datum/atom_skin/lewd_filter
 
 /datum/atom_skin/lewd_filter/pink
-	preview_name = "pink"
+	preview_name = "粉色"
 	new_icon_state = "filter_pink"
 
 /datum/atom_skin/lewd_filter/teal
-	preview_name = "teal"
+	preview_name = "青色"
 	new_icon_state = "filter_teal"
 
 // Legacy code from reagent_containers class. Most likely not really needed and can be cleared
@@ -378,5 +378,5 @@
 	var/obj/item/clothing/mask/gas/bdsm_mask/mask = loc
 	if(!istype(mask) || !mask.is_locked(user))
 		return ..()
-	to_chat(user, span_warning("You can't change the flow rate of the valve while the mask is on!"))
+	to_chat(user, span_warning("面具开启时你无法调整滤阀的流量！"))
 	return CLICK_ACTION_BLOCKING

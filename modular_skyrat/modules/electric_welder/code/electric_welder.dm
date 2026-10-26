@@ -1,6 +1,6 @@
 /obj/item/weldingtool/electric
-	name = "electrical welding tool"
-	desc = "An experimental welding tool capable of welding functionality through the use of electricity. The flame seems almost cold."
+	name = "电动焊接工具"
+	desc = "一种实验性焊接工具，利用电力实现焊接功能。火焰摸起来几乎冰凉。"
 	icon = 'modular_skyrat/modules/aesthetics/tools/tools.dmi'
 	icon_state = "elwelder"
 	light_power = 1
@@ -26,10 +26,10 @@
 	powered = !powered
 	playsound(src, 'sound/effects/sparks/sparks4.ogg', 100, TRUE)
 	if(powered)
-		to_chat(user, span_notice("You turn [src] on."))
+		to_chat(user, span_notice("你打开了 [src]。"))
 		switched_on()
 		return
-	to_chat(user, span_notice("You turn [src] off."))
+	to_chat(user, span_notice("你关闭了 [src]。"))
 	switched_off()
 
 /obj/item/weldingtool/electric/switched_on(mob/user)
@@ -73,7 +73,7 @@
 
 /obj/item/weldingtool/electric/examine()
 	. = ..()
-	. += "[src] is currently [powered ? "powered" : "unpowered"]."
+	. += "[src] 当前[powered ? "已通电" : "未通电"]。"
 
 /obj/item/weldingtool/electric/update_icon_state()
 	if(powered)

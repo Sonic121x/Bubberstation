@@ -37,7 +37,7 @@
 #define MOB_PLACER_RANGE 16 // One more tile than the biggest viewrange we have.
 
 /obj/effect/random_mob_placer
-	name = "mob placer"
+	name = "生物放置器"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mapping_helpers.dmi'
 	icon_state = "mobspawner"
 	var/list/possible_mobs = list(/mob/living/basic/blackmesa/xen/headcrab)
@@ -110,7 +110,7 @@
 	possible_mobs = list(/mob/living/basic/blackmesa/xen/vortigaunt)
 
 /obj/effect/mob_spawn/corpse/human/hecu_zombie
-	name = "HECU"
+	name = "HECU 尸体"
 	outfit = /datum/outfit/hecucorpse
 	icon_state = "corpsebartender" /// It 'vaguely' looks like HECU
 	brute_damage = 1000
@@ -128,7 +128,7 @@
 	r_pocket = /obj/item/flashlight/flare
 
 /obj/effect/mob_spawn/corpse/human/scientist_zombie
-	name = "Science Team"
+	name = "科学小组"
 	outfit = /datum/outfit/sciteamcorpse
 	icon_state = "corpsescientist"
 	brute_damage = 1000
@@ -141,7 +141,7 @@
 	gloves = /obj/item/clothing/gloves/latex
 
 /obj/effect/mob_spawn/corpse/human/guard_zombie
-	name = "Security Guard"
+	name = "安保警卫"
 	outfit = /datum/outfit/barneycorpse
 	icon_state = "corpsedoctor" /// It 'vaguely' looks like the guard
 	brute_damage = 1000

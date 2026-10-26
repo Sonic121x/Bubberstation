@@ -1,7 +1,7 @@
 //Right now it's a structure that works off of magic, as it'd require an internal power source for what its supposed to do
 /obj/structure/liquid_pump
-	name = "portable liquid pump"
-	desc = "An industrial grade pump, capable of either siphoning or spewing liquids. Needs to be anchored first to work. Has a limited capacity internal storage."
+	name = "便携式液体泵"
+	desc = "一台工业级泵，可以抽取或喷出液体。必须先固定住才能工作。内置储液容量有限。"
 	icon = 'modular_skyrat/modules/liquids/icons/obj/structures/liquid_pump.dmi'
 	icon_state = "liquid_pump"
 	density = TRUE
@@ -29,23 +29,23 @@
 
 /obj/structure/liquid_pump/attack_hand(mob/user)
 	if(!anchored)
-		to_chat(user, span_warning("[src] needs to be anchored first!"))
+		to_chat(user, span_warning("[src] 需要先固定住！"))
 		return
-	to_chat(user, span_notice("You turn [src] [turned_on ? "off" : "on"]."))
+	to_chat(user, span_notice("你把 [src] [turned_on ? "关掉" : "打开"]了。"))
 	toggle_working()
 
 /obj/structure/liquid_pump/click_alt(mob/living/user)
-	to_chat(user, span_notice("You flick [src]'s spewing mode [spewing_mode ? "off" : "on"]."))
+	to_chat(user, span_notice("你把 [src] 的喷出模式[spewing_mode ? "关掉" : "打开"]了。"))
 	spewing_mode = !spewing_mode
 	update_icon()
 	return CLICK_ACTION_SUCCESS
 
 /obj/structure/liquid_pump/examine(mob/user)
 	. = ..()
-	. += span_notice("It's anchor bolts are [anchored ? "down and secured" : "up"].")
-	. += span_notice("It's currently [turned_on ? "ON" : "OFF"].")
-	. += span_notice("It's mode currently is set to [spewing_mode ? "SPEWING" : "SIPHONING"]. (Alt-click to switch)")
-	. += span_notice("The pressure gauge shows [reagents.total_volume]/[reagents.maximum_volume].")
+	. += span_notice("它的固定螺栓[anchored ? "已拧入并紧固" : "处于松开状态"]。")
+	. += span_notice("它目前处于[turned_on ? "开启" : "关闭"]状态。")
+	. += span_notice("它的模式当前设为[spewing_mode ? "喷出" : "抽取"]。（按住 Alt 点击可切换）")
+	. += span_notice("压力表显示 [reagents.total_volume]/[reagents.maximum_volume]。")
 
 /obj/structure/liquid_pump/process()
 	if(!isturf(loc))

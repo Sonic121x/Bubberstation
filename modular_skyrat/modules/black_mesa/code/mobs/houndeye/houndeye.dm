@@ -2,8 +2,8 @@
 #define SONIC_BLAST_CHARGE_TIME 1.5 SECONDS
 
 /mob/living/basic/blackmesa/xen/houndeye
-	name = "houndeye"
-	desc = "Some highly aggressive alien creature that attacks using sonic waves."
+	name = "浮游眼"
+	desc = "一种极具攻击性的外星生物，会用声波发动攻击。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/mobs.dmi'
 	icon_state = "houndeye"
 	base_icon_state = "houndeye"
@@ -18,8 +18,8 @@
 	melee_damage_upper = 1
 	obj_damage = 50
 	attack_sound = 'sound/items/tools/welder.ogg'
-	attack_verb_continuous = "headbutts"
-	attack_verb_simple = "headbutt"
+	attack_verb_continuous = "头撞"
+	attack_verb_simple = "头撞"
 
 	// Movement
 	speed = 1
@@ -90,8 +90,8 @@
 	plane = GAME_PLANE
 
 /datum/action/cooldown/mob_cooldown/sonic_blast
-	name = "Sonic Blast"
-	desc = "Create a sonic blast cone in the direction you're facing"
+	name = "声波冲击"
+	desc = "朝你面朝的方向释放一道锥形声波冲击"
 	cooldown_time = SONIC_BLAST_COOLDOWN
 	melee_cooldown_time = SONIC_BLAST_COOLDOWN
 	click_to_activate = TRUE
@@ -104,7 +104,7 @@
 		living_owner.Immobilize(SONIC_BLAST_CHARGE_TIME, TRUE)
 	living_owner.face_atom(target)
 
-	owner.visible_message(span_warning("[owner] begins to charge up energy!"))
+	owner.visible_message(span_warning("[owner] 开始蓄积能量！"))
 
 	var/static/list/charge_sounds = list(
 		'modular_skyrat/modules/black_mesa/sound/mobs/houndeye/charge1.ogg',
@@ -134,7 +134,7 @@
 
 	// Play the blast sound
 	playsound(owner, 'sound/effects/explosion/explosioncreak2.ogg', 100, TRUE)
-	owner.visible_message(span_danger("[owner] releases a powerful sonic blast!"))
+	owner.visible_message(span_danger("[owner] 释放出强大的声波冲击！"))
 
 /datum/action/cooldown/mob_cooldown/sonic_blast/proc/damage_turf(turf/turf_victim)
 	new /obj/effect/temp_visual/sonicblast(turf_victim)
@@ -147,7 +147,7 @@
 		living_victim.apply_damage(damage, STAMINA)
 		if(prob(50))
 			living_victim.Knockdown(1 SECONDS)
-		to_chat(living_victim, span_warning("You're hit by [owner]'s sonic blast!"))
+		to_chat(living_victim, span_warning("你被 [owner] 的声波冲击击中了！"))
 	for(var/obj/object_victim in turf_victim)
 		if(istype(object_victim, /obj/structure/window))
 			object_victim.take_damage(30)

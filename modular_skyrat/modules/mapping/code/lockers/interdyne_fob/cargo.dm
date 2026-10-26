@@ -1,11 +1,11 @@
 /obj/structure/closet/secure_closet/interdynefob/mining_locker
 	icon_door = "mining"
 	icon_state = "mining"
-	name = "mining gear locker"
+	name = "采矿装备储物柜"
 
 /obj/item/clothing/accessory/armband/cargo/syndicate
-	name = "mining officer armband"
-	desc = "An armband, worn by the FOB's operatives to display which department they're assigned to."
+	name = "采矿军官臂章"
+	desc = "一条臂章，由前进基地的特工佩戴，以显示其所属部门。"
 
 /obj/structure/closet/secure_closet/interdynefob/mining_locker/PopulateContents()
 	..()

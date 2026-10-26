@@ -6,8 +6,8 @@
 #define BERSERK_ATTACK_SPEED_MODIFIER 0.25
 
 /obj/item/crusher_trophy/gladiator
-	name = "ashen bones"
-	desc = "A set of soot-coated ribs from a worthy warrior. Suitable as a trophy for a kinetic crusher."
+	name = "灰烬之骨"
+	desc = "一套覆满烟灰的肋骨，来自一位值得尊敬的战士。适合用作动能粉碎器的战利品。"
 	icon_state = "demon_claws"
 	color = "#808080"
 	gender = PLURAL
@@ -15,7 +15,7 @@
 	bonus_value = 15
 
 /obj/item/crusher_trophy/gladiator/effect_desc()
-	return "the crusher to have a <b>[bonus_value]%</b> chance to block incoming attacks."
+	return "使动能粉碎器有 <b>[bonus_value]%</b> 的几率格挡来袭攻击。"
 
 /obj/item/crusher_trophy/gladiator/add_to(obj/item/kinetic_crusher/incomingchance, mob/living/user)
 	. = ..()
@@ -28,8 +28,8 @@
 		incomingchance.block_chance -= bonus_value
 
 /obj/item/clothing/neck/warrior_cape
-	name = "cloak of the marked one"
-	desc = "A cloak worn by those that have faced death in the eyes and prevailed."
+	name = "被标记者的斗篷"
+	desc = "那些曾与死亡对视、并最终胜出的人所穿的斗篷。"
 	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
 	icon_state = "berk_cape"
@@ -37,17 +37,17 @@
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/clothing/neck/warrior_cape/loadout //Subtype for loadout item so i can make it not "indestructible"
-	name = "tattered cloak"
-	desc = "A cloak from a once feared foe now worn by those that have faced death in the eyes and prevailed, it looks rather worn as not as pristine as it used to be"
+	name = "破烂斗篷"
+	desc = "一件曾属于某个令人畏惧的敌人的斗篷，如今由那些与死亡对视并胜出的人穿着；它看上去相当破旧，已不复当年光洁如新的模样。"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/warrior_cape/examine()
 	. = ..()
-	. += span_warning("Struggle against the tide, no matter how strong it may be.")
+	. += span_warning("与浪潮抗争吧，无论它多么强大。")
 
 /obj/item/clothing/suit/hooded/berserker/gatsu
-	name = "berserker armor"
-	desc = "A suit of ancient body armor imbued with potent spiritual magnetism, capable of massively boosting a wearer's close combat skills at the cost of ravaging their mind and overexerting their body."
+	name = "狂战士护甲"
+	desc = "一套注入了强大灵性磁力的古代躯体护甲，能大幅提升穿戴者的近战能力，代价是摧残其心智并让身体过度透支。"
 	icon_state = "berk_suit"
 	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
@@ -70,11 +70,11 @@
 
 /obj/item/clothing/suit/hooded/berserker/gatsu/examine()
 	. = ..()
-	. += span_warning("Berserk mode requires the suit's helmet to be equipped, and can only be charged by taking damage.")
+	. += span_warning("狂暴模式需要装备这套护甲的头盔，且只能通过承受伤害来充能。")
 
 /obj/item/clothing/head/hooded/berserker/gatsu
-	name = "berserker helmet"
-	desc = "A uniquely styled helmet with ghastly red eyes that seals it's user inside."
+	name = "狂战士头盔"
+	desc = "一顶造型独特、长着骇人红眼的头盔，会把使用者封在其中。"
 	icon_state = "berk_helm"
 	icon = 'modular_skyrat/modules/gladiator/icons/berserk_icons.dmi'
 	worn_icon = 'modular_skyrat/modules/gladiator/icons/berserk_suit.dmi'
@@ -89,7 +89,7 @@
 
 /obj/item/clothing/head/hooded/berserker/gatsu/examine()
 	. = ..()
-	. += span_warning("Berserk mode is usable at 100% charge and requires the helmet to be closed in order to remain active.") //woag!!!
+	. += span_warning("狂暴模式在充能 100% 时可用，并且需要保持头盔闭合才能持续生效。") //woag!!!
 
 /obj/item/clothing/head/hooded/berserker/gatsu/process(seconds_per_tick)
 	if(berserk_active)
@@ -110,15 +110,15 @@
 		berserk_value *= PROJECTILE_HIT_MULTIPLIER
 	berserk_charge = clamp(round(berserk_charge + berserk_value), 0, BERSERK_MAX_CHARGE)
 	if(berserk_charge >= BERSERK_MAX_CHARGE)
-		balloon_alert(owner, "berserk charged")
+		balloon_alert(owner, "狂暴已充能")
 
 /obj/item/clothing/head/hooded/berserker/gatsu/IsReflect()
 	if(berserk_active)
 		return TRUE
 
 /obj/item/claymore/dragonslayer
-	name = "\proper Dragonslayer"
-	desc = "A blade that seems too big to be called a sword. Too big, too thick, too heavy, and too rough, it's more like a large hunk of raw iron."
+	name = "\proper 屠龙者"
+	desc = "一把大到几乎称不上是剑的刀刃。太大、太厚、太重、也太粗糙，更像是一大块生铁。"
 	icon = 'modular_skyrat/modules/gladiator/icons/dragonslayer.dmi'
 	icon_state = "dragonslayer"
 	inhand_icon_state = "dragonslayer"
@@ -150,7 +150,7 @@
 
 /obj/item/claymore/dragonslayer/examine()
 	. = ..()
-	. += span_warning("Tempered against lavaland foes and bosses through supernatural energies. Right click to dodge at the cost of stamina.")
+	. += span_warning("经超自然能量淬炼，专克熔岩地带的敌人与首领。右键消耗耐力进行闪避。")
 
 /obj/item/claymore/dragonslayer/attack(mob/living/target, mob/living/carbon/human/user)
 	var/is_nemesis_faction = FALSE
@@ -192,24 +192,24 @@
 
 /datum/status_effect/dodgeroll_iframes/proc/whiff()
 	SIGNAL_HANDLER
-	owner.balloon_alert_to_viewers("MISS!")
+	owner.balloon_alert_to_viewers("未命中！")
 	playsound(src, 'sound/items/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	return SUCCESSFUL_BLOCK
 
 /obj/item/claymore/dragonslayer/very_fucking_loud
-	name = "\proper Tempered Dragonslayer"
+	name = "\proper 淬炼屠龙者"
 	desc = null
 	hitsound = 'modular_skyrat/modules/gladiator/Clang_cut.ogg'
 
 /obj/item/claymore/dragonslayer/very_fucking_loud/examine()
 	. = ..()
-	. += span_userdanger("CLANG")
+	. += span_userdanger("铛！")
 
 /obj/structure/closet/crate/necropolis/gladiator
-	name = "gladiator chest"
+	name = "角斗士宝箱"
 
 /obj/structure/closet/crate/necropolis/gladiator/crusher
-	name = "dreadful gladiator chest"
+	name = "骇人角斗士宝箱"
 
 /obj/structure/closet/crate/necropolis/gladiator/PopulateContents()
 	if(prob(5))

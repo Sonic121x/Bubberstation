@@ -4,7 +4,7 @@
 
 /datum/material/cobolterium
 	name = "cobolterium"
-	desc = "Cobolterium"
+	desc = "钴蓝金"
 	color = "#264d61"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_CLASS_METAL | MATERIAL_BASIC_RECIPES
 	sheet_type = /obj/item/stack/sheet/cobolterium
@@ -15,9 +15,9 @@
 	return TRUE
 
 /obj/item/stack/sheet/cobolterium
-	name = "cobolterium bars"
-	desc = "Cobalt-blue metal that might actually just be cobalt."
-	singular_name = "cobolterium bar"
+	name = "钴蓝金锭"
+	desc = "钴蓝色金属，说不定其实就是钴。"
+	singular_name = "钴蓝金锭"
 	icon = 'modular_skyrat/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "dracula-rapping"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
@@ -33,7 +33,7 @@
 
 /datum/material/copporcitite
 	name = "copporcitite"
-	desc = "Copporcitite"
+	desc = "铜橙石"
 	color = "#c55a1d"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_CLASS_METAL | MATERIAL_BASIC_RECIPES
 	sheet_type = /obj/item/stack/sheet/copporcitite
@@ -44,9 +44,9 @@
 	return TRUE
 
 /obj/item/stack/sheet/copporcitite
-	name = "copporcitite bars"
-	desc = "Copper colored metal that might actually just be copper."
-	singular_name = "copporcitite bar"
+	name = "铜橙石锭"
+	desc = "铜色金属，说不定其实就是铜。"
+	singular_name = "铜橙石锭"
 	icon = 'modular_skyrat/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "dracula-rapping"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
@@ -62,7 +62,7 @@
 
 /datum/material/tinumium
 	name = "tinumium"
-	desc = "Tinumium"
+	desc = "锡银金"
 	color = "#717e97"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_CLASS_METAL | MATERIAL_BASIC_RECIPES
 	sheet_type = /obj/item/stack/sheet/tinumium
@@ -73,9 +73,9 @@
 	return TRUE
 
 /obj/item/stack/sheet/tinumium
-	name = "tinumium bars"
-	desc = "Heavily blued, silver colored metal."
-	singular_name = "tinumium bar"
+	name = "锡银金锭"
+	desc = "深度发蓝的银白色金属。"
+	singular_name = "锡银金锭"
 	icon = 'modular_skyrat/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "dracula-rapping"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR
@@ -91,7 +91,7 @@
 
 /datum/material/brussite
 	name = "brussite"
-	desc = "Brussite"
+	desc = "黄铜石"
 	color = "#E1C16E"
 	mat_flags = MATERIAL_CLASS_RIGID | MATERIAL_CLASS_METAL | MATERIAL_BASIC_RECIPES
 	sheet_type = /obj/item/stack/sheet/brussite
@@ -102,9 +102,9 @@
 	return TRUE
 
 /obj/item/stack/sheet/brussite
-	name = "brussite bars"
-	desc = "Brassy-yellow metal that might actually just be brass."
-	singular_name = "brussite bar"
+	name = "黄铜石锭"
+	desc = "黄铜色金属，说不定其实就是黄铜。"
+	singular_name = "黄铜石锭"
 	icon = 'modular_skyrat/modules/company_imports/icons/special_metals_stack.dmi'
 	icon_state = "dracula-rapping"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_COLOR

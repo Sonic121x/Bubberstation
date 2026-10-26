@@ -1,22 +1,22 @@
 /obj/item/tape/ruins/ancient_milsim
 	icon_state = "tape_blue"
-	name = "Developer Commentary"
-	desc = "Tape recording made, presumably, somewhere around twenty third century - at least, that's what the smudged labels are saying. Why is it smudged? Presumably to be authentic."
+	name = "开发者解说"
+	desc = "这盘录音大概录制于二十三世纪前后——至少那些模糊的标签是这么写的。为什么模糊？大概是为了显得真实吧。"
 
 
 /obj/item/tape/ruins/ancient_milsim/devlog_one
-	name = "Developer Commentary, Log 1: Setting"
+	name = "开发者解说，日志 1：背景设定"
 	used_capacity = 160
 
 	storedinfo = list(
-		/* 1 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
-		/* 2 = */ "<span class='game say'><span class='name'>Unknown person</span> <span class='message'>blares, \"<span class=' '>Greetings, my name is Leon Gardner, and welcome to the beta test of a long awaited sequel to 'Time Of Valor: Border Rescue' - 'Time Of Valor 2'.</span>\"</span></span>",
-		/* 3 = */ "<span class='game say'><span class='name'>Leon Gardner</span> <span class='message'>states, \"<span class=' '>After three years of development, hopefully it will be worth the wait.</span>\"</span></span>",
-		/* 4 = */ "<span class='game say'><span class='name'>Leon Gardner</span> <span class='message'>clarifies, \"<span class=' '>In the following pre-release beta test, you'll be completing the intro level of the game, detailing the early stages of the Border War, and introducing you to the new mechanics like Smart NPCs and full molecular simulation.</span>\"</span></span>",
-		/* 5 = */ "<span class='game say'><span class='name'>Leon Gardner</span> <span class='message'>echoes, \"<span class=' '>The setting has been chosen to be so early in the Border War as it complemented the prequel's story. Some of the lore pieces haven't been properly explained nor were entirely comprehensible by the players, so we've taken an extra effort to make it easier for a new player to follow the story.</span>\"</span></span>",
-		/* 6 = */ "<span class='game say'><span class='name'>Leon Gardner</span> <span class='message'>states, \"<span class=' '>As such, most of the NPCs and items included have been cross-compared with their real life equivalents, via publicly available documents, interviews with the war veterans, and other means.</span>\"</span></span>",
-		/* 7 = */ "<span class='game say'><span class='name'>Leon Gardner</span> <span class='message'>warns, \"<span class=' '>This particular map, 'intro-underscore-two', is a shortened representation of the many covert TerraGov operations launched around the first few months of the war.</span>\"</span></span>",
-		/* 8 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>",
+		/* 1 = */ "<span class='game say'><span class='name'>通用记录仪</span> <span class='message'>说道：“<span class='tape_recorder '>录音开始。</span>”</span></span>",
+		/* 2 = */ "<span class='game say'><span class='name'>未知人物</span> <span class='message'>大声说道：“<span class=' '>各位好，我叫莱昂·加德纳，欢迎参加众人期待已久的续作——《英勇时刻：边境救援》的续篇《英勇时刻 2》——的测试版。</span>”</span></span>",
+		/* 3 = */ "<span class='game say'><span class='name'>莱昂·加德纳</span> <span class='message'>陈述道：“<span class=' '>经过三年的开发，希望这份等待是值得的。</span>”</span></span>",
+		/* 4 = */ "<span class='game say'><span class='name'>莱昂·加德纳</span> <span class='message'>说明道：“<span class=' '>在接下来的发售前测试中，你将通关游戏的序幕关卡，它会详细讲述边境战争的早期阶段，并向你介绍智能 NPC 与完整的分子模拟等全新机制。</span>”</span></span>",
+		/* 5 = */ "<span class='game say'><span class='name'>莱昂·加德纳</span> <span class='message'>回应道：“<span class=' '>把背景设定在边境战争如此早期的阶段，是因为这样能与前作的故事相互补足。前作中有一些设定没能得到恰当的解释，玩家也未必完全看得懂，因此我们额外花了功夫，让新玩家更容易跟上剧情。</span>”</span></span>",
+		/* 6 = */ "<span class='game say'><span class='name'>莱昂·加德纳</span> <span class='message'>陈述道：“<span class=' '>正因如此，本作中收录的大多数 NPC 与物品都通过公开文件、对战争老兵的采访以及其他途径，与现实中对应的原型进行了交叉比对。</span>”</span></span>",
+		/* 7 = */ "<span class='game say'><span class='name'>莱昂·加德纳</span> <span class='message'>警告道：“<span class=' '>当前这张地图“intro-underscore-two”，是对战争头几个月中地球政府发起的众多秘密行动的简化呈现。</span>”</span></span>",
+		/* 8 = */ "<span class='game say'><span class='name'>通用记录仪</span> <span class='message'>说道：“<span class='tape_recorder '>录音结束。</span>”</span></span>",
 	)
 
 	timestamp = list(
@@ -31,18 +31,18 @@
 	)
 
 /obj/item/tape/ruins/ancient_milsim/devlog_two
-	name = "Developer Commentary, Log 2: Mechanics"
+	name = "开发者解说，日志 2：机制"
 	used_capacity = 160
 
 	storedinfo = list(
-		/* 1 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
-		/* 2 = */ "<span class='game say'><span class='name'>Unknown person</span> <span class='message'>blares, \"<span class=' '>Hi, my name is Vanessa Parker, Main Mechanics Developer for the upcoming game 'Time Of Valor 2'.</span>\"</span></span>",
-		/* 3 = */ "<span class='game say'><span class='name'>Vanessa Parker</span> <span class='message'>states, \"<span class=' '>Compared to the previous game installment, the new software and hardware upgrades allowed us to developed an in-depth simulation of molecules and realistic damage calculation for the players and the SNPCs.</span>\"</span></span>",
-		/* 4 = */ "<span class='game say'><span class='name'>Vanessa Parker</span> <span class='message'>clarifies, \"<span class=' '>As such, during early testing stages of the game the players and SNPCs used to bleed out or die from pain shocks in the first encounters, resulting in a bad experience.</span>\"</span></span>",
-		/* 5 = */ "<span class='game say'><span class='name'>Vanessa Parker</span> <span class='message'>echoes, \"<span class=' '>We've decided to tackle this issue adding some homebrewn setting-appropriate technology like health stations. Placed around the important points of interest, the players and their smarter foes can use them to recover their health and negate bleeding wounds that were so commonplace.</span>\"</span></span>",
-		/* 6 = */ "<span class='game say'><span class='name'>Vanessa Parker</span> <span class='message'>states, \"<span class=' '>Another issue that was commonly present is that SNPCs would over time learn more and more about the level, and as such, start rushing the players before they've even began equipping their gear and killing them.</span>\"</span></span>",
-		/* 7 = */ "<span class='game say'><span class='name'>Vanessa Parker</span> <span class='message'>warns, \"<span class=' '>Which has been fixed by placing a 'fog of war' at the border between the NPC and SNPC zones. This was achieved by placing an ionised gas forcewall with a half-life of several dozens of years in order to make sure that the field doesn't disappear randomly.</span>\"</span></span>",
-		/* 8 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>",
+		/* 1 = */ "<span class='game say'><span class='name'>通用记录仪</span> <span class='message'>说道：“<span class='tape_recorder '>录音开始。</span>”</span></span>",
+		/* 2 = */ "<span class='game say'><span class='name'>未知人物</span> <span class='message'>大声说道：“<span class=' '>大家好，我叫瓦妮莎·帕克，是即将推出的游戏《英勇时刻 2》的主机制开发。</span>”</span></span>",
+		/* 3 = */ "<span class='game say'><span class='name'>瓦妮莎·帕克</span> <span class='message'>陈述道：“<span class=' '>与上一部作品相比，新的软件与硬件升级让我们能够为玩家和 SNPC 打造深入的分子模拟以及逼真的伤害计算。</span>”</span></span>",
+		/* 4 = */ "<span class='game say'><span class='name'>瓦妮莎·帕克</span> <span class='message'>说明道：“<span class=' '>因此，在游戏的早期测试阶段，玩家和 SNPC 常常在最初的几场遭遇中就失血过多或因疼痛休克而死，导致体验很差。</span>”</span></span>",
+		/* 5 = */ "<span class='game say'><span class='name'>瓦妮莎·帕克</span> <span class='message'>回应道：“<span class=' '>我们决定解决这个问题，为此加入了一些自行设计、贴合设定的技术，比如医疗站。它们被安置在重要的兴趣点周围，玩家和他们更聪明的敌人可以使用它们恢复生命值，并消除那些曾经随处可见的流血伤口。</span>”</span></span>",
+		/* 6 = */ "<span class='game say'><span class='name'>瓦妮莎·帕克</span> <span class='message'>陈述道：“<span class=' '>另一个常见的问题是，SNPC 会随着时间推移越来越熟悉关卡，于是还没等玩家开始穿戴装备就冲上来把他们杀掉。</span>”</span></span>",
+		/* 7 = */ "<span class='game say'><span class='name'>瓦妮莎·帕克</span> <span class='message'>警告道：“<span class=' '>我们通过在 NPC 区与 SNPC 区之间设置“战争迷雾”解决了这一点。具体做法是立起一道半衰期长达数十年的电离气体力场墙，以确保这片力场不会随机消失。</span>”</span></span>",
+		/* 8 = */ "<span class='game say'><span class='name'>通用记录仪</span> <span class='message'>说道：“<span class='tape_recorder '>录音结束。</span>”</span></span>",
 	)
 	timestamp = list(
 		/* 1 = */ 0,
@@ -56,18 +56,18 @@
 	)
 
 /obj/item/tape/ruins/ancient_milsim/devlog_three
-	name = "Developer Commentary, Log 3: SNPCs"
+	name = "开发者解说，日志 3：SNPC"
 	used_capacity = 160
 
 	storedinfo = list(
-		/* 1 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording started.</span>\"</span></span>",
-		/* 2 = */ "<span class='game say'><span class='name'>Unknown person</span> <span class='message'>blares, \"<span class=' '>Sup, I am Mark Marshall, 'Time Of Valor 2''s SNPC Neural Programmer.</span>\"</span></span>",
-		/* 3 = */ "<span class='game say'><span class='name'>Mark Marshall</span> <span class='message'>states, \"<span class=' '>New Smart NPC system has been briefly used in the first game's bossfight for the main enemy, to make sure that the fight would feel more rewarding and replayable.</span>\"</span></span>",
-		/* 4 = */ "<span class='game say'><span class='name'>Mark Marshall</span> <span class='message'>clarifies, \"<span class=' '>In the new game, however, SNPC technology has been improved by a long mile and we've decided to broaden the amount of 'smarter' combat sections around the story.</span>\"</span></span>",
-		/* 5 = */ "<span class='game say'><span class='name'>Mark Marshall</span> <span class='message'>echoes, \"<span class=' '>They breathe, eat, see like your average player; and fully simulate their nerve and cognitive models as opposed to the dumbed down common mobs that lack the nerves, thought and fear simulations.</span>\"</span></span>",
-		/* 6 = */ "<span class='game say'><span class='name'>Mark Marshall</span> <span class='message'>states, \"<span class=' '>With a smart learning curve that allows them to adapt and learn from their experiences with other players, meaning each and every fight should feel unique.</span>\"</span></span>",
-		/* 7 = */ "<span class='game say'><span class='name'>Mark Marshall</span> <span class='message'>warns, \"<span class=' '>Their models have also been greatly reworked to allow for other people to submit their own character appearances, so none of them will ever look the same.</span>\"</span></span>",
-		/* 8 = */ "<span class='game say'><span class='name'>The universal recorder</span> <span class='message'>says, \"<span class='tape_recorder '>Recording stopped.</span>\"</span></span>",
+		/* 1 = */ "<span class='game say'><span class='name'>通用记录仪</span> <span class='message'>说道：“<span class='tape_recorder '>录音开始。</span>”</span></span>",
+		/* 2 = */ "<span class='game say'><span class='name'>未知人物</span> <span class='message'>大声说道：“<span class=' '>嗨，我是马克·马歇尔，《英勇时刻 2》的 SNPC 神经编程员。</span>”</span></span>",
+		/* 3 = */ "<span class='game say'><span class='name'>马克·马歇尔</span> <span class='message'>陈述道：“<span class=' '>新的智能 NPC 系统曾在首部作品的最终 Boss 战中短暂用于主要敌人，以确保那场战斗更有成就感、也更耐玩。</span>”</span></span>",
+		/* 4 = */ "<span class='game say'><span class='name'>马克·马歇尔</span> <span class='message'>说明道：“<span class=' '>而在新作中，SNPC 技术已大幅改进，我们决定在剧情中增加更多“更聪明”的战斗段落。</span>”</span></span>",
+		/* 5 = */ "<span class='game say'><span class='name'>马克·马歇尔</span> <span class='message'>回应道：“<span class=' '>他们会像普通玩家一样呼吸、进食和视物，并完整模拟自己的神经与认知模型，而不是像那些被简化、缺乏神经、思考与恐惧模拟的普通怪物。</span>”</span></span>",
+		/* 6 = */ "<span class='game say'><span class='name'>马克·马歇尔</span> <span class='message'>陈述道：“<span class=' '>它们拥有智能的学习曲线，能够适应并从与其他玩家的交手经验中学习，这意味着每一场战斗都应当是独一无二的。</span>”</span></span>",
+		/* 7 = */ "<span class='game say'><span class='name'>马克·马歇尔</span> <span class='message'>警告道：“<span class=' '>他们的模型也经过了大幅重制，允许其他人提交自己的角色外观，因此他们不会看起来千篇一律。</span>”</span></span>",
+		/* 8 = */ "<span class='game say'><span class='name'>通用记录仪</span> <span class='message'>说道：“<span class='tape_recorder '>录音结束。</span>”</span></span>",
 	)
 	timestamp = list(
 		/* 1 = */ 0,

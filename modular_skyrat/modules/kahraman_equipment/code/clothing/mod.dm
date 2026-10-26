@@ -1,15 +1,15 @@
 // Its modsuiting time
 
 /datum/mod_theme/frontier_colonist
-	name = "frontier hazard protective"
-	desc = "An unusual design of suit, in reality being no more than a slim underlayer with a built in coat and sealed helmet."
-	extended_desc = "The pinnacle of frontier cheap technology. Suits like this are usually not unified in design \
-		though are common in frontier settlements with less than optimal infrastructure. As with most unofficial \
-		designs, there are flaws and no single one is perfect, but they achieve a singular goal and that is the \
-		important part. Suits such as these are made specifically for the rare emergency that creates a hazard \
-		environment that other equipment just can't quite handle. Often, these suits are able to protect their users \
-		from not only electricity, but also radiation, biological hazards, other people, so on. This suit will not, \
-		however, protect you from yourself."
+	name = "边疆危害防护"
+	desc = "一种设计奇特的套装，实际上不过是一层纤薄的内衬，附带内置外套与密封头盔。"
+	extended_desc = "边疆廉价科技的巅峰之作。这类套装的样式通常并不统一，\
+		但在基础设施欠佳的边疆定居点却很常见。与大多数非官方\
+		设计一样，它们存在缺陷，没有一件是完美的，但它们达成了唯一的目标，这才是\
+		关键所在。此类套装专为罕见紧急情况而造，那种情况会形成其他装备\
+		难以应付的危险环境。通常，这类套装不仅能保护使用者\
+		免受电流伤害，还能抵御辐射、生物危害、他人等等。不过，\
+		这套装备并不能保护你免受你自己之害。"
 
 	default_skin = "colonist"
 	armor_type = /datum/armor/colonist_hazard

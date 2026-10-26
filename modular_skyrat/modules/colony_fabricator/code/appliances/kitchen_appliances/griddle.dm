@@ -1,8 +1,8 @@
 /obj/machinery/griddle/frontier_tabletop
-	name = "tabletop griddle"
-	desc = "A griddle type slim enough to fit atop a table without much fuss. This type in particular \
-		was made to be broken down into many parts and shipped across the glaxy. This makes it a favourite in \
-		pop-up food stalls and colony kitchens all around."
+	name = "桌面铁板烤盘"
+	desc = "一种足够纤薄的铁板烤盘，能轻松架在桌子上面，无需大费周章。这一型号专门设计成\
+		可拆成许多部件、运往银河各处。这使它成了各地快闪小吃摊和\
+		殖民地厨房的最爱。"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/kitchen_stuff/griddle.dmi'
 	icon_state = "griddletable_off"
 	variant = "table"
@@ -25,7 +25,7 @@
 // Deployable item for cargo
 
 /obj/item/flatpacked_machine/frontier_griddle
-	name = "flat-packed tabletop griddle"
+	name = "扁平包装桌面铁板烤盘"
 	icon = 'modular_skyrat/modules/colony_fabricator/icons/kitchen_stuff/griddle.dmi'
 	icon_state = "griddle_parts"
 	w_class = WEIGHT_CLASS_NORMAL

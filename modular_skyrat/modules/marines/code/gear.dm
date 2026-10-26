@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/ar/modular/m44a
-	name = "\improper NT M44A Pulse Rifle"
-	desc = "A specialized Nanotrasen-produced ballistic pulse rifle that uses compressed magazines to output absurd firepower in a compact package."
+	name = "\improper NT M44A 脉冲步枪"
+	desc = "一把纳米传讯特制的弹道脉冲步枪，使用压缩弹匣，在紧凑的枪身中爆发出惊人的火力。"
 	icon_state = "m44a"
 	inhand_icon_state = "m44a"
 	icon = 'modular_skyrat/modules/marines/icons/m44a.dmi'
@@ -27,8 +27,8 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_NANOTRASEN)
 
 /obj/item/ammo_box/magazine/m44a
-	name = "m44a magazine (.300 compressed)"
-	desc = "This magazine uses a bluespace compression chamber to hold a maximum of ninety-nine .300 caliber caseless rounds for the M44A pulse rifle."
+	name = "M44A 弹匣（.300 压缩型）"
+	desc = "这只弹匣利用蓝空间压缩腔，可为 M44A 脉冲步枪装填最多九十九发 .300 口径无壳弹。"
 	icon = 'modular_skyrat/modules/marines/icons/m44a.dmi'
 	icon_state = "300compressed"
 	max_ammo = 99
@@ -37,8 +37,8 @@
 	caliber = "300comp"
 
 /obj/item/ammo_casing/c300
-	name = ".300 caseless round"
-	desc = "A .300 caseless round for proprietary Nanotrasen firearms."
+	name = ".300 无壳弹"
+	desc = "一枚 .300 无壳弹，用于纳米传讯专有枪械。"
 	caliber = "300comp"
 	projectile_type = /obj/projectile/bullet/a300
 
@@ -47,15 +47,15 @@
 	AddElement(/datum/element/caseless)
 
 /obj/projectile/bullet/a300
-	name = ".300 caseless bullet"
+	name = ".300 无壳弹头"
 	damage = 13
 	armour_penetration = 30 //gonna actually kill the brit that made this var require a U in armor
 	embed_data = null
 	shrapnel_type = null
 
 /obj/item/gun/ballistic/automatic/ar/modular/m44a/scoped
-	name = "\improper NT M44AS Pulse Rifle"
-	desc = "A specialized Nanotrasen-produced ballistic pulse rifle that uses compressed magazines to output absurd firepower in a compact package. This one's fitted with a long-range scope."
+	name = "\improper NT M44AS 脉冲步枪"
+	desc = "一把纳米传讯特制的弹道脉冲步枪，使用压缩弹匣，在紧凑的枪身中爆发出惊人的火力。这一把装有远程瞄准镜。"
 	icon_state = "m44a_s"
 	inhand_icon_state = "m44a_s"
 
@@ -64,8 +64,8 @@
 	AddComponent(/datum/component/scope, range_modifier = 2.2)
 
 /obj/item/gun/ballistic/shotgun/automatic/as2/ubsg
-	name = "\improper M2 auto-shotgun underbarrel"
-	desc = "This shouldn't be heeere!"
+	name = "\improper M2 自动霰弹枪下挂组件"
+	desc = "这东西不该出现在这儿！"
 	can_suppress = FALSE
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/as2/ubsg
 
@@ -77,8 +77,8 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 
 /obj/item/gun/ballistic/automatic/ar/modular/m44a/shotgun
-	name = "\improper NT M44ASG Pulse Rifle"
-	desc = "A specialized Nanotrasen-produced ballistic pulse rifle that uses compressed magazines to output absurd firepower in a compact package. This one's fitted with a two-round semi-automatic underbarrel 12 gauge shotgun."
+	name = "\improper NT M44ASG 脉冲步枪"
+	desc = "一把纳米传讯特制的弹道脉冲步枪，使用压缩弹匣，在紧凑的枪身中爆发出惊人的火力。这一把装有两发半自动 12 号口径的下挂霰弹枪。"
 	icon_state = "m44a_sg"
 	inhand_icon_state = "m44a_sg"
 	/// Reference to the underbarrel shotgun
@@ -107,8 +107,8 @@
 	return ..()
 
 /obj/item/gun/ballistic/automatic/ar/modular/m44a/grenadelauncher
-	name = "\improper NT M44AGL Pulse Rifle"
-	desc = "A specialized Nanotrasen-produced ballistic pulse rifle that uses compressed magazines to output absurd firepower in a compact package. This one's fitted with an underbarrel grenade launcher, and a red dot scope to help align it. Compensating for something?"
+	name = "\improper NT M44AGL 脉冲步枪"
+	desc = "一把纳米传讯特制的弹道脉冲步枪，使用压缩弹匣，在紧凑的枪身中爆发出惊人的火力。这一把装有下挂榴弹发射器和红点瞄准镜，方便对准。是在补偿什么吗？"
 	icon_state = "m44a_gl"
 	inhand_icon_state = "m44a_gl"
 	/// Underbarrel grenade launcher reference

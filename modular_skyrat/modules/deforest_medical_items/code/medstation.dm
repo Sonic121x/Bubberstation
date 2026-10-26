@@ -1,8 +1,8 @@
 /obj/machinery/biogenerator/medstation
-	name = "wall med-station"
-	desc = "An advanced machine seen in frontier outposts and colonies capable of turning organic plant matter into \
-		various emergency medical supplies and injectors. You can find one of these in the medical sections of just about \
-		any frontier installation."
+	name = "壁挂医疗站"
+	desc = "一种在前沿前哨站和殖民地常见的先进机器，能把有机植物物质转换成 \
+		各种应急医疗物资和注射器。几乎任何前沿设施的医疗区都能 \
+		找到一台。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/medstation.dmi'
 	circuit = null
 	anchored = TRUE
@@ -24,7 +24,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/biogenerator/medstation, 29)
 	productivity = 1
 
 /obj/machinery/biogenerator/medstation/default_unfasten_wrench(mob/user, obj/item/wrench/tool, time)
-	user.balloon_alert(user, "deconstructing...")
+	user.balloon_alert(user, "正在拆卸……")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 1 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -41,8 +41,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/biogenerator/medstation, 29)
 // Deployable item for cargo for the medstation
 
 /obj/item/wallframe/frontier_medstation
-	name = "unmounted wall med-station"
-	desc = "The innovative technology of a biogenerator to print medical supplies, but able to be mounted neatly on a wall out of the way."
+	name = "未安装的壁挂医疗站"
+	desc = "采用生物生成器打印医疗物资的创新技术，但可以整齐地安装在墙上，不挡路。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/medstation.dmi'
 	icon_state = "biogenerator_parts"
 	w_class = WEIGHT_CLASS_NORMAL

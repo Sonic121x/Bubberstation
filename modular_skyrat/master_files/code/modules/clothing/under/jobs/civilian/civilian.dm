@@ -21,24 +21,24 @@
 */
 
 /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade
-	name = "head of personnel's male formal uniform"
-	desc = "A luxurious uniform for the head of personnel, woven in a deep blue. On the lapel is a small pin in the shape of a corgi's head."
+	name = "人事主管男性礼服"
+	desc = "一件为人事主管准备的奢华制服，织成深蓝色。翻领上别着一枚柯基犬头形状的小别针。"
 	icon_state = "hop_parade_male"
 
 /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/parade/female
-	name = "head of personnel's female formal uniform"
+	name = "人事主管女性礼服"
 	icon_state = "hop_parade_female"
 
 /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/turtleneck
-	name = "head of personnel's turtleneck"
-	desc = "A soft blue turtleneck and black khakis worn by Executives who prefer a bit more comfort over style."
+	name = "人事主管高领毛衣"
+	desc = "柔软蓝色高领毛衣配黑色卡其裤，由那些更看重舒适而非风格的高管穿着。"
 	icon_state = "hopturtle"
 	can_adjust = TRUE
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/civilian/head_of_personnel/skyrat/turtleneck/skirt
-	name = "head of personnel's turtleneck skirt"
-	desc = "A soft blue turtleneck and black skirt worn by Executives who prefer a bit more comfort over style."
+	name = "人事主管高领短裙"
+	desc = "柔软蓝色高领毛衣配黑色短裙，由那些更看重舒适而非风格的高管穿着。"
 	icon_state = "hopturtle_skirt"
 	body_parts_covered = CHEST|GROIN|ARMS
 	dying_key = DYE_REGISTRY_JUMPSKIRT

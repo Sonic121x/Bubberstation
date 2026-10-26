@@ -5,7 +5,7 @@
  */
 
 /obj/machinery/computer/bsa_control
-	name = "bluespace artillery control"
+	name = "蓝空间火炮控制台"
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/computer/bsa_control
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
@@ -76,8 +76,8 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "rigged to explode")
-	to_chat(user, span_warning("You emag [src] and hear the focusing crystal short out. You get the feeling it wouldn't be wise to stand near [src] when the BSA fires..."))
+	balloon_alert(user, "已被改装成爆炸物")
+	to_chat(user, span_warning("你对 [src] 使用电磁卡，听到聚焦水晶短路的声音。你觉得 BSA 开火时最好别站在 [src] 附近……"))
 	return TRUE
 
 /**
@@ -114,7 +114,7 @@
 	var/list/options = gps_locators
 	if(area_aim)
 		options += GLOB.teleportlocs
-	var/victim = tgui_input_list(user, "Select target", "Artillery Targeting", options)
+	var/victim = tgui_input_list(user, "选择目标", "火炮瞄准", options)
 	if(isnull(victim))
 		return
 	if(isnull(options[victim]))
@@ -149,13 +149,13 @@
 /obj/machinery/computer/bsa_control/proc/fire(mob/user)
 	var/obj/machinery/bsa/full/cannon = connected_cannon?.resolve()
 	if(!cannon)
-		notice = "System error"
+		notice = "系统错误"
 		return
 	if((cannon.machine_stat & BROKEN))
-		notice = "Cannon integrity failure!"
+		notice = "火炮完整性失效！"
 		return
 	if((cannon.machine_stat & NOPOWER))
-		notice = "Cannon unpowered!"
+		notice = "火炮断电！"
 		return
 	var/turf/target_turf = get_impact_turf()
 	notice = cannon.pre_fire(user, target_turf)
@@ -174,7 +174,7 @@
 
 	var/obj/machinery/bsa/middle/centerpiece = locate() in range(7)
 	if(!centerpiece)
-		notice = "No BSA parts detected nearby."
+		notice = "附近未检测到 BSA 部件。"
 		return null
 	notice = centerpiece.check_completion()
 	if(notice)

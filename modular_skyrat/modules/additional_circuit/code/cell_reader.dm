@@ -4,9 +4,9 @@
  * Allows for reading of the max/current charge of the cell in an integrated circuit.
  */
 /obj/item/circuit_component/cell_charge
-	display_name = "Cell Charge"
-	desc = "A component that can read out the max and current charge of the cell."
-	category = "Sensor"
+	display_name = "电池电量"
+	desc = "一种可以读取电池最大电量与当前电量的元件。"
+	category = "传感器"
 
 	/// max and current charge for the cell
 	var/datum/port/output/max_charge

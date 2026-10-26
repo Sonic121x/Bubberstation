@@ -4,8 +4,8 @@
 #define BLUESPACE_MINER_TOO_CLOSE (1<<3)
 
 /obj/machinery/bluespace_miner
-	name = "bluespace miner"
-	desc = "Through the power of bluespace, it is capable of producing materials."
+	name = "蓝空间采矿机"
+	desc = "借助蓝空间的力量，它能够产出材料。"
 	icon = 'modular_skyrat/modules/bluespace_miner/icons/bluespace_miner.dmi'
 	icon_state = "miner"
 
@@ -72,18 +72,18 @@
 /obj/machinery/bluespace_miner/examine(mob/user)
 	. = ..()
 	if(obj_flags & EMAGGED)
-		. += span_warning("The safeties are turned off!")
+		. += span_warning("保险装置被关掉了！")
 	// We don't need to run any more checks if this is functioning. Genuinely the old code is terrible
 	if(mining_stat)
 		if(mining_stat & BLUESPACE_MINER_TOO_CLOSE)
-			. += span_warning("[src] is in a suboptimal environment: TOO CLOSE TO ANOTHER BLUESPACE MINER")
+			. += span_warning("[src] 所处的环境不理想：与另一台蓝空间采矿机距离过近")
 			return . // This needs relocation to fix so we won't bother with the rest
 		if(mining_stat & BLUESPACE_MINER_TOO_HOT)
-			. += span_warning("[src] is in a suboptimal environment: " + span_boldwarning("TEMPERATURE TOO HIGH!"))
+			. += span_warning("[src] 所处的环境不理想：" + span_boldwarning("温度过高！"))
 		if(mining_stat & BLUESPACE_MINER_LOW_PRESSURE)
-			. += span_warning("[src] is in a suboptimal environment: " + span_boldwarning("PRESSURE TOO LOW!"))
+			. += span_warning("[src] 所处的环境不理想：" + span_boldwarning("压力过低！"))
 		else if(mining_stat & BLUESPACE_MINER_HIGH_PRESSURE)
-			. += span_warning("[src] is in a suboptimal environment: " + span_boldwarning("PRESSURE TOO HIGH!"))
+			. += span_warning("[src] 所处的环境不理想：" + span_boldwarning("压力过高！"))
 
 
 //we need to make sure we can actually print the ores out
@@ -181,16 +181,16 @@
 	if(probability_mod)
 		ore_chance[probability_mod] /= 3
 		probability_mod = null
-		balloon_alert(user, "probability change disabled")
+		balloon_alert(user, "概率调整已关闭")
 		return TRUE
 
-	var/choice = tgui_input_list(user, "Which would you like to triple?", "Probability Change", ore_chance)
+	var/choice = tgui_input_list(user, "你想让哪种矿石的概率翻三倍？", "概率调整", ore_chance)
 	if(!choice)
 		return FALSE
 
 	ore_chance[choice] *= 3
 	probability_mod = choice
-	balloon_alert(user, "probability change enabled")
+	balloon_alert(user, "概率调整已开启")
 	return TRUE
 
 /obj/machinery/bluespace_miner/crowbar_act(mob/living/user, obj/item/tool)
@@ -213,16 +213,16 @@
 
 /obj/machinery/bluespace_miner/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already emagged!")
+		balloon_alert(user, "已被电磁破坏！")
 		return FALSE
 	ore_chance += list(/obj/item/stack/sheet/mineral/bananium = 1)
 	obj_flags |= EMAGGED
-	balloon_alert_to_viewers("fizzles!")
+	balloon_alert_to_viewers("咝咝作响！")
 	return TRUE
 
 /obj/item/circuitboard/machine/bluespace_miner
-	name = "Bluespace Miner"
-	desc = "The bluespace miner is a machine that, when provided the correct temperature and pressure, will produce materials."
+	name = "蓝空间采矿机"
+	desc = "蓝空间采矿机是一种在提供适宜的温度与压力后便能产出材料的机器。"
 	greyscale_colors = CIRCUIT_COLOR_GENERIC
 	build_path = /obj/machinery/bluespace_miner
 	req_components = list(
@@ -235,16 +235,16 @@
 	needs_anchored = TRUE
 
 /datum/supply_pack/misc/bluespace_miner
-	name = "Bluespace Miner"
-	desc = "Nanotrasen has revolutionized the procuring of materials with bluespace-- featuring the Bluespace Miner!"
+	name = "蓝空间采矿机"
+	desc = "纳米传讯用蓝空间彻底革新了材料获取方式——隆重推出蓝空间采矿机！"
 	cost = CARGO_CRATE_VALUE * 50 // 10,000
 	contains = list(/obj/item/circuitboard/machine/bluespace_miner)
-	crate_name = "Bluespace Miner Circuitboard Crate"
+	crate_name = "蓝空间采矿机电路板板条箱"
 	crate_type = /obj/structure/closet/crate
 
 /datum/design/board/bluespace_miner
-	name = "Machine Design (Bluespace Miner)"
-	desc = "Allows for the construction of circuit boards used to build a bluespace miner."
+	name = "机器设计（蓝空间采矿机）"
+	desc = "允许制造用于建造蓝空间采矿机的电路板。"
 	id = "bluespace_miner"
 	build_path = /obj/item/circuitboard/machine/bluespace_miner
 	category = list(
@@ -254,8 +254,8 @@
 
 /datum/techweb_node/bluespace_miner
 	id = "bluespace_miner"
-	display_name = "Bluespace Miner"
-	description = "The future is here, where we can mine ores from the great bluespace sea."
+	display_name = "蓝空间采矿机"
+	description = "未来已至：我们可以在浩瀚的蓝空间之海中采矿了。"
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	hidden = TRUE
 	experimental = TRUE

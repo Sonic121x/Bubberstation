@@ -1,17 +1,17 @@
-#define OPS_SUBCATEGORY_RIFLE "Assault Rifles"
-#define OPS_SUBCATEGORY_RIFLE_AMMO "Specialty Assault Rifle Ammo"
+#define OPS_SUBCATEGORY_RIFLE "突击步枪"
+#define OPS_SUBCATEGORY_RIFLE_AMMO "特种突击步枪弹药"
 
-#define OPS_SUBCATEGORY_SMG "Submachine Guns"
-#define OPS_SUBCATEGORY_SMG_AMMO "Speciality Submachine Gun Ammo"
+#define OPS_SUBCATEGORY_SMG "冲锋枪"
+#define OPS_SUBCATEGORY_SMG_AMMO "特种冲锋枪弹药"
 
-#define OPS_SUBCATEGORY_SHOTGUN "Shotguns"
-#define OPS_SUBCATEGORY_SHOTGUN_AMMO "Speciality Shotgun Ammo"
+#define OPS_SUBCATEGORY_SHOTGUN "霰弹枪"
+#define OPS_SUBCATEGORY_SHOTGUN_AMMO "特种霰弹枪弹药"
 
-#define OPS_SUBCATEGORY_SNIPER "Grenade Launchers"
-#define OPS_SUBCATEGORY_SNIPER_AMMO "Speciality Grenade Launcher Ammo"
+#define OPS_SUBCATEGORY_SNIPER "榴弹发射器"
+#define OPS_SUBCATEGORY_SNIPER_AMMO "特种榴弹发射器弹药"
 
 /datum/armament_entry/assault_operatives/primary
-	category = "Long Arms"
+	category = "长武器"
 	category_item_limit = 6
 	mags_to_spawn = 3
 	cost = 10

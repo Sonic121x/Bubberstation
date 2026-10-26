@@ -13,19 +13,19 @@
 	spawned_human.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
 /obj/effect/mob_spawn/ghost_role/human/blackmarket
-	name = "cryogenics pod"
-	prompt_name = "a blackmarket dealer"
-	desc = "A humming cryo pod. The machine is attempting to wake up its occupant."
-	mob_name = "a black market dealer"
+	name = "低温休眠舱"
+	prompt_name = "一名黑市商人"
+	desc = "一台嗡嗡作响的低温休眠舱。机器正试图唤醒舱内的乘员。"
+	mob_name = "一名黑市商人"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You are a black market dealer, with shop set up in Nanotrasen Space."
-	flavour_text = "FTU, Independent.. whatever, whoever you are. It doesn't matter out here. \
-	You've set up shop in a slightly shady, yet functional little asteroid for your dealings. \
-	Explore space, find valuable artifacts and nice loot - and pawn it off to those stooges at NT. \
-	Or perhaps more exotic customers are in local space...?"
-	important_text = "You are not an antagonist."
+	you_are_text = "你是一名黑市商人，在纳米传讯的太空里开了家小店。"
+	flavour_text = "FTU、独立……管他呢，不管你是什么来头。在这片地方都无所谓。\
+	你在一颗略有些可疑却还凑合能用的小行星上支起了摊子做买卖。\
+	去探索太空，找到值钱的遗物和上好的战利品——再转手卖给纳米传讯那些蠢货。\
+	又或者，附近的太空里还有更稀奇的客户……？"
+	important_text = "你不是反派。"
 	outfit = /datum/outfit/black_market
 	spawner_job_path = /datum/job/blackmarket
 	quirks_enabled = TRUE
@@ -44,22 +44,22 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/ds2
-	name = "DS2 personnel"
+	name = "DS2 人员"
 	use_outfit_name = TRUE
-	prompt_name = "DS2 personnel"
-	you_are_text = "You are a syndicate operative, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue operating as best you can, and try to keep a low profile."
+	prompt_name = "DS2 人员"
+	you_are_text = "你是一名辛迪加特工，受雇于一座研发生物武器的绝密研究设施。"
+	flavour_text = "不幸的是，你们憎恶的敌人纳米传讯已开始在这一星区采矿。尽力继续你的任务，并尽量保持低调。"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/service/dorms
 	spawner_job_path = /datum/job/ds2
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/prisoner
-	name = "Syndicate Prisoner"
-	prompt_name = "a Syndicate prisoner"
-	you_are_text = "You are a syndicate prisoner aboard an unknown ship."
-	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are still subject to standard prisoner policy and must Adminhelp before antagonizing DS2."
+	name = "辛迪加囚犯"
+	prompt_name = "一名辛迪加囚犯"
+	you_are_text = "你是一名辛迪加囚犯，身处一艘不知名的飞船之上。"
+	flavour_text = "你不知道自己身在何处，只知道自己是个囚犯。那些塑钛结构应该能暗示你的俘获者是谁……至于你为什么在这里？那得问你自己，再由我们来查清。"
+	important_text = "你仍受标准囚犯规则的约束，若要与 DS2 对抗，必须先向管理员求助。"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/security/prison
@@ -67,26 +67,26 @@
 	spawner_job_path = /datum/job/ds2
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate
-	name = "Syndicate Operative"
-	prompt_name = "a Syndicate operative"
+	name = "辛迪加特工"
+	prompt_name = "一名辛迪加特工"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	you_are_text = "You are an operative of the Sothran Syndicate terrorist cell, employed onboard the Deep Space 2 FOB for reasons that are yours."
-	flavour_text = "The Sothran Syndicate has found it fit to send a forward operating base to Sector 13 to monitor NT's operations. Your orders are maintaining the ship's integrity and keeping a low profile as well as possible."
-	important_text = "You are not an antagonist. Adminhelp before antagonizing station crew."
+	you_are_text = "你是索斯兰辛迪加恐怖小组的一名特工，出于你自己的原因受雇于深空 2 号前进基地。"
+	flavour_text = "索斯兰辛迪加认为有必要向 13 号星区派遣一座前进基地，以监视纳米传讯的行动。你的命令是维护船体的完好，并尽可能保持低调。"
+	important_text = "你不是反派。若要与空间站船员对抗，必须先向管理员求助。"
 	outfit = /datum/outfit/ds2/syndicate
 	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/halls
 	spawner_job_path = /datum/job/ds2
 	loadout_enabled = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/ds2/syndicate_command
-	name = "Syndicate Command Operative"
-	prompt_name = "a Syndicate leader"
+	name = "辛迪加指挥特工"
+	prompt_name = "一名辛迪加领导者"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	you_are_text = "You are a command operative of the Sothran Syndicate terrorist cell, employed onboard the Deep Space 2 FOB to guide it forward in its goals."
-	flavour_text = "The Sothran Syndicate has found it fit to send you to help command the forward operating base in Sector 13. Your orders are commanding the crew of DS-2 while keeping a low profile as well as possible."
-	important_text = "Keep yourself to the same standards as Command Policy. You are not an antagonist and must Adminhelp before antagonizing station crew."
+	you_are_text = "你是索斯兰辛迪加恐怖小组的一名指挥特工，受雇于深空 2 号前进基地，负责引导它推进目标。"
+	flavour_text = "索斯兰辛迪加认为有必要派你来协助指挥 13 号星区的前进基地。你的命令是统率 DS-2 的船员，同时尽可能保持低调。"
+	important_text = "请以与指挥规则同等的标准要求自己。你不是反派，若要与空间站船员对抗，必须先向管理员求助。"
 	outfit = /datum/outfit/ds2/syndicate_command
 	computer_area = /area/ruin/space/has_grav/skyrat/interdynefob/halls
 	spawner_job_path = /datum/job/ds2
@@ -131,11 +131,11 @@
 	random_appearance = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/hotel_staff/manager
-	name = "staff manager sleeper"
-	mob_name = "hotel staff manager"
+	name = "员工经理休眠舱"
+	mob_name = "酒店员工经理"
 	outfit = /datum/outfit/hotelstaff/manager
-	you_are_text = "You are the manager of a top-of-the-line space hotel!"
-	flavour_text = "You are the manager of a top-of-the-line space hotel! Make sure the guests are looked after, the hotel is advertised, and your employees aren't slacking off!"
+	you_are_text = "你是一家顶级太空酒店的经理！"
+	flavour_text = "你是一家顶级太空酒店的经理！确保客人得到照顾、酒店宣传到位，也别让员工偷懒！"
 
 /obj/effect/mob_spawn/corpse/human/damaged/ashwalker
 	mob_type = /mob/living/carbon/human/species/lizard/ashwalker;
@@ -368,18 +368,18 @@
 //Lost Space Truckers: Six people stranded in deep space aboard a cargo freighter. They must survive their marooning and cooperate.
 
 /obj/effect/mob_spawn/ghost_role/human/lostcargo
-	name = "freighter cryo crew pod"
-	prompt_name = "a lost cargo tech"
-	desc = "A humming cryo pod. There's a freight hauler inside."
-	mob_name = "Freighter Crew"
+	name = "货船船员低温休眠舱"
+	prompt_name = "一名失联的货运技术员"
+	desc = "一台嗡嗡作响的低温休眠舱。里面是一名货运搬运工。"
+	mob_name = "货船船员"
 	outfit = /datum/outfit/freighter_crew
 	spawner_job_path = /datum/job/freighter_crew
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	flavour_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	important_text = "Work with your crew and don't abandon them. You are not directly working with NT, you are an independent freighter crew for the ship's Chief. Your job was merely being a deckhand doing freight work and helping with kitchen prep."
+	you_are_text = "你当时正在跑货运，一份普通的货运活儿，直到海盗来袭。你和同伴们勉强逃过一劫，但引擎被打坏了。现在你们被困在太空中，只能齐心协力在这场噩梦里活下去。"
+	flavour_text = "你当时正在跑货运，一份普通的货运活儿，直到海盗来袭。你和同伴们勉强逃过一劫，但引擎被打坏了。现在你们被困在太空中，只能齐心协力在这场噩梦里活下去。"
+	important_text = "与你的船员协作，不要抛弃他们。你并不直接为纳米传讯工作，你是船长手下的独立货船船员。你的工作只是做个甲板水手，干些货运活儿，顺便帮忙准备餐食。"
 	random_appearance = FALSE
 	quirks_enabled = TRUE
 	loadout_enabled = TRUE
@@ -402,18 +402,18 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/lostminer
-	name = "freighter cryo excavator pod"
-	prompt_name = "a lost miner"
-	desc = "A humming cryo pod. There's an excavation worker inside."
-	mob_name = "Freighter Excavator"
+	name = "货船挖掘工低温休眠舱"
+	prompt_name = "一名失联的矿工"
+	desc = "一台嗡嗡作响的低温休眠舱。里面是一名挖掘工人。"
+	mob_name = "货船挖掘工"
 	outfit = /datum/outfit/freighter_excavator
 	spawner_job_path = /datum/job/freighter_crew
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	flavour_text = "You were running cargo, a typical freight job until pirates attacked. You and your crewmates just barely made it, but the engines are shot. You're trapped in space now, only able to work together to survive this nightmare."
-	important_text = "Work with your crew and don't abandon them. You are not directly working with NT, you are an independent freighter crew working under the ship Chief. Your role was to be an excavation and salvage worker for the ship."
+	you_are_text = "你当时正在跑货运，一份普通的货运活儿，直到海盗来袭。你和同伴们勉强逃过一劫，但引擎被打坏了。现在你们被困在太空中，只能齐心协力在这场噩梦里活下去。"
+	flavour_text = "你当时正在跑货运，一份普通的货运活儿，直到海盗来袭。你和同伴们勉强逃过一劫，但引擎被打坏了。现在你们被困在太空中，只能齐心协力在这场噩梦里活下去。"
+	important_text = "与你的船员协作，不要抛弃他们。你并不直接为纳米传讯工作，你是在船长手下干活的独立货船船员。你的职责是为这艘船做挖掘与打捞工作。"
 	random_appearance = FALSE
 	quirks_enabled = TRUE
 	loadout_enabled = TRUE
@@ -444,18 +444,18 @@
 	return ..()
 
 /obj/effect/mob_spawn/ghost_role/human/lostcargoqm
-	name = "freighter cryo boss pod"
-	prompt_name = "a lost Quartermaster"
-	desc = "A humming cryo pod. You see someone who looks In Charge inside."
-	mob_name = "Freighter Chief"
+	name = "货船船长低温休眠舱"
+	prompt_name = "一名失联的货运主管"
+	desc = "一台嗡嗡作响的低温休眠舱。里面那人看起来像是管事儿的。"
+	mob_name = "货船船长"
 	outfit = /datum/outfit/freighter_boss
 	spawner_job_path = /datum/job/freighter_crew
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_species = /datum/species/human
-	you_are_text = "You and your crew were running a normal freight haul until a pirate attack knocked out the engines. All you can do now is try and survive and keep your crew alive."
-	flavour_text = "You and your crew were running a normal freight haul until a pirate attack knocked out the engines. All you can do now is try and survive and keep your crew alive."
-	important_text = "Do not abandon your crew, lead them and work with them to survive. You are not directly working with NT, you are an independent freighter crew. You are the captain of the ship, which you purchased a while ago, and are in charge of the crew."
+	you_are_text = "你和船员们正在跑一趟普通的货运，直到一次海盗袭击打坏了引擎。现在你能做的只有尽力活下去，并保住你的船员。"
+	flavour_text = "你和船员们正在跑一趟普通的货运，直到一次海盗袭击打坏了引擎。现在你能做的只有尽力活下去，并保住你的船员。"
+	important_text = "不要抛弃你的船员，带领他们、与他们协作求生。你并不直接为纳米传讯工作，你是一支独立货船船员的头儿。你是这艘船（你不久前买下的）的船长，负责统率船员。"
 	random_appearance = FALSE
 	quirks_enabled = TRUE
 	loadout_enabled = TRUE
@@ -499,8 +499,8 @@
 	keyslot = new /obj/item/encryptionkey/headset_syndicate/cybersun
 
 /obj/item/radio/headset/cybersun/captain
-	name = "cybersun captain headset"
-	desc = "The headset of the boss."
+	name = "赛博太阳舰长耳机"
+	desc = "老大的耳机。"
 	command = TRUE
 
 
@@ -515,48 +515,48 @@
 //IDS//
 
 /obj/item/card/id/away/silver
-	name = "old silver identification card"
-	desc = "A perfectly generic identification card. Looks like it could use some flavor. This one looks like it belonged to someone important."
+	name = "旧银色身份证"
+	desc = "一张标准的通用身份证。看来还缺点个性化。这一张似乎曾属于某位重要人物。"
 	wildcard_slots = WILDCARD_LIMIT_SILVER
 
 /obj/item/card/id/advanced/chameleon/black/blackmarket
-	name = "scuffed ID card"
-	desc = "A faded, scuffed, plastic ID card. You can make out the rank \"Deck Crewman\"."
+	name = "磨损的身份证"
+	desc = "一张褪色、磨损的塑料身份证。你能辨认出上面的职衔是“甲板船员”。"
 	trim = /datum/id_trim/away/blackmarket
 
 /datum/id_trim/away/blackmarket
 	access = list(ACCESS_AWAY_GENERIC4)
-	assignment = "Deck Crewman"
+	assignment = "甲板船员"
 
 /obj/item/card/id/away/freightcrew
-	name = "Freighter ID"
-	desc = "An ID card marked with the rank of Freight Hauler."
+	name = "货船身份证"
+	desc = "一张标有货运搬运工职衔的身份证。"
 	trim = /datum/id_trim/job/cargo_technician
 
 /obj/item/card/id/away/freightmine
-	name = "Freighter ID"
-	desc = "An ID card marked with the rank of Freight Ship Excavator."
+	name = "货船身份证"
+	desc = "一张标有货船挖掘工职衔的身份证。"
 	trim = /datum/id_trim/job/shaft_miner
 
 /obj/item/card/id/away/silver/freightqm
-	name = "Freighter Deck Chief ID"
-	desc = "An ID card marked with the rank of Freight Deck Chief."
+	name = "货船甲板主管身份证"
+	desc = "一张标有货船甲板主管职衔的身份证。"
 	trim = /datum/id_trim/job/quartermaster
 
 /obj/item/card/id/away/hotel/manager
-	name = "Manager ID"
+	name = "经理身份证"
 	trim = /datum/id_trim/away/hotel/manager
 
 /datum/id_trim/away/hotel
-	assignment = "Hotel Staff"
+	assignment = "酒店员工"
 	access = list(ACCESS_TWIN_NEXUS_STAFF)
 
 /datum/id_trim/away/hotel/manager
-	assignment = "Hotel Manager"
+	assignment = "酒店经理"
 	access = list(ACCESS_TWIN_NEXUS_STAFF, ACCESS_TWIN_NEXUS_MANAGER)
 
 /datum/id_trim/away/hotel/security
-	assignment = "Hotel Security"
+	assignment = "酒店安保"
 
 
 //CRYO CONSOLES

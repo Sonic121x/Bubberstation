@@ -3,8 +3,8 @@
 */
 
 /obj/item/storage/belt/mailbelt
-	name = "messenger belt bag"
-	desc = "A small bag with a belt, worn around the waist. It's just big enough to hold a small stack of letters. This one is postal blue, perfect for standing out!"
+	name = "邮差腰带包"
+	desc = "一只带腰带的小包，系在腰间。它的大小刚好能装下一小叠信件。这只是邮政蓝色，非常适合引人注目！"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	icon_state = "mailbelt"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
@@ -22,8 +22,8 @@
 	))
 
 /obj/item/storage/belt/mailbelt/white
-	name = "white belt bag"
-	desc = "A small bag with a belt, worn around the waist. It's just big enough to hold a small stack of letters. This one is a pearly white."
+	name = "白色腰带包"
+	desc = "一只带腰带的小包，系在腰间。它的大小刚好能装下一小叠信件。这只是珍珠白色。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	icon_state = "mailbelt_white"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
@@ -31,8 +31,8 @@
 	equip_sound = 'sound/items/equip/toolbelt_equip.ogg'
 
 /obj/item/storage/belt/mailbelt/leather
-	name = "leather belt bag"
-	desc = "A small bag with a belt, worn around the waist. It's just big enough to hold a small stack of letters. This one is made out of a synthetic leather blend."
+	name = "皮革腰带包"
+	desc = "一只带腰带的小包，系在腰间。它的大小刚好能装下一小叠信件。这只是用合成皮革混纺材料制成的。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	icon_state = "mailbelt_leather"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'

@@ -22,8 +22,8 @@
 	wound = 3
 
 /obj/item/clothing/suit/flakjack
-	name = "flak jacket"
-	desc = "A dilapidated jacket made of a supposedly bullet-proof material (Hint: It isn't.). Smells faintly of napalm."
+	name = "防弹夹克"
+	desc = "一件用所谓防弹材料制成的破旧夹克（提示：并不是）。隐约有股凝固汽油味。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	icon_state = "flakjack"
@@ -40,9 +40,9 @@
 	acid = -15
 
 /obj/item/clothing/suit/hooded/cloak/david
-	name = "red cloak"
+	name = "红色斗篷"
 	icon_state = "goliath_cloak"
-	desc = "Ever wanted to look like a badass without ANY effort? Try this nanotrasen brand red cloak, made of entirely synthetic material."
+	desc = "想毫不费力就看起来像个狠角色？试试这件纳米传讯牌红斗篷，完全由合成材料制成。"
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/david
 	body_parts_covered = CHEST|GROIN|ARMS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -50,15 +50,15 @@
 /obj/item/clothing/head/hooded/cloakhood/david
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
-	name = "red cloak hood"
+	name = "红斗篷兜帽"
 	icon_state = "golhood"
-	desc = "Conceal your face in shame with this nanotrasen brand mock-goliath hood."
+	desc = "用这顶纳米传讯牌仿歌利亚兜帽把你的脸羞愧地遮起来。"
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/urban
-	name = "urban coat"
-	desc = "A coat built for urban life."
+	name = "都市大衣"
+	desc = "一件为都市生活打造的外套。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/urban"
 	post_init_icon_state = "urban_coat"
@@ -69,8 +69,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/toggle/deckard
-	name = "runner coat"
-	desc = "They say you overused reference. Tell them you're eating in this lovely coat, a long flowing brown one."
+	name = "跑者大衣"
+	desc = "他们说你过度玩梗。告诉他们，你正穿着这件可爱的外套吃饭——一件飘逸的棕色长外套。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "deckard"
@@ -90,7 +90,7 @@
 	acid = 45
 
 /obj/item/clothing/suit/jacket/leather/colourable
-	desc = "Now with more color!"
+	desc = "现在颜色更多了！"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/jacket/leather/colourable"
 	post_init_icon_state = "leather_jacket"
@@ -100,8 +100,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/duster
-	name = "duster"
-	desc = "This station ain't big enough for the both of us."
+	name = "防尘大衣"
+	desc = "这座空间站容不下你我两个人。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/duster"
 	post_init_icon_state = "duster"
@@ -112,8 +112,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/suit/toggle/peacoat
-	name = "peacoat"
-	desc = "The way you guys are blending in with the local colour. I mean, Flag Girl was bad enough, but U-Boat Captain?"
+	name = "海军呢大衣"
+	desc = "你们融入当地色彩的方式可真行。我是说，旗帜女孩已经够糟了，还有 U 艇舰长？"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/toggle/peacoat"
 	post_init_icon_state = "peacoat"
@@ -130,16 +130,16 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/toggle/lawyer/white
-	name = "white suit jacket"
-	desc = "A very versatile part of a suit ensable. Oddly in fashion with mobsters."
+	name = "白色西装外套"
+	desc = "西装套装中非常百搭的一件。奇怪的是，它很受黑帮分子青睐。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "suitjacket_white"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/vest/det_suit/runner
-	name = "joyful coat"
-	desc = "<i>\"You look like a good Joe.\"</i>"
+	name = "愉悦外套"
+	desc = "<i>“你看起来像个好伙计。”</i>"
 	icon_state = "bladerunner_neue"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|ARMS|LEGS
@@ -149,8 +149,8 @@
 	blood_overlay_type = "coat"
 
 /obj/item/clothing/suit/croptop
-	name = "crop top turtleneck"
-	desc = "A comfy looking turtleneck that exposes your midriff, fashionable but makes the point of a sweater moot. Now with Pycroft polychromatic tech!"
+	name = "露脐高领衫"
+	desc = "一件看起来很舒适的露脐高领衫，很时髦，但也让毛衣的意义荡然无存。现在搭载 Pycroft 多色技术！"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/croptop"
 	post_init_icon_state = "croptop"
@@ -170,8 +170,8 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/suit/varsity
-	name = "varsity jacket"
-	desc = "A simple varsity jacket with no obvious sources."
+	name = "学院夹克"
+	desc = "一件简单的学院夹克，看不出有什么明显来历。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/varsity"
 	post_init_icon_state = "varsity_jacket"
@@ -183,8 +183,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/hooded/leather
-	name = "hooded leather coat"
-	desc = "A simple leather coat with a hoodie underneath it, not really hooded is it?"
+	name = "带连帽衫的皮夹克"
+	desc = "一件简单的皮外套，里面配着连帽衫——其实算不上有兜帽，对吧？"
 	icon_state = "leatherhoodie"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
@@ -193,16 +193,16 @@
 	hoodtype = /obj/item/clothing/head/hooded/leather
 
 /obj/item/clothing/head/hooded/leather
-	name = "jacket hood"
-	desc = "A hood attached to a hoodie, nothing special."
+	name = "外套兜帽"
+	desc = "连在连帽衫上的兜帽，没什么特别的。"
 	icon_state = "leatherhood"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/suit/tailored_jacket
-	name = "tailored jacket"
-	desc = "A somewhat long jacket tailor made for... however it looks right now!"
+	name = "定制夹克"
+	desc = "一件略长的夹克，专为……它现在的样子量身定制！"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/tailored_jacket"
 	post_init_icon_state = "tailored_jacket"
@@ -218,16 +218,16 @@
 	AddComponent(/datum/component/toggle_icon, "sleeves")
 
 /obj/item/clothing/suit/tailored_jacket/short
-	name = "tailored short jacket"
-	desc = "A jacket tailor made for... however it looks right now!"
+	name = "定制短夹克"
+	desc = "一件夹克，专为……它现在的样子量身定制！"
 	icon_state = "/obj/item/clothing/suit/tailored_jacket/short"
 	greyscale_config = /datum/greyscale_config/tailored_short_jacket
 	greyscale_config_worn = /datum/greyscale_config/tailored_short_jacket/worn
 	greyscale_colors = "#8c8c8c#8c8c8c#8c8c8c#bf9f78#8c8c8c#8c8c8c#bf9f78#8c8c8c"
 
 /obj/item/clothing/suit/warm_coat
-	name = "warm coat"
-	desc = "A long insulated coat with fur, it looks quite comfortable."
+	name = "保暖大衣"
+	desc = "一件带毛皮的长款保暖外套，看起来相当舒服。"
 	icon = 'icons/map_icons/clothing/suit/_suit.dmi'
 	icon_state = "/obj/item/clothing/suit/warm_coat"
 	post_init_icon_state = "warm_coat"

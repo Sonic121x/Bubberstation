@@ -1,13 +1,13 @@
 #define KNIFE_HITSOUND 'sound/items/weapons/bladeslice.ogg'
 #define KNIFE_USESOUND 'sound/items/weapons/bladeslice.ogg'
-#define KNIFE_ATTACK_VERB_CONTINUOUS list("slashes", "tears", "slices", "tears", "lacerates", "rips", "dices", "cuts", "rends")
-#define KNIFE_ATTACK_VERB_SIMPLE list("slash", "tear", "slice", "tear", "lacerate", "rip", "dice", "cut", "rend")
+#define KNIFE_ATTACK_VERB_CONTINUOUS list("劈砍", "撕扯", "切片", "撕扯", "划裂", "撕裂", "切丁", "割开", "撕碎")
+#define KNIFE_ATTACK_VERB_SIMPLE list("劈砍", "撕扯", "切片", "撕扯", "划裂", "撕裂", "切丁", "割开", "撕碎")
 #define KNIFE_SHARPNESS SHARP_EDGED
 #define KNIFE_EXPOSED_WOUND_BONUS 15
 #define CUTTER_HITSOUND 'sound/items/tools/wirecutter.ogg'
 #define CUTTER_USESOUND 'sound/items/tools/wirecutter.ogg'
-#define CUTTER_ATTACK_VERB_CONTINUOUS list("bashes", "batters", "bludgeons", "thrashes", "whacks")
-#define CUTTER_ATTACK_VERB_SIMPLE list("bash", "batter", "bludgeon", "thrash", "whack")
+#define CUTTER_ATTACK_VERB_CONTINUOUS list("猛砸", "猛击", "重敲", "乱打", "敲击")
+#define CUTTER_ATTACK_VERB_SIMPLE list("猛砸", "猛击", "重敲", "乱打", "敲击")
 #define CUTTER_FORCE 6
 #define CUTTER_WOUND_BONUS 0
 #define ENHANCED_KNIFE_FORCE 15
@@ -15,8 +15,8 @@
 #define ENHANCED_KNIFE_ARMOR_PENETRATION 10
 
 /obj/item/melee/implantarmblade
-	name = "implanted arm blade"
-	desc = "A long, sharp, mantis-like blade implanted into someones arm. Cleaves through flesh like its particularly strong butter."
+	name = "植入式臂刃"
+	desc = "一柄植入手臂的长而锋利的螳螂式刀刃。劈开血肉如同切开格外结实的黄油。"
 	icon = 'modular_skyrat/modules/implants/icons/implanted_blade.dmi'
 	righthand_file = 'modular_skyrat/modules/implants/icons/implanted_blade_righthand.dmi'
 	lefthand_file = 'modular_skyrat/modules/implants/icons/implanted_blade_lefthand.dmi'
@@ -30,16 +30,16 @@
 	hitsound = 'modular_skyrat/master_files/sound/weapons/bloodyslice.ogg'
 
 /obj/item/melee/implantarmblade/energy
-	name = "energy arm blade"
-	desc = "A long mantis-like blade made entirely of blazing-hot energy. Stylish and EXTRA deadly!"
+	name = "能量臂刃"
+	desc = "一柄完全由灼热能量构成的长螳螂式刀刃。时髦又格外致命！"
 	icon_state = "energy_mantis_blade"
 	force = 30
 	armour_penetration = 10 //Energy isn't as good at going through armor as it is through flesh alone.
 	hitsound = 'sound/items/weapons/blade1.ogg'
 
 /obj/item/organ/cyberimp/arm/toolkit/armblade
-	name = "arm blade implant"
-	desc = "An integrated blade implant designed to be installed into a persons arm. Stylish and deadly; Although, being caught with this without proper permits is sure to draw unwanted attention."
+	name = "臂刃植入体"
+	desc = "一种设计用于植入受术者手臂的集成式刀刃植入体。时髦而致命；不过，没有正规许可就带着它被发现，肯定会引来不必要的注意。"
 	items_to_create = list(/obj/item/melee/implantarmblade)
 	icon = 'modular_skyrat/modules/implants/icons/implanted_blade.dmi'
 	icon_state = "mantis_blade"
@@ -47,14 +47,14 @@
 /obj/item/organ/cyberimp/arm/toolkit/armblade/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s integrated energy arm blade! You madman!"))
+	to_chat(usr, span_notice("你解锁了 [src] 的集成式能量臂刃！你这个疯子！"))
 	items_list += WEAKREF(new /obj/item/melee/implantarmblade/energy(src))
 	obj_flags |= EMAGGED
 	return TRUE
 
 /obj/item/knife/razor_claws
-	name = "implanted razor claws"
-	desc = "A set of sharp, retractable claws built into the fingertips, five double-edged blades sure to turn people into mincemeat. Capable of shifting into 'Precision' mode to act similar to wirecutters."
+	name = "植入式剃刀利爪"
+	desc = "一套嵌入指尖的锋利可伸缩利爪，五片双刃刀片足以把人剁成肉酱。可切换为“精准”模式，功能类似于钢丝钳。"
 	icon = 'modular_skyrat/modules/implants/icons/razorclaws.dmi'
 	righthand_file = 'modular_skyrat/modules/implants/icons/razorclaws_righthand.dmi'
 	lefthand_file = 'modular_skyrat/modules/implants/icons/razorclaws_lefthand.dmi'
@@ -74,7 +74,7 @@
 	playsound(get_turf(user), 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	if(tool_behaviour != TOOL_WIRECUTTER)
 		tool_behaviour = TOOL_WIRECUTTER
-		to_chat(user, span_notice("You shift [src] into Precision mode, for wirecutting."))
+		to_chat(user, span_notice("你将 [src] 切换为精准模式，用于剪线。"))
 		icon_state = "precision_wolverine"
 		inhand_icon_state = "precision_wolverine"
 		force = cutter_force
@@ -87,7 +87,7 @@
 		attack_verb_simple = CUTTER_ATTACK_VERB_SIMPLE
 	else
 		tool_behaviour = TOOL_KNIFE
-		to_chat(user, span_notice("You shift [src] into Killing mode, for slicing."))
+		to_chat(user, span_notice("你将 [src] 切换为杀戮模式，用于切割。"))
 		icon_state = "wolverine"
 		inhand_icon_state = "wolverine"
 		force = knife_force
@@ -111,16 +111,16 @@
 		force = knife_force
 		wound_bonus = knife_wound_bonus
 
-	name = "enhanced razor claws"
-	desc += span_warning("\n\nThese have undergone a special honing process; they'll kill people even faster than they used to.")
-	user.visible_message(span_warning("[user] sharpens [src], [stone] disintegrating!"), span_warning("You sharpen [src], making it much more deadly than before, but [stone] disintegrates under the stress."))
+	name = "强化剃刀利爪"
+	desc += span_warning("\n\n它们经历了特殊的研磨工艺，杀人速度比以往更快了。")
+	user.visible_message(span_warning("[user] 磨利了 [src]，[stone] 随之崩解！"), span_warning("你磨利了 [src]，使它比以往更加致命，但 [stone] 在压力下崩解了。"))
 	playsound(src, 'sound/items/unsheath.ogg', 25, TRUE)
 	qdel(stone)
 	return ..()
 
 /obj/item/organ/cyberimp/arm/toolkit/razor_claws
-	name = "razor claws implant"
-	desc = "A set of hidden, retractable blades built into the fingertips; cyborg mercenary approved."
+	name = "剃刀利爪植入体"
+	desc = "一套隐藏在指尖的可伸缩刀刃；半机械人雇佣兵认证。"
 	items_to_create = list(/obj/item/knife/razor_claws)
 	actions_types = list(/datum/action/item_action/organ_action/toggle/razor_claws)
 	icon = 'modular_skyrat/modules/implants/icons/razorclaws.dmi'
@@ -139,26 +139,26 @@
 
 
 /datum/action/item_action/organ_action/toggle/razor_claws
-	name = "Extend Claws"
-	desc = "You can also activate the claws in your hand to change their mode."
+	name = "伸出利爪"
+	desc = "你也可以激活手中的利爪来切换其模式。"
 	button_icon = 'modular_skyrat/master_files/icons/hud/actions.dmi'
 	button_icon_state = "wolverine"
 
 /obj/item/organ/cyberimp/arm/toolkit/hacker
-	name = "hacking arm implant"
-	desc = "An small arm implant containing an advanced screwdriver, wirecutters, and multitool designed for engineers and on-the-field machine modification. Actually legal, despite what the name may make you think."
+	name = "黑客手臂植入体"
+	desc = "一种小型手臂植入体，内含高级螺丝刀、钢丝钳与多功能工具，专为工程师与现场机械改造而设计。虽然名字容易让人误解，但它其实完全合法。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 	items_to_create = list(/obj/item/screwdriver/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/abductor/implant)
 
 /obj/item/organ/cyberimp/arm/toolkit/botany
-	name = "botany arm implant"
-	desc = "A rather simple arm implant containing tools used in gardening and botanical research."
+	name = "园艺手臂植入体"
+	desc = "一种相当简单的手臂植入体，内含园艺与植物学研究所需的工具。"
 	items_to_create = list(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/hatchet, /obj/item/gun/energy/floragun, /obj/item/plant_analyzer, /obj/item/geneshears, /obj/item/secateurs, /obj/item/storage/bag/plants, /obj/item/storage/bag/plants/portaseeder)
 
 /obj/item/implant_mounted_chainsaw
-	name = "integrated chainsaw"
-	desc = "A chainsaw that conceals inside your arm."
+	name = "集成式链锯"
+	desc = "一把藏在你手臂内部的链锯。"
 	icon = 'icons/obj/weapons/chainsaw.dmi'
 	icon_state = "chainsaw_on"
 	inhand_icon_state = "mounted_chainsaw"
@@ -169,8 +169,8 @@
 	throw_range = 0
 	throw_speed = 0
 	sharpness = SHARP_EDGED
-	attack_verb_continuous = list("saws", "tears", "lacerates", "cuts", "chops", "dices")
-	attack_verb_simple = list("saw", "tear", "lacerate", "cut", "chop", "dice")
+	attack_verb_continuous = list("锯切", "撕扯", "划裂", "割开", "劈砍", "切丁")
+	attack_verb_simple = list("锯切", "撕扯", "划裂", "割开", "劈砍", "切丁")
 	hitsound = 'sound/items/weapons/chainsawhit.ogg'
 	tool_behaviour = TOOL_SAW
 	toolspeed = 1
@@ -178,40 +178,40 @@
 /obj/item/organ/cyberimp/arm/toolkit/botany/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s deluxe landscaping equipment!"))
+	to_chat(usr, span_notice("你解锁了 [src] 的豪华园林设备！"))
 	items_list += WEAKREF(new /obj/item/implant_mounted_chainsaw(src)) //time to landscape the station
 	obj_flags |= EMAGGED
 	return TRUE
 
 /obj/item/multitool/abductor/implant
-	name = "multitool"
-	desc = "An optimized, highly advanced stripped-down multitool able to interface with electronics far better than its standard counterpart."
+	name = "多功能工具"
+	desc = "一款经过优化、高度先进且精简的多功能工具，与电子设备的交互能力远超其标准型号。"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "toolkit_engiborg_multitool"
 
 /obj/item/organ/cyberimp/arm/toolkit/janitor
-	name = "janitorial tools implant"
-	desc = "A set of janitorial tools on the user's arm."
+	name = "清洁工具植入体"
+	desc = "一套安装在受术者手臂上的清洁工具。"
 	items_to_create = list(/obj/item/lightreplacer, /obj/item/holosign_creator, /obj/item/soap/nanotrasen, /obj/item/reagent_containers/spray/cyborg_drying, /obj/item/mop/advanced, /obj/item/pushbroom/advanced/augment, /obj/item/paint/paint_remover, /obj/item/reagent_containers/cup/beaker/large, /obj/item/reagent_containers/spray/cleaner) //Beaker if for refilling sprays
 
 /obj/item/organ/cyberimp/arm/toolkit/janitor/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s integrated deluxe cleaning supplies!"))
+	to_chat(usr, span_notice("你解锁了 [src] 的集成式豪华清洁用品！"))
 	items_list += WEAKREF(new /obj/item/soap/syndie(src)) //We add not replace.
 	items_list += WEAKREF(new /obj/item/reagent_containers/spray/cyborg_lube(src))
 	obj_flags |= EMAGGED
 	return TRUE
 
 /obj/item/organ/cyberimp/arm/toolkit/lighter
-	name = "lighter implant"
-	desc = "A... implanted lighter. Incredibly useless."
+	name = "打火机植入体"
+	desc = "一个……植入式打火机。毫无用处。"
 	items_to_create = list(/obj/item/lighter/greyscale) //Hilariously useless.
 
 /obj/item/organ/cyberimp/arm/toolkit/lighter/emag_act()
 	if(obj_flags & EMAGGED)
 		return FALSE
-	to_chat(usr, span_notice("You unlock [src]'s integrated Zippo lighter! Finally, classy smoking!"))
+	to_chat(usr, span_notice("你解锁了 [src] 的集成式 Zippo 打火机！终于能体面地抽烟了！"))
 	items_list += WEAKREF(new /obj/item/lighter(src)) //Now you can choose between bad and worse!
 	obj_flags |= EMAGGED
 	return TRUE

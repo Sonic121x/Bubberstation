@@ -2,55 +2,55 @@
 	prefix = "_maps/RandomRuins/OceanRuins/"
 
 /datum/map_template/ruin/ocean/fissure
-	name = "Thermal Fissure"
+	name = "热力裂隙"
 	id = "ocean-fissure"
-	description = "A tear in the ocean."
+	description = "海洋中的一道裂隙。"
 	suffix = "ocean_fissure.dmm"
 	cost = 5 //Ditto!
 
 /datum/map_template/ruin/ocean/fissure/diag
-	name = "Horizontal Thermal Fissure"
+	name = "横向热力裂隙"
 	id = "ocean-fissure-diag"
-	description = "A horizontal tear in the ocean."
+	description = "海洋中一道横向的裂隙。"
 	suffix = "ocean_fissure_diag.dmm"
 
 /datum/map_template/ruin/ocean/listening_outpost
-	name = "Ocean Listening Outpost"
+	name = "海洋监听前哨"
 	id = "ocean-listening"
-	description = "A listening outpost in the ocean."
+	description = "海洋中的一处监听前哨。"
 	suffix = "ocean_listening_outpost.dmm"
 	cost = 10 //Ditto
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/ocean/mining_site
-	name = "Ocean Mining Site"
+	name = "海洋采矿场"
 	id = "ocean-miningsite"
-	description = "Ocean mining site."
+	description = "海洋采矿场。"
 	suffix = "ocean_mining_above.dmm"
 	cost = 10 //Please, for the love of god. Decrease these when we get more real ruins for oceans
 	allow_duplicates = FALSE
 	always_spawn_with = list(/datum/map_template/ruin/ocean/mining_site_below = PLACE_BELOW)
 
 /datum/map_template/ruin/ocean/mining_site_below
-	name = "Ocean Mining Site Underground"
+	name = "海洋采矿场地下"
 	id = "ocean-miningsite-ug"
-	description = "Ocean mining site down."
+	description = "海洋采矿场的地下部分。"
 	suffix = "ocean_mining_below.dmm"
 	unpickable = TRUE
 
 /datum/map_template/ruin/ocean/saddam_hole
-	name = "Ocean Hideout"
+	name = "海洋藏身处"
 	id = "ocean-hideout"
-	description = "Ocean hideout."
+	description = "海洋藏身处。"
 	suffix = "ocean_hideout_above.dmm"
 	cost = 10 //Ditto
 	allow_duplicates = FALSE
 	always_spawn_with = list(/datum/map_template/ruin/ocean/saddam_hole_below = PLACE_BELOW)
 
 /datum/map_template/ruin/ocean/saddam_hole_below
-	name = "Ocean Hideout Underground"
+	name = "海洋藏身处地下"
 	id = "ocean-hideout-ug"
-	description = "Ocean hideout... one floor down."
+	description = "海洋藏身处……在下一层。"
 	suffix = "ocean_hideout_below.dmm"
 	unpickable = TRUE
 
@@ -59,38 +59,38 @@
 	prefix = "_maps/RandomRuins/OceanRuins/"
 
 /datum/map_template/ruin/ocean_station/fissure
-	name = "Thermal Fissure"
+	name = "热力裂隙"
 	id = "ocean-fissure"
-	description = "A tear in the ocean."
+	description = "海洋中的一道裂隙。"
 	suffix = "ocean_fissure.dmm"
 	cost = 5
 
 /datum/map_template/ruin/ocean_station/fissure/diag
-	name = "Horizontal Thermal Fissure"
+	name = "横向热力裂隙"
 	id = "ocean-fissure-diag"
-	description = "A horizontal tear in the ocean."
+	description = "海洋中一道横向的裂隙。"
 	suffix = "ocean_fissure_diag.dmm"
 
 /datum/map_template/ruin/trench
 	prefix = "_maps/RandomRuins/OceanRuins/"
 
 /datum/map_template/ruin/trench/biolab_research
-	name = "Ocean Biolab Research Station"
+	name = "海洋生物实验室研究站"
 	id = "ocean-biolab"
-	description = "Biolab in the ocean."
+	description = "海洋中的生物实验室。"
 	suffix = "ocean_bioweapon_lab.dmm"
 	cost = 10
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/trench/fissure
-	name = "Thermal Fissure"
+	name = "热力裂隙"
 	id = "ocean-fissure"
-	description = "A tear in the ocean."
+	description = "海洋中的一道裂隙。"
 	suffix = "ocean_fissure.dmm"
 	cost = 5
 
 /datum/map_template/ruin/trench/fissure/diag
-	name = "Horizontal Thermal Fissure"
+	name = "横向热力裂隙"
 	id = "ocean-fissure-diag"
-	description = "A horizontal tear in the ocean."
+	description = "海洋中一道横向的裂隙。"
 	suffix = "ocean_fissure_diag.dmm"

@@ -8,7 +8,7 @@
 #define ROBOTIC_BLUNT_GRASPED_MOVEMENT_MULT 0.7
 
 /datum/wound/blunt/robotic
-	name = "Robotic Blunt (Screws and bolts) Wound"
+	name = "机械钝击伤（螺丝与螺栓）"
 	wound_flags = (ACCEPTS_GAUZE|SPLINT_OVERLAY|CAN_BE_GRASPED)
 
 	default_scar_file = METAL_SCAR_FILE
@@ -113,7 +113,7 @@
 	return ..()
 
 /datum/wound/blunt/robotic/get_limb_examine_description()
-	return span_warning("This limb looks loosely held together.")
+	return span_warning("这条肢体看起来结构松散。")
 
 // this wound is unaffected by cryoxadone and pyroxadone
 /datum/wound/blunt/robotic/on_xadone(power)
@@ -133,7 +133,7 @@
 		if(istype(held_item, /obj/item/offhand))
 			held_item = victim.get_inactive_held_item()
 		if(held_item && victim.dropItemToGround(held_item))
-			victim.visible_message(span_danger("[victim] drops [held_item] in shock!"), span_warning("<b>The force on your [limb.plaintext_zone] causes you to drop [held_item]!</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim] 惊得丢下了 [held_item]！"), span_warning("<b>你的[limb.plaintext_zone]受到的冲击让你丢下了 [held_item]！</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 /datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced, destroying)
 	. = ..()
@@ -243,26 +243,26 @@
 	if (oscillating)
 		return
 
-	var/self_message = "Your [limb.plaintext_zone] oscillates"
-	var/message = "[victim]'s [limb.plaintext_zone] oscillates"
+	var/self_message = "你的[limb.plaintext_zone]开始震荡"
+	var/message = "[victim] 的[limb.plaintext_zone]开始震荡"
 	if (attacking_item)
-		message += " from the impact"
+		message += "，来自撞击"
 	else if (from_movement)
-		message += " from the movement"
-	message += "!"
-	self_message += "! You might be able to avoid an aftershock by stopping and waiting..."
+		message += "，来自移动"
+	message += "！"
+	self_message += "！停下来等待或许能避免余震……"
 
 	if (isnull(attack_direction) && !isnull(attacking_item))
 		attack_direction = get_dir(victim, attacking_item)
 
 	if (!isnull(attack_direction) && prob(stagger_score * stagger_movement_chance_ratio))
-		to_chat(victim, span_warning("The force of the blow sends you reeling!"))
+		to_chat(victim, span_warning("这一击的力量把你打得踉跄后退！"))
 		var/turf/target_loc = get_step(victim, attack_direction)
 		victim.Move(target_loc)
 
 	victim.visible_message(span_warning(message), ignored_mobs = victim)
 	to_chat(victim, span_warning(self_message))
-	victim.balloon_alert(victim, "oscillation! stop moving")
+	victim.balloon_alert(victim, "震荡！别动")
 
 	victim.Shake(pixelshiftx = shift, pixelshifty = shift, duration = shake_duration)
 	var/aftershock_delay = (shake_duration * STAGGER_PERCENT_OF_SHAKE_DURATION_TO_AFTERSHOCK_DELAY)
@@ -284,8 +284,8 @@
 	if (!still_exists())
 		return FALSE
 
-	var/message = "The oscillations from your [limb.plaintext_zone] spread, "
-	var/limb_message = "causing "
+	var/message = "来自你[limb.plaintext_zone]的震荡扩散开来，"
+	var/limb_message = "导致"
 	var/limb_affected
 
 	var/stopped_moving_grace_threshold = (world.time - ((world.time - stagger_starting_time) * AFTERSHOCK_GRACE_THRESHOLD_PERCENT))
@@ -294,34 +294,34 @@
 		stagger_score *= aftershock_stopped_moving_score_mult
 
 	if (prob(stagger_score * stagger_drop_chance_ratio))
-		limb_message += "your <b>hands</b>"
+		limb_message += "你的<b>双手</b>"
 		victim.drop_all_held_items()
 		limb_affected = TRUE
 
 	if (prob(stagger_score * stagger_fall_chance_ratio))
 		if (limb_affected)
-			limb_message += " and "
-		limb_message += "your <b>legs</b>"
+			limb_message += "，以及"
+		limb_message += "你的<b>双腿</b>"
 		victim.Knockdown(knockdown_time)
 		limb_affected = TRUE
 
 	if (prob(stagger_score * stagger_camera_shake_chance_ratio))
 		if (limb_affected)
-			limb_message += " and "
-		limb_message += "your <b>head</b>"
+			limb_message += "，以及"
+		limb_message += "你的<b>头部</b>"
 		shake_camera(victim, base_aftershock_camera_shake_duration, base_aftershock_camera_shake_strength)
 		limb_affected = TRUE
 
 	if (limb_affected)
-		message += "[limb_message] to shake uncontrollably!"
+		message += "[limb_message]不受控制地抖动！"
 	else
-		message += "but pass harmlessly"
+		message += "但无害地消散了"
 		if (victim_stopped_moving)
-			message += " thanks to your stillness"
-		message += "."
+			message += "，多亏你保持不动"
+		message += "。"
 
 	to_chat(victim, span_danger(message))
-	victim.balloon_alert(victim, "oscillation over")
+	victim.balloon_alert(victim, "震荡结束")
 
 	oscillating = FALSE
 
@@ -329,13 +329,13 @@
 
 /// Called when percussive maintenance succeeds at its random roll.
 /datum/wound/blunt/robotic/proc/handle_percussive_maintenance_success(attacking_item, mob/living/user)
-	victim.visible_message(span_green("[victim]'s [limb.plaintext_zone] rattles from the impact, but looks a lot more secure!"), \
-		span_green("Your [limb.plaintext_zone] rattles into place!"))
+	victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]被撞得咯咯作响，但看起来牢固多了！"), \
+		span_green("你的[limb.plaintext_zone]咔哒一声归位了！"))
 	remove_wound()
 
 /// Called when percussive maintenance fails at its random roll.
 /datum/wound/blunt/robotic/proc/handle_percussive_maintenance_failure(attacking_item, mob/living/user)
-	to_chat(victim, span_warning("Your [limb.plaintext_zone] rattles around, but you don't sense any sign of improvement."))
+	to_chat(victim, span_warning("你的[limb.plaintext_zone]晃了晃，但感觉没有任何好转。"))
 
 /// If our victim has no gravity, the effects of movement are multiplied by this.
 #define VICTIM_MOVED_NO_GRAVITY_EFFECT_MULT 0.5

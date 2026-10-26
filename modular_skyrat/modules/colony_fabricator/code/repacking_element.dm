@@ -32,7 +32,7 @@
 /datum/element/repackable/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 
-	examine_list += span_notice("It can be <b>repacked</b> with <b>right click</b>.")
+	examine_list += span_notice("可用<b>右键</b><b>重新打包</b>。")
 
 /// Checks if the user can actually interact with the structures in question, then invokes the proc to make it repack
 /datum/element/repackable/proc/on_right_click(atom/source, mob/user)
@@ -46,7 +46,7 @@
 
 /// Removes the element target and spawns a new one of whatever item_to_pack_into is
 /datum/element/repackable/proc/repack(atom/source, mob/user)
-	source.balloon_alert_to_viewers("repacking...")
+	source.balloon_alert_to_viewers("重新打包中……")
 	if(!do_after(user, 3 SECONDS, target = source))
 		return
 
@@ -65,7 +65,7 @@
 	SIGNAL_HANDLER
 
 	if(isnull(held_item))
-		context[SCREENTIP_CONTEXT_RMB] = "Repack"
+		context[SCREENTIP_CONTEXT_RMB] = "重新打包"
 		. = CONTEXTUAL_SCREENTIP_SET
 
 	return NONE

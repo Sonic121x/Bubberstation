@@ -1,8 +1,8 @@
 /obj/item/mod/module/baton_holster
-	name = "MOD baton holster module"
-	desc = "A module installed into the chest of a MODSuit, this allows you \
-		to retrieve an inserted baton from the suit at will. Insert a baton \
-		by hitting the module, while it is removed from the suit, with the baton."
+	name = "MOD 警棍枪套模块"
+	desc = "一种安装在 MOD 外骨骼胸部的模块，可让你 \
+		随时从外骨骼中取出插入的警棍。在模块从外骨骼上拆下时， \
+		用警棍敲击模块即可插入警棍。"
 	icon_state = "holster"
 	icon = 'modular_skyrat/modules/contractor/icons/modsuit_modules.dmi'
 	module_type = MODULE_ACTIVE
@@ -20,7 +20,7 @@
 	. = ..()
 	if(!istype(attacking_item, /obj/item/melee/baton/telescopic/contractor_baton) || eaten_baton)
 		return
-	balloon_alert(user, "[attacking_item] inserted")
+	balloon_alert(user, "[attacking_item] 已插入")
 	eaten_baton = TRUE
 	for(var/obj/item/melee/baton/telescopic/contractor_baton/device_baton as anything in src)
 		for(var/obj/item/baton_upgrade/original_upgrade in attacking_item)
@@ -32,7 +32,7 @@
 
 /obj/item/mod/module/baton_holster/on_activation()
 	if(!eaten_baton)
-		balloon_alert(mod.wearer, "no baton inserted")
+		balloon_alert(mod.wearer, "未插入警棍")
 		return
 	return ..()
 
@@ -47,9 +47,9 @@
 	complexity = 0
 
 /obj/item/mod/module/springlock/contractor
-	name = "MOD magnetic deployment module"
-	desc = "A much more modern version of a springlock system. \
-	This is a module that uses magnets to speed up the deployment and retraction time of your MODsuit."
+	name = "MOD 磁力展开模块"
+	desc = "一种远比弹簧锁系统现代的版本。 \
+	这是一个利用磁铁加快 MOD 外骨骼展开与收起速度的模块。"
 	icon_state = "magnet"
 	icon = 'modular_skyrat/modules/contractor/icons/modsuit_modules.dmi'
 
@@ -64,11 +64,11 @@
 	complexity = 0
 
 /obj/item/mod/module/scorpion_hook
-	name = "MOD SCORPION hook module"
-	desc = "A module installed in the wrist of a MODSuit, this highly \
-			illegal module uses a hardlight hook to forcefully pull \
-			a target towards you at high speed, knocking them down and \
-			partially exhausting them."
+	name = "MOD SCORPION 抓钩模块"
+	desc = "一种安装在 MOD 外骨骼腕部的模块，这个高度 \
+			非法的模块使用硬光抓钩强行将 \
+			目标高速拉向你，将其击倒并 \
+			使其部分体力耗尽。"
 	icon_state = "hook"
 	icon = 'modular_skyrat/modules/contractor/icons/modsuit_modules.dmi'
 	incompatible_modules = list(/obj/item/mod/module/scorpion_hook)

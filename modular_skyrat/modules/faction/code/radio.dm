@@ -1,5 +1,5 @@
 /obj/item/encryptionkey/headset_faction
-	name = "faction radio encryption key"
+	name = "派系无线电加密密钥"
 	icon_state = "/obj/item/encryptionkey/headset_faction"
 	post_init_icon_state = "cypherkey_cargo"
 	channels = list(RADIO_CHANNEL_FACTION = 1)
@@ -8,14 +8,14 @@
 	special_channels = RADIO_SPECIAL_CENTCOM
 
 /obj/item/radio/headset/headset_faction
-	name = "faction radio headset"
-	desc = "Headset used by the faction."
+	name = "派系无线电耳机"
+	desc = "派系使用的耳机。"
 	icon_state = "cargo_headset"
 	keyslot = new /obj/item/encryptionkey/headset_faction
 
 /obj/item/radio/headset/headset_faction/bowman
-	name = "faction bowman headset"
-	desc = "Headset used by the faction. Protects ears from flashbangs."
+	name = "派系鲍曼耳机"
+	desc = "派系使用的耳机。可保护耳朵免受闪光弹伤害。"
 	icon_state = "com_headset_alt"
 
 /obj/item/radio/headset/headset_faction/bowman/Initialize(mapload)
@@ -23,6 +23,6 @@
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/headset_faction/bowman/captain
-	name = "faction captain bowman headset"
-	desc = "The headset of the boss. Protects ears from flashbangs."
+	name = "派系队长鲍曼耳机"
+	desc = "老大的耳机。可保护耳朵免受闪光弹伤害。"
 	command = TRUE

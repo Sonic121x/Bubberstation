@@ -1,6 +1,6 @@
 /obj/item/gun/magic/hook/contractor
-	name = "SCORPION hook"
-	desc = "A hardlight hook used to non-lethally pull targets much closer to the user."
+	name = "SCORPION 抓钩"
+	desc = "一种硬光抓钩，用于非致命地把目标拉近使用者。"
 	icon = 'modular_skyrat/modules/contractor/icons/hook.dmi'
 	icon_state = "hook_weapon"
 	inhand_icon_state = "" //nah
@@ -17,5 +17,5 @@
 
 /obj/item/gun/magic/hook/contractor/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(prob(1))
-		user.say("+GET OVER HERE!+", forced = "scorpion hook")
+		user.say("+给我过来！+", forced = "scorpion hook")
 	return ..()

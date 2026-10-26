@@ -1,21 +1,21 @@
 /mob/living/basic/pet/bumbles
-	name = "Bumbles"
-	desc = "Bumbles, the very humble bumblebee."
+	name = "邦布尔斯"
+	desc = "邦布尔斯，一只非常谦逊的熊蜂。"
 	icon = 'modular_skyrat/master_files/icons/mob/pets.dmi'
 	icon_state = "bumbles"
 	icon_living = "bumbles"
 	icon_dead = "bumbles_dead"
 	maxHealth = 15
 	health = 15
-	response_help_continuous = "pets"
-	response_help_simple = "pet"
-	response_disarm_continuous = "brushes aside"
-	response_help_simple = "brush aside"
-	response_harm_continuous = "squashes"
-	response_harm_simple = "squash"
-	speak_emote = list("buzzes")
-	friendly_verb_continuous = "bzzs"
-	friendly_verb_simple = "bzz"
+	response_help_continuous = "抚摸"
+	response_help_simple = "抚摸"
+	response_disarm_continuous = "拨开"
+	response_help_simple = "拨开"
+	response_harm_continuous = "压扁"
+	response_harm_simple = "压扁"
+	speak_emote = list("嗡嗡叫")
+	friendly_verb_continuous = "嗡嗡"
+	friendly_verb_simple = "嗡嗡"
 	butcher_results = list(/obj/item/food/honeycomb = 2)
 	density = FALSE
 	mobility_flags = MOBILITY_FLAGS_REST_CAPABLE_DEFAULT
@@ -23,10 +23,10 @@
 	mob_size = MOB_SIZE_TINY
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	gold_core_spawnable = FRIENDLY_SPAWN
-	verb_say = "buzzs"
-	verb_ask = "buzzes inquisitively"
-	verb_exclaim = "buzzes intensely"
-	verb_yell = "buzzes intensely"
+	verb_say = "嗡嗡道"
+	verb_ask = "好奇地嗡嗡道"
+	verb_exclaim = "剧烈地嗡嗡道"
+	verb_yell = "剧烈地嗡嗡道"
 	unique_name = TRUE
 	ai_controller = /datum/ai_controller/basic_controller/bumbles
 
@@ -59,14 +59,14 @@
 
 		ai_controller.set_blackboard_key(BB_BUMBLES_RESTING, TRUE)
 
-		manual_emote(pick("curls up on the surface below.", "is looking very sleepy.", "buzzes happily.", "looks around for a flower nap."))
+		manual_emote(pick("在身下的表面上蜷成一团。", "看起来非常困。", "开心地嗡嗡叫。", "四处张望，想找朵花睡一觉。"))
 		REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	else
 		icon_state = "[icon_living]"
 
 		ai_controller.clear_blackboard_key(BB_BUMBLES_RESTING)
 
-		manual_emote(pick("wakes up with a smiling buzz.", "rolls upside down before waking up.", "stops resting."))
+		manual_emote(pick("带着笑意嗡嗡地醒来。", "翻了个身才醒过来。", "停止了休息。"))
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 
 	regenerate_icons()
@@ -93,7 +93,7 @@
 	if(!is_type_in_list(target, flower_types))
 		return
 
-	manual_emote(pick("smells [target].", "sniffs [target].", "collects some nectar."))
+	manual_emote(pick("闻了闻 [target]。", "嗅了嗅 [target]。", "采集了一些花蜜。"))
 
 	// Clear the target, if any or we'll stunlock on a flower.
 
@@ -141,6 +141,6 @@
 /datum/bt_node/ai_behavior/random_speech/bumbles
 	speech_chance = 1
 
-	emote_hear = list("buzzes.", "makes a loud buzz.", "buzzes happily.")
-	emote_see = list("rolls several times.")
+	emote_hear = list("嗡嗡叫。", "发出一声响亮的嗡嗡声。", "开心地嗡嗡叫。")
+	emote_see = list("翻滚了几圈。")
 

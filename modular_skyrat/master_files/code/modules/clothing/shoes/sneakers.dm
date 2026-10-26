@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes/sneakers/crimson
-	name = "dark red shoes"
+	name = "深红色鞋子"
 	greyscale_colors = "#992300#ffffff"
 	icon_state = "/obj/item/clothing/shoes/sneakers/crimson"
 

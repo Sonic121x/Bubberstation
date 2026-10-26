@@ -24,7 +24,7 @@
 	/// The timer associated with the corruption process, if any.
 	var/corruption_timer_id = null
 	/// The prefix added to the organ once it is successfully corrupted.
-	var/corrupted_prefix = "corrupted"
+	var/corrupted_prefix = "腐化"
 	/// Whether this organ is tumorless and therefore should be taking damage.
 	/// Note: This variable isn't there to handle the behavior, and is only there
 	/// to prevent organs taking damage when tumors are being swapped around between

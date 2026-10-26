@@ -29,7 +29,7 @@ would only be recognisable with someone that had the syndicate trait.
 /obj/item/examine(mob/user)
 	. = ..()
 	if(special_desc_requirement == EXAMINE_CHECK_NONE && special_desc)
-		. += span_notice("This item could be examined further...")
+		. += span_notice("这件物品可以进一步检查……")
 
 /obj/item/examine_more(mob/user)
 	. = ..()
@@ -38,13 +38,13 @@ would only be recognisable with someone that had the syndicate trait.
 		switch(special_desc_requirement)
 			//Will always show if set
 			if(EXAMINE_CHECK_NONE)
-				composed_message = "You note the following: <br>"
+				composed_message = "你注意到以下内容：<br>"
 				composed_message += special_desc
 				. += composed_message
 			//Mindshield checks
 			if(EXAMINE_CHECK_MINDSHIELD)
 				if(HAS_TRAIT(user, TRAIT_MINDSHIELD))
-					composed_message = "You note the following because of your <span class='blue'><b>mindshield</b></span>: <br>"
+					composed_message = "你因你的<span class='blue'><b>心智护盾</b></span>而注意到以下内容：<br>"
 					composed_message += special_desc
 					. += composed_message
 			//Standard syndicate checks
@@ -52,11 +52,11 @@ would only be recognisable with someone that had the syndicate trait.
 				if(user.mind)
 					var/datum/mind/M = user.mind
 					if((ROLE_TRAITOR in M.get_special_roles()) || (user.has_faction(ROLE_SYNDICATE)))
-						composed_message = "You note the following because of your <span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "Syndicate Affiliation"]</b></span>: <br>"
+						composed_message = "你因你的<span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "辛迪加归属"]</b></span>而注意到以下内容：<br>"
 						composed_message += special_desc
 						. += composed_message
 					else if(HAS_TRAIT(M, TRAIT_DETECTIVE))  //Useful detective!
-						composed_message = "You note the following because of your brilliant <span class='blue'><b>Detective skills</b></span>: <br>"
+						composed_message = "你因你出色的<span class='blue'><b>侦探技能</b></span>而注意到以下内容：<br>"
 						composed_message += special_desc
 						. += composed_message
 			//As above, but with a toy desc for those looking at it
@@ -64,15 +64,15 @@ would only be recognisable with someone that had the syndicate trait.
 				if(user.mind)
 					var/datum/mind/M = user.mind
 					if((ROLE_TRAITOR in M.get_special_roles()) || (user.has_faction(ROLE_SYNDICATE)))
-						composed_message = "You note the following because of your <span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "Syndicate Affiliation"]</b></span>: <br>"
+						composed_message = "你因你的<span class='red'><b>[special_desc_affiliation ? special_desc_affiliation : "辛迪加归属"]</b></span>而注意到以下内容：<br>"
 						composed_message += special_desc
 						. += composed_message
 					else if(HAS_TRAIT(M, TRAIT_DETECTIVE)) //Useful detective!
-						composed_message = "You note the following because of your brilliant <span class='blue'><b>detective skills</b></span>: <br>"
+						composed_message = "你因你出色的<span class='blue'><b>侦探技能</b></span>而注意到以下内容：<br>"
 						composed_message += special_desc
 						. += composed_message
 					else
-						composed_message = "The popular toy resembling [src] from your local arcade, suitable for children and adults alike."
+						composed_message = "这款广受欢迎的玩具仿照当地街机厅的 [src] 制成，适合儿童和成人。"
 						. += composed_message
 			//Standard role checks
 			if(EXAMINE_CHECK_ROLE)
@@ -80,7 +80,7 @@ would only be recognisable with someone that had the syndicate trait.
 					var/datum/mind/M = user.mind
 					for(var/role_i in special_desc_roles)
 						if(role_i in M.get_special_roles())
-							composed_message = "You note the following because of your <b>[role_i]</b> role: <br>"
+							composed_message = "你因你的<b>[role_i]</b>身份而注意到以下内容：<br>"
 							composed_message += special_desc
 							. += composed_message
 			//Standard job checks
@@ -89,14 +89,14 @@ would only be recognisable with someone that had the syndicate trait.
 					var/mob/living/carbon/human/H = user
 					for(var/job_i in special_desc_jobs)
 						if(H.job == job_i)
-							composed_message = "You note the following because of your job as a <b>[job_i]</b>: <br>"
+							composed_message = "你因担任<b>[job_i]</b>而注意到以下内容：<br>"
 							composed_message += special_desc
 							. += composed_message
 			//Standard faction checks
 			if(EXAMINE_CHECK_FACTION)
 				for(var/faction_i in special_desc_factions)
 					if(user.has_faction(faction_i))
-						composed_message = "You note the following because of your loyalty to <b>[faction_i]</b>: <br>"
+						composed_message = "你因对<b>[faction_i]</b>的忠诚而注意到以下内容：<br>"
 						composed_message += special_desc
 						. += composed_message
 
@@ -106,7 +106,7 @@ would only be recognisable with someone that had the syndicate trait.
 */
 
 /obj/item/storage/backpack/duffelbag/syndie
-	name = "duffel bag"
-	desc = "A large duffel bag for holding extra supplies."
+	name = "行李袋"
+	desc = "一个用于存放额外补给品的大号行李袋。"
 	special_desc_requirement = EXAMINE_CHECK_SYNDICATE
-	special_desc = "This bag is used to store tactical equipment and is manufactured by the syndicate."
+	special_desc = "这个包用于存放战术装备，由辛迪加制造。"

@@ -1,17 +1,17 @@
 /datum/wound/blunt/robotic/moderate
-	name = "Loosened Screws"
-	desc = "Various semi-external fastening instruments have loosened, causing components to jostle, inhibiting limb control."
-	treat_text = "Recommend topical re-fastening of instruments with a screwdriver, though percussive maintenance via low-force bludgeoning may suffice - \
-	albeit at risk of worsening the injury."
-	examine_desc = "appears to be loosely secured"
-	occur_text = "jostles awkwardly and seems to slightly unfasten"
+	name = "螺丝松动"
+	desc = "多种半外露的紧固装置已经松动，导致部件晃动，影响肢体控制。"
+	treat_text = "建议用螺丝刀对紧固装置进行外部重新固定，不过用低力度钝击进行敲击维护或许也行——\
+	只是有加重伤势的风险。"
+	examine_desc = "看起来固定得很松"
+	occur_text = "别扭地晃动，似乎有些松脱"
 	severity = WOUND_SEVERITY_MODERATE
-	simple_treat_text = "<b>Bandaging</b> the wound will reduce the impact until it's <b>screws are secured</b> - which is <b>faster</b> if done by \
-	<b>someone else</b>, a <b>roboticist</b>, an <b>engineer</b>, or with a <b>diagnostic HUD</b>."
-	homemade_treat_text = "In a pinch, <b>percussive maintenance</b> can reset the screws - the chance of which is increased if done by <b>someone else</b> or \
-	with a <b>diagnostic HUD</b>!"
+	simple_treat_text = "<b>包扎</b>伤口可减轻影响，直到<b>螺丝被固定</b>——若由<b>别人</b>、\
+	<b>机器人学家</b>、<b>工程师</b>操作，或借助<b>诊断 HUD</b>，速度会<b>更快</b>。"
+	homemade_treat_text = "紧急情况下，<b>敲击维护</b>可以让螺丝复位——由<b>别人</b>操作或借助<b>诊断 HUD</b>\
+	时，成功率会更高！"
 	status_effect_type = /datum/status_effect/wound/blunt/robotic/moderate
-	treat_text_short = "Apply screwdriver or percussive maintenance"
+	treat_text_short = "使用螺丝刀或敲击维护"
 	treatable_tools = list(TOOL_SCREWDRIVER)
 	interaction_efficiency_penalty = 1.2
 	limp_slowdown = 2.5
@@ -52,15 +52,15 @@
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
 		delay_mult *= 0.5
 
-	var/their_or_other = (user == victim ? "[user.p_their()]" : "[victim]'s")
-	var/your_or_other = (user == victim ? "your" : "[victim]'s")
-	victim.visible_message(span_notice("[user] begins fastening the screws of [their_or_other] [limb.plaintext_zone]..."), \
-		span_notice("You begin fastening the screws of [your_or_other] [limb.plaintext_zone]..."))
+	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
+	var/your_or_other = (user == victim ? "你的" : "[victim]的")
+	victim.visible_message(span_notice("[user] 开始拧紧[their_or_other][limb.plaintext_zone]上的螺丝……"), \
+		span_notice("你开始拧紧[your_or_other][limb.plaintext_zone]上的螺丝……"))
 
 	if (!screwdriver_tool.use_tool(target = victim, user = user, delay = (6 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	victim.visible_message(span_green("[user] finishes fastening [their_or_other] [limb.plaintext_zone]!"), \
-		span_green("You finish fastening [your_or_other] [limb.plaintext_zone]!"))
+	victim.visible_message(span_green("[user] 拧紧了[their_or_other][limb.plaintext_zone]的螺丝！"), \
+		span_green("你拧紧了[your_or_other][limb.plaintext_zone]的螺丝！"))
 
 	remove_wound()

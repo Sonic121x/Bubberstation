@@ -23,13 +23,13 @@
 	return ..()
 
 /// Prompts the parent mob to send a say message to the soulcatcher. Returns False if no soulcatcher or message could be found.
-GAME_VERB_PROC_DESC(/mob/living, carrier_say, "Carrier Say", "Send a Say message to your currently targeted carrier room.", "IC")
+GAME_VERB_PROC_DESC(/mob/living, carrier_say, "载体发言", "向你当前锁定的载体房间发送一条说话消息。", "IC")
 	var/datum/carrier_room/room_to_send_to = get_current_carrier_room()
 	if(!istype(room_to_send_to))
-		to_chat(src, span_warning("You do not have a carrier you can send messages to!"))
+		to_chat(src, span_warning("你没有可以向其发送消息的载体！"))
 		return FALSE
 
-	var/message_to_send = tgui_input_text(usr, "Input the message you want to send", "Carrier", multiline = TRUE)
+	var/message_to_send = tgui_input_text(usr, "输入你想发送的消息", "载体", multiline = TRUE)
 	if(!message_to_send)
 		return FALSE
 
@@ -43,13 +43,13 @@ GAME_VERB_PROC_DESC(/mob/living, carrier_say, "Carrier Say", "Send a Say message
 	return TRUE
 
 /// Prompts the parent mob to send a emote to the soulcatcher. Returns False if no soulcatcher or emote could be found.
-GAME_VERB_PROC_DESC(/mob/living, carrier_emote, "Carrier Me", "Send a emote to your currently targeted carrier room.", "IC")
+GAME_VERB_PROC_DESC(/mob/living, carrier_emote, "载体表情", "向你当前锁定的载体房间发送一条表情。", "IC")
 	var/datum/carrier_room/room_to_send_to = get_current_carrier_room()
 	if(!istype(room_to_send_to))
-		to_chat(src, span_warning("You do not have a carrier you can send emotes to!"))
+		to_chat(src, span_warning("你没有可以向其发送表情的载体！"))
 		return FALSE
 
-	var/message_to_send = tgui_input_text(usr, "Input the emote you want to send", "Soulcatcher", multiline = TRUE)
+	var/message_to_send = tgui_input_text(usr, "输入你想发送的表情", "灵魂捕手", multiline = TRUE)
 	if(!message_to_send)
 		return FALSE
 

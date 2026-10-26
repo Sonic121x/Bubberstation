@@ -1,13 +1,13 @@
 /obj/item/uber_teleporter
-	name = "\improper Nihilanth's Divinity"
-	desc = "It glows harshly, the power of a portal wielding monster lays within."
+	name = "\improper 尼赫兰斯的神性"
+	desc = "它发出刺眼的光芒，其中蕴含着操控传送门的怪物的力量。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/plants.dmi'
 	icon_state = "crystal_pylon"
 
 /obj/item/uber_teleporter/attack_self(mob/living/user, modifiers)
 	. = ..()
 	playsound(get_turf(user), 'sound/items/weapons/zapbang.ogg', 50, TRUE)
-	var/area/area_to_teleport_to = tgui_input_list(usr, "Area to teleport to", "Teleport", GLOB.teleportlocs)
+	var/area/area_to_teleport_to = tgui_input_list(usr, "要传送到哪个区域", "传送", GLOB.teleportlocs)
 	if(!area_to_teleport_to)
 		return
 
@@ -25,7 +25,7 @@
 				possible_turfs += iterating_turf
 
 	if(!LAZYLEN(possible_turfs))
-		to_chat(user, span_warning("The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."))
+		to_chat(user, span_warning("由于未知原因，法术矩阵无法找到合适的传送目的地。抱歉。"))
 		return
 
 	if(user.buckled)

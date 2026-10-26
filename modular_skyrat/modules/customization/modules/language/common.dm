@@ -1,6 +1,6 @@
 /datum/language/common
 	name = "Sol Common"
-	desc = "And when contact was established, the Admiral waved at the screen and said, \"Mi parolas la lingvon de la Homines!\" - I speak the language of Mankind. A simplified mix of Esperanto and Modern Latin, and the only recognized official language of the Terran Government. This peculiar constructed language became popular during TerraGov's earliest days, and was almost entirely overtaken by other popular tongues - it became widespread through heavy-handed political maneuvering with the help of corporate bureaucrats and other undesirables. Nowadays, it's a near-universal tongue and a must-know for any sentient being that plans to leap forward into space."
+	desc = "当双方建立接触时，上将朝屏幕挥了挥手，说道：“Mi parolas la lingvon de la Homines!”——我说的是人类的语言。它是世界语与现代拉丁语的简化混合体，也是地球政府唯一承认的官方语言。这门奇特的人造语言在地球政府初创的年代曾风行一时，随后几乎被其他流行语言完全取代——靠着企业官僚和其他不受欢迎之辈的强硬政治运作，它才得以广泛传播。如今它已近乎通用，任何打算跃入太空的智慧生命都必须掌握它。"
 	space_chance = 60
 	syllables = list(
 		"al", "an", "ar", "as", "at", "ed", "er", "ha", "he", "hi", "is", "le", "me", "on", "se", "ti",

@@ -9,8 +9,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/survival/engineer/marine
-	name = "military survival box"
-	desc = "A box issued to Nanotrasen space marines, containing field essentials. This one is labelled to contain an extended-capacity tank."
+	name = "军用生存箱"
+	desc = "发给纳米传讯太空陆战队的补给箱，内含野外必需品。这一只标注为配备扩充容量氧气罐。"
 	illustration = "extendedtank"
 	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
 

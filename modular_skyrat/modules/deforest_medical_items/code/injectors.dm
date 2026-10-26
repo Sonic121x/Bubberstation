@@ -1,7 +1,7 @@
 // Pen basetype where the icon is gotten from
 /obj/item/reagent_containers/hypospray/medipen/deforest
-	name = "non-functional Deforest autoinjector"
-	desc = "A Deforest branded autoinjector, though this one seems to be both empty and non-functional."
+	name = "故障的德福雷斯特自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，不过这一支似乎既空了又坏了。"
 	icon = 'modular_skyrat/modules/deforest_medical_items/icons/injectors.dmi'
 	icon_state = "default"
 	volume = 25
@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/hypospray/medipen/deforest/inject(mob/living/affected_mob, mob/user)
 	if(!reagents.total_volume)
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 		return FALSE
 	if(!iscarbon(affected_mob))
 		return FALSE
@@ -26,17 +26,17 @@
 	for(var/datum/reagent/injected_reagent in reagents.reagent_list)
 		injected += injected_reagent.name
 	var/contained = english_list(injected)
-	log_combat(user, affected_mob, "attempted to inject", src, "([contained])")
+	log_combat(user, affected_mob, "试图注射", src, "([contained])")
 
 	if((affected_mob != user) && inject_others_time)
-		affected_mob.visible_message(span_danger("[user] is trying to inject [affected_mob]!"), \
-				span_userdanger("[user] is trying to inject something into you!"))
+		affected_mob.visible_message(span_danger("[user] 正试图给 [affected_mob] 注射！"), \
+				span_userdanger("[user] 正试图往你体内注射什么东西！"))
 		if(!do_after(user, CHEM_INTERACT_DELAY(inject_others_time, user), affected_mob))
 			return FALSE
 
 	if(reagents.total_volume && (ignore_flags || affected_mob.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))) // Ignore flag should be checked first or there will be an error message.
-		to_chat(affected_mob, span_warning("You feel a tiny prick!"))
-		to_chat(user, span_notice("You inject [affected_mob] with [src]."))
+		to_chat(affected_mob, span_warning("你感到一阵轻微的刺痛！"))
+		to_chat(user, span_notice("你用 [src] 给 [affected_mob] 注射。"))
 		if(!stealthy)
 			playsound(affected_mob, 'sound/items/hypospray.ogg', 50, TRUE)
 		var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
@@ -48,15 +48,15 @@
 			else
 				reagents.expose(affected_mob, INJECT, fraction)
 				trans = reagents.trans_to(affected_mob, amount_per_transfer_from_this, copy_only = TRUE)
-			to_chat(user, span_notice("[trans] unit\s injected. [reagents.total_volume] unit\s remaining in [src]."))
-			log_combat(user, affected_mob, "injected", src, "([contained])")
+			to_chat(user, span_notice("已注射 [trans] 单位。[src] 中还剩 [reagents.total_volume] 单位。"))
+			log_combat(user, affected_mob, "注射", src, "([contained])")
 		return TRUE
 	return FALSE
 
 // Sensory restoration, heals eyes and ears with a bit of impurity
 /obj/item/reagent_containers/hypospray/medipen/deforest/occuisate
-	name = "occuisate sensory restoration injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of reagents to restore your vision and hearing to operation."
+	name = "奥库伊萨特感官恢复自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合试剂，可让你的视觉与听觉恢复正常。"
 	base_icon_state = "occuisate"
 	icon_state = "occuisate"
 	list_reagents = list(
@@ -69,8 +69,8 @@
 
 // Adrenaline, fills you with determination (and also stimulants)
 /obj/item/reagent_containers/hypospray/medipen/deforest/adrenaline
-	name = "adrenaline injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of reagents to intentionally give yourself fight or flight on demand."
+	name = "肾上腺素自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合试剂，可让你按需主动进入战斗或逃跑状态。"
 	base_icon_state = "adrenaline"
 	icon_state = "adrenaline"
 	list_reagents = list(
@@ -82,8 +82,8 @@
 
 // Morpital, heals a small amount of damage and kills pain for a bit
 /obj/item/reagent_containers/hypospray/medipen/deforest/morpital
-	name = "morpital regenerative stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of reagents to numb pain and repair small amounts of physical damage."
+	name = "莫匹塔尔再生兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合试剂，可麻痹疼痛并修复少量物理损伤。"
 	base_icon_state = "morpital"
 	icon_state = "morpital"
 	list_reagents = list(
@@ -94,9 +94,9 @@
 
 // Lipital, heals more damage than morpital but doesnt work much at higher damages
 /obj/item/reagent_containers/hypospray/medipen/deforest/lipital
-	name = "lipital regenerative stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of reagents to numb pain and repair small amounts of physical damage. \
-		Works most effectively against damaged caused by brute attacks."
+	name = "利匹塔尔再生兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合试剂，可麻痹疼痛并修复少量物理损伤。 \
+		对钝击造成的损伤效果最佳。"
 	base_icon_state = "lipital"
 	icon_state = "lipital"
 	list_reagents = list(
@@ -107,9 +107,9 @@
 
 // Anti-poisoning injector, with a little bit of radiation healing as a treat
 /obj/item/reagent_containers/hypospray/medipen/deforest/meridine
-	name = "meridine antidote injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of reagents to serve as antidote to most galactic toxins. \
-		A warning sticker notes it should not be used if the patient is physically damaged, as it may cause complications."
+	name = "梅里丁解毒剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合试剂，可解除银河系中大多数毒素。 \
+		上面贴着的警告标签指出，若患者已有物理损伤则不应使用，因为可能引发并发症。"
 	base_icon_state = "meridine"
 	icon_state = "meridine"
 	list_reagents = list(
@@ -120,8 +120,8 @@
 
 // Epinephrine and helps a little bit against stuns and stamina damage
 /obj/item/reagent_containers/hypospray/medipen/deforest/synephrine
-	name = "synephrine emergency stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of reagents to stabilize critical condition and recover from stamina deficits."
+	name = "辛弗林应急兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合试剂，可稳定危重状态并恢复精力损耗。"
 	base_icon_state = "synephrine"
 	icon_state = "synephrine"
 	list_reagents = list(
@@ -133,8 +133,8 @@
 
 // Critical condition stabilizer
 /obj/item/reagent_containers/hypospray/medipen/deforest/calopine
-	name = "calopine emergency stabilizant injector"
-	desc = "A Deforest branded autoinjector, loaded with a stabilizing mix of reagents to repair critical conditions."
+	name = "卡洛平应急稳定剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有可稳定状态的混合试剂，用于修复危重状况。"
 	base_icon_state = "calopine"
 	icon_state = "calopine"
 	list_reagents = list(
@@ -146,8 +146,8 @@
 
 // Coagulant, really not a whole lot more
 /obj/item/reagent_containers/hypospray/medipen/deforest/coagulants
-	name = "coagulant-S injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of coagulants to prevent and stop bleeding."
+	name = "凝血剂-S 自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合凝血剂，可预防并止住出血。"
 	base_icon_state = "coagulant"
 	icon_state = "coagulant"
 	list_reagents = list(
@@ -158,8 +158,8 @@
 
 // Stimulant centered around ondansetron
 /obj/item/reagent_containers/hypospray/medipen/deforest/krotozine
-	name = "krotozine manipulative stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of stimulants and weak healing agents."
+	name = "克罗托嗪调控兴奋剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合兴奋剂与弱效治疗剂。"
 	base_icon_state = "krotozine"
 	icon_state = "krotozine"
 	list_reagents = list(
@@ -172,8 +172,8 @@
 
 // Stuff really good at healing burn stuff and stabilizing temps
 /obj/item/reagent_containers/hypospray/medipen/deforest/lepoturi
-	name = "lepoturi burn treatment injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of medicines to rapidly treat burns."
+	name = "莱波图里烧伤治疗自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合药物，可迅速治疗烧伤。"
 	base_icon_state = "lepoturi"
 	icon_state = "lepoturi"
 	list_reagents = list(
@@ -185,8 +185,8 @@
 
 // Stabilizes a lot of stats like drowsiness, sanity, dizziness, so on
 /obj/item/reagent_containers/hypospray/medipen/deforest/psifinil
-	name = "psifinil personal recovery injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of medicines to remedy many common ailments, such as drowsiness, pain, instability, the like."
+	name = "普西非尼个人恢复自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合药物，可缓解许多常见的不适，如困倦、疼痛、情绪不稳等等。"
 	base_icon_state = "psifinil"
 	icon_state = "psifinil"
 	list_reagents = list(
@@ -197,8 +197,8 @@
 
 // Helps with liver failure and some drugs, also alcohol
 /obj/item/reagent_containers/hypospray/medipen/deforest/halobinin
-	name = "halobinin soberant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of medicines to remedy the effects of liver failure and common drugs."
+	name = "哈洛比宁醒酒剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有混合药物，可缓解肝衰竭与常见药物的影响。"
 	base_icon_state = "halobinin"
 	icon_state = "halobinin"
 	list_reagents = list(
@@ -210,8 +210,8 @@
 
 // Medpen for robots that fixes toxin damage and purges synth chems but slows them down for a bit
 /obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner
-	name = "synthetic cleaner autoinjector"
-	desc = "A Deforest branded autoinjector, loaded with system cleaner for purging synthetics of reagents."
+	name = "合成体清洁剂自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有为合成体清除体内试剂而配制的系统清洁剂。"
 	base_icon_state = "robor"
 	icon_state = "robor"
 	list_reagents = list(
@@ -221,8 +221,8 @@
 
 // Medpen for robots that fixes brain damage but slows them down for a bit
 /obj/item/reagent_containers/hypospray/medipen/deforest/robot_liquid_solder
-	name = "synthetic smart-solder autoinjector"
-	desc = "A Deforest branded autoinjector, loaded with liquid solder to repair synthetic processor core damage."
+	name = "合成体智能焊锡自动注射器"
+	desc = "一款德福雷斯特品牌的自动注射器，装有液态焊锡，用于修复合成体处理器核心的损伤。"
 	base_icon_state = "robor_brain"
 	icon_state = "robor_brain"
 	list_reagents = list(

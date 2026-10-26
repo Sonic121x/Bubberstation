@@ -1,6 +1,6 @@
 /datum/design/monkey_helmet
-	name = "Monkey Mind Magnification Helmet"
-	desc = "A fragile, circuitry embedded helmet for boosting the intelligence of a monkey to a higher level."
+	name = "猴子心智放大头盔"
+	desc = "一顶脆弱、内嵌电路的头盔，用于把猴子的智力提升到更高水平。"
 	id = "monkey_helmet"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -15,8 +15,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/plumbing_eng
-	name = "Engineering Plumbing Constructor"
-	desc = "A type of plumbing constructor designed to manipulate fluid."
+	name = "工程管道建造器"
+	desc = "一种用于操纵流体的管道建造器。"
 	id = "plumbing_eng"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -31,8 +31,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/smartdartgun
-	name = "Medical SmartDart Gun"
-	desc = "An adjusted version of the medical syringe gun that only allows SmartDarts to be chambered."
+	name = "医疗智能飞镖枪"
+	desc = "医疗注射枪的改装版本，仅允许装填智能飞镖。"
 	id = "smartdartgun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -47,8 +47,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/breath_machine
-	name = "Breath Machine Parts Kit"
-	desc = "All-in-one kit containing the parts to create a portable breath machine and stand, tank not included."
+	name = "呼吸机部件套件"
+	desc = "包含组装便携式呼吸机及支架所需全部部件的套件，不含气罐。"
 	id = "breath_machine"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -80,7 +80,7 @@
 */
 
 /datum/design/vox_gas_filter
-	name = "Vox Gas Filter"
+	name = "Vox 大气气体过滤器"
 	id = "vox_gas_filter"
 	build_type = PROTOLATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(

@@ -1,6 +1,6 @@
 /datum/language/buzzwords
 	name = "Chitinclick"
-	desc = "A popular non-Human language that finds extensive use by various types of anthropomorphic invertebrates. It consists of complex flutters, chittering, antenna movements, and sparse guttural syllables."
+	desc = "一种广受欢迎的非人类语言，为各类拟人化的无脊椎种族所广泛使用。它由复杂的振翅、咔哒鸣响、触角动作，以及稀疏的喉音音节组成。"
 	key = "C"
 	space_chance = 40
 	//References some replaced languages.

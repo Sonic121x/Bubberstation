@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/export_gate
-	name = "Export Gate"
+	name = "出口闸门"
 	greyscale_colors = CIRCUIT_COLOR_SUPPLY
 	build_path = /obj/machinery/export_gate
 	req_components = list(
@@ -8,15 +8,15 @@
 	)
 
 /datum/supply_pack/service/export_gate
-	name = "Bounty Cube Export Gate"
-	desc = "Automatically registers bounty cube exports, for the logistics automation nerd in you."
+	name = "悬赏方块出口闸门"
+	desc = "自动登记悬赏方块的出口，献给内心热爱物流自动化的你。"
 	cost = CARGO_CRATE_VALUE * 2
 	contains = list(/obj/item/flatpack/export_gate)
-	crate_name = "export gate crate"
+	crate_name = "出口闸门箱"
 
 /obj/machinery/export_gate
-	name = "export gate"
-	desc = "Automatically registers bounty cube exports, for the logistics automation nerd in you. Pays out to active cargo techs."
+	name = "出口闸门"
+	desc = "自动登记悬赏方块的出口，献给内心热爱物流自动化的你。会向当班的货运技术员发放报酬。"
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate_black"
 	circuit = /obj/item/circuitboard/machine/export_gate
@@ -93,15 +93,15 @@
 /obj/machinery/export_gate/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "[anchored ? "un" : ""]anchor gate"
+		context[SCREENTIP_CONTEXT_RMB] = "[anchored ? "取消固定" : "固定"]出口闸门"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "close" : "open"] maintenance panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]维护面板"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER && panel_open)
-		context[SCREENTIP_CONTEXT_LMB] = "deconstruct gate"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解出口闸门"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/export_gate/proc/on_entered(datum/source, atom/movable/package)
@@ -110,14 +110,14 @@
 
 /obj/machinery/export_gate/examine()
 	. = ..()
-	. += span_notice("The status display reads:")
-	. += span_info("Income last cycle: <b>[income_previous] cr.</b>")
-	. += span_info("Share per account last cycle: <b>[income_share] cr.</b>")
-	. += span_info("Payment mode: <b>[display_payment_mode()].</b>")
-	. += span_info("Registered crew accounts last cycle: <b>[LAZYLEN(payment_accounts)]</b>")
-	. += span_info("Total cubes registered: <b>[cubes_registered]</b>")
-	. += span_info("Total income: <b>[income_total] cr.</b>")
-	. += span_notice("The payment mode can be changed by swiping an authorized command ID card.")
+	. += span_notice("状态显示屏显示：")
+	. += span_info("上一周期收入：<b>[income_previous] 信用币</b>")
+	. += span_info("上一周期每个账户的份额：<b>[income_share] 信用币</b>")
+	. += span_info("支付模式：<b>[display_payment_mode()]</b>")
+	. += span_info("上一周期登记的船员账户数：<b>[LAZYLEN(payment_accounts)]</b>")
+	. += span_info("累计登记方块数：<b>[cubes_registered]</b>")
+	. += span_info("总收入：<b>[income_total] 信用币</b>")
+	. += span_notice("用有权限的指挥部 ID 卡刷卡即可更改支付模式。")
 
 /obj/machinery/export_gate/wrench_act(mob/living/user, obj/item/tool)
 	default_unfasten_wrench(user, tool)
@@ -171,7 +171,7 @@
 	var/obj/item/bounty_cube/cube = package
 	if(cube.bounty_handler_account)
 		set_scanline("alarm", 1 SECONDS)
-		say("Scan rejected. Error 403: Bank account for handling tip already registered!")
+		say("扫描被拒绝。错误 403：处理小费的银行账户已登记！")
 
 	else if(cube.bounty_value)
 		set_scanline("scanning", 1 SECONDS)
@@ -179,11 +179,11 @@
 
 	else if(cube.bounty_value == 0)
 		set_scanline("alarm", 1 SECONDS)
-		say("Scan rejected. Error 404: Bounty value not found!")
+		say("扫描被拒绝。错误 404：未找到悬赏价值！")
 
 	else
 		set_scanline("alarm", 1 SECONDS)
-		say("Scan rejected. Error 500: Check cube for errors and try again.")
+		say("扫描被拒绝。错误 500：请检查方块是否有问题后重试。")
 
 	use_energy(active_power_usage)
 
@@ -197,18 +197,18 @@
 	cube.AddComponent(/datum/component/pricetag, holding_account, cube.handler_tip, FALSE)
 	cube.bounty_handler_account = holding_account
 	cubes_registered += 1
-	var/message = "Cube value of [cube_value ? "[floor(cube_value * cube.handler_tip)] credits " : ""]successfully registered."
+	var/message = "方块价值[cube_value ? " [floor(cube_value * cube.handler_tip)] 信用币" : ""]已成功登记。"
 	say(message)
 	for(var/datum/bank_account/tech_account as anything in payment_accounts)
 		tech_account.bank_card_talk(message)
 
-#define MODE_CARGO_TECH "Cargo Technician"
-#define MODE_CUSTOMS_AGENT "Cargo Technician / Customs Agent"
-#define MODE_QUARTERMASTER "Cargo Technician / Customs Agent / Quartermaster"
+#define MODE_CARGO_TECH "货运技术员"
+#define MODE_CUSTOMS_AGENT "货运技术员 / 海关专员"
+#define MODE_QUARTERMASTER "货运技术员 / 海关专员 / 货运主管"
 
 /obj/machinery/export_gate/proc/set_payment_mode(mob/user, obj/item/card/id/id_card)
 	var/list/payment_modes = list(MODE_CARGO_TECH, MODE_CUSTOMS_AGENT, MODE_QUARTERMASTER)
-	var/selected_mode = tgui_input_list(user, "Set bounty payment mode:", src.name, payment_modes)
+	var/selected_mode = tgui_input_list(user, "设置悬赏支付模式：", src.name, payment_modes)
 	if(!selected_mode)
 		return
 
@@ -220,8 +220,8 @@
 		if(MODE_QUARTERMASTER)
 			payment_mode = EX_CARGO_TECHNICIAN | EX_CUSTOMS_AGENT | EX_QUARTERMASTER
 
-	log_econ("[src.name] payment mode changed by [user] ([id_card.registered_name]) to [display_payment_mode()].")
-	radio.talk_into(src, "Payment mode set to [display_payment_mode()] by authorized ID [id_card.registered_name].", RADIO_CHANNEL_SUPPLY)
+	log_econ("[src.name] 的支付模式已被 [user]（[id_card.registered_name]）更改为 [display_payment_mode()]。")
+	radio.talk_into(src, "支付模式已由授权 ID [id_card.registered_name] 设为 [display_payment_mode()]。", RADIO_CHANNEL_SUPPLY)
 
 /obj/machinery/export_gate/proc/display_payment_mode()
 	if(payment_mode & EX_QUARTERMASTER)
@@ -268,8 +268,8 @@
 	// If there's nobody to pay, fallback to paying everyone
 	if(LAZYLEN(manifest_accounts) == 0 && !retry)
 		payment_mode = EX_CARGO_TECHNICIAN | EX_CUSTOMS_AGENT | EX_QUARTERMASTER
-		log_econ("[src.name] payment mode falling back to [display_payment_mode()] due to lack of crew")
-		radio.talk_into(src, "Payment mode falling back to [display_payment_mode()] due to lack of crew.", RADIO_CHANNEL_SUPPLY)
+		log_econ("[src.name] 因缺少船员，支付模式回退为 [display_payment_mode()]")
+		radio.talk_into(src, "因缺少船员，支付模式回退为 [display_payment_mode()]。", RADIO_CHANNEL_SUPPLY)
 		refresh_payment_accounts(retry = TRUE)
 		return
 
@@ -286,20 +286,20 @@
 	if(!total_accounts)
 		return
 	if(holding_account.account_balance < 50)
-		radio.talk_into(src, "No export scan income processed this cycle.", RADIO_CHANNEL_SUPPLY)
+		radio.talk_into(src, "本周期没有处理任何出口扫描收入。", RADIO_CHANNEL_SUPPLY)
 		return
 
 	income_previous = 0
 	income_share = floor(holding_account.account_balance / total_accounts)
-	log_econ("[src.name] is dispersing [income_share * total_accounts] credits to associated accounts.")
-	radio.talk_into(src, "Dispersing bounty cube export scan income of [income_share * total_accounts] credits to associated accounts.", RADIO_CHANNEL_SUPPLY)
+	log_econ("[src.name] 正在向相关账户分发 [income_share * total_accounts] 信用币。")
+	radio.talk_into(src, "正在向相关账户分发 [income_share * total_accounts] 信用币的悬赏方块出口扫描收入。", RADIO_CHANNEL_SUPPLY)
 	for(var/datum/bank_account/payout_account as anything in payment_accounts)
-		if(payout_account.transfer_money(from = holding_account, amount = income_share, transfer_reason = "Export gate: bounty cube earnings"))
+		if(payout_account.transfer_money(from = holding_account, amount = income_share, transfer_reason = "出口闸门：悬赏方块收益"))
 			income_previous += income_share
 			income_total += income_share
-			payout_account.bank_card_talk("Export gate payment of [income_share] cr. processed, account now holds [payout_account.account_balance] cr.")
+			payout_account.bank_card_talk("出口闸门支付的 [income_share] 信用币已处理，账户现有 [payout_account.account_balance] 信用币。")
 		else
-			stack_trace("[src.name] attempted to perform a bounty cube export payment to [payout_account.account_holder], but it failed!")
+			stack_trace("[src.name] 试图向 [payout_account.account_holder] 支付悬赏方块出口款项，但失败了！")
 
 /obj/machinery/export_gate/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	update_last_used(user)
@@ -309,7 +309,7 @@
 			set_payment_mode(user, id_card)
 			return ITEM_INTERACT_SUCCESS
 		else
-			user.balloon_alert(user, "insufficient access!")
+			user.balloon_alert(user, "权限不足！")
 			return ITEM_INTERACT_BLOCKING
 
 /datum/controller/subsystem/economy/issue_paydays()
@@ -334,11 +334,11 @@
 
 /// Small explanation for engineering on how to set-up the radioactive nebula shielding
 /obj/item/paper/fluff/export_gate
-	name = "bounty cube export gate"
-	default_raw_text = {"Export Gate Setup:<br>
-		Set up the export gate on a conveyor belt, and anchor it to start scanning bounty cubes.<br>
-		The gate will automatically register bounty cube exports and pay out to active cargo techs, split equally.<br>
-		Never manually scan a bounty cube ever again! Get those belts and disposal pipes running.
+	name = "悬赏方块出口闸门"
+	default_raw_text = {"出口闸门设置：<br>
+		将出口闸门安装在传送带上，并固定它，即可开始扫描悬赏方块。<br>
+		闸门会自动登记悬赏方块的出口，并向当班的货运技术员平均发放报酬。<br>
+		再也不用手动扫描悬赏方块了！把传送带和垃圾管道都开起来吧。
 	"}
 
 /datum/area_spawn/export_gate
@@ -369,8 +369,8 @@
 	desired_atom = /obj/item/flatpack/materials_market
 
 /datum/design/board/export_gate
-	name = "Export Gate Board"
-	desc = "The circuit board for an export gate."
+	name = "出口闸门电路板"
+	desc = "出口闸门的电路板。"
 	id = "export_gate"
 	build_path = /obj/item/circuitboard/machine/export_gate
 	category = list(

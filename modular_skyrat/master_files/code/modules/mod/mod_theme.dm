@@ -88,9 +88,9 @@
 	wound = 5
 
 /datum/mod_theme/asset_protection
-	name = "Asset Protection"
-	desc = "A weaker version of the Apocryphal Modsuit, chiefly worn by Nanotrasen Asset Protection."
-	extended_desc = "A weaker version of the Apocryphal Modsuit meant for the Nanotrasen Asset Protection Division. This suit boasts higher speed and advanced actuators that make moving feel almost weightless, with advanced features for the savvy bodyguard."
+	name = "资产保护"
+	desc = "伪典型 MOD 外骨骼的弱化版本，主要由纳米传讯资产保护部的人员穿着。"
+	extended_desc = "伪典型 MOD 外骨骼的弱化版本，专为纳米传讯资产保护部打造。这套外骨骼拥有更高的移动速度与先进的促动器，行动几乎毫无重量感，并为精明的保镖配备了进阶功能。"
 	default_skin = "asset_protection"
 	armor_type = /datum/armor/mod_theme_ap
 	resistance_flags = FIRE_PROOF|ACID_PROOF

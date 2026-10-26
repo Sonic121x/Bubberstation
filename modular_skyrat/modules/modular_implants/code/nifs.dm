@@ -13,8 +13,8 @@
 
 // This is the original NIF that other NIFs are based on.
 /obj/item/organ/cyberimp/brain/nif
-	name = "Nanite Implant Framework"
-	desc = "A brain implant that infuses the user with nanites."
+	name = "纳米植入框架"
+	desc = "一种向使用者注入纳米机器人的大脑植入体。"
 	icon = 'modular_skyrat/modules/modular_implants/icons/obj/nifs.dmi'
 	icon_state = "base_nif"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -95,7 +95,7 @@
 	///What programs do we want to carry between rounds?
 	var/list/persistent_nifsofts = list()
 	///This shows up in the NIF settings screen as a way to ICly display lore.
-	var/manufacturer_notes = "There is no data currently avalible for this product."
+	var/manufacturer_notes = "本产品目前没有可用的数据。"
 
 	//Appearance Variables
 	///This is the sound that plays when doing most things!
@@ -130,7 +130,7 @@
 	. = ..()
 
 	if(linked_mob && stored_ckey != insertee.ckey && theft_protection)
-		insertee.audible_message(span_warning("[src] lets out a negative buzz before forcefully removing itself from [insertee]'s brain."))
+		insertee.audible_message(span_warning("[src] 发出一声表示拒绝的蜂鸣，随后强行从 [insertee] 的大脑中脱出。"))
 		playsound(insertee, 'sound/machines/buzz/buzz-sigh.ogg', 30, TRUE)
 		Remove(insertee)
 		forceMove(get_turf(insertee))
@@ -143,20 +143,20 @@
 	START_PROCESSING(SSobj, src)
 
 	if(!is_calibrated)
-		send_message("The calibration process is starting.")
+		send_message("校准程序即将开始。")
 		calibrating = TRUE
 
 	linked_mob.AddComponent(/datum/component/nif_examine)
 	RegisterSignal(linked_mob, COMSIG_LIVING_DEATH, PROC_REF(damage_on_death))
 
 	if(preinstalled_nifsofts || persistent_nifsofts)
-		send_message("Loading preinstalled and stored NIFSofts, please wait...")
+		send_message("正在载入预装与已保存的 NIFSoft，请稍候……")
 		addtimer(CALLBACK(src, PROC_REF(install_preinstalled_nifsofts)), 3 SECONDS)
 
 /obj/item/organ/cyberimp/brain/nif/on_mob_remove(mob/living/carbon/organ_owner, special = FALSE, movement_flags)
 	. = ..()
 
-	organ_owner.log_message("'s [src] was removed from [organ_owner]", LOG_GAME)
+	organ_owner.log_message("的 [src] 被从 [organ_owner] 体内移除了", LOG_GAME)
 	STOP_PROCESSING(SSobj, src)
 
 	var/found_component = organ_owner.GetComponent(/datum/component/nif_examine)
@@ -266,11 +266,11 @@
 	if(!blood_drain)
 		power_usage += (blood_drain_rate * blood_conversion_rate)
 
-		balloon_alert(linked_mob, "blood draining disabled")
+		balloon_alert(linked_mob, "已关闭血液汲取")
 		return TRUE
 
 	power_usage -= (blood_drain_rate * blood_conversion_rate)
-	balloon_alert(linked_mob, "blood draining enabled")
+	balloon_alert(linked_mob, "已开启血液汲取")
 	return TRUE
 
 ///Checks if the NIF is able to draw blood as a power source?
@@ -298,14 +298,14 @@
 			var/random_ailment = rand(1, side_effect_risk)
 			switch(random_ailment)
 				if(1)
-					to_chat(linked_mob, span_warning("You feel sick to your stomach!"))
+					to_chat(linked_mob, span_warning("你感到胃里一阵翻涌！"))
 					linked_mob.adjust_disgust(25)
 				if(2)
-					to_chat(linked_mob, span_warning("You feel a wave of fatigue roll over you!"))
+					to_chat(linked_mob, span_warning("你感到一阵疲惫袭来！"))
 					linked_mob.adjust_stamina_loss(50)
 
 		if(NIF_CALIBRATION_STAGE_FINISHED to INFINITY)
-			send_message("The calibration process is complete.")
+			send_message("校准程序已完成。")
 
 			calibrating = FALSE
 			is_calibrated = TRUE
@@ -317,28 +317,28 @@
 ///Installs the loaded_nifsoft to the parent NIF.
 /obj/item/organ/cyberimp/brain/nif/proc/install_nifsoft(datum/nifsoft/loaded_nifsoft, skip_calibration = FALSE)
 	if(broken)
-		send_message("The target device is not responding.", alert = TRUE)
+		send_message("目标设备没有响应。", alert = TRUE)
 		return FALSE
 
 	if(calibrating && !skip_calibration)
-		send_message("The NIF is still calibrating, please wait!", alert = TRUE)
+		send_message("NIF 仍在校准中，请稍候！", alert = TRUE)
 		return FALSE
 
 	if(length(loaded_nifsofts) >= max_nifsofts)
-		send_message("You cannot install any additional NIFSofts, please uninstall one to make room!", alert = TRUE)
+		send_message("你无法再安装更多 NIFSoft，请卸载一个以腾出空间！", alert = TRUE)
 		return FALSE
 
 	if(!is_type_in_list(src, loaded_nifsoft.compatible_nifs))
-		send_message("[loaded_nifsoft] is incompatible with your NIF!", TRUE)
+		send_message("[loaded_nifsoft] 与你的 NIF 不兼容！", TRUE)
 		return FALSE
 
 	for(var/datum/nifsoft/current_nifsoft as anything in loaded_nifsofts)
 		if(loaded_nifsoft.single_install && (loaded_nifsoft.type == current_nifsoft.type))
-			send_message("Multiple of [loaded_nifsoft] cannot be installed.", TRUE)
+			send_message("无法安装多个 [loaded_nifsoft]。", TRUE)
 			return FALSE
 
 		if(is_type_in_list(current_nifsoft, loaded_nifsoft.mutually_exclusive_programs))
-			send_message("[current_nifsoft] is preventing [loaded_nifsoft] from being installed.", TRUE)
+			send_message("[current_nifsoft] 正在阻止安装 [loaded_nifsoft]。", TRUE)
 			return FALSE
 
 	loaded_nifsofts += loaded_nifsoft
@@ -348,7 +348,7 @@
 
 	rewards_points = min(rewards_points, MAX_NIF_REWARDS_POINTS)
 
-	send_message("[loaded_nifsoft] has been added.")
+	send_message("[loaded_nifsoft] 已添加。")
 	update_static_data_for_all_viewers()
 	return TRUE
 
@@ -358,7 +358,7 @@
 		return FALSE
 
 	if(!silent)
-		send_message("[removed_nifsoft.name] has been removed", alert = TRUE)
+		send_message("[removed_nifsoft.name] 已被移除", alert = TRUE)
 
 	qdel(removed_nifsoft)
 	update_static_data_for_all_viewers()
@@ -387,11 +387,11 @@
 		nif_icon = tag
 
 	if(alert)
-		to_chat(linked_mob, span_warning("[nif_icon] <b>NIF Alert</b>: [message_to_send]"))
+		to_chat(linked_mob, span_warning("[nif_icon] <b>NIF 警报</b>：[message_to_send]"))
 		linked_mob.playsound_local(linked_mob, bad_sound, 60, FALSE)
 		return
 
-	to_chat(linked_mob, span_cyan("[nif_icon] <b>NIF Message</b>: [message_to_send]"))
+	to_chat(linked_mob, span_cyan("[nif_icon] <b>NIF 消息</b>：[message_to_send]"))
 	linked_mob.playsound_local(linked_mob, good_sound, 60, FALSE)
 
 
@@ -401,7 +401,7 @@
 		return FALSE
 
 	broken = FALSE
-	send_message("Your NIF is now in working condition!")
+	send_message("你的 NIF 现在已恢复正常运作！")
 	return TRUE
 
 ///Re-enables the durability_loss_vulnerable variable, allowing the parent NIF to take durability damage again.
@@ -433,7 +433,7 @@
 	for(var/datum/nifsoft/installed_nifsoft as anything in loaded_nifsofts)
 		installed_nifsoft.on_emp(severity)
 
-	send_message("<b>ELECTROMAGNETIC INTERFERENCE DETECTED.</b>", TRUE)
+	send_message("<b>检测到电磁干扰。</b>", TRUE)
 
 ///Applies damage to the parent NIF whenever the user dies.
 /obj/item/organ/cyberimp/brain/nif/proc/damage_on_death()
@@ -457,7 +457,7 @@
 
 /datum/component/nif_examine
 	///What text is shown when examining someone with NIF Examine text?
-	var/nif_examine_text = "There's a certain spark to their eyes."
+	var/nif_examine_text = "他们的眼神中透着一丝异样的神采。"
 
 /datum/component/nif_examine/New()
 	. = ..()
@@ -506,8 +506,8 @@
 	uses = 1
 
 /obj/item/storage/box/nif_ghost_box
-	name = "\improper NIF Starter Kit"
-	desc = "Contains a calibration-free NIF along with a variety of NIFSofts."
+	name = "\improper NIF 入门套件"
+	desc = "内含一枚免校准 NIF 以及多种 NIFSoft。"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/nif_ghost_box/PopulateContents()

@@ -2,12 +2,12 @@
 	return (I.type in products)
 
 /obj/machinery/vending/wardrobe/syndie_wardrobe
-	name = "\improper SynDrobe"
-	desc = "A vending machine for our boys in red, now in brand new crimson!"
+	name = "\improper 辛迪加衣柜"
+	desc = "为我们的红衣弟兄们准备的自动售货机，如今换上了崭新的绯红涂装！"
 	icon = 'modular_skyrat/modules/mapping/icons/obj/vending.dmi'
 	icon_state = "syndrobe"
-	product_ads = "Put a Donk on it!;Aim, Style, Shoot!;Brigged for wearing the best!"
-	vend_reply = "Thank you for using the SynDrobe!"
+	product_ads = "抹点咚克上去！;瞄准、有型、开火！;因为穿得太帅被关禁闭！"
+	vend_reply = "感谢使用辛迪加衣柜！"
 	light_mask = ""
 	products = list(
 		/obj/item/clothing/under/syndicate/skyrat/tactical = 3,
@@ -52,12 +52,12 @@
 	)
 
 /obj/item/vending_refill/wardrobe/syndie_wardrobe
-	machine_name = "SynDrobe"
+	machine_name = "辛迪加衣柜"
 
 /// This is essentially just a copy paste of the holy beacon, but with all options unlocked regardless of the global religion
 /obj/item/choice_beacon/unholy
-	name = "armaments beacon"
-	desc = "Contains a set of armaments for those who would unlock their power."
+	name = "军械信标"
+	desc = "内含一套军械，供那些愿意解放自身力量的人使用。"
 
 /obj/item/choice_beacon/unholy/open_options_menu(mob/living/user)
 	var/list/armament_names_to_images = list()

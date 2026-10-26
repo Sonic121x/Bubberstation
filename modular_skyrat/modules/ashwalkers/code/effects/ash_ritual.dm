@@ -27,7 +27,7 @@
 		return
 	in_use = TRUE
 
-	rune.balloon_alert_to_viewers("ritual has begun...")
+	rune.balloon_alert_to_viewers("仪式已经开始……")
 	new ritual_effect(rune.loc)
 
 	// it is entirely possible to have your own effects here... this is just a suggestion
@@ -62,10 +62,10 @@
 				pile.use(1, transfer = FALSE)
 			else
 				qdel(atom_check)
-			checked_rune.balloon_alert_to_viewers("[checked_component] component has been consumed...")
+			checked_rune.balloon_alert_to_viewers("[checked_component] 方位的材料已被消耗……")
 
 		else
-			checked_rune.balloon_alert_to_viewers("[checked_component] component has been checked...")
+			checked_rune.balloon_alert_to_viewers("[checked_component] 方位的材料已校验完毕……")
 
 		new ritual_effect(checked_rune.loc)
 		sleep(ritual_time)
@@ -74,15 +74,15 @@
 
 /datum/ash_ritual/proc/ritual_fail(obj/effect/ash_rune/failed_rune)
 	new ritual_effect(failed_rune.loc)
-	failed_rune.balloon_alert_to_viewers("ritual has failed...")
+	failed_rune.balloon_alert_to_viewers("仪式失败了……")
 	failed_rune.current_ritual = null
 	in_use = FALSE
 	return
 
 /datum/ash_ritual/proc/ritual_success(obj/effect/ash_rune/success_rune)
 	new ritual_effect(success_rune.loc)
-	success_rune.balloon_alert_to_viewers("ritual has been successful...")
-	log_game("[name] ritual has been successfully activated.")
+	success_rune.balloon_alert_to_viewers("仪式已成功……")
+	log_game("仪式 [name] 已成功激活。")
 
 	var/turf/rune_turf = get_turf(success_rune)
 	if(length(ritual_success_items))

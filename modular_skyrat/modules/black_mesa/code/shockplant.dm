@@ -1,7 +1,7 @@
 
 /obj/structure/shockplant
-	name = "electrical plant"
-	desc = "It glows with a warm buzz."
+	name = "带电植物"
+	desc = "它散发着温暖的嗡鸣光晕。"
 	icon = 'modular_skyrat/modules/black_mesa/icons/plants.dmi'
 	icon_state = "electric_plant"
 	density = TRUE

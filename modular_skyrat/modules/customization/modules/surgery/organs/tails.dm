@@ -63,7 +63,7 @@
 	mutantpart_info = list(MUTANT_INDEX_NAME = "Smooth", MUTANT_INDEX_COLOR_LIST = list("#DDFFDD"))
 
 /obj/item/organ/tail/fluffy
-	name = "fluffy tail"
+	name = "蓬松尾巴"
 
 /obj/item/organ/tail/fluffy/no_wag
 
@@ -95,7 +95,7 @@
 /obj/item/organ/tail/fake_fish/Initialize(mapload)
 	. = ..()
 	var/time_to_fillet = fillet_amount * 0.5 SECONDS
-	AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, fillet_amount, time_to_fillet, screentip_verb = "Cut")
+	AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, fillet_amount, time_to_fillet, screentip_verb = "切割")
 
 /obj/item/organ/tail/fake_fish/on_mob_insert(mob/living/carbon/owner)
 	. = ..()

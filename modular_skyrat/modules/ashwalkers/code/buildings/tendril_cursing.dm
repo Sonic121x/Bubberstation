@@ -10,11 +10,11 @@
 			src.add_atom_colour("#41007e", TEMPORARY_COLOUR_PRIORITY)
 		else
 			src.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#41007e")
-		balloon_alert_to_viewers("a curse has been [cursed ? "placed..." : "lifted..."]")
+		balloon_alert_to_viewers("诅咒已被[cursed ? "施加……" : "解除……"]")
 		if(isliving(user))
 			var/mob/living/living_user = user
 			living_user.adjust_fire_loss(100)
-		to_chat(user, span_warning("The knife sears your hand!"))
+		to_chat(user, span_warning("匕首灼烧着你的手！"))
 		return
 	return ..()
 
@@ -27,7 +27,7 @@
 		for(var/mob/select_mob in GLOB.player_list)
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
-			to_chat(select_mob, span_boldwarning("A cursed tendril has been broken! The target has been marked until they flee the lands!"))
+			to_chat(select_mob, span_boldwarning("一根受诅咒的触须已被摧毁！目标已被标记，直到其逃离这片土地！"))
 	. = ..()
 
 /datum/component/ash_cursed
@@ -55,7 +55,7 @@
 	for(var/mob/select_mob in GLOB.player_list)
 		if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 			continue
-		to_chat(select_mob, span_boldwarning("A target has died, the curse has been lifted!"))
+		to_chat(select_mob, span_boldwarning("目标已死亡，诅咒已解除！"))
 	Destroy()
 
 /datum/component/ash_cursed/proc/do_move()
@@ -66,7 +66,7 @@
 		for(var/mob/select_mob in GLOB.player_list)
 			if(!is_species(select_mob, /datum/species/lizard/ashwalker))
 				continue
-			to_chat(select_mob, span_boldwarning("A target has fled from the land, breaking the curse!"))
+			to_chat(select_mob, span_boldwarning("目标已逃离这片土地，诅咒随之破除！"))
 		return
 	if(prob(75))
 		return

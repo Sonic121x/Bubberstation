@@ -1,6 +1,6 @@
 /obj/item/organ/fluff
-	name = "fluff"
-	desc = "Real fluffy."
+	name = "绒毛"
+	desc = "真够毛茸茸的。"
 	icon_state = "random_fly_1"
 
 	mutantpart_key = "fluff"

@@ -1,46 +1,46 @@
 /obj/item/clothing/shoes/wraps
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	name = "gilded leg wraps"
-	desc = "Ankle coverings. These ones have a golden design."
+	name = "镀金绑腿"
+	desc = "脚踝护具。这一副带有金色花纹。"
 	icon_state = "gildedcuffs"
 
 /obj/item/clothing/shoes/wraps/silver
-	name = "silver leg wraps"
-	desc = "Ankle coverings. Not made of real silver."
+	name = "银色绑腿"
+	desc = "脚踝护具。并非真正的银制成。"
 	icon_state = "silvergildedcuffs"
 
 /obj/item/clothing/shoes/wraps/red
-	name = "red leg wraps"
-	desc = "Ankle coverings. Show off your style with these shiny red ones!"
+	name = "红色绑腿"
+	desc = "脚踝护具。用这副闪亮的红色绑腿展现你的风格！"
 	icon_state = "redcuffs"
 
 /obj/item/clothing/shoes/wraps/blue
-	name = "blue leg wraps"
-	desc = "Ankle coverings. Hang ten, brother."
+	name = "蓝色绑腿"
+	desc = "脚踝护具。兄弟，稳住。"
 	icon_state = "bluecuffs"
 
 /obj/item/clothing/shoes/wraps/clear
-	name = "clear leg wraps"
-	desc = "A simple, inconspicuous replacement for shoes."
+	name = "透明绑腿"
+	desc = "一种简单低调的鞋子替代品。"
 	icon_state = "clearcuffs"
 
 /obj/item/clothing/shoes/cowboyboots
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	name = "cowboy boots"
-	desc = "A standard pair of brown cowboy boots."
+	name = "牛仔靴"
+	desc = "一双标准的棕色牛仔靴。"
 	icon_state = "cowboyboots"
 
 /obj/item/clothing/shoes/cowboyboots/black
-	name = "black cowboy boots"
-	desc = "A pair of black cowboy boots, pretty easy to scuff up."
+	name = "黑色牛仔靴"
+	desc = "一双黑色牛仔靴，很容易刮花。"
 	icon_state = "cowboyboots_black"
 
 /obj/item/clothing/shoes/high_heels
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	name = "high heels"
-	desc = "A fancy pair of high heels. Won't compensate for your below average height that much."
+	name = "高跟鞋"
+	desc = "一双精致的高跟鞋。并不能弥补你低于平均的身高。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/high_heels"
 	post_init_icon_state = "heels"
@@ -55,8 +55,8 @@
 	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/effects/footstep/highheel1.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel2.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel3.ogg' = 1, 'modular_zubbers/sound/effects/footstep/highheel4.ogg' = 1), 70)
 
 /obj/item/clothing/shoes/fancy_heels
-	name = "fancy heels"
-	desc = "A pair of fancy high heels that are much smaller on your feet."
+	name = "精致高跟鞋"
+	desc = "一双精致的高跟鞋，穿在你脚上要小得多。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/fancy_heels"
 	post_init_icon_state = "fancyheels"
@@ -68,8 +68,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/discoshoes
-	name = "green snakeskin shoes"
-	desc = "They may have lost some of their lustre over the years, but these green crocodile leather shoes fit you perfectly."
+	name = "绿色蛇皮皮鞋"
+	desc = "这些绿色鳄鱼皮鞋也许随着岁月流逝失去了一些光泽，但穿在你脚上非常合脚。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "lizardskin_shoes"
@@ -77,14 +77,14 @@
 /obj/item/clothing/shoes/kimshoes
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
-	name = "aerostatic boots"
-	desc = "A brown pair of boots, prim and proper, ready to set off and get a body out of a tree."
+	name = "浮空靴"
+	desc = "一双棕色靴子，端正得体，随时可以出发去把尸体从树上弄下来。"
 	icon_state = "aerostatic_boots"
 
 
 /obj/item/clothing/shoes/jungleboots
-	name = "jungle boots"
-	desc = "Take me to your paradise, I want to see the Jungle. A brown pair of boots."
+	name = "丛林靴"
+	desc = "带我去你的天堂，我想看看丛林。一双棕色的靴子。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "jungle"
@@ -99,15 +99,15 @@
 	create_storage(storage_type = /datum/storage/pockets/shoes)
 
 /obj/item/clothing/shoes/jackboots/black
-	name = "dark jackboots"
-	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. These are fully black."
+	name = "深色长筒靴"
+	desc = "纳米传讯配发的安保战斗靴，适用于战斗场景或战斗状况。全是战斗，时刻不停。这双是全黑的。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "blackjack"
 
 /obj/item/clothing/shoes/wraps/cloth
-	name = "cloth foot wraps"
-	desc = "Boxer tape or bandages wrapped like a mummy, all left up to the choice of the wearer."
+	name = "布质裹脚"
+	desc = "像木乃伊一样缠起来的拳击胶带或绷带，如何缠绕全由穿戴者决定。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/wraps/cloth"
 	post_init_icon_state = "clothwrap"
@@ -119,8 +119,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/wraps/colourable
-	name = "colourable foot wraps"
-	desc = "Ankle coverings. These ones have a customisable colour design."
+	name = "可染色裹脚"
+	desc = "脚踝护具。这一副可以自定义颜色图案。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/wraps/colourable"
 	post_init_icon_state = "legwrap"
@@ -132,29 +132,29 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/sports
-	name = "sport shoes"
-	desc = "Shoes for the sporty individual. The giants of Charlton play host to the titans of Ipswich - making them both seem normal sized."
+	name = "运动鞋"
+	desc = "为爱运动的人准备的鞋。查尔顿的巨人们迎战伊普斯维奇的泰坦们——这让双方看起来都像正常体型了。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "sportshoe"
 
 /obj/item/clothing/shoes/jackboots/knee
-	name = "knee boots"
-	desc = "Black leather boots that go up to the knee."
+	name = "及膝靴"
+	desc = "一双及膝的黑色皮靴。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "kneeboots"
 
 /obj/item/clothing/shoes/jackboots/timbs
-	name = "fashionable boots"
-	desc = "Fresh from Luna, deadass good for rappers."
+	name = "时尚靴子"
+	desc = "来自月球的新款，说唱歌手穿绝对带劲。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "timbs"
 
 /obj/item/clothing/shoes/winterboots/christmas
-	name = "red christmas boots"
-	desc = "A pair of fluffy red christmas boots!"
+	name = "红色圣诞靴"
+	desc = "一双毛茸茸的红色圣诞靴！"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/winterboots/christmas"
 	post_init_icon_state = "christmas_boots"
@@ -166,14 +166,14 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/winterboots/christmas/green
-	name = "green christmas boots"
-	desc = "A pair of fluffy green christmas boots!"
+	name = "绿色圣诞靴"
+	desc = "一双毛茸茸的绿色圣诞靴！"
 	icon_state = "/obj/item/clothing/shoes/winterboots/christmas/green"
 	greyscale_colors = "#1a991a#c4c2c2"
 
 /obj/item/clothing/shoes/clown_shoes/pink
-	name = "pink clown shoes"
-	desc = "A particularly pink pair of punny shoes."
+	name = "粉色小丑鞋"
+	desc = "一双格外粉嫩的滑稽鞋。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "pink_clown_shoes"
@@ -183,8 +183,8 @@
 	fastening_type = SHOES_LACED
 
 /obj/item/clothing/shoes/colorable_laceups
-	name = "laceup shoes"
-	desc = "These don't seem to come pre-polished, how saddening."
+	name = "系带鞋"
+	desc = "这些鞋似乎出厂时没有抛光，真令人伤心。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/colorable_laceups"
 	post_init_icon_state = "laceups"
@@ -199,8 +199,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/shoes/colorable_sandals
-	name = "sandals"
-	desc = "Rumor has it that wearing these with socks puts you on a no entry list in several sectors."
+	name = "凉鞋"
+	desc = "有传言说，穿这双鞋配袜子会让你在好几个星区被列入禁止入内名单。"
 	icon = 'icons/map_icons/clothing/shoes.dmi'
 	icon_state = "/obj/item/clothing/shoes/colorable_sandals"
 	post_init_icon_state = "sandals"

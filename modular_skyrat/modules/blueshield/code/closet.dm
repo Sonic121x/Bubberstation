@@ -1,6 +1,6 @@
 /obj/item/storage/bag/garment/blueshield
-	name = "blueshield's garment bag"
-	desc = "A bag for storing extra clothes and shoes. This one belongs to the blueshield."
+	name = "蓝盾的衣物袋"
+	desc = "用于存放备用衣物和鞋子的袋子。这个是蓝盾的。"
 
 /obj/item/storage/bag/garment/blueshield/PopulateContents()
 	new /obj/item/clothing/suit/hooded/wintercoat/skyrat/blueshield(src)
@@ -15,8 +15,8 @@
 	new /obj/item/clothing/neck/mantle/bsmantle(src)
 
 /obj/item/storage/box/glasseskit
-	name = "sunglasses kit"
-	desc = "Contain different type of sunglasses for different blueshield needs"
+	name = "墨镜套装"
+	desc = "内含不同类型的墨镜，以应对蓝盾的各种需求。"
 
 /obj/item/storage/box/glasseskit/PopulateContents() //paradise stuff
 	new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src)
@@ -26,7 +26,7 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses/guard/customs(src)
 
 /obj/structure/closet/secure_closet/blueshield
-	name = "blueshield's locker"
+	name = "蓝盾的储物柜"
 	icon_state = "bs"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	req_access = list(ACCESS_CAPTAIN)

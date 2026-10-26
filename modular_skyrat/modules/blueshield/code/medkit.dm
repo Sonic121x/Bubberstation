@@ -1,6 +1,6 @@
 /obj/item/storage/medkit/tactical/blueshield
-	name = "blueshield combat medical kit"
-	desc = "Blue boy to the rescue!"
+	name = "蓝盾战斗医疗包"
+	desc = "蓝衣小子来救场了！"
 	color = "#AAAAFF"
 
 /obj/item/storage/medkit/tactical/blueshield/PopulateContents()

@@ -39,13 +39,13 @@
 	cost = 1 // while a sidegrade, there are genuine applications for having a vanilla brain
 
 /datum/augment_item/organ/brain/cortical
-	name = "Cortically-Augmented Brain"
+	name = "皮层强化脑"
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/brain/cybernetic/cortical
 	cost = 1 // technically a downgrade in most applications, but has uses.
 
 /datum/augment_item/organ/brain/surplus
-	name = "Surplus Augmented Brain"
+	name = "廉价义体强化脑"
 	slot = AUGMENT_SLOT_BRAIN
 	path = /obj/item/organ/brain/cybernetic/surplus
 	cost = -1
@@ -55,7 +55,7 @@
 	slot = AUGMENT_SLOT_HEART
 
 /datum/augment_item/organ/heart/cybernetic
-	name = "Basic cybernetic heart"
+	name = "基础义体心脏"
 	path = /obj/item/organ/heart/cybernetic
 
 //LUNGS
@@ -63,56 +63,56 @@
 	slot = AUGMENT_SLOT_LUNGS
 
 /datum/augment_item/organ/lungs/normal
-	name = "Normal Lungs"
+	name = "普通肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs
 	cost = 1 // if you dont have normal lungs, still an investment to switch it out
 
 /datum/augment_item/organ/lungs/hot
-	name = "Heat-Adapted Lungs"
+	name = "耐热适应肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/hot
 	cost = 1
 
 /datum/augment_item/organ/lungs/cold
-	name = "Cold-Adapted Lungs"
+	name = "耐寒适应肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/cold
 	cost = 1
 /datum/augment_item/organ/lungs/toxin
-	name = "Toxins-Adapted Lungs"
+	name = "耐毒素适应肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/toxin
 	cost = 1
 /datum/augment_item/organ/lungs/oxy
-	name = "Low Oxygen-Adapted Lungs"
+	name = "低氧适应肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/oxy
 	cost = 1
 /datum/augment_item/organ/lungs/cybernetic
-	name = "Basic cybernetic lungs"
+	name = "基础义体肺"
 	path = /obj/item/organ/lungs/cybernetic
 
 /datum/augment_item/organ/lungs/coldcyber
-	name = "Cybernetic Cold-Engineered Lungs"
+	name = "义体耐寒改造肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/cold/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/hotcyber
-	name = "Cybernetic Heat-Engineered Lungs"
+	name = "义体耐热改造肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/adaptive/hot/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/toxincyber
-	name = "Cybernetic Toxin-Engineered Lungs"
+	name = "义体耐毒素改造肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/toxin/cybernetic
 	cost = 1
 
 /datum/augment_item/organ/lungs/oxycyber
-	name = "Cybernetic Low-Oxygen Engineered Lungs"
+	name = "义体低氧改造肺"
 	slot = AUGMENT_SLOT_LUNGS
 	path = /obj/item/organ/lungs/oxy/cybernetic
 	cost = 1
@@ -121,7 +121,7 @@
 	slot = AUGMENT_SLOT_LIVER
 
 /datum/augment_item/organ/liver/cybernetic
-	name = "Basic cybernetic liver"
+	name = "基础义体肝脏"
 	path = /obj/item/organ/liver/cybernetic
 
 //STOMACHES
@@ -129,7 +129,7 @@
 	slot = AUGMENT_SLOT_STOMACH
 
 /datum/augment_item/organ/stomach/cybernetic
-	name = "Basic cybernetic stomach"
+	name = "基础义体胃"
 	path = /obj/item/organ/stomach/cybernetic
 
 //EYES
@@ -137,35 +137,35 @@
 	slot = AUGMENT_SLOT_EYES
 
 /datum/augment_item/organ/eyes/cybernetic
-	name = "Cybernetic eyes"
+	name = "义体眼"
 	path = /obj/item/organ/eyes/robotic
 
 /datum/augment_item/organ/eyes/cyberneticbasic
-	name = "Basic cybernetic eyes"
+	name = "基础义体眼"
 	path = /obj/item/organ/eyes/robotic/basic
 	cost = -1 // Sensitive to flashes like moth eyes. Less health?.
 
 /datum/augment_item/organ/eyes/moth
-	name = "Moth eyes"
+	name = "蛾眼"
 	path = /obj/item/organ/eyes/moth
 
 /datum/augment_item/organ/eyes/cybernetic/moth
-	name = "Cybernetic moth eyes"
+	name = "机械蛾眼"
 	path = /obj/item/organ/eyes/robotic/moth
 
 /datum/augment_item/organ/eyes/cybernetic/mothbasic
-	name = "Basic cybernetic moth eyes"
+	name = "基础机械蛾眼"
 	path = /obj/item/organ/eyes/robotic/basic/moth
 	cost = -1 // Less health than standard.
 
 /datum/augment_item/organ/eyes/highlumi
-	name = "High-luminosity eyes"
+	name = "高亮度眼"
 	path = /obj/item/organ/eyes/robotic/glow
 	allowed_biotypes = MOB_ORGANIC|MOB_ROBOTIC
 	cost = 1
 
 /datum/augment_item/organ/eyes/highlumi/moth
-	name = "High Luminosity Moth Eyes"
+	name = "高亮度蛾眼"
 	path = /obj/item/organ/eyes/robotic/glow/moth
 	allowed_biotypes = MOB_ORGANIC|MOB_ROBOTIC
 	cost = 1
@@ -175,35 +175,35 @@
 	slot = AUGMENT_SLOT_TONGUE
 
 /datum/augment_item/organ/tongue/normal
-	name = "Organic tongue"
+	name = "有机舌头"
 	path = /obj/item/organ/tongue/human
 
 /datum/augment_item/organ/tongue/robo
-	name = "Robotic voicebox"
+	name = "机械发声盒"
 	path = /obj/item/organ/tongue/robot
 
 /datum/augment_item/organ/tongue/robo/forked
-	name = "Robotic lizard voicebox"
+	name = "机械蜥蜴发声盒"
 	path = /obj/item/organ/tongue/lizard/robot
 
 /datum/augment_item/organ/tongue/cybernetic
-	name = "Cybernetic tongue"
+	name = "义体舌"
 	path = /obj/item/organ/tongue/cybernetic
 
 /datum/augment_item/organ/tongue/cybernetic/forked
-	name = "Forked cybernetic tongue"
+	name = "分叉义体舌"
 	path = /obj/item/organ/tongue/lizard/cybernetic
 
 /datum/augment_item/organ/tongue/forked
-	name = "Forked tongue"
+	name = "分叉舌"
 	path = /obj/item/organ/tongue/lizard
 
 /datum/augment_item/organ/tongue/akula
-	name = "Aquatic tongue"
+	name = "水生舌"
 	path = /obj/item/organ/tongue/akula
 
 /datum/augment_item/organ/tongue/moth
-	name = "Fluttery tongue"
+	name = "颤动舌"
 	path = /obj/item/organ/tongue/moth
 
 /datum/augment_item/organ/tongue
@@ -213,6 +213,6 @@
 	slot = AUGMENT_SLOT_EARS
 
 /datum/augment_item/organ/ears/cybernetic
-	name = "Basic cybernetic ears"
+	name = "基础义体耳"
 	path = /obj/item/organ/ears/cybernetic
 

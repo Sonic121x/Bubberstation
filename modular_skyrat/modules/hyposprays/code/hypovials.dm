@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/cup/vial
-	name = "broken hypovial"
-	desc = "You probably shouldn't be seeing this. Shout at a coder."
+	name = "破损的无针药瓶"
+	desc = "你大概不该看到这东西。去吼程序员吧。"
 	icon = 'modular_skyrat/modules/hyposprays/icons/vials.dmi'
 	icon_state = "hypovial"
 	greyscale_config = /datum/greyscale_config/hypovial
@@ -22,39 +22,39 @@
 	abstract_type = /datum/atom_skin/hypovial
 
 /datum/atom_skin/hypovial/sterile
-	preview_name = "Sterile"
+	preview_name = "无菌"
 	new_icon_state = "hypovial"
 
 /datum/atom_skin/hypovial/generic
-	preview_name = "Generic"
+	preview_name = "通用"
 	new_icon_state = "hypovial-generic"
 
 /datum/atom_skin/hypovial/brute
-	preview_name = "Brute"
+	preview_name = "钝伤"
 	new_icon_state = "hypovial-brute"
 
 /datum/atom_skin/hypovial/burn
-	preview_name = "Burn"
+	preview_name = "烧伤"
 	new_icon_state = "hypovial-burn"
 
 /datum/atom_skin/hypovial/toxin
-	preview_name = "Toxin"
+	preview_name = "毒素"
 	new_icon_state = "hypovial-tox"
 
 /datum/atom_skin/hypovial/oxyloss
-	preview_name = "Oxyloss"
+	preview_name = "缺氧"
 	new_icon_state = "hypovial-oxy"
 
 /datum/atom_skin/hypovial/crit
-	preview_name = "Crit"
+	preview_name = "危重"
 	new_icon_state = "hypovial-crit"
 
 /datum/atom_skin/hypovial/buff
-	preview_name = "Buff"
+	preview_name = "增益"
 	new_icon_state = "hypovial-buff"
 
 /datum/atom_skin/hypovial/custom
-	preview_name = "Custom"
+	preview_name = "自定义"
 	new_icon_state = "hypovial-custom"
 
 	/// The original icon file where our overlays reside.
@@ -70,7 +70,7 @@
 
 /obj/item/reagent_containers/cup/vial/examine(mob/user)
 	. = ..()
-	. += span_notice("Ctrl-Shift-Click to reskin or set a custom color.")
+	. += span_notice("按住 Ctrl-Shift 点击可更换外观或设置自定义颜色。")
 
 /obj/item/reagent_containers/cup/vial/click_ctrl_shift(mob/user, obj/item/held_item)
 	var/datum/component/reskinable_item/reskin_component = GetComponent(/datum/component/reskinable_item)
@@ -118,8 +118,8 @@
 
 //Fit in all hypos
 /obj/item/reagent_containers/cup/vial/small
-	name = "hypovial"
-	desc = "A small, 50u capacity vial compatible with most hyposprays."
+	name = "无针药瓶"
+	desc = "一个小型药瓶，容量 50 单位，可兼容大多数无针注射器。"
 	volume = 50
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
 
@@ -144,10 +144,10 @@
 
 //Fit in CMO hypo only
 /obj/item/reagent_containers/cup/vial/large
-	name = "large hypovial"
+	name = "大型无针药瓶"
 	icon_state = "hypoviallarge"
 	fill_icon_state = "hypoviallarge_fill"
-	desc = "A large, 100u capacity vial that fits only in the most deluxe hyposprays."
+	desc = "一个大型药瓶，容量 100 单位，仅能装入最豪华的无针注射器。"
 	volume = 100
 	possible_transfer_amounts = list(1,2,5,10,20,30,40,50,100)
 	type_suffix = "-l"
@@ -160,39 +160,39 @@
 	abstract_type = /datum/atom_skin/hypovial_large
 
 /datum/atom_skin/hypovial_large/sterile
-	preview_name = "Sterile"
+	preview_name = "无菌"
 	new_icon_state = "hypoviallarge"
 
 /datum/atom_skin/hypovial_large/generic
-	preview_name = "Generic"
+	preview_name = "通用"
 	new_icon_state = "hypoviallarge-generic"
 
 /datum/atom_skin/hypovial_large/brute
-	preview_name = "Brute"
+	preview_name = "钝伤"
 	new_icon_state = "hypoviallarge-brute"
 
 /datum/atom_skin/hypovial_large/burn
-	preview_name = "Burn"
+	preview_name = "烧伤"
 	new_icon_state = "hypoviallarge-burn"
 
 /datum/atom_skin/hypovial_large/toxin
-	preview_name = "Toxin"
+	preview_name = "毒素"
 	new_icon_state = "hypoviallarge-tox"
 
 /datum/atom_skin/hypovial_large/oxyloss
-	preview_name = "Oxyloss"
+	preview_name = "缺氧"
 	new_icon_state = "hypoviallarge-oxy"
 
 /datum/atom_skin/hypovial_large/crit
-	preview_name = "Crit"
+	preview_name = "危重"
 	new_icon_state = "hypoviallarge-crit"
 
 /datum/atom_skin/hypovial_large/buff
-	preview_name = "Buff"
+	preview_name = "增益"
 	new_icon_state = "hypoviallarge-buff"
 
 /datum/atom_skin/hypovial_large/custom
-	preview_name = "Custom"
+	preview_name = "自定义"
 	new_icon_state = "hypoviallarge-custom"
 
 /obj/item/reagent_containers/cup/vial/large/style/
@@ -216,64 +216,64 @@
 
 //Hypos that are in the CMO's kit round start
 /obj/item/reagent_containers/cup/vial/large/deluxe
-	name = "deluxe hypovial"
+	name = "豪华无针药瓶"
 	icon_state = "hypoviallarge-buff"
 	list_reagents = list(/datum/reagent/medicine/omnizine = 15, /datum/reagent/medicine/leporazine = 15, /datum/reagent/medicine/atropine = 15)
 
 /obj/item/reagent_containers/cup/vial/large/salglu
-	name = "large green hypovial (salglu)"
+	name = "大型绿色无针药瓶（葡萄糖盐水）"
 	icon_state = "hypoviallarge-oxy"
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 50)
 
 /obj/item/reagent_containers/cup/vial/large/synthflesh
-	name = "large orange hypovial (synthflesh)"
+	name = "大型橙色无针药瓶（合成肉液）"
 	icon_state = "hypoviallarge-crit"
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
 
 /obj/item/reagent_containers/cup/vial/large/multiver
-	name = "large black hypovial (multiver)"
+	name = "大型黑色无针药瓶（穆尔提弗）"
 	icon_state = "hypoviallarge-tox"
 	list_reagents = list(/datum/reagent/medicine/c2/multiver = 50)
 
 //Some bespoke helper types for preloaded combat medkits.
 /obj/item/reagent_containers/cup/vial/large/advbrute
-	name = "Brute Heal"
+	name = "钝伤治疗剂"
 	icon_state = "hypoviallarge-brute"
 	list_reagents = list(/datum/reagent/medicine/c2/libital = 50, /datum/reagent/medicine/sal_acid = 50)
 
 /obj/item/reagent_containers/cup/vial/large/advburn
-	name = "Burn Heal"
+	name = "烧伤治疗剂"
 	icon_state = "hypoviallarge-burn"
 	list_reagents = list(/datum/reagent/medicine/c2/aiuri = 50, /datum/reagent/medicine/oxandrolone = 50)
 
 /obj/item/reagent_containers/cup/vial/large/advtox
-	name = "Toxin Heal"
+	name = "毒素治疗剂"
 	icon_state = "hypoviallarge-tox"
 	list_reagents = list(/datum/reagent/medicine/pen_acid = 100)
 
 /obj/item/reagent_containers/cup/vial/large/advoxy
-	name = "Oxy Heal"
+	name = "缺氧治疗剂"
 	icon_state = "hypoviallarge-oxy"
 	list_reagents = list(/datum/reagent/medicine/c2/tirimol = 50, /datum/reagent/medicine/salbutamol = 50)
 
 /obj/item/reagent_containers/cup/vial/large/advcrit
-	name = "Crit Heal"
+	name = "危重治疗剂"
 	icon_state = "hypoviallarge-crit"
 	list_reagents = list(/datum/reagent/medicine/atropine = 100)
 
 /obj/item/reagent_containers/cup/vial/large/advomni
-	name = "All-Heal"
+	name = "全效治疗剂"
 	icon_state = "hypoviallarge-buff"
 	list_reagents = list(/datum/reagent/medicine/regen_jelly = 100)
 
 /obj/item/reagent_containers/cup/vial/large/numbing
-	name = "Numbing"
+	name = "麻醉剂"
 	icon_state = "hypoviallarge-generic"
 	list_reagents = list(/datum/reagent/medicine/mine_salve = 50, /datum/reagent/medicine/morphine = 50)
 
 //Some bespoke helper types for preloaded paramedic kits.
 /obj/item/reagent_containers/cup/vial/small/libital
-	name = "brute hypovial (libital)"
+	name = "钝伤无针药瓶（利比妥）"
 	icon_state = "hypovial-brute"
 
 /obj/item/reagent_containers/cup/vial/small/libital/Initialize(mapload)
@@ -281,7 +281,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/libital, amount = 50, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/lenturi
-	name = "burn hypovial (lenturi)"
+	name = "烧伤无针药瓶（伦图里）"
 	icon_state = "hypovial-burn"
 
 /obj/item/reagent_containers/cup/vial/small/lenturi/Initialize(mapload)
@@ -289,7 +289,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/lenturi, amount = 50, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/seiver
-	name = "tox hypovial (seiver)"
+	name = "毒素无针药瓶（塞弗）"
 	icon_state = "hypovial-tox"
 
 /obj/item/reagent_containers/cup/vial/small/seiver/Initialize(mapload)
@@ -297,7 +297,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/seiver, amount = 50, reagtemp = 975, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/convermol
-	name = "tox hypovial (convermol)"
+	name = "毒素无针药瓶（康弗莫）"
 	icon_state = "hypovial-oxy"
 
 /obj/item/reagent_containers/cup/vial/small/convermol/Initialize(mapload)
@@ -305,7 +305,7 @@
 	reagents.add_reagent(reagent_type = /datum/reagent/medicine/c2/convermol, amount = 50, added_purity = 1)
 
 /obj/item/reagent_containers/cup/vial/small/atropine
-	name = "crit hypovial (atropine)"
+	name = "危重无针药瓶（阿托品）"
 	icon_state = "hypovial-crit"
 
 /obj/item/reagent_containers/cup/vial/small/atropine/Initialize(mapload)

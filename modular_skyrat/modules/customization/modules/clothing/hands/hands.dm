@@ -1,8 +1,8 @@
 /obj/item/clothing/gloves/evening
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	name = "evening gloves"
-	desc = "Thin, pretty gloves intended for use in regal feminine attire, but knowing Space China these are just for some maid fetish."
+	name = "晚宴手套"
+	desc = "薄而漂亮的手套，本用于高贵的女性装束，但以“太空中国”的作风来看，这不过是为了满足某种女仆癖好。"
 	icon_state = "evening"
 	strip_delay = 40
 	equip_delay_other = 20
@@ -12,15 +12,15 @@
 /obj/item/clothing/gloves/kim
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	name = "aerostatic gloves"
-	desc = "Vivid red gloves that exude a mysterious style, sadly not the best for gardening, or getting bodies out of trees."
+	name = "浮空手套"
+	desc = "鲜艳的红色手套，散发着神秘的气质；可惜不适合园艺，也不适合把尸体从树上弄下来。"
 	icon_state = "aerostatic_gloves"
 
 /obj/item/clothing/gloves/military
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
-	name = "military gloves"
-	desc = "Tactical gloves made for military personnel, they are thin to allow easy operation of most firearms."
+	name = "军用战术手套"
+	desc = "为军人制造的战术手套，做得很薄，方便操作大多数枪械。"
 	icon_state = "military_gloves"
 	siemens_coefficient = 0.4
 	strip_delay = 60
@@ -32,8 +32,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/gloves/bracer/wraps
-	name = "cloth arm wraps"
-	desc = "Cloth bracers, the colour all left up to the choice of the wearer."
+	name = "布质裹臂"
+	desc = "布制护腕，颜色完全由穿戴者自行选择。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/bracer/wraps"
 	post_init_icon_state = "arm_wraps"
@@ -47,8 +47,8 @@
 	worn_icon_teshari = TESHARI_HANDS_ICON
 
 /obj/item/clothing/gloves/maid_arm_covers
-	name = "maid arm covers"
-	desc = "Maid in China."
+	name = "女仆臂套"
+	desc = "中国制造的女仆。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/maid_arm_covers"
 	post_init_icon_state = "maid_arm_covers"

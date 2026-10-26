@@ -1,5 +1,5 @@
 /datum/loadout_category/uniform
-	category_name = "Uniform"
+	category_name = "制服"
 	category_ui_icon = FA_ICON_SHIRT
 	type_to_generate = /datum/loadout_item/uniform
 	tab_order = /datum/loadout_category/head::tab_order + 9
@@ -10,7 +10,7 @@
 /datum/loadout_item/uniform/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only, loadout_placement_preference)
 	if(equipper.dna?.species?.outfit_important_for_life)
 		if(!visuals_only)
-			to_chat(equipper, "Your loadout uniform was not equipped directly due to your species outfit.")
+			to_chat(equipper, "由于你的种族服装限制，你的装备制服未能直接穿上。")
 			LAZYADD(outfit.backpack_contents, item_path)
 	else
 		if(loadout_placement_preference == LOADOUT_OVERRIDE_CASE && outfit.uniform)
@@ -25,154 +25,154 @@
 */
 
 /datum/loadout_item/uniform/jumpsuit/greyscale
-	name = "Greyscale Jumpsuit"
+	name = "连体服（可染色）"
 	item_path = /obj/item/clothing/under/color
 
 /datum/loadout_item/uniform/jumpsuit/greyscale_skirt
-	name = "Greyscale Jumpskirt"
+	name = "连体裙（可染色）"
 	item_path = /obj/item/clothing/under/color/jumpskirt
 
 /datum/loadout_item/uniform/jumpsuit/random
-	name = "Random Jumpsuit"
+	name = "随机连体服"
 	item_path = /obj/item/clothing/under/color/random
 
 /datum/loadout_item/uniform/jumpsuit/random_skirt
-	name = "Random Jumpskirt"
+	name = "随机连体裙"
 	item_path = /obj/item/clothing/under/color/jumpskirt/random
 
 /datum/loadout_item/uniform/jumpsuit/rainbow
-	name = "Rainbow Jumpsuit"
+	name = "彩虹连体服"
 	item_path = /obj/item/clothing/under/color/rainbow
 
 /datum/loadout_item/uniform/jumpsuit/rainbow_skirt
-	name = "Rainbow Jumpskirt"
+	name = "彩虹连体裙"
 	item_path = /obj/item/clothing/under/color/jumpskirt/rainbow
 
 /datum/loadout_item/uniform/jumpsuit/akula_wetsuit
-	name = "Shoredress Wetsuit"
+	name = "滨海潜水服"
 	item_path = /obj/item/clothing/under/akula_wetsuit
 
 /datum/loadout_item/uniform/jumpsuit/security_skirt_redsec
-	name = "Red Security Battledress"
+	name = "红色安保战斗服"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/skirt_redsec
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)  //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_trousers
-	name = "Security Trousers"
+	name = "安保长裤"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER
 
 /datum/loadout_item/uniform/jumpsuit/security_shorts
-	name = "Security Shorts"
+	name = "安保短裤"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/trousers/shorts
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_jumpskirt
-	name = "Security Jumpskirt"
+	name = "安保连体裙"
 	item_path = /obj/item/clothing/under/rank/security/officer/skirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_miniskirt
-	name = "Security Miniskirt"
+	name = "安保迷你裙"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/miniskirt
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/security_jumpsuit
-	name = "Security Jumpsuit"
+	name = "安保连体服"
 	item_path = /obj/item/clothing/under/rank/security/peacekeeper/jumpsuit
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC) //BUBBER EDIT: adds JOB_CORRECTIONS_OFFICER and JOB_SECURITY_MEDIC
 
 /datum/loadout_item/uniform/jumpsuit/imperial_police_uniform
-	name = "Imperial Police Uniform"
+	name = "帝国警察制服"
 	item_path = /obj/item/clothing/under/colonial/nri_police
 	restricted_roles = list(JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER, JOB_SECURITY_MEDIC)
 
 /datum/loadout_item/uniform/jumpsuit/disco
-	name = "Superstar Cop Uniform"
+	name = "超级巨星警察制服"
 	item_path = /obj/item/clothing/under/rank/security/detective/disco
 
 /datum/loadout_item/uniform/jumpsuit/kim
-	name = "Aerostatic Suit"
+	name = "浮空制服"
 	item_path = /obj/item/clothing/under/rank/security/detective/kim
 
 /datum/loadout_item/uniform/jumpsuit/paramed_light
-	name = "Light Paramedic Uniform"
+	name = "轻便急救员制服"
 	item_path = /obj/item/clothing/under/rank/medical/paramedic/skyrat/light
 
 /datum/loadout_item/uniform/jumpsuit/paramed_light_skirt
-	name = "Light Paramedic Skirt"
+	name = "轻便急救员短裙"
 	item_path = /obj/item/clothing/under/rank/medical/paramedic/skyrat/light/skirt
 
 /datum/loadout_item/uniform/jumpsuit/chemist_formal
-	name = "Chemist's Formal Jumpsuit"
+	name = "化学家正式连体工作服"
 	item_path = /obj/item/clothing/under/rank/medical/chemist/skyrat/formal
 
 /datum/loadout_item/uniform/jumpsuit/chemist_formal_skirt
-	name = "Chemist's Formal Jumpskirt"
+	name = "化学家正式连体工作裙"
 	item_path = /obj/item/clothing/under/rank/medical/chemist/skyrat/formal/skirt
 
 /datum/loadout_item/uniform/jumpsuit/viro_jumpsuit
-	name = "Virologist's Jumpsuit"
+	name = "病毒学家连体服"
 	item_path = /obj/item/clothing/under/rank/medical/virologist
 
 /datum/loadout_item/uniform/jumpsuit/hlscientist
-	name = "Ridiculous Scientist Outfit"
+	name = "滑稽科学家套装"
 	item_path = /obj/item/clothing/under/rank/rnd/scientist/skyrat/hlscience
 
 /datum/loadout_item/uniform/jumpsuit/rd_jumpsuit
-	name = "Research Director's Jumpsuit"
+	name = "科研主管连体服"
 	item_path = /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 
 /datum/loadout_item/uniform/jumpsuit/rd_jumpskirt
-	name = "Research Director's Jumpskirt"
+	name = "科研主管连体裙"
 	item_path = /obj/item/clothing/under/rank/rnd/research_director/skyrat/jumpsuit/skirt
 	restricted_roles = list(JOB_RESEARCH_DIRECTOR)
 
 /datum/loadout_item/uniform/jumpsuit/cargo
-	name = "Cargo Technician's Jumpsuit"
+	name = "货运技术员连体服"
 	item_path = /obj/item/clothing/under/rank/cargo/tech
 
 /datum/loadout_item/uniform/jumpsuit/cargo/skirt
-	name = "Cargo Technician's Skirt"
+	name = "货运技术员短裙"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skirt
 
 /datum/loadout_item/uniform/jumpsuit/cargo/skirt/alt
-	name = "Cargo Technician's Shortskirt"
+	name = "货运技术员超短裙"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skirt/alt
 
 /datum/loadout_item/uniform/jumpsuit/cargo/qm
-	name = "Quartermaster's Uniform"
+	name = "货运主管制服"
 	item_path = /obj/item/clothing/under/rank/cargo/qm
 	restricted_roles = list(JOB_QUARTERMASTER)
 
 /datum/loadout_item/uniform/jumpsuit/utility
-	name = "Utility Uniform"
+	name = "实用制服"
 	item_path = /obj/item/clothing/under/misc/skyrat/utility
 
 /datum/loadout_item/uniform/jumpsuit/utility_eng
-	name = "Engineering Utility Uniform"
+	name = "工程实用制服"
 	item_path = /obj/item/clothing/under/rank/engineering/engineer/skyrat/utility
 
 /datum/loadout_item/uniform/jumpsuit/utility_med
-	name = "Medical Utility Uniform"
+	name = "医疗实用制服"
 	item_path = /obj/item/clothing/under/rank/medical/doctor/skyrat/utility
 
 /datum/loadout_item/uniform/jumpsuit/utility_sci
-	name = "Science Utility Uniform"
+	name = "科研实用制服"
 	item_path = /obj/item/clothing/under/rank/rnd/scientist/skyrat/utility
 
 /datum/loadout_item/uniform/jumpsuit/utility_cargo
-	name = "Supply Utility Uniform"
+	name = "后勤实用制服"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skyrat/utility
 
 /datum/loadout_item/uniform/jumpsuit/utility_sec
-	name = "Security Utility Uniform"
+	name = "安保实用制服"
 	item_path = /obj/item/clothing/under/rank/security/skyrat/utility
 	restricted_roles = list(JOB_SECURITY_OFFICER, JOB_DETECTIVE, JOB_WARDEN, JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_CORRECTIONS_OFFICER)
 
 /datum/loadout_item/uniform/jumpsuit/utility_com
-	name = "Command Utility Uniform"
+	name = "指挥实用制服"
 	item_path = /obj/item/clothing/under/rank/captain/skyrat/utility
 	restricted_roles = list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_BLUESHIELD, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_QUARTERMASTER, JOB_CHIEF_MEDICAL_OFFICER, JOB_CHIEF_ENGINEER)
 
@@ -183,453 +183,453 @@
 /datum/loadout_item/uniform/miscellaneous
 
 /datum/loadout_item/uniform/miscellaneous/christmas
-	name = "Christmas Suit"
+	name = "圣诞装"
 	item_path = /obj/item/clothing/under/costume/skyrat/christmas
 
 /datum/loadout_item/uniform/miscellaneous/christmas/green
-	name = "Green Christmas Suit"
+	name = "绿色圣诞装"
 	item_path = /obj/item/clothing/under/costume/skyrat/christmas/green
 
 /datum/loadout_item/uniform/miscellaneous/christmas/female
-	name = "Revealing Christmas Suit"
+	name = "暴露圣诞装"
 	item_path = /obj/item/clothing/under/costume/skyrat/christmas/croptop
 
 /datum/loadout_item/uniform/miscellaneous/christmas/female/green
-	name = "Revealing Green Christmas Suit"
+	name = "暴露绿色圣诞装"
 	item_path = /obj/item/clothing/under/costume/skyrat/christmas/croptop/green
 
 /datum/loadout_item/uniform/miscellaneous/buttondown
-	name = "Recolorable Buttondown Shirt with Slacks"
+	name = "纽扣衬衫配长裤（可染色）"
 	item_path = /obj/item/clothing/under/costume/buttondown/slacks
 
 /datum/loadout_item/uniform/miscellaneous/buttondown_shorts
-	name = "Recolorable Buttondown Shirt with Shorts"
+	name = "纽扣衬衫配短裤（可染色）"
 	item_path = /obj/item/clothing/under/costume/buttondown/shorts
 
 /datum/loadout_item/uniform/miscellaneous/buttondown_skirt
-	name = "Recolorable Buttondown Shirt with Skirt"
+	name = "纽扣衬衫配短裙（可染色）"
 	item_path = /obj/item/clothing/under/costume/buttondown/skirt
 
 /datum/loadout_item/uniform/miscellaneous/vicvest
-	name = "Recolorable Buttondown Shirt with Double-Breasted Vest"
+	name = "纽扣衬衫配双排扣马甲（可染色）"
 	item_path = /obj/item/clothing/under/pants/skyrat/vicvest
 
 /datum/loadout_item/uniform/miscellaneous/slacks
-	name = "Recolorable Slacks"
+	name = "长裤（可染色）"
 	item_path = /obj/item/clothing/under/pants/slacks
 
 /datum/loadout_item/uniform/miscellaneous/jeans
-	name = "Recolorable Jeans"
+	name = "牛仔裤（可染色）"
 	item_path = /obj/item/clothing/under/pants/jeans
 
 /datum/loadout_item/uniform/miscellaneous/jeansripped
-	name = "Recolorable Ripped Jeans"
+	name = "破洞牛仔裤（可染色）"
 	item_path = /obj/item/clothing/under/pants/skyrat/jeans_ripped
 
 /datum/loadout_item/uniform/miscellaneous/yoga
-	name = "Recolorable Yoga Pants"
+	name = "瑜伽裤（可染色）"
 	item_path = /obj/item/clothing/under/pants/skyrat/yoga
 
 /datum/loadout_item/uniform/miscellaneous/track
-	name = "Track Pants"
+	name = "运动长裤"
 	item_path = /obj/item/clothing/under/pants/track
 
 /datum/loadout_item/uniform/miscellaneous/camo
-	name = "Camo Pants"
+	name = "迷彩裤"
 	item_path = /obj/item/clothing/under/pants/camo
 
 /datum/loadout_item/uniform/miscellaneous/jeanshorts //This doesnt look like a word. Short. Jean-Short. Eugh.
-	name = "Recolorable Jean Shorts"
+	name = "牛仔短裤（可染色）"
 	item_path = /obj/item/clothing/under/shorts/jeanshorts
 
 /datum/loadout_item/uniform/miscellaneous/pants_blackshorts
-	name = "Recolorable Ripped Jean Shorts"
+	name = "破洞牛仔短裤（可染色）"
 	item_path = /obj/item/clothing/under/shorts/skyrat/shorts_ripped
 
 /datum/loadout_item/uniform/miscellaneous/shortershorts
-	name = "Recolorable Shorter Shorts"
+	name = "更短的短裤（可染色）"
 	item_path = /obj/item/clothing/under/shorts/skyrat/shortershorts
 
 /datum/loadout_item/uniform/miscellaneous/shorts
-	name = "Recolorable Shorts"
+	name = "短裤（可染色）"
 	item_path = /obj/item/clothing/under/shorts
 
 /datum/loadout_item/uniform/miscellaneous/red_short
-	name = "Red Shorts"
+	name = "红色短裤"
 	item_path = /obj/item/clothing/under/shorts/red
 
 /datum/loadout_item/uniform/miscellaneous/green_short
-	name = "Green Shorts"
+	name = "绿色短裤"
 	item_path = /obj/item/clothing/under/shorts/green
 
 /datum/loadout_item/uniform/miscellaneous/blue_short
-	name = "Blue Shorts"
+	name = "蓝色短裤"
 	item_path = /obj/item/clothing/under/shorts/blue
 
 /datum/loadout_item/uniform/miscellaneous/black_short
-	name = "Black Shorts"
+	name = "黑色短裤"
 	item_path = /obj/item/clothing/under/shorts/black
 
 /datum/loadout_item/uniform/miscellaneous/grey_short
-	name = "Grey Shorts"
+	name = "灰色短裤"
 	item_path = /obj/item/clothing/under/shorts/grey
 
 /datum/loadout_item/uniform/miscellaneous/purple_short
-	name = "Purple Shorts"
+	name = "紫色短裤"
 	item_path = /obj/item/clothing/under/shorts/purple
 
 /datum/loadout_item/uniform/miscellaneous/recolorable_kilt
-	name = "Recolorable Kilt"
+	name = "苏格兰短裙（可染色）"
 	item_path = /obj/item/clothing/under/pants/skyrat/kilt
 
 //TODO: split loadout's miscellaneous to have "Pants/Shorts" and "Dresses/Skirts" as options too. Misc is stupid.
 
 /datum/loadout_item/uniform/miscellaneous/dress_striped
-	name = "Striped Dress"
+	name = "条纹连衣裙"
 	item_path = /obj/item/clothing/under/dress/striped
 
 /datum/loadout_item/uniform/miscellaneous/skirt_black
-	name = "Black Skirt"
+	name = "黑色短裙"
 	item_path = /obj/item/clothing/under/dress/skirt
 
 /datum/loadout_item/uniform/miscellaneous/skirt_plaid
-	name = "Recolorable Plaid Skirt"
+	name = "格纹短裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skirt/plaid
 
 /datum/loadout_item/uniform/miscellaneous/skirt_turtleneck
-	name = "Recolorable Turtleneck Skirt"
+	name = "高领短裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skirt/turtleskirt
 
 /datum/loadout_item/uniform/miscellaneous/skirt_cableknit
-	name = "Recolorable Cableknit Skirt"
+	name = "绞花针织短裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/turtleskirt_knit
 
 /datum/loadout_item/uniform/miscellaneous/dress_tango
-	name = "Recolorable Tango Dress"
+	name = "探戈连衣裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/tango
 
 /datum/loadout_item/uniform/miscellaneous/dress_sun
-	name = "Recolorable Sundress"
+	name = "太阳裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/sundress
 
 /datum/loadout_item/uniform/miscellaneous/straplessdress
-	name = "Recolorable Strapless Dress"
+	name = "无肩带连衣裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skyrat/strapless
 
 /datum/loadout_item/uniform/miscellaneous/pentagramdress
-	name = "Recolorable Pentagram Strapped Dress"
+	name = "五芒星系带连衣裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skyrat/pentagram
 
 /datum/loadout_item/uniform/miscellaneous/jacarta_dress
-	name = "Jacarta Dress"
+	name = "雅加达连衣裙"
 	item_path = /obj/item/clothing/under/dress/skyrat/jute
 
 /datum/loadout_item/uniform/miscellaneous/striped_skirt
-	name = "Red Striped Skirt"
+	name = "红色条纹短裙"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/striped_skirt
 
 /datum/loadout_item/uniform/miscellaneous/red_skirt
-	name = "Red Skirt"
+	name = "红色短裙"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/red_skirt
 
 /datum/loadout_item/uniform/miscellaneous/black_skirt
-	name = "Black Skirt (Skyrat)"
+	name = "黑色短裙（Skyrat）"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/black_skirt
 
 /datum/loadout_item/uniform/miscellaneous/swept_skirt
-	name = "Swept Skirt"
+	name = "斜摆短裙"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/swept
 
 /datum/loadout_item/uniform/miscellaneous/lone_skirt
-	name = "Recolorable Skirt"
+	name = "短裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/lone_skirt
 
 /datum/loadout_item/uniform/miscellaneous/medium_skirt
-	name = "Medium Colourable Skirt"
+	name = "中长裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/medium
 
 /datum/loadout_item/uniform/miscellaneous/long_skirt
-	name = "Long Colourable Skirt"
+	name = "长裙（可染色）"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/long
 
 /datum/loadout_item/uniform/miscellaneous/denim_skirt
-	name = "Jean Skirt"
+	name = "牛仔短裙"
 	item_path = /obj/item/clothing/under/dress/skirt/skyrat/jean
 
 /datum/loadout_item/uniform/miscellaneous/littleblack
-	name = "Short Black Dress"
+	name = "黑色短连衣裙"
 	item_path = /obj/item/clothing/under/dress/skyrat/short_dress
 
 /datum/loadout_item/uniform/miscellaneous/pinktutu
-	name = "Pink Tutu"
+	name = "粉色芭蕾舞裙"
 	item_path = /obj/item/clothing/under/dress/skyrat/pinktutu
 
 /datum/loadout_item/uniform/miscellaneous/flowerdress
-	name = "Flower Dress"
+	name = "花朵连衣裙"
 	item_path = /obj/item/clothing/under/dress/skyrat/flower
 
 /datum/loadout_item/uniform/miscellaneous/kilt
-	name = "Kilt"
+	name = "苏格兰短裙"
 	item_path = /obj/item/clothing/under/costume/kilt
 
 /datum/loadout_item/uniform/miscellaneous/treasure_hunter
-	name = "Treasure Hunter"
+	name = "寻宝者套装"
 	item_path = /obj/item/clothing/under/rank/civilian/curator/treasure_hunter
 
 /datum/loadout_item/uniform/miscellaneous/jester
-	name = "Jester Suit"
+	name = "弄臣套装"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/jester
 
 /datum/loadout_item/uniform/miscellaneous/jesteralt
-	name = "Jeset Suit (Alt)"
+	name = "弄臣套装（变体）"
 	item_path = /obj/item/clothing/under/rank/civilian/clown/jesteralt
 
 /datum/loadout_item/uniform/miscellaneous/overalls
-	name = "Overalls"
+	name = "工装背带裤"
 	item_path = /obj/item/clothing/under/misc/overalls
 
 /datum/loadout_item/uniform/miscellaneous/pj_blue
-	name = "Mailman Jumpsuit"
+	name = "邮差连体服"
 	item_path = /obj/item/clothing/under/misc/mailman
 
 /datum/loadout_item/uniform/miscellaneous/vice_officer
-	name = "Vice Officer Jumpsuit"
+	name = "风纪官连体服"
 	item_path = /obj/item/clothing/under/misc/vice_officer
 
 /datum/loadout_item/uniform/miscellaneous/soviet
-	name = "Soviet Uniform"
+	name = "苏维埃制服"
 	item_path = /obj/item/clothing/under/costume/soviet
 
 /datum/loadout_item/uniform/miscellaneous/redcoat
-	name = "Redcoat"
+	name = "红衣兵制服"
 	item_path = /obj/item/clothing/under/costume/redcoat
 
 /datum/loadout_item/uniform/miscellaneous/pj_red
-	name = "Red PJs"
+	name = "红色睡衣"
 	item_path = /obj/item/clothing/under/misc/pj/red
 
 /datum/loadout_item/uniform/miscellaneous/pj_blue
-	name = "Blue PJs"
+	name = "蓝色睡衣"
 	item_path = /obj/item/clothing/under/misc/pj/blue
 
 /datum/loadout_item/uniform/miscellaneous/tactical_hawaiian_orange
-	name = "Tactical Hawaiian Outfit - Orange"
+	name = "战术夏威夷套装（橙色）"
 	item_path = /obj/item/clothing/under/tachawaiian
 
 /datum/loadout_item/uniform/miscellaneous/tactical_hawaiian_blue
-	name = "Tactical Hawaiian Outfit - Blue"
+	name = "战术夏威夷套装（蓝色）"
 	item_path = /obj/item/clothing/under/tachawaiian/blue
 
 /datum/loadout_item/uniform/miscellaneous/tactical_hawaiian_purple
-	name = "Tactical Hawaiian Outfit - Purple"
+	name = "战术夏威夷套装（紫色）"
 	item_path = /obj/item/clothing/under/tachawaiian/purple
 
 /datum/loadout_item/uniform/miscellaneous/tactical_hawaiian_green
-	name = "Tactical Hawaiian Outfit - Green"
+	name = "战术夏威夷套装（绿色）"
 	item_path = /obj/item/clothing/under/tachawaiian/green
 
 /datum/loadout_item/uniform/miscellaneous/maidcostume
-	name = "Maid Costume"
+	name = "女仆装"
 	item_path = /obj/item/clothing/under/costume/maid
 
 /datum/loadout_item/uniform/miscellaneous/maid_costume
-	name = "Colourable Maid Uniform"
+	name = "女仆制服（可染色）"
 	item_path = /obj/item/clothing/under/maid_costume
 
 /datum/loadout_item/uniform/miscellaneous/yukata
-	name = "Recolorable Yukata"
+	name = "浴衣（可染色）"
 	item_path = /obj/item/clothing/under/costume/skyrat/yukata
 
 /datum/loadout_item/uniform/miscellaneous/qipao_black
-	name = "Recolorable Qipao"
+	name = "旗袍（可染色）"
 	item_path = /obj/item/clothing/under/costume/skyrat/qipao
 
 /datum/loadout_item/uniform/miscellaneous/cheongsam
-	name = "Recolorable Cheongsam"
+	name = "长衫（可染色）"
 	item_path = /obj/item/clothing/under/costume/skyrat/cheongsam
 
 /datum/loadout_item/uniform/miscellaneous/kimono
-	name = "Fancy Kimono"
+	name = "华丽和服"
 	item_path =  /obj/item/clothing/under/costume/skyrat/kimono
 
 /datum/loadout_item/uniform/miscellaneous/chaps
-	name = "Black Chaps"
+	name = "黑色皮套裤"
 	item_path = /obj/item/clothing/under/pants/skyrat/chaps
 
 /datum/loadout_item/uniform/miscellaneous/tracky
-	name = "Blue Tracksuit"
+	name = "蓝色运动服"
 	item_path = /obj/item/clothing/under/misc/bluetracksuit
 
 /datum/loadout_item/uniform/miscellaneous/cybersleek
-	name = "Sleek Modern Coat"
+	name = "流线现代大衣"
 	item_path = /obj/item/clothing/under/costume/cybersleek
 
 /datum/loadout_item/uniform/miscellaneous/cybersleek_long
-	name = "Long Modern Coat"
+	name = "长款现代大衣"
 	item_path = /obj/item/clothing/under/costume/cybersleek/long
 
 /datum/loadout_item/uniform/miscellaneous/dutch
-	name = "Dutch Suit"
+	name = "荷兰西装"
 	item_path = /obj/item/clothing/under/costume/dutch
 
 /datum/loadout_item/uniform/miscellaneous/cavalry
-	name = "Cavalry Uniform"
+	name = "骑兵制服"
 	item_path = /obj/item/clothing/under/costume/skyrat/cavalry
 
 /datum/loadout_item/uniform/miscellaneous/tacticool_turtleneck
-	name = "Tacticool Turtleneck"
+	name = "战术潮高领衫"
 	item_path = /obj/item/clothing/under/syndicate/tacticool //This has been rebalanced in modular_skyrat\master_files\code\modules\clothing\under\syndicate.dm
 
 /datum/loadout_item/uniform/miscellaneous/tactical_skirt
-	name = "Tacticool Skirtleneck"
+	name = "战术潮高领短裙"
 	item_path = /obj/item/clothing/under/syndicate/tacticool/skirt //This has been rebalanced in modular_skyrat\master_files\code\modules\clothing\under\syndicate.dm
 
 /datum/loadout_item/uniform/miscellaneous/tactical_pants
-	name = "Tactical Pants"
+	name = "战术长裤"
 	item_path = /obj/item/clothing/under/pants/tactical
 
 /datum/loadout_item/uniform/miscellaneous/blastwave_uniform
-	name = "Blastwave Uniform"
+	name = "冲击波制服"
 	item_path = /obj/item/clothing/under/blastwave
 
 /datum/loadout_item/uniform/miscellaneous/royalkilt
-	name = "Royal Kilt"
+	name = "皇家苏格兰短裙"
 	item_path = /obj/item/clothing/under/costume/skyrat/kilt/royal
 
 /datum/loadout_item/uniform/miscellaneous/irishtact
-	name = "Irish Tactical Uniform"
+	name = "爱尔兰战术制服"
 	item_path = /obj/item/clothing/under/costume/skyrat/tac/irish
 
 //HALLOWEEN
 /datum/loadout_item/uniform/miscellaneous/pj_blood
-	name = "Blood-red Pajamas"
+	name = "血红睡衣"
 	item_path = /obj/item/clothing/under/syndicate/bloodred/sleepytime/sensors
 
 /datum/loadout_item/uniform/miscellaneous/gladiator
-	name = "Gladiator Uniform"
+	name = "角斗士制服"
 	item_path = /obj/item/clothing/under/costume/gladiator
 
 /datum/loadout_item/uniform/miscellaneous/griffon
-	name = "Griffon Uniform"
+	name = "狮鹫制服"
 	item_path = /obj/item/clothing/under/costume/griffin
 
 /datum/loadout_item/uniform/miscellaneous/owl
-	name = "Owl Uniform"
+	name = "猫头鹰制服"
 	item_path = /obj/item/clothing/under/costume/owl
 
 /datum/loadout_item/uniform/miscellaneous/villain
-	name = "Villain Suit"
+	name = "反派套装"
 	item_path = /obj/item/clothing/under/costume/villain
 
 /datum/loadout_item/uniform/miscellaneous/sweater
-	name = "Cableknit Sweater" //Different than the Suit item ("Sweater")!!
+	name = "绞花针织毛衣" //Different than the Suit item ("Sweater")!!
 	item_path = /obj/item/clothing/under/sweater
 
 /datum/loadout_item/uniform/miscellaneous/keyhole
-	name = "Keyhole Sweater"
+	name = "钥匙孔毛衣"
 	item_path = /obj/item/clothing/under/sweater/keyhole
 
 /datum/loadout_item/uniform/miscellaneous/blacknwhite
-	name = "Classic Prisoner Jumpsuit"
+	name = "经典囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/classic
 
 /datum/loadout_item/uniform/miscellaneous/protectcust
-	name = "Protective Custody Prisoner Jumpsuit"
+	name = "保护性拘留囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/protcust
 	restricted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/uniform/miscellaneous/lowrisk
-	name = "Low Risk Prisoner Jumpsuit"
+	name = "低风险囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/lowsec
 	restricted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/uniform/miscellaneous/highrisk
-	name = "High Risk Prisoner Jumpsuit"
+	name = "高风险囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/highsec
 	restricted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/uniform/miscellaneous/supermax
-	name = "Supermax Prisoner Jumpsuit"
+	name = "超高度戒备囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/supermax
 	restricted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/uniform/miscellaneous/syndiprison
-	name = "Syndicate Prisoner Jumpsuit"
+	name = "辛迪加囚犯连体服"
 	item_path = /obj/item/clothing/under/rank/prisoner/syndicate/station
 	restricted_roles = list(JOB_PRISONER)
 
 /datum/loadout_item/uniform/miscellaneous/redscrubs
-	name = "Red Scrubs"
+	name = "红色洗手服"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/red
 
 /datum/loadout_item/uniform/miscellaneous/bluescrubs
-	name = "Blue Scrubs"
+	name = "蓝色洗手服"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/blue
 
 /datum/loadout_item/uniform/miscellaneous/greenscrubs
-	name = "Green Scrubs"
+	name = "绿色洗手服"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/green
 
 /datum/loadout_item/uniform/miscellaneous/purplescrubs
-	name = "Purple Scrubs"
+	name = "紫色洗手服"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/purple
 
 /datum/loadout_item/uniform/miscellaneous/whitescrubs
-	name = "White Scrubs"
+	name = "白色洗手服"
 	item_path = /obj/item/clothing/under/rank/medical/scrubs/skyrat/white
 
 /datum/loadout_item/uniform/miscellaneous/gear_harness
-	name = "Gear Harness"
+	name = "装备背带"
 	item_path = /obj/item/clothing/under/misc/skyrat/gear_harness
 
 /datum/loadout_item/uniform/miscellaneous/taccas
-	name = "Tacticasual Uniform"
+	name = "战术休闲制服"
 	item_path = /obj/item/clothing/under/misc/skyrat/taccas
 
 /datum/loadout_item/uniform/miscellaneous/cargo_casual
-	name = "Cargo Tech Casualwear"
+	name = "货运技术员休闲装"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skyrat/casualman
 
 /datum/loadout_item/uniform/miscellaneous/cargo_shorts
-	name = "Cargo Tech Shorts"
+	name = "货运技术员短裤"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/alt
 
 /datum/loadout_item/uniform/miscellaneous/cargo_black
-	name = "Black Cargo Uniform"
+	name = "黑色货运制服"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skyrat/evil
 
 /datum/loadout_item/uniform/miscellaneous/cargo_turtle
-	name = "Cargo Turtleneck"
+	name = "货运高领毛衣"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skyrat/turtleneck
 
 /datum/loadout_item/uniform/miscellaneous/cargo_skirtle
-	name = "Cargo Skirtleneck"
+	name = "货运高领短裙"
 	item_path = /obj/item/clothing/under/rank/cargo/tech/skyrat/turtleneck/skirt
 
 /datum/loadout_item/uniform/miscellaneous/qm_skirtle
-	name = "Quartermaster's Skirtleneck"
+	name = "货运主管高领短裙"
 	item_path = /obj/item/clothing/under/rank/cargo/qm/skyrat/turtleneck/skirt
 	restricted_roles = list(JOB_QUARTERMASTER)
 
 /datum/loadout_item/uniform/miscellaneous/qm_gorka
-	name = "Quartermaster's Gorka Uniform"
+	name = "货运主管高尔卡制服"
 	item_path = /obj/item/clothing/under/rank/cargo/qm/skyrat/gorka
 	restricted_roles = list(JOB_QUARTERMASTER)
 
 /datum/loadout_item/uniform/miscellaneous/eve
-	name = "Collection of Leaves"
+	name = "一束树叶"
 	item_path = /obj/item/clothing/under/misc/skyrat/gear_harness/eve
 
 /datum/loadout_item/uniform/miscellaneous/adam
-	name = "Leaf"
+	name = "一片树叶"
 	item_path = /obj/item/clothing/under/misc/skyrat/gear_harness/adam
 
 /datum/loadout_item/uniform/miscellaneous/ethereal_tunic
-	name = "Ethereal Tunic"
+	name = "以太人束腰外衣"
 	item_path = /obj/item/clothing/under/ethereal_tunic
 
 /datum/loadout_item/uniform/miscellaneous/mech_suit
-	name = "Mech Suit"
+	name = "机甲套装"
 	item_path = /obj/item/clothing/under/costume/mech_suit
 
 /*
@@ -639,277 +639,277 @@
 /datum/loadout_item/uniform/formal
 
 /datum/loadout_item/uniform/formal/amish_suit
-	name = "White Buttondown Shirt with Black Slacks"
+	name = "白色纽扣衬衫配黑色长裤"
 	item_path = /obj/item/clothing/under/costume/buttondown/slacks/service
 
 /datum/loadout_item/uniform/formal/formaldressred
-	name = "Formal Red Dress"
+	name = "红色礼服"
 	item_path = /obj/item/clothing/under/dress/skyrat/redformal
 
 /datum/loadout_item/uniform/formal/countessdress
-	name = "Countess Dress"
+	name = "伯爵夫人礼服"
 	item_path = /obj/item/clothing/under/dress/skyrat/countess
 
 /datum/loadout_item/uniform/formal/assistant
-	name = "Assistant Formal"
+	name = "助理礼服"
 	item_path = /obj/item/clothing/under/misc/assistantformal
 
 /datum/loadout_item/uniform/formal/beige_suit
-	name = "Beige Suit"
+	name = "米色西装"
 	item_path = /obj/item/clothing/under/suit/beige
 
 /datum/loadout_item/uniform/formal/black_suit
-	name = "Black Suit"
+	name = "黑色西装"
 	item_path = /obj/item/clothing/under/suit/black
 
 /datum/loadout_item/uniform/formal/black_suitskirt
-	name = "Black Suitskirt"
+	name = "黑色西装裙"
 	item_path = /obj/item/clothing/under/suit/black/skirt
 
 /datum/loadout_item/uniform/formal/black_lawyer_suit
-	name = "Black Lawyer Suit"
+	name = "律师黑西装"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/black
 
 /datum/loadout_item/uniform/formal/black_lawyer_skirt
-	name = "Black Lawyer Suitskirt"
+	name = "律师黑色西装裙"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/black/skirt
 
 /datum/loadout_item/uniform/formal/blue_suit
-	name = "Blue Buttondown Suit"
+	name = "蓝色纽扣衬衫西装"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit
 
 /datum/loadout_item/uniform/formal/blue_suitskirt
-	name = "Blue Buttondown Suitskirt"
+	name = "蓝色纽扣衬衫西装裙"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit/skirt
 
 /datum/loadout_item/uniform/formal/blue_lawyer_suit
-	name = "Blue Lawyer Suit"
+	name = "律师蓝西装"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/blue
 
 /datum/loadout_item/uniform/formal/blue_lawyer_skirt
-	name = "Blue Lawyer Suitskirt"
+	name = "律师蓝色西装裙"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/blue/skirt
 
 /datum/loadout_item/uniform/formal/burgundy_suit
-	name = "Burgundy Suit"
+	name = "酒红色西装"
 	item_path = /obj/item/clothing/under/suit/burgundy
 
 /datum/loadout_item/uniform/formal/charcoal_suit
-	name = "Charcoal Suit"
+	name = "炭灰色西装"
 	item_path = /obj/item/clothing/under/suit/charcoal
 
 /datum/loadout_item/uniform/formal/checkered_suit
-	name = "Checkered Suit"
+	name = "格纹西装"
 	item_path = /obj/item/clothing/under/suit/checkered
 
 /datum/loadout_item/uniform/formal/executive_suit
-	name = "Executive Suit"
+	name = "高管西装"
 	item_path = /obj/item/clothing/under/suit/black_really
 
 /datum/loadout_item/uniform/formal/executive_skirt
-	name = "Executive Suitskirt"
+	name = "高管西装裙"
 	item_path = /obj/item/clothing/under/suit/black_really/skirt
 
 /datum/loadout_item/uniform/formal/executive_suit_alt
-	name = "Wide-collared Executive Suit"
+	name = "宽领高管西装"
 	item_path = /obj/item/clothing/under/suit/skyrat/black_really_collared
 
 /datum/loadout_item/uniform/formal/executive_skirt_alt
-	name = "Wide-collared Executive Suitskirt"
+	name = "宽领高管西装裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/black_really_collared/skirt
 
 /datum/loadout_item/uniform/formal/navy_suit
-	name = "Navy Suit"
+	name = "藏青色西装"
 	item_path = /obj/item/clothing/under/suit/navy
 
 /datum/loadout_item/uniform/formal/maid_uniform
-	name = "Maid Uniform"
+	name = "女仆制服"
 	item_path = /obj/item/clothing/under/rank/civilian/janitor/maid
 
 /datum/loadout_item/uniform/formal/purple_suit
-	name = "Purple Suit"
+	name = "紫色西装"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/purpsuit
 
 /datum/loadout_item/uniform/formal/purple_suitskirt
-	name = "Purple Suitskirt"
+	name = "紫色西装裙"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/purpsuit/skirt
 
 /datum/loadout_item/uniform/formal/red_suit
-	name = "Red Suit"
+	name = "红色西装"
 	item_path = /obj/item/clothing/under/suit/red
 
 /datum/loadout_item/uniform/formal/helltaker
-	name = "Red Shirt with White Trousers"
+	name = "红衬衫配白长裤"
 	item_path = /obj/item/clothing/under/suit/skyrat/helltaker
 
 /datum/loadout_item/uniform/formal/helltaker/skirt
-	name = "Red Shirt with White Skirt"
+	name = "红衬衫配白短裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/helltaker/skirt
 
 /datum/loadout_item/uniform/formal/red_lawyer_skirt
-	name = "Red Lawyer Suit"
+	name = "律师红西装"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/red
 
 /datum/loadout_item/uniform/formal/red_lawyer_skirt
-	name = "Red Lawyer Suitskirt"
+	name = "律师红色西装裙"
 	item_path = /obj/item/clothing/under/rank/civilian/lawyer/red/skirt
 
 /datum/loadout_item/uniform/formal/red_gown
-	name = "Red Evening Gown"
+	name = "红色晚礼服"
 	item_path = /obj/item/clothing/under/dress/eveninggown
 
 /datum/loadout_item/uniform/formal/sailor
-	name = "Sailor Suit"
+	name = "水手服"
 	item_path = /obj/item/clothing/under/costume/sailor
 
 /datum/loadout_item/uniform/formal/sailor_skirt
-	name = "Sailor Dress"
+	name = "水手连衣裙"
 	item_path = /obj/item/clothing/under/dress/sailor
 
 /datum/loadout_item/uniform/formal/sensible_suit
-	name = "Sensible Suit"
+	name = "得体西装"
 	item_path = /obj/item/clothing/under/rank/civilian/curator
 
 /datum/loadout_item/uniform/formal/sensible_skirt
-	name = "Sensible Suitskirt"
+	name = "得体西装裙"
 	item_path = /obj/item/clothing/under/rank/civilian/curator/skirt
 
 /datum/loadout_item/uniform/formal/tuxedo
-	name = "Tuxedo Suit"
+	name = "燕尾服"
 	item_path = /obj/item/clothing/under/suit/tuxedo
 
 /datum/loadout_item/uniform/formal/waiter
-	name = "Waiter's Suit"
+	name = "服务员西装"
 	item_path = /obj/item/clothing/under/suit/waiter
 
 /datum/loadout_item/uniform/formal/white_suit
-	name = "White Suit"
+	name = "白色西装"
 	item_path = /obj/item/clothing/under/suit/white
 
 /datum/loadout_item/uniform/formal/fancy_suit
-	name = "Fancy Suit"
+	name = "华丽西装"
 	item_path = /obj/item/clothing/under/suit/fancy
 
 /datum/loadout_item/uniform/formal/recolorable_suit
-	name = "Recolorable Formal Suit"
+	name = "正式西装（可染色）"
 	item_path = /obj/item/clothing/under/suit/skyrat/recolorable
 
 /datum/loadout_item/uniform/formal/recolorable_suitskirt
-	name = "Recolorable Formal Suitskirt"
+	name = "正式西装裙（可染色）"
 	item_path = /obj/item/clothing/under/suit/skyrat/recolorable/skirt
 
 /datum/loadout_item/uniform/formal/trek_command
-	name = "Trekkie Command Uniform"
+	name = "星际迷航指挥制服"
 	item_path = /obj/item/clothing/under/trek/command
 
 /datum/loadout_item/uniform/formal/trek_engsec
-	name = "Trekkie Engsec Uniform"
+	name = "星际迷航工程安保制服"
 	item_path = /obj/item/clothing/under/trek/engsec
 
 /datum/loadout_item/uniform/formal/trek_medsci
-	name = "Trekkie Medsci Uniform"
+	name = "星际迷航医疗科研制服"
 	item_path = /obj/item/clothing/under/trek/medsci
 
 /datum/loadout_item/uniform/formal/trek_next_command
-	name = "Trekkie TNG Command Uniform"
+	name = "星际迷航 TNG 指挥制服"
 	item_path = /obj/item/clothing/under/trek/command/next
 
 /datum/loadout_item/uniform/formal/trek_next_engsec
-	name = "Trekkie TNG Engsec Uniform"
+	name = "星际迷航 TNG 工程安保制服"
 	item_path = /obj/item/clothing/under/trek/engsec/next
 
 /datum/loadout_item/uniform/formal/trek_next_medsci
-	name = "Trekkie TNG Medsci Uniform"
+	name = "星际迷航 TNG 医疗科研制服"
 	item_path = /obj/item/clothing/under/trek/medsci/next
 
 /datum/loadout_item/uniform/formal/trek_ent_command
-	name = "Trekkie ENT Command Uniform"
+	name = "星际迷航 ENT 指挥制服"
 	item_path = /obj/item/clothing/under/trek/command/ent
 
 /datum/loadout_item/uniform/formal/trek_ent_engsec
-	name = "Trekkie ENT Engsec Uniform"
+	name = "星际迷航 ENT 工程安保制服"
 	item_path = /obj/item/clothing/under/trek/engsec/ent
 
 /datum/loadout_item/uniform/formal/trek_ent_medsci
-	name = "Trekkie ENT Medsci Uniform"
+	name = "星际迷航 ENT 医疗科研制服"
 	item_path = /obj/item/clothing/under/trek/medsci/ent
 
 /datum/loadout_item/uniform/formal/the_q
-	name = "French Marshall's Uniform"
+	name = "法国元帅制服"
 	item_path = /obj/item/clothing/under/trek/q
 
 //FAMILIES GEAR
 /datum/loadout_item/uniform/formal/osi
-	name = "OSI Uniform"
+	name = "OSI 制服"
 	item_path = /obj/item/clothing/under/costume/osi
 
 /datum/loadout_item/uniform/formal/tmc
-	name = "TMC Uniform"
+	name = "TMC 制服"
 	item_path = /obj/item/clothing/under/costume/tmc
 
 /datum/loadout_item/uniform/formal/inferno
-	name = "Inferno Suit"
+	name = "炼狱西装"
 	item_path = /obj/item/clothing/under/suit/skyrat/inferno
 
 /datum/loadout_item/uniform/formal/inferno_skirt
-	name = "Inferno Skirt"
+	name = "炼狱西装裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/inferno/skirt
 
 /datum/loadout_item/uniform/formal/designer_inferno
-	name = "Designer Inferno Suit"
+	name = "名牌炼狱西装"
 	item_path = /obj/item/clothing/under/suit/skyrat/inferno/beeze
 
 /datum/loadout_item/uniform/formal/pencil
-	name = "Black Pencilskirt"
+	name = "黑色铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil
 
 /datum/loadout_item/uniform/formal/pencil/black_really
-	name = "Executive Pencilskirt"
+	name = "高管铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/black_really
 
 /datum/loadout_item/uniform/formal/pencil/charcoal
-	name = "Charcoal Pencilskirt"
+	name = "炭灰色铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/charcoal
 
 /datum/loadout_item/uniform/formal/pencil/navy
-	name = "Navy Pencilskirt"
+	name = "藏青色铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/navy
 
 /datum/loadout_item/uniform/formal/pencil/burgandy
-	name = "Burgandy Pencilskirt"
+	name = "酒红色铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/burgandy
 
 /datum/loadout_item/uniform/formal/pencil/checkered
-	name = "Checkered Pencilskirt"
+	name = "格纹铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/checkered
 
 /datum/loadout_item/uniform/formal/pencil/tan
-	name = "Tan Pencilskirt"
+	name = "棕褐色铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/tan
 
 /datum/loadout_item/uniform/formal/pencil/green
-	name = "Green Pencilskirt"
+	name = "绿色铅笔裙"
 	item_path = /obj/item/clothing/under/suit/skyrat/pencil/green
 
 /datum/loadout_item/uniform/formal/azulea_oldblood
-	name = " Oldblood's Royal Regalia"
+	name = " 旧贵族皇家礼服"
 	item_path = /obj/item/clothing/under/rank/azulean/old_blood
 
 /datum/loadout_item/uniform/formal/azulea_oldblood/skirt
-	name = " Oldblood's Royal Regalia (Skirt)"
+	name = " 旧贵族皇家礼服（裙装）"
 	item_path = /obj/item/clothing/under/rank/azulean/old_blood/skirt
 
 /datum/loadout_item/uniform/formal/azulea_upstart
-	name = "Upstart's Noble Getup"
+	name = "新贵贵族装束"
 	item_path = /obj/item/clothing/under/rank/azulean/upstart
 
 /datum/loadout_item/uniform/formal/azulea_upstart/skirt
-	name = "Upstart's Noble Getup (Skirt)"
+	name = "新贵贵族装束（裙装）"
 	item_path = /obj/item/clothing/under/rank/azulean/upstart/skirt
 
 // DONATOR ONLY
 /datum/loadout_item/uniform/captain_black
-	name  = "Captains Black Uniform"
+	name  = "舰长黑色制服"
 	item_path = /obj/item/clothing/under/rank/captain/skyrat/black
 	restricted_roles = list(JOB_CAPTAIN)
 	donator_only = TRUE
@@ -918,13 +918,13 @@
 	donator_only = TRUE
 
 /datum/loadout_item/uniform/donator/enclavesergeant
-	name = "Enclave - Sergeant"
+	name = "英克雷——中士"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/enclave
 
 /datum/loadout_item/uniform/donator/enclaveofficer
-	name = "Enclave - Officer"
+	name = "英克雷——军官"
 	item_path = /obj/item/clothing/under/syndicate/skyrat/enclave/officer
 
 /datum/loadout_item/uniform/donator/blondie
-	name = "Blonde Cowboy Uniform"
+	name = "金发牛仔制服"
 	item_path = /obj/item/clothing/under/rank/security/detective/cowboy/armorless

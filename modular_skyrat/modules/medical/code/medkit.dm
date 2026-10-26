@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit
-	name = "synthetic treatment kit"
-	desc = "A \"surgical\" duffel bag containing everything you need to treat the worst and <i>best</i> of inorganic wounds."
+	name = "合成人治疗套件"
+	desc = "一个“外科手术”行李袋，里面装着处理各种无机伤口所需的一切，无论是最糟的还是<i>最好</i>处理的。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/backpacks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/back.dmi'
 	lefthand_file = 'modular_skyrat/master_files/icons/mob/inhands/clothing/backpack_lefthand.dmi'
@@ -34,9 +34,9 @@
 
 // a treatment kit with extra space and more tools/upgraded tools, like a crowbar, insuls, a reinforced plunger, a crowbar and wrench
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma
-	name = "synthetic trauma kit"
-	desc = "A \"surgical\" duffel bag containing everything you need to treat the worst and <i>best</i> of inorganic wounds. This one has extra tools and space \
-	for treatment of the WORST of the worst! However, it's highly specialized interior means it can ONLY hold synthetic repair tools."
+	name = "合成人创伤套件"
+	desc = "一个“外科手术”行李袋，里面装着处理各种无机伤口所需的一切，无论是最糟的还是<i>最好</i>处理的。这一款拥有额外的工具和空间，\
+	专为处理最糟中最糟的情况！不过，其高度专业化的内部结构意味着它只能存放合成人维修工具。"
 	storage_type = /datum/storage/duffel/synth_trauma_kit
 
 /datum/storage/duffel/synth_trauma_kit
@@ -125,10 +125,10 @@
 
 // advanced tools, an RCD, chems, etc etc. dont give this one to the crew early in the round
 /obj/item/storage/backpack/duffelbag/synth_treatment_kit/trauma/advanced
-	name = "advanced synth trauma kit"
-	desc = "An \"advanced\" \"surgical\" duffel bag containing <i>absolutely</i> everything you need to treat the worst and <i>best</i> of inorganic wounds. \
-	This one has extra tools and space for treatment of the ones even <i>worse</i> than the WORST of the worst! However, its highly specialized interior \
-	means it can ONLY hold synthetic repair tools."
+	name = "高级合成人创伤套件"
+	desc = "一个“高级”“外科手术”行李袋，装有处理各种无机伤口所需的<i>绝对</i>一切，无论是最糟的还是<i>最好</i>处理的。\
+	这一款拥有额外的工具和空间，用于处理比最糟中最糟<i>还要糟</i>的情况！不过，其高度专业化的内部结构\
+	意味着它只能存放合成人维修工具。"
 
 	storage_type = /datum/storage/duffel/synth_trauma_kit/advanced
 
@@ -174,8 +174,8 @@
 
 // basetype, do not use
 /obj/item/storage/medkit/mechanical
-	name = "mechanical medkit"
-	desc = "For those mechanical booboos."
+	name = "机械医疗包"
+	desc = "专治那些机械小磕碰。"
 
 	icon = 'modular_skyrat/modules/medical/icons/obj/medkit.dmi'
 	icon_state = "medkit_mechanical"

@@ -43,21 +43,21 @@
 
 	var/signal_result = SEND_SIGNAL(parent_body, COMSIG_SOULCATCHER_SCAN_BODY, parent_body)
 	if(!signal_result)
-		to_chat(user, span_warning("[parent_body] has already been scanned!"))
+		to_chat(user, span_warning("[parent_body] 已经被扫描过了！"))
 		return FALSE
 
 	if(istype(parent, /obj/item/handheld_soulcatcher))
 		var/obj/item/handheld_soulcatcher/parent_device = parent
 		playsound(parent_device, 'modular_skyrat/modules/modular_implants/sounds/default_good.ogg', 50, FALSE, ignore_walls = FALSE)
-		parent_device.visible_message(span_notice("[parent_device] beeps: [parent_body] is now scanned."))
+		parent_device.visible_message(span_notice("[parent_device] 发出提示音：[parent_body] 现已完成扫描。"))
 
 	return TRUE
 
 /datum/carrier_room/soulcatcher
 	/// What is the name of the room?
-	name = "Default Room"
+	name = "默认房间"
 	/// What is the description of the room?
-	room_description = "An orange platform suspended in space orbited by reflective cubes of various sizes. There really isn't much here at the moment."
+	room_description = "一座悬浮在太空中的橙色平台，周围环绕着大小不一的反射立方体。眼下这里确实没什么东西。"
 
 /// Attemps to add a ghost to the soulcatcher room.
 /datum/carrier_room/soulcatcher/proc/add_soul_from_ghost(mob/dead/observer/ghost)
@@ -99,22 +99,22 @@
 
 	if(hide_participant_identity && new_soul.round_participant)
 		soul_component.name = pick(GLOB.last_names) //Until the body is discovered, the soul is a new person.
-		soul_component.desc = "[new_soul] lacks a discernible form."
+		soul_component.desc = "[new_soul] 没有可辨认的形态。"
 
 	mind_to_add.transfer_to(new_soul, TRUE)
 	current_mobs += new_soul
 	soul_component.current_room = WEAKREF(src)
 
-	to_chat(new_soul, span_cyan("You find yourself now inside of: [name]"))
+	to_chat(new_soul, span_cyan("你发现自己此刻身处：[name]"))
 	to_chat(new_soul, span_notice(room_description))
-	to_chat(new_soul, span_doyourjobidiot("You have entered a soulcatcher, do not share any information you have received while a ghost. If you have died within the round, you do not know your identity until your body has been scanned, standard blackout policy also applies."))
-	to_chat(new_soul, span_notice("While inside of [src], you are able to speak and emote by using the normal hotkeys and verbs, unless disabled by the owner."))
-	to_chat(new_soul, span_notice("You may use the leave soulcatcher verb to leave the soulcatcher and return to your body at any time."))
+	to_chat(new_soul, span_doyourjobidiot("你已进入一个灵魂捕手，不要分享你在作为幽灵期间获得的任何信息。如果你在本回合内死亡，在躯体被扫描之前你并不知道自己的身份，标准的失忆规则同样适用。"))
+	to_chat(new_soul, span_notice("身处 [src] 期间，你可以使用常规快捷键和动词说话与做表情，除非所有者禁用了这些功能。"))
+	to_chat(new_soul, span_notice("你可以随时使用“离开灵魂捕手”动词离开灵魂捕手并返回自己的躯体。"))
 
 	var/atom/parent_atom = parent_object
 	if(istype(parent_atom))
 		var/turf/soulcatcher_turf = get_turf(parent_soulcatcher.parent)
-		var/message_to_log = "[key_name(new_soul)] entered [src] inside of [parent_atom] at [loc_name(soulcatcher_turf)]"
+		var/message_to_log = "[key_name(new_soul)] 在 [loc_name(soulcatcher_turf)] 的 [parent_atom] 内进入了 [src]"
 		parent_atom.log_message(message_to_log, LOG_GAME)
 		new_soul.log_message(message_to_log, LOG_GAME)
 

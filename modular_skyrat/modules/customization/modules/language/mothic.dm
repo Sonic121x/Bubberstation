@@ -1,8 +1,8 @@
 /datum/language/moffic
 	name = "Mothic"
-	desc = "The first iteration of Mothic emerged when Fueljacks relied on their receptors for simple, one-worded pheromones to communicate and navigate. \
-		The moths developed gesticulation through antennas and wings to convey deeper intent, with mandibles providing emotional context through clicks and trills. \
-		Linguists have achieved a similar effect from clicking their tongue to roof, and steer the tone with the width of their mouth while using hands in place of antennas."
+	desc = "蛾语的初版诞生于燃料工尚依赖感受器接收单词式的简单信息素来交流与导航的时期。 \
+		蛾人们发展出用触角与翅膀打手势的方式，以传达更深层的意图，而下颚则通过咔哒声与颤音提供情感语境。 \
+		语言学家通过用舌尖抵住上颚发出咔哒声来取得类似效果，并用嘴型的宽窄来控制语调，同时以双手代替触角。"
 	space_chance = 40
 	// Syllables derived from Italian.
 	syllables = list(

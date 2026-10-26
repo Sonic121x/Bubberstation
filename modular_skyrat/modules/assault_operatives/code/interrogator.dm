@@ -16,8 +16,8 @@
  * After a key has been extracted, it will send a pod somewhere into maintenance, and the syndicates will know about it straight away.
  */
 /obj/machinery/interrogator
-	name = "In-TERROR-gator"
-	desc = "A morraly corrupt piece of machinery used to extract the human mind into a GoldenEye authentication key. The process is said to be one of the most painful experiences someone can endure. Alt+click to start the process."
+	name = "恐问仪"
+	desc = "一台道德败坏的机器，用来把人的心智提取成一张黄金眼认证钥匙卡。据说这过程是人所能承受的最痛苦经历之一。按住 Alt 点击以启动流程。"
 	icon = 'modular_skyrat/modules/assault_operatives/icons/goldeneye.dmi'
 	icon_state = "interrogator_open"
 	state_open = FALSE
@@ -34,7 +34,7 @@
 
 /obj/machinery/interrogator/examine(mob/user)
 	. = ..()
-	. += "It requies a direct link to a Nanotrasen defence network, stay near a Nanotrasen comms sat!"
+	. += "它需要与纳米传讯防御网络保持直接连接，请待在纳米传讯通讯卫星附近！"
 
 /obj/machinery/interrogator/click_alt(mob/user)
 	. = ..()
@@ -84,7 +84,7 @@
 	locked = FALSE
 	human_occupant = null
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 100)
-	balloon_alert_to_viewers("process aborted!")
+	balloon_alert_to_viewers("流程已中止！")
 	if(timer_id)
 		deltimer(timer_id)
 		timer_id = null
@@ -103,73 +103,73 @@
 
 /obj/machinery/interrogator/proc/attempt_extract(mob/user)
 	if(!occupant)
-		balloon_alert_to_viewers("no occupant!")
+		balloon_alert_to_viewers("里面没有人！")
 		return
 	if(state_open)
-		balloon_alert_to_viewers("door open!")
+		balloon_alert_to_viewers("舱门未关！")
 		return
 	if(!is_station_level(z))
-		balloon_alert_to_viewers("no comms link!")
+		balloon_alert_to_viewers("无通讯连接！")
 		return
 	if(!ishuman(occupant))
-		balloon_alert_to_viewers("invalid target DNA!")
+		balloon_alert_to_viewers("目标 DNA 无效！")
 		return
 	human_occupant = occupant
 	if(human_occupant.stat == DEAD)
-		balloon_alert_to_viewers("occupant is dead!")
+		balloon_alert_to_viewers("里面的人已死亡！")
 		return
 	if(!SSgoldeneye.check_goldeneye_target(human_occupant.mind)) // Preventing abuse by method of duplication.
-		balloon_alert_to_viewers("no GoldenEye data!")
+		balloon_alert_to_viewers("无黄金眼数据！")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100)
 		return
 
 	start_extract()
 
 /obj/machinery/interrogator/proc/start_extract()
-	to_chat(human_occupant, span_userdanger("You feel dread wash over you as you hear the door on [src] lock!"))
+	to_chat(human_occupant, span_userdanger("听到 [src] 的舱门锁上，你感到一阵恐惧袭来！"))
 	locked = TRUE
 	processing = TRUE
-	say("Starting DNA data extraction!")
+	say("开始提取 DNA 数据！")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(stage_one)), rand(STAGE_PROCESS_TIME_LOWER, STAGE_PROCESS_TIME_UPPER), TIMER_STOPPABLE|TIMER_UNIQUE) //Random times so crew can't anticipate exactly when it will drop.
 	update_appearance()
 
 /obj/machinery/interrogator/proc/stage_one()
 	if(!check_requirements())
-		say("Critical error! Aborting.")
+		say("严重错误！正在中止。")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100)
 		return
-	to_chat(human_occupant, span_danger("As [src] whirrs to life you feel some cold metal restraints deploy around you, you can't move!"))
+	to_chat(human_occupant, span_danger("随着 [src] 嗡嗡启动，你感到一些冰冷的金属束缚装置在你周围展开，你动弹不得！"))
 	playsound(loc, 'sound/items/tools/rped.ogg', 60)
-	say("Stage one complete!")
-	minor_announce("SECURITY BREACH DETECTED, NETWORK COMPROMISED! LOCATION UNTRACEABLE.", "GoldenEye Defence Network")
+	say("第一阶段完成！")
+	minor_announce("检测到安保入侵，网络已被攻陷！位置无法追踪。", "黄金眼防御网络")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(stage_two)), rand(STAGE_PROCESS_TIME_LOWER, STAGE_PROCESS_TIME_UPPER), TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/machinery/interrogator/proc/stage_two()
 	if(!check_requirements())
-		say("Critical error! Aborting.")
+		say("严重错误！正在中止。")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100)
 		return
-	to_chat(human_occupant, span_userdanger("You feel a sharp pain as a drill penetrates your skull, it's unbearable!"))
+	to_chat(human_occupant, span_userdanger("钻头刺入你的颅骨，一阵剧痛袭来，无法忍受！"))
 	human_occupant.emote("scream")
 	human_occupant.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
 	playsound(src, 'sound/effects/wounds/blood1.ogg', 100)
 	playsound(src, 'sound/items/tools/drill_use.ogg', 100)
-	say("Stage two complete!")
+	say("第二阶段完成！")
 	timer_id = addtimer(CALLBACK(src, PROC_REF(stage_three)), rand(STAGE_PROCESS_TIME_LOWER, STAGE_PROCESS_TIME_UPPER), TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/machinery/interrogator/proc/stage_three()
 	if(!check_requirements())
-		say("Critical error! Aborting.")
+		say("严重错误！正在中止。")
 		playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 100)
 		return
-	to_chat(human_occupant, span_userdanger("You feel something penetrating your brain, it feels as though your childhood memories are fading! Please, make it stop! After a moment of silence, you realize you can't remember what happened to you!"))
+	to_chat(human_occupant, span_userdanger("你感到有什么东西刺入了你的大脑，仿佛童年的记忆正在消退！求你了，让它停下来！片刻的沉默之后，你意识到自己已经记不起自己遭遇了什么！"))
 	human_occupant.emote("scream")
 	human_occupant.apply_damage(20, BRUTE, BODY_ZONE_HEAD)
 	human_occupant.set_jitter_if_lower(3 MINUTES)
 	human_occupant.Unconscious(1 MINUTES)
 	playsound(src, 'sound/effects/dismember.ogg', 100)
 	playsound(src, 'sound/machines/ping.ogg', 100)
-	say("Process complete! A key is being sent aboard! Crew will shortly detect the keycard!")
+	say("流程完成！一把钥匙正在被送达！船员很快就会检测到这张钥匙卡！")
 	send_keycard()
 	processing = FALSE
 	locked = FALSE
@@ -177,7 +177,7 @@
 	addtimer(CALLBACK(src, PROC_REF(announce_creation)), ALERT_CREW_TIME)
 
 /obj/machinery/interrogator/proc/announce_creation()
-	priority_announce("CRITICAL SECURITY BREACH DETECTED! A GoldenEye authentication keycard has been illegally extracted and is being sent in somewhere on the station!", "GoldenEye Defence Network")
+	priority_announce("检测到严重的安保入侵！一张黄金眼认证钥匙卡已被非法提取，并正被送往空间站上的某处！", "黄金眼防御网络")
 	for(var/obj/item/pinpointer/nuke/disk_pinpointers in GLOB.pinpointer_list)
 		disk_pinpointers.switch_mode_to(TRACK_GOLDENEYE) //Pinpointer will track the newly created goldeneye key.
 
@@ -196,9 +196,9 @@
 	for(var/datum/status_effect/goldeneye_pinpointer/iterating_pinpointer in GLOB.goldeneye_pinpointers)
 		iterating_pinpointer.set_target(new_key)
 
-	notify_ghosts("GoldenEye key launched!",
+	notify_ghosts("黄金眼钥匙已发射！",
 		source = new_key,
-		header = "Something's Interesting!",
+		header = "有值得关注的东西！",
 	)
 
 /obj/machinery/interrogator/proc/find_drop_turf()

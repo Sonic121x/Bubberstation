@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(ckey_to_aooc_name)
 GAME_VERB(/client, aooc, "AOOC", "OOC")
 	VERB_ARG(msg, VERB_ARG_TYPE_TEXT, VERB_ARG_SOURCE_INPUT)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("发言目前已被管理员禁用。"))
 		return
 
 	if(!mob)
@@ -17,16 +17,16 @@ GAME_VERB(/client, aooc, "AOOC", "OOC")
 
 	if(!holder)
 		if(!mob.mind || !length(mob.mind.antag_datums))
-			to_chat(src, span_danger("You're not an antagonist!"))
+			to_chat(src, span_danger("你不是反派角色！"))
 			return
 		if(!GLOB.aooc_allowed)
-			to_chat(src, span_danger("AOOC is globally muted."))
+			to_chat(src, span_danger("AOOC 已被全局静音。"))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, span_danger("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("你无法使用 OOC（已被静音）。"))
 			return
 	if(is_banned_from(ckey, "OOC"))
-		to_chat(src, span_danger("You have been banned from OOC."))
+		to_chat(src, span_danger("你已被禁止使用 OOC。"))
 		return
 	if(QDELETED(src))
 		return
@@ -40,7 +40,7 @@ GAME_VERB(/client, aooc, "AOOC", "OOC")
 	msg = emoji_parse(msg)
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
-		to_chat(src, span_danger("You have OOC muted."))
+		to_chat(src, span_danger("你已静音 OOC。"))
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC, tag = "AOOC")
@@ -51,7 +51,7 @@ GAME_VERB(/client, aooc, "AOOC", "OOC")
 	//Anonimity for players and deadminned admins
 	if(!holder || holder.deadmined)
 		if(!GLOB.ckey_to_aooc_name[key])
-			GLOB.ckey_to_aooc_name[key] = "Operator [pick(GLOB.phonetic_alphabet)] [rand(1, 99)]"
+			GLOB.ckey_to_aooc_name[key] = "操作员 [pick(GLOB.phonetic_alphabet)] [rand(1, 99)]"
 		keyname = GLOB.ckey_to_aooc_name[key]
 		anon = TRUE
 
@@ -99,10 +99,10 @@ GAME_VERB(/client, aooc, "AOOC", "OOC")
 			listeners[iterated_mob.client] = TRUE
 	for(var/iterated_listener in listeners)
 		var/client/iterated_client = iterated_listener
-		to_chat(iterated_client, span_oocplain("<B>The AOOC channel has been globally [GLOB.aooc_allowed ? "enabled" : "disabled"].</B>"))
+		to_chat(iterated_client, span_oocplain("<B>AOOC 频道已在全局范围内[GLOB.aooc_allowed ? "启用" : "禁用"]。</B>"))
 
-ADMIN_VERB(toggleaooc, R_ADMIN, "Toggle Antag OOC", "Toggles Antag OOC.", ADMIN_CATEGORY_SERVER)
+ADMIN_VERB(toggleaooc, R_ADMIN, "切换反派 OOC", "切换反派 OOC。", ADMIN_CATEGORY_SERVER)
 	toggle_aooc()
-	log_admin("[key_name(usr)] toggled Antagonist OOC.")
-	message_admins("[key_name_admin(usr)] toggled Antagonist OOC.")
+	log_admin("[key_name(usr)] 切换了反派 OOC。")
+	message_admins("管理员 [key_name_admin(usr)] 切换了反派 OOC。")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Antag OOC", "[GLOB.aooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

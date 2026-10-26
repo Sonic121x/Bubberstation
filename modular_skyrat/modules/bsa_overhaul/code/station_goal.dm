@@ -5,15 +5,15 @@
  */
 
 /datum/station_goal/bluespace_cannon
-	name = "Bluespace Artillery"
+	name = "蓝空间火炮"
 
 /datum/station_goal/bluespace_cannon/get_report()
 	return list(
-		"<blockquote>Our military presence is inadequate in your sector.",
-		"We need you to construct BSA-[rand(1,99)] Artillery position aboard your station.",
+		"<blockquote>我方在你所在星区的军事力量不足。",
+		"我们需要你在空间站上建造 BSA-[rand(1,99)] 火炮阵地。",
 		"",
-		"Base parts are available for shipping via cargo.",
-		"-Nanotrasen Naval Command</blockquote>",
+		"基础部件可通过货运订购。",
+		"-纳米传讯海军指挥部</blockquote>",
 	).Join("\n")
 
 /datum/station_goal/bluespace_cannon/on_report()

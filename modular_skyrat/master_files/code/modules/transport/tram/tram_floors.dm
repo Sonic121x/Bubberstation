@@ -8,8 +8,8 @@
 	return
 
 /obj/item/stack/tile/noslip/tram/guideway
-	name = "tram guideway"
-	singular_name = "tram guideway"
+	name = "电车导轨"
+	singular_name = "电车导轨"
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	icon_state = "elevatorshaft"
 	base_icon_state = "elevatorshaft"

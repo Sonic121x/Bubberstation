@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	///If a species can always be picked in prefs for the purposes of customizing it for ghost roles or events
 	var/always_customizable = FALSE
 	///Flavor text of the species displayed on character creation screeen
-	var/flavor_text = "No description."
+	var/flavor_text = "无描述。"
 	///Path to BODYSHAPE_CUSTOM species worn icons. An assoc list of ITEM_SLOT_X => /icon
 	var/list/custom_worn_icons = list()
 	/// Are we lore protected? This prevents people from changing the species lore or species name.
@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(customizable_races)
 	can_augment = FALSE
 
 /datum/species/pod
-	name = "Primal Podperson"
+	name = "原始豆荚人"
 	always_customizable = TRUE
 
 /datum/species/randomize_features(mob/living/carbon/human/human_mob)

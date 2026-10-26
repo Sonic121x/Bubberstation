@@ -33,7 +33,7 @@ GLOBAL_PROTECT(mentor_href_token)
 		GLOB.mentors -= owner
 		owner.mentor_datum = null
 		owner = null
-	log_admin_private("[target] was removed from the rank of mentor.")
+	log_admin_private("[target] 已被解除导师职务。")
 	GLOB.mentor_datums -= target
 	qdel(src)
 
@@ -42,13 +42,13 @@ GLOBAL_PROTECT(mentor_href_token)
 	. = auth && (auth == href_token || auth == GLOB.mentor_href_token)
 	if(.)
 		return
-	var/msg = !auth ? "no" : "a bad"
-	message_admins("[key_name_admin(usr)] clicked an href with [msg] authorization key!")
+	var/msg = !auth ? "缺少" : "错误"
+	message_admins("[key_name_admin(usr)] 点击了一个[msg]授权密钥的链接！")
 	if(CONFIG_GET(flag/debug_admin_hrefs))
-		message_admins("Debug mode enabled, call not blocked. Please ask your coders to review this round's logs.")
+		message_admins("调试模式已启用，调用未被拦截。请让程序员检查本回合的日志。")
 		log_world("UAH: [href]")
 		return TRUE
-	log_admin_private("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
+	log_admin_private("[key_name(usr)] 点击了一个[msg]授权密钥的链接！[href]")
 
 /proc/RawMentorHrefToken(forceGlobal = FALSE)
 	var/tok = GLOB.mentor_href_token

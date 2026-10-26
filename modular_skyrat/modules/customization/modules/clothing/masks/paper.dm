@@ -1,6 +1,6 @@
 /datum/action/item_action/adjust/papermask
-	name = "Adjust paper mask"
-	desc = "LMB: Change mask face. RMB: Adjust mask."
+	name = "调整纸面具"
+	desc = "左键：更换面具表情。右键：调整面具。"
 
 /datum/action/item_action/adjust/papermask/Trigger(trigger_flags)
 	. = ..()
@@ -11,8 +11,8 @@
 		paper_mask.adjust_mask(usr)
 
 /obj/item/clothing/mask/paper
-	name = "paper mask"
-	desc = "It's true. Once you wear a mask for so long, you forget about who you are. Wonder if that happens with shitty paper ones."
+	name = "纸面具"
+	desc = "没错，面具戴得久了，你就会忘记自己是谁。不知道这种劣质纸面具会不会也这样。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/masks.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/mask.dmi'
 	icon_state = "mask_paper"
@@ -48,7 +48,7 @@
 	if(isnull(user))
 		return
 	if(!user.is_holding_item_of_type(/obj/item/pen))
-		user.balloon_alert(user, "must be holding a pen!")
+		user.balloon_alert(user, "必须手持一支笔！")
 		return
 
 	var/mob/living/carbon/carbon_user
@@ -58,47 +58,47 @@
 		carbon_user.update_worn_mask()
 
 /datum/atom_skin/paper_mask/paper
-	preview_name = "Blank"
+	preview_name = "空白"
 	new_icon_state = "mask_paper"
 
 /datum/atom_skin/paper_mask/neutral
-	preview_name = "Neutral"
+	preview_name = "平静"
 	new_icon_state = "mask_neutral"
 
 /datum/atom_skin/paper_mask/eye
-	preview_name = "Eye"
+	preview_name = "眼睛"
 	new_icon_state = "mask_eye"
 
 /datum/atom_skin/paper_mask/sleepy
-	preview_name = "Sleep"
+	preview_name = "睡眠"
 	new_icon_state = "mask_sleep"
 
 /datum/atom_skin/paper_mask/heart
-	preview_name = "Heart"
+	preview_name = "爱心"
 	new_icon_state = "mask_heart"
 
 /datum/atom_skin/paper_mask/core
-	preview_name = "Core"
+	preview_name = "核心"
 	new_icon_state = "mask_core"
 
 /datum/atom_skin/paper_mask/plus
-	preview_name = "Plus"
+	preview_name = "加号"
 	new_icon_state = "mask_plus"
 
 /datum/atom_skin/paper_mask/square
-	preview_name = "Square"
+	preview_name = "方形"
 	new_icon_state = "mask_square"
 
 /datum/atom_skin/paper_mask/bullseye
-	preview_name = "Bullseye"
+	preview_name = "靶心"
 	new_icon_state = "mask_bullseye"
 
 /datum/atom_skin/paper_mask/vertical
-	preview_name = "Vertical"
+	preview_name = "竖线"
 	new_icon_state = "mask_vertical"
 
 /datum/atom_skin/paper_mask/horizontal
-	preview_name = "Horizontal"
+	preview_name = "横线"
 	new_icon_state = "mask_horizontal"
 
 /datum/atom_skin/paper_mask/x
@@ -106,55 +106,55 @@
 	new_icon_state = "mask_x"
 
 /datum/atom_skin/paper_mask/bug
-	preview_name = "Bug"
+	preview_name = "虫子"
 	new_icon_state = "mask_bug"
 
 /datum/atom_skin/paper_mask/double
-	preview_name = "Double"
+	preview_name = "双线"
 	new_icon_state = "mask_double"
 
 /datum/atom_skin/paper_mask/mark
-	preview_name = "Mark"
+	preview_name = "记号"
 	new_icon_state = "mask_mark"
 
 /datum/atom_skin/paper_mask/line
-	preview_name = "Line"
+	preview_name = "线条"
 	new_icon_state = "mask_line"
 
 /datum/atom_skin/paper_mask/minus
-	preview_name = "Minus"
+	preview_name = "减号"
 	new_icon_state = "mask_minus"
 
 /datum/atom_skin/paper_mask/four
-	preview_name = "Four"
+	preview_name = "四条"
 	new_icon_state = "mask_four"
 
 /datum/atom_skin/paper_mask/diamond
-	preview_name = "Diamond"
+	preview_name = "菱形"
 	new_icon_state = "mask_diamond"
 
 /datum/atom_skin/paper_mask/cat
-	preview_name = "Cat"
+	preview_name = "猫"
 	new_icon_state = "mask_cat"
 
 /datum/atom_skin/paper_mask/bigeye
-	preview_name = "Big Eye"
+	preview_name = "大眼"
 	new_icon_state = "mask_bigeye"
 
 /datum/atom_skin/paper_mask/good
-	preview_name = "Good"
+	preview_name = "好"
 	new_icon_state = "mask_good"
 
 /datum/atom_skin/paper_mask/bad
-	preview_name = "Bad"
+	preview_name = "坏"
 	new_icon_state = "mask_bad"
 
 /datum/atom_skin/paper_mask/happy
-	preview_name = "Happy"
+	preview_name = "开心"
 	new_icon_state = "mask_happy"
 
 /datum/atom_skin/paper_mask/sad
-	preview_name = "Sad"
+	preview_name = "悲伤"
 	new_icon_state = "mask_sad"
 
 /obj/item/clothing/mask/paper/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
@@ -171,9 +171,9 @@
 
 /obj/item/clothing/mask/paper/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Change Mask Face"
-	context[SCREENTIP_CONTEXT_ALT_RMB] = "Adjust Mask"
-	context[SCREENTIP_CONTEXT_CTRL_LMB] = "Hide/Show Strap"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "更换面具表情"
+	context[SCREENTIP_CONTEXT_ALT_RMB] = "调整面具"
+	context[SCREENTIP_CONTEXT_CTRL_LMB] = "隐藏/显示系带"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/clothing/mask/paper/proc/adjust_mask(mob/living/carbon/human/user)
@@ -184,10 +184,10 @@
 		wear_hair_over = !wear_hair_over
 		if(wear_hair_over)
 			alternate_worn_layer = BACK_LAYER
-			to_chat(user, "You [is_worn ? "" : "will "]sweep your hair over the mask.")
+			to_chat(user, "你[is_worn ? "" : "将"]把头发撩到面具上方。")
 		else
 			alternate_worn_layer = initial(alternate_worn_layer)
-			to_chat(user, "You [is_worn ? "" : "will "]sweep your hair under the mask.")
+			to_chat(user, "你[is_worn ? "" : "将"]把头发拨到面具下方。")
 
 		user.update_worn_mask()
 
@@ -197,7 +197,7 @@
 	if(!user.incapacitated)
 		var/is_worn = user.wear_mask == src
 		strap_hidden = !strap_hidden
-		to_chat(user, "You [is_worn ? "" : "will "][strap_hidden ? "hide" : "show"] the mask strap.")
+		to_chat(user, "你[is_worn ? "" : "将"][strap_hidden ? "隐藏" : "显示"]面具系带。")
 
 		user.update_worn_mask()
 

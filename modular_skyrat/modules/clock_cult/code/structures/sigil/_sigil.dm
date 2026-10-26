@@ -4,8 +4,8 @@
 
 //Sigil base
 /obj/structure/destructible/clockwork/sigil
-	name = "sigil"
-	desc = "It's a sigil that does something."
+	name = "符文"
+	desc = "这是一枚会做点什么的符文。"
 	max_integrity = 10
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_effects.dmi'
 	icon_state = "sigilvitality"

@@ -1,8 +1,8 @@
 // Backpacks
 
 /obj/item/storage/backpack/industrial/frontier_colonist
-	name = "frontier backpack"
-	desc = "A rugged backpack often used by settlers and explorers. Holds all of your equipment and then some."
+	name = "边疆背包"
+	desc = "一款结实的背包，常被定居者和探险家使用。能装下你所有的装备，甚至还有富余。"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "backpack"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'
@@ -16,24 +16,24 @@
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
 /obj/item/storage/backpack/industrial/frontier_colonist/satchel
-	name = "frontier satchel"
-	desc = "A rugged satchel often used by settlers and explorers. Holds less of your equipment than a backpack will."
+	name = "边疆挎包"
+	desc = "一款结实的挎包，常被定居者和探险家使用。能装的装备比背包少一些。"
 	icon_state = "satchel"
 	worn_icon_state = "satchel"
 
 /obj/item/storage/backpack/industrial/frontier_colonist/messenger
-	name = "frontier messenger bag"
-	desc = "A rugged messenger bag often used by settlers and explorers. Holds less of your equipment than a backpack will."
+	name = "边疆邮差包"
+	desc = "一款结实的邮差包，常被定居者和探险家使用。能装的装备比背包少一些。"
 	icon_state = "messenger"
 	worn_icon_state = "messenger"
 
 // Belts
 
 /obj/item/storage/belt/utility/frontier_colonist
-	name = "frontier chest rig"
-	desc = "A versatile chest rig with pockets to store really whatever you could think of within. \
-		That is, if whatever you could think of is within the realms of a utility belt. Fashion like this \
-		comes at a price you know!"
+	name = "边疆胸挂"
+	desc = "一款多用途胸挂，口袋可以装下你能想到的任何东西。\
+		前提是，你能想到的东西得属于工具腰带的收纳范围。这种时尚\
+		可是要付出代价的，你知道的！"
 	icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing.dmi'
 	icon_state = "harness"
 	worn_icon = 'modular_skyrat/modules/kahraman_equipment/icons/clothes/clothing_worn.dmi'

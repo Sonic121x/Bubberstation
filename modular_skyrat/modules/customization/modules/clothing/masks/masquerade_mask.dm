@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/masquerade
-	name = "masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise!"
+	name = "化装舞会面具"
+	desc = "你绝对猜不出面具下是谁，这是完美的伪装！"
 	icon = 'icons/map_icons/clothing/mask.dmi'
 	icon_state = "/obj/item/clothing/mask/masquerade"
 	post_init_icon_state = "maskerade"
@@ -18,16 +18,16 @@
 	greyscale_config_worn_teshari = /datum/greyscale_config/masquerade_mask/worn/teshari
 
 /obj/item/clothing/mask/masquerade/feathered
-	name = "feathered masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise! This one even has a feather, to make it fancier!"
+	name = "羽饰化装舞会面具"
+	desc = "你绝对猜不出面具下是谁，这是完美的伪装！这一款还带一根羽毛，更加华丽！"
 	post_init_icon_state = "maskerade_feather"
 
 /obj/item/clothing/mask/masquerade/two_colors
-	name = "split masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise! There's even two colors, to add to the confusion!"
+	name = "双色化装舞会面具"
+	desc = "你绝对猜不出面具下是谁，这是完美的伪装！甚至还用了两种颜色，让迷惑效果更上一层楼！"
 	post_init_icon_state = "maskerade_two_colors"
 
 /obj/item/clothing/mask/masquerade/two_colors/feathered
-	name = "feathered split masquerade mask"
-	desc = "You'll never guess who's under that mask, it's the perfect disguise! There's even two colors AND a feather, making it the most fancy masquerade mask yet!"
+	name = "羽饰双色化装舞会面具"
+	desc = "你绝对猜不出面具下是谁，这是完美的伪装！甚至有两种颜色外加一根羽毛，堪称迄今最华丽的化装舞会面具！"
 	post_init_icon_state = "maskerade_two_colors_feather"

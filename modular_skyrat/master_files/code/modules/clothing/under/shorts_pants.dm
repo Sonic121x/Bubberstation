@@ -28,8 +28,8 @@
 */
 
 /obj/item/clothing/under/pants/skyrat/jeans_ripped
-	name = "ripped jeans"
-	desc = "A nondescript pair of tough jeans, with several rips and tears. The staple pants choice of both rebels and the poor."
+	name = "破洞牛仔裤"
+	desc = "一条不起眼的耐磨牛仔裤，上面有好几处破口和撕裂。反叛者和穷人共同的基本裤装选择。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/skyrat/jeans_ripped"
 	post_init_icon_state = "jeans_ripped"
@@ -40,8 +40,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/pants/skyrat/yoga
-	name = "yoga pants"
-	desc = "Breathable and stretchy, perfect for exercising comfortably!"
+	name = "瑜伽裤"
+	desc = "透气又有弹性，最适合舒舒服服地锻炼身体！"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/skyrat/yoga"
 	post_init_icon_state = "yoga_pants"
@@ -52,8 +52,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/pants/skyrat/chaps
-	name = "black chaps"
-	desc = "Yeehaw"
+	name = "黑色皮套裤"
+	desc = "咿哈！"
 	icon_state = "chaps"
 
 
@@ -62,8 +62,8 @@
 */
 
 /obj/item/clothing/under/shorts/skyrat/shorts_ripped
-	name = "ripped shorts"
-	desc = "A nondescript pair of tough jean shorts, with the ends of the pantlegs frayed and torn. No one will ever know if this was done intentionally."
+	name = "破洞短裤"
+	desc = "一条不起眼的耐磨牛仔短裤，裤脚边缘磨破撕裂。没人会知道这是不是故意的。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/shorts/skyrat/shorts_ripped"
 	post_init_icon_state = "shorts_ripped"
@@ -75,8 +75,8 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 
 /obj/item/clothing/under/shorts/skyrat/shortershorts
-	name = "shorter shorts"
-	desc = "Show those legs off with these even shorter shorts!"
+	name = "更短的短裤"
+	desc = "穿上这条更短的短裤，把腿露出来吧！"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/shorts/skyrat/shortershorts"
 	post_init_icon_state = "shortershorts"
@@ -92,8 +92,8 @@
 */
 
 /obj/item/clothing/under/pants/skyrat/kilt
-	name = "recolorable kilt"
-	desc = "A kilt and buttondown, adorned with a tartan sash. It is NOT a skirt."
+	name = "可改色苏格兰短裙"
+	desc = "一条苏格兰短裙配纽扣衬衫，还系着一条格纹腰带。它绝不是裙子。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/skyrat/kilt"
 	post_init_icon_state = "kilt"
@@ -107,8 +107,8 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/pants/skyrat/vicvest //there's no way I'm typing out a path called double_breasted 10 times over, too complex and everyone will be scared of it
-	name = "buttondown shirt with double-breasted vest"
-	desc = "A fancy buttondown shirt with slacks and a vest worn overtop, with a second row of buttons. Truly an outdated fashion statement."
+	name = "纽扣衬衫配双排扣马甲"
+	desc = "一件讲究的纽扣衬衫配长裤，外面还套着一件带第二排纽扣的马甲。真是过时的时尚宣言。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/pants/skyrat/vicvest"
 	post_init_icon_state = "buttondown_vicvest"

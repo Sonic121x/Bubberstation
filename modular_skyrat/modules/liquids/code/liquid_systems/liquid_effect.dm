@@ -39,11 +39,11 @@
 
 	/// State-specific message chunks for examine_turf()
 	var/static/list/liquid_state_messages = list(
-		"[LIQUID_STATE_PUDDLE]" = "a puddle of $",
-		"[LIQUID_STATE_ANKLES]" = "$ going [span_warning("up to your ankles")]",
-		"[LIQUID_STATE_WAIST]" = "$ going [span_warning("up to your waist")]",
-		"[LIQUID_STATE_SHOULDERS]" = "$ going [span_warning("up to your shoulders")]",
-		"[LIQUID_STATE_FULLTILE]" = "$ going [span_danger("over your head")]",
+		"[LIQUID_STATE_PUDDLE]" = "一滩$",
+		"[LIQUID_STATE_ANKLES]" = "深及[span_warning("脚踝")]的$",
+		"[LIQUID_STATE_WAIST]" = "深及[span_warning("腰部")]的$",
+		"[LIQUID_STATE_SHOULDERS]" = "深及[span_warning("肩膀")]的$",
+		"[LIQUID_STATE_FULLTILE]" = "[span_danger("没过人头顶")]的$",
 	)
 
 /obj/effect/abstract/liquid_turf/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
@@ -415,7 +415,7 @@
 							if(!(shoes && shoes.clothing_flags))
 								step(carbon, dir)
 								if(prob(60) && carbon.body_position != LYING_DOWN)
-									to_chat(carbon, span_userdanger("The current knocks you down!"))
+									to_chat(carbon, span_userdanger("水流把你冲倒了！"))
 									carbon.Knockdown(1 SECONDS)
 						else
 							step(AM, dir)
@@ -461,7 +461,7 @@
 
 			var/obj/item/clothing/mask/wear_mask = falling_carbon.get_item_by_slot(ITEM_SLOT_MASK)
 			if(wear_mask && wear_mask.flags_cover & MASKCOVERSMOUTH)
-				to_chat(falling_carbon, span_userdanger("You fall in the [reagents_to_text()]!"))
+				to_chat(falling_carbon, span_userdanger("你跌进了[reagents_to_text()]里！"))
 			else
 				var/datum/reagents/tempr = take_reagents_flat(CHOKE_REAGENTS_INGEST_ON_FALL_AMOUNT)
 				tempr.trans_to(falling_carbon, tempr.total_volume, methods = INGEST)
@@ -469,9 +469,9 @@
 				falling_carbon.adjust_oxy_loss(5)
 				//C.emote("cough")
 				INVOKE_ASYNC(falling_carbon, TYPE_PROC_REF(/mob, emote), "cough")
-				to_chat(falling_carbon, span_userdanger("You fall in and swallow some [reagents_to_text()]!"))
+				to_chat(falling_carbon, span_userdanger("你跌了进去，还呛了几口[reagents_to_text()]！"))
 		else
-			to_chat(M, span_userdanger("You fall in the [reagents_to_text()]!"))
+			to_chat(M, span_userdanger("你跌进了[reagents_to_text()]里！"))
 
 /obj/effect/abstract/liquid_turf/Initialize(mapload)
 	. = ..()
@@ -572,21 +572,21 @@
 			var/reagent_name = initial(reagent_type.name)
 			var/volume = round(reagent_list[reagent_type], 0.01)
 
-			examine_list += span_notice("There is [replacetext(liquid_state_template, "$", "[volume] units of [reagent_name]")] here.")
+			examine_list += span_notice("这里有[replacetext(liquid_state_template, "$", "[volume] 单位的[reagent_name]")]。")
 		else
 			// Show each individual reagent
-			examine_list += "There is [replacetext(liquid_state_template, "$", "the following")] here:"
+			examine_list += "这里有[replacetext(liquid_state_template, "$", "以下这些液体")]："
 
 			for(var/datum/reagent/reagent_type as anything in reagent_list)
 				var/reagent_name = initial(reagent_type.name)
 				var/volume = round(reagent_list[reagent_type], 0.01)
-				examine_list += "&bull; [volume] units of [reagent_name]"
+				examine_list += "&bull; [volume] 单位的[reagent_name]"
 
-		examine_list += span_notice("The solution has a temperature of [temp]K.[EXAMINE_SECTION_BREAK]")
+		examine_list += span_notice("溶液的温度为 [temp]K。[EXAMINE_SECTION_BREAK]")
 		return
 
 	// Otherwise, just show the total volume
-	examine_list += span_notice("There is [replacetext(liquid_state_template, "$", "liquid")] here.[EXAMINE_SECTION_BREAK]")
+	examine_list += span_notice("这里有[replacetext(liquid_state_template, "$", "液体")]。[EXAMINE_SECTION_BREAK]")
 
 /**
  * Creates a string of the reagents that make up this liquid.
@@ -603,7 +603,7 @@
 	/// the final string to be returned
 	var/reagents_string = ""
 	if(!reagents_remaining)
-		return reagents_string += "liquid"
+		return reagents_string += "液体"
 
 	do
 		for(var/datum/reagent/reagent_type as anything in reagent_list)
@@ -614,11 +614,11 @@
 			// if we are at the last reagent in the list, preface its name with 'and'.
 			// do not use a comma if there were only two reagents in the list
 			if(total_reagents == 2)
-				reagents_string += " and "
+				reagents_string += "和"
 			else
-				reagents_string += ", "
+				reagents_string += "、"
 				if(reagents_remaining == 1)
-					reagents_string += "and "
+					reagents_string += "以及"
 	while(reagents_remaining)
 
 	return LOWER_TEXT(reagents_string)
