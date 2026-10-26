@@ -1,7 +1,7 @@
 ///Tail parent, it doesn't do very much.
 /obj/item/organ/tail
-	name = "tail"
-	desc = "A severed tail. What did you cut this off of?"
+	name = "尾巴"
+	desc = "一条断掉的尾巴。你到底是从什么身上把它切下来的？"
 	icon_state = "severedtail"
 
 	zone = BODY_ZONE_PRECISE_GROIN
@@ -160,7 +160,7 @@
 	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEJUMPSUIT)
 
 /obj/item/organ/tail/cat
-	name = "tail"
+	name = "尾巴"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/cat
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
@@ -179,7 +179,7 @@
 	// color_source = ORGAN_COLOR_HAIR // SKYRAT EDIT REMOVAL
 
 /obj/item/organ/tail/monkey
-	name = "monkey tail"
+	name = "猴尾"
 	icon_state = "severedmonkeytail"
 	dna_block = null
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/monkey
@@ -190,16 +190,16 @@
 	feature_key = FEATURE_TAIL_MONKEY
 
 /obj/item/organ/tail/xeno
-	name = "alien tail"
-	desc = "A long and flexible tail slightly resembling a spine, used by its original owner as both weapon and balance aid."
+	name = "异形尾巴"
+	desc = "一条长而灵活的尾巴，略似脊椎，原主人既用它当武器，也用来保持平衡。"
 	icon_state = "severedxenotail"
 	dna_block = null
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/xeno
 	organ_traits = list(TRAIT_TACKLING_TAILED_POUNCE, TRAIT_FREERUNNING)
 
 /obj/item/organ/tail/xeno_queen
-	name = "alien queen's tail"
-	desc = "An enormous serrated tail, used to deadly effect by its original owner but perhaps too heavy for a human spine."
+	name = "异形女王的尾巴"
+	desc = "一条巨大的锯齿状尾巴，原主人用它造成了致命的效果，但对人类的脊椎来说也许太重了。"
 	icon = 'icons/mob/human/species/alien/tail_xenomorph_queen.dmi'
 	icon_state = "severedqueentail"
 	w_class = WEIGHT_CLASS_BULKY
@@ -244,8 +244,8 @@
 	default_appearance = "Xeno Queen"
 
 /obj/item/organ/tail/lizard
-	name = "lizard tail"
-	desc = "A severed lizard tail. Somewhere, no doubt, a lizard hater is very pleased with themselves."
+	name = "蜥蜴尾巴"
+	desc = "一条断掉的蜥蜴尾巴。毫无疑问，某个讨厌蜥蜴的人正在某处洋洋得意。"
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/lizard
 
@@ -258,8 +258,8 @@
 	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
 
 /obj/item/organ/tail/lizard/fake
-	name = "fabricated lizard tail"
-	desc = "A fabricated severed lizard tail. This one's made of synthflesh. Probably not usable for lizard wine."
+	name = "人造蜥蜴尾巴"
+	desc = "一条人造的断蜥蜴尾巴。这一条是合成肉液做的。大概没法用来酿蜥蜴酒。"
 
 ///Bodypart overlay for tail spines. Handled by the tail - has no actual organ associated.
 /datum/bodypart_overlay/mutant/tail_spines

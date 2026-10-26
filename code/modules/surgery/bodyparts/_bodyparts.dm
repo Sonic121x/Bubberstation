@@ -1,6 +1,6 @@
 /obj/item/bodypart
-	name = "limb"
-	desc = "Why is it detached..."
+	name = "肢体"
+	desc = "它怎么会掉下来……"
 	abstract_type = /obj/item/bodypart
 	force = 3
 	throwforce = 3
@@ -125,13 +125,13 @@
 	var/bleed_overlay_icon
 
 	//Damage messages used by help_shake_act()
-	var/light_brute_msg = "bruised and feels sore"
-	var/medium_brute_msg = "battered"
-	var/heavy_brute_msg = "mangled"
+	var/light_brute_msg = "有些淤伤，一碰就疼"
+	var/medium_brute_msg = "伤痕累累"
+	var/heavy_brute_msg = "血肉模糊"
 
-	var/light_burn_msg = "red and feels numb"
-	var/medium_burn_msg = "blistered"
-	var/heavy_burn_msg = "like its peeling away"
+	var/light_burn_msg = "发红且没有知觉"
+	var/medium_burn_msg = "起满了水泡"
+	var/heavy_burn_msg = "皮肉仿佛正在剥落"
 
 	//Damage messages used by examine(). the desc that is most common accross all bodyparts gets shown
 	var/list/damage_examines = list(
@@ -174,9 +174,9 @@
 	/// Type of an attack from this limb does. Arms will do punches, Legs for kicks, and head for bites. (TO ADD: tactical chestbumps)
 	var/attack_type = BRUTE
 	/// the verbs used for an unarmed attack when using this limb, such as arm.unarmed_attack_verbs = list("punch")
-	var/list/unarmed_attack_verbs = list("bump")
+	var/list/unarmed_attack_verbs = list("顶撞")
 	/// Continuous tense attack verbs for successful attacks
-	var/list/unarmed_attack_verbs_continuous = list("bumps")
+	var/list/unarmed_attack_verbs_continuous = list("顶撞")
 	/// if we have a special attack verb for hitting someone who is grappled by us, it goes here.
 	var/grappled_attack_verb
 	/// Continuous tense grapple verb for successful attacks
@@ -364,9 +364,9 @@
 
 	. = ..()
 	if(brute_dam > DAMAGE_PRECISION)
-		. += span_warning("This limb has [brute_dam > 30 ? "severe" : "minor"] bruising.")
+		. += span_warning("这条肢体上有[brute_dam > 30 ? "严重" : "轻微"]淤伤。")
 	if(burn_dam > DAMAGE_PRECISION)
-		. += span_warning("This limb has [burn_dam > 30 ? "severe" : "minor"] burns.")
+		. += span_warning("这条肢体上有[burn_dam > 30 ? "严重" : "轻微"]烧伤。")
 
 	for(var/datum/wound/wound as anything in wounds)
 		var/wound_desc = wound.get_limb_examine_description()
@@ -395,9 +395,9 @@
 
 	if(self_aware)
 		if(!shown_brute && !shown_burn)
-			status = "no damage"
+			status = "毫发无损"
 		else
-			status = "[shown_brute] brute damage and [shown_burn] burn damage"
+			status = "[shown_brute] 点钝击伤害和 [shown_burn] 点烧伤"
 
 	else
 		if(shown_brute > (max_damage * 0.8))
@@ -408,7 +408,7 @@
 			status += light_brute_msg
 
 		if(shown_brute > DAMAGE_PRECISION && shown_burn > DAMAGE_PRECISION)
-			status += " and "
+			status += "，并且"
 
 		if(shown_burn > (max_damage * 0.8))
 			status += heavy_burn_msg
@@ -418,21 +418,21 @@
 			status += light_burn_msg
 
 		if(status == "")
-			status = "OK"
+			status = "正常"
 
 	var/no_damage
-	if(status == "OK" || status == "no damage")
+	if(status == "正常" || status == "毫发无损")
 		no_damage = TRUE
 
 	var/is_disabled = ""
 	if(bodypart_disabled)
-		is_disabled = " is disabled"
+		is_disabled = "处于残废状态"
 		if(no_damage)
-			is_disabled += " but otherwise"
+			is_disabled += "，但除此之外"
 		else
-			is_disabled += " and"
+			is_disabled += "，并且"
 
-	check_list += "<span class='[no_damage ? "notice" : "warning"]'>Your [plaintext_zone][is_disabled][self_aware ? " has " : " looks "][status].</span>"
+	check_list += "<span class='[no_damage ? "notice" : "warning"]'>你的 [plaintext_zone][is_disabled][self_aware ? "有" : "看起来"][status]。</span>"
 
 	var/adept_organ_feeler = owner == examiner && HAS_TRAIT(examiner, TRAIT_SELF_AWARE)
 	for(var/obj/item/organ/organ in src)
@@ -455,8 +455,8 @@
 		if(embedded_thing.get_embed().stealthy_embed)
 			continue
 		var/harmless = embedded_thing.get_embed().is_harmless()
-		var/stuck_wordage = harmless ? "stuck to" : "embedded in"
-		var/embed_text = "\t<a href='byond://?src=[REF(examiner)];embedded_object=[REF(embedded_thing)];embedded_limb=[REF(src)]'>There is [icon2html(embedded_thing, examiner)] \a [embedded_thing] [stuck_wordage] your [plaintext_zone]!</a>"
+		var/stuck_wordage = harmless ? "粘在了" : "嵌入了"
+		var/embed_text = "\t<a href='byond://?src=[REF(examiner)];embedded_object=[REF(embedded_thing)];embedded_limb=[REF(src)]'>有 [icon2html(embedded_thing, examiner)] \a [embedded_thing] [stuck_wordage]你的 [plaintext_zone]！</a>"
 		if (harmless)
 			check_list += span_italics(span_notice(embed_text))
 		else
@@ -467,28 +467,28 @@
 	if(current_tourniquet || current_gauze)
 		if(current_tourniquet)
 			var/tourniquet_href = "<a href='byond://?src=[REF(owner)];remove_tourniquet=[REF(src)]'>[icon2html(current_tourniquet, examiner)] \a [current_tourniquet]</a>"
-			var/tourniquet_text = "\tThere is [tourniquet_href] tightly secured around [body_zone == BODY_ZONE_HEAD ? "your neck!" : "it."]"
+			var/tourniquet_text = "\t[tourniquet_href] 被紧紧地绑在[body_zone == BODY_ZONE_HEAD ? "你的脖子上！" : "它上面。"]"
 			if(body_zone == BODY_ZONE_HEAD)
 				check_list += span_boldwarning(tourniquet_text)
 			else
 				check_list += span_warning(tourniquet_text)
 		if(current_gauze)
-			check_list += span_notice("\tThere is some [current_gauze.name] wrapped around it.")
+			check_list += span_notice("\t它上面缠着一些[current_gauze.name]。")
 	else if(can_bleed())
 		var/bleed_text = ""
 		switch(cached_bleed_rate)
 			if(0.2 to 1)
-				bleed_text = span_warning("It's lightly bleeding.")
+				bleed_text = span_warning("它正在轻微出血。")
 			if(1 to 2)
-				bleed_text = span_warning("It's bleeding.")
+				bleed_text = span_warning("它正在出血。")
 			if(3 to 4)
-				bleed_text = span_warning("It's bleeding heavily!")
+				bleed_text = span_warning("它正在大量出血！")
 			if(4 to INFINITY)
-				bleed_text = span_warning("It's bleeding profusely!")
+				bleed_text = span_warning("它正在喷涌般出血！")
 
 		if(bleed_text)
-			check_list += "\t[span_tooltip("You are loosing blood. You should wrap your limb in gauze \
-				or apply pressure to it by grabbing yourself (while targeting the limb) to stem the flow.", bleed_text)]"
+			check_list += "\t[span_tooltip("你正在失血。你应该用纱布包扎该肢体，\
+				或在选中该肢体时抓住自己施压，以止住血流。", bleed_text)]"
 
 	return jointext(check_list, "<br>")
 
@@ -515,34 +515,34 @@
 	var/reported_state = get_reported_surgery_state()
 
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_SKIN_CUT))
-		surgery_message += "skin has been incised"
+		surgery_message += "皮肤已被切开"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_SKIN_OPEN))
-		surgery_message += "skin is opened"
+		surgery_message += "皮肤是敞开的"
 
 	// We can only see these if the skin is open
 	// And we check the real state rather than reported_state
 	if(LIMB_HAS_ANY_SURGERY_STATE(src, ALL_SURGERY_SKIN_STATES))
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_VESSELS_UNCLAMPED))
-			surgery_message += "blood vessels are unclamped and bleeding"
+			surgery_message += "血管未夹闭，正在出血"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_VESSELS_CLAMPED))
-			surgery_message += "blood vessels are clamped shut"
+			surgery_message += "血管已被夹闭"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_ORGANS_CUT))
-			surgery_message += "organs have been incised"
+			surgery_message += "器官已被切开"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_BONE_SAWED))
-			surgery_message += "bones have been sawed apart"
+			surgery_message += "骨骼已被锯开"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_BONE_DRILLED))
-			surgery_message += "bones have been drilled through"
+			surgery_message += "骨骼已被钻穿"
 
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_PROSTHETIC_UNSECURED))
-		surgery_message += "prosthetic item is unsecured"
+		surgery_message += "假体部件已松动"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_PLASTIC_APPLIED))
-		surgery_message += "got a layer of plastic applied to it"
+		surgery_message += "表面已覆盖一层塑料"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_CAVITY_WIDENED))
-		surgery_message += "chest cavity is wide open"
+		surgery_message += "胸腔大开"
 
 	if(length(surgery_message))
-		return span_tooltip("Your limb is undergoing surgery. If no doctors are around, \
-			you could suture or cauterize yourself to cancel it.", span_smalldanger("Its [english_list(surgery_message)]!"))
+		return span_tooltip("你的肢体正在接受手术。如果周围没有医生，\
+			你可以自己缝合或灼烧来取消手术。", span_smalldanger("它的状况：[english_list(surgery_message)]！"))
 	return ""
 
 /// Returns surgery examine information for this bodypart
@@ -554,43 +554,43 @@
 	var/reported_state = get_reported_surgery_state()
 
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_SKIN_CUT))
-		sub_messages += "skin has been incised"
-		single_message = "The skin on [lowercase_zone] has been incised."
+		sub_messages += "皮肤已被切开"
+		single_message = "[lowercase_zone] 上的皮肤已被切开。"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_SKIN_OPEN))
-		sub_messages += "skin is opened"
-		single_message = "The skin on [lowercase_zone] is opened."
+		sub_messages += "皮肤是敞开的"
+		single_message = "[lowercase_zone] 上的皮肤是敞开的。"
 
 	// We can only see these if the skin is open
 	// And we check the real state rather than reported_state
 	if(LIMB_HAS_ANY_SURGERY_STATE(src, ALL_SURGERY_SKIN_STATES))
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_VESSELS_UNCLAMPED))
-			sub_messages += "blood vessels are unclamped[cached_bleed_rate ? " and bleeding" : ""]"
-			single_message = "The blood vessels in [lowercase_zone] are unclamped[cached_bleed_rate ? " and bleeding!" : "."]"
+			sub_messages += "血管未夹闭[cached_bleed_rate ? "，正在出血" : ""]"
+			single_message = "[lowercase_zone] 的血管未夹闭[cached_bleed_rate ? "，正在出血！" : "。"]"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_VESSELS_CLAMPED))
-			sub_messages += "blood vessels are clamped shut"
-			single_message = "The blood vessels in [lowercase_zone] are clamped shut."
+			sub_messages += "血管已被夹闭"
+			single_message = "[lowercase_zone] 的血管已被夹闭。"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_ORGANS_CUT))
-			sub_messages += "the organs within have been incised"
-			single_message = "The organs in [lowercase_zone] have been incised."
+			sub_messages += "内部的器官已被切开"
+			single_message = "[lowercase_zone] 内的器官已被切开。"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_BONE_SAWED))
-			sub_messages += "the bones within have been sawed apart"
-			single_message = "The bones in [lowercase_zone] have been sawed apart."
+			sub_messages += "内部的骨骼已被锯开"
+			single_message = "[lowercase_zone] 内的骨骼已被锯开。"
 		if(HAS_SURGERY_STATE(reported_state, SURGERY_BONE_DRILLED))
-			sub_messages += "the bones within have been drilled through"
-			single_message = "The bones in [lowercase_zone] have been drilled through."
+			sub_messages += "内部的骨骼已被钻穿"
+			single_message = "[lowercase_zone] 内的骨骼已被钻穿。"
 
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_PROSTHETIC_UNSECURED))
-		sub_messages += "prosthetic item is unsecured"
-		single_message = "[capital_zone] is unsecured and loose!"
+		sub_messages += "假体部件已松动"
+		single_message = "[capital_zone] 已松动、快要脱落！"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_PLASTIC_APPLIED))
-		sub_messages += "got a layer of plastic applied to it"
-		single_message = "A layer of plastic has been applied to [lowercase_zone]."
+		sub_messages += "表面已覆盖一层塑料"
+		single_message = "[lowercase_zone] 上已覆盖了一层塑料。"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_CAVITY_WIDENED))
-		sub_messages += "the chest cavity is wide open"
-		single_message = "[owner?.p_Their() || "The"] chest cavity is wide open!"
+		sub_messages += "胸腔大开"
+		single_message = "[owner?.p_Their() || "那具"]胸腔大开！"
 
 	if(length(sub_messages) >= 2)
-		return span_smalldanger("[capital_zone]'s [english_list(sub_messages)].")
+		return span_smalldanger("[capital_zone]：[english_list(sub_messages)]。")
 	if(single_message)
 		return span_smalldanger(single_message)
 	return ""
@@ -611,17 +611,17 @@
 			if(!human_victim.get_bodypart(body_zone))
 				user.temporarilyRemoveItemFromInventory(src, TRUE)
 				if(!try_attach_limb(victim))
-					to_chat(user, span_warning("[human_victim]'s body rejects [src]!"))
+					to_chat(user, span_warning("[human_victim] 的身体排斥 [src]！"))
 					forceMove(human_victim.loc)
 					return
 				if(check_for_frankenstein(victim))
 					bodypart_flags |= BODYPART_IMPLANTED
 				if(human_victim == user)
-					human_victim.visible_message(span_warning("[human_victim] jams [src] into [human_victim.p_their()] empty socket!"),\
-					span_notice("You force [src] into your empty socket, and it locks into place!"))
+					human_victim.visible_message(span_warning("[human_victim] 把 [src] 塞进 [human_victim.p_their()] 空空的接口！"),\
+					span_notice("你把 [src] 强行塞进自己空空的接口，它咔哒一声锁定了！"))
 				else
-					human_victim.visible_message(span_warning("[user] jams [src] into [human_victim]'s empty socket!"),\
-					span_notice("[user] forces [src] into your empty socket, and it locks into place!"))
+					human_victim.visible_message(span_warning("[user] 把 [src] 塞进 [human_victim] 空空的接口！"),\
+					span_notice("[user] 把 [src] 强行塞进你空空的接口，它咔哒一声锁定了！"))
 				return
 	return ..()
 
@@ -651,7 +651,7 @@
 		operation_zone = body_zone
 	for(var/datum/surgery_operation/operation as anything in operations)
 		if ((operation.operation_flags & OPERATION_NO_PATIENT_REQUIRED) && operation.show_as_next_step(src, operation_zone))
-			. += span_notice("You could perform [operation] on [src] with \a [operation.get_recommended_tool()]...")
+			. += span_notice("你可以用 \a [operation.get_recommended_tool()] 对 [src] 进行[operation]……")
 
 //empties the bodypart from its organs and other things inside it
 /obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)
@@ -1869,7 +1869,7 @@
 		return FALSE
 	current_gauze.absorption_capacity -= seep_amt
 	if(current_gauze.absorption_capacity <= 0)
-		owner.visible_message(span_danger("\The [current_gauze.name] on [owner]'s [name] falls away in rags."), span_warning("\The [current_gauze.name] on your [name] falls away in rags."), vision_distance=COMBAT_MESSAGE_RANGE)
+		owner.visible_message(span_danger("\The [current_gauze.name] 从 [owner] 的 [name] 上化作碎布脱落。"), span_warning("\The [current_gauze.name] 从你的 [name] 上化作碎布脱落。"), vision_distance=COMBAT_MESSAGE_RANGE)
 		qdel(current_gauze)
 	return TRUE
 
@@ -1951,7 +1951,7 @@
 	if(can_be_disabled && (get_damage() / max_damage) >= robotic_emp_paralyze_damage_percent_threshold)
 		ADD_TRAIT(src, TRAIT_PARALYSIS, EMP_TRAIT)
 		addtimer(TRAIT_CALLBACK_REMOVE(src, TRAIT_PARALYSIS, EMP_TRAIT), time_needed)
-		owner?.visible_message(span_danger("[owner]'s [plaintext_zone] seems to malfunction!"))
+		owner?.visible_message(span_danger("[owner] 的 [plaintext_zone] 似乎发生了故障！"))
 
 	return TRUE
 

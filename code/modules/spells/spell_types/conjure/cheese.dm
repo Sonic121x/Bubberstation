@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/conjure/cheese
-	name = "Summon Cheese"
-	desc = "This spell conjures a bunch of cheese wheels. What the hell?"
+	name = "召唤奶酪"
+	desc = "此法术会召唤出一堆奶酪轮。搞什么鬼？"
 	sound = 'sound/effects/magic/summonitems_generic.ogg'
 	button_icon_state = "cheese"
 

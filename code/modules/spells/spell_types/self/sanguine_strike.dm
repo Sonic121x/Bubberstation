@@ -5,8 +5,8 @@
 /// 35 force weapon still gets the cap of 20 for a total of 55 instead of a whopping 70 damage
 /// Steals 50 blood if they have enough. Splattercasting has one second of cooldown worth 5 blood, so 50 seconds cooldown of blood added!
 /datum/action/cooldown/spell/sanguine_strike
-	name = "Sanguine Strike"
-	desc = "Enchants your next weapon strike to deal more damage, heal you for damage dealt, and refill blood."
+	name = "血之打击"
+	desc = "为你的下一次武器挥击附魔，使其造成更高伤害、按伤害量治疗你，并补充血液。"
 	button_icon_state = "charge"
 
 	sound = 'sound/effects/magic/charge.ogg'
@@ -29,11 +29,11 @@
 	var/obj/item/to_enchant = owner.get_active_held_item() || owner.get_inactive_held_item()
 	if(!to_enchant)
 		if(feedback)
-			to_chat(owner, span_warning("You need to hold something to empower it!"))
+			to_chat(owner, span_warning("你得先拿着什么东西，才能为其赋能！"))
 		return FALSE
 	if(!to_enchant.force)
 		if(feedback)
-			to_chat(owner, span_warning("[to_enchant] is too weak to empower! Find something that'll hurt someone!"))
+			to_chat(owner, span_warning("[to_enchant] 太弱了，无法赋能！找点能伤到人的东西！"))
 		return FALSE
 	return ..()
 
@@ -44,7 +44,7 @@
 	if(!to_enchant)
 		//this shouldn't have passed can_cast_spell, but sanity is needed
 		return
-	to_chat(cast_on, span_notice("[to_enchant] begins to glow red..."))
+	to_chat(cast_on, span_notice("[to_enchant] 开始泛出红光……"))
 	apply_enchantment(to_enchant)
 	//true cooldown starts when you use the item or drop it
 	StartCooldown(INFINITY)
@@ -81,7 +81,7 @@
 /// signal called from dropping the enchanted item
 /datum/action/cooldown/spell/sanguine_strike/proc/on_dropped(obj/item/enchanted, mob/dropper)
 	SIGNAL_HANDLER
-	to_chat(dropper, span_notice("[enchanted] seems to lose its red glow."))
+	to_chat(dropper, span_notice("[enchanted] 似乎失去了红光。"))
 	end_enchantment(enchanted)
 
 /// ends the enchantment, starting the cooldown (which was frozen until you attacked)

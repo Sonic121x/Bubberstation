@@ -5,7 +5,7 @@
 	///If we cant find a ghost, do we spawn them anyway? Otherwise they go in the garbage bin
 	var/spawn_anyway_if_no_player = FALSE
 
-	var/ghost_alert_string = "Would you like to be shot at the shuttle?"
+	var/ghost_alert_string = "你想被射向穿梭机吗？"
 
 	var/role_type = ROLE_SENTIENCE
 
@@ -20,7 +20,7 @@
 	var/mob/living/new_mob = new spawn_type (null)
 	ADD_TRAIT(new_mob, TRAIT_STASIS, type)
 	post_spawn(new_mob)
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(ghost_alert_string + " (Warning: you will not be able to return to your body!)", check_jobban = role_type, poll_time = 10 SECONDS, alert_pic = new_mob, role_name_text = "shot at shuttle", amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(ghost_alert_string + "（警告：你将无法返回自己的身体！）", check_jobban = role_type, poll_time = 10 SECONDS, alert_pic = new_mob, role_name_text = "被射向穿梭机", amount_to_pick = 1)
 	if(isnull(chosen_one) && !spawn_anyway_if_no_player || !isdead(chosen_one)) //we can get sniped if there's multiple spawns, so check if dead
 		qdel(new_mob)
 		return
@@ -30,7 +30,7 @@
 
 ///BACK FOR REVENGE!!!
 /datum/shuttle_event/simple_spawner/player_controlled/alien_queen
-	name = "ALIEN QUEEN! (Kinda dangerous!)"
+	name = "异形女王！（挺危险的！）"
 	spawning_list = list(/mob/living/carbon/alien/adult/royal/queen = 1, /obj/vehicle/sealed/mecha/ripley = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 
@@ -39,7 +39,7 @@
 	activation_fraction = 0.5
 
 	spawn_anyway_if_no_player = FALSE
-	ghost_alert_string = "Would you like to be an alien queen shot at the shuttle?"
+	ghost_alert_string = "你想成为被射向穿梭机的异形女王吗？"
 	remove_from_list_when_spawned = TRUE
 	self_destruct_when_empty = TRUE
 
@@ -47,7 +47,7 @@
 
 ///Spawns three player controlled carp!! Deadchats final chance to wreak havoc, probably really not that dangerous if even one person has a laser gun
 /datum/shuttle_event/simple_spawner/player_controlled/carp
-	name = "Three player controlled carp! (Little dangerous!)"
+	name = "三条玩家控制的鲤鱼！（有点危险！）"
 	spawning_list = list(/mob/living/basic/carp = 10, /mob/living/basic/carp/mega = 2, /mob/living/basic/carp/magic = 2, /mob/living/basic/carp/magic/chaos = 1)
 	spawning_flags = SHUTTLE_EVENT_HIT_SHUTTLE
 
@@ -56,7 +56,7 @@
 	activation_fraction = 0.4
 
 	spawn_anyway_if_no_player = TRUE
-	ghost_alert_string = "Would you like to be a space carp to pester the emergency shuttle?"
+	ghost_alert_string = "你想成为一条骚扰紧急穿梭机的太空鲤鱼吗？"
 	remove_from_list_when_spawned = TRUE
 	self_destruct_when_empty = TRUE
 

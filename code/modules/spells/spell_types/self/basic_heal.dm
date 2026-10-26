@@ -1,7 +1,7 @@
 // This spell exists mainly for debugging purposes, and also to show how casting works
 /datum/action/cooldown/spell/basic_heal
-	name = "Lesser Heal"
-	desc = "Heals a small amount of brute and burn damage to the caster."
+	name = "次级治疗"
+	desc = "为施法者治疗少量钝伤与烧伤。"
 
 	sound = 'sound/effects/magic/staff_healing.ogg'
 	school = SCHOOL_RESTORATION
@@ -23,8 +23,8 @@
 /datum/action/cooldown/spell/basic_heal/cast(mob/living/cast_on)
 	. = ..()
 	cast_on.visible_message(
-		span_warning("A wreath of gentle light passes over [cast_on]!"),
-		span_notice("You wreath yourself in healing light!"),
+		span_warning("一圈柔和的光芒掠过 [cast_on]！"),
+		span_notice("你用治疗之光把自己环绕起来！"),
 	)
 	var/need_mob_update = FALSE
 	need_mob_update += cast_on.adjust_brute_loss(-brute_to_heal, updating_health = FALSE)

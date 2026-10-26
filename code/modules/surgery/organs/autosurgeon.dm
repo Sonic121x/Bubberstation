@@ -1,7 +1,7 @@
 /obj/item/autosurgeon
-	name = "autosurgeon"
-	desc = "A device that automatically inserts an implant, skillchip or organ into the user without the hassle of extensive surgery. \
-		It has a slot to insert implants or organs and a screwdriver slot for removing accidentally added items."
+	name = "自动手术器"
+	desc = "一种能自动将植入物、技能芯片或器官植入使用者体内的装置，免去了大规模手术的麻烦。 \
+		它有一个用于插入植入物或器官的插槽，以及一个用于取出误装物品的螺丝刀槽。"
 	icon = 'icons/obj/devices/tool.dmi'
 	icon_state = "autosurgeon"
 	inhand_icon_state = "nothing"
@@ -37,11 +37,11 @@
 /obj/item/autosurgeon/proc/load_organ(obj/item/organ/loaded_organ, mob/living/user)
 	if(user)
 		if(stored_organ)
-			to_chat(user, span_alert("[src] already has an implant stored."))
+			to_chat(user, span_alert("[src] 里已经存有一个植入物。"))
 			return
 
 		if(uses <= 0)
-			to_chat(user, span_alert("[src] is used up and cannot be loaded with more implants."))
+			to_chat(user, span_alert("[src] 已经用尽，无法再装入更多植入物。"))
 			return
 
 		if(organ_whitelist.len)
@@ -51,11 +51,11 @@
 					organ_whitelisted = TRUE
 					break
 			if(!organ_whitelisted)
-				to_chat(user, span_alert("[src] is not compatible with [loaded_organ]."))
+				to_chat(user, span_alert("[src] 与 [loaded_organ] 不兼容。"))
 				return
 
 		if(!user.transferItemToLoc(loaded_organ, src))
-			to_chat(user, span_alert("[loaded_organ] is stuck to your hand!"))
+			to_chat(user, span_alert("[loaded_organ] 粘在你手上了！"))
 			return
 
 	stored_organ = loaded_organ
@@ -66,28 +66,28 @@
 
 /obj/item/autosurgeon/proc/use_autosurgeon(mob/living/target, mob/living/user, implant_time)
 	if(!stored_organ)
-		to_chat(user, span_alert("[src] currently has no implant stored."))
+		to_chat(user, span_alert("[src] 目前没有存放植入物。"))
 		return
 
 	if(uses <= 0)
-		to_chat(user, span_alert("[src] has already been used. The tools are dull and won't reactivate."))
+		to_chat(user, span_alert("[src] 已经被使用过了。工具已经变钝，无法再次启动。"))
 		return
 
 	if(implant_time)
 		user.visible_message(
-			span_notice("[user] prepares to use [src] on [target]."),
-			span_notice("You prepare to use [src] on [target]."),
+			span_notice("[user] 准备对 [target] 使用 [src]。"),
+			span_notice("你准备对 [target] 使用 [src]。"),
 		)
 		if(!do_after(user, (implant_time * surgery_speed), target))
 			return
 
 	if(target != user)
-		log_combat(user, target, "autosurgeon implanted [stored_organ] into", "[src]", "in [AREACOORD(target)]")
-		user.visible_message(span_notice("[user] presses a button on [src] as it plunges into [target]'s body."), span_notice("You press a button on [src] as it plunges into [target]'s body."))
+		log_combat(user, target, "用自动手术器将 [stored_organ] 植入了", "[src]", "位于 [AREACOORD(target)]")
+		user.visible_message(span_notice("[user] 按下 [src] 上的按钮，让它刺入 [target] 的身体。"), span_notice("你按下 [src] 上的按钮，让它刺入 [target] 的身体。"))
 	else
 		user.visible_message(
-			span_notice("[user] presses a button on [src] as it plunges into [user.p_their()] body."),
-			span_notice("You press a button on [src] as it plunges into your body."),
+			span_notice("[user] 按下 [src] 上的按钮，让它刺入自己的身体。"),
+			span_notice("你按下 [src] 上的按钮，让它刺入你的身体。"),
 		)
 
 	if (stored_organ.valid_zones && user.get_held_index_of_item(src))
@@ -103,7 +103,7 @@
 				break
 
 	if (!stored_organ.Insert(target)) // insert stored organ into the user
-		balloon_alert(user, "insertion failed!")
+		balloon_alert(user, "植入失败！")
 		return
 
 	stored_organ = null
@@ -113,7 +113,7 @@
 
 	uses--
 	if(uses <= 0)
-		desc = "[initial(desc)] Looks like it's been used up."
+		desc = "[initial(desc)] 看起来已经用尽了。"
 
 /obj/item/autosurgeon/attack_self(mob/user)//when the object it used...
 	use_autosurgeon(user, user)
@@ -132,28 +132,28 @@
 	if(..())
 		return TRUE
 	if(!stored_organ)
-		to_chat(user, span_warning("There's no implant in [src] for you to remove!"))
+		to_chat(user, span_warning("[src] 里没有可供你取出的植入物！"))
 	else
 		var/atom/drop_loc = user.drop_location()
 		for(var/atom/movable/stored_implant as anything in src)
 			stored_implant.forceMove(drop_loc)
-			to_chat(user, span_notice("You remove the [stored_organ] from [src]."))
+			to_chat(user, span_notice("你把 [stored_organ] 从 [src] 中取了出来。"))
 			stored_organ = null
 
 		screwtool.play_tool_sound(src)
 		uses--
 		if(uses <= 0)
-			desc = "[initial(desc)] Looks like it's been used up."
+			desc = "[initial(desc)] 看起来已经用尽了。"
 		update_appearance(UPDATE_ICON)
 	return TRUE
 
 /obj/item/autosurgeon/medical_hud
-	desc = "A single use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	desc = "一次性自动手术器，内含医疗平视显示器义体。可用螺丝刀将其取出，但无法再装回植入物。"
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/eyes/hud/medical
 
 /obj/item/autosurgeon/syndicate
-	name = "suspicious autosurgeon"
+	name = "可疑的自动手术器"
 	icon_state = "autosurgeon_syndicate"
 	surgery_speed = 0.75
 	loaded_overlay = "autosurgeon_syndicate_loaded_overlay"
@@ -163,7 +163,7 @@
 	ADD_TRAIT(src, TRAIT_CONTRABAND, INNATE_TRAIT)
 
 /obj/item/autosurgeon/syndicate/laser_arm
-	desc = "A single use autosurgeon that contains a combat arms-up laser augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	desc = "一次性自动手术器，内含战斗用臂装激光义体。可用螺丝刀将其取出，但无法再装回植入物。"
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/arm/toolkit/gun/laser
 
@@ -192,8 +192,8 @@
 	uses = 1
 
 /obj/item/autosurgeon/syndicate/commsagent
-	desc = "A device that automatically - painfully - inserts an implant. It seems someone's specially \
-	modified this one to only insert... tongues. Horrifying."
+	desc = "一种能自动——而且很痛地——植入植入物的装置。看来有人特意 \
+	改装了这一台，让它只能植入……舌头。真可怕。"
 	starting_organ = /obj/item/organ/tongue
 
 /obj/item/autosurgeon/syndicate/commsagent/Initialize(mapload)
@@ -207,6 +207,6 @@
 	uses = 1
 
 /obj/item/autosurgeon/syndicate/contraband_sechud
-	desc = "Contains a contraband SecHUD implant, undetectable by health scanners."
+	desc = "内含违禁的安保 HUD 植入物，健康扫描仪无法检测到。"
 	uses = 1
 	starting_organ = /obj/item/organ/cyberimp/eyes/hud/security/syndicate

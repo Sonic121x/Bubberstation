@@ -4,8 +4,8 @@
 #define TIME_LEFT (SSshuttle.emergency.timeLeft())
 
 /obj/machinery/computer/emergency_shuttle
-	name = "emergency shuttle console"
-	desc = "For shuttle control."
+	name = "紧急穿梭机控制台"
+	desc = "用于控制穿梭机。"
 	icon_state = MAP_SWITCH("computer", "/obj/machinery/computer/shuttle")
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
@@ -36,17 +36,17 @@
 /obj/machinery/computer/emergency_shuttle/examine(mob/user)
 	. = ..()
 	if(hijack_announce)
-		. += span_danger("Security systems present on console. Any unauthorized tampering will result in an emergency announcement.")
+		. += span_danger("控制台上装有安全系统。任何未经授权的改动都会触发紧急公告。")
 	if(user?.mind?.get_hijack_speed())
-		. += span_danger("Alt click on this to attempt to hijack the shuttle. This will take multiple tries (current: stage [SSshuttle.emergency.hijack_status]/[HIJACK_COMPLETED]).")
-		. += span_notice("It will take you [(hijack_stage_time * user.mind.get_hijack_speed()) / 10] seconds to reprogram a stage of the shuttle's navigational firmware, and the console will undergo automated timed lockout for [hijack_stage_cooldown/10] seconds after each stage.")
+		. += span_danger("按住 Alt 点击此处可尝试劫持穿梭机。这需要多次尝试（当前阶段：[SSshuttle.emergency.hijack_status]/[HIJACK_COMPLETED]）。")
+		. += span_notice("重写穿梭机导航固件的一个阶段需要 [(hijack_stage_time * user.mind.get_hijack_speed()) / 10] 秒，每完成一个阶段后控制台会自动锁定 [hijack_stage_cooldown/10] 秒。")
 		if(hijack_announce)
-			. += span_warning("It is probably best to fortify your position as to be uninterrupted during the attempt, given the automatic announcements..")
+			. += span_warning("鉴于会自动发出公告，最好先巩固阵地，确保尝试期间不被打断……")
 
 /obj/machinery/computer/emergency_shuttle/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!isidcard(tool))
 		return NONE
-	say("Please equip your ID card into your ID slot to authenticate.")
+	say("请将你的 ID 卡装备到 ID 栏位以进行身份验证。")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/computer/emergency_shuttle/ui_state(mob/user)
@@ -96,7 +96,7 @@
 
 	var/area/my_area = get_area(src)
 	if(!istype(my_area, /area/shuttle/escape))
-		say("Error - Network connectivity: Console has lost connection to the shuttle.")
+		say("错误——网络连接：控制台已与穿梭机失去连接。")
 		return
 
 	var/mob/living/user = usr
@@ -105,11 +105,11 @@
 	var/obj/item/card/id/ID = user.get_idcard(TRUE)
 
 	if(!ID)
-		to_chat(user, span_warning("You don't have an ID."))
+		to_chat(user, span_warning("你没有 ID 卡。"))
 		return .
 
 	if(!(ACCESS_COMMAND in ID.access))
-		to_chat(user, span_warning("The access level of your card is not high enough."))
+		to_chat(user, span_warning("你卡片的权限等级不够。"))
 		return .
 
 	if(user in acted_recently)
@@ -137,8 +137,8 @@
 		var/remaining = max(0, auth_need - new_len)
 		if(new_len && remaining)
 			priority_announce(
-				"[remaining] authorization\s needed until shuttle is launched early.",
-				"Emergency Shuttle Status",
+				"[remaining] 项授权便可提前发射穿梭机。",
+				"紧急穿梭机状态",
 				sound = 'sound/announcer/notice/notice1.ogg',
 				type = ANNOUNCEMENT_TYPE_PRIORITY,
 				has_important_message = TRUE,
@@ -146,8 +146,8 @@
 			)
 		if(repeal)
 			priority_announce(
-				"Early launch authorization revoked, [remaining] authorization\s needed.",
-				"Emergency Shuttle Status",
+				"提前发射授权已撤销，仍需 [remaining] 项授权。",
+				"紧急穿梭机状态",
 				sound = 'sound/announcer/notice/notice2.ogg',
 				type = ANNOUNCEMENT_TYPE_PRIORITY,
 				color_override = "blue",
@@ -169,8 +169,8 @@
 
 	authorized += ID
 
-	message_admins("[ADMIN_LOOKUPFLW(user)] has authorized early shuttle launch")
-	log_shuttle("[key_name(user)] has authorized early shuttle launch in [COORD(src)]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] 已授权提前发射穿梭机")
+	log_shuttle("[key_name(user)] 已在 [COORD(src)] 授权提前发射穿梭机")
 	// Now check if we're on our way
 	. = TRUE
 	process(SSMACHINES_DT)
@@ -198,9 +198,9 @@
 	if((authorized.len >= auth_need) || (obj_flags & EMAGGED))
 		// shuttle timers use 1/10th seconds internally
 		SSshuttle.emergency.setTimer(ENGINE_START_TIME)
-		var/system_error = obj_flags & EMAGGED ? "SYSTEM ERROR:" : null
-		minor_announce("The emergency shuttle will launch in \
-			[TIME_LEFT] seconds", system_error, alert=TRUE)
+		var/system_error = obj_flags & EMAGGED ? "系统错误：" : null
+		minor_announce("紧急穿梭机将在 \
+			[TIME_LEFT] 秒后发射", system_error, alert=TRUE)
 		. = TRUE
 
 /obj/machinery/computer/emergency_shuttle/proc/increase_hijack_stage()
@@ -212,7 +212,7 @@
 	if(hijack_announce)
 		announce_hijack_stage()
 	hijack_last_stage_increase = world.time
-	say("Navigational protocol error! Rebooting systems.")
+	say("导航协议错误！正在重启系统。")
 	if(shuttle.mode == SHUTTLE_ESCAPE)
 		if(shuttle.hijack_status == HIJACK_COMPLETED)
 			shuttle.setTimer(hijack_completion_flight_time_set)
@@ -230,43 +230,43 @@
 	if(!IsReachableBy(user))
 		return
 	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
-		to_chat(user, span_warning("You need your hands free before you can manipulate [src]."))
+		to_chat(user, span_warning("你必须空出双手才能操作 [src]。"))
 		return
 	var/area/my_area = get_area(src)
 	if(!istype(my_area, /area/shuttle/escape))
-		say("Error - Network connectivity: Console has lost connection to the shuttle.")
+		say("错误——网络连接：控制台已与穿梭机失去连接。")
 		return
 	if(!user?.mind?.get_hijack_speed())
-		to_chat(user, span_warning("You manage to open a user-mode shell on [src], and hundreds of lines of debugging output fly through your vision. It is probably best to leave this alone."))
+		to_chat(user, span_warning("你成功在 [src] 上打开了一个用户模式终端，数百行调试信息从眼前飞过。最好还是别管它了。"))
 		return
 	if(!EMERGENCY_AT_LEAST_DOCKED) // prevent advancing hijack stages on BYOS shuttles until the shuttle has "docked"
-		to_chat(user, span_warning("The flight plans for the shuttle haven't been loaded yet, you can't hack this right now."))
+		to_chat(user, span_warning("穿梭机的飞行计划尚未载入，你现在无法入侵它。"))
 		return
 	if(hijack_hacking == TRUE)
 		return
 	if(SSshuttle.emergency.hijack_status >= HIJACK_COMPLETED)
-		to_chat(user, span_warning("The emergency shuttle is already loaded with a corrupt navigational payload. What more do you want from it?"))
+		to_chat(user, span_warning("紧急穿梭机已经载入了损坏的导航数据。你还想从它身上得到什么？"))
 		return
 	if(hijack_last_stage_increase >= world.time - hijack_stage_cooldown)
-		say("Error - Catastrophic software error detected. Input is currently on timeout.")
+		say("错误——检测到灾难性软件故障。输入当前处于超时锁定状态。")
 		return
 	hijack_hacking = TRUE
-	to_chat(user, span_boldwarning("You [SSshuttle.emergency.hijack_status == HIJACK_NOT_BEGUN? "begin" : "continue"] to override [src]'s navigational protocols."))
-	say("Software override initiated.")
+	to_chat(user, span_boldwarning("你[SSshuttle.emergency.hijack_status == HIJACK_NOT_BEGUN? "开始" : "继续"]改写 [src] 的导航协议。"))
+	say("软件改写已启动。")
 	var/turf/console_hijack_turf = get_turf(src)
-	message_admins("[src] is being overriden for hijack by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(console_hijack_turf)]")
-	user.log_message("is hijacking [src].", LOG_GAME)
+	message_admins("[src] 正被 [ADMIN_LOOKUPFLW(user)] 于 [ADMIN_VERBOSEJMP(console_hijack_turf)] 改写以用于劫持")
+	user.log_message("正在劫持 [src]。", LOG_GAME)
 	. = FALSE
 	if(do_after(user, hijack_stage_time * (1 / user.mind.get_hijack_speed()), target = src))
 		increase_hijack_stage()
 		console_hijack_turf = get_turf(src)
-		message_admins("[ADMIN_LOOKUPFLW(user)] has hijacked [src] in [ADMIN_VERBOSEJMP(console_hijack_turf)].  Hijack stage increased to stage [SSshuttle.emergency.hijack_status] out of [HIJACK_COMPLETED].")
-		user.log_message("has hijacked [src]. Hijack stage increased to stage [SSshuttle.emergency.hijack_status] out of [HIJACK_COMPLETED].", LOG_GAME)
+		message_admins("[ADMIN_LOOKUPFLW(user)] 已在 [ADMIN_VERBOSEJMP(console_hijack_turf)] 劫持了 [src]。劫持阶段提升至 [SSshuttle.emergency.hijack_status]/[HIJACK_COMPLETED]。")
+		user.log_message("已劫持 [src]。劫持阶段提升至 [SSshuttle.emergency.hijack_status]/[HIJACK_COMPLETED]。", LOG_GAME)
 		. = TRUE
-		to_chat(user, span_notice("You reprogram some of [src]'s programming, putting it on timeout for [hijack_stage_cooldown/10] seconds."))
+		to_chat(user, span_notice("你重写了 [src] 的部分程序，使其锁定 [hijack_stage_cooldown/10] 秒。"))
 		visible_message(
-			span_warning("[user.name] appears to be tampering with [src]."),
-			blind_message = span_hear("You hear someone tapping computer keys."),
+			span_warning("[user.name] 似乎正在摆弄 [src]。"),
+			blind_message = span_hear("你听到有人在敲击电脑按键。"),
 			vision_distance = COMBAT_MESSAGE_RANGE,
 			ignored_mobs = user
 		)
@@ -278,20 +278,20 @@
 		if(HIJACK_NOT_BEGUN)
 			return
 		if(HIJACK_STAGE_1)
-			msg = "AUTHENTICATING - FAIL. AUTHENTICATING - FAIL. AUTHENTICATING - FAI###### Welcome, technician JOHN DOE."
+			msg = "身份验证——失败。身份验证——失败。身份验证——失###### 欢迎，技师 JOHN DOE。"
 		if(HIJACK_STAGE_2)
-			msg = "Warning: Navigational route fails \"IS_AUTHORIZED\". Please try againNN[scramble_message_replace_chars("againagainagainagainagain", 70)]."
+			msg = "警告：导航路线未通过“IS_AUTHORIZED”校验。请重试NN[scramble_message_replace_chars("重试重试重试重试重试", 70)]。"
 		if(HIJACK_STAGE_3)
-			msg = "CRC mismatch at ~h~ in calculated route buffer. Full reset initiated of FTL_NAVIGATION_SERVICES. Memory decrypted for automatic repair."
+			msg = "在计算航线缓冲区 ~h~ 处出现 CRC 不匹配。FTL_NAVIGATION_SERVICES 已启动完全重置。内存已解密以便自动修复。"
 		if(HIJACK_STAGE_4)
-			msg = "~ACS_directive module_load(cyberdyne.exploit.nanotrasen.shuttlenav)... NT key mismatch. Confirm load? Y...###Reboot complete. $SET transponder_state = 0; System link initiated with connected engines..."
+			msg = "~ACS_directive module_load(cyberdyne.exploit.nanotrasen.shuttlenav)…… NT 密钥不匹配。确认载入？Y……###重启完成。$SET transponder_state = 0；与已连接的引擎建立系统链接……"
 		if(HIJACK_COMPLETED)
-			msg = "SYSTEM OVERRIDE - Resetting course to \[[scramble_message_replace_chars("###########", 100)]\] \
+			msg = "系统覆写——正在将航向重置为 \[[scramble_message_replace_chars("###########", 100)]\] \
 			([scramble_message_replace_chars("#######", 100)]/[scramble_message_replace_chars("#######", 100)]/[scramble_message_replace_chars("#######", 100)]) \
 			{AUTH - ROOT (uid: 0)}.</font>\
-			[SSshuttle.emergency.mode == SHUTTLE_ESCAPE ? "Diverting from existing route - Bluespace exit in \
-			[hijack_completion_flight_time_set >= INFINITY ? "[scramble_message_replace_chars("\[ERROR\]")]" : hijack_completion_flight_time_set/10] seconds." : ""]"
-	minor_announce(scramble_message_replace_chars(msg, replaceprob = 10), "Emergency Shuttle", TRUE)
+			[SSshuttle.emergency.mode == SHUTTLE_ESCAPE ? "正在偏离现有航线——蓝空间出口将在 \
+			[hijack_completion_flight_time_set >= INFINITY ? "[scramble_message_replace_chars("\[ERROR\]")]" : hijack_completion_flight_time_set/10] 秒后开启。" : ""]"
+	minor_announce(scramble_message_replace_chars(msg, replaceprob = 10), "紧急穿梭机", TRUE)
 
 /obj/machinery/computer/emergency_shuttle/emag_act(mob/user, obj/item/card/emag/emag_card)
 	// How did you even get on the shuttle before it go to the station?
@@ -299,16 +299,16 @@
 		return FALSE
 
 	if((obj_flags & EMAGGED) || ENGINES_STARTED) //SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
-		balloon_alert(user, "shuttle already about to launch!")
+		balloon_alert(user, "穿梭机马上就要发射了！")
 		return FALSE
 
 	var/time = TIME_LEFT
 	if (user)
-		message_admins("[ADMIN_LOOKUPFLW(user)] has emagged the emergency shuttle [time] seconds before launch.")
-		log_shuttle("[key_name(user)] has emagged the emergency shuttle in [COORD(src)] [time] seconds before launch.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] 在发射前 [time] 秒电磁干扰了紧急穿梭机。")
+		log_shuttle("[key_name(user)] 在 [COORD(src)] 于发射前 [time] 秒电磁干扰了紧急穿梭机。")
 	else
-		message_admins("The emergency shuttle was emagged [time] seconds before launch, with no emagger.")
-		log_shuttle("The emergency shuttle was emagged in [COORD(src)] [time] seconds before launch, with no emagger.")
+		message_admins("紧急穿梭机在发射前 [time] 秒遭到电磁干扰，未查明干扰者。")
+		log_shuttle("紧急穿梭机在 [COORD(src)] 于发射前 [time] 秒遭到电磁干扰，未查明干扰者。")
 
 	obj_flags |= EMAGGED
 	SSshuttle.emergency.movement_force = list("KNOCKDOWN" = 60, "THROW" = 20)//YOUR PUNY SEATBELTS can SAVE YOU NOW, MORTAL

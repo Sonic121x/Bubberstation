@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/arm
-	name = "arm-mounted implant"
-	desc = "An implant that goes in your arm to improve it."
+	name = "臂载植入体"
+	desc = "一种装入手臂以强化其功能的植入体。"
 	abstract_type = /obj/item/organ/cyberimp/arm
 	zone = BODY_ZONE_R_ARM
 	slot = ORGAN_SLOT_RIGHT_ARM_AUG
@@ -45,8 +45,8 @@
 	hand = null
 
 /obj/item/organ/cyberimp/arm/toolkit
-	name = "arm-mounted toolkit"
-	desc = "You shouldn't see this! Adminhelp and report this as an issue on github!"
+	name = "臂载工具组"
+	desc = "你不应该看到这个！请向管理员求助，并在 github 上将其作为问题报告！"
 	icon_state = "toolkit_generic"
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	//A list of typepaths to create and insert into ourself on init
@@ -86,7 +86,7 @@
 	return ..()
 
 /datum/action/item_action/organ_action/toggle/toolkit
-	desc = "You can also activate your empty hand or the tool in your hand to open the tools radial menu."
+	desc = "你还可以激活空着的另一只手，或激活手中的工具，来打开工具径向菜单。"
 
 /obj/item/organ/cyberimp/arm/toolkit/on_mob_insert(mob/living/carbon/arm_owner)
 	. = ..()
@@ -116,7 +116,7 @@
 	if(. & EMP_PROTECT_SELF || !IS_ROBOTIC_ORGAN(src))
 		return
 	if(prob(15/severity) && owner)
-		to_chat(owner, span_warning("The electromagnetic pulse causes [src] to malfunction!"))
+		to_chat(owner, span_warning("电磁脉冲导致 [src] 发生故障！"))
 		// give the owner an idea about why his implant is glitching
 		Retract()
 
@@ -158,9 +158,9 @@
 	active_item.resistance_flags = active_item::resistance_flags
 	if(owner)
 		owner.visible_message(
-			span_notice("[owner] retracts [active_item] back into [owner.p_their()] [parse_zone(zone)]."),
-			span_notice("[active_item] snaps back into your [parse_zone(zone)]."),
-			span_hear("You hear a short mechanical noise."),
+			span_notice("[owner] 将 [active_item] 收回 [owner.p_their()] [parse_zone(zone)]。"),
+			span_notice("[active_item] 咔哒一声弹回你的 [parse_zone(zone)]。"),
+			span_hear("你听到一声短促的机械声。"),
 		)
 
 		owner.transferItemToLoc(active_item, src, TRUE)
@@ -194,18 +194,18 @@
 		for(var/i in 1 to hand_items.len) //Can't just use *in* here.
 			var/hand_item = hand_items[i]
 			if(!owner.dropItemToGround(hand_item))
-				failure_message += span_warning("Your [hand_item] interferes with [src]!")
+				failure_message += span_warning("你的 [hand_item] 妨碍了 [src]！")
 				continue
-			to_chat(owner, span_notice("You drop [hand_item] to activate [src]!"))
+			to_chat(owner, span_notice("你丢下 [hand_item] 以激活 [src]！"))
 			success = owner.put_in_hand(active_item, owner.get_empty_held_index_for_side(side))
 			break
 		if(!success)
 			for(var/i in failure_message)
 				to_chat(owner, i)
 			return
-	owner.visible_message(span_notice("[owner] extends [active_item] from [owner.p_their()] [parse_zone(zone)]."),
-		span_notice("You extend [active_item] from your [parse_zone(zone)]."),
-		span_hear("You hear a short mechanical noise."))
+	owner.visible_message(span_notice("[owner] 从 [owner.p_their()] [parse_zone(zone)] 中伸出 [active_item]。"),
+		span_notice("你从你的 [parse_zone(zone)] 中伸出 [active_item]。"),
+		span_hear("你听到一声短促的机械声。"))
 	playsound(get_turf(owner), extend_sound, 50, TRUE)
 
 	if(length(items_list) > 1)
@@ -218,7 +218,7 @@
 
 /obj/item/organ/cyberimp/arm/toolkit/ui_action_click()
 	if((organ_flags & ORGAN_FAILING) || (!active_item && !contents.len))
-		to_chat(owner, span_warning("The implant doesn't respond. It seems to be broken..."))
+		to_chat(owner, span_warning("植入体没有反应。它似乎已经损坏了……"))
 		return
 
 	if(!active_item || (active_item in src))
@@ -246,29 +246,29 @@
 		return
 	if(prob(30/severity) && owner && !(organ_flags & ORGAN_FAILING))
 		Retract()
-		owner.visible_message(span_danger("A loud bang comes from [owner]\'s [parse_zone(zone)]!"))
+		owner.visible_message(span_danger("一声巨响从 [owner] 的 [parse_zone(zone)] 中传出！"))
 		playsound(get_turf(owner), 'sound/items/weapons/flashbang.ogg', 100, TRUE)
-		to_chat(owner, span_userdanger("You feel an explosion erupt inside your [parse_zone(zone)] as your implant breaks!"))
+		to_chat(owner, span_userdanger("植入体崩裂时，你感到 [parse_zone(zone)] 内部猛地爆开！"))
 		owner.adjust_fire_stacks(20)
 		owner.ignite_mob()
 		owner.adjust_fire_loss(25)
 		organ_flags |= ORGAN_FAILING
 
 /obj/item/organ/cyberimp/arm/toolkit/gun/laser
-	name = "arm-mounted laser implant"
-	desc = "A variant of the arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use."
+	name = "臂载激光植入体"
+	desc = "臂炮植入体的变种，可发射致命的激光束。使用时炮管会从受术者手臂中伸出，闲置时则收于手臂内部。"
 	icon_state = "arm_laser"
 	items_to_create = list(/obj/item/gun/energy/laser/mounted/augment)
 
 /obj/item/organ/cyberimp/arm/toolkit/gun/taser
-	name = "arm-mounted taser implant"
-	desc = "A variant of the arm cannon implant that fires electrodes and disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
+	name = "臂载电击枪植入体"
+	desc = "臂炮植入体的变种，可发射电极弹与失能弹。使用时炮管会从受术者手臂中伸出，闲置时则收于手臂内部。"
 	icon_state = "arm_taser"
 	items_to_create = list(/obj/item/gun/energy/e_gun/advtaser/mounted)
 
 /obj/item/organ/cyberimp/arm/toolkit/toolset
-	name = "integrated toolset implant"
-	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contain advanced versions of every tool."
+	name = "集成式工具组植入体"
+	desc = "工程半机械人工具组的精简版本，专为安装在受术者手臂上而设计。包含每一种工具的高级版本。"
 	icon_state = "toolkit_engineering"
 	aug_overlay = "toolkit_engi"
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
@@ -284,8 +284,8 @@
 
 //The order of the item list for this implant is not alphabetized due to it actually affecting how it shows up playerside when opening the implant
 /obj/item/organ/cyberimp/arm/toolkit/paperwork
-	name = "integrated paperwork implant"
-	desc = "A highly sought out implant among heads of personnel, and other high up command staff in Nanotrasen. This implant allows the user to always have the tools necessary for paperwork handy"
+	name = "集成式文书工具植入体"
+	desc = "人事主管以及纳米传讯其他高层指挥人员争相追捧的植入体。它能让使用者随时备好处理文书所需的工具。"
 	icon_state = "toolkit_engineering"
 	aug_overlay = "toolkit_engi"
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
@@ -299,7 +299,7 @@
 	)
 
 /obj/item/stamp/mod/toolkit
-	name = "integrated electronic stamp"
+	name = "集成式电子印章"
 
 /obj/item/organ/cyberimp/arm/toolkit/paperwork/emag_act(mob/user, obj/item/card/emag/emag_card)
 	for(var/datum/weakref/created_item in items_list)
@@ -307,7 +307,7 @@
 		if(istype(potential_tool, /obj/item/stamp/chameleon))
 			return FALSE
 
-	balloon_alert(user, "experimental stamp unlocked")
+	balloon_alert(user, "已解锁实验性印章")
 	items_list += WEAKREF(new /obj/item/stamp/chameleon(src))
 	return TRUE
 
@@ -317,25 +317,25 @@
 		if(istype(potential_knife, /obj/item/knife/combat/cyborg))
 			return FALSE
 
-	balloon_alert(user, "integrated knife unlocked")
+	balloon_alert(user, "已解锁集成刀刃")
 	items_list += WEAKREF(new /obj/item/knife/combat/cyborg(src))
 	return TRUE
 
 /obj/item/organ/cyberimp/arm/toolkit/esword
-	name = "arm-mounted energy blade"
-	desc = "An illegal and highly dangerous cybernetic implant that can project a deadly blade of concentrated energy."
+	name = "臂载能量刃"
+	desc = "一种非法且极度危险的赛博植入体，能够投射出由高浓度能量构成的致命刀刃。"
 	items_to_create = list(/obj/item/melee/energy/blade/hardlight)
 
 /obj/item/organ/cyberimp/arm/toolkit/medibeam
-	name = "integrated medical beamgun"
-	desc = "A cybernetic implant that allows the user to project a healing beam from their hand."
+	name = "集成式医疗光束枪"
+	desc = "一种赛博植入体，可让使用者从掌心投射治疗光束。"
 	icon_state = "toolkit_surgical"
 	aug_overlay = "toolkit_med"
 	items_to_create = list(/obj/item/gun/medbeam)
 
 /obj/item/organ/cyberimp/arm/toolkit/flash
-	name = "integrated high-intensity photon projector" //Why not
-	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
+	name = "集成式高强度光子投射器" //Why not
+	desc = "一种安装在受术者手臂上的集成式投射器，可作为强力的闪光装置使用。"
 	aug_overlay = "toolkit"
 	items_to_create = list(/obj/item/assembly/flash/armimplant)
 
@@ -359,14 +359,14 @@
 	return ..()
 
 /obj/item/organ/cyberimp/arm/toolkit/baton
-	name = "arm electrification implant"
-	desc = "An illegal combat implant that allows the user to administer disabling shocks from their arm."
+	name = "臂载电击植入体"
+	desc = "一种非法战斗植入体，可让使用者从手臂中释放使人失能的电击。"
 	aug_overlay = "toolkit"
 	items_to_create = list(/obj/item/borg/stun)
 
 /obj/item/organ/cyberimp/arm/toolkit/combat
-	name = "combat cybernetics implant"
-	desc = "A powerful cybernetic implant that contains combat modules built into the user's arm."
+	name = "战斗赛博植入体"
+	desc = "一种强力的赛博植入体，其中内置的战斗模块集成于使用者手臂之中。"
 	aug_overlay = "toolkit"
 	items_to_create = list(
 		/obj/item/melee/energy/blade/hardlight,
@@ -385,8 +385,8 @@
 		flash.arm = WEAKREF(src)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery
-	name = "surgical toolset implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
+	name = "外科工具组植入体"
+	desc = "一套隐藏在手臂隐蔽面板后的外科手术工具。"
 	icon_state = "toolkit_surgical"
 	aug_overlay = "toolkit_med"
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
@@ -402,8 +402,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 0.75, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 0.75)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery/emagged
-	name = "hacked surgical toolset implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm. This one seems to have been tampered with."
+	name = "被黑入的外科工具组植入体"
+	desc = "一套隐藏在手臂隐蔽面板后的外科手术工具。这一套似乎被人动过手脚。"
 	aug_overlay = "toolkit_med"
 	items_to_create = list(
 		/obj/item/retractor/augment,
@@ -417,8 +417,8 @@
 	)
 
 /obj/item/organ/cyberimp/arm/toolkit/surgery/cruel
-	name = "morbid surgical toolset implant"
-	desc = "A modified set of surgical tools hidden behind a concealed panel on the user's arm. These tools seem twisted and cruel, designed to maximize pain while operating with incredible precision."
+	name = "病态外科工具组植入体"
+	desc = "一套经过改造的外科手术工具，藏在手臂的隐蔽面板之后。这些工具看起来扭曲而残忍，专为在手术中尽可能放大痛苦而设计，操作精度却依然惊人。"
 	icon_state = "toolkit_surgical_cruel"
 	aug_overlay = "toolkit_med"
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
@@ -437,9 +437,9 @@
 // Strong-Arm Implant //
 
 /obj/item/organ/cyberimp/arm/strongarm
-	name = "\proper Strong-Arm empowered musculature implant"
-	desc = "When implanted, this cybernetic implant will enhance the muscles of the arm to deliver more power-per-action. Install one in each arm \
-		to pry open doors with your bare hands!"
+	name = "\proper 强臂强化肌肉植入体"
+	desc = "植入后，这种赛博植入体会强化手臂肌肉，让每一个动作都能输出更大的力量。在两条手臂上各安装一枚，\
+		就能徒手撬开气闸门！"
 	icon_state = "muscle_implant"
 	zone = BODY_ZONE_R_ARM
 	slot = ORGAN_SLOT_RIGHT_ARM_MUSCLE
@@ -507,13 +507,13 @@
 	. = ..()
 	if((organ_flags & ORGAN_FAILING) || . & EMP_PROTECT_SELF)
 		return
-	owner.balloon_alert(owner, "your arm spasms wildly!")
+	owner.balloon_alert(owner, "你的手臂剧烈抽搐！")
 	organ_flags |= ORGAN_FAILING
 	addtimer(CALLBACK(src, PROC_REF(reboot)), 90 / severity)
 
 /obj/item/organ/cyberimp/arm/strongarm/proc/reboot()
 	organ_flags &= ~ORGAN_FAILING
-	owner.balloon_alert(owner, "your arm stops spasming!")
+	owner.balloon_alert(owner, "你的手臂停止了抽搐！")
 
 /obj/item/organ/cyberimp/arm/strongarm/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
 	SIGNAL_HANDLER
@@ -532,15 +532,15 @@
 		return COMPONENT_SKIP_ATTACK
 
 	var/mob/living/living_target = target
-	var/picked_hit_type = pick("punch", "smash", "pummel", "bash", "slam")
+	var/picked_hit_type = pick("挥拳猛击", "猛砸", "连捶", "痛击", "摔击")
 
 	if(organ_flags & ORGAN_FAILING)
 		if(source.body_position != LYING_DOWN && living_target != source && prob(50))
-			to_chat(source, span_danger("You try to [picked_hit_type] [living_target], but lose your balance and fall!"))
+			to_chat(source, span_danger("你试图[picked_hit_type] [living_target]，却失去平衡摔倒了！"))
 			source.Knockdown(3 SECONDS)
 			source.forceMove(get_turf(living_target))
 		else
-			to_chat(source, span_danger("Your muscles spasm!"))
+			to_chat(source, span_danger("你的肌肉抽搐起来！"))
 			source.Paralyze(1 SECONDS)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -579,10 +579,10 @@
 
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
-		if(human_target.check_block(source, potential_damage, "[source]'s' [picked_hit_type]"))
+		if(human_target.check_block(source, potential_damage, "[source] 的[picked_hit_type]"))
 			source.do_attack_animation(target)
 			playsound(living_target.loc, 'sound/items/weapons/punchmiss.ogg', 25, TRUE, -1)
-			log_combat(source, target, "attempted to [picked_hit_type]", "muscle implant")
+			log_combat(source, target, "试图[picked_hit_type]", "肌肉植入体")
 			return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	source.do_attack_animation(target, ATTACK_EFFECT_SMASH)
@@ -590,16 +590,16 @@
 
 	// Some mobs gib when killed, so we're logging early. At this point, we're definitely hitting, so...
 	living_target.visible_message(
-		span_danger("[source] [picked_hit_type]ed [living_target][ground_bounce ? " into [target_turf]" : ""]!"),
-		span_userdanger("You're [picked_hit_type]ed by [source][ground_bounce ? " into [target_turf]" : ""]!"),
-		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		span_danger("[source] [picked_hit_type] [living_target][ground_bounce ? "，将其砸进 [target_turf]" : ""]！"),
+		span_userdanger("你被 [source] [picked_hit_type]了[ground_bounce ? "，并被砸进 [target_turf]" : ""]！"),
+		span_hear("你听到一声皮肉相击的闷响，令人作呕！"),
 		COMBAT_MESSAGE_RANGE,
 		source,
 	)
 
-	to_chat(source, span_danger("You [picked_hit_type] [target][ground_bounce ? " into [target_turf]" : ""]!"))
+	to_chat(source, span_danger("你[picked_hit_type] [target][ground_bounce ? "，将其砸进 [target_turf]" : ""]！"))
 
-	log_combat(source, target, "[picked_hit_type]ed", "muscle implant")
+	log_combat(source, target, "[picked_hit_type]", "肌肉植入体")
 
 	if(ishuman(target))
 		COOLDOWN_START(src, slam_cooldown, slam_cooldown_duration)
@@ -625,8 +625,8 @@
 /datum/status_effect/organ_set_bonus/strongarm
 	id = "organ_set_bonus_strongarm"
 	organs_needed = 2
-	bonus_activate_text = span_notice("Your improved arms allow you to open airlocks by force with your bare hands!")
-	bonus_deactivate_text = span_notice("You can no longer force open airlocks with your bare hands.")
+	bonus_activate_text = span_notice("你强化的双臂让你能徒手强行打开气闸！")
+	bonus_deactivate_text = span_notice("你再也无法徒手强行打开气闸了。")
 	required_biotype = NONE
 
 /datum/status_effect/organ_set_bonus/strongarm/enable_bonus(obj/item/organ/inserted_organ)

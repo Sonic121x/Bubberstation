@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/projectile/fireball
-	name = "Fireball"
-	desc = "This spell fires an explosive fireball at a target."
+	name = "火球术"
+	desc = "向目标发射一枚会爆炸的火球。"
 	button_icon_state = "fireball0"
 
 	sound = 'sound/effects/magic/fireball.ogg'
@@ -12,8 +12,8 @@
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
-	active_msg = "You prepare to cast your fireball spell!"
-	deactive_msg = "You extinguish your fireball... for now."
+	active_msg = "你准备施放火球术！"
+	deactive_msg = "你熄灭了火球……暂时而已。"
 	cast_range = 8
 	projectile_type = /obj/projectile/magic/fireball
 

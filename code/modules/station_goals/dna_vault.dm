@@ -12,7 +12,7 @@
 #define VAULT_QUICK "Arm Muscle Stimulus"
 
 /datum/station_goal/dna_vault
-	name = "DNA Vault"
+	name = "DNA 保险库"
 	var/animal_count
 	var/human_count
 	var/plant_count
@@ -33,15 +33,15 @@
 
 /datum/station_goal/dna_vault/get_report()
 	return list(
-		"Our long term prediction systems indicate a 99% chance of system-wide cataclysm in the near future.",
-		"We need you to construct a DNA Vault aboard your station.",
+		"我们的长期预测系统显示，近期内发生全星系灾难的概率高达 99%。",
+		"我们需要你在空间站上建造一座 DNA 保险库。",
 		"",
-		"The DNA Vault needs to contain samples of:",
-		"* [animal_count] unique animal data",
-		"* [plant_count] unique non-standard plant data",
-		"* [human_count] unique sapient humanoid DNA data",
+		"DNA 保险库需要包含以下样本：",
+		"* [animal_count] 份独特的动物数据",
+		"* [plant_count] 份独特的非标准植物数据",
+		"* [human_count] 份独特的智慧人形 DNA 数据",
 		"",
-		"Base vault parts are available for shipping via cargo.",
+		"保险库的基础部件可通过货运订购。",
 	).Join("\n")
 
 
@@ -61,8 +61,8 @@
 	return FALSE
 
 /obj/machinery/dna_vault
-	name = "DNA Vault"
-	desc = "Break glass in case of apocalypse."
+	name = "DNA 保险库"
+	desc = "世界末日来临时请击碎玻璃。"
 	icon = 'icons/obj/machines/dna_vault.dmi'
 	icon_state = "vault"
 	density = TRUE
@@ -182,13 +182,13 @@
 /obj/machinery/dna_vault/proc/upgrade(mob/living/carbon/human/target, upgrade_type)
 	var/datum/weakref/human_weakref = WEAKREF(target)
 	var/static/list/associated_mutation = list(
-		"Breathless" = /datum/mutation/breathless,
-		"Dextrous" = /datum/mutation/dextrous,
-		"Quick" = /datum/mutation/quick,
-		"Fire Immunity" = /datum/mutation/fire_immunity,
-		"Plasmocile" = /datum/mutation/plasmocile,
-		"Quick Recovery" = /datum/mutation/quick_recovery,
-		"Tough" = /datum/mutation/tough,
+		"无需呼吸" = /datum/mutation/breathless,
+		"灵巧" = /datum/mutation/dextrous,
+		"迅捷" = /datum/mutation/quick,
+		"火焰免疫" = /datum/mutation/fire_immunity,
+		"等离子耐受" = /datum/mutation/plasmocile,
+		"快速恢复" = /datum/mutation/quick_recovery,
+		"坚韧" = /datum/mutation/tough,
 	)
 	if(!(associated_mutation[upgrade_type] in power_lottery[human_weakref]) || (HAS_TRAIT(target, TRAIT_USED_DNA_VAULT)))
 		return

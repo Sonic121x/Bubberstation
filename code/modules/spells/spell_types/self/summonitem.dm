@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/summonitem
-	name = "Instant Summons"
-	desc = "This spell can be used to recall a previously marked item to your hand from anywhere in the universe."
+	name = "即时召回"
+	desc = "该法术能把先前标记的物品从宇宙中的任何地方召回到你手中。"
 	button_icon_state = "summons"
 
 	school = SCHOOL_TRANSMUTATION
@@ -36,7 +36,7 @@
 	marked_item = to_mark
 	RegisterSignal(marked_item, COMSIG_QDELETING, PROC_REF(on_marked_item_deleted))
 
-	name = "Recall [marked_item]"
+	name = "召回 [marked_item]"
 	build_all_button_icons()
 
 /// Unset our current marked item
@@ -53,7 +53,7 @@
 	SIGNAL_HANDLER
 
 	if(owner)
-		to_chat(owner, span_boldwarning("You sense your marked item has been destroyed!"))
+		to_chat(owner, span_boldwarning("你感觉到自己标记的物品已被摧毁！"))
 	unmark_item()
 
 /datum/action/cooldown/spell/summonitem/cast(mob/living/cast_on)
@@ -79,9 +79,9 @@
 	var/obj/item/potential_mark = caster.get_active_held_item()
 	if(!potential_mark)
 		if(caster.get_inactive_held_item())
-			to_chat(caster, span_warning("You must hold the desired item in your hands to mark it for recall!"))
+			to_chat(caster, span_warning("你必须把想标记的物品拿在手中，才能把它标记为召回目标！"))
 		else
-			to_chat(caster, span_warning("You aren't holding anything that can be marked for recall!"))
+			to_chat(caster, span_warning("你手上没有可以标记为召回目标的东西！"))
 		return FALSE
 
 	var/link_message = ""
@@ -90,21 +90,21 @@
 	if(SEND_SIGNAL(potential_mark, COMSIG_ITEM_MARK_RETRIEVAL, src, caster) & COMPONENT_BLOCK_MARK_RETRIEVAL)
 		return FALSE
 	if(HAS_TRAIT(potential_mark, TRAIT_NODROP))
-		link_message += "Though it feels redundant... "
+		link_message += "虽然感觉有点多余…… "
 
-	link_message += "You mark [potential_mark] for recall."
+	link_message += "你标记了 [potential_mark]，以便召回。"
 	to_chat(caster, span_notice(link_message))
 	mark_item(potential_mark)
 	return TRUE
 
 /// If we have a marked item and it's in our hand, we will try to unlink it
 /datum/action/cooldown/spell/summonitem/proc/try_unlink_item(mob/living/caster)
-	to_chat(caster, span_notice("You begin removing the mark on [marked_item]..."))
+	to_chat(caster, span_notice("你开始解除 [marked_item] 上的标记……"))
 	if(!do_after(caster, 5 SECONDS, marked_item))
-		to_chat(caster, span_notice("You decide to keep [marked_item] marked."))
+		to_chat(caster, span_notice("你决定让 [marked_item] 继续保持标记。"))
 		return FALSE
 
-	to_chat(caster, span_notice("You remove the mark on [marked_item] to use elsewhere."))
+	to_chat(caster, span_notice("你移除了 [marked_item] 上的标记，以便用在别处。"))
 	unmark_item()
 	return TRUE
 
@@ -133,9 +133,9 @@
 
 				// Items in silicons warp the whole silicon
 				var/mob/holding_mark = item_to_retrieve.loc
-				holding_mark.loc.visible_message(span_warning("[holding_mark] suddenly disappears!"))
+				holding_mark.loc.visible_message(span_warning("[holding_mark] 突然消失了！"))
 				holding_mark.forceMove(caster.loc)
-				holding_mark.loc.visible_message(span_warning("[holding_mark] suddenly appears!"))
+				holding_mark.loc.visible_message(span_warning("[holding_mark] 突然出现了！"))
 				SEND_SIGNAL(holding_mark, COMSIG_MAGIC_RECALL, caster, item_to_retrieve)
 				playsound(holding_mark, 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 				return
@@ -166,20 +166,20 @@
 		if (!holder.dropItemToGround(item_to_retrieve, force = TRUE))
 			return
 
-	item_to_retrieve.loc?.visible_message(span_warning("[item_to_retrieve] suddenly disappears!"))
+	item_to_retrieve.loc?.visible_message(span_warning("[item_to_retrieve] 突然消失了！"))
 
 	if(isitem(item_to_retrieve) && caster.put_in_hands(item_to_retrieve))
-		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve] suddenly appears in [caster]'s hand!"))
+		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve] 突然出现在 [caster] 的手中！"))
 	else
 		item_to_retrieve.forceMove(caster.drop_location())
-		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve] suddenly appears!"))
+		item_to_retrieve.loc.visible_message(span_warning("[item_to_retrieve] 突然出现了！"))
 
 	playsound(get_turf(item_to_retrieve), 'sound/effects/magic/summonitems_generic.ogg', 50, TRUE)
 
 /datum/action/cooldown/spell/summonitem/abductor
-	name =  "Baton Recall"
-	desc = "Activating this will trigger your baton's emergency translocation protocol, \
-		recalling it to your hand. Takes a long time for the translocation crystals to reset after use."
+	name =  "警棍召回"
+	desc = "激活后会触发你警棍的紧急传送协议，\
+		把它召回到你手中。使用后传送水晶需要很长时间才能重置。"
 	sound = 'sound/effects/phasein.ogg'
 
 	school = SCHOOL_UNSET
@@ -196,11 +196,11 @@
 		return .
 
 	if(!istype(potential_mark, /obj/item/melee/baton/abductor))
-		to_chat(caster, span_warning("[potential_mark] has no translocation crystals to link to!"))
+		to_chat(caster, span_warning("[potential_mark] 没有可供链接的传送水晶！"))
 		return FALSE
 
 	return TRUE
 
 /datum/action/cooldown/spell/summonitem/abductor/try_unlink_item(mob/living/caster)
-	to_chat(caster, span_warning("You can't unlink [marked_item]'s translocation crystals."))
+	to_chat(caster, span_warning("你无法解除 [marked_item] 的传送水晶链接。"))
 	return FALSE

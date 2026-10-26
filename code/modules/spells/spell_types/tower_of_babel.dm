@@ -4,12 +4,12 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 
 /datum/tower_of_babel/New(mob/badmin)
 	if(badmin)
-		message_admins("[ADMIN_LOOKUPFLW(badmin)] has stricken the station with the Tower of Babel!")
-		log_admin("[key_name(badmin)] used the Tower of Babel.")
-		badmin.log_message("has stricken the station with the Tower of Babel!", LOG_GAME)
+		message_admins("[ADMIN_LOOKUPFLW(badmin)] 用巴别塔诅咒了整个空间站！")
+		log_admin("[key_name(badmin)] 使用了巴别塔。")
+		badmin.log_message("用巴别塔诅咒了整个空间站！", LOG_GAME)
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(handle_new_player))
-	deadchat_broadcast("The [span_name("Tower of Babel")] has stricken the station, people will struggle to communicate.", message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast("[span_name("巴别塔")] 已降临空间站，人们将难以交流。", message_type=DEADCHAT_ANNOUNCEMENT)
 
 	for(var/mob/living/carbon/target in GLOB.player_list)
 		if(!target.mind)
@@ -18,7 +18,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 			// wizards are not only immune but can speak all languages to taunt their victims over the radio
 			target.grant_all_languages(source = LANGUAGE_BABEL)
 			ADD_TRAIT(target.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT)
-			to_chat(target, span_reallybig(span_hypnophrase("You feel a magical force improving your speech patterns!")))
+			to_chat(target, span_reallybig(span_hypnophrase("你感到一股魔法力量正在优化你的语言能力！")))
 			continue
 
 		if(target.stat == DEAD)
@@ -50,7 +50,7 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 		return
 
 	if(to_curse.can_block_magic(MAGIC_RESISTANCE|MAGIC_RESISTANCE_MIND) || HAS_MIND_TRAIT(to_curse, TRAIT_TOWER_OF_BABEL))
-		to_chat(to_curse, span_notice("You have a strange feeling for a moment, but then it passes."))
+		to_chat(to_curse, span_notice("你有一瞬间感到一阵异样，但很快就消失了。"))
 		return
 
 	to_curse.apply_status_effect(/datum/status_effect/tower_of_babel/magical, INFINITY)
@@ -71,17 +71,17 @@ GLOBAL_DATUM(tower_of_babel, /datum/tower_of_babel)
 
 /client/proc/tower_of_babel()
 	if(!SSticker.HasRoundStarted())
-		tgui_alert(usr,"The game hasn't started yet!")
+		tgui_alert(usr,"游戏还没有开始！")
 		return
 
 	GLOB.tower_of_babel = new /datum/tower_of_babel(usr)
 
 /client/proc/tower_of_babel_undo()
 	if(GLOB.tower_of_babel)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has cured the station from the effects of Tower of Babel!")
-		log_admin("[key_name(usr)] has cured the station from the effects of Tower of Babel.")
-		usr.log_message("has cured the station from the effects of Tower of Babel!", LOG_GAME)
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 解除了空间站受到的巴别塔影响！")
+		log_admin("[key_name(usr)] 解除了空间站受到的巴别塔影响。")
+		usr.log_message("解除了空间站受到的巴别塔影响！", LOG_GAME)
 
-		deadchat_broadcast("The [span_name("Tower of Babel")] has been cured, people will now communicate normally.", message_type=DEADCHAT_ANNOUNCEMENT)
+		deadchat_broadcast("[span_name("巴别塔")] 的影响已被解除，人们现在可以正常交流了。", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		QDEL_NULL(GLOB.tower_of_babel)

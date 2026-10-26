@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/aoe/knock
-	name = "Knock"
-	desc = "This spell opens nearby doors and closets."
+	name = "敲击术"
+	desc = "该法术可打开附近的门与储物柜。"
 	button_icon_state = "knock"
 
 	sound = 'sound/effects/magic/knock.ogg'

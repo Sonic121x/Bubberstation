@@ -13,17 +13,17 @@
 // A chain of satellites encircles the station
 // Satellites be actived to generate a shield that will block unorganic matter from passing it.
 /datum/station_goal/station_shield
-	name = "Station Shield"
+	name = "空间站护盾"
 	requires_space = TRUE
 	var/coverage_goal = 500
 	VAR_PRIVATE/cached_coverage_length
 
 /datum/station_goal/station_shield/get_report()
 	return list(
-		"The station is located in a zone full of space debris.",
-		"We have a prototype shielding system you must deploy to reduce collision-related accidents.",
+		"空间站位于一片布满太空碎片的区域。",
+		"我们有一套原型护盾系统，需要你部署以减少碰撞事故。",
 		"",
-		"You can order the satellites and control systems at cargo.",
+		"你可以在货运处订购卫星和控制系统。",
 	).Join("\n")
 
 
@@ -58,8 +58,8 @@
 	cached_coverage_length = length(coverage)
 
 /obj/machinery/satellite/meteor_shield
-	name = "\improper Meteor Shield Satellite"
-	desc = "A meteor point-defense satellite."
+	name = "\improper 陨石护盾卫星"
+	desc = "一颗用于点防御陨石的卫星。"
 	mode = "M-SHIELD"
 	/// the range a meteor shield sat can destroy meteors
 	var/kill_range = 14
@@ -79,15 +79,15 @@
 /obj/machinery/satellite/meteor_shield/examine(mob/user)
 	. = ..()
 	if(active)
-		. += span_notice("It is currently active. You can interact with it to shut it down.")
+		. += span_notice("它当前处于激活状态。你可以与它互动以将其关闭。")
 		if(obj_flags & EMAGGED)
-			. += span_warning("Rather than the usual sounds of beeps and pings, it produces a weird and constant hiss of white noise…")
+			. += span_warning("它没有发出通常的哔哔声，而是持续发出一种诡异的白噪音嘶嘶声……")
 		else
-			. += span_notice("It emits periodic beeps and pings as it communicates with the satellite network.")
+			. += span_notice("它在与卫星网络通信时，会周期性地发出哔哔声。")
 	else
-		. += span_notice("It is currently disabled. You can interact with it to set it up.")
+		. += span_notice("它当前处于停用状态。你可以与它互动以进行设置。")
 		if(obj_flags & EMAGGED)
-			. += span_warning("But something seems off about it...?")
+			. += span_warning("但它看起来有点不对劲……？")
 
 /obj/machinery/satellite/meteor_shield/proc/space_los(meteor)
 	for(var/turf/T in get_line(src,meteor))
@@ -112,7 +112,7 @@
 
 /obj/machinery/satellite/meteor_shield/toggle(user)
 	if(user)
-		balloon_alert(user, "looking for [active ? "off" : "on"] button")
+		balloon_alert(user, "正在寻找[active ? "关闭" : "开启"]按钮")
 	if(user && !do_after(user, 2 SECONDS, src, IGNORE_HELD_ITEM))
 		return FALSE
 	if(!..(user))
@@ -138,18 +138,18 @@
 
 /obj/machinery/satellite/meteor_shield/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already emagged!")
+		balloon_alert(user, "已被电磁卡破解！")
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, shared_emag_cooldown))
-		balloon_alert(user, "on cooldown!")
-		to_chat(user, span_warning("The last satellite emagged needs [DisplayTimeText(COOLDOWN_TIMELEFT(src, shared_emag_cooldown))] to recalibrate first. Emagging another so soon could damage the satellite network."))
+		balloon_alert(user, "仍在冷却中！")
+		to_chat(user, span_warning("上一颗被电磁卡破解的卫星还需要 [DisplayTimeText(COOLDOWN_TIMELEFT(src, shared_emag_cooldown))] 才能重新校准。这么快再破解一颗可能会损坏卫星网络。"))
 		return FALSE
 	var/cooldown_applied = METEOR_SHIELD_EMAG_COOLDOWN
 	COOLDOWN_START(src, shared_emag_cooldown, cooldown_applied)
 	obj_flags |= EMAGGED
-	to_chat(user, span_notice("You access the satellite's debug mode and it begins emitting a strange signal, increasing the chance of meteor strikes."))
-	AddComponent(/datum/component/gps, "Corrupted Meteor Shield Attraction Signal")
-	say("Recalibrating... ETA:[DisplayTimeText(cooldown_applied)].")
+	to_chat(user, span_notice("你进入了卫星的调试模式，它开始发出一种奇怪的信号，增加了陨石撞击的几率。"))
+	AddComponent(/datum/component/gps, "受污染的陨石护盾吸引信号")
+	say("正在重新校准……预计耗时：[DisplayTimeText(cooldown_applied)]。")
 	if(active) //if we allowed inactive updates a sat could be worth -1 active meteor shields on first emag
 		update_emagged_meteor_sat(user)
 	return TRUE
@@ -159,12 +159,12 @@
 		change_meteor_chance(0.5)
 		emagged_active_meteor_shields--
 		if(user)
-			balloon_alert(user, "meteor probability halved")
+			balloon_alert(user, "陨石出现概率减半")
 		return
 	change_meteor_chance(2)
 	emagged_active_meteor_shields++
 	if(user)
-		balloon_alert(user, "meteor probability doubled")
+		balloon_alert(user, "陨石出现概率翻倍")
 	if(emagged_active_meteor_shields > highest_emagged_threshold_reached)
 		highest_emagged_threshold_reached = emagged_active_meteor_shields
 		handle_new_emagged_shield_threshold()
@@ -172,15 +172,15 @@
 /obj/machinery/satellite/meteor_shield/proc/handle_new_emagged_shield_threshold()
 	switch(highest_emagged_threshold_reached)
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_ONE)
-			say("Warning. Meteor strike probability entering dangerous ranges for more exotic meteors.")
+			say("警告。陨石撞击概率正进入危险区间，将吸引更奇异的陨石。")
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_TWO)
-			say("Warning. Risk of dark matter congealment entering existent ranges. Further tampering will be reported.")
+			say("警告。暗物质凝结风险正在逼近可观测区间。继续篡改将被上报。")
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_THREE)
-			say("Warning. Further tampering has been reported.")
-			priority_announce("Warning. Tampering of meteor satellites puts the station at risk of exotic, deadly meteor collisions. Please intervene by checking your GPS devices for strange signals, and dismantling the tampered meteor shields.", "Strange Meteor Signal Warning")
+			say("警告。进一步的篡改已被上报。")
+			priority_announce("警告。陨石卫星遭到篡改，空间站面临奇异而致命的陨石撞击风险。请检查你的 GPS 设备是否有异常信号，并拆解被篡改的陨石护盾。", "异常陨石信号警告")
 		if(EMAGGED_METEOR_SHIELD_THRESHOLD_FOUR)
-			say("Warning. Warning. Dark Matt-eor on course for station.")
-			force_event_async(/datum/round_event_control/dark_matteor, "an array of tampered meteor satellites")
+			say("警告。警告。暗物质陨石正朝空间站飞来。")
+			force_event_async(/datum/round_event_control/dark_matteor, "一组遭篡改的陨石卫星")
 
 /obj/machinery/satellite/meteor_shield/proc/change_meteor_chance(mod)
 	// Update the weight of all meteor events

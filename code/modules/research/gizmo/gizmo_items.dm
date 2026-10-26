@@ -1,7 +1,7 @@
 /// A handheld gizmo, with some different activation modes
 /obj/item/gizmo
-	name = "gizmo"
-	desc = "Fliggoes the giggoe when its oven in hot the device."
+	name = "小装置"
+	desc = "当装置的烤箱热起来时，它会把吉格给弗利格了。"
 	icon = 'icons/obj/science/gizmos.dmi'
 
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF

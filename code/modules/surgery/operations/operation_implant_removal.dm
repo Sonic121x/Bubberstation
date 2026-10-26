@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/implant_removal
-	name = "implant removal"
-	desc = "Attempt to find and remove an implant from a patient. \
-		Any implant found will be destroyed unless an implant case is held or nearby."
+	name = "取出植入物"
+	desc = "尝试找到并取出病人体内的植入物。 \
+		除非手持或附近放有植入物盒，否则找到的植入物会被销毁。"
 	operation_flags = OPERATION_NOTABLE
 	implements = list(
 		TOOL_HEMOSTAT = 1,
@@ -17,18 +17,18 @@
 	return image('icons/obj/medical/syringe.dmi', "implantcase-b")
 
 /datum/surgery_operation/basic/implant_removal/any_optional_strings()
-	return ..() + list("have an implant case below or inhand to store removed implants")
+	return ..() + list("下方或手中放有植入物盒以存放取出的植入物")
 
 /datum/surgery_operation/basic/implant_removal/on_preop(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You search for implants in [patient]..."),
-		span_notice("[surgeon] searches for implants in [patient]."),
-		span_notice("[surgeon] searches for something in [patient]."),
+		span_notice("你在 [patient] 体内寻找植入物……"),
+		span_notice("[surgeon] 在 [patient] 体内寻找植入物。"),
+		span_notice("[surgeon] 在 [patient] 体内寻找着什么。"),
 	)
 	if(LAZYLEN(patient.implants))
-		display_pain(patient, "You feel a serious pain as [surgeon] digs around inside you!")
+		display_pain(patient, "[surgeon] 在你体内翻找时，你感到一阵剧痛！")
 
 /datum/surgery_operation/basic/implant_removal/on_success(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	var/obj/item/implant/implant = LAZYACCESS(patient.implants, 1)
@@ -36,20 +36,20 @@
 		display_results(
 			surgeon,
 			patient,
-			span_warning("You find no implant to remove from [patient]."),
-			span_warning("[surgeon] finds no implant to remove from [patient]."),
-			span_warning("[surgeon] finds nothing to remove from [patient]."),
+			span_warning("你在 [patient] 体内没有找到可取出的植入物。"),
+			span_warning("[surgeon] 在 [patient] 体内没有找到可取出的植入物。"),
+			span_warning("[surgeon] 在 [patient] 体内没有找到可取出的东西。"),
 		)
 		return
 
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You successfully remove [implant] from [patient]."),
-		span_notice("[surgeon] successfully removes [implant] from [patient]!"),
-		span_notice("[surgeon] successfully removes something from [patient]!"),
+		span_notice("你成功从 [patient] 体内取出了 [implant]。"),
+		span_notice("[surgeon] 成功从 [patient] 体内取出了 [implant]！"),
+		span_notice("[surgeon] 成功从 [patient] 体内取出了什么东西！"),
 	)
-	display_pain(patient, "You can feel your [implant.name] pulled out of you!")
+	display_pain(patient, "你能感觉到自己的 [implant.name] 被从体内拽了出来！")
 	implant.removed(patient)
 
 	if(QDELETED(implant))
@@ -65,9 +65,9 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You place [implant] into [case]."),
-		span_notice("[surgeon] places [implant] into [case]."),
-		span_notice("[surgeon] places something into [case]."),
+		span_notice("你把 [implant] 放进了 [case]。"),
+		span_notice("[surgeon] 把 [implant] 放进了 [case]。"),
+		span_notice("[surgeon] 把什么东西放进了 [case]。"),
 	)
 
 /datum/surgery_operation/basic/implant_removal/proc/get_case(mob/living/surgeon, mob/living/target)

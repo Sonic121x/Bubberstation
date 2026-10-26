@@ -3,9 +3,9 @@
  */
 
 /// Admin command to manually trigger RETA access grant for admins
-ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger RETA access for testing", ADMIN_CATEGORY_EVENTS)
+ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA 门禁访问", "手动触发 RETA 门禁访问以进行测试", ADMIN_CATEGORY_EVENTS)
 
-	var/calling_dept = tgui_input_list(user, "RETA - Which department is CALLING for help?", "Calling Department", list("Security", "Engineering", "Medical", "Science", "Service", "Command", "Cargo", "Mining"))
+	var/calling_dept = tgui_input_list(user, "RETA - 哪个部门在呼叫支援？", "呼叫部门", list("Security", "Engineering", "Medical", "Science", "Service", "Command", "Cargo", "Mining"))
 	if(!calling_dept)
 		return
 
@@ -17,26 +17,26 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger R
 	var/list/remaining_depts = available_depts.Copy()
 
 	while(length(remaining_depts))
-		remaining_depts += "DONE - Finish selection"
-		var/choice = tgui_input_list(user, "RETA - Select departments to RESPOND to [calling_dept]\nCurrently selected: [english_list(selected_depts)]\n\nSelect another department or DONE:", "Responding Departments", remaining_depts)
+		remaining_depts += "完成 - 结束选择"
+		var/choice = tgui_input_list(user, "RETA - 选择要响应 [calling_dept] 的部门\n当前已选：[english_list(selected_depts)]\n\n选择另一个部门或“完成 - 结束选择”：", "响应部门", remaining_depts)
 
-		if(!choice || choice == "DONE - Finish selection")
+		if(!choice || choice == "完成 - 结束选择")
 			break
 
 		selected_depts += choice
 		remaining_depts -= choice
-		remaining_depts -= "DONE - Finish selection"
+		remaining_depts -= "完成 - 结束选择"
 
 	if(!length(selected_depts))
-		message_admins("No departments selected for RETA response.")
+		message_admins("未选择任何部门响应 RETA。")
 		return
 
-	var/duration = tgui_input_number(user, "Duration in minutes:", "RETA Duration", 5, 60, 1)
+	var/duration = tgui_input_number(user, "持续时间（分钟）：", "RETA 持续时间", 5, 60, 1)
 	if(!duration)
 		return
 
-	message_admins("[key_name_admin(user)] is manually triggering RETA: [calling_dept] called for help, [english_list(selected_depts)] will get access to [calling_dept] areas for [duration] minutes.")
-	log_game("ADMIN: [key_name(user)] is manually triggering RETA: [calling_dept] called for help, [english_list(selected_depts)] will get access to [calling_dept] areas for [duration] minutes.")
+	message_admins("[key_name_admin(user)] 正在手动触发 RETA：[calling_dept] 呼叫了支援，[english_list(selected_depts)] 将获得 [calling_dept] 区域的访问权限，持续 [duration] 分钟。")
+	log_game("管理员：[key_name(user)] 正在手动触发 RETA：[calling_dept] 呼叫了支援，[english_list(selected_depts)] 将获得 [calling_dept] 区域的访问权限，持续 [duration] 分钟。")
 
 	// Grant access to each responding department and collect results
 	var/successful_grants = 0
@@ -59,7 +59,7 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger R
 				dept_eligible_cards++
 
 		total_eligible_cards += dept_eligible_cards
-		message_admins("[responding_dept] department: [dept_eligible_cards] eligible cards from living players")
+		message_admins("[responding_dept] 部门：来自在线玩家的 [dept_eligible_cards] 张合格证件")
 
 		// Note: RETA grants access FROM calling_dept TO responding_dept personnel
 		// So if Medical calls Security, Security personnel get Medical access
@@ -69,10 +69,10 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger R
 
 	// Report results
 	if(successful_grants > 0)
-		message_admins("RETA access granted successfully: [english_list(granted_depts)] personnel now have [calling_dept] access. Total eligible cards: [total_eligible_cards]")
+		message_admins("RETA 访问权限授予成功：[english_list(granted_depts)] 的人员现在拥有 [calling_dept] 访问权限。合格证件总数：[total_eligible_cards]")
 
 		// Send department announcement like the normal system
-		var/caller_info = "(Called by CENTCOM)"
+		var/caller_info = "（由中央指挥部呼叫）"
 
 		// Send announcements to all successfully granted departments
 		for(var/dept in granted_depts)
@@ -117,4 +117,4 @@ ADMIN_VERB(reta_manual_trigger, R_ADMIN, "RETA Door Access", "Manually trigger R
 
 		aas_config_announce(/datum/aas_config_entry/rc_reta_announcement, list("GRANTEE" = grantee, "CALLER" = caller_info), null, target_channels)
 	else
-		message_admins("RETA access grant failed for all departments.")
+		message_admins("所有部门的 RETA 访问权限授予均失败。")

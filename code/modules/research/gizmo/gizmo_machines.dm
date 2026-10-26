@@ -1,7 +1,7 @@
 /// Science object that behaves similairly to to strange objects/relics, but is activated by cracking wire sequences and other functions
 /obj/machinery/gizmo
-	name = "gizmo"
-	desc = "Does a function when you put the jigger at the other ends thing."
+	name = "小装置"
+	desc = "当你把吉格器放到另一头那个东西上时，它会执行一项功能。"
 	icon_state = "gizmo_1"
 	icon = 'icons/obj/science/gizmos.dmi'
 
@@ -18,9 +18,9 @@
 	var/datum/gizmo_controller/controller = /datum/gizmo_controller
 	/// Possible names to pick from to keep things confusing
 	var/static/list/possible_names = list(
-		"gizmo", "jigger", "doohickey", "particle inverter", "polarity superplexer", "flitcher poster", "natty gonk", "quantum quantum",
-		"entropy nilum", "tachyon streamer", "doing device", "task operator", "interface responder", "kinetic observer", "turbo encabulator",
-		"statistic responder", "possibility matrix", "toety aaier", "phase anchor", "thingamajing",
+		"小装置", "吉格器", "小玩意儿", "粒子逆变器", "极性超复合器", "弗利彻张贴器", "精致贡克", "量子量子",
+		"熵零元", "快子流器", "做事装置", "任务操作器", "接口响应器", "动能观测器", "涡轮封装器",
+		"统计响应器", "可能性矩阵", "脚趾唉哎器", "相位锚", "那个啥玩意儿",
 	)
 
 /obj/machinery/gizmo/Initialize(mapload)
@@ -122,14 +122,14 @@
 
 	on_state = TRUE
 	update_appearance(UPDATE_ICON)
-	visible_message(span_smallnoticeital("[src] hums to life."))
+	visible_message(span_smallnoticeital("[src] 嗡嗡地启动了。"))
 
 /obj/machinery/gizmo/toggle/proc/off_state(datum/source)
 	SIGNAL_HANDLER
 
 	on_state = FALSE
 	update_appearance(UPDATE_ICON)
-	visible_message(span_smallnoticeital("[src] powers down."))
+	visible_message(span_smallnoticeital("[src] 断电关机了。"))
 
 /// A gizmo with a voice activated interface
 /obj/machinery/gizmo/voice

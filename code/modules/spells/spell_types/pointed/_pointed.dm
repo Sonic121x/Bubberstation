@@ -22,9 +22,9 @@
 /datum/action/cooldown/spell/pointed/New(Target)
 	. = ..()
 	if(!active_msg)
-		active_msg = "You prepare to use [src] on a target..."
+		active_msg = "你准备对目标使用 [src]……"
 	if(!deactive_msg)
-		deactive_msg = "You dispel [src]."
+		deactive_msg = "你解除了 [src]。"
 
 /datum/action/cooldown/spell/pointed/set_click_ability(mob/on_who)
 	. = ..()
@@ -50,7 +50,7 @@
 /datum/action/cooldown/spell/pointed/proc/on_activation(mob/on_who)
 	SHOULD_CALL_PARENT(TRUE)
 
-	to_chat(on_who, span_notice("[active_msg] <B>Left-click to cast the spell on a target!</B>"))
+	to_chat(on_who, span_notice("[active_msg] <B>左键点击目标以施放法术！</B>"))
 	build_all_button_icons()
 	return TRUE
 
@@ -79,7 +79,7 @@
 
 /datum/action/cooldown/spell/pointed/is_valid_target(atom/cast_on)
 	if(cast_on == owner)
-		to_chat(owner, span_warning("You cannot cast [src] on yourself!"))
+		to_chat(owner, span_warning("你不能对自己施放 [src]！"))
 		return FALSE
 
 	return TRUE
@@ -90,7 +90,7 @@
 		return
 
 	if(owner && get_dist(get_turf(owner), get_turf(cast_on)) > cast_range)
-		cast_on.balloon_alert(owner, "too far away!")
+		cast_on.balloon_alert(owner, "距离太远！")
 		return . | SPELL_CANCEL_CAST
 
 /**

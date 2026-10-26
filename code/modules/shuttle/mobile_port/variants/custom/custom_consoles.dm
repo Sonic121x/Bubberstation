@@ -1,5 +1,5 @@
 /obj/machinery/computer/shuttle/custom_shuttle
-	desc = "A shuttle control computer."
+	desc = "一台穿梭机控制计算机。"
 	shuttleId = ""
 	possible_destinations = "whiteship_home;"
 	circuit = /obj/item/circuitboard/computer/shuttle/flight_control
@@ -14,7 +14,7 @@
 /obj/machinery/computer/shuttle/custom_shuttle/proc/on_loc_added_to_shuttle(turf/source, obj/docking_port/mobile/custom/port)
 	SIGNAL_HANDLER
 	if(!istype(port))
-		say("Cannot link to this kind of shuttle!")
+		say("无法链接到这种穿梭机！")
 	else
 		if(connect_to_shuttle(TRUE, port))
 			RemoveElement(/datum/element/connect_loc, connections)
@@ -23,14 +23,14 @@
 	var/obj/docking_port/mobile/custom/custom_port = port
 	if(istype(custom_port))
 		if(custom_port.control_console?.resolve())
-			say("Control console already present!")
+			say("控制台已经存在！")
 			return FALSE
 	. = ..()
 	if(!.)
 		return
 	if(istype(custom_port))
 		custom_port.control_console = WEAKREF(src)
-	name = "[port.name] console"
+	name = "[port.name] 控制台"
 
 /obj/machinery/computer/shuttle/custom_shuttle/proc/linkShuttle(new_id)
 	if(shuttleId=="")
@@ -56,7 +56,7 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom/proc/on_loc_added_to_shuttle(turf/source, obj/docking_port/mobile/custom/port)
 	SIGNAL_HANDLER
 	if(!istype(port))
-		say("Cannot link to this kind of shuttle!")
+		say("无法链接到这种穿梭机！")
 	else
 		if(connect_to_shuttle(TRUE, port))
 			RemoveElement(/datum/element/connect_loc, connections)
@@ -77,12 +77,12 @@
 	var/obj/docking_port/mobile/custom/custom_port = port
 	if(istype(custom_port))
 		if(custom_port.navigation_console?.resolve())
-			say("Navigation console already present!")
+			say("导航控制台已经存在！")
 			return FALSE
 	. = ..()
 	if(!.)
 		return
-	name = "[port.name] navigation computer"
+	name = "[port.name] 导航计算机"
 	if(istype(custom_port))
 		custom_port.navigation_console = WEAKREF(src)
 	RegisterSignal(port, COMSIG_SHUTTLE_EXPANDED, PROC_REF(on_shuttle_expanded))
@@ -129,7 +129,7 @@
 					my_port.unregister()
 					my_port.delete_after = TRUE
 					my_port.shuttle_id = null
-					my_port.name = "Old [my_port.name]"
+					my_port.name = "旧 [my_port.name]"
 					my_port = null
 				else
 					QDEL_NULL(my_port)
@@ -148,7 +148,7 @@
 		return	//Only way this would happen is if someone else delinks the console while in use somehow
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	if(M?.mode != SHUTTLE_IDLE)
-		to_chat(usr, "<span class='warning'>You cannot target locations while in transit.</span>")
+		to_chat(usr, "<span class='warning'>穿梭机在途中时无法选定目标位置。</span>")
 		return
 	..()
 
@@ -165,7 +165,7 @@
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/custom/attack_hand(mob/user)
 	if(!shuttleId)
-		to_chat(user, "<span class='warning'>You must link the console to a shuttle first.</span>")
+		to_chat(user, "<span class='warning'>你必须先将控制台链接到一艘穿梭机。</span>")
 		return
 	return ..()
 

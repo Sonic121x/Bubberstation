@@ -1,7 +1,7 @@
 /obj/item/organ/ears
-	name = "ears"
+	name = "耳朵"
 	icon_state = "ears"
-	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
+	desc = "耳朵分为三部分：内耳、中耳和外耳。正常情况下，其中只有一部分应当可见。"
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
 	gender = PLURAL
@@ -9,10 +9,10 @@
 	healing_factor = STANDARD_ORGAN_HEALING
 	decay_factor = STANDARD_ORGAN_DECAY
 
-	low_threshold_passed = span_info("Your ears begin to resonate with an internal ring sometimes.")
-	now_failing = span_warning("You are unable to hear at all!")
-	now_fixed = span_info("Noise slowly begins filling your ears once more.")
-	low_threshold_cleared = span_info("The ringing in your ears has died down.")
+	low_threshold_passed = span_info("你的耳朵时不时会从内部响起一阵嗡鸣。")
+	now_failing = span_warning("你完全听不见了！")
+	now_fixed = span_info("声音又开始慢慢涌入你的耳朵。")
+	low_threshold_cleared = span_info("你耳中的嗡鸣声平息了下来。")
 	visual = FALSE
 
 	/// temporary deafness, measured in seconds. While > 0, the person is unable to hear anything.
@@ -30,7 +30,7 @@
 /obj/item/organ/ears/on_life(seconds_per_tick)
 	// only inform when things got worse, needs to happen before we heal
 	if((damage > low_threshold && prev_damage < low_threshold) || (damage > high_threshold && prev_damage < high_threshold))
-		to_chat(owner, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
+		to_chat(owner, span_warning("你耳中的嗡鸣声变得更响，一时盖住了外界的所有声音。"))
 
 	. = ..()
 	// if we have non-damage related deafness like mutations, quirks or clothing (earmuffs), don't bother processing here.
@@ -143,7 +143,7 @@
 	damage_multiplier = 0
 
 /obj/item/organ/ears/cat
-	name = "cat ears"
+	name = "猫耳"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	worn_icon = 'icons/mob/clothing/head/costume.dmi'
 	icon_state = "kitty"
@@ -194,39 +194,39 @@
 	return // We color base ears manually above in get_image
 
 /obj/item/organ/ears/cat/cybernetic
-	name = "basic cybernetic cat ears"
+	name = "基础义体猫耳"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "ears-c-cat"
-	desc = "A basic cybernetic organ designed to mimic the operation of ears."
+	desc = "一种基础义体器官，旨在模拟耳朵的功能。"
 	damage_multiplier = 2.4
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears/cybernetic
 	sprite_accessory_override = /datum/sprite_accessory/ears/cat/cybernetic
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎已经损坏。"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5)
 	restyle_flags = NONE
 
 /obj/item/organ/ears/cat/cybernetic/volume
-	name = "volume-adjusting cybernetic cat ears"
+	name = "音量调节义体猫耳"
 	icon_state = "ears-c-cat-u2"
-	desc = "Advanced cybernetic cat ears capable of dampening loud noises to protect their user."
+	desc = "高级义体猫耳，能够削弱巨大噪音以保护使用者。"
 	damage_multiplier = 1
 	bang_protect = 1
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/ears/cat/cybernetic/whisper
-	name = "whisper-sensiive cybernetic cat ears"
+	name = "低语敏感义体猫耳"
 	icon_state = "ears-c-cat-green"
-	desc = "Allows the user to more easily hear whispers. The user becomes extremely vulnerable to loud noises, however."
+	desc = "让使用者更容易听清低语。不过，使用者对巨大噪音会变得极为脆弱。"
 	damage_multiplier = 3 // 4 would be excessive
 	organ_traits = list(TRAIT_GOOD_HEARING)
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears/cybernetic/green
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/ears/cat/cybernetic/xray
-	name = "wall-penetrating cybernetic cat ears"
+	name = "穿墙义体猫耳"
 	icon_state = "ears-c-cat-blue"
-	desc = "Through the power of modern feline engineering, allows the user to hear speech through walls. The user becomes extremely vulnerable to loud noises, however."
+	desc = "借助现代猫科工程的力量，使用者能隔着墙听到说话声。不过，使用者对巨大噪音会变得极为脆弱。"
 	damage_multiplier = 3 // As above, 4 would be excessive
 	organ_traits = list(TRAIT_XRAY_HEARING)
 	bodypart_overlay = /datum/bodypart_overlay/mutant/cat_ears/cybernetic/blue
@@ -263,53 +263,53 @@
 	inner_color = "#0079EA"
 
 /obj/item/organ/ears/cat/cybernetic/upgraded
-	name = "cybernetic cat ears"
+	name = "义体猫耳"
 	icon_state = "ears-c-cat-u"
-	desc = "A cybernetic cat ear, still less durable than human ears."
+	desc = "一只义体猫耳，仍不如人类耳朵耐用。"
 	damage_multiplier = 1.5
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/ears/ghost
-	name = "ghost ears"
-	desc = "All the more to hear you... though it can't hear through walls."
+	name = "幽灵耳"
+	desc = "为了更清楚地听见你……不过它无法隔墙聆听。"
 	icon_state = "ears-ghost"
 	movement_type = PHASING
 	organ_flags = parent_type::organ_flags | ORGAN_GHOST
 
 /obj/item/organ/ears/penguin
-	name = "penguin ears"
-	desc = "The source of a penguin's happy feet."
+	name = "企鹅耳"
+	desc = "企鹅快乐摇摆的来源。"
 
 /obj/item/organ/ears/penguin/on_mob_insert(mob/living/carbon/human/ear_owner)
 	. = ..()
-	to_chat(ear_owner, span_notice("You suddenly feel like you've lost your balance."))
+	to_chat(ear_owner, span_notice("你突然感觉自己失去了平衡。"))
 	ear_owner.AddElementTrait(TRAIT_WADDLING, ORGAN_TRAIT, /datum/element/waddling)
 
 /obj/item/organ/ears/penguin/on_mob_remove(mob/living/carbon/human/ear_owner)
 	. = ..()
-	to_chat(ear_owner, span_notice("Your sense of balance comes back to you."))
+	to_chat(ear_owner, span_notice("你的平衡感恢复了。"))
 	REMOVE_TRAIT(ear_owner, TRAIT_WADDLING, ORGAN_TRAIT)
 
 /obj/item/organ/ears/cybernetic
-	name = "basic cybernetic ears"
+	name = "基础义体耳"
 	icon_state = "ears-c"
-	desc = "A basic cybernetic organ designed to mimic the operation of ears."
+	desc = "一种基础义体器官，旨在模拟耳朵的功能。"
 	damage_multiplier = 1.2
 	organ_flags = ORGAN_ROBOTIC
-	failing_desc = "seems to be broken."
+	failing_desc = "似乎已经损坏。"
 	custom_materials = list(/datum/material/glass = SMALL_MATERIAL_AMOUNT * 4, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5)
 
 /obj/item/organ/ears/cybernetic/upgraded
-	name = "cybernetic ears"
+	name = "义体耳"
 	icon_state = "ears-c-u"
-	desc =  "A cybernetic ear, surpassing the performance of organic ears."
+	desc =  "一只义体耳，性能超过有机耳朵。"
 	damage_multiplier = 0.75
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/ears/cybernetic/whisper
-	name = "whisper-sensitive cybernetic ears"
+	name = "低语敏感义体耳"
 	icon_state = "ears-c-u"
-	desc = "Allows the user to more easily hear whispers. The user becomes extra vulnerable to loud noises, however."
+	desc = "让使用者更容易听清低语。不过，使用者对巨大噪音会变得格外脆弱。"
 	// Same sensitivity as felinid ears
 	damage_multiplier = 2
 	// The original idea was to use signals to do this not traits. Unfortunately, the star effect used for whispers applies before any relevant signals
@@ -318,18 +318,18 @@
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/organ/ears/cybernetic/volume
-	name = "volume-adjusting cybernetic ears"
+	name = "音量调节义体耳"
 	icon_state = "ears-c-u"
-	desc = "Advanced cybernetic ears capable of dampening loud noises to protect their user."
+	desc = "高级义体耳，能够削弱巨大噪音以保护使用者。"
 	bang_protect = EAR_PROTECTION_NORMAL
 	damage_multiplier = 0.5
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 // "X-ray ears" that let you hear through walls
 /obj/item/organ/ears/cybernetic/xray
-	name = "wall-penetrating cybernetic ears"
+	name = "穿墙义体耳"
 	icon_state = "ears-c-u"
-	desc = "Through the power of modern engineering, allows the user to hear speech through walls. The user becomes extra vulnerable to loud noises, however."
+	desc = "借助现代工程的力量，使用者能隔着墙听到说话声。不过，使用者对巨大噪音会变得格外脆弱。"
 	// Same sensitivity as felinid ears
 	damage_multiplier = 2
 	organ_traits = list(TRAIT_XRAY_HEARING)
@@ -342,7 +342,7 @@
 	apply_organ_damage(20 / severity)
 
 /obj/item/organ/ears/pod
-	name = "pod ears"
-	desc = "Strangest salad you've ever seen."
+	name = "豆荚耳"
+	desc = "你见过的最奇怪的沙拉。"
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
 	color = COLOR_LIME

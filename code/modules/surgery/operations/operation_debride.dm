@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/debride
-	name = "debride infected flesh"
-	rnd_name = "Debridement"
-	desc = "Remove infected or necrotic flesh from a patient's wound to promote healing."
+	name = "清除感染血肉"
+	rnd_name = "清创术"
+	desc = "清除病人伤口中感染或坏死的血肉，以促进愈合。"
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_SCALPEL = 1.25,
@@ -32,7 +32,7 @@
 	return image(/obj/item/reagent_containers/applicator/patch/aiuri)
 
 /datum/surgery_operation/limb/debride/all_required_strings()
-	return list("the limb must have a second degree or worse burn") + ..()
+	return list("该肢体必须有二度或更严重的烧伤") + ..()
 
 /datum/surgery_operation/limb/debride/state_check(obj/item/bodypart/limb)
 	var/datum/wound/burn/flesh/wound = locate() in limb.wounds
@@ -50,11 +50,11 @@
 		if(-INFINITY to 1)
 			return null
 		if(1 to 2)
-			progress_text = ", preparing to remove the last remaining bits of infection"
+			progress_text = "，正准备清除最后残留的一点感染"
 		if(2 to 4)
-			progress_text = ", steadily narrowing the remaining bits of infection"
+			progress_text = "，逐步缩小剩余的感染范围"
 		if(5 to INFINITY)
-			progress_text = ", though there's still quite a lot to excise"
+			progress_text = "，不过还有相当多的组织需要切除"
 
 	return progress_text
 
@@ -62,11 +62,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to excise infected flesh from [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to excise infected flesh from [FORMAT_LIMB_OWNER(limb)] with [tool]."),
-		span_notice("[surgeon] begins to excise infected flesh from [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始从 [FORMAT_LIMB_OWNER(limb)] 上切除感染的血肉……"),
+		span_notice("[surgeon] 开始用 [tool] 从 [FORMAT_LIMB_OWNER(limb)] 上切除感染的血肉。"),
+		span_notice("[surgeon] 开始从 [FORMAT_LIMB_OWNER(limb)] 上切除感染的血肉。"),
 	)
-	display_pain(limb.owner, "The infection in your [limb.plaintext_zone] stings like hell! It feels like you're being stabbed!")
+	display_pain(limb.owner, "你[chinese_body_zone_display(limb.plaintext_zone)]上的感染处剧痛无比！感觉就像被刀捅了一样！")
 
 /datum/surgery_operation/limb/debride/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args, default_display_results = FALSE)
 	limb.receive_damage(3, wound_bonus = CANT_WOUND, sharpness = tool.get_sharpness(), damage_source = tool)
@@ -76,17 +76,17 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully excise some of the infected flesh from [FORMAT_LIMB_OWNER(limb)][get_progress(wound)]."),
-		span_notice("[surgeon] successfully excises some of the infected flesh from [FORMAT_LIMB_OWNER(limb)] with [tool]!"),
-		span_notice("[surgeon] successfully excises some of the infected flesh from  [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你成功从 [FORMAT_LIMB_OWNER(limb)] 上切除了一些感染的血肉[get_progress(wound)]。"),
+		span_notice("[surgeon] 成功用 [tool] 从 [FORMAT_LIMB_OWNER(limb)] 上切除了一些感染的血肉！"),
+		span_notice("[surgeon] 成功从 [FORMAT_LIMB_OWNER(limb)] 上切除了一些感染的血肉！"),
 	)
 
 /datum/surgery_operation/limb/debride/on_failure(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You carve away some of the healthy flesh from [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] carves away some of the healthy flesh from [FORMAT_LIMB_OWNER(limb)] with [tool]!"),
-		span_notice("[surgeon] carves away some of the healthy flesh from  [FORMAT_LIMB_OWNER(limb)]!"),
+		span_notice("你从 [FORMAT_LIMB_OWNER(limb)] 上削掉了一些健康的血肉。"),
+		span_notice("[surgeon] 用 [tool] 从 [FORMAT_LIMB_OWNER(limb)] 上削掉了一些健康的血肉！"),
+		span_notice("[surgeon] 从 [FORMAT_LIMB_OWNER(limb)] 上削掉了一些健康的血肉！"),
 	)
 	limb.receive_damage(rand(4, 8), wound_bonus = CANT_WOUND, sharpness = tool.get_sharpness(), damage_source = tool)

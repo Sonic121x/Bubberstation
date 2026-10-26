@@ -37,12 +37,12 @@
 
 /// Pokes the object
 /datum/experimentor_result_handler/scan/poke
-	name = "Poke"
+	name = "戳刺"
 	fa_icon = "hand"
 	scantype = SCANTYPE_POKE
-	start_message_template = "prods at %ITEM% with mechanical arms."
+	start_message_template = "用机械臂戳了戳 %ITEM%。"
 	critical_prob = EFFECT_PROB_LOW
-	critical_message_template = "%ITEM% is gripped in just the right way, enhancing its focus."
+	critical_message_template = "%ITEM% 被以恰到好处的方式夹住，聚焦效果增强了。"
 
 /datum/experimentor_result_handler/scan/poke/handle_critical(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	..()
@@ -53,52 +53,52 @@
 	var/malf_chance = machine.get_malfunction_chance()
 
 	if(prob(EFFECT_PROB_VERYLOW * malf_chance))
-		machine.visible_message(span_danger("[machine] malfunctions and destroys [exp_on], lashing its arms out at nearby people!"))
+		machine.visible_message(span_danger("[machine] 发生故障并摧毁了 [exp_on]，机械臂疯狂抽向附近的人！"))
 		for(var/mob/living/nearby_mob in oview(1, machine))
 			nearby_mob.apply_damage(15, BRUTE, pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST))
-			machine.investigate_log("Experimentor dealt minor brute to [nearby_mob].", INVESTIGATE_EXPERIMENTOR)
+			machine.investigate_log("实验机对 [nearby_mob] 造成了轻微钝击伤害。", INVESTIGATE_EXPERIMENTOR)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_LOW * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions!"))
+		machine.visible_message(span_warning("[machine] 发生故障！"))
 		machine.run_experiment(SCANTYPE_OBLITERATE)
 
 	else if(prob(EFFECT_PROB_MEDIUM * malf_chance))
-		machine.visible_message(span_danger("[machine] malfunctions, throwing the [exp_on]!"))
+		machine.visible_message(span_danger("[machine] 发生故障，把 [exp_on] 扔了出去！"))
 		var/mob/living/target = locate(/mob/living) in oview(7, machine)
 		if(target)
 			var/obj/item/throwing = machine.loaded_item
-			machine.investigate_log("Experimentor has thrown [machine.loaded_item] at [key_name(target)]", INVESTIGATE_EXPERIMENTOR)
+			machine.investigate_log("实验机把 [machine.loaded_item] 扔向了 [key_name(target)]", INVESTIGATE_EXPERIMENTOR)
 			machine.item_eject()
 			if(throwing)
 				throwing.throw_at(target, 10, 1)
 
 /// Infuses it with radiation
 /datum/experimentor_result_handler/scan/irradiate
-	name = "Irradiate"
+	name = "辐照"
 	fa_icon = "radiation"
 	scantype = SCANTYPE_IRRADIATE
-	start_message_template = "reflects radioactive rays at %ITEM%!"
+	start_message_template = "朝 %ITEM% 反射出放射线！"
 	start_message_type = MSG_TYPE_DANGER
 	critical_prob = EFFECT_PROB_VERYLOW
-	critical_message_template = "%ITEM% has activated an unknown subroutine!"
+	critical_message_template = "%ITEM% 激活了一个未知子程序！"
 
 /datum/experimentor_result_handler/scan/irradiate/handle_critical(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	..()
-	machine.investigate_log("Experimentor has made a clone of [exp_on]", INVESTIGATE_EXPERIMENTOR)
+	machine.investigate_log("实验机制造了 [exp_on] 的克隆体", INVESTIGATE_EXPERIMENTOR)
 	machine.item_eject(TRUE)
 
 /datum/experimentor_result_handler/scan/irradiate/handle_malfunctions(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	var/malf_chance = machine.get_malfunction_chance()
 
 	if(prob(EFFECT_PROB_VERYLOW * malf_chance))
-		machine.visible_message(span_danger("[machine] malfunctions, melting [exp_on] and leaking radiation!"))
+		machine.visible_message(span_danger("[machine] 发生故障，熔化了 [exp_on] 并泄漏出辐射！"))
 		playsound(machine, 'sound/effects/supermatter.ogg', 50, TRUE, -3)
 		radiation_pulse(machine, max_range = 6, threshold = 0.3)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_LOW * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions, spewing toxic waste!"))
+		machine.visible_message(span_warning("[machine] 发生故障，喷出有毒废料！"))
 		for(var/turf/T in oview(1, machine))
 			if(!T.density && prob(EFFECT_PROB_VERYHIGH) && !(locate(/obj/effect/decal/cleanable/greenglow) in T))
 				new /obj/effect/decal/cleanable/greenglow/filled(T)
@@ -109,8 +109,8 @@
 		QDEL_NULL(machine.loaded_item)
 		var/newPath = text2path(pick_weight(machine.valid_items))
 		machine.loaded_item = new newPath(machine)
-		machine.visible_message(span_warning("[machine] malfunctions, transforming [savedName] into [machine.loaded_item]!"))
-		machine.investigate_log("Experimentor has transformed [savedName] into [machine.loaded_item]", INVESTIGATE_EXPERIMENTOR)
+		machine.visible_message(span_warning("[machine] 发生故障，把 [savedName] 变成了 [machine.loaded_item]！"))
+		machine.investigate_log("实验机把 [savedName] 变成了 [machine.loaded_item]", INVESTIGATE_EXPERIMENTOR)
 
 		if(istype(machine.loaded_item, /obj/item/grenade/chem_grenade))
 			var/obj/item/grenade/chem_grenade/CG = machine.loaded_item
@@ -120,13 +120,13 @@
 
 /// Fills the chamber with gas
 /datum/experimentor_result_handler/scan/gas
-	name = "Gas"
+	name = "气体"
 	fa_icon = "cloud"
 	scantype = SCANTYPE_GAS
-	start_message_template = "fills its chamber with gas, %ITEM% included."
+	start_message_template = "往反应腔里充满气体，%ITEM% 也泡在其中。"
 	start_message_type = MSG_TYPE_WARNING
 	critical_prob = EFFECT_PROB_LOW
-	critical_message_template = "%ITEM% achieves the perfect mix!"
+	critical_message_template = "%ITEM% 达到了完美的配比！"
 
 /datum/experimentor_result_handler/scan/gas/handle_critical(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	..()
@@ -137,7 +137,7 @@
 	var/chosenchem
 
 	if(prob(EFFECT_PROB_VERYLOW * malf_chance))
-		machine.visible_message(span_danger("[machine] destroys [exp_on], leaking dangerous gas!"))
+		machine.visible_message(span_danger("[machine] 摧毁了 [exp_on]，泄漏出危险气体！"))
 		chosenchem = pick(
 			/datum/reagent/carbon,
 			/datum/reagent/uranium/radium,
@@ -149,12 +149,12 @@
 			/datum/reagent/consumable/ethanol/beepsky_smash,
 		)
 		do_chem_smoke(0, machine, machine.loc, chosenchem, 50)
-		machine.investigate_log("Experimentor has released [chosenchem] smoke.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机释放了 [chosenchem] 烟雾。", INVESTIGATE_EXPERIMENTOR)
 		playsound(machine, 'sound/effects/smoke.ogg', 50, TRUE, -3)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_VERYLOW * malf_chance))
-		machine.visible_message(span_danger("[machine]'s chemical chamber has sprung a leak!"))
+		machine.visible_message(span_danger("[machine] 的化学腔室漏了！"))
 		chosenchem = pick(
 			/datum/reagent/mutationtoxin/classic,
 			/datum/reagent/cyborg_mutation_nanomachines,
@@ -163,28 +163,28 @@
 		do_chem_smoke(0, machine, machine.loc, chosenchem, 50)
 		playsound(machine, 'sound/effects/smoke.ogg', 50, TRUE, -3)
 		QDEL_NULL(machine.loaded_item)
-		machine.warn_admins(usr, "[chosenchem] smoke")
-		machine.investigate_log("Experimentor has released <font color='red'>[chosenchem]</font> smoke!", INVESTIGATE_EXPERIMENTOR)
+		machine.warn_admins(usr, "[chosenchem] 烟雾")
+		machine.investigate_log("实验机释放了 <font color='red'>[chosenchem]</font> 烟雾！", INVESTIGATE_EXPERIMENTOR)
 
 	else if(prob(EFFECT_PROB_LOW * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions, spewing harmless gas."))
+		machine.visible_message(span_warning("[machine] 发生故障，喷出无害气体。"))
 		do_smoke(1, machine, machine.loc)
 
 	else if(prob(EFFECT_PROB_MEDIUM * malf_chance))
-		machine.visible_message(span_warning("[machine] melts [exp_on], ionizing the air around it!"))
+		machine.visible_message(span_warning("[machine] 熔化了 [exp_on]，把周围的空气电离了！"))
 		empulse(machine.loc, 4, 6, emp_source = machine)
-		machine.investigate_log("Experimentor has generated an Electromagnetic Pulse.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机产生了一次电磁脉冲。", INVESTIGATE_EXPERIMENTOR)
 		QDEL_NULL(machine.loaded_item)
 
 /// Heats the object
 /datum/experimentor_result_handler/scan/heat
-	name = "Heat"
+	name = "加热"
 	fa_icon = "fire"
 	scantype = SCANTYPE_HEAT
-	start_message_template = "raises %ITEM%'s temperature."
+	start_message_template = "升高了 %ITEM% 的温度。"
 	start_message_type = MSG_TYPE_NOTICE
 	critical_prob = EFFECT_PROB_LOW
-	critical_message_template = "%ITEM%'s emergency coolant system gives off a small ding!"
+	critical_message_template = "%ITEM% 的应急冷却系统发出了一声轻响！"
 
 /datum/experimentor_result_handler/scan/heat/handle_critical(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	..()
@@ -198,9 +198,9 @@
 	)
 	C.reagents.remove_all(25)
 	C.reagents.add_reagent(chosenchem, 50)
-	C.name = "Cup of Suspicious Liquid"
-	C.desc = "It has a large hazard symbol printed on the side in fading ink."
-	machine.investigate_log("Experimentor has made a cup of [chosenchem] coffee.", INVESTIGATE_EXPERIMENTOR)
+	C.name = "一杯可疑液体"
+	C.desc = "杯身侧面用褪色的油墨印着一个大大的危险标志。"
+	machine.investigate_log("实验机泡了一杯 [chosenchem] 咖啡。", INVESTIGATE_EXPERIMENTOR)
 
 /datum/experimentor_result_handler/scan/heat/handle_malfunctions(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	var/malf_chance = machine.get_malfunction_chance()
@@ -211,45 +211,45 @@
 		var/turf/target_turf = get_turf(target_mob)
 
 		if(target_turf)
-			machine.visible_message(span_danger("[machine] dangerously overheats, launching a flaming fuel orb!"))
-			machine.investigate_log("Experimentor has launched a <font color='red'>fireball</font> at [target_mob]!", INVESTIGATE_EXPERIMENTOR)
+			machine.visible_message(span_danger("[machine] 危险地过热，射出一颗燃烧的燃料球！"))
+			machine.investigate_log("实验机向 [target_mob] 发射了一颗 <font color='red'>火球</font>！", INVESTIGATE_EXPERIMENTOR)
 			var/obj/projectile/magic/fireball/FB = new /obj/projectile/magic/fireball(start)
 			FB.aim_projectile(target_turf, start)
 			FB.fire()
 
 	else if(prob(EFFECT_PROB_LOW * malf_chance))
-		machine.visible_message(span_danger("[machine] malfunctions, melting [exp_on] and releasing a burst of flame!"))
+		machine.visible_message(span_danger("[machine] 发生故障，熔化了 [exp_on] 并喷出一团火焰！"))
 		explosion(machine, devastation_range = -1, flame_range = 2, adminlog = FALSE)
-		machine.investigate_log("Experimentor started a fire.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机引发了火灾。", INVESTIGATE_EXPERIMENTOR)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_MEDIUM * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions, melting [exp_on] and leaking hot air!"))
+		machine.visible_message(span_warning("[machine] 发生故障，熔化了 [exp_on] 并泄漏出热空气！"))
 		var/datum/gas_mixture/env = machine.loc.return_air()
 		if(env)
 			var/heat_capacity = max(env.heat_capacity(), 1)
 			env.temperature = min((env.temperature * heat_capacity + 100000) / heat_capacity, 1000)
 		machine.air_update_turf(FALSE, FALSE)
-		machine.investigate_log("Experimentor has released hot air.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机释放了热空气。", INVESTIGATE_EXPERIMENTOR)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_MEDIUM * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions, activating its emergency coolant systems!"))
+		machine.visible_message(span_warning("[machine] 发生故障，启动了应急冷却系统！"))
 		do_smoke(1, machine, machine.loc)
 		for(var/mob/living/nearby_mob in oview(1, machine))
 			nearby_mob.apply_damage(5, BURN, pick(BODY_ZONE_HEAD, BODY_ZONE_CHEST))
-			machine.investigate_log("Experimentor has dealt minor burn damage to [key_name(nearby_mob)]", INVESTIGATE_EXPERIMENTOR)
+			machine.investigate_log("实验机对 [key_name(nearby_mob)] 造成了轻微灼伤", INVESTIGATE_EXPERIMENTOR)
 		machine.item_eject()
 
 /// Cools the object
 /datum/experimentor_result_handler/scan/cold
-	name = "Freeze"
+	name = "冷冻"
 	fa_icon = "snowflake"
 	scantype = SCANTYPE_COLD
-	start_message_template = "lowers %ITEM%'s temperature."
+	start_message_template = "降低了 %ITEM% 的温度。"
 	start_message_type = MSG_TYPE_NOTICE
 	critical_prob = EFFECT_PROB_LOW
-	critical_message_template = "%ITEM%'s emergency coolant system gives off a small ding!"
+	critical_message_template = "%ITEM% 的应急冷却系统发出了一声轻响！"
 
 /datum/experimentor_result_handler/scan/cold/handle_critical(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	..()
@@ -263,44 +263,44 @@
 	)
 	C.reagents.remove_all(25)
 	C.reagents.add_reagent(chosenchem, 50)
-	C.name = "Cup of Suspicious Liquid"
-	C.desc = "It has a large hazard symbol printed on the side in fading ink."
-	machine.investigate_log("Experimentor has made a cup of [chosenchem] coffee.", INVESTIGATE_EXPERIMENTOR)
+	C.name = "一杯可疑液体"
+	C.desc = "杯身侧面用褪色的油墨印着一个大大的危险标志。"
+	machine.investigate_log("实验机泡了一杯 [chosenchem] 咖啡。", INVESTIGATE_EXPERIMENTOR)
 
 /datum/experimentor_result_handler/scan/cold/handle_malfunctions(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	var/malf_chance = machine.get_malfunction_chance()
 
 	if(prob(EFFECT_PROB_VERYLOW * malf_chance))
-		machine.visible_message(span_danger("[machine] malfunctions, shattering [exp_on] and releasing a dangerous cloud of coolant!"))
+		machine.visible_message(span_danger("[machine] 发生故障，震碎了 [exp_on] 并释放出一团危险的冷却剂云雾！"))
 		do_chem_smoke(0, machine, machine.loc, /datum/reagent/consumable/frostoil, 50)
-		machine.investigate_log("Experimentor has released frostoil gas.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机释放了低温油气体。", INVESTIGATE_EXPERIMENTOR)
 		playsound(machine, 'sound/effects/smoke.ogg', 50, TRUE, -3)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_LOW * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions, shattering [exp_on] and leaking cold air!"))
+		machine.visible_message(span_warning("[machine] 发生故障，震碎了 [exp_on] 并泄漏出冷空气！"))
 		var/datum/gas_mixture/env = machine.loc.return_air()
 		if(env)
 			var/heat_capacity = max(env.heat_capacity(), 1)
 			env.temperature = max((env.temperature * heat_capacity - 75000) / heat_capacity, TCMB)
 		machine.air_update_turf(FALSE, FALSE)
-		machine.investigate_log("Experimentor has released cold air.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机释放了冷空气。", INVESTIGATE_EXPERIMENTOR)
 		QDEL_NULL(machine.loaded_item)
 
 	else if(prob(EFFECT_PROB_MEDIUM * malf_chance))
-		machine.visible_message(span_warning("[machine] malfunctions, releasing a flurry of chilly air as [exp_on] pops out!"))
+		machine.visible_message(span_warning("[machine] 发生故障，随着 [exp_on] 弹出，释放出一阵刺骨的寒气！"))
 		do_smoke(1, machine, machine.loc)
 		machine.item_eject()
 
 /// Crushes the object
 /datum/experimentor_result_handler/scan/obliterate
-	name = "Obliterate"
+	name = "粉碎"
 	fa_icon = "trash"
 	scantype = SCANTYPE_OBLITERATE
-	start_message_template = "activates the crushing mechanism, %ITEM% is destroyed!"
+	start_message_template = "启动了粉碎机构，%ITEM% 被摧毁了！"
 	start_message_type = MSG_TYPE_WARNING
 	critical_prob = EFFECT_PROB_LOW
-	critical_message_template = "%ITEM%'s crushing mechanism slowly and smoothly descends, flattening the %ITEM%!"
+	critical_message_template = "%ITEM% 的粉碎机构缓慢而平稳地降下，把 %ITEM% 压扁了！"
 
 /datum/experimentor_result_handler/scan/obliterate/handle_critical(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
 	..()
@@ -310,18 +310,18 @@
 	var/malf_chance = machine.get_malfunction_chance()
 
 	if(prob(EFFECT_PROB_VERYLOW * malf_chance))
-		machine.visible_message(span_danger("[machine]'s crusher goes way too many levels too high, crushing right through space-time!"))
+		machine.visible_message(span_danger("[machine] 的粉碎机高出了太多层级，直接碾穿了时空！"))
 		playsound(machine, 'sound/effects/supermatter.ogg', 50, TRUE, -3)
-		machine.investigate_log("Experimentor has triggered the 'throw things' reaction.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机触发了“乱扔东西”反应。", INVESTIGATE_EXPERIMENTOR)
 
 		for(var/atom/movable/AM in oview(7, machine))
 			if(!AM.anchored)
 				AM.throw_at(machine, 10, 1)
 
 	else if(prob(EFFECT_PROB_LOW * malf_chance))
-		machine.visible_message(span_danger("[machine]'s crusher goes one level too high, crushing right into space-time!"))
+		machine.visible_message(span_danger("[machine] 的粉碎机高出了一个层级，直接碾进了时空！"))
 		playsound(machine, 'sound/effects/supermatter.ogg', 50, TRUE, -3)
-		machine.investigate_log("Experimentor has triggered the 'minor throw things' reaction.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机触发了“轻度乱扔东西”反应。", INVESTIGATE_EXPERIMENTOR)
 
 		var/list/throw_at = list()
 		for(var/atom/movable/AM in oview(7, machine))
@@ -337,7 +337,7 @@
 /// Discovers relic properties
 /datum/experimentor_result_handler/scan/discover
 	scantype = SCANTYPE_DISCOVER
-	start_message_template = "scans the %ITEM%, revealing its true nature!"
+	start_message_template = "扫描了 %ITEM%，揭示了它的真实本质！"
 	start_message_type = MSG_TYPE_NOTICE
 	is_special = TRUE
 
@@ -349,7 +349,7 @@
 	var/obj/item/relic/loaded_artifact = machine.loaded_item
 	if(loaded_artifact)
 		loaded_artifact.reveal()
-		machine.investigate_log("Experimentor has revealed a relic with [span_danger("[loaded_artifact.hidden_power]")] effect.", INVESTIGATE_EXPERIMENTOR)
+		machine.investigate_log("实验机揭示了一件遗物，其效果为 [span_danger("[loaded_artifact.hidden_power]")]。", INVESTIGATE_EXPERIMENTOR)
 	machine.item_eject()
 
 /// Experiment failure
@@ -358,6 +358,6 @@
 	is_special = TRUE
 
 /datum/experimentor_result_handler/fail/execute(obj/machinery/rnd/experimentor/machine, obj/item/exp_on)
-	var/a = pick("rumbles", "shakes", "vibrates", "shudders", "honks")
-	var/b = pick("crushes", "spins", "viscerates", "smashes", "insults")
-	machine.visible_message(span_warning("[exp_on] [a], and [b], the experiment was a failure."))
+	var/a = pick("隆隆作响", "摇晃", "震动", "颤抖", "鸣喇叭")
+	var/b = pick("被压碎", "被旋转", "被开膛破肚", "被砸碎", "遭到辱骂")
+	machine.visible_message(span_warning("[exp_on] [a]，然后 [b]，实验失败了。"))

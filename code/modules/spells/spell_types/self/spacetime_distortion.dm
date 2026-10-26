@@ -1,8 +1,8 @@
 // This could probably be an aoe spell but it's a little cursed, so I'm not touching it
 /datum/action/cooldown/spell/spacetime_dist
-	name = "Spacetime Distortion"
-	desc = "Entangle the strings of space-time in an area around you, \
-		randomizing the layout and making proper movement impossible. The strings vibrate..."
+	name = "时空扭曲"
+	desc = "把你周围一片区域内的时空之线缠结起来，\
+		打乱布局，让人无法正常走动。那些线在震颤……"
 	sound = 'sound/effects/magic.ogg'
 	button_icon_state = "spacetime"
 
@@ -31,7 +31,7 @@
 	. = ..()
 	var/list/turf/to_switcharoo = get_targets_to_scramble(cast_on)
 	if(!length(to_switcharoo))
-		to_chat(cast_on, span_warning("For whatever reason, the strings nearby aren't keen on being tangled."))
+		to_chat(cast_on, span_warning("不知为何，附近的时空之线不太愿意被缠在一起。"))
 		reset_spell_cooldown()
 		return
 
@@ -94,8 +94,8 @@
 	anchored = TRUE
 
 /obj/effect/cross_action/spacetime_dist
-	name = "spacetime distortion"
-	desc = "A distortion in spacetime. You can hear faint music..."
+	name = "时空扭曲"
+	desc = "时空中的一处扭曲。你能听到隐约的音乐声……"
 	icon_state = ""
 	/// A flags which save people from being thrown about
 	var/antimagic_flags = MAGIC_RESISTANCE

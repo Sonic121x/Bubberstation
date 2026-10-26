@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/pointed/swap
-	name = "Swap"
-	desc = "This spell allows you to swap locations with any living being. \
-		RMB: Mark a secondary swap target. This secondary swap target will be discarded once you swap, \
-		or else you can click yourself with the RMB to discard your secondary target."
+	name = "换位"
+	desc = "该法术让你与任何活着的生物交换位置。\
+		右键：标记一个次要换位目标。交换一旦完成，这个次要目标就会被清除，\
+		你也可以用右键点击自己来清除次要目标。"
 	button_icon_state = "swap"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/swap_target.dmi'
 	active_overlay_icon_state = "bg_spell_border_active_blue"
@@ -14,7 +14,7 @@
 	cast_range = 9
 	invocation_type = INVOCATION_NONE
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC|SPELL_REQUIRES_STATION
-	active_msg = "You prepare to swap locations with a target..."
+	active_msg = "你准备与一个目标交换位置……"
 
 	smoke_type = /datum/effect_system/fluid_spread/smoke
 	smoke_amt = 0
@@ -31,7 +31,7 @@
 	if(!.)
 		return FALSE
 	if(!isliving(cast_on))
-		to_chat(owner, span_warning("You can only swap locations with living beings!"))
+		to_chat(owner, span_warning("你只能与活着的生物交换位置！"))
 		return FALSE
 	return TRUE
 
@@ -47,33 +47,33 @@
 		// Find any living being in the list. We aren't picky, it's aim assist after all
 		target = locate(/mob/living) in target
 		if(!target)
-			to_chat(owner, span_warning("You can only select living beings as secondary target!"))
+			to_chat(owner, span_warning("你只能选择活着的生物作为次要目标！"))
 			return FALSE
 	if(target == owner)
 		if(!isnull(second_target))
-			to_chat(owner, span_notice("You cancel your secondary swap target!"))
+			to_chat(owner, span_notice("你取消了次要换位目标！"))
 			second_target = null
 		else
-			to_chat(owner, span_warning("You have no secondary swap target!"))
+			to_chat(owner, span_warning("你没有次要换位目标！"))
 		return FALSE
 	second_target = target
-	to_chat(owner, span_notice("You select [target.name] as a secondary swap target!"))
+	to_chat(owner, span_notice("你将 [target.name] 选定为次要换位目标！"))
 	return FALSE
 
 /datum/action/cooldown/spell/pointed/swap/cast(mob/living/carbon/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(owner, span_warning("The spell had no effect!"))
-		to_chat(cast_on, span_warning("You feel space bending, but it rapidly dissipates."))
+		to_chat(owner, span_warning("法术没有产生任何效果！"))
+		to_chat(cast_on, span_warning("你感到空间正在弯折，但它很快就消散了。"))
 		return FALSE
 
-	to_chat(cast_on, span_userdanger("You feel space bending."))
+	to_chat(cast_on, span_userdanger("你感到空间正在弯折。"))
 	if(ispath(smoke_type, /datum/effect_system/fluid_spread/smoke))
 		do_smoke(smoke_amt, owner, get_turf(owner), smoke_type = smoke_type)
 
 	var/turf/target_location = get_turf(cast_on)
 	if(!isnull(second_target) && get_dist(owner, second_target) <= cast_range && !(cast_on == second_target))
-		to_chat(second_target, span_userdanger("You feel space bending."))
+		to_chat(second_target, span_userdanger("你感到空间正在弯折。"))
 		if(ispath(smoke_type, /datum/effect_system/fluid_spread/smoke))
 			do_smoke(smoke_amt, owner, get_turf(second_target))
 		var/turf/second_location = get_turf(second_target)

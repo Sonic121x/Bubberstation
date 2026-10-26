@@ -48,16 +48,16 @@
 	var/mob/living/carbon/human/holder = get_id_holder()
 	if(holder)
 		playsound(holder, 'sound/machines/cryo_warning.ogg', 25, TRUE)
-		holder.balloon_alert(holder, "emergency access: [dept]")
+		holder.balloon_alert(holder, "紧急访问：[dept]")
 
 	// Enhanced logging
 	var/access_names = list()
 	for(var/flag in new_access)
 		access_names += SSid_access.get_access_desc(flag)
 
-	var/holder_info = holder ? "held by [holder]" : "not being held"
-	log_reta("Granted [dept] temporary access ([english_list(access_names)]) to ID '[registered_name || "Unknown"]' ([holder_info]) for [duration_ds/10] seconds")
-	investigate_log("RETA: Granted [dept] temporary access ([english_list(access_names)]) to ID '[registered_name || "Unknown"]' ([holder_info])", INVESTIGATE_ACCESSCHANGES)
+	var/holder_info = holder ? "由 [holder] 持有" : "未被持有"
+	log_reta("已向 ID '[registered_name || "Unknown"]'（[holder_info]）授予 [dept] 临时访问权限（[english_list(access_names)]），持续 [duration_ds/10] 秒")
+	investigate_log("RETA: 已向 ID '[registered_name || "Unknown"]'（[holder_info]）授予 [dept] 临时访问权限（[english_list(access_names)]）", INVESTIGATE_ACCESSCHANGES)
 
 	return TRUE
 
@@ -69,8 +69,8 @@
 	// User feedback before clearing
 	var/mob/living/carbon/human/holder = get_id_holder()
 	if(holder)
-		holder.balloon_alert(holder, "[dept] access expired")
-		to_chat(holder, span_warning("Emergency access to [dept] has expired."))
+		holder.balloon_alert(holder, "[dept] 访问权限已过期")
+		to_chat(holder, span_warning("对 [dept] 的紧急访问权限已过期。"))
 
 	// Remove department's temporary access from the main access list
 	var/list/dept_access = reta_temp_access[dept]
@@ -90,9 +90,9 @@
 	for(var/flag in dept_access)
 		access_names += SSid_access.get_access_desc(flag)
 
-	var/holder_info = holder ? "held by [holder]" : "not being held"
-	log_reta("Cleared [dept] temporary access ([english_list(access_names)]) from ID '[registered_name || "Unknown"]' ([holder_info])")
-	investigate_log("RETA: Cleared [dept] temporary access ([english_list(access_names)]) from ID '[registered_name || "Unknown"]' ([holder_info])", INVESTIGATE_ACCESSCHANGES)
+	var/holder_info = holder ? "由 [holder] 持有" : "未被持有"
+	log_reta("已从 ID '[registered_name || "Unknown"]'（[holder_info]）清除 [dept] 临时访问权限（[english_list(access_names)]）")
+	investigate_log("RETA: 已从 ID '[registered_name || "Unknown"]'（[holder_info]）清除 [dept] 临时访问权限（[english_list(access_names)]）", INVESTIGATE_ACCESSCHANGES)
 
 	// Clean up department data
 	reta_temp_access[dept] = null
@@ -110,8 +110,8 @@
 	// User feedback before clearing
 	var/mob/living/carbon/human/holder = get_id_holder()
 	if(holder)
-		holder.balloon_alert(holder, "emergency access expired")
-		to_chat(holder, span_warning("Emergency access has expired."))
+		holder.balloon_alert(holder, "紧急访问权限已过期")
+		to_chat(holder, span_warning("紧急访问权限已过期。"))
 
 	// Collect all temporary access flags for logging
 	var/list/all_temp_access = list()
@@ -128,9 +128,9 @@
 	for(var/flag in all_temp_access)
 		access_names += SSid_access.get_access_desc(flag)
 
-	var/holder_info = holder ? "held by [holder]" : "not being held"
-	log_reta("Cleared all temporary access ([english_list(access_names)]) from ID '[registered_name || "Unknown"]' ([holder_info])")
-	investigate_log("RETA: Cleared all temporary access ([english_list(access_names)]) from ID '[registered_name || "Unknown"]' ([holder_info])", INVESTIGATE_ACCESSCHANGES)
+	var/holder_info = holder ? "由 [holder] 持有" : "未被持有"
+	log_reta("已从 ID '[registered_name || "Unknown"]'（[holder_info]）清除所有临时访问权限（[english_list(access_names)]）")
+	investigate_log("RETA: 已从 ID '[registered_name || "Unknown"]'（[holder_info]）清除所有临时访问权限（[english_list(access_names)]）", INVESTIGATE_ACCESSCHANGES)
 
 	// Clear all timers
 	for(var/dept in reta_timers)
@@ -179,12 +179,12 @@
 	var/list/summary = list()
 	for(var/dept in reta_temp_access)
 		if(reta_temp_access[dept] && LAZYLEN(reta_temp_access[dept]))
-			var/time_left = "unknown"
+			var/time_left = "未知"
 			if(reta_timers[dept])
 				var/remaining = timeleft(reta_timers[dept])
 				if(remaining > 0)
-					time_left = "[remaining/10]s"
-			summary += "[dept] ([LAZYLEN(reta_temp_access[dept])] access, [time_left] left)"
+					time_left = "[remaining/10] 秒"
+			summary += "[dept]（[LAZYLEN(reta_temp_access[dept])] 项权限，剩余 [time_left]）"
 	return summary
 
 /// Helper to get the human holding this ID card

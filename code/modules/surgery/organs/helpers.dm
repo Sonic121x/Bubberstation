@@ -52,22 +52,22 @@
 	var/list/missing_organs = list()
 
 	if(!get_organ_slot(ORGAN_SLOT_BRAIN))
-		missing_organs[ORGAN_SLOT_BRAIN] = "Brain"
+		missing_organs[ORGAN_SLOT_BRAIN] = "大脑"
 	if(needs_heart() && !get_organ_slot(ORGAN_SLOT_HEART))
-		missing_organs[ORGAN_SLOT_HEART] = "Heart"
+		missing_organs[ORGAN_SLOT_HEART] = "心脏"
 	if(!HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT) && !isnull(dna.species.mutantlungs) && !get_organ_slot(ORGAN_SLOT_LUNGS))
-		missing_organs[ORGAN_SLOT_LUNGS] = "Lungs"
+		missing_organs[ORGAN_SLOT_LUNGS] = "肺"
 	if(!HAS_TRAIT_FROM(src, TRAIT_LIVERLESS_METABOLISM, SPECIES_TRAIT) && !isnull(dna.species.mutantliver) && !get_organ_slot(ORGAN_SLOT_LIVER))
-		missing_organs[ORGAN_SLOT_LIVER] = "Liver"
+		missing_organs[ORGAN_SLOT_LIVER] = "肝脏"
 	if(!HAS_TRAIT_FROM(src, TRAIT_NOHUNGER, SPECIES_TRAIT) && !isnull(dna.species.mutantstomach) && !get_organ_slot(ORGAN_SLOT_STOMACH))
-		missing_organs[ORGAN_SLOT_STOMACH] ="Stomach"
+		missing_organs[ORGAN_SLOT_STOMACH] ="胃"
 	if(!isnull(dna.species.mutanttongue) && !get_organ_slot(ORGAN_SLOT_TONGUE))
-		missing_organs[ORGAN_SLOT_TONGUE] = "Tongue"
+		missing_organs[ORGAN_SLOT_TONGUE] = "舌头"
 	if(!isnull(dna.species.mutantears) && !get_organ_slot(ORGAN_SLOT_EARS))
-		missing_organs[ORGAN_SLOT_EARS] = "Ears"
+		missing_organs[ORGAN_SLOT_EARS] = "耳朵"
 	if(!isnull(dna.species.mutantears) && !get_organ_slot(ORGAN_SLOT_EYES))
-		missing_organs[ORGAN_SLOT_EYES] = "Eyes"
+		missing_organs[ORGAN_SLOT_EYES] = "眼睛"
 	if(include_appendix && !isnull(dna.species.mutantappendix) && !get_organ_slot(ORGAN_SLOT_APPENDIX))
-		missing_organs[ORGAN_SLOT_APPENDIX] = "Appendix"
+		missing_organs[ORGAN_SLOT_APPENDIX] = "阑尾"
 
 	return missing_organs

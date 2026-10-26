@@ -1,6 +1,6 @@
 /// Repeat the "buckle in or fall over" event a couple times
 /datum/shuttle_event/turbulence
-	name = "Turbulence"
+	name = "颠簸"
 	event_probability = 5
 	activation_fraction = 0.1
 	/// Minimum time to wait between periods of turbulence
@@ -14,9 +14,9 @@
 
 /datum/shuttle_event/turbulence/activate()
 	. = ..()
-	minor_announce("Please note, we are entering an area of subspace turbulence. For your own safety, \
-		please fasten your belts and remain seated until the vehicle comes to a complete stop.",
-		title = "Emergency Shuttle", alert = TRUE)
+	minor_announce("请注意，我们即将进入亚空间湍流区域。为了您自身的安全，\
+		请系好安全带并保持就坐，直到飞行器完全停稳。",
+		title = "紧急穿梭机", alert = TRUE)
 	COOLDOWN_START(src, turbulence_cooldown, rand(5 SECONDS, 20 SECONDS)) // Reduced interval after the announcement
 
 /datum/shuttle_event/turbulence/event_process()

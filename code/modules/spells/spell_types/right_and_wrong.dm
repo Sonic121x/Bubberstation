@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	if(!length(to_equip.mind.antag_datums) && prob(GLOB.summon_guns.survivor_probability))
 		to_equip.mind.add_antag_datum(/datum/antagonist/survivalist/guns)
-		to_equip.log_message("was made into a survivalist by summon guns, and trusts no one!", LOG_ATTACK, color = "red")
+		to_equip.log_message("被召唤枪械变成了生存主义者，不再信任任何人！", LOG_ATTACK, color = "red")
 
 	var/gun_type = pick(GLOB.summoned_guns)
 	var/obj/item/gun/spawned_gun = new gun_type(get_turf(to_equip))
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	var/in_hand = to_equip.put_in_hands(spawned_gun) // not always successful
 
-	to_chat(to_equip, span_warning("\A [spawned_gun] appears [in_hand ? "in your hand" : "at your feet"]!"))
+	to_chat(to_equip, span_warning("[spawned_gun] 出现在[in_hand ? "你手中" : "你脚边"]！"))
 
 /*
  * Gives [to_equip] a random magical spell from a list.
@@ -177,7 +177,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	if(!length(to_equip.mind.antag_datums) && prob(GLOB.summon_magic.survivor_probability))
 		to_equip.mind.add_antag_datum(/datum/antagonist/survivalist/magic)
-		to_equip.log_message("was made into a survivalist by summon magic, and trusts no one!", LOG_ATTACK, color = "red")
+		to_equip.log_message("被召唤魔法变成了生存主义者，不再信任任何人！", LOG_ATTACK, color = "red")
 
 	var/magic_type = prob(SPECIALIST_MAGIC_PROB) ? pick(GLOB.summoned_special_magic) : pick(GLOB.summoned_magic)
 
@@ -186,9 +186,9 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 	var/in_hand = to_equip.put_in_hands(spawned_magic)
 
-	to_chat(to_equip, span_warning("\A [spawned_magic] appears [in_hand ? "in your hand" : "at your feet"]!"))
+	to_chat(to_equip, span_warning("[spawned_magic] 出现在[in_hand ? "你手中" : "你脚边"]！"))
 	if(magic_type in GLOB.summoned_special_magic)
-		to_chat(to_equip, span_notice("You feel incredibly lucky."))
+		to_chat(to_equip, span_notice("你觉得自己简直幸运极了。"))
 
 /**
  * Triggers Summon Ghosts from [user].
@@ -198,17 +198,17 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 	var/datum/round_event_control/wizard/ghost/ghost_event = locate() in SSevents.control
 	if(ghost_event)
 		if(user)
-			to_chat(user, span_warning("You summoned ghosts!"))
-			message_admins("[ADMIN_LOOKUPFLW(user)] summoned ghosts!")
-			user.log_message("summoned ghosts!", LOG_GAME)
+			to_chat(user, span_warning("你召唤了幽灵！"))
+			message_admins("[ADMIN_LOOKUPFLW(user)] 召唤了幽灵！")
+			user.log_message("召唤了幽灵！", LOG_GAME)
 		else
-			message_admins("Summon Ghosts was triggered!")
-			log_game("Summon Ghosts was triggered!")
-		ghost_event.run_event(event_cause = "a wizard's incantation")
+			message_admins("召唤幽灵被触发了！")
+			log_game("召唤幽灵被触发了！")
+		ghost_event.run_event(event_cause = "一名巫师的咒语")
 	else
 		stack_trace("Unable to run summon ghosts, due to being unable to locate the associated event.")
 		if(user)
-			to_chat(user, span_warning("You... try to summon ghosts, but nothing seems to happen. Shame."))
+			to_chat(user, span_warning("你……试着召唤幽灵，但似乎什么也没发生。真可惜。"))
 
 /**
  * Triggers Summon Magic from [user].
@@ -217,12 +217,12 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_magic(mob/user, survivor_probability = 0)
 	if(user)
-		to_chat(user, span_warning("You summoned magic!"))
-		message_admins("[ADMIN_LOOKUPFLW(user)] summoned magic!")
-		user.log_message("summoned magic!", LOG_GAME)
+		to_chat(user, span_warning("你召唤了魔法！"))
+		message_admins("[ADMIN_LOOKUPFLW(user)] 召唤了魔法！")
+		user.log_message("召唤了魔法！", LOG_GAME)
 	else
-		message_admins("Summon Magic was triggered!")
-		log_game("Summon Magic was triggered!")
+		message_admins("召唤魔法被触发了！")
+		log_game("召唤魔法被触发了！")
 
 	if(GLOB.summon_magic)
 		GLOB.summon_magic.survivor_probability = survivor_probability
@@ -237,12 +237,12 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_guns(mob/user, survivor_probability = 0)
 	if(user)
-		to_chat(user, span_warning("You summoned guns!"))
-		message_admins("[ADMIN_LOOKUPFLW(user)] summoned guns!")
-		user.log_message("summoned guns!", LOG_GAME)
+		to_chat(user, span_warning("你召唤了枪械！"))
+		message_admins("[ADMIN_LOOKUPFLW(user)] 召唤了枪械！")
+		user.log_message("召唤了枪械！", LOG_GAME)
 	else
-		message_admins("Summon Guns was triggered!")
-		log_game("Summon Guns was triggered!")
+		message_admins("召唤枪械被触发了！")
+		log_game("召唤枪械被触发了！")
 
 	if(GLOB.summon_guns)
 		GLOB.summon_guns.survivor_probability = survivor_probability
@@ -263,16 +263,16 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 
 		SSevents.reschedule()
 		if(user)
-			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "":"admin triggered "]intensified summon events!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "":"管理员触发，"]加强了召唤事件！")
 			if(ismob(user))
-				to_chat(user, span_warning("You have intensified summon events, causing them to occur more often!"))
-				user.log_message("intensified events!", LOG_GAME)
+				to_chat(user, span_warning("你加强了召唤事件，它们会变得更频繁！"))
+				user.log_message("加强了事件！", LOG_GAME)
 			else //admin triggered
-				log_admin("[key_name(user)] intensified summon events.")
+				log_admin("[key_name(user)] 加强了召唤事件。")
 		else
-			log_game("Summon Events was intensified!")
+			log_game("召唤事件被加强了！")
 
-		message_admins("Summon Events intensifies, events will now occur every [SSevents.frequency_lower / 600] to [SSevents.frequency_upper / 600] minutes.")
+		message_admins("召唤事件被加强，现在事件将每 [SSevents.frequency_lower / 600] 到 [SSevents.frequency_upper / 600] 分钟发生一次。")
 
 	// Not in wiz-mode?  Get this show on the road
 	else
@@ -281,15 +281,15 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		SSevents.toggleWizardmode()
 		SSevents.reschedule()
 		if(user)
-			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "summoned":"admin triggered summon"] events!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] [ismob(user) ? "召唤了":"管理员触发了召唤"]事件！")
 			if(ismob(user))
-				to_chat(user, span_warning("You have cast summon events!"))
-				user.log_message("summoned events!", LOG_GAME)
+				to_chat(user, span_warning("你施放了召唤事件！"))
+				user.log_message("召唤了事件！", LOG_GAME)
 			else //admin triggered
-				log_admin("[key_name(user)] summoned events.")
+				log_admin("[key_name(user)] 召唤了事件。")
 		else
-			message_admins("Summon Events was triggered!")
-			log_game("Summon Events was triggered!")
+			message_admins("召唤事件被触发了！")
+			log_game("召唤事件被触发了！")
 
 #undef SPECIALIST_MAGIC_PROB
 

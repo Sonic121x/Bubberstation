@@ -117,7 +117,7 @@
 		return
 	disrupted = TRUE
 	refresh_light_color()
-	to_chat(source, span_notice("You feel the light of your body leave you."))
+	to_chat(source, span_notice("你感觉体内的光芒离你而去。"))
 	switch(severity)
 		if(EMP_LIGHT)
 			addtimer(CALLBACK(src, PROC_REF(stop_emp), source), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) // We're out for 10 seconds
@@ -127,7 +127,7 @@
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/hit_by_saboteur(mob/living/carbon/human/source, disrupt_duration)
 	disrupted = TRUE
 	refresh_light_color()
-	to_chat(source, span_warning("Something inside of you crackles in a bad way."))
+	to_chat(source, span_warning("你体内有什么东西发出不祥的噼啪声。"))
 	source.take_bodypart_damage(burn = 3, wound_bonus = CANT_WOUND)
 	addtimer(CALLBACK(src, PROC_REF(stop_emp), source), disrupt_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
 	return TRUE
@@ -138,8 +138,8 @@
 		return FALSE
 	emageffect = TRUE
 	if(user)
-		to_chat(user, span_notice("You tap [source] on the back with your card."))
-	source.visible_message(span_danger("[source] starts flickering in an array of colors!"))
+		to_chat(user, span_notice("你用卡片在 [source] 背上拍了一下。"))
+	source.visible_message(span_danger("[source] 开始闪烁着五颜六色的光芒！"))
 	handle_emag()
 	// Disco mode for 2 minutes! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
 	addtimer(CALLBACK(src, PROC_REF(stop_emag), source), 2 MINUTES)
@@ -154,7 +154,7 @@
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/stop_emp(mob/living/carbon/human/ethereal)
 	disrupted = FALSE
 	refresh_light_color()
-	to_chat(ethereal, span_notice("You feel more energized as your shine comes back."))
+	to_chat(ethereal, span_notice("光芒回归，你感觉精力充沛了些。"))
 
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/handle_emag(mob/living/carbon/human/ethereal)
 	if(!emageffect)
@@ -166,7 +166,7 @@
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/stop_emag(mob/living/carbon/human/ethereal)
 	emageffect = FALSE
 	refresh_light_color()
-	ethereal.visible_message(span_danger("[ethereal] stops flickering and goes back to their normal state!"))
+	ethereal.visible_message(span_danger("[ethereal] 停止闪烁，恢复了正常状态！"))
 
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/handle_glow_emote(power, range, flare = FALSE, duration = 5 SECONDS, flare_time = 0)
 	powermult = power
@@ -190,7 +190,7 @@
 	powermult = 1
 	rangemult = 1
 	disrupted = TRUE
-	to_chat(ethereal, span_warning("Your shine flickers and fades."))
+	to_chat(ethereal, span_warning("你的光芒闪烁几下后黯淡下去。"))
 	addtimer(CALLBACK(src, PROC_REF(stop_emp), ethereal), flare_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /datum/status_effect/grouped/bodypart_effect/ethereal_glow/proc/handle_flicker(flickmin = 1, flickmax = 4)

@@ -26,13 +26,13 @@
 		if(i in SSresearch.point_types)
 			ret += "[SSresearch.point_types[i]]: [pointlist[i]]"
 		else
-			ret += "ERRORED POINT TYPE: [pointlist[i]]"
+			ret += "错误的点数类型：[pointlist[i]]"
 	return ret.Join("<BR>")
 
 /proc/techweb_point_display_rdconsole(pointlist, last_pointlist)
 	var/list/ret = list()
 	for(var/i in pointlist)
-		var/research_line = "[(i in SSresearch.point_types) || "ERRORED POINT TYPE"]: [pointlist[i]]"
+		var/research_line = "[(i in SSresearch.point_types) || "错误的点数类型"]: [pointlist[i]]"
 		if(last_pointlist[i] > 0)
 			research_line += " (+[(last_pointlist[i]) * ((SSresearch.ss_flags & SS_TICKER)? (600 / (world.tick_lag * SSresearch.wait)) : (600 / SSresearch.wait))]/ minute)"
 		ret += research_line

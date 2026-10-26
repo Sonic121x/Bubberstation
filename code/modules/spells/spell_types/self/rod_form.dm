@@ -2,9 +2,9 @@
 #define BASE_WIZ_ROD_RANGE 13
 
 /datum/action/cooldown/spell/rod_form
-	name = "Rod Form"
-	desc = "Take on the form of an immovable rod, destroying all in your path. \
-		Purchasing this spell multiple times will also increase the rod's damage and travel range."
+	name = "长杆形态"
+	desc = "化身为不可移动之杆，摧毁路径上的一切。\
+		多次购买该法术还能提升长杆的伤害与飞行距离。"
 	button_icon_state = "immrod"
 
 	school = SCHOOL_TRANSMUTATION
@@ -92,17 +92,17 @@
 /obj/effect/immovablerod/wizard/penetrate(mob/living/penetrated)
 	if(penetrated.can_block_magic())
 		penetrated.visible_message(
-			span_danger("[src] hits [penetrated], but it bounces back, then vanishes!"),
-			span_userdanger("[src] hits you... but it bounces back, then vanishes!"),
-			span_danger("You hear a weak, sad, CLANG.")
+			span_danger("[src] 击中 [penetrated]，但被弹开，随后消失了！"),
+			span_userdanger("[src] 击中了你……但被弹开，随后消失了！"),
+			span_danger("你听到一声无力又悲伤的“哐当”。")
 			)
 		stop_travel()
 		return
 
 	penetrated.visible_message(
-		span_danger("[penetrated] is penetrated by an immovable rod!"),
-		span_userdanger("The [src] penetrates you!"),
-		span_danger("You hear a CLANG!"),
+		span_danger("[penetrated] 被一根不可移动之杆穿透了！"),
+		span_userdanger("[src] 穿透了你！"),
+		span_danger("你听到一声“哐当”！"),
 		)
 	penetrated.adjust_brute_loss(70 + damage_bonus)
 
@@ -112,10 +112,10 @@
 		return ..() // There's no wizard in this rod? It's pretty much a normal rod at this point
 
 	strongman.visible_message(
-		span_boldwarning("[src] transforms into [wizard] as [strongman] suplexes them!"),
-		span_warning("As you grab [src], it suddenly turns into [wizard] as you suplex them!")
+		span_boldwarning("[src] 在 [strongman] 使出背摔时变回了 [wizard]！"),
+		span_warning("当你抓住 [src] 使出背摔时，它突然变回了 [wizard]！")
 		)
-	to_chat(wizard, span_boldwarning("You're suddenly jolted out of rod-form as [strongman] somehow manages to grab you, slamming you into the ground!"))
+	to_chat(wizard, span_boldwarning("[strongman] 不知怎么抓住了你，把你狠狠砸向地面，你一下子被震出了长杆形态！"))
 	stop_travel()
 	wizard.Stun(6 SECONDS)
 	wizard.apply_damage(25, BRUTE)

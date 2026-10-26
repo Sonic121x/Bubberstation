@@ -6,11 +6,11 @@ Reproductive extracts:
 
 
 /obj/item/slimecross/reproductive
-	name = "reproductive extract"
-	desc = "It pulses with a strange hunger."
+	name = "繁殖提取物"
+	desc = "它脉动着，透出一股异样的饥饿感。"
 	icon_state = "reproductive"
 	effect = "reproductive"
-	effect_desc = "When fed monkey cubes it produces more extracts. Bio bag compatible as well."
+	effect_desc = "喂食猴子方块后，会产出更多提取物。同样兼容生物袋。"
 	var/extract_type = /obj/item/slime_extract/
 	var/cooldown = 3 SECONDS
 	var/feedAmount = 3
@@ -18,7 +18,7 @@ Reproductive extracts:
 
 /obj/item/slimecross/reproductive/examine()
 	. = ..()
-	. += span_danger("It appears to have eaten [length(contents)] Monkey Cube[p_s()]")
+	. += span_danger("它似乎已经吃掉了 [length(contents)] 个猴子方块。")
 
 /obj/item/slimecross/reproductive/Initialize(mapload)
 	. = ..()
@@ -30,11 +30,11 @@ Reproductive extracts:
 		return NONE
 
 	if((last_produce + cooldown) > world.time)
-		to_chat(user, span_warning("[src] is still digesting!"))
+		to_chat(user, span_warning("[src] 还在消化中！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(contents) >= feedAmount) //if for some reason the contents are full, but it didnt digest, attempt to digest again
-		to_chat(user, span_warning("[src] appears to be full but is not digesting! Maybe poking it stimulated it to digest."))
+		to_chat(user, span_warning("[src] 看起来已经满了，却没有在消化！也许戳一戳能刺激它消化。"))
 		slime_storage?.processCubes(user)
 		return ITEM_INTERACT_BLOCKING
 
@@ -42,9 +42,9 @@ Reproductive extracts:
 		var/list/inserted = list()
 		tool.atom_storage.remove_type(/obj/item/food/monkeycube, src, feedAmount - length(contents), TRUE, FALSE, user, inserted)
 		if(!inserted.len)
-			to_chat(user, span_warning("There are no monkey cubes in the bio bag!"))
+			to_chat(user, span_warning("生物袋里没有猴子方块！"))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("You feed [length(inserted)] monkey cube[length(inserted) > 1 ? "s" : ""] to [src], and it pulses gently."))
+		to_chat(user, span_notice("你把[length(inserted) > 1 ? "[length(inserted)] 个猴子方块" : "一个猴子方块"]喂给 [src]，它轻轻脉动起来。"))
 		playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 		slime_storage?.processCubes(user)
 		return ITEM_INTERACT_SUCCESS
@@ -53,10 +53,10 @@ Reproductive extracts:
 		return NONE
 
 	if(!atom_storage?.attempt_insert(tool, user, override = TRUE, force = STORAGE_FULLY_LOCKED))
-		to_chat(user, span_notice("The [src] rejects [tool]!")) //in case it fails to insert for whatever reason you get feedback
+		to_chat(user, span_notice("[src] 拒绝了 [tool]！")) //in case it fails to insert for whatever reason you get feedback
 		return ITEM_INTERACT_BLOCKING
 
-	to_chat(user, span_notice("You feed [tool] to [src], and it pulses gently."))
+	to_chat(user, span_notice("你把 [tool] 喂给 [src]，它轻轻脉动起来。"))
 	slime_storage?.processCubes(user)
 	playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 	return ITEM_INTERACT_SUCCESS

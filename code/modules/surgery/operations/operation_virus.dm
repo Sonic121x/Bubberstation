@@ -1,9 +1,9 @@
 /datum/surgery_operation/basic/viral_bonding
-	name = "viral bonding"
-	rnd_name = "Viroplasty (Viral Bonding)"
-	desc = "Force a symbiotic relationship between a patient and a virus it is infected with."
-	rnd_desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. \
-		The patient will be completely immune to the effects of the virus, but will carry and spread it to others."
+	name = "病毒共生"
+	rnd_name = "病毒整形术（病毒共生）"
+	desc = "强行让病人与其感染的病毒建立共生关系。"
+	rnd_desc = "一种强行让病毒与其宿主建立共生关系的手术。 \
+		病人将完全免疫该病毒的影响，但会携带病毒并传染给他人。"
 	implements = list(
 		TOOL_CAUTERY = 1,
 		TOOL_WELDER = 2,
@@ -21,13 +21,13 @@
 	)
 
 /datum/surgery_operation/basic/viral_bonding/get_any_tool()
-	return "Any heat source"
+	return "任意热源"
 
 /datum/surgery_operation/basic/viral_bonding/all_required_strings()
 	. = ..()
-	. += "the patient must have a virus to bond"
+	. += "病人必须感染了可供共生的病毒"
 	for(var/datum/reagent/chem as anything in required_chems)
-		. += "the patient must be dosed with >=1u [chem::name]"
+		. += "病人必须已摄入至少 1 单位 [chem::name]"
 
 /datum/surgery_operation/basic/viral_bonding/get_default_radial_image()
 	return image(/obj/item/clothing/mask/surgical)
@@ -48,21 +48,21 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You start heating [patient]'s bone marrow with [tool]..."),
-		span_notice("[surgeon] starts heating [patient]'s bone marrow with [tool]..."),
-		span_notice("[surgeon] starts heating something in [patient]'s chest with [tool]..."),
+		span_notice("你开始用 [tool] 加热 [patient] 的骨髓……"),
+		span_notice("[surgeon] 开始用 [tool] 加热 [patient] 的骨髓……"),
+		span_notice("[surgeon] 开始用 [tool] 加热 [patient] 胸腔里的什么东西……"),
 	)
-	display_pain(patient, "You feel a searing heat spread through your chest!")
+	display_pain(patient, "你感觉一股灼热在胸腔里蔓延开来！")
 
 /datum/surgery_operation/basic/viral_bonding/on_success(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		patient,
-		span_notice("[patient]'s bone marrow begins pulsing slowly. The viral bonding is complete."),
-		span_notice("[patient]'s bone marrow begins pulsing slowly."),
-		span_notice("[surgeon] finishes the operation."),
+		span_notice("[patient] 的骨髓开始缓慢搏动。病毒共生完成了。"),
+		span_notice("[patient] 的骨髓开始缓慢搏动。"),
+		span_notice("[surgeon] 完成了手术。"),
 	)
-	display_pain(patient, "You feel a faint throbbing in your chest.")
+	display_pain(patient, "你感觉胸口传来微弱的搏动。")
 	for(var/datum/disease/infected_disease as anything in patient.diseases)
 		if(infected_disease.severity != DISEASE_SEVERITY_UNCURABLE) //no curing quirks, sweaty
 			infected_disease.carrier = TRUE

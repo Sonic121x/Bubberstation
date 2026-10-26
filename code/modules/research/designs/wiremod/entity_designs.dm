@@ -4,51 +4,51 @@
 	)
 
 /datum/design/component/entity/species
-	name = "Get Species Component"
+	name = "获取种族元件"
 	id = "comp_species"
 	build_path = /obj/item/circuit_component/species
 
 /datum/design/component/entity/hear
-	name = "Voice Activator Component"
+	name = "语音激活元件"
 	id = "comp_hear"
 	build_path = /obj/item/circuit_component/hear
 
 /datum/design/component/entity/self
-	name = "Self Component"
+	name = "自身元件"
 	id = "comp_self"
 	build_path = /obj/item/circuit_component/self
 
 /datum/design/component/entity/gps
-	name = "GPS Component"
+	name = "GPS 元件"
 	id = "comp_gps"
 	build_path = /obj/item/circuit_component/gps
 
 /datum/design/component/entity/direction
-	name = "Direction Component"
+	name = "方向元件"
 	id = "comp_direction"
 	build_path = /obj/item/circuit_component/direction
 
 /datum/design/component/entity/reagentscanner
-	name = "Reagents Scanner"
+	name = "试剂扫描器"
 	id = "comp_reagents"
 	build_path = /obj/item/circuit_component/reagentscanner
 
 /datum/design/component/entity/health
-	name = "Health Component"
+	name = "生命值元件"
 	id = "comp_health"
 	build_path = /obj/item/circuit_component/health
 
 /datum/design/component/entity/compare_health_state
-	name = "Compare Health State Component"
+	name = "比较健康状态元件"
 	id = "comp_health_state"
 	build_path = /obj/item/circuit_component/compare/health_state
 
 /datum/design/component/entity/matscanner
-	name = "Material Scanner"
+	name = "材料扫描器"
 	id = "comp_matscanner"
 	build_path = /obj/item/circuit_component/matscanner
 
 /datum/design/component/entity/pinpointer
-	name = "Proximity Pinpointer Component"
+	name = "近距离定位针元件"
 	id = "comp_pinpointer"
 	build_path = /obj/item/circuit_component/pinpointer

@@ -1292,32 +1292,32 @@
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/tend_wounds_upgrade
-	name = "Tend Wounds Upgrade"
-	desc = "Upgrade the efficiency of the individual tend wound operations."
+	name = "伤口处理强化"
+	desc = "提升单项伤口处理手术的效率。"
 	id = "surgery_heal_upgrade"
 	surgery = /datum/surgery_operation/basic/tend_wounds/upgraded
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/tend_wounds_upgrade/femto
-	name = "Tend Wounds Upgrade"
+	name = "伤口处理强化"
 	surgery = /datum/surgery_operation/basic/tend_wounds/upgraded/master
 	id = "surgery_heal_upgrade_femto"
 
 /datum/design/surgery/tend_wounds_combo
-	name = "Tend Wounds Combo"
-	desc = "An alternative wound treatment operation that treats both bruises and burns at the same time, albeit less effectively than their individual counterparts."
+	name = "伤口处理组合"
+	desc = "一种替代性伤口处理手术，可同时治疗瘀伤与烧伤，但效果不如各自对应的单项手术。"
 	surgery = /datum/surgery_operation/basic/tend_wounds/combo
 	id = "surgery_heal_combo"
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/tend_wounds_combo/upgrade
-	name = "Tend Wounds Combo Upgrade"
+	name = "伤口处理组合强化"
 	surgery = /datum/surgery_operation/basic/tend_wounds/combo/upgraded
 	id = "surgery_heal_combo_upgrade"
 
 /datum/design/surgery/tend_wounds_combo/upgrade/femto
-	name = "Tend Wounds Combo Upgrade"
-	desc = "The ultimate in wound treatment operations, treating both bruises and burns simultaneous and faster than their individual counterparts."
+	name = "伤口处理组合强化"
+	desc = "伤口处理手术的终极形态，可同时治疗瘀伤与烧伤，且比各自对应的单项手术更快。"
 	surgery = /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	id = "surgery_heal_combo_upgrade_femto"
 
@@ -1331,94 +1331,94 @@
 	surgery = /datum/surgery_operation/organ/brainwash/mechanic
 
 /datum/design/surgery/nerve_splicing
-	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
+	desc = "一种将患者神经拼接在一起的外科手术，使其对眩晕更具抗性。"
 	id = "surgery_nerve_splice"
 	surgery = /datum/surgery_operation/limb/bioware/nerve_splicing
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/nerve_splicing/mechanic
-	desc = "A robotic upgrade which upgrades a robotic patient's automatic systems, making them more resistant to stuns."
+	desc = "一种机械升级，可改造机械患者的自动系统，使其对眩晕更具抗性。"
 	id = "surgery_nerve_splice_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/nerve_splicing/mechanic
 
 /datum/design/surgery/nerve_grounding
-	desc = "A surgical procedure which makes the patient's nerves act as grounding rods, protecting them from electrical shocks."
+	desc = "一种令患者神经充当接地棒的外科手术，可保护其免受电击。"
 	id = "surgery_nerve_ground"
 	surgery = /datum/surgery_operation/limb/bioware/nerve_grounding
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/nerve_grounding/mechanic
-	desc = "A robotic upgrade which installs grounding rods into the robotic patient's system, protecting them from electrical shocks."
+	desc = "一种为机械患者系统安装接地棒的机械升级，可保护其免受电击。"
 	id = "surgery_nerve_ground_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/nerve_grounding/mechanic
 
 /datum/design/surgery/vein_threading
-	desc = "A surgical procedure which severely reduces the amount of blood lost in case of injury."
+	desc = "一种大幅减少受伤时失血量的外科手术。"
 	id = "surgery_vein_thread"
 	surgery = /datum/surgery_operation/limb/bioware/vein_threading
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/vein_threading/mechanic
-	desc = "A robotic upgrade which severely reduces the amount of hydraulic fluid lost in case of injury."
+	desc = "一种大幅减少受伤时液压液流失量的机械升级。"
 	id = "surgery_vein_thread_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/vein_threading/mechanic
 
 /datum/design/surgery/muscled_veins
-	desc = "A surgical procedure which adds a muscled membrane to blood vessels, allowing a patient to pump blood without a heart."
+	desc = "一种在血管上添加肌肉膜的外科手术，使患者无需心脏也能泵送血液。"
 	id = "surgery_muscled_veins"
 	surgery = /datum/surgery_operation/limb/bioware/muscled_veins
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/muscled_veins/mechanic
-	desc = "A robotic upgrade which adds sophisticated hydraulics redundancies, allowing a patient to pump hydraulic fluid without an engine."
+	desc = "一种添加精密液压冗余的机械升级，使患者无需引擎也能泵送液压液。"
 	id = "surgery_muscled_veins_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/muscled_veins/mechanic
 
 /datum/design/surgery/ligament_hook
-	desc = "A surgical procedure which reshapes the connections between torso and limbs, making it so limbs can be attached manually if severed. \
-		However, this weakens the connection, making them easier to detach as well."
+	desc = "一种重塑躯干与四肢连接处的外科手术，使断肢可手动接回。\
+		然而这会削弱连接，使其也更容易被扯断。"
 	id = "surgery_ligament_hook"
 	surgery = /datum/surgery_operation/limb/bioware/ligament_hook
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_hook/mechanic
-	desc = "A robotic upgrade which installs rapid detachment anchor points, making it so limbs can be attached manually if detached. \
-		However, this weakens the connection, making them easier to detach as well."
+	desc = "一种安装快速拆卸锚点的机械升级，使断肢可手动接回。\
+		然而这会削弱连接，使其也更容易被扯断。"
 	id = "surgery_ligament_hook_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/ligament_hook/mechanic
 
 /datum/design/surgery/ligament_reinforcement
-	desc = "A surgical procedure which adds a protective tissue and bone cage around the connections between the torso and limbs, preventing dismemberment. \
-		However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
+	desc = "一种在躯干与四肢连接处周围添加保护性组织与骨笼的外科手术，可防止肢体被扯断。\
+		然而因此神经连接更容易被打断，使肢体更容易因伤害而失效。"
 	id = "surgery_ligament_reinforcement"
 	surgery = /datum/surgery_operation/limb/bioware/ligament_reinforcement
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_reinforcement/mechanic
-	desc = "A surgical procedure which adds reinforced limb anchor points to the patient's chassis, preventing dismemberment. \
-		However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
+	desc = "一种为患者机身添加强化肢体锚点的外科手术，可防止肢体被扯断。\
+		然而因此神经连接更容易被打断，使肢体更容易因伤害而失效。"
 	id = "surgery_ligament_reinforcement_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/ligament_reinforcement/mechanic
 
 /datum/design/surgery/cortex_imprint
-	desc = "A surgical procedure which modifies the cerebral cortex into a redundant neural pattern, making the brain able to bypass damage caused by minor brain traumas."
+	desc = "一种将大脑皮层改造为冗余神经模式的外科手术，使大脑能够绕过轻度脑创伤造成的损伤。"
 	id = "surgery_cortex_imprint"
 	surgery = /datum/surgery_operation/limb/bioware/cortex_imprint
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/cortex_imprint/mechanic
-	desc = "A surgical procedure which updates the patient's operating system to the 'latest version', whatever that means, making the brain able to bypass damage caused by minor brain traumas."
+	desc = "一种把患者操作系统更新到“最新版本”的外科手术——谁知道那是什么意思——使大脑能够绕过轻度脑创伤造成的损伤。"
 	id = "surgery_cortex_imprint_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/cortex_imprint/mechanic
 
 /datum/design/surgery/cortex_folding
-	desc = "A surgical procedure which modifies the cerebral cortex into a complex fold, giving space to non-standard neural patterns."
+	desc = "一种将大脑皮层改造为复杂褶皱的外科手术，为非常规神经模式腾出空间。"
 	id = "surgery_cortex_folding"
 	surgery = /datum/surgery_operation/limb/bioware/cortex_folding
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/cortex_folding/mechanic
-	desc = "A robotic upgrade which reprograms the patient's neural network in a downright eldritch programming language, giving space to non-standard neural patterns."
+	desc = "一种用十足邪异的编程语言重新编程患者神经网络的机械升级，为非常规神经模式腾出空间。"
 	id = "surgery_cortex_folding_mechanic"
 	surgery = /datum/surgery_operation/limb/bioware/cortex_folding/mechanic
 

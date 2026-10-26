@@ -244,13 +244,13 @@
 	for(var/i in 1 to code_length)
 		if(code_input[i] < solution[i])
 			playsound(holder, "sound/machines/defib/defib_saftyOff.ogg", 100)
-			holder.visible_message(span_notice("[holder] pings low."))
+			holder.visible_message(span_notice("[holder] 发出低沉的提示音。"))
 		else if(code_input[i] > solution[i])
 			playsound(holder, "sound/machines/defib/defib_saftyOn.ogg", 100)
-			holder.visible_message(span_notice("[holder] pings high."))
+			holder.visible_message(span_notice("[holder] 发出高亢的提示音。"))
 		else
 			playsound(holder, "sound/machines/defib/defib_ready.ogg", 100)
-			holder.visible_message(span_notice("[holder] pings affirmatively."))
+			holder.visible_message(span_notice("[holder] 发出肯定的提示音。"))
 		sleep(0.5 SECONDS)
 	..()
 
@@ -302,7 +302,7 @@
 		playsound(holder, "sound/machines/synth/synth_no.ogg", 100)
 		sleep(0.25 SECONDS)
 
-	holder.visible_message(span_notice("[holder] emits [bulls] high-pitched beeps and [cows] low-pitched ones."))
+	holder.visible_message(span_notice("[holder] 发出 [bulls] 声高音提示音和 [cows] 声低音提示音。"))
 
 	..()
 

@@ -4,8 +4,8 @@
 ///////////////////////////////////
 
 /datum/design/intellicard
-	name = "Intellicard AI Transportation System"
-	desc = "Allows for the construction of an intellicard."
+	name = "智能卡 AI 运输系统"
+	desc = "可用于建造一张智能卡。"
 	id = "intellicard"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =SMALL_MATERIAL_AMOUNT * 2)
@@ -16,8 +16,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/paicard
-	name = "Personal Artificial Intelligence Card"
-	desc = "Allows for the construction of a pAI Card."
+	name = "个人人工智能卡"
+	desc = "可用于建造一张个人 AI 卡。"
 	id = "paicard"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -28,8 +28,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/ai_cam_upgrade
-	name = "AI Surveillance Software Update"
-	desc = "A software package that will allow an artificial intelligence to 'hear' from its cameras via lip reading."
+	name = "AI 监控软件更新"
+	desc = "一个软件包，可让人工智能通过读唇从摄像头中“听到”声音。"
 	id = "ai_cam_upgrade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -47,8 +47,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/ai_power_transfer
-	name = "AI Power Transfer Update"
-	desc = "An upgrade package that lets an AI charge an APC from a distance"
+	name = "AI 电力传输更新"
+	desc = "一个升级包，可让 AI 远程为区域电力控制器充电。"
 	id = "ai_power_upgrade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -65,8 +65,8 @@
 //////////Disk Construction Disks///////
 ////////////////////////////////////////
 /datum/design/tech_disk
-	name = "Technology Data Storage Disk"
-	desc = "Produce additional disks for storing technology data."
+	name = "技术数据存储磁盘"
+	desc = "制造用于存储技术数据的额外磁盘。"
 	id = "tech_disk"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
@@ -77,8 +77,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/manipulator_task_disk
-	name = "Manipulator Task Disk"
-	desc = "Produce additional disks for storing manipulator tasks."
+	name = "机械臂任务磁盘"
+	desc = "制造用于存储机械臂任务的额外磁盘。"
 	id = "manipulator_task_disk"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)

@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/blind
-	name = "Blind"
-	desc = "This spell temporarily blinds a single target."
+	name = "致盲"
+	desc = "暂时让单个目标失明。"
 	button_icon_state = "blind"
 	ranged_mousepointer = 'icons/effects/mouse_pointers/blind_target.dmi'
 
@@ -13,7 +13,7 @@
 	invocation_type = INVOCATION_WHISPER
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
-	active_msg = "You prepare to blind a target..."
+	active_msg = "你准备致盲一个目标……"
 
 	/// The amount of blind to apply
 	var/eye_blind_duration = 20 SECONDS
@@ -33,11 +33,11 @@
 /datum/action/cooldown/spell/pointed/blind/cast(mob/living/carbon/human/cast_on)
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
-		to_chat(cast_on, span_notice("Your eye itches, but it passes momentarily."))
-		to_chat(owner, span_warning("The spell had no effect!"))
+		to_chat(cast_on, span_notice("你的眼睛有些发痒，但很快就过去了。"))
+		to_chat(owner, span_warning("法术没有产生任何效果！"))
 		return FALSE
 
-	to_chat(cast_on, span_warning("Your eyes cry out in pain!"))
+	to_chat(cast_on, span_warning("你的双眼剧痛难忍！"))
 	cast_on.adjust_temp_blindness(eye_blind_duration)
 	cast_on.set_eye_blur_if_lower(eye_blur_duration)
 	return TRUE

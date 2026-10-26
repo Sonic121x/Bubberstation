@@ -126,12 +126,12 @@
 			if(reboot_mode != REBOOT_MODE_HARD)
 				reboot_mode = REBOOT_MODE_HARD
 				TGS_INFO_LOG("Hard reboot requested by service")
-				TGS_NOTIFY_ADMINS("The world will hard reboot at the end of the game. Requested by TGS.")
+				TGS_NOTIFY_ADMINS("本局游戏结束后世界将进行硬重启。由 TGS 请求。")
 		if(SERVICE_CMD_GRACEFUL_SHUTDOWN)
 			if(reboot_mode != REBOOT_MODE_SHUTDOWN)
 				reboot_mode = REBOOT_MODE_SHUTDOWN
 				TGS_INFO_LOG("Shutdown requested by service")
-				TGS_NOTIFY_ADMINS("The world will shutdown at the end of the game. Requested by TGS.")
+				TGS_NOTIFY_ADMINS("本局游戏结束后世界将关闭。由 TGS 请求。")
 		if(SERVICE_CMD_WORLD_ANNOUNCE)
 			var/msg = params["message"]
 			if(!istext(msg) || !msg)
@@ -151,10 +151,10 @@
 /datum/tgs_api/v3210/OnReboot()
 	switch(reboot_mode)
 		if(REBOOT_MODE_HARD)
-			TGS_WORLD_ANNOUNCE("Hard reboot triggered, you will automatically reconnect...")
+			TGS_WORLD_ANNOUNCE("已触发硬重启，你将自动重新连接……")
 			EndProcess()
 		if(REBOOT_MODE_SHUTDOWN)
-			TGS_WORLD_ANNOUNCE("The server is shutting down...")
+			TGS_WORLD_ANNOUNCE("服务器正在关闭……")
 			EndProcess()
 		else
 			ExportService(SERVICE_REQUEST_WORLD_REBOOT) //just let em know

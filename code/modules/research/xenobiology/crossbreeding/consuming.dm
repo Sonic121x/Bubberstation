@@ -4,8 +4,8 @@ Consuming extracts:
 	After consuming enough, produces special cookies.
 */
 /obj/item/slimecross/consuming
-	name = "consuming extract"
-	desc = "It hungers... for <i>more</i>." //My slimecross has finally decided to eat... my buffet!
+	name = "吞食提取物"
+	desc = "它渴望着……<i>更多</i>。" //My slimecross has finally decided to eat... my buffet!
 	icon_state = "consuming"
 	effect = "consuming"
 	var/nutriment_eaten = 0
@@ -20,16 +20,16 @@ Consuming extracts:
 		return NONE
 
 	if(last_produced + cooldown > world.time)
-		to_chat(user, span_warning("[src] is still digesting after its last meal!"))
+		to_chat(user, span_warning("[src] 还在消化上一顿呢！"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/datum/reagent/nutriments = tool.reagents.has_reagent(/datum/reagent/consumable/nutriment)
 	if(!nutriments)
-		to_chat(user, span_warning("[src] burbles unhappily at the offering."))
+		to_chat(user, span_warning("[src] 对着这份供品不满地咕噜作响。"))
 		return ITEM_INTERACT_BLOCKING
 
 	nutriment_eaten += nutriments.volume
-	to_chat(user, span_notice("[src] opens up and swallows [tool] whole!"))
+	to_chat(user, span_notice("[src] 张开口，把 [tool] 整个吞了下去！"))
 	qdel(tool)
 	playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 
@@ -37,7 +37,7 @@ Consuming extracts:
 		return ITEM_INTERACT_SUCCESS
 
 	nutriment_eaten = 0
-	user.visible_message(span_notice("[src] swells up and produces a small pile of cookies!"))
+	user.visible_message(span_notice("[src] 鼓胀起来，产出一小堆饼干！"))
 	playsound(src, 'sound/effects/splat.ogg', 40, TRUE)
 	last_produced = world.time
 	for(var/i in 1 to cookies)
@@ -50,10 +50,10 @@ Consuming extracts:
 	return new cookietype(get_turf(src))
 
 /obj/item/slime_cookie //While this technically acts like food, it's so removed from it that I made it its own type.
-	name = "error cookie"
-	desc = "A weird slime cookie. You shouldn't see this."
+	name = "错误饼干"
+	desc = "一块奇怪的史莱姆饼干。你不该看到这个。"
 	icon = 'icons/obj/food/slimecookies.dmi'
-	var/taste = "error"
+	var/taste = "错误"
 	var/nutrition = 5
 	icon_state = "base"
 	force = 0
@@ -71,16 +71,16 @@ Consuming extracts:
 	var/mob/living/living_mob = interacting_with
 	var/fed = FALSE
 	if(living_mob == user)
-		living_mob.visible_message(span_notice("[user] eats [src]!"), span_notice("You eat [src]."))
+		living_mob.visible_message(span_notice("[user] 吃掉了 [src]！"), span_notice("你吃掉了 [src]。"))
 		fed = TRUE
 	else
-		living_mob.visible_message(span_danger("[user] tries to force [living_mob] to eat [src]!"), span_userdanger("[user] tries to force you to eat [src]!"))
+		living_mob.visible_message(span_danger("[user] 试图强迫 [living_mob] 吃下 [src]！"), span_userdanger("[user] 试图强迫你吃下 [src]！"))
 		if(do_after(user, 2 SECONDS, target = living_mob))
 			fed = TRUE
-			living_mob.visible_message(span_danger("[user] forces [living_mob] to eat [src]!"), span_warning("[user] forces you to eat [src]."))
+			living_mob.visible_message(span_danger("[user] 强迫 [living_mob] 吃下了 [src]！"), span_warning("[user] 强迫你吃下 [src]。"))
 	if(fed)
 		if(!HAS_TRAIT(living_mob, TRAIT_AGEUSIA))
-			to_chat(living_mob, span_notice("You can taste [taste]."))
+			to_chat(living_mob, span_notice("你能尝出 [taste] 的味道。"))
 		playsound(get_turf(living_mob), 'sound/items/eatfood.ogg', 20, TRUE)
 		if(nutrition)
 			living_mob.reagents.add_reagent(/datum/reagent/consumable/nutriment, nutrition)
@@ -91,40 +91,40 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/grey
 	colour = SLIME_TYPE_GREY
-	effect_desc = "Creates a slime cookie."
+	effect_desc = "创造一块史莱姆饼干。"
 	cookietype = /obj/item/slime_cookie/grey
 
 /obj/item/slime_cookie/grey
-	name = "slime cookie"
-	desc = "A grey-ish transparent cookie. Nutritious, probably."
+	name = "史莱姆饼干"
+	desc = "一块偏灰色透明的饼干。大概很有营养。"
 	icon_state = "grey"
-	taste = "goo"
+	taste = "黏液"
 	nutrition = 15
 
 /obj/item/slimecross/consuming/orange
 	colour = SLIME_TYPE_ORANGE
-	effect_desc = "Creates a slime cookie that heats the target up and grants cold immunity for a short time."
+	effect_desc = "创造一块史莱姆饼干，能升高目标体温，并在短时间内免疫寒冷。"
 	cookietype = /obj/item/slime_cookie/orange
 
 /obj/item/slime_cookie/orange
-	name = "fiery cookie"
-	desc = "An orange cookie with a fiery pattern. Feels warm."
+	name = "火焰饼干"
+	desc = "一块带火焰花纹的橙色饼干。摸起来暖暖的。"
 	icon_state = "orange"
-	taste = "cinnamon and burning"
+	taste = "肉桂与灼烧"
 
 /obj/item/slime_cookie/orange/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/firecookie)
 
 /obj/item/slimecross/consuming/purple
 	colour = SLIME_TYPE_PURPLE
-	effect_desc = "Creates a slime cookie that heals the target from every type of damage."
+	effect_desc = "创造一块史莱姆饼干，能治愈目标所有类型的伤害。"
 	cookietype = /obj/item/slime_cookie/purple
 
 /obj/item/slime_cookie/purple
-	name = "health cookie"
-	desc = "A purple cookie with a cross pattern. Soothing."
+	name = "健康饼干"
+	desc = "一块带十字花纹的紫色饼干。令人安心。"
 	icon_state = "purple"
-	taste = "fruit jam and cough medicine"
+	taste = "果酱与止咳药水"
 
 /obj/item/slime_cookie/purple/do_effect(mob/living/M, mob/user)
 	var/need_mob_update = FALSE
@@ -138,70 +138,70 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/blue
 	colour = SLIME_TYPE_BLUE
-	effect_desc = "Creates a slime cookie that wets the floor around you and makes you immune to water based slipping for a short time."
+	effect_desc = "创造一块史莱姆饼干，会弄湿你周围的地面，并在短时间内让你不会因水而滑倒。"
 	cookietype = /obj/item/slime_cookie/blue
 
 /obj/item/slime_cookie/blue
-	name = "water cookie"
-	desc = "A transparent blue cookie. Constantly dripping wet."
+	name = "清水饼干"
+	desc = "一块透明的蓝色饼干。一直在滴水。"
 	icon_state = "blue"
-	taste = "water"
+	taste = "水"
 
 /obj/item/slime_cookie/blue/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/watercookie)
 
 /obj/item/slimecross/consuming/metal
 	colour = SLIME_TYPE_METAL
-	effect_desc = "Creates a slime cookie that increases the target's resistance to brute damage."
+	effect_desc = "创造一块史莱姆饼干，能提升目标对钝击伤害的抗性。"
 	cookietype = /obj/item/slime_cookie/metal
 
 /obj/item/slime_cookie/metal
-	name = "metallic cookie"
-	desc = "A shiny grey cookie. Hard to the touch."
+	name = "金属饼干"
+	desc = "一块闪亮的灰色饼干。摸起来很硬。"
 	icon_state = "metal"
-	taste = "copper"
+	taste = "铜"
 
 /obj/item/slime_cookie/metal/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/metalcookie)
 
 /obj/item/slimecross/consuming/yellow
 	colour = SLIME_TYPE_YELLOW
-	effect_desc = "Creates a slime cookie that makes the target immune to electricity for a short time."
+	effect_desc = "创造一块史莱姆饼干，能使目标在短时间内免疫电击。"
 	cookietype = /obj/item/slime_cookie/yellow
 
 /obj/item/slime_cookie/yellow
-	name = "sparking cookie"
-	desc = "A yellow cookie with a lightning pattern. Has a rubbery texture."
+	name = "电花饼干"
+	desc = "一块带闪电花纹的黄色饼干。口感像橡胶。"
 	icon_state = "yellow"
-	taste = "lemon cake and rubber gloves"
+	taste = "柠檬蛋糕与橡胶手套"
 
 /obj/item/slime_cookie/yellow/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/sparkcookie)
 
 /obj/item/slimecross/consuming/darkpurple
 	colour = SLIME_TYPE_DARK_PURPLE
-	effect_desc = "Creates a slime cookie that reverses how the target's body treats toxins."
+	effect_desc = "创造一块史莱姆饼干，能逆转目标身体对毒素的处理方式。"
 	cookietype = /obj/item/slime_cookie/darkpurple
 
 /obj/item/slime_cookie/darkpurple
-	name = "toxic cookie"
-	desc = "A dark purple cookie, stinking of plasma."
+	name = "毒素饼干"
+	desc = "一块深紫色的饼干，散发着等离子体的臭味。"
 	icon_state = "darkpurple"
-	taste = "slime jelly and toxins"
+	taste = "史莱姆凝胶与毒素"
 
 /obj/item/slime_cookie/darkpurple/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/toxincookie)
 
 /obj/item/slimecross/consuming/darkblue
 	colour = SLIME_TYPE_DARK_BLUE
-	effect_desc = "Creates a slime cookie that chills the target and extinguishes them."
+	effect_desc = "创造一块史莱姆饼干，会使目标变冷并熄灭其身上的火焰。"
 	cookietype = /obj/item/slime_cookie/darkblue
 
 /obj/item/slime_cookie/darkblue
-	name = "frosty cookie"
-	desc = "A dark blue cookie with a snowflake pattern. Feels cold."
+	name = "霜寒饼干"
+	desc = "一块带雪花花纹的深蓝色饼干。摸起来冰凉。"
 	icon_state = "darkblue"
-	taste = "mint and bitter cold"
+	taste = "薄荷与刺骨寒意"
 
 /obj/item/slime_cookie/darkblue/do_effect(mob/living/M, mob/user)
 	M.adjust_bodytemperature(-110)
@@ -209,14 +209,14 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/silver
 	colour = SLIME_TYPE_SILVER
-	effect_desc = "Creates a slime cookie that never gets the target fat."
+	effect_desc = "创造一块史莱姆饼干，吃它永远不会让目标发胖。"
 	cookietype = /obj/item/slime_cookie/silver
 
 /obj/item/slime_cookie/silver
-	name = "waybread cookie"
-	desc = "A warm, crispy cookie, sparkling silver in the light. Smells wonderful."
+	name = "行路面包饼干"
+	desc = "一块温热酥脆的饼干，在光下泛出银色光泽。香气怡人。"
 	icon_state = "silver"
-	taste = "masterful elven baking"
+	taste = "大师级的精灵烘焙"
 	nutrition = 0 //We don't want normal nutriment
 
 /obj/item/slime_cookie/silver/do_effect(mob/living/M, mob/user)
@@ -224,14 +224,14 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/bluespace
 	colour = SLIME_TYPE_BLUESPACE
-	effect_desc = "Creates a slime cookie that teleports the target to a random place in the area."
+	effect_desc = "创造一块史莱姆饼干，会把目标传送到该区域内的随机地点。"
 	cookietype = /obj/item/slime_cookie/bluespace
 
 /obj/item/slime_cookie/bluespace
-	name = "space cookie"
-	desc = "A white cookie with green icing. Surprisingly hard to hold."
+	name = "太空饼干"
+	desc = "一块覆着绿色糖霜的白色饼干。意外地很难拿稳。"
 	icon_state = "bluespace"
-	taste = "sugar and starlight"
+	taste = "糖与星光"
 
 /obj/item/slime_cookie/bluespace/do_effect(mob/living/eater, mob/user)
 	var/list/area_turfs = get_area_turfs(get_area(get_turf(eater)))
@@ -257,80 +257,80 @@ Consuming extracts:
 
 /obj/item/slime_cookie/bluespace/proc/fail_effect(mob/living/eater)
 	eater.visible_message(
-		message = span_warning("[eater] briefly vanishes... then slams forcefully into the ground"),
-		self_message = span_warning("You briefly vanish... and are returned forcefully to the ground.")
+		message = span_warning("[eater] 短暂地消失了……随后重重地砸进地面"),
+		self_message = span_warning("你短暂地消失了……随后被强行摔回地面。")
 	)
 	eater.Knockdown(0.1 SECONDS)
 	new /obj/effect/particle_effect/sparks(get_turf(eater))
 
 /obj/item/slimecross/consuming/sepia
 	colour = SLIME_TYPE_SEPIA
-	effect_desc = "Creates a slime cookie that makes the target do things slightly faster."
+	effect_desc = "创造一块史莱姆饼干，能让目标做事略快一些。"
 	cookietype = /obj/item/slime_cookie/sepia
 
 /obj/item/slime_cookie/sepia
-	name = "time cookie"
-	desc = "A light brown cookie with a clock pattern. Takes some time to chew."
+	name = "时间饼干"
+	desc = "一块带时钟花纹的浅棕色饼干。嚼起来要花点时间。"
 	icon_state = "sepia"
-	taste = "brown sugar and a metronome"
+	taste = "红糖与节拍器的味道"
 
 /obj/item/slime_cookie/sepia/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/timecookie)
 
 /obj/item/slimecross/consuming/cerulean
 	colour = SLIME_TYPE_CERULEAN
-	effect_desc = "Creates a slime cookie that has a chance to make another once you eat it."
+	effect_desc = "创造一块史莱姆饼干，吃掉后有几率再生成一块。"
 	cookietype = /obj/item/slime_cookie/cerulean
 	cookies = 3 //You're gonna get more.
 
 /obj/item/slime_cookie/cerulean
-	name = "duplicookie"
-	desc = "A cerulean cookie with strange proportions. It feels like it could break apart easily."
+	name = "复制饼干"
+	desc = "一块比例奇特的青色饼干。感觉很容易碎开。"
 	icon_state = "cerulean"
-	taste = "a sugar cookie"
+	taste = "一块糖霜饼干"
 
 /obj/item/slime_cookie/cerulean/do_effect(mob/living/M, mob/user)
 	if(prob(50))
-		to_chat(M, span_notice("A piece of [src] breaks off while you chew, and falls to the ground."))
+		to_chat(M, span_notice("你咀嚼时一小块 [src] 断裂脱落，掉在了地上。"))
 		var/obj/item/slime_cookie/cerulean/C = new(get_turf(M))
-		C.taste = taste + " and a sugar cookie"
+		C.taste = taste + "和一块糖霜饼干"
 
 /obj/item/slimecross/consuming/pyrite
 	colour = SLIME_TYPE_PYRITE
-	effect_desc = "Creates a slime cookie that randomly colors the target."
+	effect_desc = "创造一块史莱姆饼干，会随机改变目标的颜色。"
 	cookietype = /obj/item/slime_cookie/pyrite
 
 /obj/item/slime_cookie/pyrite
-	name = "color cookie"
-	desc = "A yellow cookie with rainbow-colored icing. Reflects the light strangely."
+	name = "彩色饼干"
+	desc = "一块覆着彩虹色糖霜的黄色饼干。反光的样子很奇怪。"
 	icon_state = "pyrite"
-	taste = "vanilla and " //Randomly selected color dye.
+	taste = "香草和 " //Randomly selected color dye.
 	var/colour = COLOR_WHITE
 
 /obj/item/slime_cookie/pyrite/Initialize(mapload)
 	. = ..()
-	var/tastemessage = "paint remover"
+	var/tastemessage = "除漆剂"
 	switch(rand(1,7))
 		if(1)
-			tastemessage = "red dye"
+			tastemessage = "红色染料"
 			colour = COLOR_RED
 		if(2)
-			tastemessage = "orange dye"
+			tastemessage = "橙色染料"
 			colour = "#FFA500"
 		if(3)
-			tastemessage = "yellow dye"
+			tastemessage = "黄色染料"
 			colour = COLOR_YELLOW
 		if(4)
-			tastemessage = "green dye"
+			tastemessage = "绿色染料"
 			colour = COLOR_VIBRANT_LIME
 		if(5)
-			tastemessage = "blue dye"
+			tastemessage = "蓝色染料"
 			colour = COLOR_BLUE
 		if(6)
-			tastemessage = "indigo dye"
+			tastemessage = "靛蓝染料"
 			colour = "#4B0082"
 		if(7)
-			tastemessage = "violet dye"
+			tastemessage = "紫色染料"
 			colour = COLOR_MAGENTA
 	taste += tastemessage
 
@@ -339,14 +339,14 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/red
 	colour = SLIME_TYPE_RED
-	effect_desc = "Creates a slime cookie that creates a spatter of blood on the floor, while also restoring some of the target's blood."
+	effect_desc = "创造一块史莱姆饼干，会在地面溅出鲜血，同时补充目标的部分血液。"
 	cookietype = /obj/item/slime_cookie/red
 
 /obj/item/slime_cookie/red
-	name = "blood cookie"
-	desc = "A red cookie, oozing a thick red fluid. Vampires might enjoy it."
+	name = "鲜血饼干"
+	desc = "一块红色饼干，渗出浓稠的红色液体。吸血鬼也许会喜欢。"
 	icon_state = "red"
-	taste = "red velvet and iron"
+	taste = "红丝绒与铁锈"
 
 /obj/item/slime_cookie/red/do_effect(mob/living/M, mob/user)
 	new /obj/effect/decal/cleanable/blood(get_turf(M))
@@ -357,14 +357,14 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/green
 	colour = SLIME_TYPE_GREEN
-	effect_desc = "Creates a slime cookie that is absolutely disgusting, makes the target vomit, however all reagent in their body are also removed."
+	effect_desc = "创造一块史莱姆饼干，极其难吃，会让目标呕吐，但也会清除其体内的所有试剂。"
 	cookietype = /obj/item/slime_cookie/green
 
 /obj/item/slime_cookie/green
-	name = "gross cookie"
-	desc = "A disgusting green cookie, seeping with pus. You kind of feel ill just looking at it."
+	name = "恶心饼干"
+	desc = "一块令人作呕的绿色饼干，渗出脓液。光是看着就让人有点不适。"
 	icon_state = "green"
-	taste = "the contents of your stomach"
+	taste = "你胃里的东西"
 
 /obj/item/slime_cookie/green/do_effect(mob/living/M, mob/user)
 	if(ishuman(M))
@@ -374,28 +374,28 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/pink
 	colour = SLIME_TYPE_PINK
-	effect_desc = "Creates a slime cookie that makes the target want to spread the love."
+	effect_desc = "创造一块史莱姆饼干，会让目标想去传播爱意。"
 	cookietype = /obj/item/slime_cookie/pink
 
 /obj/item/slime_cookie/pink
-	name = "love cookie"
-	desc = "A pink cookie with an icing heart. D'aww."
+	name = "爱意饼干"
+	desc = "一块带心形糖霜的粉色饼干。哎呀，真可爱。"
 	icon_state = "pink"
-	taste = "love and hugs"
+	taste = "爱意与拥抱"
 
 /obj/item/slime_cookie/pink/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/lovecookie)
 
 /obj/item/slimecross/consuming/gold
 	colour = SLIME_TYPE_GOLD
-	effect_desc = "Creates a slime cookie that has a gold coin inside."
+	effect_desc = "创造一块史莱姆饼干，里面有一枚金币。"
 	cookietype = /obj/item/slime_cookie/gold
 
 /obj/item/slime_cookie/gold
-	name = "gilded cookie"
-	desc = "A buttery golden cookie, closer to a bread than anything. May good fortune find you."
+	name = "镀金饼干"
+	desc = "一块黄油味浓郁的金色饼干，更像是面包。愿好运找到你。"
 	icon_state = "gold"
-	taste = "sweet cornbread and wealth"
+	taste = "甜玉米面包与财富"
 
 /obj/item/slime_cookie/gold/do_effect(mob/living/M, mob/user)
 	var/obj/item/held = M.get_active_held_item() //This should be itself, but just in case...
@@ -407,68 +407,68 @@ Consuming extracts:
 
 /obj/item/slimecross/consuming/oil
 	colour = SLIME_TYPE_OIL
-	effect_desc = "Creates a slime cookie that slows anyone next to the user."
+	effect_desc = "创造一块史莱姆饼干，会减缓使用者身边所有人的速度。"
 	cookietype = /obj/item/slime_cookie/oil
 
 /obj/item/slime_cookie/oil
-	name = "tar cookie"
-	desc = "An oily black cookie, which sticks to your hands. Smells like chocolate."
+	name = "焦油饼干"
+	desc = "一块油腻的黑色饼干，会粘在手上。闻起来像巧克力。"
 	icon_state = "oil"
-	taste = "rich molten chocolate and tar"
+	taste = "浓郁熔化的巧克力与焦油"
 
 /obj/item/slime_cookie/oil/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/tarcookie)
 
 /obj/item/slimecross/consuming/black
 	colour = SLIME_TYPE_BLACK
-	effect_desc = "Creates a slime cookie that makes the target look like a spooky skeleton for a little bit."
+	effect_desc = "创造一块史莱姆饼干，会让目标在一小段时间里看起来像一具阴森的骷髅。"
 	cookietype = /obj/item/slime_cookie/black
 
 /obj/item/slime_cookie/black
-	name = "spooky cookie"
-	desc = "A pitch black cookie with an icing ghost on the front. Spooky!"
+	name = "阴森饼干"
+	desc = "一块漆黑的饼干，正面画着糖霜幽灵。好阴森！"
 	icon_state = "black"
-	taste = "ghosts and stuff"
+	taste = "幽灵之类的东西"
 
 /obj/item/slime_cookie/black/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/spookcookie)
 
 /obj/item/slimecross/consuming/lightpink
 	colour = SLIME_TYPE_LIGHT_PINK
-	effect_desc = "Creates a slime cookie that makes the target, and anyone next to the target, pacifistic for a small amount of time."
+	effect_desc = "创造一块史莱姆饼干，会让目标以及其身边的人在一小段时间内无法攻击。"
 	cookietype = /obj/item/slime_cookie/lightpink
 
 /obj/item/slime_cookie/lightpink
-	name = "peace cookie"
-	desc = "A light pink cookie with a peace symbol in the icing. Lovely!"
+	name = "和平饼干"
+	desc = "一块糖霜上带有和平标志的浅粉色饼干。真美好！"
 	icon_state = "lightpink"
-	taste = "strawberry icing and P.L.U.R" //Literal candy raver.
+	taste = "草莓糖霜与 P.L.U.R" //Literal candy raver.
 
 /obj/item/slime_cookie/lightpink/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/peacecookie)
 
 /obj/item/slimecross/consuming/adamantine
 	colour = SLIME_TYPE_ADAMANTINE
-	effect_desc = "Creates a slime cookie that increases the target's resistance to burn damage."
+	effect_desc = "创造一块史莱姆饼干，能提升目标对灼伤的抗性。"
 	cookietype = /obj/item/slime_cookie/adamantine
 
 /obj/item/slime_cookie/adamantine
-	name = "crystal cookie"
-	desc = "A translucent rock candy in the shape of a cookie. Surprisingly chewy."
+	name = "水晶饼干"
+	desc = "一块饼干形状的半透明冰糖。意外地很有嚼劲。"
 	icon_state = "adamantine"
-	taste = "crystalline sugar and metal"
+	taste = "结晶糖与金属"
 
 /obj/item/slime_cookie/adamantine/do_effect(mob/living/M, mob/user)
 	M.apply_status_effect(/datum/status_effect/adamantinecookie)
 
 /obj/item/slimecross/consuming/rainbow
 	colour = SLIME_TYPE_RAINBOW
-	effect_desc = "Creates a slime cookie that has the effect of a random cookie."
+	effect_desc = "创造一块史莱姆饼干，效果等同于随机一种饼干。"
 
 /obj/item/slimecross/consuming/rainbow/spawncookie()
 	var/cookie_type = pick(subtypesof(/obj/item/slime_cookie))
 	var/obj/item/slime_cookie/S = new cookie_type(get_turf(src))
-	S.name = "rainbow cookie"
-	S.desc = "A beautiful rainbow cookie, constantly shifting colors in the light."
+	S.name = "彩虹饼干"
+	S.desc = "一块美丽的彩虹饼干，在光下不断变幻色彩。"
 	S.icon_state = "rainbow"
 	return S

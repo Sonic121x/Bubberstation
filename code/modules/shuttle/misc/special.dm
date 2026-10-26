@@ -4,8 +4,8 @@
 // living carbons are put on its altar/tables
 
 /obj/machinery/power/emitter/energycannon
-	name = "Energy Cannon"
-	desc = "A heavy duty industrial laser."
+	name = "能量炮"
+	desc = "重型工业激光器。"
 	icon = 'icons/obj/machines/engine/singularity.dmi'
 	anchored = TRUE
 	density = TRUE
@@ -24,8 +24,8 @@
 	return
 
 /obj/machinery/power/emitter/energycannon/magical
-	name = "wabbajack statue"
-	desc = "Who am I? What is my purpose in life? What do I mean by who am I?"
+	name = "瓦巴杰克雕像"
+	desc = "我是谁？我生命的意义是什么？我说的“我是谁”又是什么意思？"
 	projectile_type = /obj/projectile/magic/change
 	icon = 'icons/obj/machines/magic_emitter.dmi'
 	icon_state = "wabbajack_statue"
@@ -39,7 +39,7 @@
 /obj/machinery/power/emitter/energycannon/magical/Initialize(mapload)
 	. = ..()
 	if(prob(50))
-		desc = "Oh no, not again."
+		desc = "哦不，别再来一次了。"
 	update_appearance()
 
 /obj/machinery/power/emitter/energycannon/magical/update_icon_state()
@@ -51,12 +51,12 @@
 	if(active_tables.len >= tables_required)
 		if(!active)
 			visible_message("<span class='revenboldnotice'>\
-				[src] opens its eyes.</span>")
+				[src] 睁开了眼睛。</span>")
 		active = TRUE
 	else
 		if(active)
 			visible_message("<span class='revenboldnotice'>\
-				[src] closes its eyes.</span>")
+				[src] 闭上了眼睛。</span>")
 		active = FALSE
 	update_appearance()
 
@@ -70,10 +70,10 @@
 	return FALSE
 
 /obj/structure/table/abductor/wabbajack
-	name = "wabbajack altar"
-	desc = "Whether you're sleeping or waking, it's going to be quite chaotic."
+	name = "瓦巴杰克祭坛"
+	desc = "无论你是睡是醒，事情都会变得相当混乱。"
 	max_integrity = 1000
-	verb_say = "chants"
+	verb_say = "吟诵"
 	var/obj/machinery/power/emitter/energycannon/magical/our_statue
 	var/list/mob/living/sleepers = list()
 	var/never_spoken = TRUE
@@ -93,7 +93,7 @@
 		our_statue = locate() in orange(4, src)
 
 	if(isnull(our_statue))
-		name = "inert [initial(name)]"
+		name = "无活性的 [initial(name)]"
 		return
 
 	name = initial(name)
@@ -108,7 +108,7 @@
 	for(var/i in found - sleepers)
 		var/mob/living/L = i
 		L.add_atom_colour(COLOR_PURPLE, TEMPORARY_COLOUR_PRIORITY)
-		L.visible_message(span_revennotice("A strange purple glow wraps itself around [L] as [L.p_they()] suddenly fall[L.p_s()] unconscious."),
+		L.visible_message(span_revennotice("奇异的紫色光芒缠绕住 [L]，[L.p_they()] 突然陷入了昏迷。"),
 			span_revendanger("[desc]"))
 		// Don't let them sit suround unconscious forever
 		addtimer(CALLBACK(src, PROC_REF(sleeper_dreams), L), 10 SECONDS)
@@ -122,8 +122,8 @@
 	for(var/i in sleepers - found)
 		var/mob/living/L = i
 		L.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_PURPLE)
-		L.visible_message("<span class='revennotice'>The glow from [L] fades \
-			away.</span>")
+		L.visible_message("<span class='revennotice'>[L] 身上的光芒逐渐 \
+			消散。</span>")
 		L.grab_ghost()
 
 	sleepers = found
@@ -138,27 +138,27 @@
 
 /obj/structure/table/abductor/wabbajack/proc/sleeper_dreams(mob/living/sleeper)
 	if(sleeper in sleepers)
-		to_chat(sleeper, span_revennotice("While you slumber, you have the strangest dream, like you can see yourself from the outside."))
+		to_chat(sleeper, span_revennotice("沉睡期间，你做了一场极其离奇的梦，仿佛能从外面看到自己。"))
 		sleeper.ghostize(TRUE)
 
 /obj/structure/table/abductor/wabbajack/left
-	desc = "You sleep so it may wake."
+	desc = "你沉睡，它方能苏醒。"
 
 /obj/structure/table/abductor/wabbajack/right
-	desc = "It wakes so you may sleep."
+	desc = "它苏醒，你方能沉睡。"
 
 /**
  * Bar staff, mobs with the TRAIT_GODMODE trait (as long as they stay in the shuttle)
  * that just want to make sure people have drinks and a good shuttle time.
  */
 /mob/living/basic/drone/snowflake/bardrone
-	name = "Bardrone"
-	desc = "A barkeeping drone, a robot built to tend bars."
+	name = "酒吧无人机"
+	desc = "一台酒吧服务无人机，专为照看酒吧而造的机器人。"
 	hacked = TRUE
 	shy = FALSE
-	laws = "1. Serve drinks.\n\
-		2. Talk to patrons.\n\
-		3. Don't get messed up in their affairs."
+	laws = "1. 供应饮品。\n\
+		2. 与顾客交谈。\n\
+		3. 不要卷进他们的事务。"
 	unique_name = FALSE // disables the (123) number suffix
 	initial_language_holder = /datum/language_holder/universal
 	default_storage = null
@@ -193,7 +193,7 @@
 		var/throwtarget = get_edge_target_turf(src, boot_dir)
 		M.Paralyze(40)
 		M.throw_at(throwtarget, 5, 1)
-		to_chat(M, span_notice("No climbing on the bar please."))
+		to_chat(M, span_notice("请勿攀爬吧台。"))
 
 /obj/structure/table/wood/shuttle_bar/proc/is_barstaff(mob/living/user)
 	. = FALSE
@@ -212,7 +212,7 @@
 //Luxury Shuttle Blockers
 
 /obj/machinery/scanner_gate/luxury_shuttle
-	name = "luxury shuttle ticket field"
+	name = "豪华穿梭机票据力场"
 	density = FALSE //allows shuttle airlocks to close, nothing but an approved passenger gets past CanPass
 	locked = TRUE
 	use_power = NO_POWER_USE
@@ -232,7 +232,7 @@
 			var/obj/vehicle/vehicle = mover
 			for(var/mob/living/rat in vehicle.occupants)
 				if(!(rat in approved_passengers))
-					say("Stowaway detected. Please exit the vehicle first.")
+					say("检测到偷渡者。请先离开载具。")
 					return FALSE
 		return TRUE
 	if(isitem(mover))
@@ -240,7 +240,7 @@
 	if(isstructure(mover))
 		var/obj/structure/struct = mover
 		for(var/mob/living/rat in struct.contents)
-			say("Stowaway detected. Please exit the structure first.")
+			say("检测到偷渡者。请先离开该结构。")
 			return FALSE
 		return TRUE
 
@@ -271,7 +271,7 @@
 		if(I.registered_account)
 			account = I.registered_account
 		else if(!check_times[AM] || check_times[AM] < world.time) //Let's not spam the message
-			to_chat(AM, span_notice("This ID card doesn't have an owner associated with it!"))
+			to_chat(AM, span_notice("这张身份证没有关联的持有人！"))
 			check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
 	else if(isliving(AM))
 		var/mob/living/L = AM
@@ -291,11 +291,11 @@
 
 	if(account)
 		if(account.account_balance < threshold - payees[AM])
-			account.adjust_money(-account.account_balance, "Scanner Gate: Entry Fee")
+			account.adjust_money(-account.account_balance, "扫描闸门：入场费")
 			payees[AM] += account.account_balance
 		else
 			var/money_owed = threshold - payees[AM]
-			account.adjust_money(-money_owed, "Scanner Gate: Partial Entry Fee")
+			account.adjust_money(-money_owed, "扫描闸门：部分入场费")
 			payees[AM] += money_owed
 
 	//Here is all the possible paygate payment methods.
@@ -343,7 +343,7 @@
 		if(armless)
 			if(!AM.pulling || !iscash(AM.pulling) && !istype(AM.pulling, /obj/item/card/id))
 				if(!check_times[AM] || check_times[AM] < world.time) //Let's not spam the message
-					to_chat(AM, span_notice("Try pulling a valid ID, space cash, holochip or coin into \the [src]!"))
+					to_chat(AM, span_notice("试着把有效的身份证、太空现金、全息芯片或硬币拖入 \the [src]！"))
 					check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
 
 	if(payees[AM] >= threshold)
@@ -363,7 +363,7 @@
 				AM.pulling = holocred
 			payees[AM] -= payees[AM]
 
-		say("Welcome to first class, [driver_holdout ? "[driver_holdout]" : "[AM]" ]![change ? " Here is your change." : ""]")
+		say("欢迎来到头等舱，[driver_holdout ? "[driver_holdout]" : "[AM]" ]！[change ? "这是找您的零钱。" : ""]")
 		approved_passengers |= AM
 		if(vehicle)
 			approved_passengers |= vehicle
@@ -376,7 +376,7 @@
 		for(var/obj/I in counted_money)
 			qdel(I)
 		if(!check_times[AM] || check_times[AM] < world.time) //Let's not spam the message
-			to_chat(AM, span_notice("[payees[AM]] [MONEY_SYMBOL] received. You need [threshold-payees[AM]] [MONEY_SYMBOL] more."))
+			to_chat(AM, span_notice("已收到 [payees[AM]] [MONEY_SYMBOL]。还需要 [threshold-payees[AM]] [MONEY_SYMBOL]。"))
 			check_times[AM] = world.time + LUXURY_MESSAGE_COOLDOWN
 		alarm_beep()
 		return ..()
@@ -385,13 +385,13 @@
 		return ..()
 
 /mob/living/basic/bear/fightpit
-	name = "fight pit bear"
-	desc = "This bear's trained through ancient Russian secrets to fear the walls of its glass prison."
+	name = "斗兽场熊"
+	desc = "这头熊受过古老的俄罗斯秘技训练，只怕自己玻璃牢笼的墙壁。"
 	environment_smash = ENVIRONMENT_SMASH_NONE
 
 /obj/effect/decal/hammerandsickle
-	name = "hammer and sickle"
-	desc = "Communism powerful force."
+	name = "锤子与镰刀"
+	desc = "共产主义力量强大。"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "communist"
 	pixel_x = -32

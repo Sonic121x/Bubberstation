@@ -1,8 +1,8 @@
 #define OPERATION_NEW_NAME "chosen_name"
 
 /datum/surgery_operation/limb/plastic_surgery
-	name = "plastic surgery"
-	desc = "Reshape or reconstruct a patient's face for cosmetic or functional purposes."
+	name = "整形手术"
+	desc = "为美容或功能目的重塑或重建病人的面部。"
 	implements = list(
 		TOOL_SCALPEL = 1,
 		/obj/item/knife = 2,
@@ -16,7 +16,7 @@
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 
 /datum/surgery_operation/limb/plastic_surgery/all_required_strings()
-	return list("operate on head (target head)") + ..()
+	return list("对头部施行手术（目标：头部）") + ..()
 
 /datum/surgery_operation/limb/plastic_surgery/get_default_radial_image()
 	return image(/obj/item/scalpel)
@@ -46,7 +46,7 @@
 				names += namelist
 		else
 			if(advanced)
-				to_chat(surgeon, span_warning("You have no picture to base the appearance on!"))
+				to_chat(surgeon, span_warning("你没有可以用来参照的照片！"))
 
 			for(var/i in 1 to 10)
 				if(limb.owner)
@@ -54,18 +54,18 @@
 				else
 					names += generate_random_name_species_based(pick(MALE, FEMALE), TRUE, GLOB.species_list[limb.limb_id] || /datum/species/human)
 
-	operation_args[OPERATION_NEW_NAME] = tgui_input_list(surgeon, "New name to assign", "Plastic Surgery", names)
+	operation_args[OPERATION_NEW_NAME] = tgui_input_list(surgeon, "要分配的新名字", "整形手术", names)
 	return !!operation_args[OPERATION_NEW_NAME]
 
 /datum/surgery_operation/limb/plastic_surgery/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to alter [limb.owner || limb]'s appearance..."),
-		span_notice("[surgeon] begins to alter [limb.owner || limb]'s appearance."),
-		span_notice("[surgeon] begins to make an incision in [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始改变 [limb.owner || limb] 的外貌……"),
+		span_notice("[surgeon] 开始改变 [limb.owner || limb] 的外貌。"),
+		span_notice("[surgeon] 开始在 [FORMAT_LIMB_OWNER(limb)] 身上做切口。"),
 	)
-	display_pain(limb.owner, "You feel a slicing pain across your face!")
+	display_pain(limb.owner, "你感到脸上传来一阵刀割般的疼痛！")
 
 /datum/surgery_operation/limb/plastic_surgery/on_success(obj/item/bodypart/head/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	if(!istype(limb))
@@ -76,11 +76,11 @@
 		display_results(
 			surgeon,
 			limb.owner,
-			span_notice("You successfully restore [limb.owner || limb]'s appearance."),
-			span_notice("[surgeon] successfully restores [limb.owner || limb]'s appearance!"),
-			span_notice("[surgeon] finishes the operation on [limb.owner ? "[limb.owner]'s face." : limb]"),
+			span_notice("你成功恢复了 [limb.owner || limb] 的容貌。"),
+			span_notice("[surgeon] 成功恢复了 [limb.owner || limb] 的容貌！"),
+			span_notice("[surgeon] 完成了对 [limb.owner ? "[limb.owner] 的面部" : limb] 的手术。"),
 		)
-		display_pain(limb.owner, "The pain fades, your face feels normal again!")
+		display_pain(limb.owner, "疼痛消退了，你的脸又恢复正常了！")
 		return
 
 	var/oldname = limb.owner?.real_name || limb.real_name
@@ -92,11 +92,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You alter [oldname]'s appearance completely, [limb.owner.p_they()] [limb.owner.p_are()] now [operation_args[OPERATION_NEW_NAME]]."),
-		span_notice("[surgeon] alters [oldname]'s appearance completely, [limb.owner.p_they()] [limb.owner.p_are()] now [operation_args[OPERATION_NEW_NAME]]!"),
-		span_notice("[surgeon] finishes the operation on [limb.owner ? "[limb.owner]'s face." : limb]."),
+		span_notice("你彻底改变了 [oldname] 的外貌，其现在的名字是 [operation_args[OPERATION_NEW_NAME]]。"),
+		span_notice("[surgeon] 彻底改变了 [oldname] 的外貌，其现在的名字是 [operation_args[OPERATION_NEW_NAME]]！"),
+		span_notice("[surgeon] 完成了对 [limb.owner ? "[limb.owner] 的面部" : limb] 的手术。"),
 	)
-	display_pain(limb.owner, "The pain fades, your face feels new and unfamiliar!")
+	display_pain(limb.owner, "疼痛消退了，你的脸感觉既陌生又新奇！")
 	if(ishuman(limb.owner))
 		var/mob/living/carbon/human/human_target = limb.owner
 		human_target.update_ID_card()
@@ -108,18 +108,18 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_warning("Your screw up, leaving [limb.owner || limb]'s appearance disfigured!"),
-		span_warning("[surgeon] screws up, disfiguring [limb.owner || limb]'s appearance!"),
-		span_notice("[surgeon] finishes the operation on [limb.owner ? "[limb.owner]'s face." : limb]."),
+		span_warning("你搞砸了，把 [limb.owner || limb] 的容貌弄得毁损了！"),
+		span_warning("[surgeon] 搞砸了，毁损了 [limb.owner || limb] 的容貌！"),
+		span_notice("[surgeon] 完成了对 [limb.owner ? "[limb.owner] 的面部" : limb] 的手术。"),
 	)
-	display_pain(limb.owner, "Your face feels horribly scarred and deformed!")
+	display_pain(limb.owner, "你的脸满是可怕的疤痕，扭曲变形！")
 	ADD_TRAIT(limb, TRAIT_DISFIGURED, TRAIT_GENERIC)
 
 #undef OPERATION_NEW_NAME
 
 /datum/surgery_operation/limb/add_plastic
-	name = "apply plastic"
-	desc = "Apply plastic to a patient's face to to allow for greater customization in following plastic surgery."
+	name = "敷贴塑料"
+	desc = "在病人面部敷贴塑料，以便在后续整形手术中进行更多自定义。"
 	implements = list(
 		/obj/item/stack/sheet/plastic = 1,
 	)
@@ -141,11 +141,11 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to apply plastic to [FORMAT_LIMB_OWNER(limb)]..."),
-		span_notice("[surgeon] begins to apply plastic to [FORMAT_LIMB_OWNER(limb)]."),
-		span_notice("[surgeon] begins to perform surgery on [FORMAT_LIMB_OWNER(limb)]."),
+		span_notice("你开始给 [FORMAT_LIMB_OWNER(limb)] 敷贴塑料……"),
+		span_notice("[surgeon] 开始给 [FORMAT_LIMB_OWNER(limb)] 敷贴塑料。"),
+		span_notice("[surgeon] 开始对 [FORMAT_LIMB_OWNER(limb)] 施行手术。"),
 	)
-	display_pain(limb.owner, "You feel a strange sensation as something is applied to your face!")
+	display_pain(limb.owner, "有什么东西敷上你的脸，你感到一种奇异的感觉！")
 
 /datum/surgery_operation/limb/add_plastic/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	. = ..()

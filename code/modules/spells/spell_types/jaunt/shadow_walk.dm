@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/jaunt/shadow_walk
-	name = "Shadow Walk"
-	desc = "Grants unlimited movement in darkness."
+	name = "暗影漫步"
+	desc = "让你在黑暗中不受限制地移动。"
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
 	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
@@ -35,7 +35,7 @@
 	var/turf/cast_turf = get_turf(owner)
 	if(!cast_turf.check_lumcount_below(light_threshold))
 		if(feedback)
-			to_chat(owner, span_warning("It isn't dark enough here!"))
+			to_chat(owner, span_warning("这里不够暗！"))
 		return FALSE
 	return TRUE
 
@@ -46,13 +46,13 @@
 		return
 
 	playsound(get_turf(owner), 'sound/effects/nightmare_poof.ogg', 50, TRUE, -1, ignore_walls = FALSE)
-	cast_on.visible_message(span_boldwarning("[cast_on] melts into the shadows!"))
+	cast_on.visible_message(span_boldwarning("[cast_on] 融入了暗影之中！"))
 	cast_on.SetAllImmobility(0)
 	cast_on.set_stamina_loss(0, FALSE)
 	enter_jaunt(cast_on)
 
 /obj/effect/dummy/phased_mob/shadow
-	name = "shadows"
+	name = "暗影"
 	phased_mob_icon_state = "purple_laser"
 	/// Max amount of light permitted before being kicked out
 	var/light_max = SHADOW_SPECIES_LIGHT_THRESHOLD
@@ -94,7 +94,7 @@
 /obj/effect/dummy/phased_mob/shadow/phased_check(mob/living/user, direction)
 	. = ..()
 	if(. && isspaceturf(.))
-		to_chat(user, span_warning("It really would not be wise to go into space."))
+		to_chat(user, span_warning("进入太空实在不是明智之举。"))
 		return FALSE
 	if(check_light_level(.))
 		if(!light_step_warning())
@@ -105,9 +105,9 @@
 
 	if(istype(reveal_turf))
 		if(forced_out)
-			reveal_turf.visible_message(span_boldwarning("[jaunter] is revealed by the light!"))
+			reveal_turf.visible_message(span_boldwarning("[jaunter] 被光线暴露了！"))
 		else
-			reveal_turf.visible_message(span_boldwarning("[jaunter] emerges from the darkness!"))
+			reveal_turf.visible_message(span_boldwarning("[jaunter] 从黑暗中现身！"))
 		playsound(reveal_turf, 'sound/effects/nightmare_reappear.ogg', 50, TRUE, -1, ignore_walls = FALSE)
 
 	return ..()
@@ -134,7 +134,7 @@
 
 /obj/effect/dummy/phased_mob/shadow/proc/light_step_warning()
 	if(!light_alert_given) //Give the user a warning that they're leaving the darkness
-		balloon_alert(jaunter, "leaving the shadows...")
+		balloon_alert(jaunter, "正在离开暗影……")
 		light_alert_given = TRUE
 		COOLDOWN_START(src, light_step_cooldown, 0.75 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(reactivate_light_alert)), 1 SECONDS) //You get a .5 second window to bypass the warning before it comes back

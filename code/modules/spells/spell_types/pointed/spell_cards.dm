@@ -1,7 +1,7 @@
 
 /datum/action/cooldown/spell/pointed/projectile/spell_cards
-	name = "Spell Cards"
-	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
+	name = "法术卡牌"
+	desc = "灼热的高速追踪卡牌。用它们的神秘力量把敌人打进暗影界吧！"
 	button_icon_state = "spellcard"
 	click_cd_override = 1
 

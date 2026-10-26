@@ -9,8 +9,8 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 #define ACCESS_GRANTING_COOLDOWN (30 SECONDS)
 
 /obj/machinery/keycard_auth
-	name = "keycard authentication device"
-	desc = "This device is used to trigger station functions which require more than one ID card to authenticate, or to give the Janitor access to a department."
+	name = "钥匙卡认证装置"
+	desc = "此装置用于触发需要多张身份证认证的空间站功能，或为清洁工授予部门访问权限。"
 	icon = 'icons/obj/machines/keycard_auth_table.dmi'
 	icon_state = "auth_off"
 	power_channel = AREA_USAGE_ENVIRON
@@ -62,7 +62,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	if(!isanimal_or_basicmob(user))
 		return ..()
 	if(!HAS_TRAIT(user, TRAIT_CAN_HOLD_ITEMS))
-		balloon_alert(user, "no hands!")
+		balloon_alert(user, "没有手！")
 		return UI_CLOSE
 	return ..()
 
@@ -105,7 +105,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 			if(!living_user || !istype(living_user))
 				return TRUE
 			if(!COOLDOWN_FINISHED(src, access_grant_cooldown))
-				balloon_alert(usr, "on cooldown!")
+				balloon_alert(usr, "冷却中！")
 				return TRUE
 			var/obj/item/card/id/advanced/card = living_user.get_idcard(hand_first = TRUE)
 			if(!card)
@@ -116,7 +116,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 					continue
 				COOLDOWN_START(src, access_grant_cooldown, ACCESS_GRANTING_COOLDOWN)
 				SEND_GLOBAL_SIGNAL(COMSIG_ON_DEPARTMENT_ACCESS, info["regions"])
-				balloon_alert(usr, "key access sent")
+				balloon_alert(usr, "钥匙访问权限已发送")
 				return
 
 /obj/machinery/keycard_auth/update_appearance(updates)
@@ -156,14 +156,14 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	update_appearance()
 
 /obj/machinery/keycard_auth/proc/trigger_event(confirmer)
-	triggerer.log_message("triggered and [key_name(confirmer)] confirmed event [event].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(triggerer)] triggered and [ADMIN_LOOKUPFLW(confirmer)] confirmed event [event]")
+	triggerer.log_message("触发了事件 [event]，并由 [key_name(confirmer)] 确认。", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(triggerer)] 触发了事件 [event]，并由 [ADMIN_LOOKUPFLW(confirmer)] 确认")
 
 	var/area/A1 = get_area(triggerer)
-	deadchat_broadcast(" triggered [event] at [span_name("[A1.name]")].", span_name("[triggerer]"), triggerer, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast(" 在 [span_name("[A1.name]")] 触发了 [event]。", span_name("[triggerer]"), triggerer, message_type=DEADCHAT_ANNOUNCEMENT)
 
 	var/area/A2 = get_area(confirmer)
-	deadchat_broadcast(" confirmed [event] at [span_name("[A2.name]")].", span_name("[confirmer]"), confirmer, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast(" 在 [span_name("[A2.name]")] 确认了 [event]。", span_name("[confirmer]"), confirmer, message_type=DEADCHAT_ANNOUNCEMENT)
 	switch(event)
 		if(KEYCARD_RED_ALERT)
 			SSsecurity_level.set_level(SEC_LEVEL_RED)
@@ -194,7 +194,7 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 					airlock.update_icon(ALL, 0)
 
 	if(!silent) // BUBBER EDIT ADDITION - Silent Emergency Access
-		minor_announce("Access restrictions on maintenance and external airlocks have been lifted.", "Attention! Station-wide emergency declared!",1)
+		minor_announce("维护区与外部气闸的访问限制已解除。", "注意！全站紧急状态已宣布！",1)
 	GLOB.emergency_access = TRUE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "enabled"))
 
@@ -207,13 +207,13 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 					airlock.update_icon(ALL, 0)
 
 	if(!silent) // BUBBER EDIT ADDITION - Silent Emergency Access
-		minor_announce("Access restrictions in maintenance areas have been restored.", "Attention! Station-wide emergency rescinded:")
+		minor_announce("维护区的访问限制已恢复。", "注意！全站紧急状态已解除：")
 	GLOB.emergency_access = FALSE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "disabled"))
 
 /proc/toggle_bluespace_artillery()
 	GLOB.bsa_unlock = !GLOB.bsa_unlock
-	minor_announce("Bluespace Artillery firing protocols have been [GLOB.bsa_unlock? "unlocked" : "locked"]", "Weapons Systems Update:")
+	minor_announce("蓝空间火炮发射协议已[GLOB.bsa_unlock? "解锁" : "锁定"]", "武器系统更新：")
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("bluespace artillery", GLOB.bsa_unlock? "unlocked" : "locked"))
 
 #undef ACCESS_GRANTING_COOLDOWN

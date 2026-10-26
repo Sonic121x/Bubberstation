@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 #define REFILL_RANGE_DEFAULT 10
 
 /obj/docking_port/mobile/supply
-	name = "supply shuttle"
+	name = "补给穿梭机"
 	shuttle_id = "cargo"
 	callTime = 60 SECONDS
 
@@ -115,10 +115,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return
 
 	for(var/atom/thing_sent_home as anything in stuff_sent_home)
-		investigate_log("Blacklisted item found on in-transit Cargo Shuttle: [thing_sent_home] ([thing_sent_home.type])", INVESTIGATE_CARGO)
+		investigate_log("在途货运穿梭机上发现被禁物品：[thing_sent_home]（[thing_sent_home.type]）", INVESTIGATE_CARGO)
 
-	message_admins("Blacklisted item found on in-transit Cargo Shuttle. See cargo logs for more details.")
-	SSshuttle.centcom_message = "Contraband found on Cargo Shuttle. This has been returned via drop pod."
+	message_admins("在途货运穿梭机上发现被禁物品。详情请查看货运日志。")
+	SSshuttle.centcom_message = "货运穿梭机上发现违禁品，现已通过空投舱送回。"
 
 /obj/docking_port/mobile/supply/initiate_docking(obj/docking_port/stationary/new_dock, force=FALSE)
 	if(getDockedId() == "cargo_away") // Buy when we leave home.
@@ -154,9 +154,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	//already got let down by the botanists. So to open a new chance for cargo to also screw them over any more than is necessary is bad.
 	if(SSshuttle.chef_groceries.len)
 		var/obj/structure/closet/crate/freezer/grocery_crate = new(pick_n_take(empty_turfs))
-		grocery_crate.name = "kitchen produce freezer"
-		grocery_crate.desc = "Produce order for the Kitchen, deliver to the chef ASAP."
-		investigate_log("Chef's [SSshuttle.chef_groceries.len] sized produce order arrived. Cost was deducted from orderer, not cargo.", INVESTIGATE_CARGO)
+		grocery_crate.name = "厨房食材冷冻箱"
+		grocery_crate.desc = "厨房的食材订单，请尽快送到厨师手上。"
+		investigate_log("厨师的 [SSshuttle.chef_groceries.len] 份食材订单已送达。费用从订购者处扣除，不由货运部承担。", INVESTIGATE_CARGO)
 		for(var/datum/orderable_item/item as anything in SSshuttle.chef_groceries)//every order
 			for(var/amt in 1 to SSshuttle.chef_groceries[item])//every order amount
 				new item.purchase_path(grocery_crate)
@@ -183,12 +183,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			if(orders_adjusted.len)
 				var/datum/bank_account/paying_for_this = spawning_order.paying_account || SSeconomy.get_dep_account(ACCOUNT_CAR)
 				if(!sheets.contains.len) //no sheets in the market at all
-					paying_for_this.bank_card_talk("Order #[spawning_order.id] ([spawning_order.pack.name]) was cancelled due to insufficient materials in the market!.")
+					paying_for_this.bank_card_talk("订单 #[spawning_order.id]（[spawning_order.pack.name]）因市场材料不足已被取消！")
 					SSshuttle.shopping_list -= spawning_order
 					clean_up_orders += spawning_order
 					continue
 				//some of the orders were adjusted(quantity changed or cancelled) according to the market
-				paying_for_this.bank_card_talk("Order #[spawning_order.id] ([spawning_order.pack.name]) had the following orders adjusted<br>[orders_adjusted.Join("<br>")]<br>.")
+				paying_for_this.bank_card_talk("订单 #[spawning_order.id]（[spawning_order.pack.name]）的下列内容已作调整<br>[orders_adjusted.Join("<br>")]<br>。")
 
 		price = spawning_order.get_final_cost()
 
@@ -202,14 +202,14 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					var/list/current_buyer_orders = goodies_by_buyer[paying_for_this] // BUBBER EDIT
 					if(LAZYLEN(current_buyer_orders) == GOODY_FREE_SHIPPING_MAX)
 						price = round(price + CRATE_TAX)
-						paying_for_this.bank_card_talk("Goody order size exceeds free shipping limit: Assessing [CRATE_TAX] [MONEY_NAME_SINGULAR] S&H fee.")
+						paying_for_this.bank_card_talk("礼品订单数量超过免运费上限：另收 [CRATE_TAX] [MONEY_NAME_SINGULAR] 运费与包装费。")
 			else
 				paying_for_this = SSeconomy.get_dep_account(ACCOUNT_CAR)
 
 			if(paying_for_this)
 				if(!paying_for_this.adjust_money(-price, "Cargo: [spawning_order.pack.name]"))
 					if(spawning_order.paying_account)
-						paying_for_this.bank_card_talk("Cargo order #[spawning_order.id] rejected due to lack of funds. [MONEY_NAME_CAPITALIZED] required: [price]")
+						paying_for_this.bank_card_talk("货运订单 #[spawning_order.id] 因资金不足被拒绝。所需金额：[price] [MONEY_NAME_CAPITALIZED]")
 					if(!spawning_order.can_be_cancelled) //only if it absolutly cannot be canceled by the player do we cancel it for them
 						SSshuttle.shopping_list -= spawning_order
 						clean_up_orders += spawning_order
@@ -226,9 +226,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			// if(spawning_order.pack.order_flags & ORDER_GOODY)
 			// 	LAZYADD(goodies_by_buyer[spawning_order.paying_account], spawning_order)
 			// BUBBER REMOVAL END
-			var/receiver_message = "Cargo order #[spawning_order.id] has shipped."
+			var/receiver_message = "货运订单 #[spawning_order.id] 已发货。"
 			if(spawning_order.charge_on_purchase)
-				receiver_message += " [price] [MONEY_NAME] have been charged to your bank account"
+				receiver_message += " [price] [MONEY_NAME] 已从你的银行账户中扣除。"
 			paying_for_this.bank_card_talk(receiver_message)
 			SSeconomy.add_audit_entry(paying_for_this, price, spawning_order.pack.name)
 			var/datum/bank_account/department/cargo = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -240,11 +240,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			crate.name += " - #[spawning_order.id]"
 
 		SSblackbox.record_feedback("nested tally", "cargo_imports", 1, list("[spawning_order.pack.get_cost()]", "[spawning_order.pack.name]", "[spawning_order.orderer_rank]"))
-		var/from_whom = paying_for_this?.account_holder || "nobody (department order)"
+		var/from_whom = paying_for_this?.account_holder || "无人（部门订单）"
 
-		investigate_log("Order #[spawning_order.id] ([spawning_order.pack.name], placed by [key_name(spawning_order.orderer_ckey)]), paid by [from_whom] has shipped.", INVESTIGATE_CARGO)
+		investigate_log("订单 #[spawning_order.id]（[spawning_order.pack.name]，由 [key_name(spawning_order.orderer_ckey)] 下单），付款方为 [from_whom]，已发货。", INVESTIGATE_CARGO)
 		if(spawning_order.pack.order_flags & ORDER_DANGEROUS)
-			message_admins("\A [spawning_order.pack.name] ordered by [ADMIN_LOOKUPFLW(spawning_order.orderer_ckey)], paid by [from_whom] has shipped.")
+			message_admins("由 [ADMIN_LOOKUPFLW(spawning_order.orderer_ckey)] 订购、[from_whom] 付款的 [spawning_order.pack.name] 已发货。")
 		purchases++
 
 		// done dealing with order. Time to remove & delete it
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	for(var/buyer_key in goodies_by_buyer)
 		var/list/buying_account_orders = goodies_by_buyer[buyer_key]
 		var/datum/bank_account/buying_account = buyer_key
-		var/buyer = buying_account.account_holder || "Account ID: [buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
+		var/buyer = buying_account.account_holder || "账户 ID：[buying_account.account_id]" // BUBBER EDIT - allow goodies to be bought privately
 
 		if(buying_account_orders.len > GOODY_FREE_SHIPPING_MAX) // no free shipping, send a crate
 			// BUBBER EDIT BEGIN - ORIGINAL: new /obj/structure/closet/crate/secure(...)
@@ -264,7 +264,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			var/obj/structure/closet/crate/secure/our_crate = new goody_crate_type(pick_n_take(empty_turfs))
 			// BUBBER EDIT END
 			our_crate.AddComponent(/datum/component/locked_to_account, buying_account)
-			our_crate.name = "goody crate - purchased by [buyer]"
+			our_crate.name = "礼品箱——由 [buyer] 购买"
 			miscboxes[buyer] = our_crate
 		else //free shipping in a case
 			miscboxes[buyer] = new /obj/item/storage/lockbox/order(pick_n_take(empty_turfs), buying_account) // BUBBER EDIT - add init arg
@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				our_case.department_purchase = TRUE
 				our_case.department_account = our_case.buyer_account
 			/// SKYRAT EDIT ADDITION END
-			miscboxes[buyer].name = "goody case - purchased by [buyer]"
+			miscboxes[buyer].name = "礼品存放箱——由 [buyer] 购买"
 		//BUBBER EDIT BEGIN // Populate the contents for purchased orders
 		misc_contents[buyer] = list()
 
@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		qdel(completed_order)
 
 	var/datum/bank_account/cargo_budget = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	investigate_log("[purchases] orders in this shipment, worth [value] [MONEY_NAME]. [cargo_budget.account_balance] [MONEY_NAME] left.", INVESTIGATE_CARGO)
+	investigate_log("本次货运共 [purchases] 份订单，价值 [value] [MONEY_NAME]。货运账户余额剩余 [cargo_budget.account_balance] [MONEY_NAME]。", INVESTIGATE_CARGO)
 
 /// Deletes and sells the items on the shuttle
 /obj/docking_port/mobile/supply/proc/sell()
@@ -330,7 +330,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 	SSshuttle.centcom_message = msg
 	if(report.exported_atoms.len)
-		investigate_log("contents sold for [cargo_budget.account_balance - presale_points] [MONEY_NAME]. Contents: [report.exported_atoms.Join(",")]. Message: [msg]", INVESTIGATE_CARGO)
+		investigate_log("内容物售出所得 [cargo_budget.account_balance - presale_points] [MONEY_NAME]。内容物：[report.exported_atoms.Join(",")]。消息：[msg]", INVESTIGATE_CARGO)
 
 /*
 	Generates a box of mail depending on our exports and imports.

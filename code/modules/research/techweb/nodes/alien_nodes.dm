@@ -8,8 +8,8 @@
 
 /datum/techweb_node/alientech //AYYYYYYYYLMAOO tech
 	id = TECHWEB_NODE_ALIENTECH
-	display_name = "Alien Technology"
-	description = "Things used by the greys."
+	display_name = "外星科技"
+	description = "小灰人使用的东西。"
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL)
 	required_items_to_unlock = list(
 		/obj/item/stack/sheet/mineral/abductor,
@@ -43,8 +43,8 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alientech)
 
 /datum/techweb_node/alien_engi
 	id = TECHWEB_NODE_ALIEN_ENGI
-	display_name = "Alien Engineering"
-	description = "Alien engineering tools"
+	display_name = "外星工程学"
+	description = "外星工程工具"
 	prereq_ids = list(TECHWEB_NODE_ALIENTECH, TECHWEB_NODE_EXP_TOOLS)
 	design_ids = list(
 		"alien_crowbar",
@@ -72,8 +72,8 @@ ABDUCTOR_SUBTYPE_UNLOCKS(/datum/techweb_node/alien_engi)
 
 /datum/techweb_node/alien_surgery
 	id = TECHWEB_NODE_ALIEN_SURGERY
-	display_name = "Alien Surgery"
-	description = "Abductors did nothing wrong."
+	display_name = "外星外科手术"
+	description = "绑架者什么都没做错。"
 	prereq_ids = list(TECHWEB_NODE_ALIENTECH, TECHWEB_NODE_SURGERY_TOOLS)
 	design_ids = list(
 		"alien_cautery",

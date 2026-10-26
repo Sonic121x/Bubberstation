@@ -1,5 +1,5 @@
 /datum/design/component/tempsensor
-	name = "Temperature Sensor Component"
+	name = "温度传感器元件"
 	id = "comp_tempsensor"
 	build_path = /obj/item/circuit_component/tempsensor
 	category = list(
@@ -7,7 +7,7 @@
 	)
 
 /datum/design/component/pressuresensor
-	name = "Pressure Sensor Component"
+	name = "压力传感器元件"
 	id = "comp_pressuresensor"
 	build_path = /obj/item/circuit_component/pressuresensor
 	category = list(
@@ -15,7 +15,7 @@
 	)
 
 /datum/design/component/view_sensor
-	name = "View Sensor Component"
+	name = "视野传感器元件"
 	id = "comp_view_sensor"
 	build_path = /obj/item/circuit_component/view_sensor
 	category = list(

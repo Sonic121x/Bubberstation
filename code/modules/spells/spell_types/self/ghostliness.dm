@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/ghostliness
-	name = "Forsake Body"
-	desc = "A spell that severs your soul from your body, loosely binding it to the material plane."
+	name = "离弃肉身"
+	desc = "一个将灵魂与肉身割离、使其松散地系于物质位面的法术。"
 	button_icon = 'icons/mob/simple/mob.dmi'
 	button_icon_state = "ghost"
 
@@ -19,7 +19,7 @@
 
 	if(!is_valid_target(owner))
 		if(feedback)
-			owner.balloon_alert(owner, "no soul!")
+			owner.balloon_alert(owner, "没有灵魂！")
 		return FALSE
 
 	return TRUE
@@ -31,20 +31,20 @@
 	. = ..()
 
 	if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
-		to_chat(cast_on, span_green("You begin to focus on loosening the bonds holding you to the material plane."))
+		to_chat(cast_on, span_green("你开始集中精神，去松动那些将你束缚在物质位面的枷锁。"))
 	else
-		to_chat(cast_on, span_green("You begin to focus on your very being, drawing it out of its corporeal vessel..."))
+		to_chat(cast_on, span_green("你开始凝神于自身的存在，把它从这具凡躯中抽引出来……"))
 	if(!do_after(cast_on, 5 SECONDS))
 		if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
-			to_chat(cast_on, span_warning("Your focus is broken, and you feel your material bindings snap tight once more."))
+			to_chat(cast_on, span_warning("你的专注被打断了，你感到物质层面的束缚又一次绷紧。"))
 		else
-			to_chat(cast_on, span_warning("Your focus is broken, and your soul snaps back into place."))
+			to_chat(cast_on, span_warning("你的专注被打断了，你的灵魂猛地弹回原处。"))
 		return
 	if(HAS_TRAIT(cast_on, TRAIT_GHOSTLY_MOB))
-		to_chat(cast_on, span_green("You successfully loosen your bonds to the material plane, and can now slip partially out of it."))
+		to_chat(cast_on, span_green("你成功松动了与物质位面的束缚，现在可以部分地脱出其中了。"))
 	else
-		to_chat(cast_on, span_danger("As the last trailing filament of your essence ceases intersection with your body, \
-		your perspective abruptly snaps to your new, ghostly figure! Your former vessel falls to the ground, vacant and devoid of volition!"))
+		to_chat(cast_on, span_danger("当你的本质最后一丝余缕与肉身断开相连，\
+		你的视角猛然切到这具新的幽灵之躯上！你先前的躯壳倒在地面，空洞而毫无意志！"))
 		var/mob/living/carbon/human/soulless_husk = new(cast_on.drop_location())
 		soulless_husk.setDir(cast_on.dir)
 		cast_on.dna.copy_dna(soulless_husk.dna, ALL)

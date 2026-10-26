@@ -51,7 +51,7 @@
 			else
 				return
 		else
-			to_chat(trimmer, span_warning("There are no restylable features there!"))
+			to_chat(trimmer, span_warning("那里没有可以重塑的体貌特征！"))
 			return
 
 	target_organ.attempt_feature_restyle(source, trimmer, original_target, body_zone, restyle_type, style_speed)
@@ -63,29 +63,29 @@
 	if(restyle_flags & restyle_type)
 		INVOKE_ASYNC(src, PROC_REF(attempt_feature_restyle), source, trimmer, original_target, body_zone, restyle_type, style_speed)
 	else
-		to_chat(trimmer, span_warning("This tool is incompatible with \the [src]!"))
+		to_chat(trimmer, span_warning("这个工具与 \the [src] 不兼容！"))
 
 ///Restyles the external organ from a list of valid options
 /obj/item/organ/proc/attempt_feature_restyle(atom/source, mob/living/trimmer, atom/movable/original_target, body_zone, restyle_type, style_speed)
 	var/list/restyles = get_valid_restyles()
-	var/new_style = tgui_input_list(trimmer, "Select a new style", "Grooming", restyles)
+	var/new_style = tgui_input_list(trimmer, "选择新样式", "打理", restyles)
 
 	trimmer.visible_message(
-		span_notice("[trimmer] tries to change [original_target == trimmer ? trimmer.p_their() : original_target.name + "'s"] [name]."),
-		span_notice("You try to change [original_target == trimmer ? "your" : original_target.name + "'s"] [name].")
+		span_notice("[trimmer] 试着改变[original_target == trimmer ? "自己的" : original_target.name + "的"] [name]。"),
+		span_notice("你试着改变[original_target == trimmer ? "你的" : original_target.name + "的"] [name]。")
 	)
 	if(new_style && do_after(trimmer, style_speed, target = original_target))
 		trimmer.visible_message(
-			span_notice("[trimmer] successfully changes [original_target == trimmer ? trimmer.p_their() : original_target.name + "'s"] [name]."),
-			span_notice("You successfully change [original_target == trimmer ? "your" : original_target.name + "'s"] [name].")
+			span_notice("[trimmer] 成功改变了[original_target == trimmer ? "自己的" : original_target.name + "的"] [name]。"),
+			span_notice("你成功改变了[original_target == trimmer ? "你的" : original_target.name + "的"] [name]。")
 		)
 
 		simple_change_sprite(restyles[new_style]) //turn name to type and pass it on
 
 /// Allows for the restyling of visual organs to other styles within the same pool (if not forbidden)
 /obj/item/flesh_shears
-	name = "flesh reshaper"
-	desc = "Uses shearing action and growth inducers to reshape your coworkers external features!"
+	name = "血肉重塑器"
+	desc = "利用剪切作用和生长诱导剂，重塑同事们的体貌特征！"
 
 	icon_state = "flesh_shaper"
 	icon = 'icons/obj/medical/surgery_tools.dmi'
@@ -99,8 +99,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 10
 
-	attack_verb_continuous = list("shears", "snips")
-	attack_verb_simple = list("shear", "snip")
+	attack_verb_continuous = list("剪切", "剪断")
+	attack_verb_simple = list("剪切", "剪断")
 	sharpness = SHARP_EDGED
 
 	obj_flags = CONDUCTS_ELECTRICITY

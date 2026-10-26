@@ -1,6 +1,6 @@
 /obj/machinery/rnd/production
-	name = "technology fabricator"
-	desc = "Makes researched and prototype items with materials and energy."
+	name = "科技制造机"
+	desc = "利用材料与能量制造已研究物品和原型物品。"
 	/// Energy cost per full stack of materials spent. Material insertion is 40% of this.
 	active_power_usage = 0.05 * STANDARD_CELL_RATE
 	interaction_flags_atom = parent_type::interaction_flags_atom | INTERACT_ATOM_MOUSEDROP_IGNORE_CHECKS
@@ -77,18 +77,18 @@
 	if(!in_range(user, src) && !isobserver(user))
 		return
 
-	. += span_notice("Material usage cost at <b>[efficiency_coeff * 100]%</b>.")
-	. += span_notice("Build time at <b>[efficiency_coeff * 100]%</b>.")
+	. += span_notice("材料消耗为 <b>[efficiency_coeff * 100]%</b>。")
+	. += span_notice("建造时间为 <b>[efficiency_coeff * 100]%</b>。")
 	if(drop_direction)
-		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
-		. += span_notice("[EXAMINE_HINT("Alt-click")] to reset.")
+		. += span_notice("当前设置为将打印物品朝<b>[dir2text(drop_direction)]</b>投放。")
+		. += span_notice("[EXAMINE_HINT("Alt 点击")]可重置。")
 	else
-		. += span_notice("[EXAMINE_HINT("Drag")] towards a direction (while next to it) to change drop direction.")
+		. += span_notice("朝某个方向[EXAMINE_HINT("拖动")]（需站在旁边）可更改投放方向。")
 
 /obj/machinery/rnd/production/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(drop_direction)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "Reset Drop"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "重置投放"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/rnd/production/connect_techweb(datum/techweb/new_techweb)
@@ -123,7 +123,7 @@
 	var/design_delta = cached_designs.len - previous_design_count
 
 	if(design_delta > 0)
-		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
+		say("已接收 [design_delta] 项新设计。")
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
@@ -298,7 +298,7 @@
 
 			//we use initial(active_power_usage) because higher tier parts will have higher active usage but we have no benifit from it
 			if(!directly_use_energy(ROUND_UP((amount / MAX_STACK_SIZE) * 0.4 * initial(active_power_usage))))
-				say("No power to dispense sheets")
+				say("电量不足，无法分发材料片")
 				return
 
 			materials.eject_sheets(material_ref = material, eject_amount = amount, user_data = ID_DATA(usr))
@@ -306,7 +306,7 @@
 
 		if("build")
 			if(busy)
-				say("Warning: fabricator is busy!")
+				say("警告：制造机正忙！")
 				return
 
 			//validate design
@@ -317,10 +317,10 @@
 			if(!istype(design))
 				return FALSE
 			if(!(isnull(allowed_department_flags) || (design.departmental_flags & allowed_department_flags)))
-				say("This fabricator does not have the necessary keys to decrypt this design.")
+				say("该制造机缺少解密此设计所需的密钥。")
 				return FALSE
 			if(design.build_type && !(design.build_type & allowed_buildtypes))
-				say("This fabricator does not have the necessary manipulation systems for this design.")
+				say("该制造机缺少处理此设计所需的操控系统。")
 				return FALSE
 
 			//validate print quantity
@@ -339,7 +339,7 @@
 			if(!materials.can_use_resource(user_data = ID_DATA(usr)))
 				return
 			if(!materials.mat_container.has_materials(design.materials, coefficient, print_quantity))
-				say("Not enough materials to complete prototype[print_quantity > 1 ? "s" : ""].")
+				say("材料不足，无法完成原型。")
 				return FALSE
 
 			//compute power & time to print 1 item
@@ -396,7 +396,7 @@
 		return
 
 	if(!is_operational)
-		say("Unable to continue production, power failure.")
+		say("无法继续生产，电力故障。")
 		finalize_build()
 		return
 
@@ -406,11 +406,11 @@
 		if(!QDELETED(my_apc))
 			var/charging_wait = my_apc.time_to_charge(charge_per_item)
 			if(!isnull(charging_wait))
-				say("Unable to continue production, APC overload. Wait [DisplayTimeText(charging_wait, round_seconds_to = 1)] and try again.")
+				say("无法继续生产，APC 过载。请等待 [DisplayTimeText(charging_wait, round_seconds_to = 1)] 后重试。")
 			else
-				say("Unable to continue production, power grid overload.")
+				say("无法继续生产，电网过载。")
 		else
-			say("Unable to continue production, no APC in area.")
+			say("无法继续生产，区域内无 APC。")
 		finalize_build()
 		return
 
@@ -421,7 +421,7 @@
 	var/is_stack = ispath(design.build_path, /obj/item/stack)
 
 	if(!materials.mat_container.has_materials(design.materials, material_cost_coefficient, is_stack ? items_remaining : 1))
-		say("Unable to continue production, missing materials.")
+		say("无法继续生产，材料缺失。")
 		finalize_build()
 		return
 	materials.use_materials(design.materials, material_cost_coefficient, is_stack ? items_remaining : 1, "processed", "[design.name]", user_data = user_data)
@@ -471,21 +471,21 @@
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正在打印，请稍候！")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "投放方向：[dir2text(drop_direction)]")
 
 /obj/machinery/rnd/production/click_alt(mob/user)
 	if(drop_direction == 0)
 		return CLICK_ACTION_BLOCKING
 	if(busy)
-		balloon_alert(user, "busy printing!")
+		balloon_alert(user, "正在打印，请稍候！")
 		return CLICK_ACTION_BLOCKING
-	balloon_alert(user, "drop direction reset")
+	balloon_alert(user, "投放方向已重置")
 	drop_direction = 0
 	return CLICK_ACTION_SUCCESS
 

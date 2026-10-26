@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/projectile/finger_guns
-	name = "Finger Guns"
-	desc = "Shoot up to three mimed bullets from your fingers that damage and mute their targets. \
-		Can't be used if you have something in your hands."
+	name = "手指枪"
+	desc = "从手指射出至多三发默剧子弹，对目标造成伤害并使其沉默。 \
+		手中拿着东西时无法使用。"
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
 	button_icon = 'icons/mob/actions/actions_mime.dmi'
@@ -12,16 +12,16 @@
 	school = SCHOOL_MIME
 	cooldown_time = 30 SECONDS
 
-	invocation = span_notice("<b>%CASTER</b> fires %PRONOUN_their finger gun!")
-	invocation_self_message = span_danger("You fire your finger gun!")
+	invocation = span_notice("<b>%CASTER</b> 用 %PRONOUN_their 手指枪开火了！")
+	invocation_self_message = span_danger("你用手比出的枪开火了！")
 	invocation_type = INVOCATION_EMOTE
 
 	spell_requirements = SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_MIME_VOW
 	antimagic_flags = NONE
 	spell_max_level = 1
 
-	active_msg = "You draw your fingers!"
-	deactive_msg = "You put your fingers at ease. Another time."
+	active_msg = "你摆出手指枪的姿势！"
+	deactive_msg = "你放下了手指。下次再说吧。"
 	cast_range = 20
 	projectile_type = /obj/projectile/bullet/mime
 	projectile_amount = 3
@@ -34,11 +34,11 @@
 		var/mob/living/carbon/human/human_invoker = invoker
 		if(human_invoker.incapacitated)
 			if(feedback)
-				to_chat(human_invoker, span_warning("You can't properly point your fingers while incapacitated."))
+				to_chat(human_invoker, span_warning("你在失去行动能力时无法好好摆出手指枪。"))
 			return FALSE
 		if(human_invoker.get_active_held_item())
 			if(feedback)
-				to_chat(human_invoker, span_warning("You can't properly fire your finger guns with something in your hand."))
+				to_chat(human_invoker, span_warning("你手里拿着东西时无法好好开火。"))
 			return FALSE
 
 	return ..()

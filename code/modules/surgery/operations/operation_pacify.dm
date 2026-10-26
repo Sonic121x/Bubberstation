@@ -1,8 +1,8 @@
 /datum/surgery_operation/organ/pacify
-	name = "pacification"
-	rnd_name = "Paxopsy (Pacification)"
-	desc = "Remove aggressive tendencies from a patient's brain."
-	rnd_desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
+	name = "安抚术"
+	rnd_name = "安抚切除术（安抚）"
+	desc = "消除病人大脑中的攻击倾向。"
+	rnd_desc = "一种永久抑制大脑攻击中枢的手术，使病人不愿造成直接伤害。"
 	operation_flags = OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		TOOL_HEMOSTAT = 1,
@@ -25,38 +25,38 @@
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You begin to pacify [FORMAT_ORGAN_OWNER(organ)]..."),
-		span_notice("[surgeon] begins to fix [FORMAT_ORGAN_OWNER(organ)]'s brain."),
-		span_notice("[surgeon] begins to perform surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_notice("你开始安抚 [FORMAT_ORGAN_OWNER(organ)]……"),
+		span_notice("[surgeon] 开始修复 [FORMAT_ORGAN_OWNER(organ)] 的大脑。"),
+		span_notice("[surgeon] 开始对 [FORMAT_ORGAN_OWNER(organ)] 的大脑施行手术。"),
 	)
-	display_pain(organ.owner, "Your head pounds with unimaginable pain!")
+	display_pain(organ.owner, "你的头阵阵作痛，痛得难以想象！")
 
 /datum/surgery_operation/organ/pacify/on_success(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You succeed in pacifying [FORMAT_ORGAN_OWNER(organ)]."),
-		span_notice("[surgeon] successfully fixes [FORMAT_ORGAN_OWNER(organ)]!"),
-		span_notice("[surgeon] completes the surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_notice("你成功安抚了 [FORMAT_ORGAN_OWNER(organ)]。"),
+		span_notice("[surgeon] 成功修复了 [FORMAT_ORGAN_OWNER(organ)]！"),
+		span_notice("[surgeon] 完成了对 [FORMAT_ORGAN_OWNER(organ)] 大脑的手术。"),
 	)
-	display_pain(organ.owner, "Your head pounds... the concept of violence flashes in your head, and nearly makes you hurl!")
+	display_pain(organ.owner, "你的头阵阵作痛……暴力的念头在脑中闪过，几乎让你作呕！")
 	organ.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/surgery_operation/organ/pacify/on_failure(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You screw up, rewiring [FORMAT_ORGAN_OWNER(organ)]'s brain the wrong way around..."),
-		span_warning("[surgeon] screws up, causing brain damage!"),
-		span_notice("[surgeon] completes the surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_notice("你搞砸了，把 [FORMAT_ORGAN_OWNER(organ)] 的大脑接线接反了……"),
+		span_warning("[surgeon] 搞砸了，造成了脑损伤！"),
+		span_notice("[surgeon] 完成了对 [FORMAT_ORGAN_OWNER(organ)] 大脑的手术。"),
 	)
-	display_pain(organ.owner, "Your head pounds, and it feels like it's getting worse!")
+	display_pain(organ.owner, "你的头阵阵作痛，而且感觉越来越严重！")
 	organ.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/surgery_operation/organ/pacify/mechanic
-	name = "delete aggression programming"
-	rnd_name = "Aggression Suppression Programming (Pacification)"
-	rnd_desc = "Install malware which permanently inhibits the aggression programming of the patient's neural network, making the patient unwilling to cause direct harm."
+	name = "删除攻击性程序"
+	rnd_name = "攻击抑制程序（安抚）"
+	rnd_desc = "安装恶意程序，永久抑制病人神经网络中的攻击性程序，使其不愿造成直接伤害。"
 	implements = list(
 		TOOL_MULTITOOL = 1,
 		TOOL_HEMOSTAT = 2.85,

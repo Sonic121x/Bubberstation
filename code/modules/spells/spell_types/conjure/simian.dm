@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/conjure/simian
-	name = "Summon Simians"
-	desc = "This spell reaches deep into the elemental plane of bananas (the monkey one, not the clown one), and \
-		summons monkeys and gorillas that will promptly flip out and attack everything in sight. Fun! \
-		Their lesser, easily manipulable minds will be convinced you are one of their allies, but only for a minute. Unless you also are a monkey."
+	name = "召唤猿猴"
+	desc = "此法术深入香蕉元素位面（是猴子那个，不是小丑那个）， \
+		召唤出原始猴子和低等大猩猩，它们会立刻发狂并攻击视野内的一切。真有趣！ \
+		它们那低等、易被操控的心智会相信你是它们的盟友，但只持续一分钟。除非你也是只猴子。"
 	button_icon_state = "simian"
 	sound = 'sound/music/antag/monkey.ogg'
 
@@ -35,7 +35,7 @@
 		gorilla_transformation = new(owner)
 		gorilla_transformation.Grant(owner)
 		spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC // Max level lets you cast it naked, for monkey larp.
-		to_chat(owner, span_notice("Your simian power has reached maximum capacity! You can now cast this spell naked, and have additionally been granted a gorilla transformation spell!"))
+		to_chat(owner, span_notice("你的猿猴之力已达到极限！你现在可以赤身裸体施放此法术，并且额外获得了一个猩猩变形法术！"))
 
 /datum/action/cooldown/spell/conjure/simian/cast(atom/cast_on)
 	. = ..()
@@ -65,7 +65,7 @@
 	// These are advanced monkeys we're talking about
 	var/datum/ai_controller/monkey/monky_controller = summoned_monkey.ai_controller
 	monky_controller.set_trip_mode(mode = FALSE)
-	summoned_monkey.fully_replace_character_name(summoned_monkey.real_name, "primal " + summoned_monkey.name)
+	summoned_monkey.fully_replace_character_name(summoned_monkey.real_name, "原始 " + summoned_monkey.name)
 
 	// Monkeys get a random gear tier, but it's more likely to be good the more leveled the spell is!
 	var/monkey_gear_tier = rand(0, 5) + (spell_level - 1)

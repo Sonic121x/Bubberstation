@@ -62,8 +62,8 @@
 			origins |= call_data["origin"]
 
 		if(LAZYLEN(origins) >= 3)
-			message_admins("RETA: Multiple emergency scenario detected! [target] has been called by [english_list(origins)] in the last 10 minutes. Consider station-wide emergency protocols.")
-			log_game("RETA: Multiple department emergency - [target] called by [english_list(origins)]")
+			message_admins("RETA: 检测到多起紧急情况！过去 10 分钟内 [target] 被 [english_list(origins)] 呼叫过。请考虑启动全站紧急预案。")
+			log_game("RETA: 多部门紧急情况 - [target] 被 [english_list(origins)] 呼叫")
 
 /// Finds eligible responders and grants them temporary access
 /proc/reta_find_and_grant_access(target_dept, origin_dept, duration_ds)
@@ -71,7 +71,7 @@
 
 	var/list/job_trims = GLOB.reta_job_trims[target_dept]
 	if(!LAZYLEN(job_trims))
-		log_reta("No job trims defined for department '[target_dept]'")
+		log_reta("部门 '[target_dept]' 未定义任何职业标识")
 		return FALSE
 
 	var/granted_count = 0
@@ -112,10 +112,10 @@
 		// Update all doors to show RETA lights for newly activated grants
 		update_all_doors_reta_lights()
 
-		log_reta("Granted temporary [origin_dept] access to [granted_count] [target_dept] department ID cards from a call by [origin_dept].")
+		log_reta("因 [origin_dept] 的呼叫，已向 [granted_count] 张 [target_dept] 部门身份证授予临时 [origin_dept] 访问权限。")
 		. = TRUE
 	else
-		log_reta("No [target_dept] personnel found who needed [origin_dept] access from a call by [origin_dept]. (Checked [total_players_checked] living players, [matching_trim_players] had matching trims)")
+		log_reta("未找到需要 [origin_dept] 访问权限的 [target_dept] 人员（来源为 [origin_dept] 的呼叫）。（已检查 [total_players_checked] 名在线玩家，其中 [matching_trim_players] 人的职业标识匹配）")
 
 	return .
 
@@ -132,17 +132,17 @@
 		"Mining" = list()
 	)
 
-	log_game("RETA: Starting job trim population...")
+	log_game("RETA: 开始填充职业标识……")
 	var/total_trims = 0
 	for(var/job_trim_path in subtypesof(/datum/id_trim/job))
 		var/datum/id_trim/job/trim = new job_trim_path()
 		total_trims++
 
 		if(!trim.job)
-			log_game("RETA: Trim [job_trim_path] has no job")
+			log_game("RETA: 职业标识 [job_trim_path] 没有关联职业")
 			continue
 		if(!trim.job.departments_bitflags)
-			log_game("RETA: Trim [job_trim_path] job [trim.job] has no departments_bitflags")
+			log_game("RETA: 职业标识 [job_trim_path] 的职业 [trim.job] 没有 departments_bitflags")
 			continue
 
 		if(trim.job.departments_bitflags & DEPARTMENT_BITFLAG_MEDICAL)
@@ -161,7 +161,7 @@
 			GLOB.reta_job_trims["Cargo"] += job_trim_path
 			GLOB.reta_job_trims["Mining"] += job_trim_path  // Mining uses CARGO bitflag
 
-	log_game("RETA: Processed [total_trims] trims. Final counts: Medical=[LAZYLEN(GLOB.reta_job_trims["Medical"])], Security=[LAZYLEN(GLOB.reta_job_trims["Security"])], Engineering=[LAZYLEN(GLOB.reta_job_trims["Engineering"])], Science=[LAZYLEN(GLOB.reta_job_trims["Science"])], Service=[LAZYLEN(GLOB.reta_job_trims["Service"])], Command=[LAZYLEN(GLOB.reta_job_trims["Command"])], Cargo=[LAZYLEN(GLOB.reta_job_trims["Cargo"])], Mining=[LAZYLEN(GLOB.reta_job_trims["Mining"])]")
+	log_game("RETA: 已处理 [total_trims] 个职业标识。最终统计：医疗=[LAZYLEN(GLOB.reta_job_trims["Medical"])]，安保=[LAZYLEN(GLOB.reta_job_trims["Security"])]，工程=[LAZYLEN(GLOB.reta_job_trims["Engineering"])]，科研=[LAZYLEN(GLOB.reta_job_trims["Science"])]，服务=[LAZYLEN(GLOB.reta_job_trims["Service"])]，指挥=[LAZYLEN(GLOB.reta_job_trims["Command"])]，货运=[LAZYLEN(GLOB.reta_job_trims["Cargo"])]，采矿=[LAZYLEN(GLOB.reta_job_trims["Mining"])]")
 
 /// Pushes UI updates to all consoles in the same origin department
 /proc/reta_push_ui_updates(origin, target)
@@ -265,7 +265,7 @@
 	GLOB.reta_active_grants[target_dept] -= origin_dept
 	if(!length(GLOB.reta_active_grants[target_dept]))
 		GLOB.reta_active_grants -= target_dept
-	log_reta("Cleaned up expired [origin_dept] grant for [target_dept] department")
+	log_reta("已清理 [target_dept] 部门过期的 [origin_dept] 授权")
 
 	// Update all doors to remove RETA lights for expired grants
 	update_all_doors_reta_lights()
@@ -295,7 +295,7 @@
 		if(!is_type_in_list(id_card.trim, job_trims))
 			continue
 
-		log_reta("Card trim [id_card.trim] matches [target_dept] department - applying active grants")
+		log_reta("证件职业标识 [id_card.trim] 匹配 [target_dept] 部门 - 正在应用有效授权")
 
 		// Apply all active grants for this department
 		for(var/origin_dept in GLOB.reta_active_grants[target_dept])
@@ -305,7 +305,7 @@
 
 			var/remaining_time = expiry_time - world.time
 			if(id_card.grant_reta_access(origin_dept, remaining_time))
-				log_reta("Auto-granted [origin_dept] access to newly created [id_card] ([target_dept] department)")
+				log_reta("已自动向新建的 [id_card] 授予 [origin_dept] 访问权限（[target_dept] 部门）")
 
 // Default config values
 #define RETA_DEFAULT_DURATION_DS 3000  // 5 minutes
@@ -313,7 +313,7 @@
 
 /// Initialize RETA config values
 /proc/reta_init_config()
-	log_world("RETA: System initialized with duration=[CONFIG_GET(number/reta_duration_ds)]ds, cooldown=[CONFIG_GET(number/reta_dept_cooldown_ds)]ds, enabled=[CONFIG_GET(flag/reta_enabled)]")
+	log_world("RETA: 系统已初始化，持续时间=[CONFIG_GET(number/reta_duration_ds)]ds，冷却=[CONFIG_GET(number/reta_dept_cooldown_ds)]ds，启用状态=[CONFIG_GET(flag/reta_enabled)]")
 
 #undef RETA_DEFAULT_DURATION_DS
 #undef RETA_DEFAULT_COOLDOWN_DS

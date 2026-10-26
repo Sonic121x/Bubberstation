@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/voice_of_god
-	name = "Voice of God"
-	desc = "Speak with an incredibly compelling voice, forcing listeners to obey your commands."
+	name = "神之声"
+	desc = "以一种极具感染力的声音说话，迫使听者服从你的命令。"
 	button_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "voice_of_god"
 	sound = 'sound/effects/magic/clockwork/invoke_general.ogg'
@@ -25,7 +25,7 @@
 	if(. & SPELL_CANCEL_CAST)
 		return
 
-	command = tgui_input_text(cast_on, "Speak with the Voice of God", "Command", max_length = MAX_MESSAGE_LEN)
+	command = tgui_input_text(cast_on, "以神之声说话", "命令", max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(src) || QDELETED(cast_on) || !can_cast_spell())
 		return . | SPELL_CANCEL_CAST
 	if(!command)
@@ -42,8 +42,8 @@
 	return
 
 /datum/action/cooldown/spell/voice_of_god/clown
-	name = "Voice of Clown"
-	desc = "Speak with an incredibly funny voice, startling people into obeying you for a brief moment."
+	name = "小丑之声"
+	desc = "用一种极其滑稽的声音说话，吓得人们短暂地服从你。"
 	sound = 'sound/misc/scary_horn.ogg'
 	cooldown_mod = 0.5
 	power_mod = 0.1

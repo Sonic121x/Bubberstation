@@ -9,14 +9,14 @@
  */
 /datum/action/cooldown/spell/list_target
 	/// The message displayed as the title of the tgui target input list.
-	var/choose_target_message = "Choose a target."
+	var/choose_target_message = "选择目标。"
 	/// Radius around the caster that living targets are picked to choose from
 	var/target_radius = 7
 
 /datum/action/cooldown/spell/list_target/PreActivate(atom/caster)
 	var/list/list_targets = get_list_targets(caster, target_radius)
 	if(!length(list_targets))
-		caster.balloon_alert(caster, "no targets nearby!")
+		caster.balloon_alert(caster, "附近没有目标！")
 		return FALSE
 
 	var/atom/chosen = tgui_input_list(caster, choose_target_message, name, sort_names(list_targets))
@@ -24,7 +24,7 @@
 		return FALSE
 
 	if(get_dist(chosen, caster) > target_radius)
-		caster.balloon_alert(caster, "they're too far!")
+		caster.balloon_alert(caster, "他们离得太远了！")
 		return FALSE
 
 	return Activate(chosen)

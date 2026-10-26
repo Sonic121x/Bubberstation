@@ -1,7 +1,7 @@
 
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
-	desc = "It's impolite to stare at a person's chest."
+	desc = "盯着别人的胸膛看是不礼貌的。"
 	icon_state = "default_human_chest"
 	max_damage = LIMB_MAX_HP_CORE
 	body_zone = BODY_ZONE_CHEST
@@ -61,7 +61,7 @@
 	//If someones chest is teleported away, they die pretty hard
 	if(!old_owner)
 		return
-	message_admins("[ADMIN_LOOKUPFLW(old_owner)] was gibbed after their chest teleported to [ADMIN_VERBOSEJMP(loc)].")
+	message_admins("[ADMIN_LOOKUPFLW(old_owner)] 的胸膛被传送到了 [ADMIN_VERBOSEJMP(loc)]，本人因此被炸成了碎肉。")
 	old_owner.gib(DROP_ALL_REMAINS)
 
 /obj/item/bodypart/chest/can_dismember(obj/item/item)
@@ -115,19 +115,19 @@
 /// Parent Type for arms, should not appear in game.
 /obj/item/bodypart/arm
 	abstract_type = /obj/item/bodypart/arm
-	name = "arm"
-	desc = "Hey buddy give me a HAND and report this to the github because you shouldn't be seeing this."
+	name = "手臂"
+	desc = "嘿，伙计，帮把手，把这事报告到 GitHub 上吧，因为你不该看到这个。"
 	abstract_type = /obj/item/bodypart/arm
-	attack_verb_continuous = list("slaps", "punches")
-	attack_verb_simple = list("slap", "punch")
+	attack_verb_continuous = list("扇击", "拳击")
+	attack_verb_simple = list("扇击", "拳击")
 	max_damage = LIMB_MAX_HP_DEFAULT
 	aux_layer = BODYPARTS_HIGH_LAYER
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_DEFAULT
 	can_be_disabled = TRUE
-	unarmed_attack_verbs = list("punch") /// The classic punch, wonderfully classic and completely random
-	unarmed_attack_verbs_continuous = list("punches")
-	grappled_attack_verb = "pummel"
-	grappled_attack_verb_continuous = "pummels"
+	unarmed_attack_verbs = list("拳击") /// The classic punch, wonderfully classic and completely random
+	unarmed_attack_verbs_continuous = list("拳击")
+	grappled_attack_verb = "猛击"
+	grappled_attack_verb_continuous = "猛击"
 	unarmed_damage_low = 5
 	unarmed_damage_high = 10
 	unarmed_pummeling_bonus = 1.5
@@ -197,7 +197,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger("You lose control of your [plaintext_zone]!"))
+				to_chat(owner, span_userdanger("你失去了对 [plaintext_zone] 的控制！"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -207,8 +207,8 @@
 /obj/item/bodypart/arm/animate_atom_living(mob/living/owner)
 	var/mob/living/basic/slapper = ..()
 	slapper.attack_vis_effect = ATTACK_EFFECT_PUNCH
-	slapper.attack_verb_continuous = "punches"
-	slapper.attack_verb_simple = "punch"
+	slapper.attack_verb_continuous = "拳击"
+	slapper.attack_verb_simple = "拳击"
 	return slapper
 
 /datum/status_effect/arm_speed_penalty
@@ -269,11 +269,11 @@
 /datum/actionspeed_modifier/arm_speed_penalty/right_hand
 
 /obj/item/bodypart/arm/left
-	name = "left arm"
-	desc = "Did you know that the word 'sinister' stems originally from the \
-		Latin 'sinestra' (left hand), because the left hand was supposed to \
-		be possessed by the devil? This arm appears to be possessed by no \
-		one though."
+	name = "左臂"
+	desc = "你知道吗？“sinister（险恶）”一词最初源自 \
+		拉丁语“sinestra”（左手），因为左手曾被认为 \
+		会受到魔鬼的操控？不过这条手臂看起来并没有 \
+		被任何人操控。"
 	icon_state = "default_human_l_arm"
 	body_zone = BODY_ZONE_L_ARM
 	body_part = ARM_LEFT
@@ -318,9 +318,9 @@
 	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_gain))
 
 /obj/item/bodypart/arm/right
-	name = "right arm"
-	desc = "Over 87% of humans are right handed. That figure is much lower \
-		among humans missing their right arm."
+	name = "右臂"
+	desc = "超过 87% 的人类是右撇子。 \
+		而在缺少右臂的人类中，这个比例要低得多。"
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
 	icon_state = "default_human_r_arm"
@@ -368,18 +368,18 @@
 /// Parent Type for legs, should not appear in game.
 /obj/item/bodypart/leg
 	abstract_type = /obj/item/bodypart/leg
-	name = "leg"
-	desc = "This item shouldn't exist. Talk about breaking a leg. Badum-Tss!"
+	name = "腿"
+	desc = "这件物品本不该存在。真是“断腿”式的笑话。咚锵——！"
 	abstract_type = /obj/item/bodypart/leg
-	attack_verb_continuous = list("kicks", "stomps")
-	attack_verb_simple = list("kick", "stomp")
+	attack_verb_continuous = list("踢击", "踩踏")
+	attack_verb_simple = list("踢击", "踩踏")
 	max_damage = LIMB_MAX_HP_DEFAULT
 	body_damage_coeff = LIMB_BODY_DAMAGE_COEFFICIENT_DEFAULT
 	can_be_disabled = TRUE
 	unarmed_attack_effect = ATTACK_EFFECT_KICK
 	body_zone = BODY_ZONE_L_LEG
-	unarmed_attack_verbs = list("kick") // The lovely kick, typically only accessable by attacking a grouded foe. 1.5 times better than the punch.
-	unarmed_attack_verbs_continuous = list("kicks")
+	unarmed_attack_verbs = list("踢击") // The lovely kick, typically only accessable by attacking a grouded foe. 1.5 times better than the punch.
+	unarmed_attack_verbs_continuous = list("踢击")
 	unarmed_damage_low = 7
 	unarmed_damage_high = 15
 	unarmed_effectiveness = 15
@@ -424,15 +424,15 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger("You lose control of your [plaintext_zone]!"))
+				to_chat(owner, span_userdanger("你失去了对 [plaintext_zone] 的控制！"))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 
 /obj/item/bodypart/leg/animate_atom_living(mob/living/owner)
 	var/mob/living/basic/kicker = ..()
 	kicker.attack_vis_effect = ATTACK_EFFECT_KICK
-	kicker.attack_verb_continuous = "kicks"
-	kicker.attack_verb_simple = "kick"
+	kicker.attack_verb_continuous = "踢击"
+	kicker.attack_verb_simple = "踢击"
 	return kicker
 
 /obj/item/bodypart/leg/apply_ownership(mob/living/carbon/new_owner)
@@ -453,9 +453,9 @@
 	owner?.update_bodypart_speed_modifier()
 
 /obj/item/bodypart/leg/left
-	name = "left leg"
-	desc = "Some athletes prefer to tie their left shoelaces first for good \
-		luck. In this instance, it probably would not have helped."
+	name = "左腿"
+	desc = "有些运动员喜欢先系左脚鞋带以求好运。 \
+		但在这种情况下，这大概也没什么用。"
 	icon_state = "default_human_l_leg"
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
@@ -499,10 +499,10 @@
 	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_gain))
 
 /obj/item/bodypart/leg/right
-	name = "right leg"
-	desc = "You put your right leg in, your right leg out. In, out, in, out, \
-		shake it all about. And apparently then it detaches.\n\
-		The hokey pokey has certainly changed a lot since space colonisation."
+	name = "右腿"
+	desc = "你把右腿伸进去，把右腿抽出来。伸进、抽出、伸进、抽出，\
+		再把它摇来摇去。然后它显然就掉下来了。\n\
+		自太空殖民以来，霍奇波奇舞确实变了不少。"
 	// alternative spellings of 'pokey' are available
 	icon_state = "default_human_r_leg"
 	body_zone = BODY_ZONE_R_LEG

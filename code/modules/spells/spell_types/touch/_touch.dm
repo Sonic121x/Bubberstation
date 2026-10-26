@@ -21,7 +21,7 @@
 /datum/action/cooldown/spell/touch
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
 	sound = 'sound/items/tools/welder.ogg'
-	invocation = "High Five!"
+	invocation = "击掌！"
 	invocation_type = INVOCATION_SHOUT
 
 	/// Typepath of what hand we create on initial cast.
@@ -29,9 +29,9 @@
 	/// Ref to the hand we currently have deployed.
 	var/obj/item/melee/touch_attack/attached_hand
 	/// The message displayed to the person upon creating the touch hand
-	var/draw_message = span_notice("You channel the power of the spell to your hand.")
+	var/draw_message = span_notice("你把法术的力量引导到手上。")
 	/// The message displayed upon willingly dropping / deleting / cancelling the touch hand before using it
-	var/drop_message = span_notice("You draw the power out of your hand.")
+	var/drop_message = span_notice("你把力量从手中抽离。")
 	/// If TRUE, the caster can willingly hit themselves with the hand
 	var/can_cast_on_self = FALSE
 
@@ -83,9 +83,9 @@
 	if(!cast_on.put_in_hands(new_hand, del_on_fail = TRUE))
 		reset_spell_cooldown()
 		if (cast_on.usable_hands == 0)
-			to_chat(cast_on, span_warning("You dont have any usable hands!"))
+			to_chat(cast_on, span_warning("你没有可用的手！"))
 		else
-			to_chat(cast_on, span_warning("Your hands are full!"))
+			to_chat(cast_on, span_warning("你的双手都占满了！"))
 		return FALSE
 
 	attached_hand = new_hand
@@ -193,7 +193,7 @@
 	if(!can_cast_spell(feedback = TRUE))
 		return FALSE
 	if(!(caster.mobility_flags & MOBILITY_USE))
-		caster.balloon_alert(caster, "can't reach out!")
+		caster.balloon_alert(caster, "够不着！")
 		return FALSE
 
 	return TRUE
@@ -217,7 +217,7 @@
 		return NONE
 
 	SEND_SIGNAL(caster, COMSIG_SPELL_TOUCH_SPELL_ACTUALLY_CAST, src, victim)
-	log_combat(caster, victim, "cast the touch spell [name] on", hand)
+	log_combat(caster, victim, "对目标施放了触碰法术 [name]", hand)
 	INVOKE_ASYNC(src, PROC_REF(spell_feedback), caster)
 	caster.do_attack_animation(victim)
 	caster.changeNext_move(CLICK_CD_MELEE)
@@ -238,7 +238,7 @@
 	switch(secondary_result)
 		// Continue will remove the hand here and stop
 		if(SECONDARY_ATTACK_CONTINUE_CHAIN)
-			log_combat(caster, victim, "cast the touch spell [name] on", hand, "(secondary / alt cast)")
+			log_combat(caster, victim, "对目标施放了触碰法术 [name]", hand, "（次要／替代施法）")
 			INVOKE_ASYNC(src, PROC_REF(spell_feedback), caster)
 			caster.do_attack_animation(victim)
 			caster.changeNext_move(CLICK_CD_MELEE)
@@ -328,8 +328,8 @@
  * These should generally just be dummy objects - holds name and icon stuff.
  */
 /obj/item/melee/touch_attack
-	name = "\improper outstretched hand"
-	desc = "High Five?"
+	name = "\improper 伸出的手"
+	desc = "来击个掌？"
 	icon = 'icons/obj/weapons/hand.dmi'
 	lefthand_file = 'icons/mob/inhands/items/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/touchspell_righthand.dmi'

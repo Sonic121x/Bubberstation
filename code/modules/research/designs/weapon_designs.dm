@@ -12,8 +12,8 @@
 	autolathe_exportable = FALSE //Redundant, there's already an autolathe version.
 
 /datum/design/c38_trac
-	name = "Speed Loader (.38 TRAC) (Less Lethal)"
-	desc = "Designed to quickly reload revolvers. TRAC bullets embed a tracking implant within the target's body. The implant's signal is incompatible with teleporters."
+	name = "快速装弹器（.38 追踪弹）（低致命性）"
+	desc = "用于快速为左轮手枪装弹。追踪弹会在目标体内植入一枚追踪植入体。该植入体的信号与传送器不兼容。"
 	id = "c38_trac"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -28,8 +28,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_hotshot
-	name = "Speed Loader (.38 Hot Shot) (Very Lethal)"
-	desc = "Designed to quickly reload revolvers. Hot Shot bullets contain an incendiary payload."
+	name = "快速装弹器（.38 炽热弹）（极高致命性）"
+	desc = "用于快速为左轮手枪装弹。炽热弹内装有燃烧装药。"
 	id = "c38_hotshot"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -43,8 +43,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_iceblox
-	name = "Speed Loader (.38 Iceblox) (Lethal/Very Lethal (Lizardpeople))"
-	desc = "Designed to quickly reload revolvers. Iceblox bullets contain a cryogenic payload."
+	name = "快速装弹器（.38 冰封弹）（致命/对蜥蜴人极高致命性）"
+	desc = "用于快速为左轮手枪装弹。冰封弹内装有低温装药。"
 	id = "c38_iceblox"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -58,8 +58,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_rubber
-	name = "Speed Loader (.38 Rubber) (Less Lethal)"
-	desc = "Designed to quickly reload revolvers. Rubber bullets are bouncy and less-than-lethal."
+	name = "快速装弹器（.38 橡胶弹）（低致命性）"
+	desc = "用于快速为左轮手枪装弹。橡胶子弹弹性十足，属于低致命弹药。"
 	id = "c38_rubber"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3)
@@ -70,8 +70,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_true
-	name = "Speedloader (.38 True Strike) (Lethal)"
-	desc = "Designed to quickly reload revolvers. Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
+	name = "快速装弹器（.38 必中弹）（致命）"
+	desc = "用于快速为左轮手枪装弹。子弹会以惊人的精度弹向新的目标，并能击穿披甲目标。"
 	id = "c38_true_strike"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -85,8 +85,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_flare
-	name = "Speedloader (.38 Flare) (VERY Lethal)"
-	desc = "Designed to quickly reload revolvers. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	name = "快速装弹器（.38 照明弹）（极高致命性）"
+	desc = "用于快速为左轮手枪装弹。照明弹弹壳会朝目标发射一束集中的粒子束，把目标照亮给所有人看。"
 	id = "c38_flare"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -101,10 +101,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_mag
-	name = "Magazine (.38) (Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Less powerful by design, guns chambered in .38 caliber rounds are still quite popular for use by police forces, \
-		private security firms and organizations unable to access energy-based nonlethal weaponry. The lower (relative) penetrative power is useful for preventing potential hull damage \
-		aboard space stations and shuttles."
+	name = "战斗步枪弹匣（.38）（致命）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。.38 口径武器的威力天生较低，但在警察部队、私人安保公司以及无法获得能量型非致命武器的组织中仍相当流行。\
+		相对较低的穿透力有助于避免对空间站与穿梭机的船体造成潜在损伤，\
+		因此在这些场合反而很有用。"
 	id = "c38_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -118,8 +118,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_trac_mag
-	name = "Magazine (.38 TRAC) (Less Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. TRAC bullets embed a tracking implant within the target's body. The implant's signal is incompatible with teleporters."
+	name = "战斗步枪弹匣（.38 追踪弹）（低致命性）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。追踪弹会在目标体内植入一枚追踪植入体。该植入体的信号与传送器不兼容。"
 	id = "c38_trac_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -135,8 +135,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_hotshot_mag
-	name = "Magazine (.38 Hot Shot) (Very Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Hot Shot bullets contain an incendiary payload."
+	name = "战斗步枪弹匣（.38 炽热弹）（极高致命性）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。炽热弹内装有燃烧装药。"
 	id = "c38_hotshot_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -151,8 +151,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_iceblox_mag
-	name = "Magazine (.38 Iceblox) (Lethal/Very Lethal (Lizardpeople))"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Iceblox bullets contain a cryogenic payload."
+	name = "战斗步枪弹匣（.38 冰封弹）（致命/对蜥蜴人极高致命性）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。冰封弹内装有低温装药。"
 	id = "c38_iceblox_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -167,8 +167,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_rubber_mag
-	name = "Magazine (.38 Rubber) (Less Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Rubber bullets are bouncy and less-than-lethal."
+	name = "战斗步枪弹匣（.38 橡胶弹）（低致命性）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。橡胶子弹弹性十足，属于低致命弹药。"
 	id = "c38_rubber_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -182,8 +182,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_true_mag
-	name = "Magazine (.38 True Strike) (Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Bullets bounce towards new targets with surprising accuracy and can strike through armored target"
+	name = "战斗步枪弹匣（.38 必中弹）（致命）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。子弹会以惊人的精度弹向新的目标，并能击穿披甲目标。"
 	id = "c38_true_strike_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -198,8 +198,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_flare_mag
-	name = "Magazine (.38 Flare) (VERY Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	name = "战斗步枪弹匣（.38 照明弹）（极高致命性）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。照明弹弹壳会朝目标发射一束集中的粒子束，把目标照亮给所有人看。"
 	id = "c38_flare_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -216,8 +216,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/c38_flare_mag
-	name = "Magazine (.38 Flare) (VERY Lethal)"
-	desc = "Designed to tactically reload a NT BR-38 Battle Rifle. Flare casings launch a concentrated particle beam towards a target, lighting them up for everyone to see."
+	name = "战斗步枪弹匣（.38 照明弹）（极高致命性）"
+	desc = "专为快速战术换弹 NT BR-38 战斗步枪而设计。照明弹弹壳会朝目标发射一束集中的粒子束，把目标照亮给所有人看。"
 	id = "c38_flare_mag"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -235,7 +235,7 @@
 
 /datum/design/rubbershot/sec
 	id = "sec_rshot"
-	desc = "Rubbershot shotgun shells. Fires a cloud of pellets. Rubber bullets are bouncy and less-than-lethal."
+	desc = "橡胶霰弹。发射一片弹丸。橡胶子弹弹性十足，属于低致命弹药。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -245,7 +245,7 @@
 
 /datum/design/beanbag_slug/sec
 	id = "sec_beanbag_slug"
-	desc = "Beanbag slug shotgun shells. Fires a single slug (a beanbag). Less-than-lethal."
+	desc = "豆袋独头霰弹。发射一枚独头弹（豆袋）。低致命性。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -255,8 +255,8 @@
 
 /datum/design/shotgun_dart/sec
 	id = "sec_dart"
-	desc = "Dart shotgun shells. Fires a single projectile (a dart). Can be filled with chemicals, \
-		which it injects upon striking a target. Otherwise, very weak."
+	desc = "飞镖霰弹。发射一枚弹丸（飞镖）。可装填化学物质，\
+		命中目标时将其注入。否则威力极弱。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -266,8 +266,8 @@
 
 /datum/design/incendiary_slug/sec
 	id = "sec_Islug"
-	desc = "Dart shotgun shells. Fires a single slug. Ignites a target upon hit, \
-		and leaves a trail of fire as it flies through the air. Very user unfriendly, but effective."
+	desc = "飞镖霰弹。发射一枚独头弹。命中时点燃目标，\
+		并在飞行途中留下一道火焰。对使用者极不友好，但很有效。"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
@@ -306,8 +306,8 @@
 */// BUBBER EDIT REMOVAL END
 
 /datum/design/pin_testing
-	name = "Test-Range Firing Pin"
-	desc = "This safety firing pin allows firearms to be operated within proximity to a firing range."
+	name = "靶场击针"
+	desc = "这种安全击针只允许在靶场附近开火。"
 	id = "pin_testing"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*5, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 3)
@@ -318,8 +318,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/pin_mindshield
-	name = "Mindshield Firing Pin"
-	desc = "This is a security firing pin which only authorizes users who are mindshield-implanted."
+	name = "心智护盾击针"
+	desc = "这种安保击针只授权植入了心智护盾的用户使用该武器。"
 	id = "pin_loyalty"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver = SMALL_MATERIAL_AMOUNT * 6, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 6, /datum/material/uranium =SMALL_MATERIAL_AMOUNT * 2)
@@ -330,8 +330,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/pin_explorer
-	name = "Outback Firing Pin"
-	desc = "This firing pin only shoots while ya ain't on station, fair dinkum!"
+	name = "内陆击针"
+	desc = "这种击针只在你不在站内时才能开火，没毛病，伙计！"
 	id = "pin_explorer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/iron =SMALL_MATERIAL_AMOUNT*5)
@@ -342,8 +342,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/stunrevolver
-	name = "Tesla Cannon Part Kit (Lethal)"
-	desc = "The kit for a high-tech cannon that fires internal, reusable bolt cartridges in a revolving cylinder. The cartridges can be recharged using conventional rechargers."
+	name = "特斯拉炮零件套件（致命）"
+	desc = "一套用于制造高科技炮的套件，它以旋转弹巢发射可重复使用的内置电击弹。这些电击弹可用常规充电器充电。"
 	id = "stunrevolver"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5)
@@ -355,8 +355,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/nuclear_gun
-	name = "Advanced Energy Gun Part Kit (Lethal/Nonlethal)"
-	desc = "The kit for an energy gun with an experimental miniaturized reactor."
+	name = "高级能量枪零件套件（致命/非致命）"
+	desc = "一套用于制造配备实验性微型反应堆的能量枪的套件。"
 	id = "nuclear_gun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/uranium =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
@@ -368,8 +368,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/tele_shield
-	name = "Telescopic Riot Shield"
-	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
+	name = "伸缩盾"
+	desc = "一面由轻质材料制成的先进防暴盾，可折叠以便收纳。"
 	id = "tele_shield"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver =SMALL_MATERIAL_AMOUNT * 3, /datum/material/titanium =SMALL_MATERIAL_AMOUNT * 2)
@@ -381,8 +381,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/ballistic_shield
-	name = "Ballistic Shield"
-	desc = "A heavy shield designed for blocking projectiles, weaker to melee."
+	name = "防弹盾"
+	desc = "一面专为阻挡弹丸而设计的重盾，对近战防御较弱。"
 	id = "ballistic_shield"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
@@ -394,8 +394,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/beamrifle
-	name = "Event Horizon Anti-Existential Beam Rifle Part Kit (DOOMSDAY DEVICE)"
-	desc = "The kit that produces a weapon made to end your foes on an existential level. Why the fuck can you make this?"
+	name = "事件视界反存在光束步枪零件套件（末日装置）"
+	desc = "一套用于制造能在存在层面上终结敌人的武器的套件。你到底为什么能造出这东西？"
 	id = "beamrifle"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/diamond =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 4, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2.25, /datum/material/gold =SHEET_MATERIAL_AMOUNT * 2.5)
@@ -407,8 +407,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/rapidsyringe
-	name = "Rapid Syringe Gun"
-	desc = "A gun that fires many syringes."
+	name = "速射注射枪"
+	desc = "一把能连续发射大量注射器的枪。"
 	id = "rapidsyringe"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
@@ -419,8 +419,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL //uwu
 
 /datum/design/temp_gun
-	name = "Temperature Gun Part Kit (Less Lethal/Very Lethal (Lizardpeople))"
-	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
+	name = "温控枪零件套件（低致命性/对蜥蜴人极其致命）"
+	desc = "一把能射出温度子弹——差不多算是——来改变温度的枪。"//Change it if you want
 	id = "temp_gun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -432,8 +432,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/flora_gun
-	name = "Floral Somatoray"
-	desc = "A tool that discharges controlled radiation which induces mutation in plant cells. Harmless to other organic life."
+	name = "植物体细胞射线枪"
+	desc = "一种释放受控辐射、诱导植物细胞突变的工具。对其他有机生命无害。"
 	id = "flora_gun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
@@ -444,8 +444,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/large_grenade
-	name = "Large Grenade Casing"
-	desc = "A grenade that affects a larger area and use larger containers."
+	name = "大型手榴弹外壳"
+	desc = "一种作用范围更大、可使用更大容器的化学手榴弹。"
 	id = "large_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -456,8 +456,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/pyro_grenade
-	name = "Pyro Grenade Casing"
-	desc = "An advanced grenade that is able to self ignite its mixture."
+	name = "高温手榴弹外壳"
+	desc = "一种能自行点燃其内容物的高级化学手榴弹。"
 	id = "pyro_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/plasma =SMALL_MATERIAL_AMOUNT * 5)
@@ -468,8 +468,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/cryo_grenade
-	name = "Cryo Grenade Casing"
-	desc = "An advanced grenade that rapidly cools its contents upon detonation."
+	name = "低温手榴弹外壳"
+	desc = "一种引爆后会迅速冷却内容物的高级化学手榴弹。"
 	id = "cryo_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT, /datum/material/silver = SMALL_MATERIAL_AMOUNT * 5)
@@ -480,8 +480,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/adv_grenade
-	name = "Advanced Release Grenade Casing"
-	desc = "An advanced grenade that can be detonated several times, best used with a repeating igniter."
+	name = "高级分次释放手榴弹外壳"
+	desc = "一种可多次引爆的高级化学手榴弹，最好搭配重复点火器使用。"
 	id = "adv_grenade"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
@@ -492,8 +492,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/xray
-	name = "X-ray Laser Gun Part Kit (Lethal)"
-	desc = "Not quite as menacing as it sounds"
+	name = "X 射线激光枪零件套件（致命）"
+	desc = "其实没有听起来那么可怕。"
 	id = "xray_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/gold =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT)
@@ -505,8 +505,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/ioncarbine
-	name = "Ion Carbine Part Kit (Nonlethal/Highly Destructive/Lethal (Silicons))"
-	desc = "How to Dismantle a Cyborg: The Gun."
+	name = "离子卡宾枪零件套件（非致命/高破坏力/对硅基生命极其致命）"
+	desc = "《如何拆解半机械人：枪械版》。"
 	id = "ioncarbine"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 3, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 4, /datum/material/uranium =SHEET_MATERIAL_AMOUNT)
@@ -518,8 +518,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/wormhole_projector
-	name = "Bluespace Wormhole Projector"
-	desc = "A projector that emits high density quantum-coupled bluespace beams. Requires a bluespace anomaly core to function."
+	name = "蓝空间虫洞投射器"
+	desc = "一种发射高密度量子耦合蓝空间光束的投射器。需要蓝空间异常核心才能运作。"
 	id = "wormholeprojector"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver =SHEET_MATERIAL_AMOUNT, /datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/diamond =SHEET_MATERIAL_AMOUNT, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -530,10 +530,10 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/lasershell
-	name = "Scatter Laser Shotgun Shell (Lethal)"
-	desc = "A high-tech shotgun shell which houses an internal capacitor and laser focusing crystal inside of a shell casing. \
-		Able to be fired from conventional ballistic shotguns with minimal rifling degradation. Also leaves most targets covered \
-		in grotesque burns."
+	name = "散射激光霰弹（致命）"
+	desc = "一种高科技霰弹，弹壳内装有内置电容器与激光聚焦晶体。\
+		可用常规弹道霰弹枪发射，膛线磨损极小，也会让多数目标糊满\
+		狰狞的烧伤。"
 	id = "lasershell"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold = SMALL_MATERIAL_AMOUNT * 2)
@@ -544,9 +544,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/flechette
-	name = "Flechette Shotgun Shell (Lethal)"
-	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
-		into outsides."
+	name = "飞镖霰弹（致命）"
+	desc = "一种装满小型金属飞镖的霰弹壳。能在血肉与凯夫拉上扎出许多小孔，适合把某人的内脏\
+		变成外脏。"
 	id = "flechetteshell"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
@@ -557,9 +557,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/techshell
-	name = "Unloaded Technological Shotshell"
-	desc = "A high-tech shotgun shell which can be crafted into more advanced shells to produce unique effects. \
-		Does nothing on its own."
+	name = "未装填科技霰弹"
+	desc = "一种高科技霰弹，可加工成更高级的霰弹以产生独特效果。\
+		单独一枚则毫无作用。"
 	id = "techshotshell"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
@@ -570,9 +570,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/flechette
-	name = "Flechette Shotgun Shell (Lethal)"
-	desc = "A shotgun casing filled with small metal darts. Pokes many tiny holes into meat and kevlar alike. Useful for turning someone's insides \
-		into outsides."
+	name = "飞镖霰弹（致命）"
+	desc = "一种装满小型金属飞镖的霰弹壳。能在血肉与凯夫拉上扎出许多小孔，适合把某人的内脏\
+		变成外脏。"
 	id = "flechetteshell"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
@@ -583,9 +583,9 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/donkflechette
-	name = "Donk Co. 'Donk Spike' Flechette Shotgun Shell (Lethal)"
-	desc = "A shotgun casing filled with small plastic darts. That's right, plastic. Do you really think plastic is that scary? Sure, it would hurt to be \
-		shot by this, but is it really going to do that much damage? You decide, pal, I'm not your mother. I'm just a computer."
+	name = "咚克公司“咚克尖刺”飞镖霰弹（致命）"
+	desc = "一种装满小型塑料飞镖的霰弹壳。没错，塑料。你真觉得塑料有那么吓人吗？被这玩意打中\
+		确实会疼，但真的会造成多少伤害呢？你自己判断吧，老兄，我不是你妈。我只是台电脑。"
 	id = "donkshell"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)
@@ -596,8 +596,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/tear_gas_40mm
-	name = "40mm Tear Gas Grenade Shell (Less Lethal)"
-	desc = "Looking to stop a riot or put down those damn space hippies in their beat up space caravan? We've got the grenade for you!"
+	name = "40mm 催泪瓦斯榴弹（低致命性）"
+	desc = "想平息一场暴乱，或者收拾掉那些开着破旧太空房车到处跑的太空嬉皮士？我们有专门的手榴弹给你！"
 	id = "tear_gas_shell"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2)
@@ -607,8 +607,8 @@
 	)
 
 /datum/design/rubber_40mm
-	name = "40mm Rubber Shell (Less Lethal)"
-	desc = "Launch a rubber puck straight into an assistant's head at high velocities today!"
+	name = "40mm 橡胶弹（低致命性）"
+	desc = "今天就以高速把橡胶弹丸射进助理的脑袋里吧！"
 	id = "rubber_puck_shell"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 2)
@@ -618,8 +618,8 @@
 	)
 
 /datum/design/suppressor
-	name = "Suppressor"
-	desc = "A reverse-engineered suppressor that fits on most small arms with threaded barrels."
+	name = "消音器"
+	desc = "一种逆向工程得到的消音器，可安装在大多数带螺纹枪管的小型枪械上。"
 	id = "suppressor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT, /datum/material/silver =SMALL_MATERIAL_AMOUNT*5)
@@ -630,8 +630,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/gravitygun
-	name = "One-point Gravitational Manipulator"
-	desc = "A multi-mode device that blasts one-point bluespace-gravitational bolts that locally distort gravity. Requires a gravitational anomaly core to function."
+	name = "单点引力操纵器"
+	desc = "一种多模式装置，可发射单点蓝空间引力束，造成局部引力扭曲。需要引力异常核心才能运作。"
 	id = "gravitygun"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 4, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 4, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 6, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 6, /datum/material/diamond =SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT * 1.5)
@@ -642,8 +642,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/largecrossbow
-	name = "Energy Crossbow Part Kit (Less Lethal/Contraband)"
-	desc = "A kit to reverse-engineer a proto-kinetic accelerator into an energy crossbow, favored by syndicate infiltration teams and carp hunters."
+	name = "能量弩零件套件（低致命性/违禁品）"
+	desc = "一套逆向工程原型动能加速器、将其改造成能量弩的套件，深受辛迪加渗透小队和鲤鱼猎人的青睐。"
 	id = "largecrossbow"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/uranium =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
@@ -655,8 +655,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/cleric_mace
-	name = "Cleric Mace"
-	desc = "A mace fit for a cleric. Useful for bypassing plate armor, but too bulky for much else."
+	name = "教士钉锤"
+	desc = "一把适合教士使用的钉锤。对付板甲很好用，但过于笨重，别的事就难办了。"
 	id = "cleric_mace"
 	build_type = AUTOLATHE
 	materials = list(/datum/material_slot/weapon_head = SHEET_MATERIAL_AMOUNT * 4.5, /datum/material_slot/handle = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -664,8 +664,8 @@
 	category = list(RND_CATEGORY_IMPORTED)
 
 /datum/design/liberator_gun
-	name = "The Liberator"
-	desc = "A dirt cheap 3D printed gun. Only holds one bullet, and is infamous for sometimes exploding on it's user."
+	name = "解放者"
+	desc = "一把便宜得离谱的 3D 打印枪。只能装一发子弹，还以偶尔把使用者炸死而臭名昭著。"
 	id = "liberator_gun"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 2, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5)
@@ -673,8 +673,8 @@
 	category = list(RND_CATEGORY_IMPORTED)
 
 /datum/design/stun_boomerang
-	name = "OZtek Boomerang"
-	desc = "Uses reverse flow gravitodynamics to flip its personal gravity back to the thrower mid-flight. Also functions similar to a stun baton."
+	name = "OZtek 回旋镖"
+	desc = "利用逆流引力动力学，在飞行途中将自身的引力翻转向投掷者。也能像电击棍一样使用。"
 	id = "stun_boomerang"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5, /datum/material/gold =SHEET_MATERIAL_AMOUNT)
@@ -685,8 +685,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/photon_cannon
-	name = "Photon Cannon Part Kit (Nonlethal)"
-	desc = "A kit to reverse-engineer a photon cannon, a weapon that generates a shortly-lived miniature sun. Technically brightens up the room, effectively blinds everyone in it. Requires a flux anomaly core to finish."
+	name = "光子炮零件套件（非致命）"
+	desc = "一套逆向工程光子炮的套件。光子炮能生成一颗转瞬即逝的微型太阳，严格来说确实照亮了房间，实际上却把里面所有人都晃瞎了。需要磁通异常核心才能完成。"
 	id = "photon_cannon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 7, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 5)

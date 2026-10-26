@@ -4,7 +4,7 @@
 /////////////////////////////////////////
 
 /datum/design/fire_extinguisher_advanced
-	name = "Advanced Fire Extinguisher"
+	name = "高级灭火器"
 	id = "adv_fire_extinguisher"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/titanium =SMALL_MATERIAL_AMOUNT*5, /datum/material/gold =SMALL_MATERIAL_AMOUNT*5)
@@ -15,8 +15,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/handdrill
-	name = "Hand Drill"
-	desc = "A small electric hand drill with an interchangeable screwdriver and bolt bit"
+	name = "手持电钻"
+	desc = "一把小型电动手持电钻，配有可互换的螺丝刀头与螺栓批头。"
 	id = "handdrill"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*1.75, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT*1.25)
@@ -27,8 +27,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/jawsoflife
-	name = "Jaws of Life"
-	desc = "A small, compact Jaws of Life with an interchangeable pry jaws and cutting jaws"
+	name = "救生钳"
+	desc = "一套小巧紧凑的救生钳，配有可互换的撬动钳口与剪切钳口。"
 	id = "jawsoflife" // added one more requirment since the Jaws of Life are a bit OP
 	build_path = /obj/item/crowbar/power
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -40,8 +40,8 @@
 	autolathe_exportable = FALSE
 
 /datum/design/exwelder
-	name = "Experimental Welding Tool"
-	desc = "An experimental welder capable of self-fuel generation."
+	name = "实验性焊接工具"
+	desc = "一种能自行生成燃料的实验性焊接工具。"
 	id = "exwelder"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*5, /datum/material/plasma =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/uranium =SMALL_MATERIAL_AMOUNT * 2)
@@ -52,8 +52,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rangedanalyzer
-	name = "Experimental Long-range Gas Analyzer"
-	desc = "An experimental gas analyzer capable of operating at long distance"
+	name = "实验性远程气体分析仪"
+	desc = "一种可在远距离工作的实验性气体分析仪。"
 	id = "rangedanalyzer"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.2, /datum/material/gold =SMALL_MATERIAL_AMOUNT * 3, /datum/material/bluespace=SMALL_MATERIAL_AMOUNT * 2)
@@ -64,7 +64,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/rpd
-	name = "Rapid Pipe Dispenser (RPD)"
+	name = "快速管道分配器（RPD）"
 	id = "rpd_loaded"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*37.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT*18.75)
@@ -75,8 +75,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_loaded
-	name = "Rapid Construction Device"
-	desc = "A tool that can construct and deconstruct walls, airlocks and floors on the fly."
+	name = "快速建造装置"
+	desc = "一种能即时建造与拆除墙壁、气闸和地板的工具。"
 	id = "rcd_loaded"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 30, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 15)
@@ -90,8 +90,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rtd_loaded
-	name = "Rapid Tiling Device"
-	desc = "A tool that can lay & destroy floor tiles on the fly."
+	name = "快速铺砖装置"
+	desc = "一种能即时铺设与拆除地砖的工具。"
 	id = "rtd_loaded"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 15, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.25)
@@ -102,7 +102,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_ammo
-	name = "RCD Matter Cartridge"
+	name = "RCD 物质弹药筒"
 	id = "rcd_ammo"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT * 6, /datum/material/glass= SHEET_MATERIAL_AMOUNT * 3)
@@ -113,8 +113,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/frames
-	name = "RCD frames designs upgrade"
-	desc = "Adds computer and machine frame designs to the RCD."
+	name = "RCD 高级升级：框架"
+	desc = "为 RCD 增加机器框架与电脑框架的设计图。"
 	id = "rcd_upgrade_frames"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
@@ -125,8 +125,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/simple_circuits
-	name = "RCD simple circuits designs upgrade"
-	desc = "Adds the ability to produce simple circuits using the RCD."
+	name = "RCD 高级升级：简易电路"
+	desc = "为 RCD 增加制作简易电路的能力。"
 	id = "rcd_upgrade_simple_circuits"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
@@ -137,8 +137,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/anti_interrupt
-	name = "RCD anti disruption designs upgrade"
-	desc = "Prevents interruption of RCD construction and deconstruction."
+	name = "RCD 高级升级：防干扰"
+	desc = "防止 RCD 的建造与拆除过程被打断。"
 	id = "rcd_upgrade_anti_interrupt"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -154,8 +154,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/cooling
-	name = "RCD cooling upgrade"
-	desc = "Allows the RCD to more quickly perform multiple actions at once."
+	name = "RCD 高级升级：强化冷却"
+	desc = "让 RCD 能更快地连续执行多次操作。"
 	id = "rcd_upgrade_cooling"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -170,8 +170,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/furnishing
-	name = "RCD furnishing upgrade"
-	desc = "Adds the ability to furnish areas using the RCD."
+	name = "RCD 高级升级：家具"
+	desc = "为 RCD 增加布置家具的能力。"
 	id = "rcd_upgrade_furnishing"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/titanium =SHEET_MATERIAL_AMOUNT)
@@ -182,8 +182,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/silo_link
-	name = "Advanced RCD silo link upgrade"
-	desc = "Upgrades the RCD to be able to pull materials from the ore silo. The RCD must be linked to the silo using a multitool before it will function."
+	name = "RCD 高级升级：筒仓连接"
+	desc = "升级 RCD，使其能从矿石筒仓提取材料。使用前必须先用多功能工具将 RCD 与筒仓连接。"
 	id = "rcd_upgrade_silo_link"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/silver =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/titanium =SHEET_MATERIAL_AMOUNT*1.25, /datum/material/bluespace =SHEET_MATERIAL_AMOUNT*1.25)
@@ -194,8 +194,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rpd_upgrade/unwrench
-	name = "RPD unwrenching upgrade"
-	desc = "Adds reverse wrench mode to the RPD. Attention, due to budget cuts, the mode is hard linked to the destroy mode control button."
+	name = "RPD 高级升级：扳手模式"
+	desc = "为 RPD 增加反向扳手模式。注意：由于预算削减，该模式被硬性绑定在摧毁模式控制按钮上。"
 	id = "rpd_upgrade_unwrench"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.25)
@@ -206,8 +206,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/rld_mini
-	name = "Mini Rapid Light Device (MRLD)"
-	desc = "A tool that can deploy portable and standing lighting orbs and glowsticks."
+	name = "微型快速照明装置（MRLD）"
+	desc = "一种可部署便携式与立式照明球及荧光棒的工具。"
 	id = "rld_mini"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*10, /datum/material/glass =SHEET_MATERIAL_AMOUNT*5, /datum/material/plastic =SHEET_MATERIAL_AMOUNT*4, /datum/material/gold =SHEET_MATERIAL_AMOUNT)
@@ -218,8 +218,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/geneshears
-	name = "Botanogenetic Plant Shears"
-	desc = "A high tech, high fidelity pair of plant shears, capable of cutting genetic traits out of a plant."
+	name = "植物基因剪"
+	desc = "一把高科技、高保真的植物剪，能从植物中切取基因性状。"
 	id = "gene_shears"
 	build_path = /obj/item/geneshears
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -230,7 +230,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/plumbing_rcd_service
-	name = "Service Plumbing Constructor"
+	name = "服务管道建造器"
 	id = "plumbing_rcd_service"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*37.5, /datum/material/glass =SHEET_MATERIAL_AMOUNT*18.75, /datum/material/plastic =HALF_SHEET_MATERIAL_AMOUNT)
@@ -241,7 +241,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/design/biopsy_tool
-	name = "Biopsy Tool"
+	name = "活检工具"
 	id = "biopsy_tool"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT*2, /datum/material/glass =SHEET_MATERIAL_AMOUNT*1.5)
@@ -256,8 +256,8 @@
 /////////////////////////////////////////
 
 /datum/design/alienwrench
-	name = "Alien Wrench"
-	desc = "An advanced wrench obtained through Abductor technology."
+	name = "外星扳手"
+	desc = "通过绑架者技术获得的高级扳手。"
 	id = "alien_wrench"
 	build_path = /obj/item/wrench/abductor
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -268,8 +268,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/alienwirecutters
-	name = "Alien Wirecutters"
-	desc = "Advanced wirecutters obtained through Abductor technology."
+	name = "外星剪线钳"
+	desc = "通过绑架者技术获得的高级剪线钳。"
 	id = "alien_wirecutters"
 	build_path = /obj/item/wirecutters/abductor
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -280,8 +280,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/alienscrewdriver
-	name = "Alien Screwdriver"
-	desc = "An advanced screwdriver obtained through Abductor technology."
+	name = "外星螺丝刀"
+	desc = "通过绑架者技术获得的高级螺丝刀。"
 	id = "alien_screwdriver"
 	build_path = /obj/item/screwdriver/abductor
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -292,8 +292,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/aliencrowbar
-	name = "Alien Crowbar"
-	desc = "An advanced crowbar obtained through Abductor technology."
+	name = "外星撬棍"
+	desc = "通过绑架者技术获得的高级撬棍。"
 	id = "alien_crowbar"
 	build_path = /obj/item/crowbar/abductor
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -304,8 +304,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/alienwelder
-	name = "Alien Welding Tool"
-	desc = "An advanced welding tool obtained through Abductor technology."
+	name = "外星焊接工具"
+	desc = "通过绑架者技术获得的高级焊接工具。"
 	id = "alien_welder"
 	build_path = /obj/item/weldingtool/abductor
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -316,8 +316,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/alienmultitool
-	name = "Alien Multitool"
-	desc = "An advanced multitool obtained through Abductor technology."
+	name = "外星多功能工具"
+	desc = "通过绑架者技术获得的高级多功能工具。"
 	id = "alien_multitool"
 	build_path = /obj/item/multitool/abductor
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -332,8 +332,8 @@
 /////////////////////////////////////////
 
 /datum/design/alienscalpel
-	name = "Alien Scalpel"
-	desc = "An advanced scalpel obtained through Abductor technology."
+	name = "外星手术刀"
+	desc = "通过绑架者技术获得的高级手术刀。"
 	id = "alien_scalpel"
 	build_path = /obj/item/scalpel/alien
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -344,8 +344,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/alienhemostat
-	name = "Alien Hemostat"
-	desc = "An advanced hemostat obtained through Abductor technology."
+	name = "外星止血钳"
+	desc = "通过绑架者技术获得的高级止血钳。"
 	id = "alien_hemostat"
 	build_path = /obj/item/hemostat/alien
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -356,8 +356,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/alienretractor
-	name = "Alien Retractor"
-	desc = "An advanced retractor obtained through Abductor technology."
+	name = "外星牵开器"
+	desc = "通过绑架者技术获得的高级牵开器。"
 	id = "alien_retractor"
 	build_path = /obj/item/retractor/alien
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -368,8 +368,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/aliensaw
-	name = "Alien Circular Saw"
-	desc = "An advanced surgical saw obtained through Abductor technology."
+	name = "外星圆锯"
+	desc = "通过绑架者技术获得的高级手术锯。"
 	id = "alien_saw"
 	build_path = /obj/item/circular_saw/alien
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -380,8 +380,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/aliendrill
-	name = "Alien Drill"
-	desc = "An advanced drill obtained through Abductor technology."
+	name = "外星钻"
+	desc = "通过绑架者技术获得的高级钻头。"
 	id = "alien_drill"
 	build_path = /obj/item/surgicaldrill/alien
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -392,8 +392,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/aliencautery
-	name = "Alien Cautery"
-	desc = "An advanced cautery obtained through Abductor technology."
+	name = "外星烧灼器"
+	desc = "通过绑架者技术获得的高级烧灼器。"
 	id = "alien_cautery"
 	build_path = /obj/item/cautery/alien
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -404,8 +404,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/wirebrush
-	name = "Wirebrush"
-	desc = "A tool to remove rust from walls."
+	name = "钢丝刷"
+	desc = "一种用于清除墙壁锈迹的工具。"
 	id = "wirebrush"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	category = list(RND_CATEGORY_INITIAL, RND_CATEGORY_TOOLS)
@@ -418,8 +418,8 @@
 	)
 
 /datum/design/bolter_wrench
-	name = "Bolter Wrench"
-	desc = "A wrench that can unbolt airlocks regardless of power status."
+	name = "闩锁扳手"
+	desc = "一种无论供电状态如何都能拧开气闸螺栓的扳手。"
 	id = "bolter_wrench"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
@@ -430,8 +430,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/shuttle_blueprints
-	name = "Shuttle Blueprints"
-	desc = "Blueprints suitable for constructing shuttles"
+	name = "穿梭机蓝图"
+	desc = "适合建造穿梭机的蓝图。"
 	id = "shuttle_blueprints"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
@@ -440,8 +440,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/shuttle_remote
-	name = "Shuttle Remote Control"
-	desc = "A remote which can send away or try to dock shuttles once linked to a navigation console."
+	name = "穿梭机遥控器"
+	desc = "一种遥控器，与导航控制台连接后可派遣穿梭机或尝试使其对接。"
 	id = "shuttle_remote"
 	build_type = PROTOLATHE
 	build_path = /obj/item/shuttle_remote

@@ -1,7 +1,7 @@
 /datum/surgery_operation/basic/revival
-	name = "shock brain"
-	rnd_name = "Brain Defibrillation (Revival)"
-	desc = "Use a defibrillator to shock a patient's brain back to life."
+	name = "电击大脑"
+	rnd_name = "脑部除颤（复苏）"
+	desc = "使用除颤器电击病人的大脑，使其恢复生命。"
 	implements = list(
 		/obj/item/shockpaddles = 1,
 		/obj/item/melee/touch_attack/shock = 1,
@@ -23,7 +23,7 @@
 	return image(/obj/item/shockpaddles)
 
 /datum/surgery_operation/basic/revival/all_required_strings()
-	return ..() + list("the patient must be deceased", "the patient must be in a revivable state")
+	return ..() + list("病人必须已经死亡", "病人必须处于可复苏状态")
 
 /datum/surgery_operation/basic/revival/state_check(mob/living/patient)
 	if(patient.stat != DEAD)
@@ -61,19 +61,19 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You prepare to give [patient]'s brain the spark of life with [tool]."),
-		span_notice("[surgeon] prepares to give [patient]'s brain the spark of life with [tool]."),
-		span_notice("[surgeon] prepares to give [patient]'s brain the spark of life."),
+		span_notice("你准备用 [tool] 为 [patient] 的大脑注入生命火花。"),
+		span_notice("[surgeon] 准备用 [tool] 为 [patient] 的大脑注入生命火花。"),
+		span_notice("[surgeon] 准备为 [patient] 的大脑注入生命火花。"),
 	)
-	patient.notify_revival("Someone is trying to zap your brain.", source = patient)
+	patient.notify_revival("有人正试图电击你的大脑。", source = patient)
 
 /datum/surgery_operation/basic/revival/on_success(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You successfully shock [patient]'s brain with [tool]..."),
-		span_notice("[surgeon] sends a powerful shock to [patient]'s brain with [tool]..."),
-		span_notice("[surgeon] sends a powerful shock to [patient]'s brain..."),
+		span_notice("你成功用 [tool] 电击了 [patient] 的大脑……"),
+		span_notice("[surgeon] 用 [tool] 向 [patient] 的大脑发送了一记强力电击……"),
+		span_notice("[surgeon] 向 [patient] 的大脑发送了一记强力电击……"),
 	)
 	patient.grab_ghost()
 	patient.adjust_oxy_loss(-50)
@@ -88,7 +88,7 @@
 
 /// Called when you have been successfully raised from the dead
 /datum/surgery_operation/basic/revival/proc/on_revived(mob/living/surgeon, mob/living/patient)
-	patient.visible_message(span_notice("...[patient] wakes up, alive and aware!"))
+	patient.visible_message(span_notice("……[patient] 醒了过来，活着，而且意识清醒！"))
 	patient.emote("gasp")
 	if(HAS_MIND_TRAIT(surgeon, TRAIT_MORBID)) // Contrary to their typical hatred of resurrection, it wouldn't be very thematic if morbid people didn't love playing god
 		surgeon.add_mood_event("morbid_revival_success", /datum/mood_event/morbid_revival_success)
@@ -96,20 +96,20 @@
 
 /// Called when revival fails
 /datum/surgery_operation/basic/revival/proc/on_no_revive(mob/living/surgeon, mob/living/patient)
-	patient.visible_message(span_warning("...[patient.p_they()] convulse[patient.p_s()], then lie[patient.p_s()] still."))
+	patient.visible_message(span_warning("……[patient] 抽搐了几下，随后便一动不动。"))
 	patient.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 199) // MAD SCIENCE
 
 /datum/surgery_operation/basic/revival/on_failure(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		patient,
-		span_warning("You shock [patient]'s brain with [tool], but [patient.p_they()] [patient.p_do()]n't react."),
-		span_warning("[surgeon] shocks [patient]'s brain with [tool], but [patient.p_they()] [patient.p_do()]n't react."),
-		span_warning("[surgeon] shocks [patient]'s brain with [tool], but [patient.p_they()] [patient.p_do()]n't react."),
+		span_warning("你用 [tool] 电击了 [patient] 的大脑，但对方毫无反应。"),
+		span_warning("[surgeon] 用 [tool] 电击了 [patient] 的大脑，但对方毫无反应。"),
+		span_warning("[surgeon] 用 [tool] 电击了 [patient] 的大脑，但对方毫无反应。"),
 	)
 
 /datum/surgery_operation/basic/revival/mechanic
-	name = "full system reboot"
+	name = "系统完全重启"
 	required_biotype = MOB_ROBOTIC
 
 /datum/surgery_operation/basic/revival/mechanic/brain_check(obj/item/organ/brain/brain)

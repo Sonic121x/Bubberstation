@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/vow_of_silence
-	name = "Break Vow"
-	desc = "Break your vow of silence. Permanently."
+	name = "破誓"
+	desc = "打破你的沉默誓言。永久地。"
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
 	button_icon = 'icons/mob/actions/actions_mime.dmi'
@@ -21,14 +21,14 @@
 	REMOVE_TRAIT(remove_from, TRAIT_MIMING, "[type]")
 
 /datum/action/cooldown/spell/vow_of_silence/before_cast(atom/cast_on)
-	if(tgui_alert(usr, "Are you sure? There's no going back.", "Break Vow", list("I'm Sure", "Abort")) != "I'm Sure")
+	if(tgui_alert(usr, "你确定吗？一旦开始就无法回头了。", "破誓", list("我确定", "放弃")) != "我确定")
 		return SPELL_CANCEL_CAST
 	return ..()
 
 /datum/action/cooldown/spell/vow_of_silence/cast(mob/living/carbon/human/cast_on)
 	. = ..()
-	to_chat(cast_on, span_notice("You break your vow of silence."))
-	cast_on.log_message("broke [cast_on.p_their()] vow of silence.", LOG_GAME)
+	to_chat(cast_on, span_notice("你打破了自己的沉默誓言。"))
+	cast_on.log_message("打破了 [cast_on.p_their()] 沉默誓言。", LOG_GAME)
 	cast_on.add_mood_event("vow", /datum/mood_event/broken_vow)
 	REMOVE_TRAIT(cast_on, TRAIT_MIMING, "[type]")
 	var/datum/job/mime/mime_job = SSjob.get_job(JOB_MIME)

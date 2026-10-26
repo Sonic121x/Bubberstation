@@ -1,5 +1,5 @@
 /obj/item/organ
-	name = "organ"
+	name = "器官"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	abstract_type = /obj/item/organ
 	w_class = WEIGHT_CLASS_SMALL
@@ -66,7 +66,7 @@
 	/// Status Effects that are given to the holder of the organ.
 	var/list/organ_effects
 	/// String displayed when the organ has decayed.
-	var/failing_desc = "has decayed for too long, and has turned a sickly color. It probably won't work without repairs."
+	var/failing_desc = "衰败得太久，已经变成了病态的颜色。不修复的话恐怕无法运作。"
 	/// Assoc list of alternate zones where this can organ be slotted to organ slot for that zone
 	var/list/valid_zones = null
 	/// The cell line we can spawn on us
@@ -203,7 +203,7 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER) || isobserver(user))
 		if(HAS_TRAIT(src, TRAIT_CLIENT_STARTING_ORGAN))
-			. += span_info("Lived in and homely. Proven to work. This should fetch a high price on the market.")
+			. += span_info("有人长期使用过，朴实可靠。已被证明可以正常工作。这在市场上应该能卖个好价钱。")
 
 	if(organ_flags & ORGAN_FAILING)
 		. += span_warning("[src] [failing_desc]")
@@ -211,19 +211,19 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 
 	if(damage > high_threshold)
 		if(IS_ROBOTIC_ORGAN(src))
-			. += span_warning("[src] seems to be malfunctioning.")
+			. += span_warning("[src] 似乎发生了故障。")
 			return
-		. += span_warning("[src] is starting to look discolored.")
+		. += span_warning("[src] 开始变色了。")
 
 /// Returns a line to be displayed regarding valid insertion zones
 /obj/item/organ/proc/zones_tip()
 	if (!valid_zones)
-		return span_notice("It should be inserted in the [parse_zone(zone)].")
+		return span_notice("它应该被植入[chinese_body_zone_display(zone)]。")
 
 	var/list/fit_zones = list()
 	for (var/valid_zone in valid_zones)
-		fit_zones += parse_zone(valid_zone)
-	return span_notice("It should be inserted in the [english_list(fit_zones, and_text = " or ")].")
+		fit_zones += chinese_body_zone_display(parse_zone(valid_zone))
+	return span_notice("它应该被植入 [jointext(fit_zones, "或")]。")
 
 ///Used as callbacks by object pooling
 /obj/item/organ/proc/exit_wardrobe()
@@ -464,23 +464,23 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 /// Called by medical scanners to get a simple summary of how healthy the organ is. Returns an empty string if things are fine.
 /obj/item/organ/proc/get_status_text(scanpower, add_tooltips, colored = TRUE)
 	if(scanpower >= SCANPOWER_ADVANCED && (organ_flags & ORGAN_HAZARDOUS))
-		return conditional_tooltip("[colored ? "<font color='#cc3333'>" : ""]Harmful Foreign Body[colored ? "</font>" : ""]", "Remove surgically.", add_tooltips)
+		return conditional_tooltip("[colored ? "<font color='#cc3333'>" : ""]有害异物[colored ? "</font>" : ""]", "需手术取出。", add_tooltips)
 
 	if(organ_flags & ORGAN_EMP)
-		return conditional_tooltip("[colored ? "<font color='#cc3333'>" : ""]EMP-Derived Failure[colored ? "</font>" : ""]", "Repair or replace surgically.", add_tooltips)
+		return conditional_tooltip("[colored ? "<font color='#cc3333'>" : ""]EMP 导致的故障[colored ? "</font>" : ""]", "需手术修复或更换。", add_tooltips)
 
 	var/tech_text = ""
 	if(owner.has_reagent(/datum/reagent/inverse/technetium))
-		tech_text = "[round((damage / maxHealth) * 100, 1)]% damaged"
+		tech_text = "损伤 [round((damage / maxHealth) * 100, 1)]%"
 
 	if(organ_flags & ORGAN_FAILING)
-		return conditional_tooltip("[colored ? "<font color='#cc3333'>" : ""][tech_text || "Non-Functional"][colored ? "</font>" : ""]", "Repair or replace surgically.", add_tooltips)
+		return conditional_tooltip("[colored ? "<font color='#cc3333'>" : ""][tech_text || "无法运作"][colored ? "</font>" : ""]", "需手术修复或更换。", add_tooltips)
 
 	if(damage > high_threshold)
-		return conditional_tooltip("[colored ? "<font color='#ff9933'>" : ""][tech_text || "Severely Damaged"][colored ? "</font>" : ""]", "[healing_factor ? "Treat with rest or use specialty medication." : "Repair surgically or use specialty medication."]", add_tooltips && owner.stat != DEAD)
+		return conditional_tooltip("[colored ? "<font color='#ff9933'>" : ""][tech_text || "严重损伤"][colored ? "</font>" : ""]", "[healing_factor ? "休息或使用专用药物治疗。" : "手术修复或使用专用药物治疗。"]", add_tooltips && owner.stat != DEAD)
 
 	if(damage > low_threshold)
-		return conditional_tooltip("[colored ? "<font color='#ffcc33'>" : ""][tech_text || "Mildly Damaged"][colored ? "</font>" : ""]", "[healing_factor ? "Treat with rest." : "Use specialty medication."]", add_tooltips && owner.stat != DEAD)
+		return conditional_tooltip("[colored ? "<font color='#ffcc33'>" : ""][tech_text || "轻度损伤"][colored ? "</font>" : ""]", "[healing_factor ? "休息即可。" : "使用专用药物治疗。"]", add_tooltips && owner.stat != DEAD)
 
 	if(tech_text)
 		return "[colored ? "<font color='#33cc33'>" : ""][tech_text][colored ? "</font>" : ""]"
@@ -515,8 +515,8 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 	if(damage < low_threshold)
 		return ""
 	if(damage < high_threshold)
-		return span_warning("[self_aware ? "[capitalize(slot)]" : "It"] feels a bit off.")
-	return span_boldwarning("[self_aware ? "[capitalize(slot)]" : "It"] feels terrible!")
+		return span_warning("[self_aware ? chinese_scanner_label(slot) : "它"]感觉有点不对劲。")
+	return span_boldwarning("[self_aware ? chinese_scanner_label(slot) : "它"]感觉糟透了！")
 
 /// Tries to replace the existing organ on the passed mob with this one, with special handling for replacing a brain without ghosting target
 /obj/item/organ/proc/replace_into(mob/living/carbon/new_owner)
@@ -530,9 +530,9 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 	if(!HAS_TRAIT(eater, TRAIT_READY_TO_OPERATE))
 		return NONE
 	if(eater == feeder)
-		to_chat(feeder, span_warning("You feel it unwise to eat [source] while you're undergoing surgery."))
+		to_chat(feeder, span_warning("你觉得在接受手术期间吃掉 [source] 不太明智。"))
 	else
-		to_chat(feeder, span_warning("The only thing you could think of doing with [source] right now is feeding it to [eater], but that doesn't seem right."))
+		to_chat(feeder, span_warning("现在你唯一能想到对 [source] 做的事就是把它喂给 [eater]，但这似乎不太合适。"))
 	return BLOCK_EAT_ATTEMPT
 
 /// Get all possible organ slots by checking every organ, and then store it and give it whenever needed

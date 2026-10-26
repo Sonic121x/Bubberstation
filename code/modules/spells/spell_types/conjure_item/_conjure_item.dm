@@ -38,7 +38,7 @@
 	var/mob/living/living_owner = owner
 	if(living_owner.usable_hands < 1)
 		if(feedback)
-			owner.balloon_alert(owner, "no free hands!")
+			owner.balloon_alert(owner, "没有空余的手！")
 		return FALSE
 
 	return TRUE

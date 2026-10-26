@@ -1,13 +1,13 @@
 /obj/item/bodypart/arm/left/ghetto
-	name = "left peg arm"
-	desc = "A roughly hewn wooden peg replaces where a forearm should be. It's simple and sturdy, clearly made in a hurry with whatever materials were at hand. Despite its crude appearance, it gets the job done."
+	name = "木桩左臂"
+	desc = "一段粗略削制的木桩取代了原本前臂的位置。它简单而结实，显然是随手用现有材料匆忙做成的。尽管外表粗糙，但它确实管用。"
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
 	limb_id = BODYPART_ID_PEG
 	icon_state = "peg_l_arm"
 	bodytype = BODYTYPE_PEG
 	should_draw_greyscale = FALSE
-	attack_verb_simple = list("bashed", "slashed")
+	attack_verb_simple = list("重击", "劈砍")
 	unarmed_damage_low = 3
 	unarmed_damage_high = 9
 	unarmed_effectiveness = 5
@@ -25,15 +25,15 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/arm/right/ghetto
-	name = "right peg arm"
-	desc = "A roughly hewn wooden peg replaces where a forearm should be. It's simple and sturdy, clearly made in a hurry with whatever materials were at hand. Despite its crude appearance, it gets the job done."
+	name = "木桩右臂"
+	desc = "一段粗略削制的木桩取代了原本前臂的位置。它简单而结实，显然是随手用现有材料匆忙做成的。尽管外表粗糙，但它确实管用。"
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
 	limb_id = BODYPART_ID_PEG
 	icon_state = "peg_r_arm"
 	bodytype = BODYTYPE_PEG
 	should_draw_greyscale = FALSE
-	attack_verb_simple = list("bashed", "slashed")
+	attack_verb_simple = list("重击", "劈砍")
 	unarmed_damage_low = 3
 	unarmed_damage_high = 9
 	unarmed_effectiveness = 5
@@ -51,8 +51,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/left/ghetto
-	name = "left peg leg"
-	desc = "Fashioned from what looks suspiciously like a table leg, this peg leg brings a whole new meaning to 'dining on the go.' It's a bit wobbly and creaks ominously with every step, but at least you can claim to have the most well-balanced diet on the seven seas."
+	name = "木桩左腿"
+	desc = "这条木桩腿是用一根看着很像桌腿的东西做成的，给“边走边吃”赋予了全新的含义。它有点摇晃，每走一步都会发出不祥的嘎吱声，但至少你可以宣称自己拥有七大洋上最均衡的饮食。"
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
 	limb_id = BODYPART_ID_PEG
@@ -75,8 +75,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/right/ghetto
-	name = "right peg leg"
-	desc = "Fashioned from what looks suspiciously like a table leg, this peg leg brings a whole new meaning to 'dining on the go.' It's a bit wobbly and creaks ominously with every step, but at least you can claim to have the most well-balanced diet on the seven seas."
+	name = "木桩右腿"
+	desc = "这条木桩腿是用一根看着很像桌腿的东西做成的，给“边走边吃”赋予了全新的含义。它有点摇晃，每走一步都会发出不祥的嘎吱声，但至少你可以宣称自己拥有七大洋上最均衡的饮食。"
 	icon = 'icons/mob/human/species/ghetto.dmi'
 	icon_static = 'icons/mob/human/species/ghetto.dmi'
 	limb_id = BODYPART_ID_PEG

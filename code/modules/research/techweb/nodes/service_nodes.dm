@@ -1,8 +1,8 @@
 /datum/techweb_node/office_equip
 	id = TECHWEB_NODE_OFFICE_EQUIP
 	starting_node = TRUE
-	display_name = "Office Equipment"
-	description = "Nanotrasen's finest in ergonomic office tech, ensuring station admin stays productive and compliant with corporate policies — because even in space, paperwork never stops."
+	display_name = "办公设备"
+	description = "纳米传讯最出色的符合人体工学的办公科技，确保空间站行政人员保持高效，并始终遵守公司政策——毕竟即便在太空中，文书工作也从不间断。"
 	design_ids = list(
 		"fax",
 		"sec_pen",
@@ -44,8 +44,8 @@
 
 /datum/techweb_node/sanitation
 	id = TECHWEB_NODE_SANITATION
-	display_name = "Advanced Sanitation Technology"
-	description = "Nanotrasen's latest in janitorial tech, making sure the station stays spotless and bear-free."
+	display_name = "高级清洁技术"
+	description = "纳米传讯最新的清洁科技，确保空间站保持一尘不染、没有熊出没。"
 	prereq_ids = list(TECHWEB_NODE_OFFICE_EQUIP)
 	design_ids = list(
 		"advmop",
@@ -64,8 +64,8 @@
 
 /datum/techweb_node/consoles
 	id = TECHWEB_NODE_CONSOLES
-	display_name = "Civilian Consoles"
-	description = "User-friendly consoles for non-technical crew members, enhancing communication and access to essential station information."
+	display_name = "民用控制台"
+	description = "面向非技术岗位船员的人性化控制台，便于沟通并获取必要的空间站信息。"
 	prereq_ids = list(TECHWEB_NODE_OFFICE_EQUIP)
 	design_ids = list(
 		"comconsole",
@@ -105,8 +105,8 @@
 
 /datum/techweb_node/gaming
 	id = TECHWEB_NODE_GAMING
-	display_name = "Gaming"
-	description = "For the slackers on the station."
+	display_name = "游戏娱乐"
+	description = "给空间站里的偷懒鬼准备的。"
 	prereq_ids = list(TECHWEB_NODE_CONSOLES)
 	design_ids = list(
 		"arcade_battle",
@@ -120,8 +120,8 @@
 /datum/techweb_node/cafeteria_equip
 	id = TECHWEB_NODE_CAFETERIA_EQUIP
 	starting_node = TRUE
-	display_name = "Cafeteria Equipment"
-	description = "When standard-issue tubed food no longer satisfies the station crew's appetite..."
+	display_name = "食堂设备"
+	description = "当标准配给的管装食品再也满足不了空间站船员的胃口时……"
 	design_ids = list(
 		"griddle",
 		"microwave",
@@ -149,8 +149,8 @@
 
 /datum/techweb_node/food_proc
 	id = TECHWEB_NODE_FOOD_PROC
-	display_name = "Food Processing"
-	description = "Top-tier kitchen appliances from Nanotrasen, designed to keep the crew well-fed and happy."
+	display_name = "食品加工"
+	description = "纳米传讯出品的顶级厨房电器，旨在让船员吃得饱、过得好。"
 	prereq_ids = list(TECHWEB_NODE_CAFETERIA_EQUIP)
 	design_ids = list(
 		"deepfryer",
@@ -176,8 +176,8 @@
 /datum/techweb_node/fishing_equip
 	id = TECHWEB_NODE_FISHING_EQUIP
 	starting_node = TRUE
-	display_name = "Fishing Equipment"
-	description = "Basic fishing gear tailored for space station environments, perfect for extraterrestrial aquatic pursuits."
+	display_name = "钓鱼装备"
+	description = "为空间站环境量身定制的基础钓具，完美适用于地外水上活动。"
 	design_ids = list(
 		"fishing_portal_generator",
 		"fishing_rod",
@@ -187,8 +187,8 @@
 
 /datum/techweb_node/fishing_equip_adv
 	id = TECHWEB_NODE_FISHING_EQUIP_ADV
-	display_name = "Advanced Fishing Tools"
-	description = "Continuing advancements in fishing technology, incorporating cutting-edge features in space fishing operations. Just don't try this on space carps..."
+	display_name = "高级钓具"
+	description = "钓鱼技术持续进步，为太空垂钓作业引入了尖端功能。只是别拿太空鲤鱼来试……"
 	prereq_ids = list(TECHWEB_NODE_FISHING_EQUIP)
 	design_ids = list(
 		"fishing_rod_tech",
@@ -205,8 +205,8 @@
 
 /datum/techweb_node/marine_util
 	id = TECHWEB_NODE_MARINE_UTIL
-	display_name = "Marine Utility"
-	description = "Fish are nice to look at and all, but they can be put to use."
+	display_name = "水产利用"
+	description = "鱼看着是不错，但它们也能派上用场。"
 	prereq_ids = list(TECHWEB_NODE_FISHING_EQUIP_ADV)
 	design_ids = list(
 		"bioelec_gen",
@@ -219,8 +219,8 @@
 
 /datum/techweb_node/fishing_anomalous
 	id = TECHWEB_NODE_FISHING_ANOMALOUS
-	display_name = "Anomalous Fishing"
-	description = "For the truly adventurous fisher, these experimental tools could augment your catches in unpredictable ways."
+	display_name = "异常钓鱼"
+	description = "对于真正爱冒险的钓客来说，这些实验性工具能以难以预测的方式让你的收获更丰富。"
 	prereq_ids = list(TECHWEB_NODE_FISHING_EQUIP_ADV, TECHWEB_NODE_ANOMALY_RESEARCH)
 	design_ids = list(
 		"anomalous_fishing_hook",

@@ -1,8 +1,8 @@
 /datum/techweb_node/atmos
 	id = TECHWEB_NODE_ATMOS
 	starting_node = TRUE
-	display_name = "Atmospherics"
-	description = "Maintaining station air and related life support systems."
+	display_name = "大气学"
+	description = "维持空间站空气及相关生命维持系统。"
 	design_ids = list(
 		"atmos_control",
 		"atmosalerts",
@@ -24,8 +24,8 @@
 
 /datum/techweb_node/gas_compression
 	id = TECHWEB_NODE_GAS_COMPRESSION
-	display_name = "Gas Compression"
-	description = "Highly pressurized gases hold potential for unlocking immense energy capabilities."
+	display_name = "气体压缩"
+	description = "高度压缩的气体蕴藏着释放巨大能量潜力的可能。"
 	prereq_ids = list(TECHWEB_NODE_ATMOS)
 	design_ids = list(
 		"tank_compressor",
@@ -54,8 +54,8 @@
 
 /datum/techweb_node/plasma_control
 	id = TECHWEB_NODE_PLASMA_CONTROL
-	display_name = "Controlled Plasma"
-	description = "Experiments with high-pressure gases and electricity resulting in crystallization and controlled plasma reactions."
+	display_name = "受控等离子"
+	description = "通过高压气体与电力的实验，实现结晶化与受控的等离子反应。"
 	prereq_ids = list(TECHWEB_NODE_GAS_COMPRESSION, TECHWEB_NODE_ENERGY_MANIPULATION)
 	design_ids = list(
 		"electrolyzer",
@@ -71,8 +71,8 @@
 
 /datum/techweb_node/fusion
 	id = TECHWEB_NODE_FUSION
-	display_name = "Fusion"
-	description = "Investigating fusion reactor technology to achieve sustainable and efficient energy production through controlled plasma reactions involving noble gases."
+	display_name = "核聚变"
+	description = "研究聚变反应堆技术，通过涉及惰性气体的受控等离子反应，实现可持续且高效的能量生产。"
 	prereq_ids = list(TECHWEB_NODE_PLASMA_CONTROL)
 	design_ids = list(
 		"HFR_core",
@@ -93,8 +93,8 @@
 
 /datum/techweb_node/exp_tools
 	id = TECHWEB_NODE_EXP_TOOLS
-	display_name = "Experimental Tools"
-	description = "Enhances the functionality and versatility of station tools."
+	display_name = "实验性工具"
+	description = "强化站内工具的功能与通用性。"
 	prereq_ids = list(TECHWEB_NODE_FUSION)
 	design_ids = list(
 		"flatpacker",
@@ -116,8 +116,8 @@
 
 /datum/techweb_node/rcd_upgrade
 	id = TECHWEB_NODE_RCD_UPGRADE
-	display_name = "Rapid Construction Device Upgrades"
-	description = "New designs and enhancements for RCD and RPD."
+	display_name = "快速建造装置升级"
+	description = "为 RCD 与 RPD 提供的新设计与增强功能。"
 	prereq_ids = list(TECHWEB_NODE_EXP_TOOLS, TECHWEB_NODE_PARTS_BLUESPACE)
 	design_ids = list(
 		"rcd_upgrade_silo_link",

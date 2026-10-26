@@ -1,8 +1,8 @@
 /datum/action/cooldown/spell/charge
-	name = "Charge"
-	desc = "This spell can be used to recharge a variety of things in your hands, \
-		from magical artifacts to electrical components. A creative wizard can even use it \
-		to grant magical power to a fellow magic user."
+	name = "充能术"
+	desc = "这个法术可以为你手中的许多东西充能，\
+		从魔法器物到电子元件都行。有创意的巫师还能用它\
+		为同行注入魔力。"
 	button_icon_state = "charge"
 
 	sound = 'sound/effects/magic/charge.ogg'
@@ -30,29 +30,29 @@
 			pulled_has_spells = TRUE
 
 		if(pulled_has_spells)
-			to_chat(pulled_living, span_notice("You feel raw magic flowing through you. It feels good!"))
-			to_chat(cast_on, span_notice("[pulled_living] suddenly feels very warm!"))
+			to_chat(pulled_living, span_notice("你感到原始魔力在体内流淌，感觉很棒！"))
+			to_chat(cast_on, span_notice("[pulled_living] 突然变得浑身温热！"))
 			return
 
-		to_chat(pulled_living, span_notice("You feel very strange for a moment, but then it passes."))
+		to_chat(pulled_living, span_notice("你有那么一瞬间感觉非常奇怪，但随后就过去了。"))
 
 	// Then charge their main hand item, then charge their offhand item
 	var/obj/item/to_charge = cast_on.get_active_held_item() || cast_on.get_inactive_held_item()
 	if(!to_charge)
-		to_chat(cast_on, span_notice("You feel magical power surging through your hands, but the feeling rapidly fades."))
+		to_chat(cast_on, span_notice("你感到魔力在双手间涌动，但那种感觉很快就消退了。"))
 		return
 
 	var/charge_return = SEND_SIGNAL(to_charge, COMSIG_ITEM_MAGICALLY_CHARGED, src, cast_on)
 
 	if(QDELETED(to_charge))
-		to_chat(cast_on, span_warning("[src] seems to react adversely with [to_charge]!"))
+		to_chat(cast_on, span_warning("[src] 似乎与 [to_charge] 产生了不良反应！"))
 		return
 
 	if(charge_return & COMPONENT_ITEM_BURNT_OUT)
-		to_chat(cast_on, span_warning("[to_charge] seems to react negatively to [src], becoming uncomfortably warm!"))
+		to_chat(cast_on, span_warning("[to_charge] 似乎对 [src] 起了负面反应，变得烫得让人难受！"))
 
 	else if(charge_return & COMPONENT_ITEM_CHARGED)
-		to_chat(cast_on, span_notice("[to_charge] suddenly feels very warm!"))
+		to_chat(cast_on, span_notice("[to_charge] 突然变得浑身温热！"))
 
 	else
-		to_chat(cast_on, span_notice("[to_charge] doesn't seem to be react to [src]."))
+		to_chat(cast_on, span_notice("[to_charge] 似乎对 [src] 没有反应。"))

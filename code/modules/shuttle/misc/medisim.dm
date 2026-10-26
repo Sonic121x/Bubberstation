@@ -1,18 +1,18 @@
 ///These are for the medisim shuttle
 
 /obj/machinery/computer/reality_simulation
-	name = "reality simulation computer"
-	desc = "A computer calculating the medieval times. Uh, wow. Is this bad boy quantum?"
+	name = "现实模拟计算机"
+	desc = "一台用于计算中世纪时代的计算机。呃，哇。这玩意儿是量子的吗？"
 
 /obj/item/paper/crumpled/retired_designs
-	name = "crumpled notes on cuirass design"
-	default_raw_text = {"Yeah, you may as well just melt this crap back down into metal.<br>
+	name = "揉皱的胸甲设计笔记"
+	default_raw_text = {"是啊，你还不如把这堆破烂重新熔成金属算了。<br>
 	<br>
 	<br>
-	What else am I supposed to say? Nanotrasen thinks these authentic cuirass models are too expensive for the simulation watchers.
-	That's bullshit, but my hands are tied. But you know. If one of you cargo folk up at central command take a cuirass for yourself
-	instead of throwing the damn thing out, like, I'm sure nobody would notice or care. OK, but I'm sitting here on an official
-	NT shuttle encouraging you to break spacelaw. Damn, I'm bored as fuck. I was kidding. Melt em. See you guys soon.
+	我还能说什么呢？纳米传讯觉得这些正品胸甲模型对模拟观察员来说太贵了。
+	这简直胡扯，但我也是身不由己。不过你知道吧。要是你们货运的哪位在中央指挥部给自己拿一件胸甲，
+	而不是把这鬼东西扔掉，我敢说没人会注意到或在意。行吧，但我坐在这艘官方的
+	NT 穿梭机上，鼓励你违反太空法。该死，我真是无聊透了。我开玩笑的。熔了它们吧。回头见。
 	<br>
 	<br>
-	<i>the rest of the page is filled with various doodles of people fighting with swords.</i>"}
+	<i>页面其余部分画满了人们用剑打斗的各种涂鸦。</i>"}

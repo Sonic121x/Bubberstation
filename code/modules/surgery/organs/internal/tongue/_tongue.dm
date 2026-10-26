@@ -1,12 +1,12 @@
 /obj/item/organ/tongue
-	name = "tongue"
-	desc = "A fleshy muscle mostly used for lying."
+	name = "舌头"
+	desc = "一块主要用于说谎的肉感肌肉。"
 	icon_state = "tongue"
 
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
-	attack_verb_continuous = list("licks", "slobbers", "slaps", "frenches", "tongues")
-	attack_verb_simple = list("lick", "slobber", "slap", "french", "tongue")
+	attack_verb_continuous = list("舔", "流口水", "拍打", "舌吻", "用舌头顶")
+	attack_verb_simple = list("舔", "流口水", "拍打", "舌吻", "用舌头顶")
 	voice_filter = ""
 	visual = FALSE
 	/**
@@ -27,7 +27,7 @@
 	var/list/languages_native
 	///changes the verbage of how you speak. (Permille -> says <-, "I just used a verb!")
 	///i hate to say it, but because of sign language, this may have to be a component. and we may have to do some insane shit like putting a component on a component
-	var/say_mod = "says"
+	var/say_mod = "说道"
 	///for temporary overrides of the above variable.
 	var/temp_say_mod = ""
 
@@ -65,11 +65,11 @@
 	. = ..()
 	if(HAS_MIND_TRAIT(user, TRAIT_ENTRAILS_READER)|| isobserver(user))
 		if(liked_foodtypes)
-			. += span_info("This tongue has an affinity for the taste of [english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC))].")
+			. += span_info("这条舌头偏爱吃 [english_list(bitfield_to_list(liked_foodtypes, FOOD_FLAGS_IC))] 的味道。")
 		if(disliked_foodtypes)
-			. += span_info("This tongue has an aversion for the taste of [english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC))].")
+			. += span_info("这条舌头讨厌 [english_list(bitfield_to_list(disliked_foodtypes, FOOD_FLAGS_IC))] 的味道。")
 		if(toxic_foodtypes)
-			. += span_info("This tongue's physiology makes [english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC))] toxic.")
+			. += span_info("这条舌头的生理结构会让 [english_list(bitfield_to_list(toxic_foodtypes, FOOD_FLAGS_IC))] 变得有毒。")
 
 /**
  * Used in setting up the "languages possible" list.
@@ -187,10 +187,10 @@
 	sounds[sound_override] = EMOTE_SOUND_TONGUE
 
 /obj/item/organ/tongue/lizard
-	name = "forked tongue"
-	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
+	name = "分叉舌"
+	desc = "一条细长的肌肉，常见于爬行类种族，据说还兼职当鼻子用。"
 	icon_state = "tonguelizard"
-	say_mod = "hisses"
+	say_mod = "嘶嘶说道"
 	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
 	modifies_speech = TRUE
 	languages_native = list(/datum/language/draconic, /datum/language/ashtongue) //SKYRAT EDIT: Ashtongue for Ashwalkers
@@ -239,14 +239,14 @@
 	AddComponent(/datum/component/speechmod, replacements = CONFIG_GET(flag/russian_text_formation) ? russian_speech_replacements : speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech))) // SKYRAT EDIT CHANGE - ORIGINAL: AddComponent(/datum/component/speechmod, replacements = speech_replacements, should_modify_speech = CALLBACK(src, PROC_REF(should_modify_speech)))
 
 /obj/item/organ/tongue/lizard/silver
-	name = "silver tongue"
-	desc = "A genetic branch of the high society Silver Scales that gives them their silverizing properties. To them, it is everything, and society traitors have their tongue forcibly revoked. Oddly enough, it itself is just blue."
+	name = "银舌"
+	desc = "这是上流社会银鳞帮的一支基因分支，赋予了他们“化银”的特性。对他们而言，这便是全部，背叛帮会的成员会被强行摘除舌头。奇怪的是，这条舌头本身却是蓝色的。"
 	icon_state = "silvertongue"
 	actions_types = list(/datum/action/cooldown/turn_to_statue)
 
 /datum/action/cooldown/turn_to_statue
-	name = "Become Statue"
-	desc = "Become an elegant silver statue. Its durability and yours are directly tied together, so make sure you're careful."
+	name = "化为雕像"
+	desc = "变成一尊优雅的银色雕像。雕像的耐久与你的生命直接相连，所以务必小心。"
 	button_icon = 'icons/obj/medical/organs/organs.dmi'
 	button_icon_state = "silvertongue"
 	cooldown_time = 10 SECONDS
@@ -282,11 +282,11 @@
 
 	if(isnull(statue))
 		if(feedback)
-			owner.balloon_alert(owner, "you can't seem to statue-ize!")
+			owner.balloon_alert(owner, "你似乎没法变成雕像了！")
 		return FALSE // permanently bricked
 	if(IS_UNCONSCIOUS_OR_CRIT(owner))
 		if(feedback)
-			owner.balloon_alert(owner, "you're too weak!")
+			owner.balloon_alert(owner, "你太虚弱了！")
 		return FALSE
 
 	return TRUE
@@ -297,30 +297,30 @@
 	var/is_statue = owner.loc == statue
 	if(!is_statue)
 		owner.visible_message(
-			span_notice("[owner] strikes a glorious pose."),
-			span_notice("You strike a glorious pose as you become a statue!"),
+			span_notice("[owner] 摆出了一个辉煌的姿势。"),
+			span_notice("你摆出辉煌的姿势，化作了一尊雕像！"),
 		)
 
-	owner.balloon_alert(owner, is_statue ? "breaking free..." : "striking a pose...")
+	owner.balloon_alert(owner, is_statue ? "正在挣脱……" : "正在摆造型……")
 	if(!do_after(owner, (is_statue ? 0.5 SECONDS : 3 SECONDS), target = get_turf(owner)))
-		owner.balloon_alert(owner, "interrupted!")
+		owner.balloon_alert(owner, "被打断了！")
 		return
 
 	StartCooldown()
 
-	statue.name = "statue of [owner.real_name]"
-	statue.desc = "statue depicting [owner.real_name]"
+	statue.name = "[owner.real_name] 的雕像"
+	statue.desc = "一尊描绘 [owner.real_name] 的雕像"
 
 	if(is_statue)
-		statue.visible_message(span_danger("[statue] becomes animated!"))
+		statue.visible_message(span_danger("[statue] 活了过来！"))
 		owner.forceMove(get_turf(statue))
 		statue.moveToNullspace()
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 	else
 		owner.visible_message(
-			span_notice("[owner] hardens into a silver statue."),
-			span_notice("You have become a silver statue!"),
+			span_notice("[owner] 硬化成了一尊银色雕像。"),
+			span_notice("你变成了一尊银色雕像！"),
 		)
 		statue.set_visuals(owner.appearance)
 		statue.forceMove(get_turf(owner))
@@ -347,10 +347,10 @@
 	var/mob/living/carbon/carbon_owner = owner
 	UnregisterSignal(carbon_owner, COMSIG_MOVABLE_MOVED)
 
-	to_chat(carbon_owner, span_userdanger("Your existence as a living creature snaps as your statue form crumbles!"))
+	to_chat(carbon_owner, span_userdanger("随着你的雕像形态崩碎，你作为活物的存在也彻底断绝了！"))
 	carbon_owner.forceMove(get_turf(statue))
 	carbon_owner.dust(just_ash = TRUE, drop_items = TRUE)
-	carbon_owner.investigate_log("has been dusted from having their Silverscale Statue deconstructed / destroyed.", INVESTIGATE_DEATHS)
+	carbon_owner.investigate_log("因银鳞雕像被拆解／摧毁而化为灰烬。", INVESTIGATE_DEATHS)
 
 	clean_up_statue() // unregister signal before we can do further side effects.
 
@@ -388,19 +388,19 @@
 	fire = 100
 
 /obj/item/organ/tongue/ghost
-	name = "ghost tongue"
-	desc = "You feel spooked even thinking about someone talking through this."
+	name = "幽灵舌"
+	desc = "光是想到有人用它说话，你就觉得毛骨悚然。"
 	icon_state = "tongue-ghost"
 	movement_type = PHASING
-	say_mod = "boos"
+	say_mod = "呜呜说道"
 	sense_of_taste = FALSE
 	organ_flags = parent_type::organ_flags | ORGAN_GHOST
 
 /obj/item/organ/tongue/abductor
-	name = "superlingual matrix"
-	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
+	name = "超语言矩阵"
+	desc = "一种神秘的结构，能让使用者之间瞬间沟通。在你需要吃东西之前，它都相当了不起。"
 	icon_state = "tongueayylmao"
-	say_mod = "gibbers"
+	say_mod = "叽里咕噜说道"
 	organ_traits = list(TRAIT_HIDE_THINKING_INDICATOR)
 	sense_of_taste = FALSE
 	modifies_speech = TRUE
@@ -415,21 +415,21 @@
 		return
 
 	if(tongue.mothership == mothership)
-		to_chat(tongue_holder, span_notice("[src] is already attuned to the same channel as your own."))
+		to_chat(tongue_holder, span_notice("[src] 已经与你自己所在的频道谐振了。"))
 
-	tongue_holder.visible_message(span_notice("[tongue_holder] holds [src] in their hands, and concentrates for a moment."), span_notice("You attempt to modify the attenuation of [src]."))
+	tongue_holder.visible_message(span_notice("[tongue_holder] 双手捧着 [src]，凝神专注了片刻。"), span_notice("你试图调整 [src] 的谐振频率。"))
 	if(do_after(tongue_holder, delay=15, target=src))
-		to_chat(tongue_holder, span_notice("You attune [src] to your own channel."))
+		to_chat(tongue_holder, span_notice("你把 [src] 谐振到了自己的频道。"))
 		mothership = tongue.mothership
 
 /obj/item/organ/tongue/abductor/examine(mob/examining_mob)
 	. = ..()
 	if(HAS_MIND_TRAIT(examining_mob, TRAIT_ABDUCTOR_TRAINING) || isobserver(examining_mob))
-		. += span_notice("It can be attuned to a different channel by using it inhand.")
+		. += span_notice("将它拿在手上使用，即可让它谐振到另一个频道。")
 		if(!mothership)
-			. += span_notice("It is not attuned to a specific mothership.")
+			. += span_notice("它尚未谐振到任何特定的母舰。")
 		else
-			. += span_notice("It is attuned to [mothership].")
+			. += span_notice("它已与 [mothership] 谐振。")
 
 /obj/item/organ/tongue/abductor/modify_speech(datum/source, list/speech_args)
 	//Hacks
@@ -451,10 +451,10 @@
 	speech_args[SPEECH_MESSAGE] = ""
 
 /obj/item/organ/tongue/zombie
-	name = "rotting tongue"
-	desc = "Between the decay and the fact that it's just lying there you doubt a tongue has ever seemed less sexy."
+	name = "腐烂舌"
+	desc = "且不说它已经腐烂，光是它就这么摊在那儿，你就怀疑没有哪条舌头看起来比它更不性感了。"
 	icon_state = "tonguezombie"
-	say_mod = "moans"
+	say_mod = "呻吟道"
 	modifies_speech = TRUE
 	taste_sensitivity = 32
 	liked_foodtypes = GROSS | MEAT | RAW | GORE
@@ -537,10 +537,10 @@
 		playsoundtoken(owner, pick(spooks), 50, TRUE, 10)
 
 /obj/item/organ/tongue/alien
-	name = "alien tongue"
-	desc = "According to leading xenobiologists the evolutionary benefit of having a second mouth in your mouth is \"that it looks badass\"."
+	name = "异形舌"
+	desc = "据顶尖异种生物学家所说，在嘴里再长一张嘴的进化优势在于“这样看起来很凶”。"
 	icon_state = "tonguexeno"
-	say_mod = "hisses"
+	say_mod = "嘶嘶说道"
 	taste_sensitivity = 10 // LIZARDS ARE ALIENS CONFIRMED
 	modifies_speech = TRUE // not really, they just hiss
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.8,aresample=%SAMPLE_RATE%,atempo=1/0.8,aformat=channel_layouts=mono [p0]; [out2] asetrate=%SAMPLE_RATE%*1.2,aresample=%SAMPLE_RATE%,atempo=1/1.2,aformat=channel_layouts=mono[p2]; [p0][0][p2] amix=inputs=3"}
@@ -568,12 +568,12 @@
 	playsound(owner, SFX_HISS, 25, TRUE, TRUE)
 
 /obj/item/organ/tongue/bone
-	name = "bone \"tongue\""
-	desc = "Apparently skeletons alter the sounds they produce through oscillation of their teeth, hence their characteristic rattling."
+	name = "骨“舌”"
+	desc = "据说骷髅通过颤动牙齿来改变发出的声音，因此才有那种标志性的咯咯声。"
 	icon_state = "tonguebone"
-	say_mod = "rattles"
-	attack_verb_continuous = list("bites", "chatters", "chomps", "enamelles", "bones")
-	attack_verb_simple = list("bite", "chatter", "chomp", "enamel", "bone")
+	say_mod = "咯咯作响道"
+	attack_verb_continuous = list("咬", "咯咯作响", "咀嚼", "磨牙", "啃骨")
+	attack_verb_simple = list("咬", "咯咯作响", "咀嚼", "磨牙", "啃骨")
 	sense_of_taste = FALSE
 	liked_foodtypes = GROSS | MEAT | RAW | GORE | DAIRY //skeletons eat spooky shit... and dairy, of course
 	disliked_foodtypes = NONE
@@ -600,8 +600,8 @@
 			speech_args[SPEECH_SPANS] |= SPAN_PAPYRUS
 
 /obj/item/organ/tongue/bone/plasmaman
-	name = "plasma bone \"tongue\""
-	desc = "Like animated skeletons, Plasmamen vibrate their teeth in order to produce speech."
+	name = "等离子骨“舌”"
+	desc = "和活动的骷髅一样，等离子人通过颤动牙齿来发出语音。"
 	icon_state = "tongueplasma"
 	modifies_speech = FALSE
 	liked_foodtypes = VEGETABLES
@@ -616,14 +616,14 @@
 	)
 
 /obj/item/organ/tongue/robot
-	name = "robotic voicebox"
-	desc = "A voice synthesizer that can interface with organic lifeforms."
-	failing_desc = "seems to be broken."
+	name = "机械发声盒"
+	desc = "一台能与有机生命体对接的语音合成器。"
+	failing_desc = "似乎已经损坏。"
 	organ_flags = ORGAN_ROBOTIC
 	icon_state = "tonguerobot"
-	say_mod = "states"
-	attack_verb_continuous = list("beeps", "boops")
-	attack_verb_simple = list("beep", "boop")
+	say_mod = "机械地说道"
+	attack_verb_continuous = list("哔哔作响", "嘟嘟作响")
+	attack_verb_simple = list("哔哔", "嘟嘟")
 	modifies_speech = TRUE
 	taste_sensitivity = 25 // not as good as an organic tongue
 	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
@@ -641,18 +641,18 @@
 /obj/item/organ/tongue/robot/on_mob_insert(mob/living/carbon/receiver)
 	. = ..()
 	receiver.grant_language(/datum/language/machine, source = LANGUAGE_TONGUE)
-	to_chat(receiver, span_boldnotice("You gain a new understanding of [/datum/language/machine::name]."))
+	to_chat(receiver, span_boldnotice("你对 [/datum/language/machine::name] 有了新的理解。"))
 
 /obj/item/organ/tongue/robot/on_mob_remove(mob/living/carbon/owner)
 	. = ..()
 	if(QDELING(owner))
 		return
 	owner.remove_language(/datum/language/machine, source = LANGUAGE_TONGUE)
-	to_chat(owner, span_boldnotice("You're not really sure what beeps and boops mean anymore."))
+	to_chat(owner, span_boldnotice("你已经不太确定“哔”和“嘟”是什么意思了。"))
 
 /obj/item/organ/tongue/snail
-	name = "radula"
-	desc = "A minutely toothed, chitinous ribbon, which as a side effect, makes all snails talk IINNCCRREEDDIIBBLLYY SSLLOOWWLLYY."
+	name = "齿舌"
+	desc = "一条布满细齿的几丁质齿带，副作用是让所有蜗牛说话变得不不可可思思议议地地缓缓慢慢。"
 	color = "#96DB00" // TODO proper sprite, rather than recoloured pink tongue
 	modifies_speech = TRUE
 	voice_filter = "atempo=0.5" // makes them talk really slow
@@ -672,16 +672,16 @@
 */ // SKYRAT EDIT END
 
 /obj/item/organ/tongue/ethereal
-	name = "electric discharger"
-	desc = "A sophisticated ethereal organ, capable of synthesising speech via electrical discharge."
+	name = "放电装置"
+	desc = "一种精密的以太人器官，能通过放电合成语音。"
 	icon_state = "electrotongue"
-	say_mod = "crackles"
+	say_mod = "噼啪说道"
 	taste_sensitivity = 10 // ethereal tongues function (very loosely) like a gas spectrometer: vaporising a small amount of the food and allowing it to pass to the nose, resulting in more sensitive taste
 	liked_foodtypes = NONE //no food is particularly liked by ethereals
 	disliked_foodtypes = GROSS
 	toxic_foodtypes = NONE //no food is particularly toxic to ethereals
-	attack_verb_continuous = list("shocks", "jolts", "zaps")
-	attack_verb_simple = list("shock", "jolt", "zap")
+	attack_verb_continuous = list("电击", "猛电", "噼啪放电")
+	attack_verb_simple = list("电击", "猛电", "噼啪放电")
 	voice_filter = @{"[0:a] asplit [out0][out2]; [out0] asetrate=%SAMPLE_RATE%*0.99,aresample=%SAMPLE_RATE%,volume=0.3 [p0]; [p0][out2] amix=inputs=2"}
 	languages_native = list(/datum/language/voltaic)
 	emote_sounds = list(
@@ -705,9 +705,9 @@
 	)
 
 /obj/item/organ/tongue/cat
-	name = "felinid tongue"
-	desc = "A fleshy muscle mostly used for meowing. Or biting."
-	say_mod = "meows"
+	name = "猫人舌"
+	desc = "一块主要用来喵喵叫的肉感肌肉。或者用来咬人。"
+	say_mod = "喵喵说道"
 	liked_foodtypes = SEAFOOD | ORANGES | BUGS | GORE
 	disliked_foodtypes = GROSS | CLOTH | RAW
 	organ_traits = list(TRAIT_WOUND_LICKER, TRAIT_FISH_EATER, TRAIT_CARPOTOXIN_IMMUNE, TRAIT_CAT_EMOTES_ALLOWED)
@@ -747,9 +747,9 @@
 		remove_organ_trait(TRAIT_FERAL_BITER)
 
 /obj/item/organ/tongue/jelly
-	name = "jelly tongue"
-	desc = "Ah... That's not the sound I expected it to make. Sounds like a Space Autumn Bird."
-	say_mod = "chirps"
+	name = "果冻舌"
+	desc = "啊……这声音和我预想的不一样。听起来像太空秋鸟。"
+	say_mod = "啁啾说道"
 	liked_foodtypes = MEAT | BUGS
 	disliked_foodtypes = GROSS
 	toxic_foodtypes = NONE
@@ -762,9 +762,9 @@
 	return ..()
 
 /obj/item/organ/tongue/monkey
-	name = "primitive tongue"
-	desc = "For aggressively chimpering. And consuming bananas."
-	say_mod = "chimpers"
+	name = "原始舌"
+	desc = "用来凶猛地吱吱叫，以及吃香蕉。"
+	say_mod = "吱吱说道"
 	liked_foodtypes = MEAT | FRUIT | BUGS
 	disliked_foodtypes = CLOTH
 	languages_native = list(/datum/language/monkey)
@@ -773,9 +773,9 @@
 	)
 
 /obj/item/organ/tongue/moth
-	name = "moth tongue"
-	desc = "Moths don't have tongues. Someone get god on the phone, tell them I'm not happy."
-	say_mod = "flutters"
+	name = "蛾舌"
+	desc = "蛾子没有舌头。谁给上帝打个电话，告诉祂我很不满意。"
+	say_mod = "振翅说道"
 	liked_foodtypes = VEGETABLES | DAIRY | CLOTH
 	disliked_foodtypes = FRUIT | GROSS | BUGS | GORE
 	toxic_foodtypes = MEAT | RAW | SEAFOOD
@@ -788,17 +788,17 @@
 	)
 
 /obj/item/organ/tongue/mush
-	name = "mush-tongue-room"
-	desc = "You poof with this. Got it?"
+	name = "蘑菇舌"
+	desc = "你靠它噗噗地说话。懂了吗？"
 	icon = 'icons/obj/service/hydroponics/seeds.dmi'
 	icon_state = "mycelium-angel"
-	say_mod = "poofs"
+	say_mod = "噗噗说道"
 	languages_native = list(/datum/language/mushroom)
 
 /obj/item/organ/tongue/pod
-	name = "pod tongue"
-	desc = "A plant-like organ used for speaking and eating."
-	say_mod = "whistles"
+	name = "豆荚人舌"
+	desc = "一种用于说话和进食的植物状器官。"
+	say_mod = "吹哨说道"
 	liked_foodtypes = VEGETABLES | FRUIT | GRAIN
 	disliked_foodtypes = GORE | MEAT | DAIRY | SEAFOOD | BUGS
 	foodtype_flags = PODPERSON_ORGAN_FOODTYPES
@@ -806,11 +806,11 @@
 	languages_native = list(/datum/language/sylvan)
 
 /obj/item/organ/tongue/golem
-	name = "golem tongue"
-	desc = "This silicate plate doesn't seem particularly mobile, but golems use it to form sounds."
+	name = "魔像舌"
+	desc = "这块硅酸盐板看起来并不怎么灵活，但魔像就是用它在发声。"
 	color = COLOR_WEBSAFE_DARK_GRAY
 	organ_flags = ORGAN_MINERAL
-	say_mod = "rumbles"
+	say_mod = "隆隆说道"
 	sense_of_taste = FALSE
 	liked_foodtypes = STONE
 	disliked_foodtypes = NONE //you don't care for much else besides stone
@@ -818,10 +818,10 @@
 	languages_native = list(/datum/language/terrum)
 
 /obj/item/organ/tongue/shadow
-	name = "shadow tongue"
+	name = "暗影舌"
 	color = COLOR_ALMOST_BLACK
 	languages_native = list(/datum/language/shadowtongue)
-	say_mod = "wails"
+	say_mod = "哀号道"
 	emote_sounds = list(
 		/datum/emote/living/scream::key = 'sound/mobs/humanoids/shadow/shadow_wail.ogg',
 	)

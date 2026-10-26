@@ -1,12 +1,12 @@
 /datum/action/cooldown/spell/conjure/presents
-	name = "Conjure Presents!"
-	desc = "This spell lets you reach into S-space and retrieve presents! Yay!"
+	name = "变出礼物！"
+	desc = "此法术让你能把手伸进 S 空间取出礼物！好耶！"
 
 	school = SCHOOL_CONJURATION
 	cooldown_time = 1 MINUTES
 	cooldown_reduction_per_rank = 13.75 SECONDS
 
-	invocation = "HO HO HO!"
+	invocation = "呵呵呵！"
 	invocation_type = INVOCATION_SHOUT
 
 	summon_radius = 3

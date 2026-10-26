@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/forcewall
-	name = "Forcewall"
-	desc = "Create a magical barrier that only you can pass through."
+	name = "力场墙"
+	desc = "创造一道只有你能穿过的魔法屏障。"
 	button_icon_state = "shield"
 
 	sound = 'sound/effects/magic/forcewall.ogg'
@@ -29,8 +29,8 @@
 	new wall_type(cast_turf, owner, antimagic_flags)
 
 /datum/action/cooldown/spell/forcewall/cult
-	name = "Shield"
-	desc = "This spell creates a temporary forcefield to shield yourself and allies from incoming fire."
+	name = "护盾"
+	desc = "该法术会生成一道临时力场，为你和盟友挡下来袭火力。"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
@@ -43,8 +43,8 @@
 	wall_type = /obj/effect/forcefield/cult
 
 /datum/action/cooldown/spell/forcewall/mime
-	name = "Invisible Blockade"
-	desc = "Form an invisible three tile wide blockade."
+	name = "无形封锁"
+	desc = "结成一道看不见的、三格宽的封锁线。"
 	background_icon_state = "bg_mime"
 	overlay_icon_state = "bg_mime_border"
 	button_icon = 'icons/mob/actions/actions_mime.dmi'
@@ -58,8 +58,8 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN|SPELL_REQUIRES_MIME_VOW
 	antimagic_flags = NONE
 
-	invocation = span_notice("<b>%CASTER</b> looks as if a blockade is in front of %PRONOUN_them.")
-	invocation_self_message = span_notice("You form a blockade in front of yourself.")
+	invocation = span_notice("<b>%CASTER</b> 看起来就像 %PRONOUN_them 面前有一道封锁线。")
+	invocation_self_message = span_notice("你在自己面前结成了一道封锁线。")
 	invocation_type = INVOCATION_EMOTE
 	spell_max_level = 1
 

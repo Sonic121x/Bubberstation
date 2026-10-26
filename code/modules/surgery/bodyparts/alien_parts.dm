@@ -72,7 +72,7 @@
 	max_damage = LIMB_MAX_HP_ALIEN_LIMBS
 	burn_modifier = LIMB_ALIEN_BURN_DAMAGE_MULTIPLIER
 	should_draw_greyscale = FALSE
-	appendage_noun = "scythe-like hand"
+	appendage_noun = "镰刀般的手"
 	biological_state = BIO_STANDARD_ALIEN
 
 /obj/item/bodypart/arm/right/alien
@@ -89,7 +89,7 @@
 	max_damage = LIMB_MAX_HP_ALIEN_LIMBS
 	burn_modifier = LIMB_ALIEN_BURN_DAMAGE_MULTIPLIER
 	should_draw_greyscale = FALSE
-	appendage_noun = "scythe-like hand"
+	appendage_noun = "镰刀般的手"
 	biological_state = BIO_STANDARD_ALIEN
 
 /obj/item/bodypart/leg/left/alien

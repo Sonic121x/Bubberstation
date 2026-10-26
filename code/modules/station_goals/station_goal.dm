@@ -1,14 +1,14 @@
 /datum/station_goal
-	var/name = "Generic Goal"
+	var/name = "通用目标"
 	var/weight = 1 //In case of multiple goals later.
 	var/required_crew = 10
 	var/requires_space = FALSE
 	var/completed = FALSE
-	var/report_message = "Complete this goal."
+	var/report_message = "完成此目标。"
 
 /datum/station_goal/proc/send_report()
-	priority_announce("Priority Nanotrasen directive received. Project \"[name]\" details inbound.", "Incoming Priority Message", SSstation.announcer.get_rand_report_sound())
-	print_command_report(get_report(),"Nanotrasen Directive [pick(GLOB.phonetic_alphabet)] \Roman[rand(1,50)]", announce=FALSE)
+	priority_announce("收到纳米传讯的优先指令。项目“[name]”详情即将送达。", "收到优先信息", SSstation.announcer.get_rand_report_sound())
+	print_command_report(get_report(),"纳米传讯指令 [pick(GLOB.phonetic_alphabet)] \Roman[rand(1,50)]", announce=FALSE)
 	on_report()
 
 /datum/station_goal/proc/on_report()
@@ -23,9 +23,9 @@
 
 /datum/station_goal/proc/get_result()
 	if(check_completion())
-		return "<li>[name] : [span_greentext("Completed!")]</li>"
+		return "<li>[name]：[span_greentext("已完成！")]</li>"
 	else
-		return "<li>[name] : [span_redtext("Failed!")]</li>"
+		return "<li>[name]：[span_redtext("失败！")]</li>"
 
 /datum/station_goal/Topic(href, href_list)
 	..()

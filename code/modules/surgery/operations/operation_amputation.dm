@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/amputate
-	name = "amputate limb"
-	rnd_name = "Disarticulation (Amputation)"
-	desc = "Sever a limb from a patient's body."
+	name = "截断肢体"
+	rnd_name = "关节离断（截肢）"
+	desc = "从病人身体上截断一条肢体。"
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE
 	required_bodytype = ~(BODYTYPE_ROBOTIC|BODYTYPE_PEG)
 	implements = list(
@@ -42,28 +42,28 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin to sever [limb.owner]'s [limb.plaintext_zone]..."),
-		span_notice("[surgeon] begins to sever [limb.owner]'s [limb.plaintext_zone]."),
-		span_notice("[surgeon] begins to sever [limb.owner]'s [limb.plaintext_zone] with [tool]."),
+		span_notice("你开始切断[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]……"),
+		span_notice("[surgeon] 开始切断[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]。"),
+		span_notice("[surgeon] 开始用 [tool] 切断[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]。"),
 	)
-	display_pain(limb.owner, "You feel a gruesome pain in your [limb.plaintext_zone]'s joint!")
+	display_pain(limb.owner, "你感到[chinese_body_zone_display(limb.plaintext_zone)]的关节传来一阵骇人的剧痛！")
 
 /datum/surgery_operation/limb/amputate/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You successfully amputate [limb.owner]'s [limb.plaintext_zone]!"),
-		span_notice("[surgeon] successfully amputates [limb.owner]'s [limb.plaintext_zone]!"),
-		span_notice("[surgeon] finishes severing [limb.owner]'s [limb.plaintext_zone]."),
+		span_notice("你成功截断了[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]！"),
+		span_notice("[surgeon] 成功截断了[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]！"),
+		span_notice("[surgeon] 完成了对[limb.owner]的[chinese_body_zone_display(limb.plaintext_zone)]的截断。"),
 	)
-	display_pain(limb.owner, "You can no longer feel your [limb.plaintext_zone]!")
+	display_pain(limb.owner, "你再也感觉不到自己的[chinese_body_zone_display(limb.plaintext_zone)]了！")
 	if(HAS_MIND_TRAIT(surgeon, TRAIT_MORBID))
 		surgeon.add_mood_event("morbid_dissection_success", /datum/mood_event/morbid_dissection_success)
 	limb.drop_limb()
 
 /datum/surgery_operation/limb/amputate/mechanic
-	name = "disassemble limb"
-	rnd_name = "Dissassembly (Amputation)"
+	name = "拆卸肢体"
+	rnd_name = "拆解（截肢）"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 	implements = list(
@@ -84,16 +84,16 @@
 
 /datum/surgery_operation/limb/amputate/mechanic/any_required_strings()
 	return ..() + list(
-		"if operating on the head, the bone MUST be sawed",
-		"otherwise, the state of the bone doesn't matter",
+		"如果对头部施术，骨骼必须被锯开",
+		"否则骨骼状态无关紧要",
 	)
 
 /datum/surgery_operation/limb/amputate/mechanic/get_recommended_tool()
 	return "[TOOL_WRENCH] / [TOOL_SAW]"
 
 /datum/surgery_operation/limb/amputate/pegleg
-	name = "detach wooden limb"
-	rnd_name = "Detach Wooden Limb (Amputation)"
+	name = "拆下木质肢体"
+	rnd_name = "拆下木质肢体（截肢）"
 	required_bodytype = BODYTYPE_PEG
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
 	implements = list(
@@ -113,4 +113,4 @@
 
 /datum/surgery_operation/limb/amputate/pegleg/all_required_strings()
 	. = ..()
-	. += "the limb must be wooden"
+	. += "肢体必须是木质的"

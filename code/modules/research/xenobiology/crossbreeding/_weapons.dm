@@ -6,10 +6,10 @@ Slimecrossing Weapons
 
 //Boneblade - Burning Green
 /obj/item/melee/arm_blade/slime
-	name = "slimy boneblade"
-	desc = "What remains of the bones in your arm. Incredibly sharp, and painful for both you and your opponents."
+	name = "黏滑骨刃"
+	desc = "你手臂里的骨头剩下的部分。锋利得惊人，对你和你的对手来说都很痛。"
 	force = 15
-	force_string = "painful"
+	force_string = "疼痛难忍"
 
 /obj/item/melee/arm_blade/slime/attack(mob/living/L, mob/user)
 	. = ..()
@@ -18,8 +18,8 @@ Slimecrossing Weapons
 
 //Rainbow knife - Burning Rainbow
 /obj/item/knife/rainbowknife
-	name = "rainbow knife"
-	desc = "A strange, transparent knife which constantly shifts color. It hums slightly when moved."
+	name = "彩虹刀"
+	desc = "一把奇怪的透明刀，颜色不断变幻。挥动时会发出轻微的嗡鸣。"
 	icon = 'icons/obj/weapons/stabby.dmi'
 	icon_state = "rainbowknife"
 	inhand_icon_state = "rainbowknife"
@@ -33,25 +33,25 @@ Slimecrossing Weapons
 	switch(damtype)
 		if(BRUTE)
 			hitsound = 'sound/items/weapons/bladeslice.ogg'
-			attack_verb_continuous = string_list(list("slashes", "slices", "cuts"))
-			attack_verb_simple = string_list(list("slash", "slice", "cut"))
+			attack_verb_continuous = string_list(list("劈砍", "切开", "割伤"))
+			attack_verb_simple = string_list(list("劈砍", "切开", "割伤"))
 		if(BURN)
 			hitsound = 'sound/items/weapons/sear.ogg'
-			attack_verb_continuous = string_list(list("burns", "singes", "heats"))
-			attack_verb_simple = string_list(list("burn", "singe", "heat"))
+			attack_verb_continuous = string_list(list("灼烧", "燎烧", "烤炙"))
+			attack_verb_simple = string_list(list("灼烧", "燎烧", "烤炙"))
 		if(TOX)
 			hitsound = 'sound/items/weapons/pierce.ogg'
-			attack_verb_continuous = string_list(list("poisons", "doses", "toxifies"))
-			attack_verb_simple = string_list(list("poison", "dose", "toxify"))
+			attack_verb_continuous = string_list(list("毒害", "下毒", "致毒"))
+			attack_verb_simple = string_list(list("毒害", "下毒", "致毒"))
 		if(OXY)
 			hitsound = 'sound/effects/space_wind.ogg'
-			attack_verb_continuous = string_list(list("suffocates", "winds", "vacuums"))
-			attack_verb_simple = string_list(list("suffocate", "wind", "vacuum"))
+			attack_verb_continuous = string_list(list("窒息", "抽气", "真空化"))
+			attack_verb_simple = string_list(list("窒息", "抽气", "真空化"))
 
 //Adamantine shield - Chilling Adamantine
 /obj/item/shield/adamantineshield
-	name = "adamantine shield"
-	desc = "A gigantic shield made of solid adamantium."
+	name = "精金盾牌"
+	desc = "一面由实心精金制成的巨盾。"
 	icon = 'icons/obj/weapons/shields.dmi'
 	icon_state = "adamshield"
 	inhand_icon_state = "adamshield"
@@ -62,8 +62,8 @@ Slimecrossing Weapons
 	force = 0
 	throw_range = 1 //How far do you think you're gonna throw a solid crystalline shield...?
 	throw_speed = 2
-	attack_verb_continuous = list("bashes", "pounds", "slams")
-	attack_verb_simple = list("bash", "pound", "slam")
+	attack_verb_continuous = list("猛击", "重砸", "撞飞")
+	attack_verb_simple = list("猛击", "重砸", "撞飞")
 	item_flags = SLOWS_WHILE_IN_HAND
 	breakable_by_damage = FALSE
 	shield_bash_sound = 'sound/effects/glass/glassknock.ogg'
@@ -82,8 +82,8 @@ Slimecrossing Weapons
 
 //Bloodchiller - Chilling Green
 /obj/item/gun/magic/bloodchill
-	name = "blood chiller"
-	desc = "A horrifying weapon made of your own bone and blood vessels. It shoots slowing globules of your own blood. Ech."
+	name = "鲜血冷凝枪"
+	desc = "一件用你自己的骨骼与血管制成的骇人武器。它会射出能减速的自身血珠。呃。"
 	icon = 'icons/obj/science/slimecrossing.dmi'
 	icon_state = "bloodgun"
 	inhand_icon_state = "bloodgun"
@@ -125,7 +125,7 @@ Slimecrossing Weapons
 	projectile_type = /obj/projectile/magic/bloodchill
 
 /obj/projectile/magic/bloodchill
-	name = "blood ball"
+	name = "血球"
 	icon_state = "pulse0_bl"
 	hitsound = 'sound/effects/splat.ogg'
 

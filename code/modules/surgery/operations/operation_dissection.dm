@@ -1,8 +1,8 @@
 /datum/surgery_operation/basic/dissection
-	name = "experimental dissection"
-	rnd_name = "Experimental Androtomy (Experimental Dissection and Autopsy)"
-	desc = "Perform an experimental dissection on a patient to obtain research points."
-	rnd_desc = "An experimental surgical procedure that dissects bodies in exchange for research points at ancient R&D consoles."
+	name = "实验性解剖"
+	rnd_name = "实验性人体解剖（实验性解剖与验尸）"
+	desc = "对病人进行实验性解剖以获取研究点数。"
+	rnd_desc = "一种实验性手术，通过解剖尸体在古老的研究与开发终端换取研究点数。"
 	implements = list(
 		/obj/item/autopsy_scanner = 1,
 		TOOL_SCALPEL = 1.66,
@@ -19,8 +19,8 @@
 
 /datum/surgery_operation/basic/dissection/all_required_strings()
 	. += ..()
-	. += "the patient must be deceased"
-	. += "the patient must not have been dissected prior"
+	. += "病人必须已经死亡"
+	. += "病人此前未被解剖过"
 
 /datum/surgery_operation/basic/dissection/state_check(mob/living/patient)
 	return !HAS_TRAIT_FROM(patient, TRAIT_DISSECTED, EXPERIMENTAL_SURGERY_TRAIT) && patient.stat == DEAD
@@ -29,9 +29,9 @@
 	display_results(
 		surgeon,
 		patient,
-		span_notice("You begin to dissect [patient]..."),
-		span_notice("[surgeon] begins to dissect [patient]."),
-		span_notice("[surgeon] begins to dissect [patient]."),
+		span_notice("你开始解剖 [patient]……"),
+		span_notice("[surgeon] 开始解剖 [patient]。"),
+		span_notice("[surgeon] 开始解剖 [patient]。"),
 	)
 
 /datum/surgery_operation/basic/dissection/on_failure(mob/living/patient, mob/living/surgeon, tool, list/operation_args)
@@ -39,9 +39,9 @@
 	display_results(
 		surgeon,
 		patient,
-		span_warning("You dissect [patient], but don't find anything particularly interesting."),
-		span_warning("[surgeon] dissects [patient]."),
-		span_warning("[surgeon] dissects [patient]."),
+		span_warning("你解剖了 [patient]，但没发现什么特别有趣的东西。"),
+		span_warning("[surgeon] 解剖了 [patient]。"),
+		span_warning("[surgeon] 解剖了 [patient]。"),
 	)
 	give_paper(surgeon, points_earned)
 	patient.apply_damage(80, BRUTE, BODY_ZONE_CHEST)
@@ -52,9 +52,9 @@
 	display_results(
 		surgeon,
 		patient,
-		span_warning("You dissect [patient], discovering [points_earned] point\s of data!"),
-		span_warning("[surgeon] dissects [patient]."),
-		span_warning("[surgeon] dissects [patient]."),
+		span_warning("你解剖了 [patient]，发现了 [points_earned] 点数据！"),
+		span_warning("[surgeon] 解剖了 [patient]。"),
+		span_warning("[surgeon] 解剖了 [patient]。"),
 	)
 	give_paper(surgeon, points_earned)
 	patient.apply_damage(80, BRUTE, BODY_ZONE_CHEST)
@@ -91,8 +91,8 @@
 	return reward
 
 /obj/item/research_notes
-	name = "research notes"
-	desc = "Valuable scientific data. Use it in an ancient research server to turn it in."
+	name = "研究笔记"
+	desc = "珍贵的科学数据。可在古老的研究服务器上提交。"
 	icon = 'icons/obj/service/bureaucracy.dmi'
 	icon_state = "paper"
 	w_class = WEIGHT_CLASS_SMALL
@@ -113,7 +113,7 @@
 
 /obj/item/research_notes/examine(mob/user)
 	. = ..()
-	. += span_notice("It is worth [value] research points.")
+	. += span_notice("它价值 [value] 点研究点数。")
 
 /obj/item/research_notes/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/research_notes))
@@ -127,16 +127,16 @@
 /// proc that changes name and icon depending on value
 /obj/item/research_notes/proc/change_vol()
 	if(value >= TECHWEB_TIER_5_POINTS)
-		name = "revolutionary discovery in the field of [origin_type]"
+		name = "[origin_type] 领域的革命性发现"
 		icon_state = "docs_verified"
 	else if(value >= TECHWEB_TIER_3_POINTS)
-		name = "essay about [origin_type]"
+		name = "关于 [origin_type] 的论文"
 		icon_state = "paper_words"
 	else if(value >= TECHWEB_TIER_1_POINTS)
-		name = "notes of [origin_type]"
+		name = "[origin_type] 笔记"
 		icon_state = "paperslip_words"
 	else
-		name = "fragmentary data of [origin_type]"
+		name = "[origin_type] 的零散数据"
 		icon_state = "scrap"
 
 ///proc when you slap research notes into another one, it applies a bonus if they are of different origin (only applied once)

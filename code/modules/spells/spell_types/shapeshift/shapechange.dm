@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/shapeshift/wizard
-	name = "Wild Shapeshift"
-	desc = "Take on the shape of another for a time to use their natural abilities. \
-		Once you've made your choice, it cannot be changed."
+	name = "野性变形"
+	desc = "在一段时间内化身为另一种生物，借用它们的\
+		天生能力。一旦做出选择，就无法再更改。"
 
 	cooldown_time = 20 SECONDS
 	cooldown_reduction_per_rank = 8 SECONDS

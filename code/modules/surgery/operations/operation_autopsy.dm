@@ -1,7 +1,7 @@
 /datum/surgery_operation/limb/autopsy
-	name = "autopsy"
-	rnd_name = "Androtomy (Dissection and Autopsy)"
-	desc = "Perform a detailed analysis of a deceased patient's body."
+	name = "尸检"
+	rnd_name = "人体解剖术（解剖与尸检）"
+	desc = "对已故病人的身体进行详细分析。"
 	implements = list(/obj/item/autopsy_scanner = 1)
 	time = 10 SECONDS
 	success_sound = 'sound/machines/printer.ogg'
@@ -14,10 +14,10 @@
 
 /datum/surgery_operation/limb/autopsy/all_required_strings()
 	. = list()
-	. += "operate on chest (target chest)"
+	. += "对胸部施术（目标胸部）"
 	. += ..()
-	. += "the patient must be deceased"
-	. += "the patient must not have been autopsied prior"
+	. += "病人必须已经死亡"
+	. += "病人此前不得接受过尸检"
 
 /datum/surgery_operation/limb/autopsy/state_check(obj/item/bodypart/limb)
 	if(limb.body_zone != BODY_ZONE_CHEST)
@@ -32,9 +32,9 @@
 	display_results(
 		surgeon,
 		limb.owner,
-		span_notice("You begin performing an autopsy on [limb.owner]..."),
-		span_notice("[surgeon] uses [tool] to perform an autopsy on [limb.owner]."),
-		span_notice("[surgeon] uses [tool] on [limb.owner]'s chest."),
+		span_notice("你开始对[limb.owner]进行尸检……"),
+		span_notice("[surgeon] 用 [tool] 对[limb.owner]进行尸检。"),
+		span_notice("[surgeon] 对[limb.owner]的胸部使用了 [tool]。"),
 	)
 
 /datum/surgery_operation/limb/autopsy/on_success(obj/item/bodypart/limb, mob/living/surgeon, obj/item/autopsy_scanner/tool, list/operation_args)
@@ -49,8 +49,8 @@
 	return ..()
 
 /datum/surgery_operation/limb/autopsy/mechanic
-	name = "system failure analysis"
-	rnd_name = "System Failure Analysis (Dissection and Autopsy)"
-	desc = "Perform a detailed analysis of a robotic patient's deactivated systems."
+	name = "系统故障分析"
+	rnd_name = "系统故障分析（解剖与尸检）"
+	desc = "对机械病人的已停用系统进行详细分析。"
 	required_bodytype = BODYTYPE_ROBOTIC
 	operation_flags = parent_type::operation_flags | OPERATION_MECHANIC
