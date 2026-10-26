@@ -1,10 +1,10 @@
 // Rapid firing submachinegun firing .27-54 Cesarzowa
 
 /obj/item/gun/ballistic/automatic/miecz
-	name = "\improper Miecz Submachine Gun"
-	desc = "A short barrel, further compacted conversion of the 'Lanca' rifle to fire pistol caliber .27-54 cartridges. \
-		Due to the intended purpose of the weapon, and less than optimal ranged performance of the projectile, it has \
-		nothing more than basic glow-sights as opposed to the ranged scope Lanca users might be used to."
+	name = "\improper 利剑冲锋枪"
+	desc = "由“骑枪”步枪进一步缩小、缩短枪管而成的改型，发射.27-54手枪弹。\
+		由于这款武器的预定用途，以及弹丸不甚理想的远射表现，\
+		它只有基础的夜光瞄具，没有骑枪用户所熟悉的远程瞄准镜。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_48.dmi'
 	icon_state = "miecz"
@@ -48,17 +48,17 @@
 
 /obj/item/gun/ballistic/automatic/miecz/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/miecz/examine_more(mob/user)
 	. = ..()
 
-	. += "The Miecz is one of the newest weapons to come out of CIN member state hands and \
-		into the wild, typically the frontier. It was built alongside the round it fires, the \
-		.27-54 Cesarzowa pistol round. Based on the proven Lanca design, it seeks to bring that \
-		same reliable weapon design into the form factor of a submachinegun. While it is significantly \
-		larger than many comparable weapons in TerraGov use, it more than makes up for it with ease \
-		of control and a significant fire rate."
+	. += "利剑是最新一批从CIN成员国流入外界、\
+		尤其是边疆地区的武器之一。它与所使用的\
+		.27-54女皇手枪弹同步研制。以久经考验的骑枪设计为基础，\
+		试图将同样可靠的结构融入冲锋枪的外形中。虽然它明显\
+		大于地球政府使用的许多同类武器，但易于控制\
+		和出色射速足以弥补这一点。"
 
 	return .
 

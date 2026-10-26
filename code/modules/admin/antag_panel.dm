@@ -112,12 +112,12 @@ GLOBAL_VAR(antag_prototypes)
 	//BUBBERSTATION CHANGE START: ANTAG TICKET INTEGRATION
 	out += "反派票券：<B>[current.client.get_antag_tickets()]</B>（当前倍率：<B>x[current.client.antag_ticket_multiplier()]</B>）<br>"
 	//BUBBERSTATION CHANGE END: ANTAG TICKET INTEGRAATION
-	out += "已分配职业：[assigned_role.title]。<a href='byond://?src=[REF(src)];role_edit=1'>编辑</a><br>"
+	out += "已分配职业：[chinese_batch_four_admin_display(assigned_role.title)]。<a href='byond://?src=[REF(src)];role_edit=1'>编辑</a><br>"
 	out += "<a href='byond://?_src_=holder;[HrefToken()];check_teams=1'>显示队伍</a><br><br>"
 
 	var/special_statuses = get_special_roles() | get_special_statuses()
 	if(length(special_statuses))
-		out += "角色：[jointext(special_statuses, " | ")]<br>"
+		out += "角色：[chinese_batch_four_admin_list_display(special_statuses, " | ")]<br>"
 
 	if(!GLOB.antag_prototypes)
 		GLOB.antag_prototypes = list()
@@ -134,7 +134,7 @@ GLOBAL_VAR(antag_prototypes)
 	var/list/priority_sections = list()
 
 	for(var/antag_category in GLOB.antag_prototypes)
-		var/category_header = "<i><b>[antag_category]:</b></i>"
+		var/category_header = "<i><b>[chinese_batch_four_admin_display(antag_category)]:</b></i>"
 		var/list/antag_header_parts = list(category_header)
 
 		var/datum/antagonist/current_antag
@@ -150,9 +150,9 @@ GLOBAL_VAR(antag_prototypes)
 					continue //Let's skip subtypes of what we already shown.
 			else if(prototype.show_in_antagpanel)
 				if(prototype.can_be_owned(src))
-					possible_admin_antags += "<a href='byond://?src=[REF(src)];add_antag=[prototype.type]' title='[prototype.type]'>[prototype.name]</a>"
+					possible_admin_antags += "<a href='byond://?src=[REF(src)];add_antag=[prototype.type]' title='[prototype.type]'>[chinese_skyrat_items_antag_display(prototype.name)]</a>"
 				else
-					possible_admin_antags += "<a class='linkOff'>[prototype.name]</a>"
+					possible_admin_antags += "<a class='linkOff'>[chinese_skyrat_items_antag_display(prototype.name)]</a>"
 			else
 				//We don't have it and it shouldn't be shown as an option to be added.
 				continue
@@ -166,7 +166,7 @@ GLOBAL_VAR(antag_prototypes)
 				continue
 		else //Show removal and current one
 			priority_sections |= antag_category
-			antag_header_parts += span_bad("[current_antag.name]")
+			antag_header_parts += span_bad("[chinese_skyrat_items_antag_display(current_antag.name)]")
 			antag_header_parts += "<a href='byond://?src=[REF(src)];reroll_antag=[REF(current_antag)]'>移除并重新分配给新玩家</a>" // BUBBER EDIT ADDITION - ANTAG RE-ROLLING
 			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>移除</a>"
 			antag_header_parts += "<a href='byond://?src=[REF(src)];open_antag_vv=[REF(current_antag)]'>打开 VV</a>"

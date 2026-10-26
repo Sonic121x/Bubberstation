@@ -75,7 +75,7 @@
 /datum/holotool_mode/knife/on_set(obj/item/holotool/holotool)
 	..()
 	holotool.force = 17
-	holotool.attack_verb_continuous = list("sliced", "torn", "cut")
+	holotool.attack_verb_continuous = list("切开", "撕裂", "割伤")
 	holotool.armour_penetration = 45
 	holotool.embed_type = list("embed_chance" = 40, "embedded_fall_chance" = 0, "embedded_pain_multiplier" = 5)
 	holotool.hitsound = 'sound/items/weapons/blade1.ogg'

@@ -7,4 +7,4 @@
 /obj/item/clothing/neck/heretic_focus/moon_amulet/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Increases moon Acolyte brain regeneration. Can afflict targets with Moon Insanity, driving them into a blind rage.")
+	. += span_notice("增强月华之道侍徒的大脑恢复。可对目标施加月狂，使其陷入不辨敌我的狂怒。")

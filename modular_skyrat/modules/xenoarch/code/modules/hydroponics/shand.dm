@@ -1,10 +1,10 @@
 /obj/item/seeds/shand
-	name = "shand seed pack"
-	desc = "These seeds grow into shand plants. While not very useful on its own, it is full of chemicals that no other plant can produce. A good candidate for crossbreeding."
+	name = "化生草种子包"
+	desc = "这些种子能长成化生草。虽然本身用途不多，却富含其他植物无法产生的化学物质，是杂交育种的好选择。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "shand"
 	species = "shand"
-	plantname = "Shand Plant"
+	plantname = "化生草"
 	product = /obj/item/food/grown/shand
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/shand
 	seed = /obj/item/seeds/shand
-	name = "shand"
-	desc = "A handful of shand leaves, the leaves are oily and smell like a laboratory."
+	name = "化生草叶"
+	desc = "一把油腻的化生草叶，闻起来像实验室。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "shand"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("chemicals" = 1)
+	tastes = list("化学药品" = 1)
 
 /obj/item/food/grown/shand/juice_typepath()
 	return /datum/reagent/bromine

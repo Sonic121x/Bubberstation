@@ -6,8 +6,8 @@
 		living_hearer.mob_mood?.adjust_sanity(-5)
 		living_hearer.apply_status_effect(/datum/status_effect/heretic_comms_immunity)
 		if (prob(20))
-			to_chat(living_hearer, span_warning("The words from the radio ring in your head, wrong, all sorts of wrong..."))
-			to_chat(living_hearer, span_warning("You get the feeling that disabling any nearby radios would help."))
+			to_chat(living_hearer, span_warning("无线电里的话语在脑海中回荡，不对劲，哪里都不对劲……"))
+			to_chat(living_hearer, span_warning("你觉得关闭附近的无线电也许会有所帮助。"))
 			living_hearer.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10, BRAIN_DAMAGE_MILD)
 			living_hearer.adjust_hallucinations_up_to(40 SECONDS, 5 MINUTES)
 
@@ -21,8 +21,8 @@
 	. = ..()
 
 	if (GLOB.processors_cursed)
-		. += span_warning("A terrible secret has been unleashed. It will pass with time...")
-		. += span_notice("You can disable the processors to prevent the mindbending effects of the curse - just remember to turn them on later.")
+		. += span_warning("可怕的秘密已经泄露。它会随时间消退……")
+		. += span_notice("关闭处理器可阻止诅咒扭曲心智的效果——但之后记得重新开启。")
 
 /datum/status_effect/heretic_comms_immunity // antispam
 	id = "heretic_comms_immunity"

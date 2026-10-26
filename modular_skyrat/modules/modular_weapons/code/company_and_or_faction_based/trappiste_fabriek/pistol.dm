@@ -1,8 +1,8 @@
 // .35 Sol pistol
 
 /obj/item/gun/ballistic/automatic/pistol/sol
-	name = "\improper Wespe Pistol"
-	desc = "The standard issue service pistol of TerraGov's various military branches. Uses .35 Sol and comes with an attached light."
+	name = "\improper 黄蜂手枪"
+	desc = "地球政府各军种的制式军用手枪。使用.35太阳弹，并配有枪灯。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "wespe"
@@ -30,17 +30,17 @@
 
 /obj/item/gun/ballistic/automatic/pistol/sol/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/pistol/sol/examine_more(mob/user)
 	. = ..()
 
-	. += "The Wespe is a pistol that was made entirely for military use. \
-		Required to use a standard round, standard magazines, and be able \
-		to function in all of the environments that TerraGov operated in \
-		commonly. These qualities just so happened to make the weapon \
-		popular in frontier space and is likely why you are looking at \
-		one now."
+	. += "黄蜂是一款完全为军事用途打造的手枪。\
+		它被要求使用制式弹药和标准弹匣，\
+		并能在地球政府通常行动的各种\
+		环境中工作。这些特性恰好使这件武器\
+		在边疆星域很受欢迎，也可能正是\
+		你此刻能看到它的原因。"
 
 	return .
 
@@ -50,7 +50,7 @@
 // Sol pistol evil gun
 
 /obj/item/gun/ballistic/automatic/pistol/sol/evil
-	desc = "The standard issue service pistol of TerraGov's various military branches. Comes with attached light. This one is painted tacticool black."
+	desc = "地球政府各军种的制式军用手枪，配有枪灯。这把涂上了耍酷用的战术黑。"
 
 	icon_state = "wespe_evil"
 
@@ -60,9 +60,9 @@
 // Trappiste high caliber pistol in .585
 
 /obj/item/gun/ballistic/automatic/pistol/trappiste
-	name = "\improper Skild Pistol"
-	desc = "A somewhat rare to see Trappiste pistol firing the high caliber .585 developed by the same company. \
-		Sees rare use mainly due to its tendency to cause severe wrist discomfort."
+	name = "\improper 盾牌手枪"
+	desc = "一款较为罕见的特拉比斯特手枪，发射该公司研制的.585大口径弹药。\
+		它不常见的主要原因是容易让手腕严重不适。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "skild"
@@ -86,22 +86,22 @@
 
 /obj/item/gun/ballistic/automatic/pistol/sol/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/pistol/trappiste/examine_more(mob/user)
 	. = ..()
 
-	. += "The Skild only exists due to a widely known event that TerraGov's military \
-		would prefer wasn't anywhere near as popular. A general, name unknown as of now, \
-		was recorded complaining about the lack of capability the Wespe provided to the \
-		military, alongside several statements comparing the Wespe's lack of masculinity \
-		to the, quote, 'unique lack of testosterone those NRI mongrels field'. While the \
-		identities of both the general and people responsible for the leaking of the recording \
-		are still classified, many high ranking TerraGov military staff suspiciously have stopped \
-		appearing in public, unlike the Skild. A lot of several thousand pistols, the first \
-		of the weapons to ever exist, were not so silently shipped to TerraGov's Plutonian \
-		shipping hub from TRAPPIST. TerraGov military command refuses to answer any \
-		further questions about the incident to this day."
+	. += "盾牌的诞生源于一桩广为人知的事件，而地球政府军方\
+		宁愿它没那么出名。一位至今姓名不详的将军\
+		被录下抱怨黄蜂手枪不足以满足军方需求的言论，\
+		还多次将黄蜂缺乏男子气概的表现与\
+		原话所说的“那群NRI杂种特有的睾酮匮乏”相提并论。\
+		虽然这位将军和录音泄露者的身份\
+		至今仍属机密，但许多地球政府高级军官可疑地不再\
+		公开露面，盾牌手枪却恰恰相反。最初生产的数千把\
+		手枪相当高调地从特拉比斯特运往地球政府位于冥王星的\
+		航运枢纽。地球政府军事司令部至今仍拒绝\
+		回答任何有关此事的进一步问题。"
 
 	return .
 

@@ -1,8 +1,8 @@
 //Yes, whip is mask item, because character can take it in mouth. For some BDSM scenarios it would be cool, but if you make it better with same functionality - go ahead, make me proud.
 
 /obj/item/clothing/mask/leatherwhip
-	name = "leather whip"
-	desc = "A tool used for domination. Hurts in a way you like it."
+	name = "皮鞭"
+	desc = "用于支配的工具。以你喜欢的方式带来疼痛。"
 	icon_state = "leather_whip_pink_hard"
 	worn_icon_state = "leather_whip"
 	base_icon_state = "leather"
@@ -100,14 +100,14 @@
 /obj/item/clothing/mask/leatherwhip/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's color.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 	else if(!form_changed)
-		. += span_notice("Alt-click to change it's form.")
+		. += span_notice("按住 Alt 点击可更换款式。")
 
 //to change color
 /obj/item/clothing/mask/leatherwhip/click_alt(mob/user)
 	if(!color_changed)
-		var/choice = show_radial_menu(user, src, whip_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, whip_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_whip_color = choice
@@ -116,7 +116,7 @@
 		color_changed = TRUE
 		return CLICK_ACTION_SUCCESS
 	else if(!form_changed)
-		var/choice = show_radial_menu(user, src, whip_forms, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, whip_forms, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_whip_form = choice
@@ -175,20 +175,20 @@
 	var/message = ""
 	//and there is code for successful check, so we are whipping someone
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger("[target] 不愿意让你这么做。"))
 		return
 
 	switch(user.zone_selected) //to let code know what part of body we gonna whip
 		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 			if(carbon_target && !carbon_target.has_feet())
-				to_chat(user, span_danger("Looks like [target] is missing their legs!"))
+				to_chat(user, span_danger("[target] 似乎没有双腿！"))
 				return
 
 			if(current_whip_type == "hard")
-				message = (user == target) ? pick("Knocks [target.p_them()]self down with [src]",
-						"Uses [src] to knock [target.p_them()]self on the ground") \
-					: pick("drops [target] to the ground with [src]",
-						"Uses [src] to put [target] on [target.p_their()] knees")
+				message = (user == target) ? pick("用 [src] 把自己绊倒",
+						"用 [src] 将自己放倒在地") \
+					: pick("用 [src] 将 [target] 绊倒在地",
+						"用 [src] 使 [target] 跪下")
 
 				if(prob(60))
 					target.try_lewd_autoemote(pick("gasp", "shiver"))
@@ -198,10 +198,10 @@
 				target.adjust_pain(5)
 				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 			else
-				message = (user == target) ? pick("knocks [target.p_them()]self down with [src]",
-						"gently uses [src] to knock [target.p_them()]self on the ground") \
-					: pick("drops [target] to the ground with [src]",
-						"uses [src] to put [target] on [target.p_their()] knees")
+				message = (user == target) ? pick("用 [src] 把自己绊倒",
+						"用 [src] 轻轻将自己放倒在地") \
+					: pick("用 [src] 将 [target] 绊倒在地",
+						"用 [src] 使 [target] 跪下")
 				if(prob(30))
 					target.try_lewd_autoemote(pick("gasp", "shiver"))
 				if(prob(10))
@@ -211,10 +211,10 @@
 				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 		if(BODY_ZONE_HEAD)
-			message = (user == target) ? pick("wraps [src] around [target.p_their()] neck, choking [target.p_them()]self",
-					"chokes [target.p_them()]self with [src]") \
-				: pick("chokes [target] with [src]",
-					"twines [src] around [target]'s neck!")
+			message = (user == target) ? pick("把 [src] 缠在自己脖子上，勒住自己",
+					"用 [src] 勒住自己") \
+				: pick("用 [src] 勒住 [target]",
+					"把 [src] 缠在 [target] 的脖子上")
 			if(prob(70))
 				target.try_lewd_autoemote(pick("gasp", "choke", "moan"))
 			carbon_target?.adjust_arousal(3)
@@ -223,13 +223,13 @@
 
 		if(BODY_ZONE_PRECISE_GROIN)
 			if(carbon_target && !carbon_target.is_bottomless())
-				to_chat(user, span_danger("Looks like [target]'s butt is covered!"))
+				to_chat(user, span_danger("[target] 的臀部似乎被遮住了！"))
 				return
 			if(current_whip_type == "weak")
-				message = (user == target) ? pick("whips [target.p_them()]self with [src]",
-						"flogs [target.p_them()]self with [src]") \
-					: pick("playfully flogs [target]'s thighs with [src]",
-						"flogs [target] with [src]", "mercilessly flogs [target] with [src]")
+				message = (user == target) ? pick("用 [src] 抽打自己",
+						"用 [src] 鞭打自己") \
+					: pick("用 [src] 戏弄般抽打 [target] 的大腿",
+						"用 [src] 鞭打 [target]", "用 [src] 无情地鞭打 [target]")
 				if(prob(70))
 					target.try_lewd_autoemote(pick("moan", "twitch"))
 				if(prob(10))
@@ -242,11 +242,11 @@
 				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 60)
 
 			else
-				message = (user == target) ? pick("roughly flogs [target.p_them()]self with [src]",
-						"flogs [target.p_them()]self with [src]") \
-					: pick("playfully flogs [target]'s thighs with [src]",
-						"flogs [target] with [src]",
-						"mercilessly flogs [target] with [src]")
+				message = (user == target) ? pick("用 [src] 粗暴地鞭打自己",
+						"用 [src] 鞭打自己") \
+					: pick("用 [src] 戏弄般抽打 [target] 的大腿",
+						"用 [src] 鞭打 [target]",
+						"用 [src] 无情地鞭打 [target]")
 				if(prob(70))
 					target.try_lewd_autoemote(pick("moan", "twitch", "twitch_s", "scream"))
 				if(prob(10))
@@ -259,11 +259,11 @@
 				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 		else
 			if(current_whip_type == "hard")
-				message = (user == target) ? pick("disciplines [target.p_them()]self with [src]",
-						"lashes [target.p_them()]self with [src]") \
-					: pick("lashes [target] with [src]",
-						"Uses [src] to discipline [target]",
-						"disciplines [target] with [src]")
+				message = (user == target) ? pick("用 [src] 惩戒自己",
+						"用 [src] 抽打自己") \
+					: pick("用 [src] 抽打 [target]",
+						"用 [src] 管教 [target]",
+						"用 [src] 惩戒 [target]")
 				if(prob(10))
 					target.apply_status_effect(/datum/status_effect/subspace)
 				target.do_jitter_animation()
@@ -271,11 +271,11 @@
 				conditional_pref_sound(loc, 'sound/items/weapons/whip.ogg', 100)
 
 			else
-				message = (user == target) ? pick("whips [target.p_them()]self with [src]",
-						"lashes [target.p_them()]self with [src]") \
-					: pick("playfully lashes [target] with [src]",
-						"disciplines [target] with [src]",
-						"gently lashes [target] with [src]")
+				message = (user == target) ? pick("用 [src] 鞭打自己",
+						"用 [src] 抽打自己") \
+					: pick("用 [src] 戏弄般抽打 [target]",
+						"用 [src] 惩戒 [target]",
+						"用 [src] 轻轻抽打 [target]")
 				if(prob(30))
 					target.try_lewd_autoemote(pick("moan", "twitch"))
 				if(prob(10))
@@ -292,9 +292,9 @@
 	switch(current_whip_type)
 		if("hard")
 			current_whip_type = "weak"
-			to_chat(user, span_notice("[src] feels softer. Easy mode!"))
+			to_chat(user, span_notice("[src] 变软了。轻柔模式！"))
 		if("weak")
 			current_whip_type = "hard"
-			to_chat(user, span_notice("[src] is now hard. Someone need to be punished!"))
+			to_chat(user, span_notice("[src] 变硬了。有人需要受到惩罚！"))
 	update_icon()
 	update_icon_state()

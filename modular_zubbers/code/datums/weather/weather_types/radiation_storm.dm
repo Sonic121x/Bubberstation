@@ -1,6 +1,6 @@
 /datum/weather/rad_storm
 	end_duration = 3 SECONDS
-	telegraph_message = span_userdanger("The air begins to grow warm.")
+	telegraph_message = span_userdanger("空气开始变暖。")
 	var/maint_flipped = FALSE
 
 /datum/weather/rad_storm/New(...)

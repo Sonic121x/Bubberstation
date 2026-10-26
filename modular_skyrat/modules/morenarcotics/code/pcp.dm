@@ -21,12 +21,12 @@
 	color = "#550000"
 
 /datum/reagent/drug/pcp //to an extent this is pretty much just super bath salts
-	name = "PCP"
-	description = "Pure rage put into chemical form."
+	name = "苯环利定（PCP）"
+	description = "化为化学物质的纯粹狂怒。"
 	color = "#ffea2e"
 	overdose_threshold = 10 //really low overdose to keep people from abusing it too much
 	ph = 8
-	taste_description = "rage"
+	taste_description = "狂怒"
 	var/datum/brain_trauma/special/psychotic_brawling/bath_salts/pcp_rage
 	var/datum/brain_trauma/special/tenacity/pcp_tenacity
 	var/pcp_lifetime = 0
@@ -41,7 +41,7 @@
 		C.gain_trauma(pcp_tenacity, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/reagent/drug/pcp/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
-	var/high_message = pick("You feel like KILLING!", "Someone's about to fucking die!", "Rip and tear!")
+	var/high_message = pick("你想大开杀戒！", "有人他妈的要死了！", "撕碎一切！")
 	if(M.hud_used!=null)
 		var/atom/movable/plane_master_controller/game_plane_master_controller = M.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 		game_plane_master_controller.add_filter("pcp_blur", 10, angular_blur_filter(0, 0, 0.7))
@@ -70,7 +70,7 @@
 		QDEL_NULL(pcp_rage)
 	if(pcp_tenacity)
 		QDEL_NULL(pcp_tenacity)
-	L.visible_message(span_danger("[L] collapses onto the floor!")) //you pretty much pass out
+	L.visible_message(span_danger("[L]瘫倒在地！")) //you pretty much pass out
 	L.Paralyze(pcp_lifetime,TRUE)
 	L.drop_all_held_items()
 	..()
@@ -84,7 +84,7 @@
 	if(SPT_PROB(2.5, seconds_per_tick))
 		M.emote(pick("twitch","drool"))
 	if(SPT_PROB(1.5, seconds_per_tick))
-		M.visible_message(span_danger("[M] flails their arms around everywhere!"))
+		M.visible_message(span_danger("[M]胡乱挥舞着双臂！"))
 		M.drop_all_held_items()
 	..()
 	. = TRUE
@@ -92,8 +92,8 @@
 //precursor chemical
 /datum/reagent/pcc
 	name = "PCC"
-	description = "A chemical precursor to PCP."
+	description = "苯环利定的化学前体。"
 	color = "#ffea2e" // rgb: 128, 128, 128
-	taste_description = "satiated rage"
+	taste_description = "平息的狂怒"
 	ph = 7.3
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

@@ -138,11 +138,11 @@
 		if(!ispath(exam_proj))
 			continue
 		if(initial(exam_proj.damage) > 0) // Don't divide by 0!!!!!
-			readout += "在 [span_warning("[for_ammo.select_name]")] 模式下，[span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * projectile_damage_multiplier) * for_ammo.pellets)] 发")] 之后便会因[initial(exam_proj.damage_type) == STAMINA ? "剧痛" : "伤势"]而倒下。"
+			readout += "在 [span_warning("[chinese_skyrat_item_label(for_ammo.select_name)]")] 模式下，[span_warning("[HITS_TO_CRIT((initial(exam_proj.damage) * projectile_damage_multiplier) * for_ammo.pellets)] 发")] 之后便会因[initial(exam_proj.damage_type) == STAMINA ? "剧痛" : "伤势"]而倒下。"
 			if(initial(exam_proj.stamina) > 0) // In case a projectile does damage AND stamina damage (Energy Crossbow)
-				readout += "在 [span_warning("[for_ammo.select_name]")] 模式下，[span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * projectile_damage_multiplier) * for_ammo.pellets)] 发")] 之后便会因剧痛而倒下。"
+				readout += "在 [span_warning("[chinese_skyrat_item_label(for_ammo.select_name)]")] 模式下，[span_warning("[HITS_TO_CRIT((initial(exam_proj.stamina) * projectile_damage_multiplier) * for_ammo.pellets)] 发")] 之后便会因剧痛而倒下。"
 		else
-			readout += "在 [span_warning("[for_ammo.select_name]")] 模式下理论上无限次的射击。"
+			readout += "在 [span_warning("[chinese_skyrat_item_label(for_ammo.select_name)]")] 模式下理论上无限次的射击。"
 
 	return readout.Join("\n") // Sending over the singular string, rather than the whole list
 
@@ -245,7 +245,7 @@
 	if (shot.muzzle_flash_color)
 		set_light_color(shot.muzzle_flash_color)
 	if (shot.select_name && user)
-		balloon_alert(user, "已切换至 [shot.select_name]")
+		balloon_alert(user, "已切换至 [chinese_skyrat_item_label(shot.select_name)]")
 	chambered = null
 	recharge_newshot(TRUE)
 	update_appearance()

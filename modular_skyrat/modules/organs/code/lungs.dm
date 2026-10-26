@@ -1,8 +1,8 @@
 #define ADAPTIVE_TOLERANCE 2
 
 /obj/item/organ/lungs/adaptive
-	name = "debug-adaptive lungs"
-	desc = "if you have these, or see these, someone fucked up"
+	name = "调试用适应性肺"
+	desc = "如果你拥有或看到了这东西，说明有人搞砸了。"
 	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
 	icon_state = "lungs_cold"
 	safe_oxygen_min = 7
@@ -11,8 +11,8 @@
 	var/air_mix = null
 
 /obj/item/organ/lungs/adaptive/cold
-	name = "cold-adapted lungs"
-	desc = "A set of lungs adapted to low temperatures, though they are more susceptible to high temperatures"
+	name = "耐寒肺"
+	desc = "适应低温环境的一对肺，但更容易受到高温伤害。"
 	icon_state = "lungs_cold"
 	air_mix = ICEMOON_DEFAULT_ATMOS
 	cold_level_1_threshold = 177.15
@@ -26,8 +26,8 @@
 	heat_level_1_damage = HEAT_GAS_DAMAGE_LEVEL_2
 
 /obj/item/organ/lungs/adaptive/hot
-	name = "heat-adapted lungs"
-	desc = "A set of lungs adapted to high temperatures, though they are more susceptible to low temperatures"
+	name = "耐热肺"
+	desc = "适应高温环境的一对肺，但更容易受到低温伤害。"
 	icon_state = "lungs_heat"
 	air_mix = LAVALAND_DEFAULT_ATMOS
 	cold_level_1_threshold = 271.15
@@ -83,9 +83,9 @@
 	return ..()
 
 /obj/item/organ/lungs/toxin
-	name = "toxin-adapted lungs"
+	name = "耐毒肺"
 	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
-	desc = "A set of lungs adapted to toxic environments, though more susceptible to extreme temperatures."
+	desc = "适应有毒环境的一对肺，但更容易受到极端温度的伤害。"
 	icon_state = "lungs_toxin"
 	safe_plasma_max = 27
 	safe_co2_max = 27
@@ -95,9 +95,9 @@
 	heat_level_3_threshold = 913.15
 
 /obj/item/organ/lungs/oxy
-	name = "low-oxygen-adapted lungs"
+	name = "低氧适应肺"
 	icon = 'modular_skyrat/modules/organs/icons/lungs.dmi'
-	desc = "A set of lungs adapted to lower-pressure environments, though more susceptible to extreme temperatures."
+	desc = "适应低压环境的一对肺，但更容易受到极端温度的伤害。"
 	icon_state = "lungs_toxin"
 	safe_oxygen_min = 4
 	safe_co2_max = 21

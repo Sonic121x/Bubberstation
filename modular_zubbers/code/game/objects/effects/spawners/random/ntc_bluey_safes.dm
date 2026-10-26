@@ -1,22 +1,22 @@
 //Some of the fluff that can spawn in there
 /obj/item/paperwork/ntc
-	name = "Internal Affairs records"
-	desc = "A densely compiled stack of Internal Affairs records, documenting various investigations, audits and disciplinary proceedings, extensively redacted under the authority of Central Command."
+	name = "内务档案"
+	desc = "厚厚一叠内务档案，记录了各种调查、审计和纪律处分程序；大量内容依中央指挥部的命令被涂黑。"
 
 /obj/item/paperwork/blueshield
-	name = "Asset Protection case records"
-	desc = "A messily compiled stack of DAP records, containing incident reports, asset recovery briefings and classified paramilitary activities, with substantial portions censored and redacted. You probably shouldn't be reading this, unless you yearn for a one-way trip to Space Guantanamo."
+	name = "资产保护案件档案"
+	desc = "一叠整理凌乱的资产保护部档案，包含事故报告、资产回收简报和秘密准军事行动，大量内容被审查涂黑。你大概不该读它，除非你很向往太空关塔那摩的单程旅行。"
 
 /obj/item/reagent_containers/cup/glass/trophy
-	name = "Redshield 1st Prize"
-	desc = "You did good in the worst way possible."
+	name = "红盾一等奖"
+	desc = "你用最糟糕的方式干了一件好事。"
 
 /obj/item/toy/plush/skyrat/fox/mia/vigilant
-	name = "Vigilant the Fox Plushie"
-	desc = "A cute, marketable version of one of the DAP's mascots, Vigilant the Fox. She has a blue collar with a shield-shaped tag that reads DAP. Holding her makes you feel protected."
+	name = "警觉狐毛绒玩具"
+	desc = "资产保护部吉祥物之一“警觉狐”的可爱商品版本。她戴着蓝色项圈，盾形吊牌上写着 DAP。抱着她会让你感到受到保护。"
 
 /obj/effect/spawner/random/loot/dignitary
-	desc = "Glory to Nanotrasen!"
+	desc = "荣耀归于纳米传讯！"
 	var/spawn_additional_loot_chance = 100
 	var/list/additional_loot
 
@@ -28,7 +28,7 @@
 		spawned_loot.setDir(dir)
 
 /obj/effect/spawner/random/loot/dignitary/consultant
-	name = "nanotrasen consultant safe spawner"
+	name = "纳米传讯顾问保险箱生成器"
 	loot = null
 	additional_loot = list(
 		/obj/structure/safe/abovetilefloor = 1
@@ -72,7 +72,7 @@
 	make_item(loot_inside, /obj/item/paperwork/ntc)
 
 /obj/effect/spawner/random/loot/dignitary/blueshield
-	name = "blueshield safe spawner"
+	name = "蓝盾保险箱生成器"
 	loot = null
 	additional_loot = list(
 		/obj/structure/safe/abovetilefloor = 1

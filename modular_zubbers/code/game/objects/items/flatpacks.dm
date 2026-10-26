@@ -1,5 +1,5 @@
 /obj/item/flatpack/export_gate
-	name = "bounty cube export gate"
+	name = "悬赏立方体出口闸门"
 	board = /obj/item/circuitboard/machine/export_gate
 	custom_premium_price = PAYCHECK_CREW * 1.5
 
@@ -12,12 +12,12 @@
 	if(isturf(loc))
 		var/turf/location = loc
 		if(!locate(/obj/machinery/conveyor) in location)
-			balloon_alert(user, "needs conveyor belt!")
+			balloon_alert(user, "需要传送带！")
 			return ITEM_INTERACT_BLOCKING
 
 	return ..()
 
 /obj/item/flatpack/materials_market
-	name = "materials import market"
+	name = "材料进口市场"
 	board = /obj/item/circuitboard/machine/materials_market
 	custom_premium_price = PAYCHECK_CREW * 1.5

@@ -14,7 +14,7 @@
 	new_right_inhand = 'modular_zubbers/icons/mob/inhands/equipment/backpack_righthand.dmi'
 
 /datum/atom_skin/medical_duffelbag/default
-	preview_name = "default"
+	preview_name = "默认"
 	new_icon_state = "duffel-medical"
 	new_worn_icon = 'icons/mob/clothing/back/backpack.dmi'
 	new_icon = 'icons/obj/storage/backpack.dmi'
@@ -23,7 +23,7 @@
 	new_inhand_icon_state = "duffel-med"
 
 /obj/item/storage/backpack/satchel/lizardgas
-	name = "lizard gas satchel"
-	desc = "Useful for holding work materials."
+	name = "蜥蜴气体挎包"
+	desc = "适合存放工作材料。"
 	icon_state = "satchel-science"
 	inhand_icon_state = "satchel-sci"

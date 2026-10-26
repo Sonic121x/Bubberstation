@@ -15,5 +15,5 @@
 
 /datum/dynamic_ruleset/midround/from_living/opfor_candidate/assign_role(datum/mind/candidate)
 	candidate.add_antag_datum(/datum/antagonist/opfor_candidate)
-	message_admins("[ADMIN_LOOKUPFLW(candidate.current)] had OPFOR candidacy passed onto them.")
-	log_dynamic("[key_name(candidate.current)] had OPFOR candidacy passed onto them.")
+	message_admins("[ADMIN_LOOKUPFLW(candidate.current)]接替了敌对势力候选人资格。")
+	log_dynamic("[key_name(candidate.current)]接替了敌对势力候选人资格。")

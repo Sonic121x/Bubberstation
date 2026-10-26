@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/size_collar
-	name = "size collar"
-	desc = "A shiny black collar embeded with technology that allows the user to change their own size."
+	name = "体型调节项圈"
+	desc = "一条亮黑色项圈，内置科技可让使用者改变自身体型。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "collar_black"
@@ -15,18 +15,18 @@
 /obj/item/clothing/neck/size_collar/attack_self(mob/user, modifiers)
 	. = ..()
 	if(!warning_given)
-		if(tgui_alert(user, "This item is strictly intended as an ERP item for use in dorm rooms. Failure to respect this will result in administrative action being taken. Do you wish to continue using this item?", "A word of warning.", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "此物品仅限在宿舍内用于情色角色扮演。违规使用将受到管理员处理。你要继续使用吗？", "使用警告", list("是", "否")) != "是")
 			return FALSE
 
 		warning_given = TRUE
 
-	var/chosen_size = tgui_input_number(user, "What size percentage do you wish to set the collar to?", name, 100, CONFIG_GET(number/size_collar_maximum), CONFIG_GET(number/size_collar_minimum))
+	var/chosen_size = tgui_input_number(user, "要将项圈的体型百分比设为多少？", name, 100, CONFIG_GET(number/size_collar_maximum), CONFIG_GET(number/size_collar_minimum))
 	if(!chosen_size)
-		balloon_alert(user, "invalid size!")
+		balloon_alert(user, "体型数值无效！")
 		return FALSE
 
-	log_message("[src] had its target size changed to [chosen_size]% by [usr]", LOG_ATTACK)
-	balloon_alert(user, "set to [chosen_size]%")
+	log_message("[usr] 将 [src] 的目标体型改为 [chosen_size]%", LOG_ATTACK)
+	balloon_alert(user, "已设为 [chosen_size]%")
 	target_size = (chosen_size * 0.01)
 	return TRUE
 
@@ -44,7 +44,7 @@
 	size_component = user.AddComponent(/datum/component/temporary_size, target_size)
 	size_component.target_size = target_size
 
-	user.log_message("[src] was equipped by [user].", LOG_ATTACK)
+	user.log_message("[user] 装备了 [src]。", LOG_ATTACK)
 
 /obj/item/clothing/neck/size_collar/dropped(mob/living/user)
 	. = ..()
@@ -61,10 +61,10 @@
 		if(!area_name)
 			continue
 
-		area_names += area_name
+		area_names += chinese_area_display(area_name)
 
 	if(length(area_names))
-		. += span_cyan("This collar will work in the following areas: [english_list(area_names)]")
+		. += span_cyan("此项圈可在以下区域生效：[jointext(area_names, "、")]")
 
 	return .
 

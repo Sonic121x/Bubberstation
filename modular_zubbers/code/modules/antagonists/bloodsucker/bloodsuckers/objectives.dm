@@ -66,7 +66,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/haven/update_explanation_text()
-	explanation_text = "Create a haven by claiming a coffin, and protect it until the end of the shift."//  Make sure to keep it safe!"
+	explanation_text = "认领一口棺材以建立避难所，并保护它直到班次结束。"//  Make sure to keep it safe!"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/haven/check_completion()
@@ -81,7 +81,7 @@
 
 /datum/objective/survive/bloodsucker
 	name = "bloodsuckersurvive"
-	explanation_text = "Survive the entire shift without succumbing to Final Death."
+	explanation_text = "存活至班次结束，避免遭遇终极死亡。"
 
 /datum/objective/survive/bloodsucker/check_completion()
 	var/list/datum/mind/owners = get_owners()
@@ -109,7 +109,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/conversion/command/update_explanation_text()
-	explanation_text = "Guarantee a Ghoul ends up as a Department Head or in a Leadership role."
+	explanation_text = "确保一名血仆最终担任部门主管或领导职务。"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/conversion/command/check_completion()
@@ -146,7 +146,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/conversion/department/update_explanation_text()
-	explanation_text = "Have [target_amount] Ghoul[target_amount == 1 ? "" : "s"] in the [target_department.department_name] department."
+	explanation_text = "让[chinese_department_display(target_department.department_name)]拥有[target_amount]名血仆。"
 	return ..()
 
 // WIN CONDITIONS?
@@ -180,7 +180,7 @@
 // GENERATE!
 /datum/objective/steal_n_of_type/hearts/New()
 	amount = rand(2, 3)
-	explanation_text = "Steal and keep [amount] organic hearts. Must be obtained from non-monkeys. Examine hearts thoroughly to see if they are valid."
+	explanation_text = "窃取并保留[amount]颗有机心脏。不得取自猴子。仔细检查心脏以确认其是否符合要求。"
 	update_explanation_text()
 	..()
 
@@ -203,7 +203,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/gourmand/update_explanation_text()
 	. = ..()
-	explanation_text = "Using your Feed ability, drink [target_amount] units of Blood."
+	explanation_text = "使用吸血能力，吸食[target_amount]单位鲜血。"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/gourmand/check_completion()
@@ -230,7 +230,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/kindred/update_explanation_text()
 	. = ..()
-	explanation_text = "A Noddist Scholar has posted a bounty on SchreckNet for a scrap of the Book of Nod located in your sector. Their advise? Read a book."
+	explanation_text = "一名诺德学者在惊惧网上发布悬赏，寻找你所在星区的一页《诺德之书》残篇。学者的建议？多读书。"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/kindred/check_completion()
@@ -255,7 +255,7 @@
 
 // EXPLANATION
 /datum/objective/bloodsucker/tremere_power/update_explanation_text()
-	explanation_text = "Your Regent is doubting your abilities, level some Blood Magic to [power_level] to prove them wrong! Remember that Ghoulifying gives more Ranks!"
+	explanation_text = "你的摄政者质疑你的能力，将某项血魔法提升至[power_level]级，证明其看走了眼！别忘了，转化血仆能获得更多等级！"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/tremere_power/check_completion()
@@ -276,7 +276,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/embrace/update_explanation_text()
 	. = ..()
-	explanation_text = "Your Strategoi has granted you permission to embrace your favourite ghoul , use the Rack to 'level' them up."
+	explanation_text = "你的统帅允许你为宠爱的血仆进行初拥，使用刑架为其‘升级’。"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/embrace/check_completion()
@@ -300,7 +300,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/monsterhunter/update_explanation_text()
 	. = ..()
-	explanation_text = "Destroy all monsters on [station_name()]."
+	explanation_text = "消灭[station_name()]上的所有怪物。"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/monsterhunter/check_completion()
@@ -329,7 +329,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/ghoul/update_explanation_text()
 	. = ..()
-	explanation_text = "Guarantee the success of your Master's mission!"
+	explanation_text = "确保主人的任务成功！"
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/ghoul/check_completion()
@@ -358,9 +358,9 @@
 /datum/objective/bloodsucker/ghoulhim/update_explanation_text()
 	. = ..()
 	if(target?.current)
-		explanation_text = "Ensure [target.name], the [!target_department_type ? target.assigned_role.title : english_list(target.get_special_roles())], is Ghoulifyd via the Persuasion Rack."
+		explanation_text = "确保[target.name]（[!target_department_type ? chinese_job_display(target.assigned_role.title) : english_list(target.get_special_roles(), and_text = "和", comma_text = "、", final_comma_text = "")]）通过劝化刑架被转化为血仆。"
 	else
-		explanation_text = "Free Objective"
+		explanation_text = "自由目标"
 
 /datum/objective/bloodsucker/ghoulhim/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)

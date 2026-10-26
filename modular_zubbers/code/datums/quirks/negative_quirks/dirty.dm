@@ -3,14 +3,14 @@
 
 /datum/quirk/dirty
 	name = "Dirty"
-	desc = "You haven't taken a shower in a loooong time, and as a result, you are caked in an everpresent layer of grime and track it everywhere."
+	desc = "你已经好——久没洗澡了，身上总裹着一层污垢，走到哪里就把污垢带到哪里。"
 	icon = FA_ICON_TRASH_ALT
 	value = -2
 	mob_trait = TRAIT_DIRTY
 	quirk_flags = QUIRK_PROCESSES
-	gain_text = span_danger("You feel dirty!")
-	lose_text = span_notice("You're finally clean...")
-	medical_record_text = "Patient has atrocious hygiene standards."
+	gain_text = span_danger("你感觉自己脏兮兮的！")
+	lose_text = span_notice("你终于干净了……")
+	medical_record_text = "患者的卫生习惯极差。"
 	hardcore_value = 2
 	mail_goodies = list(
 		/obj/item/soap
@@ -49,7 +49,7 @@
 	return
 
 /datum/preference/text/dirty_text/create_default_value()
-	return "They are positively covered in filth, and are tracking it everywhere!"
+	return "浑身都是污垢，还把它带得到处都是！"
 
 /datum/preference/color/dirty_color
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
@@ -78,8 +78,8 @@
 	dirty_text = quirk_holder.client.prefs.read_preference(/datum/preference/text/dirty_text)
 	dirt_color = quirk_holder.client.prefs.read_preference(/datum/preference/color/dirty_color)
 
-	to_chat(quirk_holder, span_notice("You're dirty! You'll spread dirt when you walk. \
-	Being cleaned will remove your filth - rummage through a trash pile to get it back."))
+	to_chat(quirk_holder, span_notice("你浑身污垢！走路时会把污垢带到沿途。\
+	清洗会去掉你的污垢——翻一翻垃圾堆就能重新弄脏。"))
 
 	return ..()
 
@@ -92,21 +92,21 @@
 	SIGNAL_HANDLER
 
 	if (!cloud_charged)
-		to_chat(quirk_holder, span_notice("You find yourself covered in a thick layer of grime - a solid impact might knock it off in a cloud."))
+		to_chat(quirk_holder, span_notice("你发现自己裹上了厚厚一层污垢——猛烈撞击或许能将它震成一团尘雾。"))
 		cloud_charged = TRUE
 
 	if (!cleaned)
 		return
 
 	if (!prob(REDIRTY_CHANCE))
-		to_chat(quirk_holder, span_warning("You didn't manage to scrounge enough filth to right this wrong. Try again."))
+		to_chat(quirk_holder, span_warning("你没能搜罗到足够的污垢来弥补这一过失。再试一次。"))
 		return
 
 	set_cleaned(FALSE)
 
 /obj/effect/decal/cleanable/blood/footprints/dirty
-	name = "dirty footprints"
-	desc = "Footprints caked in grime. They smell awful."
+	name = "脏脚印"
+	desc = "裹着污垢的脚印。臭气熏天。"
 	dried = TRUE
 	bloodiness = 0
 
@@ -121,7 +121,7 @@
 	var/turf/new_turf = get_turf(quirk_holder)
 
 	if (prob(DIRTY_TILE_CHANCE))
-		quirk_holder.balloon_alert_to_viewers("spreads dirt...")
+		quirk_holder.balloon_alert_to_viewers("散落污垢……")
 		new_turf.spawn_unique_cleanable(/obj/effect/decal/cleanable/dirt)
 
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -165,8 +165,8 @@
 	if (!cloud_charged || cleaned)
 		return
 	quirk_holder.visible_message(
-		span_warning("The impact knocks a cloud of grime and dust off [quirk_holder]!"),
-		span_notice("The impact knocks a cloud of grime and dust off you!")
+		span_warning("撞击从[quirk_holder]身上震下了一团污垢和灰尘！"),
+		span_notice("撞击从你身上震下了一团污垢和灰尘！")
 	)
 
 	do_smoke(0, quirk_holder, get_turf(quirk_holder), smoke_type = /datum/effect_system/fluid_spread/smoke/dirty)
@@ -196,15 +196,15 @@
 
 	if (cleaned && !new_cleaned)
 		quirk_holder.visible_message(
-			span_warning("[quirk_holder] is once again covered in filth, [quirk_holder.p_their()] hygiene forever accursed."),
-			span_notice("Your find yourself lathered in filth once again. A sense of relief washes over you.")
+			span_warning("[quirk_holder]再次裹满污垢，卫生状况永远无药可救。"),
+			span_notice("你发现自己再次裹满了污垢。一阵安心感涌上心头。")
 		)
 		quirk_holder.clear_mood_event("dirty_quirk_washed")
 		ADD_TRAIT(quirk_holder, TRAIT_DIRTY, QUIRK_TRAIT)
 	else if (!cleaned && new_cleaned)
 		quirk_holder.visible_message(
-			span_warning("[quirk_holder] squirms and writhes, fighting against the cleansing!"),
-			span_userdanger("No! NO! Your filth! It's gone!")
+			span_warning("[quirk_holder]扭动挣扎着，抵抗清洗！"),
+			span_userdanger("不！不要！你的污垢！全没了！")
 		)
 		quirk_holder.add_mood_event("dirty_quirk_washed", /datum/mood_event/dirty_washed)
 		REMOVE_TRAIT(quirk_holder, TRAIT_DIRTY, QUIRK_TRAIT)
@@ -212,7 +212,7 @@
 	cleaned = new_cleaned
 
 /datum/mood_event/dirty_washed
-	description = "What is this smell...? Lavender soap? A hint of citrus?! ELDERBERRIES?! DISGUSTING! I need to wash myself in dirt!"
+	description = "这是什么味道……？薰衣草香皂？还带点柑橘味？！接骨木莓？！真恶心！我要用泥巴洗澡！"
 	mood_change = -6
 
 #undef DIRTY_TILE_CHANCE

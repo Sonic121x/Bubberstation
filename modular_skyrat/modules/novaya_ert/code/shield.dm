@@ -1,6 +1,6 @@
 /obj/item/shield/riot/pointman/nri
-	name = "heavy corpsman shield"
-	desc = "A shield designed for people that have to sprint to the rescue. Cumbersome as hell. Repair with plasteel."
+	name = "重型医护盾牌"
+	desc = "专为必须冲刺救人的医护兵设计的盾牌，笨重得要命。可用塑钢修复。"
 	icon_state = "riot"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/riot.dmi'
 	lefthand_file = 'modular_skyrat/modules/novaya_ert/icons/riot_left.dmi'
@@ -9,8 +9,8 @@
 	shield_break_leftover = /obj/item/corpsman_broken
 
 /obj/item/corpsman_broken
-	name = "broken corpsman shield"
-	desc = "Might be able to be repaired with a welder."
+	name = "损坏的医护盾牌"
+	desc = "也许能用焊接工具修好。"
 	icon_state = "riot_broken"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/riot.dmi'
 	w_class = WEIGHT_CLASS_BULKY

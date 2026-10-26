@@ -1,14 +1,14 @@
 /datum/quirk/equipping/seamless_clothes
 	name = "Seamless Heels"
-	desc = "You come with heels stuck on you. Whether it be a freak accident or part of your design, you can't take them off."
-	medical_record_text = "Subject appears to have clothing attire fused to their body."
+	desc = "你的高跟鞋与身体连在一起。无论是离奇意外还是天生设计，你都无法将它们脱下。"
+	medical_record_text = "该人员的衣物似乎与身体融为一体。"
 	value = 0
 	icon = FA_ICON_TSHIRT
-	gain_text = span_notice("You feel things stick to your body.")
-	lose_text = span_notice("You feel things loose their grip on your body.")
+	gain_text = span_notice("你感觉有东西黏在了身上。")
+	lose_text = span_notice("你感觉身上的束缚松开了。")
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	forced_items = list(/obj/item/clothing/shoes/fancy_heels = list(ITEM_SLOT_FEET))
-	var/prefix = "seamless"
+	var/prefix = "一体式"
 	var/obj/item/clothing/shoes/shoes
 
 /datum/quirk/equipping/seamless_clothes/add(client/client_source)
@@ -22,7 +22,7 @@
 	if(!istype(shoes, /obj/item/clothing/shoes))
 		CRASH("Type mismatch on [src] during on_equip_item. Tried to equip [shoes]")
 	shoes.name = "[prefix] [initial(shoes.name)]"
-	shoes.desc = "A pair of heels which refuse to come off your feet."
+	shoes.desc = "一双无法从脚上脱下的高跟鞋。"
 	if(shoes.greyscale_config)
 		shoes.greyscale_colors = quirk_holder.client.prefs.read_preference(/datum/preference/color/seamless_shoe_color)
 		shoes.update_greyscale()
@@ -53,7 +53,7 @@
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "seamless_heel_type"
 	savefile_identifier = PREFERENCE_CHARACTER
-	main_feature_name = "Heel Type"
+	main_feature_name = "高跟鞋类型"
 	can_randomize = FALSE
 
 /datum/preference/choiced/seamless_heel_type/init_possible_values()

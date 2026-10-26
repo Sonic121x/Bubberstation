@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/cup/beaker/eldritch/examine(mob/user)
 	. = ..()
 
-	. += span_notice("This flask nominally contains [EXAMINE_HINT("eldritch essence")], a potent toxin to non-acolytes but \
-	a potent healing tool for those attuned to the Mansus. Needless to say, whoever is holding this might be an Acolyte.")
+	. += span_notice("这只烧瓶通常装着[EXAMINE_HINT("邪异精华")]，对非侍徒而言是剧毒，\
+	对与漫宿相通者却是强效疗药。不言而喻，持有它的人可能是一名侍徒。")

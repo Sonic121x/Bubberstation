@@ -4,8 +4,8 @@
 #define ADVANCED_BROOM_SLOWDOWN 0.15
 
 /obj/item/pushbroom/advanced
-	name = "advanced push broom"
-	desc = "A compact push broom, the less-famous overall-clad brother of the advanced mop. Its powered bristles can be enabled to generate a broad electrostatic sweep, gathering loose debris across a much wider area than its size would suggest."
+	name = "高级推扫帚"
+	desc = "一把小巧的推扫帚，是高级拖把那位穿着工装、名气稍逊的兄弟。启动电动刷毛后可产生大范围静电扫掠，收集远超其体型所示范围内的散落杂物。"
 	icon = 'modular_zubbers/icons/obj/service/advanced_broom.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/advanced_broom_lefthand.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/equipment/advanced_broom_righthand.dmi'
@@ -15,7 +15,7 @@
 
 /obj/item/pushbroom/advanced/examine(mob/user)
 	. = ..()
-	. += span_notice("The bristle charge is set to <b>[wide_sweep ? "ON" : "OFF"]</b>.")
+	. += span_notice("刷毛充电已<b>[wide_sweep ? "开启" : "关闭"]</b>。")
 
 /obj/item/pushbroom/advanced/update_overlays()
 	. = ..()
@@ -55,7 +55,7 @@
 	update_appearance()
 	holder.update_equipment_speed_mods()
 	playsound(holder, wide_sweep ? 'sound/machines/synth/synth_yes.ogg' : 'sound/machines/synth/synth_no.ogg', 40, TRUE, frequency = rand(5120, 8800))
-	holder.balloon_alert(holder, "bristle charge [wide_sweep ? "on" : "off"]")
+	holder.balloon_alert(holder, "刷毛充电已[wide_sweep ? "开启" : "关闭"]")
 
 /obj/item/pushbroom/advanced/sweep(mob/user, atom/atom)
 	. = ..()
@@ -92,8 +92,8 @@
 	set_wide_sweep(user, !wide_sweep)
 
 /datum/design/advbroom
-	name = "Advanced Push Broom"
-	desc = "A compact push broom with powered bristles, able to sweep a wide path of debris at once."
+	name = "高级推扫帚"
+	desc = "带有电动刷毛的小巧推扫帚，一次即可扫走大片区域内的杂物。"
 	id = "advbroom"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)

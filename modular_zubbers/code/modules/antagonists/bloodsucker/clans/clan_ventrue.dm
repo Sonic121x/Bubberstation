@@ -3,14 +3,14 @@
 
 /datum/bloodsucker_clan/ventrue
 	name = CLAN_VENTRUE
-	description = "The Ventrue Clan is extremely snobby with their meals, and refuse to drink blood from people without a mind. \n\
-		You may have up to %MAX_POWERS% powers, anything further will be ranks to spend on their Favorite Ghoul through a Persuasion Rack. \n\
-		The Favorite Ghoul will slowly turn more Vampiric this way, until they finally lose their last bits of Humanity. \n\
-		Once you finish your embracing, the newly sired vampire will become just a ghoul, and you'll be able to sire another bloodsucker."
+	description = "梵卓氏族对食物极其挑剔，拒绝吸食没有心智者的血液。\n\
+		你最多可拥有%MAX_POWERS%项能力，之后的等级只能通过劝化刑架用于提升宠爱血仆。\n\
+		宠爱血仆会逐渐趋近吸血鬼，直到最终失去最后一丝人性。\n\
+		完成初拥后，新生吸血鬼将恢复普通血仆身份，你便能再次初拥另一名吸血鬼。"
 	clan_objective = /datum/objective/bloodsucker/embrace
 	join_icon_state = "ventrue"
-	join_description = "Lose the ability to drink from mindless mobs, can't level up or gain new powers, \
-		instead you raise a ghoul into a Bloodsucker."
+	join_description = "你无法吸食无心智生物的血液，也无法升级或获得新能力，\
+		取而代之的是将一名血仆培养成吸血鬼。"
 	blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
 	level_cost = BLOODSUCKER_LEVELUP_PERCENTAGE_VENTRUE
 
@@ -29,7 +29,7 @@
 
 /datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/source, cost_rank = TRUE, blood_cost)
 	if(has_enough_abilities())
-		to_chat(bloodsuckerdatum.owner.current, span_danger("You can only have up to [VENTRUE_MAX_POWERS] powers, anything further must be ranks to spend on your Favorite Ghoul through a Persuasion Rack."))
+		to_chat(bloodsuckerdatum.owner.current, span_danger("你最多只能拥有[VENTRUE_MAX_POWERS]项能力，此后的等级必须通过劝化刑架用于提升宠爱血仆。"))
 		return FALSE
 	. = ..()
 
@@ -43,17 +43,17 @@
 		return TRUE
 	if(!istype(ghouldatum))
 		return FALSE
-	to_chat(bloodsuckerdatum.owner.current, span_warning("Do you wish to Rank [ghouldatum.owner.current] up?"))
-	to_chat(bloodsuckerdatum.owner.current, span_warning("This will use [bloodsuckerdatum.GetUnspentRank() >= 1 ? "a unspent Rank" : "[bloodsuckerdatum.get_level_cost()] Blood Thickening Points"]!"))
+	to_chat(bloodsuckerdatum.owner.current, span_warning("要为[ghouldatum.owner.current]升级吗？"))
+	to_chat(bloodsuckerdatum.owner.current, span_warning("这将消耗[bloodsuckerdatum.GetUnspentRank() >= 1 ? "一个未使用等级" : "[bloodsuckerdatum.get_level_cost()]点血液浓化点数"]！"))
 
 	var/static/list/rank_options = list(
-		"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
-		"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
+		"是" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
+		"否" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
 	)
 	var/rank_response = show_radial_menu(bloodsuckerdatum.owner.current, ghouldatum.owner.current, rank_options, radius = 36, require_near = TRUE)
-	if(rank_response == "Yes")
+	if(rank_response == "是")
 		if(!bloodsuckerdatum.GetUnspentRank() >= 1 && !source.blood_level_gain(FALSE))
-			to_chat(bloodsuckerdatum.owner.current, span_danger("You don't have any levels or enough blood thickening points to Rank [ghouldatum.owner.current] up with."))
+			to_chat(bloodsuckerdatum.owner.current, span_danger("你没有可用等级，也没有足够的血液浓化点数来为[ghouldatum.owner.current]升级。"))
 			return FALSE
 		return ghoul_level(ghouldatum)
 	return FALSE
@@ -62,21 +62,21 @@
 	var/list/options = list_available_powers(ghouldatum.bloodsucker_powers)
 	var/mob/living/carbon/human/target = ghouldatum.owner.current
 	var/datum/action/cooldown/bloodsucker/choice = choose_powers(
-		"You have the opportunity to level up your Favorite Ghoul. Select a power you wish them to receive.",
-		"A wise master's hand is neccesary",
+		"你有机会提升宠爱血仆。请选择要授予的能力。",
+		"需要明智主人的指引",
 		options
 	)
 	if(!choice)
 		return FALSE
 	var/power_name = initial(choice.name)
 	if(!ghouldatum.BuyPower(choice, ghouldatum.bloodsucker_powers))
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "[target] already knows [power_name]!")
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "[target]已经掌握了[power_name]！")
 		return FALSE
-	bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "taught [power_name]!")
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You taught [target] how to use [power_name]!"))
+	bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "已传授[power_name]！")
+	to_chat(bloodsuckerdatum.owner.current, span_notice("你教会了[target]如何使用[power_name]！"))
 
-	target.balloon_alert(target, "learned [power_name]!")
-	to_chat(target, span_notice("Your master taught you how to use [power_name]!"))
+	target.balloon_alert(target, "已学会[power_name]！")
+	to_chat(target, span_notice("主人教会了你如何使用[power_name]！"))
 
 	ghouldatum.ghoul_level++
 	finish_spend_rank(ghouldatum, TRUE, FALSE)
@@ -95,21 +95,21 @@
 	switch(stage)
 
 		if(1)
-			to_chat(target, span_notice("Your blood begins to feel cold, and as a mote of ash lands upon your tongue, you stop breathing..."))
+			to_chat(target, span_notice("你的血液开始变冷，一粒灰烬落在舌尖，你停止了呼吸……"))
 
 		if(2)
-			to_chat(target, span_notice("You feel your Master's blood reinforce you, strengthening you up."))
+			to_chat(target, span_notice("你感到主人的血液正在强化你的身体，让你更加强壮。"))
 			if(ishuman(target))
 				var/mob/living/carbon/human/human_target = target
 				human_target.skin_tone = "albino"
 
 		if(3)
-			to_chat(target, span_notice("You feel yourself able to take cuts and stabbings like it's nothing."))
+			to_chat(target, span_notice("你感觉割伤和刺伤对自己已如同挠痒。"))
 
 		if(4 to INFINITY)
 			var/datum/antagonist/bloodsucker/bloodsucker_target = IS_BLOODSUCKER(target)
 			if(!bloodsucker_target)
-				to_chat(target, span_notice("You feel your heart stop pumping for the last time as you begin to thirst for blood, you feel... dead."))
+				to_chat(target, span_notice("你感到心脏最后一次停止跳动，对鲜血的渴望随之涌现。你感觉……自己死了。"))
 				// Unfavorites you, so the ventrue isn't stuck with you forever
 				var/powers_to_transfer = list()
 				// Get rid of the favorite datum and replace with a normal ghoul datum
@@ -135,7 +135,7 @@
 		ghouldatum.traits += traits_to_add
 
 /datum/bloodsucker_clan/ventrue/favorite_ghoul_gain(datum/antagonist/bloodsucker/source, datum/antagonist/ghoul/ghouldatum)
-	to_chat(source.owner.current, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Ghoul by buckling them onto a persuasion rack!"))
+	to_chat(source.owner.current, span_announce("* 吸血鬼提示：现在可以将宠爱血仆绑在劝化刑架上，为其升级！"))
 	ghouldatum.BuyPower(/datum/action/cooldown/bloodsucker/distress)
 
 /datum/bloodsucker_clan/ventrue/is_valid_ghoul(datum/antagonist/ghoul/ghoul_type)
@@ -146,7 +146,7 @@
 	if(ghoul_type != favorite)
 		// no ghoul slots and trying to make a non-favorite ghoul, don't softlock yourself
 		if(bloodsuckerdatum.free_ghoul_slots() < 1 && !bloodsuckerdatum.special_ghouls[initial(favorite.special_type)])
-			to_chat(bloodsuckerdatum.owner.current, span_danger("Making a non-favorite Ghoul will prevent you from leveling up, as you have no slots left!"))
+			to_chat(bloodsuckerdatum.owner.current, span_danger("创建非宠爱血仆会用尽剩余名额，导致你无法继续升级！"))
 			return FALSE
 	return TRUE
 

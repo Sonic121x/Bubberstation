@@ -42,7 +42,7 @@
 		var/obj/item/organ/heart/our_heart = owner_carbon.get_organ_slot(ORGAN_SLOT_HEART)
 		our_heart.AddComponent(/datum/component/living_heart) // even synths get one free go
 
-	to_chat(owner_carbon, span_doyourjobidiot("Acolyte is significnatly different from heretic. If you are a veteran, re-read everything."))
+	to_chat(owner_carbon, span_doyourjobidiot("侍徒与异教徒有很大不同。即便你是老玩家，也请重新阅读全部说明。"))
 
 /datum/antagonist/heretic/forge_primary_objectives(heretic_research_tree)
 	// total override
@@ -68,8 +68,8 @@
 		adjust_knowledge_points(HERETIC_POINTS_PER_INFLUENCE) // TODO - consider if codex should give more. proooobably not. codex needs a new identity...
 	if (drained_num >= MAX_INFLUENCE_DRAIN && !met_drained_num)
 		met_drained_num = TRUE
-		to_chat(owner, span_hypnophrase("The SEAMS of the WORLD have REVEALED THEMSELVES TO YOU. You have risen HIGH! AND you SEE!!"))
-		to_chat(owner, span_warning("You can no longer obtain knowledge points from influences."))
+		to_chat(owner, span_hypnophrase("世界的接缝已在你面前显露。你已登高！你已洞见！！"))
+		to_chat(owner, span_warning("你无法再从影响中获得知识点。"))
 		SEND_SOUND(owner.current, sound('sound/effects/magic/knock.ogg'))
 
 /datum/antagonist/heretic/proc/adjust_ways_opened(adjustment)
@@ -81,8 +81,8 @@
 	if (ways_opened >= way_obj.target_amount && !met_ways_num)
 		met_ways_num = TRUE
 		way_obj.completed = TRUE
-		to_chat(owner, span_hypnophrase("Your mind DAZZLES with the LIGHT! You have seen MORE of the MANSUS with your OWN EYES than ANY MORTAL could ever DREAM!!"))
-		to_chat(owner, span_warning("You can no longer obtain knowledge points from ways, as your objective has been completed."))
+		to_chat(owner, span_hypnophrase("光芒令你的心智目眩神迷！你亲眼所见的漫宿，已远超任何凡人所能梦及！！"))
+		to_chat(owner, span_warning("目标已完成，你无法再通过开启通路获得知识点。"))
 		SEND_SOUND(owner.current, sound('sound/effects/magic/knock.ogg'))
 		// its important we only give heretics very limtied progression. while progression is nice, unchecked progression ruins the way nonantags interact with them
 
@@ -124,26 +124,26 @@
 	var/list/parts = list()
 
 	parts += printplayer(owner)
-	parts += "<b>Influences Drained:</b> [drained_num]"
-	parts += "<b>Ways Opened:</b> [ways_opened]"
+	parts += "<b>已汲取的影响：</b>[drained_num]"
+	parts += "<b>已开启的通路：</b>[ways_opened]"
 	var/completed = 0
 	if(length(objectives))
 		var/count = 1
 		for(var/o in objectives)
 			var/datum/objective/objective = o
 			if(objective.check_completion())
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</b></span>"
+				parts += "<b>目标 #[count]</b>：[objective.explanation_text] <span class='greentext'>成功！</b></span>"
 				completed++
 			else
-				parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
+				parts += "<b>目标 #[count]</b>：[objective.explanation_text] [span_redtext("失败。")]"
 			count++
-	parts += span_boldnotice("[OBJECTIVES_TO_WIN] objectives were required to succeed...")
+	parts += span_boldnotice("需要完成[OBJECTIVES_TO_WIN]个目标才能获胜……")
 	if(completed >= min(OBJECTIVES_TO_WIN, objectives.len))
-		parts += span_greentext("The [LOWER_TEXT(heretic_path.route)] acolyte was successful!")
+		parts += span_greentext("[heretic_path.route]侍徒成功了！")
 	else
-		parts += span_redtext("The [LOWER_TEXT(heretic_path.route)] acolyte has failed.")
+		parts += span_redtext("[heretic_path.route]侍徒失败了。")
 
-	parts += "<b>Knowledge Researched:</b> "
+	parts += "<b>已研究的知识：</b>"
 
 	var/list/string_of_knowledge = list()
 

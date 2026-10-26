@@ -8,4 +8,4 @@
 
 //renamed the decal to not be vomit
 /obj/effect/decal/cleanable/vomit/nebula
-	name = "nebula puddle"
+	name = "星云水洼"

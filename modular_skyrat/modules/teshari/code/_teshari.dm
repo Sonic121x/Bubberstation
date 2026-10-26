@@ -59,7 +59,7 @@
 	)
 
 /obj/item/organ/tongue/teshari
-	name = "teshari tongue"
+	name = "特沙利舌头"
 	liked_foodtypes = SEAFOOD | VEGETABLES | NUTS
 	disliked_foodtypes = GROSS | GRAIN
 	emote_sounds = list(
@@ -67,7 +67,7 @@
 	)
 
 /obj/item/organ/eyes/teshari
-	name = "teshari eyes"
+	name = "特沙利眼睛"
 	eye_icon = 'modular_skyrat/modules/organs/icons/teshari_eyes.dmi'
 	blink_animation = FALSE
 
@@ -95,36 +95,36 @@
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_RUNNING,
-		SPECIES_PERK_NAME = "Tablerunning",
-		SPECIES_PERK_DESC = "A being of extreme agility, you can jump on tables just by running into them!"
+		SPECIES_PERK_NAME = "桌上奔行",
+		SPECIES_PERK_DESC = "你身手极为敏捷，只要跑向桌子就能跃上桌面！"
 	))
 
 	return perk_descriptions
 
 /datum/species/teshari/get_species_description()
 	return list(
-		"A species of birdperson hailing from the tropical planet Sirisai, their introduction \
-		came in the form of the complete and utter destruction of their oppressors, now lost to the wind.",
-		"They are extremely agile, owing to their low mass, but their hollow bones make them more vulnerable to being hurt."
+		"来自热带星球西里赛的鸟形种族。他们彻底毁灭了自己的压迫者，\
+		以此登上银河舞台，而那些压迫者如今已消散在历史中。",
+		"轻盈的体重赋予他们极高的敏捷性，但中空的骨骼也使他们更容易受伤。"
 	)
 
 /datum/species/teshari/get_species_lore()
 	return list(
-		"Teshari are a bird-like species that hail from a tropical world, Sirisai. They generally are between 3'5 and 4'0 tall, \
-		light avian bodies with large plumes of feathers, and vestigial wings. They tend to have muzzles, \
-		but some have slowly evolved beak-like snouts as Sirisai has left its ice age. Teshari are very colorful, and they have large ears for hearing. \
-		Teshari tend to live to 60-70 before dying of natural causes, though medical care can extend this significantly. \
-		Teshari are omnivores that love fish, and dislike grain. They prefer nuts and vegetation.",
-		"Teshari have a genetic need for socialization and will feel physically ill if not social at all for an extended period, \
-		which has caused them to form social groups called flocks. Teshari generally lack parental figures, and are often \
-		raised communally. When they reach adulthood, they feel a strong drive to move away from their nesting flock and find or develop a new one. \
-		Teshari tend to be cloistered and quiet when entering a new social space, but are very vocal and impassioned when they fit in, often enjoying making and parroting noises.",
-		"Sirisai is a tropical world with temperatures ranging from 20 to 30 celsius on average. \
-		It has three notable mountain ranges, the only places on the planet where snow can still be seen year-round. Temperatures can go as low as -15 Celsius. \
-		The planet itself is generally very biologically diverse, ecologically pure compared to many inhabited planets.",
-		"Modern Teshari history began when they were discovered and uplifted by a species that resided on the planet Sirisai once orbited. \
-		After years of oppression and being sold as a labor force, the Teshari made their demand: Comply, or explode. This species seemed to not have taken the threat seriously, \
-		and were made extinct by the destruction of their entire planet. Fossils have been uncovered on Sirisai, and while they have yet to be named, \
-		A meeting of Teshari flocks have democratically named the species after the Teshari word for \"bastard\". \
-		Needless to say, this very quickly led to the normalization of relations and formal recognition by the then NRI.",
+		"特沙利是来自热带世界西里赛的鸟形种族，通常身高约1.04至1.22米，\
+		身体轻盈，长有丰满的羽毛和退化的翅膀。他们通常具有口鼻部，\
+		但随着西里赛走出冰河时代，部分个体逐渐演化出喙状口鼻。特沙利色彩丰富，长有用于听觉的大耳朵。\
+		他们通常在60至70岁时自然死亡，医疗护理可以显著延长寿命。\
+		特沙利是杂食者，喜爱鱼类而不喜欢谷物，也偏爱坚果和植物。",
+		"特沙利对社交的需求根植于基因，长时间完全不社交会令他们身体不适，\
+		因此形成了称为“群落”的社会团体。他们通常没有固定的父母角色，而是\
+		由集体共同抚养。成年后，他们会强烈地想离开出生的群落，寻找或建立新的群落。\
+		初入新的社交环境时，他们往往内向安静；融入后则健谈热情，常喜欢发出或模仿各种声音。",
+		"西里赛是一个热带世界，平均气温在20至30摄氏度之间。\
+		星球上有三条主要山脉，是仅有的常年可见积雪的地方，最低气温可达零下15摄氏度。\
+		整颗星球的生物多样性很高，相比许多有人居住的星球，生态也更加纯净。",
+		"特沙利的现代史始于另一个种族发现并启蒙了他们，那个种族居住在西里赛曾经环绕的行星上。\
+		多年遭受压迫、被当作劳动力贩卖后，特沙利发出最后通牒：服从，或毁灭。对方似乎没有认真对待威胁，\
+		最终整颗行星被摧毁，种族随之灭绝。西里赛上已发现他们的化石；虽然尚无正式学名，\
+		特沙利群落会议已通过民主表决，用特沙利语中“混蛋”一词为该种族命名。\
+		不用说，这很快促成了关系正常化，并获得了当时NRI的正式承认。",
 	)

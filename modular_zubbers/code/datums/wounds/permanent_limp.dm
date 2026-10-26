@@ -1,7 +1,7 @@
 /datum/wound/perm_limp
-	name = "Permanent Limp"
-	desc = "Whether from an improperly set bone, genetic disorder, or otherwise, this limb has developed a permanent limp."
-	treat_text = "Little short of full limb replacement will fix this."
+	name = "永久跛行"
+	desc = "无论是骨骼复位不当、遗传疾病还是其他原因，这条肢体已经永久跛行。"
+	treat_text = "基本只有完整更换肢体才能解决。"
 
 	limp_slowdown = 3
 	limp_chance = 50

@@ -91,7 +91,7 @@ ADMIN_VERB(dynamic_panel, R_ADMIN, "动态模式面板", "调整动态模式。"
 /datum/dynamic_panel/proc/ruleset_to_data(datum/dynamic_ruleset/ruleset)
 	var/list/data = list()
 	var/ruleset_path = isdatum(ruleset) ? ruleset.type : ruleset
-	data["name"] = initial(ruleset.name)
+	data["name"] = chinese_batch_four_admin_display(initial(ruleset.name))
 	data["id"] = initial(ruleset.config_tag)
 	data["typepath"] = ruleset_path
 	data["selected_players"] = list()

@@ -2,8 +2,8 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_CLOTHING_SYNDICATE
 
 /datum/opposing_force_equipment/clothing_syndicate/operative
-	name = "Syndicate Operative"
-	description = "A tried classic outfit, sporting versatile defensive gear, tactical webbing, a comfortable turtleneck, and even an emergency space-suit box."
+	name = "辛迪加特工"
+	description = "久经考验的经典装备，包括多用途防具、战术挂带、舒适的高领衫，甚至还有一盒应急太空服。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/operative
 
 /obj/item/storage/backpack/duffelbag/syndie/operative/PopulateContents() //basically old insurgent bundle -nukie mod
@@ -20,8 +20,8 @@
 	new /obj/item/storage/box/syndie_kit/space_suit(src)
 
 /datum/opposing_force_equipment/clothing_syndicate/engineer
-	name = "Syndicate Engineer"
-	description = "A spin on the classic outfit, for those whose hands are never clean. Trades defensive choices for utility. Comes with an emergency space-suit box."
+	name = "辛迪加工程师"
+	description = "经典装备的改款，适合双手总是沾满油污的人。以部分防护换取实用功能，附带一盒应急太空服。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/engineer
 
 /obj/item/storage/backpack/duffelbag/syndie/engineer/PopulateContents()
@@ -38,8 +38,8 @@
 	new /obj/item/storage/box/syndie_kit/space_suit(src)
 
 /datum/opposing_force_equipment/clothing_syndicate/spy
-	name = "Syndicate Spy"
-	description = "They don't have to know who you are, and they won't. Comes with emergency space-suit box."
+	name = "辛迪加间谍"
+	description = "他们不必知道你是谁，也永远不会知道。附带一盒应急太空服。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/spy
 
 /obj/item/storage/backpack/duffelbag/syndie/spy/PopulateContents()
@@ -58,7 +58,7 @@
 	new /obj/item/storage/box/syndie_kit/space_suit(src)
 
 /datum/opposing_force_equipment/clothing_syndicate/maid
-	name = "Syndicate Maid"
+	name = "辛迪加女仆"
 	description = "..."
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/maid
 
@@ -71,8 +71,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_syndicate/cybersun_operative
-	name = "Cybersun Operative"
-	description = "For the most covert of ops. Comes with emergency space-suit box."
+	name = "赛博太阳特工"
+	description = "专为最隐秘的行动准备。附带一盒应急太空服。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/cybersun_operative
 
 /obj/item/storage/backpack/duffelbag/syndie/cybersun_operative/PopulateContents() //drip maxxed
@@ -88,8 +88,8 @@
 	new /obj/item/storage/box/syndie_kit/space_suit(src)
 
 /datum/opposing_force_equipment/clothing_syndicate/cybersun_hacker
-	name = "Cybersun Hacker"
-	description = "Some space-farers believe the infamous Space Ninja is no longer around, and they are wrong."
+	name = "赛博太阳黑客"
+	description = "有些太空旅人以为臭名昭著的太空忍者已经销声匿迹，他们错了。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/cybersun_hacker
 
 /obj/item/storage/backpack/duffelbag/syndie/cybersun_hacker/PopulateContents()
@@ -103,9 +103,9 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_syndicate/lone_gunman
-	name = "Lone Gunman"
-	description = "My name is not important."
-	admin_note = "Looks unarmoured, yet is very armoured"
+	name = "独行枪手"
+	description = "我的名字并不重要。"
+	admin_note = "看起来毫无防护，实际上装甲非常厚实。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/lone_gunman
 
 /obj/item/storage/backpack/duffelbag/syndie/lone_gunman/PopulateContents()
@@ -121,9 +121,9 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_CLOTHING_SOL
 
 /datum/opposing_force_equipment/clothing_sol/sol_militant
-	name = "Sol Militant"
-	description = "There is a war being fought, and its taking place right here."
-	admin_note = "Uniquely strong power armour."
+	name = "太阳系武装分子"
+	description = "战争正在进行，战场就在这里。"
+	admin_note = "配有格外强力的动力装甲。"
 	item_type = /obj/item/storage/backpack/ert/odst/hecu/sol_militant
 
 /obj/item/storage/backpack/ert/odst/hecu/sol_militant/PopulateContents()
@@ -139,8 +139,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_sol/dogginos
-	name = "Dogginos Courier"
-	description = "You're just doing your job."
+	name = "多吉诺披萨店外卖员"
+	description = "你只是在做自己的本职工作。"
 	item_type = /obj/item/storage/backpack/satchel/leather/dogginos
 
 /obj/item/storage/backpack/satchel/leather/dogginos/PopulateContents()
@@ -156,8 +156,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_sol/impostor
-	name = "CentCom Impostor"
-	description = "Don't ask us how we got this. Comes with special agent ID pre-equipped with COMMAND access."
+	name = "中央指挥部冒充者"
+	description = "别问我们怎么弄到的。附带一张预置指挥权限的特工ID卡。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/impostor
 
 /obj/item/storage/backpack/duffelbag/syndie/impostor/PopulateContents()
@@ -178,8 +178,8 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_CLOTHING_PIRATE
 
 /datum/opposing_force_equipment/clothing_pirate/space_pirate
-	name = "Space Pirate"
-	description = "Did you fall overboard?"
+	name = "太空海盗"
+	description = "你掉下船了吗？"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/space_pirate
 
 /obj/item/storage/backpack/duffelbag/syndie/space_pirate/PopulateContents()
@@ -193,9 +193,9 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_pirate/akula
-	name = "Azulean Boarder"
-	description = "Advanced Azulean pirate gear, akin to riot-armour yet space-proofed. Never take on an Azulean boarder in zero-gravity."
-	admin_note = "Uniquely spaceproofed."
+	name = "阿祖莱亚登舰兵"
+	description = "先进的阿祖莱亚海盗装备，类似防暴护甲，却能适应真空环境。绝不要在零重力下与阿祖莱亚登舰兵交手。"
+	admin_note = "特别具备真空防护。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/akula
 
 /obj/item/storage/backpack/duffelbag/syndie/akula/PopulateContents()
@@ -209,8 +209,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_pirate/nri_soldier
-	name = "NRI Soldier"
-	description = "The station failed the inspection, now they have to deal with you."
+	name = "新俄罗斯帝国士兵"
+	description = "空间站未能通过检查，现在他们得面对你了。"
 	item_type = /obj/item/storage/backpack/industrial/cin_surplus/forest/nri_soldier
 
 /obj/item/storage/backpack/industrial/cin_surplus/forest/nri_soldier/PopulateContents()
@@ -226,9 +226,9 @@
 	new /obj/item/clothing/glasses/sunglasses(src)
 
 /datum/opposing_force_equipment/clothing_pirate/heister
-	name = "Professional"
-	description = "It's payday."
-	admin_note = "Has uniquely strong armour."
+	name = "职业劫匪"
+	description = "收获日到了。"
+	admin_note = "配有格外强力的护甲。"
 	item_type = /obj/item/storage/backpack/duffelbag/syndie/heister
 
 /obj/item/storage/backpack/duffelbag/syndie/heister/PopulateContents()
@@ -261,8 +261,8 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_CLOTHING_MAGIC
 
 /datum/opposing_force_equipment/clothing_magic/wizard
-	name = "Wizard"
-	description = "Basic colored wizard attire."
+	name = "巫师"
+	description = "基础款彩色巫师服饰。"
 	item_type = /obj/item/storage/backpack/satchel/leather/wizard
 
 /obj/item/storage/backpack/satchel/leather/wizard/PopulateContents()
@@ -285,8 +285,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_magic/wizard_broom
-	name = "Broom Wizard"
-	description = "A wizard with a broom, technically a witch."
+	name = "扫帚巫师"
+	description = "一个带着扫帚的巫师，严格来说是女巫。"
 	item_type = /obj/item/storage/backpack/satchel/leather/wizard_broom
 
 /obj/item/storage/backpack/satchel/leather/wizard_broom/PopulateContents()
@@ -298,8 +298,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_magic/wizard_tape
-	name = "Tape Wizard"
-	description = "A wizard outfit, but hand-crafted. Very nice."
+	name = "胶带巫师"
+	description = "一套手工制作的巫师服。相当不错。"
 	item_type = /obj/item/storage/backpack/satchel/leather/wizard_tape
 
 /obj/item/storage/backpack/satchel/leather/wizard_tape/PopulateContents()
@@ -311,8 +311,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_magic/zealot
-	name = "Zealot"
-	description = "Spell-casting is outlawed, not like that'll stop you though."
+	name = "狂信徒"
+	description = "施法已被法律禁止，但这可阻止不了你。"
 	item_type = /obj/item/storage/backpack/satchel/leather/zealot
 
 /obj/item/storage/backpack/satchel/leather/zealot/PopulateContents()
@@ -323,8 +323,8 @@
 	new /obj/item/card/id/advanced/chameleon(src)
 
 /datum/opposing_force_equipment/clothing_magic/narsian
-	name = "Nar'Sien Prophet"
-	description = "An overshadowed cult following, whom incidentally thrive best in the dark."
+	name = "纳尔西先知"
+	description = "一个被阴影笼罩的邪教，恰巧也最适合在黑暗中兴盛。"
 	item_type = /obj/item/storage/backpack/satchel/leather/narsian
 
 /obj/item/storage/backpack/satchel/leather/narsian/PopulateContents()

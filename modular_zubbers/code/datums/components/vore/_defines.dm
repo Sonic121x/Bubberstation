@@ -261,95 +261,95 @@ GLOBAL_LIST_INIT(vore_sounds_death_fancy_prey, list(
 // Default messages
 
 GLOBAL_LIST_INIT(digest_messages_pred, list(
-		"You feel %prey's body succumb to your digestive system, which breaks it apart into soft slurry.",
-		"You hear a lewd glorp as your %belly muscles grind %prey into a warm pulp.",
-		"Your %belly lets out a rumble as it melts %prey into sludge.",
-		"You feel a soft gurgle as %prey's body loses form in your %belly. They're nothing but a soft mass of churning slop now.",
-		"Your %belly begins gushing %prey's remains through your system, adding some extra weight to your thighs.",
-		"Your %belly begins gushing %prey's remains through your system, adding some extra weight to your rump.",
-		"Your %belly begins gushing %prey's remains through your system, adding some extra weight to your belly.",
-		"Your %belly groans as %prey falls apart into a thick soup. You can feel their remains soon flowing deeper into your body to be absorbed.",
-		"Your %belly kneads on every fiber of %prey, softening them down into mush to fuel your next hunt.",
-		"Your %belly churns %prey down into a hot slush. You can feel the nutrients coursing through your digestive track with a series of long, wet glorps."))
+		"你感觉到 %prey 的身体屈服于你的消化系统，被分解成柔软的浆液。",
+		"你的 %belly 肌肉将 %prey 磨成温热的糊状物，发出淫靡的咕噜声。",
+		"你的 %belly 一边将 %prey 融化成泥浆，一边发出低沉的轰鸣。",
+		"你感觉到轻柔的咕噜声，%prey 的身体在你的 %belly 中失去了形态，如今只剩翻滚的柔软浆团。",
+		"你的 %belly 开始将 %prey 的残余输送至全身，为你的大腿增添一些重量。",
+		"你的 %belly 开始将 %prey 的残余输送至全身，为你的臀部增添一些重量。",
+		"你的 %belly 开始将 %prey 的残余输送至全身，为你的腹部增添一些重量。",
+		"随着 %prey 化为浓汤，你的 %belly 发出低鸣。你能感觉到残余即将流向身体深处，被吸收殆尽。",
+		"你的 %belly 揉压着 %prey 的每一寸身体，将其软化成糊状，为你的下一次狩猎补充能量。",
+		"你的 %belly 将 %prey 搅成滚烫的浆液。伴随着绵长而湿润的咕噜声，你能感觉到营养流经消化道。"))
 
 GLOBAL_LIST_INIT(digest_messages_prey, list(
-		"Your body succumbs to %pred's digestive system, which breaks you apart into soft slurry.",
-		"%pred's %belly lets out a lewd glorp as their muscles grind you into a warm pulp.",
-		"%pred's %belly lets out a rumble as it melts you into sludge.",
-		"%pred feels a soft gurgle as your body loses form in their %belly. You're nothing but a soft mass of churning slop now.",
-		"%pred's %belly begins gushing your remains through their system, adding some extra weight to %pred's thighs.",
-		"%pred's %belly begins gushing your remains through their system, adding some extra weight to %pred's rump.",
-		"%pred's %belly begins gushing your remains through their system, adding some extra weight to %pred's belly.",
-		"%pred's %belly groans as you fall apart into a thick soup. Your remains soon flow deeper into %pred's body to be absorbed.",
-		"%pred's %belly kneads on every fiber of your body, softening you down into mush to fuel their next hunt.",
-		"%pred's %belly churns you down into a hot slush. Your nutrient-rich remains course through their digestive track with a series of long, wet glorps."))
+		"你的身体屈服于 %pred 的消化系统，被分解成柔软的浆液。",
+		"%pred 的 %belly 肌肉将你磨成温热的糊状物，发出淫靡的咕噜声。",
+		"%pred 的 %belly 一边将你融化成泥浆，一边发出低沉的轰鸣。",
+		"随着你的身体在 %pred 的 %belly 中失去形态，%pred 感到轻柔的咕噜声。如今的你只剩翻滚的柔软浆团。",
+		"%pred 的 %belly 开始将你的残余输送至全身，为 %pred 的大腿增添一些重量。",
+		"%pred 的 %belly 开始将你的残余输送至全身，为 %pred 的臀部增添一些重量。",
+		"%pred 的 %belly 开始将你的残余输送至全身，为 %pred 的腹部增添一些重量。",
+		"随着你化为浓汤，%pred 的 %belly 发出低鸣。你的残余很快流向 %pred 的身体深处，被吸收殆尽。",
+		"%pred 的 %belly 揉压着你的每一寸身体，将你软化成糊状，为下一次狩猎补充能量。",
+		"%pred 的 %belly 将你搅成滚烫的浆液。伴随着绵长而湿润的咕噜声，你富含营养的残余流经消化道。"))
 
 GLOBAL_LIST_INIT(absorb_messages_owner, list(
-	"You feel %prey becoming part of you."
+	"你感觉到 %prey 正成为你的一部分。"
 ))
 
 GLOBAL_LIST_INIT(absorb_messages_prey, list(
-	"You feel yourself becoming part of %pred's %belly!"
+	"你感觉到自己正成为 %pred 的 %belly 的一部分！"
 ))
 
 GLOBAL_LIST_INIT(unabsorb_messages_owner, list(
-	"You feel %prey reform into a recognizable state again."
+	"你感觉到 %prey 再次恢复了可辨认的形态。"
 ))
 
 GLOBAL_LIST_INIT(unabsorb_messages_prey, list(
-	"You are released from being part of %pred's %belly."
+	"你从 %pred 的 %belly 中分离出来，不再是其中的一部分。"
 ))
 
 GLOBAL_LIST_INIT(struggle_messages_outside, list(
-	"%pred's %belly wobbles with a squirming meal.",
-	"%pred's %belly jostles with movement.",
-	"%pred's %belly briefly swells outward as someone pushes from inside.",
-	"%pred's %belly fidgets with a trapped victim.",
-	"%pred's %belly jiggles with motion from inside.",
-	"%pred's %belly sloshes around.",
-	"%pred's %belly gushes softly.",
-	"%pred's %belly lets out a wet squelch."))
+	"%pred 的 %belly 因扭动的食物而晃动。",
+	"%pred 的 %belly 随着内部的动作摇晃。",
+	"有人从内部推挤，让 %pred 的 %belly 短暂地向外鼓起。",
+	"%pred 的 %belly 因被困者的挣扎而抖动。",
+	"%pred 的 %belly 随着内部的动作颤动。",
+	"%pred 的 %belly 晃荡着。",
+	"%pred 的 %belly 轻轻涌动。",
+	"%pred 的 %belly 发出湿润的挤压声。"))
 
 GLOBAL_LIST_INIT(struggle_messages_inside, list(
-	"Your useless squirming only causes %pred's slimy %belly to squelch over your body.",
-	"Your struggles only cause %pred's %belly to gush softly around you.",
-	"Your movement only causes %pred's %belly to slosh around you.",
-	"Your motion causes %pred's %belly to jiggle.",
-	"You fidget around inside of %pred's %belly.",
-	"You shove against the walls of %pred's %belly, making it briefly swell outward.",
-	"You jostle %pred's %belly with movement.",
-	"You squirm inside of %pred's %belly, making it wobble around."))
+	"你徒劳的扭动只让 %pred 黏滑的 %belly 在你的身体上挤压作响。",
+	"你的挣扎只让 %pred 的 %belly 在你周围轻轻涌动。",
+	"你的动作只让 %pred 的 %belly 在你周围晃荡。",
+	"你的动作让 %pred 的 %belly 颤动。",
+	"你在 %pred 的 %belly 内不安地扭动。",
+	"你推挤着 %pred 的 %belly 内壁，使其短暂地向外鼓起。",
+	"你的动作摇晃着 %pred 的 %belly。",
+	"你在 %pred 的 %belly 中扭动，让其摇晃起来。"))
 
 GLOBAL_LIST_INIT(absorbed_struggle_messages_outside, list(
-	"%pred's %belly wobbles, seemingly on its own.",
-	"%pred's %belly jiggles without apparent cause.",
-	"%pred's %belly seems to shake for a second without an obvious reason."))
+	"%pred 的 %belly 似乎自行晃动着。",
+	"%pred 的 %belly 毫无征兆地颤动。",
+	"%pred 的 %belly 似乎无缘无故地抖动了一下。"))
 
 GLOBAL_LIST_INIT(absorbed_struggle_messages_inside, list(
-	"You try and resist %pred's %belly, but only cause it to jiggle slightly.",
-	"Your fruitless mental struggles only shift %pred's %belly a tiny bit.",
-	"You can't make any progress freeing yourself from %pred's %belly."))
+	"你试着抵抗 %pred 的 %belly，却只能让其轻轻颤动。",
+	"你徒劳的意念挣扎只让 %pred 的 %belly 微微移动。",
+	"你始终无法挣脱 %pred 的 %belly。"))
 
 GLOBAL_LIST_INIT(escape_attempt_messages_owner, list(
-	"%prey is attempting to free themselves from your %belly!"))
+	"%prey 正试图挣脱你的 %belly！"))
 
 GLOBAL_LIST_INIT(escape_attempt_messages_prey, list(
-	"You start to climb out of %pred's %belly."))
+	"你开始从 %pred 的 %belly 中往外爬。"))
 
 GLOBAL_LIST_INIT(escape_messages_owner, list(
-	"%prey climbs out of your %belly!"))
+	"%prey 从你的 %belly 中爬了出来！"))
 
 GLOBAL_LIST_INIT(escape_messages_prey, list(
-	"You climb out of %pred's %belly."))
+	"你从 %pred 的 %belly 中爬了出来。"))
 
 GLOBAL_LIST_INIT(escape_messages_outside, list(
-	"%prey climbs out of %pred's %belly!"))
+	"%prey 从 %pred 的 %belly 中爬了出来！"))
 
 GLOBAL_LIST_INIT(escape_fail_messages_owner, list(
-	"%prey's attempt to escape from your %belly has failed!"))
+	"%prey 试图逃离你的 %belly，但失败了！"))
 
 GLOBAL_LIST_INIT(escape_fail_messages_prey, list(
-	"Your attempt to escape %pred's %belly has failed!"))
+	"你试图逃离 %pred 的 %belly，但失败了！"))
 
 // Override settings for vore debug mode
 #ifdef VORE_DEBUG

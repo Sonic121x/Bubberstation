@@ -27,7 +27,7 @@
 		return
 	for(var/client/C in GLOB.clients)
 		if(C.prefs.chat_toggles & CHAT_OOC)
-			to_chat(C, span_crossooc("[span_prefix("CROSSLINK-OOC([server_name]):")] <EM>[sender_name]:</EM> <span class='message linkify'>[message]</span></b>"), type = MESSAGE_TYPE_OOC)
+			to_chat(C, span_crossooc("[span_prefix("跨服OOC([server_name]):")] <EM>[sender_name]:</EM> <span class='message linkify'>[message]</span></b>"), type = MESSAGE_TYPE_OOC)
 
 
 // Sends an asay message to all deh other servers!
@@ -54,20 +54,20 @@
 	send_asay_message(exp_name, server_name, message)
 
 /proc/send_asay_message(sender_name, server_name, message)
-	var/msg = "[span_adminsay("[span_crossasay("CROSSLINK-ASAY")]([server_name]): <EM>[sender_name]</EM>: <span class='message linkify'>[message]")]</span>"
+	var/msg = "[span_adminsay("[span_crossasay("跨服管理员聊天")]([server_name]): <EM>[sender_name]</EM>: <span class='message linkify'>[message]")]</span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINCHAT,
 		html = msg,
 		confidential = TRUE)
 
-ADMIN_VERB(request_help, R_ADMIN, "Cross-server Help Request", "Sends a loud message to all other servers that we are crosslinked to!", ADMIN_CATEGORY_MAIN)
-	var/help_request_message = tgui_input_text(user, "Input help message!", "Help message", "Send help!", 150, FALSE)
+ADMIN_VERB(request_help, R_ADMIN, "跨服求助", "向所有已连接服务器发送醒目的求助消息！", ADMIN_CATEGORY_MAIN)
+	var/help_request_message = tgui_input_text(user, "输入求助消息！", "求助消息", "请求支援！", 150, FALSE)
 	if(!help_request_message)
 		return
 	send2adminchat(user.ckey, "CROSSLINK HELP REQUEST([CONFIG_GET(string/cross_server_name) ? CONFIG_GET(string/cross_server_name) : station_name()]): [help_request_message]")
 	send_help_request_to_other_server(user.ckey, help_request_message)
 
-	message_admins("[ADMIN_LOOKUPFLW(user)] sent out a cross-server help request with the message: [help_request_message].")
+	message_admins("[ADMIN_LOOKUPFLW(user)]发送了跨服求助消息：[help_request_message]。")
 	log_admin("[key_name(user)] sent cross-server help request [help_request_message].")
 
 // Oh no, they need help!
@@ -94,7 +94,7 @@ ADMIN_VERB(request_help, R_ADMIN, "Cross-server Help Request", "Sends a loud mes
 	send_help_request(exp_name, server_name, message)
 
 /proc/send_help_request(sender_name, server_name, message)
-	var/msg = span_command_headset("[span_adminsay("[span_crossasay("CROSSLINK HELP REQUEST")]([server_name]): <EM>[sender_name]</EM>: <span class='message linkify'>[message]")]</span>")
+	var/msg = span_command_headset("[span_adminsay("[span_crossasay("跨服求助")]([server_name]): <EM>[sender_name]</EM>: <span class='message linkify'>[message]")]</span>")
 
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINCHAT,

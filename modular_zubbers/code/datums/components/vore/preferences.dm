@@ -88,7 +88,7 @@
 	var/list/slot_metadata = get_slot_metadata()
 	if("[slot]" in slot_metadata)
 		return slot_metadata["[slot]"]["name"]
-	return "New Slot ([slot])"
+	return "新槽位（[slot]）"
 
 /datum/vore_preferences/proc/set_slot_name(name, slot = belly_layout_slot)
 	var/list/slot_metadata = get_slot_metadata()
@@ -114,9 +114,9 @@
 
 /datum/vore_preferences/proc/load_slot()
 	var/list/choices = generate_slot_choice_list()
-	var/choice = tgui_input_list(usr, "Choose a slot to load", "Belly Slot", choices, get_slot_name())
+	var/choice = tgui_input_list(usr, "选择要载入的槽位", "腹腔槽位", choices, get_slot_name())
 	if(choice)
-		if(tgui_alert(usr, "Are you SURE you want to delete all current bellies and replace them with the slot '[choice]'?", "Slot Loading", list("No", "Yes")) != "Yes")
+		if(tgui_alert(usr, "确定删除当前所有腹腔并替换为槽位“[choice]”中的内容吗？", "载入槽位", list("否", "是")) != "是")
 			return FALSE
 		belly_layout_slot = choices[choice]
 		return TRUE
@@ -124,24 +124,24 @@
 
 /datum/vore_preferences/proc/copy_to_slot()
 	var/list/choices = generate_slot_choice_list()
-	var/choice = tgui_input_list(usr, "Choose a slot to copy over", "Belly Slot", choices)
+	var/choice = tgui_input_list(usr, "选择要覆盖的槽位", "腹腔槽位", choices)
 	if(choice)
-		if(tgui_alert(usr, "Are you SURE you want to overwrite '[choice]' with current bellies?", "Slot Copying", list("No", "Yes")) != "Yes")
+		if(tgui_alert(usr, "确定用当前腹腔覆盖“[choice]”吗？", "复制槽位", list("否", "是")) != "是")
 			return null
 
-		set_slot_name("[get_slot_name()] (Copy)", choices[choice])
+		set_slot_name("[get_slot_name()]（副本）", choices[choice])
 		return choices[choice]
 	return null
 
 /datum/vore_preferences/proc/export_slot()
 	var/list/choices = generate_slot_choice_list()
-	var/choice = tgui_input_list(usr, "Choose a slot to export", "Belly Slot", choices)
+	var/choice = tgui_input_list(usr, "选择要导出的槽位", "腹腔槽位", choices)
 	if(choice)
 		var/slot_index = choices[choice]
 		var/data = get_belly_export(slot_index)
 		var/path = "[get_player_save_folder(usr.ckey)]/vore_export.json"
 		rustg_file_write(json_encode(data, JSON_PRETTY_PRINT), path)
-		to_chat(usr, span_notice("Sending you [choice], this may take a moment..."))
+		to_chat(usr, span_notice("正在向你发送 [choice]，可能需要片刻……"))
 		usr << ftp(file(path))
 		fdel(path)
 

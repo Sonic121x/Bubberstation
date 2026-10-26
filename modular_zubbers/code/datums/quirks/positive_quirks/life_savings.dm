@@ -1,10 +1,10 @@
 /datum/quirk/life_savings
 	name = "Life Savings"
-	desc = "Rich are getting richer. Either because of your smart investments or your broad connections you receive additional currency with each paycheck. Use them wisely or blow it all on drugs. They are yours after all."
+	desc = "富者愈富。凭借精明的投资或广泛的人脉，你每次领薪水时都能得到额外收入。精打细算也好，全拿去买毒品也罢，反正钱是你的。"
 	icon = FA_ICON_PIGGY_BANK
 	value = 4
 	hardcore_value = -4
-	medical_record_text = "Patient may have a significant sum in their pocket. Maybe you should ask for some. It would be fair."
+	medical_record_text = "患者口袋里可能有一大笔钱。或许你该要一点，这很公平。"
 	mail_goodies = list(
 		/obj/item/stack/spacecash/c100,
 		/obj/item/stack/spacecash/c200,
@@ -27,7 +27,7 @@
 	if(!istype(account))
 		CRASH("post_payout() called on non-account datum, WTF?!")
 	var/funds = round(PAYCHECK_CREW * 0.25)
-	account.adjust_money(funds, "Personal fund")
+	account.adjust_money(funds, "个人基金")
 	SSblackbox.record_feedback("amount", "personal_income", funds)
 	SSeconomy.station_target += funds // Somehow this does not contribute to inflation
 	log_econ("[funds] credits were given to [account.account_holder]'s account from life savings.")

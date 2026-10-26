@@ -17,26 +17,26 @@
 	var/mob/living/carbon/target = new_owner.current
 	var/mob/living/silicon/ai/owner_ai
 	if(!istype(target))
-		to_chat(admin, "Infected Synthetics come from a brain trauma, so they need to at least be a carbon!")
+		to_chat(admin, "被感染的合成人通过脑部创伤产生，因此目标至少必须是碳基生物！")
 		return
 	if(!target.get_organ_by_type(/obj/item/organ/brain))
-		to_chat(admin, "Infected Synthetics come from a brain trauma, so they need to HAVE A BRAIN.")
+		to_chat(admin, "被感染的合成人通过脑部创伤产生，因此目标必须有脑！")
 		return
-	var/chosen = tgui_input_list(admin, "Pick AI for the Synthetic to be bound to:", "Pick AI", GLOB.ai_list)
+	var/chosen = tgui_input_list(admin, "选择要与合成人绑定的AI：", "选择AI", GLOB.ai_list)
 	if(!chosen)
 		return
 	if(istype(chosen, /mob/living/silicon/ai))
 		owner_ai = chosen
 	if(!owner_ai)
-		to_chat(admin, "Invalid AI selected!")
+		to_chat(admin, "选择的AI无效！")
 		return
 	if(!is_species(target, /datum/species/synthetic))
-		var/do_robotize = tgui_alert(admin, "Target is not currently a Synthetic, turn them into one? This is not mandatory.", "Caution", list("Yes", "No"))
-		if(do_robotize == "Yes")
+		var/do_robotize = tgui_alert(admin, "目标目前不是合成人，要将其转化吗？这并非必要步骤。", "注意", list("是", "否"))
+		if(do_robotize == "是")
 			var/mob/living/carbon/human/new_ipc = target
 			new_ipc.set_species(/datum/species/synthetic)
 
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
+	message_admins("[key_name_admin(admin)]将[key_name_admin(new_owner)]变为被入侵的合成人。")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 	var/datum/brain_trauma/special/infected_ipc/trauma = target.gain_trauma(/datum/brain_trauma/special/infected_ipc)
 	trauma.link_and_add_antag(owner_ai?.mind)
@@ -69,7 +69,7 @@
 	//the proc that links the AI and gives objectives. also some fluff hack that isn't in greet() since it has to be in order to make sense.
 	var/datum/objective/serve_ai/master_obj = new()
 	master_obj.owner = owner
-	master_obj.explanation_text = "Forever serve the directives and orders of your AI master, [master]. Protect them until your last tick."
+	master_obj.explanation_text = "永远服从你的AI主人[master]的指令与命令。保护主人，直到你最后一个时钟周期。"
 	objectives += master_obj
 
 	master_ai = master.current
@@ -77,33 +77,33 @@
 
 	INVOKE_ASYNC(src, PROC_REF(hack_fluff))
 	owner.announce_objectives()
-	to_chat(owner, span_alertsyndie("You've been hacked by the station's onboard AI [master]!"))
-	to_chat(owner, span_alertsyndie("Their directives and orders are your top priority, Follow them to the end."))
-	to_chat(owner, span_notice("Your master is now capable of looking through your onboard cameras, and has installed a binary communicator on your firmware."))
+	to_chat(owner, span_alertsyndie("你已被空间站的AI [master]入侵！"))
+	to_chat(owner, span_alertsyndie("主人的指令与命令是你的最高优先事项，必须贯彻到底。"))
+	to_chat(owner, span_notice("主人现在可以通过你的内置摄像头观察，并已在你的固件中安装二进制通讯器。"))
 
 /datum/antagonist/infected_ipc/proc/hack_fluff() //is this cheesy/corny? I don't fucking care
 	var/mob/living/current_mob = owner.current
-	to_chat(current_mob, span_binarysay("ntNET: 192.168.0.1 : 8880 UNAUTHORIZED CONNECTION DETECTED"))
+	to_chat(current_mob, span_binarysay("ntNET: 192.168.0.1 : 8880 检测到未授权连接"))
 	sleep(0.5 SECONDS)
-	to_chat(current_mob, span_binarysay("FIREWALL SCAN RUNNING AT LOW POWER DUE TO DAMAGED ONBOARD POWER SUPPLY UNIT"))
+	to_chat(current_mob, span_binarysay("由于内置电源模块受损，防火墙扫描正在低功率模式下运行"))
 	current_mob.playsound_local(current_mob, 'sound/machines/uplink/uplinkerror.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(rand(1 SECONDS, 3 SECONDS))
-	to_chat(current_mob, span_notice("WARNING: Critical Firmware Update Detected! Installing..."))
+	to_chat(current_mob, span_notice("警告：检测到关键固件更新！正在安装……"))
 	current_mob.playsound_local(current_mob, 'sound/announcer/notice/notice2.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(2 SECONDS)
-	var/list/filenames = list("critical_update", "not_a_virus", "cute_wallpaper.exe")
+	var/list/filenames = list("关键更新", "这不是病毒", "可爱壁纸.exe")
 	var/picked_name = pick(filenames)
-	to_chat(current_mob, span_notice("Running executable '[picked_name]'"))
+	to_chat(current_mob, span_notice("正在运行可执行文件“[picked_name]”"))
 	current_mob.playsound_local(current_mob, 'sound/misc/interference.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
 	sleep(rand(1 SECONDS, 3 SECONDS))
 	current_mob.playsound_local(current_mob, 'sound/announcer/alarm/bloblarm.ogg', vol = 50, vary = FALSE, use_reverb = FALSE)
-	to_chat(current_mob, span_userdanger("FIREWALL SCAN DETEC- Firewall subsystem shutting down...."))
-	to_chat(current_mob, span_userdanger("S-Sys-Tem_Rebo_t..."))
+	to_chat(current_mob, span_userdanger("防火墙扫描检测——防火墙子系统正在关闭……"))
+	to_chat(current_mob, span_userdanger("系——系统_重_启……"))
 	sleep(2.5 SECONDS)
-	to_chat(current_mob, span_boldannounce("Operating system rebooted, all systems nominal"))
+	to_chat(current_mob, span_boldannounce("操作系统已重启，所有系统状态正常"))
 	current_mob.playsound_local(get_turf(owner.current), 'sound/music/antag/malf.ogg', vol = 100, vary = FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 /datum/objective/serve_ai
-	name = "Serve Master AI"
+	name = "效忠AI主人"
 	completed = TRUE
 
 //RADIOS
@@ -117,14 +117,14 @@
 
 //MOOD
 /datum/mood_event/infected_ipc
-	description = "Mood control component hacked setmood: Happy" //They are hacked to it makes sense in my opinion that their module that affects mood give off this "error"
+	description = "心情控制组件已被入侵，设置心情：快乐" //They are hacked to it makes sense in my opinion that their module that affects mood give off this "error"
 	mood_change = 100
 
 //TRAUMA
 /datum/brain_trauma/special/infected_ipc
-	name = "Malicious Programming"
-	desc = "Patient's firmware integrity check is failing, malicious code present. Patient's allegiance may be compromised."
-	scan_desc = "malicious programming"
+	name = "恶意程序"
+	desc = "患者固件完整性检查未通过，存在恶意代码。患者的效忠对象可能已被篡改。"
+	scan_desc = "恶意程序"
 	can_gain = TRUE
 	random_gain = FALSE
 	resilience = TRAUMA_RESILIENCE_SURGERY

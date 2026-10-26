@@ -11,12 +11,12 @@
 
 /obj/item/disk/nuclear/proc/begin_nuclear_assault()
 	priority_announce(
-		"ALERT:::SYNDICATE TRANSMISSION DETECTED:::NUCLEAR AUTHENTICATION DISK LOCATION PINPOINTED:::EXPECT IMMINENT NUCLEAR STRIKE - \
-		ETA [LONEOP_DELAY] MINUTES.\
+		"警报:::检测到辛迪加通讯:::核认证磁盘位置已被锁定:::核打击即将来临——\
+		预计[LONEOP_DELAY]分钟后抵达。\
 		\n\
 		\n\
-		SUGGESTION:::THROW ROCKS AT YOUR CAPTAIN.",
-		"MILCOM Early Warning System",
+		建议:::拿石头砸你们的舰长。",
+		"军事指挥部预警系统",
 		'sound/machines/engine_alert/engine_alert3.ogg',
 		has_important_message = TRUE,
 		color_override = "red"
@@ -27,13 +27,13 @@
 
 	addtimer(CALLBACK(src, PROC_REF(spawn_loneop)), LONEOP_DELAY MINUTES)
 
-	message_admins("Lone operative queued up for [LONEOP_DELAY] minutes from now due to the nuke disk being unsecured.")
+	message_admins("由于核认证磁盘未妥善保管，一名单独行动的核特工将在[LONEOP_DELAY]分钟后生成。")
 
 /obj/item/disk/nuclear/proc/spawn_loneop()
 	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSgamemode.control
 	if (!istype(loneop))
 		return
-	loneop.run_event(FALSE, event_cause = "the nuke disc being unsecured")
+	loneop.run_event(FALSE, event_cause = "核认证磁盘未妥善保管")
 
 /datum/antagonist/nukeop/lone/on_gain()
 	. = ..()

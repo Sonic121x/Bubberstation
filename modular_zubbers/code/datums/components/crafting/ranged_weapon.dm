@@ -32,7 +32,7 @@
 	time = 10 SECONDS
 
 /datum/crafting_recipe/wt550_burst
-	name = "WT-550-B Autoburstrifle"
+	name = "WT-550-B 自动点射步枪"
 	result = /obj/item/gun/ballistic/automatic/wt550/burst
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/wt550 = 1,
@@ -46,7 +46,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/wt550_long
-	name = "WT-550-C Autorifle"
+	name = "WT-550-C 自动步枪"
 	result = /obj/item/gun/ballistic/automatic/wt550/dmr
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/wt550 = 1,
@@ -60,7 +60,7 @@
 	category = CAT_WEAPON_RANGED
 
 /datum/crafting_recipe/simple_battle_rifle
-	name = "NT .38 Battle Rifle"
+	name = "NT .38 战斗步枪"
 	result = /obj/item/gun/ballistic/automatic/battle_rifle_basic
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL)
 	reqs = list(
@@ -72,7 +72,7 @@
 	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/nuclear_smg
-	name = "Advanced Energy SMG"
+	name = "高级能量冲锋枪"
 	result = /obj/item/gun/energy/e_gun/nuclear_smg
 	tool_behaviors = list(TOOL_WIRECUTTER, TOOL_MULTITOOL)
 	reqs = list(

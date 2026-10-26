@@ -1,6 +1,6 @@
 /datum/design/board/circulator
-	name = "Machine Design (Circulator Board)"
-	desc = "The circuit board for a circulator."
+	name = "机械设计（循环器电路板）"
+	desc = "循环器的电路板。"
 	id = "circulator"
 	build_path = /obj/item/circuitboard/machine/circulator
 	category = list(
@@ -9,8 +9,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/board/teg
-	name = "Machine Design (TEG Board)"
-	desc = "The circuit board for a TEG."
+	name = "机械设计（热电发电机电路板）"
+	desc = "热电发电机的电路板。"
 	id = "teg"
 	build_path = /obj/item/circuitboard/machine/thermoelectric_generator
 	category = list(
@@ -20,8 +20,8 @@
 
 /datum/techweb_node/adv_power_skyrat
 	id = "adv_power_skyrat"
-	display_name = "Additional Advanced Power Manipulation"
-	description = "How to get different types of zap."
+	display_name = "扩展高级电力操控"
+	description = "如何获得不同种类的电流。"
 	prereq_ids = list("parts_adv")
 	design_ids = list("teg", "circulator")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)

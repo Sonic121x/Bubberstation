@@ -13,8 +13,8 @@
 )
 
 /obj/structure/lewd_portal
-	name = "LustWish Portal"
-	desc = "A portal that people can partially fit through."
+	name = "欲愿传送门"
+	desc = "能让人将部分身体穿过去的传送门。"
 	icon = 'modular_zubbers/icons/obj/structures/lewd_portals.dmi'
 	icon_state = "portal"
 	can_buckle = TRUE
@@ -43,7 +43,7 @@
 	register_context()
 
 /obj/structure/lewd_portal/Destroy()
-	visible_message("[src] vanishes!")
+	visible_message("[src]消失了！")
 	linked_portal?.linked_portal = null
 	if(linked_portal)
 		qdel(linked_portal)
@@ -51,40 +51,40 @@
 
 /obj/structure/lewd_portal/examine(mob/user)
 	. = ..()
-	var/inspect_mode = "gloryhole"
+	var/inspect_mode = "寻欢洞"
 	if(portal_mode == WALLSTUCK)
-		inspect_mode = "stuck in wall"
-	. += span_notice("Its currently in [inspect_mode] mode.")
-	. += span_notice("Right click to change modes.")
+		inspect_mode = "卡墙"
+	. += span_notice("当前处于[inspect_mode]模式。")
+	. += span_notice("右键点击切换模式。")
 
 /obj/structure/lewd_portal/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(portal_mode == GLORYHOLE)
-		context[SCREENTIP_CONTEXT_RMB] = "Stuck In Wall Mode"
+		context[SCREENTIP_CONTEXT_RMB] = "卡墙模式"
 		return CONTEXTUAL_SCREENTIP_SET
 	else
-		context[SCREENTIP_CONTEXT_RMB] = "Gloryhole Mode"
+		context[SCREENTIP_CONTEXT_RMB] = "寻欢洞模式"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/lewd_portal/user_buckle_mob(mob/living/M, mob/user, check_loc)
 	if(!M.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("Looks like [M] doesn't want you to do that."))
+		to_chat(user, span_danger("看来[M]不想让你这样做。"))
 		return FALSE
 	if (!ishuman(M))
-		balloon_alert(user, "[M.p_they()] does not fit!")
+		balloon_alert(user, "[M]塞不进去！")
 		return FALSE
 	if(portal_mode == GLORYHOLE)
 		var/mob/living/carbon/human/penis_inspection = M
 		var/obj/item/organ/genital/penis/penis_reference = M.get_organ_slot(ORGAN_SLOT_PENIS)
 		if(!penis_inspection.has_penis(REQUIRE_GENITAL_EXPOSED) || penis_reference?.visibility_preference == GENITAL_NEVER_SHOW)
-			balloon_alert(user, "a penis is required to operate!")
+			balloon_alert(user, "需要阴茎才能使用！")
 			return FALSE
 	if (!linked_portal)
-		balloon_alert(user, "portal not linked!")
+		balloon_alert(user, "传送门未连接！")
 		return FALSE
 	if (!isnull(linked_portal.current_mob))
-		balloon_alert(user, "portal already occupied!")
+		balloon_alert(user, "传送门已被占用！")
 		return FALSE
-	visible_message("[user] slots [M] into the [src]!")
+	visible_message("[user]把[M]塞进了[src]！")
 	return ..(M, user, check_loc = FALSE)
 
 /obj/structure/lewd_portal/post_buckle_mob(mob/living/buckled_mob)
@@ -196,7 +196,7 @@
 
 /obj/structure/lewd_portal/post_unbuckle_mob(mob/living/unbuckled_mob)
 	UnregisterSignal(current_mob, PORTAL_SIGNAL_LIST)
-	visible_message("[current_mob] exits the [src]")
+	visible_message("[current_mob]离开了[src]。")
 	current_mob = null
 	mob_scale_manager = null
 	QDEL_NULL(relayed_body)
@@ -245,26 +245,26 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(isnull(linked_portal))
-		balloon_alert(user, "portal not linked")
+		balloon_alert(user, "传送门未连接")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(!isnull(current_mob) || !isnull(linked_portal.current_mob))
-		balloon_alert(user, "portal occupied")
+		balloon_alert(user, "传送门已被占用")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(portal_mode == GLORYHOLE)
 		portal_mode = WALLSTUCK
 		linked_portal.portal_mode = WALLSTUCK
-		balloon_alert(user, "switched to stuck in wall mode")
+		balloon_alert(user, "已切换至卡墙模式")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		portal_mode = GLORYHOLE
 		linked_portal.portal_mode = GLORYHOLE
-		balloon_alert(user, "switched to gloryhole mode")
+		balloon_alert(user, "已切换至寻欢洞模式")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 
 /obj/item/wallframe/lewd_portal
-	name = "Lustwish Portal Bore"
-	desc = "A device utilizing bluespace technology to transpose portions of people from one space to another."
+	name = "欲愿传送门开孔器"
+	desc = "利用蓝空间技术，将人体的一部分从一个空间转移到另一个空间的装置。"
 	icon = 'modular_zubbers/icons/obj/structures/lewd_portals.dmi'
 	icon_state = "device"
 	result_path = /obj/structure/lewd_portal
@@ -279,11 +279,11 @@
 
 /obj/item/wallframe/lewd_portal/examine(mob/user)
 	. = ..()
-	var/inspect_mode = "gloryhole"
+	var/inspect_mode = "寻欢洞"
 	if(creation_mode == WALLSTUCK)
-		inspect_mode = "stuck in wall"
-	. += span_notice("Its currently in [inspect_mode] mode.")
-	. += span_notice("Use in hand to change modes.")
+		inspect_mode = "卡墙"
+	. += span_notice("当前处于[inspect_mode]模式。")
+	. += span_notice("在手中使用可切换模式。")
 
 /obj/item/wallframe/lewd_portal/after_attach(obj/attached_to)
 	var/obj/structure/lewd_portal/portal_result = attached_to
@@ -298,18 +298,18 @@
 
 /obj/item/wallframe/lewd_portal/attack_self(mob/user)
 	if(previous_portal)
-		balloon_alert(user, "portals must match")
+		balloon_alert(user, "传送门必须匹配")
 		return
 	if(creation_mode == GLORYHOLE)
 		creation_mode = WALLSTUCK
-		balloon_alert(user, "switched to stuck in wall mode")
+		balloon_alert(user, "已切换至卡墙模式")
 	else
 		creation_mode = GLORYHOLE
-		balloon_alert(user, "switched to gloryhole mode")
+		balloon_alert(user, "已切换至寻欢洞模式")
 
 /obj/lewd_portal_relay
-	name = "portal relay"
-	desc = "Someone's behind hanging out from a portal."
+	name = "传送门中继体"
+	desc = "某人从传送门中伸出的下半身。"
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
 	///Mob that this relay is connected to
@@ -330,8 +330,8 @@
 	if(portal_mode == GLORYHOLE)
 		var/obj/item/organ/genital/penis/penis_reference = owner.get_organ_slot(ORGAN_SLOT_PENIS)
 		var/penis_type = penis_reference.genital_name
-		name = LOWER_TEXT("[penis_type] penis")
-		desc = "Someone's penis hanging out from a portal."
+		name = LOWER_TEXT("[chinese_footprint_species_display(chinese_accessory_display(penis_type))]阴茎")
+		desc = "某人从传送门中伸出的阴茎。"
 		dir = SOUTH
 		if (owning_portal.dir == EAST || owning_portal.dir == WEST)
 			dir = REVERSE_DIR(owning_portal.dir)
@@ -339,10 +339,10 @@
 		dir = NORTH
 		var/species_name
 		if(owner.dna?.species?.lore_protected || !owner.dna?.features["custom_species"])
-			species_name = owner.dna.species.name
+			species_name = chinese_footprint_species_display(owner.dna.species.name)
 		else
 			species_name = owner.dna.features["custom_species"]
-		name = LOWER_TEXT("[species_name] behind")
+		name = LOWER_TEXT("[species_name]的下半身")
 
 	RegisterSignals(owner, PORTAL_SIGNAL_LIST, PROC_REF(update_visuals))
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
@@ -356,7 +356,7 @@
 		owner = null
 		owning_portal = null
 		interact_component?.body_relay = null
-	visible_message("[src] vanishes into the portal!")
+	visible_message("[src]消失在传送门中！")
 	lose_hearing_sensitivity(ROUNDSTART_TRAIT)
 	return ..()
 
@@ -369,14 +369,14 @@
 			var/datum/sprite_accessory/genital/gential_sprite = SSaccessories.sprite_accessories[genital][owner.dna.species.mutant_bodyparts[genital][MUTANT_INDEX_NAME]]
 			if(gential_sprite)
 				if(!(gential_sprite.is_hidden(owner)))
-					. += "<span class='notice'>It has exposed genitals... <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[Look closer...\]</a></span>"
+					. += "<span class='notice'>这里有裸露的生殖器…… <a href='byond://?src=[REF(src)];lookup_info=genitals'>\[仔细查看……\]</a></span>"
 					break
 	if(!CONFIG_GET(flag/check_vetted))
 		return
 	if(!owner?.client || !SSplayer_ranks.initialized)
 		return
 	if(SSplayer_ranks.is_vetted(owner?.client, admin_bypass = FALSE))
-		. += span_greenannounce("This player has been vetted as 18+ by staff.")
+		. += span_greenannounce("工作人员已验证该玩家年满18岁。")
 
 /obj/lewd_portal_relay/Topic(href, href_list)
 	. = ..()
@@ -460,8 +460,8 @@
 		dir = SOUTH
 	else
 		dir = NORTH
-	to_chat(user, span_info("You flip \the [name] over."))
-	to_chat(owner, span_info("You feel your behind flip over."))
+	to_chat(user, span_info("你把[name]翻了过来。"))
+	to_chat(owner, span_info("你感觉自己的下半身被翻了过来。"))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/lewd_portal_relay/click_ctrl_shift(mob/user)

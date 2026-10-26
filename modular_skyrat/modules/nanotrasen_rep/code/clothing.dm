@@ -2,8 +2,8 @@
 //Uniform items are in command.dm
 
 /obj/item/clothing/suit/armor/vest/nanotrasen_consultant
-	name = "nanotrasen officers coat"
-	desc = "A premium black coat with real fur round the neck, it seems to have some armor padding inside as well."
+	name = "纳米传讯军官大衣"
+	desc = "一件高档黑色大衣，领口镶有真毛皮，内侧似乎还带有护甲衬垫。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "bladerunner"
@@ -18,15 +18,15 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/vest/nanotrasen_consultant/green
-	name = "nanotrasen officers green coat"
-	desc = "A premium green coat with real fur round the neck, it seems to have some armor padding inside as well."
+	name = "纳米传讯军官绿色大衣"
+	desc = "一件高档绿色大衣，领口镶有真毛皮，内侧似乎还带有护甲衬垫。"
 	icon = 'icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
 	icon_state = "centcom_coat"
 
 /obj/item/clothing/head/nanotrasen_consultant
-	name = "nanotrasen consultant's hat"
-	desc = "A cap made from durathread, it has an insignia on the front denoting the rank of \"Nanotrasen Consultant\"."
+	name = "纳米传讯顾问帽"
+	desc = "一顶耐久纤维制成的帽子，正面的徽章标明“纳米传讯顾问”身份。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
 	icon_state = "nt_consultant_cap"
@@ -48,8 +48,8 @@
 	wound = 4
 
 /obj/item/clothing/head/nanotrasen_consultant/beret
-	name = "nanotrasen consultant's beret"
-	desc = "A beret made from durathread, it has an insignia on the front denoting the rank of \"Nanotrasen Consultant\"."
+	name = "纳米传讯顾问贝雷帽"
+	desc = "一顶耐久纤维制成的贝雷帽，正面的徽章标明“纳米传讯顾问”身份。"
 	icon = 'icons/map_icons/clothing/head/beret.dmi'
 	icon_state = "/obj/item/clothing/head/nanotrasen_consultant/beret"
 	greyscale_config = /datum/greyscale_config/beret_badge
@@ -58,7 +58,7 @@
 	post_init_icon_state = "beret_badge"
 
 /obj/item/clothing/head/nanotrasen_consultant/beret/officer
-	name = "nanotrasen officer's beret"
+	name = "纳米传讯军官贝雷帽"
 	icon_state = "/obj/item/clothing/head/nanotrasen_consultant/beret/officer"
 	greyscale_colors = "#397F3F#FFCE5B"
 
@@ -102,12 +102,12 @@
 	wound = 10
 
 /obj/item/clothing/gloves/combat/naval/nanotrasen_consultant
-	name = "\improper CentCom gloves"
-	desc = "A high quality pair of thick gloves covered in gold stitching."
+	name = "\improper 中央指挥部手套"
+	desc = "一双饰有金色缝线的优质厚手套。"
 
 /obj/item/storage/backpack/satchel/nanotrasen
-	name = "nanotrasen satchel"
-	desc = "An expensive green branded Nanotrasen satchel."
+	name = "纳米传讯挎包"
+	desc = "一个昂贵的绿色挎包，印有纳米传讯标志。"
 	icon = 'modular_zubbers/icons/obj/storage/backpack.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "satchel-nanotrasen"

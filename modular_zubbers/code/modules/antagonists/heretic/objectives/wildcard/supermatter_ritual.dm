@@ -2,17 +2,17 @@
 
 // prevents the sm from generating power for x time - maybe a longer term effect too
 /datum/objective/heretic_wildcard/supermatter
-	name = "drain supermatter"
-	explanation_text = "Perform the Reclaim Light ritual on the station's supermatter engine."
+	name = "汲取超物质"
+	explanation_text = "对空间站的超物质引擎举行收回光芒仪式。"
 	knowledge_to_gain = list(/datum/heretic_knowledge/supermatter_ritual)
-	finish_text = "The Watchwoman grants you her boon for the reclamation of the Light. You find your mind expanding..."
+	finish_text = "守望女士为你收回光芒的功绩赐下恩惠。你感到心智正在拓展……"
 	max_progress = 1
 	knowledge_per_progress = 2
 
 /datum/heretic_knowledge/supermatter_ritual
-	name = "Reclaim Light"
-	desc = "Perform this ritual in the SM chamber to complete your tertiary objective, obtain knowledge points, and neuter the supermatter for 10 minutes. \
-	Can only be performed once, and is a lengthy ritual."
+	name = "收回光芒"
+	desc = "在超物质反应室内举行此仪式，完成你的第三项目标、获得知识点，并削弱超物质的发电能力10分钟。\
+	此仪式耗时较长，且只能举行一次。"
 	unreachable = TRUE
 	required_atoms = list()
 	research_tree_icon_path = 'icons/obj/machines/engine/supermatter.dmi'
@@ -24,7 +24,7 @@
 /datum/heretic_knowledge/supermatter_ritual/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	for (var/obj/machinery/power/supermatter_crystal/iter_crys in range(1, loc))
 		return TRUE
-	to_chat(user, span_warning("Failure! You need to perform this ritual under a supermatter crystal."))
+	to_chat(user, span_warning("失败！必须在超物质晶体下方举行此仪式。"))
 	return FALSE
 
 /datum/heretic_knowledge/supermatter_ritual/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
@@ -43,9 +43,9 @@
 	if (isnull(crys))
 		return FALSE
 
-	to_chat(user, span_warning("You begin the ritual..."))
+	to_chat(user, span_warning("你开始举行仪式……"))
 	if (!do_after(user, 20 SECONDS, crys, IGNORE_HELD_ITEM))
-		to_chat(user, span_boldwarning("Failure! The ritual is aborted."))
+		to_chat(user, span_boldwarning("失败！仪式已中止。"))
 		return FALSE
 
 	crys.cursed = TRUE
@@ -53,8 +53,8 @@
 	addtimer(CALLBACK(crys, TYPE_PROC_REF(/obj/machinery/power/supermatter_crystal, clear_curse)), POWERLESS_DURATION)
 
 	priority_announce(
-		"Thaumatergic anomaly detected in Supermatter Engine. Observing massively reduced power output - expect resolution in ETA [POWERLESS_DURATION / 10] seconds.",
-		"CentCom Thaumatergy Monitor",
+		"超物质引擎内检测到奇术异常。观测到功率输出大幅下降——预计[POWERLESS_DURATION / 10]秒后恢复。",
+		"中央指挥部奇术监测系统",
 		'sound/machines/engine_alert/engine_alert3.ogg'
 	)
 
@@ -66,7 +66,7 @@
 
 /obj/machinery/power/supermatter_crystal/proc/clear_curse()
 	if (cursed)
-		priority_announce("The thaumatergic anomaly has dissipated, crystal output readings have normalized.", "Anomaly Cleared")
+		priority_announce("奇术异常已消散，晶体输出读数已恢复正常。", "异常已解除")
 
 	cursed = FALSE
 	update_appearance(UPDATE_OVERLAYS)
@@ -81,6 +81,6 @@
 	. = ..()
 
 	if (cursed)
-		. += span_boldwarning("This supermatter has been cursed by an Acolyte. It will output significantly less power until the curse diminishes.")
+		. += span_boldwarning("这块超物质遭到了侍徒的诅咒。诅咒消退前，其功率输出将大幅降低。")
 
 #undef POWERLESS_DURATION

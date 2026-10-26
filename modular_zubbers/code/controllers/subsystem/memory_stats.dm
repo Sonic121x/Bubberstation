@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(memory_stats)
 		out += "rss_mb=[rss]"
 		out += "rss_bytes=[num2text(rss_bytes, 12)]"
 		if(last_rss_mb && rss - last_rss_mb > MEMORY_STATS_SPIKE_ALERT_MB)
-			message_admins("MEMORY: process RSS jumped [round(rss - last_rss_mb)]MB in [wait / (1 SECONDS)]s (now [rss]MB)")
+			message_admins("内存：进程常驻内存在 [wait / (1 SECONDS)] 秒内增加了 [round(rss - last_rss_mb)] MB（现为 [rss] MB）")
 		last_rss_mb = rss
 		last_rss_bytes = rss_bytes
 
@@ -121,16 +121,16 @@ SUBSYSTEM_DEF(memory_stats)
 
 /// Formatted for the statpanel, "sampling..." until the first successful RSS read
 /datum/controller/subsystem/memory_stats/proc/get_status_line()
-	return last_rss_mb ? "[last_rss_mb] MB/[MEMORY_STATS_BUDGET_MB] MB" : "sampling..."
+	return last_rss_mb ? "[last_rss_mb] MB/[MEMORY_STATS_BUDGET_MB] MB" : "正在采样……"
 
 /mob/get_status_tab_items()
 	. = ..()
 	if(CONFIG_GET(flag/enable_memory_stats))
-		. += "Memory: [SSmemory_stats.get_status_line()]"
+		. += "内存：[SSmemory_stats.get_status_line()]"
 
-ADMIN_VERB(dump_memory_stats, R_DEBUG, "Dump Memory Stats", "Writes a memory stats sample to memory_stats.log right now.", ADMIN_CATEGORY_DEBUG)
+ADMIN_VERB(dump_memory_stats, R_DEBUG, "导出内存统计", "立即将一次内存统计采样写入 memory_stats.log。", ADMIN_CATEGORY_DEBUG)
 	SSmemory_stats.log_memory_stats()
-	to_chat(user, span_notice("Memory stats dumped to memory_stats.log (rss: [SSmemory_stats.last_rss_mb]MB / [num2text(SSmemory_stats.last_rss_bytes, 12)] bytes)."))
+	to_chat(user, span_notice("内存统计已导出至 memory_stats.log（常驻内存：[SSmemory_stats.last_rss_mb] MB / [num2text(SSmemory_stats.last_rss_bytes, 12)] 字节）。"))
 
 #undef MEMORY_RSS_FILE
 #undef MEMORY_STATS_BUDGET_MB

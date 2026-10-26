@@ -65,7 +65,7 @@
 		"Interslavic" = "斯拉夫共通语", "Federation Legalese" = "联邦法律语",
 		"Siik'maas" = "西克玛斯语", "Enochian" = "以诺语", "Terran Uncommon" = "地球异通用语",
 	)
-	return display_names[value] || value
+	return display_names[value] || chinese_batch_ten_language_display(value)
 
 /// Display department labels without changing access-control identifiers.
 /proc/chinese_department_display(value)

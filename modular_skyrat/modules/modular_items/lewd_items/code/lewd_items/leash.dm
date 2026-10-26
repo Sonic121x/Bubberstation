@@ -1,6 +1,6 @@
 /obj/item/clothing/erp_leash
-	name = "leash"
-	desc = "A guiding hand's best friend; in a sleek, semi-elastic package. Can either clip to a collar or be affixed to the neck on its own."
+	name = "牵引绳"
+	desc = "引导者的好帮手，光滑且略有弹性。既可扣在项圈上，也可直接系在脖子上。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_belts.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_belts.dmi'
 	icon_state = "neckleash_pink"
@@ -24,11 +24,11 @@
 	abstract_type = /datum/atom_skin/erp_leash
 
 /datum/atom_skin/erp_leash/pink
-	preview_name = "Pink"
+	preview_name = "粉色"
 	new_icon_state = "neckleash_pink"
 
 /datum/atom_skin/erp_leash/teal
-	preview_name = "Teal"
+	preview_name = "青绿色"
 	new_icon_state = "neckleash_teal"
 
 /// HERE BE DRAGONS ///
@@ -51,12 +51,12 @@
 		return
 	/// Check their ERP prefs; if they don't allow sextoys: BTFO
 	if(!to_be_leashed.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[to_be_leashed] doesn't want you to do that."))
+		to_chat(user, span_danger("[to_be_leashed] 不愿意让你这么做。"))
 		return
 	/// Actually start the leashing part here
-	to_be_leashed.visible_message(span_warning("[user] raises the [src] to [to_be_leashed]'s neck!"),\
-				span_userdanger("[user] starts to bring the [src] to your neck!"),\
-				span_hear("You hear a light click as pressure builds in the air around your neck."))
+	to_be_leashed.visible_message(span_warning("[user] 将 [src] 举到 [to_be_leashed] 的脖子旁！"),\
+				span_userdanger("[user] 开始把 [src] 靠近你的脖子！"),\
+				span_hear("你听到轻轻一声咔哒，脖子周围的空气似乎都紧绷起来。"))
 	if(!do_after(user, 2 SECONDS, to_be_leashed))
 		return
 	create_leash(user, to_be_leashed)
@@ -68,14 +68,14 @@
 
 	ouppy.AddComponent(/datum/component/leash/erp, src, 2)
 	if(our_leash_component.resolve()) // The component will immediately delete itself if there's an existing one; this sanity checks for feedback on if it failed.
-		ouppy.balloon_alert(user, "leashed!")
+		ouppy.balloon_alert(user, "已系上牵引绳！")
 		create_leash_line(ouppy)
 		return
-	else to_chat(user, span_danger("There's a leash attached to [ouppy] already."))
+	else to_chat(user, span_danger("[ouppy] 已经系着牵引绳了。"))
 
 /// Leash removal
 /obj/item/clothing/erp_leash/proc/remove_leash(mob/free_bird)
-	free_bird?.balloon_alert_to_viewers("unhooked")
+	free_bird?.balloon_alert_to_viewers("已解开")
 	clear_line(src)
 	qdel(our_leash_component.resolve())
 
@@ -125,9 +125,9 @@
 			var/mob/living/yoinked = parent
 			yoinked.Move(get_step_towards(yoinked,user))
 			yoinked.adjust_stamina_loss(10)
-			yoinked.visible_message(span_warning("[yoinked] is pulled in as [user] tugs the [source]!"),\
-					span_userdanger("[user] suddenly tugs the [source], pulling you closer!"),\
-					span_userdanger("A sudden tug against your neck pulls you ahead!"))
+			yoinked.visible_message(span_warning("[user] 拉动 [source]，将 [yoinked] 拉近！"),\
+					span_userdanger("[user] 突然拉动 [source]，将你拉近！"),\
+					span_userdanger("脖子上传来突如其来的拉力，将你拽向前方！"))
 			COOLDOWN_START(leash_hookin, tug_cd, 1 SECONDS)
 
 /datum/component/leash/erp/proc/on_item_dropped(datum/source, mob/user)
@@ -135,7 +135,7 @@
 
 	if(istype(parent, /mob))
 		var/mob/our_parent = parent
-		our_parent.balloon_alert_to_viewers("unhooked")
+		our_parent.balloon_alert_to_viewers("已解开")
 	qdel(src)
 
 /datum/component/leash/erp/proc/on_parent_resist(datum/source, mob/user)
@@ -146,11 +146,11 @@
 	if(istype(parent, /mob) && istype(owner,/obj/item))
 		var/mob/our_parent = parent
 		var/obj/item/our_owner = owner
-		our_parent.visible_message(span_warning("[our_parent] attempts to unhook [our_parent.p_them()]self from the leash!"), \
-			span_userdanger("You start to unhook yourself from the leash..."), \
-			span_userdanger("You fumble in the dark, looking to unhook the leash..."))
+		our_parent.visible_message(span_warning("[our_parent] 试图解开自己的牵引绳！"), \
+			span_userdanger("你开始解开自己的牵引绳……"), \
+			span_userdanger("你在黑暗中摸索，试图解开牵引绳……"))
 		if(do_after(our_parent, our_owner.breakouttime, target = our_parent))
-			to_chat(our_parent, span_notice("You unhook yourself from the leash."))
+			to_chat(our_parent, span_notice("你解开了自己的牵引绳。"))
 			qdel(src)
 	else qdel(src) // If they're not an item; something is very wrong - qdel anyways without the breakout time.
 

@@ -1,6 +1,6 @@
 /obj/item/wargame_projector
-	name = "holographic projector"
-	desc = "A handy-dandy holographic projector developed by Nanotrasen Naval Command for playing wargames with, this one seems broken."
+	name = "全息投影器"
+	desc = "纳米传讯海军司令部为兵棋推演开发的便捷全息投影器，这个似乎坏了。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/wargame_projector"
 	post_init_icon_state = "projector"
@@ -30,16 +30,16 @@
 	)
 	/// Contains all of the colors that the holograms can be changed to spawn as
 	var/static/list/color_options = list(
-		"Red" = COLOR_RED_LIGHT,
-		"Orange" = COLOR_LIGHT_ORANGE,
-		"Yellow" = COLOR_VIVID_YELLOW,
-		"Green" = COLOR_VIBRANT_LIME,
-		"Blue" = COLOR_BLUE_LIGHT,
-		"Pink" = COLOR_FADED_PINK,
-		"White" = COLOR_WHITE,
-		"Gray" = COLOR_GRAY,
-		"Brown" = COLOR_BROWN,
-		"Ice" = COLOR_BLUE_GRAY,
+		"红色" = COLOR_RED_LIGHT,
+		"橙色" = COLOR_LIGHT_ORANGE,
+		"黄色" = COLOR_VIVID_YELLOW,
+		"绿色" = COLOR_VIBRANT_LIME,
+		"蓝色" = COLOR_BLUE_LIGHT,
+		"粉色" = COLOR_FADED_PINK,
+		"白色" = COLOR_WHITE,
+		"灰色" = COLOR_GRAY,
+		"棕色" = COLOR_BROWN,
+		"冰蓝色" = COLOR_BLUE_GRAY,
 	)
 	/// Will hold the choices for radial menu use, populated on init
 	var/list/radial_choices = list()
@@ -58,10 +58,10 @@
 /obj/item/wargame_projector/examine(mob/user)
 	. = ..()
 	if(projections)
-		. += span_notice("It is currently maintaining <b>[projections.len]/[max_signs]</b> projections.")
-	. += span_notice("Use the projector <b>in hand</b> to change what type of hologram it creates.")
-	. += span_notice("<b>Alt clicking</b> the projector will let you change the color of the next hologram it makes.")
-	. += span_warning("<b>Control clicking</b> the projector will allow you to clear all active holograms.")
+		. += span_notice("目前维持着 <b>[projections.len]/[max_signs]</b> 个投影。")
+	. += span_notice("<b>在手中使用</b>投影器可更改生成的全息影像类型。")
+	. += span_notice("<b>Alt 点击</b>投影器可更改下一个全息影像的颜色。")
+	. += span_warning("<b>Ctrl 点击</b>投影器可清除所有现有全息影像。")
 
 /obj/item/wargame_projector/proc/populate_radial_choice_lists()
 	if(!length(radial_choices) || !length(projection_names_to_path))
@@ -88,18 +88,18 @@
 	select_hologram(user)
 
 /obj/item/wargame_projector/click_alt(mob/user)
-	var/selected_color = tgui_input_list(user, "Select a color", "Color Selection", color_options)
+	var/selected_color = tgui_input_list(user, "选择颜色", "颜色选择", color_options)
 	if(isnull(selected_color))
-		balloon_alert(user, "no color change")
+		balloon_alert(user, "未更改颜色")
 		return
 	var/color_to_set_to = color_options[selected_color]
 	holosign_color = color_to_set_to
-	balloon_alert(user, "color changed")
+	balloon_alert(user, "已更改颜色")
 	set_greyscale(holosign_color)
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/wargame_projector/item_ctrl_click(mob/user)
-	if(tgui_alert(user,"Clear all currently active holograms?", "Hologram Removal", list("Yes", "No")) == "Yes")
+	if(tgui_alert(user,"清除所有现有全息影像？", "清除全息影像", list("是", "否")) == "是")
 		for(var/hologram in projections)
 			qdel(hologram)
 
@@ -111,7 +111,7 @@
 	if(target_turf.is_blocked_turf(TRUE))
 		return FALSE
 	if(LAZYLEN(projections) >= max_signs)
-		balloon_alert(user, "max capacity!")
+		balloon_alert(user, "已达数量上限！")
 		return FALSE
 	return TRUE
 
@@ -151,8 +151,8 @@ Actual projector types, split between the 'categories' of things they can projec
 */
 
 /obj/item/wargame_projector/ships
-	name = "holographic unit projector"
-	desc = "A handy-dandy holographic projector developed by Nanotrasen Naval Command for playing wargames with, this one creates markers for 'units'."
+	name = "单位全息投影器"
+	desc = "纳米传讯海军司令部为兵棋推演开发的便捷全息投影器，用于生成“单位”标记。"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	max_signs = 30
 	holosign_color = COLOR_BLUE_LIGHT
@@ -175,8 +175,8 @@ Actual projector types, split between the 'categories' of things they can projec
 	holosign_color = COLOR_RED_LIGHT
 
 /obj/item/wargame_projector/terrain
-	name = "holographic terrain projector"
-	desc = "A handy-dandy holographic projector developed by Nanotrasen Naval Command for playing wargames with, this one creates markers for space 'terrain'."
+	name = "地形全息投影器"
+	desc = "纳米传讯海军司令部为兵棋推演开发的便捷全息投影器，用于生成太空“地形”标记。"
 	flags_1 = parent_type::flags_1 | NO_NEW_GAGS_PREVIEW_1
 	max_signs = 30
 	holosign_color = COLOR_GRAY

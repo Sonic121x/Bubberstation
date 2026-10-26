@@ -1,6 +1,6 @@
 /obj/item/rsd_interface
-	name = "RSD Phylactery"
-	desc = "A small device inserted, typically, into inert brains. As Resonance cannot persist in what's referred to as a 'vacuum', RSDs--much like the brains and CPUs they emulate--employ cerebral white noise as a foundation for Resonance to persist in otherwise dead-quiet containers.."
+	name = "共鸣模拟装置命匣"
+	desc = "一种通常植入无活性大脑的小型装置。由于共鸣无法在所谓的“真空”中持续存在，共鸣模拟装置会像它所模拟的大脑和处理器一样，以脑白噪声为基础，让共鸣得以在原本死寂的容器中存续。"
 	icon = 'modular_skyrat/modules/aesthetics/implanter/implanter.dmi'
 	icon_state = "implanter1"
 	inhand_icon_state = "syringe_0"
@@ -18,10 +18,10 @@
 		return NONE
 
 	if(HAS_TRAIT(interacting_with, TRAIT_RSD_COMPATIBLE))
-		user.balloon_alert(user, "already upgraded!")
+		user.balloon_alert(user, "已经升级过了！")
 		return ITEM_INTERACT_BLOCKING
 
-	user.visible_message(span_notice("[user] upgrades [interacting_with] with [src]."), span_notice("You upgrade [interacting_with] to be RSD compatible."))
+	user.visible_message(span_notice("[user]用[src]升级了[interacting_with]。"), span_notice("你升级了[interacting_with]，使其兼容共鸣模拟装置。"))
 	interacting_with.AddElement(/datum/element/rsd_interface)
 	playsound(interacting_with.loc, 'sound/items/weapons/circsawhit.ogg', 50, vary = TRUE)
 
@@ -39,7 +39,7 @@
 /// Adds text to the examine text of the parent item, explaining that the item can be used to enable the use of NIFSoft HUDs
 /datum/element/rsd_interface/proc/on_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	examine_text += span_cyan("Souls can be transferred to [source], assuming it is inert.")
+	examine_text += span_cyan("只要[source]没有活性，就可以将灵魂转移进去。")
 
 /datum/element/rsd_interface/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_ATOM_EXAMINE)

@@ -1,11 +1,11 @@
 /datum/map_template/holodeck/wargame
-	name = "Holodeck - Naval Wargames"
+	name = "全息甲板——舰队兵棋"
 	template_id = "holodeck_wargame"
 	mappath = "_maps/skyrat/holodeck_wargame.dmm"
 
 /obj/item/storage/briefcase/secure/white/wargame_kit
-	name = "DIY Wargaming Kit"
-	desc = "Contains everything an aspiring naval officer (or just massive nerd) would need for a proper modern naval wargame."
+	name = "自助兵棋套装"
+	desc = "内含有志成为海军军官的人（或狂热军事迷）开展一场正规现代舰队兵棋推演所需的一切。"
 	custom_premium_price = PAYCHECK_CREW * 2
 
 /obj/item/storage/briefcase/secure/white/wargame_kit/PopulateContents()
@@ -20,10 +20,10 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/book/manual/wargame_rules
-	name = "Wargame: Blue Lizard - Example Ruleset"
+	name = "兵棋：蓝蜥蜴——示例规则"
 	icon_state = "book"
-	starting_author = "Nanotrasen Naval Wargames Commission"
-	starting_title = "Wargame: Blue Lizard - Example Ruleset"
+	starting_author = "纳米传讯舰队兵棋委员会"
+	starting_title = "兵棋：蓝蜥蜴——示例规则"
 	starting_content = {"
 				<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -34,223 +34,223 @@
 				</head>
 				<body>
 				<center>
-				<b style='font-size: 12px;'>Official publication of the Nanotrasen Naval Wargames Commission</b>
-				<h1>Wargame: Blue Lizard</h1>
+				<b style='font-size: 12px;'>纳米传讯舰队兵棋委员会官方出版物</b>
+				<h1>兵棋：蓝蜥蜴</h1>
 				</center>
-				<h2>Introduction</h2>
-					Wargame: Blue Lizard* is a combination of historically popular wargames,
-					and new, widely available hologram technology. The standard kit should contain
-					a collection of the following listed items by default, and play may prove difficult
-					if any of these items are missing.
+				<h2>简介</h2>
+					《兵棋：蓝蜥蜴》*将历史悠久、广受欢迎的兵棋推演
+					与如今已普及的全息技术结合。标准套装默认应当包含
+					下列物品。若有任何一项缺失，
+					游戏可能难以顺利进行。
 					<br>
-					<b>Kit items:</b>
-						1x of 'terrain' holoprojector <br>
-						2x of 'unit' holoprojector <br>
-						1x of standard dice set <br>
+					<b>套装物品：</b>
+						1 个“地形”全息投影器 <br>
+						2 个“单位”全息投影器 <br>
+						1 套标准骰子 <br>
 					<br>
-					An example set of rules will be provided further on in this manual, though it
-					should be noted that it is not required to follow these rules by the letter, or at
-					all. Players are encouraged to make their own rules and play the game as they wish,
-					rather than feel limited by the provided set.
+					本手册后文提供了一套示例规则，但你不必
+					逐字遵守，甚至完全可以不采用。
+					我们鼓励玩家制定自己的规则，按照自己的喜好游戏，
+					无需受这套示例规则束缚。
 				<br>
-				<h2>Example Ruleset</h2>
-					<b>Players</b>
-						By the example rules, the game is built to be played by two or more individuals.
-						One player will act as a game master (sometimes referred to as an umpire), whose
-						job it will be to direct the game. All other players will be the ones participating
-						in the game
+				<h2>示例规则</h2>
+					<b>玩家</b>
+						按照示例规则，游戏需要两人或以上参与。
+						其中一人担任主持人（有时也称裁判），
+						负责引导游戏。其他玩家则负责
+						参与推演。
 						<br>
-						The layout of players, or teams, is fully up to the game master. For example,
-						a game of two players may see both players on the same team against a non-player
-						threat, or it may see them against one another.
+						玩家及队伍的分配完全由主持人决定。例如，
+						两名玩家可以组队对抗非玩家势力，
+						也可以互相对抗。
 					<br>
-					<b>Setting Up a Game</b>
-						Once the layout of players and teams has been established, the scenario, and what
-						vessels each player should have under their control should be determined by the
-						game master. What vessels there are, how many there are, what they have on them,
-						and the overall scenario is completely up to the game master to decide, and it
-						cannot be stated enough that <b>the scenarios do not have to be even, one side
-						might have more ships than the other, one side might have more players than the
-						other</b>.
+					<b>准备游戏</b>
+						确定玩家和队伍分配后，应由主持人决定
+						战役情境，以及每位玩家
+						掌控哪些舰船。舰船的种类、数量、装备
+						及整体情境都由主持人全权决定。必须再次强调，
+						<b>情境无需保证双方对等：一方的舰船
+						可能更多，玩家人数也可能
+						更多</b>。
 						<br>
-						As stated, the types of ships that exist and what they are armed with is up to the
-						game master, though some examples of ships and scenarios can be found in the
-						accompanying book in the standard wargaming set.
+						如前所述，可用舰船的类型及武装由主持人决定。
+						标准兵棋套装的随附书籍中提供了
+						一些舰船与情境示例，可供参考。
 					<br>
-					<b>Playing the Game</b> <br>
-						Typically, the game goes in a turn by turn system. What this actually means is
-						again up to the game master. Some examples may be each player going one by one,
-						or every player on a team going at once. With each turn, each player's units
-						(typically ships) may move, and take another non-movement action <b>each ship,
-						each turn</b>.
+					<b>进行游戏</b> <br>
+						游戏通常采用回合制，具体如何划分回合
+						仍由主持人决定。例如，玩家可以依次行动，
+						也可以让同队所有玩家同时行动。每个回合中，每位玩家的单位
+						（通常是舰船）可以移动一次，并执行另一项非移动行动；<b>每艘舰船
+						每回合均可如此</b>。
 						<br>
-						<b>Commanding Units</b> <br>
-							Units should move across the board, and interact with it, through the hands of
-							the game master. In order to get a unit to do something that a player commands,
-							<b>the player should address the game master as if the game master was the
-							one in control of the ship, and give them orders accordingly</b>. From there,
-							it is at the game master's discretion to interpret the order and take action.
+						<b>指挥单位</b> <br>
+							单位在棋盘上的移动及互动应由
+							主持人操作。玩家要指挥单位行动时，
+							<b>应将主持人视为
+							舰船的操纵者，并向其下达命令</b>。随后，
+							由主持人自行理解命令并执行相应行动。
 							<br>
-							An example of how this works would be:
+							例如：
 							<br>
-							Game Master: "We have spotted several enemy vessels, all ships are ready
-							for orders." <br>
-							Player: "I see... Destroyer, charge the enemy vessels head on, guns blazing!" <br>
-							-- The game master interprets this as moving the destroyer its maximum movement range
-							straight towards the enemy ships, before moving on to rolling dice for attacking any in
-							range (attacking will be covered later on in the rules)
+							主持人：“我们发现了数艘敌舰，各舰
+							待命。” <br>
+							玩家：“明白……驱逐舰，迎面冲向敌舰，全炮开火！” <br>
+							——主持人将其理解为让驱逐舰朝敌舰方向移动
+							最大允许距离，再掷骰攻击射程内的敌舰。
+							（攻击规则将在后文介绍。）
 						<br>
-						<b>Unit Visibility</b> <br>
-							Unit visibility may sound complex at first, but should be fairly simple after
-							explanation. In a standard game, if there are two or more teams, they will play
-							on separate, but identical boards that have an opaque divider between them.
+						<b>单位可见性</b> <br>
+							单位可见性听起来可能复杂，解释清楚后
+							其实很简单。标准游戏中，若有两个或更多队伍，便使用
+							各自独立但完全相同的棋盘，并以不透明隔板分开。
 							<br>
-							Note that most standard issue holodecks have a setup including dual boards and divider.
+							多数标准全息甲板已配备双棋盘和隔板。
 							<br>
-							Space 'terrain', including asteroids, space dust, planetoids, gas clouds, and so on, should
-							be identical, both in appearance and position, on both halves of the board. The divider
-							should be closed before either team's units are placed, so that tactical secrecy may be held,
-							and that players may be able to 'hide' ships from one another.
+							太空“地形”包括小行星、太空尘埃、矮行星、气体云等，
+							在两侧棋盘上的外观和位置都应完全一致。双方部署单位前
+							应关闭隔板，以保守战术秘密，
+							让玩家能向对手“隐藏”舰船。
 							<br>
-							Determining if a ship is visible to either team is up to the game master to decide.
-							Typically, however, this should work off of line of sight. An example would be two ships
-							with a large asteroid between them. Neither ship can see the other due to the asteroid.
-							If one ship were to move out from behind the asteroid and into direct line of sight with
-							the other ship, however, both would be able to see each other. It is also possible for a
-							situation where two ships might know where each other are, but cannot identify what type
-							of ship the other is. An example of this would be gas clouds and thick space dust. In
-							this case, the game master can represent the unit as an unidentified ship to the
-							corresponding team.
+							舰船对哪一方可见，由主持人判断。
+							通常应以视线为依据。例如，两艘舰船
+							之间有一颗大型小行星，双方就都无法看见对方。
+							若其中一艘从小行星后方驶出，进入另一艘的
+							直接视线，双方就能互相发现。也可能出现
+							双方知道彼此位置，却无法辨认
+							对方舰种的情况，例如隔着气体云或浓密太空尘埃。
+							此时，主持人可以在对应队伍的棋盘上
+							将该单位表示为身份不明的舰船。
 							<br>
-							Lastly, visibility can be lost. Taking the two ships and an asteroid example again,
-							if the ship goes back behind the asteroid, then obviously neither team will be able to
-							see the other ship again. They will, however, still be aware of the general area of the
-							enemy.
+							最后，视野可以丢失。仍以两艘舰船和一颗小行星为例，
+							若舰船返回小行星后方，双方显然又将
+							无法看见对方。不过，他们仍然知道
+							敌舰大致所在的区域。
 						<br>
-						<b>Attacking and Damage</b> <br>
-							Inevitably, ships will come into contact with one another, blows will be exchanged,
-							and damage will be sustained.
+						<b>攻击与损伤</b> <br>
+							舰船难免会相遇、交火，
+							并遭受损伤。
 							<br>
-							Typically, attacking other ships is done through one of the following means, though
-							do be aware this list is not the end all be all of weapons and game masters may
-							create their own.
+							攻击敌舰通常采用下列方式之一。
+							但这并非所有武器的完整清单，主持人
+							也可以自行设计武器。
 							<br>
-								-- Cannons -- <br>
-								Cannons are basic weapons firing projectiles of some kind towards the enemy.
-								The range of cannons varies, but typically one or two tile lengths away
-								will be the range for accurate fire.
+								——舰炮—— <br>
+								舰炮是向敌方发射某种弹丸的基础武器。
+								各种舰炮射程不同，但通常在一至两格距离内
+								能够精确射击。
 								<br>
-								-- Missiles -- <br>
-								Missiles are weapons that are usually limited in the number that each ship
-								brings into the battle, in exchange for damaging the enemy significantly more
-								as well as having a longer range than cannons. Missiles are one of the two
-								'weapons' that are unique in how they work, in that if the range to the target
-								is more than a single tile's length away, they should appear as an object on the
-								board, and should take multiple turns to reach their target.
+								——导弹—— <br>
+								各舰通常只能携带有限数量的导弹参战，
+								但它们对敌方造成的伤害明显更高，
+								射程也比舰炮更远。导弹是两类运作方式
+								特殊的“武器”之一：若目标距离
+								超过一格，导弹就应作为独立物体出现在
+								棋盘上，并花费多个回合抵达目标。
 								<br>
-								Missiles are also special in that many weapons fall under their category,
-								some of the basic types will be listed below. <br>
-									Unguided rockets - These are the most basic type of missile, lacking any
-									guidance system at all. If these are fired at a target, and the target moves
-									somehow before they impact, the rockets will simply continue on in a straight
-									line until either hitting something or being lost into the depths of space.
+								导弹类别涵盖多种武器，
+								下面列出一些基本类型。 <br>
+									无制导火箭弹——最基础的导弹类型，没有
+									任何制导系统。发射后，若目标在命中前
+									移动，火箭弹只会继续直线飞行，
+									直到撞上物体或消失在深空中。
 									<br>
-									Seeking missiles - These are missiles that will actively guide themselves
-									towards a target, usually designated when launching them. It is possible to
-									evade these by hiding behind a large object, or hiding within a debris/
-									dust/gas cloud. If these missiles lose tracking, they will simply fly in
-									a straight line until impacting something or being lost to deep space.
+									自导导弹——主动追踪目标的导弹，
+									通常在发射时指定目标。躲到大型物体后面，
+									或藏进碎片、尘埃、气体云中，都可能避开它们。
+									若丢失目标，导弹便会直线飞行，
+									直到撞上物体或消失在深空中。
 									<br>
-									Seeking torpedoes - These operate similar to seeking missiles in that
-									they will guide themselves towards a target. The difference with these is
-									that torpedoes will typically do significantly more damage if they impact
-									a target, but are significantly slower than missiles in exchange. Again if
-									these lose tracking, they will fly in a straight line until impacting
-									something or being lost to the void.
+									自导鱼雷——与自导导弹类似，
+									会自行追踪目标。区别在于，
+									鱼雷命中时通常造成更大伤害，
+									代价是速度明显低于导弹。同样，
+									丢失目标后，鱼雷会直线飞行，直到撞上物体
+									或消失在虚空中。
 								<br>
-								-- Strike Craft -- <br>
-								Strike craft are an example of a uniquely operating weapon. Typically carried
-								into combat by a larger ship of some kind, 'using' this weapon should result
-								in either a single, or wing of strike craft being placed alongside the vessel
-								that launched them. For all intents and purposes, these strike craft will now
-								behave as if they are any other ship, including having their own weapons and
-								damage.
+								——舰载攻击机—— <br>
+								舰载攻击机是另一种运作独特的武器，通常由
+								较大的舰船携带参战。“使用”这种武器时，
+								应在母舰旁放置单架攻击机
+								或一个攻击机联队。从此，它们
+								便像其他舰船一样行动，拥有独立武器，
+								也会独立承受损伤。
 								<br>
-								Strike craft do operate differently to ships in how they are destroyed. Each
-								ship capable of carrying strike craft will enter the battle with a set number
-								of 'wings'. These wings will be launched as a whole and will act as one 'vessel'
-								on the board. When coming under fire from other ships, dice should be rolled to
-								determine how many, if any, of the strike craft are lost. If all of the craft
-								in a wing are lost, the wing is destroyed, and the home vessel loses that wing
-								forever. If a wing is only partially destroyed, however, it may return to the
-								home vessel and spend a full turn repairing to get all its craft back.
+								攻击机的摧毁规则与舰船不同。每艘
+								能够搭载攻击机的舰船都携带固定数量的
+								“联队”参战。联队整体出击，在棋盘上作为一艘“舰船”
+								行动。遭受敌舰火力时，应掷骰
+								判定损失了多少架攻击机。若一个联队
+								全部被击毁，该联队便被消灭，母舰也永久失去
+								该联队。若仅有部分飞机被毁，联队可返回
+								母舰，花费一整回合维修，以恢复全部飞机。
 							<br>
-							Ships taking damage is left up to both rolls of the dice and the discretion of the
-							game master. Typically, a D20 will be used for determining if a ship takes damage or
-							not.
+							舰船是否受损，由掷骰结果和主持人的判断
+							共同决定。通常使用二十面骰（D20）
+							进行判定。
 							<br>
-							For a ship to take damage, an attack must roll higher than the ship's 'defensive power'.
-							The defensive power of a vessel is a combination of many factors, though some examples
-							will be provided below, though ships should all have a defensive power of '5' by default,
-							with other factors raising that.
+							攻击掷骰结果必须高于舰船的“防御力”，才能造成损伤。
+							舰船防御力由多个因素共同决定，下文列举了
+							一些示例。所有舰船的基础防御力均为 5，
+							其他因素可在此基础上加以调整。
 							<br>
-								Heavy Armor - If a ship is determined to have heavy armor, usually ships that are
-								either large, built for close range combat, or both, then they will gain a bonus to
-								their defensive power (usually +5, for a total of 10 default).
+								重装甲——若舰船拥有重装甲，通常是大型舰、
+								近战舰或兼具两者特点的舰船，便获得
+								防御力加成（通常 +5，使基础总值达到 10）。
 								<br>
-								Strong Point Defense - If a ship has a strong point defense system, it is able
-								to intercept incoming projectiles before impact. In game, this translates to an
-								increase in defensive power (usually +5, for a total of 10 with nothing else).
+								强力近防——拥有强力近防系统的舰船可以
+								在弹丸命中前将其拦截。在游戏中，这体现为
+								防御力提高（通常 +5，无其他修正时总值为 10）。
 								<br>
-								Weak Construction - If a ship is determined to be built fairly weak, usually reserved
-								to non-combat ships (perhaps one a fleet is escorting?), then it will have a loss of
-								defensive power (usually -5, for a total of 0 default)
+								脆弱结构——结构较脆弱的舰船，通常是
+								非战斗舰（也许正是舰队护送的对象），会受到
+								防御力减值（通常 -5，使基础总值降至 0）。
 							<br>
-							These modifiers may be stacked with each other, and custom ones may be created by the game
-							master for a given scenario.
+							这些修正可以相互叠加，主持人也可针对具体情境
+							制定新的修正项。
 							<br>
-							If an attack does manage to get through the defenses of a vessel, another dice roll should
-							determine what damage the vessel takes, if any. This is also up to the game master's discretion,
-							though a table of damage based off of a D20 will be provided below. If a ship takes damage to
-							two or more 'critical' systems (power, life support, or structure) then the ship will be
-							lost and irrecoverable. Damage can be repaired, however, if a ship sacrifices both its movement
-							and second action for a full turn, repairing <b>one</b> major damage of the player's choice.
+							攻击突破防御后，应再次掷骰，
+							判定舰船是否受损及损伤类型。这同样由主持人裁定，
+							下表提供一套基于 D20 的损伤结果。若舰船有
+							两个或以上“关键”系统（供能、生命维持、舰体结构）受损，
+							便会损失且无法挽救。不过，舰船可以放弃整回合的移动
+							及第二项行动，修复由玩家选择的<b>一项</b>重大损伤。
 							<br>
-								<b>From a D20</b>
-								0 - 5, Only superficial damage was taken, nothing happens <br>
-								6 - 7, The ship's engines are disabled, and it will be unable to move until repairs are done <br>
-								8 - 10, The ship's weapons are disabled, and it will be unable to attack until repairs are done <br>
-								11 - 12, The ship's main reactor fails, both weapons and movement will be disabled until repairs are done <br>
-								13 - 16, The ship suffers a disabling breach, and it will be lost if this compounds with another problem <br>
-								17 - 20, The ship suffers catastrophic structural damage, and it will be lost if this compounds with another problem <br>
+								<b>D20 掷骰结果</b>
+								0 - 5：仅有表面损伤，无实际影响。 <br>
+								6 - 7：引擎失效，修复前无法移动。 <br>
+								8 - 10：武器失效，修复前无法攻击。 <br>
+								11 - 12：主反应堆失效，修复前无法攻击或移动。 <br>
+								13 - 16：舰体严重破裂，若再叠加另一项关键损伤，舰船便会损失。 <br>
+								17 - 20：舰体结构遭到灾难性破坏，若再叠加另一项关键损伤，舰船便会损失。 <br>
 							<br>
-							If a ship is lost in combat, then one of two things will happen. If the reactor was damaged
-							at the time of the vessel being lost, then it should catastrophically fail and cause
-							any ships near it should take damage from the detonation, and the ship itself should be
-							removed from the board. If the reactor was not damaged when the vessel was lost, however,
-							then the ship's color should be changed to a neutral grey, where it will remain as an empty
-							hulk that can be used for cover or concealment by other ships.
+							舰船在战斗中损失后，将发生以下两种情况之一。若损失时
+							反应堆已受损，便会发生灾难性爆炸，
+							使周围舰船遭受爆炸伤害，该舰本身应从
+							棋盘上移除。若损失时反应堆完好，
+							则应将舰船改为中性灰色，留在原处作为空壳残骸，
+							供其他舰船遮挡火力或隐藏行踪。
 						<br>
-						<b>Objectives and Victory</b> <br>
-							At the start of the match, the game master should assign each team, or player, a specific objective
-							that they must complete in order to win. This objective can be something simple like complete
-							destruction of the enemy forces. However more complex objectives, like escorting a civilian
-							ship to a nearby planet, protecting a station of attack, and so on, are all possible. In the end
-							it is up to the game master to come up with a scenario and objectives.
+						<b>目标与胜利</b> <br>
+							比赛开始时，主持人应为每队或每位玩家指定一个
+							获胜所必需完成的目标。目标可以很简单，例如彻底
+							消灭敌军；也可以更复杂，例如护送民用
+							飞船抵达附近行星，或保护空间站免遭攻击。最终，
+							情境和目标都由主持人设计。
 							<br>
-							When the game master determines these objectives to be complete, or that some kind of game
-							ending condition has been achieved, then they may end the game at will.
+							当主持人认定这些目标已完成，或达成了某种
+							游戏结束条件时，便可宣布游戏结束。
 						<br>
-						*Wargame: Blue Lizard is a copyright protected title under ownership of Nanotrasen
+						*《兵棋：蓝蜥蜴》受版权保护，版权归纳米传讯所有。
 				</body>
 				</html>
 			"}
 
 /obj/item/book/manual/wargame_rules/examples
-	name = "Wargame: Blue Lizard - Example Ships and Scenarios"
+	name = "兵棋：蓝蜥蜴——舰船与情境示例"
 	icon_state = "book1"
-	starting_author = "Nanotrasen Naval Wargames Commission"
-	starting_title = "Wargame: Blue Lizard - Example Ships and Scenarios"
+	starting_author = "纳米传讯舰队兵棋委员会"
+	starting_title = "兵棋：蓝蜥蜴——舰船与情境示例"
 	starting_content = {"
 				<head>
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -264,178 +264,178 @@
 				</head>
 				<body>
 				<center>
-				<b style='font-size: 12px;'>Official publication of the Nanotrasen Naval Wargames Commission</b>
-				<h1>Wargame: Blue Lizard</h1>
+				<b style='font-size: 12px;'>纳米传讯舰队兵棋委员会官方出版物</b>
+				<h1>兵棋：蓝蜥蜴</h1>
 				</center>
-				<h2>Introduction</h2>
-					Should you not have read the example ruleset that should have come with this book, then it is
-					highly suggested that you read through that first. This publication will contain a list of example
-					ships and scenarios for using in games. It should be noted that it is not required to use the
-					ships in this book and that making your own with your game master is encouraged.
+				<h2>简介</h2>
+					如果你还未阅读本书随附的示例规则，
+					强烈建议先读完那本书。本书列出了一些可用于游戏的
+					舰船与情境示例。你无需使用
+					书中的舰船，我们鼓励你与主持人共同设计自己的舰船。
 				<br>
-				<h2>Example Ships</h2>
-					<b>Nanotrasen</b> <br>
-					Nanotrasen's fleet has historically been focused on quick response, especially due to the spread
-					of Nanotrasen assets across the galaxy. Their ships are often built to simply get to a location
-					fast and, hopefully, scare off anything that's there. This isn't to say that modern vessels are
-					incapable of heavy combat, though the vessels in this list will be based upon older, decommissioned
-					ship types due to modern designs being classified.
+				<h2>舰船示例</h2>
+					<b>纳米传讯</b> <br>
+					纳米传讯的资产遍布银河，因此其舰队
+					历来注重快速响应。舰船的设计通常着重于迅速抵达现场，
+					并尽可能吓退当地威胁。当然，现代舰艇并非
+					无法应对高强度战斗；只是现代设计属于机密，本表
+					以较早退役的舰型为基础。
 						<br>
-						-- Patrol Corvette -- <br>
-						A small vessel armed with little more than some cannons, lacking heavy armor and point defense,
-						though able to travel quickly due to its relatively small size and weight. <br>
-						- Represented by a small ship marker <br>
-						- Cannons <br>
-						- ~1 tile's length of movement range
+						——巡逻轻护卫舰—— <br>
+						仅装备少量舰炮的小型舰船，缺少重装甲和近防系统，
+						但较小的体积和重量赋予其快速航行能力。 <br>
+						- 使用小型舰船标记 <br>
+						- 舰炮 <br>
+						- 移动范围约 1 格
 						<br>
-						-- Torpedo Frigate -- <br>
-						Built to handle threats that the patrol corvette couldn't, usually carries some anti ship torpedoes
-						into battle.
-						- Represented by a medium ship marker <br>
-						- 2 Torpedoes <br>
-						- Strong point defense <br>
-						- ~1 tile's length of movement range
+						——鱼雷护卫舰—— <br>
+						用于应对巡逻轻护卫舰无力处理的威胁，通常携带反舰鱼雷
+						参战。
+						- 使用中型舰船标记 <br>
+						- 2 枚鱼雷 <br>
+						- 强力近防 <br>
+						- 移动范围约 1 格
 						<br>
-						-- Light Carrier -- <br>
-						Usually sent with patrols of smaller craft, used as a command and support vessel wherever task force
-						cohesion is needed, or just fighter support. <br>
-						- Represented by a large ship marker <br>
-						- 2 Wings of strike craft, armed with 3 seeking missiles each wing <br>
-						- Strong point defense <br>
-						- ~1/2 a tile's length of movement range
+						——轻型航母—— <br>
+						通常伴随小型巡逻舰队行动，作为指挥及支援舰，协调特遣舰队，
+						或单纯提供战机支援。 <br>
+						- 使用大型舰船标记 <br>
+						- 2 个攻击机联队，每队装备 3 枚自导导弹 <br>
+						- 强力近防 <br>
+						- 移动范围约半格
 						<br>
-						-- Battlecruiser -- <br>
-						The largest commonly fielded ship in Nanotrasen's navy, a fast response vessel with enough guns and
-						armor to handle any large threat the fleet comes across, though these ships are a rare sight. <br>
-						- Represented by an alternate large ship marker <br>
-						- Cannons <br>
-						- Heavy armor <br>
-						- Strong point defense system <br>
-						- ~1/2 a tile's length of movement range
+						——战列巡洋舰—— <br>
+						纳米传讯海军常规部署的最大型舰艇，虽不常见，却能快速响应，并凭借充足火力
+						与厚重装甲应对舰队遇到的任何大型威胁。 <br>
+						- 使用另一款大型舰船标记 <br>
+						- 舰炮 <br>
+						- 重装甲 <br>
+						- 强力近防系统 <br>
+						- 移动范围约半格
 					<br>
-					<b>TerraGov</b> <br>
-					TerraGov's navy is possibly the oldest and largest in the known universe, having more experience in
-					combat historically than most other navies combined. Nowadays, due to the expanse of TerraGov space,
-					their patrols are thin stretched across the space they control, large groups of ships a rare sight.
-					A side effect of this is that they usually lack smaller combat vessels, favoring larger ships. <br>
+					<b>地球政府</b> <br>
+					地球政府的海军可能是已知宇宙中历史最悠久、规模最大的海军，历来的作战经验
+					比大多数其他海军加起来还多。如今，地球政府疆域辽阔，
+					巡逻兵力分散在广大的辖区，大规模舰队已难得一见。
+					因此，他们也更偏重大型舰船，通常缺少小型战舰。 <br>
 						<br>
-						-- Flak Frigate -- <br>
-						Built special purpose to shoot down the vast numbers of strike craft that were often employed by TerraGov's
-						enemies in large scale disputes, comes packed with enough point defense to make any carrier captain cry. <br>
-						- Represented by a medium ship marker <br>
-						- Cannons <br>
-						- 4 Seeking missiles <br>
-						- Strong point defense <br>
-						- ~1 tile's length of movement range
+						——防空护卫舰—— <br>
+						专为击落地球政府敌人在大规模冲突中大量投入的攻击机而建造，
+						其近防火力足以让任何航母舰长落泪。 <br>
+						- 使用中型舰船标记 <br>
+						- 舰炮 <br>
+						- 4 枚自导导弹 <br>
+						- 强力近防 <br>
+						- 移动范围约 1 格
 						<br>
-						-- Light Cruiser -- <br>
-						The mainstay ship of any TerraGov fleet, with enough armor and firepower to cruise into the thick of
-						any battle and more than likely come out the other side still operational. <br>
-						- Represented by a large ship marker <br>
-						- Cannons <br>
-						- Heavy armor <br>
-						- Strong point defense <br>
-						- ~1/2 a tile's length of movement range
+						——轻巡洋舰—— <br>
+						地球政府各舰队的主力，凭借充足装甲和火力，能够深入
+						最激烈的战场，并很有希望在突围后仍保持战斗力。 <br>
+						- 使用大型舰船标记 <br>
+						- 舰炮 <br>
+						- 重装甲 <br>
+						- 强力近防 <br>
+						- 移动范围约半格
 						<br>
-						-- Heavy Carrier -- <br>
-						A prohibitively expensive carrier (not like this stops TerraGov) that, while rarely fielded, can bring
-						more strike craft into battle than any ship known to mankind. <br>
-						- Represented by an alternative large ship marker <br>
-						- 4 Wings of strike craft, with 3 seeking missiles each wing <br>
-						- Strong point defense <br>
-						- ~1/2 a tile's length of movement range
+						——重型航母—— <br>
+						造价高得令人却步（当然地球政府不在乎）的航母，虽少有部署，但能携带
+						比人类已知任何舰船都更多的攻击机参战。 <br>
+						- 使用另一款大型舰船标记 <br>
+						- 4 个攻击机联队，每队装备 3 枚自导导弹 <br>
+						- 强力近防 <br>
+						- 移动范围约半格
 					<br>
-					<b>NRI</b> <br>
-					The NRI's navy has always been at least a contender to TerraGov's and Nanotrasen's own, heavily focused on missiles
-					with very few ships straying away from that doctrine.
+					<b>新俄罗斯帝国</b> <br>
+					新俄罗斯帝国海军始终足以与地球政府和纳米传讯海军一争高下，极其重视导弹，
+					鲜有舰船偏离这一作战理念。
 						<br>
-						-- Patrol Corvette --
-						A common sight in NRI controlled space, with many owned by not only the navy, but also the government's
-						police forces. Usually what that means is parking one near unruly stations and outposts, just to remind
-						them who owns the space they live in. <br>
-						- Represented by a small ship marker <br>
-						- Cannons <br>
-						- ~1 tile's length of movement range
+						——巡逻轻护卫舰——
+						在帝国辖区十分常见，不仅海军，政府警察部队
+						也大量装备。通常会停靠在不守规矩的空间站和前哨附近，提醒
+						当地人自己身处谁的领地。 <br>
+						- 使用小型舰船标记 <br>
+						- 舰炮 <br>
+						- 移动范围约 1 格
 						<br>
-						-- Defense Frigate -- <br>
-						Built for the express purpose of ruining the day of any territorial invader, stacked up with the heaviest
-						armor of any frigate in the known universe, with weapons to deal back any damage thrown at it. <br>
-						- Represented by a medium ship marker <br>
-						- Cannons <br>
-						- 4 Seeking missiles <br>
-						- Heavy armor <br>
-						- ~1/2 a tile's length of movement range
+						——防御护卫舰—— <br>
+						专为痛击入侵者建造，装甲厚度位居已知宇宙所有护卫舰之首，
+						武器足以将任何来袭火力奉还。 <br>
+						- 使用中型舰船标记 <br>
+						- 舰炮 <br>
+						- 4 枚自导导弹 <br>
+						- 重装甲 <br>
+						- 移动范围约半格
 						<br>
-						-- Missile Destroyer -- <br>
-						Missiles? You like missiles don't you? I hope you do, because when NRI naval command demanded more missiles
-						on a vessel, their shipyards gave the answer in the form of what is essentially a cargo ship filled to
-						the brim with every guided missile they could find. <br>
-						- Represented by a large ship marker <br>
-						- <b>Bottomless</b> seeking missiles <br>
-						- Heavy armor <br>
-						- ~1/2 a tile's length of movement range
+						——导弹驱逐舰—— <br>
+						导弹？你喜欢导弹吧？最好如此，因为帝国海军司令部要求舰船搭载更多导弹时，
+						船厂给出的答案基本上就是一艘货船，里面塞满了
+						他们能找到的所有制导导弹。 <br>
+						- 使用大型舰船标记 <br>
+						- <b>无限</b>自导导弹 <br>
+						- 重装甲 <br>
+						- 移动范围约半格
 					<br>
-					<b>Mothic Raiders</b>
-					Though nowhere near as common as they were in the years since official contact with the Nomad Fleet,
-					explorers of humanity's past have been plagued with raids from pirate ships of mothic origin. Though
-					not malicious in nature, they would often come in skirmishes with patrol and escort forces on the outer
-					rim of TerraGov territory, and may still rarely commit to raids against human ships even today.
+					<b>蛾族掠夺者</b>
+					自与游牧舰队正式接触以来，这类袭击已大幅减少，
+					但过去的人类探索者曾深受蛾族海盗舰船袭扰。虽然
+					他们本性并不恶毒，却经常在地球政府边疆与巡逻及护航部队
+					发生小规模冲突，直到今天也偶尔袭击人类舰船。
 						<br>
-						-- Raider Corvette -- <br>
-						The smallest and most common ship in mothic pirate bands, using the Nomad Fleet's prowess in ship
-						technology to scream across the stars faster than any vessel humanity could come up with. <br>
-						- Represented by a small ship marker <br>
-						- Cannons <br>
-						- 1 Torpedo <br>
-						- ~1 and 1/2 a tile's a movement range
+						——掠夺轻护卫舰—— <br>
+						蛾族海盗最小也最常见的舰船，运用游牧舰队先进的造船技术，
+						以超越任何人类舰艇的速度疾驰于群星间。 <br>
+						- 使用小型舰船标记 <br>
+						- 舰炮 <br>
+						- 1 枚鱼雷 <br>
+						- 移动范围约 1.5 格
 						<br>
-						-- Mini Carrier -- <br>
-						Often the core of mothic pirate bands, a small vessel usually kept on the backlines of raids,
-						capable of carrying a small compliment of strike craft to support them. <br>
-						- Represented by a medium ship marker <br>
-						- 2 Wings of strike craft, with 3 seeking missiles each wing <br>
-						- Strong point defense <br>
-						- ~1 tile's movement range
+						——微型航母—— <br>
+						常作为蛾族海盗团的核心，这种小型舰船通常留在袭击队伍后方，
+						搭载少量攻击机提供支援。 <br>
+						- 使用中型舰船标记 <br>
+						- 2 个攻击机联队，每队装备 3 枚自导导弹 <br>
+						- 强力近防 <br>
+						- 移动范围约 1 格
 						<br>
-						-- Rocket Destroyer -- <br>
-						The result of common incidents where a captain will choose to evacuate a cargo vessel before a
-						band of mothic raiders boards, leaving the ship fully to the control of the pirates. This will
-						often result in them crudely converting the vessel into a warship of some kind. <br>
-						- Represented by a large ship marker <br>
-						- <b>Bottomless</b> supply of unguided rockets, can be fired twice per turn <br>
-						- Weak construction <br>
-						- ~1 tile's movement range
+						——火箭驱逐舰—— <br>
+						货船舰长经常选择在蛾族掠夺者登船前撤离，
+						将整艘船留给海盗。这种船便是其产物：
+						海盗往往会将夺取的货船粗糙地改装成战舰。 <br>
+						- 使用大型舰船标记 <br>
+						- <b>无限</b>无制导火箭弹，每回合可发射两次 <br>
+						- 脆弱结构 <br>
+						- 移动范围约 1 格
 					<br>
-				<h2>Example Scenarios</h2>
-					-- Nanotrasen/NRI Station Skirmish -- <br>
-					A Nanotrasen sponsored station located in NRI border territories has violated several regulations
-					and laws, and an NRI patrol fleet has been sent to repossess the station. A force of Nanotrasen
-					ships jumps in just in time to intercept. <br>
-					- Takes place with a Nanotrasen station surrounded by a large asteroid field of some kind between
-					where both teams start. <br>
-					- Either side will win through complete destruction or surrender of the enemy. <br>
-					- The NRI should start with a few more ships, or stronger ships than the NT force, however
-					the NT station should have several defensive platforms surrounding it to supplement. <br>
+				<h2>情境示例</h2>
+					——纳米传讯与帝国的空间站冲突—— <br>
+					帝国边境一座由纳米传讯资助的空间站违反了多项法规，
+					帝国派出巡逻舰队接管空间站。纳米传讯的一支舰队
+					恰好及时跃迁抵达，准备拦截。 <br>
+					- 双方起始位置之间有一座被大型小行星带包围的
+					纳米传讯空间站。 <br>
+					- 任一方彻底歼灭敌军或迫使其投降即可获胜。 <br>
+					- 帝国起始舰船应略多或略强于纳米传讯，但
+					纳米传讯空间站周围应有数座防御平台作为补充。 <br>
 					<br>
-					-- NRI/TerraGov Border Conflict -- <br>
-					Two sizeable fleets from both TerraGov, and the NRI meet in disputed space. A battle ensues soon
-					after, this fight being only a small part of a larger battle. <br>
-					- Takes place in the rings of a nearby planet, large dust fields and asteroids making spotting
-					other ships difficult. <br>
-					- Either side will win through complete destruction or surrender of the enemy. <br>
-					- Both the NRI and TerraGov fleets should be about the same size and strength.
+					——帝国与地球政府的边境冲突—— <br>
+					地球政府和帝国各有一支颇具规模的舰队在争议星域相遇，很快
+					爆发交战。这只是更大战役中的一场局部战斗。 <br>
+					- 战场位于附近行星的星环内，大量尘埃与小行星使发现
+					敌舰变得困难。 <br>
+					- 任一方彻底歼灭敌军或迫使其投降即可获胜。 <br>
+					- 帝国与地球政府舰队的规模及实力应大致相同。
 					<br>
-					-- TerraGov/Mothic Raiders Convoy Raid -- <br>
-					A convoy of Nanotrasen cargo vessels, escorted by a small patrol force, come under attack by a sizeable
-					band of mothic raiders. <br>
-					- Takes place in a dense asteroid field <br>
-					- NT will win if they destroy the raiders completely <br>
-					- The raiders will win if they destroy all of NT's cargo ships <br>
-					- NT's fleet should be a small number of combat vessels, escorting 2-3 large cargo ships
-					with stats as follows: <br>
-						- Weak construction <br>
-						- ~1/2 a tile's length of movement range <br>
-					- The mothic raider fleet should be larger than NT's
+					——地球政府与蛾族掠夺者的护航袭击战—— <br>
+					一支由少量巡逻舰护送的纳米传讯货运船队，遭到一大群
+					蛾族掠夺者袭击。 <br>
+					- 战场位于密集的小行星带 <br>
+					- 纳米传讯彻底消灭掠夺者即可获胜 <br>
+					- 掠夺者摧毁全部纳米传讯货船即可获胜 <br>
+					- 纳米传讯舰队由少量战舰护送 2 至 3 艘大型货船，
+					货船属性如下： <br>
+						- 脆弱结构 <br>
+						- 移动范围约半格 <br>
+					- 蛾族掠夺者舰队规模应大于纳米传讯舰队
 				</body>
 				</html>
 			"}

@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/dropper/precision
-	name = "pipette"
-	desc = "A high precision pippette. Holds 1 unit."
+	name = "移液管"
+	desc = "高精度移液管，可容纳1单位液体。"
 	icon = 'modular_skyrat/modules/salon/icons/items.dmi'
 	icon_state = "pipette1"
 	amount_per_transfer_from_this = 1

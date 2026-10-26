@@ -2,8 +2,8 @@
 	icon = 'modular_zubbers/icons/obj/fluff/bonus.dmi'
 	icon_state = "bonusnt"
 	pixel_x = 0
-	name = "bonus bag pile"
-	desc = "A pile of bonus bags. Try to find one with your name on it!"
+	name = "奖金袋堆"
+	desc = "一堆奖金袋。找找写着你名字的那一袋！"
 	var/gift_type = /obj/item/storage/box/papersack/millionaire_bonus
 	var/unlimited = FALSE
 	var/static/list/took_bonus
@@ -21,9 +21,9 @@
 		return
 
 	if(took_bonus[user.ckey] && !unlimited)
-		to_chat(user, span_warning("You already claimed your bonus!"))
+		to_chat(user, span_warning("你已经领过奖金了！"))
 		return
-	to_chat(user, span_warning("After a bit of rummaging, you locate a bonus bag with your name on it!"))
+	to_chat(user, span_warning("翻找片刻后，你找到了写着自己名字的奖金袋！"))
 
 	if(!unlimited)
 		took_bonus[user.ckey] = TRUE

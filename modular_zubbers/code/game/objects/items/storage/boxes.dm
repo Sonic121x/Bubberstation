@@ -1,5 +1,5 @@
 /obj/item/storage/box/disks_plantgene
-	name = "plant data disks box"
+	name = "植物数据磁盘盒"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks_plantgene/PopulateContents()
@@ -8,8 +8,8 @@
 
 // Syndicate Admiral's Medals box
 /obj/item/storage/lockbox/medal/bubber/synd
-	name = "syndicate medal box"
-	desc = "A locked box used to store medals of honor."
+	name = "辛迪加勋章盒"
+	desc = "用于存放荣誉勋章的上锁盒子。"
 	icon = 'modular_zubbers/icons/obj/box.dmi'
 	icon_state = "syndbox+l"
 	inhand_icon_state = "syringe_kit"
@@ -31,8 +31,8 @@
 	new /obj/item/clothing/accessory/medal/bubber/syndicate/communications(src)
 
 /obj/item/storage/box/papersack/millionaire_bonus
-	name = "bonus sack"
-	desc = "A small bag of goodies awarded to employees."
+	name = "奖励礼包"
+	desc = "奖励给员工的一小袋好东西。"
 	design_choice = "NanotrasenStandard"
 
 /obj/item/storage/box/papersack/millionaire_bonus/PopulateContents()

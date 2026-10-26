@@ -4,7 +4,7 @@
 
 // Heals crossing or eating mobs
 /datum/spacevine_mutation/flesh_mending
-	name = "Flesh mending"
+	name = "血肉修复"
 	hue = "#470566"
 	severity = SEVERITY_TRIVIAL
 	quality = POSITIVE
@@ -30,7 +30,7 @@
 
 // Will prevent the vine from opening doors
 /datum/spacevine_mutation/domesticated
-	name = "Domesticated"
+	name = "驯化"
 	hue = "#a9adb1"
 	severity = SEVERITY_TRIVIAL
 	quality = POSITIVE
@@ -42,7 +42,7 @@
 
 // Spawns kudzu flooring on spacetiles
 /datum/spacevine_mutation/breach_fixing
-	name = "Breach fixing"
+	name = "破口修补"
 	hue = "#43a1ff"
 	severity = SEVERITY_MAJOR
 	quality = POSITIVE
@@ -60,7 +60,7 @@
 		space_turf.ChangeTurf(/turf/open/floor/plating/kudzu)
 		space_turf.color = hue
 /turf/open/floor/plating/kudzu
-	name = "vine flooring"
+	name = "藤蔓地板"
 	icon = 'modular_zubbers/icons/turf/floors/floors.dmi'
 	icon_state = "vinefloor"
 
@@ -73,7 +73,7 @@
 
 // Turns CO2 into oxygen
 /datum/spacevine_mutation/carbon_recycling
-	name = "Carbon recycling"
+	name = "碳循环"
 	hue = "#008a50"
 	severity = SEVERITY_TRIVIAL
 	quality = POSITIVE

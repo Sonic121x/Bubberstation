@@ -1,54 +1,54 @@
 /datum/uplink_item/device_tools/syndie_jaws_of_life_traitor
-	name = "Syndicate Jaws of Life"
-	desc = "Based on a Nanotrasen model, this powerful tool can be used as both a crowbar and a pair of wirecutters. \
-	In its crowbar configuration, it can be used to force open airlocks. Very useful for entering the station or its departments."
+	name = "辛迪加救生钳"
+	desc = "以纳米传讯型号为基础改造的强力工具，兼具撬棍和剪线钳的功能。\
+	在撬棍模式下可强行撬开气闸，非常适合潜入空间站及其各个部门。"
 	item = /obj/item/crowbar/power/syndicate
 	cost = 3
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/device_tools/medkit_traitor
-	name = "Syndicate Combat Medic Kit"
-	desc = "This first aid kit is a suspicious black and red. Included is a number of atropine medipens \
-			for rapid stabilization and detonation prevention, sutures and regenerative mesh for wound treatment, and patches \
-			for faster healing on the field. Also comes with basic medical tools and sterlizer."
+	name = "辛迪加战地医疗包"
+	desc = "一个配色可疑的黑红急救箱，内含多支阿托品急救针，\
+			用于快速稳定伤情并避免引爆，还有处理伤口的缝合线和再生网，\
+			以及加快战地治疗的药贴。另外附带基础医疗工具和消毒剂。"
 	item = /obj/item/storage/medkit/tactical
 	cost = 4
 	progression_minimum = 15 MINUTES
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/device_tools/guerillagloves_traitor
-	name = "Guerilla Gloves"
-	desc = "A pair of highly robust combat gripper gloves that excels at performing takedowns at close range, with an added lining of insulation. Careful not to hit a wall!"
+	name = "游击战手套"
+	desc = "一副极其结实的抓握作战手套，擅长近距离扑倒目标，并额外配有绝缘内衬。小心别撞上墙！"
 	item = /obj/item/clothing/gloves/tackler/combat/insulated
 	cost = 2
 	uplink_item_flags = NONE
 
 /datum/uplink_item/device_tools/ammo_pouch
-	name = "Ammo Pouch"
-	desc = "A small yet large enough pouch that can fit in your pocket, and has room for three magazines."
+	name = "弹匣袋"
+	desc = "可放入口袋的小巧收纳袋，容量足以装下三个弹匣。"
 	item = /obj/item/storage/pouch/ammo
 	cost = 1
 	uplink_item_flags = NONE
 
 /datum/uplink_item/device_tools/syndie_glue
-	name = "Glue"
-	desc = "A cheap bottle of one use syndicate brand super glue. \
-			Use on any item to make it undroppable. \
-			Be careful not to glue an item you're already holding!"
+	name = "胶水"
+	desc = "一瓶廉价的一次性辛迪加牌强力胶。\
+			涂在任何物品上，都能使其无法脱手。\
+			小心别涂到已经拿在手里的物品上！"
 	item = /obj/item/syndie_glue
 	cost = 3
 
 /datum/uplink_item/device_tools/syndikush
-	name = "Syndikush Green Crack cart"
-	desc = "A cheap Chinese vape cart that contains a potent combination of THC and \
-			stimulants. Not made with real crack."
+	name = "辛迪草“绿裂”烟弹"
+	desc = "一枚廉价的中国制造电子烟弹，含有强效的四氢大麻酚与\
+			兴奋剂混合物。不含真正的快克。"
 	item = /obj/item/reagent_containers/vapecart/syndicate
 	cost = 5
 	surplus = 90
 	progression_minimum = 20 MINUTES
 
 /datum/uplink_item/device_tools/syndicateborg
-	name = "Syndicate Cyborg Upgrade"
-	desc = "A marvel of modern syndicate technology; a syndicate borg hijacker. Allowing for the use of extremely powerful repair nanites, building equipment and otherwise useful upgrades to the standard saboteur modules. Due to its relatively experimental nature, it will only work on cyborgs which have already been jailbroken by an electromagnetic sequencer."
+	name = "辛迪加半机械人升级"
+	desc = "现代辛迪加科技的奇迹：半机械人劫持装置。它为标准破坏者模块提供极其强大的维修纳米机器人、建造设备和其他实用升级。由于仍属实验性技术，它仅适用于已经被电磁卡破解的半机械人。"
 	item = /obj/item/borg/upgrade/transform/syndicatejack
 	cost = 5 //Support item and the fact that you need a emag to use it on a cyborg

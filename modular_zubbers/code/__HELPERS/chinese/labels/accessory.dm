@@ -29,7 +29,7 @@
 	)
 	if(return_mapping)
 		return display_names
-	return display_names[value] || value
+	return display_names[value] || chinese_zubbers_choice_display(value)
 
 /proc/chinese_accessory_choice(mob/user, message, title, list/choices)
 	var/list/display_choices = list()
@@ -39,7 +39,7 @@
 	return isnull(selection) ? null : display_choices[selection]
 
 /datum/preference/choiced/proc/chinese_accessory_choice_names(list/choices)
-	if(!istype(src, /datum/preference/choiced/species_feature) && !istype(src, /datum/preference/choiced/mutant_choice) && !istype(src, /datum/preference/choiced/hairstyle) && !istype(src, /datum/preference/choiced/facial_hairstyle) && !istype(src, /datum/preference/choiced/hair_gradient) && !istype(src, /datum/preference/choiced/underwear) && !istype(src, /datum/preference/choiced/undershirt) && !istype(src, /datum/preference/choiced/socks))
+	if(!chinese_zubbers_quirk_choice() && !istype(src, /datum/preference/choiced/species_feature) && !istype(src, /datum/preference/choiced/mutant_choice) && !istype(src, /datum/preference/choiced/hairstyle) && !istype(src, /datum/preference/choiced/facial_hairstyle) && !istype(src, /datum/preference/choiced/hair_gradient) && !istype(src, /datum/preference/choiced/underwear) && !istype(src, /datum/preference/choiced/undershirt) && !istype(src, /datum/preference/choiced/socks))
 		return null
 	var/list/display_names = list()
 	for(var/value in choices)
@@ -54,8 +54,8 @@
 	)
 	var/list/display_choices = list()
 	for(var/value in choices)
-		display_choices["[objective_names[value] || value] ([value])"] = value
-	var/display_default = "[objective_names[default_value] || default_value] ([default_value])"
+		display_choices["[objective_names[value] || chinese_bloodsucker_objective_display(value)] ([value])"] = value
+	var/display_default = "[objective_names[default_value] || chinese_bloodsucker_objective_display(default_value)] ([default_value])"
 	var/selection = tgui_input_list(user, message, title, display_choices, display_default)
 	return isnull(selection) ? null : display_choices[selection]
 

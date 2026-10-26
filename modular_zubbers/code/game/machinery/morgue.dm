@@ -41,10 +41,10 @@
 	morgue.radio.talk_into(
 		morgue,
 		pick(
-			"Electrical activity detected in morgue tray at [get_area_name(morgue)]. Please call technical support.",
-			"Unexpected body in bagging area. Please scan unexpected body before placing in bagging area.",
-			"Abnormal activity detected in [get_area_name(morgue)]. Please check [get_area_name(morgue)] for errors.",
-			"ERROR. Brainwave activity detected in [cadaver]. This incident has been reported.  Please consult malpractice attorneys.",
+			"[chinese_area_display(get_area_name(morgue))]的停尸托盘内检测到电活动。请联系技术支持。",
+			"装袋区出现了意外的尸体。请先扫描意外的尸体，再将其放入装袋区。",
+			"[chinese_area_display(get_area_name(morgue))]检测到异常活动。请检查[chinese_area_display(get_area_name(morgue))]的故障。",
+			"错误。[cadaver]检测到脑电波活动。此事件已上报，请咨询医疗事故律师。",
 		),
 		RADIO_CHANNEL_MEDICAL,
 	)

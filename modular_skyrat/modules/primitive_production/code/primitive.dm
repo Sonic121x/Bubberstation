@@ -1,7 +1,7 @@
 /datum/skill/primitive
 	name = "Primitive"
-	title = "Survivalist"
-	desc = "Even after society has collapsed and they are by themselves, they can survive till the bitter end."
+	title = "生存专家"
+	desc = "即使社会崩溃、孤身一人，也能顽强生存到最后。"
 	modifiers = list(
 		SKILL_SPEED_MODIFIER = list(1, 0.85, 0.75, 0.60, 0.45, 0.35, 0.25),
 		SKILL_PROBS_MODIFIER = list(0, 5, 10, 20, 40, 80, 100)
@@ -38,9 +38,9 @@
 
 
 /obj/item/clothing/neck/cloak/skill_reward/primitive
-	name = "legendary survivalist's cloak"
-	desc = "Those who wear this cloak take the responsibility that comes with it: that they may be last survivor of their race. \
-	Society may change or crumble, yet those who wear this cloak will observe that destruction and carry their task."
+	name = "传奇生存专家斗篷"
+	desc = "穿戴这件斗篷的人也肩负着它所代表的责任：自己可能成为整个族群最后的幸存者。\
+	社会或许变迁，或许崩塌，而斗篷的主人将见证毁灭，继续履行使命。"
 	icon = 'modular_skyrat/modules/primitive_production/icons/cloaks.dmi'
 	worn_icon = 'modular_skyrat/modules/primitive_production/icons/neck.dmi'
 	icon_state = "primitivecloak"

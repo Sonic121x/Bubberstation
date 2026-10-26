@@ -40,8 +40,8 @@
 	worn_uniform.attach_accessory(acc, human_holder, attach_message = FALSE)
 
 /obj/item/clothing/accessory/breathing
-	name = "breathing dogtag"
-	desc = "Dogtag that lists what you breathe."
+	name = "呼吸信息身份牌"
+	desc = "注明你所呼吸气体的身份牌。"
 	icon_state = "allergy"
 	above_suit = FALSE
 	minimize_when_attached = TRUE
@@ -50,7 +50,7 @@
 
 /obj/item/clothing/accessory/breathing/examine(mob/user)
 	. = ..()
-	. += "The dogtag reads: I breathe [breath_type]."
+	. += "身份牌上写着：我呼吸[chinese_zubbers_breath_display(breath_type)]。"
 
 /obj/item/clothing/accessory/breathing/accessory_equipped(obj/item/clothing/under/uniform, user)
 	. = ..()
@@ -62,15 +62,15 @@
 
 /obj/item/clothing/accessory/breathing/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "The dogtag reads: I breathe [breath_type]."
+	examine_list += "身份牌上写着：我呼吸[chinese_zubbers_breath_display(breath_type)]。"
 
 /datum/quirk/equipping/lungs/nitrogen
 	name = "Nitrogen Breather"
-	desc = "You breathe nitrogen, even if you might not normally breathe it. Oxygen is poisonous."
+	desc = "即使你的种族通常不呼吸氮气，你也只能呼吸氮气。氧气对你有毒。"
 	icon = FA_ICON_BIOHAZARD
-	medical_record_text = "Patient can only breathe nitrogen."
-	gain_text = "<span class='danger'>You suddenly have a hard time breathing anything but nitrogen."
-	lose_text = "<span class='notice'>You suddenly feel like you aren't bound to nitrogen anymore."
+	medical_record_text = "患者只能呼吸氮气。"
+	gain_text = "<span class='danger'>你突然难以呼吸氮气以外的任何气体。"
+	lose_text = "<span class='notice'>你突然觉得自己不再只能呼吸氮气了。"
 	value = 0
 	forced_items = list(
 		/obj/item/clothing/mask/breath = list(ITEM_SLOT_MASK),

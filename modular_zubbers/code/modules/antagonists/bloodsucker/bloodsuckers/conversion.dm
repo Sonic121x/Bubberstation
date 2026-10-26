@@ -29,10 +29,10 @@
 		return FALSE
 	// No Mind!
 	if(!conversion_target.mind)
-		to_chat(owner.current, span_danger("[conversion_target] isn't self-aware enough to be made into a Ghoul."))
+		to_chat(owner.current, span_danger("[conversion_target]的自我意识不足，无法转化为血仆。"))
 		return FALSE
 	if(AmValidAntag(conversion_target) == GHOULING_BANNED)
-		to_chat(owner.current, span_danger("[conversion_target] resists the power of your blood to dominate their mind!"))
+		to_chat(owner.current, span_danger("[conversion_target]抵抗了你试图支配其心智的血液之力！"))
 		return FALSE
 	var/mob/living/master = conversion_target.mind.enslaved_to?.resolve()
 	if(!master || (master == owner.current))
@@ -41,7 +41,7 @@
 	if(bloodsuckerdatum && bloodsuckerdatum.broke_masquerade)
 		//ghoul stealing
 		return TRUE
-	to_chat(owner.current, span_danger("[conversion_target]'s mind is overwhelmed with too much external force to put your own!"))
+	to_chat(owner.current, span_danger("[conversion_target]的心智已被过多外力占据，容不下你的力量！"))
 	return FALSE
 
 /**
@@ -68,8 +68,8 @@
 	ghouldatum.master = bloodsuckerdatum
 	conversion_target.mind.add_antag_datum(ghouldatum)
 
-	message_admins("[conversion_target] has become a Ghoul, and is enslaved to [owner.current].")
-	log_admin("[conversion_target] has become a Ghoul, and is enslaved to [owner.current].")
+	message_admins("[conversion_target]成为了血仆，受[owner.current]奴役。")
+	log_admin("[conversion_target]成为了血仆，受[owner.current]奴役。")
 	return TRUE
 
 /*

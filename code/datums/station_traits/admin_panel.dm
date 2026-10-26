@@ -13,7 +13,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特性", "修改下一�
 	var/list/current_station_traits = list()
 	for (var/datum/station_trait/station_trait as anything in SSstation.station_traits)
 		current_station_traits += list(list(
-			"name" = station_trait.name,
+			"name" = chinese_batch_ten_station_trait_display(station_trait.name),
 			"can_revert" = station_trait.can_revert,
 			"ref" = REF(station_trait),
 		))
@@ -30,7 +30,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特性", "修改下一�
 
 	for (var/datum/station_trait/station_trait_path as anything in valid_subtypesof(/datum/station_trait))
 		valid_station_traits += list(list(
-			"name" = initial(station_trait_path.name),
+			"name" = chinese_batch_ten_station_trait_display(initial(station_trait_path.name)),
 			"path" = station_trait_path,
 		))
 
@@ -62,7 +62,7 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特性", "修改下一�
 				stack_trace("[station_trait.type] can't be reverted, but was requested anyway.")
 				return TRUE
 
-			var/message = "[key_name(usr)]撤销了空间站特性[station_trait.name]（[station_trait.type]）"
+			var/message = "[key_name(usr)]撤销了空间站特性[chinese_batch_ten_station_trait_display(station_trait.name)]（[station_trait.type]）"
 			log_admin(message)
 			message_admins(message)
 
@@ -84,10 +84,10 @@ ADMIN_VERB(station_traits_panel, R_FUN, "修改空间站特性", "修改下一�
 					to_chat(usr, span_warning("无效的下一回合空间站特性：[station_trait_text]"))
 					return TRUE
 
-				station_trait_names += initial(station_trait_path.name)
+				station_trait_names += chinese_batch_ten_station_trait_display(initial(station_trait_path.name))
 
 				new_future_traits += list(list(
-					"name" = initial(station_trait_path.name),
+					"name" = chinese_batch_ten_station_trait_display(initial(station_trait_path.name)),
 					"path" = station_trait_path,
 				))
 

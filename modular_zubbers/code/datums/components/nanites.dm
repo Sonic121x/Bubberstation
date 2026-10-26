@@ -252,20 +252,20 @@
 		if(0 to NANITE_EXCESS_MINOR) //Minor excess amount, the extra nanites are quietly expelled without visible effects
 			return
 		if((NANITE_EXCESS_MINOR + 0.1) to NANITE_EXCESS_VOMIT) //Enough nanites getting rejected at once to be visible to the naked eye
-			host_mob.visible_message(span_warning("A grainy grey slurry starts oozing out of [host_mob]."), span_warning("A grainy grey slurry starts oozing out of your skin."), null, 4);
+			host_mob.visible_message(span_warning("带颗粒的灰色浆液开始从 [host_mob] 身上渗出。"), span_warning("带颗粒的灰色浆液开始从你的皮肤中渗出。"), null, 4);
 		if((NANITE_EXCESS_VOMIT + 0.1) to NANITE_EXCESS_BURST) //Nanites getting rejected in massive amounts, but still enough to make a semi-orderly exit through vomit
 			if(iscarbon(host_mob))
 				var/mob/living/carbon/C = host_mob
-				host_mob.visible_message(span_warning("[host_mob] vomits a grainy grey slurry!"), span_warning("You suddenly vomit a metallic-tasting grainy grey slurry!"), null);
+				host_mob.visible_message(span_warning("[host_mob] 吐出带颗粒的灰色浆液！"), span_warning("你突然吐出带有金属味的灰色颗粒浆液！"), null);
 				C.vomit(VOMIT_CATEGORY_NANITE, /obj/effect/decal/cleanable/vomit/nanites, FLOOR(excess / 100, 1))
 			else
-				host_mob.visible_message(span_warning("A metallic grey slurry bursts out of [host_mob]'s skin!"), span_userdanger("A metallic grey slurry violently bursts out of your skin!"), null);
+				host_mob.visible_message(span_warning("金属灰色浆液从 [host_mob] 的皮肤中喷涌而出！"), span_userdanger("金属灰色浆液猛烈地从你的皮肤中喷涌而出！"), null);
 				if(isturf(host_mob.drop_location()))
 					var/turf/T = host_mob.drop_location()
 					T.add_vomit_floor(host_mob, /obj/effect/decal/cleanable/vomit/nanites, VOMIT_CATEGORY_NANITE, 0)
 		if((NANITE_EXCESS_BURST + 0.1) to INFINITY) //Way too many nanites, they just leave through the closest exit before they harm/poison the host
-			host_mob.visible_message(span_warning("A torrent of metallic grey slurry violently bursts out of [host_mob]'s face and floods out of [host_mob.p_their()] skin!"),
-								span_userdanger("A torrent of metallic grey slurry violently bursts out of your eyes, ears, and mouth, and floods out of your skin!"));
+			host_mob.visible_message(span_warning("大量金属灰色浆液猛烈地从 [host_mob] 的脸上喷出，并从全身皮肤中涌出！"),
+								span_userdanger("大量金属灰色浆液猛烈地从你的眼睛、耳朵和嘴中喷出，并从皮肤中涌出！"));
 			host_mob.adjust_eye_blur_up_to(15, 1 MINUTES)
 			host_mob.Paralyze(120)
 			if(iscarbon(host_mob))
@@ -339,14 +339,14 @@
 		var/datum/nanite_program/NP = X
 		NP.on_death(gibbed)
 
-/datum/component/nanites/proc/receive_signal(datum/source, code, signal_source = "an unidentified source")
+/datum/component/nanites/proc/receive_signal(datum/source, code, signal_source = "未知来源")
 	SIGNAL_HANDLER
 
 	for(var/X in programs)
 		var/datum/nanite_program/NP = X
 		NP.receive_signal(code, signal_source)
 
-/datum/component/nanites/proc/receive_comm_signal(datum/source, comm_code, comm_message, comm_source = "an unidentified source")
+/datum/component/nanites/proc/receive_comm_signal(datum/source, comm_code, comm_message, comm_source = "未知来源")
 	SIGNAL_HANDLER
 
 	for(var/X in programs)
@@ -451,24 +451,24 @@
 
 	if(!full_scan)
 		if(!stealth)
-			to_chat(user, span_notice("<b>Nanites Detected</b>"))
-			to_chat(user, span_notice("Saturation: [nanite_volume]/[max_nanites]"))
+			to_chat(user, span_notice("<b>检测到纳米机器人</b>"))
+			to_chat(user, span_notice("饱和度：[nanite_volume]/[max_nanites]"))
 			return TRUE
 	else
-		to_chat(user, span_info("NANITES DETECTED"))
+		to_chat(user, span_info("检测到纳米机器人"))
 		to_chat(user, span_info("================"))
-		to_chat(user, span_info("Saturation: [nanite_volume]/[max_nanites]"))
-		to_chat(user, span_info("Safety Threshold: [safety_threshold]"))
-		to_chat(user, span_info("Cloud ID: [cloud_id ? cloud_id : "None"]"))
-		to_chat(user, span_info("Cloud Sync: [cloud_active ? "Active" : "Disabled"]"))
+		to_chat(user, span_info("饱和度：[nanite_volume]/[max_nanites]"))
+		to_chat(user, span_info("安全阈值：[safety_threshold]"))
+		to_chat(user, span_info("云端 ID：[cloud_id ? cloud_id : "无"]"))
+		to_chat(user, span_info("云端同步：[cloud_active ? "已启用" : "已禁用"]"))
 		to_chat(user, span_info("================"))
-		to_chat(user, span_info("Program List:"))
+		to_chat(user, span_info("程序列表："))
 		if(!diagnostics)
-			to_chat(user, span_alert("Nanite debugging disabled."))
+			to_chat(user, span_alert("纳米机器人调试已禁用。"))
 		else
 			for(var/X in programs)
 				var/datum/nanite_program/NP = X
-				to_chat(user, span_info("<b>[NP.name]</b> | [NP.activated ? "Active" : "Inactive"]"))
+				to_chat(user, span_info("<b>[NP.name]</b> | [NP.activated ? "已启用" : "未启用"]"))
 		return TRUE
 
 /datum/component/nanites/proc/get_regen_rate()

@@ -1,10 +1,10 @@
 /obj/item/seeds/vaporsac
-	name = "vaporsac seed pack"
-	desc = "These seeds grow into vaporsac plants. Normally vaporsac plants spread by floating through the air and exploding, but this strand of vaporsac thankfully does not."
+	name = "雾囊草种子包"
+	desc = "这些种子能长成雾囊草。雾囊草通常通过在空中飘浮并爆裂来传播，幸好这个品种不会。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "vaporsac"
 	species = "vaporsac"
-	plantname = "Vaporsac Plant"
+	plantname = "雾囊草"
 	product = /obj/item/food/grown/vaporsac
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/vaporsac
 	seed = /obj/item/seeds/vaporsac
-	name = "vaporsac"
-	desc = "An buoyant vaporsac, full of aerosolized chemicals."
+	name = "雾囊"
+	desc = "轻盈的雾囊，里面充满气溶胶化的化学物质。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "vaporsac"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("sleep" = 1)
+	tastes = list("睡意" = 1)
 
 /obj/item/food/grown/vaporsac/juice_typepath()
 	return /datum/reagent/nitrous_oxide

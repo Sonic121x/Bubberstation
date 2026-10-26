@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/hydro_duffel //No zipping or slowdown on this one, it's a duffelbag in name only
-	name = "Elder Atmosian Duffel Bag"
-	desc = "Extra large duffel bag reinforced with metal hydrogen for robust, yet lightweight combination. State of the art zipper never jams and lets the wearer access contents of the bag with no delay."
+	name = "古老大气之神行李袋"
+	desc = "用金属氢加固的超大行李袋，兼具坚固与轻便。尖端拉链永不卡住，让携带者能立刻取用袋中物品。"
 	icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
 	icon_state = "duffel-hydro"

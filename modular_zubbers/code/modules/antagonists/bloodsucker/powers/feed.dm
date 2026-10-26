@@ -3,19 +3,19 @@
 #define FEED_MIN_TIMER (1 SECONDS)
 
 /datum/action/cooldown/bloodsucker/feed
-	name = "Feed"
-	desc = "Feed blood off of a living creature. Feeding while aggressively grabbing them will put them to sleep for a short moment."
+	name = "吸血"
+	desc = "从活物身上吸食血液。强力抓住目标后吸血，会使其短暂昏睡。"
 	button_icon_state = "power_feed"
 	power_explanation = list(
-		"Activate Feed while next to someone and you will begin to feed blood off of them.",
-		"The time needed before you start feeding speeds up the higher level you are.",
-		"Feeding off of someone next to you will not be noticed by the victim, but it will by nearby onlookers",
-		"Feeding off of someone while you have them aggressively grabbed will put them to sleep.",
-		"While feeding, you can't speak, as your mouth is covered.",
-		"Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction",
-		"If you get too many Masquerade Infractions, you will break the Masquerade.",
-		"If you are in desperate need of blood, mice can be fed off of, at a cost.",
-		"You must use the ability again to stop sucking blood.",
+		"在他人身旁启用吸血，就会开始吸食其血液。",
+		"等级越高，开始吸血前所需的准备时间越短。",
+		"吸食身旁目标的血液不会被受害者察觉，但会被附近旁观者发现。",
+		"强力抓住目标后吸血，会使其昏睡。",
+		"吸血时嘴被占用，因此无法说话。",
+		"若在不知道吸血鬼存在的凡人附近（2格内）吸血，会违反避世戒律。",
+		"违反次数过多，就会彻底破坏避世戒律。",
+		"急需鲜血时，也可以吸食老鼠，但这需要付出代价。",
+		"必须再次使用该能力才能停止吸血。",
 	)
 	level_current = -1 // scales itself based on your actual level, since you always have it
 	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_STATIC_COOLDOWN
@@ -42,15 +42,15 @@
 
 /datum/action/cooldown/bloodsucker/feed/get_power_explanation_extended()
 	. = list()
-	. += "Activate Feed while next to someone and you will begin to feed blood off of them."
-	. += "The time needed before you start feeding is [DisplayTimeText(get_feed_start_time())]."
-	. += "Feeding off of someone while you have them aggressively grabbed will put them to sleep for [DisplayTimeText(get_sleep_time())]."
-	. += "While feeding, you can't speak, as you are using your mouth to drink blood."
-	. += "Feeding while nearby ([FEED_NOTICE_RANGE] tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction"
-	. += "If you get too many Masquerade Infractions, you will break the Masquerade."
-	. += "If you are in desperate need of blood, mice can be fed off of, at a cost to your humanity."
-	. += "If you are handcuffed, you can use feed to feed off whoever is grabbing you, however this is slower, and very obvious."
-	. += "You must use the ability again to stop sucking blood."
+	. += "在他人身旁启用吸血，就会开始吸食其血液。"
+	. += "开始吸血前需要[DisplayTimeText(get_feed_start_time())]准备。"
+	. += "强力抓住目标后吸血，会使其昏睡[DisplayTimeText(get_sleep_time())]。"
+	. += "吸血时嘴正用于吸取血液，因此无法说话。"
+	. += "若在不知道吸血鬼存在的凡人附近（[FEED_NOTICE_RANGE]格内）吸血，会违反避世戒律。"
+	. += "违反次数过多，就会彻底破坏避世戒律。"
+	. += "急需鲜血时，也可以吸食老鼠，但会损失人性。"
+	. += "被戴上手铐时，可以吸食抓住你的人，不过速度较慢，而且非常明显。"
+	. += "必须再次使用该能力才能停止吸血。"
 
 /datum/action/cooldown/bloodsucker/feed/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -62,10 +62,10 @@
 		if(!ContinueActive(user, target, aggro_feed))
 			target_ref = null
 		else
-			owner.balloon_alert(owner, "already feeding!")
+			owner.balloon_alert(owner, "已经在吸血了！")
 			return FALSE
 	if(user.is_mouth_covered() && !isplasmaman(user))
-		owner.balloon_alert(owner, "mouth covered!")
+		owner.balloon_alert(owner, "嘴被遮住了！")
 		return FALSE
 	//Find target, it will alert what the problem is, if any.
 	if(!find_target())
@@ -95,10 +95,10 @@
 	if(!blood_taken)
 		return
 	if(isnull(feed_target) && blood_taken)
-		log_combat(user, user, "fed on blood (target not found)", addition="(and took [blood_taken] blood)")
+		log_combat(user, user, "吸食血液（未找到目标）", addition="（吸取了[blood_taken]血量）")
 	else
-		log_combat(user, feed_target, "fed on blood", addition="(and took [blood_taken] blood)")
-		to_chat(user, span_notice("You slowly release [feed_target]."))
+		log_combat(user, feed_target, "吸食血液", addition="（吸取了[blood_taken]血量）")
+		to_chat(user, span_notice("你慢慢松开了[feed_target]。"))
 		if(feed_target.client && feed_target.stat == DEAD)
 			user.add_mood_event("drankkilled", /datum/mood_event/drankkilled)
 			bloodsuckerdatum_power?.AddHumanityLost(5)
@@ -117,7 +117,7 @@
 		DeactivatePower()
 		return FALSE
 	if(istype(feed_target, /mob/living/basic/mouse))
-		to_chat(owner, span_notice("You recoil at the taste of a lesser lifeform."))
+		to_chat(owner, span_notice("低等生命的味道让你厌恶地缩了回去。"))
 		if(snobby_drinking_check())
 			var/mob/living/user = owner
 			user.add_mood_event("drankblood", /datum/mood_event/drankblood_bad)
@@ -127,10 +127,10 @@
 		StartCooldown()
 		return FALSE
 
-	owner.balloon_alert(owner, "feeding off [feed_target]...")
+	owner.balloon_alert(owner, "正在吸食[feed_target]的血液……")
 	owner.face_atom(feed_target)
 	if(!do_after(owner, get_feed_start_time(), feed_target, show_progress = FALSE))
-		owner.balloon_alert(owner, "feed stopped")
+		owner.balloon_alert(owner, "吸血已停止")
 		target_ref = null
 		return FALSE
 	if(check_aggro_feed(feed_target))
@@ -140,15 +140,15 @@
 		if(!feed_target.density)
 			feed_target.Move(owner.loc)
 		owner.visible_message(
-			span_warning("[owner] closes [owner.p_their()] mouth around [feed_target]'s neck!"),
-			span_warning("You sink your fangs into [feed_target]'s neck."))
+			span_warning("[owner]咬住了[feed_target]的脖子！"),
+			span_warning("你将獠牙刺进[feed_target]的脖子。"))
 	else
 		aggressive_feed = FALSE
 		// Only people who AREN'T the target will notice this action.
-		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target.p_they(TRUE)] looks dazed, and will not notice this.</i>" : ""
+		var/dead_message = feed_target.stat != DEAD ? " <i>[feed_target]神情恍惚，不会注意到这件事。</i>" : ""
 		owner.visible_message(
-			span_warning("[owner] puts [feed_target]'s wrist up to [owner.p_their()] mouth."),
-			span_notice("You slip your fangs into [feed_target]'s wrist.[dead_message]"),
+			span_warning("[owner]将[feed_target]的手腕举到嘴边。"),
+			span_notice("你将獠牙悄悄刺进[feed_target]的手腕。[dead_message]"),
 			vision_distance = FEED_NOTICE_RANGE, ignored_mobs = feed_target
 		)
 
@@ -171,7 +171,7 @@
 			continue
 		if(IS_BLOODSUCKER(watchers) || IS_GHOUL(watchers) || HAS_TRAIT(watchers.mind, TRAIT_BLOODSUCKER_HUNTER))
 			continue
-		owner.balloon_alert(owner, "feed noticed!")
+		owner.balloon_alert(owner, "吸血被发现了！")
 		bloodsuckerdatum_power?.give_masquerade_infraction()
 		break
 
@@ -186,8 +186,8 @@
 	if(!ContinueActive(user, feed_target, aggressive_feed))
 		if(aggressive_feed)
 			user.visible_message(
-				span_warning("[user] is ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!"),
-				span_warning("Your teeth are ripped from [feed_target]'s throat. [feed_target.p_Their(TRUE)] blood sprays everywhere!")
+				span_warning("[user]被猛地从[feed_target]的喉咙上扯开，鲜血四处飞溅！"),
+				span_warning("你的牙齿被猛地从[feed_target]的喉咙上扯开，鲜血四处飞溅！")
 			)
 			// Deal Damage to Target (should have been more careful!)
 			if(iscarbon(feed_target))
@@ -229,29 +229,29 @@
 
 	if(!IS_BLOODSUCKER(feed_target))
 		if(feed_target.blood_volume <= BLOOD_VOLUME_BAD && warning_target_bloodvol > BLOOD_VOLUME_BAD)
-			owner.balloon_alert(owner, "your victim's blood is fatally low!")
+			owner.balloon_alert(owner, "受害者血量已降至致命水平！")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_OKAY && warning_target_bloodvol > BLOOD_VOLUME_OKAY)
-			owner.balloon_alert(owner, "your victim's blood is dangerously low.")
+			owner.balloon_alert(owner, "受害者血量低得危险")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
-			owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
+			owner.balloon_alert(owner, "受害者血量已低于安全水平")
 		else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && owner.pulling != feed_target)
-			owner.balloon_alert(owner, "you cannot drink more without first getting a better grip!.")
+			owner.balloon_alert(owner, "需要抓得更紧才能继续吸血！")
 			DeactivatePower()
 			return
 		warning_target_bloodvol = feed_target.blood_volume
 
 	if(max_blood_reached(feed_target))
-		var/message = "full on blood!"
+		var/message = "血量已满！"
 		var/can_overfeed = can_overfeed()
 		if(can_overfeed)
-			message += " Anything more we drink now will be burnt on quicker healing"
+			message += "继续吸取的血液将用于加快治疗"
 		user.balloon_alert(owner, message)
 		if(!can_overfeed)
 			DeactivatePower()
 			return
 		notified_overfeeding = TRUE
 	if(feed_target.blood_volume <= 0)
-		user.balloon_alert(owner, "no blood left!")
+		user.balloon_alert(owner, "已经没有血了！")
 		DeactivatePower()
 		return
 	owner.playsound_local(get_turf(owner), 'sound/effects/singlebeat.ogg', 40, TRUE)
@@ -328,11 +328,11 @@
 	if(safe_set_target(owner.pulledby))
 		return TRUE
 	if(bloodsuckerdatum_power?.is_frenzied())
-		owner.balloon_alert(owner, "beast active! must grab someone to feed!")
+		owner.balloon_alert(owner, "野兽已觉醒！必须抓住目标才能吸血！")
 		return FALSE
 	var/mob/living/carbon/carbon = owner
 	if(iscarbon(carbon) && carbon.handcuffed)
-		owner.balloon_alert(owner, "you cannot stealthily feed while handcuffed!")
+		owner.balloon_alert(owner, "戴着手铐无法隐秘吸血！")
 		return FALSE
 	var/list/close_living_mobs = list()
 	var/list/close_dead_mobs = list()
@@ -380,7 +380,7 @@
 	if(istype(target, /mob/living/basic/mouse))
 		if(snobby_drinking_check())
 			if(give_warnings)
-				owner.balloon_alert(owner, "too disgusting!")
+				owner.balloon_alert(owner, "太恶心了！")
 			return FALSE
 		return TRUE
 	//Mice check done, only humans are otherwise allowed
@@ -390,23 +390,23 @@
 	var/mob/living/carbon/human/target_user = target
 	if(!(target_user.dna?.species) || !(target_user.mob_biotypes & MOB_ORGANIC) || HAS_TRAIT(target_user, TRAIT_NOBLOOD))
 		if(give_warnings)
-			owner.balloon_alert(owner, "no blood!")
+			owner.balloon_alert(owner, "没有血液！")
 		return FALSE
 	if(!target_user.can_inject(owner, BODY_ZONE_HEAD, penetration))
 		if(give_warnings)
-			owner.balloon_alert(owner, "headgear too thick!")
+			owner.balloon_alert(owner, "头部装备太厚！")
 		return FALSE
 	if(!can_overfeed() && max_blood_reached(target_user))
 		if(give_warnings)
-			owner.balloon_alert(owner, "too full to drink more!")
+			owner.balloon_alert(owner, "太饱了，喝不下了！")
 		return FALSE
 	if(!target.mind && !can_drink_from_mindless(target_user))
 		if(give_warnings)
-			owner.balloon_alert(owner, "cant drink from mindless!")
+			owner.balloon_alert(owner, "不能吸食无心智者！")
 		return FALSE
 	if(target_user.has_reagent(/datum/reagent/consumable/garlic, 5))
 		if(give_warnings)
-			owner.balloon_alert(owner, "too much garlic!")
+			owner.balloon_alert(owner, "大蒜太多了！")
 		return FALSE
 	return TRUE
 
@@ -438,7 +438,7 @@
 	if (!COOLDOWN_FINISHED(src, feed_movement_notify_cooldown))
 		return
 	COOLDOWN_START(src, feed_movement_notify_cooldown, 3 SECONDS)
-	owner.balloon_alert(owner, "you cannot move while feeding! Click the power to stop.")
+	owner.balloon_alert(owner, "吸血时不能移动！点击能力停止")
 
 /datum/action/cooldown/bloodsucker/feed/proc/modify_blood_drunk(amount = 0)
 	for(var/datum/weakref/weakref as anything in targets_and_blood)

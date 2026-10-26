@@ -180,11 +180,11 @@
 GLOBAL_VAR_INIT(mutant_infection_chance, 40)
 
 /obj/item/mutant_hand/hnz_mutant_hand
-	name = "mutant claw"
-	desc = "A mutant's claw is its primary tool, capable of infecting \
-		humans, butchering all other living things to \
-		sustain the mutant, smashing open airlock doors and opening \
-		child-safe caps on bottles."
+	name = "突变体利爪"
+	desc = "利爪是突变体的主要工具，能够感染\
+		人类、屠宰其他生物来\
+		维持突变体生存、砸开气闸门，以及拧开\
+		瓶子上的儿童安全盖。"
 	item_flags = ABSTRACT | DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	icon = 'icons/effects/blood.dmi'
@@ -199,7 +199,7 @@ GLOBAL_VAR_INIT(mutant_infection_chance, 40)
 	damtype = BRUTE
 
 /obj/item/mutant_hand/hnz_mutant_hand/fast
-	name = "weak mutant claw"
+	name = "弱化突变体利爪"
 	force = 21
 	sharpness = NONE
 	wound_bonus = -40
@@ -260,7 +260,7 @@ GLOBAL_VAR_INIT(mutant_infection_chance, 40)
 /obj/item/mutant_hand/hnz_mutant_hand/proc/check_feast(mob/living/target, mob/living/user)
 	if(target.stat == DEAD)
 		var/hp_gained = target.maxHealth
-		target.investigate_log("has been feasted upon by the mutant [user].", INVESTIGATE_DEATHS)
+		target.investigate_log("被突变体[user]啃食。", INVESTIGATE_DEATHS)
 		target.gib()
 		// zero as argument for no instant health update
 		var/need_health_update

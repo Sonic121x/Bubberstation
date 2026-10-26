@@ -18,8 +18,8 @@
 // Grenades that can be given a range to detonate at by their firing gun
 
 /obj/item/ammo_casing/c980grenade
-	name = ".980 Tydhouer practice grenade"
-	desc = "A large grenade shell that will detonate at a range given to it by the gun that fires it. Practice shells disintegrate into harmless sparks."
+	name = ".980计时者训练榴弹"
+	desc = "一枚大型榴弹，会在发射武器设定的距离上引爆。训练弹会化为无害的火花。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "980_solid"
@@ -39,7 +39,7 @@
 	. = ..()
 
 /obj/projectile/bullet/c980grenade
-	name = ".980 Tydhouer practice grenade"
+	name = ".980计时者训练榴弹"
 	damage = 20
 	stamina = 30
 
@@ -64,8 +64,8 @@
 	do_sparks(3, FALSE, src)
 
 /obj/item/ammo_box/c980grenade
-	name = "ammo box (.980 Tydhouer practice)"
-	desc = "A box of four .980 Tydhouer practice grenades. Instructions on the box indicate these are dummy practice rounds that will disintegrate into sparks on detonation. Neat!"
+	name = "弹药盒（.980计时者训练弹）"
+	desc = "一盒四枚.980计时者训练榴弹。盒上的说明指出，这些是引爆时会化作火花的模拟训练弹。真不错！"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/ammo.dmi'
 	icon_state = "980box_solid"
@@ -81,15 +81,15 @@
 // .980 smoke grenade
 
 /obj/item/ammo_casing/c980grenade/smoke
-	name = ".980 Tydhouer smoke grenade"
-	desc = "A large grenade shell that will detonate at a range given to it by the gun that fires it. Bursts into a laser-weakening smoke cloud."
+	name = ".980计时者烟雾榴弹"
+	desc = "一枚大型榴弹，会在发射武器设定的距离上引爆。爆开后形成能削弱激光的烟云。"
 
 	icon_state = "980_smoke"
 
 	projectile_type = /obj/projectile/bullet/c980grenade/smoke
 
 /obj/projectile/bullet/c980grenade/smoke
-	name = ".980 Tydhouer smoke grenade"
+	name = ".980计时者烟雾榴弹"
 
 /obj/projectile/bullet/c980grenade/smoke/fuse_activation(atom/target)
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
@@ -97,8 +97,8 @@
 	do_smoke(GRENADE_SMOKE_RANGE, src, src, smoke_type = /datum/effect_system/fluid_spread/smoke/bad)
 
 /obj/item/ammo_box/c980grenade/smoke
-	name = "ammo box (.980 Tydhouer smoke)"
-	desc = "A box of four .980 Tydhouer smoke grenades. Instructions on the box indicate these are smoke rounds that will make a small cloud of laser-dampening smoke on detonation."
+	name = "弹药盒（.980计时者烟雾弹）"
+	desc = "一盒四枚.980计时者烟雾榴弹。盒上的说明指出，这些烟雾弹引爆时会形成一小片能削弱激光的烟云。"
 
 	icon_state = "980box_smoke"
 
@@ -107,8 +107,8 @@
 // .980 shrapnel grenade
 
 /obj/item/ammo_casing/c980grenade/shrapnel
-	name = ".980 Tydhouer shrapnel grenade"
-	desc = "A large grenade shell that will detonate at a range given to it by the gun that fires it. Explodes into shrapnel on detonation."
+	name = ".980计时者破片榴弹"
+	desc = "一枚大型榴弹，会在发射武器设定的距离上引爆。爆炸时向四周抛射破片。"
 
 	icon_state = "980_explosive"
 
@@ -120,7 +120,7 @@
 	harmful = TRUE
 
 /obj/projectile/bullet/c980grenade/shrapnel
-	name = ".980 Tydhouer shrapnel grenade"
+	name = ".980计时者破片榴弹"
 
 	/// What type of casing should we put inside the bullet to act as shrapnel later
 	var/casing_to_spawn = /obj/item/grenade/c980payload
@@ -134,8 +134,8 @@
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
 
 /obj/item/ammo_box/c980grenade/shrapnel
-	name = "ammo box (.980 Tydhouer shrapnel)"
-	desc = "A box of four .980 Tydhouer shrapnel grenades. Instructions on the box indicate these are shrapnel rounds. Its also covered in hazard signs, odd."
+	name = "弹药盒（.980计时者破片弹）"
+	desc = "一盒四枚.980计时者破片榴弹。盒上的说明指出，这些是破片弹。盒上还贴满了危险标志，真奇怪。"
 
 	icon_state = "980box_explosive"
 
@@ -155,8 +155,8 @@
 // .980 phosphor grenade
 
 /obj/item/ammo_casing/c980grenade/shrapnel/phosphor
-	name = ".980 Tydhouer phosphor grenade"
-	desc = "A large grenade shell that will detonate at a range given to it by the gun that fires it. Explodes into smoke and flames on detonation."
+	name = ".980计时者磷燃烧榴弹"
+	desc = "一枚大型榴弹，会在发射武器设定的距离上引爆。爆炸时释放烟雾和火焰。"
 
 	icon_state = "980_gas_alternate"
 
@@ -165,7 +165,7 @@
 	custom_materials = AMMO_MATS_GRENADE_INCENDIARY
 
 /obj/projectile/bullet/c980grenade/shrapnel/phosphor
-	name = ".980 Tydhouer phosphor grenade"
+	name = ".980计时者磷燃烧榴弹"
 
 	casing_to_spawn = /obj/item/grenade/c980payload/phosphor
 
@@ -176,8 +176,8 @@
 	do_smoke(GRENADE_SMOKE_RANGE, src, src, smoke_type = /datum/effect_system/fluid_spread/smoke/quick)
 
 /obj/item/ammo_box/c980grenade/shrapnel/phosphor
-	name = "ammo box (.980 Tydhouer phosphor)"
-	desc = "A box of four .980 Tydhouer phosphor grenades. Instructions on the box indicate these are incendiary explosive rounds. Its also covered in hazard signs, odd."
+	name = "弹药盒（.980计时者磷燃烧弹）"
+	desc = "一盒四枚.980计时者磷燃烧榴弹。盒上的说明指出，这些是燃烧爆炸弹。盒上还贴满了危险标志，真奇怪。"
 
 	icon_state = "980box_gas_alternate"
 
@@ -197,15 +197,15 @@
 // .980 tear gas grenade
 
 /obj/item/ammo_casing/c980grenade/riot
-	name = ".980 Tydhouer tear gas grenade"
-	desc = "A large grenade shell that will detonate at a range given to it by the gun that fires it. Bursts into a tear gas cloud."
+	name = ".980计时者催泪榴弹"
+	desc = "一枚大型榴弹，会在发射武器设定的距离上引爆。爆开后释放一团催泪气体。"
 
 	icon_state = "980_gas"
 
 	projectile_type = /obj/projectile/bullet/c980grenade/riot
 
 /obj/projectile/bullet/c980grenade/riot
-	name = ".980 Tydhouer tear gas grenade"
+	name = ".980计时者催泪榴弹"
 
 /obj/projectile/bullet/c980grenade/riot/fuse_activation(atom/target)
 	playsound(src, 'modular_zubbers/sound/weapons/grenade_burst.ogg', 50, TRUE, -3)
@@ -213,8 +213,8 @@
 	do_chem_smoke(GRENADE_SMOKE_RANGE, src, src, /datum/reagent/consumable/condensedcapsaicin, 10, smoke_type = /datum/effect_system/fluid_spread/smoke/chem)
 
 /obj/item/ammo_box/c980grenade/riot
-	name = "ammo box (.980 Tydhouer tear gas)"
-	desc = "A box of four .980 Tydhouer tear gas grenades. Instructions on the box indicate these are smoke rounds that will make a small cloud of laser-dampening smoke on detonation."
+	name = "弹药盒（.980计时者催泪弹）"
+	desc = "一盒四枚.980计时者催泪榴弹。盒上的说明指出，这些烟雾弹引爆时会形成一小片能削弱激光的烟云。"
 
 	icon_state = "980box_gas"
 

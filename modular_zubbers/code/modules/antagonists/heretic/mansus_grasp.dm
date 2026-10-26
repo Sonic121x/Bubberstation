@@ -1,5 +1,5 @@
 /datum/action/cooldown/spell/touch/mansus_grasp
-	desc = "A touch spell that lets you channel the power of the Old Gods through your grip. Requires a Living Heart to use for anything except runes."
+	desc = "一种接触法术，让你通过握击引导旧神之力。除绘制符文外，任何用途都需要活体心脏。"
 
 /datum/action/cooldown/spell/touch/mansus_grasp/can_hit_with_hand(atom/victim, mob/living/caster)
 	. = ..()
@@ -10,8 +10,8 @@
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(caster)
 	if (!isturf(victim))
 		if (heretic_datum?.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-			caster.balloon_alert(caster, "can only draw runes with no living heart!")
+			caster.balloon_alert(caster, "没有活体心脏，只能绘制符文！")
 			return FALSE
 		if (heretic_datum.owner?.current && HAS_TRAIT(heretic_datum.owner.current, TRAIT_MANSUS_INHIBITION))
-			caster.balloon_alert(caster, "inhibited! can only draw runes!")
+			caster.balloon_alert(caster, "力量受抑制，只能绘制符文！")
 			return FALSE

@@ -1,7 +1,7 @@
 //FLAGS
 
 /datum/crafting_recipe/gaypride
-	name = "LGBT Pride Flag"
+	name = "LGBT 骄傲旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -9,7 +9,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/acepride
-	name = "Ace Pride Flag"
+	name = "无性恋骄傲旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -17,7 +17,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/bipride
-	name = "Bisexual Pride Flag"
+	name = "双性恋骄傲旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -25,7 +25,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/lesbianpride
-	name = "Lesbian Pride Flag"
+	name = "女同性恋骄傲旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -33,7 +33,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/panpride
-	name = "Pansexual Pride Flag"
+	name = "泛性恋骄傲旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -41,7 +41,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/transpride
-	name = "Transgender Pride Flag"
+	name = "跨性别骄傲旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -49,7 +49,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/ntflag
-	name = "Nanotrasen Flag"
+	name = "纳米传讯旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 5,
 		/obj/item/toy/crayon/blue = 1,
@@ -58,7 +58,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/galflag
-	name = "GalFed Flag"
+	name = "银河联邦旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 5,
 	)
@@ -66,7 +66,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/sharkflag
-	name = "Akula Democratic Union Flag"
+	name = "阿库拉民主联盟旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -74,7 +74,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/teegeeflag
-	name = "Terran Government Flag"
+	name = "地球政府旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -82,7 +82,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/lizardflag
-	name = "Tizira Flag"
+	name = "提兹拉旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -90,7 +90,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/mothflag
-	name = "Mothic Fleet Flag"
+	name = "蛾族舰队旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -98,7 +98,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/teshflag
-	name = "Teshari League for Self-Determination Flag"
+	name = "特沙利自决联盟旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -106,7 +106,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/rusflag
-	name = "Pan-Slavic Commonwealth Flag"
+	name = "泛斯拉夫联邦旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -114,7 +114,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/azuleaflag //why the fuck did skyrat make two of these???
-	name = "Akula Democratic Union Banner"
+	name = "阿库拉民主联盟竖旗"
 	reqs = list(
 		/obj/item/stack/sheet/cloth = 3,
 	)
@@ -122,7 +122,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/usaflag
-	name = "United States of America Flag"
+	name = "美利坚合众国旗"
 	reqs = list(
 		/obj/item/gun/ballistic/automatic/pistol/deagle = 1,
 		/obj/item/stack/sheet/cloth = 7,
@@ -137,7 +137,7 @@
 
 
 /datum/crafting_recipe/detectiveboard
-	name = "Detective's Notice Board"
+	name = "侦探公告板"
 	reqs = list(
 		/obj/item/stack/sheet/mineral/wood = 1,
 	)
@@ -146,7 +146,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/blackcoffin
-	name = "Black Coffin"
+	name = "黑色棺材"
 	result = /obj/structure/closet/crate/coffin/blackcoffin
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
@@ -160,7 +160,7 @@
 //VAMPIRE STUFF
 
 /datum/crafting_recipe/securecoffin
-	name = "Secure Coffin"
+	name = "安全棺材"
 	result = /obj/structure/closet/crate/coffin/securecoffin
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
@@ -172,7 +172,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/meatcoffin
-	name = "Meat Coffin"
+	name = "血肉棺材"
 	result = /obj/structure/closet/crate/coffin/meatcoffin
 	tool_behaviors = list(TOOL_KNIFE, TOOL_ROLLINGPIN)
 	reqs = list(
@@ -184,7 +184,7 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/metalcoffin
-	name = "Metal Coffin"
+	name = "金属棺材"
 	result = /obj/structure/closet/crate/coffin/metalcoffin
 	reqs = list(
 		/obj/item/stack/sheet/iron = 6,
@@ -194,7 +194,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/ghoulrack
-	name = "Persuasion Rack"
+	name = "劝服刑架"
 	result = /obj/structure/bloodsucker/ghoulrack
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
@@ -207,7 +207,7 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/candelabrum
-	name = "Candelabrum"
+	name = "多枝烛台"
 	result = /obj/structure/bloodsucker/candelabrum
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH)
 	reqs = list(
@@ -220,7 +220,7 @@
 	crafting_flags = parent_type::crafting_flags | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/bloodthrone
-	name = "Blood Throne"
+	name = "鲜血王座"
 	result = /obj/structure/bloodsucker/bloodthrone
 	tool_behaviors = list(TOOL_WRENCH)
 	reqs = list(

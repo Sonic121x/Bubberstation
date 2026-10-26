@@ -1,8 +1,8 @@
 #define OVEN_TRAY_Y_OFFSET -12
 
 /obj/machinery/oven/stone
-	name = "stone oven"
-	desc = "Sorry buddy, all this stone used up the budget that would have normally gone to garfield comic jokes."
+	name = "石制烤箱"
+	desc = "抱歉，伙计，买这些石头花光了原本用来写加菲猫漫画笑话的预算。"
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/stone_kitchen_machines.dmi'
 	circuit = null
 	use_power = FALSE
@@ -30,7 +30,7 @@
 /obj/machinery/oven/stone/examine(mob/user)
 	. = ..()
 
-	. += span_notice("It can be taken apart with a <b>crowbar</b>.")
+	. += span_notice("可用<b>撬棍</b>拆解。")
 
 // previously NO_DECONSTRUCTION
 /obj/machinery/oven/stone/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
@@ -62,7 +62,7 @@
 		particles.position = list(0, 10, 0)
 
 /obj/machinery/oven/stone/crowbar_act(mob/living/user, obj/item/tool)
-	user.balloon_alert_to_viewers("disassembling...")
+	user.balloon_alert_to_viewers("正在拆解……")
 	if(!tool.use_tool(src, user, 2 SECONDS, volume = 100))
 		return
 	new /obj/item/stack/sheet/mineral/stone(drop_location(), 5)

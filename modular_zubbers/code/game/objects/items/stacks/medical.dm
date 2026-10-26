@@ -6,11 +6,11 @@
 	abstract_type = /datum/atom_skin/bone_gel
 
 /datum/atom_skin/bone_gel/korve
-	preview_name = "korve"
+	preview_name = "科尔韦"
 	new_icon = 'modular_zubbers/icons/obj/medical/surgery_tools.dmi'
 	new_icon_state = "bone-gel"
 
 /datum/atom_skin/bone_gel/default
-	preview_name = "default"
+	preview_name = "默认"
 	new_icon = 'icons/obj/medical/surgery_tools.dmi'
 	new_icon_state = "bone-gel"

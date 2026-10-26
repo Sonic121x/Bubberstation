@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/rbmk2_sniffer
-	name = "RB-MK2 \"Boombox\" sniffer"
+	name = "RB-MK2“轰鸣盒”探测器"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/rbmk2_sniffer
 	req_components = list(

@@ -1,6 +1,6 @@
 /obj/item/coin/challenge
-	name = "SAC Challenge Coin"
-	desc = "A challenge coin. On the front appears a shield with an armored glove holding an olive branch and three Lightning bolts. Under the shield is the banner with the words 'Strategic Air Command' written onto it. On the back is the United States Air Force Roundel with the words of 'Peace is Our Profession' written around it."
+	name = "战略空军司令部挑战币"
+	desc = "一枚挑战币。正面是一面盾牌，盾上戴甲的手握着橄榄枝和三道闪电，盾下缎带写着“战略空军司令部”。背面是美国空军圆形徽章，周围写着“和平是我们的事业”。"
 	icon = 'modular_zubbers/icons/obj/coins.dmi'
 	icon_state = "coin_Stategic Air Command"
 	sideslist = list("Stategic Air Command", "Peace is Our Profession")

@@ -14,10 +14,15 @@
 			"clown operatives" = "小丑特工", "changelings" = "变形怪", "brainwashed victims" = "被洗脑者",
 			"assault operatives" = "突击特工", "nri cops" = "NRI 警察"
 		)
-	return names[value] || value
+	return names[value] || chinese_skyrat_items_category_display(chinese_zubbers_heretic_category_display(chinese_bloodsucker_category_display(value)))
 
 /// Reverse display names only at the boundary of existing action-button preferences.
 /proc/chinese_antag_storage_name(value)
+	var/plain_primitive_name = replacetext(value, "\improper", "")
+	if(plain_primitive_name == "冰行者")
+		return replacetext(value, plain_primitive_name, "Icewalker")
+	if(plain_primitive_name == "冰月居民")
+		return replacetext(value, plain_primitive_name, "Icemoon Dwellers")
 	var/static/list/names
 	if(!names)
 		names = list(
@@ -40,4 +45,4 @@
 			"太空巫师" = "Space Wizard", "巫师仆从" = "Wizard Minion", "巫师学徒" = "Wizard Apprentice", "巫师冒充者" = "Wizard Imposter", "学院教师" = "Academy Teacher", "迷失的异形" = "Lost Xenomorph", "异形" = "Xenomorph", "被俘异形" = "Captive Xenomorph", "资产保护专员" = "Asset Protection Specialist", "资产保护官" = "Asset Protection Officer", "发条教徒" = "Clock Cultist", "发条教徒（单人）" = "Clock Cultist (Solo)", "皮层钻虫" = "Cortical Borer", "联邦警察" = "Commonwealth Police Officer", "911 响应人员" = "911 Responder", "执法官" = "Marshal", "高级大气技术员" = "Adv. Atmos Tech", "急救医疗技术员" = "Emergency Medical Technician", "武装特警" = "Armed S.W.A.T. Officer", "地球政府维和人员" = "Terran Government Peacekeeper", "辛迪加登船者" = "Syndicate Boarder", "熏蒸队员" = "Fumigator", "熏蒸队长" = "Fumigator Leader", "轨道空降突击兵" = "Orbital Drop Shock Trooper", "轨道空降突击队长" = "Orbital Drop Shock Trooper Leader", "披萨外送员" = "Pizza Delivery Boy", "多吉诺区域经理" = "Dogginos Regional Manager", "创伤小队专家" = "Trauma Team Specialist", "创伤小队长" = "Trauma Team Leader"
 		)
 	var/plain_name = replacetext(value, "\improper", "")
-	return names[plain_name] ? replacetext(value, plain_name, names[plain_name]) : value
+	return names[plain_name] ? replacetext(value, plain_name, names[plain_name]) : chinese_skyrat_items_antag_storage(chinese_bloodsucker_antag_storage(value))

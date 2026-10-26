@@ -2,12 +2,12 @@
 
 /datum/quirk/hungry
 	name = "Hungry"
-	desc = "For some reason, you get hungrier faster than others!"
+	desc = "不知为何，你比别人更容易饿！"
 	value = -2
 	icon = FA_ICON_BOWL_FOOD
-	gain_text = span_notice("You feel like your stomach is bottomless.")
-	lose_text = span_notice("You no longer feel like your stomach is bottomless.")
-	medical_record_text = "Patient exhibits a significantly faster metabolism."
+	gain_text = span_notice("你感觉自己的胃像个无底洞。")
+	lose_text = span_notice("你不再觉得自己的胃是个无底洞了。")
+	medical_record_text = "患者的新陈代谢速度明显偏快。"
 	quirk_flags = QUIRK_HUMAN_ONLY
 	mail_goodies = list(/obj/item/food/chips)
 

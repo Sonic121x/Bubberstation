@@ -1,8 +1,8 @@
 // .35 Sol mini revolver
 
 /obj/item/gun/ballistic/revolver/sol
-	name = "\improper Eland Revolver"
-	desc = "A small revolver with a comically short barrel and cylinder space for eight .35 Sol Short rounds."
+	name = "\improper 大羚羊左轮手枪"
+	desc = "一把小型左轮手枪，枪管短得滑稽，弹巢可容纳八发.35太阳短型弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "eland"
@@ -20,18 +20,18 @@
 
 /obj/item/gun/ballistic/revolver/sol/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/revolver/sol/examine_more(mob/user)
 	. = ..()
 
-	. += "The Eland is one of the few Trappiste weapons not made for military contract. \
-		Instead, the Eland started life as a police weapon, offered as a gun to finally \
-		outmatch all others in the cheap police weapons market. Unfortunately, this \
-		coincided with nearly every TerraGov police force realising they are actually \
-		comically overfunded. With military weapons bought for police forces taking \
-		over the market, the Eland instead found home in the civilian personal defense \
-		market. That is likely the reason you are looking at this one now."
+	. += "大羚羊是特拉比斯特少数并非为军方合同生产的武器之一。\
+		它最初是一款警用武器，目标是在廉价警用武器市场上\
+		终于压过所有竞争者。不幸的是，\
+		几乎所有地球政府警队恰好在这时发现，\
+		自己的经费其实充裕得离谱。随着警队采购的军用武器\
+		占据市场，大羚羊转而在民用个人防卫\
+		市场找到了归宿。这大概就是你现在能看到它的原因。"
 
 	return .
 
@@ -43,8 +43,8 @@
 // .585 super revolver
 
 /obj/item/gun/ballistic/revolver/takbok
-	name = "\improper Takbok Revolver"
-	desc = "A hefty revolver with an equally large cylinder capable of holding five .585 Trappiste rounds."
+	name = "\improper 黇鹿左轮手枪"
+	desc = "一把沉重的左轮手枪，配有同样巨大的弹巢，可容纳五发.585特拉比斯特弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/guns32x.dmi'
 	icon_state = "takbok"
@@ -66,20 +66,20 @@
 
 /obj/item/gun/ballistic/revolver/takbok/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/revolver/takbok/examine_more(mob/user)
 	. = ..()
 
-	. += "The Takbok is a unique design for Trappiste for the sole reason that it \
-		was made at first to be a one-off. Founder of partner company Carwo Defense, \
-		Darmaan Khaali Carwo herself, requested a sporting revolver from Trappiste. \
-		What was delivered wasn't a target revolver, it was a target crusher. The \
-		weapon became popular as Carwo crushed many shooting competitions using \
-		the Takbok, with the design going on several production runs up until \
-		2523 when the popularity of the gun fell off. Due to the number of revolvers \
-		made, they are still easy enough to find if you look despite production \
-		having already ceased many years ago."
+	. += "黇鹿在特拉比斯特的产品中十分独特，原因仅仅在于\
+		它起初只打算生产一把。合作企业卡沃防务的创始人\
+		达尔曼·卡利·卡沃亲自向特拉比斯特订购了一把运动左轮手枪。\
+		结果交付的并非打靶手枪，而是碎靶手枪。\
+		卡沃用黇鹿横扫了众多射击比赛，使这件武器声名鹊起，\
+		随后进行了多轮量产，直到\
+		2523年热度才逐渐消退。由于产量可观，\
+		尽管停产已久，只要留心寻找，\
+		如今仍不难找到它们。"
 
 	return .
 

@@ -24,9 +24,9 @@
 	var/datum/species/selected_type
 	/// A list of phrases people are sent while they are being converted.
 	var/list/insanity_phrases = list(
-		"You feel too hot! Something isn't right!",
-		"You can't think straight, please end the suffering!",
-		"AAAAAAAAAAAAAAAGHHHHHHHH!"
+		"你热得受不了！情况不对劲！",
+		"你无法清醒思考，求求谁来结束这痛苦！",
+		"啊啊啊啊啊啊啊啊啊！"
 		)
 	/// Our timer ID used for seperate parts of the infection.
 	var/timer_id
@@ -44,7 +44,7 @@
 	if(host.stat == DEAD)
 		var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
 		timer_id = addtimer(CALLBACK(src, PROC_REF(transform_host)), revive_time, TIMER_STOPPABLE)
-		to_chat(host, span_userdanger("You feel your veins throb as your body begins twitching..."))
+		to_chat(host, span_userdanger("你感到血管搏动，身体开始抽搐……"))
 
 	RegisterSignal(parent, COMSIG_MUTANT_CURED, PROC_REF(cure_host))
 
@@ -65,7 +65,7 @@
 	if(ismutant(host) && old_species)
 		host.set_species(old_species)
 	host.revive(HEAL_ALL,force_grab_ghost = TRUE)
-	to_chat(host, span_greentext("You feel like you're free of that foul disease!"))
+	to_chat(host, span_greentext("你感觉自己摆脱了那可怕的疾病！"))
 	ADD_TRAIT(host, TRAIT_MUTANT_IMMUNE, "mutant_virus")
 	host.mind?.remove_antag_datum(/datum/antagonist/mutant)
 	host.remove_filter("infection_glow")
@@ -75,7 +75,7 @@
 /datum/component/mutant_infection/proc/extract_rna()
 	if(rna_extracted)
 		return FALSE
-	to_chat(host, span_userdanger("You feel your genes being altered!"))
+	to_chat(host, span_userdanger("你感觉自己的基因正在改变！"))
 	rna_extracted = TRUE
 	addtimer(CALLBACK(src, PROC_REF(refresh_rna)), RNA_REFRESH_TIME, TIMER_STOPPABLE)
 	return TRUE
@@ -92,7 +92,7 @@
 		if(toxloss < 50)
 			host.adjust_tox_loss(tox_loss_mod * seconds_per_tick)
 			if(SPT_PROB(5, seconds_per_tick))
-				to_chat(host, span_userdanger("You feel your motor controls seize up for a moment!"))
+				to_chat(host, span_userdanger("你一瞬间失去了对身体动作的控制！"))
 				host.Paralyze(10)
 		else
 			host.adjust_tox_loss((tox_loss_mod * 2) * seconds_per_tick)
@@ -107,17 +107,17 @@
 	if(host.stat != DEAD)
 		return
 	if(!ismutant(host))
-		to_chat(host, span_cult_large("You can feel your heart stopping, but something isn't right... \
-		life has not abandoned your broken form. You can only feel a deep and immutable hunger that \
-		not even death can stop, you will rise again!"))
+		to_chat(host, span_cult_large("你感到心脏停止跳动，但事情有些不对劲……\
+		生命并未抛弃你破碎的身躯。你只感到一种深沉而永恒的饥饿，\
+		连死亡也无法阻止。你将再次站起来！"))
 	var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
-	to_chat(host, span_redtext("You will transform in approximately [revive_time/10] seconds."))
+	to_chat(host, span_redtext("你将在约[revive_time/10]秒后转化。"))
 	timer_id = addtimer(CALLBACK(src, PROC_REF(transform_host)), revive_time, TIMER_STOPPABLE)
 
 /datum/component/mutant_infection/proc/cure_host()
 	SIGNAL_HANDLER
 	if(!host.stat == DEAD)
-		to_chat(host, span_notice("You start to feel refreshed and invigorated!"))
+		to_chat(host, span_notice("你开始感到精神焕发、充满活力！"))
 	STOP_PROCESSING(SSobj, src)
 	addtimer(CALLBACK(src, PROC_REF(Destroy)), CURE_TIME)
 
@@ -136,13 +136,13 @@
 	regenerate()
 
 	host.do_jitter_animation(30)
-	host.visible_message(span_danger("[host] suddenly convulses, as [host.p_they()][stand_up ? " stagger to [host.p_their()] feet and" : ""] gain a ravenous hunger in [host.p_their()] eyes!"), span_alien("You HUNGER!"))
+	host.visible_message(span_danger("[host]突然抽搐，[stand_up ? "摇摇晃晃地站起身，" : ""]眼中露出贪婪的饥饿！"), span_alien("你饥渴难耐！"))
 	playsound(host.loc, 'sound/effects/hallucinations/far_noise.ogg', 50, TRUE)
 	if(is_species(host, /datum/species/mutant/infectious/fast))
-		to_chat(host, span_redtext("You are a FAST zombie. You run fast and hit more quickly, beware however, you are much weaker and susceptible to damage."))
+		to_chat(host, span_redtext("你是迅捷僵尸。你跑得快，攻击也更迅速；但要小心，你的身体更脆弱，更容易受到伤害。"))
 	else
-		to_chat(host, span_redtext("You are a SLOW zombie. You walk slowly and hit more slowly and harder. However, you are far more resilient to most damage types."))
-	to_chat(host, span_alertalien("You are now a mutant! Do not seek to be cured, do not help any non-mutants in any way, do not harm your mutant brethren. You retain some higher functions and can reason to an extent."))
+		to_chat(host, span_redtext("你是迟缓僵尸。你行动缓慢，攻击也更慢，但力道更重。你对大多数类型的伤害有更强的抵抗力。"))
+	to_chat(host, span_alertalien("你现在是一只突变体！不要寻求治愈，不要以任何方式帮助非突变体，也不要伤害突变体同胞。你仍保留部分高级认知功能，能够进行一定程度的思考。"))
 	host.mind?.add_antag_datum(/datum/antagonist/mutant)
 	create_glow()
 	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(mutant_death))
@@ -150,18 +150,18 @@
 /datum/component/mutant_infection/proc/mutant_death()
 	SIGNAL_HANDLER
 	var/revive_time = rand(REVIVE_TIME_LOWER, REVIVE_TIME_UPPER)
-	to_chat(host, span_cult_large("You can feel your heart stopping, but something isn't right... you will rise again!"))
-	to_chat(host, span_redtext("You will revive in approximately [revive_time/10] seconds."))
+	to_chat(host, span_cult_large("你感到心脏停止跳动，但事情有些不对劲……你将再次站起来！"))
+	to_chat(host, span_redtext("你将在约[revive_time/10]秒后复活。"))
 	timer_id = addtimer(CALLBACK(src, PROC_REF(regenerate)), revive_time, TIMER_STOPPABLE)
 
 /datum/component/mutant_infection/proc/regenerate()
 	if(!host.mind)
-		var/mob/canidate = SSpolling.poll_ghosts_for_target("Do you want to play as a mutant([host.name])?", checked_target = host)
+		var/mob/canidate = SSpolling.poll_ghosts_for_target("你想扮演突变体（[host.name]）吗？", checked_target = host)
 		if(!istype(canidate))
 			return
 		host.key = canidate.key
-	to_chat(host, span_notice("You feel an itching, both inside and \
-		outside as your tissues knit and reknit."))
+	to_chat(host, span_notice("随着组织不断愈合与重组，\
+		你感到体内外都传来阵阵瘙痒。"))
 	playsound(host, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 	host.revive(HEAL_ALL, force_grab_ghost = TRUE)
 

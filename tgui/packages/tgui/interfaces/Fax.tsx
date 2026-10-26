@@ -3,7 +3,7 @@ import { Box, Button, LabeledList, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { skyratFaxDisplay } from '../localization/skyratSystemsDisplay';
 type FaxData = {
   faxes: FaxInfo[];
   fax_id: string;
@@ -58,7 +58,7 @@ export const Fax = (props) => {
       <Window.Content scrollable>
         <Section title="About Fax">
           <LabeledList.Item label="Network name">
-            {data.fax_name}
+            {skyratFaxDisplay(data.fax_name)}
           </LabeledList.Item>
           <LabeledList.Item label="Network ID">{data.fax_id}</LabeledList.Item>
           <LabeledList.Item label="Visible to Network">
@@ -89,7 +89,7 @@ export const Fax = (props) => {
               {special_networks.map((special: FaxSpecial) => (
                 <Button
                   key={special.fax_id}
-                  tooltip={special.fax_name}
+                  tooltip={skyratFaxDisplay(special.fax_name)}
                   disabled={!data.has_paper}
                   color={special.color}
                   onClick={() =>
@@ -99,14 +99,14 @@ export const Fax = (props) => {
                     })
                   }
                 >
-                  {special.fax_name}
+                  {skyratFaxDisplay(special.fax_name)}
                 </Button>
               ))}
               {faxes.length !== 0
                 ? faxes.map((fax: FaxInfo) => (
                     <Button
                       key={fax.fax_id}
-                      tooltip={fax.fax_name}
+                      tooltip={skyratFaxDisplay(fax.fax_name)}
                       disabled={!data.has_paper}
                       color={fax.syndicate_network ? 'red' : 'blue'}
                       onClick={() =>
@@ -116,7 +116,7 @@ export const Fax = (props) => {
                         })
                       }
                     >
-                      {fax.fax_name}
+                      {skyratFaxDisplay(fax.fax_name)}
                     </Button>
                   ))
                 : null}
@@ -148,7 +148,7 @@ export const Fax = (props) => {
                           {history.history_type}
                         </Box>
                       }
-                      {history.history_fax_name} - {history.history_time}
+                      {skyratFaxDisplay(history.history_fax_name)} - {history.history_time}
                     </Table.Row>
                   ))
                 : null}

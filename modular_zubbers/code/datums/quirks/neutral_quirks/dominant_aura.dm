@@ -1,11 +1,11 @@
 /datum/quirk/dominant_aura
 	name = "Dominant Aura"
-	desc = "You are assertive enough to command your more obedient cohorts. At a snap of your fingers, you can compel their attention-- or send them to the floor."
+	desc = "你足够强势，能命令那些更顺从的同伴。只需打个响指，就能让他们立正听令，或是伏倒在地。"
 	icon = "fa-sort-up"
-	medical_record_text = "Patient displays a highly assertive personality."
+	medical_record_text = "患者表现出极为强势的性格。"
 	value = 0
-	gain_text = span_notice("You feel like making someone your pet.")
-	lose_text = span_notice("You feel less assertive than before.")
+	gain_text = span_notice("你想让某人成为你的宠物。")
+	lose_text = span_notice("你感觉自己没有先前那么强势了。")
 	quirk_flags = QUIRK_HIDE_FROM_SCAN
 	erp_quirk = TRUE // Disables on ERP config.
 
@@ -112,7 +112,7 @@
 		return
 	if(sub.stat == DEAD)
 		return
-	examine_list += span_purple("[sub.p_They()] seem[sub.p_s()] submissive towards you.")
+	examine_list += span_purple("[sub]似乎很顺从你。")
 
 /datum/quirk/dominant_aura/proc/on_snap(atom/source, datum/emote/emote_args)
 	SIGNAL_HANDLER
@@ -137,27 +137,27 @@
 			continue
 		if(!check_if_dom_sub_mutually_preferred(sub))
 			return
-		var/good_x = "pet"
+		var/good_x = "宠物"
 		switch(sub.gender)
 			if(MALE)
-				good_x = "boy"
+				good_x = "男孩"
 			if(FEMALE)
-				good_x = "girl"
+				good_x = "女孩"
 
 		switch(emote_args.key)
 			if("snap")
 				if(quirk_holder.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/snap) && sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/snap))
 					sub.dir = get_dir(sub, quirk_holder)
-					sub.emote("me", 1, "faces towards <b>[quirk_holder]</b> at attention!", TRUE)
-					to_chat(sub, span_purple("<b>[quirk_holder]</b>'s snap shoots down your spine and puts you at attention."))
+					sub.emote("me", 1, "面向<b>[quirk_holder]</b>立正！", TRUE)
+					to_chat(sub, span_purple("<b>[quirk_holder]</b>的响指声穿透你的脊柱，让你立正听令。"))
 					. = TRUE
 
 			if("snap2")
 				if(quirk_holder.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/snap2) && sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/snap2))
 					sub.dir = get_dir(sub, quirk_holder)
 					sub.Immobilize(0.3 SECONDS)
-					sub.emote("me",1,"hunches down in response to <b>[quirk_holder]'s</b> snapping.", TRUE)
-					to_chat(sub, span_purple("You hunch down and freeze in place in response to <b>[quirk_holder]</b> snapping their fingers."))
+					sub.emote("me",1,"应着<b>[quirk_holder]</b>的响指弯下身。", TRUE)
+					to_chat(sub, span_purple("听见<b>[quirk_holder]</b>打响指，你弯下身，僵在原地。"))
 					. = TRUE
 
 			if("snap3")
@@ -165,9 +165,9 @@
 					if(!sub.resting)
 						sub.toggle_resting()
 					step(sub, get_dir(sub, quirk_holder))
-					sub.emote("me",1,"falls to the floor and crawls closer to <b>[quirk_holder]</b>, following their command.",TRUE)
+					sub.emote("me",1,"服从命令伏倒在地，朝<b>[quirk_holder]</b>爬去。",TRUE)
 					sub.do_jitter_animation(0.1 SECONDS)
-					to_chat(sub, span_purple("You throw yourself on the floor like a pathetic beast and crawl towards <b>[quirk_holder]</b> like a good, submissive [good_x]."))
+					to_chat(sub, span_purple("你像可怜的小兽一样扑倒在地，像个乖巧顺从的[good_x]，朝<b>[quirk_holder]</b>爬去。"))
 					. = TRUE
 
 
@@ -177,19 +177,19 @@
 			continue
 		if(borg_sub.stat == DEAD)
 			continue
-		var/good_x = "pet"
+		var/good_x = "宠物"
 		switch(borg_sub.gender)
 			if(MALE)
-				good_x = "boy"
+				good_x = "男孩"
 			if(FEMALE)
-				good_x = "girl"
+				good_x = "女孩"
 
 		switch(emote_args.key)
 			if("snap")
 				if(quirk_holder.client.prefs.read_preference(/datum/preference/toggle/dominant_aura/snap) && borg_sub.client.prefs.read_preference(/datum/preference/toggle/well_trained/snap))
 					borg_sub.dir = get_dir(borg_sub, quirk_holder)
-					borg_sub.emote("me", 1, "faces towards <b>[quirk_holder]</b> at attention!", TRUE)
-					to_chat(borg_sub, span_purple("<b>[quirk_holder]</b>'s snap shoots down your spine and puts you at attention."))
+					borg_sub.emote("me", 1, "面向<b>[quirk_holder]</b>立正！", TRUE)
+					to_chat(borg_sub, span_purple("<b>[quirk_holder]</b>的响指声穿透你的脊柱，让你立正听令。"))
 					. = TRUE
 
 			if("snap2")
@@ -197,8 +197,8 @@
 					borg_sub.dir = get_dir(borg_sub, quirk_holder)
 					borg_sub.robot_lay_down()
 					borg_sub.Stun(0.3 SECONDS)
-					borg_sub.emote("me",1,"hunches down in response to <b>[quirk_holder]'s</b> snapping.", TRUE)
-					to_chat(borg_sub, span_purple("You hunch down and freeze in place in response to <b>[quirk_holder]</b> snapping their fingers."))
+					borg_sub.emote("me",1,"应着<b>[quirk_holder]</b>的响指弯下身。", TRUE)
+					to_chat(borg_sub, span_purple("听见<b>[quirk_holder]</b>打响指，你弯下身，僵在原地。"))
 					. = TRUE
 
 			if("snap3")
@@ -206,9 +206,9 @@
 					step(borg_sub, get_dir(borg_sub, quirk_holder))
 					borg_sub.robot_lay_down()
 					borg_sub.Stun(0.3 SECONDS)
-					borg_sub.emote("me",1,"crawls closer to <b>[quirk_holder]</b> and lays down, following their command.",TRUE)
+					borg_sub.emote("me",1,"服从命令爬到<b>[quirk_holder]</b>身旁躺下。",TRUE)
 					borg_sub.do_jitter_animation(0.1 SECONDS)
-					to_chat(borg_sub, span_purple("You crawl towards <b>[quirk_holder]</b> and lay down like a good, submissive [good_x]."))
+					to_chat(borg_sub, span_purple("你爬到<b>[quirk_holder]</b>身旁躺下，像个乖巧顺从的[good_x]。"))
 					. = TRUE
 
 	if(.)

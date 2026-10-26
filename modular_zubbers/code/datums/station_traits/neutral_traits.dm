@@ -1,9 +1,9 @@
 /datum/station_trait/triple_ai
-	name = "AI Triumvirate"
+	name = "AI 三头制"
 	trait_type = STATION_TRAIT_NEUTRAL
 	show_in_report = TRUE
 	weight = 1
-	report_message = "Your station has been instated with three Nanotrasen Artificial Intelligence models."
+	report_message = "你们的空间站已配备三台纳米传讯人工智能。"
 
 /datum/station_trait/triple_ai/New()
 	. = ..()

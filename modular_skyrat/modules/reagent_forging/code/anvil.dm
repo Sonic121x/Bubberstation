@@ -1,8 +1,8 @@
 #define AUTO_SMITHING_SPEED_PENALTY 8 DECISECONDS
 
 /obj/structure/reagent_anvil
-	name = "smithing anvil"
-	desc = "Essentially a big block of metal that you can hammer other metals on top of, crucial for anyone working metal by hand."
+	name = "锻造铁砧"
+	desc = "本质上是一大块可供锤打其他金属的金属，是手工金属加工必不可少的工具。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_structures.dmi'
 	icon_state = "anvil_empty"
 
@@ -29,24 +29,24 @@
 
 /obj/structure/reagent_anvil/examine(mob/user)
 	. = ..()
-	. += span_notice("You can place <b>hot metal objects</b> on this using some <b>tongs</b>.")
-	. += span_notice("It can be (un)secured by <b>Right Clicking</b> with your bare hand.")
+	. += span_notice("你可以用<b>钳子</b>把<b>灼热的金属物件</b>放在上面。")
+	. += span_notice("空手<b>右键点击</b>可以固定或解除固定。")
 
 	if(length(contents))
 		var/obj/my_contents = contents[1]
-		. += span_notice("It has [my_contents] sitting on it.")
-		. += span_notice("<b>Left Click</b> with a <b>forging mallet</b> to <b>hammer the metal with precise strikes</b>.")
+		. += span_notice("上面放着 [my_contents]。")
+		. += span_notice("手持<b>锻造锤左键点击</b>，可以<b>精准地锤打金属</b>。")
 		if(USER_CAN_SEE_SMITHING_INFO(user) && !isnull(my_contents?.GetComponent(/datum/component/forge_smithable)))
 			var/datum/component/forge_smithable/my_component = my_contents.GetComponent(/datum/component/forge_smithable)
-			. += span_notice("You'd estimate that it's about [round(my_component.get_completion_ratio() * 100)]% complete.")
-			. += span_notice("The careful smithing makes it look about [round(my_component.get_perfect_ratio() * 100)]% perfected.")
+			. += span_notice("你估计它已完成约 [round(my_component.get_completion_ratio() * 100)]%。")
+			. += span_notice("精心锻造让它的完美度达到了约 [round(my_component.get_perfect_ratio() * 100)]%。")
 		if(HAS_TRAIT(user, TRAIT_KNOW_ADVANCED_SMITHING))
-			. += span_notice("If you strike precisely enough, you can get a <b>perfect hit!</b>")
+			. += span_notice("只要敲击足够精准，就能打出<b>完美一击！</b>")
 		else
-			. += span_notice("If you had the right skillchip, you could work the metal to a higher quality...")
-		. += span_notice("<b>Right Click</b> with a <b>forging mallet</b> to <b>hammer the metal with a steady tempo</b>.")
-		. += span_notice("You could remove [contents[1]] with some <b>tongs</b>, or your bare hands.")
-	. += span_notice("You could <b>cut it apart</b> with a <b>welder</b>.")
+			. += span_notice("如果拥有合适的技能芯片，你就能把这块金属锻造成更高的品质……")
+		. += span_notice("手持<b>锻造锤右键点击</b>，可以<b>按稳定节奏锤打金属</b>。")
+		. += span_notice("你可以用<b>钳子</b>或徒手取下 [contents[1]]。")
+	. += span_notice("你可以用<b>焊接器</b>将它<b>切割拆解</b>。")
 
 /obj/structure/reagent_anvil/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -56,7 +56,7 @@
 	if(length(contents) > 0)
 		var/obj/item/contained_item = contents[1]
 		user.put_in_hands(contained_item)
-		balloon_alert(user, "[contained_item] retrieved")
+		balloon_alert(user, "已取回 [contained_item]")
 		update_appearance()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -70,7 +70,7 @@
 
 	add_fingerprint(user)
 	set_anchored(!anchored)
-	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	balloon_alert_to_viewers(anchored ? "已固定" : "已解除固定")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/reagent_anvil/welder_act(mob/living/user, obj/item/tool)
@@ -81,9 +81,9 @@
 	if(tool.use_tool(src, user, 2 SECONDS, volume=2))
 		new /obj/item/sliced_pipe(drop_location())
 		user.visible_message( \
-			"[user] welds \the [src] into base components.", \
-			span_notice("You weld \the [src] into base components."), \
-			span_hear("You hear welding."))
+			"[user] 用焊接器把 [src] 拆成了基础部件。", \
+			span_notice("你用焊接器把 [src] 拆成了基础部件。"), \
+			span_hear("你听到焊接声。"))
 
 		deconstruct(TRUE)
 
@@ -143,13 +143,13 @@
 	var/datum/component/forge_smithable/smith_component = my_anvil_item.GetComponent(/datum/component/forge_smithable)
 	if(!isnull(my_anvil_item) && !isnull(smith_component))
 		if(!should_stop_autohammering())
-			balloon_alert_to_viewers("hammering steadily...")
+			balloon_alert_to_viewers("正在稳定锤打……")
 			while(!should_stop_autohammering())
 				var/wait_between_swings = COOLDOWN_TIMELEFT(user, striking_cooldown) DECISECONDS
 				wait_between_swings += AUTO_SMITHING_SPEED_PENALTY
 
 				if(!do_after(user, wait_between_swings, target = src, interaction_key = DOAFTER_SMITHING_ANVIL))
-					balloon_alert_to_viewers("stopped hammering")
+					balloon_alert_to_viewers("已停止锤打")
 					break
 				else
 					hammer_act(user, tool)
@@ -181,8 +181,8 @@
 
 	poor_target.AddElement(/datum/element/squish, 30 SECONDS)
 	poor_target.visible_message(
-		span_bolddanger("[src] falls on [poor_target], crushing them!"),
-		span_userdanger("You are crushed by [src]!")
+		span_bolddanger("[src] 砸在 [poor_target] 身上，将其压伤了！"),
+		span_userdanger("你被 [src] 压伤了！")
 	)
 	poor_target.Paralyze(5 SECONDS)
 	poor_target.emote("scream")

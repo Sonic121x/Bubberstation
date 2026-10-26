@@ -1,10 +1,10 @@
 /obj/item/seeds/amauri
-	name = "amauri seed pack"
-	desc = "These seeds grow into amauri plants. Grows bulbs full of potent toxins."
+	name = "毒囊草种子包"
+	desc = "这些种子能长成毒囊草，结出充满强效毒素的球茎。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "amauri"
 	species = "amauri"
-	plantname = "Amauri Plant"
+	plantname = "毒囊草"
 	product = /obj/item/food/grown/amauri
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/amauri
 	seed = /obj/item/seeds/amauri
-	name = "amauri"
-	desc = "A toxic amauri bulb, you shouldn't eat this."
+	name = "毒囊草球茎"
+	desc = "有毒的毒囊草球茎，千万别吃。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "amauri"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("poison" = 1)
+	tastes = list("毒药" = 1)
 
 /obj/item/food/grown/amauri/juice_typepath()
 	return /datum/reagent/toxin

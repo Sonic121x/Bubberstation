@@ -1,6 +1,6 @@
 /obj/item/shield/big_bertha
-	name = "Big Bertha"
-	desc = "A shield so fat and heavy, it should block just about anything, as long as you have the stamina for it."
+	name = "大贝莎"
+	desc = "一面极其厚重的盾牌，只要你的体力撑得住，它应该什么都挡得下来。"
 	icon = 'modular_zubbers/icons/obj/big_bertha_shield.dmi'
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/big_bertha_both.dmi'
 	righthand_file = 'modular_zubbers/icons/mob/inhands/big_bertha_both.dmi'
@@ -12,8 +12,8 @@
 	throw_speed = 1
 	throw_range = 2
 	w_class = WEIGHT_CLASS_HUGE
-	attack_verb_continuous = list("shoves", "bashes","berthas")
-	attack_verb_simple = list("shove", "bash","bertha")
+	attack_verb_continuous = list("推撞", "猛砸","用大贝莎重击")
+	attack_verb_simple = list("推撞", "猛砸","用大贝莎重击")
 	armor_type = /datum/armor/big_bertha
 	block_sound = 'sound/items/weapons/block_shield.ogg'
 	breakable_by_damage = FALSE
@@ -26,7 +26,7 @@
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE)
 	RemoveElement(/datum/element/disarm_attack)
 
-/obj/item/shield/big_bertha/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
+/obj/item/shield/big_bertha/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "攻击", damage = 0, attack_type = MELEE_ATTACK, damage_type = BRUTE)
 
 	. = ..()
 
@@ -35,9 +35,9 @@
 
 	if(prob(owner.get_stamina_loss()))
 		owner.visible_message(
-			span_warning("The force of [attack_text] from [hitby] knocks down [owner]!"),
-			span_userdanger("The force of [attack_text] from [hitby] knocks you down!"),
-			span_notice("You hear a loud thud!"),
+			span_warning("[hitby]的[attack_text]将[owner]击倒！"),
+			span_userdanger("[hitby]的[attack_text]将你击倒！"),
+			span_notice("你听见一声沉重的撞击声！"),
 			COMBAT_MESSAGE_RANGE
 		)
 		owner.Knockdown(2 SECONDS) //The shield saved you, but at what cost?

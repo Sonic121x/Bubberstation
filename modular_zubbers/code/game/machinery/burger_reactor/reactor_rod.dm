@@ -1,6 +1,6 @@
 /obj/item/tank/rbmk2_rod
-	name = "\improper RB-MK2 reactor rod"
-	desc = "A rod for the RB-MK2 reactor. Usually filled with a mix of tritium and an inert gas, such as nitrogen."
+	name = "\improper RB-MK2 反应堆棒"
+	desc = "用于 RB-MK2 反应堆的棒体，通常充有氚和氮气等惰性气体的混合物。"
 	icon = 'modular_zubbers/icons/obj/equipment/burger_reactor.dmi'
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*5, /datum/material/uranium = SMALL_MATERIAL_AMOUNT*2)
 	icon_state = "platform_rod"
@@ -62,4 +62,4 @@
 
 /obj/item/tank/rbmk2_rod/examine(user)
 	. = ..()
-	. += span_notice("A sticker on its side says <b>MAX SAFE PRESSURE: [siunit_pressure(pressure_limit, 0)]; MAX SAFE TEMPERATURE: [siunit(temperature_limit, "K", 0)]</b>.")
+	. += span_notice("侧面的贴纸写着：<b>最高安全压力：[siunit_pressure(pressure_limit, 0)]；最高安全温度：[siunit(temperature_limit, "K", 0)]</b>。")

@@ -97,7 +97,7 @@
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "MOD [used_theme.name] 外部装甲板"
+	name = "MOD [chinese_batch_ten_theme_display(used_theme.name)] 外部装甲板"
 	desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 

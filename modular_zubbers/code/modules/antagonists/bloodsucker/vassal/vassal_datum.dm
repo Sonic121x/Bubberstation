@@ -1,5 +1,5 @@
 /datum/antagonist/ghoul
-	name = "\improper Ghoul"
+	name = "\improper 血仆"
 	roundend_category = "ghouls"
 	antagpanel_category = "Bloodsucker"
 	pref_flag = ROLE_VASSAL
@@ -7,7 +7,7 @@
 	show_in_roundend = FALSE
 	hud_icon = 'modular_zubbers/icons/mob/huds/bloodsucker.dmi'
 	ui_name = "AntagInfoGhoul"
-	antag_panel_description = "You are a Ghoul, a mortal servant of a Bloodsucker."
+	antag_panel_description = "你是一名血仆，侍奉吸血鬼的凡人仆从。"
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
@@ -22,7 +22,7 @@
 	var/list/traits = list()
 
 /datum/antagonist/ghoul/antag_panel_data()
-	return "Master : [master?.owner.name ? master.owner.name : "Gone"]"
+	return "主人：[master?.owner.name ? master.owner.name : "已离去"]"
 
 // todo make this into a shared proc that bloodsuckers and ghouls share
 /datum/antagonist/ghoul/ui_static_data(mob/user)
@@ -71,7 +71,7 @@
 /// This is called when the antagonist is successfully mindshielded.
 /datum/antagonist/ghoul/on_mindshield(mob/implanter, mob/living/mob_override)
 	owner.remove_antag_datum(/datum/antagonist/ghoul)
-	owner.current.log_message("has been deconverted from Ghouling by [implanter]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("被 [implanter] 解除了血仆身份！", LOG_ATTACK, color="#960000")
 	return COMPONENT_MINDSHIELD_DECONVERTED
 
 /datum/antagonist/ghoul/proc/on_examined(datum/source, mob/examiner, examine_text)
@@ -93,7 +93,7 @@
 		master.special_ghouls[special_type] |= src
 	master.ghouls += src
 	owner.enslave_mind_to_creator(master.owner.current)
-	owner.current.log_message("has been ghouled by [master.owner.current]!", LOG_ATTACK, color="#960000")
+	owner.current.log_message("被 [master.owner.current] 转化为血仆！", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
 	BuyPower(/datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
@@ -141,13 +141,13 @@
 	if(silent)
 		return
 
-	to_chat(owner, span_userdanger("You are now the mortal servant of [master.owner.current], a Bloodsucker!"))
-	to_chat(owner, span_boldannounce("The power of [master.owner.current.p_their()] immortal blood compels you to obey [master.owner.current.p_them()] in all things, even offering your own life to prolong theirs.\n\
-		You are not required to obey any other Bloodsucker, for only [master.owner.current] is your master. The laws of Nanotrasen do not apply to you now; only your vampiric master's word must be obeyed."))
+	to_chat(owner, span_userdanger("你现在是吸血鬼 [master.owner.current] 的凡人仆从！"))
+	to_chat(owner, span_boldannounce("主人的不朽之血迫使你服从一切命令，甚至献出自己的生命来延续主人的生命。\n\
+		你无需服从其他吸血鬼，因为只有 [master.owner.current] 才是你的主人。纳米传讯的法律已不再约束你；你只需遵从吸血鬼主人的命令。"))
 	owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
-	antag_memory += "You, becoming the mortal servant of <b>[master.owner.current]</b>, a bloodsucking vampire!<br>"
+	antag_memory += "你已成为吸血鬼 <b>[master.owner.current]</b> 的凡人仆从！<br>"
 	/// Message told to your Master.
-	to_chat(master.owner, span_userdanger("[owner.current] has become addicted to your immortal blood. [capitalize(owner.current.p_they(TRUE))] [owner.current.p_are()] now your mortal servant!"))
+	to_chat(master.owner, span_userdanger("[owner.current] 已对你的不朽之血上瘾，成为了你的凡人仆从！"))
 	master.owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/ghoul/farewell()
@@ -155,13 +155,13 @@
 		return
 
 	owner.current.visible_message(
-		span_deconversion_message("[owner.current]'s eyes dart feverishly from side to side, and then stop. [owner.current.p_They(TRUE)] seem[owner.current.p_s()] to calm, \
-			like [owner.current.p_they()] [owner.current.p_have()] regained some lost part of [owner.current.p_them()]self."), \
-		span_deconversion_message("With a snap, you are no longer enslaved to [master.owner]! You breathe in heavily, having regained your free will."))
+		span_deconversion_message("[owner.current] 的眼睛狂乱地左右转动，随后停了下来，神情似乎逐渐平静，\
+			仿佛找回了曾经失去的自我。"), \
+		span_deconversion_message("转瞬之间，你摆脱了 [master.owner] 的奴役！你大口吸气，重新获得了自由意志。"))
 	owner.current.playsound_local(null, 'sound/effects/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 	/// Message told to your (former) Master.
 	if(master && master.owner)
-		to_chat(master.owner, span_cult_bold("You feel the bond with your ghoul [owner.current] has somehow been broken!"))
+		to_chat(master.owner, span_cult_bold("你感到与血仆 [owner.current] 的纽带不知为何断裂了！"))
 
 /datum/antagonist/ghoul/admin_add(datum/mind/new_owner, mob/admin)
 	var/list/datum/mind/possible_vampires = list()
@@ -175,13 +175,13 @@
 			continue
 		possible_vampires += vamp
 	if(!length(possible_vampires))
-		message_admins("[key_name_admin(admin)] tried ghoulizing [key_name_admin(new_owner)], but there were no bloodsuckers!")
+		message_admins("[key_name_admin(admin)] 尝试将 [key_name_admin(new_owner)] 转化为血仆，但没有可用的吸血鬼！")
 		return
-	var/datum/mind/choice = tgui_input_list(admin, "Which bloodsucker should this ghoul belong to?", "Bloodsucker", possible_vampires)
+	var/datum/mind/choice = tgui_input_list(admin, "这名血仆应该侍奉哪位吸血鬼？", "吸血鬼", possible_vampires)
 	if(!choice)
 		return
-	log_admin("[key_name_admin(admin)] turned [key_name_admin(new_owner)] into a ghoul of [key_name_admin(choice)]!")
+	log_admin("[key_name_admin(admin)] 将 [key_name_admin(new_owner)] 转化为 [key_name_admin(choice)] 的血仆！")
 	var/datum/antagonist/bloodsucker/vampire = IS_BLOODSUCKER(choice.current)
 	master = vampire
 	new_owner.add_antag_datum(src)
-	to_chat(choice, span_notice("Through divine intervention, you've gained a new ghoul!"))
+	to_chat(choice, span_notice("借助神力干预，你获得了一名新的血仆！"))

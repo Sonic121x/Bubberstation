@@ -21,8 +21,8 @@
 
 // Vests
 /obj/item/clothing/suit/armor/forging_plate_armor
-	name = "reagent plate vest"
-	desc = "An armor vest made of hammered, interlocking plates."
+	name = "试剂板甲背心"
+	desc = "由相互扣合的锻打金属板制成的护甲背心。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_better_vox = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing_newvox.dmi'
@@ -60,8 +60,8 @@
 
 // Gloves
 /obj/item/clothing/gloves/forging_plate_gloves
-	name = "reagent plate gloves"
-	desc = "A set of leather gloves with protective armor plates connected to the wrists."
+	name = "试剂板甲手套"
+	desc = "一副腕部装有防护甲片的皮手套。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_better_vox = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing_newvox.dmi'
@@ -99,8 +99,8 @@
 
 // Helmets
 /obj/item/clothing/head/helmet/forging_plate_helmet
-	name = "reagent plate helmet"
-	desc = "A helmet out of hammered plates with a leather neck guard and chin strap."
+	name = "试剂板甲头盔"
+	desc = "由锻打甲片制成的头盔，附有皮革护颈和下颌带。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_better_vox = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing_newvox.dmi'
@@ -138,8 +138,8 @@
 
 // Boots
 /obj/item/clothing/shoes/forging_plate_boots
-	name = "reagent plate boots"
-	desc = "A pair of leather boots with protective armor plates over the shins and toes."
+	name = "试剂板甲靴"
+	desc = "一双胫部和脚趾处覆盖防护甲片的皮靴。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	worn_icon_digi = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing_digi.dmi'
@@ -178,8 +178,8 @@
 	blacksmithing_change_material_strength(src, material, mat_amount, multiplier, remove)
 
 /obj/item/clothing/shoes/horseshoe/reagent_clothing
-	name = "reagent horseshoes"
-	desc = "A pair of horseshoes made out of chains."
+	name = "试剂马蹄铁"
+	desc = "一对用链条制成的马蹄铁。"
 	armor_type = /datum/armor/armor_forging_plate_armor
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS
 
@@ -211,8 +211,8 @@
 ////////////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/gloves/ring/reagent_clothing
-	name = "reagent ring"
-	desc = "A tiny ring, sized to wrap around a finger."
+	name = "试剂戒指"
+	desc = "一枚尺寸适合套在手指上的小戒指。"
 	icon_state = "ringsilver"
 	worn_icon_state = "sring"
 	inhand_icon_state = null
@@ -240,8 +240,8 @@
 ////////////////////////////////////////////////////////////////////////////
 
 /obj/item/clothing/neck/collar/reagent_clothing
-	name = "reagent collar"
-	desc = "A collar that is ready to be worn for... certain individuals."
+	name = "试剂项圈"
+	desc = "一个为……某些人准备的项圈。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_clothing/lewd_neck.dmi'
 	worn_icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/mob/lewd_clothing/lewd_neck.dmi'
 	icon_state = "collar_cyan"
@@ -269,8 +269,8 @@
 		incompletion_effects = list(FORGE_EFFECT_REAGENT_INJECT, FORGE_EFFECT_DURABILITY))
 
 /obj/item/restraints/handcuffs/reagent_clothing
-	name = "reagent handcuffs"
-	desc = "A pair of handcuffs that are ready to keep someone captive."
+	name = "试剂手铐"
+	desc = "一副随时能将人铐住的手铐。"
 	material_flags = MATERIAL_EFFECTS | MATERIAL_ADD_PREFIX | MATERIAL_COLOR
 
 /obj/item/restraints/handcuffs/reagent_clothing/Initialize(mapload)

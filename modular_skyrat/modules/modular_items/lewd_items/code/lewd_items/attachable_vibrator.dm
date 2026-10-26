@@ -8,8 +8,8 @@
 #define EGGVIB_HIGH "high"
 
 /obj/item/clothing/sextoy/eggvib
-	name = "vibrating egg"
-	desc = "A simple, vibrating sex toy."
+	name = "跳蛋"
+	desc = "一件简单的振动情趣玩具。"
 	icon_state = "eggvib_pink_off"
 	base_icon_state = "eggvib"
 	inhand_icon_state = "eggvib_pink"
@@ -45,13 +45,13 @@
 /obj/item/clothing/sextoy/eggvib/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's colors.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 	else
-		. += span_notice("Alt-click to toggle vibration modes.")
+		. += span_notice("按住 Alt 点击可切换振动模式。")
 
 /obj/item/clothing/sextoy/eggvib/click_alt(mob/user)
 	if(!color_changed)
-		var/choice = show_radial_menu(user, src, vib_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, vib_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return FALSE
 		current_color = choice
@@ -61,13 +61,13 @@
 		toggle_mode()
 		switch(vibration_mode)
 			if(EGGVIB_LOW)
-				to_chat(user, span_notice("You set the vibration mode to low. Bzzz..."))
+				to_chat(user, span_notice("你将振动设为低档。嗡……"))
 			if(EGGVIB_MEDIUM)
-				to_chat(user, span_notice("You set the vibration mode to medium. Bzzzz!"))
+				to_chat(user, span_notice("你将振动设为中档。嗡嗡！"))
 			if(EGGVIB_HIGH)
-				to_chat(user, span_notice("You set the vibration mode to high. Careful with that thing."))
+				to_chat(user, span_notice("你将振动设为高档。小心使用。"))
 			if(EGGVIB_OFF)
-				to_chat(user, span_notice("You turn off the vibrating egg. Fun time's over."))
+				to_chat(user, span_notice("你关闭了跳蛋。欢乐时光结束了。"))
 		update_icon()
 		update_icon_state()
 	return CLICK_ACTION_SUCCESS
@@ -152,8 +152,8 @@
 */
 
 /obj/item/clothing/sextoy/eggvib/signalvib
-	name = "signal vibrating egg"
-	desc = "A vibrating sex toy with remote control capability. Use a signaller to turn it on."
+	name = "遥控跳蛋"
+	desc = "可以远程控制的振动情趣玩具。使用信号器将其开启。"
 	icon_state = "signalvib_pink_low_off"
 	base_icon_state = "signalvib"
 	inhand_icon_state = "signalvib_pink"
@@ -174,7 +174,7 @@
 		if(ISMULTIPLE(frequency, 2))//signaller frequencies are always uneven!
 			frequency++
 	if(freq_in_name)
-		name = initial(name) + " - freq: [frequency/10] code: [code]"
+		name = initial(name) + " - 频率：[frequency/10] 代码：[code]"
 	set_frequency(frequency)
 	. = ..()
 
@@ -201,7 +201,7 @@
 
 /obj/item/clothing/sextoy/eggvib/signalvib/click_alt(mob/user)
 	if(!color_changed)
-		var/choice = show_radial_menu(user, src, vib_designs, custom_check = CALLBACK(src, /obj/item/clothing/sextoy/proc/check_menu, user), radius = 36, require_near = TRUE)
+		var/choice = chinese_skyrat_item_radial(user, src, vib_designs, custom_check = CALLBACK(src, /obj/item/clothing/sextoy/proc/check_menu, user), radius = 36, require_near = TRUE)
 		if(!choice)
 			return CLICK_ACTION_BLOCKING
 		current_color = choice
@@ -209,7 +209,7 @@
 		color_changed = TRUE
 	else
 		if(!toy_on)
-			to_chat(user, span_notice("You can't switch modes while the vibrating egg is turned off!"))
+			to_chat(user, span_notice("跳蛋关闭时无法切换模式！"))
 			return CLICK_ACTION_BLOCKING
 		toggle_mode()
 		soundloop1.stop()
@@ -217,13 +217,13 @@
 		soundloop3.stop()
 		switch(vibration_mode)
 			if(EGGVIB_LOW)
-				to_chat(user, span_notice("You set the vibration mode to low. Bzzz..."))
+				to_chat(user, span_notice("你将振动设为低档。嗡……"))
 				soundloop1.start()
 			if(EGGVIB_MEDIUM)
-				to_chat(user, span_notice("You set the vibration mode to medium. Bzzzz!"))
+				to_chat(user, span_notice("你将振动设为中档。嗡嗡！"))
 				soundloop2.start()
 			if(EGGVIB_HIGH)
-				to_chat(user, span_notice("You set the vibration mode to high. Careful with that thing!"))
+				to_chat(user, span_notice("你将振动设为高档。小心使用！"))
 				soundloop3.start()
 		update_icon()
 		update_icon_state()
@@ -258,11 +258,11 @@
 		return
 	if(toy_on)
 		if(src == vibrated.penis || src == vibrated.vagina || src == vibrated.anus)
-			to_chat(vibrated, span_purple("You feel pleasant vibrations deep below..."))
+			to_chat(vibrated, span_purple("你感到下身深处传来舒适的振动……"))
 		else if(src == vibrated.nipples)
-			to_chat(vibrated, span_purple("You feel pleasant stimulation in your nipples."))
+			to_chat(vibrated, span_purple("你的乳头感到舒适的刺激。"))
 	else if(!toy_on && is_inside_lewd_slot(vibrated))
-		to_chat(vibrated, span_purple("The vibrating toy no longer drives you mad."))
+		to_chat(vibrated, span_purple("振动玩具终于不再让你心神荡漾。"))
 
 	if(!master)
 		return

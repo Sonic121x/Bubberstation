@@ -1,8 +1,8 @@
 // Low caliber grenade launcher (fun & games)
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher
-	name = "\improper Kiboko Grenade Launcher"
-	desc = "A unique grenade launcher firing .980 grenades. A laser sight system allows its user to specify a range for the grenades it fires to detonate at."
+	name = "\improper 河马榴弹发射器"
+	desc = "一款发射.980榴弹的独特发射器。激光瞄准系统允许使用者指定榴弹的引爆距离。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/carwo_defense_systems/guns48x.dmi'
 	icon_state = "kiboko"
@@ -44,29 +44,29 @@
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/examine_more(mob/user)
 	. = ..()
 
-	. += "The Kiboko is one of the strangest weapons Carwo offers. A grenade launcher, \
-		though not in the standard grenade size. The much lighter .980 Tydhouer grenades \
-		developed for the weapon offered many advantages over standard grenade launching \
-		ammunition. For a start, it was significantly lighter, and easier to carry large \
-		amounts of. What it also offered, however, and the reason TerraGov funded the \
-		project: Variable time fuze. Using the large and expensive ranging sight on the \
-		launcher, its user can set an exact distance for the grenade to self detonate at. \
-		The dream of militaries for decades, finally realized. The smaller shells do not, \
-		however, make the weapon any more enjoyable to fire. The kick is only barely \
-		manageable thanks to the massive muzzle brake at the front."
+	. += "河马是卡沃提供的最奇特武器之一。它是一款榴弹发射器，\
+		但并不使用标准尺寸的榴弹。专门为它研制的轻型.980计时者榴弹\
+		相较于普通榴弹发射器使用的弹药，\
+		有诸多优势。首先，它明显更轻，更便于大量携带。\
+		不过，它还有另一项优势，也是地球政府资助该项目的原因：\
+		可调定时引信。使用发射器上又大又昂贵的测距瞄准镜，\
+		射手可以精确设定榴弹自行引爆的距离。\
+		军方数十年来的梦想终于实现。不过，\
+		较小的弹体并没有让这件武器射击起来更舒服。多亏前端硕大的枪口制退器，\
+		它的后坐力才勉强可以控制。"
 
 	return .
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/examine(mob/user)
 	. = ..()
 
-	. += span_notice("With <b>Right Click</b> you can set the range that shells will detonate at.")
-	. += span_notice("A small indicator in the sight notes the current detonation range is: <b>[target_range]</b>.")
+	. += span_notice("通过<b>右键单击</b>可以设置榴弹的引爆距离。")
+	. += span_notice("瞄准镜中的小指示器显示，当前引爆距离为：<b>[target_range]</b>。")
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/ranged_interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!interacting_with || !user)
@@ -74,11 +74,11 @@
 
 	var/distance_ranged = get_dist(user, interacting_with)
 	if(distance_ranged > maximum_target_range)
-		user.balloon_alert(user, "out of range")
+		user.balloon_alert(user, "超出范围")
 		return ITEM_INTERACT_BLOCKING
 
 	target_range = distance_ranged
-	user.balloon_alert(user, "range set: [target_range]")
+	user.balloon_alert(user, "引爆距离：[target_range]")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/gun/ballistic/automatic/sol_grenade_launcher/no_mag

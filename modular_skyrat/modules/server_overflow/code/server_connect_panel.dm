@@ -21,7 +21,7 @@ GLOBAL_DATUM(server_control_panel, /datum/server_control_panel)
 
 	data["connections"] = TGS_CLIENT_COUNT
 
-	data["overflow_server_name"] = "Overflow Server"
+	data["overflow_server_name"] = "分流服务器"
 
 	data["servers"] = list()
 	var/list/servers = CONFIG_GET(keyed_list/cross_server)

@@ -13,24 +13,24 @@
 	if(player_cap && population >= player_cap)
 		var/overflow_server_ip = CONFIG_GET(string/overflow_server_ip)
 		if(!overflow_server_ip)
-			message_admins("WARNING: Overflow server IP not set!")
+			message_admins("警告：尚未设置分流服务器IP！")
 			return TRUE
-		to_chat_immediate(src, span_boldwarning("The round is full, please wait while you are transferred to the secondary server..."))
-		message_admins("[src] attempted to join, but the server was full and were sent to the secondary server.")
+		to_chat_immediate(src, span_boldwarning("本局人数已满，正在将你转移至备用服务器，请稍候……"))
+		message_admins("[src]尝试加入，但服务器已满，因此被转移至备用服务器。")
 		src << link(overflow_server_ip)
 		return FALSE
 	return TRUE
 
 /mob/dead/new_player/proc/connect_to_second_server()
-	var/choice = tgui_alert(src, "The server is currently experiencing high demand, please consider joining our secondary server.", "High Demand", list("Stay here", "Connect me!"))
+	var/choice = tgui_alert(src, "当前服务器人数较多，请考虑加入备用服务器。", "服务器繁忙", list("留在这里", "连接过去！"))
 	if(!client)
 		return
-	if(choice != "Connect me!")
+	if(choice != "连接过去！")
 		return
-	to_chat(client, span_notice("So long, spaceman."))
+	to_chat(client, span_notice("再见，太空人。"))
 	var/overflow_server_ip = CONFIG_GET(string/overflow_server_ip)
 	if(!overflow_server_ip)
-		message_admins("WARNING: Overflow server IP not set!")
+		message_admins("警告：尚未设置分流服务器IP！")
 		return
 	client << link(overflow_server_ip)
 

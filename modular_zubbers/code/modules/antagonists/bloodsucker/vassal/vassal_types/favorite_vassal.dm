@@ -4,11 +4,11 @@
  * Gets some cool abilities depending on the Clan.
  */
 /datum/antagonist/ghoul/favorite
-	name = "\improper Favorite Ghoul"
+	name = "\improper 宠爱血仆"
 	antag_hud_name = "ghoul6"
 	special_type = FAVORITE_GHOUL
-	ghoul_description = "The Favorite Ghoul gets unique abilities over other Ghouls depending on the Master's Clan \
-		and becomes completely immune to Mindshields. If part of Ventrue, this is the Ghoul a Bloodsucker will rank up."
+	ghoul_description = "宠爱血仆会根据主人所属的氏族获得其他血仆没有的独特能力，\
+		并完全免疫心灵护盾。如果主人属于梵卓氏族，这名血仆将能获得等级提升。"
 
 	///Bloodsucker levels, but for Ghouls, used by Ventrue. Used for ventrue creating a new bloodsucker.
 	var/ghoul_level

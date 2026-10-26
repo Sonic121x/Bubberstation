@@ -1,8 +1,8 @@
 // Don't know of a better place to put these. They're technically related to synths, so they're going here.
 
 /obj/item/mmi/posibrain/circuit
-	name = "compact AI circuit"
-	desc = "A compact circuit, perfectly dimensioned to fit in the same slot as a cyborg's positronic brain."
+	name = "紧凑型AI电路"
+	desc = "一块紧凑电路，尺寸恰好适配半机械人的正电子脑插槽。"
 	icon = 'modular_skyrat/master_files/icons/obj/alt_silicon_brains.dmi'
 	icon_state = "circuit"
 	base_icon_state = "circuit"
@@ -11,11 +11,11 @@
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
 
 	// It pains me to copy-paste so much, but I can't do it any other way
-	begin_activation_message = span_notice("You carefully locate the manual activation switch and start the compact AI circuit's boot process.")
-	success_message = span_notice("The compact AI circuit pings, and its lights start flashing. Success!")
-	fail_message = span_notice("The compact AI circuit buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
-	new_mob_message = span_notice("The compact AI circuit chimes quietly.")
-	recharge_message = span_warning("The compact AI circuit isn't ready to activate again yet! Give it some time to recharge.")
+	begin_activation_message = span_notice("你仔细找到手动启动开关，启动了紧凑型AI电路的引导程序。")
+	success_message = span_notice("紧凑型AI电路发出提示音，指示灯开始闪烁。成功了！")
+	fail_message = span_notice("紧凑型AI电路轻声嗡鸣，金色灯光逐渐熄灭。也许可以再试一次？")
+	new_mob_message = span_notice("紧凑型AI电路发出轻柔的提示音。")
+	recharge_message = span_warning("紧凑型AI电路还不能再次激活！给它一点时间充电。")
 
 // CODE THAT ACTUALLY APPLIES THE BRAINS.
 // See modular_skyrat/master_files/code/modules/client/preferences/brain.dm for Synth/IPC application.
@@ -78,7 +78,7 @@
 	// Probably shitcode, but silicon code is spaghetti as fuck.
 	new_mmi.brain = new /obj/item/organ/brain(new_mmi)
 	new_mmi.brain.organ_flags |= ORGAN_FROZEN
-	new_mmi.brain.name = "[real_name]'s brain"
+	new_mmi.brain.name = "[real_name]的大脑"
 	new_mmi.name = "[initial(new_mmi.name)]: [real_name]"
 	new_mmi.set_brainmob(new /mob/living/brain(new_mmi))
 	new_mmi.brainmob.name = src.real_name

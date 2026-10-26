@@ -38,14 +38,14 @@
 
 /// == DONATOR PET: Mr. Fluff, Central's Mothroach, ckey centralsmith ==
 /mob/living/basic/mothroach/mr_fluff
-	name = "Mr. Fluff"
-	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
+	name = "绒绒先生"
+	desc = "森特拉尔心爱的宠物蛾蟑，绒绒先生。他看起来很高兴来到这里！"
 	gender = MALE
 	icon = 'modular_zubbers/icons/mob/donator_pets.dmi'
 
 /obj/item/mob_holder/pet/donator/centralsmith
-	name = "Mr. Fluff"
-	desc = "Central's beloved pet mothroach, Mr. Fluff. He looks so happy to be here!"
+	name = "绒绒先生"
+	desc = "森特拉尔心爱的宠物蛾蟑，绒绒先生。他看起来很高兴来到这里！"
 	icon = 'modular_zubbers/icons/mob/donator_pets.dmi'
 	icon_state = "mothroach"
 	starting_pet = /mob/living/basic/mothroach/mr_fluff

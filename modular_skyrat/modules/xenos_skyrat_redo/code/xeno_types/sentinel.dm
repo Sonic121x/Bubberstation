@@ -1,8 +1,8 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/sentinel
-	name = "alien sentinel"
-	desc = "An alien that'd be unremarkable if not for the bright coloring and visible acid glands that cover it."
+	name = "异形哨兵"
+	desc = "若不是鲜艳的体色和遍布身体的显眼酸腺，它看起来只是一只普通异形。"
 	caste = "sentinel"
 	maxHealth = 200
 	health = 200
@@ -28,8 +28,8 @@
 	add_movespeed_modifier(/datum/movespeed_modifier/alien_slow)
 
 /datum/action/cooldown/alien/acid/skyrat
-	name = "Spit Neurotoxin"
-	desc = "Spits neurotoxin at someone, exhausting them."
+	name = "喷吐神经毒素"
+	desc = "向目标喷吐神经毒素，使其精疲力竭。"
 	button_icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/xeno_actions.dmi'
 	button_icon_state = "neurospit_0"
 	plasma_cost = 40
@@ -38,7 +38,7 @@
 	/// You want it to be more like a shotgun style attack? Use this one and make acid_projectile null
 	var/acid_casing
 	/// Used in to_chat messages to the owner
-	var/projectile_name = "neurotoxin"
+	var/projectile_name = "神经毒素"
 	/// The base icon for the ability, so a red box can be put on it using _0 or _1
 	var/button_base_icon = "neurospit"
 	/// The sound that should be played when the xeno actually spits
@@ -54,7 +54,7 @@
 	if(!.)
 		return
 
-	to_chat(on_who, span_notice("You prepare your [projectile_name] gland. <B>Left-click to fire at a target!</B>"))
+	to_chat(on_who, span_notice("你的[projectile_name]腺已准备就绪。<B>左键点击目标即可发射！</B>"))
 
 	button_icon_state = "[button_base_icon]_1"
 	build_all_button_icons()
@@ -66,7 +66,7 @@
 		return
 
 	if(refund_cooldown)
-		to_chat(on_who, span_notice("You empty your [projectile_name] gland."))
+		to_chat(on_who, span_notice("你排空了[projectile_name]腺。"))
 
 	button_icon_state = "[button_base_icon]_0"
 	build_all_button_icons()
@@ -85,8 +85,8 @@
 
 	var/modifiers = params2list(params)
 	clicker.visible_message(
-		span_danger("[clicker] spits [projectile_name]!"),
-		span_alertalien("You spit [projectile_name]."),
+		span_danger("[clicker]喷出[projectile_name]！"),
+		span_alertalien("你喷出了[projectile_name]。"),
 	)
 
 	if(acid_projectile)
@@ -111,7 +111,7 @@
 	return TRUE
 
 /obj/projectile/neurotoxin/skyrat
-	name = "neurotoxin spit"
+	name = "神经毒素液团"
 	icon_state = "neurotoxin"
 	damage = 30
 	paralyze = 0
@@ -124,22 +124,22 @@
 	return ..()
 
 /datum/action/cooldown/alien/acid/skyrat/lethal
-	name = "Spit Acid"
-	desc = "Spits neurotoxin at someone, burning them."
+	name = "喷吐酸液"
+	desc = "向目标喷吐酸液，造成灼伤。"
 	acid_projectile = /obj/projectile/neurotoxin/skyrat/acid
 	button_icon_state = "acidspit_0"
-	projectile_name = "acid"
+	projectile_name = "酸液"
 	button_base_icon = "acidspit"
 
 /obj/projectile/neurotoxin/skyrat/acid
-	name = "acid spit"
+	name = "酸液团"
 	icon_state = "toxin"
 	damage = 20
 	paralyze = 0
 	damage_type = BURN
 
 /obj/item/organ/alien/neurotoxin/sentinel
-	name = "neurotoxin gland"
+	name = "神经毒素腺"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_XENO_NEUROTOXINGLAND

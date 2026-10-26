@@ -34,8 +34,8 @@
 // Hats
 
 /obj/item/clothing/head/helmet/cin_surplus_helmet
-	name = "\improper GZ-03 combat helmet"
-	desc = "An outdated service helmet previously used by CIN military forces. The design dates back to the years leading up to CIN - TerraGov border war, and was in service until the advent of VOSKHOD powered armor becoming standard issue."
+	name = "\improper GZ-03战斗头盔"
+	desc = "CIN军队曾经使用的老式制式头盔。其设计可追溯至CIN与地球政府边境战争前的岁月，一直服役到旭日动力装甲成为标准装备为止。"
 	icon = 'icons/map_icons/clothing/head/_head.dmi'
 	icon_state = "/obj/item/clothing/head/helmet/cin_surplus_helmet"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
@@ -75,14 +75,14 @@
 /obj/item/clothing/head/helmet/cin_surplus_helmet/examine_more(mob/user)
 	. = ..()
 
-	. += "The GZ-03 series of coalition armor was a collaborative project between the PSC and TransOrbital \
-		to develop a frontline soldier's armor set that could withstand attacks from the Terran Government's \
-		then relatively new pulse ballistics. The design itself is based upon a far older pattern \
-		of armor originally developed by TerraGov themselves, which was the standard pattern of armor design \
-		granted to the first colony ships leaving Sol. Armor older than any of the CIN member states, \
-		upgraded with modern technology. This helmet in particular encloses the entire head save for \
-		the face, and should come with a glass visor and relatively comfortable internal padding. Should, \
-		anyways, surplus units such as this are infamous for arriving with several missing accessories."
+	. += "GZ-03系列联盟装甲是泛斯拉夫联邦与跨轨公司合作开发的项目，\
+		旨在为前线士兵提供能够抵挡地球政府当时较为新式的\
+		脉冲弹道武器攻击的全套护甲。其设计源自一种更古老的\
+		护甲款式，最初由地球政府自行研制，并作为标准护甲设计\
+		配发给首批离开太阳系的殖民船。这款护甲比任何CIN成员国都古老，\
+		如今通过现代技术加以升级。此款头盔包覆除面部以外的整个头部，\
+		理应配有玻璃面罩和较为舒适的内衬。只是理应如此，\
+		像这样的军剩装备向来因到货时缺少多件配件而臭名昭著。"
 
 	return .
 
@@ -116,8 +116,8 @@
 // Undersuits
 
 /obj/item/clothing/under/syndicate/rus_army/cin_surplus
-	name = "\improper CIN combat uniform"
-	desc = "A CIN designed combat uniform that can come in any number of camouflauge variations. Despite this particular design being developed in the years leading up to the CIN-TerraGov border war, the uniform is still in use by many member states to this day."
+	name = "\improper CIN作战服"
+	desc = "由CIN设计的作战服，拥有多种迷彩样式。虽然这款设计诞生于CIN与地球政府边境战争前的岁月，但时至今日仍有许多成员国使用。"
 	icon = 'icons/map_icons/clothing/under/_under.dmi'
 	icon_state = "/obj/item/clothing/under/syndicate/rus_army/cin_surplus"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
@@ -156,8 +156,8 @@
 // Vests
 
 /obj/item/clothing/suit/armor/vest/cin_surplus_vest
-	name = "\improper GZ-03 armor vest"
-	desc = "An outdated armor vest previously used by CIN military forces. The design dates back to the years leading up to CIN - TerraGov border war, and was in service until the advent of VOSKHOD powered armor becoming standard issue."
+	name = "\improper GZ-03防弹背心"
+	desc = "CIN军队曾经使用的老式防弹背心。其设计可追溯至CIN与地球政府边境战争前的岁月，一直服役到旭日动力装甲成为标准装备为止。"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor.dmi'
 	icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
 	icon_state = "vest_basic"
@@ -183,22 +183,22 @@
 /obj/item/clothing/suit/armor/vest/cin_surplus_vest/examine_more(mob/user)
 	. = ..()
 
-	. += "The GZ-03 series of coalition armor was a collaborative project between the PSC and TransOrbital \
-		to develop a frontline soldier's armor set that could withstand attacks from the Terran Government's \
-		then relatively new pulse ballistics. The design itself is based upon a far older pattern \
-		of armor originally developed by TerraGov themselves, which was the standard pattern of armor design \
-		granted to the first colony ships leaving Sol. Armor older than any of the CIN member states, \
-		upgraded with modern technology. This vest in particular is made up of several large, dense plates \
-		front and back. While vests like this were also produced with extra plating to protect the groin, many \
-		surplus vests are missing them due to the popularity of removing the plates and using them as seating \
-		during wartime."
+	. += "GZ-03系列联盟装甲是泛斯拉夫联邦与跨轨公司合作开发的项目，\
+		旨在为前线士兵提供能够抵挡地球政府当时较为新式的\
+		脉冲弹道武器攻击的全套护甲。其设计源自一种更古老的\
+		护甲款式，最初由地球政府自行研制，并作为标准护甲设计\
+		配发给首批离开太阳系的殖民船。这款护甲比任何CIN成员国都古老，\
+		如今通过现代技术加以升级。此款背心的前后都装有数块厚重致密的装甲板。\
+		虽然这类背心出厂时也配有保护腹股沟的附加装甲板，但许多\
+		军剩背心都缺少这部分，因为士兵在战时习惯将其拆下\
+		充当坐垫。"
 
 	return .
 
 // Chest Rig
 
 /obj/item/storage/belt/military/cin_surplus
-	desc = "A tactical webbing often used by the CIN's military forces."
+	desc = "CIN军队常用的战术挂带。"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/storage/belt/military/cin_surplus"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'
@@ -238,8 +238,8 @@
 // Backpack
 
 /obj/item/storage/backpack/industrial/cin_surplus
-	name = "\improper CIN military backpack"
-	desc = "A rugged backpack often used by the CIN's military forces."
+	name = "\improper CIN军用背包"
+	desc = "CIN军队常用的结实背包。"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/storage/backpack/industrial/cin_surplus"
 	worn_icon = 'modular_skyrat/modules/novaya_ert/icons/surplus_armor/surplus_armor_object.dmi'

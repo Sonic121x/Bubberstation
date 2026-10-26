@@ -26,4 +26,4 @@ GLOBAL_LIST_INIT(traitor_objective_weights, list(
 	return gimmick_objective
 
 /datum/objective/jailbreak
-	name = "help escape" // This was confusing, and it's not an actual jailbreak
+	name = "协助逃脱" // This was confusing, and it's not an actual jailbreak

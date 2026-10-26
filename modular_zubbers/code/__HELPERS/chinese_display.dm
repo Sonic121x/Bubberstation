@@ -86,7 +86,7 @@
 		"Tamper" = "防拆保护",
 		"Factory Reset" = "恢复出厂设置",
 	)
-	return display_names[wire_name] || wire_name
+	return display_names[wire_name] || chinese_zubbers_wire_display(wire_name)
 
 /// Localize channel labels at display boundaries without changing radio routing keys.
 /proc/chinese_radio_channel_display(channel_name)

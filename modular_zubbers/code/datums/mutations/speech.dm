@@ -1,11 +1,11 @@
 /datum/mutation/uwu
-	name = "Uwuification"
-	desc = "A mutation that causes the afflicted to speak in an overly cutesy manner."
+	name = "卖萌化"
+	desc = "一种让受影响者说话过分可爱的突变。"
 	locked = TRUE
 	instability = NEGATIVE_STABILITY_MINI
 	quality = MINOR_NEGATIVE
-	text_gain_indication = span_notice("You feel like nya-ing...")
-	text_lose_indication = span_notice("The need to nya passes.")
+	text_gain_indication = span_notice("你想喵一声……")
+	text_lose_indication = span_notice("想喵叫的冲动消失了。")
 	var/static/list/language_mutilation = list(
 		"r" = "w",
 		"l" = "w",

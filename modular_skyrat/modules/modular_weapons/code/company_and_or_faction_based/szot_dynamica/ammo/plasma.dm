@@ -10,7 +10,7 @@
 	AddElement(/datum/element/caseless)
 
 /obj/projectile/beam/laser/plasma_glob
-	name = "plasma globule"
+	name = "等离子团"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "plasma_glob"
 	damage = 10
@@ -21,6 +21,6 @@
 	weak_against_armour = TRUE
 
 /obj/projectile/beam/laser/plasma_glob/supercharged
-	name = "overcharged plasma globule"
+	name = "过载等离子团"
 	icon_state = "plasma_glob_super"
 	weak_against_armour = FALSE

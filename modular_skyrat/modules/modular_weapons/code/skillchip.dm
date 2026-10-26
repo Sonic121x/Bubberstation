@@ -1,9 +1,9 @@
 /obj/item/skillchip/chameleon/reload
-	name = "T.A.C.T.I.C00L skillchip"
-	desc = "If used, allows the user to perform tactical and instant reloads on all weapons with a magazine."
+	name = "战术酷炫技能芯片"
+	desc = "使用后可对所有采用弹匣的武器进行瞬间战术换弹。"
 	auto_traits = list(TRAIT_INSTANT_RELOAD)
-	skill_name = "Tactical Reloading"
-	skill_description = "Fine tune motor skills when performing reloads on weapons to reduce time taken."
+	skill_name = "战术换弹"
+	skill_description = "精细调整换弹时的动作技巧，以缩短所需时间。"
 	skill_icon = "sitemap"
-	activate_message = span_notice("You suddenly learn the art of tactical reloading.")
-	deactivate_message = span_danger("You suddenly lose the ability to tactically reload.")
+	activate_message = span_notice("你突然领悟了战术换弹的技巧。")
+	deactivate_message = span_danger("你突然失去了战术换弹的能力。")

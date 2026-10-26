@@ -3,7 +3,7 @@
 	spawn_loot_split_pixel_offsets = 4
 
 /obj/effect/spawner/random/armory/barrier_grenades
-	name = "barrier grenade spawner"
+	name = "屏障手榴弹生成器"
 	icon_state = "barrier_grenade"
 	loot = list(/obj/item/grenade/barrier)
 	spawn_loot_count = 3

@@ -1,6 +1,6 @@
 /datum/job/barber
 	title = JOB_BARBER
-	description = "Run your salon and meet the crews sanitary needs, such as hair cutting, massaging and more!"
+	description = "经营你的沙龙，提供理发、按摩等服务，满足船员的个人护理需求！"
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -35,7 +35,7 @@
 	)
 
 /datum/outfit/job/barber
-	name = "Barber"
+	name = "理发师"
 	jobtype = /datum/job/barber
 
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -46,7 +46,7 @@
 	id_trim = /datum/id_trim/job/barber
 
 /obj/structure/closet/secure_closet/barber
-	name = "barber's locker"
+	name = "理发师储物柜"
 	icon_state = "barber"
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	req_access = list(ACCESS_BARBER)

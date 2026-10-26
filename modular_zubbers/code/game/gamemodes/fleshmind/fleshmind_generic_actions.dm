@@ -1,6 +1,6 @@
 /datum/action/cooldown/fleshmind_create_structure
-	name = "Create Tech Structure"
-	desc = "Creates a tech structure of your choice at your location(must be on wireweed)."
+	name = "制造科技结构"
+	desc = "在当前位置制造选定的科技结构（必须站在线缆蔓上）。"
 	background_icon_state = "bg_fugu"
 	button_icon = 'icons/obj/scrolls.dmi'
 	button_icon_state = "blueprints"
@@ -16,7 +16,7 @@
 /datum/action/cooldown/fleshmind_create_structure/Activate(atom/target)
 	var/datum/component/human_corruption/our_component = owner.GetComponent(/datum/component/human_corruption)
 	if(!our_component?.our_controller)
-		to_chat(owner, span_warning("There is no hive link to tunnel this power through!"))
+		to_chat(owner, span_warning("没有可供传递这股力量的集群链接！"))
 		return
 	var/datum/fleshmind_controller/owner_controller = our_component.our_controller
 
@@ -28,19 +28,19 @@
 		return
 	var/obj/structure/fleshmind/wireweed/under_wireweed = locate() in get_turf(owner)
 	if(!under_wireweed)
-		to_chat(owner, span_warning("There needs to be wireweed underneath you!"))
+		to_chat(owner, span_warning("你的脚下必须有线缆蔓！"))
 		return
 	if(QDELETED(owner_controller)) // Input is not async
 		return
 	if(initial(picked_stucture_type.required_controller_level) > owner_controller.level)
-		to_chat(owner, span_warning("Our processor core is not strong enough yet!"))
+		to_chat(owner, span_warning("我们的处理器核心还不够强大！"))
 		return
 	owner_controller.spawn_structure(get_turf(owner), picked_stucture_type)
 	StartCooldownSelf()
 
 /datum/action/cooldown/fleshmind_create_structure/basic
-	name = "Create Basic Structure"
-	desc = "Creates a basic structure of your choice at your location(must be on wireweed)."
+	name = "制造基础结构"
+	desc = "在当前位置制造选定的基础结构（必须站在线缆蔓上）。"
 	button_icon_state = "mjollnir1"
 	button_icon = 'icons/obj/weapons/hammer.dmi'
 	possible_structures = list(
@@ -50,8 +50,8 @@
 	cooldown_time = 5 SECONDS
 
 /datum/action/cooldown/fleshmind_flesh_call
-	name = "Call Flesh Reinforcements"
-	desc = "Gets all fleshmind mobs to come to your location in a radius."
+	name = "呼叫血肉援军"
+	desc = "召集一定范围内的所有血肉心智生物来到你身边。"
 	background_icon_state = "bg_fugu"
 	button_icon = 'icons/obj/signs.dmi'
 	button_icon_state = "bio"
@@ -62,29 +62,29 @@
 		if(iterating_mob.faction_check_atom(owner.get_faction(), iterating_mob))
 			continue
 		iterating_mob.ai_controller.set_blackboard_key(BB_BASIC_MOB_REINFORCEMENT_TARGET, owner.loc)
-	owner.visible_message(span_warning("[owner] lets out a horrible screech!"), span_notice("You let out a calling screech!"))
+	owner.visible_message(span_warning("[owner]发出一声可怕的尖啸！"), span_notice("你发出了召集同伴的尖啸！"))
 	playsound(owner, 'modular_skyrat/modules/horrorform/sound/horror_scream.ogg', 100, TRUE)
 	StartCooldownSelf()
 
 /datum/action/innate/fleshmind_flesh_chat
-	name = "Flesh Chat"
-	desc = "Sends a message to all other sentient fleshmind beings."
+	name = "血肉交流"
+	desc = "向所有其他有意识的血肉心智成员发送消息。"
 	background_icon_state = "bg_fugu"
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "hivemind_link"
 
 /datum/action/innate/fleshmind_flesh_chat/Activate(atom/target)
-	var/message = tgui_input_text(owner, "Send a message to the fleshmind.", "Flesh Chat")
+	var/message = tgui_input_text(owner, "向血肉心智发送消息。", "血肉交流")
 	if(!message)
 		return
 	for(var/mob/iterating_mob in GLOB.player_list)
 		if(!(iterating_mob.has_faction(FACTION_FLESHMIND)) && !isobserver(iterating_mob))
 			continue
-		to_chat(iterating_mob, span_purple("<b>FLESHMIND ([owner]):</b> [message]"))
+		to_chat(iterating_mob, span_purple("<b>血肉心智（[owner]）：</b>[message]"))
 
 /datum/action/cooldown/fleshmind_plant_weeds
-	name = "Create Wireweed"
-	desc = "Creates a single patch of wireweed at your location."
+	name = "种植线缆蔓"
+	desc = "在当前位置生长出一片线缆蔓。"
 	button_icon = 'modular_zubbers/icons/fleshmind/fleshmind_structures.dmi'
 	background_icon_state = "bg_fugu"
 	button_icon_state = "wires-0"
@@ -93,13 +93,13 @@
 /datum/action/cooldown/fleshmind_plant_weeds/Activate(atom/target)
 	var/datum/component/human_corruption/our_component = owner.GetComponent(/datum/component/human_corruption)
 	if(!our_component?.our_controller)
-		to_chat(owner, span_warning("There is no hive link to tunnel this power through!"))
+		to_chat(owner, span_warning("没有可供传递这股力量的集群链接！"))
 		return
 	var/datum/fleshmind_controller/owner_controller = our_component.our_controller
 	var/obj/structure/fleshmind/wireweed/under_wireweed = locate() in get_turf(owner)
 	if(under_wireweed)
-		to_chat(owner, span_warning("There is already wireweed beneath you!"))
+		to_chat(owner, span_warning("你的脚下已经有线缆蔓了！"))
 		return
 	owner_controller.spawn_wireweed(get_turf(owner), /obj/structure/fleshmind/wireweed)
-	to_chat(owner, span_green("Wireweed planted!"))
+	to_chat(owner, span_green("已种植线缆蔓！"))
 	StartCooldownSelf()

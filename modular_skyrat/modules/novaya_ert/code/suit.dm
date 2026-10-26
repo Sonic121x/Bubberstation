@@ -9,8 +9,8 @@
 #define NRI_BLOOD_REPLENISHMENT 20
 
 /obj/item/clothing/suit/space/hev_suit/nri
-	name = "\improper VOSKHOD powered combat armor"
-	desc = "A hybrid set of space-resistant armor built on a modified mass-produced Nomex-Aerogel flight suit, polyurea coated durathread-lined light plasteel plates hinder mobility as little as possible while the onboard life support system aids the user in combat. The power cell is what makes the armor work without hassle, a sticker in the power supply unit warns anyone reading to responsibly manage battery levels."
+	name = "\improper 旭日动力战斗装甲"
+	desc = "一套以改良量产诺梅克斯芳纶-气凝胶飞行服为基础的混合式太空防护装甲。带聚脲涂层和耐久纤维衬里的轻型塑钢板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/suits/spacesuit_digi.dmi'
@@ -36,7 +36,7 @@
 	health_static_cooldown = NRI_COOLDOWN_HEAL
 	rads_static_cooldown = NRI_COOLDOWN_RADS
 	acid_static_cooldown = NRI_COOLDOWN_ACID
-	suit_name = "VOSKHOD"
+	suit_name = "旭日"
 	first_use = FALSE //No nice song.
 
 
@@ -66,32 +66,32 @@
 	consume = 40
 
 /datum/action/item_action/hev_toggle/nri
-	name = "Toggle VOSKHOD Suit"
+	name = "切换旭日装甲"
 	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	button_icon_state = "system_off"
 	background_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	background_icon_state = "bg_nri"
 
 /datum/action/item_action/hev_toggle_notifs/nri
-	name = "Toggle VOSKHOD Suit Notifications"
+	name = "切换旭日装甲通知"
 	button_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	button_icon_state = "sound_VOICE_AND_TEXT"
 	background_icon = 'modular_skyrat/modules/novaya_ert/icons/toggles.dmi'
 	background_icon_state = "bg_nri"
 
 /obj/item/clothing/suit/space/hev_suit/nri/captain
-	name = "\improper VOSKHOD-2 powered combat armor"
-	desc = "A unique hybrid set of space-resistant armor made for high-ranking NRI operatives, built on a proprietary durathread padded, Akulan made Larr'Takh silk utility uniform. Polyurea coated hexagraphene-lined plastitanium plates hinder mobility as little as possible while the onboard life support system aids the user in combat. The power cell is what makes the armor work without hassle, a sticker in the power supply unit warns anyone reading to responsibly manage battery levels."
+	name = "\improper 旭日-2动力战斗装甲"
+	desc = "一套为新俄罗斯帝国高级人员打造的独特混合式太空防护装甲，以阿库拉制造、采用专有耐久纤维衬垫的拉尔塔克丝绸工作服为基础。带聚脲涂层和六角石墨烯衬里的塑钛板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon_state = "nri_captain"
 
 /obj/item/clothing/suit/space/hev_suit/nri/medic
-	name = "\improper VOSKHOD-KH powered combat armor"
-	desc = "A hybrid set of space-resistant armor built on a modified mass-produced Dipolyester-Aerogel surgeon field jumpsuit, polyurea coated titanium plates hinder mobility as little as possible while the onboard life support system aids the user in combat and provides additional medical functions. The power cell is what makes the armor work without hassle, a sticker in the power supply unit warns anyone reading to responsibly manage battery levels."
+	name = "\improper 旭日-KH动力战斗装甲"
+	desc = "一套以改良量产双聚酯-气凝胶野战手术连体服为基础的混合式太空防护装甲。聚脲涂层钛板尽量减少对机动性的影响，内置生命支持系统则辅助使用者作战并提供额外医疗功能。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon_state = "nri_medic"
 
 /obj/item/clothing/suit/space/hev_suit/nri/engineer
-	name = "\improper VOSKHOD-IN powered combat armor"
-	desc = "A hybrid set of space-resistant armor built on a modified Nanotrasen heavy-duty engineering undersuit, polyurea coated lead-lined light plasteel plates hinder mobility as little as possible and offer additional radiation protection while the onboard life support system aids the user in combat. The power cell is what makes the armor work without hassle, a sticker in the power supply unit warns anyone reading to responsibly manage battery levels."
+	name = "\improper 旭日-IN动力战斗装甲"
+	desc = "一套以改良纳米传讯重型工程内衬服为基础的混合式太空防护装甲。带聚脲涂层和铅衬里的轻型塑钢板尽量减少对机动性的影响，并提供额外辐射防护，内置生命支持系统则辅助使用者作战。电池让装甲运作顺畅，供电单元上的贴纸提醒使用者妥善管理电量。"
 	icon_state = "nri_engineer"
 
 #undef NRI_POWERUSE_HIT

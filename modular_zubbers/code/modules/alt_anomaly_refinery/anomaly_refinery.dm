@@ -2,16 +2,16 @@
 #define REFINERY_ANOMALY_POWER_REQUIREMENT (1.21 MEGA WATTS) //This is NOT active power use. This is the amount of power it uses for a second when a bomb is detonated. This is about the same a stable SM generates in a second.
 
 /obj/machinery/research/anomaly_refinery
-	desc = "An advanced machine equipped with state of the art bomb prediction software that's capable of implosion-compressing raw anomaly cores into finished artifacts. \
-	Comes with a built-in stabilization and sound-supressant field that consumes a lot of power to prevent obnoxious shaking and sounds heard station-wide, as not to wake up any dorms users."
+	desc = "配备尖端炸弹预测软件的先进机器，能够通过内爆将原始异常核心压缩为成品。\
+	内置耗电量巨大的稳定与消音力场，以免震动和噪声传遍全站，吵醒宿舍里的人。"
 	var/requirement_timer
 	var/requirement_mod = 0 //0 to 100. Decreases by 1 every 5 seconds. Increased by 40 after a test.
 
 /obj/machinery/research/anomaly_refinery/examine(mob/user)
 	. = ..()
-	. += span_notice("Usage of the machine will increase the bomb range requirement for the next experiment.")
-	. += span_notice("Requires <b>[display_power(REFINERY_ANOMALY_POWER_REQUIREMENT)]</b> of power in the network to use.")
-	. += span_notice("Each core refinement takes <b>[DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)]</b> to complete.")
+	. += span_notice("使用这台机器会提高下一次实验所需的爆炸范围。")
+	. += span_notice("使用时需要电网提供<b>[display_power(REFINERY_ANOMALY_POWER_REQUIREMENT)]</b>的功率。")
+	. += span_notice("每次核心精炼需要<b>[DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)]</b>完成。")
 
 /obj/machinery/research/anomaly_refinery/get_required_radius(anomaly_type)
 	. = ..()
@@ -22,27 +22,27 @@
 /obj/machinery/research/anomaly_refinery/start_test()
 
 	if(active)
-		say("ERROR: Already running a compression test.")
+		say("错误：压缩测试已在进行中。")
 		return
 
 	if(!istype(inserted_core) || !istype(inserted_bomb))
-		end_test("ERROR: Missing equipment. Items ejected.")
+		end_test("错误：设备缺失。物品已弹出。")
 		return
 
 	if(!inserted_bomb?.tank_one || !inserted_bomb?.tank_two || !(tank_to_target == inserted_bomb?.tank_one || tank_to_target == inserted_bomb?.tank_two))
-		end_test("ERROR: Transfer valve malfunctioning. Items ejected.")
+		end_test("错误：转移阀故障。物品已弹出。")
 		return
 
 	if(!use_power_from_net(REFINERY_ANOMALY_POWER_REQUIREMENT))
-		say("ERROR: Not enough power in network to safely compress the core.")
+		say("错误：电网供电不足，无法安全压缩核心。")
 		return
 
-	say("Beginning compression test. Opening transfer valve.")
+	say("开始压缩测试。正在打开转移阀。")
 	active = TRUE
 	test_status = null
 
 	if (obj_flags & EMAGGED)
-		say("ERROR: An firmware issue was detected while starting a process. Running autopatcher.")
+		say("错误：启动过程中检测到固件问题。正在运行自动修补程序。")
 		playsound(src, 'sound/machines/ding.ogg', 50, vary = TRUE)
 		addtimer(CALLBACK(src, PROC_REF(error_test)), 2 SECONDS, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_NO_HASH_WAIT) // Synced with the sound.
 		return
@@ -54,7 +54,7 @@
 	timeout_timer = addtimer(CALLBACK(src, PROC_REF(timeout_test)), REFINERY_ANOMALY_REFINEMENT_TIME, TIMER_STOPPABLE | TIMER_UNIQUE | TIMER_DELETE_ME | TIMER_NO_HASH_WAIT)
 	requirement_timer = addtimer(CALLBACK(src, PROC_REF(remove_requirement)), 5 SECONDS, TIMER_UNIQUE | TIMER_STOPPABLE | TIMER_DELETE_ME | TIMER_NO_HASH_WAIT | TIMER_LOOP)
 
-	say("Refining core. ETA [DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)] until core refinement completion.")
+	say("正在精炼核心。预计[DisplayTimeText(REFINERY_ANOMALY_REFINEMENT_TIME,1)]后完成。")
 
 	playsound(
 		src,
@@ -76,14 +76,14 @@
 			pick('modular_zubbers/sound/arcade/minesweeper_boardpress.ogg'),
 			50
 		)
-		say("Anomaly stability now at 100% optimization.")
+		say("异常稳定性现已达到100%优化。")
 
 /obj/machinery/research/anomaly_refinery/check_test(atom/source, list/arguments)
 
 	. = COMSIG_CANCEL_EXPLOSION
 
 	if(!inserted_core)
-		test_status = "ERROR: No core present during detonation."
+		test_status = "错误：引爆时未检测到核心。"
 		playsound(
 			src,
 			pick('modular_zubbers/sound/arcade/minesweeper_winfail.ogg'),
@@ -101,7 +101,7 @@
 	SSexplosions.shake_the_room(get_turf(src), capped_explosion_range*0.25, capped_explosion_range, capped_explosion_range*0.25, capped_explosion_range*0.25)
 
 	if(explosion_range < required_range)
-		test_status = "Resultant detonation failed to produce enough implosive power to compress [inserted_core]. Items ejected."
+		test_status = "爆炸产生的内爆威力不足，无法压缩[inserted_core]。物品已弹出。"
 		playsound(
 			src,
 			pick('modular_zubbers/sound/arcade/minesweeper_winfail.ogg'),
@@ -118,7 +118,7 @@
 		return
 
 	inserted_core = inserted_core.create_core(src, TRUE, TRUE)
-	test_status = "Success. Resultant detonation has theoretical range of [explosion_range]. Required radius was [required_range]. Core production complete."
+	test_status = "成功。此次爆炸的理论范围为[explosion_range]，所需半径为[required_range]。核心生产完成。"
 
 	playsound(
 		src,

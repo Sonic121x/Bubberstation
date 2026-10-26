@@ -28,30 +28,30 @@
 
 //shit for effects
 /datum/mood_event/stoned
-	description = span_nicegreen("You're totally baked right now...\n")
+	description = span_nicegreen("你现在彻底嗨了……\n")
 	mood_change = 6
 	timeout = 3 MINUTES
 
 /atom/movable/screen/alert/stoned
-	name = "Stoned"
-	desc = "You're stoned out of your mind! Woaaahh..."
+	name = "迷醉"
+	desc = "你嗨得神志不清了！哇哦……"
 	icon_state = "high"
 
 //the reagent itself
 /datum/reagent/drug/thc
-	name = "THC"
-	description = "A chemical found in cannabis that serves as its main psychoactive component."
+	name = "四氢大麻酚（THC）"
+	description = "存在于大麻中的化学物质，是其主要的精神活性成分。"
 	color = "#cfa40c"
 	overdose_threshold = 30 //just gives funny effects, but doesnt hurt you; thc has no actual known overdose
 	ph = 6
-	taste_description = "skunk"
+	taste_description = "臭鼬味"
 
 /datum/reagent/drug/thc/concentrated
-	name = "Concentrated THC"
-	description = "TCH in pure concentrated form"
+	name = "浓缩四氢大麻酚"
+	description = "纯净浓缩形态的四氢大麻酚。"
 
 /datum/reagent/drug/thc/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
-	var/high_message = pick("You feel relaxed.", "You feel fucked up.", "You feel totally wrecked...")
+	var/high_message = pick("你感到很放松。", "你觉得自己嗨得不行。", "你觉得自己彻底瘫软了……")
 	if(M.hud_used!=null)
 		var/atom/movable/plane_master_controller/game_plane_master_controller = M.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 		game_plane_master_controller.add_filter("weed_blur", 10, angular_blur_filter(0, 0, 0.45))
@@ -75,7 +75,7 @@
 	M.sound_environment_override = SOUND_ENVIRONMENT_NONE
 
 /datum/reagent/drug/thc/overdose_process(mob/living/M, seconds_per_tick, times_fired)
-	var/cg420_message = pick("It's major...", "Oh my goodness...",)
+	var/cg420_message = pick("这可太猛了……", "我的天哪……",)
 	if(SPT_PROB(1.5, seconds_per_tick))
 		M.say("[cg420_message]")
 	M.adjust_drowsiness(0.2 SECONDS * REM * normalise_creation_purity() * seconds_per_tick)
@@ -85,6 +85,6 @@
 	. = TRUE
 
 /datum/reagent/drug/thc/hash //only exists to generate hash object
-	name = "hashish"
-	description = "Concentrated cannabis extract. Delivers a much better high when used in a bong."
+	name = "大麻脂"
+	description = "浓缩的大麻提取物，用水烟壶吸食时效果更强。"
 	color = "#cfa40c"

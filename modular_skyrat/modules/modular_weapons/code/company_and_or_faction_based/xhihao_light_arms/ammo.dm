@@ -3,10 +3,10 @@
 */
 
 /obj/item/ammo_casing/strilka310/ap
-	name = ".310 Strilka armor-piercing bullet casing"
-	desc = "A .310 armor-piercing bullet casing. Note, does not actually contain a casing.\
+	name = ".310飞箭穿甲弹"
+	desc = "一发.310穿甲弹。注意，它实际上没有弹壳。\
 	<br><br>\
-	<i>ARMOR-PIERCING: Improved armor-piercing capabilities, in return for less outright damage.</i>"
+	<i>穿甲：以降低直接伤害为代价，提高护甲穿透能力。</i>"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/xhihao_light_arms/ammo.dmi'
 	icon_state = "310-casing-ap"
@@ -16,6 +16,6 @@
 	can_be_printed = FALSE
 
 /obj/projectile/bullet/strilka310/ap
-	name = ".310 armor-piercing bullet"
+	name = ".310穿甲子弹"
 	damage = 50
 	armour_penetration = 60

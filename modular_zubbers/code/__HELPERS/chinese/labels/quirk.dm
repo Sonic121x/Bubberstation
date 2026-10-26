@@ -1,4 +1,6 @@
 /proc/chinese_quirk_display(value)
+	if(value == "Ration Ticket Receiver")
+		return "配给券领取者"
 	var/static/list/display_names
 	if(isnull(display_names))
 		display_names = list(
@@ -103,7 +105,7 @@
 	)
 	if(istext(value) && findtextEx(value, "Extreme ") == 1 && endswith(value, " Allergies"))
 		return "严重过敏：[copytext_char(value, 9, -10)]"
-	return display_names[value] || value
+	return display_names[value] || chinese_batch_ten_quirk_display(chinese_skyrat_items_quirk_display(chinese_zubbers_quirk_display(value)))
 
 /proc/chinese_quirk_location_display(value)
 	switch(value)

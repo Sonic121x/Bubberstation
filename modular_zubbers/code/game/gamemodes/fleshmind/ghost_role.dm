@@ -12,7 +12,7 @@
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	ui_name = "AntagInfoWirePriest"
-	suicide_cry = "FOR THE FLESHMIND!!"
+	suicide_cry = "为了血肉心智！！"
 	var/datum/outfit/outfit = /datum/outfit/wire_priest
 	var/datum/fleshmind_controller/brain_jack
 	var/initial_pass_flags
@@ -56,7 +56,7 @@
 	earliest_start = 30 MINUTES
 	min_players = 35
 	category = EVENT_CATEGORY_INVASION
-	description = "A Wire Priest that works to spread the wireweed currently invading the station."
+	description = "一名致力于传播入侵空间站的线缆蔓的线缆祭司。"
 	tags = list(TAG_COMBAT, TAG_OUTSIDER_ANTAG)
 	track = EVENT_TRACK_GHOSTSET
 
@@ -87,7 +87,7 @@
 	priest.mind.add_antag_datum(priest_datum)
 	spawned_mobs += priest
 
-	message_admins("[ADMIN_LOOKUPFLW(priest)] has been made into a Wire Priest by an event.")
+	message_admins("事件将[ADMIN_LOOKUPFLW(priest)]转变为线缆祭司。")
 	priest.log_message("was spawned as a Wire Priest by an event.", LOG_GAME)
 
 	return SUCCESSFUL_SPAWN
@@ -95,7 +95,7 @@
 /datum/round_event/ghost_role/wire_priest
 	minimum_required = 1
 	fakeable = FALSE
-	role_name = "Wire Priest"
+	role_name = "线缆祭司"
 
 /datum/antagonist/wire_priest/proc/equip_wire_priest()
 	var/mob/living/carbon/human/priest = owner.current
@@ -107,7 +107,7 @@
 
 // OUTFIT
 /datum/outfit/wire_priest
-	name = "Wire Priest"
+	name = "线缆祭司"
 
 	uniform = /obj/item/clothing/under/rank/rnd/roboticist
 	belt = /obj/item/storage/belt/utility/full

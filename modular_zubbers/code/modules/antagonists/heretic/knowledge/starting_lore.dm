@@ -8,9 +8,9 @@
 	drafting_cost = 0.5
 
 /datum/heretic_knowledge/enable_blades
-	name = "Khopesh Crafting"
-	desc = "Enables you to craft your path's blade. The blades are very robust and have good armor pen, but can't block and can NOT be used to teleport."
-	gain_text = "The time for subterfuge is over. The Light casts too much a shadow - I cannot hide anymore. Their eyes must be sown shut."
+	name = "镰剑锻造"
+	desc = "让你能够制作所属道路的刀刃。这些刀刃坚实强劲、穿甲能力出色，但无法格挡，也不能用于传送。"
+	gain_text = "藏匿的时日已经结束。光投下的阴影太过庞大——我已无处可藏。必须将他们的眼睛缝上。"
 	research_tree_icon_path = 'icons/obj/weapons/khopesh.dmi'
 	research_tree_icon_state = "eldritch_blade"
 	cost = 2
@@ -23,10 +23,10 @@
 	our_heretic.can_craft_blades = TRUE
 
 /datum/heretic_knowledge/mansus_mark
-	name = "Mansus Mark"
-	desc = "Enables your path's marking ability on mansus grasp. Your mark is a secondary ability caused by your mansus grasp, that, when triggered \
-	by your khopesh, causes a variety of effects to your victim."
-	gain_text = "The Mansus left a mark on me. I will leave one on them."
+	name = "漫宿印记"
+	desc = "为漫宿之握启用所属道路的标记能力。印记是漫宿之握附加的次级能力，\
+	当镰剑触发印记时，会对受害者造成各种效果。"
+	gain_text = "漫宿在我身上留下了印记。我也将在他们身上留下印记。"
 	research_tree_icon_path = 'icons/obj/weapons/hand.dmi'
 	research_tree_icon_state = "mansus"
 	cost = 2
@@ -44,7 +44,7 @@
 		return FALSE
 
 	if (!heretic.can_craft_blades)
-		loc.balloon_alert(user, "haven't researched blade crafting!")
+		loc.balloon_alert(user, "尚未研究刀刃锻造！")
 		return FALSE
 
 	return ..()

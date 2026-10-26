@@ -2,101 +2,101 @@
 
 GLOBAL_LIST_INIT(pp_transformables, list(
 	list(
-	name = "Common",
+	name = "常见",
 	color = "",
 	types = list(
 		list(
-			name = "Human",
+			name = "人类",
 			key = /mob/living/carbon/human
 			),
 		list(
-			name = "Monkey",
+			name = "猴子",
 			key = /mob/living/carbon/human/species/monkey
 			),
 		list(
-			name = "Cyborg",
+			name = "半机械人",
 			key = /mob/living/silicon/robot
 			)
 		)
 	),
 	list(
-	name = "Xenomorph",
+	name = "异形",
 	color = "purple",
 	types = list(
 		list(
-			name = "Larva",
+			name = "幼虫",
 			key = /mob/living/carbon/alien/larva
 			),
 		list(
-			name = "Drone",
+			name = "雄蜂",
 			key = /mob/living/carbon/alien/adult/drone
 			),
 		list(
-			name = "Hunter",
+			name = "猎手",
 			key = /mob/living/carbon/alien/adult/hunter
 			),
 		list(
-			name = "Sentinel",
+			name = "哨兵",
 			key = /mob/living/carbon/alien/adult/sentinel
 			),
 		list(
-			name = "Praetorian",
+			name = "禁卫",
 			key = /mob/living/carbon/alien/adult/royal/praetorian
 			),
 		list(
-			name = "Queen",
+			name = "女王",
 			key = /mob/living/carbon/alien/adult/royal/queen
 			)
 		)
 	),
 	list(
-	name = "Lavaland",
+	name = "熔岩星",
 	color = "orange",
 	types = list(
 		list(
-			name = "Goliath",
+			name = "歌利亚",
 			key = /mob/living/basic/mining/goliath
 			),
 		list(
-			name = "Legion",
+			name = "军团",
 			key = /mob/living/simple_animal/hostile/megafauna/legion/small
 			),
 		list(
-			name = "Blood-Drunk Miner",
+			name = "醉血矿工",
 			key = /mob/living/basic/boss/blood_drunk_miner
 			),
 		list(
-			name = "Gladiator",
+			name = "角斗士",
 			key = /mob/living/simple_animal/hostile/megafauna/gladiator
 			),
 		list(
-			name = "Dragon",
+			name = "巨龙",
 			key = /mob/living/simple_animal/hostile/megafauna/dragon
 			),
 		list(
-			name = "Legion Hivelord",
+			name = "军团巢主",
 			key = /mob/living/simple_animal/hostile/asteroid/elite/legionnaire
 			)
 		)
 	),
 	list(
-	name = "Cultist",
+	name = "血教徒",
 	color = "violet",
 	types = list(
 		list(
-			name = "Shade",
+			name = "暗影",
 			key = /mob/living/basic/shade
 			),
 		list(
-			name = "Artificer",
+			name = "工匠",
 			key = /mob/living/basic/construct/artificer
 			),
 		list(
-			name = "Wraith",
+			name = "怨灵",
 			key = /mob/living/basic/construct/wraith
 			),
 		list(
-			name = "Juggernaut",
+			name = "主宰",
 			key = /mob/living/basic/construct/juggernaut
 			)
 		)
@@ -111,14 +111,14 @@ GLOBAL_LIST_INIT(pp_transformables, list(
 		return
 
 	if(!ismob(selected_mob))
-		to_chat(usr, "This can only be used on instances of type /mob.")
+		to_chat(usr, "此功能只能对/mob类型的实例使用。")
 		return
 
 	if (!new_type_name)
 		new_type_name = new_type
 
-	log_admin("[key_name(usr)] transformed [key_name(selected_mob)] into a [new_type_name].")
-	message_admins(span_adminnotice("[key_name_admin(usr)] transformed [key_name_admin(selected_mob)] into a [new_type_name]."))
+	log_admin("[key_name(usr)]将[key_name(selected_mob)]变成了[new_type_name]。")
+	message_admins(span_adminnotice("[key_name_admin(usr)]将[key_name_admin(selected_mob)]变成了[new_type_name]。"))
 
 	var/mob/new_mob = selected_mob.change_mob_type(new_type, delete_old_mob = TRUE)
 

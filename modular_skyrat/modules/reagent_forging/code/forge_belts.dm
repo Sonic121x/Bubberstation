@@ -5,8 +5,8 @@
 //can't be a subtype of item/storage/belt/holster -- that can be suit storaged per \code\__DEFINES\inventory.dm
 //hip holsters SHOULDN'T be able to be suit storaged.
 /obj/item/storage/belt/holster/hip_holster
-	name = "hip holster"
-	desc = "you shouldn't be seeing this."
+	name = "腰侧枪套"
+	desc = "你不应该看到这个。"
 	abstract_type = /obj/item/storage/belt/holster/hip_holster
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "cowboy_holster"
@@ -36,7 +36,7 @@
 			noteworthy_contents += I
 
 	if(length(noteworthy_contents) > 0)
-		name = "[src::name] containing [english_list(noteworthy_contents)]"
+		name = "[src::name]（装有[jointext(noteworthy_contents, "、")]）"
 	else
 		name = src::name
 
@@ -60,8 +60,8 @@
 			return returner
 
 /obj/item/storage/belt/holster/hip_holster/cowboy
-	name = "quickdraw holster"
-	desc = "A rugged leather belt. Can carry a handgun; <b>the holster pouch makes it like reflex to draw your gun</b>. Also comes with some side pockets for speedloaders and magazines."
+	name = "快拔枪套"
+	desc = "一条坚固的皮腰带，可以携带手枪；<b>枪套袋让拔枪变得如同本能反应</b>。另附可存放速装器和弹匣的侧袋。"
 	icon_state = "cowboy_holster"
 	inhand_icon_state = "utility"
 	worn_icon_state = "utility"
@@ -117,8 +117,8 @@
 /////////////////////////////////////////////////
 
 /obj/item/storage/belt/holster/hip_holster/charging
-	name = "charging holster"
-	desc = "A sophisticated plastic holster belt. Bluespace tech allows it to store almost anything a standard weapon charger can; it can slowly charge that item."
+	name = "充电枪套"
+	desc = "一条精巧的塑料枪套腰带。蓝空间技术让它几乎能收纳标准武器充电器可容纳的任何物品，并缓慢为其充电。"
 	icon_state = "charger_belt"
 	inhand_icon_state = "security"
 	worn_icon_state = "security"
@@ -178,7 +178,7 @@
 	if(istype(to_insert, /obj/item/gun/energy))
 		var/obj/item/gun/energy/energy_gun = to_insert
 		if(!energy_gun.can_charge)
-			to_chat(user, span_notice("Your gun has no external power connector."))
+			to_chat(user, span_notice("你的枪没有外部电源接口。"))
 			return FALSE
 	. = ..()
 
@@ -197,8 +197,8 @@
 	deltimer(timer_id)
 
 /obj/machinery/recharger/belt_charger
-	name = "belt charger"
-	desc = "the fact that you can see this means there's an error, call a dev!"
+	name = "腰带充电器"
+	desc = "你能看到它就说明出了问题，请联系开发人员！"
 	recharge_coeff = 0.2
 	var/obj/item/storage/belt/holster/hip_holster/charging/my_belt
 
@@ -212,7 +212,7 @@
 
 /obj/machinery/recharger/belt_charger/proc/activate_with_item()
 	if(length(my_belt?.real_storage?.contents) > 0)
-		say("Charging...")
+		say("正在充电……")
 		charging = my_belt.real_storage.contents[1]
 		playsound(src, 'sound/machines/ping.ogg', 30, TRUE, frequency = 0.8)
 		START_PROCESSING(SSmachines, src)
@@ -230,7 +230,7 @@
 	charging.update_appearance()
 
 /obj/machinery/recharger/belt_charger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
-	to_chat(user, span_warning("You should insert the [tool] into the connected holster pouch, not the charging device itself!"))
+	to_chat(user, span_warning("你应该把 [tool] 放入连接的枪套袋，而不是充电装置本身！"))
 	return ITEM_INTERACT_BLOCKING
 
 ////////////////////////////////////////////////////////////////////////////
@@ -238,7 +238,7 @@
 ////////////////////////////////////////////////////////////////////////////
 /obj/item/storage/belt/sheath/hip_only
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
-	name = "debug belt"
+	name = "调试腰带"
 	icon_state = "crusader_belt"
 	actions_types = list()
 
@@ -252,8 +252,8 @@
 
 /obj/item/storage/belt/sheath/hip_only/crusader	//Belt + sheath combination - still only holds one sword at a time though
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	name = "scabbard-utility belt"
-	desc = "Holds an assortment of equipment for whatever situation an adventurer may encounter, as well as having an attached scabbard to hold a sword or bladed weapon."
+	name = "剑鞘工具腰带"
+	desc = "可存放冒险者应对各种情况所需的装备，还附有剑鞘，用于携带刀剑等利刃武器。"
 	icon_state = "crusader_belt"
 	worn_icon_state = "crusader_belt"
 	inhand_icon_state = "utility"
@@ -309,10 +309,10 @@
 		return
 	var/obj/item/storage/belt/storage_pouch/pouch = locate() in real_location
 	if(!pouch)
-		pouch.balloon_alert(dumping_mob, "no pouch!")
+		pouch.balloon_alert(dumping_mob, "没有储物袋！")
 		return //oopsie!! If we don't have a pouch! You're fucked!
 	if(locked)
-		pouch.balloon_alert(dumping_mob, "locked!")
+		pouch.balloon_alert(dumping_mob, "已锁定！")
 		return
 	pouch.atom_storage.dump_content_at(dest_object, dumping_mob)
 
@@ -327,15 +327,15 @@
 		add_fingerprint(user)
 		playsound(src, 'sound/items/unsheath.ogg', 50, TRUE, -5)
 		if(!user.put_in_hands(drawn_item))
-			to_chat(user, span_notice("You fumble for [drawn_item] and it falls on the floor."))
+			to_chat(user, span_notice("你笨拙地取出 [drawn_item]，却让它掉到了地上。"))
 			update_appearance()
 			return CLICK_ACTION_SUCCESS
 		user.visible_message(
-			span_notice("[user] takes [drawn_item] out of [src]."),
-			span_notice("You take [drawn_item] out of [src]."))
+			span_notice("[user] 从 [src] 中取出了 [drawn_item]。"),
+			span_notice("你从 [src] 中取出了 [drawn_item]。"))
 		update_appearance()
 	else
-		to_chat(user, span_warning("[src] is empty!"))
+		to_chat(user, span_warning("[src] 是空的！"))
 	return CLICK_ACTION_SUCCESS
 
 /obj/item/storage/belt/sheath/hip_only/crusader/update_icon(updates)
@@ -349,9 +349,9 @@
 
 /obj/item/storage/belt/sheath/hip_only/crusader/examine(mob/user)
 	. = ..()
-	.+= span_notice("Ctrl-click it to easily open its inventory.")
+	.+= span_notice("按住 Ctrl 点击即可打开储物空间。")
 	if(contents.len == 2)	//If there's no sword/rod in the sheath slot it doesnt display the alt-click instruction
-		. += span_notice("Alt-click it to quickly draw the blade.")
+		. += span_notice("按住 Alt 点击即可快速拔出刀剑。")
 		return
 
 
@@ -362,8 +362,8 @@
 /obj/item/storage/belt/storage_pouch	//seperate mini-storage inside the belt, leaving room for only one sword. Inspired by a (very poorly implemented) belt on Desert Rose
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
-	name = "storage pouch"
-	desc = span_notice("Click on this to open your belt's inventory!")
+	name = "储物袋"
+	desc = span_notice("点击即可打开腰带的储物空间！")
 	icon_state = "storage_pouch_icon"
 	worn_icon_state = "no_name"	//Intentionally sets the worn icon to an error
 	w_class = WEIGHT_CLASS_BULKY //Still cant put it in your bags, its technically a belt
@@ -381,8 +381,8 @@
 /////////////////////////////////////////////////
 
 /obj/item/storage/belt/sheath/hip_only/multi
-	name = "multi-scabbard"
-	desc = "A set of harnesses that enable carrying multiple bulky swords and/or shields."
+	name = "多剑鞘背带"
+	desc = "一套能够携带多把大型刀剑及盾牌的背带。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "multiscabbard_swords_0"
 	inhand_icon_state = "sheath"
@@ -434,8 +434,8 @@
 //////////////////////////////////////////////////////////////////
 
 /obj/item/storage/belt/sheath/hip_only/repairing
-	name = "repairing scabbard"
-	desc = "A bluespace crystal in this scabbard causes it to slowly rejuvenate whatever's stored inside it."
+	name = "修复剑鞘"
+	desc = "剑鞘内的蓝空间水晶会缓慢修复收纳其中的物品。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "repairsheath"
 	inhand_icon_state = "sheath"
@@ -484,8 +484,8 @@
 /////////////////////////////////////////////////
 
 /obj/item/storage/belt/sheath/hip_only/knifethrowers_belt
-	name = "knifethrower's belt"
-	desc = "Stores a frankly ridiculous number of knives and comparable short, bladed weapons. The shallow pocket depth makes it poor at storing other objects."
+	name = "飞刀腰带"
+	desc = "能收纳多得离谱的刀具和类似的短刃武器。口袋较浅，不太适合存放其他物品。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "knifethrowers"
 	inhand_icon_state = "utility"
@@ -521,8 +521,8 @@
 /////////////////////////////////////////////////
 
 /obj/item/storage/bag/plants/bluespace
-	name = "bluespace plant bag"
-	desc = "A bluespace banana peel grants much larger storage capacity here. It malfunctions when trying to store specific mutant plants -- ironically, bluespace bananas are one such plant..."
+	name = "蓝空间植物袋"
+	desc = "蓝空间香蕉皮赋予它远超常规的容量。尝试存放某些变异植物时会发生故障——讽刺的是，蓝空间香蕉正是其中之一……"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	icon_state = "bluespace_botany_bag"
 	worn_icon_state = "plantbag"

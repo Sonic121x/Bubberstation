@@ -1,20 +1,20 @@
 /obj/item/clothing/under/rank/security/peacekeeper/armadyne
-	name = "armadyne corporate uniform"
-	desc = "A sleek uniform worn by Armadyne corporate. Its metallic red belt buckle is made in the shape of the Armadyne logo."
+	name = "阿玛达因公司制服"
+	desc = "阿玛达因公司人员穿着的利落制服，金属红色腰带扣制成了公司标志的形状。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/centcom.dmi'//This can probably be moved to centcom.dm when the suits are sorted
 	icon_state = "armadyne_shirt"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/centcom.dmi'
 	worn_icon_state = "armadyne_shirt"	//This can probably be moved to centcom.dm when the suits are sorted
 
 /obj/item/clothing/under/rank/security/peacekeeper/armadyne/tactical
-	name = "armadyne tactical uniform"
-	desc = "A robust tactical uniform worn by Armadyne corporate."
+	name = "阿玛达因战术制服"
+	desc = "阿玛达因公司人员穿着的结实战术制服。"
 	icon_state = "armadyne_tac"
 	worn_icon_state = "armadyne_tac"
 
 /obj/item/clothing/head/beret/sec/peacekeeper/armadyne
-	name = "armadyne corporate beret"
-	desc = "A comfy yet robust beret worn by Armadyne corporate."
+	name = "阿玛达因公司贝雷帽"
+	desc = "阿玛达因公司人员戴的舒适耐用贝雷帽。"
 	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper/armadyne"
 	greyscale_config = /datum/greyscale_config/beret_badge_fancy
 	greyscale_config_worn = /datum/greyscale_config/beret_badge_fancy/worn
@@ -23,8 +23,8 @@
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/hos/trenchcoat/armadyne
-	name = "armadyne trenchcoat"
-	desc = "A large and warm Armadyne-red trenchcoat worn by the wealthy higher-ups. A good half of its warmth - and bulk - actually comes from the polymer armor plating beneath it."
+	name = "阿玛达因风衣"
+	desc = "富裕高层穿着的宽大暖和风衣，采用阿玛达因标志性的红色。它的保暖能力与厚重感有一大半来自内层的聚合物装甲板。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "armadyne_trench"
@@ -36,8 +36,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne
-	name = "armadyne jacket"
-	desc = "An Armadyne branded track jacket, with a thin nanocarbon lining inside for protective purposes. Worn by Armadyne corporate, or wealthy supporters."
+	name = "阿玛达因夹克"
+	desc = "阿玛达因牌运动夹克，带有一层薄薄的纳米碳防护内衬。公司人员和富裕的支持者常穿这种夹克。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "armadyne_jacket"
@@ -49,20 +49,20 @@
 	AddComponent(/datum/component/toggle_icon, "zipper")
 
 /obj/item/clothing/suit/armor/vest/peacekeeper/armadyne/armor
-	name = "armadyne armor vest"
-	desc = "A nanocarbon and high-grade polymer vest, with the worn-red Armadyne logo printed on the back. Used by Armadyne corporate when they need emergency armor."
+	name = "阿玛达因防弹背心"
+	desc = "由纳米碳和高级聚合物制成的背心，背面印着暗红色阿玛达因标志。公司人员需要应急护甲时会穿上它。"
 	icon_state = "armadyne_armor"
 	worn_icon_state = "armadyne_armor"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/peacekeeper/armadyne
-	name = "armadyne hud glasses"
+	name = "阿玛达因抬头显示眼镜"
 	icon_state = "armadyne_glasses"
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/eyes.dmi'
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/glasses.dmi'
 
 /obj/item/clothing/gloves/color/black/peacekeeper/armadyne
-	name = "armadyne combat gloves"
-	desc = "Tactical and sleek. Worn by Armadyne representatives."
+	name = "阿玛达因作战手套"
+	desc = "兼具战术实用性与利落外观，由阿玛达因代表佩戴。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	icon_state = "armadyne_gloves"
@@ -70,8 +70,8 @@
 	cut_type = null
 
 /obj/item/clothing/shoes/jackboots/peacekeeper/armadyne
-	name = "armadyne combat boots"
-	desc = "Tactical and sleek. Worn by Armadyne representatives."
+	name = "阿玛达因作战靴"
+	desc = "兼具战术实用性与利落外观，由阿玛达因代表穿着。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	icon_state = "armadyne_boots"
@@ -79,15 +79,15 @@
 	worn_icon_state = "armadyne_boots"
 
 /obj/item/storage/belt/security/peacekeeper/armadyne
-	name = "armadyne belt"
-	desc = "Can hold security gear like handcuffs and flashes. Has a holster for a gun."
+	name = "阿玛达因腰带"
+	desc = "可收纳手铐、闪光器等安保装备，还带有枪套。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/belts.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/belt.dmi'
 	icon_state = "armadyne_belt"
 	worn_icon_state = "armadyne_belt"
 
 /datum/outfit/armadyne_rep
-	name = "Armadyne Corporate Representative"
+	name = "阿玛达因公司代表"
 
 	suit_store = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_cent/commander
@@ -112,7 +112,7 @@
 
 
 /datum/outfit/armadyne_security
-	name = "Armadyne Corporate Security"
+	name = "阿玛达因公司安保"
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/armadyne/tactical
@@ -134,7 +134,7 @@
 
 
 /datum/outfit/armadyne_security/commander
-	name = "Armadyne Corporate Security Commander"
+	name = "阿玛达因公司安保指挥官"
 
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/rank/security/peacekeeper/armadyne/tactical
@@ -157,7 +157,7 @@
 	id = /obj/item/card/id/advanced/armadyne/security
 
 /datum/outfit/armadyne_security/high_alert
-	name = "Armadyne Corporate Security (High Alert)"
+	name = "阿玛达因公司安保（高度戒备）"
 	belt = /obj/item/storage/belt/security/webbing
 	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
@@ -167,7 +167,7 @@
 	)
 
 /datum/outfit/armadyne_security/commander/high_alert
-	name = "Armadyne Corporate Security Commander (High Alert)"
+	name = "阿玛达因公司安保指挥官（高度戒备）"
 	suit_store = /obj/item/gun/ballistic/automatic/sol_rifle
 	backpack_contents = list(
 		/obj/item/melee/baton/telescopic,
@@ -178,8 +178,8 @@
 	)
 
 /obj/item/card/id/advanced/armadyne
-	name = "\improper Armadyne ID"
-	desc = "An Armadyne ID card."
+	name = "\improper 阿玛达因身份卡"
+	desc = "一张阿玛达因身份卡。"
 	icon_state = "card_centcom"
 	assigned_icon_state = "assigned_centcom"
 	registered_age = null
@@ -195,7 +195,7 @@
 	access = SSid_access.get_region_access_list(list(REGION_GENERAL, REGION_CENTCOM)) // They're not with CC so they get fuck-all access on-station
 
 /obj/item/card/id/advanced/armadyne/security
-	registered_name = "Armadyne Corpo"
+	registered_name = "阿玛达因公司员工"
 	trim = /datum/id_trim/centcom/armadyne/security
 
 /datum/id_trim/centcom/armadyne/security
@@ -247,13 +247,13 @@
 /datum/ert/armadyne
 	roles = list(/datum/antagonist/ert/armadyne)
 	leader_role = /datum/antagonist/ert/armadyne/leader
-	rename_team = "Armadyne PMC"
-	mission = "Assist any Armadyne corporate entities."
-	polldesc = "an Armadyne PMC."
+	rename_team = "阿玛达因私人军事承包商"
+	mission = "协助所有阿玛达因公司单位。"
+	polldesc = "一名阿玛达因私人军事承包商。"
 	teamsize = 3
 
 /datum/ert/armadyne/high_alert
 	roles = list(/datum/antagonist/ert/armadyne/high_alert)
 	leader_role = /datum/antagonist/ert/armadyne/leader/high_alert
-	rename_team = "Armadyne PMC (High Alert)"
+	rename_team = "阿玛达因私人军事承包商（高度戒备）"
 

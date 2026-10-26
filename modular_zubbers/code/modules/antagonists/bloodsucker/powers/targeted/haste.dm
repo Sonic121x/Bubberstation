@@ -5,10 +5,10 @@
 
 #define HASTE_GETUP_LEVEL 3
 /datum/action/cooldown/bloodsucker/targeted/haste
-	name = "Immortal Haste"
-	desc = "Force yourself to stand up if you're down and dash somewhere with supernatural speed. Those nearby may be knocked away, stunned, or left empty-handed."
+	name = "不死疾行"
+	desc = "倒地时强行起身，以超自然速度冲向某处。附近的人可能被击退、击晕或打落手中物品。"
 	button_icon_state = "power_speed"
-	prefire_message = "You prepare to dash!"
+	prefire_message = "你准备冲刺！"
 	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodsucker_check_flags = parent_type::bloodsucker_check_flags & ~BP_CANT_USE_IN_FRENZY
 	bloodcost = 6
@@ -19,22 +19,22 @@
 	var/list/hit = list()
 
 /datum/action/cooldown/bloodsucker/targeted/haste/get_power_desc_extended()
-	. = "Dash to a location, knocking down anyone in your way, and refilling your stamina. Those nearby may be knocked away, stunned, or left empty-handed.\n"
+	. = "冲向指定位置，击倒沿途的人并恢复耐力。附近的人可能被击退、击晕或打落手中物品。\n"
 	if(level_current >= HASTE_GETUP_LEVEL)
-		. += "Dashing from lying down will get you up, but won't affect your foes."
+		. += "倒地时冲刺会使你起身，但不会影响敌人。"
 	else
-		. += "You cannot dash while knocked down."
+		. += "被击倒时无法冲刺。"
 
 /datum/action/cooldown/bloodsucker/targeted/haste/get_power_explanation_extended()
 	. = list()
-	. += "Click anywhere to immediately dash towards that location."
-	. += "At level [HASTE_GETUP_LEVEL], if you are lying down, you will get up and regain your stamina, but the resulting dash will not knock down those nearby."
-	. += "Haste will knockdown your enemies for [DisplayTimeText(GetKnockdown())] and refill your stamina, but using haste while knocked down will make it go on cooldown for [DisplayTimeText(cooldown_time * 3)]"
-	. += "The Power will not work if you are lying down, in no gravity, or are aggressively grabbed."
-	. += "Anyone in your way during your Haste will be knocked down."
-	. += "Higher levels will increase the knockdown dealt to enemies."
-	. += "It will also refill your stamina so you can keep moving."
-	. += "If Fortitude is active, using haste will disable it."
+	. += "点击任意位置，立即向那里冲刺。"
+	. += "达到[HASTE_GETUP_LEVEL]级后，倒地时可以起身并恢复耐力，但这次冲刺不会击倒附近的人。"
+	. += "疾行会击倒敌人[DisplayTimeText(GetKnockdown())]并恢复你的耐力，但倒地时使用会使冷却时间延长至[DisplayTimeText(cooldown_time * 3)]。"
+	. += "躺倒、处于失重环境或被强力抓住时，此能力无法生效。"
+	. += "疾行途中挡路的人都会被击倒。"
+	. += "等级越高，对敌人造成的击倒时间越长。"
+	. += "它也会恢复耐力，让你能继续移动。"
+	. += "若坚韧正在生效，使用疾行会将其关闭。"
 
 /datum/action/cooldown/bloodsucker/targeted/haste/can_use(mob/living/carbon/user, trigger_flags)
 	. = ..()
@@ -42,13 +42,13 @@
 		return FALSE
 	// Being Grabbed
 	if(user.pulledby && user.pulledby.grab_state >= GRAB_AGGRESSIVE)
-		user.balloon_alert(user, "you're being grabbed!")
+		user.balloon_alert(user, "你被抓住了！")
 		return FALSE
 	if(!user.has_gravity(user.loc)) //We dont want people to be able to use this to fly around in space
-		user.balloon_alert(user, "you cannot dash while floating!")
+		user.balloon_alert(user, "漂浮时无法冲刺！")
 		return FALSE
 	if(level_current < HASTE_GETUP_LEVEL && user.body_position == LYING_DOWN)
-		user.balloon_alert(user, "you must be standing to dash!")
+		user.balloon_alert(user, "必须站着才能冲刺！")
 		return FALSE
 	return TRUE
 
@@ -66,7 +66,7 @@
 	var/stuns_mobs = TRUE
 	var/temp_cooldown = cooldown_time
 	if(level_current >= HASTE_GETUP_LEVEL && user.body_position == LYING_DOWN)
-		to_chat(user, span_danger("Your heart takes a beat, and you force yourself to stand up!"))
+		to_chat(user, span_danger("你的心脏跳动了一下，你强迫自己站了起来！"))
 		user.SetKnockdown(0)
 		user.set_stamina_loss(0)
 		user.set_resting(FALSE, FALSE, TRUE)
@@ -79,7 +79,7 @@
 	user.pulledby?.stop_pulling()
 	// Go to target turf
 	// DO NOT USE WALK TO.
-	owner.balloon_alert(owner, "you dash into the air!")
+	owner.balloon_alert(owner, "你腾空冲出！")
 	playsound(get_turf(owner), 'sound/items/weapons/punchmiss.ogg', 25, 1, -1)
 	var/safety = get_dist(user, targeted_turf) * 3 + 1
 	var/consequetive_failures = 0

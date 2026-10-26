@@ -76,7 +76,7 @@
 		human.adjust_fire_loss(1) //Still deal some damage in case a cold environment would be preventing us from the sweet release to robot heaven
 		human.adjust_bodytemperature(13) //We're overheating!!
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Critical damage taken, all systems failing."))
+			to_chat(human, span_warning("警报：遭受致命损伤，所有系统正在失效。"))
 			do_sparks(3, TRUE, human)
 
 	var/obj/item/organ/lungs/lungs = human.get_organ_slot(ORGAN_SLOT_LUNGS)
@@ -85,7 +85,7 @@
 		human.adjust_bodytemperature(50)
 		human.adjust_fire_loss(1)
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Cooling system is non-functional or missing, OVERHEATING is imminent."))
+			to_chat(human, span_warning("警报：冷却系统失效或缺失，即将过热。"))
 			do_sparks(3, TRUE, human)
 
 	var/obj/item/organ/heart/heart = human.get_organ_slot(ORGAN_SLOT_HEART)
@@ -93,19 +93,19 @@
 		// No heart or failing heart present, apply slowdown
 		human.adjust_staggered_up_to(STAGGERED_SLOWDOWN_LENGTH, 5 SECONDS)
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Oil pump is non-functional or missing. Hydraulics efficiency reduced."))
+			to_chat(human, span_warning("警报：油泵失效或缺失，液压效率降低。"))
 
 	var/obj/item/organ/liver/liver = human.get_organ_slot(ORGAN_SLOT_LIVER)
 	if(!liver || (liver.organ_flags & ORGAN_FAILING))
 		// No liver or failing liver present, apply message informing of the missing liver
 		if(prob(10))
-			to_chat(human, span_warning("Alert: Reagent processing unit is non-functional or missing. Systems clogging."))
+			to_chat(human, span_warning("警报：试剂处理单元失效或缺失，系统正在堵塞。"))
 
 /datum/species/synthetic/spec_revival(mob/living/carbon/human/transformer)
 	switch_to_screen(transformer, "Console")
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, saved_screen), 5 SECONDS)
 	playsound(transformer.loc, 'sound/machines/chime.ogg', 50, TRUE)
-	transformer.visible_message(span_notice("[transformer]'s [screen ? "monitor lights up" : "eyes flicker to life"]!"), span_notice("All systems nominal. You're back online!"))
+	transformer.visible_message(span_notice("[transformer]的[screen ? "显示器亮了起来" : "眼睛闪烁着恢复了生机"]！"), span_notice("所有系统运行正常。你重新上线了！"))
 
 /datum/species/synthetic/on_species_gain(mob/living/carbon/human/human_who_gained_species, datum/species/old_species, pref_load, regenerate_icons = TRUE)
 	. = ..()
@@ -164,7 +164,7 @@
 		if(chassis_of_choice.color_src && chassis[MUTANT_INDEX_COLOR_LIST] && length(chassis[MUTANT_INDEX_COLOR_LIST]))
 			limb.add_color_override(chassis[MUTANT_INDEX_COLOR_LIST][1], LIMB_COLOR_SYNTH)
 		limb.change_appearance(chassis_of_choice.icon, chassis_of_choice.icon_state, !!chassis_of_choice.color_src, limb.body_part == CHEST && chassis_of_choice.dimorphic)
-		limb.name = "\improper[chassis_of_choice.name] [parse_zone(limb.body_zone)]"
+		limb.name = "\improper[chinese_accessory_display(chassis_of_choice.name)][parse_zone(limb.body_zone)]"
 
 
 /datum/species/synthetic/on_species_loss(mob/living/carbon/human/human)
@@ -188,7 +188,7 @@
 		return
 	emag_effect = TRUE
 	playsound(source.loc, 'sound/misc/interference.ogg', 50)
-	to_chat(source, span_warning("Alert: Security breach detected in central processing unit. Error Code: 540-EXO"))
+	to_chat(source, span_warning("警报：中央处理器检测到安全入侵。错误代码：540-EXO"))
 
 /**
  * Makes the IPC screen switch to BSOD followed by a blank screen
@@ -231,39 +231,39 @@
 	perk_descriptions += list(list( //tryin to keep traits minimal since synths will get a lot of traits when my upstream traits pr is merged
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = "Synthetic Benefits",
-		SPECIES_PERK_DESC = "Unlike organics, you DON'T explode when faced with a vacuum! Additionally, your chassis is built with such strength as to \
-		grant you immunity to OVERpressure! Just make sure that the extreme cold or heat doesn't fry your circuitry."
+		SPECIES_PERK_NAME = "合成人优势",
+		SPECIES_PERK_DESC = "与有机生物不同，你在真空中不会爆炸！此外，你的机体足够坚固，\
+		能够免疫高压！只要小心别让极寒或高温毁掉电路就行。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "star-of-life",
-		SPECIES_PERK_NAME = "Unhuskable",
-		SPECIES_PERK_DESC = "[plural_form] can't be husked, disappointing changelings galaxy-wide.",
+		SPECIES_PERK_NAME = "不会干瘪",
+		SPECIES_PERK_DESC = "合成人不会变成干瘪尸体，让银河各地的变形怪大失所望。",
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "robot",
-		SPECIES_PERK_NAME = "Synthetic Oddities",
-		SPECIES_PERK_DESC = "[plural_form] are unable to gain nutrition from traditional foods. Instead, you must either consume welding fuel or extend a \
-		wire from your arm to draw power from an APC. In addition to this, welders and wires are your sutures and mesh and only specific chemicals even metabolize inside \
-		of you. This ranges from whiskey, to synthanol, to various obscure medicines. Finally, you suffer from a set of wounds exclusive to synthetics."
+		SPECIES_PERK_NAME = "合成人特性",
+		SPECIES_PERK_DESC = "合成人无法从普通食物中获取营养，必须摄入焊接燃料，或从手臂伸出\
+		电缆向区域电力控制器取电。焊枪和电线相当于你的缝合线和再生网，体内也只能代谢特定化学物质，\
+		包括威士忌、合成醇和各种冷门药物。最后，你还会遭受合成人独有的各类损伤。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "music",
-		SPECIES_PERK_NAME = "Tone Synthesizer",
-		SPECIES_PERK_DESC = "[plural_form] can sing musical tones using an internal synthesizer.",
+		SPECIES_PERK_NAME = "音调合成器",
+		SPECIES_PERK_DESC = "合成人可以用内置合成器演唱音符。",
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 		SPECIES_PERK_ICON = "band-aid",
-		SPECIES_PERK_NAME = "Structural Damage",
-		SPECIES_PERK_DESC = "[plural_form] are weak to blunt objects.",
+		SPECIES_PERK_NAME = "结构损伤",
+		SPECIES_PERK_DESC = "合成人容易受到钝器伤害。",
 	))
 
 	return perk_descriptions

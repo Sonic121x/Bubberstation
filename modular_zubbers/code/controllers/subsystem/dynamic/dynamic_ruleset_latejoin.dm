@@ -6,7 +6,7 @@
 //////////////////////////////////////////////
 
 /datum/dynamic_ruleset/latejoin/bloodsucker
-	name = "Bloodsucker Breakout"
+	name = "吸血鬼脱逃"
 	config_tag = "Latejoin Bloodsucker"
 	preview_antag_datum = /datum/antagonist/bloodsucker
 	pref_flag = ROLE_BLOODSUCKERBREAKOUT

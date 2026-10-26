@@ -1,6 +1,6 @@
 /obj/item/serviette
-	name = "serviette"
-	desc = "To clean all the mess."
+	name = "清洁纸巾"
+	desc = "用来收拾一切污物。"
 	icon_state = "serviette_clean"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	/// How much time it takes to clean something using it
@@ -11,8 +11,8 @@
 	item_flags = NOBLUDGEON
 
 /obj/item/serviette_used
-	name = "dirty serviette"
-	desc = "Eww... Throw it in the trash!"
+	name = "脏纸巾"
+	desc = "呕……快丢进垃圾桶！"
 	icon_state = "serviette_dirty"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -25,12 +25,12 @@
 		clean_speedies = cleanspeed * min(user.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER)+0.1, 1) //less scaling for soapies
 
 	if((interacting_with in user?.client.screen) && !user.is_holding(interacting_with))
-		to_chat(user, span_warning("You need to take \the [interacting_with.name] off before cleaning it!"))
+		to_chat(user, span_warning("需要先脱下 [interacting_with.name] 才能清洁！"))
 
 	else if(istype(interacting_with, /obj/effect/decal/cleanable))
-		user.visible_message(span_notice("[user] begins to clean \the [interacting_with.name] out with [src]."), span_warning("You begin to clean \the [interacting_with.name] out with [src]..."))
+		user.visible_message(span_notice("[user] 开始用 [src] 清理 [interacting_with.name] 内部。"), span_warning("你开始用 [src] 清理 [interacting_with.name] 内部……"))
 		if(do_after(user, clean_speedies, target = interacting_with))
-			to_chat(user, span_notice("You clean \the [interacting_with.name] out."))
+			to_chat(user, span_notice("你清理了 [interacting_with.name] 内部。"))
 			var/obj/effect/decal/cleanable/cleanies = interacting_with
 			user.mind?.adjust_experience(/datum/skill/cleaning, max(round(cleanies.beauty/CLEAN_SKILL_BEAUTY_ADJUSTMENT), 0)) //again, intentional that this does NOT round but mops do.
 			qdel(interacting_with)
@@ -40,9 +40,9 @@
 			user.put_in_hands(used_cloth)
 
 	else if(istype(interacting_with, /obj/structure/window))
-		user.visible_message(span_notice("[user] begins to clean \the [interacting_with.name] with [src]..."), span_notice("You begin to clean \the [interacting_with.name] with [src]..."))
+		user.visible_message(span_notice("[user] 开始用 [src] 清洁 [interacting_with.name]……"), span_notice("你开始用 [src] 清洁 [interacting_with.name]……"))
 		if(do_after(user, clean_speedies, target = interacting_with))
-			to_chat(user, span_notice("You clean \the [interacting_with.name]."))
+			to_chat(user, span_notice("你清洁了 [interacting_with.name]。"))
 			interacting_with.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 			interacting_with.set_opacity(initial(interacting_with.opacity))
 			user.mind?.adjust_experience(/datum/skill/cleaning, CLEAN_SKILL_GENERIC_WASH_XP)
@@ -52,9 +52,9 @@
 			user.put_in_hands(used_cloth)
 
 	else
-		user.visible_message(span_notice("[user] begins to clean \the [interacting_with.name] with [src]..."), span_notice("You begin to clean \the [interacting_with.name] with [src]..."))
+		user.visible_message(span_notice("[user] 开始用 [src] 清洁 [interacting_with.name]……"), span_notice("你开始用 [src] 清洁 [interacting_with.name]……"))
 		if(do_after(user, clean_speedies, target = interacting_with))
-			to_chat(user, span_notice("You clean \the [interacting_with.name]."))
+			to_chat(user, span_notice("你清洁了 [interacting_with.name]。"))
 			if(user && isturf(interacting_with))
 				for(var/obj/effect/decal/cleanable/cleanable_decal in interacting_with)
 					user.mind?.adjust_experience(/datum/skill/cleaning, round(cleanable_decal.beauty / CLEAN_SKILL_BEAUTY_ADJUSTMENT))
@@ -72,8 +72,8 @@
 */
 
 /obj/item/serviette_pack
-	name = "pack of serviettes"
-	desc = "I wonder why LustWish makes them..."
+	name = "纸巾包"
+	desc = "不知道欲愿公司为什么要生产这个……"
 	icon_state = "serviettepack_4"
 	base_icon_state = "serviettepack"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -92,11 +92,11 @@
 
 /obj/item/serviette_pack/attack_self(mob/user)
 	if(number_remaining)
-		to_chat(user, span_notice("You take a serviette from [src]."))
+		to_chat(user, span_notice("你从 [src] 中抽出一张纸巾。"))
 		number_remaining--
 		var/obj/item/serviette/used_serviette = new /obj/item/serviette
 		user.put_in_hands(used_serviette)
 		update_icon()
 		update_icon_state()
 	else
-		to_chat(user, span_notice("There are no serviettes left!"))
+		to_chat(user, span_notice("纸巾用完了！"))

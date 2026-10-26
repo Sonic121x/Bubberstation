@@ -5,7 +5,7 @@
 /datum/component/vore/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "VorePanel", "Vore Panel")
+		ui = new(user, src, "VorePanel", "吞食面板")
 		ui.open()
 
 /datum/component/vore/ui_status(mob/user, datum/ui_state/state)
@@ -98,10 +98,10 @@
 	switch(action)
 		if("create_belly")
 			if(!COOLDOWN_FINISHED(src, rate_limit_belly_creation))
-				to_chat(living_parent, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
+				to_chat(living_parent, span_warning("现在无法创建更多腹腔，请在 [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] 秒后重试。"))
 				return
 			if(LAZYLEN(vore_bellies) >= MAX_BELLIES)
-				to_chat(living_parent, span_warning("You can only have [MAX_BELLIES] bellies."))
+				to_chat(living_parent, span_warning("你最多只能拥有 [MAX_BELLIES] 个腹腔。"))
 				return TRUE
 			create_default_belly()
 			COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN)
@@ -110,7 +110,7 @@
 			var/obj/vore_belly/new_selected = locate(params["ref"])
 			if(istype(new_selected) && new_selected.owner == src)
 				selected_belly = new_selected
-				to_chat(living_parent, span_notice("Prey will now go into [selected_belly]."))
+				to_chat(living_parent, span_notice("猎物现在将进入 [selected_belly]。"))
 			. = TRUE
 		if("click_prey")
 			var/mob/prey = locate(params["ref"])
@@ -140,7 +140,7 @@
 		if("set_pref")
 			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
-				to_chat(living_parent, span_danger("You cannot save your vore preferences as they cannot be loaded."))
+				to_chat(living_parent, span_danger("吞食偏好无法载入，因此无法保存。"))
 				return
 
 			var/key = params["key"]
@@ -178,7 +178,7 @@
 			if(target.owner != src)
 				return
 			if(LAZYLEN(vore_bellies) == 1)
-				to_chat(living_parent, span_danger("You can't delete your last belly, modify it or make a new one to take it's place."))
+				to_chat(living_parent, span_danger("不能删除最后一个腹腔，请修改它或新建一个来替代。"))
 				return
 
 			qdel(target)
@@ -186,13 +186,13 @@
 			. = TRUE
 		if("belly_backups")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			download_belly_backup()
 			. = TRUE
 		if("load_slot")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
@@ -205,7 +205,7 @@
 			. = TRUE
 		if("set_slot_name")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
@@ -216,7 +216,7 @@
 			. = TRUE
 		if("copy_to_slot")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
@@ -225,18 +225,18 @@
 			var/slot_to_save_over = vore_prefs.copy_to_slot()
 			if(slot_to_save_over != null)
 				save_bellies(slot_to_save_over)
-				to_chat(living_parent, span_notice("Copied belly loadout to slot [slot_to_save_over]."))
+				to_chat(living_parent, span_notice("已将腹腔配置复制到槽位 [slot_to_save_over]。"))
 			. = TRUE
 		if("toggle_lookup_data")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			ui_editing_lookuptable = !ui_editing_lookuptable
 			update_static_data(living_parent, ui)
 			. = TRUE
 		if("set_lookup_table_entry")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
@@ -254,7 +254,7 @@
 			. = TRUE
 		if("delete_lookup_table_entry")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			var/datum/vore_preferences/vore_prefs = living_parent.get_vore_prefs()
 			if(!vore_prefs)
@@ -269,46 +269,46 @@
 			. = TRUE
 		if("import_bellies")
 			if(!COOLDOWN_FINISHED(src, rate_limit_belly_creation))
-				to_chat(living_parent, span_warning("You cannot create more bellies right now, please try again in [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] seconds."))
+				to_chat(living_parent, span_warning("现在无法创建更多腹腔，请在 [COOLDOWN_TIMELEFT(src, rate_limit_belly_creation) / 10] 秒后重试。"))
 				return
 
 			// Nearly straight from CHOMP
-			var/panel_choice = tgui_input_list(living_parent, "Belly Import (NOTE: VRDB Is Barely Supported)", "Pick an option", list("Import all bellies from JSON", "Import one belly from JSON"))
+			var/panel_choice = tgui_input_list(living_parent, "导入腹腔（注意：对 VRDB 的支持十分有限）", "选择选项", list("从 JSON 导入所有腹腔", "从 JSON 导入一个腹腔"))
 			if(!panel_choice)
 				return
 			var/pickOne = FALSE
-			if(panel_choice == "Import one belly from JSON")
+			if(panel_choice == "从 JSON 导入一个腹腔")
 				pickOne = TRUE
-			var/input_file = input(living_parent, "Please choose a valid JSON file to import from.", "Belly Import") as file
+			var/input_file = input(living_parent, "请选择有效的 JSON 文件进行导入。", "导入腹腔") as file
 			var/input_data
 			try
 				var/text = file2text(input_file)
 
 				if(LAZYLEN(text) > MAX_JSON_CHARACTERS)
-					CRASH("The supplied file is too large and cannot be parsed.")
+					CRASH("提供的文件过大，无法解析。")
 
 				input_data = json_decode(text)
 
 				if(!islist(input_data))
-					CRASH("The supplied file was not a valid JSON file!")
+					CRASH("提供的文件不是有效的 JSON 文件！")
 
 				if(LAZYLEN(input_data) > MAX_JSON_ENTRIES)
-					CRASH("The supplied file is too large and cannot be parsed.")
+					CRASH("提供的文件过大，无法解析。")
 
 				var/is_vrdb = detect_vrdb(input_data)
 				if(is_vrdb)
-					to_chat(living_parent, span_danger("WARNING: This file will be parsed as a VRDB file. This conversion is best-effort only, and may not produce satisfactory results."))
+					to_chat(living_parent, span_danger("警告：此文件将按 VRDB 文件解析。转换仅尽力而为，结果可能不尽如人意。"))
 				else
 					if(input_data["db_repo"] != VORE_DB_REPO)
-						CRASH("Unable to load file - db_repo was expected to be '[VORE_DB_REPO]' but was '[input_data["db_repo"]]'")
+						CRASH("无法加载文件：db_repo 应为‘[VORE_DB_REPO]’，实际为‘[input_data["db_repo"]]’")
 
 					if(input_data["db_version"] != VORE_DB_VERSION)
-						CRASH("Unable to load file - db_version was expected to be '[VORE_DB_VERSION]' but was '[input_data["db_version"]]'")
+						CRASH("无法加载文件：db_version 应为‘[VORE_DB_VERSION]’，实际为‘[input_data["db_version"]]’")
 
 				var/list/bellies_to_import = is_vrdb ? input_data : input_data["bellies"]
 
 				if(LAZYLEN(bellies_to_import) < 1)
-					CRASH("No bellies found!")
+					CRASH("未找到任何腹腔！")
 
 				if(pickOne)
 					var/list/choices = list()
@@ -318,17 +318,17 @@
 						index++
 						var/name = V["name"]
 						if(!istext(name))
-							name = "<unnamed>"
+							name = "<未命名>"
 						name = avoid_assoc_duplicate_keys(name, repeat_items)
 						choices[name] = index
-					var/picked = tgui_input_list(living_parent, "Belly Import", "Which belly?", choices)
+					var/picked = tgui_input_list(living_parent, "导入腹腔", "选择哪个腹腔？", choices)
 					if(picked)
 						bellies_to_import = list(bellies_to_import[choices[picked]])
 
 				var/current_belly_count = LAZYLEN(vore_bellies)
 				var/amount_to_import = min(LAZYLEN(bellies_to_import), MAX_BELLIES - LAZYLEN(current_belly_count))
 				if(amount_to_import != LAZYLEN(bellies_to_import))
-					to_chat(living_parent, span_warning("You have selected too many bellies to import. Only the first [amount_to_import] will be imported."))
+					to_chat(living_parent, span_warning("选择导入的腹腔过多，只会导入前 [amount_to_import] 个。"))
 
 				for(var/i in 1 to amount_to_import)
 					var/list/belly = bellies_to_import[i]
@@ -338,16 +338,16 @@
 
 				// Directly scale cooldown with how much they're creating
 				COOLDOWN_START(src, rate_limit_belly_creation, BELLY_CREATION_COOLDOWN * amount_to_import)
-				to_chat(living_parent, span_notice("All done importing bellies!"))
+				to_chat(living_parent, span_notice("腹腔导入完毕！"))
 				save_bellies()
 			catch(var/exception/e)
-				tgui_alert(living_parent, "The supplied file contains errors: [e]", "Error!")
+				tgui_alert(living_parent, "提供的文件含有错误：[e]", "错误！")
 				return FALSE
 
 			. = TRUE
 		if("export_bellies")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 			var/datum/vore_preferences/vore_prefs = get_parent_vore_prefs()
 			if(!vore_prefs)
@@ -356,10 +356,10 @@
 			. = TRUE
 		if("test_fullscreen")
 			if(living_parent.screens["vore"])
-				to_chat(living_parent, span_warning("You can't preview belly fullscreens when you already have one visible."))
+				to_chat(living_parent, span_warning("已有腹腔全屏效果显示时，无法预览另一个。"))
 				return
 			if(!living_parent.wants_vore_fullscreen())
-				to_chat(living_parent, span_warning("You can't preview belly fullscreens when your preference is turned off."))
+				to_chat(living_parent, span_warning("偏好设置关闭时，无法预览腹腔全屏效果。"))
 				return
 			// We need a belly for this to be relative to, for recoloring
 			var/obj/vore_belly/target = locate(params["ref"])
@@ -398,147 +398,147 @@
 	var/mob/living/pred = prey_loc.owner.parent
 	var/mob/living/living_parent = parent
 
-	var/list/options = list("Examine")
+	var/list/options = list("查看")
 
 	// If not absorbed, able to do these
 	if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE) && !HAS_TRAIT_FROM(living_parent, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-		options += list("Interact", "Help Out")
+		options += list("互动", "帮助逃出")
 
-	var/what_to_do = tgui_alert(living_parent, "What do you want to do to [prey]?", "Prey Options", options)
+	var/what_to_do = tgui_alert(living_parent, "你想对 [prey] 做什么？", "猎物选项", options)
 	// We have to check all of the conditions inside each of these branches because things could have changed while the
 	// dialog was open.
 	switch(what_to_do)
-		if("Examine")
+		if("查看")
 			living_parent.examinate(prey)
-		if("Interact")
+		if("互动")
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, "[prey] is absorbed, you can't help them.")
+				to_chat(living_parent, "[prey] 已被吸收，无法帮助。")
 				return
 			if(HAS_TRAIT_FROM(living_parent, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, "You're absorbed, you can't help someone out.")
+				to_chat(living_parent, "你已被吸收，无法帮助别人逃出。")
 				return
 			living_parent.CtrlShiftClickOn(prey)
-		if("Help Out")
+		if("帮助逃出")
 			if(HAS_TRAIT_FROM(living_parent, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, "You're absorbed, you can't help someone out.")
+				to_chat(living_parent, "你已被吸收，无法帮助别人逃出。")
 				return
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, "[prey] is absorbed, you can't help them.")
+				to_chat(living_parent, "[prey] 已被吸收，无法帮助。")
 				return
 			// If they're otherwise incapacitated
 			if(living_parent.incapacitated)
 				return
 
-			to_chat(living_parent, span_notice(span_green("You begin to push [prey] to freedom!")))
-			to_chat(prey, span_notice("[living_parent] begins to push you to freedom!"))
-			to_chat(pred, span_warning("Someone is trying to escape from inside you!"))
+			to_chat(living_parent, span_notice(span_green("你开始把 [prey] 向外推，帮助逃脱！")))
+			to_chat(prey, span_notice("[living_parent] 开始把你向外推，帮助你逃脱！"))
+			to_chat(pred, span_warning("有人正试图从你体内逃走！"))
 
 			if(do_after(living_parent, 5 SECONDS, pred, timed_action_flags = IGNORE_TARGET_LOC_CHANGE) && prob(33))
 				if(prey.loc != prey_loc)
 					return
 				prey_loc.release(prey)
-				to_chat(living_parent, span_notice(span_green("You manage to help [prey] to safety!")))
-				to_chat(prey,  span_notice(span_green("[living_parent] pushes you free!")))
-				to_chat(pred, span_alert("[prey] forces free of the confines of your body!"))
+				to_chat(living_parent, span_notice(span_green("你成功帮助 [prey] 脱离险境！")))
+				to_chat(prey,  span_notice(span_green("[living_parent] 把你推了出去！")))
+				to_chat(pred, span_alert("[prey] 强行挣脱了你身体的束缚！"))
 			else
-				to_chat(living_parent, span_alert("[prey] slips back down inside despite your efforts."))
-				to_chat(prey, span_alert("Even with [living_parent]'s help, you slip back inside again."))
-				to_chat(pred, span_notice(span_green("Your body efficiently shoves [prey] back where they belong.")))
+				to_chat(living_parent, span_alert("尽管你尽力了，[prey] 还是滑了回去。"))
+				to_chat(prey, span_alert("即使有 [living_parent] 帮忙，你还是再次滑回了里面。"))
+				to_chat(pred, span_notice(span_green("你的身体利落地将 [prey] 挤回了原位。")))
 
 /datum/component/vore/proc/click_our_prey(mob/living/prey)
 	var/obj/vore_belly/prey_loc = prey.loc
 	var/mob/living/living_parent = parent
 
-	var/list/options = list("Examine")
+	var/list/options = list("查看")
 
 	if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-		options += list("Eject", "Transfer", "Digest", "Absorb")
+		options += list("排出", "转移", "消化", "吸收")
 	else
-		options += "Unabsorb"
+		options += "解除吸收"
 		if(living_parent.ckey == our_owner_ckey)
-			options += "Put In Charge"
+			options += "移交控制权"
 
-	var/what_to_do = tgui_input_list(living_parent, "What do you want to do to [prey]?", "Prey Options", options)
+	var/what_to_do = tgui_input_list(living_parent, "你想对 [prey] 做什么？", "猎物选项", options)
 	// We have to check all of the conditions inside each of these branches because things could have changed while the
 	// dialog was open.
 	switch(what_to_do)
-		if("Examine")
+		if("查看")
 			living_parent.examinate(prey)
-		if("Eject")
+		if("排出")
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, span_warning("You cannot eject absorbed prey."))
+				to_chat(living_parent, span_warning("无法排出已被吸收的猎物。"))
 				return
 			#ifdef VORE_EJECT_DELAY
-			to_chat(living_parent, span_notice("You start to work [prey] out of your [LOWER_TEXT(prey_loc.name)]..."))
-			to_chat(prey, span_notice("[living_parent] starts to work you out of their [LOWER_TEXT(prey_loc.name)]..."))
+			to_chat(living_parent, span_notice("你开始将 [prey] 从自己的[LOWER_TEXT(prey_loc.name)]中挤出去……"))
+			to_chat(prey, span_notice("[living_parent] 开始将你从[LOWER_TEXT(prey_loc.name)]中挤出去……"))
 			if(!do_after(living_parent, VORE_EJECT_DELAY, interaction_key = "vore_eject"))
 				return
 			#endif
 			prey_loc.release(prey)
-		if("Transfer")
+		if("转移")
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, span_warning("You cannot transfer absorbed prey."))
+				to_chat(living_parent, span_warning("无法转移已被吸收的猎物。"))
 				return
-			var/obj/vore_belly/which_belly = tgui_input_list(living_parent, "Which belly do you want to transfer them to?", "Belly Transfer", vore_bellies)
+			var/obj/vore_belly/which_belly = tgui_input_list(living_parent, "你想将猎物转移至哪个腹腔？", "腹腔转移", vore_bellies)
 			if(which_belly && prey.loc == prey_loc)
 				prey.forceMove(which_belly)
-		if("Digest")
+		if("消化")
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, span_warning("You cannot digest absorbed prey."))
+				to_chat(living_parent, span_warning("无法消化已被吸收的猎物。"))
 				return
 			if(!REQUIRES_PLAYER && !prey.mind)
 				prey_loc.digestion_death(prey)
 				return
 			var/datum/vore_preferences/prey_vore_prefs = prey.get_vore_prefs()
 			if(!prey_vore_prefs)
-				to_chat(living_parent, span_warning("[prey] isn't interested in being digested."))
+				to_chat(living_parent, span_warning("[prey] 不愿被消化。"))
 				return
 			if(!prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion) || !prey_vore_prefs.read_preference(/datum/vore_pref/toggle/digestion_qdel))
-				to_chat(living_parent, span_warning("[prey] isn't interested in being digested."))
+				to_chat(living_parent, span_warning("[prey] 不愿被消化。"))
 				return
 
-			var/consents = tgui_alert(prey, "[living_parent] wants to instantly digest you, is this okay?", "Instant Gurgle", list("No", "Yes"))
-			if(consents == "Yes")
+			var/consents = tgui_alert(prey, "[living_parent] 想立刻消化你，你同意吗？", "立即消化", list("否", "是"))
+			if(consents == "是")
 				if(!prey_loc.digestion_death(prey))
-					to_chat(living_parent, span_warning("[prey] isn't interested in being fully digested."))
+					to_chat(living_parent, span_warning("[prey] 不愿被彻底消化。"))
 			else
-				to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
-		if("Absorb")
+				to_chat(living_parent, span_warning("[prey] 未在弹窗中表示同意。"))
+		if("吸收")
 			if(HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, span_warning("[prey] is already absorbed!"))
+				to_chat(living_parent, span_warning("[prey] 已被吸收！"))
 				return
 			if(!prey.vore_can_absorb())
-				to_chat(living_parent, "[prey] isn't interested in absorption.")
+				to_chat(living_parent, "[prey] 不愿被吸收。")
 				return
-			var/consents = tgui_alert(prey, "[living_parent] wants to instantly absorb you, is this okay?", "Instant Absorb", list("No", "Yes"))
-			if(consents == "Yes")
+			var/consents = tgui_alert(prey, "[living_parent] 想立刻吸收你，你同意吗？", "立即吸收", list("否", "是"))
+			if(consents == "是")
 				// Get the nutrition
 				var/nutrition = prey.nutrition - ABSORB_NUTRITION_BARRIER
 				if(nutrition > 0)
 					prey.set_nutrition(ABSORB_NUTRITION_BARRIER)
 					living_parent.adjust_nutrition(nutrition)
 				if(!prey_loc.absorb(prey))
-					to_chat(living_parent, "[prey] isn't interested in absorption.")
+					to_chat(living_parent, "[prey] 不愿被吸收。")
 			else
-				to_chat(living_parent, span_warning("[prey] did not consent to the popup."))
-		if("Unabsorb")
+				to_chat(living_parent, span_warning("[prey] 未在弹窗中表示同意。"))
+		if("解除吸收")
 			if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, span_warning("[prey] is not absorbed!"))
+				to_chat(living_parent, span_warning("[prey] 并未被吸收！"))
 				return
 			if(living_parent.nutrition < ABSORB_NUTRITION_BARRIER)
-				to_chat(living_parent, span_warning("You are too hungry to reform [prey]."))
+				to_chat(living_parent, span_warning("你太饿了，无法重塑 [prey]。"))
 				return
 			living_parent.adjust_nutrition(-ABSORB_NUTRITION_BARRIER)
 			prey_loc.unabsorb(prey)
-		if("Put In Charge")
+		if("移交控制权")
 			if(living_parent.ckey != our_owner_ckey)
-				to_chat(living_parent, span_warning("This is not available on vore components you do not own."))
+				to_chat(living_parent, span_warning("无法对不属于你的吞食组件执行此操作。"))
 				return
 
 			if(!HAS_TRAIT_FROM(prey, TRAIT_RESTRAINED, TRAIT_SOURCE_VORE))
-				to_chat(living_parent, span_warning("[prey] must be absorbed to be able to be put in control."))
+				to_chat(living_parent, span_warning("必须先吸收 [prey]，才能移交控制权。"))
 				return
 
-			var/consents = tgui_alert(prey, "[living_parent] wants to let you take control of their body, is this okay?", "Prey Control", list("No", "Yes"))
-			if(consents == "Yes")
+			var/consents = tgui_alert(prey, "[living_parent] 想让你控制其身体，你同意吗？", "猎物控制权", list("否", "是"))
+			if(consents == "是")
 				living_parent.AddComponent(/datum/component/absorb_control, prey)

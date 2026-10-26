@@ -1,11 +1,11 @@
 /obj/item/organ/heart/snail
-	name = "twin gastropod hearts"
-	desc = "A primary heart normally nestled inside a gastropod's shell, and another in the owner's actual chest; necessary to maintain ample bloodflow through essentially two torsos."
+	name = "腹足类双心脏"
+	desc = "一颗主心脏通常藏在腹足类生物的壳中，另一颗则位于真正的胸腔内；这样的结构是为两个近似躯干的部位维持充足血流所必需的。"
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "heart-snail-on"
 	base_icon_state = "heart-snail"
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD // There's two of them. Also, due to the special interaction below, it's best we make sure these aren't easily lost.
-	now_fixed = span_info("Your hearts begin to beat again.") //For the sake of verisimilitude.
+	now_fixed = span_info("你的两颗心脏重新开始跳动。") //For the sake of verisimilitude.
 
 	COOLDOWN_DECLARE(shell_effect_cd)
 
@@ -56,7 +56,7 @@
 		return
 
 	if(COOLDOWN_FINISHED(src, shell_effect_cd))
-		source.visible_message(span_warning("[source]'s shell weathers the blow, absorbing most of the shock!"))
+		source.visible_message(span_warning("[source]的壳承受住了这一击，吸收了大部分冲击！"))
 		playsound(source, 'sound/items/weapons/parry.ogg', 50, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 
 	COOLDOWN_START(src, shell_effect_cd, 5 SECONDS) // Cooldown resets EVERY time we get hit

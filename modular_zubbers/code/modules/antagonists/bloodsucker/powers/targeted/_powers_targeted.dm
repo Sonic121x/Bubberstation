@@ -12,9 +12,9 @@
 /// Modify description to add notice that this is aimed.
 /datum/action/cooldown/bloodsucker/targeted/get_power_desc()
 	. = ..()
-	var/current_desc = "<br>\[<i>Targeted Power</i>\]"
+	var/current_desc = "<br>\[<i>指定目标能力</i>\]"
 	if(target_range)
-		current_desc += "<br>Cast Range: [target_range]<br>"
+		current_desc += "<br>施放范围：[target_range]<br>"
 	current_desc += .
 	return current_desc
 
@@ -58,7 +58,7 @@
 		// Out of Range
 		if(!(target_atom in view(target_range, owner)))
 			if(target_range > 1) // Only warn for range if it's greater than 1
-				owner.balloon_alert(owner, "out of range.")
+				owner.balloon_alert(owner, "超出范围")
 			return FALSE
 	return istype(target_atom)
 
@@ -88,7 +88,7 @@
 	. = ..()
 	if(!target)
 		return .
-	log_combat(owner, target, "used [name] on [target].")
+	log_combat(owner, target, "对[target]使用了[name]。")
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/targeted/DeactivatePower(deactivate_flags)

@@ -5,12 +5,12 @@
 
 
 /datum/reagent/drug/quaalude
-	name = "Quaalude"
-	description = "Relaxes the user, putting them in a hypnotic, drugged state. A favorite drug of kids from Brooklyn." //THAT WAS THE BEST FUCKIN DRUG EVER MADE
+	name = "安眠酮"
+	description = "使使用者放松，陷入迷醉的催眠状态。布鲁克林孩子们最爱的药物。" //THAT WAS THE BEST FUCKIN DRUG EVER MADE
 	color = "#ffe669"
 	overdose_threshold = 20
 	ph = 8
-	taste_description = "lemons"
+	taste_description = "柠檬"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 
@@ -23,7 +23,7 @@
 
 /datum/reagent/drug/quaalude/on_mob_life(mob/living/carbon/affected_carbon, seconds_per_tick, times_fired)
 	if(SPT_PROB(2.5, seconds_per_tick))
-		var/high_message = pick("You feel relaxed.", "You feel like you're on the moon.", "You feel like you could walk 20 miles for a quaalude.")
+		var/high_message = pick("你感到很放松。", "你觉得自己飘到了月球上。", "你觉得自己能为一片安眠酮走二十英里。")
 		to_chat(affected_carbon, span_notice(high_message))
 
 	affected_carbon.set_drugginess(1 MINUTES * REM * seconds_per_tick)
@@ -35,7 +35,7 @@
 		affected_carbon.emote(pick("laugh", "drool"))
 
 	if(SPT_PROB(1, seconds_per_tick) && !HAS_TRAIT(affected_carbon, TRAIT_FLOORED))
-		affected_carbon.visible_message(span_danger("[affected_carbon]'s legs become too weak to carry their own weight!"))
+		affected_carbon.visible_message(span_danger("[affected_carbon]双腿发软，连自己的体重都撑不住了！"))
 		affected_carbon.Knockdown(90, TRUE)
 		affected_carbon.drop_all_held_items()
 
@@ -50,7 +50,7 @@
 
 
 /datum/reagent/drug/quaalude/overdose_process(mob/living/affected_carbon, seconds_per_tick, times_fired)
-	var/kidfrombrooklyn_message = pick("BRING BACK THE FUCKING QUAALUDES!", "I'd walk 20 miles for a quaalude, let me tell ya'!", "There's nothing like a fuckin' quaalude!")
+	var/kidfrombrooklyn_message = pick("把他妈的安眠酮还回来！", "告诉你，我能为一片安眠酮走二十英里！", "没什么比他妈的安眠酮更棒了！")
 
 	if(SPT_PROB(1.5, seconds_per_tick))
 		affected_carbon.say(kidfrombrooklyn_message)

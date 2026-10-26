@@ -1,14 +1,14 @@
 
 /datum/quirk/micro
 	name = "Small"
-	desc = "For whatever reason, you are slightly smaller than most. You are twenty smaller than others,\
-	with the drawback of being easily squashed!"
+	desc = "不知为何，你比大多数人都小一些。你的体型比别人小百分之二十，\
+	代价是很容易被压扁！"
 	icon = FA_ICON_MINIMIZE
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_HIDE_FROM_SCAN|QUIRK_CHANGES_APPEARANCE
 	value = -4
-	gain_text = span_danger("You feel a bit smaller.")
-	lose_text = span_notice("You feel a bit larger.")
-	medical_record_text = "Patient is short and small."
+	gain_text = span_danger("你感觉自己变小了些。")
+	lose_text = span_notice("你感觉自己变大了些。")
+	medical_record_text = "患者身材矮小。"
 	hardcore_value = 0
 	var/squash_damage_ = 8
 	var/squash_chance_ = 25
@@ -16,8 +16,8 @@
 
 /datum/quirk/micro/smaller
 	name = "Microsized"
-	desc = "You are thirty percent smaller than others... \
-	with the drawback of being easily squashed and it HURTS!!"
+	desc = "你的体型比别人小百分之三十……\
+	代价是很容易被压扁，而且会很痛！！"
 	icon = FA_ICON_LOCUST
 	squash_damage_ = 15
 	squash_chance_ = 40
@@ -26,8 +26,8 @@
 
 /datum/quirk/micro/smallest
 	name = "Microscopic"
-	desc = "You are fourty percent smaller than others... People really squint their eyes to see you! \
-	You are also squished like a bug accidentally ALL the time!"
+	desc = "你的体型比别人小百分之四十……别人得眯起眼睛才能看清你！\
+	而且你总会像虫子一样被不小心踩扁！"
 	icon = FA_ICON_BACTERIUM
 	squash_damage_ = 30
 	squash_chance_ = 50

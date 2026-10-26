@@ -22,8 +22,8 @@
 
 
 /obj/item/gun/ballistic/bow/tribalbow/ashen
-	name = "bone bow"
-	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew, oddly robust."
+	name = "骨弓"
+	desc = "用骨头和缠绕的筋腱制成的原始远程武器，结实得出奇。"
 	icon = 'modular_skyrat/modules/tribal_extended/icons/projectile.dmi'
 	icon_state = "ashenbow"
 	base_icon_state = "ashenbow"
@@ -32,8 +32,8 @@
 	custom_materials = list(/datum/material/bone = SHEET_MATERIAL_AMOUNT * 4)
 
 /obj/item/gun/ballistic/bow/tribalbow/pipe
-	name = "pipe bow"
-	desc = "Portable and sleek, but you'd be better off hitting someone with a pool noodle."
+	name = "管制弓"
+	desc = "轻便流畅，不过拿根泳池浮力棒打人可能效果更好。"
 	icon = 'modular_skyrat/modules/tribal_extended/icons/projectile.dmi'
 	icon_state = "pipebow"
 	base_icon_state = "pipebow"

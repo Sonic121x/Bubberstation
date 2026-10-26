@@ -1,6 +1,6 @@
 /obj/item/storage/box/nri_survival_pack
-	name = "PSC survival pack"
-	desc = "A box filled with useful emergency items, supplied by the PSC."
+	name = "泛斯拉夫联邦生存包"
+	desc = "泛斯拉夫联邦提供的物资盒，装满了实用的应急用品。"
 	icon_state = "survival_pack"
 	icon = 'modular_skyrat/modules/novaya_ert/icons/survival_pack.dmi'
 	illustration = null
@@ -16,8 +16,8 @@
 	new /obj/item/crowbar/red(src)
 
 /obj/item/storage/box/nri_pens
-	name = "box of injectors"
-	desc = "A box full of first aid and combat MediPens."
+	name = "注射笔盒"
+	desc = "一盒急救和战斗医疗注射笔。"
 	illustration = "epipen"
 
 /obj/item/storage/box/nri_pens/PopulateContents()
@@ -32,8 +32,8 @@
 	new /obj/item/reagent_containers/hypospray/medipen/blood_loss(src)
 
 /obj/item/storage/box/nri_flares
-	name = "box of flares"
-	desc = "A box full of red emergency flares."
+	name = "信号棒盒"
+	desc = "一盒红色应急信号棒。"
 	illustration = "firecracker"
 
 /obj/item/storage/box/nri_flares/PopulateContents()

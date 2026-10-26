@@ -33,7 +33,7 @@
 	if(vetted || !SSplayer_ranks.initialized || !hud?.mymob?.canon_client)
 		return
 	if(!SSplayer_ranks.is_vetted(hud.mymob.canon_client, admin_bypass = FALSE))
-		maptext = MAPTEXT_SELAWIK("<span style='text-align: right; color: #7A7E88'>Activate Bubberstation</span>")
-		maptext += MAPTEXT_SELAWIK("<span style='text-align: right; color: #7A7E88; font-size: 10pt'>Go to the Discord to get vetted.</span>")
+		maptext = MAPTEXT_SELAWIK("<span style='text-align: right; color: #7A7E88'>激活 Bubberstation</span>")
+		maptext += MAPTEXT_SELAWIK("<span style='text-align: right; color: #7A7E88; font-size: 10pt'>前往 Discord 完成审核。</span>")
 	else
 		vetted = TRUE

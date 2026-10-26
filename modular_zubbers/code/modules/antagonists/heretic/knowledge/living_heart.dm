@@ -1,5 +1,5 @@
 /datum/heretic_knowledge/living_heart
-	desc = "Grants you a Living Heart, allowing you to cast rituals. \
-		Should you lose your heart, you can transmute a poppy and a pool of blood \
-		to awaken your heart into a Living Heart. If your heart is Cybernetic, \
-		you will be unable to reawaken it. Be extremely careful if you are a synthetic."
+	desc = "赋予你一颗活体心脏，让你能够举行仪式。\
+		若失去活体心脏，可以转化一朵罂粟和一滩血液，\
+		将你的心脏唤醒为活体心脏。若你的心脏是机械心脏，\
+		则无法再次唤醒。合成人务必格外小心。"

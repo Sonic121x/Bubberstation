@@ -2,8 +2,8 @@
 #define LARGE_MORTAR_STAMINA_USE 70 //How much stam damage is given to people when the mortar is used
 
 /obj/structure/large_mortar
-	name = "large mortar"
-	desc = "A large bowl perfect for grinding or juicing a large number of things at once."
+	name = "大研钵"
+	desc = "一个大碗，非常适合一次研磨或榨汁处理大量物品。"
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/cooking_structures.dmi'
 	icon_state = "big_mortar"
 	density = TRUE
@@ -25,9 +25,9 @@
 
 /obj/structure/large_mortar/examine(mob/user)
 	. = ..()
-	. += span_notice("It currently contains <b>[length(contents)]/[maximum_contained_items]</b> items.")
-	. += span_notice("It can be (un)secured with <b>Right Click</b>")
-	. += span_notice("You can empty all of the items out of it with <b>Alt Click</b>")
+	. += span_notice("当前装有<b>[length(contents)]/[maximum_contained_items]</b>件物品。")
+	. += span_notice("<b>右键点击</b>可固定或解除固定。")
+	. += span_notice("<b>Alt点击</b>可倒出其中的所有物品。")
 
 /obj/structure/large_mortar/Destroy()
 	drop_everything_contained()
@@ -35,11 +35,11 @@
 
 /obj/structure/large_mortar/click_alt(mob/user)
 	if(!length(contents))
-		balloon_alert(user, "nothing inside")
+		balloon_alert(user, "里面是空的")
 		return CLICK_ACTION_BLOCKING
 
 	drop_everything_contained()
-	balloon_alert(user, "removed all items")
+	balloon_alert(user, "已取出所有物品")
 	return CLICK_ACTION_SUCCESS
 
 /// Drops all contents at the mortar
@@ -59,7 +59,7 @@
 		return
 
 	set_anchored(!anchored)
-	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	balloon_alert_to_viewers(anchored ? "已固定" : "已解除固定")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/structure/large_mortar/attackby(obj/item/attacking_item, mob/user, list/modifiers, list/attack_modifiers)
@@ -74,11 +74,11 @@
 
 	if(istype(tool, /obj/item/storage/bag))
 		if(length(contents) >= maximum_contained_items)
-			balloon_alert(user, "already full!")
+			balloon_alert(user, "已经满了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!length(tool.contents))
-			balloon_alert(user, "nothing to transfer!")
+			balloon_alert(user, "没有可转移的物品！")
 			return ITEM_INTERACT_BLOCKING
 
 		for(var/obj/item/target_item in tool.contents)
@@ -89,20 +89,20 @@
 				target_item.forceMove(src)
 
 		if (length(contents) >= maximum_contained_items)
-			balloon_alert(user, "filled")
+			balloon_alert(user, "已装满")
 
 		else
-			balloon_alert(user, "transferred")
+			balloon_alert(user, "已转移")
 
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/pestle))
 		if(!anchored)
-			balloon_alert(user, "not secured!")
+			balloon_alert(user, "尚未固定！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!length(contents) && reagents.total_volume == 0)
-			balloon_alert(user, "mortar empty!")
+			balloon_alert(user, "研钵是空的！")
 			return ITEM_INTERACT_BLOCKING
 
 		var/list/choose_options = list(
@@ -110,10 +110,10 @@
 			"Juice" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_juice"),
 			"Mix" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_mix"),
 		)
-		var/picked_option = show_radial_menu(user, src, choose_options, radius = 38, require_near = TRUE)
+		var/picked_option = chinese_skyrat_rations_radial(user, src, choose_options, radius = 38)
 
 		if(user.get_stamina_loss() > LARGE_MORTAR_STAMINA_MINIMUM)
-			balloon_alert(user, "too tired!")
+			balloon_alert(user, "太累了！")
 			return ITEM_INTERACT_BLOCKING
 
 		if(!in_range(src, user) || !user.is_holding(tool) || !picked_option)
@@ -122,10 +122,10 @@
 		var/act_verb = LOWER_TEXT(picked_option)
 		var/act_verb_ing
 		if(act_verb == "juice")
-			act_verb_ing = "juicing"
+			act_verb_ing = "榨汁"
 
 		else
-			act_verb_ing = "[act_verb]ing"
+			act_verb_ing = chinese_skyrat_rations_display(picked_option)
 
 		var/has_resource
 		if(picked_option == "Mix")
@@ -135,13 +135,13 @@
 			has_resource = length(contents) > 0
 
 		if(!has_resource)
-			balloon_alert(user, "nothing to [act_verb]!")
+			balloon_alert(user, "没有可供[chinese_skyrat_rations_display(picked_option)]的东西！")
 			return ITEM_INTERACT_BLOCKING
 
-		balloon_alert_to_viewers("[act_verb_ing]...")
+		balloon_alert_to_viewers("正在[act_verb_ing]……")
 		var/skill_modifier = user.mind?.get_skill_modifier(/datum/skill/primitive, SKILL_SPEED_MODIFIER)
 		if(!do_after(user, 5 SECONDS * skill_modifier, target = src))
-			balloon_alert_to_viewers("stopped [act_verb_ing]")
+			balloon_alert_to_viewers("已停止[chinese_skyrat_rations_display(picked_option)]")
 			return ITEM_INTERACT_BLOCKING
 
 		user.adjust_stamina_loss(LARGE_MORTAR_STAMINA_USE) //This is a bit more tiring than a normal sized mortar and pestle
@@ -149,7 +149,7 @@
 			if("Juice")
 				for(var/obj/item/target_item as anything in contents)
 					if (reagents.total_volume >= reagents.maximum_volume)
-						balloon_alert(user, "overflowing!")
+						balloon_alert(user, "要溢出来了！")
 						break
 
 					if (target_item.juice_typepath())
@@ -161,7 +161,7 @@
 			if("Grind")
 				for(var/obj/item/target_item as anything in contents)
 					if (reagents.total_volume >= reagents.maximum_volume)
-						balloon_alert(user, "overflowing!")
+						balloon_alert(user, "要溢出来了！")
 						break
 
 					if (target_item.grind_results() || target_item.reagents?.total_volume)
@@ -173,11 +173,11 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(!tool.grind_results() && !tool.juice_typepath() && !tool.reagents?.total_volume)
-		balloon_alert(user, "can't grind this!")
+		balloon_alert(user, "无法研磨这个！")
 		return ITEM_INTERACT_BLOCKING
 
 	if(length(contents) >= maximum_contained_items)
-		balloon_alert(user, "already full!")
+		balloon_alert(user, "已经满了！")
 		return ITEM_INTERACT_BLOCKING
 
 	tool.forceMove(src)
@@ -186,30 +186,30 @@
 ///Juices the passed target item, and transfers any contained chems to the mortar as well
 /obj/structure/large_mortar/proc/juice_target_item(obj/item/to_be_juiced, mob/living/carbon/human/user)
 	if(to_be_juiced.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice("You try to juice [to_be_juiced], but it fades away!"))
+		to_chat(user, span_notice("你试图给[to_be_juiced]榨汁，但它消散了！"))
 		qdel(to_be_juiced)
 		return
 
 	if(!to_be_juiced.juice(src.reagents, user))
-		to_chat(user, span_danger("You fail to juice [to_be_juiced]."))
+		to_chat(user, span_danger("你未能给[to_be_juiced]榨汁。"))
 
-	to_chat(user, span_notice("You juice [to_be_juiced] into a liquid."))
+	to_chat(user, span_notice("你将[to_be_juiced]榨成了汁液。"))
 	QDEL_NULL(to_be_juiced)
 
 ///Grinds the passed target item, and transfers any contained chems to the mortar as well
 /obj/structure/large_mortar/proc/grind_target_item(obj/item/to_be_ground, mob/living/carbon/human/user)
 	if(to_be_ground.flags_1 & HOLOGRAM_1)
-		to_chat(user, span_notice("You try to grind [to_be_ground], but it fades away!"))
+		to_chat(user, span_notice("你试图研磨[to_be_ground]，但它消散了！"))
 		qdel(to_be_ground)
 		return
 
 	if(!to_be_ground.grind(src.reagents, user))
 		if(isstack(to_be_ground))
-			to_chat(usr, span_notice("[src] attempts to grind as many pieces of [to_be_ground] as possible."))
+			to_chat(usr, span_notice("[src]尝试研磨尽可能多的[to_be_ground]。"))
 		else
-			to_chat(user, span_danger("You fail to grind [to_be_ground]."))
+			to_chat(user, span_danger("你未能研磨[to_be_ground]。"))
 
-	to_chat(user, span_notice("You break [to_be_ground] into a fine powder."))
+	to_chat(user, span_notice("你将[to_be_ground]磨成了细粉。"))
 	QDEL_NULL(to_be_ground)
 
 #undef LARGE_MORTAR_STAMINA_MINIMUM

@@ -4,7 +4,7 @@
 
 /datum/wires/rbmk2_sniffer
 	holder_type = /obj/machinery/rbmk2_sniffer
-	proper_name = "RB-MK2 Sniffer"
+	proper_name = "RB-MK2 探测器"
 
 /datum/wires/rbmk2_sniffer/New(atom/holder)
 	wires = list(
@@ -25,13 +25,13 @@
 /datum/wires/rbmk2_sniffer/get_status()
 	var/obj/machinery/rbmk2_sniffer/M = holder
 	. = list()
-	. += "The radio light is [M.radio_enabled ? "blinking red" : "off"]."
+	. += "无线电指示灯[M.radio_enabled ? "闪着红光" : "已熄灭"]。"
 	if(M.link_confirm)
-		. += "The LED display is displaying \"LINK CONFIRM?\"."
+		. += "LED 显示屏显示“确认连接？”。"
 	else if(M.unlink_confirm)
-		. += "The LED display is displaying \"UNLINK CONFIRM?\"."
+		. += "LED 显示屏显示“确认断开连接？”。"
 	else
-		. += "The LED display is displaying nothing."
+		. += "LED 显示屏上没有内容。"
 
 /datum/wires/rbmk2_sniffer/on_pulse(wire)
 	var/obj/machinery/rbmk2_sniffer/M = holder
@@ -60,7 +60,7 @@
 			M.link_confirm = FALSE
 			M.unlink_confirm = FALSE
 		if(WIRE_TEST)
-			M.alert_radio("This is a test message. Do not panic.",alert_emergency_channel=M.test_wire_switch,bypass_cooldown=TRUE)
+			M.alert_radio("这是一条测试消息。请勿惊慌。",alert_emergency_channel=M.test_wire_switch,bypass_cooldown=TRUE)
 			M.test_wire_switch = !M.test_wire_switch
 
 

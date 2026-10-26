@@ -17,9 +17,9 @@
 
 /datum/component/weather_announcer/proc/warn_user()
 	var/list/messages = list(
-		"Detecting solar activity. Seek cover if vulnerable.",
-		"Warning: Solar flares detected incoming within [TIME_BLOODSUCKER_DAY_WARN] seconds.",
-		"Solar activity imminent within [TIME_BLOODSUCKER_DAY_WARN] seconds. Please find shelter.",
+		"检测到太阳活动。易受影响者请寻找掩蔽处。",
+		"警告：检测到太阳耀斑将在 [TIME_BLOODSUCKER_DAY_WARN] 秒内到达。",
+		"太阳活动将在 [TIME_BLOODSUCKER_DAY_WARN] 秒内到来。请寻找掩蔽处。",
 	)
 	var/atom/movable/speaker = parent
 	speaker?.say(pick(messages))

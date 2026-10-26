@@ -10,10 +10,10 @@
 	///The name of the clan we're in.
 	var/name = CLAN_NONE
 	///Description of what the clan is, given when joining and through your antag UI.
-	var/description = "The Caitiff is as basic as you can get with Bloodsuckers. \n\
-		Entirely without the help of a formal Clan, they are blissfully unaware of who they really are. \n\
-		No additional abilities is gained, nothing is lost, if you want a plain Bloodsucker, this is it. \n\
-		The Favorite Ghoul will gain the Brawn ability, to help in combat."
+	var/description = "无族者是最基本的吸血鬼。\n\
+		完全没有正式氏族的帮助，他们对自己的真实身份浑然不知，却也乐在其中。\n\
+		没有额外能力，也不会失去任何东西。如果你只想当个普通吸血鬼，这就是你的选择。\n\
+		宠爱血仆会获得蛮力能力，以协助战斗。"
 	///The clan objective that is required to greentext.
 	var/datum/objective/bloodsucker/clan_objective
 	///The icon of the radial icon to join this clan.
@@ -21,7 +21,7 @@
 	///Same as join_icon, but the state
 	var/join_icon_state = "caitiff"
 	///Description shown when trying to join the clan.
-	var/join_description = "The default, Classic Bloodsucker."
+	var/join_description = "默认的经典吸血鬼。"
 	///Whether the clan can be joined by players. FALSE for flavortext-only clans.
 	var/joinable_clan = TRUE
 
@@ -90,7 +90,7 @@
 	if(isnull(clan_objective))
 		return
 	clan_objective = new clan_objective()
-	clan_objective.objective_name = "Clan Objective"
+	clan_objective.objective_name = "氏族目标"
 	clan_objective.owner = bloodsuckerdatum.owner
 	bloodsuckerdatum.objectives += clan_objective
 	bloodsuckerdatum.owner.announce_objectives()
@@ -154,8 +154,8 @@
 	var/list/options = list_available_powers()
 	if(length(options))
 		var/datum/action/cooldown/bloodsucker/choice = choose_powers(
-			"You have the opportunity to grow more ancient. [blood_cost > 0 ? " Spend [round(blood_cost, 1)] blood to advance your rank" : ""]",
-			"Your Blood Thickens...",
+			"你有机会变得更加古老。[blood_cost > 0 ? "消耗[round(blood_cost, 1)]血量来提升等级" : ""]",
+			"你的血液逐渐浓化……",
 			options
 		)
 		if(!is_valid_choice(choice, cost_rank, blood_cost, requires_coffin))
@@ -168,8 +168,8 @@
 
 /datum/bloodsucker_clan/proc/level_message(power_name)
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
-	human_user.balloon_alert(human_user, "learned [power_name]!")
-	to_chat(human_user, span_notice("You have learned how to use [power_name]!"))
+	human_user.balloon_alert(human_user, "已学会[power_name]！")
+	to_chat(human_user, span_notice("你学会了如何使用[power_name]！"))
 
 /datum/bloodsucker_clan/proc/choose_powers(message, title, options = list())
 	var/mob/living/carbon/human/human_user = bloodsuckerdatum.owner.current
@@ -186,18 +186,18 @@
 	if(cost_rank && bloodsuckerdatum.GetUnspentRank() <= 0)
 		return FALSE
 	if(blood_cost && bloodsuckerdatum.GetBloodVolume() < blood_cost)
-		human_user.balloon_alert(human_user, "not enough blood!")
-		to_chat(human_user, span_notice("You need at the very least [blood_cost] blood to thicken your blood."))
+		human_user.balloon_alert(human_user, "血量不足！")
+		to_chat(human_user, span_notice("你至少需要[blood_cost]血量才能浓化血液。"))
 		return FALSE
 	// Prevent Bloodsuckers from purchasing a power while outside of their Coffin.
 	if(requires_coffin && !istype(human_user.loc, /obj/structure/closet/crate/coffin))
-		to_chat(human_user, span_warning("You must be in your Coffin to purchase Powers."))
+		to_chat(human_user, span_warning("你必须待在自己的棺材里才能购买能力。"))
 		return FALSE
 	if(!(initial(power.purchase_flags) & buy_power_flags))
-		to_chat(human_user, span_notice("[initial(power.name)] is not available for purchase."))
+		to_chat(human_user, span_notice("无法购买[initial(power.name)]。"))
 		return FALSE
 	if(!(buy_power_flags & CAN_BUY_OWNED) && locate(power) in bloodsuckerdatum.powers)
-		to_chat(human_user, span_notice("You already know [initial(power.name)]!"))
+		to_chat(human_user, span_notice("你已经掌握了[initial(power.name)]！"))
 		return FALSE
 	return TRUE
 
@@ -229,9 +229,9 @@
 		bloodsuckerdatum.SelectReputation(am_fledgling = FALSE, forced = TRUE)
 
 
-	to_chat(bloodsuckerdatum.owner.current, span_notice("You are now a rank [bloodsuckerdatum.GetRank()] Bloodsucker. \
-		Your strength, feed rate, regen rate, and maximum blood capacity have all increased! \n\
-		* Your existing powers have all ranked up as well!"))
+	to_chat(bloodsuckerdatum.owner.current, span_notice("你现在是[bloodsuckerdatum.GetRank()]级吸血鬼。\
+		你的力量、吸血速度、再生速度和血量上限都提高了！\n\
+		* 已有能力也全部升级了！"))
 	bloodsuckerdatum.owner.current.playsound_local(null, 'sound/effects/pope_entry.ogg', 25, TRUE, pressure_affected = FALSE)
 	bloodsuckerdatum.update_static_data_for_all_viewers()
 
@@ -241,7 +241,7 @@
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/meatcoffin)
-		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "new recipes learned! Ghouling unlocked!")
+		bloodsuckerdatum.owner.current.balloon_alert(bloodsuckerdatum.owner.current, "已学会新配方！已解锁血仆转化！")
 	return TRUE
 
 
@@ -272,16 +272,16 @@
 	var/mob/living/carbon/human/master = bloodsuckerdatum.owner.current
 	var/mob/living/carbon/human/servant = ghouldatum.owner.current
 	if(ghouldatum.special_type || IS_BLOODSUCKER(servant))
-		to_chat(master, span_notice("This Ghoul was already assigned a special position."))
+		to_chat(master, span_notice("这名血仆已经被赋予特殊身份。"))
 		return FALSE
 	if(!ghouldatum.owner.can_make_special(creator = bloodsuckerdatum.owner))
-		to_chat(master, span_notice("This Ghoul is unable to gain a Special rank due to innate features."))
+		to_chat(master, span_notice("这名血仆因先天特征而无法获得特殊身份。"))
 		return FALSE
 	if(isprotean(servant))
-		to_chat(master, span_notice("You are unable to make this species your favorite Ghoul."))
+		to_chat(master, span_notice("你无法将该种族变为宠爱血仆。"))
 		return FALSE
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
-		to_chat(master, span_notice("You need at least 150 blood to make a Ghoul a Favorite Ghoul."))
+		to_chat(master, span_notice("将血仆提升为宠爱血仆至少需要150血量。"))
 		return FALSE
 	var/list/options = list()
 	var/list/radial_display = list()
@@ -297,10 +297,10 @@
 		option.info = "[initial(ghouldatums.name)] - [span_boldnotice(initial(ghouldatums.ghoul_description))]"
 		radial_display[initial(ghouldatums.name)] = option
 	if(!length(options))
-		master.balloon_alert(master, "out of Special Ghoul slots!")
+		master.balloon_alert(master, "特殊血仆名额已用尽！")
 		return FALSE
 
-	to_chat(master, span_notice("You can change who this Ghoul is, who are they to you? This will cost [SPECIAL_GHOUL_COST] blood."))
+	to_chat(master, span_notice("你可以改变这名血仆的身份。其对你而言意味着什么？这将消耗[SPECIAL_GHOUL_COST]血量。"))
 	var/ghoul_response = show_radial_menu(master, servant, radial_display)
 	if(!ghoul_response || !is_valid_ghoul(options[ghoul_response]))
 		return FALSE
@@ -308,17 +308,17 @@
 
 	// let's ask if the ghoul themselves actually wants to be a favorite
 #ifndef BLOODSUCKER_TESTING
-	servant.balloon_alert(master, "asking...")
-	var/ghoul_permission = tgui_alert(servant, initial(ghoul_type.ghoul_description), "Become a Special Ghoul?", list("Yes", "No"), 1 MINUTES) == "Yes"
+	servant.balloon_alert(master, "正在询问……")
+	var/ghoul_permission = tgui_alert(servant, initial(ghoul_type.ghoul_description), "成为特殊血仆？", list("是", "否"), 1 MINUTES) == "是"
 	if(!ghoul_permission)
-		servant.balloon_alert(master, "refused!")
+		servant.balloon_alert(master, "拒绝了！")
 		return FALSE
 #endif
 	if(QDELETED(src) || QDELETED(master) || QDELETED(servant) || !ghoul_type)
 		return FALSE
 
 	if(bloodsuckerdatum.GetBloodVolume() < SPECIAL_GHOUL_COST)
-		to_chat(master, span_notice("You took too long to make your ghoul, you no longer have enough blood!"))
+		to_chat(master, span_notice("你花了太长时间转化血仆，现在血量已经不足！"))
 		return FALSE
 	ghouldatum.make_special(ghoul_type)
 	bloodsuckerdatum.AdjustBloodVolume(-SPECIAL_GHOUL_COST)

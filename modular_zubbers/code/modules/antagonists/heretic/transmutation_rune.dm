@@ -13,8 +13,8 @@
 /obj/effect/heretic_rune/examine(mob/user)
 	. = ..()
 
-	. += span_notice("This rune can be created by any acolyte at any time with their [EXAMINE_HINT("mansus grasp")], and is how they perform \
-	[EXAMINE_HINT("rituals")], the backbone of their gameplay.")
+	. += span_notice("任何侍徒都能随时使用[EXAMINE_HINT("漫宿之握")]绘制此符文，并借此举行\
+	作为其核心玩法的[EXAMINE_HINT("仪式")]。")
 	if (IS_HERETIC(user))
-		. += span_notice("[EXAMINE_HINT("Drop items")] on the rune to use them as an ingredient in a ritual.")
-	. += span_notice("Remove with [EXAMINE_HINT("soap")], or an [EXAMINE_HINT("antimagic item")].")
+		. += span_notice("将[EXAMINE_HINT("物品丢放")]在符文上，即可将其用作仪式材料。")
+	. += span_notice("可用[EXAMINE_HINT("肥皂")]或[EXAMINE_HINT("反魔法物品")]清除。")

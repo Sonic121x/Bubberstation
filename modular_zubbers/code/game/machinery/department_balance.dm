@@ -1,6 +1,6 @@
 /obj/machinery/status_display/department_balance
-	name = "department balance display"
-	desc = "A digital screen displaying the current budget."
+	name = "部门余额显示屏"
+	desc = "显示当前预算的数字屏幕。"
 
 	current_mode = SD_MESSAGE
 	text_color = COLOR_DISPLAY_GREEN
@@ -25,7 +25,7 @@
 	current_mode = SD_MESSAGE
 	switch(SSticker.current_state)
 		if(GAME_STATE_STARTUP, GAME_STATE_PREGAME, GAME_STATE_SETTING_UP)
-			set_messages("CASH", "", "")
+			set_messages("余额", "", "")
 			update_overlays(UPDATE_OVERLAYS)
 			return
 
@@ -37,7 +37,7 @@
 			return
 		display_reset_state = 0 // we now return to our regularly scheduled programming
 		text_color = COLOR_DISPLAY_GREEN
-		set_messages("CASH", " ", " ")
+		set_messages("余额", " ", " ")
 		update_overlays(UPDATE_OVERLAYS)
 		return
 	else if(!display_reset_state && prob(1)) // force a reset of the display randomly (resolves red text when power is lost)
@@ -63,13 +63,13 @@
 		text_color = COLOR_DISPLAY_RED
 	if(balance > 999999)
 		balance_remainer = round((balance % 1000000) / 100000)
-		set_messages("CASH", "[round(balance / 1000000)].[balance_remainer]M", "")
+		set_messages("余额", "[round(balance / 1000000)].[balance_remainer]M", "")
 	else if(balance > 99999 || balance > 1000 && balance_remainer == 0)
-		set_messages("CASH", "[round(balance / 1000)]K", "")
+		set_messages("余额", "[round(balance / 1000)]K", "")
 	else if(balance > 1000)
-		set_messages("CASH", "[round(balance / 1000)].[balance_remainer]K", "")
+		set_messages("余额", "[round(balance / 1000)].[balance_remainer]K", "")
 	else
-		set_messages("CASH", "[balance]", "")
+		set_messages("余额", "[balance]", "")
 	update_overlays(UPDATE_OVERLAYS)
 
 /obj/machinery/status_display/department_balance/process(seconds_per_tick)

@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_name, name)
+		ui = new(user, src, ui_name, chinese_skyrat_items_antag_display(name))
 		ui.open()
 
 /datum/antagonist/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 /datum/antagonist/ui_static_data(mob/user)
 	var/list/data = list()
-	data["antag_name"] = name
+	data["antag_name"] = chinese_skyrat_items_antag_display(name)
 	data["objectives"] = get_objectives()
 	data["can_change_objective"] = can_assign_self_objectives
 	return data
@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 /datum/action/antag_info/New(Target)
 	. = ..()
-	name = "打开[target]信息"
+	name = "打开[chinese_skyrat_items_antag_display("[target]")]信息"
 
 /datum/action/antag_info/Trigger(mob/clicker, trigger_flags)
 	. = ..()
@@ -305,7 +305,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/replace_banned_player()
 	set waitfor = FALSE
 
-	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = jobban_flag || pref_flag, role = pref_flag, poll_time = 5 SECONDS, checked_target = owner.current, alert_pic = owner.current, role_name_text = name)
+	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = jobban_flag || pref_flag, role = pref_flag, poll_time = 5 SECONDS, checked_target = owner.current, alert_pic = owner.current, role_name_text = chinese_skyrat_items_antag_display(name))
 	if(chosen_one)
 		to_chat(owner, "你的角色已被幽灵接管！如果你不想以后再遇到这种情况，请申诉你的职务封禁！")
 		message_admins("[key_name_admin(chosen_one)]已接管（[key_name_admin(owner)]），以替换被封禁的敌对角色玩家。")
@@ -418,9 +418,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 				break
 
 	if(objectives.len == 0 || objectives_complete)
-		report += "<span class='greentext big'>[name]成功了！</span>"
+		report += "<span class='greentext big'>[chinese_skyrat_items_antag_display(name)]成功了！</span>"
 	else
-		report += "<span class='redtext big'>[name]失败了！</span>"
+		report += "<span class='redtext big'>[chinese_skyrat_items_antag_display(name)]失败了！</span>"
 
 	return report.Join("<br>")
 
@@ -445,7 +445,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 ///Called when using admin tools to give antag status
 /datum/antagonist/proc/admin_add(datum/mind/new_owner,mob/admin)
-	message_admins("[key_name_admin(admin)]把[key_name_admin(new_owner)]变成了[name]。")
+	message_admins("[key_name_admin(admin)]把[key_name_admin(new_owner)]变成了[chinese_skyrat_items_antag_display(name)]。")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 	new_owner.add_antag_datum(src)
 
@@ -453,7 +453,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/admin_remove(mob/user)
 	if(!user)
 		return
-	message_admins("[key_name_admin(user)]移除了[key_name_admin(owner)]的[name]敌对角色身份。")
+	message_admins("[key_name_admin(user)]移除了[key_name_admin(owner)]的[chinese_skyrat_items_antag_display(name)]敌对角色身份。")
 	log_admin("[key_name(user)] has removed [name] antagonist status from [key_name(owner)].")
 	on_removal()
 

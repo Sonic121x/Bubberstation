@@ -1,22 +1,22 @@
 // Engine based key doors
 /obj/machinery/door/puzzle/keycard/rnd
-	name = "R&D Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has purple markings on it."
+	name = "研发安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有紫色标记。"
 	puzzle_id = "tarkon1"
 
 /obj/machinery/door/puzzle/keycard/engi
-	name = "Engineering Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has orange markings on it."
+	name = "工程安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有橙色标记。"
 	puzzle_id = "tarkon2"
 
 /obj/machinery/door/puzzle/keycard/med
-	name = "Medical Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has blue markings on it."
+	name = "医疗安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有蓝色标记。"
 	puzzle_id = "tarkon3"
 
 /obj/machinery/door/puzzle/keycard/vault
-	name = "Vault Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has black markings on it."
+	name = "金库安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有黑色标记。"
 	puzzle_id = "tarkon4"
 
 // End Engine based key doors
@@ -24,26 +24,26 @@
 // Engine based Door Keys
 
 /obj/item/keycard/tarkon_rnd
-	name = "Research keycard"
-	desc = "Tarkon industries secure storage lock key."
+	name = "科研钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙。"
 	color = "#a03aaf"
 	puzzle_id = "tarkon1"
 
 /obj/item/keycard/tarkon_engi
-	name = "Engineering keycard"
-	desc = "Tarkon industries secure storage lock key."
+	name = "工程钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙。"
 	color = "#f05812"
 	puzzle_id = "tarkon2"
 
 /obj/item/keycard/tarkon_med
-	name = "Medical keycard"
-	desc = "Tarkon industries secure storage lock key."
+	name = "医疗钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙。"
 	color = "#33d4ff"
 	puzzle_id = "tarkon3"
 
 /obj/item/keycard/tarkon_vault
-	name = "Vault keycard"
-	desc = "Tarkon industries secure storage lock key."
+	name = "金库钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙。"
 	color = "#303030"
 	puzzle_id = "tarkon4"
 
@@ -55,50 +55,50 @@
 // JOB SPECIFIC VAULT KEYS
 
 /obj/item/keycard/tarkon_job_med
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Medical Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“医疗安全储藏室”。"
 	color = "#33d4ff"
 	puzzle_id = "tarkon_vaultmed"
 
 /obj/item/keycard/tarkon_job_sec
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Security Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“安保安全储藏室”。"
 	color = "#C70039"
 	puzzle_id = "tarkon_vaultsec"
 
 /obj/item/keycard/tarkon_job_engi
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Engineering Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“工程安全储藏室”。"
 	color =  "#FFC300"
 	puzzle_id = "tarkon_vaultengi"
 
 /obj/item/keycard/tarkon_job_rnd
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Research Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“科研安全储藏室”。"
 	color = "#a207b9"
 	puzzle_id = "tarkon_vaultrnd"
 
 /obj/item/keycard/tarkon_job_supply
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Supply Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“补给安全储藏室”。"
 	color = "#9e5d06"
 	puzzle_id = "tarkon_vaultsupply"
 
 /obj/item/keycard/tarkon_job_command
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Command Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“指挥安全储藏室”。"
 	color = "#1b50d5"
 	puzzle_id = "tarkon_vaultcommand"
 
 /obj/item/keycard/tarkon_job_ensign
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Ensign Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“少尉安全储藏室”。"
 	color = "#1b50d5"
 	puzzle_id = "tarkon_vaultensign"
 
 /obj/item/keycard/tarkon_job_service
-	name = "Personal keycard"
-	desc = "Tarkon industries secure storage lock key. This one has a label reading 'Service Secure Storage'"
+	name = "私人钥匙卡"
+	desc = "塔肯工业安全储藏门锁的钥匙，标签写着“服务安全储藏室”。"
 	color = "#1cac40"
 	puzzle_id = "tarkon_vaultservice"
 
@@ -106,43 +106,43 @@
 
 // JOB SPECIFIC VAULT DOORS
 /obj/machinery/door/puzzle/keycard/personal_med
-	name = "Personal Medical Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has blue markings on it."
+	name = "私人医疗安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有蓝色标记。"
 	puzzle_id = "tarkon_vaultmed"
 
 /obj/machinery/door/puzzle/keycard/personal_sec
-	name = "Personal Security Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has red markings on it."
+	name = "私人安保安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有红色标记。"
 	puzzle_id = "tarkon_vaultsec"
 
 /obj/machinery/door/puzzle/keycard/personal_engi
-	name = "Personal Engineering Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has orange markings on it."
+	name = "私人工程安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有橙色标记。"
 	puzzle_id = "tarkon_vaultengi"
 
 /obj/machinery/door/puzzle/keycard/personal_rnd
-	name = "Personal Science Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has purple markings on it."
+	name = "私人科研安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有紫色标记。"
 	puzzle_id = "tarkon_vaultrnd"
 
 /obj/machinery/door/puzzle/keycard/personal_supply
-	name = "Personal Supply Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has brown markings on it."
+	name = "私人补给安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有棕色标记。"
 	puzzle_id = "tarkon_vaultsupply"
 
 /obj/machinery/door/puzzle/keycard/personal_command
-	name = "Personal Command Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has blue and gold markings on it."
+	name = "私人指挥安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有蓝色和金色标记。"
 	puzzle_id = "tarkon_vaultcommand"
 
 /obj/machinery/door/puzzle/keycard/personal_ensign
-	name = "Personal Ensign Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has blue and red markings on it."
+	name = "私人少尉安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有蓝色和红色标记。"
 	puzzle_id = "tarkon_vaultensign"
 
 /obj/machinery/door/puzzle/keycard/personal_service
-	name = "Personal Service Secure Airlock"
-	desc = "Tarkon industries secure storage lock. This one has dark green markings on it."
+	name = "私人服务安全气闸"
+	desc = "塔肯工业安全储藏门锁，带有深绿色标记。"
 	puzzle_id = "tarkon_vaultservice"
 
 // End job specific vault doors

@@ -13,14 +13,14 @@ GLOBAL_LIST_INIT(ticket_counter, list())
 /datum/admin_help_tickets/stat_entry()
 	var/list/L = ..()
 	L[++L.len] = list(null, null, null, null)
-	L[++L.len] = list("Ticket/OPFOR statistics", null, null, null)
-	L[++L.len] = list("Admin:", "Tickets/OPFOR handled:", null, null)
+	L[++L.len] = list("工单／敌对势力申请统计", null, null, null)
+	L[++L.len] = list("管理员：", "已处理工单／敌对势力申请：", null, null)
 
 	for(var/ckey in GLOB.ticket_counter)
 		//assumption, that there's no keys with empty values
 		L[++L.len] = list("[ckey]", "[GLOB.ticket_counter[ckey]]", null, null)
 
-	L[++L.len] = list("[opforstat.update("OPFOR:")]", "UNSUB: [LAZYLEN(SSopposing_force.unsubmitted_applications)] | SUB: [LAZYLEN(SSopposing_force.submitted_applications)] | APPR: [LAZYLEN(SSopposing_force.approved_applications)]", null, REF(opforstat))
+	L[++L.len] = list("[opforstat.update("敌对势力：")]", "未提交：[LAZYLEN(SSopposing_force.unsubmitted_applications)] | 已提交：[LAZYLEN(SSopposing_force.submitted_applications)] | 已批准：[LAZYLEN(SSopposing_force.approved_applications)]", null, REF(opforstat))
 
 	return L
 
@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(ticket_counter, list())
 
 /obj/effect/statclick/opfor_list/Click()
 	if (!usr.client?.holder)
-		message_admins("[key_name_admin(usr)] non-holder clicked on an OPFOR list statclick! ([src])")
+		message_admins("[key_name_admin(usr)]没有管理员权限，却点击了敌对势力列表状态项！（[src]）")
 		log_game("[key_name(usr)] non-holder clicked on an OPFOR list statclick! ([src])")
 		return
 

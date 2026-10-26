@@ -2,10 +2,10 @@
 // Sprays a wall of plasma that sucks against armor but fucks against unarmored targets
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_thrower
-	name = "\improper Słońce Plasma Projector"
-	desc = "An outdated sidearm rarely seen in use by some members of the CIN. \
-		Uses plasma power packs. \
-		Spews an inaccurate stream of searing plasma out the magnetic barrel so long as it has power and the trigger is pulled."
+	name = "\improper 烈日等离子投射器"
+	desc = "一款过时的副武器，偶尔仍有CIN成员使用。\
+		使用等离子能源包供能。\
+		只要有电并扣住扳机，就会从磁性枪管中喷出一股精度很差的灼热等离子流。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "slonce"
 	greyscale_config = /datum/greyscale_config/szot_dynamica_32
@@ -36,21 +36,21 @@
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_thrower/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_thrower/examine_more(mob/user)
 	. = ..()
 
-	. += "The 'Słońce' started life as an experiment in advancing the field of accelerated \
-		plasma weaponry. Despite the design's obvious shortcomings in terms of accuracy and \
-		range, the CIN combined military command (which we'll call the CMC from now on) took \
-		interest in the weapon as a means to counter Sol's more advanced armor technology. \
-		As it would turn out, the plasma globules created by the weapon were really not \
-		as effective against armor as the CMC had hoped, quite the opposite actually. \
-		What the plasma did do well however was inflict grievous burns upon anyone unfortunate \
-		enough to get hit by it unprotected. For this reason, the 'Słońce' saw frequent use by \
-		army officers and ship crews who needed a backup weapon to incinerate the odd space \
-		pirate or prisoner of war."
+	. += "“烈日”最初是一项旨在推进加速等离子武器技术的\
+		试验。尽管设计在精度和射程方面存在明显缺陷，\
+		CIN联合军事司令部（以下称为联合司令部）仍对它产生了兴趣，\
+		希望用它对抗太阳更先进的护甲技术。\
+		事实证明，这种武器产生的等离子团对护甲的效果\
+		并不像联合司令部期望的那样好，实际上恰恰相反。\
+		但它很擅长让没有防护却不幸中弹的人\
+		遭受严重烧伤。因此，陆军军官和舰船乘员\
+		经常使用“烈日”作为备用武器，焚烧偶尔遇到的太空\
+		海盗或战俘。"
 
 	return .
 
@@ -58,10 +58,10 @@
 // Shoots single, strong plasma blasts at a slow rate
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman
-	name = "\improper Gwiazda Plasma Sharpshooter"
-	desc = "An outdated sidearm rarely seen in use by some members of the CIN. \
-		Uses plasma power packs. \
-		Fires relatively accurate globs of searing plasma."
+	name = "\improper 恒星等离子精射手枪"
+	desc = "一款过时的副武器，偶尔仍有CIN成员使用。\
+		使用等离子能源包供能。\
+		能够较为精准地发射灼热的等离子团。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_32.dmi'
 	icon_state = "gwiazda"
 	greyscale_config = /datum/greyscale_config/szot_dynamica_32
@@ -100,18 +100,18 @@
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/examine(mob/user, overclocking)
 	. = ..()
 	if(overclocking)
-		. += span_notice("The weapon is glowing red and steaming!")
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+		. += span_notice("武器烧得通红，还在冒出蒸汽！")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/examine_more(mob/user)
 	. = ..()
-	. += "The 'Gwiazda' is a further refinement of the 'Słońce' design, with improved \
-		energy cycling, magnetic launchers built to higher precision, and an overall more \
-		ergonomic design. While it still fails to perform against armor, the weapon is \
-		significantly more accurate and higher powered, at the expense of a much lower fire rate. \
-		Opinions on this weapon within military service were highly mixed, with many preferring \
-		the sheer stopping power a spray of plasma could produce, and others loving the new ability \
-		to hit something in front of them for once."
+	. += "“恒星”进一步改进了“烈日”的设计，优化了\
+		能量循环，采用制造精度更高的磁性发射器，整体也更加\
+		符合人体工程学。虽然面对护甲仍然表现不佳，\
+		但它以大幅降低射速为代价，显著提升了精度和威力。\
+		军中对这件武器的评价褒贬不一，许多人更喜欢\
+		等离子扫射带来的强大阻止力，另一些人则很高兴\
+		自己总算能打中面前的东西了。"
 
 	return .
 
@@ -142,7 +142,7 @@
 /datum/action/item_action/activate_plasma_overclock //Gotta be hud, its un-revertable. Imagine misclicking and blowing up your gun without knowing...
 	button_icon = 'icons/obj/weapons/guns/ammo.dmi'
 	button_icon_state = "9x19p"
-	name = "Overclock Plasma Charger"
+	name = "超频等离子充能器"
 	check_flags = AB_CHECK_INCAPACITATED|AB_CHECK_CONSCIOUS
 
 //Checks if we can overclock the gun, if so, starts the process
@@ -151,7 +151,7 @@
 		return ..()
 	if(!overclocking)
 		overclocking = !overclocking
-	balloon_alert(user, "[overclocking ? "Plasma coils overheated, it's going to blow!" : "It's not shutting down!"]")
+	balloon_alert(user, "[overclocking ? "等离子线圈过热，要爆炸了！" : "关不掉了！"]")
 	if(overclocking)
 		overclock(user)
 	playsound(src, 'sound/effects/magic/lightning_chargeup.ogg', 50)
@@ -170,7 +170,7 @@
 	var/obj/item/gun/ballistic/automatic/pistol/plasma_marksman/gun = fired_from
 	if(istype(gun))
 		if(gun.overclocking)
-			loaded_projectile.name = "overcharged plasma globule"
+			loaded_projectile.name = "过载等离子团"
 			loaded_projectile.icon_state = "plasma_glob_super"
 			loaded_projectile.weak_against_armour = FALSE
 		gun.update_projspeed(user)
@@ -197,7 +197,7 @@
 	playsound(src, 'modular_zubbers/sound/weapons/plasma_explosion.ogg', 100, FALSE, 20, , , , TRUE)
 	for(var/mob/living/carbon/M in orange(20, src))
 		if(!HAS_TRAIT(M, TRAIT_DEAF))
-			to_chat(M, span_warning("You hear a distant pulse of energy, as if a miniature reactor blasting out a shockwave from afar..."))
+			to_chat(M, span_warning("你听见远处传来能量脉冲，仿佛一座微型反应堆在远方释放了冲击波……"))
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/process(seconds_per_tick)
 	var/mob/living/carbon/wielder = ismob(loc) ? loc : null
@@ -208,7 +208,7 @@
 		return
 	if(wielder.is_holding(src))
 		wielder.apply_damage(2.5, BURN, affecting)
-		to_chat(wielder, span_warning("[src] burns your hand, it's too hot!"))
+		to_chat(wielder, span_warning("[src]烫伤了你的手，它太热了！"))
 
 /obj/item/gun/ballistic/automatic/pistol/plasma_marksman/emp_act(severity)
 	. = ..()
@@ -221,8 +221,8 @@
 // Woe, buckshot be upon ye
 
 /obj/item/gun/ballistic/revolver/shotgun_revolver
-	name = "\improper Bóbr 12 GA revolver"
-	desc = "An outdated sidearm rarely seen in use by some members of the CIN. A revolver-type design with a four-shell cylinder. That's right, shell. This one shoots twelve gauge."
+	name = "\improper 海狸12号口径左轮手枪"
+	desc = "一款过时的副武器，偶尔仍有CIN成员使用。采用左轮结构，弹巢可容纳四发霰弹。没错，是霰弹。这把枪使用12号口径弹药。"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev12ga
 	projectile_damage_multiplier = 0.9
 	recoil = SAWN_OFF_RECOIL
@@ -245,12 +245,12 @@
 /obj/item/gun/ballistic/revolver/shotgun_revolver/examine_more(mob/user)
 	. = ..()
 
-	. += "The 'Bóbr' started development as a limited-run sporting weapon before \
-		the military took interest. The market quickly changed from sport shooting \
-		targets, to sport shooting TerraGov strike teams once the conflict broke out. \
-		This pattern is different from the original civilian version, with a military \
-		standard pistol grip and a weather-resistant finish. While the 'Bóbr' was not \
-		a weapon standard issued to every CIN soldier, it was available relatively \
-		cheaply, and thus became rather popular among the ranks."
+	. += "“海狸”最初作为限量生产的运动枪械研发，后来\
+		引起了军方的兴趣。冲突爆发后，市场需求迅速从打靶\
+		变成了把地球政府突击队当靶子打。\
+		这个型号不同于最初的民用版本，配备军用\
+		制式手枪握把和耐候表面涂层。虽然“海狸”并非\
+		配发给每个CIN士兵的制式武器，但其价格较为\
+		低廉，因此在部队中相当受欢迎。"
 
 	return .

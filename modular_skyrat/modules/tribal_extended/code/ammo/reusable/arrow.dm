@@ -15,8 +15,8 @@
 	return ..()
 
 /obj/projectile/bullet/arrow/ash
-	name = "ashen arrow"
-	desc = "An arrow made of hardened ash."
+	name = "灰烬箭"
+	desc = "用硬化灰烬制成的箭。"
 	faction_bonus_force = 90
 	damage = 30
 	nemesis_paths = list(
@@ -27,8 +27,8 @@
 	shrapnel_type = /obj/item/ammo_casing/arrow/ash
 
 /obj/projectile/bullet/arrow/bone
-	name = "bone arrow"
-	desc = "An arrow made from bone and sinew."
+	name = "骨箭"
+	desc = "用骨头和筋腱制成的箭。"
 	faction_bonus_force = 120
 	damage = 35
 	armour_penetration = 20
@@ -52,8 +52,8 @@
 	rip_time = 0.5 SECONDS
 
 /obj/projectile/bullet/arrow/bronze
-	name = "bronze arrow"
-	desc = "A bronze-tipped arrow."
+	name = "青铜箭"
+	desc = "装有青铜箭头的箭矢。"
 	faction_bonus_force = 140
 	damage = 30
 	armour_penetration = 30

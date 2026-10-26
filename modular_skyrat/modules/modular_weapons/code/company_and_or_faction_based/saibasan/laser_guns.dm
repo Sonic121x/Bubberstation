@@ -10,10 +10,10 @@
 // Modular energy weapons, laser guns that can transform into different variants after a few seconds of waiting and animation
 // Long version, takes both hands to use and doesn't fit in any bags out there
 /obj/item/gun/energy/modular_laser_rifle
-	name = "\improper Hyeseong modular laser rifle"
-	desc = "A popular energy weapon system that can be reconfigured into many different variants on the fly. \
-		Seen commonly amongst the Martians who produce the weapon, with many different shapes and sizes to fit \
-		the wide variety of modders the planet is home to."
+	name = "\improper 彗星模块化激光步枪"
+	desc = "一款流行的能量武器系统，能随时重新配置成多种不同型号。\
+		在生产这种武器的火星人中十分常见，并提供多种外形和尺寸，\
+		满足当地形形色色的改装爱好者。"
 	base_icon_state = "hyeseong"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/guns48x.dmi'
 	icon_state = "hyeseong_kill"
@@ -70,13 +70,13 @@
 	/// Keeps track of our soulcatcher component
 	var/datum/component/carrier/soulcatcher/tracked_soulcatcher
 	/// What is this gun's extended examine, we only have to do this because the carbine is a subtype
-	var/expanded_examine_text = "The Hyeseong rifle is the first line of man-portable Martian weapons platforms \
-		from Cybersun Industries. Like her younger sister weapon, the Hoshi carbine, CI used funding aid provided \
-		by TerraGov to develop a portable weapon fueled by a proprietary generator rumored to be fueled by superstable plasma. \
-		A rugged and hefty weapon, the Hyeseong stars in applications anywhere from medium to long ranges, though struggling \
-		in CQB. Her onboard machine intelligence, at first devised to support the operator and manage the internal reactor, \
-		is shipped with a more professional and understated personality-- since influenced by 'negligence' from users in \
-		wiping the intelligence's memory before resale or transport."
+	var/expanded_examine_text = "彗星步枪是赛博太阳工业推出的首代单兵便携式火星武器平台。\
+		与后来的姊妹型号星辰卡宾枪一样，赛博太阳利用地球政府提供的资金援助，\
+		研制了这款由专有发电机供能的便携武器，据传其燃料为超稳定等离子体。\
+		彗星坚固而沉重，在中远距离作战中表现出色，\
+		但不擅长近距离战斗。枪载机器智能最初用于辅助操作者并管理内部反应堆，\
+		出厂时的个性专业而内敛——此后，由于用户转售或运输武器前\
+		“疏忽”了清除智能体记忆的步骤，其个性也逐渐受到了影响。"
 	/// A cooldown for when the weapon has last spoken, prevents messages from getting turbo spammed
 	COOLDOWN_DECLARE(last_speech)
 
@@ -92,8 +92,8 @@
 
 /obj/item/gun/energy/modular_laser_rifle/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
-	. += span_notice("You can <b>Alt-Click</b> this gun to access the <b>internal soulcatcher</b>.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
+	. += span_notice("你可以<b>Alt+单击</b>这把枪来访问<b>内置灵魂捕手</b>。")
 
 /obj/item/gun/energy/modular_laser_rifle/examine_more(mob/user)
 	. = ..()
@@ -144,7 +144,7 @@
 		playsound(src, 'sound/items/modsuit/ballout.ogg', 75, TRUE)
 		return
 
-	var/picked_choice = show_radial_menu(
+	var/picked_choice = chinese_skyrat_item_radial(
 		user,
 		src,
 		radial_menu_data,
@@ -241,13 +241,13 @@
 
 // Power cell for the big rifle
 /obj/item/stock_parts/power_store/cell/hyeseong_internal_cell
-	name = "\improper Hyeseong modular laser rifle internal cell"
-	desc = "These are usually supposed to be inside of the gun, you know."
+	name = "\improper 彗星模块化激光步枪内置电池"
+	desc = "你知道的，这东西通常应该待在枪里面。"
 	maxcharge = STANDARD_CELL_CHARGE * 2
 
 /datum/action/item_action/toggle_personality
-	name = "Toggle Weapon Personality"
-	desc = "Toggles the weapon's personality core. Studies find that turning them off makes them quite sad, however."
+	name = "切换武器人格"
+	desc = "开启或关闭武器的人格核心。不过，研究表明关掉它们会让它们很难过。"
 	background_icon_state = "bg_mod"
 
 /datum/component/carrier/soulcatcher/modular_laser
@@ -256,7 +256,7 @@
 
 //Short version of the above modular rifle, has less charge and different modes
 /obj/item/gun/energy/modular_laser_rifle/carbine
-	name = "\improper Hoshi modular laser carbine"
+	name = "\improper 星辰模块化激光卡宾枪"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/saibasan/guns32x.dmi'
 	icon_state = "hoshi_kill"
 	inhand_icon_state = "hoshi_kill"
@@ -278,13 +278,13 @@
 	selfcharge = FALSE
 	default_selected_mode = "kill"
 	speech_json_file = SHORT_MOD_LASER_SPEECH
-	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
-		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
-		to develop a portable weapon using the same modular weapon system as the Hyeseong, but unforunately lacking the plasma generator. A \
-		lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \
-		ineffective at ranged combat. Her onboard machine intelligence, at first devised to support the operator and \
-		manage the internal reactor, was originally shipped with a more energetic personality-- since influenced by 'negligence' \
-		from users in wiping the intelligence's memory before resale or transport."
+	expanded_examine_text = "星辰卡宾枪是赛博太阳工业推出的最新一代单兵便携式火星武器平台。\
+		与较早的姊妹型号彗星步枪一样，赛博太阳利用地球政府提供的资金援助，\
+		研制了这款采用彗星同款模块化系统的便携武器，可惜缺少了等离子发电机。\
+		星辰轻巧灵活，擅长近距离战斗、技巧射击和范围爆破，\
+		但远程作战效果不佳。枪载机器智能最初用于辅助操作者\
+		并管理内部反应堆，出厂时个性更为活泼——此后，由于用户在转售或运输前\
+		“疏忽”了清除智能体记忆的步骤，其个性也逐渐受到了影响。"
 
 /obj/item/gun/energy/modular_laser_rifle/carbine/emp_act(severity)
 	. = ..()
@@ -293,13 +293,13 @@
 /obj/item/gun/energy/modular_laser_rifle/carbine/recharging
 	selfcharge = 1
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 6, /datum/material/uranium = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
-	expanded_examine_text = "The Hoshi carbine is the latest line of man-portable Martian weapons platforms from \
-		Cybersun Industries. Like her older sister weapon, the Hyeseong rifle, CI used funding aid provided by TerraGov \
-		to develop a portable weapon using the same modular weapon system as the Hyeseong, but unforunately lacking the plasma generator, but replaced with \
-		parts that make up the 'advanced' in an advanced energy gun. A lithe and mobile weapon, the Hoshi stars in close-quarters battle, trickshots, and area-of-effect blasts; though \
-		ineffective at ranged combat. Her onboard machine intelligence, at first devised to support the operator and \
-		manage the internal reactor, was originally shipped with a more energetic personality-- since influenced by 'negligence' \
-		from users in wiping the intelligence's memory before resale or transport."
+	expanded_examine_text = "星辰卡宾枪是赛博太阳工业推出的最新一代单兵便携式火星武器平台。\
+		与较早的姊妹型号彗星步枪一样，赛博太阳利用地球政府提供的资金援助，\
+		研制了这款采用彗星同款模块化系统的便携武器。虽然缺少等离子发电机，但代之以\
+		先进能量枪中体现其“先进”的部件。星辰轻巧灵活，擅长近距离战斗、技巧射击和范围爆破，\
+		但远程作战效果不佳。枪载机器智能最初用于辅助操作者\
+		并管理内部反应堆，出厂时个性更为活泼——此后，由于用户在转售或运输前\
+		“疏忽”了清除智能体记忆的步骤，其个性也逐渐受到了影响。"
 
 #undef LONG_MOD_LASER_SPEECH
 #undef SHORT_MOD_LASER_SPEECH

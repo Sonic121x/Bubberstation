@@ -1,6 +1,6 @@
 /datum/objective/heretic_wildcard/curse
-	name = "curse crewmembers"
-	finish_text = "The Delectable Feast now continues as planned. With the blood of heathens - a delicacy - lips smack, teeth destroy, tongues roll. You feel yourself drooling a little..."
+	name = "诅咒船员"
+	finish_text = "珍馐盛宴如今得以如期继续。异信者的鲜血是难得的美味——双唇咂响，牙齿撕碎，舌头翻卷。你发现自己也有些垂涎……"
 	knowledge_to_gain = list(/datum/heretic_knowledge/codex_morbus)
 	knowledge_per_progress = 0.25
 
@@ -11,7 +11,7 @@
 	update_explanation_text()
 
 /datum/objective/heretic_wildcard/curse/update_explanation_text()
-	explanation_text = "Curse at least [max_progress] crew members."
+	explanation_text = "诅咒至少[max_progress]名船员。"
 
 /datum/objective/heretic_wildcard/curse/apply_to(datum/antagonist/heretic/our_heretic)
 	. = ..()

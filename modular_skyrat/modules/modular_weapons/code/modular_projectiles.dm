@@ -15,7 +15,7 @@
 */
 
 /obj/item/ammo_casing/c45/hp
-	desc = "A .45 hollow-point bullet casing. Very lethal against unarmored opponents. Suffers against armor."
+	desc = "一发.45空尖弹。对无甲目标十分致命，但对护甲效果不佳。"
 	projectile_type = /obj/projectile/bullet/c45/hp
 	advanced_print_req = TRUE
 
@@ -28,10 +28,10 @@
 */
 
 /obj/item/ammo_casing/a223/ap
-	name = ".223 armor-piercing bullet casing"
-	desc = "A .223 armor-piercing bullet casing.\
+	name = ".223穿甲弹"
+	desc = "一发.223穿甲弹。\
 	<br><br>\
-	<i>ARMOR PIERCING: Increased armor piercing capabilities. What did you expect?"
+	<i>穿甲：提高护甲穿透能力。不然你还想要什么？"
 	projectile_type = /obj/projectile/bullet/a223/ap
 	advanced_print_req = TRUE
 	custom_materials = AMMO_MATS_AP
@@ -45,40 +45,40 @@
 
 // Why? Blame CFA, they want their bullets to be *proprietary*
 /obj/item/ammo_casing/c34
-	name = ".34 bullet casing"
-	desc = "A .34 bullet casing."
+	name = ".34子弹"
+	desc = "一发.34子弹。"
 	caliber = "c34acp"
 	projectile_type = /obj/projectile/bullet/c34
 
 /obj/projectile/bullet/c34
-	name = ".34 bullet"
+	name = ".34子弹"
 	damage = 15
 	wound_bonus = 0
 
 /obj/item/ammo_casing/c34/ap
-	name = ".34 armor-piercing bullet casing"
-	desc = "A .34 armor-piercing bullet casing."
+	name = ".34穿甲弹"
+	desc = "一发.34穿甲弹。"
 	caliber = "c34acp"
 	projectile_type = /obj/projectile/bullet/c34/ap
 	custom_materials = AMMO_MATS_AP
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/c34/ap
-	name = ".34 armor-piercing bullet"
+	name = ".34穿甲子弹"
 	damage = 15
 	armour_penetration = 40
 	wound_bonus = -75
 
 /obj/item/ammo_casing/c34_incendiary
-	name = ".34 incendiary bullet casing"
-	desc = "A .34 incendiary bullet casing."
+	name = ".34燃烧弹"
+	desc = "一发.34燃烧弹。"
 	caliber = "c34acp"
 	projectile_type = /obj/projectile/bullet/incendiary/c34_incendiary
 	custom_materials = AMMO_MATS_TEMP
 	advanced_print_req = TRUE
 
 /obj/projectile/bullet/incendiary/c34_incendiary
-	name = ".34 incendiary bullet"
+	name = ".34燃烧子弹"
 	damage = 8
 	fire_stacks = 1
 	wound_bonus = -90

@@ -1,10 +1,10 @@
 /obj/item/seeds/gelthi
-	name = "gelthi seed pack"
-	desc = "These seeds grow into gelthi plants. Lauded by chefs for its unique ability to produce honey, and often hoarded for this very reason."
+	name = "蜜荚草种子包"
+	desc = "这些种子能长成蜜荚草。它独特的产蜜能力深受厨师赞赏，也常因此被大量囤积。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "gelthi"
 	species = "gelthi"
-	plantname = "Gelthi Plant"
+	plantname = "蜜荚草"
 	product = /obj/item/food/grown/gelthi
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/gelthi
 	seed = /obj/item/seeds/gelthi
-	name = "gelthi"
-	desc = "A cluster of gelthi pods. Each pod contains a different sweetener, and the pods can be juiced into raw sugar."
+	name = "蜜荚"
+	desc = "一簇蜜荚草的果荚。每个果荚含有不同的甜味剂，还能榨出原糖。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "gelthi"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("overpowering sweetness" = 1)
+	tastes = list("甜得发腻" = 1)
 
 /obj/item/food/grown/gelthi/juice_typepath()
 	return /datum/reagent/consumable/sugar

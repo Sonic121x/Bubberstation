@@ -12,7 +12,7 @@ import { classes } from 'tgui-core/react';
 import { useSharedState } from '../../backend';
 import { SearchBar } from '../common/SearchBar';
 import type { Design, MaterialMap } from './Types';
-
+import { skyratResearchCategoryDisplay } from '../../localization/skyratSystemsDisplay';
 /**
  * A function that does nothing.
  */
@@ -260,7 +260,7 @@ export const DesignBrowser = <T extends Design = Design>(
               ? `Results for "${searchText}"`
               : selectedCategory === ALL_CATEGORY
                 ? 'All Designs'
-                : selectedCategory
+                : skyratResearchCategoryDisplay(selectedCategory)
           }
           fill
         >
@@ -375,7 +375,7 @@ const DesignBrowserTab = <T extends Design = Design>(
       }
     >
       <div className="FabricatorTabs__Label">
-        <div className="FabricatorTabs__CategoryName">{category.title}</div>
+        <div className="FabricatorTabs__CategoryName">{skyratResearchCategoryDisplay(category.title)}</div>
         {depth === 0 && (
           /** Show recipe counts on top-level categories. */
           <div className={'FabricatorTabs__CategoryCount'}>
@@ -497,7 +497,7 @@ const CategoryView = <T extends Design = Design>(
 
   return (
     <Section
-      title={category.title}
+      title={skyratResearchCategoryDisplay(category.title)}
       key={category.anchorKey}
       container_id={category.anchorKey}
       buttons={categoryButtons?.(category)}

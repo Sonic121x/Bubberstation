@@ -1,8 +1,8 @@
 /// SKYRAT MODULE SKYRAT_XENO_REDO
 
 /mob/living/carbon/alien/adult/skyrat/spitter
-	name = "alien spitter"
-	desc = "A fairly heavy looking alien with prominent acid glands, it's mouth dripping with... some kind of toxin or acid."
+	name = "异形喷吐者"
+	desc = "看起来颇为沉重的异形，酸腺十分显眼，嘴里正滴落着……某种毒液或酸液。"
 	caste = "spitter"
 	maxHealth = 300
 	health = 300

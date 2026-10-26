@@ -92,7 +92,7 @@
 		new /obj/effect/unopened_way(chosen_location)
 
 /datum/objective/open_ways
-	name = "open ways"
+	name = "开启通路"
 
 /datum/objective/open_ways/New(text)
 	. = ..()
@@ -101,15 +101,15 @@
 
 /datum/objective/open_ways/update_explanation_text()
 	. = ..()
-	explanation_text = "Open [target_amount] ways. Ways require a full ritual to open, and generally manifest in important station-bound areas."
+	explanation_text = "开启[target_amount]条通路。通路需要完整的仪式才能开启，通常出现在空间站内的重要区域。"
 
 // x ways will spawn per heretic
 // heretics can use their heart (Right click?) to sense the nearest way and its requirements
 // heretics then have to draw a rune and use a ritual to open it with the reqs
 // after opening it, ~y time later a event will happen
 /obj/effect/unopened_way
-	name = "unopened way"
-	desc = "An unopened door, tangling through reality towards the mansus. Light peaks through the crack - if only you would knock and bask in it."
+	name = "未开启的通路"
+	desc = "一扇未开启的门，穿越现实的纠葛，通往漫宿。光从门缝中透出——只待你叩门，沐浴其中。"
 	icon = 'icons/effects/eldritch.dmi'
 	/// The icon state applied to the image created for this way.
 	var/real_icon_state = "emark7"
@@ -162,17 +162,17 @@
 
 	if (opening)
 		if (IS_HERETIC(user) || isobserver(user))
-			. += span_boldnotice("This way seems to be connected to [destination.name] - [destination.desc]")
+			. += span_boldnotice("这条通路似乎连接着[destination.name]——[destination.desc]")
 			. += span_hypnophrase(destination.glimpse_heretic)
 		else
-			. += span_hypnophrase("YOU CATCH A GLIMPSE: [destination.glimpse]---!!")
+			. += span_hypnophrase("你瞥见了：[destination.glimpse]——！！")
 			if (isliving(user))
 				var/mob/living/living_user = user
 				living_user.adjust_organ_loss(ORGAN_SLOT_BRAIN, 50, 150)
 				living_user.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 	else
 		if (IS_HERETIC(user) || isobserver(user))
-			. += span_notice("You can use the [EXAMINE_HINT("Knock of the Twin-Finger")] ritual to discover this way's requirements.")
+			. += span_notice("你可以使用[EXAMINE_HINT("双指叩门")]仪式，查明开启这条通路所需的材料。")
 
 // arg one is nullable
 /obj/effect/unopened_way/proc/open(mob/living/opener)
@@ -185,23 +185,23 @@
 			stack_trace("way [src] opened by nonheretic, [opener]")
 		else
 			antag_datum.adjust_ways_opened(1)
-			to_chat(opener, span_boldnotice("The way revealed, you identify the way as a passage to [destination.name] - [destination.glimpse_heretic]"))
+			to_chat(opener, span_boldnotice("通路显现，你辨认出它通往[destination.name]——[destination.glimpse_heretic]"))
 
 	GLOB.reality_smash_track.ways_opened++
 
 	var/area/our_area = get_area(src)
-	visible_message(span_warning("The air shimmers as a gate to the mansus becomes clear!"))
+	visible_message(span_warning("空气闪烁，一扇通往漫宿的门逐渐显现！"))
 	if (announce_opening)
 		priority_announce(
-			"Reality-shearing cross-dimensional anomaly detected in [our_area.name]. Expected excursion in [OPENING_DURATION / 10] seconds.",
-			"CentCom Thaumatergy Monitor",
+			"在[chinese_area_display(our_area.name)]检测到撕裂现实的跨维度异常。预计[OPENING_DURATION / 10]秒后发生逸出事件。",
+			"中央指挥部奇术监测系统",
 			ANNOUNCER_ANOMALIES,
 			has_important_message = TRUE
 		)
 		notify_ghosts(
-			"[opener] just opened a way towards [destination.name] in [our_area.name]!",
+			"[opener]刚刚在[chinese_area_display(our_area.name)]开启了通往[destination.name]的通路！",
 			opener,
-			"The Gate Is Open",
+			"门扉已开",
 			notify_flags = NOTIFY_CATEGORY_NOFLASH,
 		)
 
@@ -215,14 +215,14 @@
 
 	START_PROCESSING(SSobj, src)
 
-	name = "opened way"
-	desc = "A gate towards the Mansus, now yawning open. Too thin to pass through, but just wide enough to catch a *glimpse*."
+	name = "已开启的通路"
+	desc = "一扇通往漫宿的门，如今已经敞开。缝隙太窄，无法穿过，却足够让人瞥见一眼。"
 
 	addtimer(CALLBACK(src, PROC_REF(finish_opening), opener), OPENING_DURATION)
 
 /obj/effect/unopened_way/proc/finish_opening(mob/living/opener)
 	playsound(src, 'sound/effects/magic/repulse.ogg', 100, FALSE)
-	visible_message(span_boldwarning("The way collapses, [destination.spawn_text]"))
+	visible_message(span_boldwarning("通路崩塌了，[destination.spawn_text]"))
 
 	destination.open(src, opener)
 

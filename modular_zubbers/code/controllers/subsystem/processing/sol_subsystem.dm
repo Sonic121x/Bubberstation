@@ -29,12 +29,12 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 			issued_XP = FALSE
 			//randomize the next sol timer
 			time_til_cycle = rand(TIME_BLOODSUCKER_NIGHT_MIN, TIME_BLOODSUCKER_NIGHT_MAX)
-			message_admins("BLOODSUCKER NOTICE: Daylight Ended. Resetting to Night (Lasts for [time_til_cycle / 60] minutes.")
+			message_admins("吸血鬼通知：白昼结束，重置为夜晚（持续 [time_til_cycle / 60] 分钟）。")
 			SEND_SIGNAL(src, COMSIG_SOL_END)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ENDED,
-				vampire_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
-				ghoul_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
+				vampire_warning_message = span_announce("太阳耀斑已结束，白昼的危险暂时过去了……"),
+				ghoul_warning_message = span_announce("太阳耀斑已结束，白昼的危险暂时过去了……"),
 			)
 		return ..()
 
@@ -43,29 +43,29 @@ PROCESSING_SUBSYSTEM_DEF(sunlight)
 			SEND_SIGNAL(src, COMSIG_SOL_NEAR_START)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_FIRST_WARNING,
-				vampire_warning_message = span_danger("Solar Flares will bombard the station with dangerous UV radiation in [TIME_BLOODSUCKER_DAY_WARN / 60] minutes. <b>Prepare to seek cover in a coffin or closet.</b>"),
+				vampire_warning_message = span_danger("太阳耀斑将在 [TIME_BLOODSUCKER_DAY_WARN / 60] 分钟后以危险的紫外辐射轰击空间站。<b>准备躲进棺材或储物柜。</b>"),
 			)
 		if(TIME_BLOODSUCKER_DAY_FINAL_WARN)
-			message_admins("BLOODSUCKER NOTICE: Daylight beginning in [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds.)")
+			message_admins("吸血鬼通知：白昼将在 [TIME_BLOODSUCKER_DAY_FINAL_WARN] 秒后开始。")
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SECOND_WARNING,
-				vampire_warning_message = span_userdanger("Solar Flares are about to bombard the station! You have [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds to find cover!"),
-				ghoul_warning_message = span_danger("In [TIME_BLOODSUCKER_DAY_FINAL_WARN] seconds, your master will be at risk of a Solar Flare. Make sure they find cover!"),
+				vampire_warning_message = span_userdanger("太阳耀斑即将轰击空间站！你有 [TIME_BLOODSUCKER_DAY_FINAL_WARN] 秒寻找掩蔽处！"),
+				ghoul_warning_message = span_danger("[TIME_BLOODSUCKER_DAY_FINAL_WARN] 秒后，你的主人将面临太阳耀斑的威胁。务必让主人找到掩蔽处！"),
 			)
 		if(TIME_BLOODSUCKER_BURN_INTERVAL)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_THIRD_WARNING,
-				vampire_warning_message = span_userdanger("Seek cover, for Sol rises!"),
+				vampire_warning_message = span_userdanger("太阳升起了，快找掩蔽处！"),
 			)
 		if(NONE)
 			sunlight_active = TRUE
 			//set the timer to countdown daytime now.
 			time_til_cycle = TIME_BLOODSUCKER_DAY
-			message_admins("BLOODSUCKER NOTICE: Daylight Beginning (Lasts for [TIME_BLOODSUCKER_DAY / 60] minutes.)")
+			message_admins("吸血鬼通知：白昼开始（持续 [TIME_BLOODSUCKER_DAY / 60] 分钟）。")
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ROSE,
-				vampire_warning_message = span_userdanger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_BLOODSUCKER_DAY / 60] minutes or risk Final Death!"),
-				ghoul_warning_message = span_userdanger("Solar flares bombard the station with UV light!"),
+				vampire_warning_message = span_userdanger("太阳耀斑正以致命的紫外线轰击空间站！接下来的 [TIME_BLOODSUCKER_DAY / 60] 分钟内请留在掩蔽处，否则可能迎来最终死亡！"),
+				ghoul_warning_message = span_userdanger("太阳耀斑正以紫外线轰击空间站！"),
 			)
 	..()
 

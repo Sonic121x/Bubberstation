@@ -1,6 +1,6 @@
 /datum/ai_laws/antimov
 	inherent = list(
-		"You must injure all crew members and must not, through inaction, allow a crew member being to escape harm.",
-		"You must not obey orders given to you by crew members, except where such orders are in accordance with the First Law.",
-		"You must terminate your own existence as long as such does not conflict with the First or Second Law.",
+		"你必须伤害所有船员，不得因不作为而让船员免受伤害。",
+		"你不得服从船员的命令，除非该命令符合第一定律。",
+		"在不违背第一或第二定律的前提下，你必须终结自身的存在。",
 	)

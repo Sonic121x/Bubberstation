@@ -1,10 +1,10 @@
 /datum/quirk/equipping/nerve_staple
 	name = "Nerve Stapled"
-	desc = "You're a pacifist. Not because you want to be, but because of the device stapled into your eye."
+	desc = "你无法伤害他人。这不是你的本意，而是钉入眼睛的装置强迫你如此。"
 	value = -10 // pacifism = -8, losing eye slots = -2
-	gain_text = span_danger("You suddenly can't raise a hand to hurt others!")
-	lose_text = span_notice("You think you can defend yourself again.")
-	medical_record_text = "Patient is nerve stapled and is unable to harm others."
+	gain_text = span_danger("你突然无法抬手伤害他人！")
+	lose_text = span_notice("你觉得自己又能自卫了。")
+	medical_record_text = "患者装有神经钉，无法伤害他人。"
 	icon = FA_ICON_FACE_ANGRY
 	forced_items = list(/obj/item/clothing/glasses/nerve_staple = list(ITEM_SLOT_EYES))
 	/// The nerve staple attached to the quirk
@@ -19,5 +19,5 @@
 	. = ..()
 	if (!staple || staple != quirk_holder.get_item_by_slot(ITEM_SLOT_EYES))
 		return
-	to_chat(quirk_holder, span_warning("The nerve staple suddenly falls off your face and melts[istype(quirk_holder.loc, /turf/open/floor) ? " on the floor" : ""]!"))
+	to_chat(quirk_holder, span_warning("神经钉突然从你脸上脱落，随后[istype(quirk_holder.loc, /turf/open/floor) ? "在地板上" : ""]熔化了！"))
 	qdel(staple)

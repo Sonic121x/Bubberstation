@@ -7,7 +7,7 @@
 		return FALSE
 
 	if(isliving(bomb_target) && bomb_target.GetComponent(/datum/component/c4_body_tracker))
-		to_chat(user,span_warning("There is already an explosive charge planted on [bomb_target]!"))
+		to_chat(user,span_warning("[bomb_target]上已经安装了炸药！"))
 		return FALSE
 
 	. = ..()
@@ -59,12 +59,12 @@
 
 
 /datum/reagent/toxin/acid/c4_b_gone
-	name = "c4-b-gone"
-	description = "A patented acidic compound by HugBox incorporated that is designed to (unsafely) remove c4 from most living beings."
+	name = "C4 去除剂"
+	description = "拥抱盒公司的一种专利酸性化合物，旨在以不安全的方式去除大多数生物身上的 C4。"
 
 	color = "#C6BED8" // rgb: 198, 190, 216
 
-	taste_description = "a box of acidic hugs"
+	taste_description = "一盒酸溜溜的拥抱"
 
 	reagent_weight = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

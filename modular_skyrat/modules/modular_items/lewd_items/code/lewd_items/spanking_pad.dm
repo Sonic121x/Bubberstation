@@ -1,6 +1,6 @@
 /obj/item/spanking_pad
-	name = "spanking pad"
-	desc = "A leather pad with a handle."
+	name = "拍打板"
+	desc = "一块带手柄的皮革拍板。"
 	icon_state = "spankpad_pink"
 	base_icon_state = "spankpad"
 	inhand_icon_state = "spankpad_pink"
@@ -46,12 +46,12 @@
 /obj/item/spanking_pad/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's color.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 
 /obj/item/spanking_pad/click_alt(mob/user)
 	if(color_changed)
 		return CLICK_ACTION_BLOCKING
-	var/choice = show_radial_menu(user, src, spankpad_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+	var/choice = chinese_skyrat_item_radial(user, src, spankpad_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!choice)
 		return CLICK_ACTION_BLOCKING
 	current_color = choice
@@ -72,19 +72,19 @@
 		return
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that."))
+		to_chat(user, span_danger("[target] 不愿意让你这么做。"))
 		return
 
 	if(carbon_target && !carbon_target.is_bottomless())
-		to_chat(user, span_danger("[target]'s butt is covered!"))
+		to_chat(user, span_danger("[target] 的臀部被遮住了！"))
 		return
 
-	var/message = (user == target) ? pick("spanks themselves with [src]",
-			"uses [src] to slap their hips") \
-		: pick("slaps [target]'s hips with [src]",
-			"uses [src] to slap [target]'s butt",
-			"spanks [target] with [src], making a loud slapping noise",
-			"slaps [target]'s thighs with [src]")
+	var/message = (user == target) ? pick("用 [src] 拍打自己的屁股",
+			"用 [src] 拍打自己的臀部") \
+		: pick("用 [src] 拍打 [target] 的臀部",
+			"用 [src] 拍打 [target] 的屁股",
+			"用 [src] 拍打 [target] 的屁股，发出响亮的啪声",
+			"用 [src] 拍打 [target] 的大腿")
 	user.visible_message(span_purple("[user] [message]!"))
 	conditional_pref_sound(loc, 'modular_skyrat/modules/modular_items/lewd_items/sounds/slap.ogg', 100, 1, -1)
 	if(prob(40))

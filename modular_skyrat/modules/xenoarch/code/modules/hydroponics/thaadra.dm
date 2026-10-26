@@ -1,10 +1,10 @@
 /obj/item/seeds/thaadra
-	name = "thaadra seed pack"
-	desc = "These seeds grow into thaadra plants. A strange flower full of unique medicines and silver."
+	name = "银药花种子包"
+	desc = "这些种子能长成银药花，一种富含独特药物和银的奇花。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "thaadra"
 	species = "thaadra"
-	plantname = "Thaadra Plant"
+	plantname = "银药花"
 	product = /obj/item/food/grown/thaadra
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/thaadra
 	seed = /obj/item/seeds/thaadra
-	name = "thaadra"
-	desc = "A cluster of thaadra petals, full of niche medicinal chemicals."
+	name = "银药花瓣"
+	desc = "一簇银药花瓣，富含用途特殊的药用化学物质。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "thaadra"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("silver" = 1)
+	tastes = list("银" = 1)
 
 /obj/item/food/grown/thaadra/juice_typepath()
 	return /datum/reagent/silver

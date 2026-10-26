@@ -11,7 +11,7 @@
 	required_temp = 480 // cook it
 	purity_min = 0
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
-	mix_message = "The solution thickens into a paste!"
+	mix_message = "溶液变稠，凝成了糊状！"
 
 /datum/chemical_reaction/powder_cocaine
 	is_cold_recipe = TRUE
@@ -19,7 +19,7 @@
 	required_temp = 250 //freeze it
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
-	mix_message = "The solution freezes into a powder!"
+	mix_message = "溶液冻结成了粉末！"
 
 /datum/chemical_reaction/powder_cocaine/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -32,7 +32,7 @@
 	purity_min = 0
 	reaction_flags = REACTION_INSTANT
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_DRUG
-	mix_message = "The solution solidifies into chunks!"
+	mix_message = "溶液凝固成了块状！"
 
 /datum/chemical_reaction/crack_cooking/on_reaction(datum/reagents/holder, datum/equilibrium/reaction, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -43,12 +43,12 @@
 	multiplicative_slowdown = -0.30
 
 /datum/reagent/drug/cocaine
-	name = "Cocaine"
-	description = "A powerful stimulant extracted from coca leaves. Causes drowsiness and severe brain damage if overdosed."
+	name = "可卡因"
+	description = "从古柯叶中提取的强效兴奋剂。过量会导致嗜睡和严重脑损伤。"
 	color = "#ffffff"
 	overdose_threshold = 20
 	ph = 9
-	taste_description = "bitterness" //supposedly does taste bitter in real life
+	taste_description = "苦味" //supposedly does taste bitter in real life
 	addiction_types = list(/datum/addiction/stimulants = 17)
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -63,7 +63,7 @@
 
 /datum/reagent/drug/cocaine/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
 	if(SPT_PROB(2.5, seconds_per_tick))
-		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
+		var/high_message = pick("你感到躁动不安。", "你觉得自己必须快起来。", "你觉得自己得再加把劲。")
 		to_chat(M, span_notice("[high_message]"))
 	M.add_mood_event("zoinked", /datum/mood_event/stimulant_heavy, name)
 	M.AdjustStun(-15 * REM * seconds_per_tick)
@@ -78,7 +78,7 @@
 	. = TRUE
 
 /datum/reagent/drug/cocaine/overdose_start(mob/living/M)
-	to_chat(M, span_userdanger("Your heart beats is beating so fast, it hurts..."))
+	to_chat(M, span_userdanger("你的心脏跳得太快，疼了起来……"))
 
 /datum/reagent/drug/cocaine/overdose_process(mob/living/M, seconds_per_tick, times_fired)
 	M.adjust_tox_loss(5 * REM * seconds_per_tick, 0)
@@ -88,17 +88,17 @@
 		M.emote(pick("twitch","drool"))
 	if(!HAS_TRAIT(M, TRAIT_FLOORED))
 		if(SPT_PROB(1.5, seconds_per_tick))
-			M.visible_message(span_danger("[M] collapses onto the floor!"))
+			M.visible_message(span_danger("[M]瘫倒在地！"))
 			M.Paralyze(135,TRUE)
 			M.drop_all_held_items()
 	..()
 	. = TRUE
 
 /datum/reagent/drug/coca_powder
-	name = "Coca Powder"
-	description = "Ground-up and filtered coca leaves, mildly stimulating."
+	name = "古柯粉"
+	description = "磨碎并过滤的古柯叶，具有轻微的兴奋作用。"
 	color = "#20862f"
-	taste_description = "bitterness"
+	taste_description = "苦味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/drug/coca_powder/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
@@ -111,11 +111,11 @@
 	. = TRUE
 
 /datum/reagent/drug/coca_paste
-	name = "Coca Paste"
-	description = "An acidc paste containing high amount of cocaine and toxic chemicals used to process it - consumption is ill-advised."
+	name = "古柯糊"
+	description = "一种酸性糊状物，含有大量可卡因以及加工时使用的有毒化学物质——不宜食用。"
 	color = "#4e6444"
 	ph = 5
-	taste_description = "acidic sludge"
+	taste_description = "酸性泥浆"
 	addiction_types = list(/datum/addiction/stimulants = 17)
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -132,7 +132,7 @@
 	M.adjust_fire_loss((volume/50) * REM * normalise_creation_purity() * seconds_per_tick, updating_health = FALSE, required_bodytype = affected_bodytype)
 	M.adjust_tox_loss(3 * REM * seconds_per_tick, updating_health = FALSE, required_biotype = affected_biotype)
 	if(SPT_PROB(2.5, seconds_per_tick))
-		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
+		var/high_message = pick("你感到躁动不安。", "你觉得自己必须快起来。", "你觉得自己得再加把劲。")
 		to_chat(M, span_notice("[high_message]"))
 	M.add_mood_event("zoinked", /datum/mood_event/stimulant_heavy, name)
 	M.AdjustStun(-12 * REM * seconds_per_tick)
@@ -148,7 +148,7 @@
 	return UPDATE_MOB_HEALTH
 
 /datum/reagent/drug/coca_paste/overdose_start(mob/living/M)
-	to_chat(M, span_userdanger("Your heart beats is beating so fast, it hurts..."))
+	to_chat(M, span_userdanger("你的心脏跳得太快，疼了起来……"))
 
 /datum/reagent/drug/coca_paste/overdose_process(mob/living/M, seconds_per_tick, times_fired)
 	M.adjust_tox_loss(5 * REM * seconds_per_tick, 0)
@@ -158,7 +158,7 @@
 		M.emote(pick("twitch","drool"))
 	if(!HAS_TRAIT(M, TRAIT_FLOORED))
 		if(SPT_PROB(1.5, seconds_per_tick))
-			M.visible_message(span_danger("[M] collapses onto the floor!"))
+			M.visible_message(span_danger("[M]瘫倒在地！"))
 			M.Paralyze(135,TRUE)
 			M.drop_all_held_items()
 	..()
@@ -168,12 +168,12 @@
 	multiplicative_slowdown = -0.40
 
 /datum/reagent/drug/freebase_cocaine
-	name = "Freebase Cocaine"
-	description = "A smokable form of cocaine, Its higher bioavaliability results in a more intense high."
+	name = "游离碱可卡因"
+	description = "一种可吸食的可卡因形态，因生物利用度更高而带来更强烈的兴奋感。"
 	color = "#f0e6bb"
 	overdose_threshold = 15
 	ph = 9 // it probably shouldnt be? but im too lazy to check it, and it was 9 because it was inhereiting
-	taste_description = "crunchy bitterness"
+	taste_description = "酥脆的苦味"
 	addiction_types = list(/datum/addiction/stimulants = 24) // even more addictive
 	metabolized_traits = list(TRAIT_ANALGESIA, TRAIT_BATON_RESISTANCE)
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -184,7 +184,7 @@
 
 /datum/reagent/drug/freebase_cocaine/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
 	if(SPT_PROB(2.5, seconds_per_tick))
-		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
+		var/high_message = pick("你感到躁动不安。", "你觉得自己必须快起来。", "你觉得自己得再加把劲。")
 		to_chat(M, span_notice("[high_message]"))
 	M.add_mood_event("zoinked", /datum/mood_event/stimulant_heavy, name)
 	M.AdjustStun(-18 * REM * seconds_per_tick)
@@ -204,7 +204,7 @@
 	..()
 
 /datum/reagent/drug/freebase_cocaine/overdose_start(mob/living/M)
-	to_chat(M, span_userdanger("Your heart beats is beating so fast, it hurts..."))
+	to_chat(M, span_userdanger("你的心脏跳得太快，疼了起来……"))
 
 /datum/reagent/drug/freebase_cocaine/overdose_process(mob/living/M, seconds_per_tick, times_fired)
 	M.adjust_tox_loss(5 * REM * seconds_per_tick, 0)
@@ -214,7 +214,7 @@
 		M.emote(pick("twitch","drool"))
 	if(!HAS_TRAIT(M, TRAIT_FLOORED))
 		if(SPT_PROB(1.5, seconds_per_tick))
-			M.visible_message(span_danger("[M] collapses onto the floor!"))
+			M.visible_message(span_danger("[M]瘫倒在地！"))
 			M.Paralyze(135,TRUE)
 			M.drop_all_held_items()
 	..()

@@ -17,7 +17,7 @@
 		. += span_cult(ghost_desc)
 	if(IS_BLOODSUCKER(user) && vamp_desc)
 		if(!owner)
-			. += span_cult("It is unsecured. Click on [src] while in your haven to secure it in place to get its full potential.")
+			. += span_cult("它尚未固定。在避难所内点击[src]将其固定，才能发挥全部作用。")
 			return
 		. += span_cult(vamp_desc)
 	if(IS_GHOUL(user) && ghoul_desc != "")
@@ -27,20 +27,20 @@
 
 /// This handles bolting down the structure.
 /obj/structure/bloodsucker/proc/bolt(mob/user)
-	to_chat(user, span_danger("You have secured [src] in place."))
-	to_chat(user, span_announce("* Bloodsucker Tip: Examine [src] to understand how it functions!"))
+	to_chat(user, span_danger("你将[src]固定在了原地。"))
+	to_chat(user, span_announce("* 吸血鬼提示：查看[src]以了解其用途！"))
 	owner = user
 
 /// This handles unbolting of the structure.
 /obj/structure/bloodsucker/proc/unbolt(mob/user)
-	to_chat(user, span_danger("You have unsecured [src]."))
+	to_chat(user, span_danger("你解除了[src]的固定。"))
 	owner = null
 
 /obj/structure/bloodsucker/attackby(obj/item/item, mob/living/user, params)
 	/// If a Bloodsucker tries to wrench it in place, yell at them.
 	if(item.tool_behaviour == TOOL_WRENCH && !anchored && IS_BLOODSUCKER(user))
 		user.playsound_local(null, 'sound/machines/buzz/buzz-sigh.ogg', 40, FALSE, pressure_affected = FALSE)
-		to_chat(user, span_announce("* Bloodsucker Tip: Examine Bloodsucker structures to understand how they function!"))
+		to_chat(user, span_announce("* 吸血鬼提示：查看吸血鬼结构以了解其用途！"))
 		return
 	return ..()
 
@@ -50,22 +50,22 @@
 	/// Claiming the Rack instead of using it?
 	if(istype(bloodsuckerdatum) && !owner)
 		if(!bloodsuckerdatum.bloodsucker_haven_area)
-			to_chat(user, span_danger("You don't have a haven. Claim a coffin to make that location your haven."))
+			to_chat(user, span_danger("你还没有避难所。认领一口棺材，使其所在区域成为避难所。"))
 			return FALSE
 		if(bloodsuckerdatum.bloodsucker_haven_area != get_area(src))
-			to_chat(user, span_danger("You may only activate this structure in your haven: [bloodsuckerdatum.bloodsucker_haven_area]."))
+			to_chat(user, span_danger("你只能在避难所中启用此结构：[chinese_area_display(bloodsuckerdatum.bloodsucker_haven_area.name)]。"))
 			return FALSE
 
 		/// Radial menu for securing your Persuasion rack in place.
-		to_chat(user, span_notice("Do you wish to secure [src] here?"))
+		to_chat(user, span_notice("要将[src]固定在这里吗？"))
 		var/static/list/secure_options = list(
-			"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"))
+			"是" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
+			"否" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"))
 		var/secure_response = show_radial_menu(user, src, secure_options, radius = 36, require_near = TRUE)
 		if(!secure_response)
 			return FALSE
 		switch(secure_response)
-			if("Yes")
+			if("是")
 				user.playsound_local(null, 'sound/items/tools/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 				bolt(user)
 				return FALSE
@@ -75,55 +75,55 @@
 /obj/structure/bloodsucker/click_alt(mob/user)
 	. = ..()
 	if(user == owner && user.Adjacent(src))
-		balloon_alert(user, "unbolt [src]?")
+		balloon_alert(user, "解除[src]的固定？")
 		var/static/list/unclaim_options = list(
-			"Yes" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
+			"是" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_yes"),
+			"否" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_no"),
 		)
 		var/unclaim_response = show_radial_menu(user, src, unclaim_options, radius = 36, require_near = TRUE)
 		switch(unclaim_response)
-			if("Yes")
+			if("是")
 				unbolt(user)
 	return CLICK_ACTION_SUCCESS
 /*
 /obj/structure/bloodsucker/bloodaltar
-	name = "bloody altar"
-	desc = "It is made of marble, lined with basalt, and radiates an unnerving chill that puts your skin on edge."
+	name = "血腥祭坛"
+	desc = "由大理石制成，以玄武岩镶边，散发着令人不安的寒意，让你浑身起鸡皮疙瘩。"
 /obj/structure/bloodsucker/bloodstatue
-	name = "bloody countenance"
-	desc = "It looks upsettingly familiar..."
+	name = "血腥面容"
+	desc = "它看起来熟悉得令人不安……"
 /obj/structure/bloodsucker/bloodportrait
-	name = "oil portrait"
-	desc = "A disturbingly familiar face stares back at you. Those reds don't seem to be painted in oil..."
+	name = "油画肖像"
+	desc = "一张熟悉得令人不安的面孔正凝视着你。那些红色似乎并非用油彩画成……"
 /obj/structure/bloodsucker/bloodbrazier
-	name = "lit brazier"
-	desc = "It burns slowly, but doesn't radiate any heat."
+	name = "燃烧的火盆"
+	desc = "它缓缓燃烧，却不散发任何热量。"
 /obj/structure/bloodsucker/bloodmirror
-	name = "faded mirror"
-	desc = "You get the sense that the foggy reflection looking back at you has an alien intelligence to it."
+	name = "黯淡镜子"
+	desc = "你觉得那凝视着你的模糊倒影似乎拥有异样的智慧。"
 /obj/item/restraints/legcuffs/beartrap/bloodsucker
 */
 
 /obj/structure/bloodsucker/ghoulrack
-	name = "persuasion rack"
-	desc = "If this wasn't meant for torture, then someone has some fairly horrifying hobbies."
+	name = "劝化刑架"
+	desc = "如果这东西不是用来施刑的，那某人的爱好可真够吓人。"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	icon_state = "ghoulrack"
 	anchored = FALSE
 	density = TRUE
 	can_buckle = TRUE
 	buckle_lying = 180
-	ghost_desc = "This is a Ghoul rack, which allows Bloodsuckers to thrall crewmembers into loyal minions."
-	vamp_desc = "This is the Ghoul rack, which allows you to thrall crewmembers into loyal minions in your service.\n\
-		Simply click and hold on a victim, and then drag their sprite on the ghoul rack. Right-click on the ghoul rack to unbuckle them.\n\
-		To convert into a Ghoul, repeatedly click on the persuasion rack. The time required scales with the tool in your off hand. This costs Blood to do.\n\
-		Ghouls can be turned into special ones by continuing to torture them once converted."
-	ghoul_desc = "This is the ghoul rack, which allows your master to thrall crewmembers into their minions.\n\
-		Aid your master in bringing their victims here and keeping them secure.\n\
-		You can secure victims to the ghoul rack by click dragging the victim onto the rack while it is secured."
-	hunter_desc = "This is the ghoul rack, which monsters use to brainwash crewmembers into their loyal slaves.\n\
-		They usually ensure that victims are handcuffed, to prevent them from running away.\n\
-		Their rituals take time, allowing us to disrupt it."
+	ghost_desc = "这是血仆刑架，吸血鬼可以用它将船员奴役为忠诚的仆从。"
+	vamp_desc = "这是血仆刑架，你可以用它将船员奴役为效忠于你的仆从。\n\
+		按住受害者并将其拖到刑架上即可绑住，右键点击刑架可以解绑。\n\
+		反复点击劝化刑架可将受害者转化为血仆。所需时间取决于副手中的工具，过程会消耗血液。\n\
+		转化后继续拷问，可将血仆提升为特殊血仆。"
+	ghoul_desc = "这是血仆刑架，你的主人可以用它将船员奴役为仆从。\n\
+		协助主人把受害者带来，并确保他们无法逃脱。\n\
+		刑架固定后，将受害者拖到上面即可绑住。"
+	hunter_desc = "这是血仆刑架，怪物用它将船员洗脑为忠诚的奴隶。\n\
+		他们通常会给受害者戴上手铐，防止逃跑。\n\
+		仪式需要时间，我们可以趁机破坏。"
 	custom_materials = list(
 		/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.3,
@@ -141,8 +141,8 @@
 	. = ..()
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(user)
 	if(bloodsuckerdatum)
-		. += span_cult("You can support a total of [convert_integer_to_words(bloodsuckerdatum.max_ghouls())] [bloodsuckerdatum.max_ghouls() == 1 ? "ghoul" : "ghouls"], \
-		with [convert_integer_to_words(bloodsuckerdatum.free_ghoul_slots())] [bloodsuckerdatum.free_ghoul_slots() == 1 ? "slot" : "slots"] remaining.")
+		. += span_cult("你最多能维系[bloodsuckerdatum.max_ghouls()]名血仆，\
+		还剩[bloodsuckerdatum.free_ghoul_slots()]个名额。")
 
 /obj/structure/bloodsucker/ghoulrack/atom_deconstruct(disassembled = TRUE)
 	. = ..()
@@ -163,16 +163,16 @@
 /obj/structure/bloodsucker/ghoulrack/mouse_drop_receive(atom/movable/movable_atom, mob/user, params)
 	var/mob/living/living_target = movable_atom
 	if(!anchored && IS_BLOODSUCKER(user))
-		user.balloon_alert(user, "not secured!")
-		to_chat(user, span_danger("Until this rack is secured in place, it cannot serve its purpose."))
-		to_chat(user, span_announce("* Bloodsucker Tip: Examine the Persuasion Rack to understand how it functions!"))
+		user.balloon_alert(user, "尚未固定！")
+		to_chat(user, span_danger("刑架固定之前无法发挥作用。"))
+		to_chat(user, span_announce("* 吸血鬼提示：查看劝化刑架以了解其用途！"))
 		return
 	// Default checks
 	if(!isliving(movable_atom) || !living_target.Adjacent(src) || living_target == user || !isliving(user) || has_buckled_mobs() || user.incapacitated || living_target.buckled)
 		return
 	// Don't buckle Silicon to it please.
 	if(issilicon(living_target))
-		to_chat(user, span_danger("You realize that this machine cannot be ghouled, therefore it is useless to buckle them."))
+		to_chat(user, span_danger("你意识到这台机器无法转化为血仆，绑住它毫无意义。"))
 		return
 	if(do_after(user, 5 SECONDS, living_target))
 		attach_victim(living_target, user)
@@ -201,8 +201,8 @@
 	if(!buckle_mob(target))
 		return
 	user.visible_message(
-		span_notice("[user] straps [target] into the rack, immobilizing them."),
-		span_boldnotice("You secure [target] tightly in place. They won't escape you now."),
+		span_notice("[user]将[target]绑在刑架上，使其无法动弹。"),
+		span_boldnotice("你牢牢绑住了[target]。现在休想逃出你的手掌心。"),
 	)
 
 	playsound(loc, 'sound/effects/pop_expl.ogg', 25, 1)
@@ -221,16 +221,16 @@
 
 	if(buckled_mob == user)
 		buckled_mob.visible_message(
-			span_danger("[user] tries to release themself from the rack!"),
-			span_danger("You attempt to release yourself from the rack!"),
-			span_hear("You hear a squishy wet noise."))
+			span_danger("[user]试图挣脱刑架！"),
+			span_danger("你试图挣脱刑架！"),
+			span_hear("你听到湿黏的挤压声。"))
 		if(!do_after(user, 20 SECONDS, buckled_mob))
 			return
 	else
 		buckled_mob.visible_message(
-			span_danger("[user] tries to pull [buckled_mob] rack!"),
-			span_danger("[user] tries to pull [buckled_mob] rack!"),
-			span_hear("You hear a squishy wet noise."))
+			span_danger("[user]试图把[buckled_mob]从刑架上拉下来！"),
+			span_danger("[user]试图把[buckled_mob]从刑架上拉下来！"),
+			span_hear("你听到湿黏的挤压声。"))
 		if(!do_after(user, 10 SECONDS, buckled_mob))
 			return
 
@@ -240,7 +240,7 @@
 	. = ..()
 	if(!.)
 		return
-	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
+	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "的尸体" : ""]从刑架上滑落。"))
 	density = FALSE
 	buckled_mob.Paralyze(2 SECONDS)
 	update_appearance(UPDATE_ICON)
@@ -260,8 +260,8 @@
 		user_unbuckle_mob(buckled_carbons, user)
 		return
 	if(!bloodsuckerdatum.my_clan)
-		to_chat(user, span_warning("You can't ghoul people until you enter a Clan (Through your Antagonist UI button)"))
-		user.balloon_alert(user, "join a clan first!")
+		to_chat(user, span_warning("加入氏族后才能转化血仆（通过反派界面按钮加入）。"))
+		user.balloon_alert(user, "请先加入氏族！")
 		return
 	var/datum/antagonist/ghoul/ghouldatum = IS_GHOUL(buckled_carbons)
 	// Are they our Ghoul?
@@ -269,8 +269,8 @@
 		SEND_SIGNAL(bloodsuckerdatum, COMSIG_BLOODSUCKER_INTERACT_WITH_GHOUL, ghouldatum)
 		return
 	if(bloodsuckerdatum.free_ghoul_slots() < 1)
-		to_chat(user, span_warning("You can't ghoul more people until you level up more! You are currently at [bloodsuckerdatum.free_ghoul_slots()] active / [bloodsuckerdatum.max_ghouls()] max ghouls."))
-		user.balloon_alert(user, "not enough ghoul slots!")
+		to_chat(user, span_warning("需要继续升级才能转化更多血仆！当前可用名额为[bloodsuckerdatum.free_ghoul_slots()]，血仆上限为[bloodsuckerdatum.max_ghouls()]。"))
+		user.balloon_alert(user, "血仆名额不足！")
 		return
 
 
@@ -289,20 +289,20 @@
 	if(IS_GHOUL(target))
 		var/datum/antagonist/ghoul/ghouldatum = IS_GHOUL(target)
 		if(!ghouldatum.master.broke_masquerade)
-			balloon_alert(user, "someone else's ghoul!")
+			balloon_alert(user, "是别人的血仆！")
 			return FALSE
 
 	var/disloyalty_requires = RequireDisloyalty(user, target)
 	if(disloyalty_requires == GHOULING_BANNED)
 		if(target.ckey)
-			balloon_alert(user, "can't be ghouled!")
+			balloon_alert(user, "无法转化为血仆！")
 		else
-			balloon_alert(user, "target has no mind!")
+			balloon_alert(user, "目标没有心智！")
 		return FALSE
 
 	// Conversion Process
 	if(convert_progress)
-		balloon_alert(user, "spilling blood...")
+		balloon_alert(user, "正在放血……")
 		bloodsuckerdatum.AdjustBloodVolume(-TORTURE_BLOOD_HALF_COST)
 		if(!do_torture(user, target))
 			return FALSE
@@ -313,27 +313,27 @@
 
 		// We're done? Let's see if they can be Ghoul.
 		if(convert_progress)
-			balloon_alert(user, "needs more persuasion...")
+			balloon_alert(user, "还需要继续劝化……")
 			return
 
 		if(disloyalty_requires)
-			balloon_alert(user, "has external loyalties! more persuasion required!")
+			balloon_alert(user, "另有效忠对象！需要继续劝化！")
 		else
-			balloon_alert(user, "ready for communion!")
+			balloon_alert(user, "已准备好血之共融！")
 		return
 
 	if(!disloyalty_confirm && disloyalty_requires)
 		if(!do_disloyalty(user, target))
 			return
 		if(!disloyalty_confirm)
-			balloon_alert(user, "refused persuasion!")
+			balloon_alert(user, "拒绝了劝化！")
 		else
-			balloon_alert(user, "ready for communion!")
+			balloon_alert(user, "已准备好血之共融！")
 		return
 
-	user.balloon_alert_to_viewers("smears blood...", "painting bloody marks...")
+	user.balloon_alert_to_viewers("正在涂抹鲜血……", "正在绘制血印……")
 	if(!do_after(user, 5 SECONDS, target))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "被打断了！")
 		return
 	// Convert to Ghoul!
 	bloodsuckerdatum.AdjustBloodVolume(-TORTURE_CONVERSION_COST)
@@ -376,8 +376,8 @@
 	if(held_item)
 		held_item.play_tool_sound(target)
 	target.visible_message(
-		span_danger("[user] performs a ritual, spilling some of [target]'s blood from their [selected_bodypart.name] and shaking them up!"),
-		span_userdanger("[user] performs a ritual, spilling some blood from your [selected_bodypart.name], shaking you up!"))
+		span_danger("[user]举行仪式，让鲜血从[target]的[selected_bodypart.name]流出，使其惶恐不安！"),
+		span_userdanger("[user]举行仪式，让鲜血从你的[selected_bodypart.name]流出，使你惶恐不安！"))
 
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 	target.set_timed_status_effect(5 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
@@ -392,26 +392,26 @@
 	if(is_banned_from(target.ckey, ROLE_BLOODSUCKER))
 		return TRUE
 	disloyalty_offered = TRUE
-	to_chat(user, span_notice("[target] has been given the opportunity for servitude. You await their decision..."))
+	to_chat(user, span_notice("[target]获得了臣服的机会。你等待着答复……"))
 	var/alert_response = tgui_alert(
 		user = target, \
-		message = "You are being tortured! Do you want to give in and pledge your undying loyalty to [user]? \n\
-			You will not lose your current objectives, but they come second to the will of your new master!", \
-		title = "THE HORRIBLE PAIN! WHEN WILL IT END?!",
-		buttons = list("Accept", "Refuse"),
+		message = "你正在遭受拷问！要屈服并向[user]宣誓永远效忠吗？\n\
+			你不会失去现有目标，但它们的优先级将低于新主人的意志！", \
+		title = "这可怕的痛苦！什么时候才能结束？！",
+		buttons = list("接受", "拒绝"),
 		timeout = 10 SECONDS, \
 		autofocus = TRUE, \
 	)
 	switch(alert_response)
-		if("Accept")
+		if("接受")
 			disloyalty_confirm = TRUE
 			target.visible_message(
-				span_notice("[target] gives in to [user]'s offer of servitude!"),
-				span_userdanger("You give in to [user]'s offer of servitude!"))
+				span_notice("[target]屈服了，接受了[user]的奴役！"),
+				span_userdanger("你屈服了，接受了[user]的奴役！"))
 		else
 			target.visible_message(
-				span_danger("[target] stares defiantly at [user], refusing to give in!"),
-				span_danger("You stare defiantly at [user], refusing to give in!"))
+				span_danger("[target]不屈地瞪着[user]，拒绝臣服！"),
+				span_danger("你不屈地瞪着[user]，拒绝臣服！"))
 	disloyalty_offered = FALSE
 	return TRUE
 
@@ -437,8 +437,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // todo, make this steal blood into a internal reservoir from nearby non-vassals/bloodsuckers
 /obj/structure/bloodsucker/candelabrum
-	name = "candelabrum"
-	desc = "It burns slowly, but doesn't radiate any heat."
+	name = "烛台"
+	desc = "它缓缓燃烧，却不散发任何热量。"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj.dmi'
 	icon_state = "candelabrum"
 	light_color = "#66FFFF"//LIGHT_COLOR_BLUEGREEN // lighting.dm
@@ -448,14 +448,14 @@
 	density = FALSE
 	can_buckle = TRUE
 	anchored = FALSE
-	ghost_desc = "This is a magical candle which drains at the sanity of non Bloodsuckers and Ghouls.\n\
-		Ghouls can turn the candle on manually, while Bloodsuckers can do it from a distance."
-	vamp_desc = "This is a magical candle which drains at the sanity of mortals who are not under your command while it is active.\n\
-		You can right-click on it from any range to turn it on remotely, or simply be next to it and click on it to turn it on and off normally."
-	ghoul_desc = "This is a magical candle which drains at the sanity of the fools who havent yet accepted your master, as long as it is active.\n\
-		You can turn it on and off by clicking on it while you are next to it.\n\
-		If your Master is part of the Ventrue Clan, they utilize this to upgrade their Favorite Ghoul."
-	hunter_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
+	ghost_desc = "这是一支魔法蜡烛，会侵蚀吸血鬼与血仆之外所有人的理智。\n\
+		血仆可以手动点燃，吸血鬼则可远程操作。"
+	vamp_desc = "这是一支魔法蜡烛，燃烧时会侵蚀不受你支配的凡人的理智。\n\
+		可以在任意距离右键点击，远程启用；也可以站在旁边点击，正常点燃或熄灭。"
+	ghoul_desc = "这是一支魔法蜡烛，燃烧时会侵蚀那些尚未臣服于你主人的愚者的理智。\n\
+		站在旁边点击，即可点燃或熄灭。\n\
+		若主人属于梵卓氏族，还会用它提升宠爱血仆。"
+	hunter_desc = "这是一座蓝色烛台，燃烧时会使附近的人陷入疯狂。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3.5)
 	var/lit = FALSE
 
@@ -495,12 +495,12 @@
 		return
 	if(IS_UNCONSCIOUS_OR_CRIT(user))
 		return
-	user.balloon_alert_to_viewers("motions their hand at [src]")
+	user.balloon_alert_to_viewers("朝[src]挥手示意")
 	toggle(user)
 
 /obj/structure/bloodsucker/candelabrum/proc/toggle(mob/user)
 	if(!anchored)
-		to_chat(user, span_danger("You can't turn this on while it is not secured!"))
+		to_chat(user, span_danger("尚未固定，无法启用！"))
 		return
 	lit = !lit
 	if(lit)
@@ -508,7 +508,7 @@
 		set_light(2, 3, "#66FFFF")
 		START_PROCESSING(SSobj, src)
 	else
-		desc = "Despite not being lit, it makes your skin crawl."
+		desc = "尽管未被点燃，它仍让你毛骨悚然。"
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
@@ -526,19 +526,19 @@
 
 /// Blood Throne - Allows Bloodsuckers to remotely speak with their Ghouls. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
 /obj/structure/bloodsucker/bloodthrone
-	name = "wicked throne"
-	desc = "Twisted metal shards jut from the arm rests. Very uncomfortable looking. It would take a masochistic sort to sit on this jagged piece of furniture."
+	name = "邪恶王座"
+	desc = "扭曲的金属碎片从扶手上刺出，看起来很不舒服。只有受虐狂才会坐在这件满是尖刺的家具上。"
 	icon = 'modular_zubbers/icons/obj/structures/vamp_obj_64.dmi'
 	icon_state = "throne"
 	buckle_lying = 0
 	anchored = FALSE
 	density = TRUE
 	can_buckle = TRUE
-	ghost_desc = "This is a Bloodsucker throne, any Bloodsucker sitting on it can remotely speak to their Ghouls by attempting to speak aloud."
-	vamp_desc = "This is a blood throne, sitting on it will allow you to telepathically speak to your ghouls by simply speaking."
-	ghoul_desc = "This is a blood throne, it allows your Master to telepathically speak to you and others like you."
-	hunter_desc = "This is a chair that hurts those that try to buckle themselves onto it, though the Undead have no problem latching on.\n\
-		While buckled, Monsters can use this to telepathically communicate with eachother."
+	ghost_desc = "这是吸血鬼王座。吸血鬼坐上去后，只需开口说话，就能远程向血仆传话。"
+	vamp_desc = "这是鲜血王座，坐上去后，只需开口就能通过心灵感应与血仆交谈。"
+	ghoul_desc = "这是鲜血王座，你的主人可以借它通过心灵感应与你及其他血仆交谈。"
+	hunter_desc = "这把椅子会伤害试图坐上去的人，但不死者可以安然落座。\n\
+		坐在上面的怪物能借此进行心灵感应交流。"
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/wood = SHEET_MATERIAL_AMOUNT)
 	var/mutable_appearance/armrest
 
@@ -587,19 +587,19 @@
 // Buckling
 /obj/structure/bloodsucker/bloodthrone/buckle_mob(mob/living/user, force = FALSE, check_loc = TRUE)
 	if(!anchored)
-		to_chat(user, span_announce("[src] is not bolted to the ground!"))
+		to_chat(user, span_announce("[src]尚未固定在地面上！"))
 		return
 	. = ..()
 	user.visible_message(
-		span_notice("[user] sits down on [src]."),
-		span_boldnotice("You sit down onto [src]."),
+		span_notice("[user]坐上了[src]。"),
+		span_boldnotice("你坐上了[src]。"),
 	)
 	if(IS_BLOODSUCKER(user))
 		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		unbuckle_mob(user)
 		user.Paralyze(10 SECONDS)
-		to_chat(user, span_cult("The power of the blood throne overwhelms you!"))
+		to_chat(user, span_cult("鲜血王座的力量将你淹没！"))
 
 /obj/structure/bloodsucker/bloodthrone/post_buckle_mob(mob/living/target)
 	. = ..()
@@ -608,7 +608,7 @@
 
 // Unbuckling
 /obj/structure/bloodsucker/bloodthrone/unbuckle_mob(mob/living/user, force = FALSE, can_fall = TRUE)
-	src.visible_message(span_danger("[user] unbuckles themselves from [src]."))
+	src.visible_message(span_danger("[user]从[src]上解开了束缚。"))
 	if(IS_BLOODSUCKER(user))
 		UnregisterSignal(user, COMSIG_MOB_SAY)
 	. = ..()

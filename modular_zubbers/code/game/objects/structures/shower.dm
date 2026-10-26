@@ -27,9 +27,9 @@
 			current_temperature = SHOWER_NORMAL
 		if(SHOWER_BOILING)
 			current_temperature = SHOWER_NORMAL
-	balloon_alert(user, "set to [current_temperature]")
-	user.visible_message(span_notice("[user] adjusts the shower."), span_notice("You adjust the shower temperature to [current_temperature]."))
-	user.log_message("has wrenched a shower to [current_temperature].", LOG_ATTACK)
+	balloon_alert(user, "已设为[current_temperature == SHOWER_FREEZING ? "冰冷" : current_temperature == SHOWER_BOILING ? "滚烫" : "正常"]")
+	user.visible_message(span_notice("[user]调节了淋浴器。"), span_notice("你将淋浴温度调为[current_temperature == SHOWER_FREEZING ? "冰冷" : current_temperature == SHOWER_BOILING ? "滚烫" : "正常"]。"))
+	user.log_message("将淋浴器调为[current_temperature == SHOWER_FREEZING ? "冰冷" : current_temperature == SHOWER_BOILING ? "滚烫" : "正常"]。", LOG_ATTACK)
 	add_hiddenprint(user)
 	handle_mist()
 	return CLICK_ACTION_SUCCESS

@@ -73,6 +73,6 @@
 	var/msg = "[span_info("<EM>你的技能</EM>")]\n<span class='notice'>"
 	for(var/i in shown_skills)
 		var/datum/skill/the_skill = i
-		msg += "[initial(the_skill.name)] - [get_skill_level_name(the_skill)]\n"
+		msg += "[chinese_skyrat_primitive_skill_display(initial(the_skill.name))] - [get_skill_level_name(the_skill)]\n"
 	msg += "</span>"
 	to_chat(user, boxed_message(msg))

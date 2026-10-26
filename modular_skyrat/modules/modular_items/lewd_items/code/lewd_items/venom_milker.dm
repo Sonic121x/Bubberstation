@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/venom_milker
-	name = "\improper venom siphon"
-	desc = "A commercial grade venom siphon, made for use on larger - typically human sized - animals. \
-	Has a built-in reagent neutralizer that inhibits the effects of most extracted toxins for safe handling, but it cannot be guaranteed to work."
+	name = "\improper 毒液抽取器"
+	desc = "一台商用毒液抽取器，适用于较大型、通常为人类体型的动物。\
+	内置试剂中和器，可抑制大部分抽取毒素的作用以便安全处理，但不能保证始终有效。"
 
 	icon_state = "venom_milker"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'
@@ -16,7 +16,7 @@
 
 	var/filter_immune_string = /datum/preference/choiced/aphrodisiacal_bite_venom::filter_immune_string
 	if (length(filter_immune_string))
-		desc += span_notice("\nThe following reagents cannot be filtered by the neutralizer: [filter_immune_string]")
+		desc += span_notice("\n中和器无法过滤以下试剂：[filter_immune_string]")
 
 /obj/item/reagent_containers/venom_milker/attack(mob/living/target_mob, mob/living/user, params)
 	. = ..()
@@ -25,11 +25,11 @@
 		return FALSE
 
 	playsound(user, 'sound/effects/compressed_air/tank_insert_clunky.ogg', 50)
-	user.balloon_alert_to_viewers("siphoning...")
+	user.balloon_alert_to_viewers("正在抽取……")
 
-	var/text = span_purple("[user] starts hooking up [src] to [target_mob]'s fangs...")
-	var/self_text = span_purple("You start hooking up [src] to [target_mob]'s fangs...")
-	var/victim_text = span_purple("[user] starts hooking up [src] to your fangs...")
+	var/text = span_purple("[user] 开始将 [src] 接到 [target_mob] 的毒牙上……")
+	var/self_text = span_purple("你开始将 [src] 接到 [target_mob] 的毒牙上……")
+	var/victim_text = span_purple("[user] 开始将 [src] 接到你的毒牙上……")
 
 	user.visible_message(text, self_text, ignored_mobs = target_mob)
 	to_chat(target_mob, victim_text)
@@ -55,22 +55,22 @@
 	var/datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/bite = locate() in target.actions
 	if (isnull(bite))
 		if (!silent)
-			user?.balloon_alert(user, "no fangs!")
+			user?.balloon_alert(user, "没有毒牙！")
 		return FALSE
 	if (!bite.IsAvailable())
 		if (!silent)
-			user?.balloon_alert(user, "fangs empty!")
+			user?.balloon_alert(user, "毒牙已无毒液！")
 		return FALSE
 	if (reagents.holder_full())
 		if (!silent)
-			user?.balloon_alert(user, "siphon full!")
+			user?.balloon_alert(user, "抽取器已满！")
 		return FALSE
 
 	if (iscarbon(user))
 		var/mob/living/carbon/carbon_target = target
 		if (carbon_target.is_mouth_covered())
 			if (!silent)
-				user.balloon_alert(user, "mouth covered!")
+				user.balloon_alert(user, "嘴被遮住了！")
 			return FALSE
 
 	return TRUE
@@ -95,10 +95,10 @@
 	bite.add_reagents(reagents, TRUE)
 
 	if (!isnull(user))
-		user.balloon_alert_to_viewers("siphoned")
-		var/text = span_purple("[user] siphons venom from [target]'s fangs with [src]!")
-		var/self_text = span_purple("You siphon venom from [target]'s fangs with [src]!")
-		var/victim_text = span_purple("[user] siphons venom from your fangs with [src]!")
+		user.balloon_alert_to_viewers("已抽取")
+		var/text = span_purple("[user] 用 [src] 从 [target] 的毒牙中抽取了毒液！")
+		var/self_text = span_purple("你用 [src] 从 [target] 的毒牙中抽取了毒液！")
+		var/victim_text = span_purple("[user] 用 [src] 从你的毒牙中抽取了毒液！")
 
 		user.visible_message(text, self_text, ignored_mobs = target)
 		to_chat(target, victim_text)
@@ -110,6 +110,6 @@
  * generic chem that has no effects.
  */
 /datum/reagent/generic_milked_venom
-	name = "Neutralized Venom"
-	description = "A venom siphon is capable of dampening most toxins extracted from a creature. \
-	Those under that umbrella typically exhibit reduced effects, unless they undergo a long restoration process."
+	name = "已中和毒液"
+	description = "毒液抽取器能削弱从生物体内抽取的大部分毒素。\
+	这些毒素的效果通常会减弱，除非经过漫长的恢复过程。"

@@ -1,11 +1,11 @@
 /datum/quirk/well_trained
 	name = "Well-Trained"
-	desc = "You absolutely love being dominated. The thought of someone with a stronger character than yours is enough to make you act up. They can snap their fingers to send you to the floor."
+	desc = "你非常喜欢被支配。只要想到比你更强势的人，就足以让你躁动。他们打个响指，就能让你伏倒在地。"
 	icon = "fa-sort-down"
-	medical_record_text = "Patient can be easily swayed by a sufficiently assertive individual."
+	medical_record_text = "患者很容易受足够强势的人影响。"
 	value = 0
-	gain_text = "<span class='notice'>You feel like being someone's pet.</span>"
-	lose_text = "<span class='notice'>You no longer feel like being a pet...</span>"
+	gain_text = "<span class='notice'>你想成为某人的宠物。</span>"
+	lose_text = "<span class='notice'>你不再想当宠物了……</span>"
 	quirk_flags = QUIRK_HIDE_FROM_SCAN | QUIRK_PROCESSES
 	erp_quirk = TRUE
 	var/mob/living/last_dom
@@ -116,10 +116,10 @@
 		return
 	if(HAS_TRAIT(quirk_holder, TRAIT_QUICKREFLEXES))
 		return
-	examine_list += span_purple("You can't look at <b>[dom]</b> for long before flustering away.")
+	examine_list += span_purple("你看着<b>[dom]</b>没多久，就慌乱地移开了目光。")
 
 	if(TIMER_COOLDOWN_FINISHED(dom, DOMINANT_COOLDOWN_EXAMINE))
-		to_chat(dom, span_purple("<b>[source]</b> tries to look at you but immediately looks away with a red face..."))
+		to_chat(dom, span_purple("<b>[source]</b>试着看向你，却立刻红着脸移开了目光……"))
 		TIMER_COOLDOWN_START(dom, DOMINANT_COOLDOWN_EXAMINE, 15 SECONDS)
 		INVOKE_ASYNC(quirk_holder, TYPE_PROC_REF(/mob, emote), "blush") // Needs to be aynsc because of the cooldown.
 		quirk_holder.dir = turn(get_dir(quirk_holder, dom), pick(-90, 90))
@@ -157,11 +157,11 @@
 	last_dom = . // Set new dom and run new code
 
 	var/list/notices = list(
-		"You feel someone's presence making you more submissive.",
-		"The thought of being commanded floods you with lust.",
-		"You really want to be called a pet.",
-		"Someone's presence is making you all flustered.",
-		"You start getting excited and sweating."
+		"你感觉某人的存在让你更加顺从。",
+		"一想到被命令，你就欲火中烧。",
+		"你很想被叫作宠物。",
+		"某人的存在让你慌乱不已。",
+		"你开始兴奋得冒汗。"
 	)
 	quirk_holder.add_mood_event(DOMINANT_MOOD, /datum/mood_event/dominant/good_boy)
 	to_chat(quirk_holder, span_purple(pick(notices)))

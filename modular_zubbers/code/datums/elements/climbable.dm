@@ -6,7 +6,7 @@
 
 	// Check if table is flipped - can't sit on flipped tables
 	if(target_table.is_flipped)
-		to_chat(user, span_warning("You can't sit on [target_table] while it's flipped!"))
+		to_chat(user, span_warning("[target_table]翻倒时无法坐上去！"))
 		return
 
 	// Check if we can reach the table
@@ -25,7 +25,7 @@
 		approach_dir = get_dir(table_turf, user_turf)
 		// Only allow mounting from cardinal directions, not diagonals
 		if(ISDIAGONALDIR(approach_dir))
-			to_chat(user, span_warning("You can only sit on [target_table] from the north, south, east, or west side!"))
+			to_chat(user, span_warning("你只能从[target_table]的正北、正南、正东或正西侧坐上去！"))
 			return
 		// Convert to closest cardinal direction if not already cardinal (safety check)
 		if(approach_dir & (approach_dir - 1)) // If diagonal (shouldn't happen after above check, but just in case)
@@ -55,8 +55,8 @@
 	LAZYINITLIST(target_table.oversized_sit_directions)
 	target_table.oversized_sit_directions[user] = approach_dir
 
-	user.visible_message(span_notice("[user] starts sitting on [target_table]."), \
-						span_notice("You start sitting on [target_table]..."))
+	user.visible_message(span_notice("[user]开始往[target_table]上坐。"), \
+						span_notice("你开始往[target_table]上坐……"))
 
 	// Move to table location if not already there
 	if(user.loc != target_table.loc)
@@ -74,15 +74,15 @@
 	// Attempt to buckle (is_buckle_possible override ensures only Oversized can buckle)
 	if(target_table.is_buckle_possible(user, FALSE, TRUE))
 		if(target_table.buckle_mob(user, FALSE, TRUE))
-			user.visible_message(span_notice("[user] sits on [target_table]."), \
-							span_notice("You sit on [target_table]."))
+			user.visible_message(span_notice("[user]坐在了[target_table]上。"), \
+							span_notice("你坐在了[target_table]上。"))
 		else
-			to_chat(user, span_warning("You fail to sit on [target_table]."))
+			to_chat(user, span_warning("你没能坐上[target_table]。"))
 			// Restore original buckle state if we changed it
 			if(!was_buckle_enabled)
 				target_table.can_buckle = FALSE
 	else
-		to_chat(user, span_warning("You can't sit on [target_table] right now."))
+		to_chat(user, span_warning("你现在无法坐上[target_table]。"))
 		// Restore original buckle state if we changed it
 		if(!was_buckle_enabled)
 			target_table.can_buckle = FALSE

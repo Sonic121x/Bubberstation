@@ -13,7 +13,7 @@
 	return ..()
 
 /datum/outfit/syndicate_boarder_preview
-	name = "Syndicate Boarder (Preview only)"
+	name = "辛迪加登船者（仅预览）"
 
 	back = /obj/item/mod/control/pre_equipped/empty/infiltrator/preview_only
 	uniform = /obj/item/clothing/under/syndicate

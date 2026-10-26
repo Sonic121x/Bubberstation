@@ -2,7 +2,7 @@
 #define BLOOD_TIMER_HALWAY (BLOOD_TIMER_REQUIREMENT / 2)
 
 /datum/antagonist/ex_ghoul
-	name = "\improper Ex-Ghoul"
+	name = "\improper 前血仆"
 	roundend_category = "ghouls"
 	antagpanel_category = "Bloodsucker"
 	pref_flag = ROLE_VASSAL
@@ -34,7 +34,7 @@
 
 	var/datum/antagonist/ghoul/revenge/ghouldatum = IS_REVENGE_GHOUL(examiner)
 	if(ghouldatum && !revenge_ghoul)
-		examine_text += span_notice("[owner.current] is an ex-ghoul!")
+		examine_text += span_notice("[owner.current] 曾是一名血仆！")
 
 /datum/antagonist/ex_ghoul/add_team_hud(mob/target)
 	QDEL_NULL(team_hud_ref)
@@ -75,11 +75,11 @@
 	SIGNAL_HANDLER
 
 	if(COOLDOWN_TIMELEFT(src, blood_timer) <= BLOOD_TIMER_HALWAY + 2 && COOLDOWN_TIMELEFT(src, blood_timer) >= BLOOD_TIMER_HALWAY - 2) //just about halfway
-		to_chat(owner.current, span_cult_bold("You need new blood from your Master!"))
+		to_chat(owner.current, span_cult_bold("你需要主人赐予新的鲜血！"))
 	if(!COOLDOWN_FINISHED(src, blood_timer))
 		return
-	to_chat(owner.current, span_cult_bold("You are out of blood!"))
-	to_chat(revenge_ghoul.owner.current, span_cult_bold("[owner.current] has ran out of blood and is no longer in the fold!"))
+	to_chat(owner.current, span_cult_bold("你的血液耗尽了！"))
+	to_chat(revenge_ghoul.owner.current, span_cult_bold("[owner.current] 的血液已耗尽，再次脱离了麾下！"))
 	owner.remove_antag_datum(/datum/antagonist/ex_ghoul)
 
 
@@ -89,12 +89,12 @@
  * Artificially made, this must be fed to ex-ghouls to keep them on their high.
  */
 /datum/reagent/blood/bloodsucker
-	name = "Blood two"
+	name = "再造血液"
 
 /datum/reagent/blood/bloodsucker/expose_mob(mob/living/exposed_mob, methods, reac_volume, show_message, touch_protection)
 	var/datum/antagonist/ex_ghoul/former_ghoul = exposed_mob.mind.has_antag_datum(/datum/antagonist/ex_ghoul)
 	if(former_ghoul)
-		to_chat(exposed_mob, span_cult("You feel the blood restore you... You feel safe."))
+		to_chat(exposed_mob, span_cult("你感到鲜血令你恢复如初……你安心了。"))
 		COOLDOWN_RESET(former_ghoul, blood_timer)
 		COOLDOWN_START(former_ghoul, blood_timer, BLOOD_TIMER_REQUIREMENT)
 	return ..()

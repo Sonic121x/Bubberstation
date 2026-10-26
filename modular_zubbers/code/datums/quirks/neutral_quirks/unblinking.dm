@@ -1,11 +1,11 @@
 /datum/quirk/unblinking
 	name = "Unblinking"
-	desc = "For whatever reason, you do not need to blink to keep your eyes (or equivalent visual apparatus) functional."
+	desc = "不知为何，你的眼睛或其他视觉器官无需眨动就能正常运作。"
 	icon = FA_ICON_FACE_FLUSHED
 	value = 0
-	gain_text = span_danger("You no longer feel the need to blink.")
-	lose_text = span_notice("You feel the need to blink again.")
-	medical_record_text = "Patient is incapable of blinking."
+	gain_text = span_danger("你不再觉得需要眨眼。")
+	lose_text = span_notice("你又觉得需要眨眼了。")
+	medical_record_text = "患者无法眨眼。"
 	mob_trait = TRAIT_NO_EYELIDS //Also prevents eye shutting in knockout state and death.
 
 /datum/quirk/unblinking/add(client/client_source)

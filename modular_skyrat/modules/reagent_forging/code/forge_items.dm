@@ -1,7 +1,7 @@
 //incomplete pre-complete items
 /obj/item/forging/incomplete
-	name = "incomplete forging item"
-	desc = "you shouldn't be seeing this!"
+	name = "未完成的锻件"
+	desc = "你不应该看到这个！"
 	abstract_type = /obj/item/forging/incomplete
 
 	///the quality points required for it to be considered usable for crafting
@@ -30,15 +30,15 @@
 
 	var/datum/component/forge_smithable/forge_component = GetComponent(/datum/component/forge_smithable)
 	if(forge_component.is_finished_smithing())
-		to_chat(quencher, span_notice("You cool down [src]."))
+		to_chat(quencher, span_notice("你冷却了 [src]。"))
 		quencher.mind?.adjust_experience(/datum/skill/smithing, 5)
 	else
 		if(break_on_early_quench)
-			to_chat(quencher, span_warning("The [src] breaks from the thermal shock! Metalworking this type of object requires it to be hammered into completion."))
+			to_chat(quencher, span_warning("[src] 因热冲击而碎裂！这类物品必须先锤打成形才能完成加工。"))
 			qdel(src)
 			return
 		else
-			to_chat(quencher, span_warning("You cool down [src]. You're not sure if it was ready yet..."))
+			to_chat(quencher, span_warning("你冷却了 [src]，但不确定它是否已准备妥当……"))
 
 	var/obj/spawned_obj = new spawn_item(get_turf(dunk_object))
 	if(custom_materials)
@@ -52,14 +52,14 @@
 	var/datum/component/reagent_imbued/new_reagent_component = spawned_obj.GetComponent(/datum/component/reagent_imbued)
 	if(!isnull(new_reagent_component) && USER_CAN_REAGENT_IMBUE(quencher))
 		new_reagent_component.set_reagent_imbue(dunk_reagents, FALSE, TRUE)
-		to_chat(quencher, span_notice("The [spawned_obj] is imbued with reagents."))
+		to_chat(quencher, span_notice("[spawned_obj] 已注入试剂。"))
 
 	qdel(src)
 	return spawned_obj
 
 /obj/item/forging/incomplete/tong_act(mob/living/user, obj/item/tool)
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经夹着东西了！")
 		return
 	forceMove(tool)
 
@@ -79,7 +79,7 @@
 	if(!hand_protected)
 		var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 		user.apply_damage(5, BURN, hitzone)
-		to_chat(user, span_danger("You burn your hand trying to pick up [src]!"))
+		to_chat(user, span_danger("你试图拿起 [src]，却烫伤了手！"))
 		user.add_mood_event("burnt_thumb", /datum/mood_event/burnt_thumb)
 		user.dropItemToGround(src)
 
@@ -87,133 +87,133 @@
 	return FALSE
 
 /obj/item/forging/incomplete/chain
-	name = "incomplete chain"
+	name = "未完成的链条"
 	icon_state = "hot_chain"
 	completion_quality_points = 40
 	max_perfect_hits = 15
 	spawn_item = /obj/item/forging/complete/chain
 	break_on_early_quench = TRUE
-	desc = "A length of chain. Used in crafting recipes at your crafting table."
+	desc = "一段链条，用于制作台上的各种配方。"
 
 /obj/item/forging/incomplete/plate
-	name = "incomplete plate"
+	name = "未完成的金属板"
 	icon_state = "hot_plate"
 	completion_quality_points = 40
 	max_perfect_hits = 15
 	spawn_item = /obj/item/forging/complete/plate
-	desc = "A sturdy plate of material. Used in many crafting recipies at your crafting table, most notably that of armor."
+	desc = "一块坚固的板材，可用于制作台上的多种配方，尤其是护甲。"
 
 /obj/item/forging/incomplete/sword
-	name = "incomplete sword blade"
+	name = "未完成的剑刃"
 	icon_state = "hot_blade"
 	spawn_item = /obj/item/forging/complete/sword
-	desc = "A longsword. Practically requires a two-handed stance for effective use, but is very adept at blocking strikes."
+	desc = "一把长剑，基本需要双手持握才能有效使用，但非常擅长格挡攻击。"
 
 /obj/item/forging/incomplete/katana
-	name = "incomplete katana blade"
+	name = "未完成的武士刀刃"
 	icon_state = "hot_katanablade"
 	spawn_item = /obj/item/forging/complete/katana
-	desc = "A katana blade. Unwieldy if not carried with both hands, but careful metalworking makes it cut through armor more effectively."
+	desc = "一片武士刀刃。单手持用不太灵便，但精心锻造可提高其破甲能力。"
 
 /obj/item/forging/incomplete/rapier
-	name = "incomplete rapier blade"
+	name = "未完成的刺剑刃"
 	icon_state = "hot_rapierblade"
 	spawn_item = /obj/item/forging/complete/rapier
-	desc = "A rapier blade. A classical go-to self-defense weapon, it requires only one hand to use."
+	desc = "一片刺剑刃。经典的防身武器，只需单手即可使用。"
 
 /obj/item/forging/incomplete/dagger
-	name = "incomplete dagger blade"
+	name = "未完成的匕首刃"
 	icon_state = "hot_daggerblade"
 	completion_quality_points = 22
 	max_perfect_hits = 10
 	spawn_item = /obj/item/forging/complete/dagger
-	desc = "A small, sleek dagger. Can be easily hid, and can critially-strike vulnerable opponents."
+	desc = "一把小巧纤细的匕首，易于隐藏，能对破绽毕露的对手造成致命一击。"
 
 /obj/item/forging/incomplete/staff
-	name = "incomplete staff head"
+	name = "未完成的杖头"
 	icon_state = "hot_staffhead"
 	spawn_item = /obj/item/forging/complete/staff
-	desc = "A staff that can be imbued with reagents. Not very useful in direct combat."
+	desc = "一根可注入试剂的法杖，不太适合直接战斗。"
 
 /obj/item/forging/incomplete/spear
-	name = "incomplete spear head"
+	name = "未完成的矛头"
 	completion_quality_points = 18 ///crazy low completion required (spears are historically an easy weapon to make that are used for widespread arming)
 	max_perfect_hits = 8
 	icon_state = "hot_spearhead"
 	spawn_item = /obj/item/forging/complete/spear
-	desc = "A short spearhead. The weapon of commoners, it strikes from further away and can be made extremely quickly compared to other weapons."
+	desc = "一个短矛头。作为平民的武器，它攻击距离较远，制作速度也比其他武器快得多。"
 
 /obj/item/forging/incomplete/axe
-	name = "incomplete axe head"
+	name = "未完成的斧头"
 	icon_state = "hot_axehead"
 	completion_quality_points = 22
 	max_perfect_hits = 14
 	spawn_item = /obj/item/forging/complete/axe
-	desc = "A heavy axehead. Hits from this can potentially bypass shields and other forms of protection."
+	desc = "一个沉重的斧头，有机会绕过盾牌及其他防护造成打击。"
 
 /obj/item/forging/incomplete/hammer
-	name = "incomplete hammer head"
+	name = "未完成的锤头"
 	icon_state = "hot_hammerhead"
 	spawn_item = /obj/item/forging/complete/hammer
-	desc = "A heavy hammerhead. Can be used like a forging hammer -- and a two-handed stance can bust through doors."
+	desc = "一个沉重的锤头，可当作锻造锤使用——双手持握时还能砸开门。"
 
 /obj/item/forging/incomplete/pickaxe
-	name = "incomplete pickaxe head"
+	name = "未完成的镐头"
 	icon_state = "hot_pickaxehead"
 	spawn_item = /obj/item/forging/complete/pickaxe
-	desc = "A pickaxe. Used for digging."
+	desc = "一把用于挖掘的镐。"
 
 /obj/item/forging/incomplete/shovel
-	name = "incomplete shovel head"
+	name = "未完成的铲头"
 	icon_state = "hot_shovelhead"
 	spawn_item = /obj/item/forging/complete/shovel
-	desc = "A shovel. Used for digging."
+	desc = "一把用于挖掘的铲子。"
 
 /obj/item/forging/incomplete/arrowhead
-	name = "incomplete arrowhead"
+	name = "未完成的箭头"
 	icon_state = "hot_arrowhead"
 	completion_quality_points = 12
 	spawn_item = /obj/item/forging/complete/arrowhead
-	desc = "A number of small arrowheads, used to create arrows."
+	desc = "一些用于制作箭矢的小箭头。"
 
 /obj/item/forging/incomplete/revolver_cylinder
-	name = "incomplete revolver cylinder"
+	name = "未完成的左轮弹巢"
 	icon_state = "hot_revolver_cylinder"
 	completion_quality_points = 60
 	max_perfect_hits = 70
 	spawn_item = /obj/item/forging/complete/revolver_cylinder
-	desc = "The cylinder of a classical single-action revolver."
+	desc = "经典单动式左轮手枪的弹巢。"
 
 /obj/item/forging/incomplete/revolver_frame
-	name = "incomplete revolver frame"
+	name = "未完成的左轮枪架"
 	icon_state = "hot_revolver_frame"
 	completion_quality_points = 90
 	max_perfect_hits = 110
 	spawn_item = /obj/item/forging/complete/revolver_frame
-	desc = "The frame of a classical single-action revolver."
+	desc = "经典单动式左轮手枪的枪架。"
 
 /obj/item/forging/incomplete/baseball_bat
-	name = "incomplete baseball bat"
+	name = "未完成的棒球棒"
 	icon_state = "hot_baseball_bat"
 	spawn_item = /obj/item/forging/complete/baseball_bat
-	desc = "A baseball bat in production."
+	desc = "一根正在制作的棒球棒。"
 
 /obj/item/forging/incomplete/rail_nail
-	name = "incomplete rail nail"
+	name = "未完成的道钉"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_nail"
 	completion_quality_points = 10
 	spawn_item = /obj/item/forging/complete/rail_nail
 	break_on_early_quench = TRUE
-	desc = "A rail nail used to build rail tracks."
+	desc = "用于铺设轨道的道钉。"
 
 /obj/item/forging/incomplete/rail_cart
-	name = "incomplete rail cart"
+	name = "未完成的矿车"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "hot_cart"
 	spawn_item = /obj/vehicle/ridden/rail_cart
 	break_on_early_quench = TRUE
-	desc = "A minecart that can be ridden along rail tracks."
+	desc = "一辆可乘坐并沿轨道行驶的矿车。"
 
 //"complete" pre-complete items
 /obj/item/forging/complete
@@ -241,7 +241,7 @@
 /obj/item/forging/complete/examine(mob/user)
 	. = ..()
 	if(spawning_item)
-		. += span_notice("<br>In order to finish this item, a workbench will be necessary!")
+		. += span_notice("<br>需要工作台才能完成这件物品！")
 
 /obj/item/forging/complete/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(double_edged_damage <= 0)
@@ -254,67 +254,67 @@
 	if(jab.get_all_covered_flags() & HANDS)
 		return
 
-	to_chat(user, span_warning("[src] cuts into your hand!"))
+	to_chat(user, span_warning("[src] 割伤了你的手！"))
 	jab.apply_damage(double_edged_damage * hammer_completion_amount, BRUTE, user.get_active_hand(), attacking_item = src)
 
 /obj/item/forging/complete/tong_act(mob/living/user, obj/item/tool)
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经夹着东西了！")
 		return
 	forceMove(tool)
 
 /obj/item/forging/complete/chain
-	name = "chain"
-	desc = "A singular chain, best used in combination with multiple chains."
+	name = "链条"
+	desc = "一段链条，最好与其他链条组合使用。"
 	icon_state = "chain"
 
 /obj/item/forging/complete/plate
-	name = "plate"
-	desc = "A plate, best used in combination with multiple plates."
+	name = "金属板"
+	desc = "一块金属板，最好与其他金属板组合使用。"
 	icon_state = "plate"
 
 /obj/item/forging/complete/sword
-	name = "sword blade"
-	desc = "A sword blade, ready to get some wood for completion."
+	name = "剑刃"
+	desc = "一片剑刃，加些木材就能组装完成。"
 	icon_state = "blade"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/sword
 	force = 5
 	double_edged_damage = 3
 
 /obj/item/forging/complete/katana
-	name = "katana blade"
-	desc = "A katana blade, ready to get some wood for completion."
+	name = "武士刀刃"
+	desc = "一片武士刀刃，加些木材就能组装完成。"
 	icon_state = "katanablade"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/katana
 	force = 5
 	double_edged_damage = 3
 
 /obj/item/forging/complete/rapier
-	name = "rapier blade"
-	desc = "A rapier blade, ready to get some wood for completion."
+	name = "刺剑刃"
+	desc = "一片刺剑刃，加些木材就能组装完成。"
 	icon_state = "rapierblade"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/rapier
 	force = 5
 	double_edged_damage = 3
 
 /obj/item/forging/complete/dagger
-	name = "dagger blade"
-	desc = "A dagger blade, ready to get some wood for completion."
+	name = "匕首刃"
+	desc = "一片匕首刃，加些木材就能组装完成。"
 	icon_state = "daggerblade"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/dagger
 	force = 3
 	double_edged_damage = 2
 
 /obj/item/forging/complete/staff
-	name = "staff head"
-	desc = "A staff head, ready to get some wood for completion."
+	name = "杖头"
+	desc = "一个杖头，加些木材就能组装完成。"
 	icon_state = "staffhead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/staff
 	recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 2)
 
 /obj/item/forging/complete/spear
-	name = "spear head"
-	desc = "A spear head, ready to get some wood for completion."
+	name = "矛头"
+	desc = "一个矛头，加些木材就能组装完成。"
 	icon_state = "spearhead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/spear
 	recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 2)
@@ -322,73 +322,73 @@
 	double_edged_damage = 2
 
 /obj/item/forging/complete/axe
-	name = "axe head"
-	desc = "An axe head, ready to get some wood for completion."
+	name = "斧头"
+	desc = "一个斧头，加些木材就能组装完成。"
 	icon_state = "axehead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/axe
 	force = 5
 
 /obj/item/forging/complete/hammer
-	name = "hammer head"
-	desc = "A hammer head, ready to get some wood for completion."
+	name = "锤头"
+	desc = "一个锤头，加些木材就能组装完成。"
 	icon_state = "hammerhead"
 	spawning_item = /obj/item/melee/forged_reagent_weapon/hammer
 	recipe_requirements = list(/obj/item/stack/sheet/mineral/wood = 2)
 	force = 5
 
 /obj/item/forging/complete/pickaxe
-	name = "pickaxe head"
-	desc = "A pickaxe head, ready to get some wood for completion."
+	name = "镐头"
+	desc = "一个镐头，加些木材就能组装完成。"
 	icon_state = "pickaxehead"
 	spawning_item = /obj/item/pickaxe/reagent_weapon
 	force = 5
 
 /obj/item/forging/complete/shovel
-	name = "shovel head"
-	desc = "A shovel head, ready to get some wood for completion."
+	name = "铲头"
+	desc = "一个铲头，加些木材就能组装完成。"
 	icon_state = "shovelhead"
 	spawning_item = /obj/item/shovel/reagent_weapon
 
 /obj/item/forging/complete/arrowhead
-	name = "arrowhead"
-	desc = "An arrowhead, ready to get some wood for completion."
+	name = "箭头"
+	desc = "一个箭头，加些木材就能组装完成。"
 	icon_state = "arrowhead"
 	spawning_item = /obj/item/arrow_spawner
 	force = 3
 	double_edged_damage = 2
 
 /obj/item/forging/complete/revolver_cylinder
-	name = "single-action revolver cylinder"
+	name = "单动式左轮弹巢"
 	icon_state = "revolver_cylinder"
 
 /obj/item/forging/complete/revolver_frame
-	name = "single-action revolver frame"
+	name = "单动式左轮枪架"
 	icon_state = "revolver_frame"
 
 /obj/item/forging/complete/rail_nail
-	name = "rail nail"
-	desc = "A nail, ready to be used with some wood in order to make tracks."
+	name = "道钉"
+	desc = "一根可与木材一同用于铺设轨道的钉子。"
 	icon = 'modular_skyrat/modules/ashwalkers/icons/railroad.dmi'
 	icon_state = "nail"
 	spawning_item = /obj/item/stack/rail_track/ten
 	force = 3
 
 /obj/item/forging/complete/baseball_bat
-	name = "baseball bat"
-	desc = "The main piece of a baseball bat. Requires leather to be wrapped around its grip, to really be able to hit a home run..."
+	name = "棒球棒"
+	desc = "棒球棒的主体。要在握柄上缠好皮革，才能真正打出全垒打……"
 	icon_state = "baseball_bat_incomplete"
 	recipe_requirements = list(/obj/item/stack/sheet/leather = 3)
 	spawning_item = /obj/item/melee/baseball_bat/reagent_forged
 	force = 12
 
 /obj/item/forging/coil
-	name = "coil"
-	desc = "A simple coil, comprised of coiled iron rods."
+	name = "线圈"
+	desc = "由铁杆盘绕而成的简单线圈。"
 	icon_state = "coil"
 
 /obj/item/forging/incomplete_bow
-	name = "incomplete longbow"
-	desc = "A wooden bow that has yet to be strung."
+	name = "未完成的长弓"
+	desc = "一把尚未装弦的木弓。"
 	icon_state = "nostring_bow"
 
 /obj/item/forging/incomplete_bow/attackby(obj/item/attacking_item, mob/user, params)
@@ -400,8 +400,8 @@
 	return ..()
 
 /obj/item/arrow_spawner
-	name = "arrows"
-	desc = "You shouldn't see this."
+	name = "箭矢"
+	desc = "你不应该看到这个。"
 	/// the amount of arrows that are spawned from the spawner
 	var/spawning_amount = 4
 
@@ -424,13 +424,13 @@
 
 /obj/item/stack/tong_act(mob/living/user, obj/item/tool)
 	if(amount < 1)
-		user.balloon_alert(user, "not enough material in the stack!")
+		user.balloon_alert(user, "这叠材料的数量不足！")
 		return FALSE
 	if(length(tool.contents) > 0)
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经夹着东西了！")
 		return FALSE
 	if(!material_type && !custom_materials)
-		user.balloon_alert(user, "invalid material!")
+		user.balloon_alert(user, "材料无效！")
 		return
 
 	var/obj/item/stack/stack_to_move
@@ -441,22 +441,22 @@
 
 	if(!isnull(stack_to_move))
 		stack_to_move.forceMove(tool)
-		user.balloon_alert(user, "took one")
+		user.balloon_alert(user, "已取出一个")
 	else
 		stack_trace("[src] was grabbed by [tool] and couldn't pull one sheet!")
 
 /obj/tong_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(length(tool.contents))
-		user.balloon_alert(user, "tongs are full already!")
+		user.balloon_alert(user, "钳子已经夹着东西了！")
 		return FALSE
 	if(!isnull(GetComponent(/datum/component/forge_smithable/)) || !isnull(GetComponent(/datum/component/reagent_imbued)))
 		forceMove(tool)
-		user.balloon_alert(user, "took [src]")
+		user.balloon_alert(user, "已取走 [src]")
 
 /obj/item/empty_circuit
-	name = "empty circuit"
-	desc = "This is a circuit that is close to being finished; it just requires some forethought and gold."
+	name = "空白电路"
+	desc = "一块即将完成的电路，只需要些构思和黄金。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_items.dmi'
 	icon_state = "circuit"
 	var/static/recycleable_circuits = typecacheof(list(
@@ -470,21 +470,21 @@
 		var/obj/item/stack/attacking_stack = attacking_item
 
 		if(user.mind.get_skill_level(/datum/skill/research) < SKILL_LEVEL_JOURNEYMAN)
-			to_chat(user, span_warning("You are not skilled enough in research to create a circuit!"))
+			to_chat(user, span_warning("你的科研技能不足，无法制作电路！"))
 			return
 
-		var/choice = tgui_input_list(user, "Which circuit are you thinking about?", "Circuit Creation", recycleable_circuits)
+		var/choice = tgui_input_list(user, "你想制作哪种电路？", "制作电路", recycleable_circuits)
 		if(!choice)
-			to_chat(user, span_notice("You decide against creating the circuit..."))
+			to_chat(user, span_notice("你决定放弃制作电路……"))
 			return
 
 		if(!do_after(user, 5 SECONDS, src))
-			to_chat(user, span_warning("You moved around, destroying the circuit!"))
+			to_chat(user, span_warning("你的移动毁掉了电路！"))
 			qdel(src)
 			return
 
 		if(!attacking_stack.use(1))
-			to_chat(user, span_warning("You weren't able to use the gold, destroying the circuit!"))
+			to_chat(user, span_warning("你没能使用黄金，电路因此损坏了！"))
 			qdel(src)
 			return
 

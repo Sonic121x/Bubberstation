@@ -1,8 +1,8 @@
 // Semi-automatic rifle firing .310 with reduced damage compared to a Sakhno
 
 /obj/item/gun/ballistic/automatic/lanca
-	name = "\improper Lanca Battle Rifle"
-	desc = "A relatively compact, long-barreled bullpup battle rifle chambered for .310 Strilka."
+	name = "\improper 骑枪战斗步枪"
+	desc = "一款相对紧凑的长枪管无托战斗步枪，使用.310飞箭弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_48.dmi'
 	icon_state = "lanca"
@@ -65,21 +65,21 @@
 
 /obj/item/gun/ballistic/automatic/lanca/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/lanca/examine_more(mob/user)
 	. = ..()
 
-	. += "The Lanca is a now relatively dated replacement for Kalashnikov-pattern rifles \
-		adopted by states now combining to form the CIN. While the rifle that came before them \
-		had its benefits, leadership of many armies started to realize that the Kalashnikov-based \
-		rifles were really showing their age once the variants began reaching the thousands in serial. \
-		The solution was presented by a then-new company, Szot Dynamica. This new rifle, not too \
-		unlike the one you are seeing now, adopted all of the latest technology of the time: lightweight \
-		caseless ammunition, well known for its use in Sakhno rifles, as well as various electronics and \
-		other incredible technological advancements. These advancements may have already been around since \
-		before the creation of even the Sakhno, but the fact you're seeing this now fifty-year-old design \
-		must mean something, right?"
+	. += "骑枪如今也已相对过时，当年却是卡拉什尼科夫式步枪的替代品，\
+		被后来组成CIN的各国采用。尽管前代步枪\
+		自有优点，许多军队的领导层还是逐渐意识到，卡拉什尼科夫式\
+		步枪的变型编号都上千了，实在已经老迈。\
+		当时的新公司绍特动力提出了解决方案。这款新步枪与\
+		你现在看到的相差不大，采用了当时所有最新技术：\
+		因萨赫诺步枪而闻名的轻型无壳弹药，以及各种电子设备\
+		和其他惊人的科技进步。尽管这些技术\
+		可能在萨赫诺诞生之前就已存在，但这款五十年前的设计如今仍在你眼前，\
+		总能说明点什么，对吧？"
 
 	return .
 
@@ -90,9 +90,9 @@
 // This sounds a lot scarier than it actually is, you'll just have to trust me here
 
 /obj/item/gun/ballistic/automatic/wylom
-	name = "\improper Wyłom Anti-Materiel Rifle"
-	desc = "A massive, outdated beast of an anti-materiel rifle that was once in use by CIN military forces. Fires the devastating .60 Strela caseless round, \
-		the massively overperforming penetration of which was the reason this weapon was discontinued."
+	name = "\improper 破阵反器材步枪"
+	desc = "一把硕大而过时的反器材步枪，曾被CIN军队使用。发射威力惊人的.60利箭无壳弹，\
+		其过分强悍的穿透能力正是这款武器停产的原因。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/guns_64.dmi'
 	base_pixel_x = -16 // This baby is 64 pixels wide
 	pixel_x = -16
@@ -138,19 +138,19 @@
 
 /obj/item/gun/ballistic/automatic/wylom/examine(mob/user)
 	. = ..()
-	. += span_notice("You can <b>examine closer</b> to learn a little more about this weapon.")
+	. += span_notice("你可以<b>仔细查看</b>以进一步了解这件武器。")
 
 /obj/item/gun/ballistic/automatic/wylom/examine_more(mob/user)
 	. = ..()
 
-	. += "The 'Wyłom' AMR was a weapon not originally made for unaided human hands. \
-		The original rifle had mounting points for a specialized suit attachment system, \
-		not too much unlike heavy smartguns that can be seen across the galaxy. CIN military \
-		command, however, deemed that expensive exoskeletons and rigs for carrying an organic \
-		anti-materiel system were not needed, and that soldiers should simply 'deal with it'. \
-		Unsurprisingly, soldiers assigned this weapon tend not to be massive fans of that fact, \
-		and smekalka within CIN ranks is common with troops finding novel ways to carry and use \
-		their large rifles with as little effort as possible. Most of these novel methods, of course, \
-		tend to shatter when the rifle is actually fired."
+	. += "“破阵”反器材步枪最初并不是为人类徒手使用而设计的。\
+		原型枪设有专用服装挂载系统的连接点，\
+		与银河各地可见的重型智能枪十分相似。不过CIN军事\
+		司令部认为，携带部队配属反器材系统不需要昂贵的外骨骼\
+		和支架，士兵只要“自己想办法”就好。\
+		不出所料，配发这款武器的士兵大多不喜欢这一决定，\
+		于是CIN部队里常见各种土法妙招，让士兵尽可能省力地携带和使用\
+		这些巨大的步枪。当然，这些新奇办法中的大多数，\
+		往往在真正开枪时就会散架。"
 
 	return .

@@ -1,6 +1,6 @@
 /obj/item/card/id/advanced/centcom/ert/nri
-	name = "\improper PSC ID"
-	desc = "An ID straight from the Pan-Slavic Commonwealth."
+	name = "\improper 泛斯拉夫联邦ID卡"
+	desc = "一张直接来自泛斯拉夫联邦的ID卡。"
 	icon_state = "card_black"
 	assigned_icon_state = "assigned_centcom"
 

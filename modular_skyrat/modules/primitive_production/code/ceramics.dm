@@ -44,21 +44,21 @@
 		if(!forge_item || !crayon_item.paint_color)
 			return
 		color = crayon_item.paint_color
-		to_chat(user, span_notice("You color [src] with [crayon_item]..."))
+		to_chat(user, span_notice("你用[crayon_item]为[src]上色……"))
 		return
 	return ..()
 
 /obj/item/stack/clay
-	name = "clay"
-	desc = "A pile of clay that can be used to create ceramic artwork."
+	name = "黏土"
+	desc = "一堆可用于制作陶艺品的黏土。"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay"
 	merge_type = /obj/item/stack/clay
-	singular_name = "glob of clay"
+	singular_name = "团黏土"
 
 /datum/export/ceramics
 	cost = CARGO_CRATE_VALUE * 2
-	unit_name = "ceramic product"
+	unit_name = "陶瓷制品"
 	export_types = list(
 		/obj/item/plate/ceramic,
 		/obj/item/plate/oven_tray/material/ceramic,
@@ -71,7 +71,7 @@
 
 /datum/export/ceramics_unfinished
 	cost = CARGO_CRATE_VALUE * 0.5
-	unit_name = "unfinished ceramic product"
+	unit_name = "未完成的陶瓷制品"
 	export_types = list(/obj/item/ceramic/plate,
 						/obj/item/ceramic/bowl,
 						/obj/item/ceramic/tray,
@@ -81,48 +81,48 @@
 	. = ..()
 
 /obj/item/ceramic/plate
-	name = "ceramic plate"
-	desc = "A piece of clay that is flat, in the shape of a plate."
+	name = "陶盘坯"
+	desc = "一块压成盘状的扁平黏土。"
 	icon_state = "clay_plate"
 	forge_item = /obj/item/plate/ceramic
 
 /obj/item/plate/ceramic
-	name = "ceramic plate"
+	name = "陶盘"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_plate"
 
 /obj/item/ceramic/tray
-	name = "ceramic tray"
-	desc = "A piece of clay that is flat, in the shape of a tray."
+	name = "陶托盘坯"
+	desc = "一块压成托盘形状的扁平黏土。"
 	icon_state = "clay_tray"
 	forge_item = /obj/item/plate/oven_tray/material/ceramic
 
 /obj/item/plate/oven_tray/material/ceramic
-	name = "ceramic oven tray"
+	name = "陶瓷烤盘"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_tray"
 
 /obj/item/ceramic/bowl
-	name =  "ceramic bowl"
-	desc = "A piece of clay with a raised lip, in the shape of a bowl."
+	name =  "陶碗坯"
+	desc = "一块边缘隆起、呈碗状的黏土。"
 	icon_state = "clay_bowl"
 	forge_item = /obj/item/reagent_containers/cup/bowl/ceramic
 
 /obj/item/reagent_containers/cup/bowl/ceramic
-	name = "ceramic bowl"
+	name = "陶碗"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_bowl"
 	custom_materials = null
 
 /obj/item/ceramic/cup
-	name = "ceramic cup"
-	desc = "A piece of clay with high walls, in the shape of a cup. It can hold 120 units."
+	name = "陶杯坯"
+	desc = "一块侧壁高耸、呈杯状的黏土。成品可容纳120单位液体。"
 	icon_state = "clay_cup"
 	forge_item = /obj/item/reagent_containers/cup/beaker/large/ceramic
 
 /obj/item/reagent_containers/cup/beaker/large/ceramic
-	name = "ceramic cup"
-	desc = "A cup that is made from ceramic."
+	name = "陶杯"
+	desc = "一个陶瓷制成的杯子。"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "clay_cup"
 	custom_materials = null
@@ -131,15 +131,15 @@
 	amount = 5
 
 /obj/item/ceramic/brick
-	name = "clay bricks"
-	desc = "A few block of clay, ready to be fired into bricks!"
+	name = "黏土砖坯"
+	desc = "几块黏土，已经可以烧成砖了！"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "claybricks"
 	forge_item = /obj/item/stack/sheet/mineral/stone/five
 
 /obj/structure/throwing_wheel
-	name = "throwing wheel"
-	desc = "A machine that allows you to throw clay."
+	name = "拉坯机"
+	desc = "一台让你能进行陶艺拉坯的机器。"
 	icon = 'modular_skyrat/modules/primitive_production/icons/prim_fun.dmi'
 	icon_state = "throw_wheel_empty"
 	density = TRUE
@@ -151,10 +151,10 @@
 	var/in_use = FALSE
 	///the list of messages that are sent whilst "working" the clay
 	var/static/list/given_message = list(
-		"You slowly start spinning the throwing wheel...",
-		"You place your hands on the clay, slowly shaping it...",
-		"You start becoming satisfied with what you have made...",
-		"You stop the throwing wheel, admiring your new creation...",
+		"你慢慢转动拉坯机……",
+		"你把双手放在黏土上，缓缓塑形……",
+		"你开始对自己的作品感到满意……",
+		"你停下拉坯机，欣赏自己的新作品……",
 	)
 
 /obj/structure/throwing_wheel/attackby(obj/item/attacking_item, mob/living/user, params)
@@ -211,28 +211,28 @@
 	in_use = TRUE
 	var/spinning_speed = user.mind.get_skill_modifier(/datum/skill/production, SKILL_SPEED_MODIFIER) * DEFAULT_SPIN
 	if(!has_clay)
-		balloon_alert(user, "there is no clay!")
+		balloon_alert(user, "没有黏土！")
 		return
-	var/user_input = tgui_alert(user, "What would you like to do?", "Choice Selection", list("Create", "Remove"))
+	var/user_input = tgui_alert(user, "你想做什么？", "选择操作", list("制作", "取出"))
 	if(!user_input)
 		return
 	switch(user_input)
-		if("Create")
-			var/creation_choice = tgui_input_list(user, "What you like to create?", "Creation Choice", list("Cup", "Plate", "Bowl", "Tray", "Bricks"))
+		if("制作")
+			var/creation_choice = tgui_input_list(user, "你想制作什么？", "选择作品", list("杯子", "盘子", "碗", "托盘", "砖块"))
 			if(!creation_choice)
 				return
 			switch(creation_choice)
-				if("Cup")
+				if("杯子")
 					use_clay(/obj/item/ceramic/cup, user)
-				if("Plate")
+				if("盘子")
 					use_clay(/obj/item/ceramic/plate, user)
-				if("Bowl")
+				if("碗")
 					use_clay(/obj/item/ceramic/bowl, user)
-				if("Tray")
+				if("托盘")
 					use_clay(/obj/item/ceramic/tray, user)
-				if("Bricks")
+				if("砖块")
 					use_clay(/obj/item/ceramic/brick, user)
-		if("Remove")
+		if("取出")
 			if(!do_after(user, spinning_speed, target = src))
 				return
 			var/atom/movable/new_clay = new /obj/item/stack/clay(get_turf(src))

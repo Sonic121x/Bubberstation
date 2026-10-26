@@ -1,6 +1,6 @@
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite
-	name = "Inject Aphrodisiac"
-	desc = "Sink your fangs into another and inject them with your aphrodisiac."
+	name = "注入催情剂"
+	desc = "用尖牙咬住他人，注入你的催情剂。"
 
 	button_icon = 'modular_zubbers/icons/mob/actions/quirks/aphrodisiacal_bite.dmi'
 	button_icon_state = "aphrodisiac"
@@ -30,37 +30,37 @@
 	. = ..()
 	if (!.)
 		return
-	owner.visible_message(span_warning("[owner] bares [owner.p_their()] fangs..."), span_notice("You bare your fangs..."))
+	owner.visible_message(span_warning("[owner]露出了尖牙……"), span_notice("你露出了尖牙……"))
 
 /datum/action/cooldown/mob_cooldown/aphrodisiacal_bite/Activate(atom/target_atom)
 	if (!isliving(target_atom))
 		return FALSE
 
 	if (astype(owner, /mob/living/carbon)?.is_mouth_covered())
-		owner.balloon_alert(owner, "mouth covered!")
+		owner.balloon_alert(owner, "嘴部被遮住了！")
 		return FALSE
 
 	if (!owner.Adjacent(target_atom))
-		owner.balloon_alert(owner, "too far!")
+		owner.balloon_alert(owner, "太远了！")
 		return FALSE
 
 	if (target_atom == owner)
-		owner.balloon_alert(owner, "can't bite yourself!")
+		owner.balloon_alert(owner, "不能咬自己！")
 		return FALSE
 
 	if(!iscarbon(target_atom))
-		owner.balloon_alert(owner, "not carbon!")
+		owner.balloon_alert(owner, "不是碳基生物！")
 		return FALSE
 
 	if(!astype(target_atom, /mob/living/carbon).client?.prefs.read_preference(/datum/preference/toggle/erp/aphro))
-		owner.balloon_alert(owner, "not interested!")
+		owner.balloon_alert(owner, "对方不感兴趣！")
 		log_game("[key_name(owner)] tried to bite [key_name(astype(target_atom, /mob/living/carbon))] but [key_name(astype(target_atom, /mob/living/carbon))] had aphrodisiacs disabled")
 		return FALSE
 
 	log_combat(owner, target_atom, "started to bite", null, "with venom: [reagent_typepath::name]")
-	owner.visible_message(span_warning("[owner] starts to bite [target_atom]!"), span_warning("You start to bite [target_atom]!"), ignored_mobs = target_atom)
-	to_chat(target_atom, span_userdanger("[owner] starts to bite you!"))
-	owner.balloon_alert_to_viewers("biting...")
+	owner.visible_message(span_warning("[owner]开始咬[target_atom]！"), span_warning("你开始咬[target_atom]！"), ignored_mobs = target_atom)
+	to_chat(target_atom, span_userdanger("[owner]开始咬你！"))
+	owner.balloon_alert_to_viewers("咬住……")
 	if (!do_after(owner, 0.5 SECONDS, target_atom, IGNORE_HELD_ITEM))
 		return FALSE
 
@@ -75,9 +75,9 @@
 	PRIVATE_PROC(TRUE)
 	var/target_zone = check_zone(owner.zone_selected)
 
-	var/text = "[owner] sinks [owner.p_their()] teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
-	var/self_message = "You sink your teeth into [target]'s [target.parse_zone_with_bodypart(target_zone)]!"
-	var/victim_message = "[owner] sinks [owner.p_their()] teeth into your [target.parse_zone_with_bodypart(target_zone)]!"
+	var/text = "[owner]将尖牙刺入[target]的[chinese_body_zone_display(target.parse_zone_with_bodypart(target_zone))]！"
+	var/self_message = "你将尖牙刺入[target]的[chinese_body_zone_display(target.parse_zone_with_bodypart(target_zone))]！"
+	var/victim_message = "[owner]将尖牙刺入你的[chinese_body_zone_display(target.parse_zone_with_bodypart(target_zone))]！"
 
 	owner.visible_message(span_warning(text), span_warning(self_message), ignored_mobs = list(target))
 	to_chat(target, span_userdanger(victim_message))

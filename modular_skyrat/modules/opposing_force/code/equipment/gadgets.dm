@@ -2,57 +2,57 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_GADGET
 
 /datum/opposing_force_equipment/gadget/agentcard
-	name = "Agent Card"
+	name = "特工ID卡"
 	item_type = /obj/item/card/id/advanced/chameleon
-	description = "A highly advanced chameleon ID card. Touch this card on another ID card or player to choose which accesses to copy. Has special magnetic properties which force it to the front of wallets."
+	description = "一张极其先进的变色龙ID卡。将此卡触碰另一张ID卡或玩家，即可选择要复制的权限。其特殊磁性会使它始终位于钱包最前面。"
 
 /datum/opposing_force_equipment/gadget/chameleonheadsetdeluxe
-	name = "Advanced Chameleon Headset"
+	name = "高级变色龙耳机"
 	item_type = /obj/item/radio/headset/chameleon/advanced
-	description = "A premium model Chameleon Headset. All the features you love of the original, but now with flashbang \
-	protection, voice amplification, memory-foam, HD Sound Quality, and extra-wide spectrum dial. Usually reserved \
-	for high-ranking Cybersun officers, a few spares have been reserved for field agents."
+	description = "高端型号的变色龙耳机。保留了原版所有令人喜爱的功能，还新增了闪光震撼防护、\
+	语音放大、记忆海绵、高清音质和超宽频段调谐。通常\
+	仅供赛博太阳高级军官使用，另有少量备用品分配给外勤特工。"
 
 /datum/opposing_force_equipment/gadget/smtheft_kit
-	admin_note = "A kit liberated from Progression Traitor, allows someone to cut off a piece of the SM. Mishandling of the sliver can result in user being dusted. Upon successful extraction the SM will gain a quirk that turns its delamination countdown from its usual 15 seconds (at 0 Integrity) to 5 seconds; it will also slowly gather up 800 energy, potentially setting it on course for delamination."
+	admin_note = "取自渐进式叛徒系统的套件，可从超物质上切下一块碎片。处理不当会使使用者化为尘埃。成功取样后，超物质会获得一项特性，将完整度归零时通常15秒的崩解倒计时缩短至5秒；它还会缓慢积累800能量，可能因此走向崩解。"
 	item_type = /obj/item/storage/box/syndie_kit/supermatter
 
 /datum/opposing_force_equipment/gadget/nuketheft_kit
-	admin_note = "A kit liberated from Progression Traitor, allows someone to screw open and secure the nuclear payload within the vault. Once secured it is mechanically irretrievable."
+	admin_note = "取自渐进式叛徒系统的套件，可拆开并封存金库内的核装药。一旦封存，游戏机制上便无法再取回。"
 	item_type = /obj/item/storage/box/syndie_kit/nuke
 
 /datum/opposing_force_equipment/gadget/holoparasite
 	item_type = /obj/item/guardian_creator/tech/choose/traitor
-	admin_note = "Lets a ghost take control of a guardian spirit bound to the user. RRs both the ghost and user on death."
+	admin_note = "让一名幽灵控制与使用者绑定的守护灵。死亡时幽灵和使用者都会被移出本轮。"
 
 /datum/opposing_force_equipment/gadget/gorilla_cubes
-	name = "Box of Gorilla Cubes"
+	name = "大猩猩方块盒"
 	item_type = /obj/item/storage/box/gorillacubes
-	description = "A box with three gorilla cubes. Eat big to get big. \
-			Caution: Product may rehydrate when exposed to water."
+	description = "一盒三个大猩猩方块。吃得多才能长得壮。\
+			注意：本产品接触水后可能复水膨胀。"
 
 /datum/opposing_force_equipment/gadget/sentry_gun
-	name = "Toolbox Sentry Gun"
+	name = "工具箱哨戒炮"
 	item_type = /obj/item/storage/toolbox/emergency/turret
-	description = "A disposable sentry gun deployment system cleverly disguised as a toolbox, apply wrench for functionality."
-	admin_note = "Needs a combat-wrench to be used."
+	description = "巧妙伪装成工具箱的一次性哨戒炮部署系统，用扳手即可启用。"
+	admin_note = "需要使用战斗扳手。"
 
 /datum/opposing_force_equipment/gadget/hypnoflash
-	name = "Hypnotic Flash"
+	name = "催眠闪光器"
 	item_type = /obj/item/assembly/flash/hypnotic
-	description = "A modified flash able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
-	admin_note = "Able to hypnotize people with the next phrase said after exposure."
+	description = "能催眠目标的改装闪光器。如果目标精神状态并不脆弱，则只能暂时令其混乱并安抚其情绪。"
+	admin_note = "受照者会被随后听到的第一句话催眠。"
 
 /datum/opposing_force_equipment/gadget/hypnobang
-	name = "Hypnotic Flashbang"
+	name = "催眠闪光震撼弹"
 	item_type = /obj/item/grenade/hypnotic
-	description = "A modified flashbang able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
-	admin_note = "Able to hypnotize people with the next phrase said after exposure."
+	description = "能催眠目标的改装闪光震撼弹。如果目标精神状态并不脆弱，则只能暂时令其混乱并安抚其情绪。"
+	admin_note = "受照者会被随后听到的第一句话催眠。"
 
 /datum/opposing_force_equipment/gadget/plap
-	name = "PLAP Capsule"
-	description = "A Portable Listening Advanced Post, fully self-contained in a capsule. \
-			Deploy it inside an area with power! Takes up a 3x3 area!"
+	name = "便携高级监听站胶囊"
+	description = "一座完全收纳在胶囊中的便携式高级监听站。\
+			请在有电力供应的区域部署！占地3×3格！"
 	item_type = /obj/item/survivalcapsule/plap
 
 
@@ -60,67 +60,67 @@
 	category = OPFOR_EQUIPMENT_CATEGORY_GADGET_STEALTH
 
 /datum/opposing_force_equipment/gadget_stealth/emag
-	name = "Cryptographic Sequencer"
+	name = "密码序列器"
 	item_type = /obj/item/card/emag
-	description = "An electromagnetic ID card used to break machinery and disable safeties. Notoriously used by Syndicate agents, now commonly traded hardware at blackmarkets."
+	description = "用于破坏机器并解除安全限制的电磁ID卡。因辛迪加特工使用而臭名昭著，如今已成为黑市常见的硬件。"
 
 /datum/opposing_force_equipment/gadget_stealth/doormag
-	name = "Airlock Override Card"
+	name = "气闸覆写卡"
 	item_type = /obj/item/card/emag/doorjack
-	description = "Identifies commonly as a \"doorjack\", this illegally modified ID card can disrupt airlock electronics. Has a self recharging cell."
+	description = "俗称\"破门卡\"，这种非法改装的ID卡能干扰气闸电子设备，内置自动充电电池。"
 
 /datum/opposing_force_equipment/gadget_stealth/stoolbelt
-	name = "Syndicate Toolbelt"
-	description = "A fully supplied toolbelt, includes combat-grade wrench."
+	name = "辛迪加工具腰带"
+	description = "配备齐全的工具腰带，包含一把战斗级扳手。"
 	item_type = /obj/item/storage/belt/utility/syndicate
 
 /datum/opposing_force_equipment/gadget_stealth/syndiejaws
-	name = "Syndicate Jaws of Life"
+	name = "辛迪加液压救援钳"
 	item_type = /obj/item/crowbar/power/syndicate
-	description = "Based on a Nanotrasen model, this powerful tool can be used as both a crowbar and a pair of wirecutters. \
-	In its crowbar configuration, it can be used to force open airlocks. Very useful for entering the station or its departments."
+	description = "基于纳米传讯型号改造的强力工具，既可作为撬棍，也可作为剪线钳。\
+	在撬棍模式下可以强行开启气闸，非常适合进入空间站及其各个部门。"
 
 /datum/opposing_force_equipment/gadget_stealth/hair_tie
-	name = "Syndicate Hair Tie"
-	description = "An inconspicuous hair tie, able to be slung accurately. Useful to get yourself out of a sticky situation."
+	name = "辛迪加发圈"
+	description = "一个不起眼的发圈，可以精准弹射。能帮助你摆脱棘手处境。"
 	item_type = /obj/item/clothing/head/hair_tie/syndicate
 
 /datum/opposing_force_equipment/gadget_stealth/jammer
-	name = "Radio Jammer"
+	name = "无线电干扰器"
 	item_type = /obj/item/jammer
 
 /datum/opposing_force_equipment/gadget_stealth/flatsatchel
 	item_type = /obj/item/storage/backpack/satchel/flat/with_tools
 
 /datum/opposing_force_equipment/gadget_stealth/chameleon
-	description = "A set of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more! \
-			Due to budget cuts, the shoes don't provide protection against slipping and skillchips are sold separately."
+	description = "一套采用变色龙技术的物品，让你几乎能伪装成空间站里的任何身份，甚至更多！\
+			由于预算削减，鞋子不提供防滑功能，技能芯片另售。"
 	item_type = /obj/item/storage/box/syndie_kit/chameleon
 
 /datum/opposing_force_equipment/gadget_stealth/throwables
-	name = "Box of Throwing Weapons"
-	description = "A box of shurikens and reinforced bolas from ancient Earth martial arts. They are highly effective \
-			throwing weapons. The bolas can knock a target down and the shurikens will embed into limbs."
+	name = "投掷武器盒"
+	description = "一盒源自古地球武术的手里剑与强化流星索。它们是非常有效的\
+			投掷武器：流星索能击倒目标，手里剑则会嵌入肢体。"
 	item_type = /obj/item/storage/box/syndie_kit/throwing_weapons
 
 /datum/opposing_force_equipment/gadget_stealth/emp_box
-	name = "EMP kit"
-	description = "A box full of EMP grenades, perfect for disabling security's gear."
+	name = "电磁脉冲套件"
+	description = "一盒电磁脉冲手榴弹，非常适合瘫痪安保装备。"
 	item_type = /obj/item/storage/box/syndie_kit/emp
 
 /datum/opposing_force_equipment/gadget_stealth/poisonkit
-	name = "Poison Kit"
-	description = "An assortment of deadly chemicals packed into a compact box. Comes with a syringe for more precise application."
+	name = "毒药套件"
+	description = "一个紧凑盒子，装有多种致命化学品，附带注射器以便精准施用。"
 	item_type = /obj/item/storage/box/syndie_kit/chemical
 
 /datum/opposing_force_equipment/gadget_stealth/sleepypen
-	name = "Sleepy Pen"
-	description = "A pen filled with sleeping agents. Will knock a victim out after a moment."
+	name = "催眠笔"
+	description = "一支装有安眠药剂的笔，片刻后便会让受害者昏睡。"
 	item_type = /obj/item/pen/sleepy
 
 /datum/opposing_force_equipment/gadget_stealth/carp
-	name = "Dehydrated Spacecarp"
-	description = "A spacecarp plushie which turns into the real deal when wet."
+	name = "脱水太空鲤鱼"
+	description = "一只遇水便会变成真家伙的太空鲤鱼毛绒玩偶。"
 	item_type = /obj/item/toy/plush/carpplushie/dehy_carp
 
 /datum/opposing_force_equipment/gadget_stealth/mailcounterfeit
@@ -130,59 +130,59 @@
 	item_type = /obj/item/syndie_glue
 
 /datum/opposing_force_equipment/gadget_stealth/shotglass
-	name = "Extra Large Syndicate Shotglasses"
-	description = "These modified shot glasses can hold up to 50 units of booze while looking like a regular 15 unit model \
-	guaranteed to knock someone on their ass with a hearty dose of bacchus blessing. Look for the Snake underneath \
-	to tell these are the real deal. Box of 7."
+	name = "超大号辛迪加烈酒杯"
+	description = "这些改装烈酒杯看起来与普通15单位款式相同，却能容纳50单位酒水，\
+	满满一杯酒神之赐保证能把人放倒。认准杯底的蛇形标记，\
+	那才是正品。一盒七只。"
 	item_type = /obj/item/storage/box/syndieshotglasses
 
 /datum/opposing_force_equipment/gadget_stealth/ai_module
-	name = "Syndicate AI Law Module"
+	name = "辛迪加AI法则模块"
 	item_type = /obj/item/ai_module/law/syndicate
-	description = "When used with an upload console, this module allows you to upload priority laws to an artificial intelligence. \
-			Be careful with wording, as artificial intelligences may look for loopholes to exploit."
+	description = "配合上传控制台使用时，该模块允许你向人工智能上传优先法则。\
+			措辞务必谨慎，人工智能可能会寻找并利用漏洞。"
 
 /datum/opposing_force_equipment/gadget_stealth/binary
-	name = "Binary Encryption Key"
+	name = "二进制加密密钥"
 	item_type = /obj/item/encryptionkey/binary
 
 /datum/opposing_force_equipment/gadget_stealth/borgupgrader
 	item_type = /obj/item/borg/upgrade/transform/syndicatejack
 
 /datum/opposing_force_equipment/gadget_stealth/tram_remote
-	name = "Tram Remote Control"
+	name = "电车遥控器"
 	item_type = /obj/item/assembly/control/transport/remote
-	description = "When linked to a tram's on board computer systems, this device allows the user to manipulate the controls remotely. \
-		Includes direction toggle and a rapid mode to bypass door safety checks and crossing signals. \
-		Perfect for running someone over in the name of a tram malfunction!"
+	description = "连接到电车的车载计算机系统后，该设备允许使用者远程操纵电车。\
+		支持切换行驶方向，并有绕过车门安全检查和道口信号的快速模式。\
+		最适合以电车故障为借口把人碾过去！"
 
 /datum/opposing_force_equipment/gadget_stealth/cloakerbelt
 	item_type = /obj/item/shadowcloak
-	description = "A belt that allows its wearer to temporarily turn invisible. Only recharges in dark areas. Use wisely."
+	description = "让佩戴者暂时隐形的腰带，只能在黑暗处充电。请谨慎使用。"
 
 /datum/opposing_force_equipment/gadget_stealth/projector
-	name = "Chameleon Projector"
+	name = "变色龙投影仪"
 	item_type = /obj/item/chameleon
 
 /datum/opposing_force_equipment/gadget_stealth/noslip
-	name = "Chameleon No-Slips"
+	name = "变色龙防滑鞋"
 	item_type = /obj/item/clothing/shoes/chameleon/noslip
-	description = "No-slip chameleon shoes, for when you plan on running through hell and back."
+	description = "防滑变色龙鞋，适合打算闯过地狱再全身而退的人。"
 
 /datum/opposing_force_equipment/gadget_stealth/camera_app
-	name = "SyndEye Program"
+	name = "辛迪之眼程序"
 	item_type = /obj/item/disk/computer/syndicate/camera_app
 
 /datum/opposing_force_equipment/gadget_stealth/microlaser
-	name = "Radioactive Microlaser"
+	name = "放射性微型激光器"
 	item_type = /obj/item/healthanalyzer/rad_laser
-	description = "A radioactive microlaser disguised as a standard Nanotrasen health analyzer. When used, it emits a \
-			powerful burst of radiation, which, after a short delay, can incapacitate all but the most protected \
-			of humanoids."
-	admin_note = "WARNING: Is a knockout weapon with no warning, and 'infinite' use."
+	description = "伪装成标准纳米传讯健康分析仪的放射性微型激光器。使用时会发射\
+			一束强烈辐射，经过短暂延迟后，除防护最完善的类人生物外，\
+			都会丧失行动能力。"
+	admin_note = "警告：这是一种毫无预警的击昏武器，并且可以‘无限’使用。"
 
 /datum/opposing_force_equipment/gadget_stealth/contacts
-	name = "Anti-Flash Eye-Lenses"
+	name = "防闪光隐形眼镜"
 	item_type = /obj/item/syndicate_contacts
 
 /datum/opposing_force_equipment/gadget_stealth/suppressor

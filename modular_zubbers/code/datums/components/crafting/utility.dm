@@ -1,5 +1,5 @@
 /datum/crafting_recipe/paperbin
-	name = "Paper bin"
+	name = "纸盒"
 	result = /obj/item/paper_bin
 	time = 5 SECONDS
 	reqs = list(

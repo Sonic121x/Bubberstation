@@ -262,12 +262,12 @@
 
 	sort_list(items)
 
-	var/pick = show_radial_menu(user, parent, items, custom_check = CALLBACK(src, PROC_REF(check_reskin_menu), user), radius = 38, require_near = TRUE)
+	var/pick = chinese_skyrat_plant_skin_radial(user, parent, items, CALLBACK(src, PROC_REF(check_reskin_menu), user))
 	if(!pick || !items[pick])
 		return
 
 	set_skin_by_name(pick, user)
-	to_chat(user, span_info("[parent]的外观已更换为“[pick]”。"))
+	to_chat(user, span_info("[parent]的外观已更换为“[chinese_skyrat_plant_skin_display(pick, parent)]”。"))
 
 	if(!infinite_reskin)
 		qdel(src)

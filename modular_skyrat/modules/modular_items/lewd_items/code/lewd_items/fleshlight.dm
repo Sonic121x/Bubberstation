@@ -1,6 +1,6 @@
 /obj/item/clothing/sextoy/fleshlight
-	name = "fleshlight"
-	desc = "What a strange flashlight."
+	name = "飞机杯"
+	desc = "真是支奇怪的手电筒。"
 	icon_state = "fleshlight_pink"
 	base_icon_state = "fleshlight"
 	inhand_icon_state = "fleshlight_pink"
@@ -30,7 +30,7 @@
 /obj/item/clothing/sextoy/fleshlight/examine(mob/user)
 	. = ..()
 	if(!color_changed)
-		. += span_notice("Alt-click to change it's color.")
+		. += span_notice("按住 Alt 点击可更换颜色。")
 
 /obj/item/clothing/sextoy/fleshlight/Initialize(mapload)
 	. = ..()
@@ -47,7 +47,7 @@
 /obj/item/clothing/sextoy/fleshlight/click_alt(mob/user)
 	if(color_changed)
 		return CLICK_ACTION_BLOCKING
-	var/choice = show_radial_menu(user, src, fleshlight_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
+	var/choice = chinese_skyrat_item_radial(user, src, fleshlight_designs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!choice)
 		return CLICK_ACTION_BLOCKING
 	current_color = choice
@@ -63,20 +63,20 @@
 		return
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that!"))
+		to_chat(user, span_danger("[target] 不愿意让你这么做！"))
 		return
 
 	var/obj/item/organ/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
 	if(!penis?.is_exposed())
-		to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+		to_chat(user, span_danger("[target] 的胯部似乎被遮住了！"))
 		return
 
-	var/message = (user == target) ? pick("moans in ecstasy as [target.p_they()] fuck the [src]",
-			"slowly moves [src] up and down on [target]'s penis, causing [target.p_them()] to bend in pleasure",
-			"shivers in pleasure as [target.p_they()] move [src] on their penis") \
-		: pick("uses [src] on [target]'s penis",
-			"fucks [target] with [src]",
-			"masturbates [target] with [src], causing [target.p_them()] to moan in ecstasy")
+	var/message = (user == target) ? pick("一边抽插 [src]，一边极乐地呻吟",
+			"让 [src] 在自己的阴茎上缓缓上下移动，快感使自己弯下了腰",
+			"让 [src] 在自己的阴茎上移动，在快感中颤抖") \
+		: pick("用 [src] 套住 [target] 的阴茎",
+			"用 [src] 抽弄 [target]",
+			"用 [src] 为 [target] 手淫，使其极乐地呻吟")
 
 	if(prob(70))
 		target.try_lewd_autoemote(pick("twitch_s", "moan", "blush"))
@@ -91,18 +91,18 @@
 						'modular_skyrat/modules/modular_items/lewd_items/sounds/bang6.ogg'), 70, 1, -1)
 
 /obj/item/toy/plush/fleshlight/screws
-	name = "Chief Screws Plush"
-	desc = "An adorable blue Lizard plushie wearing a Chief Engineer's Uniform... her upturned skirt revealing a tight, pre-lubed pussy."
+	name = "螺丝总工毛绒玩偶"
+	desc = "一个穿着总工程师制服的可爱蓝色蜥蜴人玩偶……掀起的裙摆露出已经润滑过的紧致阴部。"
 	icon = 'modular_zubbers/icons/obj/toys/plushes.dmi'
 	icon_state = "cescrewsplush"
 	base_icon_state = "cescrewsplush"
 
 /obj/item/toy/plush/fleshlight/screws/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to cover her up.")
+	. += span_notice("按住 Alt 点击可将她遮好。")
 
 /obj/item/toy/plush/fleshlight/screws/click_alt(mob/user)
-	user.visible_message(span_notice("[user] turns [src], hiding the hole underneath."), span_notice("You turn [src], covering her up with her little skirt."))
+	user.visible_message(span_notice("[user] 翻转 [src]，遮住了下方的孔洞。"), span_notice("你翻转 [src]，用她的小裙子将其遮好。"))
 	playsound(user, 'sound/effects/blob/blobattack.ogg', 50, TRUE)
 	var/obj/item/toy/plush/cescrewsplush/plushie = new(null)
 	qdel(src)
@@ -117,20 +117,20 @@
 		return
 
 	if(!target.check_erp_prefs(/datum/preference/toggle/erp/sex_toy, user, src))
-		to_chat(user, span_danger("[target] doesn't want you to do that!"))
+		to_chat(user, span_danger("[target] 不愿意让你这么做！"))
 		return
 
 	var/obj/item/organ/genital/penis = target.get_organ_slot(ORGAN_SLOT_PENIS)
 	if(!penis?.is_exposed())
-		to_chat(user, span_danger("Looks like [target]'s groin is covered!"))
+		to_chat(user, span_danger("[target] 的胯部似乎被遮住了！"))
 		return
 
-	var/message = (user == target) ? pick("moans in ecstasy as [target.p_they()] fuck the [src]",
-			"slowly moves [src] up and down on [target]'s penis, causing [target.p_them()] to bend in pleasure",
-			"shivers in pleasure as [target.p_they()] move [src] on their penis") \
-		: pick("uses [src] on [target]'s penis",
-			"fucks [target] with [src]",
-			"masturbates [target] with [src], causing [target.p_them()] to moan in ecstasy")
+	var/message = (user == target) ? pick("一边抽插 [src]，一边极乐地呻吟",
+			"让 [src] 在自己的阴茎上缓缓上下移动，快感使自己弯下了腰",
+			"让 [src] 在自己的阴茎上移动，在快感中颤抖") \
+		: pick("用 [src] 套住 [target] 的阴茎",
+			"用 [src] 抽弄 [target]",
+			"用 [src] 为 [target] 手淫，使其极乐地呻吟")
 
 	if(prob(70))
 		target.try_lewd_autoemote(pick("twitch_s", "moan", "blush"))
@@ -146,16 +146,16 @@
 
 
 /obj/item/clothing/sextoy/fleshlight/bluespace
-	name = "bluespace fleshlight"
+	name = "蓝空间飞机杯"
 	color_changed = TRUE
 	current_color = "teal"
-	desc = "Internal design based on the captain's mother."
+	desc = "内部结构以舰长的母亲为原型。"
 	custom_premium_price = PAYCHECK_COMMAND * 10
 
 /obj/item/clothing/sextoy/fleshlight/bluespace/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/effect_remover, \
-		tip_text = "Capture rod", \
+		tip_text = "捕获杆体", \
 		on_clear_callback = CALLBACK(src, PROC_REF(rod_johnson)), \
 		effects_we_clear = list(/obj/effect/immovablerod)\
 	)
@@ -163,4 +163,4 @@
 /obj/item/clothing/sextoy/fleshlight/bluespace/proc/rod_johnson(obj/effect/immovablerod/target, mob/living/user)
 	user.throw_at(get_step(user,target.dir),12,4)
 	playsound(target, 'sound/effects/cartoon_sfx/cartoon_pop.ogg', 75, TRUE)
-	target.audible_message(span_danger("You hear a POP!"))
+	target.audible_message(span_danger("你听到一声啪响！"))

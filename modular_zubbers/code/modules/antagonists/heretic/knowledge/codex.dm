@@ -1,10 +1,10 @@
 /datum/heretic_knowledge/codex_cicatrix
-	desc = "Allows you to transmute a book, any pen, and your pick from any carcass (animal or human), leather, or hide to create a Codex Cicatrix. \
-		The Codex Cicatrix can be used when draining influences to drain them faster, but comes at greater risk of being noticed. \
-		It can also be used to draw and remove transmutation runes easier, and as a spell focus in a pinch. Very useful for opening ways."
+	desc = "让你能将一本书、任意一支笔，以及任意尸体（动物或人类）、皮革或兽皮之一，转化为疤痕法典。\
+		疤痕法典可以加快汲取影响的速度，但也更容易引人注意。\
+		它还能让绘制和清除转化符文更加方便，并可在紧急时充当施法媒介。对开启通路很有帮助。"
 
 /obj/item/codex_cicatrix/examine(mob/user)
 	. = ..()
 
-	. += span_notice("This book allows the user to open influences faster, as well as draw transmutation runes more quickly.")
-	. += span_notice("Additionally, acts as a focus while open.")
+	. += span_notice("这本书能让使用者更快地开启影响和绘制转化符文。")
+	. += span_notice("此外，翻开时可充当施法媒介。")

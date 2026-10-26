@@ -3,7 +3,7 @@
 	icon_state = "Curator"
 
 /obj/effect/landmark/navigate_destination/autoname
-	name = "auto-naming navigate verb destination"
+	name = "自动命名导航目的地"
 	location = null
 
 /obj/effect/landmark/navigate_destination/autoname/Initialize(mapload)
@@ -11,7 +11,7 @@
 	location = "[loc.loc.name]" //This looks unsafe. Intentional. This should runtime if there are issues.
 
 /obj/effect/landmark/latejoin_override
-	name = "JoinLate Override"
+	name = "中途加入位置覆写"
 
 /obj/effect/landmark/latejoin_override/Initialize(mapload)
 	..()
@@ -22,25 +22,25 @@
 	var/list/latejoin_override_trackers = list()
 
 /obj/effect/landmark/navigate_destination/cryo
-	location = "Cryopods"
+	location = "冷冻休眠舱"
 
 /obj/effect/landmark/navigate_destination/cryo_west
-	location = "Cryopods (West)"
+	location = "冷冻休眠舱（西）"
 
 /obj/effect/landmark/navigate_destination/cryo_east
-	location = "Cryopods (East)"
+	location = "冷冻休眠舱（东）"
 
 /obj/effect/landmark/navigate_destination/cryo_central
-	location = "Cryopods (Central)"
+	location = "冷冻休眠舱（中央）"
 
 /obj/effect/landmark/navigate_destination/dockpublicmining
-	location = "Public Mining"
+	location = "公共采矿区"
 
 /obj/effect/landmark/navigate_destination/dockaux
-	location = "Auxiliary Ship Dock"
+	location = "辅助舰船泊位"
 
 /obj/effect/landmark/navigate_destination/docksec
-	location = "Secondary Ship Dock"
+	location = "次级舰船泊位"
 
 /obj/effect/landmark/navigate_destination/sauna
-	location = "Sauna"
+	location = "桑拿房"

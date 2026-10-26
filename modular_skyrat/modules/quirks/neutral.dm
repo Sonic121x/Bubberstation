@@ -12,40 +12,40 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 // SKYRAT NEUTRAL TRAITS
 /datum/quirk/excitable
 	name = "Excitable!"
-	desc = "Head patting makes your tail wag! You're very excitable! WAG WAG."
-	gain_text = span_notice("You crave for some headpats!")
-	lose_text = span_notice("You no longer care for headpats all that much.")
-	medical_record_text = "Patient seems to get excited easily."
+	desc = "摸摸头就能让你摇起尾巴！你特别容易兴奋！摇啊摇。"
+	gain_text = span_notice("你好想被摸摸头！")
+	lose_text = span_notice("你不再那么在意摸头了。")
+	medical_record_text = "患者似乎很容易兴奋。"
 	value = 0
 	mob_trait = TRAIT_EXCITABLE
 	icon = FA_ICON_LAUGH_BEAM
 
 /datum/quirk/affectionaversion
 	name = "Affection Aversion"
-	desc = "You refuse to be licked or nosed by quadruped cyborgs."
-	gain_text = span_notice("You've been added to the Do Not Lick and No Nosing registries.")
-	lose_text = span_notice("You've been removed from the Do Not Lick and No Nosing registries.")
-	medical_record_text = "Patient is in the Do Not Lick and No Nosing registries."
+	desc = "你拒绝被四足半机械人舔舐或用鼻子蹭。"
+	gain_text = span_notice("你已被加入禁止舔舐和鼻蹭的名单。")
+	lose_text = span_notice("你已从禁止舔舐和鼻蹭的名单中移除。")
+	medical_record_text = "患者在禁止舔舐和鼻蹭的名单上。"
 	value = 0
 	mob_trait = TRAIT_AFFECTION_AVERSION
 	icon = FA_ICON_CIRCLE_EXCLAMATION
 
 /datum/quirk/personalspace
 	name = "Personal Space"
-	desc = "You'd rather people keep their hands off your rear end."
-	gain_text = span_notice("You'd like it if people kept their hands off your butt.")
-	lose_text = span_notice("You're less concerned about people touching your butt.")
-	medical_record_text = "Patient demonstrates negative reactions to their posterior being touched."
+	desc = "你希望别人别把手放到你的屁股上。"
+	gain_text = span_notice("你希望别人别碰你的屁股。")
+	lose_text = span_notice("你不再那么介意别人触碰你的屁股。")
+	medical_record_text = "患者的臀部受到触碰时会表现出反感。"
 	value = 0
 	mob_trait = TRAIT_PERSONALSPACE
 	icon = FA_ICON_HAND_PAPER
 
 /datum/quirk/dnr
 	name = "Do Not Revive"
-	desc = "For whatever reason, you cannot be revived in any way."
-	gain_text = span_notice("Your spirit gets too scarred to accept revival.")
-	lose_text = span_notice("You can feel your soul healing again.")
-	medical_record_text = "Patient is a DNR, and cannot be revived in any way."
+	desc = "出于某种原因，你无法通过任何方式复活。"
+	gain_text = span_notice("你的灵魂伤痕累累，已无法接受复活。")
+	lose_text = span_notice("你感觉自己的灵魂正在重新愈合。")
+	medical_record_text = "患者具有禁止复苏标记，无法通过任何方式复活。"
 	value = 0
 	mob_trait = TRAIT_DNR
 	icon = FA_ICON_SKULL_CROSSBONES
@@ -86,7 +86,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	. = ..()
 
 	if(stat != DEAD && HAS_TRAIT(src, TRAIT_DNR) && (HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)))
-		. += "\n[span_boldwarning("This individual is unable to be revived, and may be permanently dead if allowed to die!")]"
+		. += "\n[span_boldwarning("此人无法复活，一旦死亡便可能永久离世！")]"
 
 /datum/atom_hud/data/human/dnr
 	hud_icons = list(DNR_HUD)
@@ -94,10 +94,10 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 // uncontrollable laughter
 /datum/quirk/item_quirk/joker
 	name = "Pseudobulbar Affect"
-	desc = "At random intervals, you suffer uncontrollable bursts of laughter."
+	desc = "你会不时突然发出无法控制的大笑。"
 	value = 0
 	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
-	medical_record_text = "Patient suffers with sudden and uncontrollable bursts of laughter."
+	medical_record_text = "患者会突然发出无法控制的大笑。"
 	var/pcooldown = 0
 	var/pcooldown_time = 60 SECONDS
 	icon = FA_ICON_GRIN_TEARS
@@ -118,22 +118,22 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 				addtimer(CALLBACK(user, /mob/proc/emote, "laugh"), 10 SECONDS)
 
 /obj/item/paper/joker
-	name = "disability card"
+	name = "病情说明卡"
 	icon = 'modular_skyrat/master_files/icons/obj/card.dmi'
 	icon_state = "joker"
-	desc = "Smile, though your heart is aching."
+	desc = "即使心如刀绞，也请保持微笑。"
 	default_raw_text = "<i>\
 			<div style='border-style:solid;text-align:center;border-width:5px;margin: 20px;margin-bottom:0px'>\
 			<div style='margin-top:20px;margin-bottom:20px;font-size:150%;'>\
-			Forgive my laughter:<br>\
-			I have a condition.\
+			请原谅我的笑声：<br>\
+			我患有一种疾病。\
 			</div>\
 			</div>\
 			</i>\
 			<br>\
 			<center>\
 			<b>\
-			MORE ON BACK\
+			详情见背面\
 			</b>\
 			</center>"
 	/// Whether or not the card is currently flipped.
@@ -143,11 +143,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 			<div style='border-style:solid;text-align:center;border-width:5px;margin: 20px;margin-bottom:0px'>\
 			<div style='margin-top:20px;margin-bottom:20px;font-size:100%;'>\
 			<b>\
-			It's a medical condition causing sudden,<br>\
-			frequent and uncontrollable laughter that<br>\
-			doesn't match how you feel.<br>\
-			It can happen in people with a brain injury<br>\
-			or certain neurological conditions.<br>\
+			这种疾病会导致患者突然、<br>\
+			频繁且无法控制地大笑，<br>\
+			这与其实际感受并不相符。<br>\
+			脑损伤患者或某些神经系统<br>\
+			疾病患者可能出现这种症状。<br>\
 			</b>\
 			</div>\
 			</div>\
@@ -155,7 +155,7 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 			<br>\
 			<center>\
 			<b>\
-			KINDLY RETURN THIS CARD\
+			请归还此卡\
 			</b>\
 			</center>"
 	/// Flipside version of raw_text_inputs.
@@ -224,15 +224,15 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	flipped = !flipped
 	update_static_data()
 
-	balloon_alert(user, "card flipped")
+	balloon_alert(user, "已翻转卡片")
 	return CLICK_ACTION_SUCCESS
 
 /datum/quirk/felinid_aspect
 	name = "Felinid Traits"
-	desc = "You happen to act like a felinid, for whatever reason. This will replace other tongue-based quirks."
-	gain_text = span_notice("Nya could go for some catnip right about now...")
-	lose_text = span_notice("You feel less attracted to lasers.")
-	medical_record_text = "Patient seems to possess behavior much like a felinid."
+	desc = "出于某种原因，你的行为像猫人一样。这会替换其他与舌头有关的特质。"
+	gain_text = span_notice("喵，现在真想来点猫薄荷……")
+	lose_text = span_notice("激光对你的吸引力减弱了。")
+	medical_record_text = "患者的行为似乎与猫人十分相似。"
 	mob_trait = TRAIT_FELINID
 	icon = FA_ICON_CAT
 
@@ -245,11 +245,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/item_quirk/canine
 	name = "Canidae Traits"
-	desc = "Bark. You seem to act like a canine for whatever reason. This will replace most other tongue-based speech quirks."
+	desc = "汪。出于某种原因，你的行为像犬类一样。这会替换大部分与舌头有关的说话特质。"
 	mob_trait = TRAIT_CANINE
 	icon = FA_ICON_DOG
 	value = 0
-	medical_record_text = "Patient was seen digging through the trash can. Keep an eye on them."
+	medical_record_text = "曾看到患者翻找垃圾桶。请多加留意。"
 
 /datum/quirk/item_quirk/canine/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -260,11 +260,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/item_quirk/avian
 	name = "Avian Traits"
-	desc = "You're a birdbrain, or you've got a bird's brain. This will replace most other tongue-based speech quirks."
+	desc = "你是个鸟脑袋，或者真的长着鸟类的大脑。这会替换大部分与舌头有关的说话特质。"
 	mob_trait = TRAIT_AVIAN
 	icon = FA_ICON_KIWI_BIRD
 	value = 0
-	medical_record_text = "Patient exhibits avian-adjacent mannerisms."
+	medical_record_text = "患者表现出类似鸟类的举止。"
 
 /datum/quirk/item_quirk/avian/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -275,11 +275,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 /datum/quirk/item_quirk/bovine
 	name = "Bovine Traits"
-	desc = "Moo. You seem to act like a bovine for whatever reason. This will replace most other tongue-based speech quirks."
+	desc = "哞。出于某种原因，你的行为像牛类一样。这会替换大部分与舌头有关的说话特质。"
 	mob_trait = TRAIT_BOVINE
 	icon = FA_ICON_COW
 	value = 0
-	medical_record_text = "Patient exhibits bovine-adjacent mannerisms."
+	medical_record_text = "患者表现出类似牛类的举止。"
 
 /datum/quirk/item_quirk/bovine/add_unique(client/client_source)
 	var/mob/living/carbon/human/human_holder = quirk_holder
@@ -291,11 +291,11 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 ///Start of Mouse Traits
 /datum/quirk/item_quirk/mouse
 	name = "Muridae Traits"
-	desc = "You always thought those jokes were cheesy. This will replace most other tongue-based speech quirks."
+	desc = "你一直觉得那些笑话奶酪味十足。这会替换大部分与舌头有关的说话特质。"
 	mob_trait = TRAIT_MURIDAE
 	icon = FA_ICON_CHEESE
 	value = 0
-	medical_record_text = "Patient has an insatiable love for dairy and terrible puns."
+	medical_record_text = "患者对乳制品和糟糕的双关笑话有着难以满足的热爱。"
 	var/datum/action/cooldown/spell/sniff/sniff_food
 
 /datum/quirk/item_quirk/mouse/add_unique(client/client_source)
@@ -324,8 +324,8 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	QDEL_NULL(sniff_food)
 
 /datum/action/cooldown/spell/sniff
-	name = "Sniff Food"
-	desc = "Anyone can cook!"
+	name = "嗅闻食物"
+	desc = "人人都能下厨！"
 	button_icon_state = "food_french"
 	button_icon = 'icons/hud/screen_alert.dmi'
 	cooldown_time = 10 SECONDS
@@ -347,16 +347,16 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 	var/obj/item/food/potential_food = caster.get_active_held_item()
 	if(!istype(potential_food))
 		if(caster.get_inactive_held_item())
-			to_chat(caster, span_warning("You must be holding food!"))
+			to_chat(caster, span_warning("你必须拿着食物！"))
 		else
-			to_chat(caster, span_warning("You aren't holding anything that can be used as an ingredient!"))
+			to_chat(caster, span_warning("你手里没有任何能用作食材的东西！"))
 		return FALSE
 	if(!can_sniff(potential_food, caster))
 		return FALSE
-	caster.balloon_alert_to_viewers("sniffing...")
-	to_chat(caster, span_notice("You start judging [potential_food] for its culinary potential..."))
+	caster.balloon_alert_to_viewers("正在嗅闻……")
+	to_chat(caster, span_notice("你开始判断 [potential_food] 有哪些烹饪用途……"))
 	if(!do_after(caster, 5 SECONDS, potential_food))
-		to_chat(caster, span_notice("You didn't get a good enough whiff of [potential_food]."))
+		to_chat(caster, span_notice("你还没闻清 [potential_food] 的气味。"))
 		return FALSE
 	check_recipes(potential_food)
 	return TRUE
@@ -369,30 +369,30 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 		if(food_type in recipe.reqs)
 			type_recipe_list += recipe.result
 	if(length(type_recipe_list) == 0)
-		to_chat(owner, span_notice("Nothing more can be made from this."))
+		to_chat(owner, span_notice("这东西无法再做成其他食物。"))
 		return FALSE
 	var/datum/crafting_recipe/chosen = pick(type_recipe_list)
-	to_chat(owner, span_notice("[potential_food] could probably be used to make [chosen::name]"))
+	to_chat(owner, span_notice("[potential_food] 或许可以用来制作 [chosen::name]。"))
 ///End of Mouse Traits
 
 /datum/quirk/sensitivesnout
 	name = "Sensitive Snout"
-	desc = "Your face has always been sensitive, and it really hurts when someone pokes it!"
-	gain_text = span_notice("Your face is awfully sensitive.")
-	lose_text = span_notice("Your face feels numb.")
-	medical_record_text = "Patient's nose seems to have a cluster of nerves in the tip, would advise against direct contact."
+	desc = "你的脸一直很敏感，被人戳到时会非常疼！"
+	gain_text = span_notice("你的脸异常敏感。")
+	lose_text = span_notice("你的脸感觉麻木了。")
+	medical_record_text = "患者鼻尖似乎聚集了大量神经，建议避免直接触碰。"
 	value = 0
 	mob_trait = TRAIT_SENSITIVESNOUT
 	icon = FA_ICON_FINGERPRINT
 
 /datum/quirk/overweight
 	name = "Overweight"
-	desc = "You weigh more than an average person at your size, you've gotten used to it by now."
-	gain_text = span_notice("Your body feels heavy.")
-	lose_text = span_notice("Your suddenly feel lighter!")
+	desc = "你的体重比相同体型的普通人更重，不过你早已习惯。"
+	gain_text = span_notice("你觉得身体沉甸甸的。")
+	lose_text = span_notice("你突然感觉轻快了！")
 	value = 0
 	icon = FA_ICON_HAMBURGER // I'm very hungry. Give me the burger!
-	medical_record_text = "Patient weighs higher than average."
+	medical_record_text = "患者体重高于平均水平。"
 	mob_trait = TRAIT_FAT
 
 /datum/quirk/overweight/add(client/client_source)
@@ -409,5 +409,5 @@ GLOBAL_VAR_INIT(DNR_trait_overlay, generate_DNR_trait_overlay())
 
 	if(HAS_TRAIT_FROM(target, TRAIT_FAT, QUIRK_TRAIT))
 		mood_change = 0 // They are probably used to it, no reason to be viscerally upset about it.
-		description = "<b>I'm fat.</b>"
+		description = "<b>我很胖。</b>"
 	return TRUE

@@ -1,5 +1,5 @@
 /obj/item/storage/toolbox/ammobox
-	desc = "It contains a few clips."
+	desc = "里面装着几个弹夹。"
 	icon_state = "ammobox"
 	inhand_icon_state = "ammobox"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -18,29 +18,29 @@
 			new ammo_type(src)
 
 /obj/item/storage/toolbox/ammobox/full/mosin
-	name = "ammo box (Sakhno)"
+	name = "弹药箱（萨赫诺）"
 	ammo_type = /obj/item/ammo_box/speedloader/strilka310
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/krinkov
-	name = "ammo box (Krinkov)"
-	desc = "It contains a few magazines."
+	name = "弹药箱（克林科夫）"
+	desc = "里面装着几个弹匣。"
 	ammo_type = /obj/item/ammo_box/magazine/lanca
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/nri_smg
-	name = "ammo box (QLP/04)"
+	name = "弹药箱（QLP/04）"
 	ammo_type = /obj/item/ammo_box/magazine/miecz
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/l6_saw
-	name = "ammo box (L6 SAW)"
-	desc = "It contains a few magazines."
+	name = "弹药箱（L6班用机枪）"
+	desc = "里面装着几个弹匣。"
 	ammo_type = /obj/item/ammo_box/magazine/m7mm
 	amount = 7
 
 /obj/item/storage/toolbox/ammobox/full/aps
-	name = "ammo box (Szabo-Ivanek/APS)"
-	desc = "It contains a few magazines."
+	name = "弹药箱（绍博-伊万内克/APS）"
+	desc = "里面装着几个弹匣。"
 	ammo_type = /obj/item/ammo_box/magazine/m9mm_aps
 	amount = 7

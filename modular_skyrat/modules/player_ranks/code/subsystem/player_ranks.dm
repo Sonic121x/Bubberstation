@@ -91,7 +91,7 @@ SUBSYSTEM_DEF(player_ranks)
 		return
 
 	if(!SSdbcore.Connect())
-		var/message = "Failed to connect to database in load_donators(). Reverting to legacy system."
+		var/message = "load_donators()无法连接数据库。正在回退到旧版系统。"
 		log_config(message)
 		log_game(message)
 		message_admins(message)
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(player_ranks)
 		return
 
 	if(!SSdbcore.Connect())
-		var/message = "Failed to connect to database in load_mentors(). Reverting to legacy system."
+		var/message = "load_mentors()无法连接数据库。正在回退到旧版系统。"
 		log_config(message)
 		log_game(message)
 		message_admins(message)
@@ -227,7 +227,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
-			to_chat(admin, span_warning("You do not possess the permissions to do this."))
+			to_chat(admin, span_warning("你没有执行此操作的权限。"))
 
 		return FALSE
 
@@ -246,7 +246,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(already_in_config[ckey])
 		if(is_admin_client)
-			to_chat(admin, span_warning("\"[ckey]\" is already a [rank_title]!"))
+			to_chat(admin, span_warning("“[ckey]”已经是[chinese_skyrat_player_rank_display(rank_title)]！"))
 
 		return FALSE
 
@@ -316,7 +316,7 @@ SUBSYSTEM_DEF(player_ranks)
 
 	if(!admin_holder.check_for_rights(R_ADMIN))
 		if(is_admin_client)
-			to_chat(admin, span_warning("You do not possess the permissions to do this."))
+			to_chat(admin, span_warning("你没有执行此操作的权限。"))
 
 		return FALSE
 
@@ -378,7 +378,7 @@ SUBSYSTEM_DEF(player_ranks)
 		return
 
 	if(!check_rights_for(admin, R_ADMIN | R_DEBUG | R_SERVER))
-		to_chat(admin, span_warning("You do not possess the permissions to do this."))
+		to_chat(admin, span_warning("你没有执行此操作的权限。"))
 		return
 
 	var/datum/player_rank_controller/controller = get_controller_for_group(rank_title)

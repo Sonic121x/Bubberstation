@@ -28,12 +28,12 @@ SUBSYSTEM_DEF(ticket_ping)
 
 	if(!valid_ahelps && !valid_opfors)
 		return
-	var/is_or_are
+	var/pending_count
 	if(!valid_ahelps)
-		is_or_are = (valid_opfors > 1 ? "are" : "is")
+		pending_count = valid_opfors
 	else
-		is_or_are = (valid_ahelps > 1 ? "are" : "is")
-	message_admins(span_adminnotice("There [is_or_are] currently [valid_ahelps ? "[valid_ahelps] unhandled staff ticket[valid_ahelps == 1 ? "" : "s"] open" : ""][(valid_ahelps && valid_opfors) ? " and " : ""][valid_opfors ? "[valid_opfors] unhandled Opposing Force application[valid_opfors == 1 ? "" : "s"] open" : ""]."))
+		pending_count = valid_ahelps + valid_opfors
+	message_admins(span_adminnotice("目前共有[pending_count]项待处理事务：[valid_ahelps ? "[valid_ahelps]条管理员工单" : ""][(valid_ahelps && valid_opfors) ? "以及" : ""][valid_opfors ? "[valid_opfors]份敌对势力申请" : ""]。"))
 	for(var/client/staff as anything in GLOB.admins)
 		if(staff?.prefs.read_preference(/datum/preference/toggle/admin/ticket_ping))
 			SEND_SOUND(staff, sound('modular_skyrat/modules/subsystems/sounds/soft_ping.ogg'))

@@ -125,7 +125,7 @@
 		parts += mod_part
 
 	for(var/obj/item/part as anything in parts)
-		part.name = "[name] [part.name]"
+		part.name = "[chinese_batch_ten_theme_display(name)] [part.name]"
 		part.desc = "[part.desc] [desc]"
 		part.set_armor(armor_type)
 		part.resistance_flags = resistance_flags

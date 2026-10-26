@@ -1,6 +1,6 @@
 /datum/action/cooldown/bloodsucker/veil
-	name = "Veil of Many Faces"
-	desc = "Disguise yourself in the illusion of another identity."
+	name = "千面之纱"
+	desc = "以另一重身份的幻象伪装自己。"
 	button_icon_state = "power_veil"
 	power_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
@@ -30,9 +30,9 @@
 
 /datum/action/cooldown/bloodsucker/veil/get_power_explanation_extended()
 	. = list()
-	. += "Activating Veil of Many Faces will shroud you in smoke and forge you a new identity."
-	. += "Your name and appearance will be completely randomized, and turning the ability off again will undo it all."
-	. += "Clothes, gear, and Security/Medical HUD status is kept the same while this power is active."
+	. += "启用千面之纱会将你笼罩在烟雾中，并伪造一个新身份。"
+	. += "你的名字和外貌会完全随机变化，关闭能力后恢复原状。"
+	. += "此能力生效期间，服装、装备以及安保和医疗HUD中的状态保持不变。"
 
 /datum/action/cooldown/bloodsucker/veil/ActivatePower(atom/target)
 	. = ..()
@@ -40,7 +40,7 @@
 //	if(blahblahblah)
 //		Disguise_Outfit()
 	veil_user()
-	owner.balloon_alert(owner, "veil turned on.")
+	owner.balloon_alert(owner, "面纱已启用")
 	return TRUE
 
 /* // Meant to disguise your character's clothing into fake ones.
@@ -52,7 +52,7 @@
 /datum/action/cooldown/bloodsucker/veil/proc/veil_user()
 	// Change Name/Voice
 	var/mob/living/carbon/human/user = owner
-	to_chat(owner, span_warning("You mystify the air around your person. Your identity is now altered."))
+	to_chat(owner, span_warning("你让周围的空气笼上迷幻之色。你的身份已经改变。"))
 
 	// Store Prev Appearance
 	disguise_name = generate_random_name(user.gender, TRUE)
@@ -138,7 +138,7 @@
 	user.update_body_parts(update_limb_data = TRUE) // Body itself, maybe skin color?
 
 	cast_effect() // POOF
-	owner.balloon_alert(owner, "veil turned off.")
+	owner.balloon_alert(owner, "面纱已关闭")
 
 	UnregisterSignal(user, COMSIG_HUMAN_GET_VISIBLE_NAME)
 

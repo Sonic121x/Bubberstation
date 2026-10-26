@@ -1,40 +1,40 @@
 /obj/structure/sign/poster/official/trappiste_suppressor
-	name = "Keep It Quiet - Ear Protection Unneeded"
-	desc = "This poster depicts, alongside the prominent logo of Trappiste Fabriek, a \
-		diagram of the average suppressor, and how on most* Trappiste weapons \
-		the sound of firing will be low enough to eradicate the need for ear protection. \
-		How safety minded, they even have a non-liability statement too."
+	name = "保持安静——无需护耳"
+	desc = "海报在醒目的特拉比斯特工厂标志旁，展示了一张\
+		普通消音器的示意图，并说明大多数*特拉比斯特武器\
+		开火时的声响低到不必佩戴护耳装备。\
+		真有安全意识，他们甚至还附上了免责声明。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/propaganda.dmi'
 	icon_state = "keep_it_quiet"
 
 /obj/structure/sign/poster/official/trappiste_suppressor/examine_more(mob/user)
 	. = ..()
 
-	. += "It was hard to notice before, but now that you really look at it... \
-		This thing is completely covered in micro scale text telling you in just about \
-		every human language and then some that Trappiste isn't liable for ear damage \
-		caused by their weapons, suppressed or not."
+	. += "之前很难注意到，但现在仔细一看……\
+		海报上密密麻麻写满了极小的字，用几乎所有人类语言\
+		以及一些其他语言声明：无论是否安装消音器，特拉比斯特都不对\
+		其武器造成的听力损伤负责。"
 
 	return .
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/official/trappiste_suppressor, 32)
 
 /obj/structure/sign/poster/official/trappiste_ammunition
-	name = "Know Your Ammuniton Colors"
-	desc = "This poster depicts, alongside the prominent logo of Trappiste Fabriek, \
-		a variety of colors that one may find on .585 Trappiste rounds. \
-		A plain white case usually means lethal, while a blue stripe is less-lethal \
-		and a purple stripe is more lethal. How informative."
+	name = "认识弹药颜色"
+	desc = "海报在醒目的特拉比斯特工厂标志旁，\
+		展示了.585特拉比斯特弹药上可能出现的各种颜色。\
+		纯白色弹壳通常表示致命弹药，蓝色条纹表示低致命性，\
+		紫色条纹则表示更强的致命性。真长知识。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/trappiste_fabriek/propaganda.dmi'
 	icon_state = "know_the_difference"
 
 /obj/structure/sign/poster/official/trappiste_ammunition/examine_more(mob/user)
 	. = ..()
 
-	. += "Small text details that this information may also be transferrable \
-		to other types of TerraGov ammunition, but that you should check the box \
-		the bullets come in just to be sure. Trappiste is, of course,\
-		not liable for excess harm caused by misreading color identification systems."
+	. += "小字说明，这些信息也可能适用于\
+		其他类型的地球政府弹药，但为确保无误，你应该查看\
+		弹药包装盒。当然，特拉比斯特\
+		不对误读颜色识别系统造成的额外伤害负责。"
 
 	return .
 

@@ -2,8 +2,8 @@
 //Weaponry Research
 /datum/techweb_node/ballistic
 	id = "ballistic_tech"
-	display_name = "Ballistic Research"
-	description = "Ballistic ammunition for shotguns."
+	display_name = "实弹研究"
+	description = "霰弹枪使用的实弹弹药。"
 	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION)
 	design_ids = list(
 		"shotgun_slug",

@@ -3,8 +3,8 @@
 // Lungs
 
 /obj/item/organ/lungs/icebox_adapted
-	name = "hardy lungs"
-	desc = "Lungs adapted to frozen environments that would be otherwise inhospitable to most races. Feels cold."
+	name = "耐寒肺"
+	desc = "适应了冰冻环境的肺，对大多数种族而言，那种环境原本无法生存。摸起来冰凉。"
 
 /obj/item/organ/lungs/icebox_adapted/Initialize(mapload)
 	. = ..()

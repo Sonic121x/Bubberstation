@@ -1,6 +1,6 @@
 /obj/machinery/vending/dorms
-	name = "LustWish"
-	desc = "A vending machine with various toys. Not for the faint of heart."
+	name = "欲愿"
+	desc = "售卖各式玩具的自动售货机。胆小者慎入。"
 	icon_state = "lustwish"
 	base_icon_state = "lustwish"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/lustwish.dmi'
@@ -8,13 +8,13 @@
 	age_restrictions = TRUE
 	///Has the discount card been used on the vending machine?
 	var/card_used = FALSE
-	product_ads = "Try me!;Kinky!;Lewd and fun!;Hey you, yeah you... wanna take a look at my collection?;Come on, take a look!;Remember, always adhere to Nanotrasen corporate policy!;Don't forget to use protection!"
-	vend_reply = "We're glad to satisfy your desires!"
+	product_ads = "试试我吧！;充满情趣！;情色又有趣！;嘿，你，对，就是你……想看看我的收藏吗？;来嘛，看一眼！;记住，务必遵守纳米传讯公司政策！;别忘了做好保护措施！"
+	vend_reply = "很高兴满足你的欲望！"
 
 	//STUFF SOLD HERE//
 	product_categories = list(
 		list(
-			"name" = "Toys",
+			"name" = "玩具",
 			"icon" = FA_ICON_MAGIC_WAND_SPARKLES,
 			"products" = list(
 				//Sex Toys
@@ -51,7 +51,7 @@
 			),
 		),
 		list(
-			"name" = "Outfits",
+			"name" = "服装",
 			"icon" = FA_ICON_SHIRT,
 			"products" = list(
 				/obj/item/clothing/under/pants/skyrat/chaps = 4,
@@ -87,7 +87,7 @@
 			),
 		),
 		list(
-			"name" = "Restraints",
+			"name" = "束缚用品",
 			"icon" = FA_ICON_HANDCUFFS,
 			"products" = list(
 				//Sex toys
@@ -128,7 +128,7 @@
 			),
 		),
 			list(
-			"name" = "Consumables",
+			"name" = "消耗品",
 			"icon" = FA_ICON_VIAL,
 			"products" = list(
 				//Sex toys
@@ -146,7 +146,7 @@
 			),
 		),
 		list(
-			"name" = "MOD Suit",
+			"name" = "MOD 模块化外骨骼",
 			"icon" = FA_ICON_USER_ASTRONAUT,
 			"products" = list(
 				/obj/item/mod/construction/plating/lustwish = 5,
@@ -155,7 +155,7 @@
 			)
 		),
 		list(
-			"name" = "Structures",
+			"name" = "设施",
 			"icon" = FA_ICON_HAMMER,
 			"products" = list(
 				//fur niture //haha you got it
@@ -204,7 +204,7 @@
 	if(!istype(used_item, /obj/item/lustwish_discount))
 		return ..()
 
-	user.visible_message(span_boldnotice("Something changes in [src] with a loud clunk."))
+	user.visible_message(span_boldnotice("[src] 发出响亮的咔嗒声，内部似乎发生了变化。"))
 	card_used = !card_used
 
 	if(card_used)
@@ -242,6 +242,6 @@
 
 //Refill item
 /obj/item/vending_refill/lustwish
-	machine_name = "LustWish"
+	machine_name = "欲愿"
 	icon_state = "lustwish_refill"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_items/lewd_items.dmi'

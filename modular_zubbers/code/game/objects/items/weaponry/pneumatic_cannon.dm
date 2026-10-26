@@ -1,6 +1,6 @@
 /obj/item/pneumatic_cannon/syndicate
-	name = "suspicious pneumatic cannon"
-	desc = "A well-engineered gas-powered cannon that can fire any object loaded into it. Has some suspiciously slick red paint decals."
+	name = "可疑气动炮"
+	desc = "一门精心设计的气动炮，能发射装入其中的任何物体。上面有些光鲜得可疑的红色涂装。"
 	icon = 'modular_zubbers/icons/obj/weapons/pneumaticCannon.dmi'
 	icon_state = "syndicate"
 	range_multiplier = 2

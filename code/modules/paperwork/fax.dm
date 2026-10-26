@@ -125,7 +125,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 		fax_name = "[GLOB.nt_fax_department]"
 	if(!fax_id)
 		fax_id = special_networks["nanotrasen"]["fax_id"]
-	name = "[fax_name] 传真机"
+	name = "[chinese_batch_ten_fax_display(fax_name)] 传真机"
 	visible_to_network = FALSE
 	return ..()
 
@@ -453,7 +453,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 /obj/machinery/fax/proc/receive(obj/item/loaded, sender_name)
 	playsound(src, 'sound/machines/printer.ogg', 50, FALSE)
 	INVOKE_ASYNC(src, PROC_REF(animate_object_travel), loaded, "fax_receive", find_overlay_state(loaded, "receive"))
-	say("收到来自 [sender_name] 的信件。")
+	say("收到来自 [chinese_batch_ten_fax_display(sender_name)] 的信件。")
 	history_add("接收", sender_name)
 	addtimer(CALLBACK(src, PROC_REF(vend_item), loaded), 1.9 SECONDS)
 	SEND_SIGNAL(src, COMSIG_FAX_MESSAGE_RECEIVED, sender_name)
@@ -482,7 +482,7 @@ GLOBAL_VAR_INIT(fax_autoprinting, FALSE)
 	var/datum/signal/subspace/messaging/tablet_message/signal = new(src, list(
 		"fakename" = "传真通知器",
 		"fakejob" = "PDA 程序",
-		"message" = "你的传真机 [fax_name] 收到了一条来自 [sender_name] 的新消息",
+		"message" = "你的传真机 [chinese_batch_ten_fax_display(fax_name)] 收到了一条来自 [chinese_batch_ten_fax_display(sender_name)] 的新消息",
 		"targets" = targets,
 		"automated" = TRUE
 	))

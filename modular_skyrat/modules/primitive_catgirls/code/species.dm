@@ -71,36 +71,36 @@
 
 /datum/species/human/felinid/primitive/get_species_description()
 	return list(
-		"Genetically modified humanoids believed to be descendants of a now centuries old colony \
-			ship from the pre-bluespace travel era. Still having at least some human traits, they \
-			are most comparable to today's felinids with most sporting features likely spliced from \
-			the icemoon's many fauna."
+		"一种基因改造的人形生物，据信是数百年前、蓝空间航行时代之前一艘殖民船\
+			乘员的后裔。仍保留至少部分人类特征，\
+			与当今的猫人最为相似；大多数外貌特征很可能源自\
+			冰月上众多动物的基因。"
 	)
 
 /datum/species/human/felinid/primitive/get_species_lore()
 	return list(
-		"Physically, the Hearthkin always come in the form of demihumans; appearing similar to normal Humans, \
-			with tails, ears, and limbs of various arctic animals; wolves, bears, and felines to name a few. \
-			They have adapted to the cold surface of Freyja, but find the mild controlled temperatures of Nanotrasen stations to be swelteringly hot. \
-			The Hearthkin are the descendants of Nordic genemodders aboard the vessel Stjarndrakkr, or Star Dragon; \
-			an enormous colony ship that exploded in the orbit of its last resting place four hundred years ago; \
-			Freyja, the ice moon, for unknown reasons. Large sections of the Star Dragon split and were sealed, fragmenting across the surface. \
-			The Hearthkin believe they arrived first. Whether they are right is unknown.",
+		"炉裔的形态始终属于亚人：外貌近似普通人类，\
+			却拥有狼、熊、猫科等极地动物的尾巴、耳朵和四肢。\
+			他们适应了弗蕾亚寒冷的地表，却觉得纳米传讯空间站温和可控的室温酷热难耐。\
+			炉裔是斯嘉恩德拉克号——也就是“星龙号”——上北欧基因改造者的后代。\
+			这艘庞大的殖民船于四百年前在最终安息之地的轨道上发生了爆炸，\
+			那里便是冰月弗蕾亚，爆炸原因不明。星龙号的大段舱体断裂并封闭，碎片散落于地表。\
+			炉裔相信自己是最早到来的人，但事实是否如此，无人知晓。",
 
-		"The Hearth itself is sacred, protected by Kin rightfully wary of outsiders. Hearthkin are demihumans named by clan leaders \
-			from a combination of a parental first name and a title given to them by the clan, such as 'Souldrowned' or 'Snoweye.' \
-			Unlike the Ashwalkers, the Hearthkin are a more technologically advanced society, having developed forging, glassblowing and more from remnants of their vessel. \
-			however, for a variety of reasons, they tend to shy away from using modern technology. This does not mean that Kin are isolationist, however-- \
-			many seedier types have used the Hearthkin genetic miracle to lay low, and years of interbreeding with outsiders has created many types of Kin, including Silverscales.",
+		"炉火本身神圣不可侵犯，由对外来者保持合理警惕的族人守护。炉裔是亚人，由氏族首领取名，\
+			名字结合父母一方的名字与氏族赐予的称号，如“溺魂”或“雪眼”。\
+			与灰行者不同，炉裔社会的技术更为先进，借助飞船残骸发展了锻造、吹玻璃等工艺。\
+			然而出于种种原因，他们往往回避使用现代技术。但这并不意味着他们奉行孤立主义——\
+			不少来历不明的人借炉裔的基因奇迹隐姓埋名，多年来与外族通婚也产生了包括银鳞裔在内的许多支系。",
 
-		"After the split, the Star Dragon had run low on medical supplies, the only remains that weren't picked clean were a store of Earthsblood used for hydroponics. \
-			It healed mortal wounds, but at great cost-- their minds would never recover. Life was exceedingly difficult for the would-be colonists. Generations were very short, \
-			and most technical know-how died on impact, or to exposure. While their genemods and pre-existing comfort in frozen climates helped, \
-			the Hearthkin were said to have made one last desperate move to put all their resources together to protect themselves from Freyja; forever. \
-			Atmospheric readings taken by Nanotrasen reveal a massive thermal signature under the feet of the Hearthkin.",
+		"星龙号解体后，医疗物资所剩无几，唯一没有被搜刮干净的，是一批用于水培的大地之血。\
+			它治愈了致命伤，却付出惨重代价——他们的心智再也无法恢复。准殖民者的生活异常艰难，每一代都很短命，\
+			多数技术知识在撞击或严寒中失传。尽管基因改造和原本对冰寒气候的适应有所帮助，\
+			据说炉裔仍孤注一掷，集中所有资源，想永远保护自己免受弗蕾亚的侵袭。\
+			纳米传讯测得的大气数据揭示，炉裔脚下存在一个巨大的热源。",
 
-		"Today, the Hearthkin are a culture all their own. Many of the original segments of the Star Dragon are buried under ice and snow, and the Hearthkin have \
-			built many dwellings to keep them secret. They dwell in longhouses and sleep in the	warm tunnels they've created, \
-			hunting fauna and creatures coming from portals to the moon's planet; Indecipheres. Their faith has strengthened \
-			with worship and sacrifices to their gods. Hearthkin hold reverence for their predecessors, but few remember what they were like.",
+		"如今，炉裔已形成独特的文化。星龙号的许多原始舱段深埋冰雪之下，炉裔\
+			建起许多居所掩藏它们。他们住在长屋中，睡在亲手挖出的	温暖隧道里，\
+			猎捕当地动物，以及从通往冰月母星因德西菲瑞斯的传送门中出现的生物。对神灵的崇拜与献祭\
+			使信仰愈发坚定。炉裔敬重先人，但很少有人记得他们原本的模样。",
 	)

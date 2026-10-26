@@ -1,6 +1,6 @@
 /obj/item/clothing/head/beret/sec/peacekeeper
-	name = "peacekeeper beret"
-	desc = "A robust beret with the peacekeeper insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
+	name = "维和贝雷帽"
+	desc = "印有维和徽章的结实贝雷帽，采用强化布料，提供充足防护。"
 	icon_state = "/obj/item/clothing/head/beret/sec/peacekeeper"
 	greyscale_config = /datum/greyscale_config/beret_badge
 	greyscale_config_worn = /datum/greyscale_config/beret_badge/worn

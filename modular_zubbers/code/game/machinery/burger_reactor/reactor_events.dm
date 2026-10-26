@@ -8,7 +8,7 @@ GLOBAL_VAR_INIT(rbmk_did_warning, FALSE)
 	max_occurrences = 2
 	earliest_start = 30 MINUTES
 	min_players = 30
-	description = "Gives a warning that the station is using too much RBMK for its own good. If the event is run twice, the warning turns into consequences."
+	description = "警告空间站使用了过多的 RBMK 反应堆。若事件运行两次，警告就会变成真正的灾难。"
 	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE)
 	track = EVENT_TRACK_MODERATE
 
@@ -50,17 +50,17 @@ GLOBAL_VAR_INIT(rbmk_did_warning, FALSE)
 			CHECK_TICK
 
 		priority_announce(
-			"You were warned.",
-			"RB-MK2 Ove%)#*%&#",
+			"你们已经收到过警告。",
+			"RB-MK2 过%)#*%&#",
 			sound = 'modular_zubbers/sound/alerts/rbmk2.ogg',
 			has_important_message = TRUE
 		)
 
 	else
 		priority_announce(
-			"A neighboring station is detecting excess levels of Bluesp!*^#$) Void energy, which is usually a symptom of excessive RB-MK2 reactor use. \
-			Please reduce the amount of active RB-MK2 reactors from [machines_detected] to 12 or risk cata@#&@(^&#^%.",
-			"RB-MK2 Overuse Warning",
+			"邻近空间站检测到过量蓝空!*^#$)虚空能量，这通常是过度使用 RB-MK2 反应堆的征兆。\
+			请将运行中的 RB-MK2 反应堆数量从[machines_detected]降至12，否则可能引发灾@#&@(^&#^%。",
+			"RB-MK2 过度使用警告",
 			sound = 'modular_zubbers/sound/alerts/rbmk1.ogg',
 			has_important_message = TRUE
 		)

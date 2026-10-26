@@ -1,8 +1,8 @@
 /datum/language/primitive_catgirl
 	name = "Ættmál"
-	desc = "A liturgical language passed through three centuries of Hearthkin culture, the only tongue which their literature is allowed to be spoken in; \
-				especially relating to their pagan practices. While Siik'Tajr is used as a trade language with outsiders, Ættmál remains sacred and mostly unknown \
-				to those outside the Hearth."
+	desc = "一种在炉裔文化中传承了三个世纪的礼仪语言，是唯一获准用于诵读其文献的语言，\
+				尤其用于异教仪式。炉裔用西克玛斯语与外人贸易，而部族语依然神圣，\
+				炉火之外的人大多对其一无所知。"
 	key = "H"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	space_chance = 70

@@ -35,3 +35,12 @@
 ## 本次整理
 
 46 个辅助文件从 `__HELPERS/` 根目录移入本目录，原 `chinese_display.dm` 入口保留。原有嵌套引用集中到 `_includes.dm`，展开后的声明顺序保持一致。函数名、译文、映射内容及其执行顺序均保留。
+
+## 第 9001–10000 项翻译扩展
+
+- `skyrat_items_more`、`skyrat_items_roles`：物品模式、径向菜单、角色及事件标签，保留原始选择值。
+- `skyrat_systems`、`skyrat_systems_roles`：子系统、特性、职业、区域、义肢与科研分类的显示。
+- `zubbers_datums`、`zubbers_objects`：下游特性、称谓、全息工具、宠物等选项，以及对应动作存档名。
+- `bloodsucker`、`zubbers_heretic`：氏族、能力、敌对身份和模块的显示及存档兼容。
+
+职业、种族和区域扩展同时合并到返回完整映射的入口，供界面显示和中文输入反查原始标识使用。特性下拉选项通过指定偏好类型接入 `display_names`，不会修改保存的选择值。

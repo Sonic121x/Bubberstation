@@ -1,10 +1,10 @@
 /obj/item/seeds/vale
-	name = "vale seed pack"
-	desc = "These seeds grow into vale plants. Once sold as a luxury for their unique aesthetics, after the trees suddenly combusted they were taken off of the market."
+	name = "焰叶树种子包"
+	desc = "这些种子能长成焰叶树。它曾凭独特美感作为奢侈品出售，后来因树木突然自燃而遭到下架。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "vale"
 	species = "vale"
-	plantname = "Vale Plant"
+	plantname = "焰叶树"
 	product = /obj/item/food/grown/vale
 	lifespan = 55
 	endurance = 35
@@ -17,14 +17,14 @@
 
 /obj/item/food/grown/vale
 	seed = /obj/item/seeds/vale
-	name = "vale"
-	desc = "A cluster of vale leaves, keep away from open flames."
+	name = "焰叶"
+	desc = "一簇焰叶树叶，请远离明火。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "vale"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("plasma" = 1)
+	tastes = list("等离子体" = 1)
 
 /obj/item/food/grown/vale/juice_typepath()
 	return /datum/reagent/toxin/plasma

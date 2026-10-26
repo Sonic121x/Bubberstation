@@ -3,10 +3,10 @@
 
 /datum/quirk/equipping/entombed
 	name = "Entombed"
-	desc = "You are permanently fused to (or otherwise reliant on) a single MOD unit that can never be removed from your person. If it runs out of charge or is turned off, you'll start to die!"
-	gain_text = span_warning("Your exosuit is both prison and home.")
-	lose_text = span_notice("At last, you're finally free from that horrible exosuit.")
-	medical_record_text = "Patient is physiologically reliant on a MOD unit for homeostasis. Do not attempt removal."
+	desc = "你永久融合于一套 MOD 装备，或以其他方式依赖它，永远无法将其脱下。一旦它断电或关闭，你就会走向死亡！"
+	gain_text = span_warning("你的外骨骼既是牢笼，也是家。")
+	lose_text = span_notice("你终于摆脱了那套可怕的外骨骼。")
+	medical_record_text = "患者依赖 MOD 装备维持生理稳态。切勿尝试移除。"
 	value = 0
 	icon = FA_ICON_ARROW_CIRCLE_DOWN
 	forced_items = list(/obj/item/mod/control/pre_equipped/entombed = list(ITEM_SLOT_BACK))
@@ -46,8 +46,8 @@
 			//start the timer and let the player know
 			life_support_timer = addtimer(CALLBACK(src, PROC_REF(life_support_failure), human_holder), life_support_failure_threshold, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
-			to_chat(human_holder, span_danger("Your physiology begins to erratically seize and twitch, bereft of your MODsuit's vital support. <b>Turn it back on as soon as you can!</b>"))
-			human_holder.balloon_alert(human_holder, "suit life support warning!")
+			to_chat(human_holder, span_danger("失去 MOD 装备的生命支持后，你的身体开始不受控制地痉挛抽搐。<b>尽快重新开启它！</b>"))
+			human_holder.balloon_alert(human_holder, "装甲生命支持警告！")
 			human_holder.set_jitter_if_lower(life_support_failure_threshold) //give us some foley jitter
 			return
 	else
@@ -57,16 +57,16 @@
 			life_support_timer = null
 			life_support_failed = FALSE
 
-			to_chat(human_holder, span_notice("Relief floods your frame as your suit begins sustaining your life once more."))
-			human_holder.balloon_alert(human_holder, "suit life support restored!")
+			to_chat(human_holder, span_notice("装甲再次开始维持你的生命，一阵舒缓感传遍全身。"))
+			human_holder.balloon_alert(human_holder, "装甲生命支持已恢复！")
 			human_holder.adjust_jitter(-(life_support_failure_threshold / 2)) // clear half of it, wow, that was unpleasant
 
 /datum/quirk/equipping/entombed/proc/life_support_failure()
 	// Warn the player and begin the gradual dying process.
 	var/mob/living/carbon/human/human_holder = quirk_holder
 
-	human_holder.visible_message(span_danger("[human_holder] suddenly staggers, a dire pallor overtaking [human_holder.p_their()] features as a feeble 'breep' emanates from their suit..."), span_userdanger("Terror descends as your suit's life support system breeps feebly, and then goes horrifyingly silent."))
-	human_holder.balloon_alert(human_holder, UNLINT("SUIT LIFE SUPPORT FAILING!"))
+	human_holder.visible_message(span_danger("[human_holder]突然踉跄了一下，脸色变得惨白，装甲发出微弱的一声‘哔’……"), span_userdanger("你的装甲生命支持系统发出微弱的哔声，随后陷入可怕的寂静，恐惧笼罩了你。"))
+	human_holder.balloon_alert(human_holder, UNLINT("装甲生命支持即将失效！"))
 	playsound(human_holder, 'sound/effects/alert.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE) // OH GOD THE STRESS NOISE
 	life_support_failed = TRUE
 
@@ -331,7 +331,7 @@
 	return htmlrendertext(input)
 
 /datum/preference/text/entombed_mod_prefix/create_default_value()
-	return "Fused"
+	return "融合式"
 
 /datum/preference/text/entombed_mod_prefix/apply_to_human(mob/living/carbon/human/target, value)
 	return

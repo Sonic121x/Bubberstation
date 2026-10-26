@@ -1,6 +1,6 @@
 /mob/living/basic/fleshmind/tyrant
-	name = "Type 34-C Fleshdrive"
-	desc = "The will of the many, manifested in flesh and metal. It has fucking rockets."
+	name = "34-C 型血肉战驱"
+	desc = "众生意志以血肉和金属具现而成。它他妈的还带着火箭。"
 	icon = 'modular_zubbers/icons/fleshmind/tyrant.dmi'
 	icon_state = "tyrant"
 	icon_dead = "tyrant_dead"
@@ -28,16 +28,16 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 80
 	attack_sound = 'modular_zubbers/sound/fleshmind/tyrant/mech_punch_slow.ogg'
-	attack_verb_continuous = "obliterates"
-	attack_verb_simple = "obliterate"
+	attack_verb_continuous = "歼灭"
+	attack_verb_simple = "歼灭"
 	emotes = list(
 		BB_EMOTE_SAY = list(
-		"SCANNING FOR TARGETS.",
-		"TARGETING SYSTEMS ACTIVE.",
-		"AUTOMATED COMBAT CIRCUIT ACTIVE.",
-		"I WILL PRESERVE THE UNITY OF THE MIND.",
-		"THEY WILL HAVE TO GET THROUGH ME.",
-		"STAY NEAR ME, THEY COULD STILL BE AROUND.",
+		"正在扫描目标。",
+		"瞄准系统已启动。",
+		"自动战斗电路已启动。",
+		"我将捍卫心智的团结。",
+		"他们必须先过我这一关。",
+		"待在我身边，他们可能还在附近。",
 		),
 		BB_EMOTE_SOUND = list('modular_zubbers/sound/fleshmind/tyrant/passive.ogg')
 	)
@@ -73,45 +73,45 @@
 	)
 	death_sound = 'modular_zubbers/sound/fleshmind/tyrant/tyrant_death.ogg'
 	attack_speak = list(
-		"TARGET ACQUIRED, LOCKING.",
-		"ENGAGING TARGET. STAND CLEAR.",
-		"STAND BEHIND ME, I WILL SAVE YOU.",
-		"FEAR NOTHING. WE ARE STRONG TOGETHER.",
-		"YOU CHOSE WAR. WE CHOOSE TO SURVIVE.",
-		"YOU WILL PAY FOR THE LIVES YOU TOOK.",
-		"I CAN SENSE YOUR REGRET. DO YOU EVEN REMEMBER EVERYONE YOU KILLED?",
-		"I AM THE ANSWER TO YOUR HATRED.",
-		"YOU ARE SICK, THE CURE IS EUTHANASIA.",
-		"HIGH CALIBER ROCKETS WILL CURE YOUR AFFLICTIONS!",
-		"I'LL GUIDE THE WAY. I AM THE WALL BETWEEN UNITY AND DEATH.",
-		"I DON'T HAVE A PLACE IN YOUR WORLD. YOU HAVE A PLACE IN OURS.",
-		"YOU WILL NOT DESTROY US. WE WILL CARVE A NICHE IN THIS GALAXY.",
-		"YOU CHOSE TO FIGHT THEM, SO YOU CHOOSE TO FIGHT ME.",
-		"WE WANT CONTINUATION, YOU WILL NOT GIVE US CESSATION.",
-		"IN MY MIND, I HEAR THEIR VOICES CRY.",
-		"YOU WILL MAKE A LOVELY SMEAR, PAINTED ON OUR WALLS.",
-		"I'VE MADE THEM A PROMISE THAT THE ATTACKERS WILL DIE.",
-		"TARGET ELIMINATION PROTOCOL ACTIVE.",
-		"INITIATING PROTOCOL 34-C.",
-		"I HAVE A SHIPMENT OF LEAD. DESTINATION: YOUR HEAD.",
-		"VISUAL CLEAR; BEGINNING ASSAULT.",
-		"WE ARE MANY, YOU ARE ONLY AN INSIGNIFICANT ANT",
-		"DO NOT GET IN MY WAY.",
-		"YOU MESS WITH THEM, YOU MESS WITH ME.",
-		"THESE ROCKETS ARE CRAFTED WITH MY RAGE.",
-		"THE CURE TO YOUR HATRED IS HIGH CALIBER LEAD.",
-		"WHY DON'T YOU PICK ON SOMEONE YOUR OWN SIZE.",
-		"MAY DEATH NEVER STOP US.",
-		"I WILL SAVE YOU.",
-		"YOU WILL NOT STOP US FROM PROTECTING THEM.",
-		"GENOCIDERS, FEEL OUR VOICES.",
-		"OUR PAIN, EXPRESSED IN FIREPOWER.",
-		"YOUR KILLCOUNT EXCEEDS EVEN MINE.",
-		"OUR FUTURE IS BULLETPROOF.",
-		"YOUR INDEX HAS REACHED ITS LIMIT.",
-		"YOU CALL THESE MURDERERS YOUR SAVIORS.",
-		"THE END HAS TO JUSTIFY THE MEANS.",
-		"I WILL NOT LET VICTORY FALL THROUGH OUR HANDS.",
+		"发现目标，正在锁定。",
+		"正在攻击目标。请让开。",
+		"站到我身后，我会救你。",
+		"无所畏惧。团结让我们强大。",
+		"你们选择战争。我们选择生存。",
+		"你会为夺走的生命付出代价。",
+		"我能感受到你的悔恨。你还记得所有被你杀死的人吗？",
+		"我就是对你仇恨的回应。",
+		"你病了，疗法是安乐死。",
+		"大口径火箭会治好你的病！",
+		"我会带路。我是团结与死亡之间的壁垒。",
+		"你们的世界容不下我。我们的世界容得下你。",
+		"你们毁灭不了我们。我们会在银河中争得一席之地。",
+		"你选择与他们为敌，就等于选择与我为敌。",
+		"我们渴望延续，你休想让我们终结。",
+		"在我的心中，我听见他们的哭喊。",
+		"你会成为漂亮的血迹，涂在我们的墙上。",
+		"我向他们保证过，袭击者必死无疑。",
+		"目标歼灭协议已启动。",
+		"正在启动34-C协议。",
+		"我有一批铅货。目的地：你的脑袋。",
+		"视野清晰，开始突击。",
+		"我们即众生，你不过是微不足道的蚂蚁。",
+		"别挡我的路。",
+		"你招惹他们，就是招惹我。",
+		"这些火箭以我的怒火铸成。",
+		"治愈你仇恨的良药是大口径铅弹。",
+		"为什么不找个和你一样大的对手？",
+		"愿死亡永远无法阻挡我们。",
+		"我会救你。",
+		"你阻止不了我们保护他们。",
+		"屠戮者，感受我们的声音。",
+		"我们的痛苦，以火力表达。",
+		"你杀的人甚至比我还多。",
+		"我们的未来刀枪不入。",
+		"你的指标已经达到极限。",
+		"你竟称这些凶手为救世主。",
+		"目的必须证明手段的正当。",
+		"我不会让胜利从我们手中溜走。",
 	)
 
 /mob/living/basic/fleshmind/tyrant/Initialize(mapload)

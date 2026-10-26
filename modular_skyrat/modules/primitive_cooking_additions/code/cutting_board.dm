@@ -1,8 +1,8 @@
 #define GET_RECIPE(input_thing) LAZYACCESS(processor_inputs[/obj/machinery/processor], input_thing.type)
 
 /obj/item/cutting_board
-	name = "cutting board"
-	desc = "Processing food before electricity was cool, because you can just do your regular cutting on the table next to this right?"
+	name = "砧板"
+	desc = "在电力流行之前就能加工食物的工具，毕竟普通切菜在旁边桌子上就能做，对吧？"
 	icon = 'modular_skyrat/modules/primitive_cooking_additions/icons/cooking_structures.dmi'
 	icon_state = "cutting_board"
 	force = 5
@@ -48,11 +48,11 @@
 
 /obj/item/cutting_board/examine(mob/user)
 	. = ..()
-	. += span_notice("You can process food similar to a food processor by putting food on this and using a <b>knife</b> on it.")
-	. += span_notice("It can be (un)secured with <b>Right Click</b>")
-	. += span_notice("You can make it drop its item with <b>Alt Click</b>")
+	. += span_notice("将食物放在上面，再使用<b>刀</b>，即可像食品加工机一样处理食物。")
+	. += span_notice("<b>右键点击</b>可固定或解除固定。")
+	. += span_notice("<b>Alt点击</b>可取下上面的物品。")
 	if(length(contents))
-		. += span_notice("It has [contents[1]] sitting on it.")
+		. += span_notice("上面放着[contents[1]]。")
 
 /obj/item/cutting_board/Destroy()
 	drop_everything_contained()
@@ -60,11 +60,11 @@
 
 /obj/item/cutting_board/click_alt(mob/user)
 	if(!length(contents))
-		balloon_alert(user, "nothing on board")
+		balloon_alert(user, "砧板上没有东西")
 		return CLICK_ACTION_BLOCKING
 
 	drop_everything_contained()
-	balloon_alert(user, "cleared board")
+	balloon_alert(user, "已清空砧板")
 	return CLICK_ACTION_SUCCESS
 
 ///Drops all contents at the turf of the item
@@ -84,7 +84,7 @@
 		return
 
 	set_anchored(!anchored)
-	balloon_alert_to_viewers(anchored ? "secured" : "unsecured")
+	balloon_alert_to_viewers(anchored ? "已固定" : "已解除固定")
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 ///Takes the given obj (processed thing) and gets its results from the recipe list, spawning the results and deleting the original obj
@@ -112,7 +112,7 @@
 
 	if(attacking_item.tool_behaviour == TOOL_KNIFE)
 		if(!length(contents))
-			balloon_alert(user, "nothing to process")
+			balloon_alert(user, "没有可加工的东西")
 			return
 
 		var/datum/food_processor_process/item_process_recipe = GET_RECIPE(contents[1])
@@ -121,9 +121,9 @@
 			return
 
 		playsound(src, 'sound/effects/butcher.ogg', 50, TRUE)
-		balloon_alert_to_viewers("cutting...")
+		balloon_alert_to_viewers("正在切割……")
 		if(!do_after(user, 3 SECONDS, target = src))
-			balloon_alert_to_viewers("stopped cutting")
+			balloon_alert_to_viewers("已停止切割")
 			return
 
 		process_food(item_process_recipe, contents[1])
@@ -132,16 +132,16 @@
 	var/datum/food_processor_process/gotten_recipe = GET_RECIPE(attacking_item)
 	if(gotten_recipe)
 		if(length(contents))
-			balloon_alert(user, "board is full")
+			balloon_alert(user, "砧板已满")
 			return
 
 		attacking_item.forceMove(src)
-		balloon_alert(user, "placed [attacking_item] on board")
+		balloon_alert(user, "已将[attacking_item]放在砧板上")
 		update_appearance()
 		return
 
 	if(IS_EDIBLE(attacking_item)) //We may have failed but the user wants some feedback on why they can't put x food item on the board
-		balloon_alert(user, "[attacking_item] can't be processed")
+		balloon_alert(user, "无法加工[attacking_item]")
 	return ..()
 
 #undef GET_RECIPE

@@ -1,17 +1,17 @@
 /datum/mutation/harmonizing_pulses
-	name = "Harmonizing Pulses"
-	desc = "Allows the user to heal plants and creatures at the cost of pacifying themself"
+	name = "谐和脉冲"
+	desc = "让使用者治疗植物和生物，代价是暂时无法伤害他人。"
 	quality = POSITIVE
 	difficulty = 16
 	locked = TRUE
-	text_gain_indication = span_notice("You feel in harmony with your surroundings.")
-	text_lose_indication = span_notice("You lose you're sense of harmony.")
+	text_gain_indication = span_notice("你感觉自己与周围环境融为一体。")
+	text_lose_indication = span_notice("你失去了那份和谐的感觉。")
 	power_path = /datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses
 	instability = POSITIVE_INSTABILITY_MAJOR
 
 /datum/action/cooldown/mob_cooldown/turtle_tree/healer/harmonizing_pulses
-	name = "Harmonizing Pulses"
-	desc = "Emit pulses that heals plants and people alike."
+	name = "谐和脉冲"
+	desc = "释放能够同时治疗植物与人员的脉冲。"
 	button_icon = 'modular_zubbers/icons/mob/actions/actions.dmi'
 	button_icon_state = "harmonizing_pulses"
 	tree_range = 3

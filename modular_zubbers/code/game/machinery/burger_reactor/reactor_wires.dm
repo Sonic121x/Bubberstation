@@ -32,20 +32,20 @@
 /datum/wires/rbmk2/get_status()
 	var/obj/machinery/power/rbmk2/M = holder
 	. = list()
-	. += "The power light is [M.power && M.powernet ? "yellow" : "off"]."
-	. += "The occupancy light is [M.stored_rod ? "purple" : "off"]."
-	. += "The processing light is [M.active ? "green" : "off"]."
-	. += "The safety light is [M.safety ? "blue" : "flashing red"]."
+	. += "电力指示灯[M.power && M.powernet ? "亮着黄光" : "已熄灭"]。"
+	. += "棒体指示灯[M.stored_rod ? "亮着紫光" : "已熄灭"]。"
+	. += "运行指示灯[M.active ? "亮着绿光" : "已熄灭"]。"
+	. += "安全指示灯[M.safety ? "亮着蓝光" : "闪着红光"]。"
 
 	if(M.auto_vent_upgrade && M.auto_vent)
-		. += "The vent light is [M.venting ? "yellow" : "flashing red"]."
+		. += "通风指示灯[M.venting ? "亮着黄光" : "闪着红光"]。"
 	else if(M.vent_reverse_direction)
-		. += "The vent light is [M.venting ? "flashing orange and white" : "flashing red"]."
+		. += "通风指示灯[M.venting ? "交替闪着橙光和白光" : "闪着红光"]。"
 	else
-		. += "The vent light is [M.venting ? "green" : "flashing red"]."
+		. += "通风指示灯[M.venting ? "亮着绿光" : "闪着红光"]。"
 
-	. += "The cooling limiter display reads [M.cooling_limiter < M.cooling_limiter_max ? "[M.cooling_limiter]%" : "AUTO"]"
-	. += "The anti-tamper light is [M.tampered ? "flashing red" : "green"]."
+	. += "冷却限制器显示：[M.cooling_limiter < M.cooling_limiter_max ? "[M.cooling_limiter]%" : "自动"]"
+	. += "防篡改指示灯[M.tampered ? "闪着红光" : "亮着绿光"]。"
 
 /datum/wires/rbmk2/on_pulse(wire)
 	var/obj/machinery/power/rbmk2/M = holder
@@ -94,11 +94,11 @@
 			if(!mend)
 				var/turf/T = get_turf(M)
 				if(usr)
-					message_admins("[src] had the safety wire cut by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_VERBOSEJMP(T)].")
+					message_admins("[ADMIN_LOOKUPFLW(usr)]在[ADMIN_VERBOSEJMP(T)]剪断了[src]的安全线。")
 					usr.log_message("cut the safety wire of [M]", LOG_GAME)
 					M.investigate_log("had the safety wire cut by [key_name(usr)] at [AREACOORD(M)].", INVESTIGATE_ENGINE)
 				else
-					message_admins("[src] had the safety wire cut at [ADMIN_VERBOSEJMP(T)]")
+					message_admins("[src]的安全线在[ADMIN_VERBOSEJMP(T)]被剪断")
 					log_game("[src] had the safety wire cut at [AREACOORD(T)]")
 					M.investigate_log("had the safety wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 		if(WIRE_LIMIT)
@@ -108,11 +108,11 @@
 			if(!mend)
 				var/turf/T = get_turf(M)
 				if(usr)
-					message_admins("[src] had the power wire cut by [ADMIN_LOOKUPFLW(usr)] at [ADMIN_VERBOSEJMP(T)].")
+					message_admins("[ADMIN_LOOKUPFLW(usr)]在[ADMIN_VERBOSEJMP(T)]剪断了[src]的电力线。")
 					usr.log_message("cut the power wire of [M]", LOG_GAME)
 					M.investigate_log("had the power wire cut by [key_name(usr)] at [AREACOORD(M)].", INVESTIGATE_ENGINE)
 				else
-					message_admins("[src] had the power wire cut at [ADMIN_VERBOSEJMP(T)]")
+					message_admins("[src]的电力线在[ADMIN_VERBOSEJMP(T)]被剪断")
 					log_game("[src] had the power wire cut at [AREACOORD(T)]")
 					M.investigate_log("had the power wire cut at [AREACOORD(T)]", INVESTIGATE_ENGINE)
 			if(isliving(usr))

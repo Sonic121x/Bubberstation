@@ -1,10 +1,10 @@
 /obj/item/seeds/telriis
-	name = "telriis seed pack"
-	desc = "These seeds grow into telriis plants. A distant relative of milkweed, this grass can actually be juiced into milk."
+	name = "乳汁草种子包"
+	desc = "这些种子能长成乳汁草。它是乳草的远亲，真的能榨出乳汁。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/seeds.dmi'
 	icon_state = "telriis"
 	species = "telriis"
-	plantname = "Telriis Plant"
+	plantname = "乳汁草"
 	product = /obj/item/food/grown/telriis
 	lifespan = 55
 	endurance = 35
@@ -18,14 +18,14 @@
 
 /obj/item/food/grown/telriis
 	seed = /obj/item/seeds/telriis
-	name = "telriis"
-	desc = "A sheaf of telris, it can be ground or juiced into a milky liquid."
+	name = "乳汁草"
+	desc = "一捆乳汁草，可以研磨或榨取乳状液体。"
 	icon = 'modular_skyrat/modules/xenoarch/icons/harvest.dmi'
 	icon_state = "telriis"
 	filling_color = "#FF4500"
 	bite_consumption_mod = 0.5
 	foodtypes = FRUIT
-	tastes = list("milk" = 1)
+	tastes = list("牛奶" = 1)
 
 /obj/item/food/grown/telriis/juice_typepath()
 	return /datum/reagent/consumable/coconut_milk

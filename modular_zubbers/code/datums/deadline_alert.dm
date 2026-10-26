@@ -16,7 +16,7 @@
 	. = ..()
 	.["days_remaining"] = days_remaining
 
-/proc/tgui_deadline_alert(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE, ui_state = GLOB.always_state, days_remaining)
+/proc/tgui_deadline_alert(mob/user, message = "", title, list/buttons = list("确定"), timeout = 0, autofocus = TRUE, ui_state = GLOB.always_state, days_remaining)
 	if (!user)
 		user = usr
 	if (!istype(user))

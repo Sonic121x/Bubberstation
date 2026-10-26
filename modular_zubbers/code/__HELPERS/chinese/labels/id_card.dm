@@ -9,7 +9,7 @@
 		"Line Medic" = "前线军医", "Squad Physician" = "随队医生", "Medical Specialist" = "医疗专家", "Support Specialist" = "支援专家", "Doc." = "医生（口语）", "Guard" = "警卫", "Medical Attendant" = "医疗护理员", "Medical Support Officer" = "医疗支援官", "Medical Technician" = "医疗技术员", "Miner" = "矿工", "Excavator" = "挖掘工", "Junior Miner" = "初级矿工", "Dredger" = "采掘工", "Rockbreaker" = "碎岩工", "Prospector" = "勘探员", "Spelunker" = "洞穴探险者", "Apprentice Miner" = "见习矿工", "Drill Technician" = "钻探技术员", "Contract Miner" = "承包矿工", "Field Scout" = "野外侦察员",
 		"Mr." = "先生", "Ms." = "女士", "Mrs." = "夫人", "Miss" = "小姐", "Crewmember" = "船员", "Crewmate" = "船员伙伴", "Bartender" = "调酒师", "Barkeep" = "酒保", "Barmaid" = "女酒保", "Barman" = "男酒保", "Barwoman" = "酒吧女招待", "Barperson" = "酒吧招待", "Runner" = "潜行者", "Junior Runner" = "初级潜行者", "Botanist" = "植物学家", "Gardener" = "园丁", "Landscaper" = "园林师", "Coroner" = "法医", "Medical Examiner" = "验尸官", "Medical Investigator" = "医学调查员", "Forensic Pathologist" = "法医病理学家", "Funeral Director" = "殡仪主管", "Mortician" = "遗体护理师", "Undertaker" = "殡葬人员",
 	)
-	return display_names[value] || value
+	return display_names[value] || chinese_zubbers_honorific_display(value)
 
 /proc/chinese_id_honorific_choice(mob/user, message, title, list/choices)
 	var/list/display_choices = list()

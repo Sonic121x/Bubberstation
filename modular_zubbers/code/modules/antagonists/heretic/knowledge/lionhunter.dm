@@ -7,5 +7,5 @@
 /obj/item/gun/ballistic/rifle/lionhunter/examine(mob/user)
 	. = ..()
 
-	. += span_notice("A weapon of Mansus-nature, the lionhunter can fire through walls, as well as lock-on to give the projectile tracking and \
-	teleport the Acolyte towards their target on impact.")
+	. += span_notice("猎狮者步枪是一种源于漫宿的武器，能够穿墙射击，也能锁定目标，让弹丸追踪目标，\
+	并在命中时将侍徒传送到目标身边。")

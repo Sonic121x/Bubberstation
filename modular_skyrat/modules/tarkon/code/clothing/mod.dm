@@ -1,7 +1,7 @@
 /datum/mod_theme/tarkon
 	name = "tarkon"
-	desc = "A Tarkon Industries general protection suit, designed for port security and general EVA situations."
-	extended_desc = "A fourth-generational modular protection suit outfitted by Tarkon Industries, This suit is a safety standard for employees undertaking atmos-sensitive protection on jobs. Offering enough protection from impacts to combat most damage from cave-ins, its design has already been debted for saving dozens of employees from hazardous and unpredictable situations in both organic and inorganic forms."
+	desc = "塔肯工业的通用防护服，专为港口安保及一般舱外活动设计。"
+	extended_desc = "塔肯工业配备的第四代模块化防护服，是员工从事需要气密防护作业时的标准安全装备。它具备足以抵挡大多数塌方伤害的抗冲击能力，已经在各种有机与无机危险所导致的不可预测事故中挽救了数十名员工。"
 	default_skin = "tarkon"
 	armor_type = /datum/armor/mod_theme_tarkon
 	complexity_max = DEFAULT_MAX_COMPLEXITY + 5
@@ -103,7 +103,7 @@
 
 /datum/mod_theme/prototype/hauler
 	name = "Prototype: Hauler"
-	desc = "Bulky and quite heavy, This prototype modular suit has seemed to be modified quite a bit with additional supports to distribute its weight. The servos there within have been modified to handle the additional stress, but the loose wiring required an internal lining of rubberized insulation"
+	desc = "这套笨重的原型模块化防护服似乎经过大量改装，增加了支撑结构以分散重量。内部伺服机构也已改造，以承受额外负荷，但松散的布线迫使设计者加装了橡胶绝缘内衬。"
 	inbuilt_modules = list()
 	charge_drain = DEFAULT_CHARGE_DRAIN * 3
 	siemens_coefficient = 0

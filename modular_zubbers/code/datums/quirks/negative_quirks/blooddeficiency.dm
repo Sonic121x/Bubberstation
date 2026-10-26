@@ -2,8 +2,8 @@
 // Does not appear in TGUI or the character preferences window.
 /datum/quirk/blooddeficiency/synth
 	name = "Hydraulic Leak"
-	desc = "Your body's hydraulic fluids are leaking through their seals."
-	medical_record_text = "Patient requires regular treatment for hydraulic fluid loss."
+	desc = "你体内的液压液正从密封处渗漏。"
+	medical_record_text = "患者因液压液流失而需要定期治疗。"
 	icon = FA_ICON_GLASS_WATER_DROPLET
 	mail_goodies = list(/obj/item/reagent_containers/blood/oil)
 	// min_blood = BLOOD_VOLUME_BAD - 25; // TODO: Uncomment after TG PR #70563

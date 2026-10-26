@@ -14,7 +14,7 @@
 	icon = 'modular_zubbers/icons/mob/actions/bloodsucker.dmi'
 
 /atom/movable/screen/bloodsucker/blood_counter
-	name = "Blood Consumed"
+	name = "已吸食血量"
 	icon_state = "blood_display"
 	screen_loc = UI_BLOOD_DISPLAY
 
@@ -22,7 +22,7 @@
 	maptext = FORMAT_BLOODSUCKER_HUD_TEXT(hud_text_color(), blood_volume)
 
 /atom/movable/screen/bloodsucker/rank_counter
-	name = "Bloodsucker Rank"
+	name = "吸血鬼等级"
 	icon_state = "rank"
 	screen_loc = UI_VAMPRANK_DISPLAY
 
@@ -34,7 +34,7 @@
 	maptext = FORMAT_BLOODSUCKER_HUD_TEXT(hud_text_color(), level)
 
 /atom/movable/screen/bloodsucker/sunlight_counter
-	name = "Solar Flare Timer"
+	name = "太阳耀斑倒计时"
 	icon_state = "sunlight"
 	screen_loc = UI_SUNLIGHT_DISPLAY
 
@@ -70,7 +70,7 @@
 				valuecolor = "#FFFFFF"
 	maptext = FORMAT_BLOODSUCKER_SUNLIGHT_TEXT( \
 		valuecolor, \
-		(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)] m" : "[round(SSsunlight.time_til_cycle, 1)] s" \
+		(SSsunlight.time_til_cycle >= 60) ? "[round(SSsunlight.time_til_cycle / 60, 1)]分" : "[round(SSsunlight.time_til_cycle, 1)]秒" \
 	)
 
 /atom/movable/screen/bloodsucker/sunlight_counter/process(seconds_per_tick)

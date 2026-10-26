@@ -1,7 +1,7 @@
 //Heister kit
 /obj/item/clothing/suit/jacket/det_suit/noir/heister
-	name = "armored suit jacket"
-	desc = "A professional suit jacket, it feels much heavier than a regular jacket. A label on the inside reads \"Nanite-based Self-repairing Kevlar weave\"."
+	name = "装甲西装外套"
+	desc = "一件正式西装外套，摸起来比普通外套重得多。内侧标签写着“纳米机器人自修复凯夫拉织物”。"
 	armor_type = /datum/armor/heister
 	/// How many hits we can take before the armor breaks, PAYDAY style
 	var/armor_stacks = 2
@@ -27,12 +27,12 @@
 		return
 	RegisterSignal(user, COMSIG_LIVING_CHECK_BLOCK, PROC_REF(armor_reaction))
 
-/obj/item/clothing/suit/jacket/det_suit/noir/heister/proc/armor_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage = 0, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/obj/item/clothing/suit/jacket/det_suit/noir/heister/proc/armor_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage = 0, attack_text = "攻击", attack_type = MELEE_ATTACK, armour_penetration = 0)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, owner, hitby, attack_text, 0, damage, attack_type) & COMPONENT_HIT_REACTION_BLOCK)
 		return SUCCESSFUL_BLOCK
 	return NONE
 
 /obj/item/clothing/gloves/latex/nitrile/heister
-	desc = "Pricy sterile gloves that are thicker than latex. Perfect for hiding fingerprints."
+	desc = "昂贵的无菌手套，比乳胶手套更厚，非常适合隐藏指纹。"
 	clothing_traits = null
 	siemens_coefficient = 0

@@ -1,6 +1,9 @@
 /proc/chinese_template_display(value)
 	if(!istext(value))
 		return value
+	var/zubbers_name = chinese_zubbers_template_display(value)
+	if(zubbers_name != value)
+		return zubbers_name
 	var/static/list/ruin_prefixes = list("Ice-Ruin " = "冰月遗迹：", "Lava-Ruin " = "熔岩地带遗迹：", "Space-Ruin " = "太空遗迹：")
 	var/static/list/ruin_names
 	if(isnull(ruin_names))
@@ -31,7 +34,7 @@
 			continue
 		var/variant = copytext(value, length(kind) + 3, -1)
 		return variants[variant] ? "[shuttle_kinds[kind]]（[variants[variant]]）" : value
-	return value
+	return chinese_zubbers_template_display(value)
 
 /proc/chinese_template_choice(user, message, title, list/choices)
 	var/list/display_choices = list()

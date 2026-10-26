@@ -18,7 +18,7 @@ import {
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
+import { factionDisplay, factionOptions } from './PlayerPanelDisplay';
 type Data = {
   mob_name: string;
   mob_type: string;
@@ -567,7 +567,7 @@ const PhysicalActions = () => {
                   })
                 }
               >
-                {flag}
+                {flag === 'Godmode' ? '无敌模式' : flag}
               </Button.Checkbox>
             );
           })}
@@ -745,7 +745,7 @@ const PhysicalActions = () => {
                         tooltip="Click to remove faction"
                         onClick={() => act('remove_faction', { faction })}
                       >
-                        {faction}
+                        {factionDisplay(faction)}
                       </Button>
                     ))}
                   </Stack>
@@ -764,7 +764,7 @@ const PhysicalActions = () => {
                 <Dropdown
                   width="100%"
                   placeholder="Select faction to add"
-                  options={glob_factions}
+                  options={factionOptions(glob_factions)}
                   selected={null}
                   onSelected={(value) => act('add_faction', { faction: value })}
                 />

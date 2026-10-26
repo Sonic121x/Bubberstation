@@ -568,13 +568,13 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/proc/manual_suicide(mob/living/user)
 	var/index = sideslist.Find(coinflip)
 	if (index == 2)//tails
-		user.visible_message(span_suicide("\the [src] 落在了 [coinflip] 一面！[user] 随即栽倒在地，死了！"))
+		user.visible_message(span_suicide("\the [src] 落在了 [chinese_zubbers_coin_face_display(coinflip)] 一面！[user] 随即栽倒在地，死了！"))
 		user.adjust_oxy_loss(200)
 		user.death(FALSE)
 		user.set_suicide(TRUE)
 		user.suicide_log()
 	else
-		user.visible_message(span_suicide("\the [src] 落在了 [coinflip] 一面！[user] 还活着！")) //Don't put it in your pocket. It's your lucky quarter.
+		user.visible_message(span_suicide("\the [src] 落在了 [chinese_zubbers_coin_face_display(coinflip)] 一面！[user] 还活着！")) //Don't put it in your pocket. It's your lucky quarter.
 
 /obj/item/coin/examine(mob/user)
 	. = ..()
@@ -622,8 +622,8 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		var/oldloc = loc
 		sleep(1.5 SECONDS)
 		if(loc == oldloc && user && !user.incapacitated)
-			user.visible_message(span_notice("[user] 把 [src] 抛了起来。落在了 [coinflip] 一面。"), \
-				span_notice("你抛起了 [src]。落在了 [coinflip] 一面。"), \
+			user.visible_message(span_notice("[user] 把 [src] 抛了起来。落在了 [chinese_zubbers_coin_face_display(coinflip)] 一面。"), \
+				span_notice("你抛起了 [src]。落在了 [chinese_zubbers_coin_face_display(coinflip)] 一面。"), \
 				span_hear("你听到零钱碰撞的叮当声。"))
 		if(has_action)
 			if(coinflip == heads_name)

@@ -9,7 +9,7 @@
 	//the imbued reagents
 	var/datum/reagents/imbued_reagent = new(10, NO_REACT)
 	///the text to show the player what happens
-	var/examine_imbued_description = "It is currently imbued with the following:"
+	var/examine_imbued_description = "它目前注入了以下试剂："
 	///required parent item integrity% for reagent effects
 	var/integrity_required
 	///how much reagent to inject per tic/proc
@@ -40,13 +40,13 @@
 /datum/component/reagent_imbued/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	if(USER_CAN_REAGENT_IMBUE(user))
-		examine_list += span_notice("[parent_item] is able to be imbued by dipping it into a container such as a quenching trough, or pouring chemicals into it and then tempering it at a forge!")
+		examine_list += span_notice("将 [parent_item] 浸入淬火槽等容器，或向其中倒入化学试剂后放入锻炉回火，即可注入试剂！")
 	else
-		examine_list += span_notice("If you knew a certain smithing trick, you could imbue special chemicals into this...")
+		examine_list += span_notice("如果掌握特定的锻造技巧，就能向其中注入特殊化学试剂……")
 	if(parent_item.get_integrity_percentage() < integrity_required)
-		examine_list += span_notice("It must be repaired before its imbued reagent effects can work...")
+		examine_list += span_notice("必须先修复它，注入的试剂才能发挥效果……")
 	if(imbued_reagent.reagent_list.len >= 1 && (USER_CAN_REAGENT_IMBUE(user) || HAS_TRAIT(user, TRAIT_REAGENT_SCANNER)))
-		examine_list += span_notice("You could inspect this closer to see what is imbued into it, and what smithing oil does...")
+		examine_list += span_notice("仔细检查可以了解其中注入了什么，以及锻造油的作用……")
 
 
 /datum/component/reagent_imbued/proc/on_examine_more(obj/item/source, mob/examiner, list/examine_list)
@@ -58,7 +58,7 @@
 /datum/component/reagent_imbued/proc/add_reagent_imbue_description(list/examine_list)
 	examine_list += span_notice(examine_imbued_description)
 	for (var/datum/reagent/reagent in imbued_reagent.reagent_list)
-		examine_list += span_notice("[reagent.volume] units of [reagent.name]")
+		examine_list += span_notice("[reagent.volume] 单位[reagent.name]")
 
 /datum/component/reagent_imbued/proc/add_oil_imbue_effect_description(list/examine_list)
 	if(smithing_oil_effects.len > 0)
@@ -66,23 +66,23 @@
 		for(var/i in smithing_oil_effects)
 			switch(i)
 				if(FORGE_EFFECT_ARMOR)
-					effects_list += "cushion blows more effectively"
+					effects_list += "更有效地缓冲打击"
 				if(FORGE_EFFECT_ARMORPEN)
-					effects_list += "pierce through armor more efficiently"
+					effects_list += "更有效地穿透护甲"
 				if(FORGE_EFFECT_BLOCKCHANCE)
-					effects_list += "better at deflecting blows"
+					effects_list += "更擅长格挡攻击"
 				if(FORGE_EFFECT_DURABILITY)
-					effects_list += "reinforce its durability"
+					effects_list += "提高耐用性"
 				if(FORGE_EFFECT_FORCE)
-					effects_list += "enhance its destructive potential"
+					effects_list += "增强破坏力"
 				if(FORGE_EFFECT_REAGENT_INJECT)
-					effects_list += "inflict more of the other containing reagents"
+					effects_list += "施加更多其他内含试剂"
 				if(FORGE_EFFECT_TOOLSPEED)
-					effects_list += "work more efficiently in its intended use"
+					effects_list += "更高效地发挥原本用途"
 
-		examine_list += span_notice("Smithing oil will make it [english_list(effects_list)].")
+		examine_list += span_notice("锻造油将使它[jointext(effects_list, "、")]。")
 	else
-		examine_list += span_notice("Smithing oil has no effect on [parent_item], but may affect things crafted with it.")
+		examine_list += span_notice("锻造油对 [parent_item] 没有效果，但可能影响用它制作的物品。")
 
 ///Replaces the imbued_reagent with the given new_reagents.
 /datum/component/reagent_imbued/proc/set_reagent_imbue(datum/reagents/new_reagents, clear_source_reagents = TRUE)
@@ -135,8 +135,8 @@
 	parent_item.take_damage((integrity_loss_per_inject + random_integ) * new_amount_to_inject, sound_effect = FALSE)
 
 	if(parent_item.get_integrity_percentage() < integrity_required)
-		user.balloon_alert(user, "[parent_item] dulls")
-		to_chat(user, span_warning("[parent_item] loses the reagent gleam imbued into it."))
+		user.balloon_alert(user, "[parent_item] 的光泽消退了")
+		to_chat(user, span_warning("[parent_item] 失去了注入试剂所带来的光泽。"))
 	return TRUE
 
 //the component that is attached to clothes that allows them to be imbued
@@ -147,7 +147,7 @@
 	///the human that is wearing the parent_item
 	var/mob/living/carbon/human/cloth_wearer
 	imbued_reagent = new(maximum = REAGENT_CLOTHING_INJECT_AMOUNT, new_flags = NO_REACT)
-	examine_imbued_description = "It will slowly administer the following to its wearer:"
+	examine_imbued_description = "它会向佩戴者缓慢输送以下试剂："
 	inject_amount = REAGENT_CLOTHING_INJECT_AMOUNT
 	//the cooldown between each imbue
 	COOLDOWN_DECLARE(imbue_cooldown)
@@ -196,7 +196,7 @@
 //ONLY USE THIS FOR WEAPONS
 /datum/component/reagent_imbued/weapon
 	imbued_reagent = new(REAGENT_WEAPON_INJECT_AMOUNT, NO_REACT)
-	examine_imbued_description = "Upon hit, it will inject the following to its victim:"
+	examine_imbued_description = "命中时，它会向受害者注入以下试剂："
 	var/extra_force_oil_bonus = 0
 	inject_amount = REAGENT_WEAPON_INJECT_AMOUNT
 

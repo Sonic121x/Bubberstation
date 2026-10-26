@@ -1,6 +1,6 @@
 /obj/item/assembly/control/polarizer
-	name = "window polarization remote controller"
-	desc = "A small electronic device able to control the polarization status of linked windows remotely."
+	name = "窗户偏振遥控器"
+	desc = "一种小型电子设备，可遥控已连接窗户的偏振状态。"
 	custom_materials = list(
 		/datum/material/iron = SMALL_MATERIAL_AMOUNT,
 		/datum/material/glass = SMALL_MATERIAL_AMOUNT,
@@ -12,7 +12,7 @@
 /obj/item/assembly/control/polarizer/examine(mob/user)
 	. = ..()
 
-	. += span_notice("Use it <b>in your hand</b> or with a <b>multitool</b> to change its channel ID.")
+	. += span_notice("将其<b>拿在手中使用</b>，或对其使用<b>多功能工具</b>，即可修改频道编号。")
 
 
 /obj/item/assembly/control/polarizer/multitool_act(mob/living/user)
@@ -20,13 +20,13 @@
 
 
 /obj/item/assembly/control/polarizer/attack_self(mob/living/user)
-	var/change_id = tgui_input_number(user, "Set [src]'s ID", "Polarization ID", text2num(id), 1000)
+	var/change_id = tgui_input_number(user, "设置[src]的编号", "偏振编号", text2num(id), 1000)
 	if(!change_id || QDELETED(user) || QDELETED(src) || !usr.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 		return
 
 	id = "[change_id]"
-	balloon_alert(user, "id changed")
-	to_chat(user, span_notice("You change the ID to [id]."))
+	balloon_alert(user, "编号已更改")
+	to_chat(user, span_notice("你将编号改为[id]。"))
 
 
 /obj/item/assembly/control/polarizer/activate()
@@ -52,7 +52,7 @@
 
 
 /datum/design/polarizer
-	name = "Window Polarization Remote Controller"
+	name = "窗户偏振遥控器"
 	id = "polarizer"
 	build_type = PROTOLATHE | AWAY_LATHE | AUTOLATHE | COLONY_FABRICATOR
 	materials = list(

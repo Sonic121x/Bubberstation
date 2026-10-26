@@ -1,6 +1,6 @@
 /obj/item/organ/lungs/synth
-	name = "heatsink"
-	desc = "A device that transfers generated heat to a fluid medium to cool it down. Required to keep your synthetics cool-headed. It's shape resembles lungs." //Purposefully left the 'fluid medium' ambigious for interpretation of the character, whether it be air or fluid cooling
+	name = "散热器"
+	desc = "将产生的热量转移到流体介质中以实现冷却的设备。它能让合成人保持冷静，外形类似肺部。" //Purposefully left the 'fluid medium' ambigious for interpretation of the character, whether it be air or fluid cooling
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "lungs-ipc"
 	safe_nitro_min = 0
@@ -28,17 +28,17 @@
 		COOLDOWN_START(src, severe_cooldown, 10 SECONDS)
 		switch(severity)
 			if(EMP_HEAVY)
-				to_chat(owner, span_warning("Alert: Critical cooling system failure! Seek maintenance immediately. Error Code: 5H-17"))
+				to_chat(owner, span_warning("警报：冷却系统发生致命故障！请立即检修。错误代码：5H-17"))
 				apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 				owner.adjust_bodytemperature(SYNTH_HEAVY_EMP_TEMPERATURE_POWER * TEMPERATURE_DAMAGE_COEFFICIENT)
 			if(EMP_LIGHT)
-				to_chat(owner, span_warning("Alert: Major cooling system failure!"))
+				to_chat(owner, span_warning("警报：冷却系统发生重大故障！"))
 				apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organ_flag = ORGAN_ROBOTIC)
 				owner.adjust_bodytemperature(SYNTH_LIGHT_EMP_TEMPERATURE_POWER * TEMPERATURE_DAMAGE_COEFFICIENT)
 
 /datum/design/synth_heatsink
-	name = "Heatsink"
-	desc = "A device that transfers generated heat to a fluid medium to cool it down. Required to keep your synthetics cool-headed. It's shape resembles lungs."
+	name = "散热器"
+	desc = "将产生的热量转移到流体介质中以实现冷却的设备。它能让合成人保持冷静，外形类似肺部。"
 	id = "synth_lungs"
 	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
 	construction_time = 4 SECONDS

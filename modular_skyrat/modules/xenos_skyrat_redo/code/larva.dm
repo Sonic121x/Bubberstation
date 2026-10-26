@@ -9,42 +9,42 @@
 		make_xeno_caste_entry(
 		caste_name = "Runner",
 		caste_image = image(icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/xeno_actions.dmi', icon_state = "preview_runner"),
-		caste_info = span_info("Runners are the most agile caste, the short stature of running on all fours \
-		gives them great speed, the ability to dodge projectiles, and allows them to tackle while holding throw and clicking. \
-		Eventually, runners can evolve onwards into the fearsome ravager, should the hive permit it."),
+		caste_info = span_info("奔行者是最敏捷的阶种，低矮的四足姿态\
+		赋予它们极快的速度和躲避射弹的能力，按住投掷键并点击还能扑倒敌人。\
+		如果虫巢允许，奔行者最终可以进化为可怕的蹂躏者。"),
 		caste_options = caste_options,
 		)
 
 		make_xeno_caste_entry(
 		caste_name = "Sentinel",
 		caste_image = image(icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/xeno_actions.dmi', icon_state = "preview_sentinel"),
-		caste_info = span_info("Sentinels are a caste similar in shape to a drone, forfeiting the ability to \
-		become royalty in exchange for spitting either acid, or a potent neurotoxin. They aren't as strong in close combat \
-		as the other options, but can eventually evolve into a more dangerous form of acid spitter, should the hive have capacity."),
+		caste_info = span_info("哨兵的外形与雄蜂相似，它们放弃\
+		成为王族的机会，换取喷吐酸液或强效神经毒素的能力。近战能力不如\
+		其他阶种，但如果虫巢有空缺，最终可以进化为更危险的喷吐者。"),
 		caste_options = caste_options,
 		)
 
 		make_xeno_caste_entry(
 		caste_name = "Defender",
 		caste_image  = image(icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/xeno_actions.dmi', icon_state = "preview_defender"),
-		caste_info = span_info("Slow, tough, hard hitting, the defender is well and capable of what the name implies, \
-		the defender's thick armor allows it to take a few more hits than other castes, which can be paired with a deadly tail club \
-		and ability to make short charges to cause some real damage. Eventually, it will be able to evolve into the feared crusher, \
-		destroyer of stationary objects should the hive have the capacity."),
+		caste_info = span_info("守卫行动缓慢、皮糙肉厚、打击沉重，名副其实地擅长防守。\
+		厚重甲壳让它比其他阶种更能承受攻击，配合致命尾锤\
+		和短距离冲锋能力，足以造成严重伤害。如果虫巢有空缺，它最终能进化为令人畏惧的粉碎者，\
+		成为固定物体的毁灭者。"),
 		caste_options = caste_options,
 		)
 
 		make_xeno_caste_entry(
 		caste_name = "Drone",
 		caste_image  = image(icon = 'modular_skyrat/modules/xenos_skyrat_redo/icons/xeno_actions.dmi', icon_state = "preview_drone"),
-		caste_info = span_info("Drones are a somewhat weak, although fairly quick caste that fills a mainly \
-		support role in a hive, having a higher plasma capacity than most first evolutions, and the ability to \
-		make a healing aura for nearby xenos. Drones are the only caste that can evolve into both praetorians and \
-		queens, though only one queen and one praetorian may exist at any time."),
+		caste_info = span_info("雄蜂较弱但速度较快，在虫巢中主要\
+		担任支援角色。它们的等离子体容量高于多数初阶形态，并能\
+		为附近异形提供治疗光环。雄蜂是唯一能够进化为禁卫和\
+		女王的阶种，但同一时间只能存在一名女王和一名禁卫。"),
 		caste_options = caste_options,
 		)
 
-	var/alien_caste = show_radial_menu(owner, owner, caste_options, radius = 38, require_near = TRUE, tooltips = TRUE)
+	var/alien_caste = chinese_skyrat_systems_radial(owner, owner, caste_options, radius = 38, require_near = TRUE, tooltips = TRUE)
 	if(QDELETED(src) || QDELETED(owner) || !IsAvailable(feedback = TRUE) || isnull(alien_caste))
 		return
 
@@ -56,7 +56,7 @@
 /datum/action/cooldown/alien/larva_evolve/proc/make_xeno_caste_entry(caste_name, caste_image, caste_info, list/caste_options)
 	var/datum/radial_menu_choice/caste_option = new()
 
-	caste_option.name = caste_name
+	caste_option.name = chinese_skyrat_systems_display(caste_name)
 	caste_option.image = caste_image
 	caste_option.info = caste_info
 

@@ -10,11 +10,11 @@
 	wound = WOUND_ARMOR_HIGH
 
 /obj/item/clothing/suit/armor/sf_sacrificial
-	name = "'Val' sacrificial ballistic vest"
-	desc = "A hefty vest with a unique pattern of hexes on its outward faces. \
-		As the 'sacrificial' name might imply, this vest has extremely high bullet protection \
-		in exchange for allowing itself to be destroyed by impacts. It'll protect you from hell, \
-		but only for so long."
+	name = "“壁垒”牺牲式防弹背心"
+	desc = "一件厚重的背心，外表带有独特的六边形纹路。\
+		顾名思义，这件“牺牲式”背心以自身被冲击破坏为代价，\
+		提供极高的防弹性能。它能让你在枪林弹雨中幸存，\
+		但维持不了太久。"
 	icon = 'modular_skyrat/modules/specialist_armor/icons/armor.dmi'
 	icon_state = "hexagon"
 	worn_icon = 'modular_skyrat/modules/specialist_armor/icons/armor_worn.dmi'
@@ -34,20 +34,20 @@
 /obj/item/clothing/suit/armor/sf_sacrificial/examine_more(mob/user)
 	. = ..()
 
-	. += "An extreme solution to an extreme problem. While many galactic armors have some semblance of self-repairing tech \
-		in them to prevent the armor becoming useless after being shot enough, it does have its limits. Those limits tend to be \
-		that the self-repairing, while handy, take the place of what could have simply been more armor. For a small market, \
-		one that doesn't care if their armor lasts more than one gunfight, there exists a niche for armors such as the 'Val'. \
-		Passing up self-repair for nigh-immunity to bullets, the right tool for a certain job, if you can find whatever that job may be."
+	. += "用极端方案解决极端问题。银河中的许多护甲都配备了某种自我修复技术，\
+		避免在多次中弹后彻底报废，但这也有局限：\
+		方便的自修复系统占据了原本可以安装更多装甲的空间。对于不在乎护甲\
+		能否撑过一场枪战的小众市场，“壁垒”这样的护甲便有了用武之地。\
+		放弃自我修复，换来近乎免疫子弹的防护。只要找对用途，它就是称职的工具。"
 
 	return .
 
 /obj/item/clothing/head/helmet/sf_sacrificial
-	name = "'Val' sacrificial ballistic helmet"
-	desc = "A large, almost always ill-fitting helmet painted in a tacticool black. \
-		As the 'sacrificial' name might imply, this helmet has extremely high bullet protection \
-		in exchange for allowing itself to be destroyed by impacts. It'll protect you from hell, \
-		but only for so long."
+	name = "“壁垒”牺牲式防弹头盔"
+	desc = "一顶尺寸很大、几乎总不合头的酷炫战术黑头盔。\
+		顾名思义，这顶“牺牲式”头盔以自身被冲击破坏为代价，\
+		提供极高的防弹性能。它能让你在枪林弹雨中幸存，\
+		但维持不了太久。"
 	icon = 'modular_skyrat/modules/specialist_armor/icons/armor.dmi'
 	icon_state = "bulletproof"
 	worn_icon = 'modular_skyrat/modules/specialist_armor/icons/armor_worn.dmi'
@@ -131,27 +131,27 @@
 /obj/item/clothing/head/helmet/sf_sacrificial/examine(mob/user)
 	. = ..()
 	if(face_shield)
-		. += span_notice("The <b>face shield</b> can be removed with <b>Right-Click</b>.")
+		. += span_notice("可以用<b>右键点击</b>取下<b>面罩</b>。")
 	else
-		. += span_notice("A <b>face shield</b> can be attached to it.")
+		. += span_notice("可以为它安装<b>面罩</b>。")
 
 	return .
 
 /obj/item/clothing/head/helmet/sf_sacrificial/examine_more(mob/user)
 	. = ..()
 
-	. += "An extreme solution to an extreme problem. While many galactic armors have some semblance of self-repairing tech \
-		in them to prevent the armor becoming useless after being shot enough, it does have its limits. Those limits tend to be \
-		that the self-repairing, while handy, take the place of what could have simply been more armor. For a small market, \
-		one that doesn't care if their armor lasts more than one gunfight, there exists a niche for armors such as the 'Val'. \
-		Passing up self-repair for nigh-immunity to bullets, the right tool for a certain job, if you can find whatever that job may be."
+	. += "用极端方案解决极端问题。银河中的许多护甲都配备了某种自我修复技术，\
+		避免在多次中弹后彻底报废，但这也有局限：\
+		方便的自修复系统占据了原本可以安装更多装甲的空间。对于不在乎护甲\
+		能否撑过一场枪战的小众市场，“壁垒”这样的护甲便有了用武之地。\
+		放弃自我修复，换来近乎免疫子弹的防护。只要找对用途，它就是称职的工具。"
 
 	return .
 
 /obj/item/sacrificial_face_shield
-	name = "'Val' ballistic add-on face plate"
-	desc = "A thick piece of glass with mounting points for slotting onto a 'Val' sacrificial ballistic helmet. \
-		While it does not make the helmet any stronger, it does protect your face much like a riot helmet would."
+	name = "“壁垒”附加防弹面罩"
+	desc = "一块厚玻璃，带有用于安装在“壁垒”牺牲式防弹头盔上的固定点。\
+		虽然不会增强头盔本身的防护力，但能像防暴头盔一样保护面部。"
 	icon = 'modular_skyrat/modules/specialist_armor/icons/armor.dmi'
 	icon_state = "face_shield"
 	w_class = WEIGHT_CLASS_NORMAL

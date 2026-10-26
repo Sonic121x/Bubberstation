@@ -20,11 +20,11 @@
 		return FALSE
 
 	if (HAS_TRAIT(user, TRAIT_MANSUS_INHIBITION))
-		loc.balloon_alert(user, "inhibited! can't perform ritual!")
+		loc.balloon_alert(user, "力量受抑制，无法举行仪式！")
 		return FALSE
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	if (!heretic_datum)
 		return FALSE
 	if (heretic_datum.has_living_heart() != HERETIC_HAS_LIVING_HEART)
-		loc.balloon_alert(user, "ritual failed, no living heart!")
+		loc.balloon_alert(user, "仪式失败，缺少活体心脏！")
 		return FALSE

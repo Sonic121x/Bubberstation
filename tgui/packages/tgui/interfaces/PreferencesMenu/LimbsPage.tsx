@@ -11,7 +11,7 @@ import {
 import { useBackend } from '../../backend';
 import { CharacterPreview } from '../common/CharacterPreview';
 import type { PreferencesMenuData } from './types';
-
+import { skyratAugmentOptions } from '../../localization/skyratSystemsDisplay';
 export const RotateCharacterButtons = (props) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
@@ -142,7 +142,7 @@ export const AugmentationPage = (props) => {
                 <Stack.Item grow>
                   <Dropdown
                     width="100%"
-                    options={Object.values(props.limb.aug_choices) as string[]}
+                    options={skyratAugmentOptions(Object.values(props.limb.aug_choices) as string[])}
                     selected={props.limb.chosen_aug}
                     onSelected={(value) => {
                       // Since the costs are positive,

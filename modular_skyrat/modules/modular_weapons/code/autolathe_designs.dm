@@ -5,7 +5,7 @@
 // 4.6x30mm - SMG round, used in the WT550 and in numerous modular guns as a weaker alternative to 9mm.
 
 /datum/design/c46x30mm
-	name = "4.6x30mm Bullet"
+	name = "4.6×30毫米子弹"
 	id = "c46x30mm"
 	build_type = AUTOLATHE
 	materials = AMMO_MATS_BASIC
@@ -18,7 +18,7 @@
 // .45
 
 /datum/design/c45_lethal
-	name = ".45 Bullet"
+	name = ".45口径子弹"
 	id = "c45_lethal"
 	build_type = AUTOLATHE
 	materials = AMMO_MATS_BASIC

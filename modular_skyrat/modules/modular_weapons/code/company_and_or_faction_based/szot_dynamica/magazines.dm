@@ -1,8 +1,8 @@
 // .310 magazine for the Lanca rifle
 
 /obj/item/ammo_box/magazine/lanca
-	name = "\improper Lanca rifle magazine"
-	desc = "A standard size magazine for Lanca rifles, holds five rounds."
+	name = "\improper 骑枪步枪弹匣"
+	desc = "骑枪步枪使用的标准尺寸弹匣，可容纳五发子弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "lanca_mag"
@@ -19,8 +19,8 @@
 // Magazine for the Miecz submachinegun
 
 /obj/item/ammo_box/magazine/miecz
-	name = "\improper Miecz submachinegun magazine"
-	desc = "A standard size magazine for Miecz submachineguns, holds eighteen rounds."
+	name = "\improper 利剑冲锋枪弹匣"
+	desc = "利剑冲锋枪使用的标准尺寸弹匣，可容纳十八发子弹。"
 
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "miecz_mag"
@@ -37,8 +37,8 @@
 // Plasma thrower 'magazine'
 
 /obj/item/ammo_box/magazine/recharge/plasma_battery
-	name = "plasma power pack"
-	desc = "A detachable battery that serves as a power source for plasma projectors."
+	name = "等离子能源包"
+	desc = "为等离子投射器供能的可拆卸电池。"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	base_icon_state = "plasma_battery"
 	icon_state = "plasma_battery"
@@ -55,7 +55,7 @@
 // Shotgun revolver's cylinder
 
 /obj/item/ammo_box/magazine/internal/cylinder/rev12ga
-	name = "\improper 12 GA revolver cylinder"
+	name = "\improper 12号口径左轮弹巢"
 	ammo_type = /obj/item/ammo_casing/shotgun
 	caliber = CALIBER_SHOTGUN
 	max_ammo = 4
@@ -63,7 +63,7 @@
 // AMR magazine
 
 /obj/item/ammo_box/magazine/wylom
-	name = "anti-materiel magazine (.60 Strela)"
+	name = "反器材步枪弹匣（.60利箭）"
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/szot_dynamica/ammo.dmi'
 	icon_state = "wylom_mag"
 	base_icon_state = "wylom_mag"

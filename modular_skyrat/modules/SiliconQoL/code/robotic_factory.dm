@@ -1,7 +1,7 @@
 /obj/machinery/transformer_rp
-	name = "\improper Automatic Robotic Factory 5000"
-	desc = "A large metallic machine with an entrance and an exit. A sign on \
-		the side reads, 'Mass robot production facility'"
+	name = "\improper 自动机器人工厂5000型"
+	desc = "一台带有入口和出口的大型金属机器。侧面的标牌\
+		上写着：“机器人大规模生产设施”。"
 	icon = 'icons/obj/machines/recycling.dmi'
 	icon_state = "separator-AO1"
 	base_icon_state = "separator-AO0"
@@ -43,15 +43,15 @@
 /obj/machinery/transformer_rp/examine(mob/user)
 	. = ..()
 	if(issilicon(user) || isobserver(user))
-		. += "<br>It has [stored_cyborgs] cyborgs stored."
+		. += "<br>其中储备了[stored_cyborgs]台半机械人。"
 		if(!is_operational)
-			. += span_warning("It has no power!")
+			. += span_warning("它没有电！")
 			return
 		if(cooldown && cooldown_timer)
-			. += "<br>It will be ready to deploy a stored cyborg in [DisplayTimeText(max(0, cooldown_timer))]."
+			. += "<br>再过[DisplayTimeText(max(0, cooldown_timer))]即可部署一台储备的半机械人。"
 		if(stored_cyborgs >= max_stored_cyborgs)
 			return
-		. += "<br>It will store a new cyborg in [DisplayTimeText(max(0, stored_timer))]."
+		. += "<br>再过[DisplayTimeText(max(0, stored_timer))]将储备一台新的半机械人。"
 
 /obj/machinery/transformer_rp/Destroy()
 	QDEL_NULL(countdown)
@@ -83,10 +83,10 @@
 		return
 
 	stored_cyborgs++
-	notify_ghosts("A new cyborg shell has been created at the [src]",
+	notify_ghosts("[src]制造了一具新的半机械人躯壳",
 		source = src,
 		notify_flags = NOTIFY_CATEGORY_NOFLASH,
-		header = "New malfunctioning cyborg created!",
+		header = "新的失控半机械人已制造！",
 	)
 
 /obj/machinery/transformer_rp/proc/create_a_cyborg(mob/dead/observer/target_ghost)
@@ -97,8 +97,8 @@
 	if(cooldown)
 		return
 
-	var/cyborg_ask = tgui_alert(target_ghost, "Become a cyborg?", "Are you a terminator?", list("Yes", "No"))
-	if(cyborg_ask == "No" || !src || QDELETED(src))
+	var/cyborg_ask = tgui_alert(target_ghost, "成为半机械人？", "你是终结者吗？", list("是", "否"))
+	if(cyborg_ask == "否" || !src || QDELETED(src))
 		return FALSE
 
 	var/mob/living/silicon/robot/cyborg = new /mob/living/silicon/robot(loc)

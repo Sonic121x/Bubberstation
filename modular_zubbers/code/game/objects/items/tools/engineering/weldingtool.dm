@@ -1,7 +1,7 @@
 /obj/item/weldingtool/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!status && interacting_with.is_refillable())
 		reagents.trans_to(interacting_with, reagents.total_volume, transferred_by = user)
-		to_chat(user, span_notice("You empty [src]'s fuel tank into [interacting_with]."))
+		to_chat(user, span_notice("你把[src]燃料罐里的燃料全部倒入[interacting_with]。"))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 	if(!ishuman(interacting_with))
@@ -17,7 +17,7 @@
 	if(isnull(preferred_limb) || !IS_ROBOTIC_LIMB(preferred_limb))
 		return NONE
 	if(!(preferred_limb.brute_dam > 0))
-		balloon_alert(user, "limb not damaged")
+		balloon_alert(user, "肢体没有损伤")
 		return ITEM_INTERACT_BLOCKING
 	var/list/damaged_limbs = list()
 	for(var/obj/item/bodypart/limb as anything in carbon_patient.bodyparts)
@@ -33,14 +33,14 @@
 		var/list/updated_damaged_limbs = damaged_limbs
 		updated_damaged_limbs.Remove(repaired)
 		if(!length(damaged_limbs))
-			user.balloon_alert(user, "fully repaired")
+			user.balloon_alert(user, "已完全修复")
 			return ITEM_INTERACT_SUCCESS
-		user.balloon_alert(user, "repairing [updated_damaged_limbs[1]]")
+		user.balloon_alert(user, "正在修复[updated_damaged_limbs[1]]")
 		INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, updated_damaged_limbs, preferred_limb)
 		return
 
-	user.visible_message(span_notice("[user] starts to fix some of the dents on [attacked_humanoid == user ? user.p_their() : "[attacked_humanoid]'s"] [repaired.name]."),
-		span_notice("You start fixing some of the dents on [attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [repaired.name]."))
+	user.visible_message(span_notice("[user]开始修复[attacked_humanoid == user ? "自己" : "[attacked_humanoid]"]的[repaired.name]上的凹痕。"),
+		span_notice("你开始修复[attacked_humanoid == user ? "自己" : "[attacked_humanoid]"]的[repaired.name]上的凹痕。"))
 	var/use_delay = 1 SECONDS
 	if(user == attacked_humanoid)
 		use_delay = 5 SECONDS
@@ -49,15 +49,15 @@
 		return ITEM_INTERACT_BLOCKING
 
 	repaired.heal_damage(brute = 15, burn = 0, required_bodytype = BODYTYPE_ROBOTIC)
-	user.visible_message(span_notice("[user] fixes some of the dents on [attacked_humanoid]'s [repaired.name]."), \
-		span_notice("You fix some of the dents on [attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [repaired.name]."))
+	user.visible_message(span_notice("[user]修复了[attacked_humanoid]的[repaired.name]上的一些凹痕。"), \
+		span_notice("你修复了[attacked_humanoid == user ? "自己" : "[attacked_humanoid]"]的[repaired.name]上的一些凹痕。"))
 
 	INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, damaged_limbs, preferred_limb)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/weldingtool/experimental/bluespace
-	name = "bluespace welder"
-	desc = "The welding tool that you shouldn't have. Power of the (bluespace) sun, right on your hip."
+	name = "蓝空间焊接器"
+	desc = "你不该拥有的焊接工具。将（蓝空间）太阳的力量挂在腰间。"
 	icon = 'modular_zubbers/icons/obj/tools.dmi'
 	icon_state = "bst_welder"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/equipment/tools_lefthand.dmi'

@@ -1,6 +1,6 @@
 /obj/item/trim_token
-	name = "generic trim token"
-	desc = "Base for other trim tokens, if you somehow find this, yell at your local coders."
+	name = "通用饰边令牌"
+	desc = "其他饰边令牌的基础类型。如果你发现了它，请向开发者报告。"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "coin_valid"
 	w_class = WEIGHT_CLASS_SMALL

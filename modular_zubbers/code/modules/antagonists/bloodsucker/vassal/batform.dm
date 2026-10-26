@@ -4,23 +4,23 @@
  * TG removed this, so we're re-adding it
  */
 /datum/action/cooldown/spell/shapeshift/bat
-	name = "Bat Form"
-	desc = "Take on the shape of a space bat. You can fly and see in the dark, and you heal from doing melee attacks."
+	name = "蝙蝠形态"
+	desc = "化身太空蝙蝠。你可以飞行、在黑暗中视物，并通过近战攻击恢复生命。"
 	background_icon_state = "tremere_power_off"
 	active_background_icon_state = "tremere_power_on"
 	base_background_icon_state = "tremere_power_off"
 	background_icon = 'modular_zubbers/icons/mob/actions/tremere_bloodsucker.dmi'
-	power_explanation = "You can fly and see in the dark, and you heal from doing melee attacks."
-	invocation = "Master, grant me your might, BAT FORM!!"
+	power_explanation = "你可以飞行、在黑暗中视物，并通过近战攻击恢复生命。"
+	invocation = "主人，赐予我力量，蝙蝠形态！！"
 	invocation_type = INVOCATION_SHOUT
 	spell_requirements = NONE
 	convert_damage = TRUE
 	cooldown_time = 1 MINUTES
 	possible_shapes = list(/mob/living/basic/bat/bloodsucker)
-	power_explanation = "This ability turns you into a small bat, which can fly and heals from doing meele damage. \n\
-		However, you don't do much meele damage, and are slightly weak to fire damage.\n\
-		Using the ability also spawns some normal bats around where you cast it, causing confusion.\n\
-		Keep in mind if you die in this form, your real body will also die, and any damage received is transfered as well."
+	power_explanation = "此能力将你变成一只小蝙蝠，可以飞行并通过造成近战伤害自愈。\n\
+		不过你的近战伤害不高，而且略微畏惧火焰伤害。\n\
+		施放时还会在周围生成一些普通蝙蝠，扰乱视线。\n\
+		请注意，此形态死亡会使本体一同死亡，受到的所有伤害也会转移。"
 	var/bats_to_spawn = 3
 
 /datum/action/cooldown/spell/shapeshift/bat/cast(mob/living/cast_on)
@@ -34,8 +34,8 @@
 		random_step(bat, 2, 50)
 
 /mob/living/basic/bat/bloodsucker
-	name ="vampiric bat"
-	desc = "A bat with a thirst for blood."
+	name ="吸血蝙蝠"
+	desc = "一只渴望鲜血的蝙蝠。"
 	maxHealth = 100
 	health = 100
 	speed = 0
@@ -50,8 +50,8 @@
 	basic_mob_flags = FLAMMABLE_MOB
 	lighting_color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
 	damage_coeff = list(BRUTE = 0.9, BURN = 1.25, TOX = 1, STAMINA = 1, OXY = 1)
-	attack_verb_simple = "drain blood from"
-	attack_verb_continuous = "drains blood from"
+	attack_verb_simple = "吸血"
+	attack_verb_continuous = "吸血"
 
 /mob/living/basic/bat/bloodsucker/Initialize(mapload)
 	. = ..()

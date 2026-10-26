@@ -1,13 +1,13 @@
 /obj/item/borg/apparatus/paper_manipulator
-	name = "paperwork manipulation apparatus"
-	desc = "An apparatus for carrying, deploying, and manipulating sheets of paper."
+	name = "文书操作装置"
+	desc = "用于携带、放置和操作纸张的装置。"
 	icon_state = "borg_stack_apparatus"
 	storable = list(/obj/item/paper)
 
 //Research cyborg apparatus
 /obj/item/borg/apparatus/research
-	name = "Research manipulation gripper"
-	desc = "A simple grasping tool suited to assist in a wide array of research applications."
+	name = "科研操作夹具"
+	desc = "适合辅助各种科研工作的简易抓取工具。"
 	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper_sci"
 	storable = list(
@@ -38,14 +38,14 @@
 /obj/item/borg/apparatus/research/examine()
 	. = ..()
 	if(stored)
-		. += "The gripper currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
+		. += "夹具目前夹持着[stored]。"
+	. += span_notice("<i>按住 Alt 点击</i>即可放下当前夹持的物品。")
 
 //To build funny little gadgets
 
 /obj/item/borg/apparatus/circuit_sci
-	name = "Research circuit assembly gripper"
-	desc = "A complex grasping tool used for working with circuitry."
+	name = "科研电路组装夹具"
+	desc = "用于电路工作的复杂抓取工具。"
 	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper_circ"
 	storable = list(
@@ -65,19 +65,19 @@
 /obj/item/borg/apparatus/circuit_sci/examine()
 	. = ..()
 	if(stored)
-		. += "The gripper currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
+		. += "夹具目前夹持着[stored]。"
+	. += span_notice("<i>按住 Alt 点击</i>即可放下当前夹持的物品。")
 
 /obj/item/borg/apparatus/circuit_sci/pre_attack(atom/atom, mob/living/user, params) // copy and paste
 	if(istype(atom, /obj/item/ai_module) && !stored) //If an admin wants a borg to upload laws, who am I to stop them? Otherwise, we can hint that it fails
-		to_chat(user, span_warning("This circuit board doesn't seem to have standard robot apparatus pin holes. You're unable to pick it up."))
+		to_chat(user, span_warning("这块电路板似乎没有标准机器人操作装置的定位孔，无法拾取。"))
 	return ..()
 
 //Illegal gripper to allow research cyborgs when hacked to do further robotics work
 //TODO: Add more functionality for them to interact with more this is an "illegal item"!
 /obj/item/borg/apparatus/illegal
-	name = "Sketchy looking gripper"
-	desc = "A tool used to expanded robotics work"
+	name = "看着不太靠谱的夹具"
+	desc = "用于扩展机器人作业能力的工具。"
 	icon_state = "connector"
 	storable = list(
 					/obj/item/mmi,
@@ -95,12 +95,12 @@
 /obj/item/borg/apparatus/illegal/examine()
 	. = ..()
 	if(stored)
-		. += "The apparatus currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
+		. += "装置目前夹持着[stored]。"
+	. += span_notice("<i>按住 Alt 点击</i>即可放下当前夹持的物品。")
 
 /obj/item/borg/apparatus/tank_manipulator
-	name = "tank manipulation apparatus"
-	desc = "An apparatus for carrying and manipulating handheld tanks."
+	name = "气罐操作装置"
+	desc = "用于携带和操作手持气罐的装置。"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(/obj/item/tank)
 
@@ -186,8 +186,8 @@
 
 //Engineering cyborg apparatus
 /obj/item/borg/apparatus/engineering
-	name = "Engineering manipulation gripper"
-	desc = "A simple grasping tool for interacting with various engineering related items, such as circuits, gas tanks, conveyor belts and more."
+	name = "工程操作夹具"
+	desc = "用于操作电路、气罐、传送带等各类工程用品的简易抓取工具。"
 	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper"
 	storable = list(
@@ -206,8 +206,8 @@
 
 //Mining cyborg apparatus
 /obj/item/borg/apparatus/mining
-	name = "Mining manipulation gripper"
-	desc = "A simple grasping tool suited to assist in an array of mining applications."
+	name = "采矿操作夹具"
+	desc = "适合辅助各种采矿工作的简易抓取工具。"
 	icon = 'modular_zubbers/icons/mob/silicon/robot_items.dmi'
 	icon_state = "gripper_mining"
 	storable = list(
@@ -231,5 +231,5 @@
 /obj/item/borg/apparatus/mining/examine()
 	. = ..()
 	if(stored)
-		. += "The gripper currently has [stored] secured."
-	. += span_notice(" <i>Alt-click</i> will drop the currently held item. ")
+		. += "夹具目前夹持着[stored]。"
+	. += span_notice("<i>按住 Alt 点击</i>即可放下当前夹持的物品。")

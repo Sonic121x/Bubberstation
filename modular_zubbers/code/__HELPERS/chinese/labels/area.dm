@@ -823,6 +823,9 @@
 		"Fourth Floor Aft Hallway" = "四层后部走廊",
 		"Fourth Floor Fore Hallway" = "四层前部走廊",
 	)
+	display_names |= chinese_zubbers_area_display(null, TRUE)
+	display_names |= chinese_batch_ten_area_display(null, TRUE)
+	display_names["Icewalker Camp"] = "冰行者营地"
 	if(return_mapping)
 		return display_names
 	return display_names[trimtext(format_text(value))] || value

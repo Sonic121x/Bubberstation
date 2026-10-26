@@ -1,14 +1,14 @@
 /obj/item/sbeacondrop/carrot
-	name = "carrot phone"
+	name = "胡萝卜手机"
 	icon = 'icons/obj/antags/syndicate_tools.dmi'
 	icon_state = "suspiciousphone"
-	desc = "A cell phone with an in-coming call from someone simply labelled 'Lady Jab'. A small sticker on the back notes that any calls to French overlords will incur a 5 credit service charge."
+	desc = "一部手机，来电者只标注为‘贾布女士’。背面的小贴纸注明，拨打给法国霸主的电话须收取5信用点服务费。"
 	w_class = WEIGHT_CLASS_SMALL
 	droptype = /obj/item/storage/backpack/satchel/bunnysatchel
 
 /obj/item/sbeacondrop/carrot/attack_self(mob/user)
 	if(user)
-		to_chat(user, span_notice("Thank you for choosing the Jab TM for your clothing purchase!"))
+		to_chat(user, span_notice("感谢您选择贾布™购买服装！"))
 		new droptype( user.loc )
 		playsound(src, 'sound/mobs/non-humanoids/mouse/mousesqueek.ogg', 100, TRUE, TRUE)
 		qdel(src)

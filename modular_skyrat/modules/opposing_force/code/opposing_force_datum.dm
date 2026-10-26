@@ -80,7 +80,7 @@
 /datum/opposing_force/New(datum/mind/mind_reference)
 	src.mind_reference = mind_reference
 	ckey = ckey(mind_reference.key)
-	send_system_message("[ckey] created the application")
+	send_system_message("[ckey]创建了申请")
 	stat_button = new()
 	stat_button.opfor = src
 
@@ -104,10 +104,10 @@
 /// Builds the HTML panel entry for the round end report
 /datum/opposing_force/proc/build_html_panel_entry()
 	var/list/opfor_entry = list("<b>[mind_reference.key]</b> - ")
-	opfor_entry += "<a href='byond://?priv_msg=[ckey(mind_reference.key)]'>PM</a> "
+	opfor_entry += "<a href='byond://?priv_msg=[ckey(mind_reference.key)]'>私信</a> "
 	if(mind_reference.current)
-		opfor_entry += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>FLW</a> "
-	opfor_entry += "<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show OPFOR Panel</a>"
+		opfor_entry += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>跟随</a> "
+	opfor_entry += "<a href='byond://?src=[REF(src)];admin_pref=show_panel'>显示敌对势力面板</a>"
 	return opfor_entry.Join()
 
 /datum/opposing_force/ui_interact(mob/user, datum/tgui/ui)
@@ -153,9 +153,9 @@
 
 	data["equipment_issued"] = equipment_issued
 
-	data["owner_mob"] = mind_reference.current ? mind_reference.current.name : "No mob!"
+	data["owner_mob"] = mind_reference.current ? mind_reference.current.name : "没有角色！"
 
-	data["owner_role"] = mind_reference.assigned_role ? mind_reference.assigned_role.title : "No role!"
+	data["owner_role"] = mind_reference.assigned_role ? chinese_job_display(mind_reference.assigned_role.title) : "没有职位！"
 
 	var/list/messages = list()
 	for(var/message in admin_chat)
@@ -299,11 +299,11 @@
 				return
 			for(var/datum/opposing_force_objective/objective as anything in objectives)
 				if(objective.status == OPFOR_OBJECTIVE_STATUS_NOT_REVIEWED)
-					to_chat(usr, custom_boxed_message("purple_box", span_command_headset(span_pink("OPFOR: ERROR, some objectives have not been reviewed. Please approve/deny all objectives."))))
+					to_chat(usr, custom_boxed_message("purple_box", span_command_headset(span_pink("敌对势力：错误，部分目标尚未审核。请批准或拒绝所有目标。"))))
 					return
 			for(var/datum/opposing_force_selected_equipment/equipment as anything in selected_equipment)
 				if(equipment.status == OPFOR_EQUIPMENT_STATUS_NOT_REVIEWED)
-					to_chat(usr, custom_boxed_message("purple_box", span_command_headset(span_pink("OPFOR: ERROR, some equipment requests have not been reviewed. Please approve/deny all equipment requests."))))
+					to_chat(usr, custom_boxed_message("purple_box", span_command_headset(span_pink("敌对势力：错误，部分装备申请尚未审核。请批准或拒绝所有装备申请。"))))
 					return
 			SSopposing_force.approve(src, usr)
 		if("approve_all")
@@ -319,7 +319,7 @@
 		if("deny")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this application:")
+			var/denied_reason = tgui_input_text(usr, "拒绝理由", "请输入拒绝此申请的理由：")
 			// Checking to see if the user is spamming the button, async and all.
 			if((status == OPFOR_STATUS_DENIED) || !denied_reason)
 				return
@@ -339,7 +339,7 @@
 		if("deny_objective")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this objective:")
+			var/denied_reason = tgui_input_text(usr, "拒绝理由", "请输入拒绝此目标的理由：")
 			if(!denied_reason)
 				return
 			deny_objective(usr, edited_objective, denied_reason)
@@ -356,7 +356,7 @@
 				return
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this objective:")
+			var/denied_reason = tgui_input_text(usr, "拒绝理由", "请输入拒绝此目标的理由：")
 			if(!denied_reason)
 				return
 			deny_equipment(usr, equipment, denied_reason)
@@ -371,34 +371,34 @@
 /datum/opposing_force/proc/set_equipment_count(mob/user, datum/opposing_force_selected_equipment/equipment, new_count)
 	var/sanitized_newcount = sanitize_integer(new_count, 1, equipment.opposing_force_equipment.max_amount)
 	equipment.count = new_count
-	add_log(user.ckey, "Set equipment '[equipment.opposing_force_equipment.name] count to [sanitized_newcount]")
+	add_log(user.ckey, "将装备‘[equipment.opposing_force_equipment.name]’的数量设为[sanitized_newcount]")
 
 /datum/opposing_force/proc/handle(mob/user)
 	if(handling_admin)
-		var/choice = tgui_alert(user, "Another admin is currently handling this application, do you want to override them?", "Admin Handling", list("Yes", "No"))
-		if(choice == "No")
+		var/choice = tgui_alert(user, "另一位管理员正在处理此申请，你要接管吗？", "管理员处理", list("是", "否"))
+		if(choice == "否")
 			return
 	handling_admin = get_admin_ckey(user)
-	to_chat(mind_reference.current, custom_boxed_message("green_box", span_nicegreen("Your OPFOR application is now being handled by [handling_admin].")))
-	send_admins_opfor_message("HANDLE: [ADMIN_LOOKUPFLW(user)] is handling [mind_reference.key]'s OPFOR application.")
-	send_system_message("[handling_admin] has assigned themselves to this application")
-	add_log(user.ckey, "Assigned self to application")
+	to_chat(mind_reference.current, custom_boxed_message("green_box", span_nicegreen("你的敌对势力申请现由[handling_admin]处理。")))
+	send_admins_opfor_message("受理：[ADMIN_LOOKUPFLW(user)]正在处理[mind_reference.key]的敌对势力申请。")
+	send_system_message("[handling_admin]已接手此申请")
+	add_log(user.ckey, "接手了申请")
 
 /datum/opposing_force/proc/mute_request_updates(mob/user, override = "none")
 	if(override != "none")
 		request_updates_muted = override
 	else
 		request_updates_muted = !request_updates_muted
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] [request_updates_muted ? "muted" : "unmuted"] the help requests function")
-	add_log(user.ckey, "[request_updates_muted ? "Muted" : "Unmuted"] user from opposing force help requests.")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"][request_updates_muted ? "禁用" : "恢复"]了求助请求功能")
+	add_log(user.ckey, "[request_updates_muted ? "禁用" : "恢复"]了用户的敌对势力求助请求功能。")
 
 /datum/opposing_force/proc/toggle_block(mob/user, override = "none")
 	if(override != "none")
 		blocked = override
 	else
 		blocked = !blocked
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] blocked you from submitting new requests")
-	add_log(user.ckey, "Blocked user from opposing force requests.")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]禁止了你提交新申请")
+	add_log(user.ckey, "禁止了用户提交敌对势力申请。")
 
 /**
  * Equipment procs
@@ -409,16 +409,16 @@
 		return
 	incoming_equipment.status = OPFOR_EQUIPMENT_STATUS_DENIED
 	incoming_equipment.denied_reason = denied_reason
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has denied equipment '[incoming_equipment.opposing_force_equipment.name]'[denied_reason ? " with the reason '[denied_reason]'" : ""]")
-	add_log(user.ckey, "Denied equipment: [incoming_equipment.opposing_force_equipment.name] with reason: [denied_reason]")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]拒绝了装备‘[incoming_equipment.opposing_force_equipment.name]’[denied_reason ? "，理由：‘[denied_reason]’" : ""]")
+	add_log(user.ckey, "拒绝了装备：[incoming_equipment.opposing_force_equipment.name]，理由：[denied_reason]")
 
 /datum/opposing_force/proc/approve_equipment(mob/user, datum/opposing_force_selected_equipment/incoming_equipment)
 	if(incoming_equipment.status == OPFOR_EQUIPMENT_STATUS_APPROVED)
 		return
 	incoming_equipment.status = OPFOR_EQUIPMENT_STATUS_APPROVED
 	incoming_equipment.denied_reason = ""
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has approved equipment '[incoming_equipment.opposing_force_equipment.name]'")
-	add_log(user.ckey, "Approved equipment: [incoming_equipment.opposing_force_equipment.name]")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]批准了装备‘[incoming_equipment.opposing_force_equipment.name]’")
+	add_log(user.ckey, "批准了装备：[incoming_equipment.opposing_force_equipment.name]")
 
 /datum/opposing_force/proc/set_equipment_reason(mob/user, datum/opposing_force_selected_equipment/incoming_equipment, new_reason)
 	if(!can_edit)
@@ -426,14 +426,14 @@
 	if(!incoming_equipment)
 		CRASH("set_equipment_reason tried to update a non existent opfor equipment datum!")
 	var/sanitized_reason = replacetext(STRIP_HTML_SIMPLE(new_reason, OPFOR_TEXT_LIMIT_DESCRIPTION), "\"", " ")
-	add_log(user.ckey, "Updated equipment([incoming_equipment.opposing_force_equipment.name]) REASON from: [incoming_equipment.reason] to: [sanitized_reason]")
+	add_log(user.ckey, "将装备（[incoming_equipment.opposing_force_equipment.name]）的理由从：[incoming_equipment.reason]，更新为：[sanitized_reason]")
 	incoming_equipment.reason = sanitized_reason
 	return TRUE
 
 /datum/opposing_force/proc/remove_equipment(mob/user, datum/opposing_force_selected_equipment/incoming_equipment)
 	if(!can_edit)
 		return
-	add_log(user.ckey, "Removed equipment: [incoming_equipment.opposing_force_equipment.name]")
+	add_log(user.ckey, "移除了装备：[incoming_equipment.opposing_force_equipment.name]")
 	selected_equipment -= incoming_equipment
 	qdel(incoming_equipment)
 
@@ -441,11 +441,11 @@
 	if(!can_edit)
 		return
 	if(LAZYLEN(selected_equipment) >= OPFOR_EQUIPMENT_LIMIT)
-		to_chat(user, span_warning("You have too many items, please remove one!"))
+		to_chat(user, span_warning("你的物品太多了，请移除一项！"))
 		return
 	var/datum/opposing_force_selected_equipment/new_selected = new(incoming_equipment)
 	selected_equipment += new_selected
-	add_log(user.ckey, "Selected equipment: [incoming_equipment.name]")
+	add_log(user.ckey, "选择了装备：[incoming_equipment.name]")
 	return new_selected
 
 /datum/opposing_force/proc/issue_gear(mob/user)
@@ -460,8 +460,8 @@
 				new iterating_equipment.opposing_force_equipment.item_type(get_turf(target))
 			iterating_equipment.opposing_force_equipment.on_issue(target)
 
-	add_log(user.ckey, "Issued gear")
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has issued all approved equipment")
+	add_log(user.ckey, "发放了装备")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]发放了所有已批准的装备")
 	equipment_issued = TRUE
 
 /**
@@ -470,13 +470,13 @@
 
 /datum/opposing_force/proc/request_update(mob/user)
 	if(request_updates_muted)
-		to_chat(user, span_warning("You are currently blocked from requesting updates!"))
+		to_chat(user, span_warning("你目前被禁止请求进度更新！"))
 		return
 	if(status != OPFOR_STATUS_AWAITING_APPROVAL || !COOLDOWN_FINISHED(src, request_update_cooldown))
 		return
 
-	send_admins_opfor_message(span_command_headset("UPDATE REQUEST: [ADMIN_LOOKUPFLW(user)] has requested an update on their OPFOR application!"))
-	add_log(user.ckey, "Requested an update")
+	send_admins_opfor_message(span_command_headset("进度请求：[ADMIN_LOOKUPFLW(user)]请求更新其敌对势力申请的处理进度！"))
+	add_log(user.ckey, "请求了进度更新")
 
 	for(var/client/staff as anything in GLOB.admins)
 		if(staff?.prefs?.toggles & SOUND_ADMINHELP)
@@ -487,14 +487,14 @@
 
 /datum/opposing_force/proc/submit_to_subsystem(mob/user)
 	if(blocked)
-		to_chat(user, span_warning("You are currently blocked from submitting new requests!"))
+		to_chat(user, span_warning("你目前被禁止提交新申请！"))
 		return
 	if(status != OPFOR_STATUS_NOT_SUBMITTED && status != OPFOR_STATUS_CHANGES_REQUESTED)
 		return FALSE
 	// Subsystem checks, no point in bloating the system if it's not accepting more.
 	var/availability = SSopposing_force.check_availability()
 	if(availability != OPFOR_SUBSYSTEM_READY)
-		to_chat(usr, span_warning("Error, the OPFOR subsystem rejected your request. Reason: <b>[availability]</b>"))
+		to_chat(usr, span_warning("错误，敌对势力子系统拒绝了你的申请。理由：<b>[availability]</b>"))
 		return FALSE
 
 	var/queue_position = SSopposing_force.add_to_queue(src)
@@ -507,16 +507,16 @@
 	addtimer(CALLBACK(src, PROC_REF(add_to_ping_ss)), 2 MINUTES) // this is not responsible for the notification itself, but only for adding the ticket to the list of those to notify.
 	status = OPFOR_STATUS_AWAITING_APPROVAL
 	can_edit = FALSE
-	add_log(user.ckey, "Submitted to the OPFOR subsystem")
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has submitted the application for review")
-	send_admins_opfor_message(span_command_headset("SUBMISSION: [ADMIN_LOOKUPFLW(user)] has submitted their OPFOR application. They are number [queue_position] in the queue."))
-	to_chat(usr, custom_boxed_message("green_box", span_nicegreen(("You have been added to the queue for the OPFOR subsystem. You are number <b>[queue_position]</b> in line."))))
+	add_log(user.ckey, "提交到了敌对势力子系统")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]已提交申请以供审核")
+	send_admins_opfor_message(span_command_headset("提交：[ADMIN_LOOKUPFLW(user)]提交了敌对势力申请，在队列中排第[queue_position]位。"))
+	to_chat(usr, custom_boxed_message("green_box", span_nicegreen(("你已加入敌对势力子系统的申请队列，当前排第<b>[queue_position]</b>位。"))))
 
 /datum/opposing_force/proc/modify_request(mob/user)
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED)
 		return
-	var/choice = tgui_alert(user, "Are you sure you want to request changes? This will unapprove all objectives.", "Confirm", list("Yes", "No"))
-	if(choice != "Yes")
+	var/choice = tgui_alert(user, "确定要请求修改吗？这将撤销所有目标的批准状态。", "确认", list("是", "否"))
+	if(choice != "是")
 		return
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED) // The alert is not async, so this could change, thus being spammed.
 		return
@@ -526,9 +526,9 @@
 	SSopposing_force.modify_request(src)
 	can_edit = TRUE
 
-	add_log(user.ckey, "Modify request submitted")
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has requested modifications to the application")
-	send_admins_opfor_message("CHANGES REQUESTED: [ADMIN_LOOKUPFLW(user)] has submitted a modify request, their application has been reset.")
+	add_log(user.ckey, "提交了修改请求")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]请求修改申请")
+	send_admins_opfor_message("请求修改：[ADMIN_LOOKUPFLW(user)]提交了修改请求，其申请已重置。")
 
 /datum/opposing_force/proc/deny(mob/denier, reason = "")
 	if(status == OPFOR_STATUS_DENIED)
@@ -542,10 +542,10 @@
 	for(var/datum/opposing_force_objective/opfor in objectives)
 		opfor.status = OPFOR_OBJECTIVE_STATUS_DENIED
 	SEND_SOUND(mind_reference.current, sound('modular_skyrat/modules/opposing_force/sound/denied.ogg'))
-	add_log(denier.ckey, "Denied application")
-	to_chat(mind_reference.current, custom_boxed_message("red_box", span_redtext("Your OPFOR application has been denied by [denier ? get_admin_ckey(denier) : "the OPFOR subsystem"]!")))
-	send_system_message(get_admin_ckey(denier) + " has denied the application with the following reason: [reason]")
-	send_admins_opfor_message("[span_red("DENIED")]: [ADMIN_LOOKUPFLW(denier)] has denied [ckey]'s application([reason ? reason : "No reason specified"])")
+	add_log(denier.ckey, "拒绝了申请")
+	to_chat(mind_reference.current, custom_boxed_message("red_box", span_redtext("你的敌对势力申请已被[denier ? get_admin_ckey(denier) : "敌对势力子系统"]拒绝！")))
+	send_system_message(get_admin_ckey(denier) + "拒绝了申请，理由如下：[reason]")
+	send_admins_opfor_message("[span_red("已拒绝")]：[ADMIN_LOOKUPFLW(denier)]拒绝了[ckey]的申请（[reason ? reason : "未说明理由"]）")
 	ticket_counter_add_handled(denier.ckey, 1)
 
 /datum/opposing_force/proc/approve(mob/approver)
@@ -555,23 +555,23 @@
 	can_edit = FALSE
 
 	SEND_SOUND(mind_reference.current, sound('modular_skyrat/modules/opposing_force/sound/approved.ogg'))
-	add_log(approver.ckey, "Approved application")
+	add_log(approver.ckey, "批准了申请")
 	var/objective_denied = FALSE
 	for(var/datum/opposing_force_objective/opfor_obj as anything in objectives)
 		if(!(opfor_obj.status == OPFOR_OBJECTIVE_STATUS_DENIED))
 			continue
 		objective_denied = TRUE
 		break
-	to_chat(mind_reference.current, custom_boxed_message("green_box", span_greentext("Your OPFOR application has been [objective_denied ? span_bold("partially approved (please view your OPFOR for details)") : span_bold("fully approved")] by [approver ? get_admin_ckey(approver) : "the OPFOR subsystem"]!")))
-	send_system_message("[approver ? get_admin_ckey(approver) : "The OPFOR subsystem"] has approved the application")
-	send_admins_opfor_message("[span_green("APPROVED")]: [ADMIN_LOOKUPFLW(approver)] has approved [ckey]'s application")
+	to_chat(mind_reference.current, custom_boxed_message("green_box", span_greentext("你的敌对势力申请已获[approver ? get_admin_ckey(approver) : "敌对势力子系统"][objective_denied ? span_bold("部分批准（详情请查看敌对势力面板）") : span_bold("完全批准")]！")))
+	send_system_message("[approver ? get_admin_ckey(approver) : "敌对势力子系统"]批准了申请")
+	send_admins_opfor_message("[span_green("已批准")]：[ADMIN_LOOKUPFLW(approver)]批准了[ckey]的申请")
 	ticket_counter_add_handled(approver.ckey, 1)
 
 /datum/opposing_force/proc/close_application(mob/user)
 	if(status == OPFOR_STATUS_NOT_SUBMITTED)
 		return
-	var/choice = tgui_alert(user, "Are you sure you want withdraw your application?", "Confirm", list("Yes", "No"))
-	if(choice != "Yes")
+	var/choice = tgui_alert(user, "确定要撤回申请吗？", "确认", list("是", "否"))
+	if(choice != "是")
 		return
 	if(status == OPFOR_STATUS_NOT_SUBMITTED) // The alert is not async, so this could change, thus being spammed.
 		return
@@ -584,14 +584,14 @@
 	for(var/datum/opposing_force_objective/opfor as anything in objectives)
 		opfor.status = OPFOR_OBJECTIVE_STATUS_NOT_REVIEWED
 
-	add_log(user.ckey, "Withdrew application")
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has closed the application")
+	add_log(user.ckey, "撤回了申请")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]关闭了申请")
 
 /datum/opposing_force/proc/set_backstory(mob/user, incoming_backstory)
 	if(!can_edit)
 		return
 	var/sanitized_backstory = STRIP_HTML_SIMPLE(incoming_backstory, OPFOR_TEXT_LIMIT_BACKSTORY)
-	add_log(user.ckey, "Updated BACKSTORY from: [set_backstory] to: [sanitized_backstory]")
+	add_log(user.ckey, "将背景故事从：[set_backstory]，更新为：[sanitized_backstory]")
 	set_backstory = sanitized_backstory
 	return TRUE
 
@@ -601,8 +601,8 @@
 			iterating_equipment.status = OPFOR_EQUIPMENT_STATUS_APPROVED
 		for(var/datum/opposing_force_objective/opfor as anything in objectives)
 			opfor.status = OPFOR_OBJECTIVE_STATUS_APPROVED
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has approved the application and ALL objectives and equipment")
-	add_log(user.ckey, "Approved application and all objectives and equipment")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]批准了申请及其所有目标和装备")
+	add_log(user.ckey, "批准了申请及其所有目标和装备")
 
 
 /**
@@ -626,7 +626,7 @@
 			opposing_force_objective.text_intensity = OPFOR_OBJECTIVE_INTENSITY_4
 		if(401 to 501)
 			opposing_force_objective.text_intensity = OPFOR_OBJECTIVE_INTENSITY_5
-	add_log(user.ckey, "Set updated an objective intensity from [opposing_force_objective.intensity] to [sanitized_intensity].")
+	add_log(user.ckey, "将目标强度从[opposing_force_objective.intensity]更新为[sanitized_intensity]。")
 	opposing_force_objective.intensity = sanitized_intensity
 	return TRUE
 
@@ -637,7 +637,7 @@
 		CRASH("set_objective_description tried to update a non existent opfor objective!")
 	var/sanitized_description = replacetext(STRIP_HTML_SIMPLE(new_description, OPFOR_TEXT_LIMIT_DESCRIPTION), "\"", " ")
 	opposing_force_objective.description = sanitized_description
-	add_log(user.ckey, "Updated objective([opposing_force_objective.title]) DESCRIPTION from: [opposing_force_objective.description] to: [sanitized_description]")
+	add_log(user.ckey, "将目标（[opposing_force_objective.title]）的描述从：[opposing_force_objective.description]，更新为：[sanitized_description]")
 	return TRUE
 
 /datum/opposing_force/proc/set_objective_justification(mob/user, datum/opposing_force_objective/opposing_force_objective, new_justification)
@@ -647,7 +647,7 @@
 		CRASH("set_objective_description tried to update a non existent opfor objective!")
 	var/sanitize_justification = replacetext(STRIP_HTML_SIMPLE(new_justification, OPFOR_TEXT_LIMIT_JUSTIFICATION), "\"", " ")
 	opposing_force_objective.justification = sanitize_justification
-	add_log(user.ckey, "Updated objective([opposing_force_objective.title]) JUSTIFICATION from: [opposing_force_objective.justification] to: [sanitize_justification]")
+	add_log(user.ckey, "将目标（[opposing_force_objective.title]）的动机从：[opposing_force_objective.justification]，更新为：[sanitize_justification]")
 	return TRUE
 
 /datum/opposing_force/proc/remove_objective(mob/user, datum/opposing_force_objective/opposing_force_objective)
@@ -656,7 +656,7 @@
 	if(!opposing_force_objective)
 		CRASH("set_objective_description tried to remove a non existent opfor objective!")
 	objectives -= opposing_force_objective
-	add_log(user.ckey, "Removed the following objective from their OPFOR application: [opposing_force_objective.title]")
+	add_log(user.ckey, "从敌对势力申请中移除了以下目标：[opposing_force_objective.title]")
 	qdel(opposing_force_objective)
 	return TRUE
 
@@ -664,11 +664,11 @@
 	if(!can_edit)
 		return
 	if(LAZYLEN(objectives) >= OPFOR_MAX_OBJECTIVES)
-		to_chat(user, span_warning("You have too many objectives, please remove one!"))
+		to_chat(user, span_warning("你的目标太多了，请移除一项！"))
 		return
 	var/datum/opposing_force_objective/opfor_objective = new
 	objectives += opfor_objective
-	add_log(user.ckey, "Added a new blank objective")
+	add_log(user.ckey, "新增了一个空白目标")
 	return opfor_objective
 
 /datum/opposing_force/proc/set_objective_title(mob/user, datum/opposing_force_objective/opposing_force_objective, new_title)
@@ -677,34 +677,34 @@
 	var/sanitized_title = replacetext(STRIP_HTML_SIMPLE(new_title, OPFOR_TEXT_LIMIT_TITLE), "\"", " ")
 	if(!opposing_force_objective)
 		CRASH("set_objective_description tried to update a non existent opfor objective!")
-	add_log(user.ckey, "Updated objective([opposing_force_objective.title]) TITLE from: [opposing_force_objective.title] to: [sanitized_title]")
+	add_log(user.ckey, "将目标（[opposing_force_objective.title]）的标题从：[opposing_force_objective.title]，更新为：[sanitized_title]")
 	opposing_force_objective.title = sanitized_title
 	return TRUE
 
 /datum/opposing_force/proc/deny_objective(mob/user, datum/opposing_force_objective/opposing_force_objective, deny_reason)
 	opposing_force_objective.status = OPFOR_OBJECTIVE_STATUS_DENIED
 	opposing_force_objective.denied_reason = deny_reason
-	add_log(user.ckey, "Denied objective([opposing_force_objective.title]) WITH REASON: [deny_reason]")
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has denied objective '[opposing_force_objective.title]' with the reason '[deny_reason]'")
-	to_chat(mind_reference?.current, span_warning("Your OPFOR objective [span_bold("[opposing_force_objective.title]")] has been denied."))
+	add_log(user.ckey, "拒绝了目标（[opposing_force_objective.title]），理由：[deny_reason]")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]拒绝了目标‘[opposing_force_objective.title]’，理由：‘[deny_reason]’")
+	to_chat(mind_reference?.current, span_warning("你的敌对势力目标[span_bold("[opposing_force_objective.title]")]已被拒绝。"))
 
 /datum/opposing_force/proc/approve_objective(mob/user, datum/opposing_force_objective/opposing_force_objective)
 	opposing_force_objective.status = OPFOR_OBJECTIVE_STATUS_APPROVED
-	add_log(user.ckey, "Approved objective([opposing_force_objective.title])")
-	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has approved objective '[opposing_force_objective.title]'")
-	to_chat(mind_reference?.current, span_warning("Your OPFOR objective [span_bold("[opposing_force_objective.title]")] has been approved."))
+	add_log(user.ckey, "批准了目标（[opposing_force_objective.title]）")
+	send_system_message("[user ? get_admin_ckey(user) : "敌对势力子系统"]批准了目标‘[opposing_force_objective.title]’")
+	to_chat(mind_reference?.current, span_warning("你的敌对势力目标[span_bold("[opposing_force_objective.title]")]已获批准。"))
 
 /**
  * System procs
  */
 
 /datum/opposing_force/proc/add_log(logger_ckey, new_log)
-	var/msg = "OPFOR([ckey]): [logger_ckey ? logger_ckey : "SYSTEM"] - [new_log]"
+	var/msg = "敌对势力（[ckey]）：[logger_ckey ? logger_ckey : "系统"] - [new_log]"
 	modification_log += msg
 	log_admin(msg)
 
 /datum/opposing_force/proc/send_admins_opfor_message(message)
-	message = "[span_pink("OPFOR:")] [span_admin("[message] (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
+	message = "[span_pink("敌对势力：")] [span_admin("[message]（<a href='byond://?src=[REF(src)];admin_pref=show_panel'>显示面板</a>）")]"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = message,
@@ -716,17 +716,17 @@
 		return subsystem_status
 	switch(status)
 		if(OPFOR_STATUS_AWAITING_APPROVAL)
-			return "Awaiting approval, you are number [SSopposing_force.get_queue_position(src)] in the queue"
+			return "等待批准，你在队列中排第[SSopposing_force.get_queue_position(src)]位"
 		if(OPFOR_STATUS_APPROVED)
-			return "Approved, please check your objectives for specific approval"
+			return "已批准，请查看各项目标的具体批准情况"
 		if(OPFOR_STATUS_DENIED)
-			return "Denied, do not attempt any of your objectives"
+			return "已拒绝，请勿执行任何目标"
 		if(OPFOR_STATUS_CHANGES_REQUESTED)
-			return "Changes requested, please review your application"
+			return "需要修改，请检查你的申请"
 		if(OPFOR_STATUS_NOT_SUBMITTED)
-			return OPFOR_STATUS_NOT_SUBMITTED
+			return "尚未提交"
 		else
-			return "ERROR"
+			return "错误"
 
 /datum/opposing_force/proc/get_admin_ckey(mob/user)
 	if(user.client?.holder?.fakekey)
@@ -735,8 +735,8 @@
 
 /datum/opposing_force/proc/broadcast_queue_change()
 	var/queue_number = SSopposing_force.get_queue_position(src)
-	to_chat(mind_reference.current, custom_boxed_message("green_box", span_nicegreen("Your OPFOR application is now number [queue_number] in the queue.")))
-	send_system_message("Application is now number [queue_number] in the queue")
+	to_chat(mind_reference.current, custom_boxed_message("green_box", span_nicegreen("你的敌对势力申请目前在队列中排第[queue_number]位。")))
+	send_system_message("申请目前在队列中排第[queue_number]位")
 
 /datum/opposing_force/proc/send_message(mob/user, message)
 	if(!message)
@@ -745,9 +745,9 @@
 	var/message_string
 	var/real_round_time = world.timeofday - SSticker.real_round_start_time
 	if(check_rights_for(user.client, R_ADMIN) && user != mind_reference)
-		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] (ADMIN) [get_admin_ckey(user)]: " + message
+		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)]（管理员）[get_admin_ckey(user)]：" + message
 	else
-		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] (USER) [user.ckey]: " + message
+		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)]（用户）[user.ckey]：" + message
 	admin_chat += message_string
 
 	// We support basic commands, see run_command for compatible commands, the operator is /
@@ -756,12 +756,12 @@
 		var/command = replacetext(message, "/", "", 1, 2)
 		run_command(user, command)
 
-	add_log(user.ckey, "Sent message: [message]")
+	add_log(user.ckey, "发送了消息：[message]")
 
 
 /datum/opposing_force/proc/send_system_message(message)
 	var/real_round_time = world.timeofday - SSticker.real_round_start_time
-	var/message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] SYSTEM: " + message
+	var/message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] 系统：" + message
 	admin_chat += message_string
 
 /datum/opposing_force/proc/run_command(mob/user, message)
@@ -781,18 +781,18 @@
 		if("unlock_equipment")
 			unlock_equipment(user) // Admin only proc
 		else
-			send_system_message("Unknown command: [command]")
+			send_system_message("未知命令：[command]")
 
 /datum/opposing_force/proc/print_help(mob/user)
-	send_system_message("Available commands:")
-	send_system_message("/item 'item_name' - Check an items quick stats")
-	send_system_message("/ping_admin - Ping the handling admin, if there is one.")
-	send_system_message("/help - Print this help")
+	send_system_message("可用命令：")
+	send_system_message("/item '物品类型路径' - 查看物品的简要属性")
+	send_system_message("/ping_admin - 提醒正在处理申请的管理员（如有）。")
+	send_system_message("/help - 显示此帮助")
 	// Admin commands.
 	if(check_rights_for(user.client, R_ADMIN))
-		send_system_message("Admin commands:")
-		send_system_message("/unlock_equipment - Unlock all equipment, useful if you need to give the user more stuff.")
-		send_system_message("/ping_user - Pings the user.")
+		send_system_message("管理员命令：")
+		send_system_message("/unlock_equipment - 解锁所有装备，便于向用户发放更多物品。")
+		send_system_message("/ping_user - 提醒用户。")
 
 /**
  * System commands
@@ -800,57 +800,57 @@
 /datum/opposing_force/proc/check_item(type)
 	var/obj/item/processed_item = text2path(type)
 	if(!processed_item)
-		send_system_message("Unknown type: [type]")
+		send_system_message("未知类型：[type]")
 		return
 	if(!ispath(processed_item, /obj/item))
-		send_system_message("Error: [processed_item] is not an item")
+		send_system_message("错误：[processed_item]不是物品")
 		return
 
-	send_system_message("Here are the item specifications for [type]:")
-	send_system_message("Name: [initial(processed_item.name)]")
-	send_system_message("Description: [initial(processed_item.desc)]")
-	send_system_message("Weight class: [initial(processed_item.w_class)]")
-	send_system_message("Tool behaviour: [initial(processed_item.tool_behaviour)]")
-	send_system_message("Weak against armor: [initial(processed_item.weak_against_armour) ? "Yes" : "No"]")
-	send_system_message("Damage type: [initial(processed_item.damtype)]")
-	send_system_message("Wound bonus: [initial(processed_item.wound_bonus)]")
-	send_system_message("Bare wound bonus: [initial(processed_item.exposed_wound_bonus)]")
-	send_system_message("Force: [initial(processed_item.force)]")
+	send_system_message("[type]的物品属性如下：")
+	send_system_message("名称：[initial(processed_item.name)]")
+	send_system_message("描述：[initial(processed_item.desc)]")
+	send_system_message("重量等级：[initial(processed_item.w_class)]")
+	send_system_message("工具功能：[initial(processed_item.tool_behaviour)]")
+	send_system_message("对护甲效果较差：[initial(processed_item.weak_against_armour) ? "是" : "否"]")
+	send_system_message("伤害类型：[initial(processed_item.damtype)]")
+	send_system_message("创伤加成：[initial(processed_item.wound_bonus)]")
+	send_system_message("裸露部位创伤加成：[initial(processed_item.exposed_wound_bonus)]")
+	send_system_message("伤害：[initial(processed_item.force)]")
 
 /datum/opposing_force/proc/unlock_equipment(mob/user)
 	if(!check_rights_for(user.client, R_ADMIN))
-		send_system_message("ERROR: You do not have permission to do that.")
+		send_system_message("错误：你无权执行此操作。")
 		return
 	if(!equipment_issued)
-		send_system_message("ERROR: Equipment not yet issued.")
+		send_system_message("错误：尚未发放装备。")
 		return
 	equipment_issued = TRUE
-	send_system_message("Equipment unlocked.")
+	send_system_message("装备已解锁。")
 
 /datum/opposing_force/proc/ping_admin(mob/user)
 	if(!handling_admin)
-		send_system_message("ERROR: No admin is handling the application.")
+		send_system_message("错误：目前没有管理员处理此申请。")
 		return
 	if(!COOLDOWN_FINISHED(src, ping_cooldown))
-		send_system_message("ERROR: Ping is on cooldown.")
+		send_system_message("错误：提醒功能尚在冷却中。")
 		return
 	if(request_updates_muted)
-		send_system_message("ERROR: You are muted.")
+		send_system_message("错误：你已被禁言。")
 		return
 	if(user.ckey != handling_admin && GLOB.directory[handling_admin])
-		to_chat(GLOB.directory[handling_admin], span_pink("OPFOR: [user] has pinged their OPFOR admin chat! (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)"))
+		to_chat(GLOB.directory[handling_admin], span_pink("敌对势力：[user]在敌对势力管理员聊天中发出了提醒！（<a href='byond://?src=[REF(src)];admin_pref=show_panel'>显示面板</a>）"))
 		SEND_SOUND(GLOB.directory[handling_admin], sound('sound/misc/bloop.ogg'))
-		send_system_message("Handling admin pinged.")
+		send_system_message("已提醒负责处理的管理员。")
 		COOLDOWN_START(src, ping_cooldown, OPFOR_PING_COOLDOWN)
 	else
-		send_system_message("ERROR: Ping failed.")
+		send_system_message("错误：提醒失败。")
 
 /datum/opposing_force/proc/ping_user(mob/user)
 	if(!check_rights_for(user.client, R_ADMIN))
-		send_system_message("ERROR: You do not have permission to do that.")
+		send_system_message("错误：你无权执行此操作。")
 		return
-	send_system_message("User pinged.")
-	to_chat(mind_reference.current, span_pink("OPFOR: [get_admin_ckey(user)] has pinged your OPFOR chat, check it!"))
+	send_system_message("已提醒用户。")
+	to_chat(mind_reference.current, span_pink("敌对势力：[get_admin_ckey(user)]在你的敌对势力聊天中发出了提醒，请查看！"))
 	SEND_SOUND(mind_reference.current, sound('sound/misc/bloop.ogg'))
 
 /datum/opposing_force/proc/roundend_report()
@@ -858,20 +858,20 @@
 	report += span_greentext(mind_reference.current?.real_name)
 
 	if(set_backstory)
-		report += "<b>Had an approved OPFOR application with the following backstory:</b><br>"
+		report += "<b>已获批准的敌对势力申请具有以下背景故事：</b><br>"
 		report += "[set_backstory]<br>"
 
 	if(objectives.len)
-		report += "<b>And with the following objectives:</b><br>"
+		report += "<b>以及以下目标：</b><br>"
 		for(var/datum/opposing_force_objective/opfor_objective in objectives)
 			if(opfor_objective.status != OPFOR_OBJECTIVE_STATUS_APPROVED)
 				continue
-			report += "<b>Title:</b> [opfor_objective.title]<br>"
-			report += "<b>Description:</b> [opfor_objective.description]<br>"
+			report += "<b>标题：</b>[opfor_objective.title]<br>"
+			report += "<b>描述：</b>[opfor_objective.description]<br>"
 			report += "<br>"
 
 	if(selected_equipment.len)
-		report += "<b>And had the following approved equipment:</b><br>"
+		report += "<b>并获批了以下装备：</b><br>"
 		for(var/datum/opposing_force_selected_equipment/opfor_equipment in selected_equipment)
 			if(opfor_equipment.status != OPFOR_EQUIPMENT_STATUS_APPROVED)
 				continue
@@ -888,18 +888,18 @@
 
 /// Allows a user to import an OPFOR from json
 /datum/opposing_force/proc/json_import(mob/importer)
-	var/file_uploaded = input(importer, "Choose a .json file to upload. (This WILL override your inputted data)", "Upload JSON template") as null|file
+	var/file_uploaded = input(importer, "选择要上传的.json文件。（这会覆盖你已输入的数据）", "上传JSON模板") as null|file
 	if(!file_uploaded)
 		return
 	if(copytext("[file_uploaded]", -5) != ".json") //5 == length(".json")
-		to_chat(importer, span_warning("Filename must end in '.json': [file_uploaded]"))
+		to_chat(importer, span_warning("文件名必须以‘.json’结尾：[file_uploaded]"))
 		return
 
 	QDEL_LIST(objectives)
 	QDEL_LIST(selected_equipment)
 	set_backstory = null
 
-	add_log(importer.ckey, "Imported a json OPFOR.")
+	add_log(importer.ckey, "从JSON导入了敌对势力申请。")
 
 	try
 		var/list/opfor_data = json_load(file_uploaded)
@@ -945,8 +945,8 @@
 		QDEL_LIST(objectives)
 		QDEL_LIST(selected_equipment)
 		set_backstory = null
-		to_chat(importer, span_warning("JSON file is corrupted in some form. Please correct and reupload."))
-		add_log(importer.ckey, "Attempted to upload a corrupted JSON, purging leftover data...")
+		to_chat(importer, span_warning("JSON文件存在损坏，请修正后重新上传。"))
+		add_log(importer.ckey, "尝试上传损坏的JSON，正在清除残留数据……")
 
 
 /// Allows a user to export from an OPFOR into a json file
@@ -975,7 +975,7 @@
 			"equipment_count" = iterating_equipment.count,
 		)
 
-	add_log(exporter.ckey, "Exported a json OPFOR.")
+	add_log(exporter.ckey, "将敌对势力申请导出为JSON。")
 
 	var/to_write_file = "data/opfor_temp/[REF(src)].json"
 	rustg_file_write(json_encode(exported_data), to_write_file)
@@ -984,8 +984,8 @@
 		usr << ftp(file(to_write_file), "exported_OPFOR.json")
 
 	catch
-		log_game("OPFOR by ckey: [exporter.ckey] attempted to export JSON data but ftp(file()) runtimed.")
-		add_log(exporter.ckey, "Attempted to export JSON data but ftp(file()) runtimed.")
+		log_game("敌对势力申请者ckey：[exporter.ckey]尝试导出JSON数据，但ftp(file())发生运行时错误。")
+		add_log(exporter.ckey, "尝试导出JSON数据，但ftp(file())发生运行时错误。")
 
 	fdel(to_write_file)
 
@@ -998,8 +998,8 @@
 
 /obj/effect/statclick/opfor_specific/Click()
 	if (!usr.client?.holder)
-		message_admins("[key_name_admin(usr)] non-holder clicked on an OPFOR statclick! ([src])")
-		log_game("[key_name(usr)] non-holder clicked on an OPFOR statclick! ([src])")
+		message_admins("无管理员权限的[key_name_admin(usr)]点击了敌对势力状态按钮！（[src]）")
+		log_game("无管理员权限的[key_name(usr)]点击了敌对势力状态按钮！（[src]）")
 		return
 
 	opfor.ui_interact(usr)

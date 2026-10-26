@@ -1,11 +1,11 @@
 /obj/item/uplink/old_radio
-	name = "old radio"
-	desc = "A dusty and old looking radio."
+	name = "旧收音机"
+	desc = "一台落满灰尘、看起来很旧的收音机。"
 
 /obj/item/uplink/old_radio/Initialize(mapload, owner, tc_amount = 0)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.name = "old radio"
+	hidden_uplink.name = "旧收音机"
 
 //Unrestricted MODs
 /obj/item/mod/control/pre_equipped/elite/unrestricted
@@ -13,8 +13,8 @@
 
 //Syndie wep charger kit
 /obj/item/storage/box/syndie_kit/recharger
-	name = "boxed recharger kit"
-	desc = "A sleek, sturdy box used to hold all parts to build a weapons recharger."
+	name = "盒装充电器套件"
+	desc = "一个简洁坚固的盒子，装有建造武器充电器所需的全部零件。"
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/syndie_kit/recharger/PopulateContents()
@@ -27,8 +27,8 @@
 
 //Back-up space suit
 /obj/item/storage/box/syndie_kit/space_suit
-	name = "boxed space suit and helmet"
-	desc = "A sleek, sturdy box used to hold an emergency spacesuit."
+	name = "盒装太空服与头盔"
+	desc = "一个简洁坚固的盒子，用于存放应急太空服。"
 	icon_state = "syndiebox"
 	illustration = "syndiesuit"
 
@@ -76,7 +76,7 @@
 	armor_type = /datum/armor/clothing_under/syndicate
 
 /obj/item/storage/belt/holster/detective/dark
-	name = "dark leather holster"
+	name = "深色皮革枪套"
 	icon_state = "syndicate_holster"
 
 //Robohand
@@ -98,12 +98,12 @@
 
 
 /obj/item/storage/box/syndie_kit/gunman_outfit
-	name = "gunman clothing bundle"
-	desc = "A box filled with armored and stylish clothing for the aspiring gunmans."
+	name = "枪手服装套装"
+	desc = "一盒时髦的防护服装，适合有志成为枪手的人。"
 
 /obj/item/clothing/suit/toggle/jacket/trenchcoat/gunman
-	name = "leather overcoat"
-	desc = "An armored leather overcoat, intended as the go-to wear for any aspiring gunman."
+	name = "皮革大衣"
+	desc = "一件带护甲的皮革大衣，是每位有志枪手的首选。"
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor_type = /datum/armor/leather_gunman
 
@@ -118,8 +118,8 @@
 	wound = 10
 
 /obj/item/clothing/under/pants/track/robohand
-	name = "badass pants"
-	desc = "Strangely firm yet soft black pants, these appear to have some armor padding for added protection."
+	name = "硬汉长裤"
+	desc = "一条奇妙地兼具硬挺与柔软的黑色长裤，似乎装有护甲衬垫以增强防护。"
 	armor_type = /datum/armor/clothing_under/robohand
 
 /datum/armor/clothing_under/robohand
@@ -130,8 +130,8 @@
 	bomb = 20
 
 /obj/item/clothing/glasses/sunglasses/robohand
-	name = "badass sunglasses"
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks flashes. These ones seem to be bulletproof?"
+	name = "硬汉墨镜"
+	desc = "一种古老得出奇的技术，提供基本眼部防护。强化遮光层可阻挡闪光。这副似乎还防弹？"
 	body_parts_covered = HEAD //What do you mean glasses don't protect your head? Of course they do. Cyberpunk has flying cars(mostly intentional)!
 	armor_type = /datum/armor/sunglasses_robohand
 
@@ -148,8 +148,8 @@
 	allow_changeling = TRUE
 
 /obj/item/codeword_granter
-	name = "codeword manual"
-	desc = "A black manual with a red S lovingly inscribed on the cover by only the finest of presses from a factory."
+	name = "暗号手册"
+	desc = "一本黑色手册，封面上的红色S由工厂最精良的印刷机悉心印制。"
 	icon = 'modular_skyrat/modules/opposing_force/icons/items.dmi'
 	icon_state = "codeword_book"
 	/// Number of charges the book has, limits the number of times it can be used.
@@ -160,12 +160,12 @@
 	if(!isliving(user))
 		return
 
-	to_chat(user, span_boldannounce("You start skimming through [src], and feel suddenly imparted with the knowledge of the following code words:"))
+	to_chat(user, span_boldannounce("你开始翻阅[src]，突然领悟了以下暗号："))
 
 	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 	user.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
-	to_chat(user, "<b>Code Phrases</b>: [jointext(SStraitor.syndicate_code_phrase, ", ")]")
-	to_chat(user, "<b>Code Responses</b>: [span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
+	to_chat(user, "<b>暗语</b>：[jointext(SStraitor.syndicate_code_phrase, ", ")]")
+	to_chat(user, "<b>回应</b>：[span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
 
 	use_charge(user)
 
@@ -181,14 +181,14 @@
 	playsound(loc, SFX_PUNCH, 25, TRUE, -1)
 
 	if(attacked_mob.stat == DEAD)
-		attacked_mob.visible_message(span_danger("[user] smacks [attacked_mob]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
+		attacked_mob.visible_message(span_danger("[user]用[src]拍打[attacked_mob]毫无生气的尸体。"), span_userdanger("[user]用[src]拍打你毫无生气的尸体。"), span_hear("你听见拍打声。"))
 	else
-		attacked_mob.visible_message(span_notice("[user] teaches [attacked_mob] by beating [attacked_mob.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], you feel suddenly imparted with the knowledge of some [span_red("specific words")]."), span_hear("You hear smacking."))
+		attacked_mob.visible_message(span_notice("[user]用[src]敲打[attacked_mob]的头来传授知识！"), span_boldnotice("当[user]用[src]敲打你时，你突然领悟了一些[span_red("特定词语")]。"), span_hear("你听见拍打声。"))
 		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
 		attacked_mob.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
-		to_chat(attacked_mob, span_boldnotice("You feel suddenly imparted with the knowledge of the following code words:"))
-		to_chat(attacked_mob, "<b>Code Phrases</b>: [span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]")]")
-		to_chat(attacked_mob, "<b>Code Responses</b>: [span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
+		to_chat(attacked_mob, span_boldnotice("你突然领悟了以下暗号："))
+		to_chat(attacked_mob, "<b>暗语</b>：[span_blue("[jointext(SStraitor.syndicate_code_phrase, ", ")]")]")
+		to_chat(attacked_mob, "<b>回应</b>：[span_red("[jointext(SStraitor.syndicate_code_response, ", ")]")]")
 		use_charge(user)
 
 
@@ -197,7 +197,7 @@
 
 	if(!charges)
 		var/turf/src_turf = get_turf(src)
-		src_turf.visible_message(span_warning("The cover and contents of [src] start shifting and changing! It slips out of your hands!"))
+		src_turf.visible_message(span_warning("[src]的封面和内容开始变换！它从你的手中滑落！"))
 		new /obj/item/book/manual/random(src_turf)
 		qdel(src)
 
@@ -229,27 +229,27 @@
 	return TRUE
 
 /obj/item/antag_granter/changeling
-	name = "viral injector"
-	desc = "A blue injector filled with some viscous, red substance. It has no markings apart from an orange warning stripe near the large needle."
+	name = "病毒注射器"
+	desc = "一支蓝色注射器，装着黏稠的红色物质。除了粗大针头附近的橙色警示条纹外，没有任何标记。"
 	icon_state = "changeling_injector"
 	antag_datum = /datum/antagonist/changeling
-	user_message = "As you inject the substance into yourself, you start to feel... <span class='red'><b>better</b></span>."
+	user_message = "当你将这种物质注入体内时，你开始感觉……<span class='red'><b>更好了</b></span>。"
 
 
 /obj/item/antag_granter/heretic
-	name = "strange book"
-	desc = "A purple book with a green eye on the cover. You swear it's looking at you...."
+	name = "奇怪的书"
+	desc = "一本紫色的书，封面上有一只绿色眼睛。你敢肯定它正在看着你……"
 	icon_state = "heretic_granter"
 	antag_datum = /datum/antagonist/heretic
-	user_message = "As you open the book, you see a great flash as <span class='hypnophrase'>the world becomes all the clearer for you</span>."
+	user_message = "当你翻开书时，眼前闪过一道强光，<span class='hypnophrase'>世界在你眼中变得无比清晰</span>。"
 
 /obj/item/antag_granter/clock_cultist
-	name = "brass contraption"
-	desc = "A cogwheel-shaped device of brass, with a glass lens floating, suspended in the center."
+	name = "黄铜机关"
+	desc = "一个齿轮形状的黄铜装置，中央悬浮着一片玻璃透镜。"
 	icon = 'modular_skyrat/modules/clock_cult/icons/clockwork_objects.dmi'
 	icon_state = "vanguard_cogwheel"
 	antag_datum = /datum/antagonist/clock_cultist/solo
-	user_message = "A whirring fills your ears as <span class='brass'>knowledge of His Eminence fills your mind</span>."
+	user_message = "嗡鸣声充斥双耳，<span class='brass'>圣上的知识涌入你的脑海</span>。"
 
 /obj/item/antag_granter/clock_cultist/attack_self(mob/user, modifiers)
 	. = ..()

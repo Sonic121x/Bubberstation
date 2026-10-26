@@ -1,7 +1,7 @@
 #define FORTITUDE_STUN_IMMUNITY_LEVEL 4
 /datum/action/cooldown/bloodsucker/fortitude
-	name = "Fortitude"
-	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings, but will render you unable to heal."
+	name = "坚韧"
+	desc = "承受严重的物理创伤，抵御足以令弱者眩晕、遭到穿刺或肢解的攻击，但会使你无法自愈。"
 	button_icon_state = "power_fortitude"
 	power_flags = BP_CONTINUOUS_EFFECT|BP_AM_COSTLESS_UNCONSCIOUS
 	bloodsucker_check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
@@ -16,12 +16,12 @@
 
 /datum/action/cooldown/bloodsucker/fortitude/get_power_explanation_extended()
 	. = list()
-	. += "Fortitude will provide pierce, stun and dismember immunity."
-	. += "You will additionally gain resistance to both brute, burn and stamina damage, scaling with level."
-	. += "Fortitude will make you receive [GetFortitudeResist() * 10]% less brute and and stamina and [GetBurnResist() * 10]% less burn damage."
-	. += "While using Fortitude, attempting to run will crush you."
-	. += "At level [FORTITUDE_STUN_IMMUNITY_LEVEL], you gain complete stun immunity while [src] is active."
-	. += "Higher levels will increase Brute and Stamina resistance."
+	. += "坚韧能提供穿刺、眩晕和肢解免疫。"
+	. += "你还会获得随等级增长的蛮力、烧伤和耐力伤害抗性。"
+	. += "坚韧会使你受到的蛮力和耐力伤害减少[GetFortitudeResist() * 10]%，烧伤减少[GetBurnResist() * 10]%。"
+	. += "使用坚韧时，尝试奔跑会压伤自己。"
+	. += "达到[FORTITUDE_STUN_IMMUNITY_LEVEL]级后，[src]生效期间将完全免疫眩晕。"
+	. += "等级越高，蛮力和耐力伤害抗性越强。"
 
 /datum/action/cooldown/bloodsucker/fortitude/upgrade_power()
 	. = ..()
@@ -29,8 +29,8 @@
 		traits_to_add |= TRAIT_STUNIMMUNE
 
 /datum/action/cooldown/bloodsucker/fortitude/ActivatePower(atom/target)
-	owner.balloon_alert(owner, "fortitude turned on.")
-	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
+	owner.balloon_alert(owner, "坚韧已启用")
+	to_chat(owner, span_notice("你的血肉、皮肤和肌肉变得如钢铁般坚硬。"))
 	// Traits & Effects
 	owner.add_traits(traits_to_add, BLOODSUCKER_TRAIT)
 
@@ -80,7 +80,7 @@
 	/// Prevents running while on Fortitude
 	if(user.move_intent != MOVE_INTENT_WALK)
 		user.toggle_move_intent()
-		user.balloon_alert(user, "you attempt to run, crushing yourself.")
+		user.balloon_alert(user, "尝试奔跑压伤了自己")
 		user.adjust_brute_loss(rand(5,15))
 	/// We don't want people using fortitude being able to use vehicles
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
@@ -104,7 +104,7 @@
 
 	if(was_running && bloodsucker_user.move_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.toggle_move_intent()
-	owner.balloon_alert(owner, "fortitude turned off.")
+	owner.balloon_alert(owner, "坚韧已关闭")
 	fortitude_resist = 1
 	UnregisterSignal(owner, list(COMSIG_LIVING_ADJUST_BRUTE_DAMAGE, COMSIG_LIVING_ADJUST_BURN_DAMAGE))
 	return ..()

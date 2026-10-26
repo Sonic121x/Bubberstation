@@ -10,11 +10,11 @@
 	abstract_type = /datum/brain_trauma/very_special
 
 /datum/brain_trauma/very_special/bimbo
-	name = "Permanent hormonal disruption"
-	desc = "The patient has completely lost the ability to form speech and seems extremely aroused."
-	scan_desc = "permanent hormonal disruption"
-	gain_text = span_purple("Your thoughts get cloudy, but it turns you on like hell.")
-	lose_text = span_warning("A pleasant coolness spreads throughout your body, You are thinking clearly again.")
+	name = "永久性激素紊乱"
+	desc = "患者完全丧失了组织语言的能力，并表现出极度的性兴奋。"
+	scan_desc = "永久性激素紊乱"
+	gain_text = span_purple("你的思绪变得混沌，却让你欲火焚身。")
+	lose_text = span_warning("舒适的凉意蔓延全身，你又能清晰地思考了。")
 	//people need to be able to gain it through the chemical OD
 	can_gain = TRUE
 	//people should not be able to randomly get this trauma
@@ -34,11 +34,11 @@
 	var/desire_cooldown_number = 30 SECONDS
 	///The list of manual emotes that will be done when unsatisfied
 	var/static/list/lust_emotes = list(
-		"pants as their body trembles lightly.",
-		"lightly touches themselves up and down, feeling every inch.",
-		"puts their finger in their mouth and slightly bites down.",
-		"places their hands on their hip as they slowly gyrate.",
-		"moans, their head tilted slightly."
+		"喘息着，身体微微颤抖。",
+		"轻轻上下抚摸自己，感受每一寸肌肤。",
+		"将手指放进嘴里，轻轻咬住。",
+		"双手扶着臀部，缓缓扭动。",
+		"微微歪头，发出呻吟。"
 	)
 
 /**
@@ -51,24 +51,24 @@
 		return FALSE
 	//we need to feel consequences for being unsatisfied
 	//the message that will be sent to the owner at the end
-	var/lust_message = "Your breath begins to feel warm..."
+	var/lust_message = "你的呼吸开始变得灼热……"
 	//we are using if statements so that it slowly becomes more and more to the person
 	human_owner.manual_emote(pick(lust_emotes))
 	if(stress >= 60)
 		human_owner.set_jitter_if_lower(40 SECONDS)
-		lust_message = "You feel a static sensation all across your skin..."
+		lust_message = "你的全身肌肤泛起一阵静电般的酥麻……"
 	if(stress >= 120)
 		human_owner.set_eye_blur_if_lower(20 SECONDS)
-		lust_message = "You vision begins to blur, the heat beginning to rise..."
+		lust_message = "你的视线开始模糊，体内的热度不断攀升……"
 	if(stress >= 180)
 		owner.adjust_hallucinations(60 SECONDS)
-		lust_message = "You begin to fantasize of what you could do to someone..."
+		lust_message = "你开始幻想能对别人做些什么……"
 	if(stress >= 240)
 		human_owner.adjust_stamina_loss(30)
-		lust_message = "You body feels so very hot, almost unwilling to cooperate..."
+		lust_message = "你的身体烫得厉害，几乎不愿听从使唤……"
 	if(stress >= 300)
 		human_owner.adjust_oxy_loss(40)
-		lust_message = "You feel your neck tightening, straining..."
+		lust_message = "你感到脖子绷紧，越发紧绷……"
 	to_chat(human_owner, span_purple(lust_message))
 	return TRUE
 
@@ -113,20 +113,20 @@
 	if(!in_company())
 		//since you aren't within company, you won't be satisfied
 		satisfaction = clamp(satisfaction - 1, 0, 1000)
-		to_chat(human_owner, span_purple("You feel so alone without someone..."))
+		to_chat(human_owner, span_purple("身边没有人，让你感到好孤独……"))
 		return
 
 	switch(satisfaction)
 		if(0 to 100)
-			to_chat(human_owner, span_purple("You can't STAND it, you need a partner NOW!"))
+			to_chat(human_owner, span_purple("你再也受不了了，现在就需要一个伴侣！"))
 		if(101 to 150)
-			to_chat(human_owner, span_purple("You'd hit that. Yeah. That's at least a six."))
+			to_chat(human_owner, span_purple("你想和那人来一场。没错，至少能打六分。"))
 		if(151 to 200)
-			to_chat(human_owner, span_purple("Your clothes are feeling tight."))
+			to_chat(human_owner, span_purple("你的衣服感觉越来越紧。"))
 		if(201 to 250)
-			to_chat(human_owner, span_purple("Desire fogs your decisions."))
+			to_chat(human_owner, span_purple("欲望蒙蔽了你的判断。"))
 		if(251 to 1000)
-			to_chat(human_owner, span_purple("Jeez, it's hot in here.."))
+			to_chat(human_owner, span_purple("天哪，这里真热……"))
 
 /**
  * If we have another human in view, return true
@@ -173,7 +173,7 @@
 
 //Mood boost
 /datum/mood_event/bimbo
-	description = span_purple("So-o... Help..less... Lo-ve it!\n")
+	description = span_purple("好……无助……太喜欢了！\n")
 
 /*
 *	MASOCHISM
@@ -185,12 +185,12 @@
 
 /datum/quirk/masochism
 	name = "Masochism"
-	desc = "Pain brings you indescribable pleasure."
+	desc = "疼痛会给你带来难以言喻的快感。"
 	value = 0 //ERP Traits don't have price. They are priceless. Ba-dum-tss
 	mob_trait = TRAIT_MASOCHISM
-	gain_text = span_danger("You have a sudden desire for pain...")
-	lose_text = span_notice("Ouch! Pain is... Painful again! Ou-ou-ouch!")
-	medical_record_text = "Subject has masochism."
+	gain_text = span_danger("你突然渴望感受疼痛……")
+	lose_text = span_notice("哎哟！疼痛又……只剩下疼了！好痛！")
+	medical_record_text = "受检者有受虐倾向。"
 	icon = FA_ICON_HEART_BROKEN
 	erp_quirk = TRUE
 
@@ -211,11 +211,11 @@
 */
 
 /datum/brain_trauma/very_special/neverboner
-	name = "Loss of libido"
-	desc = "The patient has completely lost sexual interest."
-	scan_desc = "lack of libido"
-	gain_text = span_notice("You don't feel horny anymore.")
-	lose_text = span_notice("A pleasant warmth spreads over your body.")
+	name = "性欲丧失"
+	desc = "患者完全丧失了性兴趣。"
+	scan_desc = "性欲缺失"
+	gain_text = span_notice("你不再感到性欲。")
+	lose_text = span_notice("舒适的暖意蔓延全身。")
 	random_gain = FALSE
 	resilience = TRAUMA_RESILIENCE_ABSOLUTE
 
@@ -235,12 +235,12 @@
 
 /datum/quirk/sadism
 	name = "Sadism"
-	desc = "You feel pleasure when you see someone in agony."
+	desc = "看到别人痛苦会令你愉悦。"
 	value = 0 //ERP Traits don't have price. They are priceless. Ba-dum-tss
 	mob_trait = TRAIT_SADISM
-	gain_text = span_danger("You feel a sudden desire to inflict pain.")
-	lose_text = span_notice("Others' pain doesn't satisfy you anymore.")
-	medical_record_text = "Subject has sadism."
+	gain_text = span_danger("你突然想让别人感到疼痛。")
+	lose_text = span_notice("他人的痛苦不再能满足你。")
+	medical_record_text = "受检者有施虐倾向。"
 	icon = FA_ICON_HAMMER
 	erp_quirk = TRUE
 
@@ -255,11 +255,11 @@
 	affected_human?.cure_trauma_type(/datum/brain_trauma/very_special/sadism, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/brain_trauma/very_special/sadism
-	name = "Sadism"
-	desc = "The subject's cerebral pleasure centers are more active when someone is suffering."
-	scan_desc = "sadistic tendencies"
-	gain_text = span_purple("You feel a desire to hurt somebody.")
-	lose_text = span_notice("You feel compassion again.")
+	name = "施虐倾向"
+	desc = "他人受苦时，受检者的大脑快感中枢更为活跃。"
+	scan_desc = "施虐倾向"
+	gain_text = span_purple("你想伤害别人。")
+	lose_text = span_notice("你又能感到同情了。")
 	can_gain = TRUE
 	random_gain = FALSE
 	resilience = TRAUMA_RESILIENCE_ABSOLUTE
@@ -290,12 +290,12 @@
 //Rope bunny code
 /datum/quirk/ropebunny
 	name = "Rope bunny"
-	desc = "You love being tied up."
+	desc = "你喜欢被捆绑。"
 	value = 0 //ERP Traits don't have price. They are priceless. Ba-dum-tss
 	mob_trait = TRAIT_ROPEBUNNY
-	medical_record_text = "Subject has a fondness for restraints."
-	gain_text = span_danger("You really want to be restrained for some reason.")
-	lose_text = span_notice("Being restrained doesn't arouse you anymore.")
+	medical_record_text = "受检者喜爱束缚。"
+	gain_text = span_danger("不知为何，你非常想被束缚起来。")
+	lose_text = span_notice("被束缚不再让你兴奋。")
 	icon = FA_ICON_HANDCUFFS
 	erp_quirk = TRUE
 
@@ -312,12 +312,12 @@
 //Rigger code
 /datum/quirk/rigger
 	name = "Rigger"
-	desc = "You find the weaving of rope knots on the body wonderful."
+	desc = "你觉得在身体上编织绳结是一件美妙的事。"
 	value = 0 //ERP Traits don't have price. They are priceless. Ba-dum-tss
 	mob_trait = TRAIT_RIGGER
-	medical_record_text = "Subject has a increased dexterity when tying knots."
-	gain_text = span_danger("Suddenly you understand rope weaving much better than before.")
-	lose_text = span_notice("Rope knots looks complicated again.")
+	medical_record_text = "受检者打绳结时格外灵巧。"
+	gain_text = span_danger("你突然对编织绳结有了远胜以往的理解。")
+	lose_text = span_notice("绳结又变得复杂难懂了。")
 	icon = FA_ICON_CHAIN_BROKEN
 	erp_quirk = TRUE
 
@@ -331,7 +331,7 @@
 	var/mob/living/carbon/human/affected_mob = quirk_holder
 	REMOVE_TRAIT(affected_mob, TRAIT_RIGGER, TRAIT_LEWDQUIRK)
 /datum/mood_event/sadistic
-	description = span_purple("Others' suffering makes me happier\n")
+	description = span_purple("别人的痛苦让我更加快乐。\n")
 
 /*
 *	EMPATH BONUS
@@ -341,10 +341,10 @@
 /mob/living/carbon/human/proc/get_arousal_info()
 	switch(arousal)
 		if(AROUSAL_MINIMUM_DETECTABLE to AROUSAL_LOW)
-			return span_purple("[p_they()] [p_are()] slightly blushed.")
+			return span_purple("其脸颊微微泛红。")
 		if(AROUSAL_LOW to AROUSAL_MEDIUM)
-			return span_purple("[p_they()] [p_are()] quite aroused and seems to be stirring up lewd thoughts in [p_their()] head.")
+			return span_purple("其相当兴奋，脑中似乎翻腾着情色的念头。")
 		if(AROUSAL_HIGH to AROUSAL_AUTO_CLIMAX_THRESHOLD)
-			return span_purple("[p_they()] [p_are()] aroused as hell.")
+			return span_purple("其已经欲火焚身。")
 		if(AROUSAL_AUTO_CLIMAX_THRESHOLD to INFINITY)
-			return span_purple("[p_they()] [p_are()] extremely excited, exhausting from intolerable desire.")
+			return span_purple("其极度兴奋，无法忍受的欲望让其精疲力尽。")

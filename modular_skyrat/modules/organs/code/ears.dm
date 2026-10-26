@@ -1,6 +1,6 @@
 /obj/item/organ/ears/teshari
-	name = "teshari ears"
-	desc = "A set of four long rabbit-like ears, a Teshari's main tool while hunting. Naturally extremely sensitive to loud sounds."
+	name = "特沙利耳朵"
+	desc = "四只兔耳般的长耳朵，是特沙利狩猎时的主要工具，天生对巨响极为敏感。"
 	damage_multiplier = 1.5
 	actions_types = list(/datum/action/cooldown/spell/teshari_hearing)
 	overrides_sprite_datum_organ_type = TRUE
@@ -11,8 +11,8 @@
 	REMOVE_TRAIT(ear_owner, TRAIT_GOOD_HEARING, ORGAN_TRAIT)
 
 /datum/action/cooldown/spell/teshari_hearing
-	name = "Toggle Sensitive Hearing"
-	desc = "Perk up your ears to listen for quiet sounds, useful for picking up whispering."
+	name = "切换敏锐听觉"
+	desc = "竖起耳朵倾听细微声响，适合捕捉低语。"
 	button_icon = 'modular_skyrat/master_files/icons/hud/actions.dmi'
 	button_icon_state = "echolocation_off"
 	background_icon_state = "bg_alien"
@@ -38,7 +38,7 @@
 		return
 
 	user.apply_status_effect(/datum/status_effect/teshari_hearing)
-	user.visible_message(span_notice("[user], pricks up [user.p_their()] four ears, each twitching intently!"), span_notice("You perk up all four of your ears, hunting for even the quietest sounds."))
+	user.visible_message(span_notice("[user]竖起了四只耳朵，每一只都专注地轻颤着！"), span_notice("你竖起四只耳朵，搜寻着哪怕最细微的声响。"))
 	update_button_state("echolocation_on")
 
 	var/obj/item/organ/ears/ears = user.get_organ_slot(ORGAN_SLOT_EARS)
@@ -50,7 +50,7 @@
 		return
 
 	user.remove_status_effect(/datum/status_effect/teshari_hearing)
-	user.visible_message(span_notice("[user] drops [user.p_their()] ears down a bit, no longer listening as closely."), span_notice("You drop your ears down, no longer paying close attention."))
+	user.visible_message(span_notice("[user]稍稍垂下了耳朵，不再那么专注地倾听。"), span_notice("你垂下耳朵，不再仔细聆听。"))
 	update_button_state("echolocation_off")
 
 	var/obj/item/organ/ears/ears = user.get_organ_slot(ORGAN_SLOT_EARS)
@@ -71,4 +71,4 @@
 	return ..()
 
 /datum/status_effect/teshari_hearing/get_examine_text()
-	return span_notice("[owner.p_They()] [owner.p_have()] [owner.p_their()] ears perked up, listening closely to whisper-quiet sounds.")
+	return span_notice("[owner]竖起耳朵，仔细聆听着低语般细微的声响。")

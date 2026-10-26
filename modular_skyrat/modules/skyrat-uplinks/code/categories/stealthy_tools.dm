@@ -1,6 +1,6 @@
 /datum/uplink_item/stealthy_tools/announcement
-	name = "Fake Announcement"
-	desc = "A device that allows you to spoof an announcement to the station of your choice."
+	name = "伪造公告装置"
+	desc = "可向你选择的空间站发布伪造公告的装置。"
 	item = /obj/item/traitor_announcer
 	surplus = 0
 	progression_minimum = 20 MINUTES
@@ -9,10 +9,10 @@
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 
 /datum/uplink_item/stealthy_tools/syndieshotglasses
-	name = "Extra Large Syndicate Shotglasses"
-	desc = "These modified shot glasses can hold up to 50 units of booze while looking like a regular 15 unit model \
-	guaranteed to knock someone on their ass with a hearty dose of bacchus blessing. Look for the Snake underneath \
-	to tell these are the real deal. Box of 7."
+	name = "辛迪加超大烈酒杯"
+	desc = "这些改装烈酒杯外观与普通15单位酒杯一致，却能装下50单位酒。\
+	倒上一大杯酒神祝福，保证把人灌倒。检查杯底的蛇形标志，\
+	即可确认是正品。每盒7个。"
 	item = /obj/item/storage/box/syndieshotglasses
 	cost = 2
 	restricted_roles = list(JOB_BARTENDER)

@@ -1,10 +1,10 @@
 GLOBAL_VAR_INIT(processors_cursed, FALSE)
 
 /datum/heretic_knowledge/telecomms_corruption
-	name = "The Owl's Secrets"
-	desc = "Allows you to combine a radio, ears, and a bluespace crystal to cast a curse on the station's telecommunication processors. \
-	This curse will drain sanity on anyone wearing a radio and garble messages for five minutes. Can only be used twice."
-	gain_text = "The Owl is a great listener. But a whisper of the knowledge it has gained is enough to send a man to an asylum."
+	name = "鸮之秘闻"
+	desc = "让你能结合一台无线电、一对耳朵和一颗蓝空间水晶，对空间站的电信处理器施加诅咒。\
+	诅咒会侵蚀所有佩戴无线电者的理智，并使讯息混乱，持续五分钟。只能使用两次。"
+	gain_text = "鸮是出色的倾听者。然而，祂所知的一丝低语便足以将人送进疯人院。"
 	required_atoms = list(
 		/obj/item/radio = 1,
 		/obj/item/organ/ears = 1,
@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(processors_cursed, FALSE)
 		return FALSE
 
 	if (uses_left <= 0)
-		user.balloon_alert(user, "out of uses!")
+		user.balloon_alert(user, "使用次数已耗尽！")
 		return FALSE
 
 /datum/heretic_knowledge/telecomms_corruption/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)

@@ -1,22 +1,22 @@
 /datum/uplink_item/suits/standard_armor
-	name = "Standard Armor Vest"
-	desc = "A slim Type I armored vest that provides decent protection against most types of damage."
+	name = "标准护甲背心"
+	desc = "轻薄的I级护甲背心，对大多数伤害提供良好防护。"
 	item = /obj/item/clothing/suit/armor/vest
 	cost = 1
 	uplink_item_flags = NONE
 	progression_minimum = 10 MINUTES
 
 /datum/uplink_item/suits/bulletproof_armor
-	name = "Bulletproof Armor Vest"
-	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "防弹背心"
+	desc = "III级重型防弹背心，对传统实弹武器有出色防护，并能提供少量爆炸防护。"
 	item = /obj/item/clothing/suit/armor/bulletproof
 	cost = 3
 	uplink_item_flags = NONE
 	progression_minimum = 15 MINUTES
 
 /datum/uplink_item/suits/swathelmet_traitor
-	name = "Syndicate Helmet"
-	desc = "An extremely robust, space-worthy helmet in a nefarious red and black stripe pattern."
+	name = "辛迪加头盔"
+	desc = "极其坚固、可用于太空的头盔，涂着邪恶的红黑条纹。"
 	item = /obj/item/clothing/head/helmet/swat
 	cost = 2
 	uplink_item_flags = NONE

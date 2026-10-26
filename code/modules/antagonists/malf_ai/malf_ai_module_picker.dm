@@ -47,7 +47,7 @@
 			icon_state = active_ability.button_icon_state
 
 		data["modules"] += list(list(
-			"name" = module.name,
+			"name" = chinese_zubbers_malf_module_display(module.name),
 			"icon" = icon,
 			"icon_state" = icon_state,
 			"cost" = module.cost,
@@ -68,7 +68,7 @@
 		return
 	switch(action)
 		if("buy")
-			var/item_name = params["name"]
+			var/item_name = chinese_zubbers_malf_module_storage(params["name"])
 			for(var/datum/ai_module/module as anything in possible_modules)
 				if(module.name == item_name)
 					purchase_module(usr, module)

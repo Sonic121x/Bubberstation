@@ -2,17 +2,17 @@
 
 /datum/quirk/alexithymia
 	name = "Alexithymia"
-	desc = "You cannot accurately assess your feelings."
+	desc = "你无法准确判断自己的感受。"
 	value = -4
 	mob_trait = TRAIT_MOOD_NOEXAMINE
-	medical_record_text = "Patient is incapable of communicating their emotions."
+	medical_record_text = "患者无法表达自己的情绪。"
 	icon = FA_ICON_QUESTION_CIRCLE
 
 /datum/quirk/fragile
 	name = "Fragility"
-	desc = "You feel incredibly fragile. Burns and bruises hurt you more than the average person!"
+	desc = "你的身体十分脆弱。烧伤和挫伤对你的伤害比常人更大！"
 	value = -6
-	medical_record_text = "Patient's body has adapted to low gravity. Sadly low-gravity environments are not conducive to strong bone development."
+	medical_record_text = "患者的身体已适应低重力。遗憾的是，低重力环境不利于强健骨骼的发育。"
 	icon = FA_ICON_TIRED
 
 /datum/quirk_constant_data/fragile
@@ -70,11 +70,11 @@
 
 /datum/quirk/monophobia
 	name = "Monophobia"
-	desc = "You will become increasingly stressed when not in company of others, triggering panic reactions ranging from sickness to heart attacks."
+	desc = "没有他人陪伴时，你会变得越来越紧张，引发从恶心到心脏病发作等各种恐慌反应。"
 	value = -6
-	gain_text = span_danger("You feel really lonely...")
-	lose_text = span_notice("You feel like you could be safe on your own.")
-	medical_record_text = "Patient feels sick and distressed when not around other people, leading to potentially lethal levels of stress."
+	gain_text = span_danger("你感到十分孤独……")
+	lose_text = span_notice("你觉得自己独处也能安然无恙。")
+	medical_record_text = "患者独处时会感到恶心和痛苦，压力可能达到致命程度。"
 	icon = FA_ICON_PEOPLE_ARROWS_LEFT_RIGHT
 
 /datum/quirk/monophobia/post_add()
@@ -89,10 +89,10 @@
 
 /datum/quirk/no_guns
 	name = "No Guns"
-	desc = "For whatever reason, you are unable to use guns. The reasoning may vary, but is up to you to decide."
-	gain_text = span_notice("You feel like you won't be able to use guns anymore...")
-	lose_text = span_notice("You suddenly feel like you can use guns again!")
-	medical_record_text = "Patient is unable to use firearms. Reasoning unknown."
+	desc = "出于某种原因，你无法使用枪械。具体缘由由你自己决定。"
+	gain_text = span_notice("你觉得自己再也无法使用枪械了……")
+	lose_text = span_notice("你突然觉得自己又能使用枪械了！")
+	medical_record_text = "患者无法使用枪械，原因不明。"
 	value = -6
 	mob_trait = TRAIT_NOGUNS
 	icon = FA_ICON_GUN

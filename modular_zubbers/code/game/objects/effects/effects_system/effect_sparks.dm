@@ -6,7 +6,7 @@
 	light_color = LIGHT_COLOR_DARK_BLUE
 
 /obj/effect/particle_effect/sparks/quantum/harmless
-	name = "inert quantum sparks"
+	name = "惰性量子火花"
 
 /obj/effect/particle_effect/sparks/quantum/harmless/affect_location(turf/location, just_initialized = FALSE)
 	return

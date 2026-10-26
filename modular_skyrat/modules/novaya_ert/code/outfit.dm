@@ -1,5 +1,5 @@
 /datum/outfit/centcom/ert/nri
-	name = "Pan-Slavic Commonwealth Soldier"
+	name = "泛斯拉夫联邦士兵"
 	head = null
 	glasses = /obj/item/clothing/glasses/night
 	ears = /obj/item/radio/headset/headset_cent/alt/with_key
@@ -30,7 +30,7 @@
 	id_trim = /datum/id_trim/nri
 
 /datum/outfit/centcom/ert/nri/commander
-	name = "Pan-Slavic Commonwealth Platoon Commander"
+	name = "泛斯拉夫联邦排长"
 	head = null
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
 	uniform = /obj/item/clothing/under/costume/nri/captain
@@ -55,7 +55,7 @@
 	id_trim = /datum/id_trim/nri/commander
 
 /datum/outfit/centcom/ert/nri/medic
-	name = "Pan-Slavic Commonwealth Corpsman"
+	name = "泛斯拉夫联邦战地医护兵"
 	head = null
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	uniform = /obj/item/clothing/under/costume/nri/medic
@@ -81,7 +81,7 @@
 	id_trim = /datum/id_trim/nri/medic
 
 /datum/outfit/centcom/ert/nri/engineer
-	name = "Pan-Slavic Commonwealth Combat Engineer"
+	name = "泛斯拉夫联邦战斗工兵"
 	head = null
 	glasses = /obj/item/clothing/glasses/meson/night
 	uniform = /obj/item/clothing/under/costume/nri/engineer
@@ -103,7 +103,7 @@
 	id_trim = /datum/id_trim/nri/engineer
 
 /datum/outfit/centcom/ert/nri/major
-	name = "Pan-Slavic Commonwealth Major"
+	name = "泛斯拉夫联邦少校"
 	head = null
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	ears = /obj/item/radio/headset/headset_cent/alt/with_key
@@ -125,7 +125,7 @@
 	id_trim = /datum/id_trim/nri/diplomat/major
 
 /datum/outfit/centcom/ert/nri/scientist
-	name = "Pan-Slavic Commonwealth Research Inspector"
+	name = "泛斯拉夫联邦科研监察员"
 	head = null
 	glasses = /obj/item/clothing/glasses/regular
 	ears = /obj/item/radio/headset/headset_cent/alt/with_key
@@ -147,7 +147,7 @@
 	id_trim = /datum/id_trim/nri/diplomat/scientist
 
 /datum/outfit/centcom/ert/nri/doctor
-	name = "Pan-Slavic Commonwealth Medical Inspector"
+	name = "泛斯拉夫联邦医疗监察员"
 	head = null
 	glasses = /obj/item/clothing/glasses/hud/health
 	ears = /obj/item/radio/headset/headset_cent/alt/with_key

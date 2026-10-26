@@ -1,3 +1,3 @@
 /obj/structure/spirit_board/weegee/Initialize(mapload)
 	. = ..()
-	name = pick("weegee bored", "luigi board", "ojo board", "oija board", "oueja board", "weegi board",  "quiche board", "wa weg board", "wedgie board", "vegan board")
+	name = pick("通灵无聊板", "路易吉板", "通铃板", "桶灵板", "同灵板", "通零板",  "咸派板", "哇哇板", "扯内裤板", "纯素板")

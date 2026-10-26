@@ -23,14 +23,14 @@
 		return
 	switch(held_item.tool_behaviour)
 		if(TOOL_WRENCH)
-			context[SCREENTIP_CONTEXT_LMB] = "[src.anchored ? "Unanchor" : "Anchor"]"
+			context[SCREENTIP_CONTEXT_LMB] = "[src.anchored ? "解除固定" : "固定"]"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_SCREWDRIVER)
-			context[SCREENTIP_CONTEXT_LMB] = "[src.panel_open ? "Close" : "Open"] panel"
+			context[SCREENTIP_CONTEXT_LMB] = "[src.panel_open ? "关闭" : "打开"]面板"
 			return CONTEXTUAL_SCREENTIP_SET
 		if(TOOL_CROWBAR)
 			if(panel_open)
-				context[SCREENTIP_CONTEXT_LMB] = "Deconstruct machine"
+				context[SCREENTIP_CONTEXT_LMB] = "拆解机器"
 				return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/RefreshParts()
@@ -65,7 +65,7 @@
 	. = ..()
 
 	toggle_panel_open()
-	to_chat(user, span_notice("You [panel_open ? "open":"close"] the maintenance panel of [src]."))
+	to_chat(user, span_notice("你[panel_open ? "打开":"关闭"]了[src]的检修面板。"))
 	tool.play_tool_sound(src)
 	return ITEM_INTERACT_SUCCESS
 
@@ -76,8 +76,8 @@
 		return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/xenoarch/researcher
-	name = "xenoarch researcher"
-	desc = "A machine that is used to condense strange rocks, useless relics, and broken objects into bigger artifacts."
+	name = "异星考古研究仪"
+	desc = "将奇异岩石、无用遗物和破损物品凝聚为更大文物的机器。"
 	icon_state = "researcher"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_researcher
 	/// the amount of research that is currently done
@@ -95,19 +95,19 @@
 /obj/machinery/xenoarch/researcher/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Eject all items"
-		context[SCREENTIP_CONTEXT_RMB] = "Use research points"
+		context[SCREENTIP_CONTEXT_LMB] = "取出全部物品"
+		context[SCREENTIP_CONTEXT_RMB] = "使用研究点数"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(is_type_in_list(held_item, accepted_types))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert item"
+		context[SCREENTIP_CONTEXT_LMB] = "放入物品"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/storage/bag/xenoarch))
-		context[SCREENTIP_CONTEXT_LMB] = "Dump bag into machine"
+		context[SCREENTIP_CONTEXT_LMB] = "将袋中物品倒入机器"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/researcher/examine(mob/user)
 	. = ..()
-	. += span_notice("[current_research]/[max_research] research available.")
+	. += span_notice("可用研究点数：[current_research]/[max_research]。")
 
 /obj/machinery/xenoarch/researcher/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(user.combat_mode)
@@ -120,21 +120,21 @@
 			strange_rocks.forceMove(src)
 			xenoarch_contents += strange_rocks
 
-		balloon_alert(user, "items inserted!")
+		balloon_alert(user, "物品已放入！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(is_type_in_list(tool, accepted_types))
 		tool.forceMove(src)
 		xenoarch_contents += tool
-		balloon_alert(user, "item inserted!")
+		balloon_alert(user, "物品已放入！")
 		return ITEM_INTERACT_SUCCESS
 
 	return NONE
 
 /obj/machinery/xenoarch/researcher/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/choice = tgui_input_list(user, "Remove the rocks from [src]?", "Rock Removal", list("Yes", "No"))
-	if(choice != "Yes")
+	var/choice = tgui_input_list(user, "从[src]中取出岩石？", "取出岩石", list("是", "否"))
+	if(choice != "是")
 		return
 
 	var/turf/src_turf = get_turf(src)
@@ -142,29 +142,29 @@
 		removed_item.forceMove(src_turf)
 		xenoarch_contents -= removed_item
 
-	balloon_alert(user, "items removed!")
+	balloon_alert(user, "物品已取出！")
 
 /obj/machinery/xenoarch/researcher/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	var/turf/src_turf = get_turf(src)
-	var/choice = tgui_input_list(user, "Choose which reward you would like!", "Reward Choice", list("Lavaland Chest (150)", "Anomalous Crystal (150)", "Bepis Tech (100)"))
+	var/choice = tgui_input_list(user, "选择想要的奖励！", "选择奖励", list("熔岩地带宝箱（150）", "异常水晶（150）", "BEPIS 科技（100）"))
 	if(!choice)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	switch(choice)
-		if("Lavaland Chest (150)")
+		if("熔岩地带宝箱（150）")
 			if(current_research < 150)
-				balloon_alert(user, "insufficient research!")
+				balloon_alert(user, "研究点数不足！")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 			current_research -= 150
 			new /obj/structure/closet/crate/necropolis/tendril(src_turf)
 
-		if("Anomalous Crystal (150)")
+		if("异常水晶（150）")
 			if(current_research < 150)
-				balloon_alert(user, "insufficient research!")
+				balloon_alert(user, "研究点数不足！")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 			current_research -= 150
@@ -172,9 +172,9 @@
 			var/random_crystal = pick(choices)
 			new random_crystal(src_turf)
 
-		if("Bepis Tech (100)")
+		if("BEPIS 科技（100）")
 			if(current_research < 100)
-				balloon_alert(user, "insufficient research!")
+				balloon_alert(user, "研究点数不足！")
 				return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 			current_research -= 100
@@ -197,18 +197,18 @@
 	qdel(first_item)
 
 /obj/machinery/xenoarch/scanner
-	name = "xenoarch scanner"
-	desc = "A machine that is used to scan strange rocks, making it easier to extract the item inside."
+	name = "异星考古扫描仪"
+	desc = "扫描奇异岩石，让提取内部物品更容易的机器。"
 	icon_state = "scanner"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_scanner
 
 /obj/machinery/xenoarch/scanner/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(istype(held_item, /obj/item/storage/bag/xenoarch))
-		context[SCREENTIP_CONTEXT_LMB] = "Scan items in bag"
+		context[SCREENTIP_CONTEXT_LMB] = "扫描袋中物品"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/xenoarch/strange_rock))
-		context[SCREENTIP_CONTEXT_LMB] = "Scan item"
+		context[SCREENTIP_CONTEXT_LMB] = "扫描物品"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/scanner/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -219,23 +219,23 @@
 		for(var/obj/item/xenoarch/strange_rock/chosen_rocks in tool.contents)
 			chosen_rocks.get_scanned()
 
-		balloon_alert(user, "scan complete!")
+		balloon_alert(user, "扫描完成！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/strange_rock))
 		var/obj/item/xenoarch/strange_rock/chosen_rock = tool
 		if(chosen_rock.get_scanned())
-			balloon_alert(user, "scan complete!")
+			balloon_alert(user, "扫描完成！")
 			return ITEM_INTERACT_SUCCESS
 		else
-			to_chat(user, span_warning("[chosen_rock] was unable to be scanned, perhaps it was already scanned?"))
+			to_chat(user, span_warning("无法扫描[chosen_rock]，也许它已经扫描过了？"))
 			return ITEM_INTERACT_BLOCKING
 
 	return ..()
 
 /obj/machinery/xenoarch/recoverer
-	name = "xenoarch recoverer"
-	desc = "A machine that will recover the damaged, destroyed objects found within the strange rocks."
+	name = "异星考古修复器"
+	desc = "复原奇异岩石中发现的破损物品的机器。"
 	icon_state = "recoverer"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_recoverer
 	/// Assoc list of item type to reward pool
@@ -252,13 +252,13 @@
 /obj/machinery/xenoarch/recoverer/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Eject all items"
+		context[SCREENTIP_CONTEXT_LMB] = "取出全部物品"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/xenoarch/broken_item))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert item"
+		context[SCREENTIP_CONTEXT_LMB] = "放入物品"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/storage/bag/xenoarch))
-		context[SCREENTIP_CONTEXT_LMB] = "Dump bag into machine"
+		context[SCREENTIP_CONTEXT_LMB] = "将袋中物品倒入机器"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/recoverer/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -270,20 +270,20 @@
 			current_item.forceMove(src)
 			xenoarch_contents += current_item
 
-		balloon_alert(user, "items inserted!")
+		balloon_alert(user, "物品已放入！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/broken_item))
 		tool.forceMove(src)
 		xenoarch_contents += tool
-		balloon_alert(user, "item inserted!")
+		balloon_alert(user, "物品已放入！")
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
 /obj/machinery/xenoarch/recoverer/attack_hand(mob/living/user, list/modifiers)
-	var/choice = tgui_input_list(user, "Remove the broken items from [src]?", "Item Removal", list("Yes", "No"))
-	if(choice != "Yes")
+	var/choice = tgui_input_list(user, "从[src]中取出破损物品？", "取出物品", list("是", "否"))
+	if(choice != "是")
 		return
 
 	var/turf/src_turf = get_turf(src)
@@ -291,7 +291,7 @@
 		removed_item.forceMove(src_turf)
 		xenoarch_contents -= removed_item
 
-	balloon_alert(user, "items removed!")
+	balloon_alert(user, "物品已取出！")
 
 /obj/machinery/xenoarch/recoverer/xenoarch_process()
 	var/turf/src_turf = get_turf(src)
@@ -320,21 +320,21 @@
 	qdel(delete_obj)
 
 /obj/machinery/xenoarch/digger
-	name = "xenoarch digger"
-	desc = "A machine that is used to slowly uncover items within strange rocks."
+	name = "异星考古挖掘机"
+	desc = "缓慢发掘奇异岩石内物品的机器。"
 	icon_state = "digger"
 	circuit = /obj/item/circuitboard/machine/xenoarch_machine/xenoarch_digger
 
 /obj/machinery/xenoarch/digger/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Eject all items"
+		context[SCREENTIP_CONTEXT_LMB] = "取出全部物品"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/storage/bag/xenoarch))
-		context[SCREENTIP_CONTEXT_LMB] = "Dump bag into machine"
+		context[SCREENTIP_CONTEXT_LMB] = "将袋中物品倒入机器"
 		return CONTEXTUAL_SCREENTIP_SET
 	if(istype(held_item, /obj/item/xenoarch/strange_rock))
-		context[SCREENTIP_CONTEXT_LMB] = "Insert item"
+		context[SCREENTIP_CONTEXT_LMB] = "放入物品"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/xenoarch/digger/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
@@ -346,20 +346,20 @@
 			strange_rocks.forceMove(src)
 			xenoarch_contents += strange_rocks
 
-		balloon_alert(user, "rocks inserted!")
+		balloon_alert(user, "岩石已放入！")
 		return ITEM_INTERACT_SUCCESS
 
 	if(istype(tool, /obj/item/xenoarch/strange_rock))
 		tool.forceMove(src)
 		xenoarch_contents += tool
-		balloon_alert(user, "rock inserted!")
+		balloon_alert(user, "岩石已放入！")
 		return ITEM_INTERACT_SUCCESS
 
 	return ..()
 
 /obj/machinery/xenoarch/digger/attack_hand(mob/living/user, list/modifiers)
-	var/choice = tgui_input_list(user, "Remove the rocks from [src]?", "Rock Removal", list("Yes", "No"))
-	if(choice != "Yes")
+	var/choice = tgui_input_list(user, "从[src]中取出岩石？", "取出岩石", list("是", "否"))
+	if(choice != "是")
 		return
 
 	var/turf/src_turf = get_turf(src)
@@ -367,7 +367,7 @@
 		removed_item.forceMove(src_turf)
 		xenoarch_contents -= removed_item
 
-	balloon_alert(user, "items removed!")
+	balloon_alert(user, "物品已取出！")
 
 /obj/machinery/xenoarch/digger/xenoarch_process()
 	var/turf/src_turf = get_turf(src)

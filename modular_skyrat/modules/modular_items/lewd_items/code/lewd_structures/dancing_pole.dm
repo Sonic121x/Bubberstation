@@ -1,6 +1,6 @@
 /obj/structure/stripper_pole
-	name = "stripper pole"
-	desc = "A pole fastened to the ceiling and floor, used to show of one's goods to company."
+	name = "舞杆"
+	desc = "固定在天花板与地板之间的杆子，用于向同伴展示自己的魅力。"
 	icon = 'modular_skyrat/modules/modular_items/lewd_items/icons/obj/lewd_structures/dancing_pole.dmi'
 	icon_state = "pole_purple_off"
 	base_icon_state = "pole"
@@ -35,7 +35,7 @@
 
 /obj/structure/stripper_pole/examine(mob/user)
 	. = ..()
-	. += "The lights are currently <b>[lights_enabled ? "ON" : "OFF"]</b> and could be [lights_enabled ? "dis" : "en"]abled with <b>Alt-Click</b>."
+	. += "灯光当前<b>[lights_enabled ? "开启" : "关闭"]</b>，可通过<b>Alt+单击</b>[lights_enabled ? "关闭" : "开启"]。"
 
 
 /// The list of possible designs generated for the radial reskinning menu
@@ -50,7 +50,7 @@
 
 
 /obj/structure/stripper_pole/click_ctrl(mob/user)
-	var/choice = show_radial_menu(user, src, pole_designs, radius = 50, require_near = TRUE)
+	var/choice = chinese_skyrat_item_radial(user, src, pole_designs, radius = 50, require_near = TRUE)
 	if(!choice)
 		return CLICK_ACTION_BLOCKING
 	current_pole_color = choice
@@ -63,7 +63,7 @@
 // Alt-click to turn the lights on or off.
 /obj/structure/stripper_pole/click_alt(mob/user)
 	lights_enabled = !lights_enabled
-	balloon_alert(user, "lights [lights_enabled ? "on" : "off"]")
+	balloon_alert(user, "灯光已[lights_enabled ? "开启" : "关闭"]")
 	playsound(user, lights_enabled ? 'sound/items/weapons/magin.ogg' : 'sound/items/weapons/magout.ogg', 40, TRUE)
 	update_icon_state()
 	update_icon()
@@ -99,14 +99,14 @@
 	if(!proximity_flag)
 		return
 	if(pole_in_use)
-		balloon_alert(user, "already in use!")
+		balloon_alert(user, "已有人使用！")
 		return
 	pole_in_use = TRUE
 	dancer = user
 	user.setDir(SOUTH)
 	user.Stun(10 SECONDS)
 	user.forceMove(loc)
-	user.visible_message(pick(span_purple("[user] dances on [src]!"), span_purple("[user] flexes their hip-moving skills on [src]!")))
+	user.visible_message(pick(span_purple("[user]扶着[src]跳起了舞！"), span_purple("[user]在[src]上展示着扭胯的技巧！")))
 	dance_animate(user)
 	pole_in_use = FALSE
 	dancer = null
@@ -151,15 +151,15 @@
 
 /obj/structure/stripper_pole/click_ctrl_shift(mob/user)
 	add_fingerprint(user)
-	balloon_alert(user, "disassembling...")
+	balloon_alert(user, "正在拆卸……")
 	if(!do_after(user, 8 SECONDS, src))
-		balloon_alert(user, "disassembly interrupted!")
+		balloon_alert(user, "拆卸中断！")
 		return
 
-	balloon_alert(user, "disassembled")
+	balloon_alert(user, "已拆卸")
 	new /obj/item/construction_kit/pole(get_turf(user))
 	qdel(src)
 
 /obj/structure/stripper_pole/examine(mob/user)
 	. = ..()
-	. += span_purple("[src] can be disassembled by using Ctrl+Shift+Click")
+	. += span_purple("可通过Ctrl+Shift+单击拆卸[src]。")
