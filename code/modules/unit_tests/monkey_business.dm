@@ -26,7 +26,7 @@
 		var/area/monkey_zone = GLOB.areas_by_type[GLOB.the_station_areas[monkey_id]]
 		var/mob/living/carbon/human/monkey = allocate(/mob/living/carbon/human/consistent, get_first_open_turf_in_area(monkey_zone))
 		monkey.set_species(/datum/species/monkey)
-		monkey.set_name("Monkey [monkey_id]")
+		monkey.set_name("猴子 [monkey_id]")
 		if(monkey_id % monkey_angry_nth == 0) // BLOOD FOR THE BLOOD GODS
 			var/obj/next_weapon = monkey_weapon_list[monkey_weapon_index]
 			monkey_weapon_index = (monkey_weapon_index % length(monkey_weapon_list)) + 1

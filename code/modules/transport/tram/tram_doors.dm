@@ -2,7 +2,7 @@
 #define TRAM_DOOR_RELEASE_THRESHOLD 17
 
 /obj/machinery/door/airlock/tram
-	name = "tram door"
+	name = "电车车门"
 	icon = 'icons/obj/doors/airlocks/tram/tram.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/tram/tram-overlays.dmi'
 	multi_tile = TRUE
@@ -96,7 +96,7 @@
 		for(var/turf/checked_turf in locs)
 			for(var/atom/movable/blocker in checked_turf)
 				if(blocker.density && blocker != src) //something is blocking the door
-					say("Please stand clear of the doors!")
+					say("请远离车门！")
 					playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 					layer = OPEN_DOOR_LAYER
 					set_airlock_state(AIRLOCK_OPEN, animated = FALSE, force_type = forced)
@@ -151,7 +151,7 @@
 /obj/machinery/door/airlock/tram/crush()
 	for(var/turf/checked_turf in locs)
 		for(var/mob/living/future_pancake in checked_turf)
-			future_pancake.visible_message(span_warning("[src] beeps angrily and closes on [future_pancake]!"), span_userdanger("[src] beeps angrily and closes on you!"))
+			future_pancake.visible_message(span_warning("[src] 愤怒地鸣叫着夹住了 [future_pancake]！"), span_userdanger("[src] 愤怒地鸣叫着夹住了你！"))
 			var/sig_return = SEND_SIGNAL(future_pancake, COMSIG_LIVING_DOORCRUSHED, src)
 			future_pancake.add_splatter_floor(loc)
 			log_combat(src, future_pancake, "crushed")
@@ -180,7 +180,7 @@
 		return
 
 	playsound(src, 'sound/machines/buzz/buzz-two.ogg', 60, vary = FALSE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-	say("YOU'RE HOLDING UP THE TRAM, ASSHOLE!")
+	say("你挡住电车了，混蛋！")
 	close(forced = BYPASS_DOOR_CHECKS)
 
 /**
@@ -211,7 +211,7 @@
  */
 /obj/machinery/door/airlock/tram/examine(mob/user)
 	. = ..()
-	. += span_notice("It has an emergency mechanism to open using [EXAMINE_HINT("just your hands")] in the event of an emergency.")
+	. += span_notice("它有一个紧急机构，可以在紧急情况下用[EXAMINE_HINT("双手")]打开。")
 
 /**
  * Tram doors can be opened with hands when unpowered
@@ -223,7 +223,7 @@
 	if(!hasPower()  && density)
 		COOLDOWN_START(src, release_cooldown, 1.2 SECONDS)
 		playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 40, vary = FALSE)
-		balloon_alert_to_viewers("pulling emergency exit!", vision_distance = COMBAT_MESSAGE_RANGE)
+		balloon_alert_to_viewers("正在拉开紧急出口！", vision_distance = COMBAT_MESSAGE_RANGE)
 		if(do_after(user, 1.2 SECONDS, target = src))
 			open(forced = BYPASS_DOOR_CHECKS)
 
@@ -249,7 +249,7 @@
 		return // we're already animating, don't reset that
 	COOLDOWN_START(src, release_cooldown, 1.2 SECONDS)
 	playsound(src, soundin = 'sound/machines/airlock/airlockforced.ogg', vol = 40, vary = FALSE)
-	balloon_alert_to_viewers("pulling emergency exit!", vision_distance = COMBAT_MESSAGE_RANGE)
+	balloon_alert_to_viewers("正在拉开紧急出口！", vision_distance = COMBAT_MESSAGE_RANGE)
 	if(do_after(user, delay = 0.6 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE | IGNORE_SLOWDOWNS))
 		open(forced = BYPASS_DOOR_CHECKS)
 

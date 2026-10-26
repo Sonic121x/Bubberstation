@@ -20,7 +20,7 @@
 	var/list/existing_names = list()
 	for(var/datum/action/cooldown/spell/spell_type as anything in types_to_test)
 		var/spell_name = initial(spell_type.name)
-		if(spell_name == "Spell")
+		if(spell_name == "法术")
 			continue
 
 		if(spell_name in existing_names)

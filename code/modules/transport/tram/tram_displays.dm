@@ -1,6 +1,6 @@
 /obj/machinery/transport/destination_sign
-	name = "destination sign"
-	desc = "A display to show you what direction the tram is travelling."
+	name = "目的地指示牌"
+	desc = "显示电车行驶方向的指示牌。"
 	icon = 'icons/obj/tram/tram_display.dmi'
 	icon_state = "desto_blank"
 	base_icon_state = "desto"
@@ -35,8 +35,8 @@
 	flags_1 = NONE
 
 /obj/item/wallframe/indicator_display
-	name = "indicator display frame"
-	desc = "Used to build tram indicator displays, just secure to the wall."
+	name = "指示牌框架"
+	desc = "用来建造电车指示牌，只要固定到墙上即可。"
 	icon_state = "indi_blank"
 	icon = 'icons/obj/tram/tram_indicator.dmi'
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
@@ -67,9 +67,9 @@
 /obj/machinery/transport/destination_sign/indicator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_RMB] = "unanchor"
+		context[SCREENTIP_CONTEXT_RMB] = "解除固定"
 	if(held_item?.tool_behaviour == TOOL_WELDER)
-		context[SCREENTIP_CONTEXT_LMB] = "repair"
+		context[SCREENTIP_CONTEXT_LMB] = "修理"
 
 	return CONTEXTUAL_SCREENTIP_SET
 
@@ -78,7 +78,7 @@
 	. = ..()
 
 	if(panel_open)
-		. += span_notice("It is secured to the tram wall with [EXAMINE_HINT("bolts.")]")
+		. += span_notice("它通过[EXAMINE_HINT("螺栓")]固定在电车墙壁上。")
 
 /obj/machinery/transport/destination_sign/on_deconstruction(disassembled)
 	var/atom/drop = drop_location()
@@ -92,11 +92,11 @@
 
 /obj/machinery/transport/destination_sign/indicator/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "[anchored ? "un" : ""]securing...")
+	balloon_alert(user, "[anchored ? "正在解除固定……" : "正在固定……"]")
 	tool.play_tool_sound(src)
 	if(tool.use_tool(src, user, 6 SECONDS))
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, vary = TRUE)
-		balloon_alert(user, "[anchored ? "un" : ""]secured")
+		balloon_alert(user, "[anchored ? "已解除固定" : "已固定"]")
 		deconstruct()
 		return TRUE
 

@@ -225,7 +225,7 @@
 	performing_ckeys -= user.ckey
 
 	SSblackbox.record_feedback("tally", "tutorial_completed", 1, "[tutorial_type]")
-	log_game("[key_name(user)] completed the [tutorial_type] tutorial.")
+	log_game("[key_name(user)] 完成了 [tutorial_type] 教程。")
 
 	if (SSdbcore.IsConnected())
 		INVOKE_ASYNC(src, PROC_REF(log_completion_to_database), user.ckey)

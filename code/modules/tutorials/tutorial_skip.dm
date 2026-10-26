@@ -14,7 +14,7 @@
 	transform = transform.Scale(9, 1)
 	skip_text = new(null, hud_owner)
 	vis_contents += skip_text
-	maptext = MAPTEXT_VCR_OSD_MONO("<span style='font-size: 10px; text-align: left'>Remind me later</span>")
+	maptext = MAPTEXT_VCR_OSD_MONO("<span style='font-size: 10px; text-align: left'>稍后提醒我</span>")
 	animate(src, alpha = 245, time = 0.8 SECONDS, easing = SINE_EASING)
 
 /atom/movable/screen/tutorial_skip/Destroy()
@@ -33,5 +33,5 @@
 
 /atom/movable/screen/tutorial_skip_text/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	var/newtext = MAPTEXT_VCR_OSD_MONO("<span style='font-size: 10px; text-align: left'>Remind me later</span>")
+	var/newtext = MAPTEXT_VCR_OSD_MONO("<span style='font-size: 10px; text-align: left'>稍后提醒我</span>")
 	animate(src, alpha = 255, time = 0.5 SECONDS, maptext=newtext)
