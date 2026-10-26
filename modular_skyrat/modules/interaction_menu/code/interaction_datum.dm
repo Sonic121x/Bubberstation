@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY_TYPED(interaction_instances, /datum/interaction)
 	usage = sanitize_text(json["usage"])
 	sound_use = sanitize_integer(json["sound_use"], 0, 1, 0)
 	sound_range = sanitize_integer(json["sound_range"], 1, 7, 1)
-	sound_possible = sanitize_islist(json["sound_possible"], list("json 错误"))
+	sound_possible = sanitize_islist(json["sound_possible"], list("json error"))
 	interaction_requires = sanitize_islist(json["interaction_requires"], list())
 	color = sanitize_text(json["color"])
 

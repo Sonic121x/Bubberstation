@@ -222,4 +222,4 @@
 		displayed += step == LEFT_ATTACK ? "左键攻击" : step == RIGHT_ATTACK ? "右键攻击" : step
 	return jointext(displayed, "、")
 
-#include "chinese_batch_six_display.dm"
+#include "chinese_batch_eight_display.dm"

@@ -57,7 +57,7 @@
 										'modular_skyrat/modules/modular_items/lewd_items/sounds/final_f3.ogg'), 50, TRUE, pref_to_check = /datum/preference/toggle/erp/sounds)
 
 	var/self_orgasm = FALSE
-	var/self_their = p_their()
+	// var/self_their = p_their()
 
 	var/obj/item/organ/genital/testicles/testicles = get_organ_slot(ORGAN_SLOT_TESTICLES)
 	testicles?.calculate_cumshot()
@@ -165,7 +165,7 @@
 						span_userlove("你一股又一股地把滚烫的精液射在地板上！"))
 				else
 					var/mob/living/carbon/human/target_human = interactable_inrange_humans[target_choice]
-					var/target_human_them = target_human.p_them()
+					// var/target_human_them = target_human.p_them()
 
 					var/list/target_buttons = list()
 

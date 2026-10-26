@@ -31,20 +31,20 @@
 	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
 	if(victim == user)
-		victim.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位 [victim.p_their()] 的[limb.plaintext_zone]。"), span_warning("你开始用 [I] 复位自己的[limb.plaintext_zone][scanned ? "，同时留意全息影像的指示" : ""]……"))
+		victim.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位自己的[chinese_body_zone_display(limb.plaintext_zone)]。"), span_warning("你开始用 [I] 复位自己的[chinese_body_zone_display(limb.plaintext_zone)][scanned ? "，同时留意全息影像的指示" : ""]……"))
 	else
-		user.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位 [victim] 的[limb.plaintext_zone]。"), span_notice("你开始用 [I] 复位 [victim] 的[limb.plaintext_zone][scanned ? "，同时留意全息影像的指示" : ""]……"))
+		user.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]。"), span_notice("你开始用 [I] 复位 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)][scanned ? "，同时留意全息影像的指示" : ""]……"))
 
 	if(!do_after(user, treatment_delay, target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(victim == user)
 		limb.receive_damage(brute=25, wound_bonus=CANT_WOUND)
-		victim.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了 [victim.p_their()] [limb.plaintext_zone] 的复位！"), span_userdanger("你伴随着令人不适的<b>咔嚓</b>声，把自己的[limb.plaintext_zone]复位了！"))
+		victim.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了自己[chinese_body_zone_display(limb.plaintext_zone)]的复位！"), span_userdanger("你伴随着令人不适的<b>咔嚓</b>声，把自己的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"))
 	else
 		limb.receive_damage(brute=20, wound_bonus=CANT_WOUND)
-		user.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[limb.plaintext_zone] 复位！"), span_nicegreen("你伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[limb.plaintext_zone] 复位！"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] 伴随着令人不适的<b>咔嚓</b>声，把你的[limb.plaintext_zone]复位了！"))
+		user.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]复位！"), span_nicegreen("你伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]复位！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user] 伴随着令人不适的<b>咔嚓</b>声，把你的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"))
 
 	victim.emote("scream")
 	playsound(user, 'sound/effects/wounds/crack1.ogg', 70, TRUE)
@@ -63,20 +63,20 @@
 	var/treatment_delay = base_treat_time * self_penalty_mult * scanned_mult
 
 	if(victim == user)
-		victim.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位 [victim.p_their()] 的[limb.plaintext_zone]。"), span_warning("你开始用 [I] 复位自己的[limb.plaintext_zone][scanned ? "，同时留意全息影像的指示" : ""]……"))
+		victim.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位自己的[chinese_body_zone_display(limb.plaintext_zone)]。"), span_warning("你开始用 [I] 复位自己的[chinese_body_zone_display(limb.plaintext_zone)][scanned ? "，同时留意全息影像的指示" : ""]……"))
 	else
-		user.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位 [victim] 的[limb.plaintext_zone]。"), span_notice("你开始用 [I] 复位 [victim] 的[limb.plaintext_zone][scanned ? "，同时留意全息影像的指示" : ""]……"))
+		user.visible_message(span_danger("[user] 开始[scanned ? "娴熟地" : ""]用 [I] 复位 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]。"), span_notice("你开始用 [I] 复位 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)][scanned ? "，同时留意全息影像的指示" : ""]……"))
 
 	if(!do_after(user, treatment_delay, target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(victim == user)
 		limb.receive_damage(brute=45, wound_bonus=CANT_WOUND)
-		victim.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了 [victim.p_their()] [limb.plaintext_zone] 的复位！"), span_userdanger("你伴随着令人不适的<b>咔嚓</b>声，把自己的[limb.plaintext_zone]复位了！"))
+		victim.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了自己[chinese_body_zone_display(limb.plaintext_zone)]的复位！"), span_userdanger("你伴随着令人不适的<b>咔嚓</b>声，把自己的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"))
 	else
 		limb.receive_damage(brute=40, wound_bonus=CANT_WOUND)
-		user.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[limb.plaintext_zone] 复位！"), span_nicegreen("你伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[limb.plaintext_zone] 复位！"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] 伴随着令人不适的<b>咔嚓</b>声，把你的[limb.plaintext_zone]复位了！"))
+		user.visible_message(span_danger("[user] 伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]复位！"), span_nicegreen("你伴随着令人不适的<b>咔嚓</b>声，完成了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]复位！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user] 伴随着令人不适的<b>咔嚓</b>声，把你的[chinese_body_zone_display(limb.plaintext_zone)]复位了！"))
 
 	victim.emote("scream")
 	playsound(user, 'sound/effects/wounds/crack2.ogg', 70, TRUE)

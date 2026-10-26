@@ -199,7 +199,7 @@
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "CRAB-17 协议电话"
 	desc = "CRAB-17 协议电话，一部从不明第三方借来的电话，可用于搞垮太空市场，把船员的损失汇入你的银行账户。\
-		不过船员可以把资金转移到一个新的银行网站，除非他们死抱着不放，那样的话只能说是活该。"
+	不过船员可以把资金转移到一个新的银行网站，除非他们死抱着不放，那样的话只能说是活该。"
 	item = /obj/item/suspiciousphone
 	restricted = TRUE
 	cost = 7

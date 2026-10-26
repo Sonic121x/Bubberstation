@@ -48,6 +48,6 @@
 			"MOD 时间停止模块" = "MOD timestopper module", "MOD 时间线跳跃模块" = "MOD timeline jumper module", "MOD 时间流抹除模块" = "MOD timestream eradication module",
 			"MOD 护目镜模块" = "MOD visor module", "MOD 医疗护目镜模块" = "MOD medical visor module", "MOD 诊断护目镜模块" = "MOD diagnostic visor module",
 			"MOD 安保护目镜模块" = "MOD security visor module", "MOD 介子护目镜模块" = "MOD meson visor module", "MOD 热成像护目镜模块" = "MOD thermal visor module",
-			"MOD 夜视护目镜模块" = "MOD night visor module", "MOD 夜视模块" = "MOD night vision module"
+			"MOD 夜视护目镜模块" = "MOD night visor module", "MOD 夜视模块" = "MOD night vision module", "MOD 电路适配器模块" = "MOD circuit adapter module"
 		)
 	return names[value] ? capitalize(names[value]) : value

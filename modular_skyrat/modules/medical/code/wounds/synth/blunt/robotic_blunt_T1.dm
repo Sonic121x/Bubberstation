@@ -54,13 +54,13 @@
 
 	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
 	var/your_or_other = (user == victim ? "你的" : "[victim]的")
-	victim.visible_message(span_notice("[user] 开始拧紧[their_or_other][limb.plaintext_zone]上的螺丝……"), \
-		span_notice("你开始拧紧[your_or_other][limb.plaintext_zone]上的螺丝……"))
+	victim.visible_message(span_notice("[user] 开始拧紧[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]上的螺丝……"), \
+		span_notice("你开始拧紧[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]上的螺丝……"))
 
 	if (!screwdriver_tool.use_tool(target = victim, user = user, delay = (6 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
-	victim.visible_message(span_green("[user] 拧紧了[their_or_other][limb.plaintext_zone]的螺丝！"), \
-		span_green("你拧紧了[your_or_other][limb.plaintext_zone]的螺丝！"))
+	victim.visible_message(span_green("[user] 拧紧了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的螺丝！"), \
+		span_green("你拧紧了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的螺丝！"))
 
 	remove_wound()

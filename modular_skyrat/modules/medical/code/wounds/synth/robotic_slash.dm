@@ -236,7 +236,7 @@
 /datum/wound/electrical_damage/proc/get_heat_healing(do_message = prob(heat_heal_message_chance))
 	var/healing_amount = max((victim.bodytemperature - heat_thresh_to_heal), 0) * heat_differential_healing_mult
 	if (do_message && healing_amount)
-		to_chat(victim, span_notice("你感觉[limb.plaintext_zone]内的焊锡重新凝固，修复了你的[name]……"))
+		to_chat(victim, span_notice("你感觉[chinese_body_zone_display(limb.plaintext_zone)]内的焊锡重新凝固，修复了你的[name]……"))
 
 	return healing_amount
 
@@ -361,21 +361,21 @@
 	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 	var/replacing_or_suturing = (is_suture ? "修复一些" : "更换")
 	while (suturing_item.tool_start_check())
-		user?.visible_message(span_danger("[user] 开始用 [suturing_item] [replacing_or_suturing][their_or_other][limb.plaintext_zone]内的线路……"), \
-			span_notice("你开始用 [suturing_item] [replacing_or_suturing][your_or_other][limb.plaintext_zone]内的线路……"))
+		user?.visible_message(span_danger("[user] 开始用 [suturing_item] [replacing_or_suturing][their_or_other][chinese_body_zone_display(limb.plaintext_zone)]内的线路……"), \
+			span_notice("你开始用 [suturing_item] [replacing_or_suturing][your_or_other][chinese_body_zone_display(limb.plaintext_zone)]内的线路……"))
 		if (!suturing_item.use_tool(target = victim, user = user, delay = ELECTRICAL_DAMAGE_SUTURE_WIRE_BASE_DELAY * delay_mult, amount = 1, volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 			return
 
 		if (user != victim && user.combat_mode)
-			user?.visible_message(span_danger("[user] 把[their_or_other][limb.plaintext_zone]的线路扯坏了一些！"), \
-				span_danger("你把[your_or_other][limb.plaintext_zone]的线路扯坏了一些！"), ignored_mobs = victim)
-			to_chat(victim, span_userdanger("[capitalize(your_or_other)][limb.plaintext_zone]的线路被扯坏了一些！"))
+			user?.visible_message(span_danger("[user] 把[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), \
+				span_danger("你把[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), ignored_mobs = victim)
+			to_chat(victim, span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]的线路被扯坏了一些！"))
 			adjust_intensity(change * 2)
 		else
 			var/repairs_or_replaces = (is_suture ? "修复" : "更换")
 			var/repair_or_replace = (is_suture ? "修复" : "更换")
-			user?.visible_message(span_notice("[user] [repairs_or_replaces]了[their_or_other][limb.plaintext_zone]的一些线路！"), \
-				span_notice("你[repair_or_replace]了[your_or_other][limb.plaintext_zone]的一些线路！"))
+			user?.visible_message(span_notice("[user] [repairs_or_replaces]了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"), \
+				span_notice("你[repair_or_replace]了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"))
 			adjust_intensity(-change)
 			victim?.balloon_alert(user, "强度降至 [get_intensity_mult() * 100]%")
 
@@ -425,19 +425,19 @@
 	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
 	var/your_or_other = (user == victim ? "你的" : "[victim]的")
 	while (wirecutting_tool.tool_start_check())
-		user?.visible_message(span_danger("[user] 开始复位[their_or_other][limb.plaintext_zone]内错位的线路……"), \
-			span_notice("你开始复位[your_or_other][limb.plaintext_zone]内错位的线路……"))
+		user?.visible_message(span_danger("[user] 开始复位[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]内错位的线路……"), \
+			span_notice("你开始复位[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]内错位的线路……"))
 		if (!wirecutting_tool.use_tool(target = victim, user = user, delay = ELECTRICAL_DAMAGE_WIRECUTTER_BASE_DELAY * delay_mult, volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 			return
 
 		if (user != victim && user.combat_mode)
-			user?.visible_message(span_danger("[user] 把[their_or_other][limb.plaintext_zone]的线路扯坏了一些！"), \
-				span_danger("你把[your_or_other][limb.plaintext_zone]的线路扯坏了一些！"), ignored_mobs = victim)
-			to_chat(victim, span_userdanger("[capitalize(your_or_other)][limb.plaintext_zone]的线路被扯坏了一些！"))
+			user?.visible_message(span_danger("[user] 把[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), \
+				span_danger("你把[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的线路扯坏了一些！"), ignored_mobs = victim)
+			to_chat(victim, span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]的线路被扯坏了一些！"))
 			adjust_intensity(change * 2)
 		else
-			user?.visible_message(span_notice("[user] 复位了[their_or_other][limb.plaintext_zone]的一些线路！"), \
-				span_notice("你复位了[your_or_other][limb.plaintext_zone]的一些线路！"))
+			user?.visible_message(span_notice("[user] 复位了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"), \
+				span_notice("你复位了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的一些线路！"))
 			adjust_intensity(-change)
 			victim?.balloon_alert(user, "强度降至 [get_intensity_mult() * 100]%")
 
@@ -447,7 +447,7 @@
 /// If fixed() is true, we remove ourselves and return TRUE. FALSE otherwise.
 /datum/wound/electrical_damage/proc/remove_if_fixed()
 	if (fixed())
-		to_chat(victim, span_green("你的[limb.plaintext_zone]已从[name]中恢复！"))
+		to_chat(victim, span_green("你的[chinese_body_zone_display(limb.plaintext_zone)]已从[name]中恢复！"))
 		remove_wound()
 		return TRUE
 	return FALSE
@@ -486,7 +486,7 @@
 	if (!message)
 		flags |= SHOCK_SUPPRESS_MESSAGE
 		if (tell_victim_if_no_message && target == victim)
-			to_chat(target, span_warning("你的[limb.plaintext_zone]短路并电了你一下！"))
+			to_chat(target, span_warning("你的[chinese_body_zone_display(limb.plaintext_zone)]短路并电了你一下！"))
 	if (ignore_immunity)
 		flags |= SHOCK_IGNORE_IMMUNITY
 	if (delay_stun)

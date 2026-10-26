@@ -75,7 +75,7 @@
 
 	if(announce_contents)
 		priority_announce(command_report_content, command_report_title, report_sound, sender_override = command_name, has_important_message = TRUE)
-	print_command_report(command_report_content, "[announce_contents ? "" : "机密 "][command_name] 动态", !announce_contents)
+	print_command_report(command_report_content, "[announce_contents ? "" : "机密 "][command_name]通报", !announce_contents)
 
 	log_admin("[key_name(usr)] 创建了一份指挥报告：“[command_report_content]”，发送者为“[command_name]”。")
 	message_admins("[key_name_admin(usr)] 创建了一份指挥报告，发送者为“[command_name]”。")

@@ -38,13 +38,13 @@
 		limb.receive_damage(effective_damage, wound_bonus = CANT_WOUND, damage_source = src)
 		if(effective_damage && prob(33))
 			var/gauze_text = (gauze?.splint_factor ? "，不过 [gauze] 能帮忙减少一部分渗漏" : "")
-			to_chat(victim, span_danger("你的[limb.plaintext_zone]发出滋滋声，一些凝胶渗出并使外层金属变形[gauze_text]……"))
+			to_chat(victim, span_danger("你的[chinese_body_zone_display(limb.plaintext_zone)]发出滋滋声，一些凝胶渗出并使外层金属变形[gauze_text]……"))
 
 		if(regen_time_elapsed > regen_time_needed)
 			if(!victim || !limb)
 				qdel(src)
 				return
-			to_chat(victim, span_green("你[limb.plaintext_zone]内的凝胶已完全硬化，现在可以重新焊接了！"))
+			to_chat(victim, span_green("你[chinese_body_zone_display(limb.plaintext_zone)]内的凝胶已完全硬化，现在可以重新焊接了！"))
 			gelled = FALSE
 			ready_to_resolder = TRUE
 			ready_to_secure_internals = FALSE
@@ -162,13 +162,13 @@
 
 	var/limb_can_shock_pre_sleep = (victim.stat != DEAD && limb.biological_state & BIO_WIRED)
 	var/shock_or_not = (limb_can_shock_pre_sleep ? "，有触电风险" : "")
-	var/self_message = span_warning("你开始用 [crowbarring_item] 撬开[your_or_other][limb.plaintext_zone][shock_or_not]……")
+	var/self_message = span_warning("你开始用 [crowbarring_item] 撬开[your_or_other][chinese_body_zone_display(limb.plaintext_zone)][shock_or_not]……")
 
-	user?.visible_message(span_bolddanger("[user] 开始用 [crowbarring_item] 撬开[their_or_other][limb.plaintext_zone]！"), self_message, ignored_mobs = list(victim))
+	user?.visible_message(span_bolddanger("[user] 开始用 [crowbarring_item] 撬开[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"), self_message, ignored_mobs = list(victim))
 
 	var/victim_message
 	if (user != victim) // this exists so we can do a userdanger
-		victim_message = span_userdanger("[user] 开始用 [crowbarring_item] 撬开你的[limb.plaintext_zone]！")
+		victim_message = span_userdanger("[user] 开始用 [crowbarring_item] 撬开你的[chinese_body_zone_display(limb.plaintext_zone)]！")
 	else
 		victim_message = self_message
 	to_chat(victim, victim_message)
@@ -203,10 +203,10 @@
 			electrocute_flags &= ~SHOCK_NO_HUMAN_ANIM
 			stunned = TRUE
 
-			message = span_boldwarning("[user] 被[their_or_other][limb.plaintext_zone]电了一下，撬棍一滑，[user] 短暂地抽搐起来！")
-			self_message = span_userdanger("你被[your_or_other][limb.plaintext_zone]电了一下，撬棍脱手了！")
+			message = span_boldwarning("[user] 被[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]电了一下，撬棍一滑，[user] 短暂地抽搐起来！")
+			self_message = span_userdanger("你被[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]电了一下，撬棍脱手了！")
 			if (user != victim)
-				victim_message = span_userdanger("[user] 想撕开你的[limb.plaintext_zone]时被电了一下！")
+				victim_message = span_userdanger("[user] 想撕开你的[chinese_body_zone_display(limb.plaintext_zone)]时被电了一下！")
 
 		var/shock_damage = CROWBAR_OPEN_SHOCK_POWER
 		var/obj/item/stack/medical/wrap/gauze = LAZYACCESS(limb.applied_items, LIMB_ITEM_GAUZE)
@@ -220,13 +220,13 @@
 		if (!limb_can_shock)
 			other_shock_text = "，还被金色电弧击中"
 			self_shock_text = "，但立刻被其中蕴含的电流电了一下"
-		message = span_boldwarning("[user] 用撬棍撕开了[their_or_other][limb.plaintext_zone][other_shock_text]！")
-		self_message = span_warning("你用撬棍撕开了[your_or_other][limb.plaintext_zone][self_shock_text]！")
+		message = span_boldwarning("[user] 用撬棍撕开了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)][other_shock_text]！")
+		self_message = span_warning("你用撬棍撕开了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)][self_shock_text]！")
 		if (user != victim)
-			victim_message = span_userdanger("你的[limb.plaintext_zone]在 [user] 用撬棍撕开时碎裂了！")
+			victim_message = span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]在 [user] 用撬棍撕开时碎裂了！")
 
 		playsound(get_turf(crowbarring_item), 'sound/effects/bang.ogg', 35, TRUE) // we did it!
-		to_chat(user, span_green("你撕开了[your_or_other][limb.plaintext_zone]，造成了严重损伤，但让用螺丝刀固定内部结构容易多了！"))
+		to_chat(user, span_green("你撕开了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]，造成了严重损伤，但让用螺丝刀固定内部结构容易多了！"))
 		var/damage = CROWBAR_OPEN_BRUTE_DAMAGE
 		if (limb_essential()) // can't be disabled
 			damage *= CROWBAR_OPEN_ESSENTIAL_LIMB_DAMAGE_MULT
@@ -306,22 +306,22 @@
 
 	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
 	var/your_or_other = (user == victim ? "你的" : "[victim]的")
-	user?.visible_message(span_notice("[user] 开始进行固定[their_or_other][limb.plaintext_zone]内部结构的精细操作……"), \
-		span_notice("你开始进行固定[your_or_other][limb.plaintext_zone]内部结构的精细操作……"))
+	user?.visible_message(span_notice("[user] 开始进行固定[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]内部结构的精细操作……"), \
+		span_notice("你开始进行固定[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]内部结构的精细操作……"))
 	if (confused)
-		to_chat(user, span_warning("你被[your_or_other][limb.plaintext_zone]的布局弄糊涂了！诊断 HUD 会有帮助，了解机修/工程线路也有帮助！你也可以用撬棍把肢体撕开，或者找别人帮忙。"))
+		to_chat(user, span_warning("你被[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的布局弄糊涂了！诊断 HUD 会有帮助，了解机修/工程线路也有帮助！你也可以用撬棍把肢体撕开，或者找别人帮忙。"))
 
 	if (!securing_item.use_tool(target = victim, user = user, delay = (10 SECONDS * delay_mult), volume = 50, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	if (prob(chance))
-		user?.visible_message(span_green("[user] 固定好了[their_or_other][limb.plaintext_zone]的内部结构！"), \
-			span_green("你固定好了[your_or_other][limb.plaintext_zone]的内部结构！"))
-		to_chat(user, span_green("[capitalize(your_or_other)][limb.plaintext_zone]的内部结构已固定！下一步是焊接/烧灼。"))
+		user?.visible_message(span_green("[user] 固定好了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]的内部结构！"), \
+			span_green("你固定好了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]的内部结构！"))
+		to_chat(user, span_green("[capitalize(your_or_other)][chinese_body_zone_display(limb.plaintext_zone)]的内部结构已固定！下一步是焊接/烧灼。"))
 		ready_to_secure_internals = FALSE
 		ready_to_resolder = TRUE
 	else
-		user?.visible_message(span_danger("[user] 失手弄伤了[their_or_other][limb.plaintext_zone]！"))
+		user?.visible_message(span_danger("[user] 失手弄伤了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"))
 		limb.receive_damage(brute = SECURE_INTERNALS_FAILURE_BRUTE_DAMAGE, damage_source = securing_item, wound_bonus = CANT_WOUND)
 
 	return TRUE
@@ -335,7 +335,7 @@
  */
 /datum/wound/blunt/robotic/secures_internals/proc/apply_gel(obj/item/stack/medical/bone_gel/gel, mob/user)
 	if (gelled)
-		to_chat(user, span_warning("[user == victim ? "你的" : "[victim]的"][limb.plaintext_zone]里已经灌满了骨胶！"))
+		to_chat(user, span_warning("[user == victim ? "你的" : "[victim]的"][chinese_body_zone_display(limb.plaintext_zone)]里已经灌满了骨胶！"))
 		return TRUE
 
 	var/delay_mult = 1
@@ -345,17 +345,17 @@
 	if (HAS_TRAIT(src, TRAIT_WOUND_SCANNED))
 		delay_mult *= 0.75
 
-	user.visible_message(span_danger("[user] 开始匆忙地把 [gel] 涂到 [victim] 的[limb.plaintext_zone]上……"), span_warning("你开始匆忙地把 [gel] 涂到[user == victim ? "你的" : "[victim]的"][limb.plaintext_zone]上，不管它似乎会对金属产生酸性腐蚀……"))
+	user.visible_message(span_danger("[user] 开始匆忙地把 [gel] 涂到 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]上……"), span_warning("你开始匆忙地把 [gel] 涂到[user == victim ? "你的" : "[victim]的"][chinese_body_zone_display(limb.plaintext_zone)]上，不管它似乎会对金属产生酸性腐蚀……"))
 
 	if (!do_after(user, (6 SECONDS * delay_mult), target = victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
 	gel.use(1)
 	if(user != victim)
-		user.visible_message(span_notice("[user] 把 [gel] 涂完了 [victim] 的[limb.plaintext_zone]，发出嘶嘶声！"), span_notice("你把 [gel] 涂完了 [victim] 的[limb.plaintext_zone]！"), ignored_mobs=victim)
-		to_chat(victim, span_userdanger("[user] 把 [gel] 涂完了你的[limb.plaintext_zone]，你能听到金属嘶嘶作响……"))
+		user.visible_message(span_notice("[user] 把 [gel] 涂完了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]，发出嘶嘶声！"), span_notice("你把 [gel] 涂完了 [victim] 的[chinese_body_zone_display(limb.plaintext_zone)]！"), ignored_mobs=victim)
+		to_chat(victim, span_userdanger("[user] 把 [gel] 涂完了你的[chinese_body_zone_display(limb.plaintext_zone)]，你能听到金属嘶嘶作响……"))
 	else
-		victim.visible_message(span_notice("[victim] 把 [gel] 涂完了自己的[limb.plaintext_zone]，发出滑稽的嘶嘶声！"), span_notice("你把 [gel] 涂完了自己的[limb.plaintext_zone]，你能听到金属嘶嘶作响……"))
+		victim.visible_message(span_notice("[victim] 把 [gel] 涂完了自己的[chinese_body_zone_display(limb.plaintext_zone)]，发出滑稽的嘶嘶声！"), span_notice("你把 [gel] 涂完了自己的[chinese_body_zone_display(limb.plaintext_zone)]，你能听到金属嘶嘶作响……"))
 
 	gelled = TRUE
 	set_disabling(TRUE)
@@ -372,8 +372,8 @@
 
 	var/their_or_other = (user == victim ? "自己的" : "[victim]的")
 	var/your_or_other = (user == victim ? "你的" : "[victim]的")
-	victim.visible_message(span_notice("[user] 开始重新焊接[their_or_other][limb.plaintext_zone]……"), \
-		span_notice("你开始重新焊接[your_or_other][limb.plaintext_zone]……"))
+	victim.visible_message(span_notice("[user] 开始重新焊接[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]……"), \
+		span_notice("你开始重新焊接[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]……"))
 
 	var/delay_mult = 1
 	if (welding_item.tool_behaviour == TOOL_CAUTERY)
@@ -384,8 +384,8 @@
 	if (!welding_item.use_tool(target = victim, user = user, delay = 7 SECONDS * delay_mult, volume = 50,  extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return TRUE
 
-	victim.visible_message(span_green("[user] 重新焊接好了[their_or_other][limb.plaintext_zone]！"), \
-		span_notice("你重新焊接好了[your_or_other][limb.plaintext_zone]！"))
+	victim.visible_message(span_green("[user] 重新焊接好了[their_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"), \
+		span_notice("你重新焊接好了[your_or_other][chinese_body_zone_display(limb.plaintext_zone)]！"))
 	remove_wound()
 	return TRUE
 

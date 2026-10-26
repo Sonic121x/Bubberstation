@@ -99,8 +99,8 @@
 	cost = 1
 
 /datum/uplink_item/badass/pinpointer
-	name = "盈余定位仪"
-	desc = "提供一台盈余定位仪，这是旧型号的存货，那些型号被一款云端 SaaS 版 PDA 应用取代后便遭淘汰。"
+	name = "库存定位仪"
+	desc = "提供一台库存定位仪，这是旧型号的存货，那些型号被一款云端 SaaS 版 PDA 应用取代后便遭淘汰。"
 	item = /obj/item/pinpointer/nuke/syndicate
 	cost = 2
 

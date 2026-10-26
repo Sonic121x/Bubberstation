@@ -356,10 +356,10 @@
 	var/damage_taken = take_damage(final_force, attacking_item.damtype, MELEE, 1, get_dir(src, user))
 	try_damage_component(damage_taken, user.zone_selected)
 
-	var/hit_verb = length(attacking_item.attack_verb_simple) ? "[pick(attacking_item.attack_verb_simple)]" : "hit"
+	var/hit_verb = length(attacking_item.attack_verb_simple) ? "[pick(attacking_item.attack_verb_simple)]" : "击中"
 	user.visible_message(
-		span_danger("[user] 用 [attacking_item] 击中了 [src][damage_taken ? "。" : "，但没有留下任何痕迹！"]"),
-		span_danger("你用 [attacking_item] 击中了 [src][damage_taken ? "。" : "，但没有留下任何痕迹！"]"),
+		span_danger("[user] 用 [attacking_item] [hit_verb]了 [src][damage_taken ? "。" : "，但没有留下任何痕迹！"]"),
+		span_danger("你用 [attacking_item] [hit_verb]了 [src][damage_taken ? "。" : "，但没有留下任何痕迹！"]"),
 		span_hear("你听到一声重击声。"),
 		COMBAT_MESSAGE_RANGE,
 	)

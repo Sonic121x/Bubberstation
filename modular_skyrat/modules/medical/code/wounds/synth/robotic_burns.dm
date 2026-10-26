@@ -281,7 +281,7 @@
 		if (victim)
 			var/gauze_or_not = (!isnull(gauze) ? "，不过 [gauze] 能帮忙把它固定住" : "")
 			var/clothing_text = (!victim.is_location_accessible(limb.body_zone) ? "，其衣物吸收了一部分液体" : "")
-			victim.visible_message(span_warning("[victim] 的[limb.plaintext_zone]因热冲击而绷紧[clothing_text][gauze_or_not]！"))
+			victim.visible_message(span_warning("[victim] 的[chinese_body_zone_display(limb.plaintext_zone)]因热冲击而绷紧[clothing_text][gauze_or_not]！"))
 			playsound(victim, 'sound/items/tools/welder.ogg', 25)
 
 		var/damage = (((abs(temp_delta) * heat_shock_delta_to_damage_ratio) * gauze_mult) * heat_shock_damage_mult) * heat_adjustment_used
@@ -295,15 +295,15 @@
 /datum/wound/burn/robotic/overheat/proc/check_temperature()
 	if (chassis_temperature <= cooling_threshold)
 		if (demotes_to)
-			victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]在稍微冷却后变成了更悦目的热色……"), span_green("你的[limb.plaintext_zone]似乎稍微冷却了一点！"))
+			victim.visible_message(span_green("[victim] 的[chinese_body_zone_display(limb.plaintext_zone)]在稍微冷却后变成了更悦目的热色……"), span_green("你的[chinese_body_zone_display(limb.plaintext_zone)]似乎稍微冷却了一点！"))
 			replace_wound(new demotes_to(cooling_threshold - cooling_demote_buffer))
 			return TRUE
 		else
-			victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]轻轻降温，恢复了原本的颜色！"), span_green("你的[limb.plaintext_zone]轻轻降温，恢复了原本的颜色！"))
+			victim.visible_message(span_green("[victim] 的[chinese_body_zone_display(limb.plaintext_zone)]轻轻降温，恢复了原本的颜色！"), span_green("你的[chinese_body_zone_display(limb.plaintext_zone)]轻轻降温，恢复了原本的颜色！"))
 			remove_wound()
 			return TRUE
 	else if (promotes_to && chassis_temperature >= heating_threshold)
-		victim.visible_message(span_danger("[victim] 的[limb.plaintext_zone]因进一步过热而变得更亮！"), span_userdanger("你的[limb.plaintext_zone]因进一步过热而嘶嘶作响、越来越亮！"))
+		victim.visible_message(span_danger("[victim] 的[chinese_body_zone_display(limb.plaintext_zone)]因进一步过热而变得更亮！"), span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]因进一步过热而嘶嘶作响、越来越亮！"))
 		replace_wound(new promotes_to(heating_threshold + heating_promote_buffer))
 		return TRUE
 

@@ -1,8 +1,8 @@
 /mob/living/carbon/examine_more(mob/user)
 	. = ..()
-	var/t_His = p_Their()
-	var/t_He = p_They()
-	var/t_Has = p_have()
+	// var/t_His = p_Their()
+	// var/t_He = p_They()
+	// var/t_Has = p_have()
 
 	var/any_bodypart_damage = FALSE
 	for(var/X in bodyparts)

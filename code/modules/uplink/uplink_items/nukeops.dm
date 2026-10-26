@@ -179,7 +179,7 @@
 /datum/uplink_item/weapon_kits/medium_cost/smg
 	name = "C-20r 冲锋枪箱（简单）"
 	desc = "一把装满弹的斯卡伯勒军火公司犊牛式冲锋枪。C-20r 发射 .45 子弹， \
-			弹匣容量 24 发，并兼容消音器。附三个备用弹匣。"
+		弹匣容量 24 发，并兼容消音器。附三个备用弹匣。"
 	item = /obj/item/storage/toolbox/guncase/c20r
 	relevant_child_items = list(
 		/datum/uplink_item/ammo_nuclear/ap/smg,
@@ -394,8 +394,8 @@
 	item = /obj/item/ammo_box/magazine/sniper_rounds
 
 /datum/uplink_item/ammo_nuclear/basic/sniper/surplussniper
-	name = ".50 BMG 盈余弹匣箱（AMSR）"
-	desc = "一整箱盈余 .50 BMG 弹匣。不如高品质弹匣， \
+	name = ".50 BMG 军剩弹匣箱（AMSR）"
+	desc = "一整箱军剩 .50 BMG 弹匣。不如高品质弹匣， \
 		通常缺少穿透力和冲击力，但足够让枪继续开火。 \
 		适合给一整队人配发。"
 	cost = 7 //1 TC per magazine, special price for a special deal!
@@ -436,7 +436,7 @@
 //Meme weapons: Literally just weapons used as a joke, shouldn't be particularly expensive.
 
 /datum/uplink_item/weapon_kits/surplus_smg
-	name = "盈余智能冲锋枪（侥幸）"
+	name = "军剩智能冲锋枪（侥幸）"
 	desc = "一把失败的实验性“智能枪”。使用 .160 火箭推进弹导致停止作用下降， \
 		但只要射手大致朝目标瞄准，整体精度就会提高。 \
 		荒谬的后坐力带来的操作负担相对增加，与宣传中的优势相矛盾，导致市场表现惨淡。不过， \
@@ -450,7 +450,7 @@
 	)
 
 /datum/uplink_item/ammo_nuclear/surplus_smg
-	name = "盈余智能冲锋枪弹匣（智能冲锋枪）"
+	name = "军剩智能冲锋枪弹匣（智能冲锋枪）"
 	desc = "一个大容量弹匣，供阿比耶尔智能冲锋枪使用。"
 	item = /obj/item/ammo_box/magazine/smartgun
 	cost = 1
@@ -625,7 +625,7 @@
 /datum/uplink_item/reinforcements/operative_reinforcement
 	name = "行动特工增援"
 	desc = "从我们的某个派系呼叫一名额外的队员。 \
-		他们只带一把盈余冲锋枪，所以建议给他们配好武装。"
+		他们只带一把军剩冲锋枪，所以建议给他们配好武装。"
 	item = /obj/item/antag_spawner/nuke_ops
 
 /datum/uplink_item/reinforcements/assault_borg

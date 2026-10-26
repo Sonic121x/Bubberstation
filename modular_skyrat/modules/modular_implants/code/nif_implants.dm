@@ -2,7 +2,7 @@
 /obj/item/organ/cyberimp/brain/nif/standard
 	name = "标准型 NIF"
 	desc = "“标准型”是对高质量纳米植入框架的等级划分。这一类别主要包括可靠性高、能与使用者无缝结合、并兼具存储空间与处理能力以运行大量程序的框架型号。"
-	manufacturer_notes = "尽管无数厂商都在生产自己的 NIF 实现，无论开源与否，全银河的标准型型号也不足一千台。它们是近五年来对旧款框架不断改良的成果，由于极难“自制”，因此相当抢手。"
+	manufacturer_notes = "尽管无数厂商都在生产自己的 NIF 实现，无论开源与否，全银河的标准型型号也不足一千款。它们是近五年来对旧款框架不断改良的成果，由于极难“自制”，因此相当抢手。"
 
 /obj/item/organ/cyberimp/brain/nif/roleplay_model
 	name = "经济型 NIF"

@@ -15,7 +15,7 @@
 		return "Minor Blink"
 	if(value == "召唤仆从" && ispath(action_type, /datum/action/cooldown/spell/summon_mob))
 		return "Summon Servant"
-	return chinese_legacy_action_storage_name(chinese_batch_six_action_priority(value, action_type), action_type)
+	return chinese_legacy_action_storage_name(chinese_batch_six_action_priority(chinese_batch_eight_action_storage_name(value, action_type), action_type), action_type)
 
 /proc/chinese_batch_six_action_storage_name(value, action_type)
 	return chinese_batch_seven_action_storage(chinese_batch_six_mob_action_storage(chinese_batch_six_items_action_storage(value, action_type), action_type), action_type)

@@ -133,7 +133,7 @@
 		if(istype(held_item, /obj/item/offhand))
 			held_item = victim.get_inactive_held_item()
 		if(held_item && victim.dropItemToGround(held_item))
-			victim.visible_message(span_danger("[victim] 惊得丢下了 [held_item]！"), span_warning("<b>你的[limb.plaintext_zone]受到的冲击让你丢下了 [held_item]！</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+			victim.visible_message(span_danger("[victim] 惊得丢下了 [held_item]！"), span_warning("<b>你的[chinese_body_zone_display(limb.plaintext_zone)]受到的冲击让你丢下了 [held_item]！</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
 
 /datum/wound/blunt/robotic/remove_wound(ignore_limb, replaced, destroying)
 	. = ..()
@@ -243,8 +243,8 @@
 	if (oscillating)
 		return
 
-	var/self_message = "你的[limb.plaintext_zone]开始震荡"
-	var/message = "[victim] 的[limb.plaintext_zone]开始震荡"
+	var/self_message = "你的[chinese_body_zone_display(limb.plaintext_zone)]开始震荡"
+	var/message = "[victim] 的[chinese_body_zone_display(limb.plaintext_zone)]开始震荡"
 	if (attacking_item)
 		message += "，来自撞击"
 	else if (from_movement)
@@ -284,7 +284,7 @@
 	if (!still_exists())
 		return FALSE
 
-	var/message = "来自你[limb.plaintext_zone]的震荡扩散开来，"
+	var/message = "来自你[chinese_body_zone_display(limb.plaintext_zone)]的震荡扩散开来，"
 	var/limb_message = "导致"
 	var/limb_affected
 
@@ -329,13 +329,13 @@
 
 /// Called when percussive maintenance succeeds at its random roll.
 /datum/wound/blunt/robotic/proc/handle_percussive_maintenance_success(attacking_item, mob/living/user)
-	victim.visible_message(span_green("[victim] 的[limb.plaintext_zone]被撞得咯咯作响，但看起来牢固多了！"), \
-		span_green("你的[limb.plaintext_zone]咔哒一声归位了！"))
+	victim.visible_message(span_green("[victim] 的[chinese_body_zone_display(limb.plaintext_zone)]被撞得咯咯作响，但看起来牢固多了！"), \
+		span_green("你的[chinese_body_zone_display(limb.plaintext_zone)]咔哒一声归位了！"))
 	remove_wound()
 
 /// Called when percussive maintenance fails at its random roll.
 /datum/wound/blunt/robotic/proc/handle_percussive_maintenance_failure(attacking_item, mob/living/user)
-	to_chat(victim, span_warning("你的[limb.plaintext_zone]晃了晃，但感觉没有任何好转。"))
+	to_chat(victim, span_warning("你的[chinese_body_zone_display(limb.plaintext_zone)]晃了晃，但感觉没有任何好转。"))
 
 /// If our victim has no gravity, the effects of movement are multiplied by this.
 #define VICTIM_MOVED_NO_GRAVITY_EFFECT_MULT 0.5

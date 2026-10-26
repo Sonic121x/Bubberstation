@@ -11,7 +11,7 @@
 #define OPS_SUBCATEGORY_SNIPER_AMMO "特种榴弹发射器弹药"
 
 /datum/armament_entry/assault_operatives/primary
-	category = "长武器"
+	category = "长枪"
 	category_item_limit = 6
 	mags_to_spawn = 3
 	cost = 10

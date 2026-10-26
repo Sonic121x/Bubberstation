@@ -10,7 +10,7 @@
 /datum/uplink_item/stealthy_weapons/dart_pistol
 	name = "飞镖手枪"
 	desc = "一把普通注射枪的微型化版本。开火时非常安静，而且能塞进任何 \
-		能放下小型物品的空间。"
+			能放下小型物品的空间。"
 	item = /obj/item/gun/syringe/syndicate
 	cost = 4
 	surplus = 50
@@ -19,7 +19,7 @@
 /datum/uplink_item/stealthy_weapons/dehy_carp
 	name = "脱水太空鲤鱼"
 	desc = "看起来像个鲤鱼毛绒玩具，但只要加点水，它就会变成真正的太空鲤鱼！使用前先在 \
-		手中激活它，它就知道不该杀你。"
+			手中激活它，它就知道不该杀你。"
 	item = /obj/item/toy/plush/carpplushie/dehy_carp
 	cost = 1
 

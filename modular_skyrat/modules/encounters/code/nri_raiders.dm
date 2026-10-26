@@ -529,7 +529,7 @@ GLOBAL_VAR(first_officer)
 	name = "\improper 联邦警察"
 	//Even if their goal's almost a complete antithesis to what pirates normally do, their spawn is, well, done via pirate code.
 	pref_flag = ROLE_SPACE_PIRATE
-	roundend_category = "NRI 警察"
+	roundend_category = "nri cops"
 	antagpanel_category = "联邦警察"
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE

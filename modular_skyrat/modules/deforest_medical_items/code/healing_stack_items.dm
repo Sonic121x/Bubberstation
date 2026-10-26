@@ -80,19 +80,19 @@
 		if(user == patient)
 			to_chat(user, span_notice("你牢记全息影像上关于自身伤势的提示，熟练地开始贴敷 [src]。"))
 		else
-			user.visible_message(span_warning("[user] 开始熟练地用 [src] 处理 [patient] 的[limb.plaintext_zone]上的伤口……"), span_warning("你牢记全息影像的提示，开始迅速用 [src] 处理 [patient] 的[limb.plaintext_zone]上的伤口……"))
+			user.visible_message(span_warning("[user] 开始熟练地用 [src] 处理 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"), span_warning("你牢记全息影像的提示，开始迅速用 [src] 处理 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"))
 	else
-		user.visible_message(span_warning("[user] 开始用 [src] 处理 [patient] 的[limb.plaintext_zone]上的伤口……"), span_warning("你开始用 [src] 处理[limb.plaintext_zone]上的伤口……"))
+		user.visible_message(span_warning("[user] 开始用 [src] 处理 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"), span_warning("你开始用 [src] 处理[chinese_body_zone_display(limb.plaintext_zone)]上的伤口……"))
 
 	if(!do_after(user, treatment_delay, target = patient))
 		return
 
-	user.visible_message(span_green("[user] 将 [src] 贴敷到 [patient] 的[limb.plaintext_zone]上。"), span_green("你处理了[limb.plaintext_zone]上的伤口。"))
+	user.visible_message(span_green("[user] 将 [src] 贴敷到 [patient] 的[chinese_body_zone_display(limb.plaintext_zone)]上。"), span_green("你处理了[chinese_body_zone_display(limb.plaintext_zone)]上的伤口。"))
 	playsound(patient, treatment_sound, 50, TRUE)
 	woundies.remove_wound()
 	if(!HAS_TRAIT(patient, TRAIT_ANALGESIA) || !causes_pain)
 		patient.emote("scream")
-		to_chat(patient, span_userdanger("你的[limb.plaintext_zone]在伤口迅速愈合时痛得像火烧一样，操！"))
+		to_chat(patient, span_userdanger("你的[chinese_body_zone_display(limb.plaintext_zone)]在伤口迅速愈合时痛得像火烧一样，操！"))
 		patient.add_mood_event("severe_surgery", /datum/mood_event/rapid_wound_healing)
 	limb.receive_damage(brute = INSTANT_WOUND_HEAL_LIMB_DAMAGE, wound_bonus = CANT_WOUND)
 	patient.adjust_stamina_loss(INSTANT_WOUND_HEAL_STAMINA_DAMAGE)
