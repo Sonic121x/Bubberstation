@@ -191,7 +191,7 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "倒空喷瓶", nu
 	possible_transfer_amounts = list(2,5)
 
 /obj/item/reagent_containers/spray/cleaner/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正把 \the [src] 的喷嘴塞进 [user.p_their()] 嘴里。看来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 正把 [src] 的喷嘴塞进自己嘴里。看来是想自杀！"))
 	if(do_after(user, 3 SECONDS, user))
 		if(reagents.total_volume >= amount_per_transfer_from_this)//if not empty
 			user.visible_message(span_suicide("[user] 扣下了扳机！"))
@@ -233,7 +233,7 @@ GAME_VERB_SRC(/obj/item/reagent_containers/spray, empty, usr, "倒空喷瓶", nu
 	list_reagents = null
 
 /obj/item/reagent_containers/spray/pepper/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始猛吸 \the [src]！看来 [user.p_theyre()] 想吸个痛快！"))
+	user.visible_message(span_suicide("[user] 开始猛吸 [src]！看来是想吸个痛快！"))
 	return OXYLOSS
 
 //water flower

@@ -62,7 +62,7 @@
 		return FALSE
 
 	if(HAS_TRAIT(cast_on, TRAIT_NO_MINDSWAP))
-		to_chat(owner, span_warning("这类魔法无法作用于 [cast_on.p_their()] 意识！"))
+		to_chat(owner, span_warning("这类魔法无法作用于 [cast_on] 的意识！"))
 		return FALSE
 
 	if(is_type_in_typecache(cast_on, blacklisted_mobs))
@@ -80,11 +80,11 @@
 		to_chat(owner, span_warning("你可不太想变成一具尸体！"))
 		return FALSE
 	if(!living_target.mind && target_requires_mind)
-		to_chat(owner, span_warning("[living_target.p_They()] 似乎没有可供交换的意识！"))
+		to_chat(owner, span_warning("[living_target] 似乎没有可供交换的意识！"))
 		return FALSE
 	if(!living_target.key && target_requires_key)
-		to_chat(owner, span_warning("[living_target.p_They()] 似乎陷入了紧张性木僵！ \
-			即便是魔法也无法触动 [living_target.p_their()] 空洞的意识。"))
+		to_chat(owner, span_warning("[living_target] 似乎陷入了紧张性木僵！ \
+			即便是魔法也无法触动其空洞的意识。"))
 		return FALSE
 
 	return TRUE
@@ -113,7 +113,7 @@
 		|| mind_to_swap.has_antag_datum(/datum/antagonist/rev) \
 		|| IS_FAKE_KEY(mind_to_swap.key) \
 	)
-		to_chat(caster, span_warning("[to_swap.p_Their()] 意识正在抵抗你的法术！"))
+		to_chat(caster, span_warning("[to_swap] 的意识正在抵抗你的法术！"))
 		return FALSE
 
 	// MIND TRANSFER BEGIN

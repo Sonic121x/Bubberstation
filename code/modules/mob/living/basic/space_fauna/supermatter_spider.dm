@@ -71,7 +71,7 @@
 /// Simple proc that plays the supermatter dusting sound and sends a visible message.
 /mob/living/basic/supermatter_spider/proc/dust_feedback(atom/target)
 	playsound(get_turf(src), 'sound/effects/supermatter.ogg', 10, TRUE)
-	visible_message(span_danger("[src] 撞上了 [target]，在一道耀眼的光芒中把 [target.p_them()] 化为尘埃！"))
+	visible_message(span_danger("[src] 撞上了 [target]，在一道耀眼的光芒中将其化为尘埃！"))
 
 /mob/living/basic/supermatter_spider/overcharged
 	name = "超载超物质蜘蛛"

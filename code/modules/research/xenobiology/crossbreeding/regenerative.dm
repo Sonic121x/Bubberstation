@@ -23,10 +23,10 @@ Regenerative extracts:
 		to_chat(user, span_warning("[src] 对死者无效！"))
 		return ITEM_INTERACT_BLOCKING
 	if(H != user)
-		user.visible_message(span_notice("[user] 把 [src] 在 [H] 身上捏碎，乳白色黏液迅速再生了 [H.p_their()] 全部伤势！"),
-			span_notice("你捏碎 [src]，它在 [H] 身上迸裂，乳白色黏液再生了 [H.p_their()] 的伤势。"))
+		user.visible_message(span_notice("[user] 把 [src] 在 [H] 身上捏碎，乳白色黏液迅速治愈了其全部伤势！"),
+			span_notice("你捏碎 [src]，它在 [H] 身上迸裂，乳白色黏液治愈了其伤势。"))
 	else
-		user.visible_message(span_notice("[user] 把 [src] 在自己身上捏碎，乳白色黏液迅速再生了 [user.p_their()] 全部伤势！"),
+		user.visible_message(span_notice("[user] 把 [src] 在自己身上捏碎，乳白色黏液迅速治愈了其全部伤势！"),
 			span_notice("你捏碎 [src]，它在你的手中迸裂，乳白色黏液溅了你一身，迅速再生了你的伤势！"))
 	core_effect_before(H, user)
 	user.do_attack_animation(interacting_with)
@@ -187,7 +187,7 @@ Regenerative extracts:
 	effect_desc = "完全治愈目标，并随机改变目标的颜色。"
 
 /obj/item/slimecross/regenerative/pyrite/core_effect(mob/living/target, mob/user)
-	target.visible_message(span_warning("覆盖 [target] 的乳白色黏液把 [target.p_them()] 染成了另一种颜色！"))
+	target.visible_message(span_warning("覆盖 [target] 的乳白色黏液将其染成了另一种颜色！"))
 	target.add_atom_colour(color_transition_filter(rgb(rand(0,255), rand(0,255), rand(0,255)), SATURATION_OVERRIDE), WASHABLE_COLOUR_PRIORITY)
 
 /obj/item/slimecross/regenerative/red

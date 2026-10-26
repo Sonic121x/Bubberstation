@@ -15,7 +15,7 @@
 
 /obj/item/gun/magic/wand/repulse/zap_self(mob/living/user, suicide = FALSE)
 	. = ..()
-	user.visible_message(span_warning("[user] 把 [user.p_themselves()] 轰进了地里！"))
+	user.visible_message(span_warning("[user] 把自己轰进了地里！"))
 	user.adjust_brute_loss(30)
 	user.Paralyze(10 SECONDS)
 

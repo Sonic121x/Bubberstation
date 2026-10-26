@@ -26,7 +26,7 @@
 				if(1)
 					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/atom/movable, say), pick("哎哟。", "好疼。", "我的骨头。", "哎哟好疼。", "哎哟好疼我的骨头。"), forced = chem.type)
 				if(2)
-					organ_owner.manual_emote(pick("无声地哎哟了一下。", "看起来 [organ_owner.p_their()] 骨头很疼。", "咧了咧嘴，好像 [organ_owner.p_their()] 骨头在疼。"))
+					organ_owner.manual_emote(pick("无声地哎哟了一下。", "看起来骨头很疼。", "咧了咧嘴，好像骨头在疼。"))
 				if(3)
 					to_chat(organ_owner, span_warning("你的骨头疼！"))
 		if(chem.overdosed)
@@ -39,7 +39,7 @@
 					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/atom/movable, say), "哎哟！！", forced = chem.type)
 					organ_owner.apply_damage(200, BRUTE, bodypart)
 				else
-					to_chat(organ_owner, span_warning("你那根早已缺失的 [parse_zone(selected_part)] 正从被丢下的地方传来隐痛。"))
+					to_chat(organ_owner, span_warning("你那根早已缺失的[chinese_body_zone_display(parse_zone(selected_part))]正从被丢下的地方传来隐痛。"))
 					INVOKE_ASYNC(organ_owner, TYPE_PROC_REF(/mob, emote), "sigh")
 		organ_owner.reagents.remove_reagent(chem.type, chem.metabolization_rate * seconds_per_tick)
 		return COMSIG_MOB_STOP_REAGENT_TICK // Stop metabolism

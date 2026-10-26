@@ -75,7 +75,7 @@
 	return TRUE
 
 /datum/status_effect/golem_statued/get_examine_text()
-	return span_warning("[owner.p_They()] [owner.p_are()] 一动不动，宛如石像！")
+	return span_warning("[owner] 一动不动，宛如石像！")
 
 /datum/status_effect/golem_statued/on_remove()
 	owner.visible_message(span_notice("[owner] 缓缓恢复了动作！"), span_notice("你已积攒了足够的力量，能再次移动身体了。"))

@@ -28,7 +28,7 @@
 /datum/action/cooldown/spell/vow_of_silence/cast(mob/living/carbon/human/cast_on)
 	. = ..()
 	to_chat(cast_on, span_notice("你打破了自己的沉默誓言。"))
-	cast_on.log_message("打破了 [cast_on.p_their()] 沉默誓言。", LOG_GAME)
+	cast_on.log_message("打破了自己的沉默誓言。", LOG_GAME)
 	cast_on.add_mood_event("vow", /datum/mood_event/broken_vow)
 	REMOVE_TRAIT(cast_on, TRAIT_MIMING, "[type]")
 	var/datum/job/mime/mime_job = SSjob.get_job(JOB_MIME)

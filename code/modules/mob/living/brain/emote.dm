@@ -29,5 +29,5 @@
 
 /datum/emote/brain/whistle
 	key = "whistle"
-	key_third_person = "吹口哨"
+	key_third_person = "whistles"
 	message = "吹了声口哨。"

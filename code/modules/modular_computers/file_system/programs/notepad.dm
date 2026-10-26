@@ -130,9 +130,9 @@
 
 /obj/item/circuit_component/mod_program/notepad/populate_ports()
 	. = ..()
-	set_text = add_input_port("设置笔记", PORT_TYPE_STRING)
-	updated_text = add_output_port("笔记", PORT_TYPE_STRING)
-	updated = add_output_port("已更新", PORT_TYPE_SIGNAL)
+	set_text = add_input_port("Set Notes", PORT_TYPE_STRING)
+	updated_text = add_output_port("Notes", PORT_TYPE_STRING)
+	updated = add_output_port("Updated", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/mod_program/notepad/register_shell(atom/movable/shell)
 	. = ..()

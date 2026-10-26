@@ -189,7 +189,7 @@
 	return surgical_tray_overlay
 
 /obj/item/surgicaldrill/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 把 [src] 狠狠捅进了 [user.p_their()] 胸口！看起来是想自杀！"))
+	user.visible_message(span_suicide("[user] 把 [src] 狠狠捅进了自己胸口！看起来是想自杀！"))
 	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), DROP_ALL_REMAINS), 2.5 SECONDS)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
@@ -253,7 +253,7 @@
 	return surgical_tray_overlay
 
 /obj/item/scalpel/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正用 [src] 割开 [user.p_their()] [pick("手腕", "喉咙", "肚子")]！看起来是想自杀！"))
+	user.visible_message(span_suicide("[user] 正用 [src] 割开自己的[pick("手腕", "喉咙", "肚子")]！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/scalpel/cyborg

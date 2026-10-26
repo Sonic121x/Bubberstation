@@ -154,7 +154,7 @@
 	// Displays a custom message which follows the attack
 	if(target == user)
 		user.visible_message(
-			span_warning("[user] 把 [src] [head_hitter ? "砸在 [user.p_their()] 头上" : "砸在 [user.p_them()] 自己身上"]！"),
+			span_warning("[user] 把 [src] [head_hitter ? "砸在自己头上" : "砸在自己身上"]！"),
 			span_warning("你把 [src] [head_hitter ? "砸在自己头上" : "砸在自己身上"]！"),
 		)
 

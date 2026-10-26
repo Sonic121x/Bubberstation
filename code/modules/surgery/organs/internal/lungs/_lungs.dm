@@ -841,7 +841,7 @@
 		if(do_i_cough)
 			owner.emote("cough")
 	if(organ_flags & ORGAN_FAILING && !IS_UNCONSCIOUS_OR_CRIT(owner))
-		owner.visible_message(span_danger("[owner] 掐住 [owner.p_their()] 喉咙，拼命喘气！"), span_userdanger("你突然觉得自己喘不上气！"))
+		owner.visible_message(span_danger("[owner] 掐住自己的喉咙，拼命喘气！"), span_userdanger("你突然觉得自己喘不上气！"))
 		failed = TRUE
 
 /obj/item/organ/lungs/get_availability(datum/species/owner_species, mob/living/owner_mob)
@@ -893,7 +893,7 @@
 
 /// by default, returns the lungs' breath_noise var as a notice. called when stethoscope is used on chest, uses the return as a message for stethoscope user.
 /obj/item/organ/lungs/proc/hear_breath_noise(mob/living/hearer)
-	return span_notice("[owner.p_Their()]的肺部发出[breath_noise]。")
+	return span_notice("[owner]的肺部发出[breath_noise]。")
 
 #define SMOKER_ORGAN_HEALTH (STANDARD_ORGAN_THRESHOLD * 0.75)
 #define SMOKER_LUNG_HEALING (STANDARD_ORGAN_HEALING * 0.75)
@@ -995,7 +995,7 @@
 	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
 
 /obj/item/organ/lungs/cybernetic/surplus/hear_breath_noise(mob/living/hearer)
-	return span_danger("[owner.p_Their()]的肺部发出[breath_noise]。")
+	return span_danger("[owner]的肺部发出[breath_noise]。")
 
 /obj/item/organ/lungs/ghost
 	name = "幽灵肺"

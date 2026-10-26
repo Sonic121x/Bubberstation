@@ -153,12 +153,12 @@
 
 /obj/item/circuit_component/mod_program/nt_pay/populate_ports()
 	. = ..()
-	token_port = add_input_port("令牌", PORT_TYPE_STRING)
-	money_port = add_input_port("金额", PORT_TYPE_NUMBER)
-	payment_status = add_output_port("状态", PORT_TYPE_NUMBER)
-	payment_device = add_output_port("付款发送方", PORT_TYPE_ATOM)
-	payment_amount = add_output_port("收款金额", PORT_TYPE_NUMBER)
-	payment_received = add_output_port("收到付款", PORT_TYPE_SIGNAL)
+	token_port = add_input_port("Token", PORT_TYPE_STRING)
+	money_port = add_input_port("Amount", PORT_TYPE_NUMBER)
+	payment_status = add_output_port("Status", PORT_TYPE_NUMBER)
+	payment_device = add_output_port("Payment Sender", PORT_TYPE_ATOM)
+	payment_amount = add_output_port("Received Amount", PORT_TYPE_NUMBER)
+	payment_received = add_output_port("Received Payment", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/mod_program/nt_pay/get_ui_notices()
 	. = ..()

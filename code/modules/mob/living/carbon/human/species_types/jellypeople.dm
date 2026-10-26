@@ -369,7 +369,7 @@
 	H.transfer_quirk_datums(spare)
 	H.mind.transfer_to(spare)
 	spare.visible_message(
-		span_warning("[H] 扭曲起来，一具新的躯体从 [H.p_them()] 体内“走了出来”。"),
+		span_warning("[H] 扭曲起来，一具新的躯体从其体内“走了出来”。"),
 		span_notice("……在一阵恍惚之后，你发现自己就在自己身旁！"),
 	)
 

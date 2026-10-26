@@ -13,12 +13,12 @@
 		return list(span_hypnophrase("那道光芒刺得你睁不开眼。"))
 	// BUBBER EDIT ADDITION END
 
-	var/t_He = p_They()
-	var/t_His = p_Their()
-	var/t_his = p_their()
-	var/t_him = p_them()
-	var/t_has = p_have()
-	var/t_is = p_are()
+	// var/t_He = p_They()
+	// var/t_His = p_Their()
+	// var/t_his = p_their()
+	// var/t_him = p_them()
+	// var/t_has = p_have()
+	// var/t_is = p_are()
 
 	. = list()
 	. += get_clothing_examine_info(user)
@@ -366,9 +366,9 @@
 /// Returns death message for mob examine text
 /mob/living/carbon/proc/generate_death_examine_text()
 	var/mob/dead/observer/ghost = get_ghost(TRUE, TRUE)
-	var/t_He = p_They()
-	var/t_his = p_their()
-	var/t_is = p_are()
+	// var/t_He = p_They()
+	// var/t_his = p_their()
+	// var/t_is = p_are()
 	//This checks to see if the body is revivable
 	var/obj/item/organ/brain = get_organ_by_type(/obj/item/organ/brain)
 	if((brain && HAS_TRAIT(brain, TRAIT_GHOSTROLE_ON_REVIVE)) || HAS_TRAIT(src, TRAIT_GHOSTROLE_ON_REVIVE))
@@ -405,11 +405,11 @@
 /// Coolects examine information about the mob's clothing and equipment
 /mob/living/carbon/proc/get_clothing_examine_info(mob/living/user)
 	. = list()
-	var/t_He = p_They()
-	var/t_His = p_Their()
-	var/t_his = p_their()
-	var/t_has = p_have()
-	var/t_is = p_are()
+	// var/t_He = p_They()
+	// var/t_His = p_Their()
+	// var/t_his = p_their()
+	// var/t_has = p_have()
+	// var/t_is = p_are()
 	//Hands
 	for(var/obj/item/held_thing in held_items)
 		if((held_thing.item_flags & (ABSTRACT|HAND_ITEM)) || HAS_TRAIT(held_thing, TRAIT_EXAMINE_SKIP))
@@ -435,11 +435,11 @@
 // BUBBER EDIT BEGIN - replaced examine_title with examine_title_worn across whole proc
 /mob/living/carbon/human/get_clothing_examine_info(mob/living/user)
 	. = list()
-	var/t_He = p_They()
-	var/t_His = p_Their()
-	var/t_his = p_their()
-	var/t_has = p_have()
-	var/t_is = p_are()
+	// var/t_He = p_They()
+	// var/t_His = p_Their()
+	// var/t_his = p_their()
+	// var/t_has = p_have()
+	// var/t_is = p_are()
 
 	//uniform
 	if(w_uniform && !(obscured_slots & HIDEJUMPSUIT) && !HAS_TRAIT(w_uniform, TRAIT_EXAMINE_SKIP))

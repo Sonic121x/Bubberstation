@@ -134,8 +134,8 @@
 		stack_trace("Guardian created with client but no summoner.")
 	else
 		to_chat(src, span_holoparasite("你是<b>[theme.name]</b>，受缚于此，为 [summoner.real_name] 效劳。"))
-		to_chat(src, span_holoparasite("你可以用 HUD 上的按钮现身，或收回到你的主人身边。那里还有一个按钮，可以私下与 [summoner.p_them()] 交流。"))
-		to_chat(src, span_holoparasite("虽然你本身无敌，但若 [summoner.real_name] 死去，你也会死去；任何对你造成的伤害都会有一部分传递到 [summoner.p_them()] 身上，因为你以 [summoner.p_them()] 为食来维持自身。"))
+		to_chat(src, span_holoparasite("你可以用 HUD 上的按钮现身，或收回到你的主人身边。那里还有一个按钮，可以私下与主人交流。"))
+		to_chat(src, span_holoparasite("虽然你本身无敌，但若 [summoner.real_name] 死去，你也会死去；任何对你造成的伤害都会有一部分传递到主人身上，因为你从主人身上汲取养分来维持自身。"))
 	to_chat(src, playstyle_string)
 	if (!isnull(guardian_colour))
 		return // Already set up so we don't need to do it again

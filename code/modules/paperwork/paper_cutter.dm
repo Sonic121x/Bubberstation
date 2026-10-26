@@ -83,14 +83,14 @@
 		var/mob/living/carbon/carbon_user = user
 		var/obj/item/bodypart/user_head = carbon_user.get_bodypart(BODY_ZONE_HEAD)
 		if(isnull(user_head)) // So no head?
-			user.visible_message(span_suicide("[user] 试图用 [src] 砍下自己的头，但 [user.p_they()] 早就没有头了！真是丢人！"))
+			user.visible_message(span_suicide("[user] 试图用 [src] 砍下自己的头，但早就没有头了！真是丢人！"))
 			return SHAME
-		user.visible_message(span_suicide("[user] 正用 [src] 砍自己的头！看起来 [user.p_theyre()] 想自杀！"))
+		user.visible_message(span_suicide("[user] 正用 [src] 砍自己的头！看起来是想自杀！"))
 		user_head.drop_limb()
 		playsound(loc, SFX_DESECRATION, 50, TRUE, -1)
 		return BRUTELOSS
 	// If we have no blade, just beat ourselves up
-	user.visible_message(span_suicide("[user] 反复用 [src] 砸自己！看起来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 反复用 [src] 砸自己！看起来是想自杀！"))
 	playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 	return BRUTELOSS
 

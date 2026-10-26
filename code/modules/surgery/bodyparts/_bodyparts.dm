@@ -432,7 +432,7 @@
 		else
 			is_disabled += "，并且"
 
-	check_list += "<span class='[no_damage ? "notice" : "warning"]'>你的 [plaintext_zone][is_disabled][self_aware ? "有" : "看起来"][status]。</span>"
+	check_list += "<span class='[no_damage ? "notice" : "warning"]'>你的[chinese_body_zone_display(plaintext_zone)][is_disabled][self_aware ? (no_damage ? "" : "有") : "看起来"][status]。</span>"
 
 	var/adept_organ_feeler = owner == examiner && HAS_TRAIT(examiner, TRAIT_SELF_AWARE)
 	for(var/obj/item/organ/organ in src)
@@ -456,7 +456,7 @@
 			continue
 		var/harmless = embedded_thing.get_embed().is_harmless()
 		var/stuck_wordage = harmless ? "粘在了" : "嵌入了"
-		var/embed_text = "\t<a href='byond://?src=[REF(examiner)];embedded_object=[REF(embedded_thing)];embedded_limb=[REF(src)]'>有 [icon2html(embedded_thing, examiner)] \a [embedded_thing] [stuck_wordage]你的 [plaintext_zone]！</a>"
+		var/embed_text = "\t<a href='byond://?src=[REF(examiner)];embedded_object=[REF(embedded_thing)];embedded_limb=[REF(src)]'>有 [icon2html(embedded_thing, examiner)] [embedded_thing] [stuck_wordage]你的[chinese_body_zone_display(plaintext_zone)]！</a>"
 		if (harmless)
 			check_list += span_italics(span_notice(embed_text))
 		else
@@ -587,7 +587,7 @@
 		single_message = "[lowercase_zone] 上已覆盖了一层塑料。"
 	if(HAS_SURGERY_STATE(reported_state, SURGERY_CAVITY_WIDENED))
 		sub_messages += "胸腔大开"
-		single_message = "[owner?.p_Their() || "那具"]胸腔大开！"
+		single_message = "[owner ? "[owner]的" : "那具躯体的"]胸腔大开！"
 
 	if(length(sub_messages) >= 2)
 		return span_smalldanger("[capital_zone]：[english_list(sub_messages)]。")
@@ -617,7 +617,7 @@
 				if(check_for_frankenstein(victim))
 					bodypart_flags |= BODYPART_IMPLANTED
 				if(human_victim == user)
-					human_victim.visible_message(span_warning("[human_victim] 把 [src] 塞进 [human_victim.p_their()] 空空的接口！"),\
+					human_victim.visible_message(span_warning("[human_victim] 把 [src] 塞进自己空空的接口！"),\
 					span_notice("你把 [src] 强行塞进自己空空的接口，它咔哒一声锁定了！"))
 				else
 					human_victim.visible_message(span_warning("[user] 把 [src] 塞进 [human_victim] 空空的接口！"),\
@@ -1951,7 +1951,7 @@
 	if(can_be_disabled && (get_damage() / max_damage) >= robotic_emp_paralyze_damage_percent_threshold)
 		ADD_TRAIT(src, TRAIT_PARALYSIS, EMP_TRAIT)
 		addtimer(TRAIT_CALLBACK_REMOVE(src, TRAIT_PARALYSIS, EMP_TRAIT), time_needed)
-		owner?.visible_message(span_danger("[owner] 的 [plaintext_zone] 似乎发生了故障！"))
+		owner?.visible_message(span_danger("[owner] 的[chinese_body_zone_display(plaintext_zone)]似乎发生了故障！"))
 
 	return TRUE
 

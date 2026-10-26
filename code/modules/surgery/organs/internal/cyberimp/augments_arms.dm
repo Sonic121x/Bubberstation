@@ -158,8 +158,8 @@
 	active_item.resistance_flags = active_item::resistance_flags
 	if(owner)
 		owner.visible_message(
-			span_notice("[owner] 将 [active_item] 收回 [owner.p_their()] [parse_zone(zone)]。"),
-			span_notice("[active_item] 咔哒一声弹回你的 [parse_zone(zone)]。"),
+			span_notice("[owner] 将 [active_item] 收回自己的[chinese_body_zone_display(parse_zone(zone))]。"),
+			span_notice("[active_item] 咔哒一声弹回你的[chinese_body_zone_display(parse_zone(zone))]。"),
 			span_hear("你听到一声短促的机械声。"),
 		)
 
@@ -203,8 +203,8 @@
 			for(var/i in failure_message)
 				to_chat(owner, i)
 			return
-	owner.visible_message(span_notice("[owner] 从 [owner.p_their()] [parse_zone(zone)] 中伸出 [active_item]。"),
-		span_notice("你从你的 [parse_zone(zone)] 中伸出 [active_item]。"),
+	owner.visible_message(span_notice("[owner] 从自己的[chinese_body_zone_display(parse_zone(zone))]中伸出 [active_item]。"),
+		span_notice("你从自己的[chinese_body_zone_display(parse_zone(zone))]中伸出 [active_item]。"),
 		span_hear("你听到一声短促的机械声。"))
 	playsound(get_turf(owner), extend_sound, 50, TRUE)
 
@@ -246,9 +246,9 @@
 		return
 	if(prob(30/severity) && owner && !(organ_flags & ORGAN_FAILING))
 		Retract()
-		owner.visible_message(span_danger("一声巨响从 [owner] 的 [parse_zone(zone)] 中传出！"))
+		owner.visible_message(span_danger("一声巨响从 [owner] 的[chinese_body_zone_display(parse_zone(zone))]中传出！"))
 		playsound(get_turf(owner), 'sound/items/weapons/flashbang.ogg', 100, TRUE)
-		to_chat(owner, span_userdanger("植入体崩裂时，你感到 [parse_zone(zone)] 内部猛地爆开！"))
+		to_chat(owner, span_userdanger("植入体崩裂时，你感到[chinese_body_zone_display(parse_zone(zone))]内部猛地爆开！"))
 		owner.adjust_fire_stacks(20)
 		owner.ignite_mob()
 		owner.adjust_fire_loss(25)

@@ -50,4 +50,4 @@
 	user.updateappearance(mutcolor_update=1)
 	user.domutcheck()
 	user.visible_message(span_warning("[user] 的外貌变成了 [H] 的模样！"), \
-	span_bolddanger("[H.p_They()] 觉得 [H.p_theyre()] 比你<i>强得多</i>。不会再这样了，[H.p_they()] 再也没法这么想了。"))
+	span_bolddanger("[H] 觉得自己比你<i>强得多</i>。不会再这样了，再也没法这么想了。"))

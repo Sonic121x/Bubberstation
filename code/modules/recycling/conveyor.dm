@@ -724,9 +724,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/obj/machinery/conveyor_switch/attached_switch
 
 /obj/item/circuit_component/conveyor_switch/populate_ports()
-	active = add_input_port("激活", PORT_TYPE_SIGNAL, trigger = PROC_REF(activate))
-	stop = add_input_port("停止", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop))
-	direction = add_output_port("传送带方向", PORT_TYPE_NUMBER)
+	active = add_input_port("Activate", PORT_TYPE_SIGNAL, trigger = PROC_REF(activate))
+	stop = add_input_port("Stop", PORT_TYPE_SIGNAL, trigger = PROC_REF(stop))
+	direction = add_output_port("Conveyor Direction", PORT_TYPE_NUMBER)
 
 /obj/item/circuit_component/conveyor_switch/get_ui_notices()
 	. = ..()
@@ -737,7 +737,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(istype(shell, /obj/machinery/conveyor_switch))
 		attached_switch = shell
 		if(!attached_switch.oneway)
-			reverse = add_input_port("反向", PORT_TYPE_SIGNAL, trigger = PROC_REF(reverse))
+			reverse = add_input_port("Reverse", PORT_TYPE_SIGNAL, trigger = PROC_REF(reverse))
 
 /obj/item/circuit_component/conveyor_switch/unregister_usb_parent(atom/movable/shell)
 	attached_switch = null

@@ -156,7 +156,7 @@ To add a crossbreed:
 		reagents.trans_to(injecting_mob, reagents.total_volume, transferred_by = user)
 		if(user != injecting_mob)
 			to_chat(injecting_mob, span_warning("[user] 把 [src] 按在了你身上！"))
-			to_chat(user, span_notice("你把 [src] 按在 [injecting_mob] 身上，为 [injecting_mob.p_them()] 注入药剂。"))
+			to_chat(user, span_notice("你把 [src] 按在 [injecting_mob] 身上，为其注入药剂。"))
 		else
 			to_chat(user, span_notice("你把 [src] 按在自己身上，它随之贴合上来！"))
 		return ITEM_INTERACT_SUCCESS

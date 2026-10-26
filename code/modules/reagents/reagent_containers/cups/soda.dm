@@ -47,7 +47,7 @@
 	if(!is_drainable())
 		open_soda(user)
 		sleep(1 SECONDS)
-	user.visible_message(span_suicide("[user] 从 [src] 里大喝了一口！看来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 从 [src] 里大喝了一口！看来是想自杀！"))
 	playsound(user,'sound/items/drink.ogg', 80, TRUE)
 	reagents.trans_to(user, src.reagents.total_volume, transferred_by = user) //a big sip
 	sleep(0.5 SECONDS)
@@ -82,7 +82,7 @@
 
 	if(target == user)
 		user.visible_message(
-			span_warning("[user] 把 [src] 的罐子在 [user.p_their()] 额头上捏扁了！"),
+			span_warning("[user] 把 [src] 的罐子在自己额头上捏扁了！"),
 			span_notice("你把 [src] 的罐子在额头上捏扁了。"),
 		)
 	else

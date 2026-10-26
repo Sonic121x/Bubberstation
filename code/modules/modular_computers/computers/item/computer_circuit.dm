@@ -42,11 +42,11 @@
 	 * I hope you're cool with me doing it here.
 	 */
 	if(computer.has_light && isnull(lights))
-		lights = add_input_port("切换灯光", PORT_TYPE_SIGNAL, trigger = PROC_REF(toggle_flashlight))
-		red = add_input_port("红", PORT_TYPE_NUMBER)
-		green = add_input_port("绿", PORT_TYPE_NUMBER)
-		blue = add_input_port("蓝", PORT_TYPE_NUMBER)
-		set_color = add_input_port("设置颜色", PORT_TYPE_SIGNAL, trigger = PROC_REF(set_flashlight_color))
+		lights = add_input_port("Toggle Lights", PORT_TYPE_SIGNAL, trigger = PROC_REF(toggle_flashlight))
+		red = add_input_port("Red", PORT_TYPE_NUMBER)
+		green = add_input_port("Green", PORT_TYPE_NUMBER)
+		blue = add_input_port("Blue", PORT_TYPE_NUMBER)
+		set_color = add_input_port("Set Color", PORT_TYPE_SIGNAL, trigger = PROC_REF(set_flashlight_color))
 
 /obj/item/circuit_component/modpc/unregister_shell(atom/movable/shell)
 	if(computer)
@@ -55,12 +55,12 @@
 	return ..()
 
 /obj/item/circuit_component/modpc/populate_ports()
-	on_off = add_input_port("开/关机", PORT_TYPE_SIGNAL, trigger = PROC_REF(toggle_power))
-	print_text = add_input_port("打印文本", PORT_TYPE_STRING)
-	print = add_input_port("打印", PORT_TYPE_SIGNAL, trigger = PROC_REF(print_text))
+	on_off = add_input_port("Turn On/Off", PORT_TYPE_SIGNAL, trigger = PROC_REF(toggle_power))
+	print_text = add_input_port("Print Text", PORT_TYPE_STRING)
+	print = add_input_port("Print", PORT_TYPE_SIGNAL, trigger = PROC_REF(print_text))
 
-	is_on = add_output_port("已开机", PORT_TYPE_SIGNAL)
-	is_off = add_output_port("已关机", PORT_TYPE_SIGNAL)
+	is_on = add_output_port("Turned On", PORT_TYPE_SIGNAL)
+	is_off = add_output_port("Shut Down", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/modpc/pre_input_received(datum/port/input/port)
 	if(isnull(computer))

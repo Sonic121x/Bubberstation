@@ -54,7 +54,7 @@
 	carbon_target.Paralyze(6 SECONDS)
 	visible_message(span_danger("[src] 把 [carbon_target] 撞倒在地！"))
 	if(theme == THEME_CULT)
-		to_chat(src, span_cult_large("“把 [carbon_target.p_them()] 带到我面前来。”"))
+		to_chat(src, span_cult_large("“把 [carbon_target] 带到我面前来。”"))
 
 /datum/action/innate/seek_master
 	name = "寻找你的主人"

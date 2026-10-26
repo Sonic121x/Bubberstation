@@ -561,7 +561,7 @@
 
 /datum/status_effect/stabilized/purple/get_examine_text()
 	if(healed_last_tick)
-		return span_warning("[owner.p_They()] [owner.p_are()] 正在缓慢再生，紫色黏液正填补着小伤口！")
+		return span_warning("[owner] 正在缓慢再生，紫色黏液正填补着小伤口！")
 
 	return null
 
@@ -606,7 +606,7 @@
 	var/max_cooldown = 10
 
 /datum/status_effect/stabilized/yellow/get_examine_text()
-	return span_warning("[owner.p_they()] go[owner.p_es()] 到哪儿，附近的电子设备似乎都充得更足了一些。")
+	return span_warning("[owner] 走到哪儿，附近的电子设备似乎都充得更足了一些。")
 
 /datum/status_effect/stabilized/yellow/tick(seconds_between_ticks)
 	if(cooldown > 0)
@@ -653,7 +653,7 @@
 	QDEL_NULL(fire)
 
 /datum/status_effect/stabilized/darkpurple/get_examine_text()
-	return span_notice("[owner.p_Their()] 指尖正熊熊燃烧！")
+	return span_notice("[owner] 的指尖正熊熊燃烧！")
 
 /datum/status_effect/stabilized/darkblue
 	id = "stabilizeddarkblue"
@@ -787,7 +787,7 @@
 /datum/status_effect/stabilized/cerulean/tick(seconds_between_ticks)
 	if(owner.stat == DEAD)
 		if(clone && clone.stat != DEAD)
-			owner.visible_message(span_warning("[owner] 迸发出耀眼的光芒，[linked_extract] 把 [owner.p_their()] 的灵魂卷走了。"),
+			owner.visible_message(span_warning("[owner] 迸发出耀眼的光芒，[linked_extract] 把其灵魂卷走了。"),
 				span_notice("你感到 [linked_extract] 传来一阵温暖的辉光，你睁开眼……已身处别处。"))
 			if(owner.mind)
 				owner.mind.transfer_to(clone)
@@ -847,7 +847,7 @@
 // Only occasionally give examiners a warning.
 /datum/status_effect/stabilized/green/get_examine_text()
 	if(prob(50))
-		return span_warning("[owner.p_They()] look[owner.p_s()] 看起来有点发绿发黏……")
+		return span_warning("[owner] 看起来有点发绿发黏……")
 
 	return null
 
@@ -989,7 +989,7 @@
 		return
 
 	draining_ref = WEAKREF(draining)
-	to_chat(owner, span_boldnotice("你感到双手在 [draining] 的脖颈周围融化，开始从 [draining.p_them()] 身上汲取 [draining.p_their()] 生命！"))
+	to_chat(owner, span_boldnotice("你感到双手在 [draining] 的脖颈周围融化，开始汲取其生命！"))
 	to_chat(draining, span_userdanger("[owner] 的双手在你脖颈周围融化，你能感到自己的生命正被抽走！"))
 
 /datum/status_effect/stabilized/black/get_examine_text()
@@ -997,7 +997,7 @@
 	if(!draining)
 		return null
 
-	return span_warning("[owner.p_They()] [owner.p_are()] 正在从 [draining] 身上汲取生命！")
+	return span_warning("[owner] 正在从 [draining] 身上汲取生命！")
 
 /datum/status_effect/stabilized/black/tick(seconds_between_ticks)
 	if(owner.grab_state < GRAB_KILL || !IS_WEAKREF_OF(owner.pulling, draining_ref))
@@ -1038,7 +1038,7 @@
 /datum/status_effect/stabilized/lightpink/tick(seconds_between_ticks)
 	for(var/mob/living/carbon/human/H in range(1, get_turf(owner)))
 		if(H != owner && H.stat != DEAD && H.health <= 0 && !H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
-			to_chat(owner, "[linked_extract] 与 [H] 的心跳同频脉动，努力维持 [H.p_them()] 的生命。")
+			to_chat(owner, "[linked_extract] 与 [H] 的心跳同频脉动，努力维持其生命。")
 			H.reagents.add_reagent(/datum/reagent/medicine/epinephrine,5)
 	return ..()
 
@@ -1051,7 +1051,7 @@
 	colour = SLIME_TYPE_ADAMANTINE
 
 /datum/status_effect/stabilized/adamantine/get_examine_text()
-	return span_warning("[owner.p_They()] [owner.p_have()] 皮肤上覆着一层奇怪的金属镀层。")
+	return span_warning("[owner] 的皮肤上覆着一层奇怪的金属镀层。")
 
 /datum/status_effect/stabilized/gold
 	id = "stabilizedgold"
@@ -1104,7 +1104,7 @@
 			if(X.regencore)
 				X.regencore.interact_with_atom(owner, owner)
 				X.regencore = null
-				owner.visible_message(span_warning("[owner] 闪过一片彩虹色彩，[owner.p_their()] 皮肤被覆上了一层乳白色的再生黏液！"))
+				owner.visible_message(span_warning("[owner] 闪过一片彩虹色彩，皮肤被覆上了一层乳白色的再生黏液！"))
 				qdel(src)
 				qdel(linked_extract)
 	return ..()

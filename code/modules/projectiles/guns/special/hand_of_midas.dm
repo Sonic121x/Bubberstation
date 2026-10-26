@@ -106,7 +106,7 @@
 		return
 
 	var/mob/living/carbon/human/victim = user
-	victim.visible_message(span_suicide("[victim] 把 [src] 的枪口顶在 [victim.p_their()] 头上，点燃了引线。看来 [user.p_theyre()] 想自杀！"))
+	victim.visible_message(span_suicide("[victim] 把 [src] 的枪口顶在自己头上，点燃了引线。看来是想自杀！"))
 	if(!do_after(victim, 1.5 SECONDS))
 		return SHAME
 	playsound(src, 'sound/items/weapons/gun/rifle/shot.ogg', 75, TRUE)

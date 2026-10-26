@@ -84,4 +84,4 @@
 	if(isnull(.))
 		return
 	SET_FACTION_AND_ALLIES_FROM(src, new_friend)
-	visible_message(span_notice("[src] 低下 [src.p_their()] 鼻尖凑向 [new_friend] 递来的食物，开始摇起 [src.p_their()] 尾巴。"))
+	visible_message(span_notice("[src] 低下鼻尖凑向 [new_friend] 递来的食物，开始摇起尾巴。"))

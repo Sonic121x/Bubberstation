@@ -25,7 +25,7 @@
 	var/folder_type_name = "文件夹"
 
 /obj/item/folder/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始起草一份想象中的死亡令！看起来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 开始起草一份想象中的死亡令！看起来是想自杀！"))
 	return OXYLOSS
 
 /obj/item/folder/Initialize(mapload)

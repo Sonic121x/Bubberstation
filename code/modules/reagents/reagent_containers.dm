@@ -192,7 +192,7 @@
 	else if(as_carbon.is_mouth_covered(ITEM_SLOT_MASK))
 		covered = "面罩"
 	if(covered)
-		var/who = (isnull(user) || eater == user) ? "你的" : "[eater.p_their()]"
+		var/who = (isnull(user) || eater == user) ? "你的" : "[eater]的"
 		to_chat(user, span_warning("你得先摘下[who][covered]！"))
 		return FALSE
 	return TRUE

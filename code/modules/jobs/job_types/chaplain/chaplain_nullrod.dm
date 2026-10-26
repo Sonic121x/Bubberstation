@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(nullrod_variants, init_nullrod_variants())
 	SSblackbox.record_feedback("tally", "chaplain_weapon", 1, "[new_holy_weapon.name]")
 
 /obj/item/nullrod/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正用 [src] 自杀！看来 [user.p_theyre()] 想离上帝更近一点！"))
+	user.visible_message(span_suicide("[user] 正用 [src] 自杀！看来是想离上帝更近一点！"))
 	return (BRUTELOSS|FIRELOSS)
 
 
@@ -553,7 +553,7 @@ GLOBAL_LIST_INIT(nullrod_variants, init_nullrod_variants())
 	menu_description = "一顶锋利的软呢帽，投掷伤害极高，但近战伤害为零。可放进口袋。当然，也可以戴在头上。"
 
 /obj/item/nullrod/fedora/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正用 [src] 自杀！看来 [user.p_theyre()] 想离上帝更远一点！"))
+	user.visible_message(span_suicide("[user] 正用 [src] 自杀！看来是想离上帝更远一点！"))
 	return (BRUTELOSS|FIRELOSS)
 
 // Dark Blessing - Replaces your arm with an armblade. Cannot be dropped.

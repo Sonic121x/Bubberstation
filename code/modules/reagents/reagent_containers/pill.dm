@@ -128,7 +128,7 @@
 		return COMPONENT_CANCEL_DIGESTION
 
 	// I think we should log this in case of horrible shenanigans
-	owner.log_message("有 \a [src] 药丸在 [owner.p_their()] 胃里溶解了，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
+	owner.log_message("有一颗 [src] 药丸在胃里溶解了，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
 	if(reagents.total_volume)
 		reagents.trans_to(owner, reagents.total_volume, methods = INGEST, show_message = FALSE)
 	qdel(src)
@@ -144,7 +144,7 @@
 	if (loc != owner || stomach.owner != owner || stomach.loc != owner)
 		return
 
-	owner.log_message("有 \a [src] 药丸在 [owner.p_their()] 胃里溶解了，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
+	owner.log_message("有一颗 [src] 药丸在胃里溶解了，其中含有以下试剂：[english_list(reagents.reagent_list)]。", LOG_GAME)
 	if(reagents.total_volume)
 		reagents.trans_to(owner, reagents.total_volume, methods = INGEST)
 	qdel(src)

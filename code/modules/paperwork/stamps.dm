@@ -15,7 +15,7 @@
 	attack_verb_simple = list("stamp")
 
 /obj/item/stamp/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 把“作废”二字盖在 [user.p_their()] 额头上，随后立刻倒地身亡。"))
+	user.visible_message(span_suicide("[user] 把“作废”二字盖在自己的额头上，随后立刻倒地身亡。"))
 	playsound(src, 'sound/items/handling/standard_stamp.ogg', 50, vary = TRUE)
 	return OXYLOSS
 

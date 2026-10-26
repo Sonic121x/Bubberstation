@@ -451,16 +451,16 @@
 /obj/item/bodypart/head/robot/examine(mob/user)
 	. = ..()
 	if(!flash1 && !flash2)
-		. += span_info("它有两个空的眼窝，可装入<b>闪光弹</b>。")
+		. += span_info("它有两个空的眼窝，可装入<b>闪光器</b>。")
 	else
 		var/single_flash = FALSE
 		if(!flash1 || !flash2)
 			single_flash = TRUE
-			. += {"它的一个眼窝里已经装有闪光弹。\n
-			[span_info("另一个眼窝还是空的，可再装一枚<b>闪光弹</b>。")]"}
+			. += {"它的一个眼窝里已经装有闪光器。\n
+			[span_info("另一个眼窝还是空的，可再装一个<b>闪光器</b>。")]"}
 		else
-			. += "它的两个眼窝里都装有闪光弹。"
-		. += span_notice("你可以用<b>撬棍</b>取出已装入的闪光弹。")
+			. += "它的两个眼窝里都装有闪光器。"
+		. += span_notice("你可以用<b>撬棍</b>取出已装入的[single_flash ? "一个" : "两个"]闪光器。")
 
 /obj/item/bodypart/head/robot/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!istype(tool, /obj/item/assembly/flash/handheld))
@@ -468,11 +468,11 @@
 
 	var/obj/item/assembly/flash/handheld/flash = tool
 	if(flash1 && flash2)
-		to_chat(user, span_warning("[src] 的两个眼窝都已经装上闪光弹了！"))
+		to_chat(user, span_warning("[src] 的两个眼窝都已经装上闪光器了！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(flash.burnt_out)
-		to_chat(user, span_warning("你不能使用损坏的闪光弹！"))
+		to_chat(user, span_warning("你不能使用损坏的闪光器！"))
 		return ITEM_INTERACT_BLOCKING
 
 	if(!user.transferItemToLoc(flash, src))
@@ -482,18 +482,18 @@
 		flash2 = flash
 	else
 		flash1 = flash
-	to_chat(user, span_notice("你把闪光弹插入眼窝。"))
+	to_chat(user, span_notice("你把闪光器插入眼窝。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/bodypart/head/robot/crowbar_act(mob/living/user, obj/item/prytool)
 	..()
 	if(flash1 || flash2)
 		prytool.play_tool_sound(src)
-		to_chat(user, span_notice("你从 [src] 上取下了闪光弹。"))
+		to_chat(user, span_notice("你从 [src] 上取下了闪光器。"))
 		flash1?.forceMove(drop_location())
 		flash2?.forceMove(drop_location())
 	else
-		to_chat(user, span_warning("[src] 上没有可拆除的闪光弹。"))
+		to_chat(user, span_warning("[src] 上没有可拆除的闪光器。"))
 	return TRUE
 
 /obj/item/bodypart/head/robot/drop_organs(mob/user, violent_removal)

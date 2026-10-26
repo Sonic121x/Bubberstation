@@ -14,7 +14,7 @@
 	penlight_message = "已经腐烂败坏了！"
 
 /obj/item/organ/eyes/zombie/penlight_examine(mob/living/viewer, obj/item/examtool)
-	return span_danger("[owner.p_Their()]的眼睛[penlight_message]")
+	return span_danger("[owner]的眼睛[penlight_message]")
 
 /obj/item/organ/eyes/alien
 	name = "异形眼"

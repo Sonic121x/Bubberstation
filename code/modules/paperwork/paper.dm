@@ -345,7 +345,7 @@ GAME_VERB_SRC(/obj/item/paper, rename, usr, "重命名纸张", null)
 	update_static_data()
 
 /obj/item/paper/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 用纸在手腕上划出一格格的伤口！看起来 [user.p_theyre()] 想用数独自尽……"))
+	user.visible_message(span_suicide("[user] 用纸在手腕上划出一格格的伤口！看起来是想用数独自尽……"))
 	return BRUTELOSS
 
 /obj/item/paper/examine(mob/user)

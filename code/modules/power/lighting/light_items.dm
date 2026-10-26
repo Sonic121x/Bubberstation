@@ -44,9 +44,9 @@
 
 /obj/item/light/suicide_act(mob/living/user)
 	if (status == LIGHT_BROKEN)
-		user.visible_message(span_suicide("[user] 开始用 \the [src] 刺自己！看来 [user.p_theyre()] 想自杀！"))
+		user.visible_message(span_suicide("[user] 开始用 [src] 刺自己！看来是想自杀！"))
 	else
-		user.visible_message(span_suicide("[user] 开始吃 \the [src]！看来 [user.p_theyre()] 不太聪明！"))
+		user.visible_message(span_suicide("[user] 开始吃 [src]！看来不太聪明！"))
 		shatter()
 	return BRUTELOSS
 

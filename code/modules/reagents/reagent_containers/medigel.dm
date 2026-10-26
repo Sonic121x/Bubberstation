@@ -70,7 +70,7 @@
 
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(interacting_with == user)
-		interacting_with.visible_message(span_notice("[user] 试图往 [user.p_them()] 自己身上[apply_method][src]。"))
+		interacting_with.visible_message(span_notice("[user] 试图往自己身上[apply_method][src]。"))
 		if(self_delay)
 			if(!do_after(user, self_delay, interacting_with))
 				return ITEM_INTERACT_BLOCKING

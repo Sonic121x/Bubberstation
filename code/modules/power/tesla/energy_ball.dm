@@ -167,7 +167,7 @@
 	jedi.ghostize(jedi)
 	if(rip_u)
 		qdel(rip_u)
-	jedi.investigate_log("因用念力触碰 [src] 导致 [jedi.p_their()] 大脑化为灰烬。", INVESTIGATE_DEATHS)
+	jedi.investigate_log("因用念力触碰 [src] 导致自己的大脑化为灰烬。", INVESTIGATE_DEATHS)
 	jedi.death()
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 

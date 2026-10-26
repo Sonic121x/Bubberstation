@@ -327,7 +327,7 @@
 				if(caster.usable_hands <= 0)
 					var/arm_describer = (caster.num_hands >= 2 ? "无力垂下的双臂" : (caster.num_hands == 1 ? "疯狂乱挥的手臂" : "断臂残肢"))
 					caster.visible_message(
-						span_warning("[caster] 晃动着 [caster.p_their()] [arm_describer]。"),
+						span_warning("[caster] 晃动着自己的[arm_describer]。"),
 						ignored_mobs = caster,
 					)
 					to_chat(caster, span_warning("你无法摆出正确的手势来施放 [src][caster.num_hands > 0 ? "" : "，因为你根本没有手"]……"))

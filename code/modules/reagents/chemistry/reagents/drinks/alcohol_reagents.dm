@@ -1545,7 +1545,7 @@
 				if(!drinker.undergoing_cardiac_arrest() && drinker.can_heartattack())
 					drinker.set_heartattack(TRUE)
 					if(!IS_UNCONSCIOUS_OR_CRIT(drinker))
-						drinker.visible_message(span_userdanger("[drinker] 捂住胸口，仿佛 [drinker.p_their()] 心脏停止了跳动！"))
+						drinker.visible_message(span_userdanger("[drinker] 捂住胸口，仿佛心脏停止了跳动！"))
 	if(need_mob_update)
 		return UPDATE_MOB_HEALTH
 

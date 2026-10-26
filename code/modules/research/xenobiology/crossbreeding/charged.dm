@@ -179,7 +179,7 @@ Charged extracts:
 	if(!user.can_perform_action(src))
 		return
 	human_user.set_species(choice_list[racechoice], icon_update=1)
-	human_user.visible_message(span_warning("[human_user] 突然改变了形态，[src] 随之溶入 [human_user.p_their()] 皮肤！"))
+	human_user.visible_message(span_warning("[human_user] 突然改变了形态，[src] 随之溶入其皮肤！"))
 	..()
 
 /obj/item/slimecross/charged/pink

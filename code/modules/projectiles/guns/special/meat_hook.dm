@@ -33,11 +33,11 @@
 /obj/item/gun/magic/hook/suicide_act(mob/living/user)
 	var/obj/item/bodypart/head/removable = user.get_bodypart(BODY_ZONE_HEAD)
 	if(isnull(removable))
-		user.visible_message(span_suicide("[user] 把 [src] 的链条塞进了本该长着脑袋的那个洞里！看来 [user.p_theyre()] 想自杀！"))
+		user.visible_message(span_suicide("[user] 把 [src] 的链条塞进了本该长着脑袋的那个洞里！看来是想自杀！"))
 		return OXYLOSS
 
 	playsound(get_turf(src), fire_sound, 50, TRUE, -1)
-	user.visible_message(span_suicide("[user] 正把 [src] 用在自己 [user.p_their()] 的脑袋上！看来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 正把 [src] 用在自己的脑袋上！看来是想自杀！"))
 	playsound(get_turf(src), 'sound/items/weapons/bladeslice.ogg', 70)
 	removable.dismember(silent = FALSE)
 	return BRUTELOSS

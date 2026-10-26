@@ -22,7 +22,7 @@
 
 	charges--
 	playsound(user, fire_sound, 50, TRUE)
-	user.visible_message(span_suicide("[user] 把 [user.p_their()] 身体里的重力倒转了过来！"))
+	user.visible_message(span_suicide("[user] 把自己身体里的重力倒转了过来！"))
 	var/mob/living/carbon/organ_haver = user
 	for (var/obj/item/organ/organ as anything in organ_haver.organs)
 		organ.Remove(user)

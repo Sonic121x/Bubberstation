@@ -111,11 +111,11 @@
 
 /obj/item/clothing/accessory/kheiral_cuffs/suicide_act(mob/living/user)
 	if(!ishuman(user))
-		user.visible_message(span_suicide("[user] 把 [src] 扣在自己脖子上，脸上皱起皱纹。看起来 [user.p_theyre()] 正试图自杀！"))
+		user.visible_message(span_suicide("[user] 把 [src] 扣在自己脖子上，痛苦地皱起了脸。看起来是想自杀！"))
 		return OXYLOSS
 
 	var/mob/living/carbon/human/victim = user
-	victim.visible_message(span_suicide("[user] 把 [src] 扣在自己脖子上，脸上皱起皱纹。看起来 [user.p_theyre()] 正试图自杀！"))
+	victim.visible_message(span_suicide("[user] 把 [src] 扣在自己脖子上，痛苦地皱起了脸。看起来是想自杀！"))
 	for(var/mult in 1 to 5) // Rapidly age
 		if(!do_after(victim, 0.5 SECONDS)) // just to space out the aging, either way you still dust.
 			break

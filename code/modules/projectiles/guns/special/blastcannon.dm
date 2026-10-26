@@ -129,7 +129,7 @@
 
 	playsound(src, dry_fire_sound, 30, TRUE) // *click
 	user.visible_message(
-		span_danger("[user] 打开了 [user.p_their()] [src] 上的 [bomb]，把 [p_them()] 对准了 [target]！"),
+		span_danger("[user] 打开了自己的 [src] 上的 [bomb]，将炮口对准了 [target]！"),
 		span_danger("你打开了你的 [src] 上的 [bomb]，把 [p_them()] 对准了 [target]！")
 	)
 	var/turf/current_turf = get_turf(src)

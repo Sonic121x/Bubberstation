@@ -57,7 +57,7 @@
 
 /obj/item/circuit_component/mod_program/modsuit_control/populate_ports()
 	. = ..()
-	suit_port = add_input_port("受控 MOD 外骨骼", PORT_TYPE_ATOM)
+	suit_port = add_input_port("MODsuit Controlled", PORT_TYPE_ATOM)
 
 /obj/item/circuit_component/mod_program/modsuit_control/input_received(datum/port/port)
 	var/datum/computer_file/program/maintenance/modsuit_control/control = associated_program

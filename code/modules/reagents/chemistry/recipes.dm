@@ -535,7 +535,7 @@
 			continue
 		if(target.get_eye_protection() && !ignore_eyes)
 			continue
-		to_chat(target, "[holder.my_atom.name] 把 [holder.p_their()] 一部分内容物喷向了你！")
+		to_chat(target, "[holder.my_atom.name] 把一部分内容物喷向了你！")
 		target.reagents.add_reagent(reagent, vol)
 
 

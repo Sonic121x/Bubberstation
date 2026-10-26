@@ -129,7 +129,7 @@
 	if(!beating || (organ_flags & ORGAN_FAILING))
 		if(owner.can_heartattack() && Stop())
 			if(!IS_UNCONSCIOUS_OR_CRIT(owner))
-				owner.visible_message(span_danger("[owner] 捂住 [owner.p_their()] 胸口，仿佛 [owner.p_their()] 心脏正在停止跳动！"))
+				owner.visible_message(span_danger("[owner] 捂住胸口，仿佛心脏正在停止跳动！"))
 			to_chat(owner, span_userdanger("你感到胸口剧痛，仿佛心脏已经停止了跳动！"))
 		return
 
@@ -166,7 +166,7 @@
 
 /// by default, returns the hearts beat_noise var as a notice span. May do other things when overridden, such as eldritch insanity or electrocution. Whatever you want, really.
 /obj/item/organ/heart/proc/hear_beat_noise(mob/living/hearer)
-	return span_notice("[owner.p_Their()]的心脏发出[beat_noise]。")
+	return span_notice("[owner]的心脏发出[beat_noise]。")
 
 /obj/item/organ/heart/cursed
 	name = "受诅咒的心脏"
@@ -241,7 +241,7 @@
 		addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS / severity)
 		if(owner_needs_us)
 			owner.visible_message(
-				span_danger("[owner] 捂住 [owner.p_their()] 胸口，仿佛 [owner.p_their()] 心脏正在停止跳动！"),
+				span_danger("[owner] 捂住胸口，仿佛心脏正在停止跳动！"),
 				span_userdanger("你感到胸口剧痛，仿佛心脏已经停止了跳动！"),
 			)
 
@@ -317,7 +317,7 @@
 	AddElement(/datum/element/dangerous_organ_removal, /*surgical = */ TRUE)
 
 /obj/item/organ/heart/cybernetic/surplus/hear_beat_noise(mob/living/hearer)
-	return span_danger("[owner.p_Their()]的心脏发出[beat_noise]。")
+	return span_danger("[owner]的心脏发出[beat_noise]。")
 
 /obj/item/organ/heart/freedom
 	name = "自由之心"

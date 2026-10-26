@@ -45,7 +45,7 @@
 	var/obj/item/paper/top_paper
 
 /obj/item/clipboard/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始把 [user.p_their()] 头塞进 \the [src] 的夹子里！看起来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 开始把自己的头塞进 [src] 的夹子里！看起来是想自杀！"))
 	return BRUTELOSS //The clipboard's clip is very strong. Industrial duty. Can kill a man easily.
 
 /obj/item/clipboard/Initialize(mapload)

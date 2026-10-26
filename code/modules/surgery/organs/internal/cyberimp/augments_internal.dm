@@ -339,7 +339,7 @@
 	chippy_brain.maxHealth -= 15 * severity // a bit of your brain fell off. again.
 	if(chippy_brain.damage >= chippy_brain.maxHealth)
 		chippy_brain.forceMove(owner.drop_location())
-		owner.visible_message(span_userdanger("[owner] 的大脑从 [owner.p_their()] 后脑掉了下来！！！"), span_boldwarning("你觉得自己似乎少了点什么。"))
+		owner.visible_message(span_userdanger("[owner] 的大脑从后脑掉了下来！！！"), span_boldwarning("你觉得自己似乎少了点什么。"))
 		return chippy_brain
 
 	var/gib_type = /obj/effect/decal/cleanable/blood/gibs/up

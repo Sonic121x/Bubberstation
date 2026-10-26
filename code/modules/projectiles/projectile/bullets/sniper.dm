@@ -26,7 +26,7 @@
 	return ..()
 
 /obj/projectile/bullet/p50/surplus
-	name =".50 BMG 剩余弹"
+	name =".50 BMG 军剩弹"
 	armour_penetration = 0
 	paralyze = 0
 	dismemberment = 0

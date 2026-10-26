@@ -994,7 +994,7 @@
 			if(!affected_mob.undergoing_cardiac_arrest() && affected_mob.can_heartattack())
 				affected_mob.set_heartattack(TRUE)
 				if(!IS_UNCONSCIOUS_OR_CRIT(affected_mob))
-					affected_mob.visible_message(span_userdanger("[affected_mob] 捂住胸口，仿佛 [affected_mob.p_their()] 心脏已经停止了跳动！"))
+					affected_mob.visible_message(span_userdanger("[affected_mob] 捂住胸口，仿佛心脏已经停止了跳动！"))
 			else
 				affected_mob.losebreath += 10
 				need_mob_update = affected_mob.adjust_oxy_loss(rand(5,25), updating_health = FALSE, required_biotype = affected_biotype)
@@ -1386,7 +1386,7 @@
 		if(1)
 			affected_mob.say(pick("哎哟。", "好痛。", "我的骨头。", "哎哟好痛。", "哎哟哎哟我的骨头。"), forced = /datum/reagent/toxin/bonehurtingjuice)
 		if(2)
-			affected_mob.manual_emote(pick("无声地哎哟了一声。", "看起来 [affected_mob.p_their()] 骨头很痛。", "龇牙咧嘴，仿佛 [affected_mob.p_their()] 骨头很痛。"))
+			affected_mob.manual_emote(pick("无声地哎哟了一声。", "看起来骨头很痛。", "龇牙咧嘴，仿佛骨头很痛。"))
 		if(3)
 			to_chat(affected_mob, span_warning("你的骨头好痛！"))
 

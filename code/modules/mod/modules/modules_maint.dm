@@ -332,7 +332,7 @@
 /obj/item/mod/module/atrocinator/on_activation(mob/activator)
 	// Auto-unbuckle anyone being carried to avoid lag issues
 	if(length(mod.wearer.buckled_mobs))
-		mod.wearer.visible_message("随着 [mod.wearer] 翻转，[mod.wearer.buckled_mobs[1]] 从 [mod.wearer.p_their()] 背上飞了出去！")
+		mod.wearer.visible_message("随着 [mod.wearer] 翻转，[mod.wearer.buckled_mobs[1]] 从其背上飞了出去！")
 		mod.wearer.unbuckle_all_mobs()
 
 	playsound(src, 'sound/effects/curse/curseattack.ogg', 50)

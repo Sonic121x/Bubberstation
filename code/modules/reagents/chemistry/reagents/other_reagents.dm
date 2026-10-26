@@ -682,9 +682,9 @@
 		affected_human.update_body(is_creating = TRUE)
 		if(SPT_PROB(3.5, seconds_per_tick))
 			if(affected_human.w_uniform)
-				affected_mob.visible_message(pick("<b>[affected_mob]</b> 的衣领毫无征兆地竖了起来。</span>", "<b>[affected_mob]</b> 活动了一下[affected_mob.p_their()]手臂。"))
+				affected_mob.visible_message(pick("<b>[affected_mob]</b> 的衣领毫无征兆地竖了起来。</span>", "<b>[affected_mob]</b> 活动了一下手臂。"))
 			else
-				affected_mob.visible_message("<b>[affected_mob]</b> 活动了一下[affected_mob.p_their()]手臂。")
+				affected_mob.visible_message("<b>[affected_mob]</b> 活动了一下手臂。")
 	if(SPT_PROB(5, seconds_per_tick))
 		affected_mob.say(pick("那玩意儿可太正了。", "你就是这世上一切糟糕事物的化身。", "除了对着日本二次元裸体撸，你还玩什么运动？", "别见外。尽管放马过来。", "我叫约翰，我恨你们每一个人。"), forced = /datum/reagent/spraytan)
 

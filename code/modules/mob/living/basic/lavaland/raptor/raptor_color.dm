@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 
 	var/mob/living/carbon/human/rider = potential_rider
 	if (rider.mob_height > HUMAN_HEIGHT_SHORTEST)
-		to_chat(rider, span_warning("你若试图骑上 [source.p_them()]，以你这般高大的身材会把 [source] 压垮的！"))
+		to_chat(rider, span_warning("你若试图骑上 [source]，以你这般高大的身材会把它压垮的！"))
 		return COMPONENT_BLOCK_BUCKLE
 
 // Purple raptors never "fully" grow up, and remain usable as backpacks
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(raptor_colors, init_raptor_colors())
 			user.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/raptor)
 		user.AddElement(/datum/element/forced_gravity, 0)
 		ADD_TRAIT(user, TRAIT_PASSTABLE, REF(src))
-		to_chat(user, span_notice("随着你背上的 [held_mob] 开始拼命扇动 [held_mob.p_their()] 翅膀，你开始缓缓悬浮在地面上方[struggling ? "，挣扎着让你保持在空中" : ""]！"))
+		to_chat(user, span_notice("随着你背上的 [held_mob] 开始拼命扇动翅膀，你开始缓缓悬浮在地面上方[struggling ? "，它正努力让你保持在空中" : ""]！"))
 		user.set_resting(FALSE, TRUE)
 		user.refresh_gravity()
 		START_PROCESSING(SSprocessing, src)

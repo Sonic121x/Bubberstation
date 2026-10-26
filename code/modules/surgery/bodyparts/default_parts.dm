@@ -197,7 +197,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger("你失去了对 [plaintext_zone] 的控制！"))
+				to_chat(owner, span_userdanger("你失去了对[chinese_body_zone_display(plaintext_zone)]的控制！"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -424,7 +424,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(!IS_UNCONSCIOUS(owner))
-				to_chat(owner, span_userdanger("你失去了对 [plaintext_zone] 的控制！"))
+				to_chat(owner, span_userdanger("你失去了对[chinese_body_zone_display(plaintext_zone)]的控制！"))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 

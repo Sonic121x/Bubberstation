@@ -48,7 +48,7 @@
 
 /datum/emote/mouse/squeak
 	key = "squeak"
-	key_third_person = "吱吱叫"
+	key_third_person = "squeaks"
 	message = "吱吱！"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE

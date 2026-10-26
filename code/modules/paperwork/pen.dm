@@ -103,7 +103,7 @@
 	SIGNAL_HANDLER
 
 /obj/item/pen/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正用 [src] 在自己身上涂满数字！看起来 [user.p_theyre()] 想用数独自尽……"))
+	user.visible_message(span_suicide("[user] 正用 [src] 在自己身上涂满数字！看起来是想用数独自尽……"))
 	return BRUTELOSS
 
 /obj/item/pen/blue
@@ -436,7 +436,7 @@
 	if(HAS_TRAIT(src, TRAIT_TRANSFORM_ACTIVE))
 		user.visible_message(span_suicide("[user] 用力把笔捅进自己嘴里！"))
 	else
-		user.visible_message(span_suicide("[user] 把笔举到嘴边！看起来 [user.p_theyre()] 想自杀！"))
+		user.visible_message(span_suicide("[user] 把笔举到嘴边！看起来是想自杀！"))
 		attack_self(user)
 	return BRUTELOSS
 

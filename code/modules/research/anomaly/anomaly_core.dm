@@ -26,7 +26,7 @@
 
 /obj/item/assembly/signaler/anomaly/manual_suicide(datum/mind/suicidee)
 	var/mob/living/user = suicidee.current
-	user.visible_message(span_suicide("[user] 的 [name] 正在对无线电信号作出反应，扭曲着 [user.p_their()] 的身体！"))
+	user.visible_message(span_suicide("[user] 的 [name] 正在对无线电信号作出反应，扭曲着使用者的身体！"))
 	user.set_suicide(TRUE)
 	user.gib(DROP_ALL_REMAINS)
 

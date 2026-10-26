@@ -38,6 +38,6 @@
 	animal.melee_damage_upper = max((animal.melee_damage_upper * 2), 10)
 	animal.update_transform(2)
 	animal.AddElement(/datum/element/wall_tearer)
-	to_chat(user, span_info("你增大了 [animal] 的体型，让 [animal.p_them()] 感受到一股力量的涌动！"))
+	to_chat(user, span_info("你增大了 [animal] 的体型，让它感受到一股力量的涌动！"))
 	qdel(src)
 	return ITEM_INTERACT_SUCCESS

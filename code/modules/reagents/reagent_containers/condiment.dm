@@ -37,7 +37,7 @@
 	return ..()
 
 /obj/item/reagent_containers/condiment/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正试图把 [src] 整个吃掉！看起来[user.p_they()]忘了食物该怎么吃！"))
+	user.visible_message(span_suicide("[user] 正试图把 [src] 整个吃掉！看起来忘了食物该怎么吃！"))
 	return OXYLOSS
 
 /obj/item/reagent_containers/condiment/proc/try_eat(atom/target, mob/living/user)
@@ -148,7 +148,7 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/saltshaker/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始与盐瓶交换形体！看起来[user.p_theyre()]想自杀！"))
+	user.visible_message(span_suicide("[user] 开始与盐瓶交换形体！看起来是想自杀！"))
 	var/newname = "[name]"
 	name = "[user.name]"
 	user.name = newname

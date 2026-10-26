@@ -98,7 +98,7 @@ Slimecrossing Potions
 	if(!do_after(user, 5 SECONDS, target = love_target))
 		return ITEM_INTERACT_BLOCKING
 	to_chat(user, span_notice("你给 [love_target] 喂下了爱情药水！"))
-	to_chat(love_target, span_notice("你对 [user] 产生了感情，也对 [user.p_they()] like[user.p_s()] 的每一个人心生爱慕。"))
+	to_chat(love_target, span_notice("你对 [user] 产生了感情，也对 [user] 喜欢的每一个人心生爱慕。"))
 	love_target.add_ally(user)
 	love_target.apply_status_effect(/datum/status_effect/in_love, user)
 	qdel(src)

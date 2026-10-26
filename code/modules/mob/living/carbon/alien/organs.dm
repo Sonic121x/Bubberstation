@@ -308,7 +308,7 @@
 	shake_camera(user, 1 SECONDS, 3)
 	if(owner)
 		shake_camera(owner, 2, 5)
-		owner.investigate_log("被 [owner.p_their()] 胃里的某个东西炸成了碎块。", INVESTIGATE_DEATHS)
+		owner.investigate_log("被自己胃里的某个东西炸成了碎块。", INVESTIGATE_DEATHS)
 		owner.gib(DROP_ALL_REMAINS)
 	qdel(src)
 

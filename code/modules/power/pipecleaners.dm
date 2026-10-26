@@ -247,9 +247,9 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/suicide_act(mob/living/user)
 	if(locate(/obj/structure/chair/stool) in get_turf(user))
-		user.visible_message(span_suicide("[user] 正用 [src] 打着上吊的绳套！看来 [user.p_theyre()] 想自杀！"))
+		user.visible_message(span_suicide("[user] 正用 [src] 打着上吊的绳套！看来是想自杀！"))
 	else
-		user.visible_message(span_suicide("[user] 正用 [src] 勒住自己的脖子！看来 [user.p_theyre()] 想自杀！"))
+		user.visible_message(span_suicide("[user] 正用 [src] 勒住自己的脖子！看来是想自杀！"))
 	return OXYLOSS
 
 /obj/item/stack/pipe_cleaner_coil/Initialize(mapload, new_amount = null, list/mat_override=null, mat_amt=1, param_color = null)

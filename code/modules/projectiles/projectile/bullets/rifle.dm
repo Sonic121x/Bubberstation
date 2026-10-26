@@ -26,7 +26,7 @@
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/strilka310/surplus
-	name = ".310 Strilka 剩余弹"
+	name = ".310 Strilka 军剩弹"
 	weak_against_armour = TRUE //this is specifically more important for fighting carbons than fighting noncarbons. Against a simple mob, this is still a full force bullet
 	armour_penetration = 0
 

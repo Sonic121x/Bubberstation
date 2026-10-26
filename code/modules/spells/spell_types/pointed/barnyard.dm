@@ -32,7 +32,7 @@
 	. = ..()
 	if(cast_on.can_block_magic(antimagic_flags))
 		cast_on.visible_message(
-			span_danger("[cast_on] 的脸突然燃起火焰，火焰随即向外爆开，[cast_on.p_them()] 却安然无恙！"),
+			span_danger("[cast_on] 的脸突然燃起火焰，火焰随即向外爆开，其本人却安然无恙！"),
 			span_danger("你的脸开始燃烧，但火焰被你的反魔法防护弹开了！"),
 		)
 		to_chat(owner, span_warning("法术没有产生任何效果！"))

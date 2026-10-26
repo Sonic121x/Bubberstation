@@ -89,7 +89,7 @@
 	if (target_mob == user) // no need for a target message
 		puff_timer = canister.self_administer_delay
 
-		pre_use_visible_message = span_notice("[user] 把 [src] 凑到 [user.p_their()] 唇边，手指按在气罐上……")
+		pre_use_visible_message = span_notice("[user] 把 [src] 凑到自己唇边，手指按在气罐上……")
 		pre_use_self_message = span_notice("你把 [src] 凑到唇边，并按压气罐……")
 
 		post_use_visible_message = span_notice("[user] 吸了一口 [src]！")

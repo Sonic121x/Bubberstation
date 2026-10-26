@@ -37,7 +37,7 @@
 		contained_slip = arrived
 
 /obj/item/folder/biscuit/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 试图吃掉 [src]！看起来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 试图吃掉 [src]！看起来是想自杀！"))
 	playsound(get_turf(user), 'sound/effects/wounds/crackandbleed.ogg', 40, TRUE) //Don't eat plastic cards kids, they get really sharp if you chew on them.
 	return BRUTELOSS
 

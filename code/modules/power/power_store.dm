@@ -257,7 +257,7 @@
 	return TRUE
 
 /obj/item/stock_parts/power_store/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正在舔 [src] 的电极！看来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 正在舔 [src] 的电极！看来是想自杀！"))
 	do_sparks(2, TRUE, user)
 	var/eating_success = do_after(user, 5 SECONDS, src)
 	if(QDELETED(user))

@@ -161,7 +161,7 @@
 	var/label_text
 
 /obj/item/reagent_containers/hypospray/medipen/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始被 \the [src] 呛住！看来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 开始被 [src] 呛住！看来是想自杀！"))
 	return OXYLOSS//ironic. he could save others from oxyloss, but not himself.
 
 /obj/item/reagent_containers/hypospray/medipen/inject(mob/living/affected_mob, mob/user)

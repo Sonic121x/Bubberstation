@@ -60,7 +60,7 @@
 	if(!tongue)
 		return
 	if(SPT_PROB(4.0, seconds_per_tick))
-		owner.manual_emote("用[owner.p_their()]舌头发出“咔哒”一声。")
+		owner.manual_emote("用舌头发出“咔哒”一声。")
 		owner.say("不错。", forced = /datum/reagent/impurity/rosenol)
 	if(SPT_PROB(2.0, seconds_per_tick))
 		owner.say(pick("啊！那是个错误！", "太可怕了。", "大家当心，这土豆真的很烫。", "我六岁时吃掉了一整袋李子。", "要说我最受不了的东西，那就是番茄。", "要说我最喜欢的东西，那就是番茄。", "我们那会儿有位舰长特别严格，在他的站上连呼吸都不许。", "那些不结实的家伙动不动就倒下死了，你能听见他们在你身后倒地的声音。"), forced = /datum/reagent/impurity/rosenol)

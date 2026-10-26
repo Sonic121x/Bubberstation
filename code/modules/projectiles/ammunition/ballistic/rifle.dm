@@ -14,7 +14,7 @@
 	AddElement(/datum/element/caseless)
 
 /obj/item/ammo_casing/strilka310/surplus
-	name = ".310 斯特里尔卡剩余弹壳"
+	name = ".310 斯特里尔卡军剩弹壳"
 	desc = parent_type::desc + " 而且还是受潮的红色火药。"
 	projectile_type = /obj/projectile/bullet/strilka310/surplus
 

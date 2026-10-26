@@ -35,7 +35,7 @@
 	hit_plant.adjust_tox_loss(rand(3, 6))
 	hit_plant.Paralyze(10 SECONDS)
 	hit_plant.visible_message(
-		span_warning("[hit_plant] 痛苦地扭动着，[hit_plant.p_their()]液泡在沸腾。"),
+		span_warning("[hit_plant] 痛苦地扭动着，体内的液泡在沸腾。"),
 		span_userdanger("你痛苦地扭动着，你的液泡在沸腾！"),
 		span_hear("你听到叶片被碾碎的声音。"),
 	)

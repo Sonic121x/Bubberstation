@@ -60,10 +60,10 @@
 
 /obj/item/hierophant_club/suicide_act(mob/living/user)
 	say("Xverwpsgexmrk...", forced = "hierophant club suicide")
-	user.visible_message(span_suicide("[user] 将 [src] 高高举向空中！看来 [user.p_theyre()] 想要自杀！"))
+	user.visible_message(span_suicide("[user] 将 [src] 高高举向空中！看来是想自杀！"))
 	new/obj/effect/temp_visual/hierophant/telegraph(get_turf(user))
 	playsound(user,'sound/machines/airlock/airlockopen.ogg', 75, TRUE)
-	user.visible_message(span_hierophant_warning("[user] 淡出了视野，只留下 [user.p_their()] 随身物品！"))
+	user.visible_message(span_hierophant_warning("[user] 淡出了视野，只留下随身物品！"))
 	for (var/obj/item/user_item as anything in user.get_all_gear(FALSE, FALSE))
 		user.dropItemToGround(user_item)
 	for (var/turf/blast_turf as anything in RANGE_TURFS(1, user))
@@ -227,7 +227,7 @@
 	RegisterSignal(beacon, COMSIG_QDELETING, PROC_REF(beacon_destroyed))
 
 	user.update_mob_action_buttons()
-	user.visible_message(span_hierophant_warning("[user] 在 [user.p_their()] 脚下放置了一台奇怪的装置！"), span_hierophant("你拆下了圣职者信标，现在你可以随时将自己和任何盟友传送到它那里！"))
+	user.visible_message(span_hierophant_warning("[user] 在脚下放置了一台奇怪的装置！"), span_hierophant("你拆下了圣职者信标，现在你可以随时将自己和任何盟友传送到它那里！"))
 	to_chat(user, span_hierophant("你可以用权杖击打信标将其取下，以便重新放置。"))
 	update_appearance(UPDATE_OVERLAYS)
 

@@ -306,7 +306,7 @@
 	var/target_has_brain = C.get_organ_by_type(/obj/item/organ/brain)
 
 	if(!target_has_brain && C.is_eyes_covered())
-		to_chat(user, span_warning("你得先摘掉 [C.p_their()] 头部护具！"))
+		to_chat(user, span_warning("你得先摘掉 [C] 的头部护具！"))
 		return
 
 	//since these people will be dead M != usr
@@ -316,7 +316,7 @@
 			return
 		var/msg = "[C] 的头部被 [user] 植入了 [src]。"
 		if(C == user)
-			msg = "[user] 把 [src] 植入了 [user.p_their()] 头部！"
+			msg = "[user] 把 [src] 植入了自己的头部！"
 
 		C.visible_message(span_danger("[msg]"),
 						span_userdanger("[msg]"))

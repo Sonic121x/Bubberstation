@@ -180,7 +180,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	user.visible_message(
-		span_notice("[user] 用 [user.p_their()] 锋利的牙齿刺入 [used_item] 并吸干其中的内容物！"),
+		span_notice("[user] 用锋利的牙齿刺入 [used_item] 并吸干其中的内容物！"),
 		span_notice("你用锋利的牙齿刺入 [used_item] 并吸干其中的内容物！"),
 		span_hear("你听到刺入的声音！……接着是吸吮声？"),
 		COMBAT_MESSAGE_RANGE,

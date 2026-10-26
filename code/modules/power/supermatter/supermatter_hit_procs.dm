@@ -67,7 +67,7 @@
 		return
 	var/mob/living/carbon/jedi = user
 	to_chat(jedi, span_userdanger("这主意真是太有分量了。"))
-	jedi.investigate_log("用念力触碰 [src]，使 [jedi.p_their()] 的大脑化为灰烬。", INVESTIGATE_DEATHS)
+	jedi.investigate_log("用念力触碰 [src]，使自己的大脑化为灰烬。", INVESTIGATE_DEATHS)
 	jedi.ghostize()
 	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.organs
 	if(rip_u)

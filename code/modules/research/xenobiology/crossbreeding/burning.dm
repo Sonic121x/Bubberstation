@@ -264,7 +264,7 @@ Burning extracts:
 /obj/item/slimecross/burning/black/do_effect(mob/user)
 	if(!isliving(user))
 		return
-	user.visible_message(span_danger("[src] 吸收了 [user]，把 [user.p_them()] 变成了一只史莱姆！"))
+	user.visible_message(span_danger("[src] 吸收了 [user]，将其变成了一只史莱姆！"))
 	var/datum/action/cooldown/spell/shapeshift/slime_form/transform = new(user.mind || user)
 	transform.remove_on_restore = TRUE
 	transform.Grant(user)

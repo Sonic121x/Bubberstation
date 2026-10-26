@@ -342,7 +342,7 @@
 	if(!do_after(remover, 5 SECONDS, owner, extra_checks = CALLBACK(src, PROC_REF(try_remove_taser_checks)), interaction_key = id))
 		return
 	remover.visible_message(
-		span_warning("[owner] 把 [electrode_name] 从[remover == owner ? "[owner.p_their()]" : "[owner] 的"]身体上取了下来！"),
+		span_warning("[remover] 把 [electrode_name] 从[remover == owner ? "自己" : "[owner] 的"]身体上取了下来！"),
 		span_notice("你把 [electrode_name][remover == owner ? "" : " 从 [owner] 的体内"]取了下来！"),
 	)
 	end_tase()

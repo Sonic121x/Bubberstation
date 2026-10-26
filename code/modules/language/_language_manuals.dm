@@ -38,14 +38,14 @@
 	else if(M.has_language(language))
 		M.visible_message(span_danger("[user] 用 [src] 猛敲 [M] 的脑袋！"), span_userdanger("[user] 用 [src] 猛敲你的脑袋！"), span_hear("你听到拍打声。"))
 	else
-		M.visible_message(span_notice("[user] 用 [src] 敲打 [M] 的脑袋，以此把知识教给 [M.p_them()]！"), span_boldnotice("当 [user] 用 [src] 敲你时，[flavour_text]。"), span_hear("你听到拍打声。"))
+		M.visible_message(span_notice("[user] 用 [src] 敲打 [M] 的脑袋，把知识敲进了脑中！"), span_boldnotice("当 [user] 用 [src] 敲你时，[flavour_text]。"), span_hear("你听到拍打声。"))
 		M.grant_language(language, source = LANGUAGE_MIND)
 		use_charge(user)
 
 /obj/item/language_manual/proc/use_charge(mob/user)
 	charges--
 	if(!charges)
-		user.visible_message(span_notice("[user] 手中书本的封面开始变幻不定！它从 [user.p_their()] 手中滑落！"),
+		user.visible_message(span_notice("[user] 手中书本的封面开始变幻不定！它从手中滑落！"),
 							span_warning("[src] 的封面与内文开始变幻不定！它从你手中滑落！"))
 		new /obj/item/book/manual/random(get_turf(src))
 		qdel(src)

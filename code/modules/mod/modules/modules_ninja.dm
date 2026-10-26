@@ -527,7 +527,7 @@
 	if(hacking_module.mod.subtract_charge(DEFAULT_CHARGE_DRAIN*10))
 		//Got that electric touch
 		do_sparks(5, FALSE, loc)
-		visible_message(span_danger("[ninja] 用 [ninja.p_their()] 触碰电击了 [src]！"), span_userdanger("[ninja] 用 [ninja.p_their()] 触碰电击了你！"))
+		visible_message(span_danger("[ninja] 伸手电击了 [src]！"), span_userdanger("[ninja] 伸手电击了你！"))
 		addtimer(CALLBACK(src, PROC_REF(ninja_knockdown)), 0.3 SECONDS)
 	return NONE
 

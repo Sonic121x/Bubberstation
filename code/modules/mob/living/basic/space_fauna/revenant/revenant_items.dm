@@ -64,7 +64,7 @@
 		. += span_revenwarning("它正在不停地变形、扭曲。最好把它毁掉。")
 
 /obj/item/ectoplasm/revenant/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正在吸入 [src]！看来 [user.p_theyre()] 是打算去暗影界走一趟了！"))
+	user.visible_message(span_suicide("[user] 正在吸入 [src]！看来是打算去暗影界走一趟了！"))
 	qdel(src)
 	return OXYLOSS
 

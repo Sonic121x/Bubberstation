@@ -60,7 +60,7 @@
 
 /obj/item/melee/touch_attack/smite/suicide_act(mob/living/user)
 
-	user.visible_message(span_suicide("[user] 张开双臂，闪电在两手之间跃动！看来 [user.p_theyre()] 要轰轰烈烈地收场了！"))
+	user.visible_message(span_suicide("[user] 张开双臂，闪电在两手之间跃动！看来要轰轰烈烈地收场了！"))
 	user.say("SHIA KAZING!!", forced = "smite suicide")
 	do_sparks(4, FALSE, get_turf(user))
 	explosion(user, heavy_impact_range = 2, explosion_cause = src) //Cheap explosion imitation because putting detonate() here causes runtimes

@@ -15,7 +15,7 @@
 		return ..()
 
 	user.visible_message(
-		span_warning("[user] 把 [src] 举到 [user.p_their()] 嘴边，用牙撕咬起来！"),
+		span_warning("[user] 把 [src] 举到嘴边，用牙撕咬起来！"),
 		span_danger("一种不自然的饥饿感吞噬了你。你把 [src] 举到嘴边，将它吞了下去！"),
 	)
 	playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)

@@ -9,8 +9,8 @@
 	newtonian_force = 1.5
 
 /obj/item/ammo_casing/p50/surplus
-	name = ".50 BMG 剩余子弹壳"
-	desc = "一个 .50 BMG 剩余子弹壳。"
+	name = ".50 BMG 军剩子弹壳"
+	desc = "一个 .50 BMG 军剩子弹壳。"
 	projectile_type = /obj/projectile/bullet/p50/surplus
 
 /obj/item/ammo_casing/p50/disruptor

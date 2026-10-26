@@ -20,7 +20,7 @@
 
 /obj/item/gun/magic/wand/pax/zap_self(mob/living/user, suicide = FALSE)
 	if (!suicide)
-		user.visible_message(span_notice("[user] 温柔地亲吻了 [user.p_their()] 自己的魔杖。"))
+		user.visible_message(span_notice("[user] 温柔地亲吻了自己的魔杖。"))
 
 /obj/item/gun/magic/wand/pax/do_suicide(mob/living/user)
 	. = ..()

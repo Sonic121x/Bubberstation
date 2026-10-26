@@ -302,8 +302,8 @@ GAME_VERB(/obj/item/gun/ballistic/revolver, spin, "转动弹巢", null)
 	if(aim_time <= 0)
 		return FALSE
 	user.visible_message(
-		span_danger("[user] 把 \the [src] 对准了自己的 [parse_zone(user.zone_selected)]……"),
-		span_userdanger("你把 \the [src] 对准了自己的 [parse_zone(user.zone_selected)]……"),
+		span_danger("[user] 把 [src] 对准了自己的[chinese_body_zone_display(parse_zone(user.zone_selected))]……"),
+		span_userdanger("你把 [src] 对准了自己的[chinese_body_zone_display(parse_zone(user.zone_selected))]……"),
 		visible_message_flags = ALWAYS_SHOW_SELF_MESSAGE,
 	)
 	if(prob(10) && !HAS_TRAIT(user, TRAIT_FEARLESS))

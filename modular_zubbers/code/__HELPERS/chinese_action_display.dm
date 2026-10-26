@@ -1,6 +1,6 @@
 /// Keep action-button layout keys independent of this translation batch's display names.
 /// This is deliberately a reverse display map: unknown and player-supplied names stay intact.
-/proc/chinese_action_storage_name(value, action_type)
+/proc/chinese_legacy_action_storage_name(value, action_type)
 	if(value == "切换模式" && ispath(action_type, /datum/action/cooldown/mob_cooldown/defensive_mode))
 		return "Change Mode"
 	if(value == "现身" && ispath(action_type, /datum/action/innate/imaginary_hide))

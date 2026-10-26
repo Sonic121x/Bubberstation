@@ -389,7 +389,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	elite.revive(HEAL_ALL)
 	user.visible_message(span_notice("[user] 用 [src] 刺入 [elite]，将其复活了。"))
 	elite.playsound_local(get_turf(elite), 'sound/effects/magic.ogg', 40, 0)
-	to_chat(elite, span_userdanger("你被 [user] 复活了。虽然你无法与 [user.p_them()] 交谈，但你欠 [user] 一份厚重的恩情。无论风险如何，都要协助 [user.p_them()] 实现 [user.p_their()] 的目标。"))
+	to_chat(elite, span_userdanger("你被 [user] 复活了。虽然你无法与对方交谈，但你欠 [user] 一份厚重的恩情。无论风险如何，都要协助对方实现其目标。"))
 	to_chat(elite, span_boldbig("请注意，你现在与 [user] 共享忠诚。除非收到命令，否则你不应蓄意破坏其所属阵营！"))
 	elite.maxHealth *= ELITE_POST_BATTLE_HEALTH_MULTIPLIER
 	elite.health = elite.maxHealth

@@ -286,7 +286,7 @@
 			if (emptied > 0)
 				owner.apply_damage(emptied * 5, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND, wound_clothing = FALSE)
 				playsound(get_turf(src), 'sound/effects/splat.ogg', 50)
-				owner.visible_message(span_danger("[owner] 的肠内容物从 [owner.p_their()] [chest] 上一道巨大的切口里涌了出来！"),
+				owner.visible_message(span_danger("[owner] 的肠内容物从其[chest]上一道巨大的切口里涌了出来！"),
 					span_userdanger("你 [chest] 上一道巨大的切口让你肠子里的东西涌了出来！"))
 			return
 

@@ -20,7 +20,7 @@
 	VAR_FINAL/mode = FALSE
 
 /obj/item/hand_labeler/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正把 [src] 对准自己。[user.p_Theyre()] 打算给自己贴上“自杀”的标签！"))
+	user.visible_message(span_suicide("[user] 正把 [src] 对准自己，打算给自己贴上“自杀”的标签！"))
 	labels_left = max(labels_left - 1, 0)
 
 	var/old_real_name = user.real_name

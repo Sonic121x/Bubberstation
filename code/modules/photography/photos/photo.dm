@@ -69,7 +69,7 @@
 	return ..()
 
 /obj/item/photo/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正在最后看一眼 \the [src]！看起来 [user.p_theyre()] 打算赴死了！"))//when you wanna look at photo of waifu one last time before you die...
+	user.visible_message(span_suicide("[user] 正在最后看一眼 [src]！看起来是打算赴死了！"))//when you wanna look at photo of waifu one last time before you die...
 	user.emote("laugh", intentional = FALSE, forced = TRUE) // EVERY TIME I DO IT MAKES ME LAUGH
 	return OXYLOSS
 

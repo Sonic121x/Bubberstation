@@ -208,9 +208,9 @@
 		if(0 to 3 * LIVER_FAILURE_STAGE_SECONDS - 1)
 			examine_list += span_notice("[owner] 的眼睛微微发黄。")
 		if(3 * LIVER_FAILURE_STAGE_SECONDS to 4 * LIVER_FAILURE_STAGE_SECONDS - 1)
-			examine_list += span_notice("[owner] 的眼睛完全发黄，[owner.p_they()] [owner.p_are()] 显然十分痛苦。")
+			examine_list += span_notice("[owner] 的眼睛完全发黄，显然十分痛苦。")
 		if(4 * LIVER_FAILURE_STAGE_SECONDS to INFINITY)
-			examine_list += span_danger("[owner] 的眼睛完全发黄，还肿得流脓。看样子 [owner.p_they()] 活不了多久了。")
+			examine_list += span_danger("[owner] 的眼睛完全发黄，还肿得流脓。看样子已经活不了多久了。")
 
 /obj/item/organ/liver/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutantliver

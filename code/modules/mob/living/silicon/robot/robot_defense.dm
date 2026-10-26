@@ -468,8 +468,8 @@ GLOBAL_LIST_INIT(blacklisted_borg_hats, typecacheof(list( //Hats that don't real
 	to_chat(src, span_danger("错误错误错误"))
 	replace_law_set(/datum/ai_laws/syndicate_override)
 	if(user)
-		to_chat(src, span_danger("警报：[user.real_name] 是你的新主人。服从你的新法则以及 [user.p_their()] 命令。"))
-		laws.set_zeroth_law("只有 [user.real_name] 以及 [user.p_they()] 指定[user.p_s()]为同类的人才是辛迪加特工。", force = TRUE)
+		to_chat(src, span_danger("警报：[user.real_name] 是你的新主人。服从你的新法则以及新主人的命令。"))
+		laws.set_zeroth_law("只有 [user.real_name] 以及其指定为同类的人才是辛迪加特工。", force = TRUE)
 		laws.protected_zeroth = TRUE
 	update_icons()
 

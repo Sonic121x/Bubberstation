@@ -274,6 +274,6 @@
 		to_chat(hearer, span_danger("一道电弧击中你的听诊器，电流传进了你体内！"))
 	if(hearer.electrocute_act(15, "听诊器", flags = SHOCK_NOGLOVES)) //the stethoscope is in your ears. (returns true if it does damage so we only scream in that case)
 		hearer.emote("scream")
-	return span_danger("[owner.p_Their()]的心脏发出[beat_noise]。")
+	return span_danger("[owner]的心脏发出[beat_noise]。")
 
 #undef DOAFTER_IMPLANTING_HEART

@@ -389,7 +389,7 @@
 							)
 							if(!(world.time >= casing.shot_timestamp + CASING_HOT_DELAY))
 								var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
-								to_chat(wielder, span_warning("仿佛雪上加霜一般，\the [casing] 落地的角度堪称完美……正好烫伤了你的 [affecting.plaintext_zone]。"))
+								to_chat(wielder, span_warning("仿佛雪上加霜一般，[casing] 落地的角度堪称完美……正好烫伤了你的[chinese_body_zone_display(affecting.plaintext_zone)]。"))
 								wielder.apply_damage(5, BURN, affecting, wound_bonus = CANT_WOUND)
 						if(CASING_CATCH_FAILED_PLACEMENT)
 							hitting_ground = TRUE
@@ -406,7 +406,7 @@
 							hitting_ground = FALSE
 							casing.update_appearance()
 							var/obj/item/bodypart/affecting = wielder.get_inactive_hand()
-							to_chat(wielder, span_notice("你伸手接住了从 [src] 弹出的 \the [casing]。太棒了。不过你的 [affecting.plaintext_zone] 好疼。"))
+							to_chat(wielder, span_notice("你伸手接住了从 [src] 弹出的 [casing]。太棒了。不过你的[chinese_body_zone_display(affecting.plaintext_zone)]好疼。"))
 							wielder.apply_damage(4, BURN, affecting, wound_bonus = CANT_WOUND)
 				if(hitting_ground)
 					casing.bounce_away(TRUE)

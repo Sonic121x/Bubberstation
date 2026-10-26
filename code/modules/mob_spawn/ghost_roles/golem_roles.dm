@@ -106,7 +106,7 @@
 		CRASH("[type] created a golem without a mind.")
 
 	new_spawn.mind.enslave_mind_to_creator(real_owner)
-	to_chat(new_spawn, span_userdanger("不惜一切代价服侍 [real_owner.real_name]，并协助 [real_owner.p_them()] 实现 [real_owner.p_their()] 目标。"))
+	to_chat(new_spawn, span_userdanger("不惜一切代价服侍 [real_owner.real_name]，并协助主人实现目标。"))
 
 /obj/effect/mob_spawn/ghost_role/human/golem/servant/name_mob(mob/living/spawned_mob, forced_name)
 	if(owner_ref?.resolve())

@@ -35,7 +35,7 @@
 	return TRUE
 
 /obj/item/instrument/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始演奏《忧郁的星期天》！看上去 [user.p_theyre()] 正试图自杀！"))
+	user.visible_message(span_suicide("[user] 开始演奏《忧郁的星期天》！看上去是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/instrument/ui_interact(mob/user, datum/tgui/ui)

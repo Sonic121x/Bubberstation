@@ -583,7 +583,7 @@ GLOBAL_VAR_INIT(library_table_modified, 0)
 	can_spawn_lore = FALSE
 	new /obj/item/melee/cultblade/dagger(get_turf(src))
 	to_chat(user, span_warning("你的理智几乎撑不住在宝库浏览窗口中度过的那几秒。当你停止浏览时，唯一能让你记起这一切的，就是桌上那把阴森森的匕首。你甚至不记得它是从哪儿来的……"))
-	user.visible_message(span_warning("[user] 盯着空白的屏幕看了片刻，[user.p_their()]表情凝固在恐惧之中。当[user.p_they()]终于回过神来时，看上去一下子苍老了许多。"), vision_distance = 2)
+	user.visible_message(span_warning("[user] 盯着空白的屏幕看了片刻，表情凝固在恐惧之中。终于回过神来时，看上去一下子苍老了许多。"), vision_distance = 2)
 	if(ishuman(user))
 		var/mob/living/carbon/human/fool = user
 		fool.age = clamp(fool.age + 10, AGE_MIN, AGE_MAX) //Fuck you

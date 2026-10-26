@@ -108,7 +108,7 @@
 	for(var/i in found - sleepers)
 		var/mob/living/L = i
 		L.add_atom_colour(COLOR_PURPLE, TEMPORARY_COLOUR_PRIORITY)
-		L.visible_message(span_revennotice("奇异的紫色光芒缠绕住 [L]，[L.p_they()] 突然陷入了昏迷。"),
+		L.visible_message(span_revennotice("奇异的紫色光芒缠绕住 [L]，使其突然陷入了昏迷。"),
 			span_revendanger("[desc]"))
 		// Don't let them sit suround unconscious forever
 		addtimer(CALLBACK(src, PROC_REF(sleeper_dreams), L), 10 SECONDS)

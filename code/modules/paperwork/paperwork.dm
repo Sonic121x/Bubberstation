@@ -80,7 +80,7 @@
 				. += span_info("想读懂它让你头晕目眩。从勉强能辨认的几个词来看，这似乎是 [title] 的活儿。")
 
 /obj/item/paperwork/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 开始痛骂公文与官僚制度的低效。看起来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 开始痛骂公文与官僚制度的低效。看起来是想自杀！"))
 
 	var/obj/item/paper/new_paper = new /obj/item/paper(get_turf(src))
 	var/turf/turf_to_throw_at = get_ranged_target_turf(get_turf(src), pick(GLOB.alldirs))

@@ -178,7 +178,7 @@
 	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
 	if (duration > 0)
 		return // Saved by something, although probably by dying early
-	owner.death_message = "发出最后一声缺氧的嘎叫，随后 [owner.p_they()] 瘫软下去，没了气息……"
+	owner.death_message = "发出最后一声缺氧的嘎叫，随后瘫软下去，没了气息……"
 	owner.death()
 
 /// Don't keep dying if we died

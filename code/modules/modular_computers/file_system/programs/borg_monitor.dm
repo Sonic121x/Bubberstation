@@ -198,8 +198,8 @@
 
 /obj/item/circuit_component/mod_program/borg_monitor/populate_ports()
 	. = ..()
-	target_robot = add_input_port("接收方", PORT_TYPE_ATOM)
-	set_message = add_input_port("设置消息", PORT_TYPE_STRING, trigger = PROC_REF(sanitize_borg_message))
+	target_robot = add_input_port("Receiver", PORT_TYPE_ATOM)
+	set_message = add_input_port("Set Message", PORT_TYPE_STRING, trigger = PROC_REF(sanitize_borg_message))
 
 /obj/item/circuit_component/mod_program/borg_monitor/proc/sanitize_borg_message(datum/port/port)
 	set_message.set_value(trim(html_encode(set_message.value), MAX_MESSAGE_LEN))

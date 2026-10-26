@@ -72,7 +72,7 @@
 		target.apply_status_effect(applied_status)
 
 		if (target != user)
-			target.visible_message(span_notice("[user] 把 [src] 抹在 [target] 身上……恶心的触须把 [target.p_their()] 伤口拉合了！"))
+			target.visible_message(span_notice("[user] 把 [src] 抹在 [target] 身上……恶心的触须把伤口拉合了！"))
 		else
 			to_chat(user, span_notice("你把 [src] 抹在自己身上。恶心的触须把你的伤口拉合了。"))
 		return TRUE

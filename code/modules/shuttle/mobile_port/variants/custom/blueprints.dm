@@ -180,11 +180,11 @@
 		return
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	if(shuttle.master_blueprint?.resolve() != src)
-		to_chat(user, span_warning("只有 \the [shuttle] 的母版蓝图才赋予你为 [shuttle.p_them()] 重新命名的权利！"))
+		to_chat(user, span_warning("只有 [shuttle] 的母版蓝图才赋予你为其重新命名的权利！"))
 		return
 	var/turf/user_turf = get_turf(user)
 	if(user_turf && isshuttleturf(user_turf))
-		to_chat(user, span_warning("你不能在 [shuttle.p_them()] 内部为 \the [shuttle] 重新命名！"))
+		to_chat(user, span_warning("你不能在 [shuttle] 内部为其重新命名！"))
 		return
 	if(!source.isGlass)
 		to_chat(user, span_warning("你不能拿 [source] 去砸 [attacked]！"))
@@ -224,10 +224,10 @@
 	var/is_clumsy = HAS_TRAIT(user, TRAIT_CLUMSY)
 	var/clumsy_check = is_clumsy && prob(25)
 	if(!(has_blueprints && is_closed_turf && is_shuttle_turf && off_shuttle && has_bottle && !clumsy_check && !bottle_empty))
-		var/msg = "[user] 想用 [hitting_implement ? "[hitting_implement.get_examine_name()]" : "[user.p_their()]空拳"] 为穿梭机命名"
+		var/msg = "[user] 想用 [hitting_implement ? "[hitting_implement.get_examine_name()]" : "空拳"] 为穿梭机命名"
 		var/self_msg = "你想用 [hitting_implement ? "[hitting_implement.get_examine_name()]" : "你的空拳"] 为穿梭机命名"
 		if(!is_closed_turf || clumsy_check)
-			msg += "，却失了准头，反倒砸在了[user.p_themselves()]身上"
+			msg += "，却失了准头，反倒砸在了自己身上"
 			self_msg += "，却失了准头，反倒砸在了自己身上"
 			msg += "！"
 			self_msg += "！"
@@ -251,8 +251,8 @@
 				msg += "，可惜这里根本没有穿梭机可供命名！"
 				self_msg += "，可惜这里根本没有穿梭机可供命名！"
 			else if(!off_shuttle)
-				msg += "，不过这种事得在 [shuttle.p_them()] 的<i>外面</i>做！"
-				self_msg += "，不过这种事得在 [shuttle.p_them()] 的<i>外面</i>做！"
+				msg += "，不过这种事得在 [shuttle] 的<i>外面</i>做！"
+				self_msg += "，不过这种事得在 [shuttle] 的<i>外面</i>做！"
 			else if(!is_shuttle_turf)
 				msg += "，却失了准头，反倒打在了 [attacked] 上！"
 				self_msg += "，却失了准头，反倒打在了 [attacked] 上！"
@@ -439,7 +439,7 @@
 	if(!shuttle)
 		. += span_notice("上面留有某艘已不存在穿梭机的设计图，可再次用于建造新的穿梭机。")
 	else
-		. += span_notice("上面绘有 \the [shuttle] 的设计图，可用于扩建 [shuttle.p_them()] 或改造 [shuttle.p_their()] 的区域。")
+		. += span_notice("上面绘有 [shuttle] 的设计图，可用于扩建穿梭机或改造其区域。")
 		if(shuttle.master_blueprint.resolve() == src)
 			. += span_notice("这是 \the [shuttle] 的母版蓝图。你可以把它复制到空白蓝图上，或复制给安装了穿梭机数据库模块的工程半机械人。")
 
@@ -733,7 +733,7 @@
 	if(!shuttle)
 		. += span_notice("当前载入的设计图属于一艘已不存在的穿梭机，将默认进入穿梭机建造模式。")
 	else
-		. += span_notice("当前载入的是 \the [shuttle] 的设计图，可用于扩建 [shuttle.p_them()] 或改造 [shuttle.p_their()] 的区域。")
+		. += span_notice("当前载入的是 [shuttle] 的设计图，可用于扩建穿梭机或改造其区域。")
 		if(shuttle.master_blueprint.resolve() == src)
 			. += span_notice("这是 \the [shuttle] 的母版蓝图。你可以把它复制到空白蓝图上，或复制给另一台安装了穿梭机数据库模块的工程半机械人。")
 

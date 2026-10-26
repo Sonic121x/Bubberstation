@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		user.AddComponent(/datum/component/omen/bible)
 
 /obj/item/book/bible/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正把自己献给[deity_name]！看起来[user.p_they()]想要自杀！"))
+	user.visible_message(span_suicide("[user] 正把自己献给[deity_name]！看起来是想自杀！"))
 	return BRUTELOSS
 
 /obj/item/book/bible/proc/can_set_bible_skin(mob/living/user)

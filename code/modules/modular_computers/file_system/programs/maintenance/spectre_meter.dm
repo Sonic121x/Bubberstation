@@ -148,8 +148,8 @@
 
 /obj/item/circuit_component/mod_program/spectre_meter/populate_ports()
 	. = ..()
-	scan_results = add_output_port("扫描结果", PORT_TYPE_NUMBER)
-	scanned = add_output_port("已扫描", PORT_TYPE_SIGNAL)
+	scan_results = add_output_port("Scan Results", PORT_TYPE_NUMBER)
+	scanned = add_output_port("Scaned", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/mod_program/spectre_meter/register_shell(atom/movable/shell)
 	. = ..()

@@ -75,7 +75,7 @@
 		holder.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
 
 /obj/item/rag/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] 正用 [src] 捂住 [user.p_them()] 自己的口鼻！看来 [user.p_theyre()] 想自杀！"))
+	user.visible_message(span_suicide("[user] 正用 [src] 捂住自己的口鼻！看来是想自杀！"))
 	return OXYLOSS
 
 /obj/item/rag/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
