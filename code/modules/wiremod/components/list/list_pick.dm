@@ -4,9 +4,9 @@
  * Allows user to select 1 entry from a list
  */
 /obj/item/circuit_component/list_pick
-	display_name = "List Pick"
-	desc = "A component that lets a user pick 1 element from a list. Returns the selected element."
-	category = "List"
+	display_name = "列表抽取"
+	desc = "让使用者从列表中抽取 1 个元素的元件。返回被选中的元素。"
+	category = "列表"
 
 	/// The data type of the input_list
 	var/datum/port/input/option/list_options
@@ -52,7 +52,7 @@
 		failure.set_output(COMPONENT_SIGNAL)
 		return
 	if(!message)
-		message = "circuit input"
+		message = "电路输入"
 	if(!(user.can_perform_action(parent.shell, FORBID_TELEKINESIS_REACH|ALLOW_SILICON_REACH|ALLOW_RESTING)))
 		failure.set_output(COMPONENT_SIGNAL)
 		return

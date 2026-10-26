@@ -4,9 +4,9 @@
  * Return a number from an array of binary inputs.
  */
 /obj/item/circuit_component/decimal_conversion
-	display_name = "Decimal Conversion"
-	desc = "Merges an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations, into a decimal number."
-	category = "Math"
+	display_name = "十进制转换"
+	desc = "把由 1 和 0 表示的二进制位（比特）数组合并成一个十进制数的元件；这些位常用于布尔运算或二进制运算。"
+	category = "数学"
 
 	/// One number
 	var/datum/port/output/number

@@ -2,8 +2,8 @@
  * USB wiremod interface for temperature control unit machines
  */
 /obj/item/circuit_component/thermomachine
-	display_name = "Temperature Control Unit"
-	desc = "The interface for communicating with a temperature control unit."
+	display_name = "温控机组"
+	desc = "与温控机组通信的接口。"
 
 	///Set the target temperature
 	var/datum/port/input/temperature

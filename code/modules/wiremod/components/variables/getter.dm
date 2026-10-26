@@ -4,8 +4,8 @@
  * Gets the current value from a variable.
  */
 /obj/item/circuit_component/variable/getter
-	display_name = "Variable Getter"
-	desc = "A component that gets a variable globally on the circuit."
+	display_name = "变量获取器"
+	desc = "在电路中全局读取某个变量的元件。"
 
 	/// The value of the variable
 	var/datum/port/output/value

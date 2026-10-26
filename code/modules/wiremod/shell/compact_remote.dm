@@ -4,7 +4,7 @@
  * A handheld device with one big button.
  */
 /obj/item/compact_remote
-	name = "compact remote"
+	name = "紧凑遥控器"
 	icon = 'icons/obj/science/circuits.dmi'
 	icon_state = "setup_small_simple"
 	inhand_icon_state = "electronic"
@@ -23,8 +23,8 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/compact_remote
-	display_name = "Compact Remote"
-	desc = "Used to receive inputs from the compact remote shell. Use the shell in hand to trigger the output signal."
+	display_name = "紧凑遥控器"
+	desc = "用于接收紧凑遥控器外壳传来的输入。手持外壳使用即可触发输出信号。"
 
 	/// Called when attack_self is called on the shell.
 	var/datum/port/output/signal
@@ -46,7 +46,7 @@
  */
 /obj/item/circuit_component/compact_remote/proc/send_trigger(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "clicked primary button")
+	source.balloon_alert(user, "按下了主按钮")
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

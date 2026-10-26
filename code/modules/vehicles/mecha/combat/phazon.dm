@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/phazon
-	name = "\improper Phazon"
-	desc = "This is a Phazon exosuit. The pinnacle of scientific research and pride of Nanotrasen, it uses cutting edge anomalous technology and expensive materials."
+	name = "\improper 相位行者"
+	desc = "这是一台“相位行者”机甲。它是科研的巅峰，也是纳米传讯的骄傲；采用尖端的异常技术与昂贵的材料制成。"
 	icon_state = "phazon"
 	base_icon_state = "phazon"
 	movedelay = 2
@@ -60,7 +60,7 @@
 
 /obj/vehicle/sealed/mecha/phazon/try_bumpsmash(atom/obstacle)
 	if(phasing) // Theres only one cause for phasing canpass fails
-		to_chat(occupants, "[icon2html(src, occupants)][span_warning("A dull, universal force is preventing you from phasing here!")]")
+		to_chat(occupants, "[icon2html(src, occupants)][span_warning("一股沉闷的、无处不在的力量阻止你在此处相位穿行！")]")
 		spark_system.start()
 		return
 	return ..()
@@ -76,11 +76,11 @@
 	. = ..()
 	if (!. || !phasing)
 		return
-	balloon_alert(user, "not while phasing!")
+	balloon_alert(user, "相位穿行时不可进行此操作！")
 	return FALSE
 
 /datum/action/vehicle/sealed/mecha/mech_switch_damtype
-	name = "Reconfigure arm microtool arrays"
+	name = "重构臂部微型工具阵列"
 	button_icon_state = "mech_damtype_brute"
 
 /datum/action/vehicle/sealed/mecha/mech_switch_damtype/Trigger(mob/clicker, trigger_flags)
@@ -93,20 +93,20 @@
 	switch(chassis.damtype)
 		if(TOX)
 			new_damtype = BRUTE
-			chassis.balloon_alert(owner, "your punches will now deal brute damage")
+			chassis.balloon_alert(owner, "你的拳击现在造成钝击伤害")
 		if(BRUTE)
 			new_damtype = BURN
-			chassis.balloon_alert(owner, "your punches will now deal burn damage")
+			chassis.balloon_alert(owner, "你的拳击现在造成灼烧伤害")
 		if(BURN)
 			new_damtype = TOX
-			chassis.balloon_alert(owner,"your punches will now deal toxin damage")
+			chassis.balloon_alert(owner,"你的拳击现在造成毒素伤害")
 	chassis.damtype = new_damtype
 	button_icon_state = "mech_damtype_[new_damtype]"
 	playsound(chassis, 'sound/vehicles/mecha/mechmove01.ogg', 50, TRUE)
 	build_all_button_icons()
 
 /datum/action/vehicle/sealed/mecha/mech_toggle_phasing
-	name = "Toggle Phasing"
+	name = "切换相位穿行"
 	button_icon_state = "mech_phasing_off"
 
 /datum/action/vehicle/sealed/mecha/mech_toggle_phasing/Trigger(mob/clicker, trigger_flags)
@@ -118,5 +118,5 @@
 	var/obj/vehicle/sealed/mecha/phazon/phazon = chassis
 	phazon.phasing = !phazon.phasing
 	button_icon_state = "mech_phasing_[phazon.phasing ? "on" : "off"]"
-	phazon.balloon_alert(owner, "[phazon.phasing ? "enabled" : "disabled"] phasing")
+	phazon.balloon_alert(owner, "相位穿行[phazon.phasing ? "已启用" : "已停用"]")
 	build_all_button_icons()

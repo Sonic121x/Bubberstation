@@ -4,9 +4,9 @@
  * A component that sets a variable on an object
  */
 /obj/item/circuit_component/set_variable
-	display_name = "Set Variable"
-	desc = "A component that sets a variable on an object."
-	category = "Admin"
+	display_name = "设置变量"
+	desc = "设置对象上某个变量的元件。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// Whether to resolve weakrefs or not
@@ -39,5 +39,5 @@
 		var/list/to_resolve = resolved_new_value
 		resolved_new_value = recursive_list_resolve(to_resolve)
 
-	log_admin_circuit("[parent.get_creator()] set the variable '[var_name]' on [object] to [resolved_new_value].")
+	log_admin_circuit("[parent.get_creator()] 把 [object] 上的变量“[var_name]”设为了 [resolved_new_value]。")
 	object.vv_edit_var(var_name, resolved_new_value)

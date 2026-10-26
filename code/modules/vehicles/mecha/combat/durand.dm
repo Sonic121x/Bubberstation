@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/durand
-	desc = "An aging combat exosuit utilized by the Nanotrasen corporation. Originally developed to combat hostile alien lifeforms."
-	name = "\improper Durand"
+	desc = "纳米传讯公司使用的一种老旧战斗机甲。最初为对抗敌意外星生命体而研发。"
+	name = "\improper 杜兰德"
 	icon_state = "durand"
 	base_icon_state = "durand"
 	movedelay = 4
@@ -95,17 +95,17 @@
 
 	if(!defense_mode && cell?.charge < 100) // If it's off, and we have less than 100 units of power
 		if (user)
-			balloon_alert(user, "insufficient power")
+			balloon_alert(user, "电力不足")
 		return
 
 	switching = TRUE
 	defense_mode = !defense_mode
 
 	if(user)
-		balloon_alert(user, "shield [defense_mode ? "enabled" : "disabled"]")
-		log_message("User has toggled defense mode -- now [defense_mode ? "enabled" : "disabled"].", LOG_MECHA)
+		balloon_alert(user, "护盾[defense_mode ? "已启用" : "已停用"]")
+		log_message("用户切换了防御模式——现为[defense_mode ? "已启用" : "已停用"]。", LOG_MECHA)
 	else
-		log_message("defense mode state changed -- now [defense_mode ? "enabled" : "disabled"].", LOG_MECHA)
+		log_message("防御模式状态已改变——现为[defense_mode ? "已启用" : "已停用"]。", LOG_MECHA)
 
 	for(var/mob/living/occupant as anything in occupants)
 		var/datum/action/button = occupant_actions[occupant][/datum/action/vehicle/sealed/mecha/mech_defense_mode]
@@ -127,32 +127,32 @@
 
 /obj/vehicle/sealed/mecha/durand/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0)
 	if(defense_check(get_turf(user)))
-		log_message("Attack absorbed by defense field. Attacker - [user].", LOG_MECHA, color="orange")
+		log_message("攻击被防御场吸收。攻击者——[user]。", LOG_MECHA, color="orange")
 		return shield.attack_generic(user, damage_amount, damage_type, damage_flag, sound_effect, armor_penetration)
 	return ..()
 
 /obj/vehicle/sealed/mecha/durand/blob_act(obj/structure/blob/blob)
 	if(!defense_check(get_turf(blob)))
 		return ..()
-	log_message("Attack by blob. Attacker - [blob].", LOG_MECHA, color="red")
-	log_message("Attack absorbed by defense field.", LOG_MECHA, color="orange")
+	log_message("受到变形菌攻击。攻击者——[blob]。", LOG_MECHA, color="red")
+	log_message("攻击被防御场吸收。", LOG_MECHA, color="orange")
 	return shield.blob_act(blob)
 
 /obj/vehicle/sealed/mecha/durand/attackby(obj/item/weapon, mob/user as mob, list/modifiers, list/attack_modifiers)
 	if(defense_check(get_turf(user)))
-		log_message("Attack absorbed by defense field. Attacker - [user], with [weapon]", LOG_MECHA, color="orange")
+		log_message("攻击被防御场吸收。攻击者——[user]，持有 [weapon]。", LOG_MECHA, color="orange")
 		return shield.attackby(weapon, user, modifiers)
 	return ..()
 
 /obj/vehicle/sealed/mecha/durand/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(defense_check(get_turf(AM)))
-		log_message("Impact with [AM] absorbed by defense field.", LOG_MECHA, color="orange")
+		log_message("[AM] 的撞击被防御场吸收。", LOG_MECHA, color="orange")
 		return shield.hitby(AM, skipcatch, hitpush, blocked, throwingdatum)
 	return ..()
 
 /datum/action/vehicle/sealed/mecha/mech_defense_mode
-	name = "Toggle Shield"
-	desc = "Toggle an energy shield that blocks all attacks from the faced direction at a heavy power cost."
+	name = "切换护盾"
+	desc = "切换一面能量护盾，可格挡来自面朝方向的所有攻击，但耗电巨大。"
 	button_icon_state = "mech_defense_mode_off"
 
 /datum/action/vehicle/sealed/mecha/mech_defense_mode/Trigger(mob/clicker, trigger_flags, forced_state = FALSE)
@@ -174,7 +174,7 @@
  **/
 
 /obj/durand_shield //projectiles get passed to this when defense mode is enabled
-	name = "defense grid"
+	name = "防御网格"
 	icon = 'icons/mob/effects/durand_shield.dmi'
 	icon_state = "shield_null"
 	pixel_z = 4

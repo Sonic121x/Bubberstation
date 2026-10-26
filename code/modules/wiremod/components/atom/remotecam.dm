@@ -10,9 +10,9 @@
  * Attaches a camera for surveillance-on-the-go.
  */
 /obj/item/circuit_component/remotecam
-	display_name = "Camera Abstract Type"
-	desc = "This is the abstract parent type - do not use this directly!"
-	category = "Entity"
+	display_name = "摄像头抽象类型"
+	desc = "这是抽象父类型——不要直接使用！"
+	category = "实体"
 	circuit_flags = CIRCUIT_NO_DUPLICATES
 
 	/// Starts the cameraa
@@ -34,7 +34,7 @@
 	/// The shell storing the parent circuit
 	var/atom/movable/shell_parent = null
 	/// The shell's type (used for prefix naming)
-	var/camera_prefix = "Camera"
+	var/camera_prefix = "摄像头"
 	/// Camera random ID
 	var/c_tag_random = 0
 
@@ -56,10 +56,10 @@
 /obj/item/circuit_component/remotecam/get_ui_notices()
 	. = ..()
 	if(camera_range_settable)
-		. += create_ui_notice("Energy Usage For Near (0) Range: [display_energy(REMOTECAM_ENERGY_USAGE_NEAR)] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
-		. += create_ui_notice("Energy Usage For Far (1) Range: [display_energy(REMOTECAM_ENERGY_USAGE_FAR)] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+		. += create_ui_notice("近距离（0）能耗：每 [DisplayTimeText(COMP_CLOCK_DELAY)] 消耗 [display_energy(REMOTECAM_ENERGY_USAGE_NEAR)]", "orange", "clock")
+		. += create_ui_notice("远距离（1）能耗：每 [DisplayTimeText(COMP_CLOCK_DELAY)] 消耗 [display_energy(REMOTECAM_ENERGY_USAGE_FAR)]", "orange", "clock")
 	else
-		. += create_ui_notice("Energy Usage While Active: [display_energy(current_camera_range > 0 ? REMOTECAM_ENERGY_USAGE_FAR : REMOTECAM_ENERGY_USAGE_NEAR)] Per [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+		. += create_ui_notice("运行能耗：每 [DisplayTimeText(COMP_CLOCK_DELAY)] 消耗 [display_energy(current_camera_range > 0 ? REMOTECAM_ENERGY_USAGE_FAR : REMOTECAM_ENERGY_USAGE_NEAR)]", "orange", "clock")
 
 /obj/item/circuit_component/remotecam/populate_ports()
 	start = add_input_port("Start", PORT_TYPE_SIGNAL)
@@ -104,7 +104,7 @@
  * Initializes the camera
  */
 /obj/item/circuit_component/remotecam/proc/init_camera()
-	shell_camera.desc = "This camera belongs in a circuit. If you see this, tell a coder!"
+	shell_camera.desc = "这个摄像头属于某个电路。如果你看到了它，请告诉程序员！"
 	shell_camera.AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 	shell_camera.use_power = NO_POWER_USE
 	shell_camera.start_active = TRUE
@@ -160,16 +160,16 @@
  */
 /obj/item/circuit_component/remotecam/proc/update_camera_name_network()
 	if(!parent || !parent.display_name || parent.display_name == "")
-		shell_camera.c_tag = "[camera_prefix]: unspecified #[c_tag_random]"
+		shell_camera.c_tag = "[camera_prefix]：未指定 #[c_tag_random]"
 		current_camera_name = ""
 	else if(current_camera_name != parent.display_name)
 		current_camera_name = parent.display_name
 		var/new_cam_name = reject_bad_name(current_camera_name, allow_numbers = TRUE, ascii_only = FALSE, strict = TRUE, cap_after_symbols = FALSE)
 		//Set camera name using parent circuit name
 		if(new_cam_name)
-			shell_camera.c_tag = "[camera_prefix]: [new_cam_name] #[c_tag_random]"
+			shell_camera.c_tag = "[camera_prefix]：[new_cam_name] #[c_tag_random]"
 		else
-			shell_camera.c_tag = "[camera_prefix]: unspecified #[c_tag_random]"
+			shell_camera.c_tag = "[camera_prefix]：未指定 #[c_tag_random]"
 
 	if(!network.value || network.value == "")
 		shell_camera.network = list("ss13")
@@ -228,7 +228,7 @@
 	for(var/mob/M as anything in GLOB.player_list)
 		if (M.client?.eye == shell_camera)
 			M.reset_perspective(null)
-			to_chat(M, span_warning("The screen bursts into static!"))
+			to_chat(M, span_warning("屏幕骤然化作一片雪花！"))
 
 /**
  * Restore emp'd camera
@@ -279,10 +279,10 @@
 		shell_camera.toggle_cam(null, 0)
 
 /obj/item/circuit_component/remotecam/bci
-	display_name = "BCI Camera"
-	desc = "Digitizes user's sight for surveillance-on-the-go. User must have fully functional eyes for digitizer to work. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
-	category = "BCI"
-	camera_prefix = "BCI"
+	display_name = "脑机接口摄像头"
+	desc = "把使用者的视觉数字化，以便随时随地进行监视。使用者的双眼必须功能完好，数字化器才能生效。摄像头范围输入为 0（近）或 1（远）。网络字段用于指定摄像头网络。"
+	category = "脑机接口"
+	camera_prefix = "脑机接口"
 	required_shells = list(/obj/item/organ/cyberimp/bci)
 
 	/// BCIs are organs, and thus the signal must be assigned ONLY when the shell has been installed in a mob - otherwise the camera will never update position
@@ -292,23 +292,23 @@
 	var/mob/living/carbon/bciuser = null
 
 /obj/item/circuit_component/remotecam/drone
-	display_name = "Remote Camera"
-	desc = "Capture the surrounding environment for surveillance-on-the-go. Camera range input is either 0 (near) or 1 (far). Network field is used for camera network."
-	camera_prefix = "Drone"
+	display_name = "远程摄像头"
+	desc = "采集周围环境，以便随时随地进行监视。摄像头范围输入为 0（近）或 1（远）。网络字段用于指定摄像头网络。"
+	camera_prefix = "无人机"
 
 /obj/item/circuit_component/remotecam/airlock
-	display_name = "Peephole Camera"
-	desc = "A peephole camera that captures both sides of the airlock. Network field is used for camera network."
-	camera_prefix = "Airlock"
+	display_name = "猫眼摄像头"
+	desc = "可同时拍摄气闸两侧的猫眼摄像头。网络字段用于指定摄像头网络。"
+	camera_prefix = "气闸"
 
 	/// Hardcode camera to near range
 	camera_range_settable = FALSE
 	current_camera_range = 0
 
 /obj/item/circuit_component/remotecam/polaroid
-	display_name = "Camera Stream Add-On"
-	desc = "Relays a polaroid camera's feed as a digital stream for surveillance-on-the-go. The camera stream will not work if stored inside of a container like a backpack/box. Network field is used for camera network."
-	camera_prefix = "Polaroid"
+	display_name = "摄像头串流附加组件"
+	desc = "把拍立得相机的画面作为数字串流转播，以便随时随地进行监视。若相机存放在背包、箱子之类的容器内，串流将无法工作。网络字段用于指定摄像头网络。"
+	camera_prefix = "拍立得"
 
 	/// Hardcode camera to near range
 	camera_range_settable = FALSE

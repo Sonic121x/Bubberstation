@@ -4,9 +4,9 @@
  * Spawns an atom.
  */
 /obj/item/circuit_component/spawn_atom
-	display_name = "Spawn Atom"
-	desc = "Spawns an atom at a desired location"
-	category = "Admin"
+	display_name = "生成实体"
+	desc = "在指定位置生成一个实体。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// The input path to convert into a typepath
@@ -43,7 +43,7 @@
 
 	resolved_params.Insert(1, spawn_at.value)
 
-	log_admin_circuit("[parent.get_creator()] spawned in [typepath] with parameters \[[resolved_params.Join(", ")]].")
+	log_admin_circuit("[parent.get_creator()] 以参数 \[[resolved_params.Join(", ")]] 生成了 [typepath]。")
 	var/atom/spawned = new typepath(arglist(resolved_params))
 	spawned.datum_flags |= DF_VAR_EDITED
 	spawned_atom.set_output(spawned)

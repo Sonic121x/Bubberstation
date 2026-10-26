@@ -14,9 +14,9 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/arithmetic
-	display_name = "Arithmetic"
-	desc = "General arithmetic component with arithmetic capabilities."
-	category = "Math"
+	display_name = "算术"
+	desc = "具备各种算术运算能力的通用算术元件。"
+	category = "数学"
 
 	var/datum/port/input/option/arithmetic_option
 

@@ -4,9 +4,9 @@
  * Converts any value into a string
  */
 /obj/item/circuit_component/tostring
-	display_name = "To String"
-	desc = "A component that converts its input to text."
-	category = "String"
+	display_name = "转换为字符串"
+	desc = "把输入转换为文本的元件。"
+	category = "字符串"
 
 	/// The input port
 	var/datum/port/input/input_port

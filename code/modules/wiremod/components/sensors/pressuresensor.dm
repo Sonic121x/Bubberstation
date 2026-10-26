@@ -4,9 +4,9 @@
  * Returns the pressure of the tile
  */
 /obj/item/circuit_component/pressuresensor
-	display_name = "Pressure Sensor"
-	desc = "Outputs the current pressure of the tile"
-	category = "Sensor"
+	display_name = "压力传感器"
+	desc = "输出所在格当前的压力。"
+	category = "传感器"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

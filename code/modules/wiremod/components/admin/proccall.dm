@@ -8,9 +8,9 @@
  * A component that calls a proc on an object and outputs the return value
  */
 /obj/item/circuit_component/proccall
-	display_name = "Proc Call"
-	desc = "A component that calls a proc on an object."
-	category = "Admin"
+	display_name = "过程调用"
+	desc = "在对象上调用一个过程的元件。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	var/datum/port/input/option/proccall_options
@@ -41,7 +41,7 @@
 /obj/item/circuit_component/proccall/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ProcCallMenu", "ProcCall Configuration Menu")
+		ui = new(user, src, "ProcCallMenu", "过程调用配置菜单")
 		ui.open()
 		ui.set_autoupdate(FALSE)
 
@@ -179,7 +179,7 @@
 	if(resolve_weakref)
 		params = recursive_list_resolve(params)
 
-	log_admin_circuit("[parent.get_creator()] proccalled '[to_invoke]' on [called_on] with params \[[params.Join(", ")]].")
+	log_admin_circuit("[parent.get_creator()] 对 [called_on] 调用了过程“[to_invoke]”，参数为 \[[params.Join(", ")]]。")
 	INVOKE_ASYNC(src, PROC_REF(do_proccall), called_on, to_invoke, params)
 
 /obj/item/circuit_component/proccall/proc/do_proccall(called_on, to_invoke, params)

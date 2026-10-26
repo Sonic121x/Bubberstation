@@ -4,9 +4,9 @@
  * Gets the column of a table and returns it as a regular list.
  */
 /obj/item/circuit_component/get_column
-	display_name = "Get Column"
-	desc = "Gets the column of a table and returns it as a regular list."
-	category = "List"
+	display_name = "获取列"
+	desc = "获取表格中的某一列，并将其作为普通列表返回。"
+	category = "列表"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The list to perform the filter on

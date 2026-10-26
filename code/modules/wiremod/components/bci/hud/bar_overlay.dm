@@ -9,9 +9,9 @@
  */
 
 /obj/item/circuit_component/object_overlay/bar
-	display_name = "Bar Overlay"
-	desc = "Requires a BCI shell. A component that shows a bar overlay atop an object, ranging from 0 to 100."
-	category = "BCI"
+	display_name = "条形叠加显示"
+	desc = "需要脑机接口外壳。在物体上方显示 0 到 100 的条形叠加层的元件。"
+	category = "脑机接口"
 
 	var/datum/port/input/option/bar_overlay_options
 	var/datum/port/input/bar_number

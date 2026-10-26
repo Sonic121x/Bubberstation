@@ -4,9 +4,9 @@
  * Converts a string into a typepath. Useful for adding components.
  */
 /obj/item/circuit_component/to_type
-	display_name = "String To Type"
-	desc = "Converts a string into a typepath. Useful for adding components."
-	category = "Admin"
+	display_name = "字符串转类型"
+	desc = "把字符串转换为类型路径。在添加元件时很有用。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// The input path to convert into a typepath

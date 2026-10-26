@@ -4,9 +4,9 @@
  * General string concatenation component. Puts strings together.
  */
 /obj/item/circuit_component/concat
-	display_name = "Concatenate"
-	desc = "A component that combines strings."
-	category = "String"
+	display_name = "字符串连接"
+	desc = "把多个字符串拼接起来的元件。"
+	category = "字符串"
 
 	var/list/datum/port/input/concat_ports = list()
 

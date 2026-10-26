@@ -4,9 +4,9 @@
  * Converts a string into a Number
  */
 /obj/item/circuit_component/tonumber
-	display_name = "To Number"
-	desc = "A component that converts its input (a string) to a number. If there's text in the input, it'll only consider it if it starts with a number. It will take that number and ignore the rest."
-	category = "String"
+	display_name = "转换为数字"
+	desc = "把输入（字符串）转换为数字的元件。若输入中含有文本，则只有以数字开头时才会处理：取该数字并忽略其余部分。"
+	category = "字符串"
 
 	/// The input port
 	var/datum/port/input/input_port

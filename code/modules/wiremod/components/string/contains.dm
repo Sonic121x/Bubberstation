@@ -4,9 +4,9 @@
  * Checks if a string contains a word/letter
  */
 /obj/item/circuit_component/compare/contains
-	display_name = "String Contains"
-	desc = "Checks if a string contains a word/letter"
-	category = "String"
+	display_name = "字符串包含"
+	desc = "检查字符串中是否包含某个词或字母。"
+	category = "字符串"
 
 	var/datum/port/input/needle
 	var/datum/port/input/haystack

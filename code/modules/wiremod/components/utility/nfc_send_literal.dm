@@ -7,9 +7,9 @@
  * Any changes made to those files should be copied over with discretion
  */
 /obj/item/circuit_component/list_literal/nfc_send
-	display_name = "NFC Transmitter List Literal"
-	desc = "Creates a list literal data package and sends it through NFC. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
-	category = "Utility"
+	display_name = "NFC 发射器列表常量"
+	desc = "创建一个列表常量数据包，并通过 NFC 发送。若设置了加密密钥，则只有使用相同加密密钥的接收器才能收到发送的数据。"
+	category = "实用工具"
 
 	/// Encryption key
 	var/datum/port/input/enc_key

@@ -4,9 +4,9 @@
  * Concatenates a list with a separator
  */
 /obj/item/circuit_component/concat_list
-	display_name = "Concatenate List"
-	desc = "A component that joins up a list with a separator into a single string."
-	category = "List"
+	display_name = "连接列表"
+	desc = "用分隔符把列表连接成单个字符串的元件。"
+	category = "列表"
 
 	/// The input port
 	var/datum/port/input/list_port

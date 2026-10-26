@@ -4,9 +4,9 @@
  * Sends a signal for each item in a list
  */
 /obj/item/circuit_component/foreach
-	display_name = "For Each"
-	desc = "A component that loops through each element in a list."
-	category = "List"
+	display_name = "逐项遍历"
+	desc = "遍历列表中每个元素的元件。"
+	category = "列表"
 
 	/// The list type
 	var/datum/port/input/option/list_options

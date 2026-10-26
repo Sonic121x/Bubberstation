@@ -4,9 +4,9 @@
  * Sets a string value on an assoc list.
  */
 /obj/item/circuit_component/variable/assoc_list/list_set
-	display_name = "Associative List Set"
-	desc = "Sets a string key on an associative list to a specific value."
-	category = "List"
+	display_name = "关联列表设置"
+	desc = "把关联列表中的字符串键设为指定值。"
+	category = "列表"
 
 	/// Key to set
 	var/datum/port/input/key
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/variable/assoc_list/list_set/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Max List Size: [max_list_size]", "orange", "sitemap")
+	. += create_ui_notice("列表最大容量：[max_list_size]", "orange", "sitemap")
 
 /obj/item/circuit_component/variable/assoc_list/list_set/populate_ports()
 	key = add_input_port("Key", PORT_TYPE_STRING)

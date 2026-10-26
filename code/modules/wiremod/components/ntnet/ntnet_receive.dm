@@ -4,8 +4,8 @@
  * Receives data through NTNet.
  */
 /obj/item/circuit_component/ntnet_receive
-	display_name = "NTNet Receiver"
-	desc = "Receives data packages through NTNet. If Encryption Key is set then only signals with the same Encryption Key will be received."
+	display_name = "NTNet 接收器"
+	desc = "通过 NTNet 接收数据包。若设置了加密密钥，则只会接收到使用相同加密密钥的信号。"
 	category = "NTNet"
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL //trigger_output

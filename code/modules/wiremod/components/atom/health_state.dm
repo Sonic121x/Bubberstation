@@ -5,9 +5,9 @@
  */
 
 /obj/item/circuit_component/compare/health_state
-	display_name = "Compare Health State"
-	desc = "A component that compares the health state of an organism, and returns true or false."
-	category = "Entity"
+	display_name = "比较健康状态"
+	desc = "比较生物的健康状态并返回真或假的元件。"
+	category = "实体"
 
 	/// The input port
 	var/datum/port/input/input_port
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/compare/health_state/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("最大范围：[max_range] 格", "orange", "info")
 
 /obj/item/circuit_component/compare/health_state/populate_options()
 	input_port = add_input_port("Organism", PORT_TYPE_ATOM)

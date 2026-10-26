@@ -4,9 +4,9 @@
  * Compares two objects
  */
 /obj/item/circuit_component/compare/comparison
-	display_name = "Comparison"
-	desc = "A component that compares two objects."
-	category = "Math"
+	display_name = "比较"
+	desc = "比较两个对象的元件。"
+	category = "数学"
 
 	var/datum/port/input/option/comparison_option
 

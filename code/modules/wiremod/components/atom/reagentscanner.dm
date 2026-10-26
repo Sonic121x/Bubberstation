@@ -4,9 +4,9 @@
  * Returns the reagentss of an atom
  */
 /obj/item/circuit_component/reagentscanner
-	display_name = "Reagents Scanner"
-	desc = "Outputs the reagents found inside the inputted entity."
-	category = "Entity"
+	display_name = "试剂扫描器"
+	desc = "输出输入实体内部所含试剂的元件。"
+	category = "实体"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/reagentscanner/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("最大范围：[max_range] 格", "orange", "info")
 	. += create_table_notices(list(
 		"reagent",
 		"volume",

@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/mecha/honker
-	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
+	desc = "由“洪克暴政公司”生产，这款机甲专为小丑提供重型支援而设计。用于传播生活的欢乐与喜悦。洪克！"
 	name = "\improper H.O.N.K"
 	ui_theme = "neutral"
 	icon_state = "honker"
@@ -42,8 +42,8 @@
 //DARK H.O.N.K.
 
 /obj/vehicle/sealed/mecha/honker/dark
-	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. This one has been painted black for maximum fun. HONK!"
-	name = "\improper Dark H.O.N.K"
+	desc = "由“洪克暴政公司”生产，这款机甲专为小丑提供重型支援而设计。这一台被涂成黑色，以求最大限度的欢乐。洪克！"
+	name = "\improper 暗影 H.O.N.K"
 	ui_theme = "syndicate"
 	icon_state = "darkhonker"
 	max_integrity = 300
@@ -90,5 +90,5 @@
 	update_part_values()
 
 /obj/structure/mecha_wreckage/honker/dark
-	name = "\improper Dark H.O.N.K wreckage"
+	name = "\improper 暗影 H.O.N.K 残骸"
 	icon_state = "darkhonker-broken"

@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/marauder
-	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations. Its bleeding edge armour ensures maximum usability and protection at the cost of some modularity."
-	name = "\improper Marauder"
+	desc = "重型战斗机甲，在“杜兰德”之后研发。在平民中极为罕见。其尖端装甲在保证最大可用性与防护性的同时，牺牲了部分模块化能力。"
+	name = "\improper 掠夺者"
 	icon_state = "marauder"
 	base_icon_state = "marauder"
 	movedelay = 5
@@ -81,12 +81,12 @@
 		return
 
 	if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
-		to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to move while in zoom mode!")]")
+		to_chat(occupants, "[icon2html(src, occupants)][span_warning("缩放模式下无法移动！")]")
 		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 	return FALSE
 
 /datum/action/vehicle/sealed/mecha/mech_smoke
-	name = "Smoke"
+	name = "烟雾"
 	button_icon_state = "mech_smoke"
 
 /datum/action/vehicle/sealed/mecha/mech_smoke/IsAvailable(feedback)
@@ -97,12 +97,12 @@
 	var/obj/vehicle/sealed/mecha/marauder/maradeur = chassis
 	if(!TIMER_COOLDOWN_FINISHED(maradeur, COOLDOWN_MECHA_SMOKE))
 		if (feedback)
-			owner.balloon_alert(owner, "smoke charges on cooldown!")
+			owner.balloon_alert(owner, "烟雾弹仍在冷却中！")
 		return FALSE
 
 	if (!maradeur.smoke_charges)
 		if (feedback)
-			owner.balloon_alert(owner, "out of smoke charges!")
+			owner.balloon_alert(owner, "烟雾弹已用尽！")
 		return FALSE
 
 /datum/action/vehicle/sealed/mecha/mech_smoke/Trigger(mob/clicker, trigger_flags)
@@ -118,7 +118,7 @@
 		TIMER_COOLDOWN_START(maradeur, COOLDOWN_MECHA_SMOKE, maradeur.smoke_cooldown)
 
 /datum/action/vehicle/sealed/mecha/mech_zoom
-	name = "Zoom"
+	name = "缩放"
 	button_icon_state = "mech_zoom_off"
 
 /datum/action/vehicle/sealed/mecha/mech_zoom/Trigger(mob/clicker, trigger_flags)
@@ -130,8 +130,8 @@
 	var/obj/vehicle/sealed/mecha/marauder/maradeur = chassis
 	maradeur.zoom_mode = !maradeur.zoom_mode
 	button_icon_state = "mech_zoom_[maradeur.zoom_mode ? "on" : "off"]"
-	maradeur.log_message("Toggled zoom mode.", LOG_MECHA)
-	to_chat(owner, "[icon2html(maradeur, owner)]<font color='[maradeur.zoom_mode ? "blue" : "red"]'>Zoom mode [maradeur.zoom_mode ? "en" : "dis"]abled.</font>")
+	maradeur.log_message("切换了缩放模式。", LOG_MECHA)
+	to_chat(owner, "[icon2html(maradeur, owner)]<font color='[maradeur.zoom_mode ? "blue" : "red"]'>缩放模式[maradeur.zoom_mode ? "已启用" : "已停用"]。</font>")
 	if(maradeur.zoom_mode)
 		owner.client.view_size.setTo(4.5)
 		SEND_SOUND(owner, sound('sound/vehicles/mecha/imag_enh.ogg', volume=50))
@@ -140,8 +140,8 @@
 	build_all_button_icons()
 
 /obj/vehicle/sealed/mecha/marauder/seraph
-	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
-	name = "\improper Seraph"
+	desc = "重型指挥型机甲。这是定制型号，仅配发给高级军事人员。"
+	name = "\improper 炽天使"
 	icon_state = "seraph"
 	base_icon_state = "seraph"
 	accesses = list(ACCESS_CENT_SPECOPS)
@@ -176,8 +176,8 @@
 
 
 /obj/vehicle/sealed/mecha/marauder/mauler
-	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model, its hardened exterior prevents the use of add-on armor packages."
-	name = "\improper Mauler"
+	desc = "重型战斗机甲，在现有的“掠夺者”型号基础上研发；其硬化外壳使其无法使用附加装甲组件。"
+	name = "\improper 猛击者"
 	ui_theme = "syndicate"
 	icon_state = "mauler"
 	base_icon_state = "mauler"

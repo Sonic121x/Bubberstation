@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 	var/list/general_data = json_decode(json_data)
 
 	if(!general_data)
-		LOG_ERROR(errors, "Invalid json format!")
+		LOG_ERROR(errors, "无效的 json 格式！")
 		return
 
 	var/list/variable_data = general_data["variables"]
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 		var/list/component_data = circuit_data[identifier]
 		var/type = text2path(component_data["type"])
 		if(!ispath(type, /obj/item/circuit_component))
-			LOG_ERROR(errors, "Invalid path for circuit component, expected [/obj/item/circuit_component], got [type]")
+			LOG_ERROR(errors, "电路元件的路径无效，应为 [/obj/item/circuit_component]，实际为 [type]")
 			continue
 		var/obj/item/circuit_component/component = load_component(type)
 		identifiers_to_circuit[identifier] = component
@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 					break
 
 			if(!port)
-				LOG_ERROR(errors, "Port '[port_name]' not found on [component.type] when trying to set it to a value of [port_data["stored_data"]]!")
+				LOG_ERROR(errors, "在 [component.type] 上找不到端口“[port_name]”，无法将其设为 [port_data["stored_data"]]！")
 				continue
 
 			port.set_input(port_data["stored_data"])
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 		var/list/object_data = external_objects[identifier]
 		var/type = text2path(object_data["type"])
 		if(!ispath(type))
-			LOG_ERROR(errors, "Invalid path for external object, expected a path, got [type]")
+			LOG_ERROR(errors, "外部对象的路径无效，应为一个路径，实际为 [type]")
 			continue
 		var/atom/movable/object = new type(drop_location())
 		var/list/connected_components = list()
@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 					break
 
 			if(!port)
-				LOG_ERROR(errors, "Port [port_name] not found for [component.type].")
+				LOG_ERROR(errors, "找不到 [component.type] 的端口 [port_name]。")
 				continue
 
 			if(connection_data["stored_data"])
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 			for(var/list/output_data in (connection_data["connected_ports"] || list(connection_data)))
 				var/obj/item/circuit_component/connected_component = identifiers_to_circuit[output_data["component_id"]]
 				if(!connected_component)
-					LOG_ERROR(errors, "No connected component found for [component.type] for port [connection_data["port_name"]]. (connected component identifier: [connection_data["component_id"]])")
+					LOG_ERROR(errors, "找不到 [component.type] 在端口 [connection_data["port_name"]] 上连接的元件。（已连接元件的标识：[connection_data["component_id"]]）")
 					continue
 
 				var/datum/port/output/output_port
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 						break
 
 				if(!output_port)
-					LOG_ERROR(errors, "No output port found for [component.type] for port [output_port_name] on component [connected_component.type]")
+					LOG_ERROR(errors, "在元件 [connected_component.type] 上找不到 [component.type] 的端口 [output_port_name] 的输出端口")
 					continue
 
 				port.connect(output_port)
@@ -220,16 +220,16 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 	rel_x = component_data["rel_x"]
 	rel_y = component_data["rel_y"]
 
-ADMIN_VERB(load_circuit, R_VAREDIT, "Load Circuit", "Loads a circuit from a file or direct input.", ADMIN_CATEGORY_FUN)
+ADMIN_VERB(load_circuit, R_VAREDIT, "加载电路", "从文件或直接输入加载电路。", ADMIN_CATEGORY_FUN)
 	var/list/errors = list()
 
-	var/option = alert(user, "Load by file or direct input?", "Load by file or string", "File", "Direct Input")
+	var/option = alert(user, "通过文件加载，还是直接输入？", "按文件或字符串加载", "文件", "直接输入")
 	var/txt
 	switch(option)
-		if("File")
-			txt = file2text(input(user, "Input File") as null|file)
-		if("Direct Input")
-			txt = input(user, "Input JSON", "Input JSON") as text|null
+		if("文件")
+			txt = file2text(input(user, "输入文件") as null|file)
+		if("直接输入")
+			txt = input(user, "输入 JSON", "输入 JSON") as text|null
 
 	if(!txt)
 		return
@@ -238,6 +238,6 @@ ADMIN_VERB(load_circuit, R_VAREDIT, "Load Circuit", "Loads a circuit from a file
 	circuit.load_circuit_data(txt, errors)
 
 	if(length(errors))
-		to_chat(user, span_warning("The following errors were found whilst compiling the circuit data:"))
+		to_chat(user, span_warning("编译电路数据时发现以下错误："))
 		for(var/error in errors)
 			to_chat(user, span_warning(error))

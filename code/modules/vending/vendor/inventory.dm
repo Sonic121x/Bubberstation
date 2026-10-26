@@ -60,8 +60,8 @@
 */
 /obj/machinery/vending/proc/build_inventories(start_empty = FALSE)
 	build_inventory(products, product_records, product_categories, start_empty)
-	build_inventory(contraband, hidden_records, list(list("name" = "Contraband", "icon" = "mask", "products" = contraband)), start_empty, premium = TRUE)
-	build_inventory(premium, coin_records, list(list("name" = "Premium", "icon" = "coins", "products" = premium)), start_empty, premium = TRUE)
+	build_inventory(contraband, hidden_records, list(list("name" = "违禁品", "icon" = "mask", "products" = contraband)), start_empty, premium = TRUE)
+	build_inventory(premium, coin_records, list(list("name" = "高级商品", "icon" = "coins", "products" = premium)), start_empty, premium = TRUE)
 
 //Better would be to make constructable child
 /obj/machinery/vending/RefreshParts()
@@ -155,10 +155,10 @@
 		if(!extended_inventory)
 			return
 	else if (!(item_record in record_to_check))
-		message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(user)]!")
+		message_admins("检测到由 [ADMIN_LOOKUPFLW(user)] 尝试的售货机漏洞利用行为！")
 		return
 	if (item_record.amount <= 0)
-		speak("Sold out of [item_record.name].")
+		speak("[item_record.name]已售罄。")
 		flick(icon_deny, src)
 		return
 	if(!all_products_free)
@@ -169,11 +169,11 @@
 			living_user = user
 			card_used = living_user.get_idcard(TRUE)
 		if(QDELETED(card_used))
-			speak("You do not possess an ID to purchase [item_record.name].")
+			speak("你没有可用于购买[item_record.name]的证件。")
 			return
 
 		if(age_restrictions && item_record.age_restricted && (!card_used.registered_age || card_used.registered_age < AGE_MINOR))
-			speak("You are not of legal age to purchase [item_record.name].")
+			speak("你未达到购买[item_record.name]的法定年龄。")
 			if(!(user in GLOB.narcd_underages))
 				aas_config_announce(/datum/aas_config_entry/vendomat_age_control, list(
 					"PERSON" = usr.name,
@@ -189,7 +189,7 @@
 			return
 
 	if(last_shopper != REF(user) || purchase_message_cooldown < world.time)
-		var/vend_response = vend_reply || "Thank you for shopping with [src]!"
+		var/vend_response = vend_reply || "感谢你在[src]购物！"
 		speak(vend_response)
 		purchase_message_cooldown = world.time + 5 SECONDS
 		//This is not the best practice, but it's safe enough here since the chances of two people using a machine with the same ref in 5 seconds is fuck low
@@ -212,10 +212,10 @@
 
 	var/sigreturn = SEND_SIGNAL(user, COMSIG_MOB_VENDING_PURCHASE, src, vended_item)
 	if(!(sigreturn & VENDING_NO_PICKUP) && IsReachableBy(user) && user.put_in_hands(vended_item))
-		to_chat(user, span_notice("You take [item_record.name] out of the slot."))
+		to_chat(user, span_notice("你从出货口取出了[item_record.name]。"))
 		vended_item.do_pickup_animation(user, src)
 	else
-		to_chat(user, span_warning("[capitalize(format_text(item_record.name))] falls onto the floor!"))
+		to_chat(user, span_warning("[capitalize(format_text(item_record.name))]掉到了地上！"))
 
 	SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[item_record.product_path]"))
 
@@ -286,12 +286,12 @@
 	if(!discountless && account.account_job?.paycheck_department == payment_department)
 		price_to_use = max(round(price_to_use * DEPARTMENT_DISCOUNT), 1) //No longer free, but signifigantly cheaper.
 	if(attempt_charge(src, mob_paying, price_to_use) & COMPONENT_OBJ_CANCEL_CHARGE)
-		speak("You do not possess the funds to purchase [product_to_vend.name].")
+		speak("你的资金不足以购买[product_to_vend.name]。")
 		flick(icon_deny,src)
 		return FALSE
 
 	//transfer money to machine
 	SSblackbox.record_feedback("amount", "vending_spent", price_to_use)
-	log_econ("[price_to_use] [MONEY_NAME] were inserted into [src] by [account.account_holder] to buy [product_to_vend].")
+	log_econ("[account.account_holder]为了购买[product_to_vend]向[src]投入了 [price_to_use] [MONEY_NAME]。")
 	credits_contained += round(price_to_use * VENDING_CREDITS_COLLECTION_AMOUNT)
 	return TRUE

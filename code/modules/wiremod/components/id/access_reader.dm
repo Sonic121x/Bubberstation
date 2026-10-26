@@ -1,7 +1,7 @@
 /obj/item/circuit_component/id_access_reader
-	display_name = "Read ID Access"
-	desc = "A component that reads the access on an ID."
-	category = "ID"
+	display_name = "ID 权限读取"
+	desc = "读取 ID 上权限的元件。"
+	category = "ID 卡权限"
 
 	/// The input port
 	var/datum/port/input/target
@@ -15,7 +15,7 @@
 
 /obj/item/circuit_component/id_access_reader/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles.", "orange", "info")
+	. += create_ui_notice("最大范围：[max_range] 格。", "orange", "info")
 
 /obj/item/circuit_component/id_access_reader/populate_ports()
 	target = add_input_port("Target", PORT_TYPE_ATOM)

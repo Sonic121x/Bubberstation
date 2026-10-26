@@ -4,9 +4,9 @@
  * Listens for messages. Requires a shell.
  */
 /obj/item/circuit_component/hear
-	display_name = "Voice Activator"
-	desc = "A component that listens for messages. Requires a shell."
-	category = "Entity"
+	display_name = "语音激活"
+	desc = "监听消息的元件。需要外壳。"
+	category = "实体"
 
 	/// The on/off port
 	var/datum/port/input/on

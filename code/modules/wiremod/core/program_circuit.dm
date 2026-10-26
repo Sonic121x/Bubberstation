@@ -4,8 +4,8 @@
  * This means they don't work like normal unremovable comps that live and die along with their shell.
  */
 /obj/item/circuit_component/mod_program
-	display_name = "Abstract Modular Program"
-	desc = "I've spent lot of time thinking how to get this to work. If you see this, I either failed or someone else did, so report it."
+	display_name = "抽象模块化程序"
+	desc = "我花了很多时间琢磨怎么让它正常运作。如果你看到了这段文字，那要么是我没搞定，要么是别人没搞定，请上报。"
 	/**
 	 * The program that installed us into the shell/usb_port comp. Needed to avoid having too many signals for every program.
 	 * This is also the program we need to install on the modular computer if the circuit is admin-loaded.
@@ -92,4 +92,4 @@
 /obj/item/circuit_component/mod_program/get_ui_notices()
 	. = ..()
 	if(!(associated_program.program_flags & PROGRAM_CIRCUITS_RUN_WHEN_CLOSED))
-		. += create_ui_notice("Requires open program for inputs", "purple")
+		. += create_ui_notice("输入需要程序处于打开状态", "purple")

@@ -1,6 +1,6 @@
 /obj/machinery/vending/engivend
-	name = "\improper Engi-Vend"
-	desc = "Spare tool vending. What? Did you expect some witty description?"
+	name = "\improper 工程售货机"
+	desc = "供应备用工具。怎么？你还指望看到什么俏皮的简介吗？"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	panel_type = "panel10"
@@ -34,5 +34,5 @@
 	light_mask = "engivend-light-mask"
 
 /obj/item/vending_refill/engivend
-	machine_name = "Engi-Vend"
+	machine_name = "工程售货机"
 	icon_state = "refill_engi"

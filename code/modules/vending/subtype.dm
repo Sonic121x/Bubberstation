@@ -1,14 +1,14 @@
 
 /obj/machinery/vending/subtype_vendor
-	name = "\improper subtype vendor"
-	desc = "A vending machine that vends all subtypes of a specific type."
+	name = "\improper 子类型售货机"
+	desc = "一台会出售某一类型全部子类型的售货机。"
 	color = COLOR_ADMIN_PINK
-	verb_say = "codes"
-	verb_ask = "queries"
-	verb_exclaim = "compiles"
+	verb_say = "编码"
+	verb_ask = "查询"
+	verb_exclaim = "编译"
 	armor_type = /datum/armor/machinery_vending
 	circuit = null
-	product_slogans = "Spawn \" too annoying? Too lazy to open game panel? This one's for you!;Subtype vendor, for all your debugging woes!"
+	product_slogans = "刷怪太麻烦？懒得打开游戏面板？那这台就是为你准备的！;子类型售货机，解决你所有的调试烦恼！"
 	default_price = 0
 	all_products_free = TRUE
 	/// Spawns coders by default
@@ -38,13 +38,13 @@
 		return
 
 	if(!user.client?.holder?.check_for_rights(R_SERVER|R_DEBUG))
-		speak("Hey! You can't use this! Get outta here!")
+		speak("嘿！你不能用这个！滚出去！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	var/type_to_vend_now = tgui_input_text(user, "What type to set it to?", "Set type to vend", "/obj/item/toy/plush")
+	var/type_to_vend_now = tgui_input_text(user, "要把它设置成哪种类型？", "设置出售的类型", "/obj/item/toy/plush")
 	type_to_vend_now = text2path(type_to_vend_now)
 	if(!ispath(type_to_vend_now))
-		speak("That's not a real path, dumbass! Try again!")
+		speak("这根本不是一条真实路径，蠢货！再试一次！")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	type_to_vend = type_to_vend_now

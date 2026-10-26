@@ -4,9 +4,9 @@
  * Splits a string
  */
 /obj/item/circuit_component/split
-	display_name = "Split"
-	desc = "Splits a string by the separator, turning it into a list"
-	category = "List"
+	display_name = "拆分"
+	desc = "按分隔符拆分字符串，将其变为列表"
+	category = "列表"
 
 	/// The input port
 	var/datum/port/input/input_port

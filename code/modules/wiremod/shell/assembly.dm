@@ -4,8 +4,8 @@
  * An assembly that triggers and can be triggered by wires.
  */
 /obj/item/assembly/wiremod
-	name = "circuit assembly"
-	desc = "A small electronic device that can house an integrated circuit."
+	name = "电路装配件"
+	desc = "一种可容纳集成电路的小型电子装置。"
 	icon_state = "wiremod"
 	assembly_behavior = ASSEMBLY_ALL
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT)
@@ -86,15 +86,15 @@
 
 /obj/item/assembly/wiremod/examine(mob/user)
 	. = ..()
-	. += span_notice("You can also [secured && "un"]secure [src] by right-clicking it with a screwdriver, even if an integrated circuit is attached.")
+	. += span_notice("即使装有集成电路，你也可以用螺丝刀右键点击 [src] 来固定或解除固定。")
 
 // This is to bypass removing the circuit with a screwdriver left-click
 /obj/item/assembly/wiremod/screwdriver_act_secondary(mob/living/user, obj/item/tool)
 	screwdriver_act(user, tool)
 
 /obj/item/circuit_component/assembly_input
-	display_name = "Assembly Input"
-	desc = "Triggers when pulsed by an attached wire or assembly."
+	display_name = "装配件输入"
+	desc = "当连接的导线或装配件发出脉冲时触发。"
 
 	var/datum/port/output/signal
 
@@ -112,8 +112,8 @@
 	signal.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/assembly_output
-	display_name = "Assembly Output"
-	desc = "Pulses an attached wire or assembly when triggered."
+	display_name = "装配件输出"
+	desc = "触发时向连接的导线或装配件发出脉冲。"
 
 	var/obj/item/assembly/attached_assembly
 

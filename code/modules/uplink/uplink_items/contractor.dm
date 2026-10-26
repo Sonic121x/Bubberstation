@@ -1,14 +1,14 @@
 /datum/uplink_category/contractor
-	name = "Contractor"
+	name = "承包商"
 	weight = 10
 
 /datum/uplink_item/bundles_tc/contract_kit
-	name = "Contract Kit"
-	desc = "The Syndicate have offered you the chance to become a contractor, take on kidnapping contracts for TC \
-		and cash payouts. Upon purchase, you'll be granted your own contract uplink embedded within the supplied \
-		tablet computer. Additionally, you'll be granted standard contractor gear to help with your mission - \
-		comes supplied with the tablet, specialised space suit, chameleon jumpsuit and mask, agent card, \
-		and a specialised contractor baton."
+	name = "承包商套件"
+	desc = "辛迪加给了你成为承包商的机会，你可以接下绑架合同，换取 TC \
+		和现金报酬。购买后，你会获得一套内嵌在附赠平板电脑中的专属合同上行链路。 \
+		此外，你还会获得标准的承包商装备来协助完成任务—— \
+		套件包含平板电脑、专用太空服、变色龙连体服与面具、特工卡， \
+		以及一根专用承包商警棍。"
 	item = /obj/item/storage/box/syndicate/contract_kit
 	category = /datum/uplink_category/contractor
 	cost = 20
@@ -33,9 +33,9 @@
 	return ..()
 
 /datum/uplink_item/contractor/reroll
-	name = "Contract Reroll"
-	desc = "Request a reroll of your current contract list. Will generate a new target, \
-		payment, and dropoff for the contracts you currently have available."
+	name = "重掷合同"
+	desc = "申请重掷当前的合同列表。将为你目前可用的合同生成新的目标、 \
+		报酬和交付地点。"
 	item = ABSTRACT_UPLINK_ITEM
 	limited_stock = 2
 	cost = 0
@@ -62,29 +62,29 @@
 	return source //for log icon
 
 /datum/uplink_item/contractor/pinpointer
-	name = "Contractor Pinpointer"
-	desc = "A pinpointer that finds targets even without active suit sensors. \
-		Due to taking advantage of an exploit within the system, it can't pinpoint \
-		to the same accuracy as the traditional models. \
-		Becomes permanently locked to the user that first activates it."
+	name = "承包商指示器"
+	desc = "一种无需宇航服传感器也能找到目标的指示器。 \
+		由于利用了系统中的一个漏洞，它的定位精度 \
+		不如传统型号。 \
+		首次激活它的用户会被永久绑定。"
 	item = /obj/item/pinpointer/crew/contractor
 	limited_stock = 2
 	cost = 1
 
 /datum/uplink_item/contractor/extraction_kit
-	name = "Fulton Extraction Kit"
-	desc = "For getting your target across the station to those difficult dropoffs. \
-		Place the beacon somewhere secure, and link the pack. \
-		Activating the pack on your target will send them over to the beacon - \
-		make sure they're not just going to run away though!"
+	name = "富尔顿回收套件"
+	desc = "用于把你的目标送过整个空间站，交到那些难以前往的交付点。 \
+		把信标放在安全的地方，然后与背包完成连接。 \
+		对目标激活背包就会把他们送到信标处—— \
+		不过要确保他们不会跑掉！"
 	item = /obj/item/storage/box/contractor/fulton_extraction
 	limited_stock = 1
 	cost = 1
 
 /datum/uplink_item/contractor/partner
-	name = "Contractor Reinforcement"
-	desc = "A reinforcement operative will be sent to aid you in your goals, \
-		they are paid separately, and will not take a cut from your profits."
+	name = "承包商增援"
+	desc = "会派来一名增援特工协助你完成目标， \
+		他们单独领薪，不会从你的收益中抽成。"
 	item = /obj/item/antag_spawner/loadout/contractor
 	limited_stock = 1
 	cost = 2

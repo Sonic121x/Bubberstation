@@ -4,9 +4,9 @@
  * Generates a random number between specific values
  */
 /obj/item/circuit_component/random
-	display_name = "Random"
-	desc = "A component that returns random values."
-	category = "Math"
+	display_name = "随机数"
+	desc = "返回随机值的元件。"
+	category = "数学"
 
 	/// The minimum value that the random number can be
 	var/datum/port/input/minimum

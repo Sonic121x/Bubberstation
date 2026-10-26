@@ -4,9 +4,9 @@
  * Return an array of binary digits from a number input.
  */
 /obj/item/circuit_component/binary_conversion
-	display_name = "Binary Conversion"
-	desc = "Splits a decimal number into an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations like AND, OR and XOR."
-	category = "Math"
+	display_name = "二进制转换"
+	desc = "把十进制数拆分成由 1 和 0 表示的二进制位（比特）数组的元件；这些位常用于与、或、异或等布尔运算或二进制运算。"
+	category = "数学"
 
 	/// One number
 	var/datum/port/input/number

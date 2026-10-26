@@ -2,18 +2,18 @@
 	if(!ishuman(M)) // no silicons or drones in mechas.
 		return
 	if(HAS_TRAIT(M, TRAIT_PRIMITIVE)) //no lavalizards either.
-		to_chat(M, span_warning("The knowledge to use this device eludes you!"))
+		to_chat(M, span_warning("你无法掌握使用这台设备的知识！"))
 		return
-	log_message("[M] tried to move into [src].", LOG_MECHA)
+	log_message("[M] 试图进入 [src]。", LOG_MECHA)
 	if(dna_lock && M.has_dna())
 		var/mob/living/carbon/entering_carbon = M
 		if(entering_carbon.dna.unique_enzymes != dna_lock)
-			to_chat(M, span_warning("Access denied. [name] is secured with a DNA lock."))
-			log_message("Permission denied (DNA LOCK).", LOG_MECHA)
+			to_chat(M, span_warning("拒绝访问。[name] 受 DNA 锁保护。"))
+			log_message("权限被拒绝（DNA 锁）。", LOG_MECHA)
 			return
 	if((mecha_flags & ID_LOCK_ON) && !allowed(M))
-		to_chat(M, span_warning("Access denied. Insufficient operation keycodes."))
-		log_message("Permission denied (No keycode).", LOG_MECHA)
+		to_chat(M, span_warning("拒绝访问。操作密钥码不足。"))
+		log_message("权限被拒绝（无密钥码）。", LOG_MECHA)
 		return
 	. = ..()
 	if(.)
@@ -23,20 +23,20 @@
 	if(M.incapacitated)
 		return FALSE
 	if(atom_integrity <= 0)
-		to_chat(M, span_warning("You cannot get in the [src], it has been destroyed!"))
+		to_chat(M, span_warning("你无法进入 [src]，它已被摧毁！"))
 		return FALSE
 	if(M.buckled)
-		to_chat(M, span_warning("You can't enter the exosuit while buckled."))
-		log_message("Permission denied (Buckled).", LOG_MECHA)
+		to_chat(M, span_warning("被束缚时无法进入机甲。"))
+		log_message("权限被拒绝（已被束缚）。", LOG_MECHA)
 		return FALSE
 	if(M.has_buckled_mobs())
-		to_chat(M, span_warning("You can't enter the exosuit with other creatures attached to you!"))
-		log_message("Permission denied (Attached mobs).", LOG_MECHA)
+		to_chat(M, span_warning("有其他生物附着在你身上时无法进入机甲！"))
+		log_message("权限被拒绝（有附着的生物）。", LOG_MECHA)
 		return FALSE
 
 	for(var/obj/item/thing in M.held_items)
 		if(!(thing.item_flags & (ABSTRACT|HAND_ITEM)))
-			to_chat(M, span_warning("You can't enter the exosuit while your hands are occupied!"))
+			to_chat(M, span_warning("双手被占用时无法进入机甲！"))
 			return FALSE
 
 	return ..()
@@ -51,7 +51,7 @@
 	newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
 	add_fingerprint(newoccupant)
-	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
+	log_message("[newoccupant] 以驾驶员身份进入。", LOG_MECHA)
 	setDir(SOUTH)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
 	set_mouse_pointer()
@@ -62,26 +62,26 @@
 ///proc called when a new mmi mob tries to enter this mech
 /obj/vehicle/sealed/mecha/proc/mmi_move_inside(obj/item/mmi/brain_obj, mob/user)
 	if(!(mecha_flags & MMI_COMPATIBLE))
-		to_chat(user, span_warning("This mecha is not compatible with MMIs!"))
+		to_chat(user, span_warning("这台机甲与人机接口不兼容！"))
 		return FALSE
 	if(!brain_obj.brain_check(user))
 		return FALSE
 	var/mob/living/brain/brain_mob = brain_obj.brainmob
 	if(LAZYLEN(occupants) >= max_occupants)
-		to_chat(user, span_warning("It's full!"))
+		to_chat(user, span_warning("它已经满了！"))
 		return FALSE
 	if(dna_lock && (!brain_mob.stored_dna || (dna_lock != brain_mob.stored_dna.unique_enzymes)))
-		to_chat(user, span_warning("Access denied. [name] is secured with a DNA lock."))
+		to_chat(user, span_warning("拒绝访问。[name] 受 DNA 锁保护。"))
 		return FALSE
 
-	visible_message(span_notice("[user] starts to insert an MMI into [name]."))
+	visible_message(span_notice("[user] 开始将人机接口插入 [name]。"))
 
 	if(!do_after(user, 4 SECONDS, target = src))
-		to_chat(user, span_notice("You stop inserting the MMI."))
+		to_chat(user, span_notice("你停止了插入人机接口。"))
 		return FALSE
 	if(LAZYLEN(occupants) < max_occupants)
 		return mmi_moved_inside(brain_obj, user)
-	to_chat(user, span_warning("Maximum occupants exceeded!"))
+	to_chat(user, span_warning("乘员数量超出上限！"))
 	return FALSE
 
 ///proc called when a new mmi mob enters this mech
@@ -93,7 +93,7 @@
 
 	var/mob/living/brain/brain_mob = brain_obj.brainmob
 	if(!user.transferItemToLoc(brain_obj, src))
-		to_chat(user, span_warning("[brain_obj] is stuck to your hand, you cannot put it in [src]!"))
+		to_chat(user, span_warning("[brain_obj] 粘在你手上，你无法把它放进 [src]！"))
 		return FALSE
 
 	brain_obj.set_mecha(src)
@@ -105,11 +105,11 @@
 	brain_mob.update_mouse_pointer()
 	RegisterSignal(brain_mob, COMSIG_MOB_RETRIEVE_ACCESS, PROC_REF(retrieve_access))
 	setDir(SOUTH)
-	log_message("[brain_obj] moved in as pilot.", LOG_MECHA)
+	log_message("[brain_obj] 以驾驶员身份进入。", LOG_MECHA)
 	if(!internal_damage)
 		SEND_SOUND(brain_obj, sound('sound/vehicles/mecha/nominal.ogg',volume=50))
-	user.log_message("has put the MMI/posibrain of [key_name(brain_mob)] into [src]", LOG_GAME)
-	brain_mob.log_message("was put into [src] by [key_name(user)]", LOG_GAME, log_globally = FALSE)
+	user.log_message("将 [key_name(brain_mob)] 的人机接口/正电子脑放入了 [src]", LOG_GAME)
+	brain_mob.log_message("被 [key_name(user)] 放入了 [src]", LOG_GAME, log_globally = FALSE)
 	return TRUE
 
 /obj/vehicle/sealed/mecha/mob_exit(mob/M, silent = FALSE, randomstep = FALSE, forced = FALSE)
@@ -133,7 +133,7 @@
 		if(forced)
 			if(!AI.linked_core) //if the victim AI has no core
 				if (!AI.can_shunt || !length(AI.hacked_apcs))
-					AI.investigate_log("has been gibbed by being forced out of their mech.", INVESTIGATE_DEATHS)
+					AI.investigate_log("因被强行逐出机甲而被绞碎。", INVESTIGATE_DEATHS)
 					/// If an AI with no core (and no shunting abilities) gets forced out of their mech
 					/// (in a way that isn't handled by the normal handling of their mech being destroyed)
 					/// we gib 'em here, too.
@@ -148,11 +148,11 @@
 					mecha_flags &= ~SILICON_PILOT
 					return ..()
 		if(!forced && !silent)
-			to_chat(AI, span_notice("Returning to core..."))
+			to_chat(AI, span_notice("正在返回核心……"))
 		mecha_flags &= ~SILICON_PILOT
 		AI.resolve_core_link()
 		if(forced)
-			to_chat(AI, span_danger("ZZUZULU.ERR--ERRR-NEUROLOG-- PERCEP--- DIST-B**@"))
+			to_chat(AI, span_danger("滋兹祖鲁.错误——错误-神经—— 感知—— 距离-B**@"))
 			for(var/count in 1 to 5)
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(do_sparks), rand(10, 20), FALSE, AI), count SECONDS)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(empulse), get_turf(AI), /*heavy_range = */10, /*light_range = */20, AI), 10 SECONDS)
@@ -163,7 +163,7 @@
 		return ..()
 	var/mob/living/ejector = M
 	mob_container.forceMove(newloc)//ejecting mob container
-	log_message("[mob_container] moved out.", LOG_MECHA)
+	log_message("[mob_container] 离开了。", LOG_MECHA)
 	SStgui.close_user_uis(M, src)
 	if(istype(mob_container, /obj/item/mmi))
 		var/obj/item/mmi/mmi = mob_container
@@ -204,12 +204,12 @@
 	if(isAI(user))
 		var/mob/living/silicon/ai/AI = user
 		if(!AI.linked_core)
-			to_chat(AI, span_userdanger("Inactive core destroyed. Unable to return."))
+			to_chat(AI, span_userdanger("未激活核心已被摧毁。无法返回。"))
 			if(!AI.can_shunt || !AI.hacked_apcs.len)
-				to_chat(AI, span_warning("[AI.can_shunt ? "No hacked APCs available." : "No shunting capabilities."]"))
+				to_chat(AI, span_warning("[AI.can_shunt ? "没有可用的已入侵 APC。" : "没有分流能力。"]"))
 				return
-			var/confirm = tgui_alert(AI, "Shunt to a random APC? You won't have anywhere else to go!", "Confirm Emergency Shunt", list("Yes", "No"))
-			if(confirm == "Yes")
+			var/confirm = tgui_alert(AI, "分流到一台随机 APC？你将没有其他去处！", "确认紧急分流", list("是", "否"))
+			if(confirm == "是")
 				/// Mechs with open cockpits can have the pilot shot by projectiles, or EMPs may destroy the AI inside
 				/// Alternatively, destroying the mech will shunt the AI if they can shunt, or a deadeye wizard can hit
 				/// them with a teleportation bolt
@@ -217,13 +217,13 @@
 					return
 				mob_exit(AI, forced = TRUE)
 			return
-	to_chat(user, span_notice("You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting."))
+	to_chat(user, span_notice("你开始弹出程序。此过程中装备将被禁用。保持不动以完成弹出。"))
 	is_currently_ejecting = TRUE
 	if(do_after(user, has_gravity() ? exit_delay : 0 , target = src))
-		to_chat(user, span_notice("You exit the mech."))
+		to_chat(user, span_notice("你离开了机甲。"))
 		if(cabin_sealed)
 			set_cabin_seal(user, FALSE)
 		mob_exit(user, silent = TRUE)
 	else
-		to_chat(user, span_notice("You stop exiting the mech. Weapons are enabled again."))
+		to_chat(user, span_notice("你停止了离开机甲。武器已重新启用。"))
 	is_currently_ejecting = FALSE

@@ -1,7 +1,7 @@
 /obj/item/circuit_component/wirenet_send
-	display_name = "Wirenet Transmitter"
-	desc = "Sends a data package through the connected cable network. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
-	category = "Utility"
+	display_name = "线路网发射器"
+	desc = "通过已连接的电缆网络发送一个数据包。若设置了加密密钥，则只有使用相同加密密钥的接收器才能接收到所发送的数据。"
+	category = "实用工具"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
@@ -49,8 +49,8 @@
 
 /obj/item/circuit_component/wirenet_send/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Set the cable layer to connect to with the \"1\", \"2\", and \"3\" buttons.", "green", "info")
-	. += create_ui_notice("Currently connected to: [GLOB.cable_layer_to_name["[cable_layer]"]]", "green", "info")
+	. += create_ui_notice("使用“1”“2”“3”按钮设置要连接的电缆层。", "green", "info")
+	. += create_ui_notice("当前连接到：[GLOB.cable_layer_to_name["[cable_layer]"]]", "green", "info")
 
 /obj/item/circuit_component/wirenet_send/populate_options()
 	list_options = add_option_port("List Type", GLOB.wiremod_basic_types)

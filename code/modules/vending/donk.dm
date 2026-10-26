@@ -1,8 +1,8 @@
 /obj/machinery/vending/donksnack
-	name = "\improper Donk Co Vendor"
-	desc = "A snack machine courtesy of Donk Co."
-	product_slogans = "Just microwave and eat!;The original home of the Donk Pocket!"
-	product_ads = "The original!;You wanna put a bangin' Donk on it!;The best!;The seasoned traitor's food of choice!;Now with 12% more omnizine!;Eat DONK or DIE!;The galaxy's most popular microwavable snack food!*;Try our NEW Ready-Donk Meals!"
+	name = "\improper 咚克公司售货机"
+	desc = "由咚克公司提供的零食售货机。"
+	product_slogans = "微波炉一转就能吃！;咚克口袋饼的原创老家！"
+	product_ads = "正宗原版！;来给它加个带劲的咚克吧！;最好的！;老练叛徒的首选食物！;全能嗪含量提升 12%！;不吃咚克就得死！;银河系最受欢迎的微波零食！*;试试我们全新的咚克即食餐！"
 	icon_state = "snackdonk"
 	panel_type = "panel18"
 	light_mask = "donksoft-light-mask"
@@ -37,5 +37,5 @@
 	payment_department = NO_FREEBIES
 
 /obj/item/vending_refill/donksnackvendor
-	machine_name = "Donk Co Snack Vendor"
+	machine_name = "咚克公司零食售货机"
 	icon_state = "refill_donksnack"

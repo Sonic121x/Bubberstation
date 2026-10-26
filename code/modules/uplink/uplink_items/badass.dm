@@ -1,5 +1,5 @@
 /datum/uplink_category/badassery
-	name = "(Pointless) Badassery"
+	name = "（毫无用处的）耍帅"
 	weight = 0
 
 /datum/uplink_item/badass
@@ -7,9 +7,9 @@
 	surplus = 0
 
 /datum/uplink_item/badass/balloon
-	name = "Syndicate Balloon"
-	desc = "For showing that you are THE BOSS: A useless red balloon with the Syndicate logo on it. \
-			Can blow the deepest of covers."
+	name = "辛迪加气球"
+	desc = "用来证明你就是老大：一只印着辛迪加标志的毫无用处的红气球。 \
+			能炸掉最深层的伪装。"
 	item = /obj/item/toy/balloon/syndicate
 	cost = 20
 	lock_other_purchases = TRUE
@@ -23,89 +23,89 @@
 		return
 
 	notify_ghosts(
-		"[user.real_name] has purchased a BADASS Syndicate Balloon!",
+		"[user.real_name] 买了一只超拽的辛迪加气球！",
 		source = .,
-		header = "What are they THINKING?",
+		header = "他们到底在想什么？",
 	)
 
 /datum/uplink_item/badass/syndiecards
-	name = "Syndicate Playing Cards"
-	desc = "A special deck of space-grade playing cards with a mono-molecular edge and metal reinforcement, \
-			making them slightly more robust than a normal deck of cards. \
-			You can also play card games with them or leave them on your victims."
+	name = "辛迪加扑克牌"
+	desc = "一副特制的太空级扑克牌，边缘为单分子结构并经过金属加固， \
+			因此比普通扑克牌稍微结实一些。 \
+			你也可以用它们打牌，或者把它们留在受害者身上。"
 	item = /obj/item/toy/cards/deck/syndicate
 	cost = 1
 	surplus = 40
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 
 /datum/uplink_item/badass/syndiecigs
-	name = "Syndicate Smokes"
-	desc = "Strong flavor, dense smoke, infused with omnizine."
+	name = "辛迪加香烟"
+	desc = "味道浓烈，烟雾浓厚，注入了全能嗪。"
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 
 /datum/uplink_item/badass/syndiecash
-	name = "Syndicate Briefcase Full of Cash"
-	desc = "A secure briefcase containing 5000 space credits. Useful for bribing personnel, or purchasing goods \
-			and services at lucrative prices. The briefcase also feels a little heavier to hold; it has been \
-			manufactured to pack a little bit more of a punch if your client needs some convincing."
+	name = "装满现金的辛迪加公文包"
+	desc = "一个装有 5000 太空信用点的安全公文包。适合用来贿赂人员，或以便宜的价格购买商品 \
+			与服务。这只公文包拿起来也稍重一些；它被造得在需要说服客户时 \
+			能多那么一点分量。"
 	item = /obj/item/storage/briefcase/secure/syndie
 	cost = 3
 	restricted = TRUE
 	uplink_item_flags = SYNDIE_TRIPS_CONTRABAND
 
 /datum/uplink_item/badass/costumes/clown
-	name = "Clown Costume"
-	desc = "Nothing is more terrifying than clowns with fully automatic weaponry."
+	name = "小丑服装"
+	desc = "没有什么比拿着全自动武器的小丑更可怕的了。"
 	item = /obj/item/storage/backpack/duffelbag/clown/syndie
 
 /datum/uplink_item/badass/costumes/tactical_naptime
-	name = "Sleepy Time Pajama Bundle"
-	desc = "Even soldiers need to get a good nights rest. Comes with blood-red pajamas, a blankie, a hot mug of cocoa and a fuzzy friend."
+	name = "安眠睡衣套装"
+	desc = "即使是士兵也需要好好睡一觉。内含血红色睡衣、一条小毯子、一杯热可可和一位毛茸茸的朋友。"
 	item = /obj/item/storage/box/syndie_kit/sleepytime
 	limited_stock = 1
 	cant_discount = TRUE
 
 /datum/uplink_item/badass/costumes/obvious_chameleon
-	name = "Broken Chameleon Kit"
-	desc = "A set of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more! \
-			Please note that this kit did NOT pass quality control."
+	name = "损坏的变色龙套件"
+	desc = "一套搭载变色龙技术的物品，能让你伪装成空间站上几乎任何东西，甚至更多！ \
+			请注意，本套件并未通过质检。"
 	item = /obj/item/storage/box/syndie_kit/chameleon/broken
 
 /datum/uplink_item/badass/costumes/centcom_official
-	name = "CentCom Official Costume"
-	desc = "Ask the crew to \"inspect\" their nuclear disk and weapons system, and then when they decline, pull out a fully automatic rifle and gun down the Captain. \
-			Radio headset does not include encryption key. No gun included."
+	name = "中央指挥部官员服装"
+	desc = "请船员“检查”他们的核弹认证磁盘和武器系统，等他们拒绝时，掏出一把全自动步枪把舰长打成筛子。 \
+			无线电耳机不含加密密钥。不含枪械。"
 	item = /obj/item/storage/box/syndie_kit/centcom_costume
 
 /datum/uplink_item/badass/stickers
-	name = "Syndicate Sticker Pack"
-	desc = "Contains 8 random stickers precisely engineered to resemble suspicious objects, which may or may not be useful for fooling crew."
+	name = "辛迪加贴纸包"
+	desc = "内含 8 张随机贴纸，精心设计成可疑物品的样子，也许能骗过船员，也许不能。"
 	item = /obj/item/storage/box/stickers/syndie_kit
 	cost = 1
 
 /datum/uplink_item/badass/demotivational_posters
-	name = "Syndicate Demotivational Poster Pack"
-	desc = "Contains a selection of demotivational posters to minimise productivity and maximise apathy in the workplace."
+	name = "辛迪加反励志海报包"
+	desc = "内含多款反励志海报，可把工作效率降到最低，并让职场冷漠达到极致。"
 	item = /obj/item/storage/box/syndie_kit/poster_box
 	cost = 1
 
 /datum/uplink_item/badass/syndie_spraycan
-	name = "Syndicate Spraycan"
-	desc = "A stylish Syndicate spraycan. \
-		Contains enough special solution to spray a single super-size seditious symbol, subjecting station staff to slippery suffering."
+	name = "辛迪加喷漆罐"
+	desc = "一罐时髦的辛迪加喷漆罐。 \
+		内含的特殊溶液足以喷出一个超大号煽动性符号，让空间站员工陷入滑倒的痛苦。"
 	item = /obj/item/traitor_spraycan
 	cost = 1
 
 /datum/uplink_item/badass/pinpointer
-	name = "Surplus Pinpointer"
-	desc = "Provides a surplus pinpointer, left over from the previous models that were abandoned in favor of a SAAS cloud-based PDA app."
+	name = "盈余定位仪"
+	desc = "提供一台盈余定位仪，这是旧型号的存货，那些型号被一款云端 SaaS 版 PDA 应用取代后便遭淘汰。"
 	item = /obj/item/pinpointer/nuke/syndicate
 	cost = 2
 
 /datum/uplink_item/badass/dangerous_horse
-	name = "a boxed syndicate pony"
-	desc = "This box contains everything for a better life. Pony, a mind potion for this pony, an apple for this pony. For God's sake, don't make apple pie!"
+	name = "盒装辛迪加小马"
+	desc = "这个箱子装着通往美好生活所需的一切。小马，给小马喝的智能药水，给小马吃的苹果。看在上帝的份上，别做苹果派！"
 	item = /obj/item/storage/box/syndicate/horse_box
 	cost = 10

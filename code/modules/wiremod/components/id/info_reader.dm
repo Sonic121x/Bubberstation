@@ -1,7 +1,7 @@
 /obj/item/circuit_component/id_info_reader
-	display_name = "Read ID Info"
-	desc = "A component that reads the name, job, and age on an ID."
-	category = "ID"
+	display_name = "ID 信息读取"
+	desc = "读取 ID 上姓名、职业与年龄的元件。"
+	category = "ID 卡权限"
 
 	/// The input port
 	var/datum/port/input/target
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/id_info_reader/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles.", "orange", "info")
+	. += create_ui_notice("最大范围：[max_range] 格。", "orange", "info")
 
 /obj/item/circuit_component/id_info_reader/populate_ports()
 	target = add_input_port("Target", PORT_TYPE_ATOM)

@@ -34,16 +34,16 @@
  * Captalism in the year 2525, everything in a vending machine, even love
  */
 /obj/machinery/vending
-	name = "\improper Vendomat"
-	desc = "A generic vending machine."
+	name = "\improper 自动售货机"
+	desc = "一台普通的自动售货机。"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	abstract_type = /obj/machinery/vending
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
-	verb_say = "beeps"
-	verb_ask = "beeps"
-	verb_exclaim = "beeps"
+	verb_say = "哔哔地说"
+	verb_ask = "哔哔地问"
+	verb_exclaim = "哔哔地喊"
 	max_integrity = 300
 	integrity_failure = 0.33
 	armor_type = /datum/armor/machinery_vending
@@ -233,7 +233,7 @@
 					all_products_free = TRUE
 			if(circuit)
 				circuit.all_products_free = all_products_free //sync up the circuit so the pricing schema is carried over if it's reconstructed.
-				circuit.desc = "This board's card reader component has been cut out, along with its brand selection dial."
+				circuit.desc = "这块电路板的读卡器部件连同品牌选择旋钮一起被拆掉了。"
 
 	else if(circuit)
 		all_products_free = circuit.all_products_free //if it was constructed outside mapload, sync the vendor up with the circuit's var so you can't bypass price requirements by moving / reconstructing it off station.
@@ -310,27 +310,27 @@
 /obj/machinery/vending/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = NONE
 	if(tilted && !held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Right machine"
+		context[SCREENTIP_CONTEXT_LMB] = "扶正售货机"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item?.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "Close" : "Open"] Panel"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "关闭" : "打开"]面板"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = anchored ? "Unsecure" : "Secure"
+		context[SCREENTIP_CONTEXT_LMB] = anchored ? "用扳手从地面拆下" : "用扳手固定到地面"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && held_item?.tool_behaviour == TOOL_CROWBAR)
-		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(!isnull(held_item) && canLoadItem(held_item, user, send_message = FALSE))
-		context[SCREENTIP_CONTEXT_LMB] = "Load item"
+		context[SCREENTIP_CONTEXT_LMB] = "装入物品"
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(panel_open && istype(held_item, refill_canister))
-		context[SCREENTIP_CONTEXT_LMB] = "Restock vending machine[credits_contained ? " and collect [MONEY_NAME]" : null]"
+		context[SCREENTIP_CONTEXT_LMB] = "补充售货机库存[credits_contained ? "并收取[MONEY_NAME]" : null]"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /**
@@ -359,20 +359,20 @@
 	if(isnull(refill_canister))
 		return // you can add the comment here instead
 
-	. += span_notice("Its maintenance panel can be [EXAMINE_HINT("screwed")] [panel_open ? "closed" : "open"].")
+	. += span_notice("可以用[EXAMINE_HINT("螺丝刀")][panel_open ? "关闭" : "打开"]其检修面板。")
 	if(panel_open)
-		. += span_notice("The machine may be [EXAMINE_HINT("pried")] apart.")
+		. += span_notice("这台机器可以被[EXAMINE_HINT("撬开")]拆解。")
 
 	var/list/total_stock = total_stock()
 	if(total_stock[2])
 		if(total_stock[1] < total_stock[2])
-			. += span_notice("\The [src] can be restocked with [span_boldnotice("\a [initial(refill_canister.machine_name)] [initial(refill_canister.name)]")] with the panel open.")
+			. += span_notice("在面板打开时，可以用[span_boldnotice("一个[initial(refill_canister.machine_name)][initial(refill_canister.name)]")]为[src]补充库存。")
 		else
-			. += span_notice("\The [src] is fully stocked.")
+			. += span_notice("[src]库存已满。")
 	if(credits_contained < CREDITS_DUMP_THRESHOLD && credits_contained > 0)
-		. += span_notice("It should have a handfull of [MONEY_NAME] stored based on the missing items.")
+		. += span_notice("按照缺失的商品数量，里面应该存着一小把[MONEY_NAME]。")
 	else if (credits_contained > PAYCHECK_CREW)
-		. += span_notice("It should have at least a full paycheck worth of [MONEY_NAME] inside!")
+		. += span_notice("里面至少存着相当于一整份薪水的[MONEY_NAME]！")
 
 /obj/machinery/vending/update_appearance(updates = ALL)
 	. = ..()
@@ -420,7 +420,7 @@
 	if(obj_flags & EMAGGED)
 		return FALSE
 	obj_flags |= EMAGGED
-	balloon_alert(user, "product lock disabled")
+	balloon_alert(user, "商品锁已解除")
 	return TRUE
 
 
@@ -466,14 +466,14 @@
 	say(message)
 
 /datum/aas_config_entry/vendomat_age_control
-	name = "Security Alert: Underaged Substance Abuse"
+	name = "安保警报：未成年人滥用物品"
 	announcement_lines_map = list(
-		"Message" = "SECURITY ALERT: Underaged crewmember %PERSON recorded attempting to purchase %PRODUCT in %LOCATION by %VENDOR. Please watch for substance abuse."
+		"Message" = "安保警报：记录到未成年船员 %PERSON 在 %LOCATION 试图通过 %VENDOR 购买 %PRODUCT。请留意物品滥用情况。"
 	)
 	vars_and_tooltips_map = list(
-		"PERSON" = "will be replaced with the name of the crewmember",
-		"PRODUCT" = "with the product, he attempted to purchase",
-		"LOCATION" = "with place of purchase",
-		"VENDOR" = "with the vending machine"
+		"PERSON" = "将会替换为船员的名字",
+		"PRODUCT" = "替换为其试图购买的商品",
+		"LOCATION" = "替换为购买地点",
+		"VENDOR" = "替换为售货机"
 	)
 //=============================================================================

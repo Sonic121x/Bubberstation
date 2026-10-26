@@ -4,9 +4,9 @@
  * Writes one of multiple inputs to one of multiple outputs.
  */
 /obj/item/circuit_component/router
-	display_name = "Router"
-	desc = "Copies the input chosen by \"Input Selector\" to the output chosen by \"Output Selector\"."
-	category = "Utility"
+	display_name = "路由器"
+	desc = "把由“Input Selector”选定的输入复制到由“Output Selector”选定的输出。"
+	category = "实用工具"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	var/datum/port/input/option/router_options
@@ -69,8 +69,8 @@
 	output.set_output(input.value)
 
 /obj/item/circuit_component/router/multiplexer
-	display_name = "Multiplexer"
-	desc = "Copies the input chosen by \"Input Selector\" to the output."
+	display_name = "多路复用器"
+	desc = "把由“Input Selector”选定的输入复制到输出。"
 	output_port_amount = 1
 
 #undef WRAPACCESS

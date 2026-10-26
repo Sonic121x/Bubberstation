@@ -1,10 +1,10 @@
 /obj/machinery/vending/liberationstation
-	name = "\improper Liberation Station"
-	desc = "An overwhelming amount of <b>ancient patriotism</b> washes over you just by looking at the machine."
+	name = "\improper 解放者站"
+	desc = "光是看着这台机器，一股铺天盖地的<b>古老爱国情怀</b>就会涌上你的心头。"
 	icon_state = "liberationstation"
-	product_slogans = "Liberation Station: Your one-stop shop for all things second amendment!;Be a patriot today, pick up a gun!;Quality weapons for cheap prices!;Better dead than red!"
-	product_ads = "Float like an astronaut, sting like a bullet!;Express your second amendment today!;Guns don't kill people, but you can!;Who needs responsibilities when you have guns?"
-	vend_reply = "Remember the name: Liberation Station!"
+	product_slogans = "解放者站：你购买一切第二修正案相关商品的一站式商店！;今天就做个爱国者，拿起枪吧！;廉价优质的武器！;宁死不做赤色分子！"
+	product_ads = "像宇航员一样漂浮，像子弹一样蜇人！;今天就来行使你的第二修正案权利！;枪不会杀人，但你会！;有枪在手，谁还需要责任心？"
+	vend_reply = "记住这个名字：解放者站！"
 	panel_type = "panel17"
 	products = list(
 		/obj/item/food/burger/plain = 5, //O say can you see, by the dawn's early light
@@ -50,5 +50,5 @@
 	acid = 50
 
 /obj/item/vending_refill/liberation
-	machine_name = "Liberation Station"
+	machine_name = "解放者站"
 	icon_state = "refill_patriot"

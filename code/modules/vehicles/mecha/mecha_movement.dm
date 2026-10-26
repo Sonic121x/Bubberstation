@@ -51,7 +51,7 @@
 			backup.last_pushoff = world.time
 			step_silent = TRUE
 			if(return_drivers())
-				to_chat(occupants, "[icon2html(src, occupants)][span_info("The [src] push off [backup] to propel yourself.")]")
+				to_chat(occupants, "[icon2html(src, occupants)][span_info("[src] 蹬开 [backup]，借此推动自身前进。")]")
 		return TRUE
 
 	if(active_thrusters?.thrust(movement_dir))
@@ -134,27 +134,27 @@
 	var/obj/machinery/portable_atmospherics/canister/internal_tank = get_internal_tank()
 	if(internal_tank?.connected_port)
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
-			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to move while connected to the air system port!")]")
+			to_chat(occupants, "[icon2html(src, occupants)][span_warning("连接到空气系统接口时无法移动！")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 
 	var/list/missing_parts = list()
 	if(isnull(cell))
-		missing_parts += "power cell"
+		missing_parts += "电池"
 	if(isnull(capacitor))
-		missing_parts += "capacitor"
+		missing_parts += "电容"
 	if(isnull(servo))
-		missing_parts += "servo"
+		missing_parts += "伺服电机"
 
 	if(length(missing_parts))
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
-			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Missing [english_list(missing_parts)].")]")
+			to_chat(occupants, "[icon2html(src, occupants)][span_warning("缺少[missing_parts.Join("、")]。")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 
 	if((step_energy_drain != 0) && !use_energy(step_energy_drain))
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
-			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Insufficient power to move!")]")
+			to_chat(occupants, "[icon2html(src, occupants)][span_warning("电力不足，无法移动！")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 	return TRUE

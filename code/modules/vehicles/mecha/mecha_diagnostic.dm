@@ -1,6 +1,6 @@
 /obj/item/mecha_diagnostic
-	name = "mecha holodiagnostic"
-	desc = "A holographic datasheet of unique data related to the mecha's construction and any production differences between the published designs to increment improvements."
+	name = "机甲全息诊断仪"
+	desc = "一张全息数据表，记载了与机甲制造过程相关的独有数据，以及与公开设计之间的任何生产差异，用于持续改进。"
 	icon = 'icons/obj/devices/scanner.dmi'
 	icon_state = "holosheet"
 	w_class = WEIGHT_CLASS_SMALL
@@ -23,4 +23,4 @@
 /obj/item/mecha_diagnostic/examine(mob/user)
 	. = ..()
 	if(mech_data)
-		. += "This holodata sheet consists of data from a <b>[initial(mech_data.name)]</b>."
+		. += "这张全息数据表包含来自 <b>[initial(mech_data.name)]</b> 的数据。"

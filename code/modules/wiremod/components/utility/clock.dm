@@ -4,9 +4,9 @@
  * Fires every tick of the circuit timer SS
  */
 /obj/item/circuit_component/clock
-	display_name = "Clock"
-	desc = "A component that repeatedly fires."
-	category = "Utility"
+	display_name = "时钟"
+	desc = "持续重复触发的元件。"
+	category = "实用工具"
 
 	/// Whether the clock is on or not
 	var/datum/port/input/on
@@ -16,7 +16,7 @@
 
 /obj/item/circuit_component/clock/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Clock Interval: [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+	. += create_ui_notice("时钟间隔：[DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
 /obj/item/circuit_component/clock/populate_ports()
 	on = add_input_port("On", PORT_TYPE_BOOLEAN)

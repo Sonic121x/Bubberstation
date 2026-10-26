@@ -4,9 +4,9 @@
  * Gets the row of a table as an associative list using the index inputted. Will return no value if the index is invalid or a proper table is not returned.
  */
 /obj/item/circuit_component/index_table
-	display_name = "Index Table"
-	desc = "Gets the row of a table as an associative list using the index inputted. Will return no value if the index is invalid or a proper table is not returned."
-	category = "List"
+	display_name = "索引表"
+	desc = "使用输入的索引获取表格中的某一行，并以关联列表返回。若索引无效或输入的不是有效表格，则不返回任何值。"
+	category = "列表"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The list to perform the filter on

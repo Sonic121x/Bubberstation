@@ -1,12 +1,12 @@
 #define PULSE_DISTANCE_RANGE 2
 
 /obj/machinery/vending/runic_vendor
-	name = "\improper Runic Vending Machine"
-	desc = "This vending machine was designed for warfare! A perfect bait for Nanotrasen's crew thirst for consumerism."
+	name = "\improper 符文售货机"
+	desc = "这台售货机是为战争而设计的！是引诱纳米传讯船员消费欲的完美诱饵。"
 	icon_state = "RunicVendor"
 	panel_type = "panel10"
-	product_slogans = "Come get free magic!;50% off on Mjollnirs today!; Buy a warp whistle and get another one free!"
-	vend_reply = "Please, stand still near the vending machine for your special package!"
+	product_slogans = "来领取免费魔法！;今天雷神之锤半价！; 买一支传送哨，再免费送一支！"
+	vend_reply = "请站在售货机旁不要动，等待你的特殊包裹！"
 	resistance_flags = FIRE_PROOF
 	light_mask = "RunicVendor-light-mask"
 	obj_flags = parent_type::obj_flags | NO_DEBRIS_AFTER_DECONSTRUCTION
@@ -18,7 +18,7 @@
 
 /obj/machinery/vending/runic_vendor/Initialize(mapload)
 	if(mapload)
-		log_mapping("[type] is not supposed to be mapped it, it decays after a set time")
+		log_mapping("[type] 不应被放置在地图上，它会在设定时间后消散")
 		stack_trace("Someone mapped in the meme vending machine the wizard scepter spawns, please remove it")
 
 	addtimer(CALLBACK(src, PROC_REF(decay)), time_to_decay, TIMER_STOPPABLE)
@@ -54,8 +54,8 @@
 
 	if(held_item)
 		if(istype(held_item, /obj/item/runic_vendor_scepter))
-			context[SCREENTIP_CONTEXT_LMB] = "Detonate"
-			context[SCREENTIP_CONTEXT_RMB] = "Force push"
+			context[SCREENTIP_CONTEXT_LMB] = "引爆"
+			context[SCREENTIP_CONTEXT_RMB] = "强力推斥"
 
 		return CONTEXTUAL_SCREENTIP_SET
 
@@ -64,7 +64,7 @@
 /obj/machinery/vending/runic_vendor/handle_deconstruct(disassembled)
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	visible_message(span_warning("[src] flickers and disappears!"))
+	visible_message(span_warning("[src] 闪烁了一下便消失了！"))
 	playsound(src,'sound/items/weapons/resonator_blast.ogg',25,TRUE)
 	return ..()
 
@@ -79,7 +79,7 @@
 		for(var/mob/living/mob_to_be_pulsed_back in pulsing_turf.contents)
 			hit_things += mob_to_be_pulsed_back
 			var/atom/target = get_edge_target_turf(mob_to_be_pulsed_back, get_dir(src, get_step_away(mob_to_be_pulsed_back, src)))
-			to_chat(mob_to_be_pulsed_back, span_userdanger("The field repels you with tremendous force!"))
+			to_chat(mob_to_be_pulsed_back, span_userdanger("力场以巨大的力量将你弹开！"))
 			playsound(src, 'sound/effects/gravhit.ogg', 50, TRUE)
 			mob_to_be_pulsed_back.throw_at(target, 4, 4)
 

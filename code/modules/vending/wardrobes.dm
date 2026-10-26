@@ -38,11 +38,11 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 		roach.forceMove(drop_location())
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper SecDrobe"
-	desc = "A vending machine for security and security-related clothing!"
+	name = "\improper 安保衣柜"
+	desc = "一台出售安保及安保相关服装的售货机！"
 	icon_state = "secdrobe"
-	product_ads = "Beat perps in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
-	vend_reply = "Thank you for using the SecDrobe!"
+	product_ads = "有型地痛打罪犯！;它是红色的，所以你看不见血迹！;你有权保持时尚！;现在你可以成为你一直想当的时尚警察了！"
+	vend_reply = "感谢使用安保衣柜！"
 	/* SKYRAT EDIT - LISTS OVERRIDDEN IN 'modular_skyrat\modules\sec_haul\code\misc\vending.dm'
 	products = list(
 		/obj/item/clothing/head/beret/sec = 3,
@@ -76,14 +76,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	light_color = COLOR_MOSTLY_PURE_RED
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "SecDrobe"
+	machine_name = "安保衣柜"
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
-	name = "\improper MediDrobe"
-	desc = "A vending machine rumoured to be capable of dispensing clothing for medical personnel."
+	name = "\improper 医疗衣柜"
+	desc = "一台据传能够发放医务人员服装的售货机。"
 	icon_state = "medidrobe"
-	product_ads = "Make those blood stains look fashionable!!"
-	vend_reply = "Thank you for using the MediDrobe!"
+	product_ads = "让那些血迹看起来更时髦吧！！"
+	vend_reply = "感谢使用医疗衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/pocketprotector = 4,
 		/obj/item/clothing/head/costume/nursehat = 4,
@@ -122,14 +122,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_MED
 
 /obj/item/vending_refill/wardrobe/medi_wardrobe
-	machine_name = "MediDrobe"
+	machine_name = "医疗衣柜"
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
-	name = "EngiDrobe"
-	desc = "A vending machine renowned for vending industrial grade clothing."
+	name = "工程衣柜"
+	desc = "一台以发放工业级服装而闻名的售货机。"
 	icon_state = "engidrobe"
-	product_ads = "Guaranteed to protect your feet from industrial accidents!;Afraid of radiation? Then wear yellow!"
-	vend_reply = "Thank you for using the EngiDrobe!"
+	product_ads = "保证保护你的双脚免遭工伤！;害怕辐射？那就穿黄色！"
+	vend_reply = "感谢使用工程衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/pocketprotector = 3,
 		/obj/item/clothing/head/utility/hardhat = 3,
@@ -152,14 +152,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	light_color = COLOR_VIVID_YELLOW
 
 /obj/item/vending_refill/wardrobe/engi_wardrobe
-	machine_name = "EngiDrobe"
+	machine_name = "工程衣柜"
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
-	name = "AtmosDrobe"
-	desc = "This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job."
+	name = "大气衣柜"
+	desc = "这台相对不出名的售货机可为大气技师发放服装，而这同样是个不出名的职业。"
 	icon_state = "atmosdrobe"
-	product_slogans = "Get your inflammable clothing right here!!!"
-	vend_reply = "Thank you for using the AtmosDrobe!"
+	product_slogans = "快来领取你的防燃服装！！！"
+	vend_reply = "感谢使用大气衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/pocketprotector = 3,
 		/obj/item/clothing/under/rank/engineering/atmospheric_technician = 3,
@@ -177,14 +177,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	light_color = COLOR_VIVID_YELLOW
 
 /obj/item/vending_refill/wardrobe/atmos_wardrobe
-	machine_name = "AtmosDrobe"
+	machine_name = "大气衣柜"
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
-	name = "CargoDrobe"
-	desc = "A highly advanced vending machine for buying cargo related clothing for free."
+	name = "货运衣柜"
+	desc = "一台高度先进的售货机，可免费购买货运相关的服装。"
 	icon_state = "cargodrobe"
-	product_ads = "Upgraded Assistant Style! Pick yours today!;These shorts are comfy and easy to wear, get yours now!"
-	vend_reply = "Thank you for using the CargoDrobe!"
+	product_ads = "升级版助手风采！今天就挑一件！;这条短裤舒适又方便穿，现在就买吧！"
+	vend_reply = "感谢使用货运衣柜！"
 	products = list(
 		/obj/item/clothing/head/beret/cargo = 3,
 		/obj/item/clothing/mask/bandana/striped/cargo = 3,
@@ -220,14 +220,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_CAR
 
 /obj/item/vending_refill/wardrobe/cargo_wardrobe
-	machine_name = "CargoDrobe"
+	machine_name = "货运衣柜"
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
-	name = "RoboDrobe"
-	desc = "A vending machine designed to dispense clothing known only to roboticists."
+	name = "机器人衣柜"
+	desc = "一台专为机器人学家发放服装的售货机。"
 	icon_state = "robodrobe"
-	product_ads = "You turn me TRUE, use defines!;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
-	vend_reply = "Thank you for using the RoboDrobe!"
+	product_ads = "请把我写成 TRUE，用 define 啊！;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
+	vend_reply = "感谢使用机器人衣柜！"
 	products = list(
 		/obj/item/clothing/glasses/hud/diagnostic = 2,
 		/obj/item/clothing/head/soft/black = 2,
@@ -254,14 +254,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/wardrobe/robo_wardrobe
-	machine_name = "RoboDrobe"
+	machine_name = "机器人衣柜"
 
 /obj/machinery/vending/wardrobe/science_wardrobe
-	name = "SciDrobe"
-	desc = "A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans."
+	name = "科研衣柜"
+	desc = "一台简单的售货机，适合发放剪裁精良的科研服装。由太空古巴人代言。"
 	icon_state = "scidrobe"
-	product_ads = "Longing for the smell of plasma burnt flesh? Buy your science clothing now!;Made with 10% Auxetics, so you don't have to worry about losing your arm!"
-	vend_reply = "Thank you for using the SciDrobe!"
+	product_ads = "怀念等离子体烧焦血肉的气味吗？现在就买你的科研服装！;含 10% 拉胀材料，你再也不用担心失去手臂！"
+	vend_reply = "感谢使用科研衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/pocketprotector = 3,
 		/obj/item/clothing/head/beret/science = 3,
@@ -283,14 +283,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/wardrobe/science_wardrobe
-	machine_name = "SciDrobe"
+	machine_name = "科研衣柜"
 
 /obj/machinery/vending/wardrobe/hydro_wardrobe
-	name = "Hydrobe"
-	desc = "A machine with a catchy name. It dispenses botany related clothing and gear."
+	name = "园艺衣柜"
+	desc = "一台名字朗朗上口的机器。它发放与植物学相关的服装和装备。"
 	icon_state = "hydrobe"
-	product_ads = "Do you love soil? Then buy our clothes!;Get outfits to match your green thumb here!"
-	vend_reply = "Thank you for using the Hydrobe!"
+	product_ads = "你爱泥土吗？那就买我们的衣服！;来这里挑选配得上你园艺天赋的服装吧！"
+	vend_reply = "感谢使用园艺衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/armband/hydro = 3,
 		/obj/item/clothing/mask/bandana/striped/botany = 3,
@@ -311,14 +311,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
 
 /obj/item/vending_refill/wardrobe/hydro_wardrobe
-	machine_name = "HyDrobe"
+	machine_name = "园艺衣柜"
 
 /obj/machinery/vending/wardrobe/curator_wardrobe
-	name = "CuraDrobe"
-	desc = "A low-stock vendor only capable of vending clothing for curators and librarians."
+	name = "馆长衣柜"
+	desc = "一台库存很少的售货机，只能为馆长和图书管理员发放服装。"
 	icon_state = "curadrobe"
-	product_slogans = "Glasses for your eyes and literature for your soul, Curadrobe has it all!; Impress & enthrall your library guests with Curadrobe's extended line of pens!"
-	vend_reply = "Thank you for using the CuraDrobe!"
+	product_slogans = "为你的眼睛准备眼镜，为你的灵魂准备文学，馆长衣柜应有尽有！; 用馆长衣柜的加长款钢笔系列，让你的图书馆访客折服倾倒！"
+	vend_reply = "感谢使用馆长衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/pocketprotector = 2,
 		/obj/item/pen = 4,
@@ -344,14 +344,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/wardrobe/curator_wardrobe
-	machine_name = "CuraDrobe"
+	machine_name = "馆长衣柜"
 
 /obj/machinery/vending/wardrobe/coroner_wardrobe
-	name = "MortiDrobe"
-	desc = "A favorite among nihilists."
+	name = "殡葬衣柜"
+	desc = "虚无主义者的最爱。"
 	icon_state = "coroner_drobe"
-	product_ads = "Any day above ground is a good one!;My day starts when yours ends!;And they call this a dying business!;See you when you're dead!"
-	vend_reply = "Don't forget your \"Buy one get one free\" burial deal!"
+	product_ads = "只要还在地上待着，哪天都是好日子！;你的一天结束时，我的一天就开始了！;他们居然还说这行是“死生意”！;等你死了再见！"
+	vend_reply = "别忘了你的“买一送一”丧葬套餐！"
 	products = list(
 		/obj/item/clothing/head/utility/surgerycap/black = 1,
 		/obj/item/clothing/head/beret/medical/coroner = 1,	//Bubbers edit: Coroner beret
@@ -394,14 +394,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_MED
 
 /obj/item/vending_refill/wardrobe/coroner_wardrobe
-	machine_name = "MortiDrobe"
+	machine_name = "殡葬衣柜"
 
 /obj/machinery/vending/wardrobe/bar_wardrobe
-	name = "BarDrobe"
-	desc = "A stylish vendor to dispense the most stylish bar clothing!"
+	name = "酒吧衣柜"
+	desc = "一台时尚的售货机，发放最时髦的酒吧服装！"
 	icon_state = "bardrobe"
-	product_ads = "Guaranteed to prevent stains from spilled drinks!"
-	vend_reply = "Thank you for using the BarDrobe!"
+	product_ads = "保证防止洒出的饮料留下污渍！"
+	vend_reply = "感谢使用酒吧衣柜！"
 	products = list(
 		/obj/item/clothing/glasses/sunglasses/reagent = 1,
 		/obj/item/clothing/accessory/waistcoat = 2,
@@ -432,14 +432,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	extra_price = PAYCHECK_COMMAND
 
 /obj/item/vending_refill/wardrobe/bar_wardrobe
-	machine_name = "BarDrobe"
+	machine_name = "酒吧衣柜"
 
 /obj/machinery/vending/wardrobe/chef_wardrobe
-	name = "ChefDrobe"
-	desc = "This vending machine might not dispense meat, but it certainly dispenses chef related clothing."
+	name = "厨师衣柜"
+	desc = "这台售货机也许不会吐出肉，但它确实会吐出厨师相关的服装。"
 	icon_state = "chefdrobe"
-	product_ads = "Our clothes are guaranteed to protect you from food splatters!"
-	vend_reply = "Thank you for using the ChefDrobe!"
+	product_ads = "我们的衣服保证能保护你免遭食物飞溅！"
+	vend_reply = "感谢使用厨师衣柜！"
 	products = list(
 		/obj/item/clothing/accessory/waistcoat = 2,
 		/obj/item/clothing/head/soft/mime = 2,
@@ -462,14 +462,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/wardrobe/chef_wardrobe
-	machine_name = "ChefDrobe"
+	machine_name = "厨师衣柜"
 
 /obj/machinery/vending/wardrobe/jani_wardrobe
-	name = "JaniDrobe"
-	desc = "A self cleaning vending machine capable of dispensing clothing for janitors."
+	name = "清洁衣柜"
+	desc = "一台能自我清洁的售货机，可以为清洁工发放服装。"
 	icon_state = "janidrobe"
-	product_ads = "Come and get your janitorial clothing, now endorsed by lizard janitors everywhere!"
-	vend_reply = "Thank you for using the JaniDrobe!"
+	product_ads = "快来领取你的清洁工服装，现已获得各地蜥蜴清洁工的认可！"
+	vend_reply = "感谢使用清洁衣柜！"
 	products = list(
 		/obj/item/clothing/head/soft/purple = 2,
 		/obj/item/clothing/mask/bandana/purple = 2,
@@ -501,14 +501,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	light_color = COLOR_STRONG_MAGENTA
 
 /obj/item/vending_refill/wardrobe/jani_wardrobe
-	machine_name = "JaniDrobe"
+	machine_name = "清洁衣柜"
 
 /obj/machinery/vending/wardrobe/law_wardrobe
-	name = "LawDrobe"
-	desc = "Objection! This wardrobe dispenses the rule of law... and lawyer clothing."
+	name = "律师衣柜"
+	desc = "异议！这台衣柜发放法治精神……以及律师服装。"
 	icon_state = "lawdrobe"
-	product_ads = "OBJECTION! Get the rule of law for yourself!"
-	vend_reply = "Thank you for using the LawDrobe!"
+	product_ads = "异议！亲自来领受法治吧！"
+	vend_reply = "感谢使用律师衣柜！"
 	extra_price = PAYCHECK_COMMAND * 3
 	products = list(
 		/obj/item/clothing/accessory/lawyers_badge = 2,
@@ -548,14 +548,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/wardrobe/law_wardrobe
-	machine_name = "LawDrobe"
+	machine_name = "律师衣柜"
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
-	name = "DeusVend"
-	desc = "God wills your purchase."
+	name = "神恩售货机"
+	desc = "神的旨意让你买它。"
 	icon_state = "chapdrobe"
-	product_ads = "Are you being bothered by cultists or pesky revenants? Then come and dress like the holy man!;Clothes for men of the cloth!"
-	vend_reply = "Thank you for using the DeusVend!"
+	product_ads = "被邪教徒或烦人的亡魂纠缠了吗？那就来穿得像个圣职人员吧！;为神职人员准备的衣裳！"
+	vend_reply = "感谢使用神恩售货机！"
 	products = list(
 		/obj/item/choice_beacon/holy = 1,
 		/obj/item/clothing/accessory/pocketprotector/cosmetology = 1,
@@ -598,14 +598,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/wardrobe/chap_wardrobe
-	machine_name = "DeusVend"
+	machine_name = "神恩售货机"
 
 /obj/machinery/vending/wardrobe/chem_wardrobe
-	name = "ChemDrobe"
-	desc = "A vending machine for dispensing chemistry related clothing."
+	name = "化学衣柜"
+	desc = "一台发放化学相关服装的售货机。"
 	icon_state = "chemdrobe"
-	product_ads = "Our clothes are 0.5% more resistant to acid spills! Get yours now!"
-	vend_reply = "Thank you for using the ChemDrobe!"
+	product_ads = "我们的衣服对酸液泼溅的抗性提高了 0.5%！快来买吧！"
+	vend_reply = "感谢使用化学衣柜！"
 	products = list(
 		/obj/item/clothing/head/beret/medical = 2,
 		/obj/item/clothing/under/rank/medical/chemist = 2,
@@ -629,14 +629,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_MED
 
 /obj/item/vending_refill/wardrobe/chem_wardrobe
-	machine_name = "ChemDrobe"
+	machine_name = "化学衣柜"
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
-	name = "GeneDrobe"
-	desc = "A machine for dispensing clothing related to genetics."
+	name = "基因衣柜"
+	desc = "一台用于发放基因学相关服装的机器。"
 	icon_state = "genedrobe"
-	product_ads = "Perfect for the mad scientist in you!"
-	vend_reply = "Thank you for using the GeneDrobe!"
+	product_ads = "完美契合你心中的疯狂科学家！"
+	vend_reply = "感谢使用基因衣柜！"
 	products = list(
 		/obj/item/clothing/under/rank/rnd/geneticist = 2,
 		/obj/item/clothing/under/rank/rnd/geneticist/skirt = 2,
@@ -654,14 +654,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/wardrobe/gene_wardrobe
-	machine_name = "GeneDrobe"
+	machine_name = "基因衣柜"
 
 /obj/machinery/vending/wardrobe/viro_wardrobe
-	name = "ViroDrobe"
-	desc = "An unsterilized machine for dispensing virology related clothing."
+	name = "病毒衣柜"
+	desc = "一台未经消毒的售货机，用于发放病毒学相关服装。"
 	icon_state = "virodrobe"
-	product_slogans = " Viruses getting you down? Then upgrade to sterilized clothing today!"
-	vend_reply = "Thank you for using the ViroDrobe"
+	product_slogans = " 病毒让你心情低落？那就今天升级到灭菌服装吧！"
+	vend_reply = "感谢使用病毒衣柜"
 	products = list(
 		/obj/item/clothing/mask/surgical = 2,
 		/obj/item/clothing/under/rank/medical/virologist = 2,
@@ -681,14 +681,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_MED
 
 /obj/item/vending_refill/wardrobe/viro_wardrobe
-	machine_name = "ViroDrobe"
+	machine_name = "病毒衣柜"
 
 /obj/machinery/vending/wardrobe/det_wardrobe
-	name = "\improper DetDrobe"
-	desc = "A machine for all your detective needs, as long as you need clothes."
+	name = "\improper 侦探衣柜"
+	desc = "一台能满足你所有侦探需求的机器——只要你的需求是衣服。"
 	icon_state = "detdrobe"
-	product_ads = "Apply your brilliant deductive methods in style!"
-	vend_reply = "Thank you for using the DetDrobe!"
+	product_ads = "有型地施展你出色的推理方法！"
+	vend_reply = "感谢使用侦探衣柜！"
 	products = list(
 		/obj/item/clothing/head/fedora/det_hat = 2,
 		/obj/item/clothing/under/rank/security/detective = 2,
@@ -727,14 +727,14 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	payment_department = ACCOUNT_SEC
 
 /obj/item/vending_refill/wardrobe/det_wardrobe
-	machine_name = "DetDrobe"
+	machine_name = "侦探衣柜"
 
 /obj/machinery/vending/wardrobe/cent_wardrobe
-	name = "\improper CentDrobe"
-	desc = "A one-of-a-kind vending machine for all your centcom aesthetic needs!"
+	name = "\improper 中央衣柜"
+	desc = "一台独一无二的售货机，满足你对中央指挥部风格的全部审美需求！"
 	icon_state = "centdrobe"
-	product_ads = "Show those ERTs who's the most stylish in the briefing room!"
-	vend_reply = "Thank you for using the CentDrobe!"
+	product_ads = "在简报室里让那些紧急响应小队看看谁最有型！"
+	vend_reply = "感谢使用中央衣柜！"
 	products = list(
 		/obj/item/clothing/glasses/sunglasses = 3,
 		/obj/item/clothing/head/hats/centcom_cap = 3,
@@ -759,7 +759,7 @@ GLOBAL_VAR_INIT(roaches_deployed, FALSE)
 	refill_canister = /obj/item/vending_refill/wardrobe/cent_wardrobe
 
 /obj/item/vending_refill/wardrobe/cent_wardrobe
-	machine_name = "CentDrobe"
+	machine_name = "中央衣柜"
 	icon_state = "refill_centdrobe"
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
 

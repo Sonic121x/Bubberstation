@@ -2,8 +2,8 @@
 	icon = 'icons/obj/machines/robotics.dmi'
 	icon_state = "fab-idle"
 	base_icon_state = "fab"
-	name = "exosuit fabricator"
-	desc = "Nothing is being built."
+	name = "机甲制造机"
+	desc = "当前没有在制造任何东西。"
 	density = TRUE
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/machine/mechfab
@@ -136,20 +136,20 @@
 /obj/machinery/mecha_part_fabricator/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
-		. += span_notice("Currently configured to drop printed objects <b>[dir2text(drop_direction)]</b>.")
+		. += span_notice("状态显示屏显示：最多可储存 <b>[rmat.local_size]</b> 单位材料。<br>材料消耗率为 <b>[component_coeff*100]%</b>。<br>制造时间缩短 <b>[100-time_coeff*100]%</b>。")
+		. += span_notice("当前设置为向 <b>[dir2text(drop_direction)]</b> 方向投放打印出的物体。")
 
 /obj/machinery/mecha_part_fabricator/mouse_drop_dragged(atom/over, mob/user, src_location, over_location, params)
 	if(!can_interact(user) || (!HAS_SILICON_ACCESS(user) && !isAdminGhostAI(user)) && !Adjacent(user))
 		return
 	if(being_built)
-		balloon_alert(user, "printing started!")
+		balloon_alert(user, "打印已开始！")
 		return
 	var/direction = get_dir(src, over_location)
 	if(!direction)
 		return
 	drop_direction = direction
-	balloon_alert(user, "dropping [dir2text(drop_direction)]")
+	balloon_alert(user, "正在向 [dir2text(drop_direction)] 投放")
 
 /**
  * Updates the `final_sets` and `buildable_parts` for the current mecha fabricator.
@@ -167,7 +167,7 @@
 	var/design_delta = cached_designs.len - previous_design_count
 
 	if(design_delta > 0)
-		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
+		say("收到 [design_delta] 项新设计。")
 		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
@@ -230,20 +230,20 @@
 	var/datum/material_container/materials = rmat.mat_container
 	if (!materials)
 		if(verbose)
-			say("No access to material storage, please contact the quartermaster.")
+			say("无法访问材料储存，请联系货运主管。")
 		return FALSE
 	if (!rmat.can_use_resource(user_data = user_data))
 		return FALSE
 	if(!materials.has_materials(D.materials, component_coeff))
 		if(verbose)
-			say("Not enough resources. Processing stopped.")
+			say("资源不足。加工已停止。")
 		return FALSE
 
 	rmat.use_materials(D.materials, component_coeff, 1, "processed", "[D.name]", user_data)
 	being_built = D
 	build_finish = world.time + get_construction_time_w_coeff(initial(D.construction_time))
 	build_start = world.time
-	desc = "It's building \a [D.name]."
+	desc = "正在制造 [D.name]。"
 
 	return TRUE
 
@@ -254,7 +254,7 @@
 		if(exit.density)
 			return TRUE
 
-		say("Obstruction cleared. The fabrication of [stored_part] is now complete.")
+		say("障碍已清除。[stored_part] 的制造现已完成。")
 		stored_part.forceMove(exit)
 		stored_part = null
 
@@ -290,12 +290,12 @@
 
 	var/turf/exit = get_step(src, drop_direction)
 	if(exit.density)
-		say("Error! The part outlet is obstructed.")
-		desc = "It's trying to dispense the fabricated [dispensed_design.name], but the part outlet is obstructed."
+		say("错误！部件出口被阻挡。")
+		desc = "它正试图吐出制造好的 [dispensed_design.name]，但部件出口被阻挡。"
 		stored_part = built_part
 		return FALSE
 
-	say("The fabrication of [built_part] is now complete.")
+	say("[built_part] 的制造现已完成。")
 	built_part.forceMove(exit)
 
 	top_job_id += 1
@@ -505,14 +505,14 @@
 
 /obj/machinery/mecha_part_fabricator/screwdriver_act(mob/living/user, obj/item/I)
 	if(being_built)
-		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
+		to_chat(user, span_warning("[src] 正在加工中！请等待完成。"))
 		return NONE
 
 	return default_deconstruction_screwdriver(user, I)
 
 /obj/machinery/mecha_part_fabricator/crowbar_act(mob/living/user, obj/item/I)
 	if(being_built)
-		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
+		to_chat(user, span_warning("[src] 正在加工中！请等待完成。"))
 		return NONE
 
 	return default_deconstruction_crowbar(user, I)

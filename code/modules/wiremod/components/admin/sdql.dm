@@ -4,9 +4,9 @@
  * A component that performs an sdql operation
  */
 /obj/item/circuit_component/sdql_operation
-	display_name = "SDQL Operation"
-	desc = "A component that performs an SDQL operation when invoked."
-	category = "Admin"
+	display_name = "SDQL 操作"
+	desc = "在被调用时执行一次 SDQL 操作的元件。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
 	/// SDQL Operation to invoke
@@ -31,6 +31,6 @@
 	if(!operation)
 		return
 
-	log_admin_circuit("[parent.get_creator()] performed SDQL query [operation].")
+	log_admin_circuit("[parent.get_creator()] 执行了 SDQL 查询 [operation]。")
 	var/result = HandleUserlessSDQL(parent.get_creator(), operation)
 	results.set_output(result)

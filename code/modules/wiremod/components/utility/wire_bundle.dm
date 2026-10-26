@@ -1,7 +1,7 @@
 /obj/item/circuit_component/wire_bundle
-	display_name = "Wire Bundle"
-	desc = "A bundle of exposed wires that assemblies can be attached to. Ports will only show up once the circuit is inserted into a shell."
-	category = "Utility"
+	display_name = "线束"
+	desc = "一束裸露的电线，可在此挂载组装件。只有电路装入外壳后才会出现端口。"
+	category = "实用工具"
 	circuit_flags = CIRCUIT_FLAG_REFUSE_MODULE
 
 	var/datum/wires/wire_bundle_component/tracked_wires
@@ -11,9 +11,9 @@
 
 /obj/item/circuit_component/wire_bundle/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Port count is proportional to shell capacity.", "orange", "plug")
-	. += create_ui_notice("Max port count: [MAX_WIRE_COUNT]", "orange", "plug")
-	. += create_ui_notice("Incompatible with assembly shell.", "red", "plug-circle-xmark")
+	. += create_ui_notice("端口数量与外壳容量成正比。", "orange", "plug")
+	. += create_ui_notice("最大端口数量：[MAX_WIRE_COUNT]", "orange", "plug")
+	. += create_ui_notice("与组装件外壳不兼容。", "red", "plug-circle-xmark")
 
 /obj/item/circuit_component/wire_bundle/register_shell(atom/movable/shell)
 	. = ..()
@@ -96,7 +96,7 @@
 		return
 	if(!can_access_wires(source))
 		return
-	context[SCREENTIP_CONTEXT_RMB] = "Interact with wires"
+	context[SCREENTIP_CONTEXT_RMB] = "操作电线"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/circuit_component/wire_bundle/proc/on_shell_secondary_interaction(atom/source, mob/user, obj/item/tool)
@@ -107,7 +107,7 @@
 		return
 	var/datum/component/shell/shell_comp = source.GetComponent(/datum/component/shell)
 	if(shell_comp.locked)
-		source.balloon_alert(user, "locked!")
+		source.balloon_alert(user, "已锁定！")
 		return ITEM_INTERACT_FAILURE
 	if(source.attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK)
 		return ITEM_INTERACT_BLOCKING

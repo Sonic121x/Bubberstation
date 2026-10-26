@@ -8,9 +8,9 @@
 #define OBJECT_OVERLAY_LIMIT 10
 
 /obj/item/circuit_component/object_overlay
-	display_name = "Object Overlay"
-	desc = "Requires a BCI shell. A component that shows an overlay on top of an object."
-	category = "BCI"
+	display_name = "物体叠加显示"
+	desc = "需要脑机接口外壳。在物体上方显示叠加层的元件。"
+	category = "脑机接口"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)
 

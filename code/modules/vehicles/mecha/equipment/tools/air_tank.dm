@@ -1,7 +1,7 @@
 ///Mech air tank module
 /obj/item/mecha_parts/mecha_equipment/air_tank
-	name = "mounted air tank"
-	desc = "An internal air tank used to pressurize mech cabin, scrub CO2 and power RCS thrusters. Comes with a pump and a set of sensors."
+	name = "外挂空气罐"
+	desc = "一种内置空气罐，用于为机甲驾驶舱加压、清除二氧化碳并驱动 RCS 推进器。配有气泵和一套传感器。"
 	icon_state = "mecha_air_tank"
 	equipment_slot = MECHA_UTILITY
 	can_be_toggled = TRUE
@@ -99,8 +99,8 @@
 /obj/item/mecha_parts/mecha_equipment/air_tank/proc/disconnect_air()
 	SIGNAL_HANDLER
 	if(connected_port && internal_tank.disconnect())
-		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Air port connection has been severed!")]")
-		log_message("Lost connection to gas port.", LOG_MECHA)
+		to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("气体接口连接已断开！")]")
+		log_message("与气体接口的连接已丢失。", LOG_MECHA)
 
 /obj/item/mecha_parts/mecha_equipment/air_tank/get_snowflake_data()
 	var/datum/gas_mixture/tank_air = internal_tank.return_air()
@@ -129,17 +129,17 @@
 		if("toggle_port")
 			if(internal_tank.connected_port)
 				if(internal_tank.disconnect())
-					to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("Disconnected from the air system port.")]")
-					log_message("Disconnected from gas port.", LOG_MECHA)
+					to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("已从空气系统接口断开连接。")]")
+					log_message("已从气体接口断开连接。", LOG_MECHA)
 					return TRUE
-				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Unable to disconnect from the air system port!")]")
+				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("无法从空气系统接口断开连接！")]")
 				return
 			var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate() in chassis.loc
 			if(internal_tank.connect(possible_port))
-				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("Connected to the air system port.")]")
-				log_message("Connected to gas port.", LOG_MECHA)
+				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("已连接到空气系统接口。")]")
+				log_message("已连接到气体接口。", LOG_MECHA)
 				return TRUE
-			to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("Unable to connect with air system port!")]")
+			to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_warning("无法连接到空气系统接口！")]")
 			return FALSE
 		if("toggle_auto_pressurize")
 			auto_pressurize_on_seal = !auto_pressurize_on_seal

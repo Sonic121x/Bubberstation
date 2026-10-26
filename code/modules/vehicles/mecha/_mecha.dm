@@ -19,8 +19,8 @@
  * Cooldown for melee is on mech_melee_attack also because exploits
  */
 /obj/vehicle/sealed/mecha
-	name = "exosuit"
-	desc = "Exosuit"
+	name = "外骨骼"
+	desc = "外骨骼机甲。"
 	icon = 'icons/mob/rideables/mecha.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	max_integrity = 300
@@ -143,7 +143,7 @@
 	var/destroy_wall_sound = 'sound/effects/meteorimpact.ogg'
 
 	/// Melee attack verb
-	var/list/attack_verbs = list("hit", "hits", "hitting")
+	var/list/attack_verbs = list("撞击", "撞击", "撞击")
 
 	/// Cooldown duration between melee punches
 	var/melee_cooldown = CLICK_CD_SLOW
@@ -182,7 +182,7 @@
 	/// Action type for overclocking, if null - no action
 	var/overclock_action_type = /datum/action/vehicle/sealed/mecha/mech_overclock
 	/// Name of the overclock action
-	var/overclock_name = "overclock"
+	var/overclock_name = "超频"
 
 	/// Whether we are strafing
 	var/strafe = FALSE
@@ -223,7 +223,7 @@
 	set_wires(new /datum/wires/mecha(src))
 	START_PROCESSING(SSobj, src)
 	SSpoints_of_interest.make_point_of_interest(src)
-	log_message("[src.name] created.", LOG_MECHA)
+	log_message("已创建 [src.name]。", LOG_MECHA)
 	GLOB.mechas_list += src //global mech list
 	prepare_huds()
 	var/datum/atom_hud/data/diagnostic/diag_hud = GLOB.huds[DATA_HUD_DIAGNOSTIC]
@@ -315,7 +315,7 @@
 	weapons_safety = !weapons_safety
 	if(!safety_sound_custom)
 		SEND_SOUND(user, sound('sound/machines/beep/beep.ogg', volume = 25))
-	balloon_alert(user, "equipment [weapons_safety ? "safe" : "ready"]")
+	balloon_alert(user, "装备[weapons_safety ? "已保险" : "已就绪"]")
 	set_mouse_pointer()
 	SEND_SIGNAL(src, COMSIG_MECH_SAFETIES_TOGGLE, user, weapons_safety)
 
@@ -449,7 +449,7 @@
 	for(var/occupant in occupants)
 		var/mob/mob_occupant = occupant
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
-		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
+		to_chat(mob_occupant, span_notice("装备控制单元已成功重启。"))
 	set_mouse_pointer()
 
 /// Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
@@ -464,36 +464,36 @@
 /obj/vehicle/sealed/mecha/examine(mob/user)
 	. = ..()
 	if(LAZYLEN(flat_equipment))
-		. += span_notice("It's equipped with:")
+		. += span_notice("它装备有：")
 		for(var/obj/item/mecha_parts/mecha_equipment/ME as anything in flat_equipment)
 			if(istype(ME, /obj/item/mecha_parts/mecha_equipment/concealed_weapon_bay))
 				continue
 			. += span_notice("[icon2html(ME, user)] \A [ME].")
 	if(mecha_flags & PANEL_OPEN)
 		if(servo)
-			. += span_notice("Servo reduces movement power usage by [100 - round(100 / servo.rating)]%")
+			. += span_notice("伺服电机使移动能耗降低 [100 - round(100 / servo.rating)]%。")
 		else
-			. += span_warning("It's missing a servo.")
+			. += span_warning("它缺少伺服电机。")
 		if(capacitor)
-			. += span_notice("Capacitor increases armor against energy attacks by [capacitor.rating * 5].")
+			. += span_notice("电容使它对能量攻击的护甲提高 [capacitor.rating * 5]。")
 		else
-			. += span_warning("It's missing a capacitor.")
+			. += span_warning("它缺少电容。")
 		if(!scanmod)
-			. += span_warning("It's missing a scanning module.")
+			. += span_warning("它缺少扫描模块。")
 	if(!(mecha_flags & IS_ENCLOSED))
 		if(mecha_flags & SILICON_PILOT)
-			. += span_notice("[src] appears to be piloting itself...")
+			. += span_notice("[src] 似乎在自行驾驶……")
 		else
 			for(var/occupante in occupants)
-				. += span_notice("You can see [occupante] inside.")
+				. += span_notice("你可以看到里面的 [occupante]。")
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				for(var/held_item in H.held_items)
 					if(!isgun(held_item))
 						continue
-					. += span_warning("It looks like you can hit the pilot directly if you target the center or above.")
+					. += span_warning("若你瞄准中部或更高位置，似乎可以直接打到驾驶员。")
 					break //in case user is holding two guns
-	. += span_notice("It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.")
+	. += span_notice("它挂着一个<a href='byond://?src=[REF(src)];list_armor=1'>标签</a>，列出了它的防护等级。")
 
 /obj/vehicle/sealed/mecha/Topic(href, href_list)
 	. = ..()
@@ -508,7 +508,7 @@
 			if(!rating)
 				continue
 			if(!added_damage_header)
-				readout += "<b><u>ARMOR (I-X)</u></b>"
+				readout += "<b><u>护甲（I-X）</u></b>"
 				added_damage_header = TRUE
 			readout += "[armor_to_protection_name(damage_key)] [armor_to_protection_class(rating)]"
 
@@ -518,15 +518,15 @@
 			if(!rating)
 				continue
 			if(!added_durability_header)
-				readout += "<b><u>DURABILITY (I-X)</u></b>"
+				readout += "<b><u>耐久（I-X）</u></b>"
 				added_durability_header = TRUE
 			readout += "[armor_to_protection_name(durability_key)] [armor_to_protection_class(rating)]"
 
-		readout += "It can withstand temperatures up to [max_temperature]K."
+		readout += "它最高可承受 [max_temperature]K 的温度。"
 		if(mecha_flags & IS_ENCLOSED)
-			readout += "It fully encloses its occupants, protecting them from the atmosphere or lack thereof."
+			readout += "它完全封闭，可保护乘员免受大气或真空的影响。"
 
-		var/formatted_readout = span_notice("<b>PROTECTION CLASSES</b><hr>[jointext(readout, "\n")]")
+		var/formatted_readout = span_notice("<b>防护等级</b><hr>[jointext(readout, "\n")]")
 		to_chat(usr, boxed_message(formatted_readout))
 
 /obj/vehicle/sealed/mecha/generate_integrity_message()
@@ -535,15 +535,15 @@
 
 	switch(integrity)
 		if(85 to 100)
-			examine_text = "It's fully intact."
+			examine_text = "它完好无损。"
 		if(65 to 85)
-			examine_text = "It's slightly damaged."
+			examine_text = "它有轻微损伤。"
 		if(45 to 65)
-			examine_text = "It's badly damaged."
+			examine_text = "它受损严重。"
 		if(25 to 45)
-			examine_text = "It's heavily damaged."
+			examine_text = "它损毁惨重。"
 		else
-			examine_text = "It's falling apart."
+			examine_text = "它快要散架了。"
 
 	return examine_text
 
@@ -672,7 +672,7 @@
 		mecha_flags &= ~LIGHTS_ON
 		set_light_on(mecha_flags & LIGHTS_ON)
 		playsound(src,'sound/machines/clockcult/brass_skewer.ogg', 40, TRUE)
-		log_message("Toggled lights off due to the lack of power.", LOG_MECHA)
+		log_message("因电力不足而关闭了照明。", LOG_MECHA)
 
 /// Called when a driver clicks somewhere. Handles everything like equipment, punches, etc.
 /obj/vehicle/sealed/mecha/proc/on_mouseclick(mob/user, atom/target, list/modifiers)
@@ -699,7 +699,7 @@
 		target = pick(view(3,target))
 	var/mob/living/livinguser = user
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)))
-		balloon_alert(user, "wrong seat for equipment!")
+		balloon_alert(user, "这个座位无法使用装备！")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	if(modifiers[BUTTON] == RIGHT_CLICK)
@@ -709,7 +709,7 @@
 	if(selected)
 		if(!Adjacent(target) && (selected.range & MECHA_RANGED))
 			if(HAS_TRAIT(livinguser, TRAIT_PACIFISM) && selected.harmful)
-				to_chat(livinguser, span_warning("You don't want to harm other living beings!"))
+				to_chat(livinguser, span_warning("你不想伤害其他活着的生物！"))
 				return
 			if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 				return
@@ -717,14 +717,14 @@
 			return
 		if(Adjacent(target) && (selected.range & MECHA_MELEE))
 			if(isliving(target) && selected.harmful && HAS_TRAIT(livinguser, TRAIT_PACIFISM))
-				to_chat(livinguser, span_warning("You don't want to harm other living beings!"))
+				to_chat(livinguser, span_warning("你不想伤害其他活着的生物！"))
 				return
 			if(SEND_SIGNAL(src, COMSIG_MECHA_EQUIPMENT_CLICK, livinguser, target) & COMPONENT_CANCEL_EQUIPMENT_CLICK)
 				return
 			INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, modifiers)
 			return
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
-		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
+		to_chat(livinguser, span_warning("你坐错了座位，无法用手交互。"))
 		return
 	var/on_cooldown = TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_MELEE_ATTACK)
 	var/adjacent = Adjacent(target)
@@ -765,7 +765,7 @@
 		return
 
 	if(!(user in return_controllers_with_flag(VEHICLE_CONTROL_DRIVE)))
-		to_chat(user, span_warning("You're in the wrong seat to control movement."))
+		to_chat(user, span_warning("你坐错了座位，无法控制移动。"))
 		return
 
 	toggle_strafe()
@@ -815,11 +815,11 @@
 /// Makes cabin unsealed, dumping cabin air outside or airtight filling the cabin with external air mix
 /obj/vehicle/sealed/mecha/proc/set_cabin_seal(mob/user, cabin_sealed)
 	if(!(mecha_flags & IS_ENCLOSED))
-		balloon_alert(user, "cabin can't be sealed!")
-		log_message("Tried to seal cabin. This mech can't be airtight.", LOG_MECHA)
+		balloon_alert(user, "驾驶舱无法密封！")
+		log_message("尝试密封驾驶舱，但此机甲无法做到气密。", LOG_MECHA)
 		return
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_CABIN_SEAL))
-		balloon_alert(user, "on cooldown!")
+		balloon_alert(user, "仍在冷却中！")
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_CABIN_SEAL, 1 SECONDS)
 
@@ -851,15 +851,15 @@
 			action.button_icon_state = "mech_cabin_[cabin_sealed ? "closed" : "open"]"
 			action.build_all_button_icons()
 
-		balloon_alert(occupant, "cabin [cabin_sealed ? "sealed" : "unsealed"]")
-	log_message("Cabin [cabin_sealed ? "sealed" : "unsealed"].", LOG_MECHA)
+		balloon_alert(occupant, "驾驶舱[cabin_sealed ? "已密封" : "已解除密封"]")
+	log_message("驾驶舱[cabin_sealed ? "已密封" : "已解除密封"]。", LOG_MECHA)
 	playsound(src, 'sound/machines/airlock/airlock.ogg', 50, TRUE)
 
 /// Special light eater handling
 /obj/vehicle/sealed/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
 	SIGNAL_HANDLER
 	if(mecha_flags & HAS_LIGHTS)
-		visible_message(span_danger("[src]'s lights burn out!"))
+		visible_message(span_danger("[src] 的照明烧毁了！"))
 		mecha_flags &= ~HAS_LIGHTS
 	set_light_on(FALSE)
 	for(var/occupant in occupants)
@@ -894,18 +894,18 @@
 	else
 		overclock_mode = !overclock_mode
 
-	log_message("Toggled [overclock_name].", LOG_MECHA)
+	log_message("切换了[overclock_name]。", LOG_MECHA)
 	for(var/mob/occupant as anything in occupants)
-		balloon_alert(occupant, "[overclock_name] [overclock_mode ? "on":"off"]")
+		balloon_alert(occupant, "[overclock_name][overclock_mode ? "已开启" : "已关闭"]")
 		var/datum/action/act = locate(/datum/action/vehicle/sealed/mecha/mech_overclock) in occupant.actions
 		act?.build_all_button_icons(UPDATE_BUTTON_ICON)
 
 	if(overclock_mode)
 		movedelay /= overclock_coeff
-		visible_message(span_notice("[src] starts heating up, making humming sounds."))
+		visible_message(span_notice("[src] 开始升温，发出嗡鸣声。"))
 	else
 		movedelay *= overclock_coeff
-		visible_message(span_notice("[src] cools down and the humming stops."))
+		visible_message(span_notice("[src] 冷却下来，嗡鸣声停止了。"))
 	update_energy_drain()
 	return TRUE
 
@@ -930,23 +930,23 @@
 /obj/vehicle/sealed/mecha/proc/toggle_lights(forced_state = null, mob/user)
 	if(!(mecha_flags & HAS_LIGHTS))
 		if(user)
-			balloon_alert(user, "mech has no lights!")
+			balloon_alert(user, "机甲没有照明！")
 		return
 	if((!(mecha_flags & LIGHTS_ON) && forced_state != FALSE) && get_charge() < power_to_energy(light_power_drain, scheduler = SSobj))
 		if(user)
-			balloon_alert(user, "no power for lights!")
+			balloon_alert(user, "电力不足以开启照明！")
 		return
 	mecha_flags ^= LIGHTS_ON
 	set_light_on(mecha_flags & LIGHTS_ON)
 	playsound(src,'sound/machines/clockcult/brass_skewer.ogg', 40, TRUE)
-	log_message("Toggled lights [(mecha_flags & LIGHTS_ON)?"on":"off"].", LOG_MECHA)
+	log_message("已[(mecha_flags & LIGHTS_ON) ? "开启" : "关闭"]照明。", LOG_MECHA)
 	for(var/mob/occupant as anything in occupants)
 		var/datum/action/act = locate(/datum/action/vehicle/sealed/mecha/mech_toggle_lights) in occupant.actions
 		if(mecha_flags & LIGHTS_ON)
 			act.button_icon_state = "mech_lights_on"
 		else
 			act.button_icon_state = "mech_lights_off"
-		balloon_alert(occupant, "lights [mecha_flags & LIGHTS_ON ? "on":"off"]")
+		balloon_alert(occupant, "照明[mecha_flags & LIGHTS_ON ? "已开启" : "已关闭"]")
 		act.build_all_button_icons()
 
 /obj/vehicle/sealed/mecha/proc/melee_attack_effect(mob/living/victim, heavy)

@@ -13,9 +13,9 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/trigonometry
-	display_name = "Trigonometry"
-	desc = "General trigonometry component with main and inverse trigonometry functions."
-	category = "Math"
+	display_name = "三角学"
+	desc = "包含常用三角函数与反三角函数的通用三角学元件。"
+	category = "数学"
 
 	var/datum/port/input/option/trigonometric_function
 

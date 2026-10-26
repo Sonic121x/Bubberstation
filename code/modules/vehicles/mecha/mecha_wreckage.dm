@@ -4,8 +4,8 @@
 
 
 /obj/structure/mecha_wreckage
-	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely irreparable, but perhaps something can be salvaged."
+	name = "机甲残骸"
+	desc = "某台不幸机甲的遗骸。已完全无法修复，不过也许还能回收点什么。"
 	icon = 'icons/mob/rideables/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
@@ -42,7 +42,7 @@
 	if(AI)
 		QDEL_NULL(AI)
 	QDEL_LIST(crowbar_salvage)
-	src.visible_message(span_danger("[src]'s superstructure folds in on itself, collapsing into a heap of unsalvageable scrap!"))
+	src.visible_message(span_danger("[src] 的上层结构向内塌陷，堆成一团无法回收的废铁！"))
 	playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
 	for(var/mob/living/witness in range(2, src))
 		shake_camera(witness, 2, 1)
@@ -53,7 +53,7 @@
 	. = ..()
 	if(!AI)
 		return
-	. += span_notice("The AI recovery beacon is active.")
+	. += span_notice("AI 回收信标已激活。")
 
 /obj/structure/mecha_wreckage/welder_act(mob/living/user, obj/item/I)
 	..()

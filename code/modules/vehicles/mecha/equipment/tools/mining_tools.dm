@@ -6,8 +6,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/drill
-	name = "exosuit drill"
-	desc = "Equipment for engineering and combat exosuits. This is the drill that'll pierce the heavens!"
+	name = "外骨骼钻头"
+	desc = "工程与战斗机甲装备。这就是能贯穿天际的钻头！"
 	icon_state = "mecha_drill"
 	equipment_slot = MECHA_UTILITY
 	can_be_toggled = TRUE
@@ -40,10 +40,10 @@
 		return
 	if(active)
 		RegisterSignal(chassis, COMSIG_MECHA_MELEE_CLICK, PROC_REF(on_mech_click))
-		log_message("Activated.", LOG_MECHA)
+		log_message("已启动。", LOG_MECHA)
 	else
 		UnregisterSignal(chassis, COMSIG_MECHA_MELEE_CLICK)
-		log_message("Deactivated.", LOG_MECHA)
+		log_message("已停用。", LOG_MECHA)
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/drill/attach(obj/vehicle/sealed/mecha/new_mecha, attach_right)
@@ -97,7 +97,7 @@
 			var/turf/closed/mineral/gibtonite/giberal_turf = target
 			if(giberal_turf.stage != GIBTONITE_UNSTRUCK)
 				playsound(chassis, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
-				to_chat(source, span_warning("[icon2html(src, source)] Active gibtonite ore deposit detected! Safety protocols preventing continued drilling."))
+				to_chat(source, span_warning("[icon2html(src, source)] 检测到活跃的爆裂矿矿脉！安全协议已阻止继续钻探。"))
 				return
 
 	else
@@ -120,11 +120,11 @@
 	if(DOING_INTERACTION_WITH_TARGET(source, target) && do_after_cooldown(target, source, DOAFTER_SOURCE_MECHADRILL))
 		return
 
-	target.visible_message(span_warning("[chassis] starts to drill [target]."), \
-				span_userdanger("[chassis] starts to drill you!"), \
-				span_hear("You hear drilling."))
+	target.visible_message(span_warning("[chassis] 开始钻探 [target]。"), \
+				span_userdanger("[chassis] 开始钻你了！"), \
+				span_hear("你听到钻探声。"))
 
-	log_message("Started drilling [target]", LOG_MECHA)
+	log_message("开始钻探 [target]", LOG_MECHA)
 
 	// Drilling a turf is a one-and-done procedure.
 	if(isturf(target))
@@ -164,44 +164,44 @@
 
 /turf/closed/wall/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill, mob/user)
 	if(drill.do_after_mecha(src, user, 60 / drill.drill_level))
-		drill.log_message("Drilled through [src]", LOG_MECHA)
+		drill.log_message("钻穿了 [src]", LOG_MECHA)
 		dismantle_wall(TRUE, FALSE)
 
 /turf/closed/wall/r_wall/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill, mob/user)
 	if(drill.drill_level >= DRILL_HARDENED)
 		if(drill.do_after_mecha(src, user, 120 / drill.drill_level))
-			drill.log_message("Drilled through [src]", LOG_MECHA)
+			drill.log_message("钻穿了 [src]", LOG_MECHA)
 			dismantle_wall(TRUE, FALSE)
 	else
-		to_chat(user, "[icon2html(src, user)][span_danger("[src] is too durable to drill through.")]")
+		to_chat(user, "[icon2html(src, user)][span_danger("[src] 过于坚固，无法钻穿。")]")
 
 /turf/closed/mineral/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill, mob/user)
 	for(var/turf/closed/mineral/wall in range(drill.chassis, 1))
 		if(get_dir(drill.chassis, wall) & drill.chassis.dir)
 			wall.gets_drilled()
-	drill.log_message("[user] drilled through [src]", LOG_MECHA)
+	drill.log_message("[user] 钻穿了 [src]", LOG_MECHA)
 	drill.move_ores()
 
 /turf/open/misc/asteroid/drill_act(obj/item/mecha_parts/mecha_equipment/drill/drill)
 	for(var/turf/open/misc/asteroid/floor in range(1, drill.chassis))
 		if((get_dir(drill.chassis, floor) & drill.chassis.dir) && floor.can_dig())
 			floor.getDug()
-	drill.log_message("Drilled through [src]", LOG_MECHA)
+	drill.log_message("钻穿了 [src]", LOG_MECHA)
 	drill.move_ores()
 
 /obj/item/mecha_parts/mecha_equipment/drill/proc/move_ores()
 	chassis.collect_ore()
 
 /obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/living/user)
-	target.visible_message(span_danger("[chassis] is drilling [target] with [src]!"), \
-						span_userdanger("[chassis] is drilling you with [src]!"))
+	target.visible_message(span_danger("[chassis] 正用 [src] 钻 [target]！"), \
+						span_userdanger("[chassis] 正用 [src] 钻你！"))
 	log_combat(user, target, "drilled", "[name]", "Combat mode: [user.combat_mode ? "On" : "Off"])(DAMTYPE: [uppertext(damtype)])")
 	if(target.stat == DEAD && target.get_brute_loss() >= (target.maxHealth * 2))
 		log_combat(user, target, "gibbed", name)
 		if(LAZYLEN(target.butcher_results) || LAZYLEN(target.guaranteed_butcher_results))
 			SEND_SIGNAL(src, COMSIG_MECHA_DRILL_MOB, chassis, target)
 		else
-			target.investigate_log("has been gibbed by [src] (attached to [chassis]).", INVESTIGATE_DEATHS)
+			target.investigate_log("被 [src]（安装在 [chassis] 上）砸成了碎块。", INVESTIGATE_DEATHS)
 			target.gib(DROP_ALL_REMAINS)
 		return
 
@@ -221,8 +221,8 @@
 	target.create_splatter(get_dir(chassis, target))
 
 /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill
-	name = "diamond-tipped exosuit drill"
-	desc = "Equipment for engineering and combat exosuits. This is an upgraded version of the drill that'll pierce the heavens!"
+	name = "外骨骼金刚石钻头"
+	desc = "工程与战斗机甲装备。这是能贯穿天际的钻头的升级版本！"
 	icon_state = "mecha_diamond_drill"
 	equip_cooldown = 10
 	drill_delay = 4
@@ -232,8 +232,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 3.25)
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner
-	name = "exosuit mining scanner"
-	desc = "Equipment for working exosuits. It will automatically check surrounding rock for useful minerals."
+	name = "外骨骼采矿扫描仪"
+	desc = "工作机甲装备。它会自动扫描周围的岩石，寻找有用的矿物。"
 	icon_state = "mecha_analyzer"
 	equip_cooldown = 1.5 SECONDS
 	equipment_slot = MECHA_UTILITY

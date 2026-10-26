@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/robotics
-	name = "\improper Robotech Deluxe"
-	desc = "All the tools you need to create your own robot army."
+	name = "\improper 机器人科技豪华版"
+	desc = "打造你自己的机器人军队所需的全部工具。"
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	panel_type = "panel14"
@@ -28,5 +28,5 @@
 	payment_department = ACCOUNT_SCI
 
 /obj/item/vending_refill/robotics
-	machine_name = "Robotech Deluxe"
+	machine_name = "机器人科技豪华版"
 	icon_state = "refill_engi"

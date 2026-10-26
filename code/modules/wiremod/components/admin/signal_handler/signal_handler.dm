@@ -7,9 +7,9 @@
  * A component that registers signals on events and listens for them.
  */
 /obj/item/circuit_component/signal_handler
-	display_name = "Signal Handler"
-	desc = "A component that listens for signals on an object."
-	category = "Admin"
+	display_name = "信号处理器"
+	desc = "监听对象上信号的元件。"
+	category = "管理员"
 	circuit_flags = CIRCUIT_FLAG_ADMIN|CIRCUIT_FLAG_INSTANT
 
 	/// Whether it is a global or object signal
@@ -132,7 +132,7 @@
 		target_datum = SSdcs
 
 	if(target_datum)
-		log_admin_circuit("[parent.get_creator()] registered the signal '[registered_signal]' on [target_datum]")
+		log_admin_circuit("[parent.get_creator()] 在 [target_datum] 上注册了信号“[registered_signal]”")
 		// We override because an admin may try registering a signal on the same object/datum again, so this prevents any runtimes from occuring
 		RegisterSignal(target_datum, registered_signal, PROC_REF(handle_signal_received), override = TRUE)
 		registered_entities |= WEAKREF(target_datum)
@@ -200,7 +200,7 @@
 	usr = null
 
 	var/list/displayArgs = arguments.Copy()
-	log_admin_circuit("[parent.get_creator()] received a signal from [popleft(displayArgs)] ([registered_signal]) with the parameters \[[displayArgs.Join(", ")]]")
+	log_admin_circuit("[parent.get_creator()] 收到了来自 [popleft(displayArgs)] 的信号（[registered_signal]），参数为 \[[displayArgs.Join(", ")]]")
 	SScircuit_component.queue_instant_run()
 	run_ports_on_args(arguments)
 	var/list/output = SScircuit_component.execute_instant_run()
@@ -208,7 +208,7 @@
 	usr = temp_usr
 
 	if(!output)
-		message_admins("[parent.get_creator_admin()] took too much CPU time trying to handle a signal. Reduce the amount of circuit components attached to your [name] circuit component.")
+		message_admins("[parent.get_creator_admin()] 在处理信号时占用了过多 CPU 时间。请减少挂在他的 [name] 电路元件上的元件数量。")
 		return
 
 	return output["bitflag"] || NONE
@@ -222,7 +222,7 @@
 		return_values["bitflag"] = NONE
 
 	var/bitflag = input_signal_ports[port]
-	log_admin_circuit("[parent.get_creator()] received bitflag [bitflag] for '[registered_signal]'")
+	log_admin_circuit("[parent.get_creator()] 收到了“[registered_signal]”的位标志 [bitflag]")
 	return_values["bitflag"] |= bitflag
 
 #undef COMP_SIGNAL_HANDLER_GLOBAL
