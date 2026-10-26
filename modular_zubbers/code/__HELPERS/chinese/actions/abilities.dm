@@ -1,22 +1,3 @@
-#include "chinese_action_display.dm"
-#include "chinese_identity_display.dm"
-#include "chinese_cleanable_display.dm"
-#include "chinese_area_display.dm"
-#include "chinese_cardboard_cutout_display.dm"
-#include "chinese_id_card_display.dm"
-#include "chinese_misc_display.dm"
-#include "chinese_scar_display.dm"
-#include "chinese_circuitboard_display.dm"
-#include "chinese_crayon_display.dm"
-#include "chinese_quirk_display.dm"
-#include "chinese_template_display.dm"
-#include "chinese_pupil_display.dm"
-#include "chinese_pipe_paint_display.dm"
-#include "chinese_accessory_display.dm"
-#include "chinese_scanner_display.dm"
-#include "chinese_machine_display.dm"
-#include "chinese_telecomms_display.dm"
-
 /proc/chinese_cqc_hit_display(hit_type)
 	var/list/display_names = list("CQC" = "近身格斗术", "Big Boss" = "大首领式格斗术", "kick" = "踢击", "stomp" = "踩踏")
 	return display_names[hit_type] || hit_type

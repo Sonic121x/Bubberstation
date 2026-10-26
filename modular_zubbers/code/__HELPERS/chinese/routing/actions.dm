@@ -1,12 +1,3 @@
-#include "chinese_batch_five_display.dm"
-#include "chinese_batch_six_items_action_storage.dm"
-#include "chinese_batch_six_mob_action_storage.dm"
-#include "chinese_batch_seven_action_storage.dm"
-#include "chinese_mod_module_storage.dm"
-#include "chinese_batch_six_instrument_port_display.dm"
-#include "chinese_batch_six_computer_port_display.dm"
-#include "chinese_batch_seven_port_display.dm"
-
 /// Resolve type-specific collisions before the older general reverse dictionaries.
 /proc/chinese_action_storage_name(value, action_type)
 	if(value == "致盲" && ispath(action_type, /datum/action/cooldown/spell/pointed/blind))

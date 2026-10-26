@@ -1,12 +1,3 @@
-#include "chinese_batch_three_display.dm"
-#include "chinese_batch_four_admin_display.dm"
-#include "chinese_batch_four_heretic_display.dm"
-#include "chinese_batch_four_structures_display.dm"
-#include "chinese_batch_four_antag_display.dm"
-#include "chinese_batch_four_items_action_storage.dm"
-#include "chinese_batch_four_admin_action_storage.dm"
-#include "chinese_batch_four_antag_action_storage.dm"
-
 /proc/chinese_grenade_fuse_choice(mob/user, list/fuse_times)
 	var/list/labels = list()
 	for(var/value in fuse_times)

@@ -1,11 +1,3 @@
-#include "chinese_batch_four_display.dm"
-#include "chinese_batch_five_atmos_action_storage.dm"
-#include "chinese_batch_five_clothing_action_storage.dm"
-#include "chinese_batch_five_atmos_protocol.dm"
-#include "chinese_batch_five_holiday_display.dm"
-#include "chinese_batch_five_atmos_port_display.dm"
-#include "chinese_batch_five_food_port_display.dm"
-
 /proc/chinese_batch_five_action_storage_name(value, action_type)
 	return chinese_batch_six_action_storage_name(chinese_batch_five_clothing_action_storage(chinese_batch_five_atmos_action_storage(value, action_type), action_type), action_type)
 
