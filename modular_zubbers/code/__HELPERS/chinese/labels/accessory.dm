@@ -60,7 +60,13 @@
 	return isnull(selection) ? null : display_choices[selection]
 
 /proc/chinese_outfit_display(value)
-	var/static/list/display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备")
+	var/static/list/display_names = list("Naked" = "裸体", "Custom" = "自定义", "As Job..." = "按职业……", "As Plasmaman..." = "等离子人装备……", "Standard Gear" = "标准装备",
+		"Dauntless" = "无畏号", "Persistence" = "恒久号",
+		"Persistence Syndicate Prisoner" = "恒久号辛迪加囚犯", "Persistence Operative" = "恒久号特工", "Persistence General Staff" = "恒久号普通职员",
+		"Persistence Sanitation Technician" = "恒久号清洁技术员", "Persistence Engineer" = "恒久号工程师", "Persistence Researcher" = "恒久号研究员",
+		"Persistence Medical Officer" = "恒久号医疗官", "Persistence Brig Officer" = "恒久号拘留区长官", "Persistence Cargo Tech" = "恒久号货运技术员",
+		"Persistence Morale Officer" = "恒久号士气官", "Persistence Command Operative" = "恒久号指挥特工", "Persistence Master At Arms" = "恒久号纠察长",
+		"Persistence Corporate Liasion" = "恒久号企业联络官", "Rig Admiral" = "钻井平台上将")
 	return display_names[value] || chinese_job_display(value)
 
 /proc/chinese_granter_spell_display(value)
