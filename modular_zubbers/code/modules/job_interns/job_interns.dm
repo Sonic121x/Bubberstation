@@ -78,9 +78,9 @@
 	var/assignment_string
 	if(is_intern || intern_status)
 		if(assignment)
-			assignment_string = trim?.intern_alt_name || "Intern [assignment]"
+			assignment_string = trim?.intern_alt_name || "实习[chinese_job_display(assignment)]"
 		else
-			assignment_string = "Intern"
+			assignment_string = "实习生"
 	else
 		assignment_string = assignment
 	return assignment_string

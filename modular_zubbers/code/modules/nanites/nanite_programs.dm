@@ -1,6 +1,6 @@
 /datum/nanite_program
-	var/name = "Generic Nanite Program"
-	var/desc = "Warn a coder if you can read this."
+	var/name = "通用纳米机器人程序"
+	var/desc = "如果你能读到这段文字，请通知程序员。"
 
 	var/datum/component/nanites/nanites
 	var/mob/living/host_mob
@@ -250,22 +250,22 @@
 	if(program_flags & NANITE_EMP_IMMUNE)
 		return
 	if(prob(80 / severity))
-		host_mob.investigate_log("[src] nanite program received a software error due to emp.", INVESTIGATE_NANITES)
+		host_mob.investigate_log("[src] 纳米机器人程序因电磁脉冲出现软件错误。", INVESTIGATE_NANITES)
 		software_error()
 
 /datum/nanite_program/proc/on_shock(shock_damage)
 	if(!(program_flags & NANITE_SHOCK_IMMUNE))
 		if(prob(10))
-			host_mob.investigate_log("[src] nanite program received a software error due to shock.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因电击出现软件错误。", INVESTIGATE_NANITES)
 			software_error()
 		else if(prob(33))
-			host_mob.investigate_log("[src] nanite program was deleted due to shock.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因电击被删除。", INVESTIGATE_NANITES)
 			qdel(src)
 
 /datum/nanite_program/proc/on_minor_shock()
 	if(!(program_flags & NANITE_SHOCK_IMMUNE))
 		if(prob(10))
-			host_mob.investigate_log("[src] nanite program received a software error due to minor shock.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因轻微电击出现软件错误。", INVESTIGATE_NANITES)
 			software_error()
 
 /datum/nanite_program/proc/on_death()
@@ -276,49 +276,49 @@
 		type = rand(1,5)
 	switch(type)
 		if(1)
-			host_mob.investigate_log("[src] nanite program was deleted by software error.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因软件错误被删除。", INVESTIGATE_NANITES)
 			qdel(src) //kill switch
 			return
 		if(2) //deprogram codes
-			host_mob.investigate_log("[src] nanite program was de-programmed by software error.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因软件错误被清除程序代码。", INVESTIGATE_NANITES)
 			activation_code = 0
 			deactivation_code = 0
 			kill_code = 0
 			trigger_code = 0
 		if(3)
-			host_mob.investigate_log("[src] nanite program was toggled by software error.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因软件错误被切换状态。", INVESTIGATE_NANITES)
 			toggle() //enable/disable
 		if(4)
 			if(can_trigger)
-				host_mob.investigate_log("[src] nanite program was triggered by software error.", INVESTIGATE_NANITES)
+				host_mob.investigate_log("[src] 纳米机器人程序因软件错误被触发。", INVESTIGATE_NANITES)
 				trigger()
 		if(5) //Program is scrambled and does something different
 			var/rogue_type = pick(rogue_types)
 			var/datum/nanite_program/rogue = new rogue_type
-			host_mob.investigate_log("[src] nanite program was converted into [rogue.name] by software error.", INVESTIGATE_NANITES)
+			host_mob.investigate_log("[src] 纳米机器人程序因软件错误被转换为 [rogue.name]。", INVESTIGATE_NANITES)
 			nanites.add_program(null, rogue, src)
 			qdel(src)
 
 /datum/nanite_program/proc/receive_signal(code, source)
 	if(activation_code && code == activation_code && !activated)
 		activate()
-		host_mob.investigate_log("'s [name] nanite program was activated by [source] with code [code].", INVESTIGATE_NANITES)
+		host_mob.investigate_log("的 [name] 纳米机器人程序被 [source] 以代码 [code] 激活。", INVESTIGATE_NANITES)
 	else if(deactivation_code && code == deactivation_code && activated)
 		deactivate()
-		host_mob.investigate_log("'s [name] nanite program was deactivated by [source] with code [code].", INVESTIGATE_NANITES)
+		host_mob.investigate_log("的 [name] 纳米机器人程序被 [source] 以代码 [code] 停用。", INVESTIGATE_NANITES)
 	if(can_trigger && trigger_code && code == trigger_code)
 		trigger()
-		host_mob.investigate_log("'s [name] nanite program was triggered by [source] with code [code].", INVESTIGATE_NANITES)
+		host_mob.investigate_log("的 [name] 纳米机器人程序被 [source] 以代码 [code] 触发。", INVESTIGATE_NANITES)
 	if(kill_code && code == kill_code)
-		host_mob.investigate_log("'s [name] nanite program was deleted by [source] with code [code].", INVESTIGATE_NANITES)
+		host_mob.investigate_log("的 [name] 纳米机器人程序被 [source] 以代码 [code] 删除。", INVESTIGATE_NANITES)
 		qdel(src)
 
 /datum/nanite_program/proc/send_user_message(message)
-	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[message]")]\"")
+	to_chat(host_mob, "<i>你脑中响起一个怪异、机械的声音……</i> “[span_robot("[message]")]”")
 
 ///A nanite program containing a behaviour protocol. Only one protocol of each class can be active at once.
 /datum/nanite_program/protocol
-	name = "Nanite Protocol"
+	name = "纳米机器人协议"
 	var/protocol_class = NONE
 
 /datum/nanite_program/protocol/check_conditions()

@@ -1,7 +1,7 @@
 //Lockers specific to persistence
 
 /obj/structure/closet/secure_closet/interdynefob/sa_locker/persistence
-	name = "\proper land crawler admiral's locker"
+	name = "\proper 陆行舰上将的储物柜"
 
 /obj/structure/closet/secure_closet/interdynefob/sa_locker/persistence/PopulateContents()
 	..()
@@ -12,7 +12,7 @@
 /obj/structure/closet/secure_closet/persistence/maa_locker
 	icon_door = "warden"
 	icon_state = "warden"
-	name = "master at arms' locker"
+	name = "纠察长的储物柜"
 	req_access = list("syndicate_leader")
 
 /obj/structure/closet/secure_closet/persistence/maa_locker/PopulateContents()

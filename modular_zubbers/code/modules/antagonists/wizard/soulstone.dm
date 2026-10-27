@@ -6,7 +6,7 @@
 		ignore_category = POLL_IGNORE_SHADE,
 		alert_pic = /mob/living/basic/shade,
 		jump_target = src,
-		role_name_text = "a shade",
+		role_name_text = "一个暗影",
 		chat_text_border_icon = /mob/living/basic/shade,
 	)
 	on_poll_concluded(user, victim, chosen_one)

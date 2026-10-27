@@ -1,62 +1,62 @@
-Did you know? The Freshness jar of natural baits actually contains kronkaine.
-Legends say The Dude once lost his wallet inside a toilet.
-Legends say a famous pirate once lost his precious coffer by the Beach.
-You could buy fish dirt cheap from the black market, but you probably won't get anything actually fresh.
-Rescue hooks can be used to snag in other people. Good for getting husks out of plasma rivers.
-Pufferfish are known for the slow yet lethal poison they store inside their liver.
-Magnet hooks are great to fish anything that's NOT a fish.
-You can perform scanning experiments with an experi-scanner and some fish. They'll give sci some extra techweb points and get you more modules for the fishing portal generator.
-Fish scanning experiments can be automatically performed with an advanced fishing rod. However to print one you need to have at least completed the first one.
-Advanced fishing rods come pre-equipped with a unexhaustible bait that ignores bait preferences of each fish, letting you catch'em all.
-Don't expect to be able to catch a lot of fish without a bait.
-Some fish (mostly predators) are strictly carnivorous and will ignore baits not made of meat or seafood, a few are picky eaters and will only go after the best of baits, while another smaller few are more or less strictly herbivore.
-You can fish at the holodeck beach, if you don't mind the fish being quite fake.
-You may find worms by digging through sand, ash and snow.
-You can revive fish by using a Lazarus Injector on them. However, using Strange Reagent would be a smarter option here.
-You can feed fish outside of an aquarium by tapping them with a can of fish feed.
-More fishing rods and fish cases can be printed at the autolathe.
-You can link the fish portal generator to other fishing spots with a multitool. The maximum amount of fishing spots that can be linked and whether or not the link works on different z-levels depends on the quality of the machinery components.
-The actual name of the fishing portal generator is 'fish-porter 3000'. They're totally the same thing however.
-Seeking alternative ways to catch fish without bothering to do it yourself? Explosives can be thrown at fishing spots to get several (dead) fishes in a pinch.
-You can raise lobstrosities from chasm chrabs. However, lobstrosities can only be tamed with spare limbs or lavaloop fish while still young.
-Lavaloop fish make for dangerous yet somewhat effective throwing weapons against big fauna.
-The fishing portal generator has different modules, all of which can be unlocked by completing fish scanning experiments... except for the Syndicate one...
-A fish's traits influence how you can catch them. Carnivore fish will ignore dough balls, and herbivore fish ignore anything that's not from botany.
-Telescopic fishing rods can be bought from cargo.
-Once grown from chrabs and tamed, lobstrosities can be heeded to fish on fishing spots for you.
-Aquariums can be upgraded to bioelectricity generators with a specific kit. From there, you can add electric-generating fish like the anxious zip zap to generate power for the station.
-Getting better at fishing will net you some small additional advantages, such as receiving more information when examining a fish or a fishing spot.
-The size and weight of a fish can influence the amount of reagents and fillets you can harvest from them, their force as a weapon and how easy it is to store them in containers.
-While most fish make for shoddy weapons, a few, like the swordfish and the chainsawfish, can be quite powerful. In general, the bigger they are, the more forceful they get.
-Fish can be sold to cargo. While most don't sell for very much, the biggest ones can be sold for a considerable bounty.
-The meat of fish like swordfish, salmon and pufferfish (weren't they poisonous) makes for an excellent ingredient that boosts the quality of the end product.
-Stingrays are known for their stinger, which they use to deliver venom to hostiles.
-Some species of fish can be bred into new species under the right conditions.
-Most fish don't survive outside water, so get them somewhere safe like an aquarium or a fish case, or even a toilet or a moisture trap!
-No matter how you look at it, most people won't care about fishing. Don't let that stop you. They're just jealous.
-To fish on ice you have to puncture the ice layer with a pick or shovel first.
-Fishing rods are particularly effective melee weapons against spacemen deeply infused with fish DNA from genetics.
-Depending on the kinds of fish inside it and whether they're alive or dead, an aquarium can improve the beauty of the room or worsen it.
-Almost all fish can be ground in an All-in-one-Grinder. Don't think too hard about how you're fitting a giant fish into a blender. Nanotrasen technology is weird like that.
-The sludgefish from the toilets can be used as a steady supply of cheap fish and fillets due to its self-reproducing behaviour. However it's quite fragile.
-In a jiffy, you can scoop tadpoles from ponds with your bare hands, place them inside aquariums and quickly raise them into frogs.
-The legendary fishing hat isn't just cosmetic. Space carps (as well as young lobstrosities and frogs) do truly fear those who wear it.
-Have you ever heard a lobster or crab talk? Well, neither have I, but they say they're quite the fishy punsters.
-You can get an experiscanner from science to perform fish scanning experiments, which can unlock more modules for the fishing portal, as well as fishing technology nodes (better equipment) to research.
-Fish is, of course, edible. Is it safe to eat raw? Well, if you've strong stomach, otherwise your best option is to cook it for a at least half a spessman minute if you don't want to catch nasty diseases.
-After researching the Advanced Fishing Technology Node, you can print special fishing gloves that let you fish without having to carry around a fishing rod. There's one pair that even trains athletics on top of fishing.
-You can get an experiscanner from science to perform fish scanning experiments, which can unlock more modules for the fishing portal, as well as fishing technology nodes (better equipment) for research.
-If you have enough credits, you can buy a set of fishing lures from cargo (or the library vending machine). Each lure allows you to catch different species of fish and won't get consumed, however they need to be spun at intervals to work.
-Various clothing and handheld items, as well as chairs you sit on, can make fishing easier (or sometimes harder). A trained fisherman can tell what can help and what won't, so keep an eye out.
-This may sound silly, but (live) squids and their ink sacs can be used as weapons to temporarily blind foes.
-Got a bioelectricity generator aquarium but no electrogenic fish? Worry not, you can always feed your fish some teslium or liquid electricity to temporarily grant them (slightly less powerful) eletrogenesis. It'll also gradually hurt them however.
-Fish can grow in size and weight if you fed them somewhat frequently. Giving them growth serum (from fly amanita) will also boost the rate at which they grow.
-Feeding a fish mutagen can triple the probability of generating evolved offsprings, provided it has an evolution.
-You can print fishing rods of different materials from an autolathe, which can inrease or decrease fishing difficulty, casting range, experience gained and can have other, special effects.
-You can use a fishing rod to snatch random organs during the "manipulate organs" step of the "organ manipulation" surgery.
-You can try to save cash on vending machines by using a fishing rod with a coin, holochip or bill attached to it. The value of the currency used as bait will reduce difficulty and risks and raise the odds of getting more expensive items.
-By opening the aquarium panel and turning "Safe Mode" on, you can easily set up a purely decorative aquarium without having to worry about food, temperature and type of water.
-Aquariums are also potential fishing spots. Only useful for catching fish you couldn't find in the wild, as a personal achievement and nothing more.
-If you don't have it already, there's a skillchip called Mast-Angl-Er that you can get from the library vending machine which can help if you're new to fishing. Other than dispensing tips, it provides more information when examining fish, rods and fishing spots as well.
-If fishing in lava and chasms, there's a chance you fish up a skeleton... Finally, someone who might care about you.
-How about you fish yourself some bitches?
+你知道吗？天然鱼饵的“新鲜度”罐里其实装的是克隆卡因。
+传说杜德曾经把钱包掉进了马桶里。
+传说有位著名海盗把珍贵的宝箱丢在了海滩边。
+你可以从黑市上以极低的价格买到鱼，但你大概买不到真正新鲜的货色。
+救援钩能把别人勾过来用。很适合把干尸从等离子河里捞出来。
+河豚以肝脏中储存的缓慢却致命的毒素而闻名。
+磁铁钩非常适合钓任何不是鱼的东西。
+你可以用实验扫描仪和一些鱼做扫描实验。它们能为科研部提供额外的科技网络点数，还能为你换来更多钓鱼传送门生成器的模块。
+鱼类扫描实验可以用高级钓鱼竿自动完成。不过要打印一根，你至少得先完成第一项实验。
+高级钓鱼竿预装了永不耗尽、且无视各鱼类饵偏好的鱼饵，让你能把它们一网打尽。
+别指望没有鱼饵也能钓到很多鱼。
+有些鱼（大多是掠食性鱼类）严格肉食，会无视不是肉或海鲜做的鱼饵；少数挑食的只追最好的鱼饵；还有更少的一小部分则多少算是严格的食草动物。
+你可以在全息甲板的海滩上钓鱼，只要你不介意鱼是假的。
+你可以在沙地、灰烬和雪里挖出虫子。
+你可以用拉撒路注射器让鱼复活。不过用奇异试剂会是更聪明的选择。
+不用鱼缸也能喂鱼：用一罐鱼饲料轻点它们即可。
+更多钓鱼竿和鱼盒可以在自动车床打印。
+你可以用多功能工具把钓鱼传送门生成器连接到其他钓点。可连接的钓点数量上限，以及连接能否在不同 z 层级上生效，都取决于机器部件的品质。
+钓鱼传送门生成器的实际名称是“鱼传送器 3000”。不过它们其实完全是同一样东西。
+想找不用亲自动手的钓鱼办法？可以把炸药扔向钓点，应急捞上几条（死）鱼。
+你可以用深渊蟹培育出龙虾怪。不过龙虾怪只有在幼年阶段才能用多余的肢体或熔岩环鱼驯服。
+熔岩环鱼是危险的投掷武器，对付大型动物时也相当有效。
+钓鱼传送门生成器有不同的模块，全都能通过完成鱼类扫描实验解锁……除了辛迪加那个……
+鱼的特质会影响你钓到它们的方式。肉食性鱼类会无视面团鱼饵，食草性鱼类则会无视任何非植物学来源的鱼饵。
+伸缩钓鱼竿可以从货运订购。
+龙虾怪从深渊蟹成长并被驯服后，可以命令它替你在钓点钓鱼。
+鱼缸可以用专门的套件升级为生物电发电机。之后你就能放入电击鱼之类能发电的鱼，为空间站供电。
+钓鱼技巧越高，你获得的额外好处也越多，比如检查鱼或钓点时能得到更多信息。
+鱼的体型和重量会影响你能从它们身上获取的试剂量与鱼柳数量、它们作为武器的威力，以及把它们装进容器有多容易。
+虽然大多数鱼当武器都不怎么样，但少数几种，比如剑鱼和电锯鱼，可以相当强悍。一般来说，它们越大，威力就越强。
+鱼可以卖给货运。虽然大多数卖不了多少钱，但最大的那些可以换来一笔可观的赏金。
+剑鱼、鲑鱼和河豚（它们不是有毒吗）这类鱼的肉是极佳的食材，能提升成品的品质。
+黄貂鱼以其毒刺闻名，它们用毒刺向敌人注入毒液。
+有些鱼在合适的条件下可以繁育成新物种。
+大多数鱼离水就无法存活，所以要给它们找个安全的地方，比如鱼缸或鱼盒，甚至是马桶或保湿陷阱！
+无论你怎么看，大多数人都不会在意钓鱼。别让这阻止你。他们只是嫉妒。
+要在冰上钓鱼，得先用镐或铲子凿开冰层。
+钓鱼竿是对付注入了基因学鱼 DNA 的太空人时特别有效的近战武器。
+根据里面鱼的种类以及它们是死是活，鱼缸可以提升或降低房间的美观度。
+几乎所有鱼都能放进多功能研磨机里研磨。别去想你是怎么把一条巨鱼塞进搅拌机的。纳米传讯的技术就是这么古怪。
+马桶里的污泥鱼因其自我繁殖的特性，可以当作廉价鱼和鱼柳的稳定来源。不过它相当脆弱。
+情况紧急时，你可以徒手从池塘里捞起蝌蚪，放进鱼缸，很快就能养成青蛙。
+传奇钓鱼帽可不只是装饰。太空鲤鱼（以及幼年龙虾怪和青蛙）真的害怕戴它的人。
+你听过龙虾或螃蟹说话吗？我也没听过，但据说它们讲起鱼的双关语来一套一套的。
+你可以从科研部拿到实验扫描仪来做鱼类扫描实验，从而为钓鱼传送门解锁更多模块，也能获得可研究的钓鱼科技节点（更好的装备）。
+鱼当然可以吃。生吃安全吗？嗯，如果你肠胃够硬的话；否则不想染上恶疾，最好至少煮上半个太空人分钟。
+研究完高级钓鱼科技节点后，你可以打印特殊的钓鱼手套，让你不必随身带着钓鱼竿也能钓鱼。其中有一副还能在钓鱼之余锻炼运动能力。
+你可以从科研部拿到实验扫描仪来做鱼类扫描实验，从而为钓鱼传送门解锁更多模块，也能获得可供研究的钓鱼科技节点（更好的装备）。
+如果你信用点够多，可以从货运（或图书馆售货机）买一套钓鱼拟饵。每种拟饵都能钓到不同种类的鱼，而且不会被消耗，但它们需要隔一段时间转动一次才能生效。
+各种衣物、手持物品，以及你坐的椅子，都能让钓鱼更容易（有时也更容易失败）。训练有素的渔夫一眼就能看出什么有用、什么没用，所以多留意。
+听起来可能很傻，但（活的）鱿鱼及其墨囊可以当作武器，暂时致盲敌人。
+有了生物电发电机鱼缸却没有电鱼？别担心，你随时可以喂鱼一些特斯拉素或液态电力，暂时让它们获得（威力稍弱的）发电能力。不过这也会慢慢伤害它们。
+如果你喂得比较勤，鱼的体型和重量会增长。给它们生长血清（来自毒蝇伞）也能提高生长速度。
+给鱼喂诱变剂，可以让产生进化后代的概率提高到三倍——前提是它确实有进化形态。
+你可以在自动车床打印不同材质的钓鱼竿，它们能提高或降低钓鱼难度、抛竿距离、获得的经验，还可能带有其他特殊效果。
+你可以在“器官操控”手术的“操控器官”步骤中用钓鱼竿随手勾出器官。
+你可以用挂着硬币、全息芯片或钞票的钓鱼竿，在售货机上省点钱。用作鱼饵的货币越值钱，难度和风险就越低，拿到更贵物品的几率也越高。
+打开鱼缸面板并开启“安全模式”，你就能轻松布置一个纯装饰性鱼缸，无需担心食物、水温和水质。
+鱼缸本身也是潜在的钓点。不过只能用来钓那些你在野外找不到的鱼，纯粹作为个人成就，别无他用。
+如果你还没有的话，图书馆售货机里有个叫“垂钓大师”的技能芯片，对钓鱼新手很有帮助。除了提供提示，它还能在你检查鱼、鱼竿和钓点时给你更多信息。
+在熔岩和裂隙中钓鱼时，你有可能钓上一具骷髅……终于有人可能会在乎你了。
+不如去给自己钓几个妞？

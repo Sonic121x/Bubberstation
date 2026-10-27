@@ -1,5 +1,5 @@
 /datum/species/lizard
-	name = "Tiziran Lizardperson"
+	name = "\improper 提兹拉蜥蜴人"
 	//renames Lizardpeople to Tizirans for clarity.
 
 /datum/species/lizard/on_bloodsucker_gain(mob/living/carbon/human/target, datum/species/current_species)
@@ -12,31 +12,31 @@
 
 /datum/species/lizard/get_species_description()
 	return list(
-	"Tizirans (known as Lizardpeople in Federation spaces) are a lizard-like species that once possessed a vast empire.",
-	"They mainly eat raw meat, fish, mushrooms and nuts. Spicy foods cause their bodies to break out in boils. \
-	They are cold-blooded due to their dry and arid homeworld, and their bodies are unable to cope with truly extreme temperatures.",
+	"提兹拉人（在联邦空间被称为蜥蜴人）是一个曾拥有庞大帝国的蜥蜴形种族。",
+	"他们主要吃生肉、鱼、蘑菇和坚果。辛辣食物会使他们全身起泡。\
+	由于母星干燥干旱，他们是冷血动物，身体无法承受真正的极端温度。",
 	)
 
 /datum/species/lizard/get_species_lore()
 	return list(
-		"Tiziran bodies are clad in thick scale, known for their constitution and resilience to higher temperatures. \
-		They frequently have horns, and frills, the latter of which tend to be wider in females. \
-		They generally grow higher than humans, being six to seven feet tall on average, and tend to grow tall before they grow wide. \
-		This means younger Tizirans are typically thinner than their human counterparts, and stop growing later in life.",
+		"提兹拉人的身体覆盖着厚实的鳞片，以强健的体质和耐高温能力著称。\
+		他们常有角和褶边，后者的褶边在女性身上通常更宽。\
+		他们通常比人类长得更高，平均身高六到七英尺，而且往往先长高再长宽。\
+		这意味着年轻的提兹拉人通常比人类同龄人更瘦，并且一生中停止生长的时间更晚。",
 
-		"The imperial motto, \"Oath and Scale,\" is often used to emphasize community, and their sense of community tends to define how a Tiziran acts. \
-		This gives them a surprising amount in common with their companions in the CIN, the Teshari. Tizirans often seek out community first. \
-		Chest and tail thumping is often used to emphasize sincerity or honesty. They tend to hiss when angry, displeased or threatened. \
-		Tizirans tend to decorate their bodies, particularly frills and horns, in similar fashion to human tattoos and piercings, \
-		to symbolize important events and allegiances. They often value physicality and action over words, making them put less cultural emphasis on fashion.",
+		"帝国格言“誓言与鳞片”常被用来强调社群，而他们的社群意识往往决定提兹拉人的行为方式。\
+		这使他们与 CIN 中的伙伴特沙利人有着惊人的共同点。提兹拉人常常首先寻求社群。\
+		拍胸和拍尾常被用来强调真诚或诚实。他们在愤怒、不满或受到威胁时往往会发出嘶嘶声。\
+		提兹拉人喜欢装饰身体，尤其是褶边和角，方式类似人类的纹身与穿孔，\
+		以象征重要事件和效忠对象。他们往往重视身体与行动胜过言辞，因此文化上不太看重时尚。",
 
-		"Tizirans have a militaristic culture that once conquered large swathes of territory \
-		before their capital of Zagoskeld was turned to a glass canyon by Federation plasma ships, ending the Coalition War. \
-		Their territory has since reduced in size, but is one of the faster growing economies of the modern age. \
-		The colony of Kesa'aresz, once a Tiziran fortress world, is now where the majority of Federation lizards vote and hail from.",
+		"提兹拉人拥有军国主义文化，曾征服大片领土，\
+		直到他们的首都扎戈斯凯尔德被联邦等离子舰船化为玻璃峡谷，终结了联盟战争。\
+		此后他们的领土缩小，但仍是现代增长较快的经济体之一。\
+		曾经的提兹拉要塞世界、殖民地凯萨阿雷什，如今是大多数联邦蜥蜴人投票和出身的所在地。",
 
-		"In the modern day, many Tizirans have to deal with stigma and stereotypes based around their former jingoism, \
-		which has led to a cultural renaissance of Tiziran artists, writers and philosophers in the past half-century.",
+		"在现代，许多提兹拉人不得不面对基于其昔日沙文主义的污名与刻板印象，\
+		这促成了过去半个世纪提兹拉艺术家、作家和哲学家的文化复兴。",
 	)
 
 /datum/species/lizard/prepare_human_for_preview(mob/living/carbon/human/lizard, lizard_color = "#FFA756")

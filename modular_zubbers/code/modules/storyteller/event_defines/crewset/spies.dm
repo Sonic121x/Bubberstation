@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/spy
-	name = "Spies"
+	name = "间谍"
 	roundstart = TRUE
 
 	antag_flag = ROLE_SPY
@@ -12,13 +12,13 @@
 	tags = list(TAG_CREW_ANTAG)
 
 /datum/round_event_control/antagonist/solo/spy/midround
-	name = "Spies (Midround)"
+	name = "间谍（回合中）"
 	roundstart = FALSE
 	
 	min_players = 15
 
 /datum/round_event_control/antagonist/solo/spy/event
-	name = "Event Generated Spy"
+	name = "事件生成的间谍"
 	roundstart = FALSE
 	tags = list(TAG_ANTAG_REROLL)
 	max_occurrences = 0

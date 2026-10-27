@@ -6,7 +6,7 @@
 	copy_type = /datum/disease/advance
 
 /datum/disease/advance/changelingzombie/New()
-	name = "Classified Virus"
+	name = "机密病毒"
 	symptoms = list(
 		new/datum/symptom/changelingzombie,
 		new/datum/symptom/shedding,
@@ -17,9 +17,9 @@
 
 /datum/symptom/changelingzombie
 
-	name = "changeling zombie transformation"
-	illness = "CLASSIFIED"
-	desc = "Upon reaching stage 4, the victim will undergo the process of changeling zombie transformation."
+	name = "变形怪僵尸转化"
+	illness = "机密"
+	desc = "当进展至第 4 阶段时，受害者将经历变形怪僵尸转化过程。"
 	naturally_occuring = FALSE
 
 	stealth = -6
@@ -35,9 +35,9 @@
 	symptom_delay = 100
 
 	threshold_descs = list(
-		"Stage Speed 8" = "Causes the transformation process to begin on stage 3 instead of 5.",
-		"Transmission 4" = "Causes toxin damage over time.",
-		"Resistance 12" = "Curing the virus won't inherently cure already transformed hosts."
+		"阶段速度 8" = "使转化过程从第 3 阶段开始，而非第 5 阶段。",
+		"传染性 4" = "持续造成毒素伤害。",
+		"抗性 12" = "治愈病毒不会顺带治愈已转化的宿主。"
 	)
 
 	var/required_stage = 5

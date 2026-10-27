@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/debug/architector_glasses
-	name = "Architector glasses"
-	desc = "High-tech glasses with many of special abilites."
+	name = "建筑师眼镜"
+	desc = "配备多种特殊功能的高科技眼镜。"
 	icon_state = "sun"
 	inhand_icon_state = "sunglasses"
 	resistance_flags = INDESTRUCTIBLE

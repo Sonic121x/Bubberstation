@@ -1,12 +1,12 @@
 /obj/item/implant/interdyne
-	name = "syndicate IFF implant"
-	desc = "Welcome to the syndicate."
+	name = "辛迪加敌我识别植入体"
+	desc = "欢迎加入辛迪加。"
 	actions_types = null
 
 /obj/item/implant/interdyne/get_data()
-	return "<b>Implant Specifications:</b><BR> \
-		<b>Name:</b> Syndicate IFF system Implant<BR> \
-		<b>Implant Details:</b> This implant will install a bio-metric signature that will ensure they are not targeted by lethal security devices.<BR>"
+	return "<b>植入体规格：</b><BR> \
+		<b>名称：</b>辛迪加 IFF 系统植入体<BR> \
+		<b>植入体详情：</b>该植入体会写入一组生物特征签名，确保其不会被致命安保装置锁定。<BR>"
 
 /obj/item/implant/interdyne/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	. = ..()
@@ -29,11 +29,11 @@
 	return TRUE
 
 /obj/item/implanter/interdyne
-	name = "implanter (syndicate IFF)"
+	name = "植入器（辛迪加 IFF）"
 	imp_type = /obj/item/implant/interdyne
 
 /obj/item/implantcase/interdyne
-	name = "implant case - 'Syndicate Identification Friend or Foe'"
-	desc = "A glass case containing an IFF system implant manufactured by Interdyne Pharmaceutics. These do not work with the IFF systems used by the Gorlex Marauders. Are you ready to join the Syndicate, agent?"
+	name = "植入体盒 - “辛迪加敌我识别”"
+	desc = "一个玻璃盒，里面装有英特戴恩制药公司制造的 IFF 系统植入体。此类植入体与戈尔莱克斯掠夺者使用的 IFF 系统不兼容。准备好加入辛迪加了吗，特工？"
 	imp_type = /obj/item/implant/interdyne
 

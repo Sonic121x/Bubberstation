@@ -1,6 +1,6 @@
 /obj/machinery/ammo_workbench
-	name = "ammunitions workbench"
-	desc = "A machine, somewhat akin to a lathe, made specifically for manufacturing ammunition. It has a slot for magazines, ammo boxes, clips... anything that holds ammo."
+	name = "弹药工作台"
+	desc = "一台专门用于制造弹药的机器，有点类似车床。它有一个插槽，可放入弹匣、弹药盒、弹夹……任何装弹药的容器。"
 	icon = 'modular_zubbers/icons/obj/structures/ammo_workbench.dmi'
 	icon_state = "ammobench"
 	density = TRUE
@@ -54,7 +54,7 @@
 	/// rounded servo tier (1-4), shown as the UI signal bars.
 	var/part_tier = 1
 	/// magazine-bar label while busy (FABRICATING / RECYCLING / joke).
-	var/activity_label = "FABRICATING"
+	var/activity_label = "制造中"
 	/// rounds made this run; distinguishes mid-run depletion from never having enough.
 	var/rounds_made_this_run = 0
 	/// can this print any round of any caliber given a correct ammo_box? (you varedit this at your own risk, especially if used in a player-facing context.)
@@ -93,7 +93,7 @@
 	allowed_advanced = TRUE
 
 /obj/item/circuitboard/machine/ammo_workbench
-	name = "Ammunition Workbench (Machine Board)"
+	name = "弹药工作台（机器电路板）"
 	icon_state = "circuit_map"
 	build_path = /obj/machinery/ammo_workbench
 	req_components = list(
@@ -114,7 +114,7 @@
 /obj/machinery/ammo_workbench/examine(mob/user)
 	. += ..()
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("Reclaiming <b>[recycle_percent]%</b> of materials when recycling a loaded container.")
+		. += span_notice("回收已装载的容器时，可取回 <b>[recycle_percent]%</b> 的材料。")
 
 /obj/machinery/ammo_workbench/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -181,7 +181,7 @@
 	for(var/datum/material/our_material as anything in raw_casing_mats)
 		var/per_round = round(raw_casing_mats[our_material] * creation_efficiency / SHEET_MATERIAL_AMOUNT, 0.01)
 		var/to_fill = round(per_round * rounds_to_fill, 0.01)
-		parts += "[per_round] [our_material.name] ([to_fill] to fill)"
+		parts += "[per_round] [our_material.name]（填满需 [to_fill]）"
 	return jointext(parts, ", ")
 
 /obj/machinery/ammo_workbench/ui_data(mob/user)
@@ -264,11 +264,11 @@
 		if("CancelFabrication")
 			if(busy)
 				if(is_recycling)
-					error_message = "RECYCLING CANCELLED"
+					error_message = "回收已取消"
 					error_type = ""
 					recycle_finish(successfully = FALSE)
 				else
-					error_message = "FABRICATION CANCELLED"
+					error_message = "制造已取消"
 					error_type = ""
 					ammo_fill_finish(FALSE)
 			. = TRUE
@@ -378,15 +378,15 @@
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(busy)
-		error_message = "SYSTEM IS BUSY"
+		error_message = "系统繁忙"
 		error_type = ""
 		return
 	if(!loaded_magazine)
-		error_message = "NO CONTAINER INSERTED"
+		error_message = "未插入容器"
 		error_type = ""
 		return
 	if(!length(loaded_magazine.stored_ammo))
-		error_message = "CONTAINER IS EMPTY"
+		error_message = "容器是空的"
 		error_type = "bad"
 		return
 
@@ -401,13 +401,13 @@
 
 /obj/machinery/ammo_workbench/proc/pick_recycle_status()
 	var/static/list/recycle_jokes = list(
-		"UNFABRICATING",
-		"PRINTN'T",
-		"UN-PRINTING",
+		"逆向制造",
+		"印不出来",
+		"反向打印",
 	)
 	if(prob(10))
 		return pick(recycle_jokes)
-	return "RECYCLING"
+	return "回收中"
 
 // one round at a time until the thing's empty
 /obj/machinery/ammo_workbench/proc/recycle_round()
@@ -438,12 +438,12 @@
 	for(var/material in base_mats)
 		round_total += base_mats[material] * (effective_recycle_percent() / 100)
 	if(!materials?.mat_container)
-		error_message = "NO MATERIAL STORAGE LINKED"
+		error_message = "未连接材料储存"
 		error_type = "bad"
 		recycle_finish(successfully = FALSE)
 		return
 	if(round_total && !materials.mat_container.has_space(round_total))
-		error_message = "MATERIAL STORAGE FULL"
+		error_message = "材料储存已满"
 		error_type = "bad"
 		recycle_finish(successfully = FALSE)
 		return
@@ -482,7 +482,7 @@
 		// zero out the mag's own material value so it reads as empty even if a stray entry lingered
 		loaded_magazine.set_custom_materials(list())
 		loaded_magazine.update_appearance()
-		error_message = "MUNITIONS RECYCLED"
+		error_message = "弹药已回收"
 		error_type = "good"
 		playsound(loc, 'sound/machines/ping.ogg', 40, TRUE)
 	SStgui.update_uis(src)
@@ -500,25 +500,25 @@
 		error_type = ""
 
 	if(!(casing_type in possible_ammo_types))
-		error_message = "AMMUNITION MISMATCH"
+		error_message = "弹药不匹配"
 		error_type = "bad"
 		return
 
 	var/obj/item/ammo_casing/our_casing = casing_type
 
 	if(initial(our_casing.harmful) && !allowed_harmful)
-		error_message = "SYSTEM CORRUPTION DETECTED, PLEASE EJECT CONTAINER AND SUBMIT SUPPORT TICKET"
+		error_message = "检测到系统损坏，请弹出容器并提交支持工单"
 		error_type = "bad"
 		if(!hacked)
 			return
 
 	if(!loaded_magazine)
-		error_message = "NO CONTAINER INSERTED"
+		error_message = "未插入容器"
 		error_type = ""
 		return
 
 	if(loaded_magazine.stored_ammo.len >= loaded_magazine.max_ammo)
-		error_message = "CONTAINER IS FULL"
+		error_message = "容器已满"
 		error_type = "good"
 		return
 
@@ -527,7 +527,7 @@
 
 	busy = TRUE
 	is_recycling = FALSE
-	activity_label = "FABRICATING"
+	activity_label = "制造中"
 	rounds_made_this_run = 0
 	SStgui.update_uis(src) // disable the controls immediately, before the first round fires
 
@@ -555,7 +555,7 @@
 			efficient_materials[material] = amount
 
 	if(!materials?.mat_container)
-		error_message = "NO MATERIAL STORAGE LINKED"
+		error_message = "未连接材料储存"
 		error_type = "bad"
 		ammo_fill_finish(FALSE)
 		qdel(new_casing)
@@ -563,7 +563,7 @@
 
 	if(!materials.mat_container.has_materials(efficient_materials))
 		// ran dry partway through a run = DEPLETED; failed on the very first round = never had enough.
-		error_message = rounds_made_this_run ? "MATERIALS DEPLETED" : "INSUFFICIENT MATERIALS"
+		error_message = rounds_made_this_run ? "材料已耗尽" : "材料不足"
 		error_type = "bad"
 		ammo_fill_finish(FALSE)
 		qdel(new_casing)
@@ -572,13 +572,13 @@
 	if(new_casing.type in possible_ammo_types)
 		// respect a remote silo hold before doing anything irreversible
 		if(materials.silo && materials.on_hold())
-			error_message = "MATERIAL ACCESS ON HOLD"
+			error_message = "材料取用已暂停"
 			error_type = "bad"
 			ammo_fill_finish(FALSE)
 			qdel(new_casing)
 			return
 		if(!loaded_magazine.give_round(new_casing))
-			error_message = "AMMUNITION MISMATCH"
+			error_message = "弹药不匹配"
 			error_type = "bad"
 			ammo_fill_finish(FALSE)
 			qdel(new_casing)
@@ -598,7 +598,7 @@
 
 	if(loaded_magazine.stored_ammo.len >= loaded_magazine.max_ammo)
 		ammo_fill_finish()
-		error_message = "CONTAINER IS FULL"
+		error_message = "容器已满"
 		error_type = "good"
 		return
 
@@ -625,10 +625,10 @@
 	if(!loaded_datadisk)
 		return FALSE
 	if(loaded_datadisk.type in loaded_datadisks)
-		disk_error = "ERROR: DISK DATA ALREADY IN SYSTEM MEMORY"
+		disk_error = "错误：磁盘数据已存在于系统内存中"
 		return FALSE
 
-	disk_error = "DISK LOADED SUCCESSFULLY"
+	disk_error = "磁盘加载成功"
 	disk_error_type = "good"
 	loaded_datadisk.on_bench_install(src)
 	loaded_datadisks += loaded_datadisk.type // upon further reflection this. doesn't cause a hard del. still not a fan since the disks don't do anything by themselves
@@ -644,8 +644,8 @@
 		update_ammotypes() // ejecting can revoke access; keep the printable list in sync
 
 /datum/design/board/ammo_workbench
-	name = "Machine Design (Ammunitions Workbench)"
-	desc = "A machine, somewhat akin to a lathe, made specifically for manufacturing ammunition. It has a slot for ammunition containers, like magazines or stripper clips."
+	name = "机器设计（弹药工作台）"
+	desc = "一台专门用于制造弹药的机器，有点类似车床。它有一个插槽，可放入弹匣或桥夹等弹药容器。"
 	id = "ammo_workbench"
 	build_path = /obj/item/circuitboard/machine/ammo_workbench
 	category = list(RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_FAB)
@@ -769,7 +769,7 @@
 		if(!user.transferItemToLoc(O, src))
 			return FALSE
 		if(loaded_magazine)
-			to_chat(user, span_notice("You quickly swap [loaded_magazine] for [O]."))
+			to_chat(user, span_notice("你迅速将 [loaded_magazine] 换成了 [O]。"))
 			loaded_magazine.forceMove(drop_location())
 			user.put_in_hands(loaded_magazine)
 			loaded_magazine = null
@@ -780,7 +780,7 @@
 				deltimer(timer_id)
 				timer_id = null
 		loaded_magazine = O
-		to_chat(user, span_notice("You insert [O] to into [src]'s reciprocal."))
+		to_chat(user, span_notice("你把 [O] 插入 [src] 的弹匣接口。"))
 		flick("h_lathe_load", src)
 		update_appearance()
 		update_ammotypes()
@@ -790,7 +790,7 @@
 		if(!user.transferItemToLoc(O, src))
 			return FALSE
 		loaded_datadisk = O
-		to_chat(user, span_notice("You insert [O] to into [src]'s floppydisk port."))
+		to_chat(user, span_notice("你把 [O] 插入 [src] 的软驱接口。"))
 		flick("h_lathe_load", src)
 		update_appearance()
 		playsound(loc, 'sound/machines/terminal/terminal_insert_disc.ogg', 35, 1)
@@ -799,19 +799,19 @@
 
 /obj/machinery/ammo_workbench/proc/is_insertion_ready(mob/user, obj/item/O)
 	if(panel_open)
-		to_chat(user, span_warning("You can't load [src] while it's opened!"))
+		to_chat(user, span_warning("打开时无法为 [src] 装载物品！"))
 		return FALSE
 	if(disabled)
-		to_chat(user, span_warning("The insertion belts of [src] won't engage!"))
+		to_chat(user, span_warning("[src] 的装载传送带无法启动！"))
 		return FALSE
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning("[src] is broken."))
+		to_chat(user, span_warning("[src] 已损坏。"))
 		return FALSE
 	if(machine_stat & NOPOWER)
-		to_chat(user, span_warning("[src] has no power."))
+		to_chat(user, span_warning("[src] 没有电力。"))
 		return FALSE
 	if(istype(O, /obj/item/disk/ammo_workbench) && loaded_datadisk)
-		to_chat(user, span_warning("[src] already has a disk inserted."))
+		to_chat(user, span_warning("[src] 已经插入了磁盘。"))
 		return FALSE
 	return TRUE
 
@@ -846,16 +846,16 @@
 
 /obj/machinery/ammo_workbench/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already overridden!")
+		balloon_alert(user, "已被覆盖！")
 		return FALSE
 	obj_flags |= EMAGGED
 	hacked = TRUE
 	allowed_harmful = TRUE
 	allowed_advanced = TRUE
 	update_ammotypes()
-	balloon_alert(user, "safety protocols overridden")
+	balloon_alert(user, "安全协议已覆盖")
 	if(user)
-		to_chat(user, span_warning("You short out [src]'s munition safety protocols, unlocking its full catalogue."))
+		to_chat(user, span_warning("你短路了 [src] 的弹药安全协议，解锁了它的完整目录。"))
 	playsound(src, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
 	return TRUE
 
@@ -863,7 +863,7 @@
 // WIRE DATUM
 /datum/wires/ammo_workbench
 	holder_type = /obj/machinery/ammo_workbench
-	proper_name = "Ammunition Workbench"
+	proper_name = "弹药工作台"
 
 /datum/wires/ammo_workbench/New(atom/holder)
 	wires = list(
@@ -883,8 +883,8 @@
 /datum/wires/ammo_workbench/get_status()
 	var/obj/machinery/ammo_workbench/A = holder
 	var/list/status = list()
-	status += "The red light is [A.disabled ? "on" : "off"]."
-	status += "The blue light is [A.hacked ? "on" : "off"]."
+	status += "红灯[A.disabled ? "亮着" : "熄着"]。"
+	status += "蓝灯[A.hacked ? "亮着" : "熄着"]。"
 	return status
 
 /datum/wires/ammo_workbench/on_pulse(wire)

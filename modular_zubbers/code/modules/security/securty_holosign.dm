@@ -1,24 +1,24 @@
 
 /obj/item/holosign_creator/security
-	desc = "A holographic projector that creates holographic security barriers and restraints. You can remotely open barriers with it.\
-			Restraints are applied with the creator itself, but the projections may destabilize when exposed to EMP's, or when the captive leaves it's 9 meter range."
+	desc = "一个全息投射器，可生成全息安保屏障和束缚装置。你可以用它远程打开屏障。\
+			束缚装置需用投射器本身来施加，但投影在暴露于 EMP 时可能失稳，被拘禁者离开其 9 米范围时也会失稳。"
 
 /obj/item/holosign_creator/security/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!iscarbon(interacting_with))
 		return ..()
 	var/mob/living/carbon/human = interacting_with
 	if(human.handcuffed) // is our target already handcuffed?
-		user.balloon_alert(user, "already cuffed")
+		user.balloon_alert(user, "已经上铐")
 		return ITEM_INTERACT_BLOCKING
 	if(!human.canBeHandcuffed()) // does he actually have arms?
-		user.balloon_alert(user, "needs two hands")
+		user.balloon_alert(user, "需要两只手")
 		return ITEM_INTERACT_BLOCKING
 	if(DOING_INTERACTION_WITH_TARGET(user, human))
 		return ITEM_INTERACT_BLOCKING
-	log_combat(user, human, "attempted to handcuff")
+	log_combat(user, human, "试图上铐")
 	playsound(src, 'sound/items/weapons/cablecuff.ogg', 30, TRUE, -2)
-	human.visible_message(span_danger("[user] begins restraining [human] with [src]!"), \
-	span_userdanger("[user] begins shaping a holographic field around your hands!"))
+	human.visible_message(span_danger("[user] 开始用 [src] 束缚 [human]！"), \
+	span_userdanger("[user] 开始在你双手周围塑造全息力场！"))
 	if(!do_after(user, 4.5 SECONDS, human, extra_checks = CALLBACK(src, PROC_REF(can_handcuff), user))) // he is up for grabs, so lets handcuff them
 		return ITEM_INTERACT_BLOCKING
 	human.set_handcuffed(new /obj/item/restraints/handcuffs/holographic/used(human))
@@ -27,8 +27,8 @@
 		ourcuffs.our_projector = src
 		ourcuffs.our_guy = human
 		human.apply_status_effect(/datum/status_effect/holocuff_distance)
-	to_chat(user, span_notice("You restrain [human]."))
-	log_combat(user, human, "handcuffed")
+	to_chat(user, span_notice("你束缚了 [human]。"))
+	log_combat(user, human, "已上铐")
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/holosign_creator/security/proc/can_handcuff(mob/living/carbon/victim)
@@ -45,8 +45,8 @@
  */
 
 /obj/item/restraints/handcuffs/holographic
-	name = "holographic energy field"
-	desc = "A weirdly solid holographic field... how did you get this? this item gives you the permission to scream at coders."
+	name = "全息能量场"
+	desc = "一个异常坚固的全息能量场……你是怎么拿到它的？这件物品赋予你对着程序员大吼大叫的权利。"
 	icon = 'modular_zubbers/icons/obj/holocuffs.dmi'
 	icon_state = "holocuffs"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -58,7 +58,7 @@
 
 
 /obj/item/restraints/handcuffs/holographic/used
-	desc = "A holographic projection of handcuffs, suprisingly hard to break out of"
+	desc = "一副全息投影手铐，出乎意料地难以挣脱"
 	item_flags = DROPDEL
 
 /obj/item/restraints/handcuffs/holographic/proc/check_distance()
@@ -74,7 +74,7 @@
 
 /obj/item/restraints/handcuffs/holographic/on_uncuffed(datum/source, mob/living/wearer)
 	. = ..()
-	wearer.visible_message(span_danger("[wearer]'s [name] breaks in a discharge of energy!"), span_userdanger("[wearer]'s [name] breaks in a discharge of energy!"))
+	wearer.visible_message(span_danger("[wearer] 的 [name] 在一阵能量释放中崩解了！"), span_userdanger("[wearer] 的 [name] 在一阵能量释放中崩解了！"))
 	do_sparks(2, TRUE, src)
 	wearer.remove_status_effect(/datum/status_effect/holocuff_distance)
 	qdel(src)
@@ -94,8 +94,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/holocuff_distance
 
 /atom/movable/screen/alert/status_effect/holocuff_distance
-	name = "Holocuff Range"
-	desc = "If only I could get out of the projector's range, it'd lose control!"
+	name = "全息手铐范围"
+	desc = "要是我能离开投射器的范围，它就会失控！"
 	icon = 'modular_zubbers/icons/obj/holocuffs.dmi'
 	icon_state = "holocuffs"
 
@@ -107,6 +107,6 @@
 		if(dist > 9)
 			do_sparks(2, TRUE, owner)
 			owner.dropItemToGround(ourcuffs, TRUE)
-			owner.visible_message(span_danger("[owner]'s holographic energy field breaks in a discharge of energy!"), span_userdanger("[owner]'s holographic energy field breaks in a discharge of energy!"))
+			owner.visible_message(span_danger("[owner] 的全息能量场在一阵能量释放中崩解了！"), span_userdanger("[owner] 的全息能量场在一阵能量释放中崩解了！"))
 			Destroy()
 

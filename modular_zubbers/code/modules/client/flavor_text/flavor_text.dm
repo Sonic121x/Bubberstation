@@ -86,7 +86,7 @@
 
 /datum/preference/text/headshot/nsfw/apply_headshot(value)
 	if(stored_link[usr.ckey] != value)
-		log_game("[usr] has set their NSFW Headshot image to '[value]'.")
+		log_game("[usr] 将其 NSFW 头像图片设置为“[value]”。")
 	stored_link[usr?.ckey] = value
 	usr?.client?.prefs.headshot_nsfw = value
 
@@ -100,8 +100,8 @@
 
 /datum/preference/text/headshot/silicon/apply_headshot(value)
 	if(stored_link[usr.ckey] != value)
-		to_chat(usr, span_notice("Please use a relatively SFW image of the head and shoulder area to maintain immersion level. Think of it as a headshot for your ID. Lastly, [span_bold("do not use a real life photo or use any image that is less than serious.")]"))
-		log_game("[usr] has set their Silicon Headshot image to '[value]'.")
+		to_chat(usr, span_notice("请使用一张相对 SFW 的头肩部图片，以保持沉浸感。可以把它当作你证件卡上的头像照。最后，[span_bold("请勿使用真人照片，或使用任何不够严肃的图片。")]"))
+		log_game("[usr] 将其硅基角色头像图片设置为“[value]”。")
 	stored_link[usr?.ckey] = value
 	usr?.client?.prefs.headshot_silicon = value
 
@@ -114,7 +114,7 @@
 
 /datum/preference/text/headshot/silicon/nsfw/apply_headshot(value)
 	if(stored_link[usr.ckey] != value)
-		log_game("[usr] has set their NSFW Silicon Headshot image to '[value]'.")
+		log_game("[usr] 将其 NSFW 硅基角色头像图片设置为“[value]”。")
 	stored_link[usr?.ckey] = value
 	usr?.client?.prefs.headshot_silicon_nsfw = value
 
@@ -128,7 +128,7 @@
 
 /datum/preference/text/headshot/art_ref/apply_headshot(value)
 	if(stored_link[usr.ckey] != value)
-		log_game("[usr] has set their art reference image to '[value]'.")
+		log_game("[usr] 将其美术参考图设置为“[value]”。")
 	stored_link[usr?.ckey] = value
 	usr?.client?.prefs.art_ref = value
 

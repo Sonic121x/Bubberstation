@@ -17,10 +17,10 @@
 	. = ..()
 
 	var/string = ""
-	string += "Your health: [health] / [maxHealth] \n"
-	string += "CHEM: [chemical_storage] / [max_chemical_storage] | [chemical_evolution ? chemical_evolution : null] \n"
+	string += "你的生命值：[health] / [maxHealth] \n"
+	string += "化学物质：[chemical_storage] / [max_chemical_storage] | [chemical_evolution ? chemical_evolution : null] \n"
 	if(stat_evolution)
-		string += "STAT AVAIL: [stat_evolution] \n"
+		string += "可用属性点：[stat_evolution] \n"
 	if(human_host)
 		var/brute = "<span style=color:red>[human_host.get_brute_loss()]</span>" // Limbs
 		var/burn = "<span style=color:white>[human_host.get_fire_loss()]</span>" // Limbs

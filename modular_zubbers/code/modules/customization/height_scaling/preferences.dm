@@ -4,12 +4,12 @@
 	savefile_identifier = PREFERENCE_CHARACTER
 
 	var/static/list/height_scaling_strings = list(
-		"[HUMAN_HEIGHT_SHORTEST]" = "Shortest",
-		"[HUMAN_HEIGHT_SHORT]" = "Short",
-		"[HUMAN_HEIGHT_MEDIUM]" = "Medium",
-		"[HUMAN_HEIGHT_TALL]" = "Tall",
-		"[HUMAN_HEIGHT_TALLER]" = "Taller",
-		"[HUMAN_HEIGHT_TALLEST]" = "Tallest"
+		"[HUMAN_HEIGHT_SHORTEST]" = "最矮",
+		"[HUMAN_HEIGHT_SHORT]" = "矮",
+		"[HUMAN_HEIGHT_MEDIUM]" = "中等",
+		"[HUMAN_HEIGHT_TALL]" = "高",
+		"[HUMAN_HEIGHT_TALLER]" = "较高",
+		"[HUMAN_HEIGHT_TALLEST]" = "最高"
 	)
 
 	var/static/list/incompatable_quirk_ids = list(

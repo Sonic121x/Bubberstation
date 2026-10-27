@@ -3,10 +3,10 @@
 /// Either way, it moves to a new crewmember and repeats 20 times.
 
 /datum/round_event_control/wizard_dice
-	name = "Wizard Dice"
+	name = "巫师骰子"
 	typepath = /datum/round_event/wizard_dice
 	category = EVENT_CATEGORY_INVASION
-	description = "A magical d20 is teleported to station. If someone lands on 20, they become a wizard. If they roll a 1, they die."
+	description = "一枚魔法 d20 会被传送到站上。有人掷出 20，就会成为巫师；掷出 1，就会当场死亡。"
 
 	min_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 	max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
@@ -37,7 +37,7 @@
 	announce_to_ghosts()
 
 /datum/round_event/wizard_dice/announce(fake)
-	priority_announce("A magical twenty-sided artifact was detected in the area. Please refrain from interacting with anything that cannot be explained by science.", "Magusologist Expert Warning")
+	priority_announce("区域内检测到一件魔法二十面体造物。请勿与任何科学无法解释的东西发生互动。", "法师学专家警告")
 	did_announce = TRUE
 
 /datum/round_event/wizard_dice/kill()

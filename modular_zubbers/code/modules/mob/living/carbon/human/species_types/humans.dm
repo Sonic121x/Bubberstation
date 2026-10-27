@@ -1,35 +1,35 @@
 /datum/species/human/get_species_description()
-	return list("Humans are found just about everywhere in the Known Galaxy thanks to their adaptive biology. \
-			Humans tend to make good spacers, and many have taken the role of nomads travelling the Known Galaxy.",
+	return list("得益于适应性强的生物学特性，人类几乎遍布已知银河的每个角落。\
+			人类往往是天生的太空旅人，许多人已成为游历已知银河的游牧者。",
 
-			"They are a mammalian species, evolved from primates, known for being adaptive and capable spacefarers. \
-			They predominantly consume cooked and fried foods heavy in calories and fats. They struggle to stomach raw and gory meat.",
+			"他们是哺乳类物种，由灵长类进化而来，以善于适应和精于太空航行著称。\
+			他们主要食用高热量、高脂肪的熟食与油炸食品。他们很难消化生肉和血腥的肉。",
 	)
 
 /datum/species/human/get_species_lore()
 	return list(
-		"It is rare to find a sun that has not shone on the face of Humanity. Humans are often drawn up against other species for comparison, and for very good reason. \
-		Human culture initially seems oxymoronic-- highlighting the individual in service of collective gain, which has led them to every known corner of the universe. \
-		It is exactly this apparent paradox that has led humans to make their mark on the stars. No two humans are the same, evading simple definition. \
-		Humans are known for having an impressive way of defying their environment and upbringing.",
+		"很难找到一颗未曾照耀过人类面孔的恒星。人类常被拿来与其他种族比较，而且理由充分。\
+		人类文化乍看似乎自相矛盾——强调个体，却服务于集体利益，正是这一点把他们带到了宇宙每个已知角落。\
+		正是这种表面的悖论，让人类在群星间留下了自己的印记。没有两个人是相同的，无法用简单定义概括。\
+		人类以惊人的方式反抗环境与出身，这一点广为人知。",
 
-		"Humans are a social, complicated species that have spread across the galaxy in a blisteringly short timespan, owing to their exploratory nature. \
-		Humans originate from Terra within the Sol star system, largely hailing from the United Terran Systems or Pan-Slavic Commonwealth. \
-		In the modern day, humans take a prominent role in galactic politics. The capitalist doctrine of Humanity has bled into every major nation, \
-		with the Federation effectively becoming a corporatocracy. Megacorporations heavily influence both domestic and foreign affairs.",
+		"人类是社会化且复杂的物种，凭借探索天性，在极短的时间内扩散到了整个银河。\
+		人类起源于太阳星系中的地球，主要来自地球联合体系或泛斯拉夫联邦。\
+		在现代，人类在银河政治中扮演着重要角色。人类的资本主义信条已渗入每一个主要国家，\
+		联邦实际上已变成一个企业统治体。巨型企业对内政与外交都有着巨大影响。",
 
-		"The Galactic Federation has its beginnings in the Osaka Accords of 2209, treaties of commerce and border control \
-		between the United Terran Systems and neighboring Tajaran and Vulpkanin empires. Further treaties would be signed that would deepen \
-		the relationship and trade between the Terran Systems and their neighbors, but the geriatric apparatus of the former United Nations and \
-		the rate of communications and space travel at the time would make developments extremely slow, and small incidents more impactful on relations. \
-		After many years of looking inward, as a result of the Coalition War and border conflicts with the PSC, \
-		in 2462 the United Terran Systems would ratify the Heartworlds Treaty, forming the Galactic Federation as we know it today, \
-		and paving the way for a modern, Federal army that could better stand up to outside incursion.",
+		"银河联邦起源于 2209 年的《大阪协定》，那是地球联合体系与邻近的塔亚拉、沃尔普卡宁帝国之间\
+		关于通商与边境管制的条约。此后又签署了更多条约，加深了\
+		地球体系与邻国之间的关系与贸易，但前联合国老朽的机构\
+		以及当时的通信与太空旅行速度使进展极其缓慢，小事件对关系的影响也更大。\
+		在多年内向发展之后，由于联盟战争以及与 PSC 的边境冲突，\
+		2462 年，地球联合体系批准了《核心世界条约》，组建了今日我们所知的银河联邦，\
+		并为现代化联邦军队铺平了道路，使其能更好地抵御外部入侵。",
 
-		"The Pan-Slavic Commonwealth traces its roots to the earliest days of space pioneering, when the United Nations still existed as a political identity. \
-		During initial colonization efforts, many nations felt excluded by the space programs dominated by larger, often Western and Asian nations. \
-		There is little information on how exactly the Commonwealth came to be, though it was preceded by the smaller Third Soviet Union, which would later become \
-		The NRI, or Novaya Russiya Imperiya, through a bloody revolution, and finally, the Pan-Slavic Commonwealth, which continues to stand as a legacy \
-		of inequality during Earth's early colonization efforts and its alliance is still a cause for concern to the Federation at large. The standard of living \
-		in the Pan-Slavic Commonwealth's border regions is particularly poor, making piracy common in states bordering the PSC, even by the Colonial Police.",
+		"泛斯拉夫联邦的根源可追溯到太空开拓的最早期，当时联合国仍作为一个政治实体存在。\
+		在最初的殖民努力中，许多国家感到被大国、往往是西方和亚洲国家主导的太空计划排斥在外。\
+		关于联邦究竟如何形成，资料很少，但在它之前还有规模较小的第三苏联，后者后来通过一场血腥革命\
+		变成了 NRI，即新俄罗斯帝国，最终演变为泛斯拉夫联邦；它仍是地球早期殖民时期\
+		不平等历史的遗留，其联盟至今仍令整个联邦担忧。泛斯拉夫联邦边境地区的生活水平\
+		特别低下，使得与 PSC 接壤的国家海盗横行，甚至殖民警察也参与其中。",
 	)

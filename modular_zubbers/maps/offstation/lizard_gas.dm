@@ -1,6 +1,6 @@
 //Lizard Gas Station ID
 /datum/id_trim/away/lizardgas
-	assignment = "Lizard Gas Employee"
+	assignment = "蜥蜴燃气员工"
 	access = list(ACCESS_FACTION_PUBLIC, ACCESS_LZGAS)
 	big_pointer = TRUE
 

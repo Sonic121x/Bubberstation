@@ -2,57 +2,57 @@
 	always_unpowered = FALSE
 
 /area/ruin/syndicate_lava_base/engineering
-	name = "Interdyne Engineering"
+	name = "英特戴恩工程区"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/ruin/syndicate_lava_base/medbay
-	name = "Interdyne Medbay"
+	name = "英特戴恩医务室"
 
 /area/ruin/syndicate_lava_base/arrivals
-	name = "Interdyne Arrivals"
+	name = "英特戴恩到站区"
 
 /area/ruin/syndicate_lava_base/bar
-	name = "Interdyne Bar"
+	name = "英特戴恩酒吧"
 	mood_bonus = 5
-	mood_message = "I love being in the bar!"
+	mood_message = "我喜欢待在酒吧里！"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/syndicate_lava_base/main
-	name = "Interdyne Primary Hallway"
+	name = "英特戴恩主走廊"
 
 /area/ruin/syndicate_lava_base/cargo
-	name = "Interdyne Cargo Bay"
+	name = "英特戴恩货舱"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
 
 /area/ruin/syndicate_lava_base/chemistry
-	name = "Interdyne Chemistry"
+	name = "英特戴恩化学室"
 
 /area/ruin/syndicate_lava_base/virology
-	name = "Interdyne Virology"
+	name = "英特戴恩病毒研究室"
 
 /area/ruin/syndicate_lava_base/testlab
-	name = "Interdyne Experimentation Lab"
+	name = "英特戴恩实验室"
 	area_flags = XENOBIOLOGY_COMPATIBLE
 
 /area/ruin/syndicate_lava_base/dormitories
-	name = "Interdyne Dormitories"
+	name = "英特戴恩宿舍"
 	mood_bonus = 3
-	mood_message = "I feel at ease here."
+	mood_message = "我在这里感到安心。"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/syndicate_lava_base/spare
-	name = "Spare Room"
+	name = "备用房间"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/syndicate_lava_base/telecomms
-	name = "Interdyne Telecommunications"
+	name = "英特戴恩电信机房"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/syndicate_lava_base/gym
-	name = "Interdyne Gym"
+	name = "英特戴恩健身房"
 	mood_bonus = 5
-	mood_message = "This place is quite relaxing."
+	mood_message = "这地方挺让人放松的。"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
 /area/ruin/syndicate_lava_base/armory
-	name = "Interdyne Armory"
+	name = "英特戴恩军械库"

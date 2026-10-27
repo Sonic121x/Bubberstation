@@ -75,10 +75,10 @@
 // ---- OUTFITS ----
 
 /obj/item/clothing/under/costume/ba_cheerleader
-	name = "NT cheerleading outfit"
-	desc = "A Nanotrasen cheer uniform issued for company sporting events, morale drives, and mandatory victory \
-		ceremonies. フレーフレー！ 今です！ Nobody on the design committee knows what that means, but it tested \
-		extremely well with focus groups."
+	name = "纳米传讯啦啦队服"
+	desc = "一套纳米传讯啦啦队服，配发于公司体育赛事、士气动员以及强制性的胜利 \
+		庆典。 フレーフレー！ 今です！ 设计委员会里没人知道那是什么意思，但焦点小组 \
+		的反馈极其出色。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_under"
 	post_init_icon_state = "ba_cheerleader"
@@ -101,10 +101,10 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/under/rank/centcom/ba_cheerleader
-	name = "NT command cheerleading uniform"
-	desc = "A command-grade Nanotrasen cheer uniform tailored for heads of staff, public appearances, and strategic \
-		morale deployment. The nano-kevlar weave is sturdier than expected, presumably in case you are being boarded \
-		by the opposing team. フレーフレー！ 今です！"
+	name = "纳米传讯指挥级啦啦队服"
+	desc = "一套指挥级纳米传讯啦啦队服，专为各部门主管、公开露面以及战略性 \
+		士气部署量身定制。纳米凯夫拉织法比预想的更结实，大概是为了应对敌队 \
+		登舰的情况。 フレーフレー！ 今です！"
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_under"
 	post_init_icon_state = "ba_cheerleader"
@@ -128,19 +128,19 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/under/rank/centcom/ba_cheerleader/centcom
-	name = "CentCom cheerleading uniform"
-	desc = "A Central Command cheer uniform. フレーフレー！ 今です！ The nanoweave lining is inexplicably rated \
-		against small arms fire, laser discharge, and moderate explosive yield. The exposed midriff remains \
-		completely unprotected, by design. Watchdog groups believe this may be an attempt to induce brain \
-		aneurisms in Syndicate agents who observe it."
+	name = "中央指挥部啦啦队服"
+	desc = "一套中央指挥部啦啦队服。 フレーフレー！ 今です！ 其纳米织料内衬莫名地具备 \
+		抵御轻武器射击、激光放电以及中等当量爆炸的防护等级。裸露的腹部依旧 \
+		完全没有任何防护，这是刻意为之。监督机构认为，这可能是为了诱发 \
+		旁观此景的辛迪加特工脑动脉瘤。"
 	greyscale_colors = "#FFFFFF#2ecc71"
 	armor_type = /datum/armor/clothing_under/centcom_cheerleader
 
 /obj/item/clothing/under/syndicate/ba_cheerleader
-	name = "Syndicate cheerleading uniform"
-	desc = "A Syndicate cheer uniform reinforced with kevlar. フレーフレー！ 今です！ Your fellow operatives \
-		aren't going to encourage themselves. Cybersun Industries proudly supports morale, wellness, and \
-		hostile takeover spirit."
+	name = "辛迪加啦啦队服"
+	desc = "一套用凯夫拉加固的辛迪加啦啦队服。 フレーフレー！ 今です！ 你的同僚们 \
+		可不会自己给自己打气。赛博太阳工业自豪地支持士气、健康以及 \
+		恶意收购精神。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_under"
 	post_init_icon_state = "ba_cheerleader"
@@ -167,8 +167,8 @@
 // ---- GLOVES ----
 
 /obj/item/clothing/gloves/ba_cheerleader
-	name = "NT cheerleading gloves"
-	desc = "Soft cotton cheer gloves. Go team!"
+	name = "纳米传讯啦啦队手套"
+	desc = "柔软的棉质啦啦队手套。加油，队伍！"
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_gloves_icon"
 	post_init_icon_state = "ba_cheerleader_gloves"
@@ -188,26 +188,26 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/gloves/ba_cheerleader/command
-	name = "NT command cheerleading gloves"
-	desc = "Cheer gloves with a discreet nano-kevlar lining. Comfortable and authoritative."
+	name = "纳米传讯指挥级啦啦队手套"
+	desc = "带隐蔽纳米凯夫拉内衬的啦啦队手套。舒适又显威严。"
 	greyscale_colors = "#FFFFFF#1a3a6b"
 	body_parts_covered = HANDS|ARMS
 	siemens_coefficient = 0
 	armor_type = /datum/armor/clothing_gloves/cc_cheerleader
 
 /obj/item/clothing/gloves/ba_cheerleader/centcom
-	name = "CentCom cheerleading gloves"
-	desc = "Cheer gloves of unmistakably high-grade nanoweave construction. They feel less like costume accessories \
-		and more like evidence in an appropriations hearing; it would be cheaper to make them out of actual gold."
+	name = "中央指挥部啦啦队手套"
+	desc = "一双做工明显属于高等级纳米织料的啦啦队手套。它们摸起来不像演出配件， \
+		更像拨款听证会上的证物；用真金做一双大概还更便宜。"
 	greyscale_colors = "#FFFFFF#2ecc71"
 	body_parts_covered = HANDS|ARMS
 	siemens_coefficient = 0
 	armor_type = /datum/armor/clothing_gloves/centcom_cheerleader
 
 /obj/item/clothing/gloves/ba_cheerleader/syndicate
-	name = "Syndicate cheerleading gloves"
-	desc = "Cheer gloves reinforced across the knuckles with kevlar. Ideal for \"encouraging\" hostile targets \
-		to be unconscious."
+	name = "辛迪加啦啦队手套"
+	desc = "在指关节处用凯夫拉加固的啦啦队手套。非常适合“鼓励”敌对目标 \
+		陷入昏迷。"
 	greyscale_colors = "#1a1a1a#7b241c"
 	body_parts_covered = HANDS|ARMS
 	siemens_coefficient = 0
@@ -216,9 +216,9 @@
 // ---- SNEAKERS ----
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader
-	name = "NT cheerleading sneakers"
-	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
-		Corporation; sprint at your own risk."
+	name = "纳米传讯啦啦队运动鞋"
+	desc = "一双运动风运动鞋。很适合加油助威。跑步方面的实用性未经纳米传讯 \
+		公司评估；冲刺风险自负。"
 	icon = 'modular_zubbers/icons/obj/clothing/under/ba_cheerleader.dmi'
 	icon_state = "ba_cheerleader_shoes_icon"
 	post_init_icon_state = "ba_cheerleader_shoes"
@@ -237,25 +237,25 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/command
-	name = "NT command cheerleading sneakers"
-	desc = "A pair of sporty sneakers. Good for cheering. Usefulness for running not evaluated by Nanotrasen \
-		Corporation; sprint at your own risk."
+	name = "纳米传讯指挥级啦啦队运动鞋"
+	desc = "一双运动风运动鞋。很适合加油助威。跑步方面的实用性未经纳米传讯 \
+		公司评估；冲刺风险自负。"
 	greyscale_colors = "#FFFFFF#1a3a6b"
 	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/clothing_shoes/cc_cheerleader
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/centcom
-	name = "CentCom cheerleading sneakers"
-	desc = "CentCom cheer sneakers with custom anti-fatigue inserts, rated for zero-gravity routines."
+	name = "中央指挥部啦啦队运动鞋"
+	desc = "配有定制抗疲劳鞋垫的中央指挥部啦啦队运动鞋，通过零重力动作认证。"
 	greyscale_colors = "#FFFFFF#2ecc71"
 	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/clothing_shoes/centcom_cheerleader
 
 /obj/item/clothing/shoes/sneakers/ba_cheerleader/syndicate
-	name = "Syndicate cheerleading sneakers"
-	desc = "Cheer sneakers with blood-red orthopedic gel inserts and slip resistant soles rated for \"Performing\" \
-		even in environments with normally untenable levels of blood, lubricant, and several surfaces \
-		Cybersun Legal advised against listing."
+	name = "辛迪加啦啦队运动鞋"
+	desc = "啦啦队运动鞋，配有血红色矫形凝胶鞋垫与防滑鞋底，其防滑等级足以支持“表演”， \
+		即使在血液与润滑剂含量通常难以为人所忍的环境，以及几种 \
+		赛博太阳法务部门建议不要列出的表面上。"
 	greyscale_colors = "#1a1a1a#7b241c"
 	body_parts_covered = FEET|LEGS
 	armor_type = /datum/armor/clothing_shoes/syndie_cheerleader

@@ -1,6 +1,6 @@
 /datum/round_event_control/fax_spam
-	name = "Fax Spam"
-	description = "Sends spam pamphlets to all station fax machines"
+	name = "传真垃圾邮件"
+	description = "向空间站所有传真机发送垃圾宣传册"
 	typepath = /datum/round_event/fax_spam
 	weight = 50
 	min_players = 10 // Better chance of there being heads of staff that get annoyed by this
@@ -26,18 +26,18 @@
 	for(var/obj/machinery/fax/fax_machine as anything in SSmachines.get_machines_by_type_and_subtypes(/obj/machinery/fax))
 		if(fax_machine.visible_to_network && is_station_level(fax_machine.z))
 			var/obj/item/paper/fluff/advertisement/spam_message = new spam_type
-			fax_machine.receive(spam_message, pick("Silly Cone", "Clown Retirement Program", "Honkin good deals!", "Unknown Sender"))
+			fax_machine.receive(spam_message, pick("傻甜筒", "小丑退休计划", "洪克好价！", "未知发件人"))
 
 /obj/item/paper/fluff/advertisement
 	icon = 'modular_zubbers/icons/obj/service/advertisements.dmi'
-	name = "generic advertisement"
-	desc = "A pamphlet filled with useless advertisements."
+	name = "通用广告"
+	desc = "一本塞满无用广告的宣传册。"
 
 /obj/item/paper/fluff/advertisement/grand_nomad_fleet
-	name = "\improper Statement to all the mothpeople"
-	desc = "A pamphlet from the well known Grand Admiral Signori, military leader for the mothic Grand Nomad Fleet.\
-	His face, together with its signature cybernetics and majestic fluff, is printed on the front cover. \
-	\"TO ALL KIN STILL LOST\" is written in bold letters next to him."
+	name = "\improper 致全体蛾族人声明"
+	desc = "由著名的大上将西尼奥里印发的宣传册，他是蛾族大游牧舰队的军事领袖。\
+	他的面容连同标志性的义体和威武的绒毛一起印在封面上。 \
+	他身旁用粗体字写着“致所有仍迷失的同胞”。"
 	icon_state = "nomad"
 	var/static/random_sector_number = null
 
@@ -45,16 +45,16 @@
 	. = ..()
 	if(isnull(random_sector_number))
 		random_sector_number = rand(10000, 80000)
-	add_raw_text("To all the lost mothic kin of [GLOB.station_name]!\n\
-	Join the Grand Nomad Fleet, and rejoin with all your kin in the search for new lands. \
-	We have parked a small patrol with a civilian transport in the nearby sector [random_sector_number]. \
-	We will be leaving in approximately 3 hours, so make haste.")
+	add_raw_text("致 [GLOB.station_name] 所有迷失的蛾族同胞！\n\
+	加入大游牧舰队，与你的同胞重聚，一同寻找新的家园。 \
+	我们已派出一支小型巡逻队和一艘民用运输船停泊在邻近星区 [random_sector_number]。 \
+	我们将在约 3 小时后启程，请速来。")
 
 /obj/item/paper/fluff/advertisement/toolbox
-	name = "robust pamphlet"
-	desc = "A pamphlet with a large toolbox pictured on the front page"
-	default_raw_text = "Show you're the best of the best with our new exclusive <b> ROBUST TOOLBOX </b> line. \
-	Provided in 7 different colors, including the brand new hot pink! Starting at 500cr."
+	name = "强劲宣传册"
+	desc = "封面上印着一只大工具箱的宣传册"
+	default_raw_text = "用我们全新的独家 <b> 强劲工具箱 </b> 系列，证明你是精英中的精英。 \
+	提供 7 种不同颜色，包括全新的亮粉色！500cr 起售。"
 	icon_state = "toolbox"
 
 /obj/item/paper/fluff/advertisement/toolbox/Initialize(mapload)
@@ -62,12 +62,12 @@
 	icon_state = initial(icon_state)
 
 /obj/item/paper/fluff/advertisement/gilded
-	name = "tiziran prince statement"
-	desc = "A gilded pamphlet, with royal red text written on the front."
-	default_raw_text = "Hello. I am the lost tiziran prince Barnaxi IV messaging you in my time of need. \
-	I have been presumed dead in a shuttle ride attacked by separatists, but in reality I survived and stayed in hiding \
-	aboard your station. Please store 1000cr in holochips in a bag with your name in Waste Disposal so that I may buy a \
-	low profile shuttle ride to my palace. Once I reunite with my family, I will make sure to shower you in royal riches."
+	name = "提兹拉王子声明"
+	desc = "一本烫金宣传册，正面印着皇家红色的文字。"
+	default_raw_text = "你好。我是流落在外的提兹拉王子巴尔纳克西四世，在我急需帮助之时向你致信。 \
+	人们以为我在一次遭分离主义者袭击的穿梭机行程中身亡，但我其实活了下来，一直躲藏在 \
+	你们的空间站上。请把 1000cr 的全息币装进写有你名字的袋子，放在废物处理区，好让我能买一张 \
+	低调的穿梭机票返回我的宫殿。等我与家人团聚，定会让你沐浴在王室财富之中。"
 	icon_state = "gilded"
 
 /obj/item/paper/fluff/advertisement/gilded/Initialize(mapload)

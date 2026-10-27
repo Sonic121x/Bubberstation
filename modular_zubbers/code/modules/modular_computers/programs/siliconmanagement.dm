@@ -1,9 +1,9 @@
 /datum/computer_file/program/silicon_management
 	filename = "Silicon Manager"
-	filedesc = "Silicon Manager"
+	filedesc = "硅基管理者"
 	downloader_category = PROGRAM_CATEGORY_EQUIPMENT
 	program_open_overlay = "id"
-	extended_desc = "Program for viewing and changing Silicon priority."
+	extended_desc = "用于查看和更改硅基优先级的程序。"
 	download_access = list(ACCESS_ROBOTICS)
 	program_flags = PROGRAM_ON_NTNET_STORE | PROGRAM_REQUIRES_NTNET
 	size = 4

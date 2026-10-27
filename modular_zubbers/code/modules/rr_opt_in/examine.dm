@@ -6,4 +6,4 @@
 	if(!(ghost?.client) && !client)
 		return
 	var/rr_status = client ? client.prefs.read_preference(/datum/preference/toggle/be_round_removed) : ghost.client.prefs.read_preference(/datum/preference/toggle/be_round_removed)
-	. += span_info("Round Removal: <b><font color='[rr_status ? COLOR_RED : COLOR_EMERALD]'>[rr_status ? "Yes" : "No"]</font></b>")
+	. += span_info("轮次移除：<b><font color='[rr_status ? COLOR_RED : COLOR_EMERALD]'>[rr_status ? "是" : "否"]</font></b>")

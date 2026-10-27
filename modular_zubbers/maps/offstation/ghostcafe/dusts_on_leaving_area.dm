@@ -23,5 +23,5 @@
 	if(!istype(living_source) || (A.type in area_types))
 		return
 
-	living_source.investigate_log("was dusted due to leaving their valid areas.", INVESTIGATE_DEATHS)
+	living_source.investigate_log("因离开其合法区域而被化为尘埃。", INVESTIGATE_DEATHS)
 	living_source.dust(TRUE, force = TRUE)

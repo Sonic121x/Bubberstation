@@ -1,5 +1,5 @@
 /datum/round_event_control/space_ninja
-	name = "Spawn Space Ninja"
+	name = "生成太空忍者"
 	typepath = /datum/round_event/ghost_role/space_ninja
 	max_occurrences = 1
 	weight = 4
@@ -8,11 +8,11 @@
 	earliest_start = 20 MINUTES
 	min_players = 20
 	category = EVENT_CATEGORY_INVASION
-	description = "A space ninja infiltrates the station."
+	description = "一名太空忍者潜入空间站。"
 
 /datum/round_event/ghost_role/space_ninja
 	minimum_required = 1
-	role_name = "Space Ninja"
+	role_name = "太空忍者"
 
 /datum/round_event/ghost_role/space_ninja/spawn_role()
 	var/spawn_location = find_space_spawn()
@@ -20,7 +20,7 @@
 		return MAP_ERROR
 
 	//selecting a candidate player
-	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_NINJA, role = ROLE_NINJA, alert_pic = /obj/item/energy_katana, jump_target = spawn_location, role_name_text = "space ninja", amount_to_pick = 1)
+	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_NINJA, role = ROLE_NINJA, alert_pic = /obj/item/energy_katana, jump_target = spawn_location, role_name_text = "太空忍者", amount_to_pick = 1)
 	if(isnull(chosen_one))
 		return NOT_ENOUGH_PLAYERS
 	//spawn the ninja and assign the candidate
@@ -30,11 +30,11 @@
 	ninja.mind.add_antag_datum(/datum/antagonist/ninja)
 	spawned_mobs += ninja
 	if(!isprotean(ninja))
-		var/loadme = tgui_input_list(ninja, "Do you wish to load your character slot?", "Load Character?", list("Yes!", "No, I want to be random!"), default = "No, I want to be random!", timeout = 60 SECONDS)
+		var/loadme = tgui_input_list(ninja, "你是否要载入自己的角色存档？", "载入角色？", list("是！", "不，我想随机生成！"), default = "不，我想随机生成！", timeout = 60 SECONDS)
 		var/codename
-		if(loadme == "Yes!")
+		if(loadme == "是！")
 			ninja.client?.prefs?.safe_transfer_prefs_to(ninja)
-			codename = tgui_input_text(ninja.client, "What should your codename be?", "Agent Name", "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]", 42, FALSE, TRUE, 300 SECONDS)
+			codename = tgui_input_text(ninja.client, "你的代号应该是什么？", "特工姓名", "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]", 42, FALSE, TRUE, 300 SECONDS)
 			codename ? codename : (codename = "[pick("Master", "Legendary", "Agent", "Shinobi", "Ninja")] [ninja.dna.species.name]")
 			ninja.name = codename
 			ninja.real_name = codename
@@ -48,8 +48,8 @@
 	ninja_dna_lock.on_use()
 	/// BUBBER EDIT END
 
-	message_admins("[ADMIN_LOOKUPFLW(ninja)] has been made into a space ninja by an event.")
-	ninja.log_message("was spawned as a ninja by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(ninja)] 因事件被转化为太空忍者。")
+	ninja.log_message("因事件被生成为忍者。", LOG_GAME)
 
 	return SUCCESSFUL_SPAWN
 

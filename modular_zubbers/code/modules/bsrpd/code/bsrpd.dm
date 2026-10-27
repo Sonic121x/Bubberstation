@@ -3,8 +3,8 @@
 #define BSRPD_CAPACITY_NEW 250
 
 /obj/item/pipe_dispenser/bluespace
-	name = "bluespace RPD"
-	desc = "State of the art technology being tested by NT scientists; this is their only working prototype."
+	name = "蓝空间快速管道分配器"
+	desc = "纳米传讯科学家正在测试的最先进技术；这是他们唯一能用的原型机。"
 	icon = 'modular_zubbers/icons/obj/bsrpd.dmi'
 	icon_state = "bsrpd"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/items/bsrpd_lefthand.dmi'
@@ -21,36 +21,36 @@
 /obj/item/pipe_dispenser/bluespace/attackby(obj/item/item, mob/user, param)
 	if(istype(item, /obj/item/stack/sheet/bluespace_crystal))
 		if(BSRPD_CAPACITY_NEW > (BSRPD_CAPACITY_MAX - current_capacity) || ranged_use_cost == 0)
-			to_chat(user, span_warning("You cannot recharge [src] anymore!"))
+			to_chat(user, span_warning("你无法再为 [src] 充能了！"))
 			return
 		item.use(1)
-		to_chat(user, span_notice("You recharge the bluespace capacitor inside of [src]"))
+		to_chat(user, span_notice("你为 [src] 内部的蓝空间电容充了能。"))
 		current_capacity += BSRPD_CAPACITY_NEW
 		return
 	if(istype(item, /obj/item/assembly/signaler/anomaly/bluespace))
 		if(ranged_use_cost)
-			to_chat(user, span_notice("You slot [item] into [src]; supercharging the bluespace capacitor!"))
+			to_chat(user, span_notice("你把 [item] 装入 [src]，让蓝空间电容超载强化！"))
 			ranged_use_cost = 0
 			qdel(item)
 		else
-			to_chat(user, span_warning("You cannot improve the [src] further."))
+			to_chat(user, span_warning("你无法进一步强化 [src] 了。"))
 		return
 	return ..()
 
 /obj/item/pipe_dispenser/bluespace/examine(mob/user)
 	. = ..()
 	if(user.Adjacent(src))
-		. += "Currently has [ranged_use_cost == 0 ? "infinite" : current_capacity / ranged_use_cost] charges remaining."
+		. += "当前剩余 [ranged_use_cost == 0 ? "无限" : current_capacity / ranged_use_cost] 次充能。"
 		if(ranged_use_cost != 0)
-			. += "The Bluespace Anomaly Core slot is empty."
+			. += "蓝空间异常核心插槽是空的。"
 	else
-		. += "You cannot see the charge capacity."
+		. += "你看不到充能容量。"
 
-	. += span_notice("<b>Alt-Click</b> to toggle remote piping.")
+	. += span_notice("<b>按住 Alt 左键</b>可切换远程铺管。")
 
 /obj/item/pipe_dispenser/bluespace/click_alt(mob/user)
 	remote_piping_toggle = !remote_piping_toggle
-	balloon_alert(user, "remote piping [remote_piping_toggle ? "on" : "off"]")
+	balloon_alert(user, "远程铺管[remote_piping_toggle ? "已开启" : "已关闭"]")
 	playsound(get_turf(src), 'sound/machines/click.ogg', 50, TRUE)
 	return CLICK_ACTION_SUCCESS
 
@@ -58,7 +58,7 @@
 	if(!remote_piping_toggle) // If we are in proximity to the target or have our safety on, don't use charge and don't call this shitcode.
 		return NONE
 	if(current_capacity < ranged_use_cost)
-		to_chat(user, span_warning("The [src] lacks the charge to do that."))
+		to_chat(user, span_warning("[src] 的充能不足以这么做。"))
 		return ITEM_INTERACT_BLOCKING
 	if(!in_use)
 		user.Beam(interacting_with, icon_state = "rped_upgrade", time = 1 SECONDS)

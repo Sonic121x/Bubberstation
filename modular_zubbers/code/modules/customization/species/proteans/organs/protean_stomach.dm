@@ -1,7 +1,7 @@
 #define REGEN_TIME (30 SECONDS) // () are important for order of operations. Fuck you too, byond
 /obj/item/organ/stomach/protean
-	name = "refactory"
-	desc = "An extremely fragile factory used to recycle materials and create more nanite mass. Needed to facilitate the repair process on a collapsed Protean; it can be installed as a module in the rig, or as an organ."
+	name = "重构厂"
+	desc = "一座极其脆弱的工厂，用于回收材料并制造更多纳米机器人质量体。它是让崩溃的普罗蒂安完成修复过程所必需的；既可以作为模块装入外骨骼，也可以作为器官植入。"
 	icon = PROTEAN_ORGAN_SPRITE
 	icon_state = "refactory"
 	organ_flags = ORGAN_ROBOTIC | ORGAN_NANOMACHINE
@@ -68,7 +68,7 @@
 		return
 	owner.adjust_brute_loss(2, forced = TRUE)
 	if(COOLDOWN_FINISHED(src, starving_message))
-		to_chat(owner, span_warning("You are starving! You must find metal now!"))
+		to_chat(owner, span_warning("你正在挨饿！你必须立刻找到金属！"))
 		owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/protean_slowdown, multiplicative_slowdown = 2)
 		COOLDOWN_START(src, starving_message, 20 SECONDS)
 
@@ -86,7 +86,7 @@
 	if(istype(eating, /obj/item/food/golem_food))
 		var/obj/item/food/golem_food/food = eating
 		if(metal > (PROTEAN_STOMACH_FULL - 0.3) && food.owner.loc == owner)
-			balloon_alert(owner, "storage full!")
+			balloon_alert(owner, "储存已满！")
 			return BLOCK_EAT_ATTEMPT
 
 /// If we ate a sheet of metal, add it to storage.
@@ -96,7 +96,7 @@
 		metal = clamp(metal + 1, 0, PROTEAN_STOMACH_FULL)
 		if(food.owner.loc != owner) // Other people feeding them will heal them.
 			owner.adjust_brute_loss(-20, forced = TRUE)
-			var/health_check = owner.health >= owner.maxHealth ? "fully healed!" : "healed!"
+			var/health_check = owner.health >= owner.maxHealth ? "完全治愈！" : "治愈！"
 			owner.balloon_alert_to_viewers("[health_check]")
 
 #undef REGEN_TIME

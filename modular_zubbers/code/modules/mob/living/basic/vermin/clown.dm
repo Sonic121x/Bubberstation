@@ -1,8 +1,8 @@
 // Say hello to the clown bug.
 
 /mob/living/basic/clown_bug
-	name = "clown bug"
-	desc = "Absolutely disgusting... almost as horrid as that one green clown."
+	name = "小丑虫"
+	desc = "绝对令人作呕……几乎和那个绿色小丑一样可怕。"
 	icon = 'modular_zubbers/icons/mob/simple/animals.dmi'
 	icon_state = "clowngoblin"
 	icon_dead = "clowngoblin"
@@ -19,12 +19,12 @@
 	maxHealth = 10
 	melee_damage_lower = 1
 	melee_damage_upper = 5
-	attack_verb_continuous = "honks"
-	attack_verb_simple = "honk"
-	friendly_verb_continuous = "honks"
-	friendly_verb_simple = "honk"
+	attack_verb_continuous = "鸣笛撞击"
+	attack_verb_simple = "鸣笛撞"
+	friendly_verb_continuous = "对着鸣笛"
+	friendly_verb_simple = "鸣笛"
 
-	speak_emote = list("honks", "screams")
+	speak_emote = list("发出喇叭声", "尖叫")
 	var/list/squeak_sound = /obj/item/clothing/shoes/clown_shoes::squeak_sound
 
 	ai_controller = /datum/ai_controller/basic_controller/clown_bug

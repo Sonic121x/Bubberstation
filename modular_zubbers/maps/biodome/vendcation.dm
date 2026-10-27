@@ -1,12 +1,12 @@
 /obj/machinery/vending/vendcation
-	name = "VendCation"
-	desc = "A vending machine for when you really wish you weren't at work right now."
+	name = "度假售货机"
+	desc = "一台售货机，专为此刻真心不想上班的你准备。"
 	icon = 'modular_zubbers/icons/maps/biodome/vending.dmi'
 	icon_state = "vacation"
 	icon_deny = "vacation-deny"
 	panel_type = "panel15"
-	product_slogans = "It's always island time!;Kick up your feet!;Feel the sun!;Don't forget sunscreen!"
-	vend_reply = "Take it easy!"
+	product_slogans = "随时都是海岛时光！;把脚翘起来吧！;感受阳光！;别忘了防晒霜！"
+	vend_reply = "放轻松！"
 	products = list(
 		/obj/item/clothing/under/shorts/red = 2,
 		/obj/item/clothing/under/shorts/green = 2,
@@ -29,5 +29,5 @@
 	light_color = LIGHT_COLOR_ELECTRIC_CYAN
 
 /obj/item/vending_refill/vacation
-	machine_name = "VendCation"
+	machine_name = "度假售货机"
 	icon_state = "refill_clothes"

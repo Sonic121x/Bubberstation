@@ -11,21 +11,21 @@
 */
 
 /datum/uplink_item/dangerous/Hyeseong
-	name = "Hyeseong Modular Laser Rifle"
-	desc = "One of the newest Cybersun products. This weapon can switch modes on the fly, from a lethal laser to a shotgun to even a plasma grenade. These are rare, and don't come cheap. Luckily for you, it also can slowly recharge itself."
+	name = "彗星模块化激光步枪"
+	desc = "赛博太阳最新的产品之一。这把武器能随时切换模式，从致命激光到霰弹，甚至能射出等离子手榴弹。它们十分稀有，价格也不便宜。幸运的是，它还能缓慢地自行充能。"
 	item = /obj/item/gun/energy/modular_laser_rifle
 	cost = 10
 
 /datum/uplink_item/dangerous/stetchkin
-	name = "Stetchkin APS Machine Pistol kit"
-	desc = "A burst-fire weapon dating all the way back to the first Soviet Union, reproduced and found uncommonly among Syndicate agents."
+	name = "斯捷奇金 APS 冲锋手枪套装"
+	desc = "一种点射武器，历史可追溯到第一代苏联时期，如今被仿制出来，偶尔能在辛迪加特工手中见到。"
 	item = /obj/item/storage/toolbox/guncase/skyrat/pistol/aps
 	cost = 8
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/dangerous/regal_condor_kit
-	name = "Unnamed weapon parts kit"
-	desc = "An ominous kit of gun parts in a sleek suitcase, additionally containing several specially cut and refined telecrystals. The kit was supplied with a note that says: \"You'll figure out the rest\"."
+	name = "未命名的武器零件套装"
+	desc = "一只流线型手提箱，里面装着一套不祥的枪械零件，此外还有几枚经过特别切割与精炼的传送水晶。箱内附有一张纸条，上面写着：“剩下的你自己琢磨吧”。"
 	item = /obj/item/weaponcrafting/gunkit/regal_condor
 	cost = 4
 	cant_discount = TRUE
@@ -34,8 +34,8 @@
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 /datum/uplink_item/dangerous/pneumatic_cannon
-	name = "Syndicate-Engineered Pneumatic Cannon"
-	desc = "A finely-crafted pneumatic cannon. Has a higher capacity and better ergonomics than one you could make by hand."
+	name = "辛迪加定制气动炮"
+	desc = "一门工艺精良的气动炮。容量比手工制作的更大，握持起来也更顺手。"
 	item = /obj/item/pneumatic_cannon/syndicate
 	cost = 8
 	surplus = 5

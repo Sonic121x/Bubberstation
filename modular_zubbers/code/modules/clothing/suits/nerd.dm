@@ -3,12 +3,12 @@
 #define MORPHINE_INJECTION_DELAY (30 SECONDS)
 
 /obj/item/clothing/suit/armor/nerd
-	name = "\improper D.O.T.A. suit"
-	desc = "The Defenseless Operator Traversal Assistance suit is a highly experimental Nanotrasen designed \
-		protective full body harness designed to prolong the lifespan (and thus productivity) of an employee \
-		via surplus medical technology found in the abandoned part of maintenance no one seems to want to talk about. \
-		Unfortunately the research department couldn't design a helmet before the third quarter so this is definitely not spaceproof. \
-		One size fits most."
+	name = "\improper D.O.T.A. 套装"
+	desc = "D.O.T.A.（无助操作员通行辅助）是一套由纳米传讯设计的高度实验性 \
+		防护全身束具，旨在借助从维修区那片没人愿意提起的废弃区域里找到的剩余医疗技术， \
+		延长员工的寿命（以及随之而来的生产力）。 \
+		不幸的是，研究部门在第三季度之前没能设计出头盔，所以这玩意儿绝对做不到太空防护。 \
+		均码适配大多数人。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
@@ -103,10 +103,10 @@
 
 /obj/item/clothing/suit/armor/nerd/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
-		balloon_alert(user, "already emagged!")
+		balloon_alert(user, "已经被电磁干扰了！")
 		return FALSE
 	if(owner)
-		balloon_alert(user, "take it off first!")
+		balloon_alert(user, "先把它脱下来！")
 		return FALSE
 	obj_flags |= EMAGGED
 	do_sparks(8, FALSE, get_turf(src))

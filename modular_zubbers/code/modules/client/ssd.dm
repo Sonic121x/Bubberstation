@@ -56,7 +56,7 @@
 		return
 	var/mob/dead/new_player/M = new /mob/dead/new_player()
 
-	log_access("Ghost sent to lobby due to disconnect: [key]")
+	log_access("幽灵因断线被送回大厅：[key]")
 	M.key = key
 
 	qdel(src)

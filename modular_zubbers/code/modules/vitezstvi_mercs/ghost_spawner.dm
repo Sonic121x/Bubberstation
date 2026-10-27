@@ -1,13 +1,13 @@
 /obj/effect/mob_spawn/ghost_role/human/vitezstvi_merc
-	name = "Vítězství Arms contractor bunk"
-	desc = "A stasis pod with a Vítězství Arms label. It's hard at work containing the smells of cheap tobacco and vodka; you can see what appears to be a PSC soldier sleeping almost comically peacefully inside, clad in full combat gear."
-	prompt_name = "Vítězství Arms contractor"
+	name = "胜利军械承包商休眠舱"
+	desc = "一台贴着胜利军械标签的休眠舱。它正努力把廉价烟草和伏特加的气味关在里面；舱内似乎有一名泛斯拉夫联邦士兵，穿着全套战斗装备，睡得安详得近乎滑稽。"
+	prompt_name = "胜利军械承包商"
 	icon = 'icons/obj/mining_zones/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	faction = list(FACTION_NEUTRAL, FACTION_VITEZSTVI)
-	you_are_text = "You are a Vítězství Arms contractor."
-	flavour_text = "You and your comrades have been running guns in this sector for years right under GalFed's nose. A friend of yours in the station's Cargo Department called in a favor, said favor was simple; \"GET US THE FUCK OUT OF HERE.\" The VARS-7 'Provodnik' has answered. You and the rest of its contractors are here to secure the vessel, collect every surviving crew member you can reach, and leave before whatever is happening to the station gets you too. The landing will be rough on account of the fact that your blood contains enough vodka to kill a Terran."
-	important_text = "You are friendly to the station crew and are NOT an antagonist. You are also extremely drunk."
+	you_are_text = "你是一名胜利军械承包商。"
+	flavour_text = "你和你的同志在这个星区偷偷贩枪多年，就在银河联邦眼皮底下。你在空间站货运部的一位朋友求了个情，这请求很简单：“快他妈把我们弄出去。” VARS-7“向导”号响应了。你和其余承包商来此守卫飞船、收拢每一个能找到的幸存船员，并在空间站上发生的怪事把你们也一并带走之前离开。着陆会很粗暴，毕竟你血液里的伏特加足够撂倒一个地球人。"
+	important_text = "你对空间站船员友好，且不是反派。你还醉得不省人事。"
 	outfit = /datum/outfit/vitezstvi_merc
 	allow_custom_character = GHOSTROLE_TAKE_PREFS_SPECIES | GHOSTROLE_TAKE_PREFS_APPEARANCE
 	random_appearance = FALSE
@@ -17,7 +17,7 @@
 	// inert until the shuttle commits; the deploy poll offers the role at that same moment
 	if(!EMERGENCY_PAST_POINT_OF_NO_RETURN)
 		if(!silent)
-			to_chat(user, span_warning("The contractor inside is still sleeping off a professional quantity of vodka! They will awaken on approach..."))
+			to_chat(user, span_warning("里面的承包商还在睡，消化着那份称得上专业水准的伏特加！接近时他们会醒过来……"))
 		return FALSE
 	return ..()
 

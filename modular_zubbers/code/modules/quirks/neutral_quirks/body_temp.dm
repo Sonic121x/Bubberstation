@@ -1,11 +1,11 @@
 /datum/quirk/bodytemp
-	name = "Abnormal body temperature"
-	desc = "Your body temperature is strange compared to your baseline species, being offset a certain amount above or below. This is not recommended to take with coldblooded species. The quirk ranges from -40 to +70, due to how you are delivered to the station taking this at extreme amounts may result in minor burns."
+	name = "异常体温"
+	desc = "你的体温与你所属种族的基础值不同，会向上或向下偏移一定幅度。不建议与冷血种族搭配选取。该特质可在 -40 到 +70 之间调整；由于你被送往空间站的方式，取极端数值时可能会造成轻度烧伤。"
 	value = 0
-	gain_text = span_danger("Your body temperature is feeling off.")
-	lose_text = span_notice("Your body temperature is feeling right.")
+	gain_text = span_danger("你的体温感觉不太对劲。")
+	lose_text = span_notice("你的体温恢复正常了。")
 	species_blacklist = list(SPECIES_SKRELL) //Skrell already have a insane +70 to their body temp
-	medical_record_text = "Patient's body has an abnormal temperature for their species."
+	medical_record_text = "患者的体温与其种族正常值不符。"
 	icon = FA_ICON_THERMOMETER_HALF
 	var/bodytemp = 0
 	var/species_normal = 0

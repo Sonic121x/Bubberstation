@@ -92,21 +92,21 @@
 			var/e_prefs_v = preferences.read_preference(/datum/preference/choiced/erp_status_v)
 			var/e_prefs_nc = preferences.read_preference(/datum/preference/choiced/erp_status_nc)
 			var/e_prefs_mechanical = preferences.read_preference(/datum/preference/choiced/erp_status_mechanics)
-			ooc_notes += "ERP: [e_prefs][e_prefs_free_use ? " - Free Use" : ""]\n"
-			ooc_notes += "Hypnosis: [e_prefs_hypno]\n"
-			ooc_notes += "Vore: [e_prefs_v]\n"
-			ooc_notes += "Non-Con: [e_prefs_nc]\n"
-			ooc_notes += "ERP Mechanics: [e_prefs_mechanical]\n"
+			ooc_notes += "ERP：[e_prefs][e_prefs_free_use ? " - 自由使用" : ""]\n"
+			ooc_notes += "催眠：[e_prefs_hypno]\n"
+			ooc_notes += "吞食：[e_prefs_v]\n"
+			ooc_notes += "非自愿：[e_prefs_nc]\n"
+			ooc_notes += "ERP 机制：[e_prefs_mechanical]\n"
 			ooc_notes += "\n"
 
 		if(display_gender != "Unset")
-			character_ad += "Gender: [display_gender]\n"
+			character_ad += "性别：[display_gender]\n"
 		if(attraction != "Unset")
-			character_ad += "Sexuality: [attraction]\n"
-		character_ad += "Preferred Emote Length: [emote_length]\n"
-		character_ad += "How to Approach: [approach]\n"
-		character_ad += "Furries: [furries] | Scalies: [scalies] | Other: [others]\n"
-		character_ad += "Demis: [demihumans] | Humans: [humans]\n"
+			character_ad += "性取向：[attraction]\n"
+		character_ad += "偏好的表情长度：[emote_length]\n"
+		character_ad += "如何接近：[approach]\n"
+		character_ad += "兽人：[furries] | 鳞类：[scalies] | 其他：[others]\n"
+		character_ad += "半兽人：[demihumans] | 人类：[humans]\n"
 		character_ad += "\n"
 		character_ad += preferences.read_preference(/datum/preference/text/character_ad)
 
@@ -128,7 +128,7 @@
 		if(CONFIG_GET(flag/use_rr_opt_in_preferences))
 			var/rr_prefs = preferences.read_preference(/datum/preference/toggle/be_round_removed)
 			ooc_notes += "\n"
-			ooc_notes += "Round Removal Opt-In Status: [rr_prefs ? "Yes" : "No"]\n"
+			ooc_notes += "接受角色退场状态：[rr_prefs ? "是" : "否"]\n"
 			ooc_notes += "\n"
 
 	if(ishuman(holder))
@@ -138,10 +138,10 @@
 		//Check if the mob is obscured, then continue to headshot and species lore
 		ooc_notes += holder_human.dna?.features["ooc_notes"]
 		if((obscured || !holder_human.dna) && !isobserver(user))
-			custom_species = "Obscured"
-			custom_species_lore = "Obscured"
-			flavor_text = "Obscured"
-			name = "Unknown"
+			custom_species = "已遮蔽"
+			custom_species_lore = "已遮蔽"
+			flavor_text = "已遮蔽"
+			name = "未知"
 		else
 			headshot = holder_human.dna.features["headshot"]
 			flavor_text = holder_human.dna.features["flavor_text"]

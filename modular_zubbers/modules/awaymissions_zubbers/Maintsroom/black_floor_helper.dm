@@ -1,3 +1,3 @@
 /obj/effect/baseturf_helper/beach/black
-	name = "beach sand baseturf editor"
+	name = "沙滩沙地基底编辑器"
 	baseturf = /turf/open/floor/black

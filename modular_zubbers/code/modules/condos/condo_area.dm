@@ -1,5 +1,5 @@
 /area/misc/condo
-	name = "Condo"
+	name = "公寓"
 	icon = 'modular_zubbers/code/modules/condos/icons/area.dmi'
 	icon_state = "condo"
 	requires_power = FALSE
@@ -29,11 +29,11 @@
 
 /// Still somebody in the condo; just leave peacefully
 /area/misc/condo/proc/dont_come_knockin(atom/movable/gone)
-	log_game("[gone] has left condo [condo_number]")
+	log_game("[gone] 离开了 [condo_number] 号公寓")
 
 /// Nobody left inside! Remove this condo from the active list and unload it.
 /area/misc/condo/proc/burn_the_sheets(atom/movable/gone)
-	log_game("[gone] has left condo [condo_number]")
+	log_game("[gone] 离开了 [condo_number] 号公寓")
 	var/list/all_atoms = get_all_contents()
 	for(var/atom/movable/potential_blacklisted_atom in all_atoms)
 		if(is_type_in_list(potential_blacklisted_atom, SScondos.item_blacklist) || HAS_TRAIT(potential_blacklisted_atom, TRAIT_CONTRABAND))

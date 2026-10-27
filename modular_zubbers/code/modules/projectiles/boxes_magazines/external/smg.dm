@@ -1,14 +1,14 @@
 /obj/item/ammo_box/magazine/wt550m9
-	name = "\improper WT-550 magazine"
+	name = "\improper WT-550 弹匣"
 
 /obj/item/ammo_box/magazine/wt550m9/wtap
-	name = "wt550 armour-piercing magazine"
+	name = "WT-550 穿甲弹匣"
 
 /obj/item/ammo_box/magazine/wt550m9/wtic
-	name = "wt550 incendiary magazine"
+	name = "WT-550 燃烧弹匣"
 
 /obj/item/ammo_box/magazine/wt550m9/compressed //20% higher damage potential than the standard bullets, but DPS is lower
-	name = "compressed wt550 magazine"
+	name = "压缩 WT-550 弹匣"
 	ammo_type = /obj/item/ammo_casing/c46x30mm/compressed
 	ammo_band_color = "#00618E"
 	max_ammo = 40
@@ -20,7 +20,7 @@
 	icon_state = "[base_icon_state]-[round(ammo_count()/2, 4)]"
 
 /obj/item/ammo_box/magazine/wt550m9/compressed/super
-	name = "hyper compressed wt550 magazine"
+	name = "超压缩 WT-550 弹匣"
 	ammo_band_color = "#072E40"
 	max_ammo = 60
 /obj/item/ammo_box/magazine/wt550m9/compressed/super/update_icon_state()
@@ -29,8 +29,8 @@
 
 
 /obj/item/ammo_box/magazine/recharge/ntmp5
-	name = "large disabling power pack"
-	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer'. Synthesizes up to twenty .22HL bullets that tire targets."
+	name = "大型失能能量包"
+	desc = "NT22-HCS-MP“枪骑兵”用可充电能量包。最多可合成二十发能让目标疲惫的 .22HL 弹药。"
 	parent_type = /obj/item/ammo_box/magazine/recharge/ntusp
 	ammo_type = /obj/item/ammo_casing/caseless/c22hl/ntmp5
 	base_icon_state = "powerpack"
@@ -66,8 +66,8 @@
 		. += charge_overlay_state
 
 /obj/item/ammo_box/magazine/recharge/ntmp5/laser
-	name = "large lethal power pack"
-	desc = "A rechargeable power pack for the NT22-HCS-MP 'Lancer' that has been modified. Synthesizes up to sixteen .22LS bullets that fire lasers."
+	name = "大型致命能量包"
+	desc = "经过改装、供 NT22-HCS-MP“枪骑兵”使用的可充电能量包。最多可合成十六发激光 .22LS 弹药。"
 	ammo_type = /obj/item/ammo_casing/caseless/c22ls/ntmp5
 	base_icon_state = "powerpack-l"
 	icon_state = "powerpack-l"
@@ -81,7 +81,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntmp5/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
-		to_chat(user, span_danger("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate more lethal rounds."))
+		to_chat(user, span_danger("[A]发出嗡鸣声，改装了\the [src]的透镜，使其能够制造更致命的弹药。"))
 		new /obj/item/ammo_box/magazine/recharge/ntmp5/laser/empty(get_turf(src))
 		qdel(src)
 	else
@@ -89,7 +89,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ntmp5/laser/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ntusp_conversion_kit))
-		to_chat(user, span_notice("[A] makes a whirring sound as it modifies \the [src]'s lens to fabricate less lethal rounds."))
+		to_chat(user, span_notice("[A]发出嗡鸣声，改装了\the [src]的透镜，使其能够制造更不致命的弹药。"))
 		new /obj/item/ammo_box/magazine/recharge/ntmp5/empty(get_turf(src))
 		qdel(src)
 	else

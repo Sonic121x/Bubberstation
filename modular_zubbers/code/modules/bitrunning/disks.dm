@@ -1,6 +1,6 @@
 /obj/item/disk/bitrunning/prefs
-	name = "DeForest biological simulation disk"
-	desc = "A disk containing the biological simulation data necessary to load custom characters into bitrunning domains."
+	name = "德福雷斯特生物模拟磁盘"
+	desc = "一张磁盘，内含将自定义角色载入比特潜行虚拟域所需的生物模拟数据。"
 
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -12,12 +12,12 @@
 	. = ..()
 	if(!isnull(loaded_preference))
 		var/name = loaded_preference.read_preference(/datum/preference/name/real_name)
-		. += "It currently has the character [name] loaded, with loadouts [(include_loadout ? "enabled" : "disabled")]"
-		. += span_notice("Ctrl-Click to change loadout loading")
+		. += "目前已载入角色 [name]，配装[(include_loadout ? "已启用" : "已禁用")]"
+		. += span_notice("按住 Ctrl 左键可切换是否载入配装")
 
 /obj/item/disk/bitrunning/prefs/item_ctrl_click(mob/user)
 	include_loadout = !include_loadout // We just switch this around. Elegant!
-	balloon_alert(user, include_loadout ? "Loadout enabled" : "Loadout disabled")
+	balloon_alert(user, include_loadout ? "配装已启用" : "配装已禁用")
 
 /obj/item/disk/bitrunning/prefs/attack_self(mob/user, modifiers)
 	. = ..()
@@ -26,18 +26,18 @@
 	if(isnull(prefdata_names))
 		return
 
-	var/response = tgui_alert(user, message = "Change selected prefs?", title = "Prefchange", buttons = list("Yes", "No"))
-	if(isnull(response) || response == "No")
+	var/response = tgui_alert(user, message = "要更改所选的偏好设置吗？", title = "偏好更改", buttons = list("是", "否"))
+	if(isnull(response) || response == "否")
 		return
-	var/choice = tgui_input_list(user, message = "Select a character",  title = "Character selection", items = prefdata_names)
+	var/choice = tgui_input_list(user, message = "选择一个角色",  title = "角色选择", items = prefdata_names)
 	if(isnull(choice) || !user.is_holding(src))
 		return
 
 	loaded_preference = new(user.client)
 	loaded_preference.load_character(prefdata_names.Find(choice))
 
-	balloon_alert(user, "character set")
-	to_chat(user, span_notice("Character set to [choice] sucessfully!"))
+	balloon_alert(user, "角色已设置")
+	to_chat(user, span_notice("已成功将角色设置为 [choice]！"))
 
 /datum/outfit/job/bitrunner
 	r_pocket = /obj/item/disk/bitrunning/prefs
@@ -45,4 +45,4 @@
 /datum/orderable_item/bitrunning_tech/pref_item
 	cost_per_order = 500
 	purchase_path = /obj/item/disk/bitrunning/prefs
-	desc = "This disk contains a program that lets you load in custom characters."
+	desc = "这张磁盘内含一个可载入自定义角色的程序。"

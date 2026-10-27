@@ -1,6 +1,6 @@
 /obj/item/modular_computer/mini_painting_printer
-	name = "instant portrait printer"
-	desc = "Allows users to quickly print off desired artworks."
+	name = "即时肖像打印机"
+	desc = "让用户快速打印出想要的画作。"
 	icon = 'icons/obj/devices/artefacts.dmi'
 	icon_state = "prototype9"
 	density = FALSE
@@ -22,10 +22,10 @@
 
 /datum/computer_file/program/portrait_printer/mini
 	filename = "portraitprinter_mini"
-	filedesc = "Marlowe Treeby's Art Sharer"
+	filedesc = "马洛·特里比的艺术分享器"
 	size = 1
 	program_open_overlay = "dummy"
-	extended_desc = "Uses bluespace technology to print off a painting."
+	extended_desc = "使用蓝空间技术打印出一幅画。"
 	can_run_on_flags = PROGRAM_PDA
 	program_flags = PROGRAM_REQUIRES_NTNET
 	power_cell_use = 0 WATTS

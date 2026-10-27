@@ -14,9 +14,9 @@
 	var/face_obscured = (covered_slots & HIDEFACE) && obscurity_examine_pref
 
 	if (!(face_obscured))
-		flavor_text_link = span_notice("[preview_text]... <a href='byond://?src=[REF(src)];lookup_info=open_examine_panel'>\[Look closer?\]</a>")
+		flavor_text_link = span_notice("[preview_text]…… <a href='byond://?src=[REF(src)];lookup_info=open_examine_panel'>\[仔细查看？\]</a>")
 	else
-		flavor_text_link = span_notice("<a href='byond://?src=[REF(src)];lookup_info=open_examine_panel'>\[Examine closely...\]</a>")
+		flavor_text_link = span_notice("<a href='byond://?src=[REF(src)];lookup_info=open_examine_panel'>\[凑近查看……\]</a>")
 	return flavor_text_link
 
 

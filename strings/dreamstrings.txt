@@ -1,129 +1,129 @@
-%A% %ADJECTIVE% admiral
-%A% %ADJECTIVE% army
-%A% %ADJECTIVE% airlock
-%A% %ADJECTIVE% alien
-%A% %ADJECTIVE% ally
-%A% %ADJECTIVE% angel
-%A% %ADJECTIVE% armblade
-%A% %ADJECTIVE% bear
-%A% %ADJECTIVE% bee
-%A% %ADJECTIVE% blob
-%A% %ADJECTIVE% bottle
-%A% %ADJECTIVE% chemist
-%A% %ADJECTIVE% corgi
-%A% %ADJECTIVE% crewmember
-%A% %ADJECTIVE% crowd
-%A% %ADJECTIVE% cyborg
-%A% %ADJECTIVE% demon
-%A% %ADJECTIVE% disguise
-%A% %ADJECTIVE% doctor
-%A% %ADJECTIVE% drone
-%A% %ADJECTIVE% ending
-%A% %ADJECTIVE% enemy
-%A% %ADJECTIVE% engineer
-%A% %ADJECTIVE% ethereal
-%A% %ADJECTIVE% explosion
-%A% %ADJECTIVE% familiar face
-%A% %ADJECTIVE% felinid
-%A% %ADJECTIVE% foe
-%A% %ADJECTIVE% friend
-%A% %ADJECTIVE% ghost
-%A% %ADJECTIVE% gun
-%A% %ADJECTIVE% geneticist
-%A% %ADJECTIVE% hat
-%A% %ADJECTIVE% heretic
-%A% %ADJECTIVE% hideout
-%A% %ADJECTIVE% ID card
-%A% %ADJECTIVE% imposter
-%A% %ADJECTIVE% inspector
-%A% %ADJECTIVE% laboratory
-%A% %ADJECTIVE% lizard
-%A% %ADJECTIVE% loved one
-%A% %ADJECTIVE% meat grinder
-%A% %ADJECTIVE% memory
-%A% %ADJECTIVE% meteor
-%A% %ADJECTIVE% miner
-%A% %ADJECTIVE% monkey
-%A% %ADJECTIVE% monster
-%A% %ADJECTIVE% moth
-%A% %ADJECTIVE% nightmare
-%A% %ADJECTIVE% ninja
-%A% %ADJECTIVE% ocean
-%A% %ADJECTIVE% pill
-%A% %ADJECTIVE% planet
-%A% %ADJECTIVE% plasmaman
-%A% %ADJECTIVE% pool
-%A% %ADJECTIVE% rat
-%A% %ADJECTIVE% scientist
-%A% %ADJECTIVE% security officer
-%A% %ADJECTIVE% shrine
-%A% %ADJECTIVE% shuttle
-%A% %ADJECTIVE% singularity
-%A% %ADJECTIVE% slime
-%A% %ADJECTIVE% task
-%A% %ADJECTIVE% toolbox
-%A% %ADJECTIVE% traitor
-%A% %ADJECTIVE% universe
-%A% %ADJECTIVE% vent
-%A% %ADJECTIVE% virologist
-%A% %ADJECTIVE% virus
-%A% %ADJECTIVE% voice in your head
-%A% %ADJECTIVE% wheelchair
-%ADJECTIVE% blinking lights
-%ADJECTIVE% blood
-%ADJECTIVE% credits
-%ADJECTIVE% darkness
-%ADJECTIVE% death
-%ADJECTIVE% evidence
-%ADJECTIVE% evil
-%ADJECTIVE% flames
-%ADJECTIVE% handcuffs
-%ADJECTIVE% horror
-%ADJECTIVE% light
-%ADJECTIVE% operatives
-%ADJECTIVE% paperwork
-%ADJECTIVE% plasma
-%ADJECTIVE% power
-%ADJECTIVE% riches
-%ADJECTIVE% waves
-%ADJECTIVE% wind
-cigarettes
-Ian
-mutiny
-Nanotrasen
-Poly
-Runtime
-some %ADJECTIVE% cultists
-some %ADJECTIVE% lovers
-some %ADJECTIVE% melons
-some %ADJECTIVE% strangers
-some %ADJECTIVE% Xenomorphs
-the %ADJECTIVE% bartender
-the %ADJECTIVE% bridge
-the %ADJECTIVE% brig
-the %ADJECTIVE% captain
-the %ADJECTIVE% clown
-the %ADJECTIVE% depths
-the %ADJECTIVE% gods
-the %ADJECTIVE% Icemoon wastes
-the %ADJECTIVE% maintenance tunnels
-the %ADJECTIVE% recycler
-the %ADJECTIVE% sun
-the %ADJECTIVE% Supermatter
-the %ADJECTIVE% void of space
-the bar
-the bottom of a chasm
-the chapel
-the curator's back room
-the departure lounge
-the engine
-the emergency shuttle
-the library
-the medical bay
-the station
-the sun
-the Syndicate
-the tram
-the Wizard Federation
-time itself
-water
+%A% %ADJECTIVE% 海军上将
+%A% %ADJECTIVE% 军队
+%A% %ADJECTIVE% 气闸
+%A% %ADJECTIVE% 外星人
+%A% %ADJECTIVE% 盟友
+%A% %ADJECTIVE% 天使
+%A% %ADJECTIVE% 臂刃
+%A% %ADJECTIVE% 熊
+%A% %ADJECTIVE% 蜜蜂
+%A% %ADJECTIVE% 变形菌
+%A% %ADJECTIVE% 瓶子
+%A% %ADJECTIVE% 化学家
+%A% %ADJECTIVE% 柯基
+%A% %ADJECTIVE% 船员
+%A% %ADJECTIVE% 人群
+%A% %ADJECTIVE% 半机械人
+%A% %ADJECTIVE% 恶魔
+%A% %ADJECTIVE% 伪装
+%A% %ADJECTIVE% 医生
+%A% %ADJECTIVE% 无人机
+%A% %ADJECTIVE% 结局
+%A% %ADJECTIVE% 敌人
+%A% %ADJECTIVE% 工程师
+%A% %ADJECTIVE% 以太人
+%A% %ADJECTIVE% 爆炸
+%A% %ADJECTIVE% 熟悉的面孔
+%A% %ADJECTIVE% 猫人
+%A% %ADJECTIVE% 仇敌
+%A% %ADJECTIVE% 朋友
+%A% %ADJECTIVE% 幽灵
+%A% %ADJECTIVE% 枪
+%A% %ADJECTIVE% 遗传学家
+%A% %ADJECTIVE% 帽子
+%A% %ADJECTIVE% 异教徒
+%A% %ADJECTIVE% 藏身处
+%A% %ADJECTIVE% ID 卡
+%A% %ADJECTIVE% 冒充者
+%A% %ADJECTIVE% 检查员
+%A% %ADJECTIVE% 实验室
+%A% %ADJECTIVE% 蜥蜴人
+%A% %ADJECTIVE% 挚爱
+%A% %ADJECTIVE% 绞肉机
+%A% %ADJECTIVE% 记忆
+%A% %ADJECTIVE% 陨石
+%A% %ADJECTIVE% 矿工
+%A% %ADJECTIVE% 猴子
+%A% %ADJECTIVE% 怪物
+%A% %ADJECTIVE% 蛾族人
+%A% %ADJECTIVE% 梦魇
+%A% %ADJECTIVE% 忍者
+%A% %ADJECTIVE% 海洋
+%A% %ADJECTIVE% 药丸
+%A% %ADJECTIVE% 行星
+%A% %ADJECTIVE% 等离子人
+%A% %ADJECTIVE% 水池
+%A% %ADJECTIVE% 老鼠
+%A% %ADJECTIVE% 科学家
+%A% %ADJECTIVE% 安保官
+%A% %ADJECTIVE% 神龛
+%A% %ADJECTIVE% 穿梭机
+%A% %ADJECTIVE% 奇点
+%A% %ADJECTIVE% 史莱姆
+%A% %ADJECTIVE% 任务
+%A% %ADJECTIVE% 工具箱
+%A% %ADJECTIVE% 叛徒
+%A% %ADJECTIVE% 宇宙
+%A% %ADJECTIVE% 通风口
+%A% %ADJECTIVE% 病毒学家
+%A% %ADJECTIVE% 病毒
+%A% %ADJECTIVE% 脑海中的声音
+%A% %ADJECTIVE% 轮椅
+%ADJECTIVE% 闪烁的灯光
+%ADJECTIVE% 鲜血
+%ADJECTIVE% 信用点
+%ADJECTIVE% 黑暗
+%ADJECTIVE% 死亡
+%ADJECTIVE% 证据
+%ADJECTIVE% 邪恶
+%ADJECTIVE% 火焰
+%ADJECTIVE% 手铐
+%ADJECTIVE% 恐怖
+%ADJECTIVE% 光芒
+%ADJECTIVE% 特工
+%ADJECTIVE% 文书
+%ADJECTIVE% 等离子体
+%ADJECTIVE% 力量
+%ADJECTIVE% 财富
+%ADJECTIVE% 波浪
+%ADJECTIVE% 风
+香烟
+伊恩
+叛乱
+纳米传讯
+波利
+运行时
+一些 %ADJECTIVE% 邪教徒
+一些 %ADJECTIVE% 恋人
+一些 %ADJECTIVE% 甜瓜
+一些 %ADJECTIVE% 陌生人
+一些 %ADJECTIVE% 异形
+那位 %ADJECTIVE% 调酒师
+那座 %ADJECTIVE% 舰桥
+那座 %ADJECTIVE% 禁闭室
+那位 %ADJECTIVE% 舰长
+那个 %ADJECTIVE% 小丑
+那片 %ADJECTIVE% 深处
+那些 %ADJECTIVE% 神明
+那片 %ADJECTIVE% 冰月荒原
+那些 %ADJECTIVE% 维护隧道
+那台 %ADJECTIVE% 回收机
+那轮 %ADJECTIVE% 太阳
+那团 %ADJECTIVE% 超物质
+那片 %ADJECTIVE% 虚空
+酒吧
+裂隙底部
+礼拜堂
+馆长的后室
+出发候机室
+引擎
+紧急穿梭机
+图书馆
+医疗舱
+空间站
+太阳
+辛迪加
+电车
+巫师联邦
+时间本身
+水

@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg/sec
-	name = "Malfunctioning Security Cyborg"
-	desc = "A security cyborg unit, hacked or malfunctioning. There are two guns attached to it."
+	name = "故障安保半机械人"
+	desc = "一台安保半机械人单位，遭到入侵或发生故障。它身上装着两把枪。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_skirmisher
@@ -12,8 +12,8 @@
 	exposed_wound_bonus = 0
 	sharpness = NONE
 
-	attack_verb_continuous = "gunbutts"
-	attack_verb_simple = "gunbutt"
+	attack_verb_continuous = "用枪托砸"
+	attack_verb_simple = "用枪托砸"
 	attack_sound = 'sound/items/weapons/smash.ogg'
 
 	projectiletype = /obj/projectile/bullet/c45

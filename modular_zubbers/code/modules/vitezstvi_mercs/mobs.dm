@@ -1,7 +1,7 @@
 /mob/living/basic/bear/russian/boris
-	name = "Boris"
-	real_name = "Boris"
-	desc = "A hulking brown bear in a battered Vítězství Arms harness. A brass tag identifies him as BORIS, SENIOR MORALE OFFICER. He smells faintly of gun oil and strongly of bear, making him the best-smelling member of the company."
+	name = "鲍里斯"
+	real_name = "鲍里斯"
+	desc = "一头壮硕的棕熊，身上套着磨损的胜利军械背带。一枚黄铜铭牌标明他是鲍里斯，士气高级专员。他身上隐约有枪油味，也浓烈地有熊味，这使他成为全公司身上最好闻的成员。"
 	maxHealth = 500
 	health = 500
 	melee_damage_lower = 30

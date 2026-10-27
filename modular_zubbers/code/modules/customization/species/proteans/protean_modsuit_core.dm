@@ -1,7 +1,7 @@
 /obj/item/mod/core/protean
-	name = "\improper MOD Protean core"
+	name = "\improper MOD 普罗蒂安核心"
 	icon_state = "mod-core-ethereal"
-	desc = "If you see this, go scream at a coder and tell them how you managed to do this."
+	desc = "如果你看到这段描述，就去冲程序员大喊，告诉他们你是怎么做到的。"
 
 	/// We handle as many interactions as possible through the species datum
 	/// The species handles cleanup on this

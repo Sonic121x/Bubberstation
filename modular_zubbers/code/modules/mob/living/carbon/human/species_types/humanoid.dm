@@ -1,12 +1,12 @@
 /datum/species/humanoid/get_species_description()
 	return list(
-		"(OOC Note: This is a generic template species for your own creations. As a new player, it is strongly recommended that you start with a premade species unless what you are writing is demonstrably better in quality than the server's counterparts.)",
-		"Humans are generally known to be the most frequent species to receive gene modification, both due to higher personal wealth and a growing sense of inadequacy. Many variants and subspecies of human exist, though not all are equally accepted, and they are most commonly seen on Mars, where transhumanism is significantly more popular. As a humanoid or human-like character, think first of this question-- what is your character's relationship to being human, if any?",
+		"（出戏提示：这是一个供你自行创作的通用模板种族。如果你是新手玩家，强烈建议先从预设种族开始，除非你写的内容在质量上明显优于服务器已有的作品。）",
+		"人类通常是最常接受基因改造的种族，这既因为他们个人财富更高，也因为他们日益感到自身不足。人类存在许多变种与亚种，但并非所有都被同等接纳；他们最常见于火星，那里的超人类主义明显更受欢迎。作为一个类人或类人形角色，请先思考这个问题——如果你的角色与“成为人类”之间存在关系，那是什么？",
 	)
 
 /datum/species/humanoid/get_species_lore()
 	return list(
-		"This is a template species for your own creation. Humanoids exist in all shape and sizes across the known galaxy, most frequently being loose genetic modifications of \
-		human DNA. They are most commonly seen on Mars, where transhumanism is rife, and personal wealth is quite high for Terran space. They may be from a distant Rimworld, or \
-		just be some sort of novelty-seeking furry. Other species generally look down upon seeing humans modified to look like their species, as it leads to a serious uncanny \ valley effect. How does your character navigate this, if an issue at all?",
+		"这是一个供你自行创作的模板种族。类人遍布已知银河，形态与体型各异，通常是 \
+		人类 DNA 的松散基因改造产物。他们最常见于火星，那里超人类主义盛行，个人财富在地球空间中也相当高。他们可能来自遥远的边缘世界，也可能 \
+		只是某种追求新鲜感的兽人。其他种族通常看不起被改造成自己种族模样的人类，因为这会引发严重的恐怖谷 \ 效应。如果这算个问题，你的角色会如何应对？",
 	)

@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg/roomba
-	name = "Malfunctioning Roomba Cyborg"
-	desc = "A roomba, hacked or malfunctioning—OW MY FOOT!"
+	name = "故障 Roomba 半机械人"
+	desc = "一台 Roomba 扫地机器人，遭到入侵或发生故障——哎哟我的脚！"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	icon_state = "evilbotroomba"
@@ -19,8 +19,8 @@
 	exposed_wound_bonus = 3
 	sharpness = SHARP_POINTY
 
-	attack_verb_continuous = "pokes"
-	attack_verb_simple = "stab"
+	attack_verb_continuous = "戳刺"
+	attack_verb_simple = "刺"
 	attack_sound = 'sound/items/weapons/genhit2.ogg'
 
 /mob/living/basic/malf_borg/roomba/Initialize(mapload)

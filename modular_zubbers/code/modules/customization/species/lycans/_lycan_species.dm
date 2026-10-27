@@ -5,7 +5,7 @@
 	id = SPECIES_LYCAN
 	examine_limb_id = SPECIES_LYCAN
 
-	name = "\improper Lycan"
+	name = "\improper 狼人"
 	sexes = TRUE
 
 	coldmod = 0.67 // They have thick fur so I guess this makes sense.
@@ -71,10 +71,10 @@
 	race = /datum/species/lycan
 
 /datum/species/lycan/get_species_description()
-	return list("The transformed version of a Cursekin. Only available for customization of a Cursekin's transformed form.")
+	return list("咒裔的变形形态。仅可用于自定义咒裔变形后的形态。")
 
 /datum/species/lycan/get_species_lore()
-	return list("See Cursekin lore.")
+	return list("参见咒裔的背景设定。")
 
 /datum/species/lycan/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -83,39 +83,39 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_ROBOT,
-			SPECIES_PERK_NAME = "Inorganic Rejection",
-			SPECIES_PERK_DESC = "The curse afflicting the cursekin prevents their bodies from being augmented with cybernetic organs \
-			or implants."
+			SPECIES_PERK_NAME = "无机排斥",
+			SPECIES_PERK_DESC = "折磨咒裔的诅咒使他们的身体无法植入义体器官 \
+			或植入物。"
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
-			SPECIES_PERK_NAME = "Silver Weakness",
-			SPECIES_PERK_DESC = "You are burnt by silver, including silver weaponry."
+			SPECIES_PERK_NAME = "白银弱点",
+			SPECIES_PERK_DESC = "银会灼伤你，包括银制武器。"
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_GUN,
-			SPECIES_PERK_NAME = "Chunky Fingers",
-			SPECIES_PERK_DESC = "While in Lycan form, you cannot use guns without special trigger-guards, nor batons.",
+			SPECIES_PERK_NAME = "粗笨手指",
+			SPECIES_PERK_DESC = "在狼人形态下，你无法使用未装特殊扳机护圈的枪械，也无法使用警棍。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_SHIRT,
-			SPECIES_PERK_NAME = "Unclotheable",
-			SPECIES_PERK_DESC = "While in Lycan form, you drop all your clothing to the floor.",
+			SPECIES_PERK_NAME = "无法穿衣",
+			SPECIES_PERK_DESC = "在狼人形态下，你的所有衣物都会掉落在地。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_MOON,
-			SPECIES_PERK_NAME = "Lycan Strength",
-			SPECIES_PERK_DESC = "While in Lycan form, your claws deal significant damage - about circular saw level.",
+			SPECIES_PERK_NAME = "狼人之力",
+			SPECIES_PERK_DESC = "在狼人形态下，你的利爪能造成可观的伤害——大约相当于圆锯的水平。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_SHIELD,
-			SPECIES_PERK_NAME = "Lycan Resilience",
-			SPECIES_PERK_DESC = "While in Lycan form, you take 50% less brute and 20% less burn.",
+			SPECIES_PERK_NAME = "狼人韧性",
+			SPECIES_PERK_DESC = "在狼人形态下，你受到的钝击伤害减少 50%，灼伤伤害减少 20%。",
 		),
 	)
 
@@ -197,8 +197,8 @@
 /datum/species/lycan/proc/on_baned(mob/living/carbon/human/baned, obj/source, mob/user)
 	SIGNAL_HANDLER
 
-	baned.visible_message(span_warning("[baned] seems to react negatively to the silver, [baned.p_their()] flesh scorching and burning on contact!"), ignored_mobs = list(baned))
-	to_chat(baned, span_bolddanger("The sister moon casts its light on you, and you feel your flesh scorch!"))
+	baned.visible_message(span_warning("[baned] 似乎对银产生了不良反应，其肌肤一接触便焦灼燃烧！"), ignored_mobs = list(baned))
+	to_chat(baned, span_bolddanger("姐妹之月将光芒洒在你身上，你感到自己的血肉在灼烧！"))
 	INVOKE_ASYNC(baned, TYPE_PROC_REF(/mob, emote), "scream")
 
 	var/target_zone

@@ -1,6 +1,6 @@
 /datum/nanite_rule
-	var/name = "Generic Condition"
-	var/desc = "When triggered, the program is active"
+	var/name = "通用条件"
+	var/desc = "触发时，程序处于激活状态"
 	var/datum/nanite_program/program
 
 /datum/nanite_rule/New(datum/nanite_program/new_program)
@@ -25,8 +25,8 @@
 	new type(new_program)
 
 /datum/nanite_rule/health
-	name = "Health"
-	desc = "Checks the host's health status."
+	name = "生命值"
+	desc = "检查宿主的生命值状态。"
 
 	var/threshold = 50
 	var/above = TRUE
@@ -51,15 +51,15 @@
 
 //TODO allow inversion
 /datum/nanite_rule/crit
-	name = "Crit"
-	desc = "Checks if the host is in critical condition."
+	name = "濒危"
+	desc = "检查宿主是否处于濒危状态。"
 
 /datum/nanite_rule/crit/check_rule()
 	return IS_CRITICAL(program.host_mob)
 
 /datum/nanite_rule/death
-	name = "Death"
-	desc = "Checks if the host is dead."
+	name = "死亡"
+	desc = "检查宿主是否死亡。"
 
 /datum/nanite_rule/death/check_rule()
 	if(program.host_mob.stat == DEAD || HAS_TRAIT(program.host_mob, TRAIT_FAKEDEATH))
@@ -67,12 +67,12 @@
 	return FALSE
 
 /datum/nanite_rule/cloud_sync
-	name = "Cloud Sync"
-	desc = "Checks if the nanites have cloud sync enabled or disabled."
-	var/check_type = "Enabled"
+	name = "云同步"
+	desc = "检查纳米机器人的云同步是否启用。"
+	var/check_type = "已启用"
 
 /datum/nanite_rule/cloud_sync/check_rule()
-	if(check_type == "Enabled")
+	if(check_type == "已启用")
 		return program.nanites.cloud_active
 	else
 		return !program.nanites.cloud_active
@@ -82,11 +82,11 @@
 	rule.check_type = check_type
 
 /datum/nanite_rule/cloud_sync/display()
-	return "[name]:[check_type]"
+	return "[name]：[check_type]"
 
 /datum/nanite_rule/nanites
-	name = "Nanite Volume"
-	desc = "Checks the host's nanite volume."
+	name = "纳米机器人容量"
+	desc = "检查宿主的纳米机器人容量。"
 
 	var/threshold = 50
 	var/above = TRUE
@@ -110,8 +110,8 @@
 	return "[name] [above ? ">" : "<"] [threshold]%"
 
 /datum/nanite_rule/damage
-	name = "Damage"
-	desc = "Checks the host's damage."
+	name = "伤害"
+	desc = "检查宿主所受的伤害。"
 
 	var/threshold = 50
 	var/above = TRUE

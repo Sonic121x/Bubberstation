@@ -1,6 +1,6 @@
 /obj/item/organ/liver/protean
-	name = "reagent catalyst"
-	desc = "A nanite harvester that processes chemicals and distributes them to the nanite swarm."
+	name = "试剂催化器"
+	desc = "一台纳米机器人采集器，负责处理化学物质并将其分配给纳米机器人蜂群。"
 	icon = 'modular_skyrat/master_files/icons/obj/surgery.dmi'
 	icon_state = "liver-ipc"
 	filterToxins = FALSE //We dont filter them, we're immune to them

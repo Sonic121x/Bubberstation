@@ -4,10 +4,10 @@
 
 /datum/computer_file/program/crew_self_serve
 	filename = "plexagonselfserve"
-	filedesc = "Plexagon Punch Clock"
+	filedesc = "Plexagon 打卡机"
 	downloader_category = PROGRAM_CATEGORY_SECURITY
 	program_open_overlay = "id"
-	extended_desc = "Allows crew members to remotely punch in or out of their job assignment, giving the impression they have a semblance of control over their lives."
+	extended_desc = "允许船员远程签入或签出自己的工作岗位，让他们产生一种对自己生活尚有几分掌控的错觉。"
 	program_flags = PROGRAM_ON_NTNET_STORE
 	size = 4
 	tgui_id = "NtosSelfServe"
@@ -71,21 +71,21 @@
 
 	var/important = job_is_CMD_or_SEC()
 	if(important)
-		if(tgui_alert(usr, "You are a member of security and/or command, make sure that you ahelp before punching out! If you decide to punch back in later, you will need to go to the Head of Personnel or Head of Security. Do you wish to continue?", "[src]", list("No", "Yes")) != "Yes")
+		if(tgui_alert(usr, "你是安保和/或指挥部成员，签出前请务必先 ahelp！如果你之后想重新签入，需要去找人事主管或安保主管。你确定要继续吗？", "[src]", list("No", "Yes")) != "Yes")
 			return FALSE
 
 	if(istype(authenticated_card.trim, /datum/id_trim/job/prisoner))
-		tgui_alert(usr, "You cannot clock out of prison. Nice try, inmate.")
+		tgui_alert(usr, "你不能从监狱签出。想得美，囚犯。")
 		return TRUE
 
-	log_econ("[authenticated_card.registered_name] clocked out from role [authenticated_card.get_trim_assignment()]")
+	log_econ("[authenticated_card.registered_name] 从职位 [authenticated_card.get_trim_assignment()] 签出")
 	var/datum/component/off_duty_timer/timer_component = authenticated_card.AddComponent(/datum/component/off_duty_timer, TIMECLOCK_COOLDOWN)
 	if(important)
 		timer_component.hop_locked = TRUE
-		log_econ("[authenticated_card.registered_name] job slot [authenticated_card.get_trim_assignment()] has been locked from clocking back in")
-		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from [span_comradio("restricted role")]: [authenticated_card.get_trim_assignment()].")
+		log_econ("[authenticated_card.registered_name] 的职位槽位 [authenticated_card.get_trim_assignment()] 已被锁定，无法重新签入")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 从[span_comradio("受限职位")]签出：[authenticated_card.get_trim_assignment()]。")
 	else
-		message_admins("[ADMIN_LOOKUPFLW(usr)] clocked out from role: [authenticated_card.get_trim_assignment()].")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] 从职位签出：[authenticated_card.get_trim_assignment()]。")
 
 	var/current_assignment = authenticated_card.assignment
 	var/datum/id_trim/job/current_trim = authenticated_card.trim
@@ -93,11 +93,11 @@
 	SSjob.FreeRole(clocked_out_job.title)
 
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
-	system.broadcast("[authenticated_card.registered_name], [current_assignment] has gone off-duty.", list())
+	system.broadcast("[authenticated_card.registered_name]，[current_assignment] 已下班。", list())
 	computer.update_static_data_for_all_viewers()
 
 	SSid_access.apply_trim_to_card(authenticated_card, target_trim, TRUE)
-	authenticated_card.assignment = "Off-Duty " + current_assignment
+	authenticated_card.assignment = "已下班 " + current_assignment
 	authenticated_card.update_label()
 
 	GLOB.manifest.modify(authenticated_card.registered_name, authenticated_card.assignment, authenticated_card.get_trim_assignment())
@@ -117,18 +117,18 @@
 
 	var/datum/job/clocked_in_job = id_component.stored_trim.job
 	if(!SSjob.OccupyRole(clocked_in_job.title))
-		computer.say("[capitalize(clocked_in_job.title)] has no free slots available, unable to punch in!")
+		computer.say("[capitalize(clocked_in_job.title)] 没有空闲岗位，无法签入！")
 		return FALSE
 
 
 	SSid_access.apply_trim_to_card(authenticated_card, id_component.stored_trim.type, TRUE)
 	authenticated_card.assignment = id_component.stored_assignment
 
-	log_econ("[authenticated_card.registered_name] clocked in to role [authenticated_card.get_trim_assignment()]")
-	message_admins("[ADMIN_LOOKUPFLW(usr)] clocked in to role: [authenticated_card.get_trim_assignment()].")
+	log_econ("[authenticated_card.registered_name] 签到职位 [authenticated_card.get_trim_assignment()]")
+	message_admins("[ADMIN_LOOKUPFLW(usr)] 签到职位：[authenticated_card.get_trim_assignment()]。")
 
 	var/obj/machinery/announcement_system/system = pick(GLOB.announcement_systems)
-	system.broadcast("[authenticated_card.registered_name] has returned to assignment [authenticated_card.assignment].", list())
+	system.broadcast("[authenticated_card.registered_name] 已回到岗位 [authenticated_card.assignment]。", list())
 	GLOB.manifest.modify(authenticated_card.registered_name, authenticated_card.assignment, authenticated_card.get_trim_assignment())
 
 	qdel(id_component)
@@ -234,10 +234,10 @@
 
 	shame_box.locked_contents = english_list(shamebox_items)
 	do_harmless_sparks(number = 4, source = shame_box)
-	to_chat(human_user, span_warning("You feel weight lifted off your shoulders as items are teleported off your body!"))
-	to_chat(human_user, span_notice("Items moved to lockbox: [shame_box.locked_contents]."))
+	to_chat(human_user, span_warning("随着物品从你身上被传送走，你感觉肩上的重担卸了下来！"))
+	to_chat(human_user, span_notice("物品已移入锁箱：[shame_box.locked_contents]。"))
 	computer.say(
-		message = "A service contract between Nanotrasen and Lustwish stipulates that company issued batons, masks, restraints, and other equipment are not to be used for recreational purposes. Employees may purchase recreational provisions from an approved vendor. Your restricted items have been placed in a lockbox to be retrieved after punch in.",
+		message = "纳米传讯与欲愿之间的服务合同规定，公司配发的警棍、面具、束缚具及其他装备不得用于娱乐用途。员工可从经批准的供应商处购买娱乐用品。你的受限物品已被放入锁箱，签到后可取回。",
 		forced = TRUE,
 	)
 	return TRUE
@@ -304,7 +304,7 @@
 	data["stationAlertLevel"] = SSsecurity_level.get_current_level_as_text()
 	if(authenticated_card)
 		data["authIDName"] = authenticated_card.registered_name ? authenticated_card.registered_name : "-----"
-		data["authIDRank"] = authenticated_card.assignment ? authenticated_card.assignment : "Unassigned"
+		data["authIDRank"] = authenticated_card.assignment ? authenticated_card.assignment : "未分配"
 		data["authCardHOPLocked"] = id_locked_check()
 		data["trimClockedOut"] = off_duty_check()
 		if(authenticated_card.trim)

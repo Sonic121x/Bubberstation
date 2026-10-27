@@ -18,7 +18,7 @@
 			myframe.style.display = "inline";
 	}
 	</script>
-	<p id='loading'>You start skimming through the manual...</p>
+	<p id='loading'>你开始翻阅这本手册……</p>
 	<iframe width='100%' height='97%' onload="pageloaded(this)" src="[##wikiurl]/[##link_identifier]&remove_links=1" frameborder="0" id="main_frame"></iframe>
 	</body>
 	</html>
@@ -27,14 +27,14 @@
 
 
 /obj/item/book/manual/wiki/security_space_law
-	name = "Corporate Regulations"
-	desc = "A set of Nanotrasen regulations for keeping law, order, and procedure followed within their space stations."
-	starting_title = "Corporate Regulations"
+	name = "公司规章"
+	desc = "一套纳米传讯规章，用于在其空间站内维持法律、秩序与程序。"
+	starting_title = "公司规章"
 	page_link = "index.php?title=Space_Law"
 
 /obj/item/book/manual/wiki/security_space_law/attack_self(mob/user) // Was in /tg/ folder, moved it here, made it 100% chance to learn language since you can spam it inhand anyhow. Saves us all from carpal tunnel.
 	if(user.can_read(src) && !user.has_language(/datum/language/legalese, SPOKEN_LANGUAGE))
-		to_chat(user, span_notice("As you inhale the book's contents, you feel more sophisticated. After reading Space Law just once, you feel like you are an expert in pretending you know Latin. You can now speak Legalese."))
+		to_chat(user, span_notice("当你把书中内容吸进脑子里时，你觉得自己高雅了不少。只读了一遍太空法，你就觉得自己已经是个假装懂拉丁语的行家了。你现在会说联邦法律语了。"))
 		user.grant_language(/datum/language/legalese, SPOKEN_LANGUAGE) //can speak but not understand
 	else
 		.=..()
@@ -42,25 +42,25 @@
 /obj/item/book/manual/wiki/security_space_law/display_content(mob/living/user)
 	var/wiki_url = "http://wiki.bubberstation.org"
 	if(!wiki_url)
-		user.balloon_alert(user, "this book is empty!")
+		user.balloon_alert(user, "这本书是空的！")
 		return
 	credit_book_to_reader(user)
 	if(user.client.byond_version < 516) //Remove this once 516 is stable
-		if(tgui_alert(user, "This book's page will open in your browser. Are you sure?", "Open The Wiki", list("Yes", "No")) != "Yes")
+		if(tgui_alert(user, "本书页面将在你的浏览器中打开。你确定吗？", "打开 Wiki", list("Yes", "No")) != "Yes")
 			return
 		DIRECT_OUTPUT(user, link("[wiki_url]/[page_link]"))
 	else
 		DIRECT_OUTPUT(user, browse(WIKI_PAGE_IFRAME(wiki_url, page_link), "window=manual;size=[BOOK_WINDOW_BROWSE_SIZE]")) // if you change this GUARANTEE that it works.
 
 /obj/item/book/manual/wiki/security_space_law/weighted
-	name = "Corporate Regulations: Collector's Edition"
-	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations. This one's quite heavy due to its extra pages and metal-plated cover."
+	name = "公司规章：典藏版"
+	desc = "一套纳米传讯指南，用于在其空间站上维持法律与秩序。这一本因为页数更多、封面包覆金属板而相当沉重。"
 	icon = 'modular_zubbers/icons/obj/security_voucher.dmi'
 	icon_state = "SpaceLawWeighted"
 	force = 13
 	throwforce = 13
-	attack_verb_continuous = list("educates", "reprimands", "prosecutes", "teaches a lesson to")
-	attack_verb_simple = list("educate", "reprimand", "prosecute", "remind","teach a lesson to")
+	attack_verb_continuous = list("教育", "斥责", "起诉", "教训")
+	attack_verb_simple = list("教育", "斥责", "起诉", "提醒", "教训")
 
 /obj/item/book/manual/wiki/security_space_law/weighted/afterattack(atom/target, mob/user, list/modifiers, list/attack_modifiers)
 	if(!isliving(target))

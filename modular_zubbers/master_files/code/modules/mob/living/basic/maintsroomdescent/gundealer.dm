@@ -1,14 +1,14 @@
 /mob/living/basic/trader/gundealer
-	name = "Trader"
-	desc = "A shadowie figure offering some of the strongest armaments from here to terra- if you have the INSANE dough to offer."
+	name = "商人"
+	desc = "一个鬼鬼祟祟的身影，从这儿到地球范围内最强的军火他都能搞到——只要你出得起那疯了一样的价钱。"
 	unique_name = FALSE
 	icon = 'icons/mob/simple/simple_human.dmi'
 	maxHealth = 200
 	health = 200
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "挥拳猛击"
+	attack_verb_simple = "挥拳"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	basic_mob_flags = DEL_ON_DEATH
 	unsuitable_atmos_damage = 2.5
@@ -19,7 +19,7 @@
 	speed = 0
 	ai_controller = /datum/ai_controller/basic_controller/trader
 	sell_sound = 'sound/effects/cashregister.ogg'
-	currency_name = "credits"
+	currency_name = "信用点"
 	spawner_path = /obj/effect/mob_spawn/corpse/human/cyber_police
 	species_path = /datum/species/human
 	loot = list(/obj/effect/mob_spawn/corpse/human/charredskeleton)

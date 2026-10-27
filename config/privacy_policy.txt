@@ -1,86 +1,86 @@
-1. INTRODUCTION AND SCOPE
+1. 引言与适用范围
 
-This Privacy Policy (the “Policy”) outlines the policies and procedures of Bubberstation (“we,” “us,” “our”) regarding the collection, use, and disclosure of personal information. This Policy applies to all individuals (“you,” “user”) who access or use any of our associated services (collectively, the “Services”).
+本隐私政策（下称“本政策”）阐述了巴伯站（下称“我们”）在个人信息的收集、使用与披露方面的政策与程序。本政策适用于访问或使用我们任何相关服务（统称“本服务”）的所有个人（下称“您”或“用户”）。
 
-Our Services include, but are not limited to:
+我们的服务包括但不限于：
 
-    Our game server (“Game”) on the BYOND platform.
-    Our official website, forums, wiki, and status page (collectively, “Website”).
-    Our official Discord server (“Discord”).
-    Our connected Application Programming Interface (API) and any other backend services that connect, track, or link user accounts across these platforms.
+    我们在 BYOND 平台上的游戏服务器（下称“游戏”）。
+    我们的官方网站、论坛、维基与状态页（统称“网站”）。
+    我们的官方 Discord 服务器（下称“Discord”）。
+    我们接入的应用程序编程接口（API），以及任何用于在这些平台之间连接、追踪或关联用户账户的其他后端服务。
 
-By accessing or using any of our Services, you signify your understanding of and agreement to the terms of this Privacy Policy.
+访问或使用我们的任何服务，即表示您已理解并同意本隐私政策的条款。
 
-2. INFORMATION WE COLLECT
+2. 我们收集的信息
 
-In the course of operating our Services, we may collect a wide range of information, which includes:
+在运营本服务的过程中，我们可能会收集各类信息，包括：
 
-    Identifiers and Account Information: This includes information you voluntarily provide, such as your BYOND username (CKey), Discord username and User ID, and any other credentials or identifiers used to register for or access our Services.
-    Device and Hardware Information: We automatically collect data about the device, computer, and software you use to access our Services. This may include, but is not limited to, your IP address, browser type and version, operating system, and unique hardware identifiers (such as a HWID).
-    Service Usage and Log Data: When you interact with our Services, our servers automatically record information. This data may include connection timestamps, in-game actions, chat logs (from the Game and Discord), IP addresses, and records of your activity on our Website.
-    Cookies and Tracking Technologies: We use cookies, web beacons, and similar tracking technologies to collect information about your interactions with our Website. This information is used for essential site functionality, session management, and to preserve your preferences. This may include cookies that store your login state for our website or other connected services.
-    Third-Party Platform Data: When you interact with our Services through third-party platforms such as BYOND, or Discord we may collect information provided to us by those platforms as part of their standard API or service functionality.
-    Date of Birth: When you initially “Get Vetted” on our Discord, you provide us with your Date of Birth in the form of a heavily censored identification card.
+    标识符与账户信息：包括您自愿提供的信息，例如您的 BYOND 用户名（CKey）、Discord 用户名与用户 ID，以及用于注册或访问本服务的任何其他凭据或标识符。
+    设备与硬件信息：我们会自动收集您用于访问本服务的设备、计算机与软件的相关数据。这些数据可能包括但不限于您的 IP 地址、浏览器类型与版本、操作系统，以及唯一硬件标识符（例如 HWID）。
+    服务使用与日志数据：当您与本服务交互时，我们的服务器会自动记录信息。这些数据可能包括连接时间戳、游戏内行为、聊天记录（来自游戏与 Discord）、IP 地址，以及您在我们网站上的活动记录。
+    Cookie 与追踪技术：我们使用 Cookie、网络信标及类似追踪技术来收集您与我们网站交互的信息。这些信息用于网站的基本功能、会话管理以及保存您的偏好设置。其中可能包括用于存储您在我们网站或其他关联服务中登录状态的 Cookie。
+    第三方平台数据：当您通过 BYOND 或 Discord 等第三方平台与本服务交互时，我们可能会收集这些平台作为其标准 API 或服务功能的一部分向我们提供的信息。
+    出生日期：当您首次在我们的 Discord 上“接受认证审核”时，您需要以经过重度打码的身份证件形式向我们提供您的出生日期。
 
-3. BASIS FOR AND PURPOSE OF DATA USE
+3. 数据使用的依据与目的
 
-Our processing of your personal information is for the legitimate interest of operating, maintaining, and moderating our community and Services. We do not use your data for commercial analytics, marketing, or to sell to any third party.
+我们处理您的个人信息，是为了运营、维护与管理我们的社区及服务这一正当利益。我们不会将您的数据用于商业分析、营销，也不会将其出售给任何第三方。
 
-The purposes for which we use your information are:
+我们使用您信息的目的如下：
 
-    Provision and Operation of Services: To operate, maintain, and provide the full functionality of the Game, Website, and all connected Services.
-    Account Management and Integration: To create and maintain your account, and to facilitate the linking of your various accounts (BYOND, Discord, etc.) via our API for integrated community features.
-    Security, Integrity, and Rule Enforcement: To protect the security and integrity of our Services and community.
-    Legal Compliance: To comply with any applicable laws, regulations, or legal processes.
-    Age Verification: To ensure that Bubberstation is free of minors due to the erotic nature of the server.
+    服务的提供与运营：运营、维护游戏、网站及所有关联服务，并提供其全部功能。
+    账户管理与整合：创建并维护您的账户，并通过我们的 API 关联您的各类账户（BYOND、Discord 等），以实现社区功能的整合。
+    安全、完整性与规则执行：保护我们的服务与社区的安全和完整性。
+    法律合规：遵守任何适用的法律、法规或法律程序。
+    年龄验证：鉴于本服务器的成人内容性质，确保巴伯站没有未成年人。
 
-4. DATA SHARING AND DISCLOSURE
+4. 数据共享与披露
 
-We do not sell, rent, lease, or trade your personal information. Your information is disclosed only in the following limited circumstances:
+我们不会出售、出租、租借或交易您的个人信息。仅在以下有限情形下，您的信息才会被披露：
 
-    Third-Party Service Providers: Your information is inherently processed by the third-party platforms you use to access our Services (e.g., BYOND, and Discord) and by our infrastructure providers (e.g., our servers or Website hosts). We do not control the privacy practices of these third parties.
-    Authorized Volunteer Staff: Our authorized volunteer administrators and moderators may be granted access to your personal information (such as logs, IP addresses, and hardware identifiers) strictly as necessary to perform their moderation and administrative duties in accordance with our internal policies.
-    Legal Compliance and Protection: We may disclose your information if we believe in good faith that such disclosure is necessary to: (a) comply with a legal obligation, (b) protect and defend our rights or property, (c) act in urgent circumstances to protect the personal safety of users or the public, or (d) protect against legal liability.
+    第三方服务提供商：您的信息必然会由您用于访问本服务的第三方平台（例如 BYOND 与 Discord）以及我们的基础设施提供商（例如我们的服务器或网站托管商）处理。我们无法控制这些第三方的隐私实践。
+    经授权的志愿工作人员：我们经授权的志愿管理员与版主，仅在严格按照我们的内部政策履行管理与行政职责所必需时，才可能被授予访问您个人信息（例如日志、IP 地址与硬件标识符）的权限。
+    法律合规与保护：如果我们善意地认为披露您的信息对于以下目的是必要的，我们可能会披露该信息：(a) 遵守法律义务；(b) 保护并捍卫我们的权利或财产；(c) 在紧急情况下保护用户或公众的人身安全；或 (d) 防范法律责任。
 
-5. DATA STORAGE AND SECURITY
+5. 数据存储与安全
 
-We implement reasonable administrative and technical security measures to protect your personal information from unauthorized access, use, or disclosure. We store data on secure servers, primarily located in the United States. However, no method of transmission over the Internet or method of electronic storage is 100% secure. Therefore, we cannot guarantee its absolute security.
+我们实施合理的管理与技术安全措施，保护您的个人信息免遭未经授权的访问、使用或披露。我们将数据存储在安全的服务器上，这些服务器主要位于美国。然而，任何互联网传输方法或电子存储方法都无法做到 100% 安全。因此，我们无法保证其绝对安全。
 
-6. DATA RETENTION
+6. 数据保留
 
-We retain your personal information for as long as it is necessary to fulfill the purposes for which it was collected and to provide our Services.
+我们会在实现信息收集目的及提供本服务所必需的期限内保留您的个人信息。
 
-    Information related to the general use of the Services, such as transient logs, may be retained for a limited period.
-    Information related to your account profile may be retained for as long as your account is active.
-    Data related to moderation, sanctions, rule violations, or enforcement actions (including associated identifiers like CKey, IP address, and HWID) may be retained indefinitely.
+    与服务一般使用相关的信息（例如临时日志）可能会在有限期限内保留。
+    与您账户资料相关的信息可能会在您的账户处于活跃状态期间保留。
+    与管理、处罚、违规或执法行动相关的数据（包括 CKey、IP 地址与 HWID 等相关标识符）可能会被无限期保留。
 
-7. YOUR DATA RIGHTS AND CHOICES
+7. 您的数据权利与选择
 
-We honor your rights to your data, including those provided under regulations like the GDPR. Subject to applicable law, you may have the right to:
+我们尊重您对自身数据的权利，包括 GDPR 等法规赋予的权利。在适用法律允许的范围内，您可能有权：
 
-    Right of Access: Request a copy of the personal information we hold about you.
-    Right to Rectification: Request correction of inaccurate personal information.
-    Right to Erasure (Right to be Forgotten): Request the deletion of your personal information.
+    访问权：请求获取我们所持有的关于您的个人信息的副本。
+    更正权：请求更正不准确的个人信息。
+    删除权（被遗忘权）：请求删除您的个人信息。
 
-How to Make a Request:
+如何提出请求：
 
-To exercise any of these rights, you must contact us via the designated contact email at the bottom of the policy page.
+要行使上述任何权利，您必须通过政策页面底部指定的联系邮箱与我们联系。
 
-Limitations:
+限制：
 
-    Requesting deletion is irreversible and will result in the permanent removal of your account, game progress, and associated data.
-    We may decline requests that are excessively repetitive, require disproportionate technical effort, or jeopardize the privacy of others.
-    We cannot fulfill deletion requests for data that we are legally required to maintain.
-    We will not delete data related to moderation and ban records.
+    请求删除不可撤销，并将导致您的账户、游戏进度及相关数据被永久移除。
+    对于过度重复、需要付出不成比例的技术努力或危及他人隐私的请求，我们可能会予以拒绝。
+    对于法律要求我们保留的数据，我们无法满足删除请求。
+    我们不会删除与管理及封禁记录相关的数据。
 
-8. CHILDREN’S PRIVACY
+8. 儿童隐私
 
-Bubberstation prohibits minors from using its platforms. Bubberstation is forbidden for persons under the age of 18 and the applicable age of majority in the jurisdiction from which Bubberstation is accessed. As indicated throughout this Privacy Notice, some users may be asked to provide some information to us and our service providers for us to make sure that you are over the age of majority required to have access to Bubberstation. We do not knowingly process personal information from minors. If you are the parent or legal guardian of a minor who has provided us with personal information, then please contact us at contact.bubberstation@gmail.com to have that minor’s personal information deleted.
+巴伯站禁止未成年人使用其平台。未满 18 岁者，以及未达到其访问巴伯站所在司法管辖区适用成年年龄者，均禁止使用巴伯站。如本隐私声明全文所述，部分用户可能会被要求向我们及我们的服务提供商提供一些信息，以便我们确认您已达到访问巴伯站所需的成年年龄。我们不会在知情的情况下处理未成年人的个人信息。如果您是向我们提供了个人信息的未成年人的父母或法定监护人，请通过 contact.bubberstation@gmail.com 与我们联系，以删除该未成年人的个人信息。
 
-9. CHANGES TO THIS PRIVACY POLICY
+9. 本隐私政策的变更
 
-We reserve the right to modify this Privacy Policy at any time. Any changes will be posted to this page, and we will notify you of any significant changes by posting a notice on our Website or in our Discord. Your continued use of the Services after such changes constitutes your acceptance of the revised Policy.
+我们保留随时修改本隐私政策的权利。任何变更都将发布在本页面上；对于任何重大变更，我们将通过在我们的网站或 Discord 上发布通知来告知您。在此类变更后您继续使用本服务，即构成您对修订后政策的接受。
 
-10. CONTACT US
+10. 联系我们
 
-If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact us: contact.bubberstation@gmail.com
+如果您对本隐私政策有任何疑问，或希望行使您的数据权利，请与我们联系：contact.bubberstation@gmail.com

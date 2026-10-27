@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(robotic_styles_list)
 
 /datum/robotic_style
-	var/name = "None"
+	var/name = "无"
 	/// The .dmi path for this robotic style
 	var/icon = "None"
 	/// If this style should override the default limb_id
@@ -15,143 +15,143 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	return ..()
 
 /datum/robotic_style/scrappyipc
-	name = "Scrappy"
+	name = "破烂"
 	icon = 'modular_zubbers/icons/mob/augmentation/scrappyipc.dmi' // for ones that don't have associated limb atoms just setting icon works fine
 
 /datum/robotic_style/scrappyipc_greyscale
-	name = "Scrappy (Greyscale)"
+	name = "破烂（灰度）"
 	icon = 'modular_zubbers/icons/mob/augmentation/scrappyipc_greyscale.dmi'
 
 /datum/robotic_style/surplus
-	name = "Surplus"
+	name = "廉价"
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
 
 /datum/robotic_style/cyborg
-	name = "Cyborg"
+	name = "半机械人"
 	icon = 'icons/mob/augmentation/augments.dmi'
 
 /datum/robotic_style/engineering
-	name = "Engineering"
+	name = "工程"
 	icon = 'icons/mob/augmentation/augments_engineer.dmi'
 
 /datum/robotic_style/mining
-	name = "Mining"
+	name = "采矿"
 	icon = 'icons/mob/augmentation/augments_mining.dmi'
 
 /datum/robotic_style/security
-	name = "Security"
+	name = "安保"
 	icon = 'icons/mob/augmentation/augments_security.dmi'
 
 /datum/robotic_style/mcgipc
-	name = "Morpheus Cyberkinetics"
+	name = "墨菲斯控制论公司"
 	icon = 'modular_zubbers/icons/mob/augmentation/mcgipc.dmi'
 
 /datum/robotic_style/bshipc
-	name = "Bishop Cyberkinetics"
+	name = "毕晓普控制论公司"
 	icon = 'modular_zubbers/icons/mob/augmentation/bshipc.dmi'
 
 /datum/robotic_style/bs2ipc
-	name = "Bishop Cyberkinetics 2.0"
+	name = "毕晓普控制论公司 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/bs2ipc.dmi'
 
 /datum/robotic_style/e3n
-	name = "E3N AI"
+	name = "E3N 人工智能"
 	icon = 'modular_zubbers/icons/mob/augmentation/e3n.dmi'
 
 /datum/robotic_style/hsiipc
-	name = "Hephaestus Industries"
+	name = "赫菲斯托斯工业"
 	icon = 'modular_zubbers/icons/mob/augmentation/hsiipc.dmi'
 
 /datum/robotic_style/hifbp
-	name = "Hephaestus Industries FBP"
+	name = "赫菲斯托斯工业 FBP"
 	icon = 'modular_zubbers/icons/mob/augmentation/hsifbp.dmi'
 
 /datum/robotic_style/hi2ipc
-	name = "Hephaestus Industries 2.0"
+	name = "赫菲斯托斯工业 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/hi2ipc.dmi'
 
 /datum/robotic_style/hi2fbp
-	name = "Hephaestus Industries FBP 2.0"
+	name = "赫菲斯托斯工业 FBP 2.0"
 	icon = 'modular_zubbers/icons/mob/augmentation/hi2fbp.dmi'
 
 /datum/robotic_style/sgmipc
-	name = "Shellguard Munitions Standard Series"
+	name = "壳卫军械标准系列"
 	icon = 'modular_zubbers/icons/mob/augmentation/sgmipc.dmi'
 
 /datum/robotic_style/wtmipc
-	name = "Ward-Takahashi Manufacturing"
+	name = "沃德-高桥制造"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmipc.dmi'
 
 /datum/robotic_style/wtspirit
-	name = "Ward-Takahashi Manufacturing Spirit"
+	name = "沃德-高桥制造·灵"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmspirit.dmi'
 
 /datum/robotic_style/wtmfbpmasc
-	name = "Ward-Takahashi Manufacturing Masc FBP"
+	name = "沃德-高桥制造 男性 FBP"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpmasc.dmi'
 
 /datum/robotic_style/wtmfbpfemme
-	name = "Ward-Takahashi Manufacturing Femme FBP"
+	name = "沃德-高桥制造 女性 FBP"
 	icon = 'modular_zubbers/icons/mob/augmentation/wtmfbpfemme.dmi'
 
 /datum/robotic_style/xmgipc
-	name = "Xion Manufacturing Group"
+	name = "希昂制造集团"
 	icon = 'modular_zubbers/icons/mob/augmentation/xmgipc.dmi'
 
 /datum/robotic_style/xmgalt
-	name = "Xion Manufacturing Group Alt"
+	name = "希昂制造集团 另款"
 	icon = 'modular_zubbers/icons/mob/augmentation/xmgalt.dmi'
 
 /datum/robotic_style/xm2ipc
-	name = "Xion Manufacturing Group 2.0"
+	name = "希昂制造集团 2.0"
 	icon ='modular_zubbers/icons/mob/augmentation/xm2ipc.dmi'
 
 /datum/robotic_style/zhpipc
-	name = "Zeng-Hu Pharmaceuticals"
+	name = "曾虎制药"
 	icon = 'modular_zubbers/icons/mob/augmentation/zhpipc.dmi'
 
 /datum/robotic_style/mariinskyipc
-	name = "Mariinsky Ballet Company"
+	name = "马林斯基芭蕾舞团"
 	icon = 'modular_zubbers/icons/mob/augmentation/mariinskyipc.dmi'
 
 /datum/robotic_style/unmarked
-	name = "Unmarked"
+	name = "无标识"
 	icon = 'modular_zubbers/icons/mob/augmentation/unmarked.dmi'
 
 /datum/robotic_style/holy_masc
-	name = "Holy Brass Masc"
+	name = "圣黄铜男性款"
 	icon = 'modular_zubbers/icons/mob/augmentation/holy_masc.dmi'
 
 /datum/robotic_style/holy_femme
-	name = "Holy Brass Femme"
+	name = "圣黄铜女性款"
 	icon = 'modular_zubbers/icons/mob/augmentation/holy_femme.dmi'
 
 /datum/robotic_style/junktech
-	name = "Junktech"
+	name = "废品科技"
 	icon = 'modular_zubbers/icons/mob/augmentation/advanced_ghetto.dmi'
 
 /datum/robotic_style/radical
-	name = "Radical"
+	name = "激进派"
 	icon = 'modular_zubbers/icons/mob/augmentation/radical.dmi'
 
 /datum/robotic_style/lonestar
-	name = "Lone Star"
+	name = "孤星"
 	icon = 'modular_zubbers/icons/mob/augmentation/lonestar.dmi'
 
 /datum/robotic_style/moebius
-	name = "Moebius"
+	name = "莫比乌斯"
 	icon = 'modular_zubbers/icons/mob/augmentation/moebius.dmi'
 
 /datum/robotic_style/technomancer
-	name = "Technomancer"
+	name = "技术法师"
 	icon = 'modular_zubbers/icons/mob/augmentation/technomancer.dmi'
 
 /datum/robotic_style/blackshield
-	name = "Blackshield"
+	name = "黑盾"
 	icon = 'modular_zubbers/icons/mob/augmentation/blackshield.dmi'
 
 /datum/robotic_style/excelsior
-	name = "Excelsior"
+	name = "卓越"
 	icon = 'modular_zubbers/icons/mob/augmentation/excelsior.dmi'
 
 /datum/robotic_style/dimorphic // subtype so we don't have to define dimorphic head+chest every single time
@@ -162,17 +162,17 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	)
 
 /datum/robotic_style/dimorphic/akula
-	name = "Akula (Robotic)"
+	name = "阿库拉（机械）"
 	icon = BODYPART_ICON_AKULA
 	limb_id_override = /obj/item/bodypart/chest/mutant/akula::limb_id
 
 /datum/robotic_style/dimorphic/anthro
-	name = "Anthro (Robotic)"
+	name = "兽人型（机械）"
 	icon = BODYPART_ICON_MAMMAL
 	limb_id_override = /obj/item/bodypart/chest/mutant::limb_id
 
 /datum/robotic_style/dimorphic/lizard
-	name = "Lizard (Robotic)"
+	name = "蜥蜴人（机械）"
 	icon = BODYPART_ICON_LIZARD
 	limb_id_override = /obj/item/bodypart/chest/lizard::limb_id
 	dimorphic_overrides = list(
@@ -181,17 +181,17 @@ GLOBAL_LIST_EMPTY(robotic_styles_list)
 	)
 
 /datum/robotic_style/dimorphic/moth
-	name = "Moth (Robotic)"
+	name = "蛾人（机械）"
 	icon = BODYPART_ICON_MOTH
 	limb_id_override = /obj/item/bodypart/chest/moth::limb_id
 
 /datum/robotic_style/dimorphic/vox
-	name = "Vox (Robotic)"
+	name = "沃克斯人（机械）"
 	icon = BODYPART_ICON_VOX
 	limb_id_override = /obj/item/bodypart/chest/mutant/vox::limb_id
 
 /datum/robotic_style/dimorphic/xenohybrid
-	name = "Xenohybrid (Robotic)"
+	name = "异种混血（机械）"
 	icon = BODYPART_ICON_XENO
 	limb_id_override = /obj/item/bodypart/chest/mutant/xenohybrid::limb_id
 

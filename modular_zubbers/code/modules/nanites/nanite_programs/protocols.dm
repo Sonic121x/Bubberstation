@@ -1,8 +1,8 @@
 //Replication Protocols
 /datum/nanite_program/protocol/kickstart
-	name = "Kickstart Protocol"
-	desc = "Replication Protocol: the nanites focus on early growth, heavily boosting replication rate for a few minutes after the initial implantation, \
-			resulting in an additional 420 nanite volume being produced during the first two minutes."
+	name = "启动协议"
+	desc = "复制协议：纳米机器人专注于初期增殖，在植入后的几分钟内大幅提高复制速率， \
+			从而在前两分钟内额外产出 420 点纳米机器人容量。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -17,10 +17,10 @@
 	nanites.adjust_nanites(null, NANITE_PROTOCOL_KICKSTART_REPLICATION)
 
 /datum/nanite_program/protocol/factory
-	name = "Factory Protocol"
-	desc = "Replication Protocol: the nanites build a factory matrix within the host, gradually increasing replication speed over time, \
-			granting a maximum of 2 additional nanite production after roughly 17 minutes. \
-			The factory decays if the protocol is not active, or if the nanites are disrupted by shocks or EMPs."
+	name = "工厂协议"
+	desc = "复制协议：纳米机器人在宿主体内建立工厂矩阵，随着时间推移逐步提高复制速度， \
+			约 17 分钟后最多可额外产出 2 点纳米机器人。 \
+			若协议未激活，或纳米机器人受到电击、电磁脉冲干扰，工厂会逐渐衰退。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -49,9 +49,9 @@
 	nanites.adjust_nanites(null, round(0.002 * factory_efficiency, 0.1))
 
 /datum/nanite_program/protocol/pyramid
-	name = "Pyramid Protocol"
-	desc = "Replication Protocol: the nanites implement an alternate cooperative replication protocol that is active as long as the nanite saturation level is above 80%, \
-			resulting in an additional volume production of 1.2 per second."
+	name = "金字塔协议"
+	desc = "复制协议：纳米机器人启用一种替代性的协作复制协议，只要纳米机器人饱和率高于 80% 便持续生效， \
+			额外产出 1.2 点容量/秒。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -67,8 +67,8 @@
 	nanites.adjust_nanites(null, boost)
 
 /datum/nanite_program/protocol/offline
-	name = "Eclipse Protocol"
-	desc = "Replication Protocol: while the host is asleep or otherwise unconcious, the nanites exploit the reduced interference to replicate more quickly."
+	name = "月蚀协议"
+	desc = "复制协议：当宿主处于睡眠或其他昏迷状态时，纳米机器人利用干扰减少的机会加快复制。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_REPLICATION
@@ -85,8 +85,8 @@
 	nanites.adjust_nanites(null, boost)
 
 /datum/nanite_program/protocol/hive
-	name = "Hive Protocol"
-	desc = "Storage Protocol: the nanites use a more efficient grid arrangment for volume storage, increasing maximum volume to 750."
+	name = "蜂巢协议"
+	desc = "储存协议：纳米机器人采用更高效的网格排列来储存容量，将最大容量提升至 750。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_STORAGE
@@ -101,8 +101,8 @@
 	nanites.set_max_volume(null, nanites.max_nanites - extra_volume)
 
 /datum/nanite_program/protocol/zip
-	name = "Zip Protocol"
-	desc = "Storage Protocol: the nanites are disassembled and compacted when unused, increasing the maximum volume to 1000. However, the process slows down their replication rate slightly."
+	name = "压缩协议"
+	desc = "储存协议：纳米机器人在闲置时会被拆解并压缩，将最大容量提升至 1000。不过，这一过程会略微拖慢其复制速度。"
 	use_rate = 0.2
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_STORAGE
@@ -117,8 +117,8 @@
 	nanites.set_max_volume(null, nanites.max_nanites - extra_volume)
 
 /datum/nanite_program/protocol/free_range
-	name = "Free-range Protocol"
-	desc = "Storage Protocol: the nanites discard their default storage protocols in favour of a cheaper and more organic approach. Reduces maximum volume to 250, but increases the replication rate by 0.5."
+	name = "散养协议"
+	desc = "储存协议：纳米机器人舍弃默认储存协议，改用一种更廉价、更有机的方式。最大容量降低至 250，但复制速率提高 0.5。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_STORAGE
@@ -137,9 +137,9 @@
 	nanites.adjust_nanites(null, boost)
 
 /datum/nanite_program/protocol/unsafe_storage
-	name = "S.L.O. Protocol"
-	desc = "Storage Protocol: 'S.L.O.P.', or Storage Level Override Protocol, completely disables the safety measures normally present in nanites, \
-			allowing them to reach a whopping maximum volume level of 2000, but at the risk of causing damage to the host at nanite concentrations above the standard limit of 500."
+	name = "S.L.O. 协议"
+	desc = "储存协议：“S.L.O.P.”，即储存等级覆盖协议，彻底禁用了纳米机器人通常自带的安全措施， \
+			使其最高容量可达 2000，但当纳米机器人浓度超过标准上限 500 时，可能对宿主造成伤害。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/necrotic)
 	protocol_class = NANITE_PROTOCOL_STORAGE
@@ -147,33 +147,33 @@
 	var/next_warning = 0
 	var/min_warning_cooldown = 120
 	var/max_warning_cooldown = 350
-	var/volume_warnings_stage_1 = list("You feel a dull pain in your abdomen.",
-									"You feel a tickling sensation in your abdomen.")
-	var/volume_warnings_stage_2 = list("You feel a dull pain in your stomach.",
-									"You feel a dull pain when breathing.",
-									"Your stomach grumbles.",
-									"You feel a tickling sensation in your throat.",
-									"You feel a tickling sensation in your lungs.",
-									"You feel a tickling sensation in your stomach.",
-									"Your lungs feel stiff.")
-	var/volume_warnings_stage_3 = list("You feel a dull pain in your chest.",
-									"You hear a faint buzzing coming from nowhere.",
-									"You hear a faint buzzing inside your head.",
-									"Your head aches.")
-	var/volume_warnings_stage_4 = list("You feel a dull pain in your ears.",
-									"You feel a dull pain behind your eyes.",
-									"You hear a loud, echoing buzz inside your ears.",
-									"You feel dizzy.",
-									"You feel an itch coming from behind your eyes.",
-									"Your eardrums itch.",
-									"You see tiny grey motes drifting in your field of view.")
-	var/volume_warnings_stage_5 = list("You feel sick.",
-									"You feel a dull pain from every part of your body.",
-									"You feel nauseous.")
-	var/volume_warnings_stage_6 = list("Your skin itches and burns.",
-									"Your muscles ache.",
-									"You feel tired.",
-									"You feel something skittering under your skin.",)
+	var/volume_warnings_stage_1 = list("你的腹部隐隐作痛。",
+									"你的腹部有阵阵瘙痒感。")
+	var/volume_warnings_stage_2 = list("你的胃部隐隐作痛。",
+									"你呼吸时感到隐隐作痛。",
+									"你的肚子咕咕作响。",
+									"你的喉咙有阵阵瘙痒感。",
+									"你的肺部有阵阵瘙痒感。",
+									"你的胃部有阵阵瘙痒感。",
+									"你的肺部感到僵硬。")
+	var/volume_warnings_stage_3 = list("你的胸口隐隐作痛。",
+									"你听到不知从何处传来的微弱嗡鸣。",
+									"你听到脑中传来微弱的嗡鸣。",
+									"你的头很痛。")
+	var/volume_warnings_stage_4 = list("你的耳朵隐隐作痛。",
+									"你的双眼后方隐隐作痛。",
+									"你听到耳中传来响亮而回荡的嗡鸣。",
+									"你感到头晕目眩。",
+									"你的双眼后方传来瘙痒感。",
+									"你的耳膜发痒。",
+									"你看到视野中有细小的灰色微粒飘动。")
+	var/volume_warnings_stage_5 = list("你感到恶心。",
+									"你全身各处都隐隐作痛。",
+									"你感到反胃。")
+	var/volume_warnings_stage_6 = list("你的皮肤又痒又灼痛。",
+									"你的肌肉酸痛。",
+									"你感到疲惫。",
+									"你感觉皮肤下有东西在爬动。")
 
 /datum/nanite_program/protocol/unsafe_storage/enable_passive_effect()
 	. = ..()

@@ -1,6 +1,6 @@
 /obj/machinery/nanite_programmer
-	name = "nanite programmer"
-	desc = "A device that can edit nanite program disks to adjust their functionality."
+	name = "纳米机器人编程器"
+	desc = "一种可编辑纳米机器人程序磁盘以调整其功能的装置。"
 	icon = 'modular_zubbers/icons/obj/machines/nanite_machines.dmi'
 	icon_state = "nanite_programmer"
 	use_power = IDLE_POWER_USE
@@ -35,7 +35,7 @@
 	var/obj/item/disk/nanite_program/new_disk = tool
 	if(!user.transferItemToLoc(new_disk, src))
 		return NONE
-	to_chat(user, span_notice("You insert [new_disk] into [src]"))
+	to_chat(user, span_notice("你将 [new_disk] 插入 [src]。"))
 	playsound(src, 'sound/machines/terminal/terminal_insert_disc.ogg', 50, FALSE)
 	if(disk)
 		eject(user)
@@ -65,7 +65,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
 	if(disk && user.can_perform_action(src, !issilicon(user)))
-		to_chat(user, span_notice("You take out [disk] from [src]."))
+		to_chat(user, span_notice("你从 [src] 中取出 [disk]。"))
 		eject(user)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -115,7 +115,7 @@
 		if("toggle_active")
 			playsound(src, "terminal_type", 25, FALSE)
 			program.activated = !program.activated //we don't use the activation procs since we aren't in a mob
-			investigate_log("[key_name(usr)] edited [program.name]'s initial activation status into [program.activated ? "Activated" : "Deactivated"]", INVESTIGATE_NANITES)
+			investigate_log("[key_name(usr)] 将 [program.name] 的初始激活状态改为 [program.activated ? "已激活" : "已停用"]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_code")
 			var/new_code = text2num(params["code"])
@@ -124,20 +124,20 @@
 			switch(target_code)
 				if("activation")
 					program.activation_code = clamp(round(new_code, 1),0,9999)
-					investigate_log("[key_name(usr)] edited [program.name]'s activation code into [program.activation_code]", INVESTIGATE_NANITES)
+					investigate_log("[key_name(usr)] 将 [program.name] 的激活代码改为 [program.activation_code]", INVESTIGATE_NANITES)
 				if("deactivation")
 					program.deactivation_code = clamp(round(new_code, 1),0,9999)
-					investigate_log("[key_name(usr)] edited [program.name]'s deactivation code into [program.deactivation_code]", INVESTIGATE_NANITES)
+					investigate_log("[key_name(usr)] 将 [program.name] 的停用代码改为 [program.deactivation_code]", INVESTIGATE_NANITES)
 				if("kill")
 					program.kill_code = clamp(round(new_code, 1),0,9999)
-					investigate_log("[key_name(usr)] edited [program.name]'s kill code into [program.kill_code]", INVESTIGATE_NANITES)
+					investigate_log("[key_name(usr)] 将 [program.name] 的终止代码改为 [program.kill_code]", INVESTIGATE_NANITES)
 				if("trigger")
 					program.trigger_code = clamp(round(new_code, 1),0,9999)
-					investigate_log("[key_name(usr)] edited [program.name]'s trigger code into [program.trigger_code]", INVESTIGATE_NANITES)
+					investigate_log("[key_name(usr)] 将 [program.name] 的触发代码改为 [program.trigger_code]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_extra_setting")
 			program.set_extra_setting(params["target_setting"], params["value"])
-			investigate_log("[key_name(usr)] edited [program.name]'s extra setting '[params["target_setting"]]' into [params["value"]]", INVESTIGATE_NANITES)
+			investigate_log("[key_name(usr)] 将 [program.name] 的额外设置“[params["target_setting"]]”改为 [params["value"]]", INVESTIGATE_NANITES)
 			playsound(src, "terminal_type", 25, FALSE)
 			. = TRUE
 		if("set_restart_timer")
@@ -147,7 +147,7 @@
 				timer = clamp(round(timer, 1), 0, 3600)
 				timer *= 10 //convert to deciseconds
 				program.timer_restart = timer
-				investigate_log("[key_name(usr)] edited [program.name]'s restart timer into [timer/10] s", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 将 [program.name] 的重启计时器改为 [timer/10] 秒", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_shutdown_timer")
 			var/timer = text2num(params["delay"])
@@ -156,7 +156,7 @@
 				timer = clamp(round(timer, 1), 0, 3600)
 				timer *= 10 //convert to deciseconds
 				program.timer_shutdown = timer
-				investigate_log("[key_name(usr)] edited [program.name]'s shutdown timer into [timer/10] s", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 将 [program.name] 的关闭计时器改为 [timer/10] 秒", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_trigger_timer")
 			var/timer = text2num(params["delay"])
@@ -165,7 +165,7 @@
 				timer = clamp(round(timer, 1), 0, 3600)
 				timer *= 10 //convert to deciseconds
 				program.timer_trigger = timer
-				investigate_log("[key_name(usr)] edited [program.name]'s trigger timer into [timer/10] s", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 将 [program.name] 的触发计时器改为 [timer/10] 秒", INVESTIGATE_NANITES)
 			. = TRUE
 		if("set_timer_trigger_delay")
 			var/timer = text2num(params["delay"])
@@ -174,11 +174,11 @@
 				timer = clamp(round(timer, 1), 0, 3600)
 				timer *= 10 //convert to deciseconds
 				program.timer_trigger_delay = timer
-				investigate_log("[key_name(usr)] edited [program.name]'s trigger delay timer into [timer/10] s", INVESTIGATE_NANITES)
+				investigate_log("[key_name(usr)] 将 [program.name] 的触发延迟计时器改为 [timer/10] 秒", INVESTIGATE_NANITES)
 			. = TRUE
 
 /obj/machinery/nanite_programmer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range=0)
 	. = ..()
 	var/static/regex/when = regex("(?:^\\W*when|when\\W*$)", "i") //starts or ends with when
 	if(findtext(raw_message, when) && !istype(speaker, /obj/machinery/nanite_programmer))
-		say("When you code it!!")
+		say("等你写出来再说！！")

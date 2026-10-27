@@ -11,8 +11,8 @@
 	wound = 25
 
 /obj/item/clothing/under/syndicate/skyrat/maid/armored
-	desc = "A 'tactical' skirtleneck fashioned to the likeness of a maid outfit. \
-	The armor on this one is bulky and blocks the user from wearing any chest armor."
+	desc = "仿照女仆装设计的“战术”高领裙装。 \
+	这一件的装甲十分笨重，让穿着者无法再穿任何胸部护甲。"
 	armor_type = /datum/armor/clothing_under/syndimaid
 	body_parts_covered = CHEST|GROIN|LEGS
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
@@ -56,5 +56,5 @@
 	resistance_flags = parent_type::resistance_flags | FIRE_PROOF
 
 /obj/item/clothing/shoes/jackboots/heel/tactical
-	name = "tactical high-heeled jackboots"
+	name = "战术高跟长筒靴"
 	clothing_traits = list(TRAIT_NO_SLIP_WATER)

@@ -1,10 +1,10 @@
 //scan shadekin
 
 /datum/experiment/scanning/people/open_minds
-	name = "Human Field Research: Connected Minds"
-	description = "We need data on the effects of extra-sensory communication in organisms. Scan some samples of humanoid organisms which can think out loud."
-	performance_hint = "Such capabilities can be induced with genetic infusion, or finding the right person."
-	required_traits_desc = "extra-sensory communication"
+	name = "人类实地研究：互联心智"
+	description = "我们需要关于生物超感官交流效果的数据。扫描一些能够出声思考的人形生物样本。"
+	performance_hint = "此类能力可通过基因注入诱发，或者找到合适的人。"
+	required_traits_desc = "超感官交流"
 	required_count = 2
 
 /datum/experiment/scanning/people/open_minds/is_valid_scan_target(mob/living/carbon/human/check)

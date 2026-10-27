@@ -18,4 +18,4 @@
 	results = list(/datum/reagent/consumable/blumpkin_compot = 9)
 	required_reagents = list(/datum/reagent/consumable/blumpkinjuice = 4, /datum/reagent/consumable/berryjuice = 2, /datum/reagent/consumable/hakka_mate = 2,/datum/reagent/consumable/sugar = 1)
 	required_temp = 373.15 //Boil to make stew...
-	mix_message = "The mixture reaches a boil, and begins to generate an electric charge..."
+	mix_message = "混合物沸腾起来，并开始产生电荷……"

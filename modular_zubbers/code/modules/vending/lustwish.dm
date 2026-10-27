@@ -1,7 +1,7 @@
 /obj/machinery/vending/dorms
 	zubbers_product_categories = list(
 		list(
-			"name" = "Restraints",
+			"name" = "束缚用品",
 			"icon" = FA_ICON_HANDCUFFS,
 			"products" = list(
 				/obj/item/clothing/neck/human_petcollar/locked/ringbell = 8,
@@ -12,7 +12,7 @@
 		),
 
 	list(
-			"name" = "Outfits",
+			"name" = "服装",
 			"icon" = FA_ICON_SHIRT,
 			"products" = list(
 				/obj/item/clothing/head/playbunnyears = 6,
@@ -26,7 +26,7 @@
 		),
 
 	list(
-			"name" = "Toys",
+			"name" = "玩具",
 			"icon" = FA_ICON_MAGIC_WAND_SPARKLES,
 			"products" = list(
 				/obj/item/clicker = 6,

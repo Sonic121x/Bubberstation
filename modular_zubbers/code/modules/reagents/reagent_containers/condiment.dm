@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/condiment/moth_milk
-	name = "Moth Milk"
+	name = "蛾奶"
 	icon = 'modular_zubbers/icons/obj/food/reagent_containers.dmi'
-	desc = "A carton filled with milk... from moths?!"
+	desc = "一盒牛奶……挤自蛾子？！"
 	icon_state = "moth_milk"
 	inhand_icon_state = "carton"
 	list_reagents = list(/datum/reagent/consumable/moth_milk = 50)

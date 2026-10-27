@@ -1,3 +1,3 @@
 /obj/item/organ/lungs/lycan
-	name = "lupine lungs"
-	desc = "These lungs are larger than normal." // Placeholder
+	name = "狼人肺"
+	desc = "这对肺比正常尺寸更大。" // Placeholder

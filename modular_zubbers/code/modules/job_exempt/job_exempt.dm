@@ -102,9 +102,9 @@ GLOBAL_LIST_INIT(job_exempt_cache, list())
 		return
 	var/list/dat = list()
 	if(!SSdbcore.Connect())
-		dat += "Can't connect to the database"
+		dat += "无法连接到数据库"
 	else
-		dat += "Toggle playtime exemption for specific jobs for the ckey: [target_ckey]<HR>"
+		dat += "为以下 ckey 切换特定职业的游戏时长豁免：[target_ckey]<HR>"
 		var/job_count = 0
 		dat += "<table width='100%'><tr><td width='33%' valign='top'>"
 		for(var/datum/job_department/department as anything in SSjob.joinable_departments)
@@ -116,7 +116,7 @@ GLOBAL_LIST_INIT(job_exempt_cache, list())
 				job_count++
 				dat += "<a [is_job_exempt_from(target_ckey, job.title) ? "class='linkOn'" : ""] href='byond://?_src_=holder;[HrefToken()];getjobexempttask=[target_ckey];task=togglejob;job=[job.title]'>[job.title]</a><br>"
 		dat += "</tr></td></table>"
-	var/datum/browser/popup = new(user, "job_exempt_menu", "Job Exemption Menu", 730, 650)
+	var/datum/browser/popup = new(user, "job_exempt_menu", "职业豁免菜单", 730, 650)
 	popup.set_content(dat.Join())
 	popup.open()
 
@@ -140,10 +140,10 @@ GLOBAL_LIST_INIT(job_exempt_cache, list())
 			var/newstate = !is_job_exempt_from(target_ckey, job_title)
 			set_job_exempt_state(target_ckey, job_title, newstate)
 			// Announce to admins which admin is modifying whose exemptions
-			message_admins("[key_name_admin(user)] has [newstate ? "activated" : "deactivated"] job exp exempt status on ckey [target_ckey] for job: [job_title]")
-			log_admin("[key_name(user)] has [newstate ? "activated" : "deactivated"] job exp exempt status on ckey [target_ckey] for job: [job_title]")
+			message_admins("[key_name_admin(user)] 已为 ckey [target_ckey] [newstate ? "开启" : "关闭"]职业经验豁免状态，职业：[job_title]")
+			log_admin("[key_name(user)] 已为 ckey [target_ckey] [newstate ? "开启" : "关闭"]职业经验豁免状态，职业：[job_title]")
 			// If a client whose job exemption is being modified, announce it to the player aswell
 			var/client/client = GLOB.directory[target_ckey]
 			if(client)
-				to_chat(client, span_boldnotice("Job exemption status for [job_title] has been [newstate ? "activated" : "deactivated"]"))
+				to_chat(client, span_boldnotice("[job_title] 的职业豁免状态已[newstate ? "开启" : "关闭"]"))
 	show_job_exempt_menu(user, target_ckey)

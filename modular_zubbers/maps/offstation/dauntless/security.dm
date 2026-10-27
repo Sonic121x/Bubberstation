@@ -3,7 +3,7 @@
 	icon = 'modular_skyrat/master_files/icons/obj/closet.dmi'
 	icon_door = "riot"
 	icon_state = "riot"
-	name = "armory munitions locker"
+	name = "军械库弹药储物柜"
 
 /obj/structure/closet/secure_closet/dauntless/munitions_locker/PopulateContents()
 	..()

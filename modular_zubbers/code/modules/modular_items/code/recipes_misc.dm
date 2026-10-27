@@ -1,6 +1,6 @@
 
 /datum/crafting_recipe/makeshift/crowbar_alt
-	name = "Makeshift Crowbar"
+	name = "简易撬棍"
 	result = /obj/item/crowbar/makeshift
 	reqs = list(/obj/item/stack/sheet/iron = 4,
 				/obj/item/stack/sheet/cloth = 1,
@@ -9,7 +9,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/screwdriver_alt
-	name = "Makeshift Screwdriver"
+	name = "简易螺丝刀"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	result = /obj/item/screwdriver/makeshift
 	reqs = list(/obj/item/weaponcrafting/silkstring = 1,
@@ -19,7 +19,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/welder_alt
-	name = "Makeshift Welder"
+	name = "简易焊接器"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	result = /obj/item/weldingtool/makeshift
@@ -31,7 +31,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/wirecutters_alt
-	name = "Makeshift Wirecutters"
+	name = "简易剪线钳"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/wirecutters/makeshift
@@ -41,7 +41,7 @@
 	category = CAT_MISC
 
 /datum/crafting_recipe/makeshift/wrench_alt
-	name = "Makeshift Wrench"
+	name = "简易扳手"
 	tool_paths = list(/obj/item/crowbar/makeshift)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	result = /obj/item/wrench/makeshift

@@ -6,8 +6,8 @@
 //Super cats are specifically used for the kitty form spell but can be also spawned in at xenobio temporarily.
 //Super cats stronger and faster than normal cats and far more agressive.
 /mob/living/basic/pet/cat/super
-	name = "Super Cat"
-	desc = "Kitty!! Woah this one seems strong and angry!"
+	name = "超级猫"
+	desc = "小猫咪！！哇，这只看起来又强壮又暴躁！"
 	health = SUPER_KITTY_HEALTH
 	maxHealth = SUPER_KITTY_HEALTH
 	speed = 0
@@ -28,7 +28,7 @@
 /mob/living/basic/pet/cat/super/can_use_guns(obj/item/G)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_NOGUNS)) // Who am I to stop admins from making them stronger?
-		balloon_alert(src, "your paws are too soft!")
+		balloon_alert(src, "你的爪子太嫩了！")
 		return FALSE
 
 /mob/living/basic/pet/cat/super/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)
@@ -36,8 +36,8 @@
 	drop_all_held_items()
 
 /mob/living/basic/pet/cat/super/tux //Fake runtime
-	name = "Super Tux Cat"
-	desc = "GCA- Wait something is off"
+	name = "超级 Tux 猫"
+	desc = "GCA——等等，有哪里不对劲"
 	gender = FEMALE
 	icon_state = "cat"
 	icon_living = "cat"
@@ -45,8 +45,8 @@
 	held_state = "cat"
 
 /mob/living/basic/pet/cat/super/pancake
-	name = "Super Pancake Cat"
-	desc = "It's a Super Cat made out of a pancake!"
+	name = "超级松饼猫"
+	desc = "这是一只由松饼做成的超级猫！"
 	icon = 'modular_zubbers/icons/mob/simple/pets.dmi'
 	icon_state = "pancake"
 	icon_living = "pancake"
@@ -54,8 +54,8 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/pet/cat/super/original
-	name = "Super Batsy"
-	desc = "The product of alien DNA and bored geneticists."
+	name = "超级巴齐"
+	desc = "外星 DNA 与无聊的基因学家共同造就的产物。"
 	gender = FEMALE
 	icon_state = "original"
 	icon_living = "original"
@@ -64,8 +64,8 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/pet/cat/super/breadcat
-	name = "Super Bread Cat"
-	desc = "They're a cat... with a bread!"
+	name = "超级面包猫"
+	desc = "他们是一只猫……还带着一块面包！"
 	icon_state = "breadcat"
 	icon_living = "breadcat"
 	icon_dead = "breadcat_dead"
@@ -74,8 +74,8 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/basic/pet/cat/cak/super //Special type
-	name = "Super Keeki Cat"
-	desc = "She is a Super Cat made out of a cake of kindness."
+	name = "超级 Keeki 猫"
+	desc = "她是一只由善意蛋糕做成的超级猫。"
 	speed = 0
 	gold_core_spawnable = FRIENDLY_SPAWN
 	faction = list(FACTION_CAT)
@@ -92,8 +92,8 @@
 
 // SUPER SYNDICATS!!! GET DAT MRR MRRAW DISK!!!
 /mob/living/basic/pet/cat/syndicat/super
-	name = "Super Syndie Cat"
-	desc = "OH GOD! RUN!! IT CAN SMELL THE DISK!"
+	name = "超级辛迪加猫"
+	desc = "天啊！快跑！！它能闻到磁盘的味道！"
 	speed = 0.3 // Slightly slower than a normal super cat since they have a suit
 	health = SYNDIE_SUPER_KITTY_HEALTH
 	maxHealth = SYNDIE_SUPER_KITTY_HEALTH
@@ -110,7 +110,7 @@
 /mob/living/basic/pet/cat/syndicat/super/can_use_guns(obj/item/G)
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_NOGUNS)) // Who am I to stop admins from making them stronger?
-		balloon_alert(src, "your paws are too weak!")
+		balloon_alert(src, "你的爪子太弱了！")
 		return FALSE
 
 /mob/living/basic/pet/cat/syndicat/super/move_into_vent(obj/machinery/atmospherics/components/ventcrawl_target)

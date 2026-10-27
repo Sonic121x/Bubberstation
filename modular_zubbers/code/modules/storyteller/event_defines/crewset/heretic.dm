@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/heretic
-	name = "Acolytes"
+	name = "侍徒"
 	roundstart = TRUE
 
 	antag_flag = ROLE_HERETIC
@@ -18,7 +18,7 @@
 
 #define TIME_CUTOFF 1.2 HOURS
 /datum/round_event_control/antagonist/solo/heretic/midround
-	name = "Midround Acolytes"
+	name = "回合中侍徒"
 	roundstart = FALSE
 
 /datum/round_event_control/antagonist/solo/heretic/midround/can_spawn_event(players_amt, allow_magic, popchecks)
@@ -30,7 +30,7 @@
 	return time <= TIME_CUTOFF
 
 /datum/round_event_control/antagonist/solo/heretic/event
-	name = "Event Generated Acolyte"
+	name = "事件生成的侍徒"
 	roundstart = FALSE
 	tags = list(TAG_ANTAG_REROLL)
 	max_occurrences = 0

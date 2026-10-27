@@ -9,7 +9,7 @@
 	. = ..()
 
 	if(check_holidays(APRIL_FOOLS))
-		name = "[pick(GLOB.adjectives)] skub"
+		name = "[pick(GLOB.adjectives)] 斯库布"
 		override_notes = TRUE
 		offensive_notes = pick(strings(REDPILL_FILE, "redpill_questions"))
 		force_string = "yes"

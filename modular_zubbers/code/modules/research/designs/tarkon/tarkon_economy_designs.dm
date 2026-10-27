@@ -1,7 +1,7 @@
 ///// Bubber added Tarkon Tech /////
 /datum/design/tarkonpowerator
-	name = "Tarkon Powerator"
-	desc = "The circuit board for a machine that can sell power."
+	name = "塔肯电力贩子"
+	desc = "一种可出售电力的机器电路板。"
 	id = "powerator_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -12,8 +12,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/tarkonexpressconsole
-	name = "Tarkon Express Cargo Console"
-	desc = "The circuit board for a computer used to purchase goods."
+	name = "塔肯快速补给控制台"
+	desc = "用于采购货物的电脑电路板。"
 	id = "cargoconsole_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -24,8 +24,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/bountypad
-	name = "Tarkon Bounty Pad"
-	desc = "The circuit board for a machine used to sell goods."
+	name = "塔肯悬赏交货平台"
+	desc = "用于出售货物的机器电路板。"
 	id = "bountypad_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -36,8 +36,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
 /datum/design/bountypadconsole
-	name = "Tarkon Express Cargo Console"
-	desc = "The circuit board for the Ta used to sell goods."
+	name = "塔肯悬赏控制终端"
+	desc = "用于出售货物的塔肯控制终端电路板。"
 	id = "bountyconsole_tarkon"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)

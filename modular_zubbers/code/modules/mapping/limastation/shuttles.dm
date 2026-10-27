@@ -1,18 +1,18 @@
 // -- Module shuttles for maps added. --
 /datum/map_template/shuttle/emergency/lima
 	suffix = "lima"
-	name = "Lima Station emergency shuttle"
+	name = "利马站紧急撤离穿梭机"
 	credit_cost = CARGO_CRATE_VALUE * 20
-	description = "An oversized evacuation shuttle for a modest station. Fully equipped."
-	occupancy_limit = "Flexible"
+	description = "为一座中等规模空间站准备的超大撤离穿梭机。设备齐全。"
+	occupancy_limit = "弹性"
 /datum/map_template/shuttle/cargo/lima
 	suffix = "lima"
-	name = "supply shuttle (Lima)"
+	name = "补给穿梭机（利马）"
 
 /datum/map_template/shuttle/mining/lima
 	suffix = "lima"
-	name = "mining shuttle (Lima)"
+	name = "采矿穿梭机（利马）"
 
 /datum/map_template/shuttle/labour/lima
 	suffix = "lima"
-	name = "labour shuttle (Lima)"
+	name = "劳务穿梭机（利马）"

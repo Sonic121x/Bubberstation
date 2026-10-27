@@ -9,8 +9,8 @@
 	l_hand = /obj/item/storage/medkit/robotic_repair/preemo/stocked
 
 /datum/job/roboticist
-	description = "Build cyborgs, mechs, AIs, and maintain them all. Create MODsuits for those that wish. Try to remind medical that you're \
-	actually a lot better at treating synthetic crew members than them."
+	description = "制造并维护半机械人、机甲与人工智能，为有需要的人打造 MOD 模块化外骨骼。还要设法提醒医疗部：\
+	在处理合成人船员这方面，你其实比他们强得多。"
 	required_languages = null
 	akula_outfit = /datum/outfit/akula/scientist
 	alt_titles = list(
@@ -54,18 +54,18 @@
 	backpack_contents[/obj/item/paper/pamphlet/roboticist_reminder] = 1
 
 /obj/item/paper/pamphlet/roboticist_reminder
-	name = "synthetic care pamphlet"
-	default_raw_text = "Your duties include treating the synthetic and Protean lifeforms aboard the station! Heres some tips and tricks to get you started...<hr><br> \n\
-	You can buy <b>health analyzers</b> from your vendor, as well as <b>burn wound treatment chems</b>! Generally, you'll be using the coolant bottles.<br> \n\
-	Make sure to <b>use the health analyzers in hand</b> to activate <b>wound mode</b> if you're ever confused about a wound! <b>Blunt wounds</b> even show \
-	the current treatment step!<br>\n\
-	Your <b>departmental order console</b> includes things like synthetic medicine and Protean organ crates!<br>\n\
-	<b>Epipens</b> are an effective treatment method for synthetic slash/pierce wounds!<br>\n\
-	<b>Nanite Slurry</b> is used to heal minor synthetic <b>brute</b> and <b>burn</b> damage. \
-	overdose is at <b>10u</b>. Overdose heals synthetic organ damage in exchange of overheating and brute damage.<br>\n\
-	<b>Critical system repair pills</b> inside your medkit are used to purposely inflict an overdose of nanite slurry to heal ~ <b>240 organ damage</b> per pill. (You need to manage their brute and burn!)<br>\n\
-	<b>Liquid Solder</b> is used to heal <b>positronic damage</b><br>\n\
-	<b>System Cleaner</b> is used to heal synthetic <b>toxin damage</b><br>\n\
-	<b>Dinitrogen Plasmide</b> is used to treat synthetic overheating wounds safely.<br>\n\
-	<b>Blank Synthetic Shells</b> can be produced at the exofab for practice if mining has been gathering resources.<br>\n\
-	<b>Oil</b> functions as a synthetic creatures blood. It can be obtained from Chemistry, or if you're crafty, scooped off the floor."
+	name = "合成人护理手册"
+	default_raw_text = "你的职责包括处理站上的合成人与普罗蒂安生命体！这里有些入门小贴士……<hr><br> \n\
+	你可以从自己的售货机购买<b>健康分析仪</b>，以及<b>烧伤治疗药剂</b>！一般来说，你会用到冷却液瓶。<br> \n\
+	如果你对某种伤口感到困惑，记得<b>在手中使用健康分析仪</b>以开启<b>伤口模式</b>！<b>钝击伤</b>甚至会显示 \
+	当前的治疗步骤！<br>\n\
+	你的<b>部门订购控制台</b>里有合成人药物和普罗蒂安器官箱之类的东西！<br>\n\
+	<b>肾上腺素笔</b>是治疗合成人切割/穿刺伤的有效手段！<br>\n\
+	<b>纳米浆液</b>可治疗合成人轻微的<b>钝击</b>与<b>烧伤</b>伤害。 \
+	过量阈值为<b>10u</b>。过量时会以过热与钝击伤害为代价，治疗合成人器官损伤。<br>\n\
+	急救包里的<b>关键系统修复丸</b>可故意造成纳米浆液过量，每粒约可治疗<b>240 点器官损伤</b>。（你需要同时管好它们的钝击与烧伤！）<br>\n\
+	<b>液态焊料</b>用于治疗<b>正电子损伤</b><br>\n\
+	<b>系统清洁剂</b>用于治疗合成人的<b>毒素损伤</b><br>\n\
+	<b>二氮等离子剂</b>可安全治疗合成人过热伤口。<br>\n\
+	如果采矿部一直在收集资源，可以在机甲制造机处生产<b>空白合成人躯壳</b>用来练习。<br>\n\
+	<b>油</b>相当于合成人的血液。可以从化学部获取，若你够机灵，也能从地板上舀。"

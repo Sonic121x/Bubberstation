@@ -11,12 +11,12 @@
 
 /obj/item/gun/ballistic/automatic/lanca/jastrzab
 	resistance_flags = INDESTRUCTIBLE
-	name = "\improper Jastrząb Marksman Rifle"
-	desc = "A rare precision variant of the Lanca battle rifle fitted with Szot Dynamica's prohibitively expensive \
-		Smart Drift Control system. Its unusual targeting hardware makes small corrections to the flight of .310 \
-		Strilka fired at a designated target, at the expense of a reduced firing rate. \
-		Held in both hands, it paints whoever you point it at. The manual insists that Smart Drift Control presents its targeting \
-		data through \"tooltips\", whatever those are supposed to be."
+	name = "\improper 苍鹰精确射手步枪"
+	desc = "苍鹰是骑枪战斗步枪的稀有精度型，装配了绍特动力公司那套贵得离谱的\
+		智能漂移控制系统。它那套与众不同的瞄准硬件会在射击指定目标时，\
+		对 .310 飞箭弹的飞行轨迹做出细微修正，代价是射速下降。\
+		双手持握时，它会标记你指向的任何人。说明书坚称智能漂移控制系统通过\
+		“提示框”来呈现瞄准数据——不管那究竟该是什么东西。"
 	icon = 'modular_zubbers/icons/obj/szot_jastrzab.dmi'
 	icon_state = "jastrzab"
 	greyscale_config = /datum/greyscale_config/szot_jastrzab
@@ -111,19 +111,19 @@
 
 /obj/item/gun/ballistic/automatic/lanca/jastrzab/examine(mob/user)
 	. = ..()
-	. += span_notice("You can [EXAMINE_HINT("look closer")] to learn a little more about [src].")
+	. += span_notice("你可以[EXAMINE_HINT("仔细观察")]来进一步了解 [src]。")
 
 /obj/item/gun/ballistic/automatic/lanca/jastrzab/examine_more(mob/user)
 	. = ..()
 
-	. += "Smart Drift Control worked. That was never the difficulty. Trials returned hit rates that embarrassed \
-		every other rifle Szot Dynamica had ever fielded, and the evaluation board's report is remembered chiefly for \
-		the sentence in which it observed that the targeting package cost rather more than the rifle, the magazines, \
-		the ammunition, and a considerable portion of the soldier carrying them."
+	. += "智能漂移控制系统确实有效。难点从来不在那里。试验中它的命中率让绍特动力公司\
+		列装过的其他所有步枪都相形见绌；而评估委员会的报告之所以被人记住，\
+		主要是因为其中一句话：这套瞄准组件比步枪、弹匣、弹药，\
+		以及携带它们的士兵的相当一部分加起来还贵。"
 
-	. += "The procurement program died of arithmetic rather than of failure. Surviving examples come from evaluation \
-		units, specialist issue, and the collections of procurement officers who were unusually well connected and \
-		unusually relaxed about paperwork."
+	. += "采购计划是死于算术，而不是死于失败。留存下来的样枪来自评估部队、\
+		特种配发，以及那些收藏它们的采购军官——这些人的人脉格外广，\
+		对文书工作也格外随意。"
 
 	return .
 
@@ -187,7 +187,7 @@
 // The lock graphic. Sits on the target and reports the range until the shot resolves.
 
 /obj/effect/temp_visual/szot_sdc_lock
-	name = "targeting lock"
+	name = "瞄准锁定标记"
 	icon = 'modular_zubbers/icons/effects/szot_sdc.dmi'
 	icon_state = "sdc_lock"
 	greyscale_config = /datum/greyscale_config/szot_sdc

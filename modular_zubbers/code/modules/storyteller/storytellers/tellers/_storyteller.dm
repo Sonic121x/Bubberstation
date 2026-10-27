@@ -1,11 +1,11 @@
 ///The storyteller datum. He operates with the SSgamemode data to run events
 /datum/storyteller
 	/// Name of our storyteller.
-	var/name = "Badly coded storyteller"
+	var/name = "编码拙劣的故事讲述者"
 	/// Description of our storyteller.
-	var/desc = "Report this to the coders."
+	var/desc = "请把此事报告给程序员。"
 	/// Text that the players will be greeted with when this storyteller is chosen.
-	var/welcome_text = "The storyteller has been selected. Get ready!"
+	var/welcome_text = "故事讲述者已选定。做好准备！"
 	/// This is the multiplier for repetition penalty in event weight. The lower the harsher it is
 	var/event_repetition_multiplier = 0.6
 	/// Multipliers for starting points. // TODO - Rewrite into some variation
@@ -91,8 +91,8 @@
 		var/player_pop = SSgamemode.get_correct_popcount()
 		var/pop_required = SSgamemode.min_pop_thresholds[track]
 		if(player_pop < pop_required)
-			message_admins("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [player_pop])")
-			log_admin("Storyteller failed to pick an event for track of [track] due to insufficient population. (required: [pop_required] active pop for [track]. Current: [player_pop])")
+			message_admins("故事讲述者因人口不足，未能为 [track] 轨道挑选事件。（要求： [track] 需要 [pop_required] 名活跃玩家。当前：[player_pop]）")
+			log_admin("故事讲述者因人口不足，未能为 [track] 轨道挑选事件。（要求： [track] 需要 [pop_required] 名活跃玩家。当前：[player_pop]）")
 			SSgamemode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		calculate_weights(track)
@@ -104,19 +104,19 @@
 			if(event.can_spawn_event(player_pop))
 				valid_events[event] = event.calculated_weight
 				if(event.roundstart)
-					log_dynamic("[event] added to roundstart event pool with calculated weight [event.calculated_weight] and tags [english_list(event.tags)].")
+					log_dynamic("[event] 已加入回合开始事件池，计算权重为 [event.calculated_weight]，标签为 [english_list(event.tags)]。")
 			else if(event.roundstart)
-				log_dynamic("[event] did not meet inclusion criteria, skipped.")
+				log_dynamic("[event] 不符合纳入标准，已跳过。")
 		///If we didn't get any events, remove the points inform admins and dont do anything
 		if(!length(valid_events))
-			message_admins("Storyteller failed to pick an event for track of [track].")
-			log_admin("Storyteller failed to pick an event for track of [track].")
+			message_admins("故事讲述者未能为 [track] 轨道挑选事件。")
+			log_admin("故事讲述者未能为 [track] 轨道挑选事件。")
 			SSgamemode.event_track_points[track] *= TRACK_FAIL_POINT_PENALTY_MULTIPLIER
 			return
 		picked_event = pick_weight(valid_events)
 		if(!picked_event)
-			message_admins("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
-			log_admin("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
+			message_admins("警告：故事讲述者从事件池中抽到了空值。已中止本次事件抽取。")
+			log_admin("警告：故事讲述者从事件池中抽到了空值。已中止本次事件抽取。")
 			stack_trace("WARNING: Storyteller [src] picked a null from event pool at track [track].")
 			return
 	buy_event(picked_event, track)
@@ -130,10 +130,10 @@
 	if(!bought_event.roundstart)
 		total_cost *= (1 - (rand(0, cost_variance) / 100)) //Apply cost variance if not roundstart event
 	mode.event_track_points[track] = max(0, mode.event_track_points[track] - total_cost)
-	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
-	log_admin("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
+	message_admins("故事讲述者已在 [track] 轨道上购买并触发了 [bought_event] 事件，消耗 [total_cost] 点数。")
+	log_admin("故事讲述者已在 [track] 轨道上购买并触发了 [bought_event] 事件，消耗 [total_cost] 点数。")
 	if(bought_event.roundstart)
-		log_dynamic("Storyteller selected roundstart event [bought_event] based on weighted selection!")
+		log_dynamic("故事讲述者根据权重抽取选定了回合开始事件 [bought_event]！")
 		mode.TriggerEvent(bought_event)
 	else
 		mode.schedule_event(bought_event, (rand(3, 4) MINUTES), total_cost)

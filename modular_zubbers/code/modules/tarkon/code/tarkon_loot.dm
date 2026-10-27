@@ -15,36 +15,36 @@ GLOBAL_LIST_INIT(tarkon_prize_pool, list(
 ))
 
 /obj/item/storage/toolbox/guncase/m44a
-	name = "M44A gun case"
+	name = "M44A 枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/ar/modular/m44a
 	extra_to_spawn = /obj/item/ammo_box/magazine/m44a
 
 /obj/item/storage/toolbox/guncase/m44a_shotgun
-	name = "M44A Shotgun gun case"
+	name = "M44A 霰弹枪枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/ar/modular/m44a/shotgun
 	extra_to_spawn = /obj/item/ammo_box/magazine/m44a
 
 /obj/item/storage/toolbox/guncase/m44a_ugl
-	name = "M44A gun case"
+	name = "M44A 枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/ar/modular/m44a/grenadelauncher
 	extra_to_spawn = /obj/item/ammo_box/magazine/m44a
 
 /obj/item/storage/toolbox/guncase/goldendeagle
-	name = "Golden Desert Eagle case"
+	name = "金色沙漠之鹰枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/deagle/gold
 	extra_to_spawn = /obj/item/ammo_box/magazine/m50
 
 /obj/item/storage/toolbox/guncase/bmsniper
-	name = "SA-107 gun case"
+	name = "SA-107 枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/sniper_rifle/modular/blackmarket
 	extra_to_spawn = /obj/item/ammo_box/magazine/sniper_rounds
 
 /obj/item/storage/toolbox/guncase/oldlaserrifle
-	name = "Combat Laser Rifle gun case"
+	name = "战斗激光步枪枪盒"
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/laser
 	extra_to_spawn = /obj/item/ammo_box/magazine/recharge
 
 /obj/item/storage/toolbox/guncase/smartgun
-	name = "MODsuit Smartgun case"
+	name = "MOD 套装智能机枪盒"
 	weapon_to_spawn = /obj/item/mod/module/smartgun
 	extra_to_spawn = /obj/item/ammo_box/magazine/smartgun_drum

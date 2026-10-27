@@ -18,9 +18,9 @@
 	var/list/data = ..()
 
 	data[CHOICED_PREFERENCE_DISPLAY_NAMES] = list(
-		SQUARE_VIEWPORT_SIZE = "Square (15x15)",
-		WIDESCREEN_VIEWPORT_SIZE = "Widescreen (19x15)",
-		EXTRAWIDESCREEN_VIEWPORT_SIZE = "Ultrawide (21x15)",
+		SQUARE_VIEWPORT_SIZE = "方形（15x15）",
+		WIDESCREEN_VIEWPORT_SIZE = "宽屏（19x15）",
+		EXTRAWIDESCREEN_VIEWPORT_SIZE = "超宽屏（21x15）",
 	)
 
 	return data

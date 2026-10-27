@@ -7,11 +7,11 @@
 	var/list/FailedZsRat = list()
 	LoadGroup(FailedZsRat, "The Interlink", "map_files/generic", "CentCom_bubber_z2.dmm", default_traits = ZTRAITS_CENTCOM)
 	if(LAZYLEN(FailedZsRat)) //but seriously, unless the server's filesystem is messed up this will never happen
-		var/msg = "RED ALERT! The following map files failed to load: [FailedZsRat[1]]"
+		var/msg = "红色警报！以下地图文件加载失败：[FailedZsRat[1]]"
 		if(FailedZsRat.len > 1)
 			for(var/I in 2 to FailedZsRat.len)
 				msg += ", [FailedZsRat[I]]"
-		msg += ". Yell at your server host!"
+		msg += "。去骂你的服务器主机商吧！"
 		INIT_ANNOUNCE(msg)
 #endif
 

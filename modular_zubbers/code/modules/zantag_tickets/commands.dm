@@ -1,26 +1,26 @@
-GAME_VERB(/client, check_antag_tickets, "Check Antag Tickets", "OOC")
+GAME_VERB(/client, check_antag_tickets, "查看反派票", "OOC")
 	var/antag_ticket_rate = CONFIG_GET(number/antag_tickets_per_update)
 
 	if(!antag_ticket_rate)
-		to_chat(src,span_notice("Antag tickets are currently disabled."))
+		to_chat(src,span_notice("反派票系统目前已停用。"))
 		return
 
 	var/antag_ticket_count = get_antag_tickets()
 	var/antag_ticket_gain = antag_ticket_multiplier()*antag_ticket_rate
 
-	to_chat(src,span_notice("You currently have <b>[antag_ticket_count]</b> antag tickets, and are [antag_ticket_gain >= 0 ? "gaining" : "losing"] <b>[abs(antag_ticket_gain)]</b> antag tickets every [DisplayTimeText(SSblackbox.wait,1)]."))
+	to_chat(src,span_notice("你目前拥有 <b>[antag_ticket_count]</b> 张反派票，并且每 [DisplayTimeText(SSblackbox.wait,1)] [antag_ticket_gain >= 0 ? "获得" : "失去"] <b>[abs(antag_ticket_gain)]</b> 张反派票。"))
 
-GAME_VERB(/client, antag_tickets_info, "What are antag tickets?", "OOC")
+GAME_VERB(/client, antag_tickets_info, "什么是反派票？", "OOC")
 	var/antag_ticket_rate = CONFIG_GET(number/antag_tickets_per_update)
 
 	if(!antag_ticket_rate)
-		to_chat(span_notice("Antag tickets are currently disabled, so you don't have to worry about them."))
+		to_chat(span_notice("反派票系统目前已停用，因此你无需为它操心。"))
 		return
 
 	var/information = "\
-	Antag tickets are a way to balance playtime between being an antagonist and being a non-antagonist. \
-	Having more antag tickets makes you more likely to be chosen as an antagonist, while having less makes you less likely to be chosen as one. \
-	Antag tickets are gained when you're playing as a crew role while not being an antagonist, while antag tickets are spent when you're playing as an antagonist. \
-	Note that as an antagonist, you do not lose antag tickets when you're handcuffed, restrained, dead, crit, incapacitated, or in prison."
+	反派票是一种在扮演反派与不扮演反派之间平衡游戏时长的机制。 \
+	反派票越多，你就越有可能被选为反派；反派票越少，被选中的可能性就越低。 \
+	当你以非反派身份扮演船员角色时会获得反派票，而以反派身份游玩时则会消耗反派票。 \
+	请注意，作为反派，当你被铐住、被束缚、死亡、濒死、失去行动能力或入狱时，都不会扣除反派票。"
 
 	to_chat(src,span_notice(information))

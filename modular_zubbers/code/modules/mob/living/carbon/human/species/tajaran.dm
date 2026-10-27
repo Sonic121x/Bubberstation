@@ -25,7 +25,7 @@
 
 //Tajaran tongue
 /obj/item/organ/tongue/cat/tajaran
-	name = "tajaran tongue"
+	name = "塔亚拉舌头"
 	modifies_speech = TRUE
 	languages_native = list(/datum/language/siiktajr)
 
@@ -41,13 +41,13 @@
 	speech_args[SPEECH_MESSAGE] = message
 
 /datum/augment_item/organ/tongue/tajaran
-	name = "Tajaran tongue"
+	name = "塔亚拉舌头"
 	path = /obj/item/organ/tongue/cat/tajaran
 
 //Tajara have the innate ability to see in the dark better than most
 /obj/item/organ/eyes/tajaran
-	name = "tajaran eyes"
-	desc = "they seem very cat like."
+	name = "塔亚拉眼睛"
+	desc = "它们看起来很像猫的眼睛。"
 	flash_protect = FLASH_PROTECTION_SENSITIVE //One layer protection
 	color_cutoffs = list(12, 7, 7)
 
@@ -55,12 +55,12 @@
 	. = ..()
 	if(istype(eyes_owner))
 		if(HAS_TRAIT(eyes_owner, TRAIT_NIGHT_VISION)) //prevents double stacking of tajara night vision and the night vision quirk.
-			to_chat(eyes_owner, span_danger("You feel as the shadows are gone but suddenly they return!"))
+			to_chat(eyes_owner, span_danger("你感觉黑暗倏然消退，但转眼间又重新涌了回来！"))
 			REMOVE_TRAIT(eyes_owner, TRAIT_NIGHT_VISION, QUIRK_TRAIT)
 
 /obj/item/organ/ears/cat/tajaran
-	name = "Tajaran ears"
-	desc = "These ears to seem to be from a feline of some type"
+	name = "塔亚拉耳朵"
+	desc = "这对耳朵似乎来自某种猫科动物"
 
 /datum/species/tajaran/create_pref_unique_perks()
 	var/list/to_add = list()
@@ -69,41 +69,41 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fire",
-			SPECIES_PERK_NAME = "Fire weakness",
-			SPECIES_PERK_DESC = "Tajara take longer to cool off when set on fire."
+			SPECIES_PERK_NAME = "火焰弱点",
+			SPECIES_PERK_DESC = "塔亚拉着火后需要更长时间才能冷却下来。"
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "sun",
-			SPECIES_PERK_NAME = "Bright Lights",
-			SPECIES_PERK_DESC = "Tajara need an extra layer of flash protection to protect \
-				themselves, such as against security officers or when welding.",
+			SPECIES_PERK_NAME = "强光敏感",
+			SPECIES_PERK_DESC = "塔亚拉需要额外一层闪光防护来保护\
+				自己，例如面对安保人员或进行焊接时。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "eye",
-			SPECIES_PERK_NAME = "Nightvision",
-			SPECIES_PERK_DESC = "Their eyes are adapted to low light, and can see in the dark better than others.",
+			SPECIES_PERK_NAME = "夜视",
+			SPECIES_PERK_DESC = "他们的眼睛适应弱光环境，在黑暗中比其他人看得更清楚。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "assistive-listening-systems",
-			SPECIES_PERK_NAME = "Sensitive Hearing",
-			SPECIES_PERK_DESC = "Tajara are more sensitive to loud sounds, such as flashbangs.",
+			SPECIES_PERK_NAME = "听觉灵敏",
+			SPECIES_PERK_DESC = "塔亚拉对巨响更为敏感，例如闪光弹。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "paw",
-			SPECIES_PERK_NAME = "Soft Landing",
-			SPECIES_PERK_DESC = "Tajara are unhurt by high falls, and land on their feet.",
+			SPECIES_PERK_NAME = "轻盈落地",
+			SPECIES_PERK_DESC = "塔亚拉从高处坠落不会受伤，并且总能双脚着地。",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 			SPECIES_PERK_ICON = FA_ICON_PERSON_FALLING,
-			SPECIES_PERK_NAME = "Cat Grace",
-			SPECIES_PERK_DESC = "Tajara are catlike and have catlike instincts allowing them to land upright on their feet.  \
-				Instead of being knocked down from falling, you only receive a short slowdown. \
-				However, the fall will deal additional damage since they are not the size and weight of a cat.",
+			SPECIES_PERK_NAME = "猫之优雅",
+			SPECIES_PERK_DESC = "塔亚拉像猫一样，拥有猫科动物的本能，能让它们双脚直立着地。\
+				坠落时你不会被击倒，只会受到短暂的减速。\
+				不过，由于他们没有猫的体型和体重，坠落会造成额外伤害。",
 		),
 	)
 
@@ -113,6 +113,6 @@
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_CAT)
 
 /datum/species/tajaran/get_species_description() //Something basic until I make lore later
-	return list("The Tajara are a race of humanoids that possess markedly felinoid traits that include \
-	a semi-prehensile tail, a body covered in fur of varying shades, and padded, digitigrade feet. \
-	Being that they are from a harsh and icy cold planet, Tajara are vulnerable to high temperatures and fire.",)
+	return list("塔亚拉是一支人形种族，拥有显著的猫科特征，包括\
+	半可卷握的尾巴、覆盖着深浅不一毛皮的身体，以及带肉垫的趾行足。\
+	由于他们来自一个严酷冰冷的星球，塔亚拉对高温和火焰十分脆弱。",)

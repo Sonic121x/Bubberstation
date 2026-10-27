@@ -20,10 +20,10 @@
 	abstract_type = /datum/atom_skin/sec_belt
 
 /datum/atom_skin/sec_belt/standard
-	preview_name = "Standard"
+	preview_name = "标准"
 
 /datum/atom_skin/sec_belt/black
-	preview_name = "Black"
+	preview_name = "黑色"
 	new_icon = 'modular_zubbers/icons/obj/clothing/belts/belts.dmi'
 	new_worn_icon = 'modular_zubbers/icons/mob/clothing/belt.dmi'
 	new_icon_state = "security_black"
@@ -38,7 +38,7 @@
 		return
 
 	if(!resolve_parent.IsReachableBy(user))
-		resolve_parent.balloon_alert(user, "can't reach!")
+		resolve_parent.balloon_alert(user, "够不着！")
 		return FALSE
 
 	if(!isliving(user) || user.incapacitated)
@@ -51,7 +51,7 @@
 	attempt_remove(gun_to_draw, get_turf(user))
 	playsound(resolve_parent, 'modular_skyrat/modules/sec_haul/sound/holsterout.ogg', 50, TRUE, -5)
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob, put_in_hands), gun_to_draw)
-	user.visible_message(span_warning("[user] draws [gun_to_draw] from [resolve_parent]!"), span_notice("You draw [gun_to_draw] from [resolve_parent]."))
+	user.visible_message(span_warning("[user] 从 [resolve_parent] 中拔出 [gun_to_draw]！"), span_notice("你从 [resolve_parent] 中拔出 [gun_to_draw]。"))
 
 /*
 * GLASSES
@@ -73,10 +73,10 @@
 	abstract_type = /datum/atom_skin/sec_hud_sunglasses
 
 /datum/atom_skin/sec_hud_sunglasses/standard
-	preview_name = "Standard"
+	preview_name = "标准"
 
 /datum/atom_skin/sec_hud_sunglasses/sunglasses
-	preview_name = "Sunglasses"
+	preview_name = "太阳镜"
 	new_icon = 'icons/obj/clothing/glasses.dmi'
 	new_worn_icon = 'icons/mob/clothing/eyes.dmi'
 	new_icon_state = "sun"
@@ -86,8 +86,8 @@
 	base_icon_state = "hudpatch"
 
 /obj/item/clothing/glasses/hud/eyepatch/sec/blindfold
-	name = "sec blindfold HUD"
-	desc = "a fake blindfold with a security HUD inside, helps you look like blind justice. This won't provide the same protection that you'd get from sunglasses."
+	name = "安保蒙眼布 HUD"
+	desc = "一块内部装有安保 HUD 的假蒙眼布，能让你看起来像正义女神。它无法提供太阳镜那样的防护。"
 	icon_state =  "secfold"
 	base_icon_state =  "secfold"
 
@@ -131,7 +131,7 @@
 
 /obj/item/clothing/head/helmet/sec/click_alt(mob/user)
 	flipped_visor = !flipped_visor
-	balloon_alert(user, "visor flipped")
+	balloon_alert(user, "面罩已翻转")
 	// base_icon_state is modified for seclight attachment component
 	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
 	icon_state = base_icon_state
@@ -152,7 +152,7 @@
 
 /obj/item/clothing/head/helmet/sec/futuristic/click_alt(mob/user)
 	flipped_visor = !flipped_visor
-	balloon_alert(user, "visor flipped")
+	balloon_alert(user, "面罩已翻转")
 	// base_icon_state is modified for seclight attachment component
 	base_icon_state = "[initial(base_icon_state)][flipped_visor ? "-novisor" : ""]"
 	icon_state = base_icon_state
@@ -194,8 +194,8 @@
 
 //Not technically an override but oh well
 /obj/item/clothing/neck/security_cape
-	name = "security cape"
-	desc = "A fashionable cape worn by security officers."
+	name = "安保披风"
+	desc = "一件安保官穿着的时尚披风。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/neck.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/neck.dmi'
 	icon_state = "cape_red"
@@ -204,13 +204,13 @@
 	var/swapped = FALSE
 
 /obj/item/clothing/neck/security_cape/armplate
-	name = "security gauntlet"
-	desc = "A fashionable full-arm gauntlet worn by security officers. The gauntlet itself is made of plastic, and provides no protection, but it looks cool as hell."
+	name = "安保臂甲"
+	desc = "一件安保官穿着的时尚全臂臂甲。臂甲本身由塑料制成，不提供任何防护，但看起来帅极了。"
 	icon_state = "armplate_red"
 
 /obj/item/clothing/neck/security_cape/click_alt(mob/user)
 	swapped = !swapped
-	to_chat(user, span_notice("You swap which arm [src] will lay over."))
+	to_chat(user, span_notice("你交换了 [src] 覆盖的手臂。"))
 	update_appearance()
 	return CLICK_ACTION_SUCCESS
 
@@ -227,8 +227,8 @@
 * GLOVES
 */
 /obj/item/clothing/gloves/color/black/security
-	name = "security gloves"
-	desc = "A pair of security gloves."
+	name = "安保手套"
+	desc = "一双安保手套。"
 	icon = 'icons/obj/clothing/gloves.dmi'
 	worn_icon = 'icons/mob/clothing/hands.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/gloves/gloves_teshari.dmi'
@@ -257,10 +257,10 @@
 	abstract_type = /datum/atom_skin/sec_gloves
 
 /datum/atom_skin/sec_gloves/standard
-	preview_name = "Standard"
+	preview_name = "标准"
 
 /datum/atom_skin/sec_gloves/plain_black
-	preview_name = "Plain Black"
+	preview_name = "纯黑色"
 	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/gloves.dmi'
 	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/hands.dmi'
 	new_icon_state = "combat"
@@ -274,8 +274,8 @@
 * SUITS
 */
 /obj/item/clothing/suit/armor/vest/alt/sec
-	name = "armored security vest"
-	desc = "A Type-II-AD-P armored vest that provides decent protection against most types of damage."
+	name = "安保装甲背心"
+	desc = "一件 Type-II-AD-P 装甲背心，能对大多数伤害类型提供不错的防护。"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "armor_sec"
@@ -292,19 +292,19 @@
 	abstract_type = /datum/atom_skin/hos_armor
 
 /datum/atom_skin/hos_armor/greatcoat
-	preview_name = "Greatcoat"
+	preview_name = "长大衣"
 	new_icon = 'icons/obj/clothing/suits/armor.dmi'
 	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	new_icon_state = "hos"
 
 /datum/atom_skin/hos_armor/trenchcoat
-	preview_name = "Trenchcoat"
+	preview_name = "风衣"
 	new_icon = 'icons/obj/clothing/suits/armor.dmi'
 	new_worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	new_icon_state = "hostrench"
 
 /datum/atom_skin/hos_armor/trenchcloak
-	preview_name = "Trenchcloak"
+	preview_name = "风衣斗篷"
 	new_icon = 'modular_skyrat/master_files/icons/obj/clothing/suits/armor.dmi'
 	new_worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suits/armor.dmi'
 	new_icon_state = "trenchcloak"
@@ -319,7 +319,7 @@
 
 //Standard Bulletproof Vest
 /obj/item/clothing/suit/armor/bulletproof
-	desc = "A Type-III-AD-P heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	desc = "一件 Type-III-AD-P 重型防弹背心，擅长保护穿着者抵御传统投射武器，并在一定程度上抵御爆炸。"
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 //Riot Armor
@@ -335,8 +335,8 @@
 //DETECTIVE
 
 /obj/item/clothing/suit/cowboyvest
-	name = "blonde cowboy vest"
-	desc = "A white cream vest lined with... fur, of all things, for desert weather. There's a small deer head logo sewn into the vest."
+	name = "金发牛仔背心"
+	desc = "一件奶白色背心，内衬竟然是……毛皮，专为沙漠气候设计。背心上缝着一个小小的鹿头标志。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "cowboy_vest"
@@ -346,8 +346,8 @@
 	heat_protection = CHEST|ARMS
 
 /obj/item/clothing/suit/jacket/det_suit/cowboyvest
-	name = "blonde cowboy vest"
-	desc = "A white cream vest lined with... fur, of all things, for desert weather. There's a small deer head logo sewn into the vest."
+	name = "金发牛仔背心"
+	desc = "一件奶白色背心，内衬竟然是……毛皮，专为沙漠气候设计。背心上缝着一个小小的鹿头标志。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "cowboy_vest"
@@ -383,7 +383,7 @@
 */
 //Officer
 /obj/item/clothing/under/rank/security/officer
-	desc = "A tactical security uniform for officers, complete with a Lopland belt buckle."
+	desc = "一件安保官穿的战术安保制服，配有洛普兰腰带扣。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/under/security_teshari.dmi'
@@ -407,8 +407,8 @@
 
 // DETECTIVE
 /obj/item/clothing/under/rank/security/detective/cowboy
-	name = "blonde cowboy uniform"
-	desc = "A blue shirt and dark jeans, with a pair of spurred cowboy boots to boot."
+	name = "金发牛仔制服"
+	desc = "一件蓝色衬衫配深色牛仔裤，还有一双带马刺的牛仔靴。"
 	icon = 'modular_skyrat/master_files/icons/donator/obj/clothing/uniform.dmi'	//Donator item-ish? See the /armorless one below it
 	worn_icon = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/donator/mob/clothing/uniform_digi.dmi'
@@ -419,8 +419,8 @@
 	armor_type = /datum/armor/clothing_under
 
 /obj/item/clothing/under/rank/security/detective/runner
-	name = "runner sweater"
-	desc = "<i>\"You look lonely.\"</i>"
+	name = "跑者毛衣"
+	desc = "<i>“你看起来很孤独。”</i>"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/security.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/security.dmi'
 	icon_state = "runner"
@@ -494,56 +494,56 @@
 
 /// PRISONER
 /obj/item/clothing/under/rank/prisoner/protcust
-	name = "protective custody prisoner jumpsuit"
-	desc = "A mustard coloured prison jumpsuit, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "保护性监禁囚犯连体服"
+	desc = "一件芥末色的监狱连体服，常由前安保部成员、线人和前中央指挥部雇员穿着。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/protcust"
 	greyscale_colors = "#FFB600"
 
 /obj/item/clothing/under/rank/prisoner/skirt/protcust
-	name = "protective custody prisoner jumpskirt"
-	desc = "A mustard coloured prison jumpskirt, often worn by former Security members, informants and former CentCom employees. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "保护性监禁囚犯连体裙"
+	desc = "一件芥末色的监狱连体裙，常由前安保部成员、线人和前中央指挥部雇员穿着。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/protcust"
 	greyscale_colors = "#FFB600"
 
 /obj/item/clothing/under/rank/prisoner/lowsec
-	name = "low security prisoner jumpsuit"
-	desc = "A pale, almost creamy prison jumpsuit, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "低安全级别囚犯连体服"
+	desc = "一件苍白近乎奶油色的监狱连体服，用于标识低安全级别的囚犯，比如诈骗犯和其他白领罪犯。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/lowsec"
 	greyscale_colors = "#AB9278"
 
 /obj/item/clothing/under/rank/prisoner/skirt/lowsec
-	name = "low security prisoner jumpskirt"
-	desc = "A pale, almost creamy prison jumpskirt, this one denotes a low security prisoner, things like fraud and anything white collar. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "低安全级别囚犯连体裙"
+	desc = "一件苍白近乎奶油色的监狱连体裙，用于标识低安全级别的囚犯，比如诈骗犯和其他白领罪犯。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/lowsec"
 	greyscale_colors = "#AB9278"
 
 /obj/item/clothing/under/rank/prisoner/highsec
-	name = "high risk prisoner jumpsuit"
-	desc = "A bright red prison jumpsuit, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "高风险囚犯连体服"
+	desc = "一件鲜红色的监狱连体服，在不同人眼里，它要么是荣誉勋章，要么是避而远之的信号。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/highsec"
 	greyscale_colors = "#FF3400"
 
 /obj/item/clothing/under/rank/prisoner/skirt/highsec
-	name = "high risk prisoner jumpskirt"
-	desc = "A bright red prison jumpskirt, depending on who sees it, either a badge of honour or a sign to avoid. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "高风险囚犯连体裙"
+	desc = "一件鲜红色的监狱连体裙，在不同人眼里，它要么是荣誉勋章，要么是避而远之的信号。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/highsec"
 	greyscale_colors = "#FF3400"
 
 /obj/item/clothing/under/rank/prisoner/supermax
-	name = "supermax prisoner jumpsuit"
-	desc = "A dark crimson red prison jumpsuit, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "超级重犯囚犯连体服"
+	desc = "一件深绯红色的监狱连体服，专供最恶名昭彰的罪犯，或者小丑。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/supermax"
 	greyscale_colors = "#992300"
 
 /obj/item/clothing/under/rank/prisoner/skirt/supermax
-	name = "supermax prisoner jumpskirt"
-	desc = "A dark crimson red prison jumpskirt, for the worst of the worst, or the Clown. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "超级重犯囚犯连体裙"
+	desc = "一件深绯红色的监狱连体裙，专供最恶名昭彰的罪犯，或者小丑。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/supermax"
 	greyscale_colors = "#992300"
 
 /obj/item/clothing/under/rank/prisoner/classic
-	name = "classic prisoner jumpsuit"
-	desc = "A black and white striped jumpsuit, like something out of a movie."
+	name = "经典囚犯连体服"
+	desc = "一件黑白条纹连体服，活像从电影里走出来的。"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/under/costume.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/under/costume.dmi'
 	worn_icon_digi = 'modular_skyrat/master_files/icons/mob/clothing/under/costume_digi.dmi'
@@ -558,22 +558,22 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/rank/prisoner/syndicate
-	name = "syndicate prisoner jumpsuit"
-	desc = "A crimson red jumpsuit worn by syndicate captives. Its sensors have been shorted out."
+	name = "辛迪加囚犯连体服"
+	desc = "一件绯红色的连体服，由辛迪加俘虏穿着。它的传感器已被短路。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/syndicate"
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
 
 /obj/item/clothing/under/rank/prisoner/skirt/syndicate
-	name = "syndicate prisoner jumpskirt"
-	desc = "A crimson red jumpskirt worn by syndicate captives. Its sensors have been shorted out."
+	name = "辛迪加囚犯连体裙"
+	desc = "一件绯红色的连体裙，由辛迪加俘虏穿着。它的传感器已被短路。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/skirt/syndicate"
 	greyscale_colors = "#992300"
 	has_sensor = FALSE
 
 /obj/item/clothing/under/rank/prisoner/syndicate/station
-	name = "syndicate prisoner jumpsuit"
-	desc = "A dark blood red prison jumpsuit, for the known Syndicate captives, valuable targets to CentCom and interrogation. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "辛迪加囚犯连体服"
+	desc = "一件暗血红色的监狱连体服，供已确认的辛迪加俘虏穿着——他们是中央指挥部和审讯部门眼中的宝贵目标。它的服装传感器卡在了“完全开启”档位。"
 	icon_state = "/obj/item/clothing/under/rank/prisoner/syndicate/station"
 	greyscale_colors = "#5c0000ff"
 
@@ -582,8 +582,8 @@
 */
 //Adds reskins and special footstep noises
 /obj/item/clothing/shoes/jackboots/sec
-	name = "security jackboots"
-	desc = "Lopland's Peacekeeper-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
+	name = "安保长筒靴"
+	desc = "洛普兰维和者系列安保战斗靴，适用于战斗场景或战斗状况。全天候战斗，时刻不停。"
 	icon_state = "jackboots_sec"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/clothing/feet.dmi'
@@ -704,7 +704,7 @@
 	worn_icon_state = "security"
 
 /obj/item/storage/belt/holster
-	desc = "A rather plain but still cool looking holster that can hold a handgun, and some ammo."
+	desc = "一个相当朴素但依旧很酷的枪套，可以装一把手枪和一些弹药。"
 
 /datum/storage/holster
 	max_slots = 3
@@ -733,8 +733,8 @@
 	return ..()
 
 /obj/item/storage/belt/holster/detective
-	name = "detective's holster"
-	desc = "A holster able to carry handguns and extra ammo, thanks to an additional hand-sewn pouch. WARNING: Badasses only."
+	name = "侦探的枪套"
+	desc = "一个能携带手枪和额外弹药的枪套，额外缝制了一个小袋。警告：仅限狠角色使用。"
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/belts/belts_teshari.dmi'
 
 /datum/storage/holster/detective
@@ -911,8 +911,8 @@
 
 // turning one of the duplicate security winter jackets into a wintercoat
 /obj/item/clothing/suit/hooded/wintercoat/security/redsec
-	name = "security winter coat"
-	desc = "A winter coat with an armored vest resting atop it, perfect for those cold Freyja nights."
+	name = "安保冬季大衣"
+	desc = "一件外面套着装甲背心的冬季大衣，非常适合弗蕾亚那些寒冷的夜晚。"
 	icon_state = "coatsecurity_winter"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/wintercoat.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/wintercoat.dmi'
@@ -921,8 +921,8 @@
 	hoodtype = /obj/item/clothing/head/hooded/winterhood/security/redsec
 
 /obj/item/clothing/head/hooded/winterhood/security/redsec
-	name = "security winter hood"
-	desc = "A red, armour-padded winter hood. Definitely not bulletproof, especially not the part where your face goes."
+	name = "安保冬季兜帽"
+	desc = "一顶红色的加厚防寒兜帽。绝对不防弹，尤其是脸对着的那部分。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/winterhood.dmi'
 	icon_state = "winterhood_security"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/winterhood.dmi'
@@ -933,7 +933,7 @@
 */
 
 /obj/item/clothing/suit/armor/vest/alt/sec/redsec
-	desc = "A Type I armored vest that provides decent protection against most types of damage."
+	desc = "一件 Type I 装甲背心，能对大多数伤害类型提供不错的防护。"
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	icon_state = "armor_sec"
@@ -960,8 +960,8 @@
 *	FEET
 */
 /obj/item/clothing/shoes/jackboots/sec/redsec
-	name = "jackboots"
-	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
+	name = "长筒靴"
+	desc = "纳米传讯配发的安保战斗靴，适用于战斗场景或战斗状况。全天候战斗，时刻不停。"
 	icon_state = "jackboots_sec"
 	icon = 'icons/obj/clothing/shoes.dmi'
 	worn_icon = 'icons/mob/clothing/feet.dmi'
@@ -974,7 +974,7 @@
 
 //Finally, a few description changes for items that couldn't get a resprite.
 /obj/item/clothing/head/bio_hood/security
-	desc = "A hood that protects the head and face from biological contaminants. This is a slightly outdated model from Nanotrasen Securities - you can hardly see through the foggy visor's ageing red. Hopefully it's still up to spec..."
+	desc = "一顶保护头部和面部免受生物污染物侵害的兜帽。这是纳米传讯安保部门略显过时的型号——那副起雾面罩的老旧红色几乎让人看不清外面。希望它还能达标……"
 
 /obj/item/clothing/suit/bio_suit/security
-	desc = "A suit that protects against biological contamination. This is a slightly outdated model from Nanotrasen Securities, using their red color-scheme and even outdated labelling. Hopefully it's still up to spec..."
+	desc = "一套防护生物污染的服装。这是纳米传讯安保部门略显过时的型号，采用他们的红色配色，连标签都是旧版。希望它还能达标……"

@@ -13,4 +13,4 @@
 	. = ..()
 
 /datum/species/zombie/get_species_description()
-	return list("A rotting zombie! They descend upon Space Station Thirteen Every year to spook the crew! \"Sincerely, the Zombies!\"",)
+	return list("一具腐烂的丧尸！他们每年都会降临十三号空间站来吓唬船员！“诚挚的，丧尸们！”",)

@@ -1,6 +1,6 @@
 /obj/item/riding_saddle
-	name = "generic riding saddle"
-	desc = "someone spawned a basetype!"
+	name = "通用骑乘马鞍"
+	desc = "有人把基础类型刷出来了！"
 	slot_flags = ITEM_SLOT_BELT
 
 	icon = 'modular_zubbers/icons/mob/taur/saddles.dmi'
@@ -16,9 +16,9 @@
 	AddComponent(/datum/component/taur_clothing_offset)
 
 /obj/item/riding_saddle/leather
-	name = "riding saddle"
-	desc = "A thick leather riding saddle. Typically used for animals, this one has been designed for use by the taurs of the galaxy. \n\
-		This saddle has specialized footrests that will allow a rider to <b>use both their hands</b> while riding."
+	name = "骑乘马鞍"
+	desc = "一副厚实的皮革骑乘马鞍。通常用在动物身上，这一副则是为银河中的半人马们设计的。\n\
+		鞍上配有特制的脚踏，让骑手在骑乘时<b>双手都能空出来</b>。"
 
 	icon_state = "saddle_leather_item"
 	worn_icon_state = "saddle_leather"
@@ -28,15 +28,15 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 
 /obj/item/riding_saddle/leather/peacekeeper
-	name = "peacekeeper saddle"
+	name = "和平守护者马鞍"
 	icon_state = "saddle_sec_item"
 	worn_icon_state = "saddle_sec"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/riding_saddle/leather/peacekeeper/Initialize(mapload)
 	. = ..()
-	desc += " This one is painted in peacekeeper livery, and equipped with a mounting slot for cuffs and \
-	a baton. Unfortunately this makes it a tad bulkier."
+	desc += " 这一副涂着和平守护者的涂装，还配有一个挂载手铐与\
+	警棍的挂载槽。可惜这使它稍显笨重。"
 	create_storage(storage_type = /datum/storage/sec_saddle)
 
 /obj/item/riding_saddle/leather/peacekeeper/update_icon(updates)
@@ -69,10 +69,10 @@
 	))
 
 /obj/item/storage/backpack/saddlebags
-	name = "saddlebags"
-	desc = "A collection of small pockets bound together by belt, typically used on caravan animals due to their superior storage capacity. This one has been designed for use by the taurs of the galaxy. \n\
-		These saddlebags can be accessed by anyone if they <b>alt-click</b> the wearer.\n\
-		Additionally, they have been modified with a hand grip that would allow <b>one free hand</b> during riding."
+	name = "马鞍袋"
+	desc = "一组由腰带系在一起的小口袋，因为其出色的储物容量，通常用在驮兽身上。这一套则是为银河中的半人马们设计的。 \n\
+		任何人只要<b>按住 Alt 点击</b>佩戴者，就能取用这套鞍袋。\n\
+		此外，它还经过改装，加了一个握把，让骑乘时能<b>空出一只手</b>。"
 	gender = PLURAL
 
 	slot_flags = ITEM_SLOT_BACK

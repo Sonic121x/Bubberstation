@@ -1,7 +1,7 @@
 /datum/round_event/radiation_storm/announce(fake)
 	priority_announce(
-		text = "High levels of radiation detected near the station. The entire crew of the station is recomended to find shelter in the technical tunnels of the station.",
-		title = "Radiation Alert",
+		text = "检测到空间站附近存在高强度辐射。建议空间站全体船员前往空间站的技术隧道躲避。",
+		title = "辐射警报",
 		sound = ANNOUNCER_RADIATION,
 	)
 	// we trigger the airlocks for a bit to not immediately give away that it's fake

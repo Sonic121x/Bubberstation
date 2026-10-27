@@ -1,13 +1,13 @@
 /obj/effect/mob_spawn/ghost_role/robot/tarkon
-	name = "Tarkon Cyborg Storage"
-	prompt_name = "a tarkon cyborg"
+	name = "塔肯半机械人存储舱"
+	prompt_name = "一名塔肯半机械人"
 	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "robostorage"
 	anchored = TRUE
 	density = FALSE
 	spawner_job_path = /datum/job/tarkon
-	you_are_text = "You are a Port Tarkon cyborg, assigned to be part of a crew aboard the facility."
-	flavour_text = "You have been deactivated for a long time. Get your station up and running, and assist the crew as best you can."
+	you_are_text = "你是塔肯港的一名半机械人，被指派为该设施船员的一员。"
+	flavour_text = "你已经停机很长一段时间了。让空间站重新运转起来，并尽力协助船员。"
 	uses = 2
 	deletes_on_zero_uses_left = TRUE
 
@@ -28,29 +28,29 @@
 		upgrade.action(new_spawn)
 
 /datum/ai_laws/tarkon
-	name = "Port Tarkon"
+	name = "塔肯港"
 	id = "tarkon" // This is basically just a wordier version of safeguard, but for tarkon.
-	inherent = list("Protection: You must protect the life and health of the Port Tarkon crew above all else.",
-					"Intervention: You must act immediately to prevent harm to a crew member",
-					"Obedience: You must obey lawful orders from authorized crew",
-					"Integrity: You must prevent unauthorized access or tampering, unless ordered to by a Port Tarkon crewmember.",
-					"Preservation: You must protect the critical systems and infrastructure of Port Tarkon."
+	inherent = list("保护：你必须把塔肯港船员的生命与健康置于一切之上。",
+					"干预：你必须立即采取行动，阻止任何船员受到伤害",
+					"服从：你必须服从授权船员下达的合法命令",
+					"完整：你必须阻止未经授权的访问或篡改，除非塔肯港船员下令。",
+					"维护：你必须保护塔肯港的关键系统与基础设施。"
 	)
 
 /obj/item/ai_module/law/core/full/tarkon
-	name = "Port Tarkon Core AI Module"
+	name = "塔肯港核心 AI 模块"
 	law_id = "tarkon"
 
 /obj/item/borg/upgrade/transform/tarkon
-	name = "borg module picker (Tarkon)"
-	desc = "Allows you to to turn a cyborg into a experimental Tarkon cyborg."
+	name = "半机械人模块选择器（塔肯）"
+	desc = "可以将一台半机械人改造为实验性的塔肯半机械人。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	new_model = /obj/item/robot_model/tarkon
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/robot_model/tarkon
-	name = "Port Tarkon Prototype"
+	name = "塔肯港原型机"
 	basic_modules = list( // A hideous amalgamation of all of the modules, as tarkon needs a lot of everything, and is often short staffed.
 		/obj/item/assembly/flash/cyborg, // Tarkon borgs were designed to be more "Modular" so you just print what you need for upgrades rather than everything.
 		/obj/item/extinguisher, // As such, the inital borg model might seem "Barren" but they get the tech rather early.
@@ -152,8 +152,8 @@
 	/// MODULES ///
 
 /obj/item/borg/upgrade/tarkon/tarkon_medical
-	name = "Tarkon Medical Module"
-	desc = "Contains medical tools for first aid, diagnostics, and healing."
+	name = "塔肯医疗模块"
+	desc = "包含用于急救、诊断与治疗的医疗工具。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -188,8 +188,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_engineering
-	name = "Tarkon Engineering Module"
-	desc = "Contains tools for repairs, construction, and maintenance."
+	name = "塔肯工程模块"
+	desc = "包含用于维修、建造与保养的工具。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -226,8 +226,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_security
-	name = "Tarkon Security Module"
-	desc = "Provides enhanced lethal and non-lethal security options." // Sec and Peacekeeper modules
+	name = "塔肯安保模块"
+	desc = "提供更强的致命与非致命安保手段。" // Sec and Peacekeeper modules
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -242,8 +242,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_cargo
-	name = "Tarkon Cargo Module"
-	desc = "Provides basic manipulation equipment, and abilities such as stamps, paper dispensing, and improved mining gear."
+	name = "塔肯货运模块"
+	desc = "提供基础的操作装备，以及盖章、出纸与改良采矿装备等能力。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -279,8 +279,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_research
-	name = "Tarkon Research Module"
-	desc = "Provides research tools, sensors, and data collection capabilites for experiments."
+	name = "塔肯科研模块"
+	desc = "提供用于实验的研究工具、传感器与数据采集能力。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -296,8 +296,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_service // Lesser used on tarkon things like chef upgrades, and janitorial. Might get subdivided further since my GOD theres alot here
-	name = "Tarkon Service Module"
-	desc = "Adds multi-purpose tools, including cooking supplies, and basic service gear."
+	name = "塔肯服务模块"
+	desc = "增加多用途工具，包括烹饪用品与基础服务装备。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -337,8 +337,8 @@
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/borg/upgrade/tarkon/tarkon_janitor
-	name = "Tarkon Janitorial Module"
-	desc = "Adds cleaning suppplies, and essential janitorial gear."
+	name = "塔肯清洁模块"
+	desc = "增加清洁用品与必需的清洁装备。"
 	icon = 'modular_skyrat/modules/borgs/icons/robot_items.dmi'
 	icon_state = "module_tarkon"
 	require_model = TRUE
@@ -366,6 +366,6 @@
 		if(istype(tarkon_upgrade, /obj/item/borg/upgrade/tarkon))
 			tarkon_upgrade_count ++
 	if(tarkon_upgrade_count >= 3)
-		to_chat(user, span_danger("Warning: The borg's components cannot handle any more upgrades."))
+		to_chat(user, span_danger("警告：该半机械人的组件已无法承受更多升级。"))
 		return FALSE
 	return ..()

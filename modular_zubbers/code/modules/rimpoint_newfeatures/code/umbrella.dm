@@ -1,7 +1,7 @@
 //Sprites by Constellado, MapleStation
 
 /obj/item/umbrella
-	name = "umbrella"
+	name = "雨伞"
 	icon = 'icons/map_icons/items/_item.dmi'
 	icon_state = "/obj/item/umbrella"
 	post_init_icon_state = "umbrella"
@@ -81,7 +81,7 @@
 	inhand_icon_state = active ? on_inhand_icon_state : inhand_icon_state
 	open = active
 	if(user)
-		balloon_alert(user, active ? "opened" : "closed")
+		balloon_alert(user, active ? "已打开" : "已收起")
 	if(active)
 		ADD_TRAIT(user, TRAIT_SHADED, REF(src))
 	else
@@ -124,8 +124,8 @@
 //other umbrellas
 
 /obj/item/umbrella/parasol
-	name = "parasol"
-	desc = "A black laced parsol, how intricate."
+	name = "阳伞"
+	desc = "一把黑色蕾丝阳伞，做工可真精致。"
 	icon = 'modular_zubbers/icons/obj/equipment/umbrella.dmi'
 	icon_state = "parasol"
 	inhand_icon_state = "parasol_closed"

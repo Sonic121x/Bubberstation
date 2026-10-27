@@ -1,7 +1,7 @@
 /datum/storyteller/gamer
-	name = "Heavy (Crew Antag Spawns Focus)"
-	desc = "This storyteller prioritizes combat-based encounters and chaos, although the actual level of chaos may be unpredictable due to player agency. The number of destructive events is reduced."
-	welcome_text = "Welcome to the Gamer storyteller. Now with 50% more ahelps!"
+	name = "重度（侧重船员反派生成）"
+	desc = "这位故事讲述者优先安排以战斗为主的遭遇和混乱，不过由于玩家的自主行动，实际的混乱程度可能难以预测。破坏性事件的数量会减少。"
+	welcome_text = "欢迎来到玩家型故事讲述者。现在管理员求助量增加了 50%！"
 
 	track_data = /datum/storyteller_data/tracks/gamer
 

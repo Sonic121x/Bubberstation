@@ -1,6 +1,6 @@
 /obj/item/bodypart/arm/left/kinetic
-	name = "left kinetic prosthetic arm"
-	desc = "A simple, yet elegantly designed, prosthetic. Intended to give some functionality back to the user and retain the appearance of an organic arm, but its use is limited to simple actions, as it lacks fine motor control."
+	name = "左动能义肢臂"
+	desc = "一款设计简约而优雅的义肢。旨在为用户恢复部分功能并保留有机手臂的外观，但由于缺乏精细运动控制，只能完成简单动作。"
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon_state = "kinetic_l_arm"
@@ -23,8 +23,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/arm/right/kinetic
-	name = "right kinetic prosthetic arm"
-	desc = "A simple, yet elegantly designed, prosthetic. Intended to give some functionality back to the user and retain the appearance of an organic arm, but its use is limited to simple actions, as it lacks fine motor control."
+	name = "右动能义肢臂"
+	desc = "一款设计简约而优雅的义肢。旨在为用户恢复部分功能并保留有机手臂的外观，但由于缺乏精细运动控制，只能完成简单动作。"
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon_state = "kinetic_r_arm"
@@ -47,8 +47,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/left/kinetic
-	name = "left kinetic prosthetic leg"
-	desc = "A simple, yet elegantly designed, prosthetic. Rather than a normal foot on the end, this prosthetic is fitted with a simple blade style foot, allowing the user to walk as normal."
+	name = "左动能义肢腿"
+	desc = "一款设计简约而优雅的义肢。末端不是普通的脚掌，而是装有一只简单的刃式脚，让用户能像平常一样行走。"
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon_state = "kinetic_r_leg"
@@ -70,8 +70,8 @@
 	ADD_TRAIT(src, TRAIT_EASY_ATTACH, INNATE_TRAIT)
 
 /obj/item/bodypart/leg/right/kinetic
-	name = "right kinetic prosthetic leg"
-	desc = "A simple, yet elegantly designed, prosthetic. Rather than a normal foot on the end, this prosthetic is fitted with a simple blade style foot, allowing the user to walk as normal."
+	name = "右动能义肢腿"
+	desc = "一款设计简约而优雅的义肢。末端不是普通的脚掌，而是装有一只简单的刃式脚，让用户能像平常一样行走。"
 	icon_static = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon = 'modular_zubbers/icons/mob/human/kinetic.dmi'
 	icon_state = "kinetic_l_leg"

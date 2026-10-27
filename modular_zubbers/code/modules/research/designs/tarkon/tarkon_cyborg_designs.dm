@@ -1,7 +1,7 @@
 /datum/design/borg_upgrade_tarkon_main
-	name = "Cyborg Module Unlocker (Tarkon)"
+	name = "半机械人模块解锁器（塔肯）"
 	id = "borg_upgrade_tarkon_main"
-	desc = "Allows a cyborg to transform into the experimental Port Tarkon cyborg type."
+	desc = "允许半机械人转变为实验性的塔肯港半机械人型号。"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/tarkon
 	materials = list(
@@ -16,7 +16,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_medical
-	name = "Port Tarkon Medical Upgrades"
+	name = "塔肯港医疗模块升级"
 	id = "borg_upgrade_tarkon_medical"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_medical
@@ -32,7 +32,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_engineering
-	name = "Port Tarkon Engineering Upgrades"
+	name = "塔肯港工程模块升级"
 	id = "borg_upgrade_tarkon_engineering"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_engineering
@@ -48,7 +48,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_security
-	name = "Port Tarkon Security Upgrades"
+	name = "塔肯港安保模块升级"
 	id = "borg_upgrade_tarkon_security"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_security
@@ -64,7 +64,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_cargo
-	name = "Port Tarkon Cargo Upgrades"
+	name = "塔肯港货运模块升级"
 	id = "borg_upgrade_tarkon_cargo"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_cargo
@@ -80,7 +80,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_research
-	name = "Port Tarkon Research Upgrades"
+	name = "塔肯港科研模块升级"
 	id = "borg_upgrade_tarkon_research"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_research
@@ -96,7 +96,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_service
-	name = "Port Tarkon Service Upgrades"
+	name = "塔肯港服务模块升级"
 	id = "borg_upgrade_tarkon_service"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_service
@@ -112,7 +112,7 @@
 	)
 
 /datum/design/borg_upgrade_tarkon_janitor
-	name = "Port Tarkon Janitorial Upgrades"
+	name = "塔肯港清洁模块升级"
 	id = "borg_upgrade_tarkon_janitor"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/tarkon/tarkon_janitor

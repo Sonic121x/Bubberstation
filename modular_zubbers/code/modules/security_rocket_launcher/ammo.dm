@@ -5,8 +5,8 @@
 
 //The ammo itself
 /obj/item/ammo_casing/security_missile
-	name = "\improper \"VARS\" HE missile"
-	desc = "An 69mm High Explosive missile with built-in radar technology. Fire at people and forget, because it's honestly best to forget what happened if you accidentally hit a stray assistant with these."
+	name = "\improper “VARS”高爆导弹"
+	desc = "一枚 69mm 高爆导弹，内置雷达技术。朝人发射后就忘了吧，因为如果你不小心用这玩意打中了一个闲逛的助手，最好还是忘掉发生了什么。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/sec_missile.dmi'
 	icon_state = "rocket"
 	base_icon_state = "rocket"
@@ -27,8 +27,8 @@
 
 //Storage for the ammo. Not an ammo box subtype because we don't want security easy getting restocks.
 /obj/item/storage/box/security_missiles
-	name = "\improper \"VARS\" HE missile box"
-	desc = "A sleek, sturdy box used to hold missiles."
+	name = "\improper “VARS”高爆导弹箱"
+	desc = "一个光滑坚固的箱子，用于存放导弹。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/sec_missile.dmi'
 	icon_state = "rocket_box"
 	illustration = null

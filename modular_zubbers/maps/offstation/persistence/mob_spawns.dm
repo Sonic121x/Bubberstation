@@ -6,13 +6,13 @@
 // Persistence mining rig Ghost Spawners
 
 /obj/effect/mob_spawn/ghost_role/human/persistence
-	name = "Persistence Personnel"
+	name = "恒久号人员"
 	use_outfit_name = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "Persistence Personnel"
-	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler. Your mission objectives are to harvest materials, build outposts, produce goods, and advance the interests of your company"
-	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile"
+	prompt_name = "一名恒久号人员"
+	you_are_text = "你是辛迪加特工，受雇在陆地履带车上作为船员的一员。你的任务目标是采集材料、建造前哨、生产物资，并推进公司的利益。"
+	flavour_text = "你已被部署到敌方领地。尽你所能继续工作，并保持低调。"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
@@ -30,41 +30,41 @@
 		spawned_mob.mind?.handle_exploitables_menu()
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/syndicate
-	name = "Syndicate Operative"
-	prompt_name = "a Syndicate Operative"
-	you_are_text = "You are a Syndicate operative, employed as part of a crew aboard a landcrawler."
-	flavour_text = "The Syndicate managed Persistence mining rig has been deployed into enemy territory to stealthily monitor Nanotrasen assets. Your orders are to maintain the ship's integrity, perform your duties and keep a low profile while maintaining your front as a mining operation."
-	important_text = "You are NOT an antagonist and the round does not center the Persistence. You MUST submit an Opfor or Adminhelp for significant interaction with the station and its crew"
+	name = "辛迪加特工"
+	prompt_name = "一名辛迪加特工"
+	you_are_text = "你是辛迪加特工，受雇在陆地履带车上作为船员的一员。"
+	flavour_text = "由辛迪加运营的恒久号采矿平台已被部署到敌方领地，秘密监视纳米传讯的资产。你的命令是维护飞船的完整、履行你的职责，同时保持低调，并维持采矿作业的伪装。"
+	important_text = "你并非反派，本局也不以恒久号为重心。任何与空间站及其船员的重大互动，你必须提交敌对势力申请或发起 adminhelp。"
 	outfit = /datum/outfit/persistence/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/command
-	name = "Syndicate Command Operative"
-	prompt_name = "a Syndicate leader"
-	you_are_text = "you are a Syndicate Command Operative assigned to lead the SSV Persistence and guide it forward in its goals"
-	flavour_text = "The Syndicate managed Persistence mining rig has been deployed into enemy territory to stealthly monitor Nanotrasen assets under the cover of a legal mining operation. Your orders are to lead the Persistence while ensuring a low profile is maintained."
-	important_text = "You are a command role and held to a higher standard. You are NOT an antagonist and the round does not center around the Persistence. You MUST submit an Opfor or Adminhelp for significant interaction with the station and its crew"
+	name = "辛迪加指挥特工"
+	prompt_name = "一名辛迪加领袖"
+	you_are_text = "你是辛迪加指挥特工，被指派领导 SSV 恒久号，引领它朝既定目标前进。"
+	flavour_text = "由辛迪加运营的恒久号采矿平台已被部署到敌方领地，以合法采矿作业为掩护，秘密监视纳米传讯的资产。你的命令是领导恒久号，同时确保全船保持低调。"
+	important_text = "你属于指挥类角色，需以更高标准要求自己。你并非反派，本局也不以恒久号为中心。任何与空间站及其船员的重大互动，你必须提交敌对势力申请或发起 adminhelp。"
 	outfit = /datum/outfit/persistence/command
 
 /obj/effect/mob_spawn/ghost_role/human/persistence/prisoner
-	name = "Syndicate Intern"
-	prompt_name = "a Syndicate intern"
-	you_are_text = "You are an intern onboard an unknown vessel"
-	flavour_text = "Unaware of where you are, all you know is you are a intern. The plastitanium should clue you into who your employer is... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Syndicate personnel will throw you into lava or plasma outside if you antagonize them."
+	name = "辛迪加实习生"
+	prompt_name = "一名辛迪加实习生"
+	you_are_text = "你是一艘不明飞船上的实习生。"
+	flavour_text = "你不知道自己在哪儿，只知道自己是个实习生。那些塑钛应该能让你猜到雇主是谁……至于你为什么在这里？那得你自己知道，再由我们来弄明白。"
+	important_text = "你并非反派。你仍须遵守有关冲突升级的角色扮演规则。如果你激怒了辛迪加人员，他们会把你扔进外面的熔岩或等离子体里。"
 	outfit = /datum/outfit/persistence/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/persistance/sec/prison
 	give_exploitables = FALSE
 
 /obj/effect/mob_spawn/ghost_role/robot/persistence
-	name = "Syndicate Cyborg Storage"
-	prompt_name = "a syndicate robot"
+	name = "辛迪加半机械人储藏舱"
+	prompt_name = "一台辛迪加机器人"
 	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "robostorage"
 	anchored = TRUE
 	density = FALSE
 	spawner_job_path = /datum/job/persistence
-	you_are_text = "You are a Syndicate cyborg, assigned to be part of a crew aboard a landcrawler"
-	flavour_text = "You have been deployed into enemy territory. Continue working the best you can, and keep a low profile."
+	you_are_text = "你是辛迪加半机械人，被编入陆地履带车上的船员。"
+	flavour_text = "你已被部署到敌方领地。尽你所能继续工作，并保持低调。"
 	deletes_on_zero_uses_left = TRUE
 	allow_custom_character = ALL
 

@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg/peace
-	name = "Malfunctioning Peacekeeper Cyborg"
-	desc = "A cyborg unit, hacked or malfunctioning. This is a Peacekeeper model."
+	name = "故障维和半机械人"
+	desc = "一台半机械人单位，遭到入侵或发生故障。这是维和型号。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	icon_state = "evilbotpeace"
@@ -17,8 +17,8 @@
 	exposed_wound_bonus = 0
 	sharpness = NONE
 
-	attack_verb_continuous = "smacks"
-	attack_verb_simple = "smack"
+	attack_verb_continuous = "用力拍打"
+	attack_verb_simple = "拍打"
 	attack_sound = 'sound/items/weapons/cqchit1.ogg'
 
 /mob/living/basic/malf_borg/peace/Initialize(mapload)

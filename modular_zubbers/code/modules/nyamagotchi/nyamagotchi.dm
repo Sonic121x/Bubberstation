@@ -10,8 +10,8 @@
 #define PURR_SLEEP 'sound/mobs/non-humanoids/cat/cat_purr3.ogg'
 
 /obj/item/toy/nyamagotchi
-	name = "Nyamagotchi"
-	desc = "A small electronic 'pet' that requires care and attention. An ancient relic sure to evoke nostalgic feelings."
+	name = "喵麻歌子"
+	desc = "一台需要悉心照料的小型电子“宠物”。这件古老遗物必定能唤起你的怀旧之情。"
 	icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
 	icon_state = "nya"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -42,80 +42,80 @@
 
 	var/alive = NO_ANIMAL
 	var/list/rest_messages = list(
-		"Zzz... Zzz... Zzz...",
-		"Honk, shew! Hooonk, shewww...!",
-		"Snoozin' time, nya...",
-		"Honk shoo!",
-		"Nini...~",
-		"Zzz... Zzz... Zzz... Zzz... Zzz...",
+		"呼……呼……呼……",
+		"呼噜，嘘！呼噜噜，嘘嘘……！",
+		"该睡觉觉了，喵……",
+		"呼噜嘘！",
+		"晚安……～",
+		"呼……呼……呼……呼……呼……",
 	)
 	var/list/play_messages = list(
-		"Wowzers meowzers, that was fun!",
-		"That was so much fun, nya!",
-		"YAY!!!",
-		"I had a great time playing with you!",
-		"YIPPEEE!!!", "That was a blast!",
-		"Wowzers meowzers, that was a blast!",
+		"哇喵喵，真好玩！",
+		"太好玩了，喵！",
+		"耶！！！",
+		"和你一起玩真开心！",
+		"耶！！！", "真是太过瘾了！",
+		"哇喵喵，真是太过瘾了！",
 	)
 	var/list/feed_messages = list(
-		"NOM NOM NOM. Ice cream, yum!",
-		"Mmm, that was tasty!",
-		"So yummy!",
-		"Oooh! Delicious!",
-		"MONCH MONCH MONCH.",
-		"MUNCH MUNCH, that was so heckin' tasty, nya!",
-		"Yum, that was delicious!",
-		"What a PURRFECT meal, nya!",
+		"吧唧吧唧。冰淇淋，好吃！",
+		"嗯，真有味道！",
+		"好好吃！",
+		"哦！太美味了！",
+		"嘎吱嘎吱嘎吱。",
+		"吧唧吧唧，真是超级好吃，喵！",
+		"嗯，太好吃了！",
+		"真是喵妙的一餐，喵！",
 	)
 	var/list/hunger_warning = list(
-		"Wowzers meowzers, I'm hungry, nya!",
-		"Excuse me! I'm feeling a bit peckish, nya!",
-		"I could eat the world right now, nya!",
-		"Soooo hongry!",
-		"I'm feeling a bit hungry, nya!",
-		"I needs the food, mrow!",
+		"哇喵喵，我饿了，喵！",
+		"打扰一下！我有点想吃东西了，喵！",
+		"我现在能吃下一整个世界，喵！",
+		"好饿饿饿！",
+		"我有点饿了，喵！",
+		"我需要食物，喵呜！",
 	)
 	var/list/hunger_critical = list(
-		"HELLO! Food, pwease?...",
-		"HEY!!! I'm starving...",
-		"HONNNNGRYYY!!!",
-		"so so hungry...",
+		"喂！食物，拜托？……",
+		"嘿！！！我要饿死了……",
+		"饿饿饿饿饿！！！",
+		"好饿好饿……",
 	)
 	var/list/happiness_warning = list(
-		"Some fun would be purrfect, nya...",
-		"I'm feeling a bit down, nya...",
-		"Playtime! Now!",
-		"This is no fun...",
-		"I'm BORED, nya!",
-		"So sad! So bored! Need to play!",
-		"Wah... So sad, nya...",
-		"I'm feeling a bit blue, nya...",
-		"I'm sad...",
-		"Play with meeee! PLEASE.",
-		"My fun levels are low, nya...",
+		"来点乐子就喵妙了，喵……",
+		"我有点闷闷不乐，喵……",
+		"玩耍时间！现在！",
+		"这一点也不好玩……",
+		"我好无聊，喵！",
+		"好伤心！好无聊！我要玩！",
+		"呜……好伤心，喵……",
+		"我有点低落，喵……",
+		"我很难过……",
+		"陪我玩玩嘛！求你了。",
+		"我的乐趣值好低，喵……",
 	)
 	var/list/full_critical = list(
-		"So this... is how it ends for me...",
-		"Is this how it ends... cold, alone, unfed...",
-		"Fading... fast... my last request: snacks and snuggles, please...",
-		"I see the end... all nine lives gone...",
-		"Abandoned... like a stray... in my own virtual world...",
-		"It’s getting so dark and cold...",
+		"所以……我就要这样结束了吗……",
+		"就这样结束了吗……又冷，又孤单，还没人喂……",
+		"正在消逝……很快……我最后的请求：来点零食和抱抱，拜托……",
+		"我看到尽头了……九条命都没了……",
+		"被遗弃了……像只流浪猫……在我自己的虚拟世界里……",
+		"越来越黑、越来越冷了……",
 	)
 	var/list/energy_warning = list(
-		"I'm feeling a bit sleepy, nya...",
-		"Sleempy...",
-		"I be needin' a naps, nya!",
-		"Need to do the big sleeps, please!",
-		"I'm feeling a bit exhausted, nya...",
-		"I could go for a nap...",
+		"我有点困了，喵……",
+		"困困……",
+		"我需要睡个觉，喵！",
+		"我要好好睡一大觉，拜托！",
+		"我有点累了，喵……",
+		"我想去睡一会儿……",
 	)
 	var/list/energy_critical = list(
-		"SO, SO EEPY, NYA...",
-		"Please, I need to rest...",
-		"I'm feel like I'm gonna pass out...",
-		"Why won't you let me sleep?...",
-		"EEPY. EEPY. eepy...",
+		"好困，好困啊，喵……",
+		"求你了，我需要休息……",
+		"我觉得我快要昏过去了……",
+		"你为什么不让我睡觉？……",
+		"困……困……困……",
 	)
 	COOLDOWN_DECLARE(mute_pet)
 	COOLDOWN_DECLARE(needs_alert)
@@ -123,7 +123,7 @@
 /obj/item/toy/nyamagotchi/Initialize(mapload)
 	. = ..()
 	if(prob(3))
-		name = "pocket pussy" // mrowwww!
+		name = "口袋小猫咪" // mrowwww!
 	register_context()
 	update_available_icons()
 
@@ -132,35 +132,35 @@
 	if(in_range(src, user) || isobserver(user))
 		. += "[readout()]"
 		if(!COOLDOWN_FINISHED(src, mute_pet))
-			. += span_notice("<b>Alt-click</b> to disable mute feature.")
+			. += span_notice("<b>Alt 单击</b>可关闭静音功能。")
 		else
-			. += span_notice("<b>Alt-click</b> to temporarily mute notifications.")
+			. += span_notice("<b>Alt 单击</b>可暂时静音通知。")
 
 /obj/item/toy/nyamagotchi/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	context[SCREENTIP_CONTEXT_LMB] = "Interact"
-	context[SCREENTIP_CONTEXT_ALT_LMB] = "Toggle mute"
+	context[SCREENTIP_CONTEXT_LMB] = "交互"
+	context[SCREENTIP_CONTEXT_ALT_LMB] = "切换静音"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/toy/nyamagotchi/proc/readout()
 	switch(alive)
 		if(NO_ANIMAL)
-			return span_notice("[src] is ready to be started!")
+			return span_notice("[src]已经可以启动了！")
 		if(ANIMAL_ALIVE)
-			return span_notice("[src] is alive, it has reached age [age]! Use the <b>'Check Status'</b> button to see its stats!")
+			return span_notice("[src]还活着，已经长到 [age] 岁了！使用 <b>“查看状态”</b>按钮查看它的属性！")
 		if(ANIMAL_DEAD)
-			return span_purple("[src] is DEAD. You're a terrible person.")
+			return span_purple("[src]已死亡。你真是个糟糕的人。")
 
 /obj/item/toy/nyamagotchi/proc/update_available_icons()
 	icons_available = list()
 	if(alive == ANIMAL_ALIVE)
 		icons_available += list(
-			"Feed" = image(radial_icon_file, "feed"),
-			"Play" = image(radial_icon_file, "play"),
-			"Rest" = image(radial_icon_file, "rest"),
-			"Check Status" = image(radial_icon_file, "status",
+			"喂食" = image(radial_icon_file, "feed"),
+			"玩耍" = image(radial_icon_file, "play"),
+			"休息" = image(radial_icon_file, "rest"),
+			"查看状态" = image(radial_icon_file, "status",
 		))
 	else
-		icons_available += list("Start!" = image(radial_icon_file, "start"))
+		icons_available += list("开始！" = image(radial_icon_file, "start"))
 
 /obj/item/toy/nyamagotchi/attack_self(mob/user)
 	pet_menu(user)
@@ -172,15 +172,15 @@
 		if(!selection)
 			return
 		switch(selection)
-			if("Start!")
+			if("开始！")
 				start()
-			if("Feed")
+			if("喂食")
 				feed()
-			if("Play")
+			if("玩耍")
 				play()
-			if("Rest")
+			if("休息")
 				rest()
-			if("Check Status")
+			if("查看状态")
 				check_status()
 
 /obj/item/toy/nyamagotchi/click_alt(mob/living/user)
@@ -189,13 +189,13 @@
 
 	if(COOLDOWN_FINISHED(src, mute_pet))
 		COOLDOWN_START(src, mute_pet, update_rate * 5.75)
-		user.balloon_alert(user, "muted!")
-		to_chat(user, span_notice("You turn on [src]'s mute feature."))
+		user.balloon_alert(user, "已静音！")
+		to_chat(user, span_notice("你开启了[src]的静音功能。"))
 
 	else
 		COOLDOWN_RESET(src, mute_pet)
-		user.balloon_alert(user, "unmuted!")
-		to_chat(user, span_notice("You turn off [src]'s mute feature."))
+		user.balloon_alert(user, "已取消静音！")
+		to_chat(user, span_notice("你关闭了[src]的静音功能。"))
 		be_known(sfx = MEOW_NORMAL)
 
 /obj/item/toy/nyamagotchi/proc/start()
@@ -204,7 +204,7 @@
 	hunger = rand(30, 60)
 	happiness = rand(80, 100)
 	energy = rand(60, 90)
-	be_known(sfx = 'sound/misc/bloop.ogg', speech = "I'm alive, nya!")
+	be_known(sfx = 'sound/misc/bloop.ogg', speech = "我活过来了，喵！")
 	addtimer(CALLBACK(src, PROC_REF(be_known), MEOW_NORMAL), 2 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(update)), update_rate)
 
@@ -293,7 +293,7 @@
 // Interactions
 /obj/item/toy/nyamagotchi/proc/action_check()
 	if(!isnull(last_task))
-		usr.balloon_alert(usr, "still [last_task]!")
+		usr.balloon_alert(usr, "还在[last_task]！")
 		be_known(sfx = MEOW_SAD)
 		return FALSE
 	return TRUE
@@ -303,55 +303,55 @@
 		return
 	else if(hunger > 20)
 		hunger -= min(rand(30, 40), hunger)
-		to_chat(usr, span_purple("You fed [src]! Its hunger is now at [hunger]."))
+		to_chat(usr, span_purple("你喂了[src]！它的饥饿度现在是 [hunger]。"))
 		be_known(sfx = EAT_FOOD, speech = pick(feed_messages))
-		last_task = "eating"
+		last_task = "吃东西"
 	else
-		usr.balloon_alert(usr, "not hungry!")
+		usr.balloon_alert(usr, "不饿！")
 
 /obj/item/toy/nyamagotchi/proc/play()
 	if(!action_check())
 		return
 	else if(happiness < 80)
 		happiness += min(rand(30, 40), 100 - happiness)
-		to_chat(usr, span_purple("You play with [src]! Its happiness is now [happiness]."))
+		to_chat(usr, span_purple("你和[src]玩耍！它的快乐度现在是 [happiness]。"))
 		be_known(sfx = PURR_PLAY, speech = pick(play_messages))
-		last_task = "playing"
+		last_task = "玩耍"
 	else
-		usr.balloon_alert(usr, "not bored!")
+		usr.balloon_alert(usr, "不无聊！")
 
 /obj/item/toy/nyamagotchi/proc/rest()
 	if(!action_check())
 		return
 	else if(energy < 80)
 		energy += min(rand(30, 40), 100 - energy)
-		to_chat(usr, span_purple("[src] rests and regains energy. Its energy is now [energy]."))
+		to_chat(usr, span_purple("[src]休息并恢复了精力。它的精力现在是 [energy]。"))
 		be_known(sfx = PURR_SLEEP, speech = pick(rest_messages))
-		last_task = "resting"
+		last_task = "休息"
 	else
-		usr.balloon_alert(usr, "not tired!")
+		usr.balloon_alert(usr, "不累！")
 
 // Function for when the nyamagotchi dies
 /obj/item/toy/nyamagotchi/proc/die()
 	last_task = null
 	alive = ANIMAL_DEAD
-	audible_message(span_warning("[src] makes a weak, sad noise and then goes silent... Rest in peace."), hearing_distance = COMBAT_MESSAGE_RANGE)
+	audible_message(span_warning("[src]发出虚弱而悲伤的叫声，然后安静下来……安息吧。"), hearing_distance = COMBAT_MESSAGE_RANGE)
 	if(ishuman(loc))
-		to_chat(loc, span_warning("[src] shows an x3 on its display. It's dead. You're a terrible person."))
+		to_chat(loc, span_warning("[src]的显示屏上出现了一个 x3。它死了。你真是个糟糕的人。"))
 	//src.icon_state = "dead"
-	be_known(sfx = 'sound/misc/sadtrombone.ogg', visible = "nyamagotchi died!")
+	be_known(sfx = 'sound/misc/sadtrombone.ogg', visible = "喵麻歌子死了！")
 	update_available_icons()
 
 /obj/item/toy/nyamagotchi/proc/check_status()
-	balloon_alert(usr, "hunger: [hunger] happiness: [happiness] energy: [energy]")
+	balloon_alert(usr, "饥饿：[hunger] 快乐：[happiness] 精力：[energy]")
 
 /datum/action/item_action/nyamagotchi_menu
-	name = "Check Nyamagotchi"
+	name = "查看喵麻歌子"
 	button_icon = 'modular_zubbers/icons/obj/toys/toys.dmi'
 	button_icon_state = "nya"
 
 /obj/effect/spawner/random/entertainment/dice
-	name = "dice spawner"
+	name = "骰子生成器"
 	icon_state = "dice_bag"
 	spawn_loot_count = 3
 	spawn_loot_double = FALSE

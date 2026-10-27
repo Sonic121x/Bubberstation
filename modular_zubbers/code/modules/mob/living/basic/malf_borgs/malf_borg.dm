@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg
-	name = "Malfunctioning Cyborg"
-	desc = "A small cyborg unit, hacked or malfunctioning. It is likely hostile."
+	name = "故障半机械人"
+	desc = "一台小型半机械人单位，遭到入侵或发生故障。它很可能具有敌意。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	ai_controller = /datum/ai_controller/basic_controller/simple/simple_skirmisher
@@ -27,8 +27,8 @@
 
 	melee_attack_cooldown = 2 SECONDS
 
-	attack_verb_continuous = "claws"
-	attack_verb_simple = "claw"
+	attack_verb_continuous = "挥爪劈砍"
+	attack_verb_simple = "挥爪"
 	attack_sound = 'sound/items/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	attacked_sound = SFX_PUNCH
@@ -38,10 +38,10 @@
 	///The sound that plays when the projectile is fired.
 	var/projectilesound = 'sound/items/weapons/gun/pistol/shot.ogg'
 
-	verb_say = "states"
-	verb_ask = "queries"
-	verb_exclaim = "declares"
-	verb_yell = "alarms"
+	verb_say = "陈述道"
+	verb_ask = "询问道"
+	verb_exclaim = "宣告道"
+	verb_yell = "发出警报"
 	bubble_icon = "machine"
 	speech_span = SPAN_ROBOT
 

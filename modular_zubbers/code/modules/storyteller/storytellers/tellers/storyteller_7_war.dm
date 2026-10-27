@@ -1,7 +1,7 @@
 /datum/storyteller/npc_war
-	name = "Swarm (Hostile NPC Focus)"
-	desc = "This storyteller heavily prioritizes spawning in NPC antagonists to keep combat roles active in-round, as a supplement to the standard rate of player-controlled antagonists."
-	welcome_text = "WAR! HOO! What is it good for? Absolutely NOTHING!"
+	name = "蜂群（侧重敌对 NPC）"
+	desc = "这位故事讲述者极其优先安排 NPC 反派的生成，以便在回合中持续为战斗岗位提供目标，作为玩家操控反派标准出现率的补充。"
+	welcome_text = "战争！呼！它有什么好处？绝对一无是处！"
 
 	tag_multipliers = list(
 		TAG_NPC_ANTAG = 4, //fuck em

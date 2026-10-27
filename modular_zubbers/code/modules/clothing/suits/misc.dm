@@ -3,15 +3,15 @@
 	icon_state = "holographic"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/misc.dmi' //Works like a gear harness but keeps private parts hidden for the suit slot.
 	worn_icon_state = "holographic"
-	name = "Holographic Suit V4000"
-	desc = "The Holographic Suit V4000 has multiple layers designed specifically to refract and bend light waves around the user, effectively making them transparent to the naked eye. The suit comes equipped with advanced sensors that constantly scan its surroundings, adjusting its holographic projection accordingly. As soon as you put on the suit it calibrates itself based on your unique body shape and size."
+	name = "全息套装 V4000"
+	desc = "全息套装 V4000 由多层结构组成，专门设计用于让光波在穿戴者周围发生折射与弯折，从而在肉眼看来近乎透明。套装配备先进传感器，会持续扫描周围环境并相应调整全息投影。你一穿上它，它就会根据你独特的体型与尺寸自我校准。"
 	attachment_slot_override = CHEST
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	body_parts_covered = CHEST|GROIN
 
 /obj/item/clothing/suit/misc/suit_harness
-	name = "suit harness"
-	desc = "A near-concealed harness meant for going over uniforms. Or lack thereof."
+	name = "套装背带"
+	desc = "一条几乎隐形的背带，用来罩在制服外面。或者罩在没穿制服的身体上。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits.dmi'
 	icon_state = "suit_harness"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits.dmi'
@@ -35,13 +35,13 @@
 	)
 
 /obj/item/clothing/suit/apron/chef/colorable_apron/lizardgas
-	name = "Lizard Gas Apron"
-	desc = "A purple apron imprinted with the signature little green lizard of Lizard Gas! This cute outfit is surely reflected by its underpaid drop-out wearer."
+	name = "蜥蜴燃气围裙"
+	desc = "一条紫色围裙，印着蜥蜴燃气标志性的小绿蜥蜴！这身可爱的装扮和它那位薪水微薄的辍学员工倒是十分相称。"
 	greyscale_colors = "#ad23af"
 
 /obj/item/clothing/suit/misc/allamerican
-	name = "all-american diner manager's vest"
-	desc = "A soft fabric vest, with a nametag of the employee on it. It says, MANAGER on the back, making you obvious for the Karens who just NEED your attention."
+	name = "全美式餐馆经理背心"
+	desc = "一件柔软布料的背心，上面别着员工名牌。背后印着“经理”字样，让那些非要你马上过来伺候的凯伦们一眼就认出你。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/misc.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/misc.dmi'
 	icon_state = "allamerican"

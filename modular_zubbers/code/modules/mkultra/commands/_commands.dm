@@ -2,9 +2,9 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 
 /datum/mkultra_command
 	/// The name of your command
-	var/name = "abstract command"
+	var/name = "抽象命令"
 	/// The description of your command
-	var/description = "You shouldn't be seeing this."
+	var/description = "你不该看到这个。"
 	/// Feedback text. "to_chat(enchanter, span_notice("[owner] example text")
 	var/feedback
 	/// Trigger words for this command. trigger_words = regex()
@@ -48,14 +48,14 @@ GLOBAL_LIST_INIT(mkultra_commands, subtypesof(/datum/mkultra_command))
 		return FALSE
 
 	if(cooldown && !COOLDOWN_FINISHED(src, ultra_cooldown))
-		to_chat(source, span_notice("[owner] hasn't finished internalizing your [LOWER_TEXT(name)] command!"))
+		to_chat(source, span_notice("[owner]尚未完全内化你的[LOWER_TEXT(name)]命令！"))
 		return FALSE
 	else
 		if(feedback)
-			to_chat(source, span_notice("[owner] [feedback]"))
+			to_chat(source, span_notice("[owner][feedback]"))
 		if(cooldown)
 			COOLDOWN_START(src, ultra_cooldown, cooldown)
-			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), source, span_notice("[owner] has finished internalizing your [LOWER_TEXT(name)] command!")), cooldown)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), source, span_notice("[owner]已完全内化你的[LOWER_TEXT(name)]命令！")), cooldown)
 	return TRUE
 
 /**

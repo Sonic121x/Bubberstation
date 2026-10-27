@@ -1,6 +1,6 @@
 /obj/item/organ/wings/moth
-	name = "moth wings"
-	desc = "A pair of fuzzy moth wings."
+	name = "蛾翼"
+	desc = "一对毛茸茸的蛾翼。"
 	flight_for_species = list(SPECIES_MOTH)
 	///Our associated shadow jaunt spell, for all nightmares
 	var/datum/action/cooldown/spell/touch/moth_climb/our_climb
@@ -23,8 +23,8 @@
 	QDEL_NULL(our_dash)
 
 /datum/action/cooldown/spell/moth_and_dash
-	name = "Flap Wings"
-	desc = "Forces your wings to propel you forwards, though exhausting."
+	name = "振翅"
+	desc = "强行用翅膀推动自己向前，但十分消耗体力。"
 	button_icon = 'icons/mob/human/species/moth/moth_wings.dmi'
 	button_icon_state = "m_moth_wings_gothic_BEHIND"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED
@@ -46,14 +46,14 @@
 	var/datum/gas_mixture/environment = our_turf.return_air()
 
 	if(environment.return_pressure() < (HAZARD_LOW_PRESSURE))
-		to_chat(owner, span_warning("There's far too little air for your wings to work against!"))
+		to_chat(owner, span_warning("空气太稀薄了，你的翅膀根本使不上力！"))
 		return
 
 	if(owner.incapacitated)
 		return
 
 	if(!COOLDOWN_FINISHED(src, dash_cooldown))
-		to_chat(owner, span_warning("Your wings are extraordinarily tired, give them some rest!"))
+		to_chat(owner, span_warning("你的翅膀累得不行了，让它们休息一下吧！"))
 		return
 
 	var/atom/dash_target = get_edge_target_turf(owner, owner.dir) //gets the user's direction
@@ -61,13 +61,13 @@
 	ADD_TRAIT(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)
 	if (owner.throw_at(dash_target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = TRAIT_CALLBACK_REMOVE(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)))
 		playsound(owner, 'sound/mobs/humanoids/moth/moth_flutter.ogg', 50, TRUE, TRUE)
-		owner.visible_message(span_warning("[usr] propels themselves forwards with a heavy wingbeat!"))
+		owner.visible_message(span_warning("[usr] 猛地一振翅，向前冲去！"))
 		COOLDOWN_START(src, dash_cooldown, 6 SECONDS)
 		var/mob/living/dash_user = owner
 		if(istype(dash_user))
 			dash_user.adjust_stamina_loss(40) //Given the risk of flying into things and crashing quite violently, you get four of these. Every one slows you down anyway.
 	else
-		to_chat(owner, span_warning("Something prevents you from dashing forward!"))
+		to_chat(owner, span_warning("有什么东西阻止了你向前冲刺！"))
 
 /datum/emote/living/mothic_dash
 	key = "mdash"
@@ -83,8 +83,8 @@
 	return ..()
 
 /datum/action/cooldown/spell/touch/moth_climb
-	name = "Lift Wings"
-	desc = "Spreads your wings out to facilitate climbing, though this will be extremely tiring."
+	name = "展翅"
+	desc = "展开翅膀以便攀爬，但这会极其消耗体力。"
 	button_icon = 'icons/mob/human/species/moth/moth_wings.dmi'
 	button_icon_state = "m_moth_wings_monarch_BEHIND"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED|AB_CHECK_INCAPACITATED
@@ -93,12 +93,12 @@
 	antimagic_flags = NONE
 
 	hand_path = /obj/item/climbing_hook/climbing_moth_wings
-	draw_message = span_notice("You outstretch your wings, ready to climb upwards.")
-	drop_message = span_notice("Your wings tuck back behind you.")
+	draw_message = span_notice("你展开翅膀，准备向上攀爬。")
+	drop_message = span_notice("你的翅膀收回到背后。")
 
 /obj/item/climbing_hook/climbing_moth_wings
-	name = "outstretched wings"
-	desc = "Useful for climbing up onto high places, though tiresome."
+	name = "展开的翅膀"
+	desc = "可用于攀爬到高处，但很累人。"
 	icon = 'icons/mob/human/species/moth/moth_wings.dmi'
 	icon_state = "m_moth_wings_monarch_BEHIND"
 	climb_time = 2.5 SECONDS
@@ -110,7 +110,7 @@
 	var/turf/check_turf = get_turf(user)
 	var/datum/gas_mixture/environment = check_turf.return_air()
 	if(environment.return_pressure() < (HAZARD_LOW_PRESSURE))
-		to_chat(user, span_warning("There's far too little air for your wings to work against!"))
+		to_chat(user, span_warning("空气太稀薄了，你的翅膀根本使不上力！"))
 		return ITEM_INTERACT_BLOCKING
 	. = ..()
 	qdel(src)

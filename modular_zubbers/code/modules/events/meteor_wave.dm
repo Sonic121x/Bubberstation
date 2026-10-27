@@ -14,33 +14,33 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	/// Number of SSevent ticks for the wave to last (TG original: 60)
 	var/wave_duration = 45
 	/// Prefix for the announcement
-	var/announce_prefix = "Meteor Alert"
+	var/announce_prefix = "陨石警报"
 	/// Description for the announcement
-	var/announce_desc = "Meteors"
+	var/announce_desc = "陨石"
 	/// Added to the announcement giving a preview of the wave intensity
-	var/announce_fluff = "Crew are advised to take shelter within the central areas of the station."
+	var/announce_fluff = "建议船员前往空间站中央区域躲避。"
 
 /datum/round_event/meteor_wave/threatening
 	warning_time = 420 EVENT_SECONDS // smoke a joint and start your mindless repairs
-	announce_fluff = "Portable shield generators may be procured by the cargo department. Ensure all sensitive areas and equipment are shielded."
+	announce_fluff = "货运部可采购便携式护盾发生器。请确保所有敏感区域与设备均受到护盾保护。"
 
 /datum/round_event/meteor_wave/catastrophic
 	warning_time = 420 EVENT_SECONDS
-	announce_fluff = "Portable shield generators may be procured by the cargo department. Ensure all sensitive areas and equipment are shielded."
+	announce_fluff = "货运部可采购便携式护盾发生器。请确保所有敏感区域与设备均受到护盾保护。"
 
 /datum/round_event/meteor_wave/dust_storm
 	warning_time = 6 EVENT_SECONDS
 
 /datum/round_event/meteor_wave/meaty
-	announce_prefix = "Oh crap, get the mop."
-	announce_desc = "Meaty ores"
-	announce_fluff = "Please refrain from eating the space meat. We know it's tempting, but this is not the time to test your culinary curiosity."
+	announce_prefix = "糟糕，快拿拖把。"
+	announce_desc = "肉矿石"
+	announce_fluff = "请勿食用太空肉。我们知道这很诱人，但现在不是考验烹饪好奇心的时候。"
 
 /datum/round_event/meteor_wave/candy
 	wave_name = "candy"
-	announce_prefix = "2SPOOKY DELIVERY INCOMING"
-	announce_desc = "Spooky packages"
-	announce_fluff = "We're not responsible for what happens if you try to stick fragments in your mouth. Why do we even have to tell you that?"
+	announce_prefix = "超恐怖快递来袭"
+	announce_desc = "恐怖包裹"
+	announce_fluff = "如果你试图把碎片塞进嘴里，后果自负。我们为什么非得提醒你这种事？"
 
 /datum/round_event/meteor_wave/New()
 	. = ..()
@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 
 /datum/round_event/meteor_wave/announce(fake)
 	priority_announce(
-			text = "[announce_desc] have been detected on collision course with the station. The energy field generator is disabled or missing. First collision in approximately [DisplayTimeText(start_when * 20, 10)]. [announce_fluff]",
+			text = "检测到[announce_desc]正处于与空间站相撞的航线上。能量场发生器已关闭或缺失。首次撞击约在[DisplayTimeText(start_when * 20, 10)]后。[announce_fluff]",
 			title = announce_prefix,
 			sound = ANNOUNCER_METEORWARNING,
 		)
@@ -102,25 +102,25 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 /datum/round_event/meteor_wave/proc/meteor_reminder()
 	SSsecurity_level.minimum_security_level(min_level = SEC_LEVEL_ORANGE, eng_access = TRUE, maint_access = FALSE)
 	priority_announce(
-			text = "[announce_desc] approaching, brace for impact. Long range scanners indicate a high density of meteors incoming, the kind of impact that makes you rethink your life choices. So, hold on tight and try not to fly into anything too important.",
+			text = "[announce_desc]正在接近，请做好撞击准备。远程扫描仪显示大量陨石正在逼近，那种撞击会让你重新审视自己的人生选择。所以，抓紧了，尽量别撞上什么太重要的东西。",
 			title = announce_prefix,
 			sound = 'sound/items/radio/radio_important.ogg', // basically silent, since the securitylevel proc will make a sound
-			sender_override = "[command_name()] Engineering Division",
+			sender_override = "[command_name()] 工程部",
 			color_override = "orange",
 		)
 
 /datum/round_event_control/meteor_wave/candy
-	name = "Meteor Wave: Candy"
+	name = "陨石波：糖果"
 	typepath = /datum/round_event/meteor_wave/candy
 	weight = 0
-	description = "A meteor wave for the holidays, filled with candy."
+	description = "节日专属的陨石波，满是糖果。"
 
 /obj/effect/meteor
 	lifetime = 45 SECONDS
 
 /obj/effect/meteor/candy
-	name = "debug candy meteor"
-	desc = "if you see this, shove a twink bar into your nearest coder"
+	name = "调试用糖果陨石"
+	desc = "如果你看到这个，请把一根奶油夹心棒塞进离你最近的程序员嘴里"
 	dropamt = 8
 	meteordrop = list(
 		/obj/item/food/candy/hundred_credit_bar,
@@ -172,8 +172,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 		new /obj/effect/decal/cleanable/confetti(rammed_turf)
 
 /obj/effect/meteor/candy/pumpkin
-	name = "cat-o-lantern"
-	desc = "A pumpkin-shaped meteor filled with candy. It's a bit spooky."
+	name = "猫灯南瓜"
+	desc = "装满糖果的南瓜形陨石。有点吓人。"
 	icon_state = "spooky"
 	threat = 5
 
@@ -182,8 +182,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE)
 
 /obj/effect/meteor/candy/pumpking
-	name = "PUMPKING"
-	desc = "THE PUMPKING'S COMING!"
+	name = "南瓜王"
+	desc = "南瓜王来了！"
 	icon_state = "spooky"
 	hits = 6
 	heavy = TRUE
@@ -200,8 +200,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	explosion(src, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 3, flash_range = 4, adminlog = FALSE)
 
 /obj/effect/meteor/candy/party_popper
-	name = "party popper"
-	desc = "A small device used for celebrations and annoying the janitor."
+	name = "派对拉炮"
+	desc = "用于庆祝和惹恼清洁工的小装置。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "party_popper"
 	pass_flags = PASSTABLE | PASSGRILLE
@@ -215,8 +215,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	new /obj/item/reagent_containers/spray/chemsprayer/party(get_turf(src))
 
 /obj/effect/meteor/candy/corgi
-	name = "corgi pinata"
-	desc = "Who thought beating candy out of dogs was a fun activity anyways?"
+	name = "柯基皮纳塔"
+	desc = "到底是谁觉得从狗身上打出糖果是件好玩的事？"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "pinata"
 	threat = 5
@@ -226,8 +226,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE)
 
 /obj/effect/meteor/candy/syndie
-	name = "syndie pinata"
-	desc = "The red ones go faster... Now you know why."
+	name = "辛迪加皮纳塔"
+	desc = "红色的跑得更快……现在你知道为什么了。"
 	icon = 'icons/obj/toys/toy.dmi'
 	icon_state = "pinata_syndie"
 	hits = 12
@@ -250,8 +250,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	explosion(src, heavy_impact_range = 2, light_impact_range = 3, flash_range = 4, adminlog = FALSE)
 
 /obj/effect/meteor/cocaine_brick
-	name = "cocaine brick fragment"
-	desc = "A fast-moving fragment of exploded... white powder."
+	name = "可卡因砖碎片"
+	desc = "高速飞行的碎片，来自爆炸的……白色粉末。"
 	icon = 'modular_skyrat/modules/morenarcotics/icons/crack.dmi'
 	icon_state = "cocainebrick"
 	dropamt = 7
@@ -259,13 +259,13 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	meteorsound = 'sound/effects/bamf.ogg'
 
 /obj/effect/meteor/candy/bluespace
-	name = "bluespace chunk"
-	desc = "A large geode containing bluespace dust at its core, hurtling through space. That's the stuff the crew are here to research. How convenient for them."
+	name = "蓝空间团块"
+	desc = "一块核心含有蓝空间尘埃的巨大晶洞，正疾驰穿过太空。这正是船员们要研究的东西。对他们来说可真方便。"
 	icon_state = "bluespace"
 	dropamt = 9
 	hits = 12
 	threat = 12
-	signature = "bluespace flux"
+	signature = "蓝空间通量"
 
 /obj/effect/meteor/candy/bluespace/Bump()
 	..()
@@ -273,8 +273,8 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 		do_teleport(src, get_turf(src), 6, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/effect/meteor/candy/banana
-	name = "bananium chunk"
-	desc = "Maybe it's a chunk blasted off of the legendary Clown Planet... How annoying."
+	name = "香蕉矿团块"
+	desc = "也许是从传说中的小丑星球上炸下来的一块……真烦人。"
 	icon_state = "bananium"
 	dropamt = 9
 	hits = 175 //Honks everything, including space tiles. Depending on the angle/how much stuff it hits, there's a fair chance that it will spare the station from the actual explosion
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 	meteorsound = 'sound/items/bikehorn.ogg'
 	threat = 15
 	movement_type = PHASING
-	signature = "comedy"
+	signature = "喜剧"
 
 /obj/effect/meteor/candy/banana/meteor_effect()
 	..()
@@ -294,5 +294,5 @@ GLOBAL_LIST_INIT(meteors_candy_halloween, list(
 /obj/effect/meteor/banana/ram_turf(turf/bumped)
 	for(var/mob/living/slipped in get_turf(bumped))
 		slipped.slip(100, slipped.loc,- GALOSHES_DONT_HELP|SLIDE, 0, FALSE)
-		slipped.visible_message(span_warning("[src] honks [slipped] to the floor!"), span_userdanger("[src] harmlessly passes through you, knocking you over."))
+		slipped.visible_message(span_warning("[src]把[slipped]鸣笛滑倒在地！"), span_userdanger("[src]无害地穿过你，把你撞倒了。"))
 	get_hit()

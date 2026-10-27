@@ -1,22 +1,22 @@
 /obj/item/clothing/gloves/misc/diver //Donor item for patriot210
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
-	name = "black divers gloves"
-	desc = "An old pair of gloves used by a now-defunct mining coalition."
+	name = "黑色潜水员手套"
+	desc = "一双旧手套，曾由如今已不复存在的采矿联合体使用。"
 	icon_state = "diver"
 	worn_icon_state = "diver"
 
 /obj/item/clothing/gloves/latex/allamerican
-	name = "all-american diner latex gloves"
-	desc = "A sterile pair of gloves for preparing food without the risk of contamination! The old fashion american style."
+	name = "全美餐馆乳胶手套"
+	desc = "一双无菌手套，可在无污染风险的情况下准备食物！老派美式风格。"
 	icon_state = "latex_black"
 	worn_icon_state = "latex_black"
 
 //Cat Gloves seemingly by Taomayo of MonkeStation
 
 /obj/item/clothing/gloves/cat
-	desc = "\"High Tech\" paw shaped gloves perfect for cosplay enthusiasts, streamers and general weirdos. hewwo everynyaan!!"
-	name = "cat gloves"
+	desc = "“高科技”爪形手套，非常适合角色扮演爱好者、主播和一般怪人。每只喵喵都问好！！"
+	name = "猫咪手套"
 	icon = 'icons/map_icons/clothing/_clothing.dmi'
 	icon_state = "/obj/item/clothing/gloves/cat"
 	post_init_icon_state = "catgloves"
@@ -54,7 +54,7 @@
 
 /obj/item/clothing/gloves/cat/examine(mob/user)
 	. = ..()
-	. += span_notice("There's a small switch on the wrist. It's currently <b>[lights_on ? "ON" : "OFF"]</b>. <a href='byond://?src=[REF(src)];toggle_lights=1'>\[Toggle\]</a>")
+	. += span_notice("手腕上有个小开关。目前处于<b>[lights_on ? "开启" : "关闭"]</b>状态。<a href='byond://?src=[REF(src)];toggle_lights=1'>\[切换\]</a>")
 
 /obj/item/clothing/gloves/cat/Topic(href, href_list)
 	. = ..()
@@ -66,23 +66,23 @@
 			return
 		lights_on = !lights_on
 		playsound(src, 'sound/machines/click.ogg', 30, FALSE)
-		to_chat(usr, span_notice("You turn the accent lighting [lights_on ? "on" : "off"]."))
+		to_chat(usr, span_notice("你把装饰灯[lights_on ? "打开" : "关闭"]了。"))
 		update_appearance()
 
 /obj/item/clothing/gloves/cat/attackby(obj/item/item, mob/living/user, params)
 	if(!istype(item, /obj/item/clothing/gloves/color/yellow))
 		return ..()
 	if(siemens_coefficient == 0)
-		to_chat(user, span_warning("[src] are already insulated."))
+		to_chat(user, span_warning("[src]已经绝缘了。"))
 		return
 	user.visible_message(
-		span_notice("[user] awkwardly crams [item] inside [src]."),
-		span_notice("You press [item] against [src], after some time you succeed at inserting [item] inside.")
+		span_notice("[user]笨拙地把[item]塞进[src]里。"),
+		span_notice("你把[item]按在[src]上，过了一会儿，你成功把[item]塞了进去。")
 	)
 	siemens_coefficient = 0
-	name = "insulated [name]"
+	name = "绝缘[name]"
 	if(desc == initial(desc))
-		desc = "A pair of cat gloves with a pair of insulated gloves awkwardly crammed inside them. Somehow this works."
+		desc = "一双猫咪手套，里面笨拙地塞着一双绝缘手套。不知怎的，这居然管用。"
 	qdel(item)
 	update_appearance()
 	return TRUE
@@ -99,8 +99,8 @@
 
 //Metrocop Gloves by ... Dun dun dun, HL13 station.
 /obj/item/clothing/gloves/color/black/security/metrocop
-	name = "metrocop gloves"
-	desc = "Now you can pick up that can! Uses advanced GigaSlop brand Matrixes to allow alternative varients!"
+	name = "大都会警察手套"
+	desc = "现在你可以捡起那个罐子了！采用先进的 GigaSlop 品牌矩阵，可实现不同变体！"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/hands.dmi'
 	icon_state = "civilprotection"
@@ -113,17 +113,17 @@
 	abstract_type = /datum/atom_skin/metrocop_gloves
 
 /datum/atom_skin/metrocop_gloves/metro_cop
-	preview_name = "Metro Cop"
+	preview_name = "大都会警察"
 	new_icon_state = "civilprotection"
 
 /datum/atom_skin/metrocop_gloves/overwatch
-	preview_name = "Overwatch"
+	preview_name = "监管者"
 	new_icon_state = "overwatch"
 
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 /obj/item/clothing/gloves/color/black/security/snake
-	name = "stealth gloves"
-	desc = "We will forsake our countries."
+	name = "潜行手套"
+	desc = "我们将背弃我们的国家。"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
 	icon_state = "snake"
@@ -135,8 +135,8 @@
 		qdel(reskin_component)
 
 /obj/item/clothing/gloves/bubber/snake
-	name = "big boss' gloves"
-	desc = "We will forsake our countries."
+	name = "大首领的手套"
+	desc = "我们将背弃我们的国家。"
 	icon_state = "snake"
 
 /obj/item/clothing/gloves/maid_arm_covers

@@ -38,11 +38,11 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 	var/datum/objective/changeling_zombie_infect/infect_objective
 
 	var/static/list/random_mumblings = list(
-		"ONE OF US",
-		"BECOME ONE OF US",
-		"BECOME ONE",
-		"WE ARE ONE",
-		"BE CONSUMED"
+		"我们的一员",
+		"成为我们的一员",
+		"融为一体",
+		"我们是一体",
+		"被吞噬吧"
 	)
 
 	COOLDOWN_DECLARE(transformation_grace_period)
@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 		var/obj/machinery/cryo_cell/gay_baby_jail = host.loc
 		if(gay_baby_jail.on)
 			gay_baby_jail.visible_message(
-				span_danger("Something thrashes inside [gay_baby_jail]!")
+				span_danger("有什么东西在 [gay_baby_jail] 里翻腾挣扎！")
 			)
 			gay_baby_jail.Shake()
 			gay_baby_jail.take_damage(gay_baby_jail.max_integrity*0.2,armour_penetration=100)
@@ -127,9 +127,9 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 			if(host.regenerate_limb(selected_zone))
 				var/obj/item/bodypart/regenerated_bodypart = host.get_bodypart(selected_zone)
 				host.visible_message(
-					span_danger("[host] reforms and regenerates their [regenerated_bodypart]!"),
-					span_userdanger("You reform and regenerate your [regenerated_bodypart]!"),
-					span_hear("You hear flesh growing!"),
+					span_danger("[host] 重塑并再生了自己的 [regenerated_bodypart]！"),
+					span_userdanger("你重塑并再生了自己的 [regenerated_bodypart]！"),
+					span_hear("你听到血肉生长的声音！"),
 					COMBAT_MESSAGE_RANGE
 				)
 				playsound(host, 'sound/effects/splat.ogg', 50)
@@ -159,9 +159,9 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 					if(!can_cure && current_toxin_damage >= CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE) //50 toxins to cure
 						can_cure = TRUE
 						host.visible_message(
-							span_danger("[host]'s flesh hardens and shifts around; now would be a good time to cure them!"),
-							span_userdanger("Your flesh shifts and bubbles... this can't be good."),
-							span_hear("You hear flesh growing!"),
+							span_danger("[host] 的血肉硬化并开始变形；现在正是治好他的好时机！"),
+							span_userdanger("你的血肉在扭动、冒泡……这可不是什么好兆头。"),
+							span_hear("你听到血肉生长的声音！"),
 							COMBAT_MESSAGE_RANGE
 						)
 					host.adjust_tox_loss(round(CHANGELING_ZOMBIE_TOXINS_PER_SECOND_LIVING * seconds_per_tick * damage_multiplier,0.1))
@@ -172,9 +172,9 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 							var/datum/wound/slash/flesh/moderate/flesh_wound = new
 							flesh_wound.apply_wound(wound_area)
 							host.visible_message(
-								span_danger("[host]\s [wound_area] twists and contorts violently, like something is trying to break free!"),
-								span_userdanger("Your [wound_area] twists and contorts violently! What's going on?!"),
-								span_hear("You hear flesh breaking!"),
+								span_danger("[host] 的 [wound_area] 猛烈扭曲变形，仿佛有什么东西正要挣脱出来！"),
+								span_userdanger("你的 [wound_area] 猛烈扭曲变形！到底怎么回事？！"),
+								span_hear("你听到血肉撕裂的声音！"),
 								COMBAT_MESSAGE_RANGE
 							)
 							host.emote("scream")
@@ -182,8 +182,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 							host.emote("groan")
 					else if(current_toxin_damage > CHANGELING_ZOMBIE_TOXINS_THRESHOLD_TO_CURE*0.5)
 						host.visible_message(
-							span_warning("[host] doesn't look too good..."),
-							span_warning("You don't feel too good...")
+							span_warning("[host] 看起来不太好……"),
+							span_warning("你感觉不太舒服……")
 						)
 						host.emote("cough")
 
@@ -200,7 +200,7 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 
 	host.cure_husk(CHANGELING_DRAIN) //If we don't actually cure the husk, weird shit happens.
 
-	to_chat(host, span_notice("You feel an itching, both inside and outside as your tissues knit and reknit."))
+	to_chat(host, span_notice("你感到里里外外都在发痒，仿佛组织正在不断编织、重组。"))
 
 	host.add_traits(
 		list(
@@ -267,8 +267,8 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				if(chosen_turf)
 					GLOB.changeling_zombies_detected = TRUE
 					priority_announce(
-						"Notice: A stolen Wizard Federation virus that \"animes(sic) the dead\" may or may not have accidentally been delivered to the station via supply pod. Please return contents of said supply pod to the nearest Nanotrasen representative. In case of accidental infection, use the cure with the instructions delivered to [chosen_turf.loc].",
-						"Reanimation Virus Alert",
+						"通知：一种被盗的巫师联邦病毒据说能“让死者动画化”（原文如此），它可能——也可能没有——经由补给舱被误送到了本站。请将上述补给舱内的物品交还给最近的纳米传讯代表。若发生意外感染，请使用已送至 [chosen_turf.loc] 的解药及随附说明书。",
+						"复活病毒警报",
 						ANNOUNCER_ANIMES
 					)
 					podspawn(list(
@@ -363,6 +363,6 @@ GLOBAL_VAR_INIT(changeling_zombies_detected,FALSE)
 				continue
 			message = "[message][word]... "
 			if(prob(10))
-				message = "[message][prob(1) ? "BE CONSUMED (NON-SEXUALLY, THOUGH) " : pick(random_mumblings)]! "
+				message = "[message][prob(1) ? "被吞噬吧（不过不是那种意义上的） " : pick(random_mumblings)]! "
 
 		speech_args[SPEECH_MESSAGE] = trim(message)

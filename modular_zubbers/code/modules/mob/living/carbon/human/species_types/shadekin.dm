@@ -1,5 +1,5 @@
 /datum/species/shadekin
-	name = "Shadekin"
+	name = "\improper 影裔"
 	id = SPECIES_SHADEKIN
 	mutanttongue = /obj/item/organ/tongue/shadekin
 	mutantears = /obj/item/organ/ears/shadekin
@@ -36,8 +36,8 @@
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = "lightbulb",
-		SPECIES_PERK_NAME = "Dark Regeneration",
-		SPECIES_PERK_DESC = "Shadekins regenerate their physical wounds while in the darkness."
+		SPECIES_PERK_NAME = "黑暗再生",
+		SPECIES_PERK_DESC = "影裔在黑暗中会再生身体伤口。"
 	))
 
 	return to_add
@@ -94,41 +94,41 @@
 
 /datum/species/shadekin/get_species_description()
 	return list(
-		"Shadekin first came about like dust bunnies that collect under a bed, of the collective consciousness \
-		\"Welcome, sibling,\" the first words felt in a sea of thought, guiding them to their first connection",
-		"Shadekin do not respirate, and their bodies are reformed in the darkness, although frail."
+		"影裔最初就像床底积聚的灰尘团一样诞生，集体意识中 \
+		“欢迎，同胞，”是他们在思想之海中感受到的第一句话，引导他们建立最初的连接",
+		"影裔不进行呼吸，他们的身体会在黑暗中重塑，尽管十分脆弱。"
 	)
 
 /datum/species/shadekin/get_species_lore()
 	return list(
-		"It is unclear when exactly Shadekin first spawned, though it is assumedly a relatively recent development. \
-		They formed in dark and abandoned places where they are not witnessed-- observation would dispel their creation. \
-		When the process completed, the Shadekin collected its ability to move its limbs and communicate from surrounding minds \
-		and finally, it formed its first thought, the realization that it is alive.",
+		"目前尚不清楚影裔最初究竟何时诞生，但据推测是相对晚近的发展。\
+		他们形成于无人目击的黑暗废弃之处——被观察会驱散他们的创生。\
+		当过程完成时，影裔从周围的心灵中收集到移动肢体和沟通的能力，\
+		最后形成了第一个念头：意识到自己活着。",
 
-		"Shadekin are pitch darkness given form. Light seems to pass through their bodies, which tires them. They do not cast shadows. \
-		Shadekin elude definition in terms of size and appearance, as no two Shadekin are the same-- they tend to take features from the species around them \
-		that would otherwise not be seen as theirs. For example, Shadekin spawned in Tizira tend to have horns or frill-like ears. \
-		An average Shadekin would be slightly shorter than a human, with a similar lifespan. Shadekin that do not use other species' naming conventions will \
-		tend to name themselves after their place in the community, like a job or societal function.",
+		"影裔是获得形态的漆黑。光似乎会穿过他们的身体，这令他们疲惫。他们不会投下影子。\
+		影裔在体型和外观上难以定义，因为没有两个影裔是相同的——他们往往会借用周围物种的特征，\
+		那些特征本不会被视为属于他们。例如，在提兹拉诞生的影裔往往有角或褶边状的耳朵。\
+		普通影裔比人类略矮，寿命相近。不采用其他种族命名习惯的影裔，\
+		往往会依据自己在社群中的位置来命名，比如职业或社会职能。",
 
-		"Shadekin are capable of reproducing sexually, though their minds need diverse surroundings to properly develop, making them fairly self-guided. \
-		Despite this, Shadekin easily find a space of their own, and become staples of their communities. They are more expressive than other species to compensate for a lack of psionic connection. \
-		Their language, Marish, is purely empathic and cannot be spoken by psychopaths. Their eye color is an important part of their biology, as it indicates temperament.",
+		"影裔能够进行有性繁殖，但他们的心智需要多样化的环境才能正常发育，因此他们相当自主。\
+		尽管如此，影裔很容易找到属于自己的位置，并成为社群中不可或缺的一员。他们比其他种族更善于表达，以弥补灵能连接的缺失。\
+		他们的语言“玛瑞什”纯粹依靠共情传递，精神病态者无法说出。他们的眼睛颜色是生物学上的重要部分，因为能显示性情。",
 
-		"A shadekin is never truly alone, however, as Shadekin have formed in number on the treacherous moon Neoma, due to its darkness and isolation. \
-		While there is no central Shadekin government, this is the closest thing Shadekin have to a homeworld, devoid of light due to its orbit around Lusine, an extremely hot world that keeps Neoma's surface approaching habitable. \
-		It has become a notable tourist attraction in the few habitable areas. Neoma serves an important function of containing the collective knowledge of Shadekin society and its covens.",
+		"然而，影裔从不真正孤单，因为许多影裔已在险恶的卫星尼奥玛上成形，那里黑暗而与世隔绝。\
+		虽然影裔没有中央政府，但这里已是他们最接近母星的地方；由于环绕极端炽热的世界卢辛运行，尼奥玛表面接近宜居，却没有光。\
+		在少数可居住区域，这里已成为著名的旅游景点。尼奥玛还承担着保存影裔社会及其巫团集体知识的重要功能。",
 
-		"Covens are groups of Shadekin formed to maintain themselves and records of their existence, as well as guide new Shadekin as they develop. \
-		They are rarely associated with ideology alone, rather concepts and what they imply, and within a coven exist Coteries, interest groups within a coven, tailored to a specific aspect. \
-		In this regard, covens are societies in and of themselves, organized in a somewhat tribal manner. Covens do not solely exist on Neoma, they are spread throughout the universe, \
-		but most covens at least have archives on the moon, called \"Mindtrusts\".",
+		"巫团是由影裔组成的群体，用于维持自身、记录自身的存在，并在新影裔成长时加以引导。\
+		它们很少仅与意识形态相关，而更多与概念及其含义相关；巫团内部还有“小团”，即巫团中针对特定方面的兴趣小组。\
+		从这个意义上说，巫团本身就是社会，以某种部落方式组织。巫团并不只存在于尼奥玛，它们遍布宇宙，\
+		但大多数巫团至少在这颗卫星上设有档案馆，称为“心灵信托”。",
 	)
 
 /obj/item/organ/brain/shadekin
-	name = "shadekin brain"
-	desc = "A mysterious brain."
+	name = "影裔大脑"
+	desc = "一个神秘的大脑。"
 	icon = 'icons/obj/medical/organs/organs.dmi'
 	icon_state = "brain-x-d"
 	var/applied_status = /datum/status_effect/shadekin_regeneration
@@ -166,6 +166,6 @@
 	owner.heal_overall_damage(brute = 0.5, burn = 0.5, required_bodytype = BODYTYPE_ORGANIC)
 
 /atom/movable/screen/alert/status_effect/shadekin_regeneration
-	name = "Dark Regeneration"
-	desc = "Feeling the tug of home on your fur, some of its soothing warmth comes to ease your burdens."
+	name = "黑暗再生"
+	desc = "你感到皮毛上传来家的牵引，一股舒缓的暖意前来减轻你的负担。"
 	icon_state = "lightless"

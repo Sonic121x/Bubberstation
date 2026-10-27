@@ -1,14 +1,14 @@
 /obj/item/organ/vocal_cords/velvet
-	name = "velvet chords"
-	desc = "The voice from these want to make you drift off, sleep, and obey."
+	name = "天鹅绒和弦"
+	desc = "这声音让你想要恍神、入睡并服从。"
 	icon = 'modular_zubbers/icons/obj/vocal_cords.dmi'
 	icon_state = "velvet_chords"
 	actions_types = list(/datum/action/item_action/organ_action/velvet)
 	spans = list("velvet")
 
 /datum/action/item_action/organ_action/velvet
-	name = "Velvet Chords"
-	desc = "Speak in a sultry tone. Right click to see all commands."
+	name = "天鹅绒和弦"
+	desc = "以魅惑的语调说话。右键查看所有命令。"
 	var/obj/item/organ/vocal_cords/velvet/chords
 
 /datum/action/item_action/organ_action/velvet/New(Target)
@@ -22,7 +22,7 @@
 	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
 		ui_interact(clicker)
 		return ..()
-	var/command = tgui_input_text(owner, "Speak in a sultry tone.", "Command", max_length = MAX_MESSAGE_LEN)
+	var/command = tgui_input_text(owner, "以魅惑的语调说话。", "命令", max_length = MAX_MESSAGE_LEN)
 	if(!command)
 		return FALSE
 	if(QDELETED(src) || QDELETED(owner))

@@ -2,14 +2,14 @@
 ////Add your custom sodas here, use this first one as a reference if you want
 
 /obj/item/reagent_containers/cup/soda_cans/bubber/blood_tea
-	name = "Hemoglobin Iced Tea"
-	desc = "Kinda like that rich golfer, but it's actually blood!"
+	name = "血红蛋白冰茶"
+	desc = "有点像那位有钱的高尔夫球手喝的东西，不过这罐里是真的血！"
 	icon_state = "blood_tea"
 	list_reagents = list(/datum/reagent/consumable/icetea/blood_tea = 25, /datum/reagent/consumable/ethanol/bloodshot = 5)
 
 /obj/item/reagent_containers/cup/soda_cans/bubber/tangorine_soda
-	name = "Tang-O-Rine"
-	desc = "A refreshing blend of tangerine juice with a bubbly fizz. The soda can features a vibrant orange and green Teshari mascot."
+	name = "坦橘汽水"
+	desc = "橘子汁与气泡融合而成的清爽饮品。罐身上印着一只鲜橙与翠绿配色的特沙利吉祥物。"
 	icon_state = "tangorine_soda"
 	drink_type = SUGAR | FRUIT
 	list_reagents = list(/datum/reagent/consumable/orangejuice = 20, /datum/reagent/consumable/sodawater = 10)
@@ -36,9 +36,9 @@
 /obj/item/reagent_containers/cup/soda_cans/bubber/attack(mob/M, mob/living/user)
 	if(istype(M, /mob/living/carbon) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
 		if(M == user)
-			user.visible_message(span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"), span_notice("You crush the can of [src] on your forehead."))
+			user.visible_message(span_warning("[user] 把 [src] 的罐子在自己额头上捏扁了！"), span_notice("你把 [src] 的罐子在额头上捏扁了。"))
 		else
-			user.visible_message(span_warning("[user] crushes the can of [src] on [M]'s forehead!"), span_notice("You crush the can of [src] on [M]'s forehead."))
+			user.visible_message(span_warning("[user] 把 [src] 的罐子在 [M] 的额头上捏扁了！"), span_notice("你把 [src] 的罐子在 [M] 的额头上捏扁了。"))
 		playsound(M,'sound/items/weapons/pierce.ogg', rand(10,50), TRUE)
 		var/obj/item/trash/can/bubber/crushed_can = new /obj/item/trash/can/bubber(M.loc)
 		crushed_can.icon_state = icon_state
@@ -78,7 +78,7 @@
 		return
 
 	burst_soda(hit_atom, hide_message = TRUE)
-	visible_message(span_danger("[src]'s impact with [hit_atom] causes it to rupture, spilling everywhere!"))
+	visible_message(span_danger("[src] 撞上 [hit_atom] 后爆裂开来，洒得到处都是！"))
 	var/obj/item/trash/can/bubber/crushed_can = new /obj/item/trash/can/bubber(src.loc)
 	crushed_can.icon_state = icon_state
 	moveToNullspace()

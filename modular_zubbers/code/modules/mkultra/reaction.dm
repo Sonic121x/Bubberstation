@@ -20,7 +20,7 @@
 	var/datum/reagent/mkultra/chemical = locate() in holder.reagent_list
 	var/mob/living/user = chemical?.data["enchanter"]
 	if(!user && !isnull(chemical))
-		holder.my_atom.visible_message(span_warning("The reaction sputters and fails to react properly!"))
+		holder.my_atom.visible_message(span_warning("反应嘶嘶作响，未能正常进行！"))
 		chemical.purity = 0
 		return
 
@@ -40,13 +40,13 @@
 	var/inside_msg
 	if(ismob(holder.my_atom))
 		var/mob/failed_chemist = holder.my_atom
-		inside_msg = " inside [ADMIN_LOOKUPFLW(failed_chemist)]"
+		inside_msg = "，位于 [ADMIN_LOOKUPFLW(failed_chemist)] 内"
 		return
 	var/lastkey = holder.my_atom.fingerprintslast
 	var/touch_msg = "N/A"
 	if(!istype(holder.my_atom, /obj/machinery/plumbing))
-		message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(explosion_turf)][inside_msg]. Last fingerprint: [touch_msg].")
-	log_game("Reagent explosion reaction occured at [AREACOORD(explosion_turf)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]")
+		message_admins("试剂爆炸反应发生于 [ADMIN_VERBOSEJMP(explosion_turf)][inside_msg]。最后指纹：[touch_msg]。")
+	log_game("试剂爆炸反应发生于 [AREACOORD(explosion_turf)]。最后指纹：[lastkey ? lastkey : "N/A"]")
 	var/datum/effect_system/reagents_explosion/expl = new(explosion_turf, power, FALSE, FALSE)
 	expl.start(holder.my_atom)
 	holder.clear_reagents()

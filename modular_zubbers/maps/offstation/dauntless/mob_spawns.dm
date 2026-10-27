@@ -6,13 +6,13 @@
 // Dauntless Ghost Spawners (Lava)
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless
-	name = "Dauntless Personnel"
+	name = "无畏号人员"
 	use_outfit_name = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "Dauntless Personnel"
-	you_are_text = "You are a syndicate Operative, employed on a top secret spy vessel hidden on lavaland"
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has started mining in this sector. Continue working the best you can, and keep a low profile"
+	prompt_name = "一名无畏号人员"
+	you_are_text = "你是辛迪加特工，受雇于一艘藏在熔岩地带的绝密间谍船。"
+	flavour_text = "不幸的是，你们的宿敌纳米传讯已开始在这一星区采矿。尽你所能继续干活，并保持低调。"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
@@ -29,27 +29,27 @@
 		spawned_mob.mind?.handle_exploitables_menu()
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/syndicate
-	name = "Syndicate Operative"
-	prompt_name = "a Syndicate Operative"
-	you_are_text = "an Operative assigned to the Syndicate Spy Vessel Dauntless, employed onboard for reasons that are yours"
-	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor Nanotrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are to maintain the ship's integrity and keep a low profile."
-	important_text = "You are NOT an antagonist and the round does not center the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	name = "辛迪加特工"
+	prompt_name = "一名辛迪加特工"
+	you_are_text = "一名被派往辛迪加间谍船无畏号的特工，受雇于此的理由只有你自己清楚。"
+	flavour_text = "由多方共管的 SSV 无畏号被派去秘密监视纳米传讯的资产。DS-2 被摧毁后，它藏身于熔岩地带滚滚的灰烬云之后。你的命令是维护飞船的完整，并保持低调。"
+	important_text = "你并非反派，本局也不以无畏号为中心。当你与空间站及其船员的冲突升级时，你必须提交敌对势力申请或发起 adminhelp。"
 	outfit = /datum/outfit/dauntless/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/command
-	name = "Syndicate Command Operative"
-	prompt_name = "a Syndicate leader"
-	you_are_text = "a Syndicate Command Operative assigned to lead the SSV Dauntless and guide it forward in its goals"
-	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor Nanotrasen assets. It hides on lavaland, behind rolling clouds of ash, after the destruction of DS-2. Your orders are help lead the Dauntless while ensuring a low profile is maintained."
-	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	name = "辛迪加指挥特工"
+	prompt_name = "一名辛迪加领袖"
+	you_are_text = "一名辛迪加指挥特工，被指派领导 SSV 无畏号，引领它朝既定目标前进。"
+	flavour_text = "由多方共管的 SSV 无畏号被派去秘密监视纳米传讯的资产。DS-2 被摧毁后，它藏身于熔岩地带滚滚的灰烬云之后。你的命令是协助领导无畏号，同时确保全船保持低调。"
+	important_text = "你属于指挥类角色，需以更高标准要求自己。你并非反派，本局也不以无畏号为中心。当你与空间站及其船员的冲突升级时，你必须提交敌对势力申请或发起 adminhelp。"
 	outfit = /datum/outfit/dauntless/command
 
 /obj/effect/mob_spawn/ghost_role/human/dauntless/prisoner
-	name = "Syndicate Hostage"
-	prompt_name = "a Syndicate hostage"
-	you_are_text = "You are a hostage onboard an unknown syndicate vessel"
-	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Dauntless personnel can throw you into lava if you antagonize them."
+	name = "辛迪加人质"
+	prompt_name = "一名辛迪加人质"
+	you_are_text = "你是一艘不明辛迪加飞船上的人质。"
+	flavour_text = "你不知道自己在哪儿，只知道自己是个囚犯。这些塑钛或许能让你猜到绑匪是谁……至于你为什么在这里？那得你自己知道，再由我们来弄明白。"
+	important_text = "你并非反派。你仍须遵守有关冲突升级的角色扮演规则。如果你激怒无畏号人员，他们会把你扔进熔岩里。"
 	outfit = /datum/outfit/dauntless/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless/sec/prison
 	give_exploitables = FALSE
@@ -84,13 +84,13 @@
 // Dauntless Ghost Spawners (Space)
 
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless
-	name = "Dauntless Personnel"
+	name = "无畏号人员"
 	use_outfit_name = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	prompt_name = "Dauntless Personnel"
-	you_are_text = "You are a syndicate Operative, employed on a top secret spy vessel hidden located in an distant space sector"
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has started mining in this sector. Continue working the best you can, and keep a low profile"
+	prompt_name = "一名无畏号人员"
+	you_are_text = "你是辛迪加特工，受雇于一艘藏在遥远星区的绝密间谍船。"
+	flavour_text = "不幸的是，你们的宿敌纳米传讯已开始在这一星区采矿。尽你所能继续干活，并保持低调。"
 	quirks_enabled = TRUE
 	random_appearance = FALSE
 	loadout_enabled = TRUE
@@ -98,27 +98,27 @@
 	spawner_job_path = /datum/job/dauntless
 
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/syndicate
-	name = "Syndicate Operative"
-	prompt_name = "a Syndicate Operative"
-	you_are_text = "an Operative assigned to the Syndicate Spy Vessel Dauntless, employed onboard for reasons that are yours"
-	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor Nanotrasen assets. It hides in an distant sector of Nanotrasen's station. Your orders are to maintain the ship's integrity and keep a low profile."
-	important_text = "You are NOT an antagonist and the round does not center the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	name = "辛迪加特工"
+	prompt_name = "一名辛迪加特工"
+	you_are_text = "一名被派往辛迪加间谍船无畏号的特工，受雇于此的理由只有你自己清楚。"
+	flavour_text = "由多方共管的 SSV 无畏号被派去秘密监视纳米传讯的资产。它藏身于纳米传讯空间站所在的遥远星区。你的命令是维护飞船的完整，并保持低调。"
+	important_text = "你并非反派，本局也不以无畏号为中心。当你与空间站及其船员的冲突升级时，你必须提交敌对势力申请或发起 adminhelp。"
 	outfit = /datum/outfit/dauntless/syndicate
 
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/command
-	name = "Syndicate Command Operative"
-	prompt_name = "a Syndicate leader"
-	you_are_text = "a Syndicate Command Operative assigned to lead the SSV Dauntless and guide it forward in its goals"
-	flavour_text = "The jointly managed SSV Dauntless has been assigned to stealthly monitor Nanotrasen assets. It hides in an distant sector of Nanotrasen's station. Your orders are help lead the Dauntless while ensuring a low profile is maintained."
-	important_text = "You are a command role and maintained at a higher standard. You are NOT an antagonist and the round does not center around the Dauntless. You MUST submit an Opfor or Adminhelp when escalating against the station and its crew"
+	name = "辛迪加指挥特工"
+	prompt_name = "一名辛迪加领袖"
+	you_are_text = "一名辛迪加指挥特工，被指派领导 SSV 无畏号，引领它朝既定目标前进。"
+	flavour_text = "由多方共管的 SSV 无畏号被派去秘密监视纳米传讯的资产。它藏身于纳米传讯空间站所在的遥远星区。你的命令是协助领导无畏号，同时确保全船保持低调。"
+	important_text = "你属于指挥类角色，需以更高标准要求自己。你并非反派，本局也不以无畏号为中心。当你与空间站及其船员的冲突升级时，你必须提交敌对势力申请或发起 adminhelp。"
 	outfit = /datum/outfit/dauntless/command
 
 /obj/effect/mob_spawn/ghost_role/human/space_dauntless/prisoner
-	name = "Syndicate Hostage"
-	prompt_name = "a Syndicate hostage"
-	you_are_text = "You are a hostage onboard an unknown syndicate vessel"
-	flavour_text = "Unaware of where you are, all you know is you are a prisoner. The plastitanium should clue you into who your captors are... as for why you're here? That's for you to know, and for us to find out."
-	important_text = "You are not an antagonist. You are still bound to the Roleplay Rules regarding escalation. Dauntless personnel can throw you into space if you antagonize them."
+	name = "辛迪加人质"
+	prompt_name = "一名辛迪加人质"
+	you_are_text = "你是一艘不明辛迪加飞船上的人质。"
+	flavour_text = "你不知道自己在哪儿，只知道自己是个囚犯。这些塑钛或许能让你猜到绑匪是谁……至于你为什么在这里？那得你自己知道，再由我们来弄明白。"
+	important_text = "你并非反派。你仍须遵守有关冲突升级的角色扮演规则。如果你激怒无畏号人员，他们会把你扔进太空里。"
 	outfit = /datum/outfit/dauntless/prisoner
 	computer_area = /area/ruin/space/has_grav/bubbers/dauntless_space/sec/prison
 

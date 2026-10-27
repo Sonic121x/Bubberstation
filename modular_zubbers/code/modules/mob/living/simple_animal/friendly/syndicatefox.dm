@@ -1,6 +1,6 @@
 /mob/living/basic/pet/syndifox/mini
-	name = "Syni-Fox"
-	desc = "It's a Cybersun MiniVix robotic model wearing a microsized syndicate MODsuit and a cute little cap. Quite pretty. This one looks a bit more mini."
+	name = "辛迪狐"
+	desc = "这是一台赛博太阳 MiniVix 机器人型号，穿着微型辛迪加 MOD 模块化外骨骼，戴着一顶可爱的小帽子。相当漂亮。这一只看起来更迷你一些。"
 	initial_size = 0.8
 	faction = list(FACTION_NEUTRAL)
 

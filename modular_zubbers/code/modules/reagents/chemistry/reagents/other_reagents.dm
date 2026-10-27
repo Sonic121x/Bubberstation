@@ -33,364 +33,364 @@
 
 /datum/reagent/mutationtoxin/abductor
 	mutationtexts = list(
-		"Your skin is turning grey." = MUT_MSG_IMMEDIATE,
-		"Your hair falls out in clumps." = MUT_MSG_IMMEDIATE,
-		"You are finding it harder to speak." = MUT_MSG_EXTENDED,
-		"You feel a shooting pain in your head." = MUT_MSG_EXTENDED,
+		"你的皮肤正在变成灰色。" = MUT_MSG_IMMEDIATE,
+		"你的头发一撮撮地脱落。" = MUT_MSG_IMMEDIATE,
+		"你发现自己越来越难开口说话。" = MUT_MSG_EXTENDED,
+		"你感到头部一阵刺痛。" = MUT_MSG_EXTENDED,
 		"Xap Xoorp!" = MUT_MSG_ABOUT2TURN)
 
 
 /datum/reagent/mutationtoxin/akula
-	name = "Akula Mutation Toxin"
-	description = "An akula toxin."
+	name = "阿库拉突变毒素"
+	description = "一种阿库拉毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/akula
-	taste_description = "fish"
+	taste_description = "鱼"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel itchy." = MUT_MSG_IMMEDIATE,
-		"Your skin feels wet." = MUT_MSG_IMMEDIATE,
-		"You are growing fish scales on your skin." = MUT_MSG_EXTENDED,
-		"You struggle to breathe." = MUT_MSG_EXTENDED,
-		"You need to find water, NOW!" = MUT_MSG_ABOUT2TURN)
+		"你觉得浑身发痒。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤湿漉漉的。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤上正在长出鱼鳞。" = MUT_MSG_EXTENDED,
+		"你呼吸困难。" = MUT_MSG_EXTENDED,
+		"你得赶紧找到水，马上！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/transformative_virus/android
-	name = "Android Nanomachines"
-	description = "One with the machine."
+	name = "仿生人纳米机器"
+	description = "与机械合而为一。"
 	color = "#535E66"  //RGB: 94, 255, 59
-	taste_description = "circuitry and steel"
+	taste_description = "电路与钢铁"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	transformation_disease = /datum/disease/transformation_race/android
 
 /datum/reagent/mutationtoxin/anthromorph
-	name = "Anthromorph Mutation Toxin"
-	description = "An anthromorph toxin."
+	name = "兽人突变毒素"
+	description = "一种兽人化毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/mammal
-	taste_description = "wet dog"
+	taste_description = "湿狗"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
-		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
-		"You are getting furrier." = MUT_MSG_EXTENDED,
-		"Your nose is wet." = MUT_MSG_EXTENDED,
-		"You feel very fuzzy." = MUT_MSG_ABOUT2TURN)
+		"你感到皮肤上有阵阵针刺感。" = MUT_MSG_IMMEDIATE,
+		"你注意到身上覆了一层细毛。" = MUT_MSG_IMMEDIATE,
+		"你的毛越来越浓密了。" = MUT_MSG_EXTENDED,
+		"你的鼻子湿了。" = MUT_MSG_EXTENDED,
+		"你觉得自己毛茸茸的。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/ash
 	mutationtexts = list(
-		"You feel very cold." = MUT_MSG_IMMEDIATE,
-		"Your skin feels dry." = MUT_MSG_IMMEDIATE,
-		"Your skin begins to grow scales. They feel very robust." = MUT_MSG_EXTENDED,
-		"Your mind feels clouded." = MUT_MSG_EXTENDED,
-		"You yearn for the volcanic wastes." = MUT_MSG_ABOUT2TURN)
+		"你觉得非常冷。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤很干燥。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤开始长出鳞片，摸起来十分坚硬。" = MUT_MSG_EXTENDED,
+		"你的思绪一片混沌。" = MUT_MSG_EXTENDED,
+		"你渴望回到火山荒原。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/dwarf
-	name = "Dwarf Mutation Toxin"
-	description = "A dwarf toxin."
+	name = "矮人突变毒素"
+	description = "一种矮人化毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/dwarf
-	taste_description = "ale and earth"
+	taste_description = "麦酒与泥土"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel a desire for some ale." = MUT_MSG_IMMEDIATE,
-		"You feel a sensation of vertigo." = MUT_MSG_IMMEDIATE,
-		"The claustrophobic maintenance tunnels feel at home to you." = MUT_MSG_EXTENDED,
-		"Your bones feel denser." = MUT_MSG_EXTENDED,
-		"Rock and stone to the bone." = MUT_MSG_ABOUT2TURN)
+		"你想喝点麦酒。" = MUT_MSG_IMMEDIATE,
+		"你感到一阵眩晕。" = MUT_MSG_IMMEDIATE,
+		"那些幽闭的维护隧道让你感到宾至如归。" = MUT_MSG_EXTENDED,
+		"你的骨头感觉更密实了。" = MUT_MSG_EXTENDED,
+		"岩石与矿石，深入骨髓。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/ethereal
-	name = "Ethereal Mutation Toxin"
-	description = "A lightbulb toxin."
+	name = "以太人突变毒素"
+	description = "一种灯泡毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/ethereal
-	taste_description = "electricity"
+	taste_description = "电流"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel your skin tingle." = MUT_MSG_IMMEDIATE,
-		"Your hair stands on end." = MUT_MSG_IMMEDIATE,
-		"You feel warm." = MUT_MSG_EXTENDED,
-		"Nearby electronics seem to hum louder." = MUT_MSG_EXTENDED,
-		"Your flesh glows brightly." = MUT_MSG_ABOUT2TURN)
+		"你感到皮肤微微发麻。" = MUT_MSG_IMMEDIATE,
+		"你的头发竖了起来。" = MUT_MSG_IMMEDIATE,
+		"你觉得暖和。" = MUT_MSG_EXTENDED,
+		"附近的电子设备似乎嗡鸣得更响了。" = MUT_MSG_EXTENDED,
+		"你的血肉发出明亮的光芒。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/felinid
 	mutationtexts = list(
-		"You feel your skin tingle." = MUT_MSG_IMMEDIATE,
-		"Your hair stands on end." = MUT_MSG_IMMEDIATE,
-		"Your ears begin to get very fuzzy." = MUT_MSG_EXTENDED,
-		"Lasers begin to hold your attention." = MUT_MSG_EXTENDED,
-		"Mrrp Mrowl Mggaow!" = MUT_MSG_ABOUT2TURN)
+		"你感到皮肤微微发麻。" = MUT_MSG_IMMEDIATE,
+		"你的头发竖了起来。" = MUT_MSG_IMMEDIATE,
+		"你的耳朵开始变得毛茸茸的。" = MUT_MSG_EXTENDED,
+		"激光开始吸引你的注意力。" = MUT_MSG_EXTENDED,
+		"喵呜 咕噜 喵嗷！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/felinid/primitive
-	name = "Ice Walker Mutation Toxin"
-	description = "A ice Walker toxin."
+	name = "冰行者突变毒素"
+	description = "一种冰行者毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/human/felinid/primitive
-	taste_description = "something ancient and cold"
+	taste_description = "某种古老而冰冷的东西"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your mind feels clouded." = MUT_MSG_IMMEDIATE,
-		"Your hair stands on end." = MUT_MSG_IMMEDIATE,
-		"You feel very warm." = MUT_MSG_EXTENDED,
-		"You feel like going hunting." = MUT_MSG_EXTENDED,
-		"You feel more at home in the snow." = MUT_MSG_ABOUT2TURN)
+		"你的思绪一片混沌。" = MUT_MSG_IMMEDIATE,
+		"你的头发竖了起来。" = MUT_MSG_IMMEDIATE,
+		"你觉得非常暖和。" = MUT_MSG_EXTENDED,
+		"你想去打猎。" = MUT_MSG_EXTENDED,
+		"你在雪地里感觉更自在。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/fly
 	mutationtexts = list(
-		"Your tongue tingles." = MUT_MSG_IMMEDIATE,
-		"Your stomach churns." = MUT_MSG_IMMEDIATE,
-		"Your eyes sting." = MUT_MSG_IMMEDIATE,
-		"Your tongue turns into a proboscis." = MUT_MSG_EXTENDED,
-		"Your eyes become compound, splitting your sight into thousands of images." = MUT_MSG_EXTENDED,
-		"Trash and rotting flesh begins to be appetizing." = MUT_MSG_EXTENDED,
-		"Buzz Buzz Buzz." = MUT_MSG_ABOUT2TURN)
+		"你的舌头一阵发麻。" = MUT_MSG_IMMEDIATE,
+		"你的胃翻腾不止。" = MUT_MSG_IMMEDIATE,
+		"你的眼睛刺痛。" = MUT_MSG_IMMEDIATE,
+		"你的舌头变成了一根口器。" = MUT_MSG_EXTENDED,
+		"你的眼睛变成复眼，视野被分散成成千上万个画面。" = MUT_MSG_EXTENDED,
+		"垃圾和腐肉开始变得诱人。" = MUT_MSG_EXTENDED,
+		"嗡嗡嗡。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/ghoul
-	name = "Ghoul Mutation Toxin"
-	description = "A ghoul toxin."
+	name = "血仆突变毒素"
+	description = "一种血仆毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/ghoul
-	taste_description = "rotting flesh"
+	taste_description = "腐肉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your muscles are sore." = MUT_MSG_IMMEDIATE,
-		"Your stomach churns." = MUT_MSG_IMMEDIATE,
-		"You notice putrecent spots on your skin." = MUT_MSG_EXTENDED,
-		"Rotting flesh begins to be appetizing." = MUT_MSG_EXTENDED,
-		"Much of your flesh sloughs off." = MUT_MSG_ABOUT2TURN)
+		"你的肌肉酸痛。" = MUT_MSG_IMMEDIATE,
+		"你的胃翻腾不止。" = MUT_MSG_IMMEDIATE,
+		"你注意到皮肤上出现了腐败的斑点。" = MUT_MSG_EXTENDED,
+		"腐肉开始变得诱人。" = MUT_MSG_EXTENDED,
+		"你的大片血肉脱落下来。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/golem
 	mutationtexts = list(
-		"You feel like you have gravel in your stomach." = MUT_MSG_IMMEDIATE,
-		"Your joints feel stiff." = MUT_MSG_IMMEDIATE,
-		"Your joints feel very stiff." = MUT_MSG_EXTENDED,
-		"Rock begins growing on your skin. Somehow it does not feel heavy." = MUT_MSG_EXTENDED,
-		"The stony growths completely encase you. " = MUT_MSG_ABOUT2TURN)
+		"你感觉胃里像塞满了碎石。" = MUT_MSG_IMMEDIATE,
+		"你的关节僵硬。" = MUT_MSG_IMMEDIATE,
+		"你的关节非常僵硬。" = MUT_MSG_EXTENDED,
+		"岩石开始在你皮肤上生长。奇怪的是，它并不觉得沉重。" = MUT_MSG_EXTENDED,
+		"石质增生将你完全包裹。 " = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/insect
-	name = "Insect Mutation Toxin"
-	description = "An insect toxin."
+	name = "昆虫人突变毒素"
+	description = "一种昆虫化毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/insect
-	taste_description = "honey"
+	taste_description = "蜂蜜"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your tongue tingles." = MUT_MSG_IMMEDIATE,
-		"Your skin feels loose." = MUT_MSG_IMMEDIATE,
-		"Your skin begins tearing, revealing a shiny carapace underneath." = MUT_MSG_EXTENDED,
-		"Your tongue turns into a proboscis and you have a craving for honey." = MUT_MSG_EXTENDED,
-		"A pair of antennae sprout from your head. " = MUT_MSG_ABOUT2TURN)
+		"你的舌头一阵发麻。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤松松垮垮的。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤开始撕裂，露出下面发亮的甲壳。" = MUT_MSG_EXTENDED,
+		"你的舌头变成一根口器，你开始渴望蜂蜜。" = MUT_MSG_EXTENDED,
+		"一对触角从你头上长了出来。 " = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/jelly
 	mutationtexts = list(
-		"Your mouth feels gooey" = MUT_MSG_IMMEDIATE,
-		"Your skin feels wet and starts to take a transparent character" = MUT_MSG_IMMEDIATE,
-		"Your limbs begin to turn to goop. Your fingers melt together." = MUT_MSG_EXTENDED,
-		"Your legs give out and you fall into a puddle of yourself" = MUT_MSG_EXTENDED,
-		"Your organs coalesce together into a slime core. You reform yourself into a more anthropomorphic shape." = MUT_MSG_ABOUT2TURN)
+		"你的嘴里黏糊糊的" = MUT_MSG_IMMEDIATE,
+		"你的皮肤变得湿滑，并开始带上透明的质感" = MUT_MSG_IMMEDIATE,
+		"你的四肢开始化为黏液，手指融在了一起。" = MUT_MSG_EXTENDED,
+		"你的双腿瘫软，你整个人化成一滩自己" = MUT_MSG_EXTENDED,
+		"你的器官聚合成一颗史莱姆核心。你重新塑形成更接近人形的样子。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/lizard
 	mutationtexts = list(
-		"You feel cold." = MUT_MSG_IMMEDIATE,
-		"Your skin feels dry." = MUT_MSG_IMMEDIATE,
-		"Your skin begins to grow scales." = MUT_MSG_EXTENDED,
-		"You flick your tongue." = MUT_MSG_EXTENDED,
-		"You feel like licking your eyeballs." = MUT_MSG_ABOUT2TURN)
+		"你觉得冷。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤很干燥。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤开始长出鳞片。" = MUT_MSG_EXTENDED,
+		"你弹了弹舌头。" = MUT_MSG_EXTENDED,
+		"你想舔舔自己的眼球。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/monkey
-	name = "Monkey Mutation Toxin"
-	description = "A monkey toxin."
+	name = "猴子突变毒素"
+	description = "一种猴子化毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/monkey
-	taste_description = "bananas"
+	taste_description = "香蕉"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You breathe through your mouth." = MUT_MSG_IMMEDIATE,
-		"You have a craving for bananas." = MUT_MSG_IMMEDIATE,
-		"Your back hurts." = MUT_MSG_EXTENDED,
-		"Your mind feels clouded." = MUT_MSG_EXTENDED,
-		"You feel like monkeying around." = MUT_MSG_ABOUT2TURN)
+		"你开始用嘴呼吸。" = MUT_MSG_IMMEDIATE,
+		"你很想吃香蕉。" = MUT_MSG_IMMEDIATE,
+		"你的背好痛。" = MUT_MSG_EXTENDED,
+		"你的思绪一片混沌。" = MUT_MSG_EXTENDED,
+		"你想胡闹一番。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/moth
 	mutationtexts = list(
-		"Your eyes suddenly become very light sensitive." = MUT_MSG_IMMEDIATE,
-		"Your skin feels prickly." = MUT_MSG_IMMEDIATE,
-		"You grow a very fluffy moth fluff." = MUT_MSG_EXTENDED,
-		"A pair of antennae sprout from your head." = MUT_MSG_EXTENDED,
-		"A pair of moth wings sprout from your back." = MUT_MSG_EXTENDED,
-		"You feel like hugging a lamp." = MUT_MSG_ABOUT2TURN)
+		"你的眼睛突然对光非常敏感。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤刺痒。" = MUT_MSG_IMMEDIATE,
+		"你长出了一身蓬松的蛾绒。" = MUT_MSG_EXTENDED,
+		"一对触角从你头上长了出来。" = MUT_MSG_EXTENDED,
+		"一对蛾翅从你背上长了出来。" = MUT_MSG_EXTENDED,
+		"你想去抱一盏灯。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/plasma
 	mutationtexts = list(
-		"You have a sharp pain in your stomach" = MUT_MSG_IMMEDIATE,
-		"Your skin develops purple boils" = MUT_MSG_IMMEDIATE,
-		"The boils on your skin erupt as the flesh melts away, replaced by a purple goo" = MUT_MSG_EXTENDED,
-		"You can see your own skeleton." = MUT_MSG_EXTENDED,
-		"You begin to warm rapidly. You need plasma not air!" = MUT_MSG_ABOUT2TURN)
+		"你的胃里传来一阵剧痛" = MUT_MSG_IMMEDIATE,
+		"你的皮肤上长出紫色的脓疱" = MUT_MSG_IMMEDIATE,
+		"随着血肉融化，你皮肤上的脓疱爆裂开来，被紫色黏液取代" = MUT_MSG_EXTENDED,
+		"你能看见自己的骨架。" = MUT_MSG_EXTENDED,
+		"你开始迅速升温。你需要的是等离子体，不是空气！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/pod
 	mutationtexts = list(
-		"Your skin begins to have a green tinge." = MUT_MSG_IMMEDIATE,
-		"Your mouth feels dry." = MUT_MSG_IMMEDIATE,
-		"Normal food does not seem to sustain you as it has done before." = MUT_MSG_EXTENDED,
-		"You feel very weak in the darkness." = MUT_MSG_EXTENDED,
-		"You feel like basking in the sunlight." = MUT_MSG_ABOUT2TURN)
+		"你的皮肤开始泛出绿色。" = MUT_MSG_IMMEDIATE,
+		"你的嘴很干。" = MUT_MSG_IMMEDIATE,
+		"普通食物似乎不再像以前那样能维持你的生命了。" = MUT_MSG_EXTENDED,
+		"在黑暗中你觉得非常虚弱。" = MUT_MSG_EXTENDED,
+		"你想去阳光下晒一晒。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/shadekin
-	name = "Shadekin Mutation Toxin"
-	description = "A shadekin toxin."
+	name = "影裔突变毒素"
+	description = "一种影裔毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/shadekin
-	taste_description = "something dark and furry"
+	taste_description = "某种黑暗而毛茸茸的东西"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel at home in the darkness." = MUT_MSG_IMMEDIATE,
-		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
-		"You are getting furrier." = MUT_MSG_EXTENDED,
-		"Your ears flop over your head." = MUT_MSG_EXTENDED,
-		"You hear a cacophony of voices in your head." = MUT_MSG_ABOUT2TURN)
+		"你在黑暗中感到自在。" = MUT_MSG_IMMEDIATE,
+		"你注意到身上覆了一层细毛。" = MUT_MSG_IMMEDIATE,
+		"你的毛越来越浓密了。" = MUT_MSG_EXTENDED,
+		"你的耳朵垂到了头上。" = MUT_MSG_EXTENDED,
+		"你脑中响起一片嘈杂的声音。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/shadow
-	name = "Shadow Mutation Toxin"
-	description = "A dark toxin."
+	name = "暗影人突变毒素"
+	description = "一种暗影毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/shadow
-	taste_description = "the night"
+	taste_description = "夜晚"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel at home in the darkness." = MUT_MSG_IMMEDIATE,
-		"Your eyes adjust faster to the shadows." = MUT_MSG_IMMEDIATE,
-		"Your get a migraine from the light" = MUT_MSG_EXTENDED,
-		"Your skin blackens and becomes transparent." = MUT_MSG_EXTENDED,
-		"The light burns!" = MUT_MSG_ABOUT2TURN)
+		"你在黑暗中感到自在。" = MUT_MSG_IMMEDIATE,
+		"你的眼睛对阴影的适应变快了。" = MUT_MSG_IMMEDIATE,
+		"光线让你偏头痛发作" = MUT_MSG_EXTENDED,
+		"你的皮肤变黑，并变得透明。" = MUT_MSG_EXTENDED,
+		"光线在灼烧你！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/skeleton
 	mutationtexts = list(
-		"You are losing weight" = MUT_MSG_IMMEDIATE,
-		"You have a yearning for milk." = MUT_MSG_IMMEDIATE,
-		"You are all skin and bones." = MUT_MSG_EXTENDED,
-		"Your eyes are heavily recessed." = MUT_MSG_EXTENDED,
-		"The rest of your flesh sloughs off your bones." = MUT_MSG_ABOUT2TURN)
+		"你正在变瘦" = MUT_MSG_IMMEDIATE,
+		"你渴望牛奶。" = MUT_MSG_IMMEDIATE,
+		"你瘦得只剩皮包骨。" = MUT_MSG_EXTENDED,
+		"你的眼窝深深陷了进去。" = MUT_MSG_EXTENDED,
+		"你身上剩下的血肉从骨头上脱落。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/skrell
-	name = "Skrell Mutation Toxin"
-	description = "A skrell toxin."
+	name = "斯克雷尔突变毒素"
+	description = "一种斯克雷尔毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/skrell
-	taste_description = "salted squid"
+	taste_description = "咸鱿鱼"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your skin feels rubbery" = MUT_MSG_IMMEDIATE,
-		"Your hair clumps together." = MUT_MSG_IMMEDIATE,
-		"Your skin becomes coated in a mucus." = MUT_MSG_EXTENDED,
-		"Your hair merges together into large head tentacles." = MUT_MSG_EXTENDED,
-		"You feel most at home near water." = MUT_MSG_ABOUT2TURN)
+		"你的皮肤像橡胶一样" = MUT_MSG_IMMEDIATE,
+		"你的头发结成一块块。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤覆上了一层黏液。" = MUT_MSG_EXTENDED,
+		"你的头发聚合成粗大的头部触须。" = MUT_MSG_EXTENDED,
+		"在水边你感觉最自在。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/transformative_virus/synthetic
-	name = "Synthetic Nanomachines"
-	description = "We can rebuild them."
+	name = "合成人纳米机器"
+	description = "我们可以重建他们。"
 	color = "#535E66"  //RGB: 94, 255, 59
-	taste_description = "metal"
+	taste_description = "金属"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	transformation_disease = /datum/disease/transformation_race/synthetic
 
 /datum/reagent/mutationtoxin/tajaran
-	name = "Tajaran Mutation Toxin"
-	description = "A tajaran toxin."
+	name = "塔亚拉突变毒素"
+	description = "一种塔亚拉毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/tajaran
-	taste_description = "toxoplasmosis"
+	taste_description = "弓形虫病"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
-		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
-		"You are getting furrier." = MUT_MSG_EXTENDED,
-		"Your nose is wet." = MUT_MSG_EXTENDED,
-		"You feel very fuzzy." = MUT_MSG_ABOUT2TURN)
+		"你感到皮肤上有阵阵针刺感。" = MUT_MSG_IMMEDIATE,
+		"你注意到身上覆了一层细毛。" = MUT_MSG_IMMEDIATE,
+		"你的毛越来越浓密了。" = MUT_MSG_EXTENDED,
+		"你的鼻子湿了。" = MUT_MSG_EXTENDED,
+		"你觉得自己毛茸茸的。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/teshari
-	name = "Teshari Mutation Toxin"
-	description = "A teshari toxin."
+	name = "特沙利突变毒素"
+	description = "一种特沙利毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/teshari
-	taste_description = "fried chicken"
+	taste_description = "炸鸡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
-		"Your skin feels oily." = MUT_MSG_IMMEDIATE,
-		"You begin growing feathers." = MUT_MSG_EXTENDED,
-		"You feel very excitable." = MUT_MSG_EXTENDED,
-		"You feel like a little gremlin, like you need to do some crimes." = MUT_MSG_ABOUT2TURN)
+		"你感到皮肤上有阵阵针刺感。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤油乎乎的。" = MUT_MSG_IMMEDIATE,
+		"你开始长出羽毛。" = MUT_MSG_EXTENDED,
+		"你觉得异常兴奋。" = MUT_MSG_EXTENDED,
+		"你觉得自己像只小捣蛋鬼，总想去干点坏事。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/vox
-	name = "Vox Mutation Toxin"
-	description = "A voxin."
+	name = "沃克斯突变毒素"
+	description = "一种沃克斯毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/vox
-	taste_description = "skreeing with a metallic tinge"
+	taste_description = "带着金属味的尖啸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your throat feels scratchy." = MUT_MSG_IMMEDIATE,
-		"Your lungs burn!" = MUT_MSG_IMMEDIATE,
-		"Quills push through your skin." = MUT_MSG_EXTENDED,
-		"A beak forms on your face." = MUT_MSG_EXTENDED,
-		"You need to find nitrogen fast! SKREE!" = MUT_MSG_ABOUT2TURN)
+		"你的喉咙发痒。" = MUT_MSG_IMMEDIATE,
+		"你的肺在燃烧！" = MUT_MSG_IMMEDIATE,
+		"刺羽从你的皮肤里钻了出来。" = MUT_MSG_EXTENDED,
+		"你的脸上长出了一张喙。" = MUT_MSG_EXTENDED,
+		"你得赶紧找到氮气！嘶克嘞！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/vox_primalis
-	name = "Vox Primalis Mutation Toxin"
-	description = "A vox primalis toxin."
+	name = "原初沃克斯突变毒素"
+	description = "一种原初沃克斯毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/vox_primalis
-	taste_description = "screeching with a metallic tinge"
+	taste_description = "带着金属味的尖啸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your throat feels scratchy." = MUT_MSG_IMMEDIATE,
-		"Your lungs burn!" = MUT_MSG_IMMEDIATE,
-		"Quills push through your skin." = MUT_MSG_EXTENDED,
-		"A beak forms on your face and splits into three parts." = MUT_MSG_EXTENDED,
-		"You need to find nitrogen fast! SKREE!" = MUT_MSG_ABOUT2TURN)
+		"你的喉咙发痒。" = MUT_MSG_IMMEDIATE,
+		"你的肺在燃烧！" = MUT_MSG_IMMEDIATE,
+		"刺羽从你的皮肤里钻了出来。" = MUT_MSG_EXTENDED,
+		"你的脸上长出一张喙，并裂成三瓣。" = MUT_MSG_EXTENDED,
+		"你得赶紧找到氮气！嘶克嘞！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/vulpkanin
-	name = "Fox Mutation Toxin"
-	description = "A foxin."
+	name = "狐狸突变毒素"
+	description = "一种狐狸毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/vulpkanin
-	taste_description = "orange chicken"
+	taste_description = "橙皮鸡"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"You feel pinpricks on your skin." = MUT_MSG_IMMEDIATE,
-		"You notice a dusting of hair covering your body." = MUT_MSG_IMMEDIATE,
-		"You are getting furrier." = MUT_MSG_EXTENDED,
-		"Your nose is wet." = MUT_MSG_EXTENDED,
-		"You feel very fuzzy." = MUT_MSG_ABOUT2TURN)
+		"你感到皮肤上有阵阵针刺感。" = MUT_MSG_IMMEDIATE,
+		"你注意到身上覆了一层细毛。" = MUT_MSG_IMMEDIATE,
+		"你的毛越来越浓密了。" = MUT_MSG_EXTENDED,
+		"你的鼻子湿了。" = MUT_MSG_EXTENDED,
+		"你觉得自己毛茸茸的。" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/xenohybrid
-	name = "Xenohybrid Mutation Toxin"
-	description = "A xenohybrid toxin."
+	name = "异形杂交体突变毒素"
+	description = "一种异形杂交体毒素。"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/xeno
-	taste_description = "sour apples"
+	taste_description = "酸苹果"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
 	mutationtexts = list(
-		"Your throat feels scratchy." = MUT_MSG_IMMEDIATE,
-		"You can feel something move...inside." = MUT_MSG_IMMEDIATE,
-		"Your skin feels tight." = MUT_MSG_EXTENDED,
-		"Your blood boils!" = MUT_MSG_EXTENDED,
-		"Your skin feels as if it's about to burst off!" = MUT_MSG_ABOUT2TURN)
+		"你的喉咙发痒。" = MUT_MSG_IMMEDIATE,
+		"你能感觉到有什么东西……在里面动。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤绷得很紧。" = MUT_MSG_EXTENDED,
+		"你的血液沸腾了！" = MUT_MSG_EXTENDED,
+		"你的皮肤感觉像是要炸开一样！" = MUT_MSG_ABOUT2TURN)
 
 /datum/reagent/mutationtoxin/zombie
 	mutationtexts = list(
-		"You notice a foul smell. It is you." = MUT_MSG_IMMEDIATE,
-		"Black and green spots appear on your skin." = MUT_MSG_IMMEDIATE,
-		"Your flesh rots but you feel nothing!" = MUT_MSG_EXTENDED,
-		"Your blood coagulates!" = MUT_MSG_EXTENDED,
-		"You feel a yearning for flesh and brains" = MUT_MSG_ABOUT2TURN)
+		"你闻到一股恶臭。那是你自己。" = MUT_MSG_IMMEDIATE,
+		"你的皮肤上浮现黑绿色的斑点。" = MUT_MSG_IMMEDIATE,
+		"你的血肉在腐烂，你却毫无感觉！" = MUT_MSG_EXTENDED,
+		"你的血液凝固了！" = MUT_MSG_EXTENDED,
+		"你渴望血肉与脑髓" = MUT_MSG_ABOUT2TURN)
 
 //New chemical which only causes people to perform the 'weh' emote. No way to create this, currently will only be in rare foam grenades found as loot
 /datum/reagent/juice_that_makes_you_weh
-	name = "Juice That Makes You Weh"
-	description = "A strange green chemical, will cause iliving beings to 'weh' uncontrollably for a time"
+	name = "让你呜呜叫的果汁"
+	description = "一种奇特的绿色化学物质，会让活物不由自主地“呜呜”叫上一阵"
 	color = "#37e427" // rgb: 165, 240, 238
-	taste_description = "an odd sweetness with a hint of spice"
+	taste_description = "带着一丝辛辣的奇特甜味"
 	metabolization_rate = 2 // metabolises 10x faster, will occur more often but not hang around for ages
 	penetrates_skin = VAPOR
 	ph = 5.5
@@ -400,7 +400,7 @@
 	. = ..()
 
 	if (prob(50))
-		to_chat(affected_mob, span_warning("You feel the urge to weh..."))
+		to_chat(affected_mob, span_warning("你有一种想呜呜叫的冲动……"))
 		addtimer(CALLBACK(src, PROC_REF(do_weh), affected_mob), rand(1, 4) SECONDS)
 
 /datum/reagent/juice_that_makes_you_weh/proc/do_weh(mob/living/carbon/M)
@@ -411,16 +411,16 @@
 //A chemical you can spray on plushies to turn them into a 'shell'
 //Hugging the plushie turns yourself into the plushie!
 /datum/reagent/plushmium
-	name = "Plushmium"
-	description = "A strange chemical, seeming almost fluffy, if it were not for it being a liquid. Known to have a strange effect on plushies."
+	name = "毛绒素"
+	description = "一种奇特的化学物质，看上去几乎毛茸茸的——要不是它是液体的话。已知会对毛绒玩偶产生奇怪的效果。"
 	color = "#fbcbd7"
-	taste_description = "the soft feeling of a plushie"
+	taste_description = "毛绒玩偶柔软的触感"
 	ph = 5
 
 /datum/reagent/plushmium/expose_obj(obj/exposed_obj, reac_volume, methods, show_message)
 	. = ..()
 	if(istype(exposed_obj, /obj/item/toy/plush) && reac_volume >= 5)
-		exposed_obj.loc.visible_message(span_warning("The plushie seems to be staring back at you."))
+		exposed_obj.loc.visible_message(span_warning("这只毛绒玩偶似乎也在盯着你看。"))
 		var/obj/item/toy/plushie_shell/new_shell = new /obj/item/toy/plushie_shell(exposed_obj.loc)
 		new_shell.name = exposed_obj.name
 		new_shell.icon = exposed_obj.icon

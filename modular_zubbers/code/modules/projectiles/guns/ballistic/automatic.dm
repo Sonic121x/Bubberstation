@@ -4,7 +4,7 @@
 /obj/item/gun/ballistic/automatic/wt550/sawoff(mob/user)
 	. = ..()
 	if(.)
-		desc = "why would you do this"
+		desc = "你为什么要这么做"
 		icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 		w_class = WEIGHT_CLASS_NORMAL
 		spread = 10
@@ -29,8 +29,8 @@
 /obj/item/gun/ballistic/automatic/ntmp5
 	burst_size = 1
 	actions_types = list()
-	name = "\improper NT22-HCS-MP 'Lancer'"
-	desc = "A hardlight compliance submachine gun variant designed for sustained non-lethal confrontations. It has a retractable stock included in its design, allowing for easier concealment. Without the stock, its recoil is strong enough that it needs two hands to use effectively."
+	name = "\improper NT22-HCS-MP“枪骑兵”"
+	desc = "为持久非致命对抗而设计的硬光执法冲锋枪变体。其设计包含可伸缩枪托，便于隐藏。收起枪托后，其后坐力大到必须双手持握才能有效使用。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ntmp5.dmi'
 	icon_state = "ntmp5"
 	base_icon_state = "ntmp5"
@@ -40,7 +40,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	accepted_magazine_type = /obj/item/ammo_box/magazine/recharge/ntusp
 	bolt_type = BOLT_TYPE_STANDARD
-	bolt_wording = "cocking handle"
+	bolt_wording = "拉机柄"
 	fire_delay = 0.15 SECONDS
 	recoil = 1
 	spread = 5
@@ -67,26 +67,26 @@
 	RegisterSignal(src, COMSIG_CLICK_CTRL, PROC_REF(on_ctrl_click_stock_toggle))
 	autofire_component = AddComponent(/datum/component/automatic_fire, fire_delay, allow_akimbo = FALSE)
 	AddElement(/datum/element/examine_lore, \
-		lore_hint = span_notice("You can " + EXAMINE_HINT("look closer") + " to learn a little more about [src]."), \
-			lore = "An adaptation of the NT22-HCS, the NT22-HCS-MP, also known as the Lancer, is a Machine Pistol refined for sustained engagement scenarios. This variant was designed for operations requiring rapid, repeatable application across multiple subjects, such as crowd suppression, access denial, riot control, and 'labour dispute resolutions'.<br>\
+		lore_hint = span_notice("你可以" + EXAMINE_HINT("仔细查看") + "来进一步了解[src]。"), \
+			lore = "NT22-HCS-MP 是 NT22-HCS 的改进型，又名“枪骑兵”，是一款为持久交战场景精炼的冲锋手枪。此变体专为需要对多个目标快速、反复施加作用的行动而设计，例如人群压制、通道封锁、防暴控制以及“劳资纠纷调解”。<br>\
 			<br>\
-			Maintaining full compatibility with the .22HL battery packs of the Enforcer, the NT22-HCS-MP integrates an expanded energy cycling architecture capable of sustaining automatic fire. Each projectile is synthesized in real time. Reloading follows a simple sequence, designed to be familiar with those trained with regular ballistic weaponry. The bolt is retracted and locked, the battery is inserted and the bolt is then released, typically with the characteristic 'slap'.<br>\
+			NT22-HCS-MP 完全兼容“执法者”的 .22HL 能量包，并整合了可支持持续自动射击的扩展能量循环架构。每发弹丸都实时合成。装填遵循简单流程，与熟悉传统弹道武器的人所习惯的方式一致：先拉开并锁定枪机，插入能量包，然后释放枪机，通常伴随着标志性的“一拍”。<br>\
 			<br>\
-			.22HL rounds are accelerated to considerable velocity, which deliver significant kinetic force at the point of impact, dissipating instantly, leaving no embedded material. The increased rate of fire comes at the cost of slightly less effective bullets produced by the weapon. Nevertheless, the subjects struck by .22HL will suffer significant pain response, exhaustion and loss of voluntary motor function.<br>\
+			.22HL 弹丸会被加速到相当高的速度，在命中点释放可观的动能，随后瞬间消散，不会留下嵌入物。射速的提升以武器制造出的弹丸效能略有下降为代价。尽管如此，被 .22HL 命中的目标仍会承受剧烈的疼痛反应、力竭以及自主运动功能丧失。<br>\
 			<br>\
-			The NT22-HCS-MP features a collapsible stock, reducing its size and allowing it to be discreetly concealed under jackets or bags. Operational guidelines recommend deployment against non-compliant subjects where verbal deterrence has failed, and escalation to lethal response is not warranted. Nevertheless, longitudinal data on cumulative .22HL exposure remains limited, a consequence of the particularly restricted circulation of post-incident reports." \
+			NT22-HCS-MP 配有可折叠枪托，能缩小其体积，使其可以被隐蔽地藏在夹克或背包下。操作指南建议将其用于对付口头威慑已经失效、又不值得升级为致命回应的不配合目标。尽管如此，关于 .22HL 累积暴露的长期数据仍然有限，这是事后报告流传受到特别严格限制的结果。" \
 	)
 	update_fire_delay_state()
 	update_stock_state()
 
 /obj/item/gun/ballistic/automatic/ntmp5/examine(mob/user)
 	. = ..()
-	. += span_notice("The stock is currently [stock_retracted ? "retracted" : "extended"]. Ctrl-click to toggle it.")
+	. += span_notice("枪托当前处于[stock_retracted ? "收起" : "展开"]状态。按住 Ctrl 单击可切换。")
 
 /obj/item/gun/ballistic/automatic/ntmp5/proc/on_ctrl_click_stock_toggle(datum/source, mob/user)
 	SIGNAL_HANDLER
 	stock_retracted = !stock_retracted
-	balloon_alert(user, stock_retracted ? "stock retracted" : "stock extended")
+	balloon_alert(user, stock_retracted ? "枪托已收起" : "枪托已展开")
 	playsound(src, 'sound/items/weapons/batonextend.ogg', 50, TRUE)
 	update_stock_state()
 	return CLICK_ACTION_SUCCESS
@@ -164,12 +164,12 @@
 	update_appearance()
 
 /obj/item/gun/ballistic/automatic/wt550
-	desc = "A fully-automatic security firearm chambered in 4.6x30mm, the WT550 was originally recalled over a Syndicate misinformation campaign \
-		attempting to force Nanotrasen to abandon their ballistic firearms programs. Even though it was fake, the 550 is \
-		still sold with a '99% Discombubulation Removal Guarantee' sticker in the crate."
+	desc = "作为一款发射 4.6x30mm 弹药的安保全自动枪械，WT550 最初因辛迪加的一场虚假信息宣传而被召回，那场宣传 \
+		试图迫使纳米传讯放弃其弹道枪械项目。尽管那是假的，550 至今仍 \
+		在箱子里附赠一张“99% 消除紊乱保证”贴纸出售。"
 /obj/item/gun/ballistic/automatic/wt550/burst
-	name = "\improper WT-550-B Autoburstrifle"
-	desc = "Not so much of a rifle, being modified closer to a submachine gun, but still somehow just as bulky. Outfitted with a modified frame and barrel and a two-shot burst trigger mechanism. Performs overall better than the average autorifle, but kicks a bit more. Has a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	name = "\improper WT-550-B 自动点射步枪"
+	desc = "它算不上真正的步枪，改装后更接近冲锋枪，但体积却依旧同样笨重。配有改装机匣与枪管，以及两发点射扳机机构。整体表现优于普通自动步枪，但后坐力稍大。枪管带螺纹，可安装消音器。使用 4.6x30mm 弹药。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "wt550b"
 	fire_sound = 'modular_zubbers/sound/weapons/gun/wt551/shot.ogg'
@@ -198,8 +198,8 @@
 		overlay_y = 9)
 
 /obj/item/gun/ballistic/automatic/wt550/dmr
-	name = "\improper WT-550-C Autorifle"
-	desc = "A longer range WT-550, assembled using an aftermarket kit and parts. Outfitted with the longest barrel and custom trigger to enhance performance at a distance. Equipped with a custom scope and a threaded barrel for suppressors. Uses 4.6x30mm rounds."
+	name = "\improper WT-550-C 自动步枪"
+	desc = "射程更远的 WT-550，使用售后套件与零件组装而成。配备最长的枪管与定制扳机，以提升远距离表现。装有定制瞄准镜，枪管带螺纹可安装消音器。使用 4.6x30mm 弹药。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
 	worn_icon = 'icons/mob/clothing/belt.dmi'
 	worn_icon_state = "gun"
@@ -228,10 +228,10 @@
 	AddComponent(/datum/component/scope, range_modifier = 2.0)
 
 /obj/item/gun/ballistic/automatic/battle_rifle_basic
-	name = "\improper .38 battle rifle"
-	desc = "A lower-tech alternative version of Nanotrasen's latest prototype longarm, granting a different option to those who don't care for the NT-38. \
-		Technically a pistol-caliber carbine, despite the name and its use as a battle rifle. \
-		Forsaking the advanced electronics and integrated technological advantages allows it to perform infinitely more reliably."
+	name = "\improper .38 战斗步枪"
+	desc = "纳米传讯最新原型长枪的低技术替代版本，为不喜欢 NT-38 的人提供了另一种选择。 \
+		尽管名字如此、也被当作战斗步枪使用，严格来说它是一把发射手枪弹的卡宾枪。 \
+		舍弃先进的电子设备与集成技术优势，反而让它运行得无限可靠。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/wide_guns.dmi'
 	icon_state = "battle_rifle"
 	lefthand_file = 'modular_zubbers/icons/mob/inhands/weapons/guns_lefthand.dmi'

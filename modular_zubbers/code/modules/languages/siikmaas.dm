@@ -1,10 +1,10 @@
 //Renames it to not be the name for tail sign
 /datum/language/siiktajr
 	name = "Siik'maas"
-	desc = "Siik'tajr is an overly complicated tongue comprised of short-form speech mixed with growls and meows is native to the Tajara. \
-		Due to the breadth of their lands, countless dialects and different idioms exist - making a simple uniform way to teach this language almost impossible. \
-		After first contact, Humans describe the tongue as sounding somewhat similar to old Scandinavian languages. \
-		It's rarely seen spoken by those not native to Taj, though certain genemodder groups have picked up a form of it."
+	desc = "西克玛斯语是塔亚拉人的母语，这门过度复杂的语言由短促的语句混杂咕噜声与喵叫声构成。\
+		由于他们的疆域辽阔，方言与习语数不胜数，几乎不可能用统一而简单的方式教授这门语言。\
+		首次接触之后，人类形容这种语言听起来与古老的斯堪的纳维亚诸语有些相似。\
+		除塔亚拉的本地人外，极少见外人会说它，不过某些基因改造群体已掌握其中一种变体。"
 	key = "3"
 	flags = LANGUAGE_TONGUELESS_SPEECH
 	sentence_chance = 9

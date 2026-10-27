@@ -1,6 +1,6 @@
 /mob/living/basic/malf_borg/engi
-	name = "Malfunctioning Engineering Cyborg"
-	desc = "An engineering cyborg unit, hacked or malfunctioning—oh shit that's a plasma bar."
+	name = "故障工程半机械人"
+	desc = "一台工程半机械人单位，遭到入侵或发生故障——我靠，那是一根等离子棒。"
 	icon = 'modular_skyrat/master_files/icons/mob/newmobs.dmi'
 
 	icon_state = "evilbotengi"
@@ -17,8 +17,8 @@
 	exposed_wound_bonus = 0
 	sharpness = NONE
 
-	attack_verb_continuous = "welds"
-	attack_verb_simple = "weld"
+	attack_verb_continuous = "用电焊灼烧"
+	attack_verb_simple = "用电焊烧"
 	attack_sound = 'sound/items/tools/welder.ogg'
 
 /mob/living/basic/malf_borg/engi/Initialize(mapload)

@@ -1,5 +1,5 @@
 /datum/design/c9mm_sec
-	name = "Ammo Box (9x19m Murphy) (Lethal)" //SKYRAT EDIT: Calibre rename - Original: name = "Ammo Box (9mm)"
+	name = "弹药盒（9x19mm 墨菲）（致命）" //SKYRAT EDIT: Calibre rename - Original: name = "Ammo Box (9mm)"
 	id = "c9mm_sec"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 150)

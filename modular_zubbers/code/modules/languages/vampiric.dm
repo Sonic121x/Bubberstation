@@ -1,6 +1,6 @@
 /datum/language/vampiric
 	name = "Enochian"
-	desc = "Rumored to be created by the Dark Father, Caine himself as a way to talk to his Childer, the truth, like many things in unlife is uncertain. Spoken by creatures of the night."
+	desc = "据传由黑暗之父该隐亲手创造，以便与自己的子嗣交谈；而真相，就像不死生涯中的许多事一样，无从确定。这是夜之生物的语言。"
 	key = "L"//Capital L, lowercase l is for ashies.
 	space_chance = 40
 	default_priority = 90

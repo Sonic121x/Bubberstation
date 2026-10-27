@@ -9,15 +9,15 @@
 
 /// A secure crate in the medical department's colours. The lock light is added by closet_update_overlays().
 /obj/structure/closet/crate/secure/medical
-	name = "secure medical crate"
-	desc = "A crate with a lock on it, painted in the scheme of the station's medical staff."
+	name = "保险医疗板条箱"
+	desc = "一只带锁的板条箱，涂装成空间站医疗人员的配色。"
 	icon_state = "medicalcrate"
 	base_icon_state = "medicalcrate"
 
 /// The crate a privately purchased order arrives in.
 /obj/structure/closet/crate/secure/commercial
-	name = "commercial crate"
-	desc = "A crate cover designed to only open for whoever purchased its contents."
+	name = "商业板条箱"
+	desc = "一只设计成只对购买其内容物者开启的板条箱。"
 	icon_state = "privatecrate"
 	base_icon_state = "privatecrate"
 

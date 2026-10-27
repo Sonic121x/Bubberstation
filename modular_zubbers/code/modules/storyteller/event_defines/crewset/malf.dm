@@ -1,6 +1,6 @@
 
 /datum/round_event_control/antagonist/solo/malf
-	name = "Malfunctioning AI Midround"
+	name = "回合中故障 AI"
 
 	base_antags = 1
 	maximum_antags = 1
@@ -38,7 +38,7 @@
 	return candidates
 
 /datum/round_event_control/antagonist/solo/malf/roundstart
-	name = "Malfunctioning AI"
+	name = "故障 AI"
 
 	roundstart = TRUE
 	typepath = /datum/round_event/antagonist/solo/malf_ai/roundstart

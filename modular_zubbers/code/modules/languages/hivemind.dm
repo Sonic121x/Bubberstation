@@ -16,8 +16,8 @@
 
 /datum/language/xenocommon/lesser_hivemind // Parent in \code\modules\language\xenocommon.dm
 	name = "Lesser Hivemind"
-	desc = "The method with which Xenomorph Hybrids are able to communicate soundlessly over great distances is still ill-understood; \
-			whether it be via pheromones, some kind of organic radio or even just telepathy, the reality is, it just works."
+	desc = "异形混种能够无声地在极远距离上交流，其原理至今仍未被充分理解；\
+			无论是通过信息素、某种有机无线电，还是单纯的心灵感应，事实就是：它确实管用。"
 	key = "5"
 	icon_state = "xeno"
 
@@ -33,7 +33,7 @@
 /obj/item/organ/tongue/xeno_hybrid/proc/actually_modify_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	var/mob/living/carbon/human/user = source
-	user.balloon_alert_to_viewers("Looks distracted...", "Concentrating...")
+	user.balloon_alert_to_viewers("看起来心不在焉……", "正在集中精神……")
 
 	if(!do_after(source, 2 SECONDS, source))
 		message = full_capitalize(rot13(message))
@@ -46,7 +46,7 @@
 			continue
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
-			living_mob.balloon_alert_to_viewers("Looks distracted...", "A voice murmurs in your head...")
+			living_mob.balloon_alert_to_viewers("看起来心不在焉……", "一个声音在你脑海中低语……")
 
 	if(length(GLOB.dead_mob_list))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)

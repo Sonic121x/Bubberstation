@@ -1,6 +1,6 @@
 /obj/item/clicker
-	name = "clicker"
-	desc = "A small clicking toy that fits in the palm of your hand, typically used to condition pets into obedience. It makes a satisfying 'click' sound when pressed."
+	name = "响片"
+	desc = "一个小小的响片玩具，恰好能握在掌心，通常用来训练宠物服从。按下时会发出令人满足的“咔哒”声。"
 	icon = 'modular_zubbers/icons/obj/lewd.dmi'
 	icon_state = "clicker_pink"
 	throwforce = 0
@@ -14,16 +14,16 @@
 	abstract_type = /datum/atom_skin/clicker
 
 /datum/atom_skin/clicker/pink
-	preview_name = "Pink"
+	preview_name = "粉色"
 	new_icon_state = "clicker_pink"
 
 /datum/atom_skin/clicker/teal
-	preview_name = "Teal"
+	preview_name = "青色"
 	new_icon_state = "clicker_teal"
 
 /obj/item/clicker/proc/click(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "click!")
+	source.balloon_alert(user, "咔哒！")
 	playsound(source, "modular_zubbers/sound/lewd/clicker.ogg", 40, FALSE)
 
 /obj/item/clicker/attack_self(mob/user)
@@ -46,8 +46,8 @@
 				if(get_dist(sub, living_user) > world.view / 2)
 					continue
 				sub.dir = get_dir(sub, living_user)
-				sub.emote("me", 1, "suddenly perks up in attention!", TRUE)
-				to_chat(sub, span_purple("You perk up in attention hearing <b>[living_user]</b>'s click!"))
+				sub.emote("me", 1, "突然竖起耳朵，全神贯注！", TRUE)
+				to_chat(sub, span_purple("听到 <b>[living_user]</b> 的响片声，你立刻打起精神！"))
 // Short mood boost for flavour
 				sub.add_mood_event("good_pet", /datum/mood_event/good_pet)
 // Shivering animation
@@ -67,8 +67,8 @@
 					continue
 
 				borg_sub.dir = get_dir(borg_sub, living_user)
-				borg_sub.emote("me", 1, "suddenly perks up in attention!", TRUE)
-				to_chat(borg_sub, span_purple("You perk up in attention hearing <b>[living_user]</b>'s click!"))
+				borg_sub.emote("me", 1, "突然竖起耳朵，全神贯注！", TRUE)
+				to_chat(borg_sub, span_purple("听到 <b>[living_user]</b> 的响片声，你立刻打起精神！"))
 // Shivering animation
 				animate(borg_sub, pixel_w = 1, time = 0.1 SECONDS, flags = ANIMATION_RELATIVE|ANIMATION_PARALLEL)
 				for(var/i in 1 to 1 SECONDS / (0.2 SECONDS))
@@ -80,6 +80,6 @@
 			TIMER_COOLDOWN_START(living_user, DOMINANT_COOLDOWN_SNAP, 10 SECONDS)
 
 /datum/mood_event/good_pet
-	description = span_nicegreen("Being obedient feels rewarding!")
+	description = span_nicegreen("乖乖听话的感觉真好！")
 	mood_change = 2
 	timeout = 2 MINUTES

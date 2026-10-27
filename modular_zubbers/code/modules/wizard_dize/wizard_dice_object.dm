@@ -1,8 +1,8 @@
 //Gives you wizard if you land on 20. Fail, and the dice teleports somewhere else.
 
 /obj/item/dice/d20/teleporting_die_of_fate
-	name = "wizardly die of fate"
-	desc = "An absurdly magical d20. Land on 20, and get a chance to win a chance to win a prize!"
+	name = "巫师命运之骰"
+	desc = "一枚荒唐至极的魔法 d20。掷出 20，你就有机会赢得一次赢取奖品的机会！"
 	microwave_riggable = FALSE //lol. lmao
 	COOLDOWN_DECLARE(roll_cd) //Prevents exploits
 	var/smite_rng_seed = 1
@@ -51,16 +51,16 @@
 
 /obj/item/dice/d20/teleporting_die_of_fate/examine(mob/user)
 	. = ..()
-	. += span_notice("Roll a 20, and you might become magical...")
-	. += span_warning("Roll a 1, and you will end up in medical!")
+	. += span_notice("掷出 20，你或许就会变得有魔力……")
+	. += span_warning("掷出 1，你就会躺进医疗部！")
 	if(relocation_timer && isobserver(user))
-		. += span_notice("The dice will relocate in [DisplayTimeText(timeleft(relocation_timer),1)]!")
-		. += span_warning("It has <b>[uses_left]</b> use[uses_left == 1 ? "" : "s"] left...")
+		. += span_notice("骰子将在 [DisplayTimeText(timeleft(relocation_timer),1)] 后转移位置！")
+		. += span_warning("它还剩余 <b>[uses_left]</b> 次使用机会……")
 
 /obj/item/dice/d20/teleporting_die_of_fate/equipped(mob/user, slot)
 	. = ..()
 	if(!ishuman(user) || !user.mind || IS_WIZARD(user))
-		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary people! You should leave it alone."))
+		to_chat(user, span_warning("你感觉骰子的魔力只对普通人有效！你最好别去碰它。"))
 		user.dropItemToGround(src)
 	else if(do_teleport && !was_touched)
 		create_timer(teleport_delay_pickup)
@@ -69,17 +69,17 @@
 /obj/item/dice/d20/teleporting_die_of_fate/diceroll(mob/user, in_hand=FALSE)
 
 	if(!COOLDOWN_FINISHED(src, roll_cd))
-		to_chat(user, span_warning("Hold on, [src] isn't caught up with your last roll!"))
+		to_chat(user, span_warning("等等，[src] 还没从你上次那一掷里缓过来！"))
 		return
 
 	. = ..()
 
 	if(!ishuman(user) || !user.mind || IS_WIZARD(user))
-		to_chat(user, span_warning("You feel the magic of the dice is restricted to ordinary people!"))
+		to_chat(user, span_warning("你感觉骰子的魔力只对普通人有效！"))
 		return
 
 	var/turf/current_turf = get_turf(src)
-	current_turf.visible_message(span_userdanger("[src] flares briefly."))
+	current_turf.visible_message(span_userdanger("[src] 短暂地闪了一下。"))
 
 	addtimer(CALLBACK(src, PROC_REF(effect), user, .), 1 SECONDS)
 	COOLDOWN_START(src, roll_cd, 2.5 SECONDS)
@@ -93,10 +93,10 @@
 		if(uses_left <= 0)
 			if(rigged != DICE_TOTALLY_RIGGED)
 				notify_ghosts(
-					"[src] was all used up, and was removed from reality.",
+					"[src] 已彻底用尽，被从现实中移除了。",
 					source = src
 				)
-			current_turf.visible_message(span_warning("[src] phases out of reality..."))
+			current_turf.visible_message(span_warning("[src] 淡出现实……"))
 			qdel(src)
 			return
 
@@ -111,7 +111,7 @@
 	if(!desired_turf) //Do nothing as a failsafe for a failsafe.
 		return
 
-	current_turf.visible_message(span_warning("[src] phases out to another location!"))
+	current_turf.visible_message(span_warning("[src] 淡出，前往另一处地点！"))
 
 	//Teleport!
 	src.forceMove(desired_turf)
@@ -120,7 +120,7 @@
 	playsound(desired_turf,'sound/effects/magic/magic_missile.ogg',50,8,FALSE)
 
 	notify_ghosts(
-		"[src] has teleported to [desired_turf.loc]!",
+		"[src] 已传送到 [desired_turf.loc]！",
 		source = src
 	)
 
@@ -135,9 +135,9 @@
 	if(roll != 20)
 		if(roll == 1) //lol. lmao
 			user.emote("scream")
-			user.investigate_log("has been smited by a wizardly die of fate.", INVESTIGATE_DEATHS)
+			user.investigate_log("被巫师命运之骰制裁了。", INVESTIGATE_DEATHS)
 			notify_ghosts(
-				"[user] got a 1 while rolling [src]! Point and laugh at them!",
+				"[user] 用 [src] 掷出了 1！快来指着他笑！",
 				source = user
 			)
 			addtimer(CALLBACK(src, PROC_REF(apply_random_smite), user), 1 SECONDS)
@@ -148,12 +148,12 @@
 		return
 
 	user.emote("laugh")
-	current_turf.visible_message(span_userdanger("Magic flows out of [src] and into [user]!"))
+	current_turf.visible_message(span_userdanger("魔力从 [src] 涌出，注入 [user]！"))
 	user.drop_everything(del_on_drop = FALSE, force = TRUE, del_if_nodrop = TRUE)
 	user.mind.make_wizard()
 
 	notify_ghosts(
-		"[user] got a nat 20 while rolling [src]!",
+		"[user] 用 [src] 掷出了天然 20！",
 		source = user
 	)
 
@@ -170,20 +170,20 @@
 				incidents_left = 7, \
 				bless_fixable = TRUE, \
 			)
-			to_chat(target, span_warning("You get a bad feeling about this..."))
+			to_chat(target, span_warning("你对此有种不祥的预感……"))
 		if(1)
 			//Drain bamage.
 			target.adjust_organ_loss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_DEATH - 1, BRAIN_DAMAGE_DEATH - 1)
-			to_chat(target, span_warning("You feel <b>stupid</b> for rolling [src]..."))
+			to_chat(target, span_warning("你因为掷了 [src] 而觉得自己<b>蠢透了</b>……"))
 		if(2)
 			//Forced to speak a random language.
 			target.apply_status_effect(/datum/status_effect/tower_of_babel, teleport_delay_pickup)
-			to_chat(target, span_warning("Come, let us go down and confuse their language there, so that they will not understand one another's speech. It'd be fucking hilarious!"))
+			to_chat(target, span_warning("来吧，我们下去，在那里变乱他们的语言，使他们彼此言语不通。这他妈一定超好笑！"))
 		if(3)
 			//Raining fireball.
 			target.Immobilize(3 SECONDS)
 			new /obj/effect/temp_visual/target(get_turf(target))
-			to_chat(target, span_warning("I CAST FIREBALL!"))
+			to_chat(target, span_warning("我要施放火球术！"))
 		if(4)
 			//Lighting bolt smite.
 			var/turf/lightning_source = get_turf(src)
@@ -191,11 +191,11 @@
 			target.adjust_fire_loss(LIGHTNING_BOLT_DAMAGE)
 			playsound(get_turf(target), 'sound/effects/magic/lightningbolt.ogg', 50, TRUE)
 			target.electrocution_animation(LIGHTNING_BOLT_ELECTROCUTION_ANIMATION_LENGTH)
-			to_chat(target, span_warning("LIGHTNING BOLT!!"))
+			to_chat(target, span_warning("闪电束！！"))
 		if(5)
 			//Ick Ock Phobia
 			target.gain_trauma(/datum/brain_trauma/mild/phobia/ocky_icky, TRAUMA_RESILIENCE_SURGERY)
-			to_chat(target, span_warning("Those damn coders are out to get us!!!"))
+			to_chat(target, span_warning("那些该死的程序员想害我们！！！"))
 		if(6)
 			//A rod comes and fucks you up. And the station.
 			var/turf/target_turf = get_turf(target)
@@ -204,7 +204,7 @@
 			var/turf/end_turf = spaceDebrisFinishLoc(startside, target_turf.z)
 			if(start_turf && end_turf)
 				new /obj/effect/immovablerod(start_turf, end_turf, target, FALSE)
-			to_chat(target, span_warning("Huh. Nothing seems to have happened. I guess I am unstoppable..."))
+			to_chat(target, span_warning("咦，好像什么都没发生。看来我是无敌的……"))
 		if(7)
 			//A pod comes down and slams you.
 			target.Immobilize(3 SECONDS)
@@ -217,16 +217,16 @@
 				"explosionSize" = list(0, 0, 2, 4),
 				"effectStun" = TRUE
 			))
-			to_chat(target, span_warning("SPECIAL DELIVERY!"))
+			to_chat(target, span_warning("特快专递！"))
 		if(8)
 			//You turn into a lizard. If you're already a lizard, you're now scared of lizards.
 			//Can be fixed via SAD.
 			if(target.dna && !istype(target.dna.species,/datum/species/lizard))
 				target.set_species(/datum/species/lizard)
-				to_chat(target, span_warning("You're a lizard, Harry."))
+				to_chat(target, span_warning("你变成蜥蜴了，哈利。"))
 			else
 				target.gain_trauma(/datum/brain_trauma/mild/phobia/lizards, TRAUMA_RESILIENCE_SURGERY)
-				to_chat(target, span_warning("Wait a minute, I've been a LIZARD THIS WHOLE TIME?"))
+				to_chat(target, span_warning("等一下，我一直都是只蜥蜴？！"))
 
 
 

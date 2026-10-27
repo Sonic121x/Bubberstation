@@ -4,8 +4,8 @@
 #define CHURN_STAMINA_USE 50 //Half that of the millstone, since making butter needs you to use it twice.
 
 /obj/structure/butterchurn
-	name = "butter churn"
-	desc = "A small wooden barrel with a stick that thickens milk into a rich cream, or even butter. Just add an absolutely inordinate amount of effort."
+	name = "黄油搅拌器"
+	desc = "一只带搅拌杆的小木桶，能把牛奶打成浓稠的奶油，甚至黄油。只需投入多得离谱的力气。"
 	icon = 'modular_zubbers/icons/obj/structures/butterchurn.dmi'
 	icon_state = "butterchurn"
 	density = TRUE
@@ -26,18 +26,18 @@
 
 /obj/structure/butterchurn/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	if(held_item?.tool_behaviour == TOOL_WRENCH)
-		context[SCREENTIP_CONTEXT_LMB] = "Disassemble"
+		context[SCREENTIP_CONTEXT_LMB] = "拆解"
 
 	if(!held_item)
-		context[SCREENTIP_CONTEXT_LMB] = "Churn Liquid"
+		context[SCREENTIP_CONTEXT_LMB] = "搅拌液体"
 
-	context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = anchored ? "Unsecure" : "Secure"
+	context[SCREENTIP_CONTEXT_CTRL_SHIFT_LMB] = anchored ? "解除固定" : "固定"
 	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/butterchurn/examine(mob/user)
 	. = ..()
-	. += span_notice("You can [anchored ? "un" : ""]secure [src] with <b>CTRL-Shift-Click</b>.")
-	. += span_notice("With a <b>prying tool</b> of some sort, you could take [src] apart.")
+	. += span_notice("<b>Ctrl-Shift点击</b>可[anchored ? "解除固定" : "固定"][src]。")
+	. += span_notice("使用某种<b>撬动工具</b>可拆解[src]。")
 
 /obj/structure/butterchurn/atom_deconstruct(disassembled)
 	var/obj/item/stack/sheet/mineral/wood/plank = new (drop_location())
@@ -48,36 +48,36 @@
 
 /obj/structure/butterchurn/crowbar_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert_to_viewers("disassembling...")
+	balloon_alert_to_viewers("正在拆解……")
 	if(!do_after(user, 2 SECONDS, src))
 		return
 	deconstruct(TRUE)
 
 /obj/structure/butterchurn/click_ctrl_shift(mob/user)
 	set_anchored(!anchored)
-	balloon_alert(user, "[anchored ? "secured" : "unsecured"]")
+	balloon_alert(user, "[anchored ? "已固定" : "已解除固定"]")
 
 /obj/structure/butterchurn/attack_hand(mob/living/carbon/user, list/modifiers)
 	if(!can_interact(user))
 		return
 
 	if(busy)
-		to_chat(user, span_warning("Someone's already using \the [src]!"))
+		to_chat(user, span_warning("已经有人在用[src]了！"))
 		return
 
 	if(user.get_stamina_loss() > CHURN_STAMINA_MINIMUM)
-		balloon_alert(user, "too tired")
+		balloon_alert(user, "太累了")
 		return
 
 	if(!reagents.has_reagent(/datum/reagent/consumable/milk) && !reagents.has_reagent(/datum/reagent/consumable/cream))
-		balloon_alert(user, "nothing to churn")
+		balloon_alert(user, "没有可搅拌的东西")
 		return
 
 	if(!reagents.has_reagent(/datum/reagent/consumable/milk) && reagents.has_reagent(/datum/reagent/consumable/cream) && reagents.get_reagent_amount(/datum/reagent/consumable/cream) < CHURN_BUTTER_RATIO)
-		balloon_alert(user, "not enough cream")
+		balloon_alert(user, "奶油不够")
 		return
 
-	balloon_alert_to_viewers("churning...")
+	balloon_alert_to_viewers("正在搅拌……")
 	playsound(src, 'sound/items/tools/crowbar_prying.ogg', 50, TRUE)
 	flick("churning", src)
 
@@ -86,7 +86,7 @@
 	busy = TRUE
 	if(!do_after(user, 5 SECONDS * skill_modifier, src))
 		busy = FALSE
-		balloon_alert_to_viewers("stopped churning")
+		balloon_alert_to_viewers("已停止搅拌")
 		return
 
 	var/stamina_use = CHURN_STAMINA_USE
@@ -94,7 +94,7 @@
 		stamina_use *= 0.5 //so it uses half the amount of stamina (25 instead of 50)
 	user.adjust_stamina_loss(stamina_use) // Prevents spamming it
 	busy = FALSE
-	user.visible_message(span_notice("[user] churns \the [src]."), span_notice("You finish churning \the [src]."))
+	user.visible_message(span_notice("[user] 搅动着[src]。"), span_notice("你把[src]搅拌完了。"))
 	var/cream_amt = reagents.get_reagent_amount(/datum/reagent/consumable/milk) / CHURN_CREAM_RATIO
 	var/cream_purity = reagents.get_reagent_purity(/datum/reagent/consumable/milk)
 	var/butter_amt = FLOOR(reagents.get_reagent_amount(/datum/reagent/consumable/cream) / CHURN_BUTTER_RATIO, 1)

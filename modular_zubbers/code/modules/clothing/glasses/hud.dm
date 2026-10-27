@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/hud/civilian
-	name = "Civilian HUD Glasses"
-	desc = "A heads-up display that scans the humanoids around you and displays their ID status. Experts say this has well over 9000 uses."
+	name = "民用 HUD 眼镜"
+	desc = "一种平视显示器，可扫描周围的人形生物并显示他们的身份卡状态。专家称其用途远超 9000 种。"
 	icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
 	icon_state = "civhud"
@@ -8,8 +8,8 @@
 
 
 /obj/item/clothing/glasses/hud/civilian/sunglasses
-	name = "Civilian HUDSunglasses"
-	desc = "Sunglasses with a civilian HUD."
+	name = "民用 HUD 太阳镜"
+	desc = "带有民用 HUD 的太阳镜。"
 	icon = 'modular_zubbers/icons/obj/clothing/glasses.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/eyes.dmi'
 	icon_state = "sunhudciv"

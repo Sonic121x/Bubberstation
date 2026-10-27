@@ -13,7 +13,7 @@
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/slimecross/prismatic/grey
-	effect_desc = "When used it restores the orginal color of whatever it hits."
+	effect_desc = "使用时，会恢复被击中物体原本的颜色。"
 
 /obj/item/slimecross/prismatic/grey/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(!(isturf(interacting_with) || isclothing(interacting_with)) || isspaceturf(interacting_with))

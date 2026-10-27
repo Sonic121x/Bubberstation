@@ -1,5 +1,5 @@
 /datum/round_event_control/fleshmind
-	name = "Fleshmind"
+	name = "血肉心智"
 	typepath = /datum/round_event/fleshmind
 	max_occurrences = 1
 	weight = 10
@@ -14,7 +14,7 @@
 	end_when = 201
 
 /datum/round_event/fleshmind/announce(fake)
-	priority_announce("Confirmed outbreak of level CLASSIFIED biohazard aboard [station_name()]. Station quarantine subroutines activated.", "Critical Biohazard Alert", ANNOUNCER_MUTANTS)
+	priority_announce("确认 [station_name()] 发生机密级生物危害爆发。空间站隔离子程序已启动。", "紧急生物危害警报", ANNOUNCER_MUTANTS)
 
 /datum/round_event/fleshmind/start()
 	var/turf/current_turf = get_turf(src)

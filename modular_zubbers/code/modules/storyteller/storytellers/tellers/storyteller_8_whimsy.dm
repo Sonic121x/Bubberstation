@@ -1,7 +1,7 @@
 /datum/storyteller/whimsy
-	name = "Whimsy (Low Events, Silly Focus)"
-	desc = "This storyteller spawns lots of events, but de-prioritizes combat and chaos, leaving just the mundane ones that won't kill players or cause destruction."
-	welcome_text = "I'm just a silly little guy!!!!!!"
+	name = "奇趣（事件较少，偏重搞怪）"
+	desc = "这位故事讲述者会生成大量事件，但会降低战斗与混乱的优先级，只留下那些不会杀死玩家或造成破坏的日常事件。"
+	welcome_text = "我只是个傻乎乎的小家伙！！！！！！"
 
 	tag_multipliers = list(
 		TAG_NPC_ANTAG = 0.3,

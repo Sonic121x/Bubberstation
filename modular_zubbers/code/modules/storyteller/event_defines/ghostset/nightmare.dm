@@ -1,5 +1,5 @@
 /datum/round_event_control/nightmare
-	name = "Spawn Nightmare"
+	name = "生成梦魇"
 	typepath = /datum/round_event/ghost_role/nightmare
 	track = EVENT_TRACK_GHOSTSET
 	tags = list(TAG_COMBAT, TAG_SPOOKY)
@@ -7,7 +7,7 @@
 	max_occurrences = 1
 	min_players = 20
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Spawns a nightmare, aiming to darken the station."
+	description = "生成一只梦魇，其目标是让空间站陷入黑暗。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 
@@ -22,7 +22,7 @@
 
 /datum/round_event/ghost_role/nightmare
 	minimum_required = 1
-	role_name = "nightmare"
+	role_name = "梦魇"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/nightmare/spawn_role()
@@ -42,7 +42,7 @@
 	player_mind.add_antag_datum(/datum/antagonist/nightmare)
 	S.set_species(/datum/species/shadow/nightmare)
 	playsound(S, 'sound/effects/magic/ethereal_exit.ogg', 50, TRUE, -1)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Nightmare by an event.")
-	S.log_message("was spawned as a Nightmare by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(S)] 因事件被转化为梦魇。")
+	S.log_message("因事件被生成为梦魇。", LOG_GAME)
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN

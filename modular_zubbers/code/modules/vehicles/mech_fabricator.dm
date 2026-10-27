@@ -1,5 +1,5 @@
 /obj/machinery/mecha_part_fabricator/interdyne
-	name="Syndicate Branded Exosuit Fabricator"
+	name="辛迪加牌机甲制造机"
 	link_on_init = FALSE
 	circuit=/obj/machinery/mecha_part_fabricator/interdyne
 
@@ -16,15 +16,15 @@
 				var/datum/design/illegal_mech_design = SSresearch.techweb_design_by_id(id)
 //				illegal_local_designs |= illegal_mech_design // Fix this if it's broken after.
 				cached_designs |= illegal_mech_design
-		say("R$c!i&ed ERROR de#i$ns. C@n%ec$%ng to ~NULL~ se%ve$s.")
+		say("接$收!到错误 设#计。正@在连%接到 ~NULL~ 服务器$。")
 		playsound(src, 'sound/machines/uplink/uplinkerror.ogg', 50, TRUE)
 		update_static_data_for_all_viewers()
 		return TRUE
 	else
-		to_chat(user, span_warning("You try clicking and typing but don’t understand what to do with it"))
+		to_chat(user, span_warning("你试着点了几下、敲了敲键盘，却完全不明白该怎么操作它"))
 		return FALSE
 
 /obj/item/circuitboard/machine/mechfab/interdyne
-	name = "Syndicate Exosuit Fabricator"
+	name = "辛迪加机甲制造机"
 	build_path = /obj/machinery/mecha_part_fabricator/interdyne
 

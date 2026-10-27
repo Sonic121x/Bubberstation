@@ -1,6 +1,6 @@
 /datum/mkultra_command/say_my_name
-	name = "Say my name"
-	description = "Make someone say your name."
+	name = "说出我的名字"
+	description = "让某个人说出你的名字。"
 	trigger = "say my name|who am i"
 	phase_requirement = 1
 	cooldown = 30 SECONDS

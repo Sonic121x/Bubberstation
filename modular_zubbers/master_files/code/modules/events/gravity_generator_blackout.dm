@@ -4,4 +4,4 @@
 	announce_chance = 100
 
 /datum/round_event/gravity_generator_blackout/announce(fake)
-	priority_announce("Feedback surge detected in [station_name()] mass distribution systems. Artificial gravity has been disabled while the system reinitializes. Manual reset of the gravity generator is required.", "[command_name()] Engineering Division", ANNOUNCER_GRAVGENBLACKOUT)
+	priority_announce("检测到 [station_name()] 质量分配系统出现反馈浪涌。系统重新初始化期间，人工重力已禁用。需要手动重置重力发生器。", "[command_name()] 工程部", ANNOUNCER_GRAVGENBLACKOUT)

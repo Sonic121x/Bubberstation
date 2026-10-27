@@ -18,7 +18,7 @@
 
 	// Not enough charge
 	if(user?.cell.charge < charge_cost)
-		balloon_alert(user, "low charge!")
+		balloon_alert(user, "电量不足！")
 		return
 
 	user.cell.use(charge_cost)
@@ -34,7 +34,7 @@
 	selected_item_index = 0
 
 	if (unloading_time > 0.5 SECONDS) // Chat spam reduction
-		balloon_alert(user, "unloading")
+		balloon_alert(user, "正在卸载")
 	playsound(src, clamp_sound, clamp_sound_volume, FALSE, -5)
 	COOLDOWN_START(src, clamp_cooldown, cooldown_duration)
 
@@ -43,8 +43,8 @@
 		return
 
 	chute.place_item_in_disposal(extracted_item)
-	visible_message(span_notice("[src.loc] unloads [extracted_item] from [src]."))
-	log_silicon("[user] unloaded [extracted_item] onto [chute] ([AREACOORD(chute)]).")
+	visible_message(span_notice("[src.loc] 把 [extracted_item] 从 [src] 中卸出。"))
+	log_silicon("[user] 把 [extracted_item] 卸载到了 [chute]（[AREACOORD(chute)]）。")
 	in_use = FALSE
 	return
 /**
@@ -67,7 +67,7 @@
 
 	// Not enough charge
 	if(user?.cell.charge < charge_cost)
-		balloon_alert(user, "low charge!")
+		balloon_alert(user, "电量不足！")
 		return
 
 	user.cell.use(charge_cost)
@@ -83,7 +83,7 @@
 	selected_item_index = 0
 
 	if (unloading_time > 0.5 SECONDS) // Chat spam reduction
-		balloon_alert(user, "unloading")
+		balloon_alert(user, "正在卸载")
 	playsound(src, clamp_sound, clamp_sound_volume, FALSE, -5)
 	COOLDOWN_START(src, clamp_cooldown, cooldown_duration)
 
@@ -92,8 +92,8 @@
 		return
 
 	chute.place_item_in_disposal(extracted_item)
-	visible_message(span_notice("[src.loc] unloads [extracted_item] from [src]."))
-	log_silicon("[user] unloaded [extracted_item] onto [chute] ([AREACOORD(chute)]).")
+	visible_message(span_notice("[src.loc] 把 [extracted_item] 从 [src] 中卸出。"))
+	log_silicon("[user] 把 [extracted_item] 卸载到了 [chute]（[AREACOORD(chute)]）。")
 	in_use = FALSE
 	return
 
@@ -109,9 +109,9 @@
 //Illegal experimental Dash module
 
 /obj/item/experimental_dash
-	name = "Exerimental Dash"
-	desc = "An experimental module that allows for dashing."
-	desc_controls = "Left-click to dash."
+	name = "实验性冲刺模块"
+	desc = "一个允许冲刺的实验性模块。"
+	desc_controls = "左键点击以冲刺。"
 	icon = 'icons/mob/actions/actions_items.dmi'
 	icon_state = "jetboot"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -134,7 +134,7 @@
 	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return ITEM_INTERACT_SUCCESS
 	if(cyborg.cell.charge <= charge_cost)//Prevents usage when charge is low
-		user.balloon_alert(user, "low charge!")
+		user.balloon_alert(user, "电量不足！")
 		return ITEM_INTERACT_SUCCESS
 	if(!interacting_with.density && jaunt?.teleport(user, interacting_with))
 		cyborg?.cell?.use(charge_cost)
@@ -179,8 +179,8 @@
 //Research cyborg omnitool
 
 /obj/item/borg/cyborg_omnitool/research
-	name = "research omni-toolset"
-	desc = "A set of engineering tools with a addition of tools to allow synthetic repairs."
+	name = "科研全功能工具组"
+	desc = "一套工程工具，另附可用于合成人维修的工具。"
 
 	omni_toolkit = list(
 		/obj/item/surgical_drapes/cyborg,

@@ -1,6 +1,6 @@
 /datum/design/empathic_sensor
-	name = "Empathic sensor implant"
-	desc = "An implant which allows one to intuit the thoughts of some."
+	name = "共情传感器植入体"
+	desc = "一种能让人直觉感知他人想法的植入体。"
 	id = "ci_empathic_sensor"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
@@ -19,8 +19,8 @@
 
 
 /datum/design/internal_wound_scanner
-	name = "Internal Wound Analyzer Chip"
-	desc = "A brain implanted wound analyzing chip"
+	name = "内置伤口分析芯片"
+	desc = "一种植入大脑的伤口分析芯片。"
 	id = "wound_scanner_internal"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
@@ -38,7 +38,7 @@
 //////////Medical Lathe Designs////////////
 
 /datum/design/surgical_processor
-	name = "Surgical Processor"
+	name = "手术处理器"
 	id = "surgical_processor"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(
@@ -54,8 +54,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/defibrillator
-	name = "Defibrillator"
-	desc = "A portable defibrillator, used for resuscitating recently deceased crew."
+	name = "除颤器"
+	desc = "一台便携式除颤器，用于抢救刚去世的船员。"
 	id = "defibrillator"
 	build_type = PROTOLATHE | AWAY_LATHE
 	build_path = /obj/item/defibrillator

@@ -1,14 +1,14 @@
 /mob/living/basic/trader/deathsquadtrader
-	name = "Asset protection officer"
-	desc = "holy SHIT is that a DEATHSQUAD OFFICER?"
+	name = "资产保护部军官"
+	desc = "我操，那是一名死亡小队军官吗？"
 	unique_name = FALSE
 	icon = 'icons/mob/simple/simple_human.dmi'
 	maxHealth = 2000
 	health = 2000
 	melee_damage_lower = 60
 	melee_damage_upper = 60
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punch"
+	attack_verb_continuous = "挥拳猛击"
+	attack_verb_simple = "挥拳"
 	attack_sound = 'sound/items/weapons/punch1.ogg'
 	basic_mob_flags = DEL_ON_DEATH
 	unsuitable_atmos_damage = 2.5
@@ -19,7 +19,7 @@
 	speed = 0
 	ai_controller = /datum/ai_controller/basic_controller/trader
 	sell_sound = 'sound/effects/cashregister.ogg'
-	currency_name = "credits"
+	currency_name = "信用点"
 	spawner_path = /obj/effect/mob_spawn/corpse/human/nanotrasensoldier/deathsquad
 	species_path = /datum/species/human
 	loot = list(/obj/effect/mob_spawn/corpse/human/charredskeleton)

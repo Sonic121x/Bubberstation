@@ -1,6 +1,6 @@
 /obj/machinery/modular_computer/preset/time_clock
-	name = "punch clock"
-	desc = "Allows employees to punch in and out of their jobs. Figuratively, not literally... I hope."
+	name = "打卡机"
+	desc = "让员工能够签入和签出自己的工作岗位。是比喻意义上的，不是字面意义上的……但愿如此。"
 	icon = 'modular_zubbers/icons/obj/machines/time_clock.dmi'
 	density = FALSE
 	light_color = LIGHT_COLOR_DARK_BLUE

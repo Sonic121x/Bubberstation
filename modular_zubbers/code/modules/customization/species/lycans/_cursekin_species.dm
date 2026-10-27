@@ -1,6 +1,6 @@
 /datum/species/human/cursekin
-	name = "\improper Cursekin"
-	plural_form = "\improper Cursekin"
+	name = "\improper 咒裔"
+	plural_form = "\improper 咒裔"
 	id = SPECIES_CURSEKIN
 	inherent_traits = list(
 		TRAIT_LYCAN,
@@ -11,11 +11,11 @@
 
 /datum/species/human/cursekin/get_species_description()
 	return list(
-		"Less of a species and more of a collective group of people sharing the same curse, the origins of the cursekin are largely \
-		unknown, however, many differing cultures seem to have their own names and mythologies behind the affliction, granting credence \
-		to the belief the curse has been around for quite some time.",
-		"The main traits shared by everyone afflicted are their transformations into a far more bestial form, and their body's rejection \
-		of anything inorganic. Those suffering from the curse seem to have varying levels of control over if and when they transform."
+		"与其说是一个种族，不如说是一群共受同一诅咒之人的集合。咒裔的起源很大程度上 \
+		仍然未知，不过许多不同的文化似乎都为这种苦难起了自己的名字、编出了自己的神话，这也让人更加相信 \
+		这道诅咒已经存在了相当长的时间。",
+		"所有受苦者共有的主要特征，是他们能变形成更具兽性的形态，以及他们的身体排斥 \
+		一切无机物。受诅咒折磨的人似乎对是否变形、何时变形有着不同程度的控制力。"
 	)
 
 /datum/species/human/cursekin/get_species_lore()
@@ -28,22 +28,22 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_ROBOT,
-			SPECIES_PERK_NAME = "Inorganic Rejection",
-			SPECIES_PERK_DESC = "The curse afflicting the Cursekin prevents their bodies from being augmented with cybernetic organs \
-			or implants."
+			SPECIES_PERK_NAME = "无机排斥",
+			SPECIES_PERK_DESC = "折磨咒裔的诅咒使他们的身体无法植入义体器官 \
+			或植入物。"
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_CLOUD_MOON,
-			SPECIES_PERK_NAME = "Silver Weakness",
-			SPECIES_PERK_DESC = "You are burnt by silver, especially the reagent. This is vastly amplified while you are in your Lycan form."
+			SPECIES_PERK_NAME = "白银弱点",
+			SPECIES_PERK_DESC = "银会灼伤你，尤其是相关的试剂。当处于狼人形态时，这种效果会被大幅放大。"
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = FA_ICON_MOON,
-			SPECIES_PERK_NAME = "Lycan Transformation",
-			SPECIES_PERK_DESC = "Due to the curse, Cursekin are capable of transforming into Lycans, taking on all of the perks and \
-			drawbacks of that form. See the Lycan species page for more.",
+			SPECIES_PERK_NAME = "狼人变形",
+			SPECIES_PERK_DESC = "由于诅咒，咒裔能够变形成狼人，并承受该形态的所有好处与 \
+			缺陷。详见狼人种族页面。",
 		),
 	)
 

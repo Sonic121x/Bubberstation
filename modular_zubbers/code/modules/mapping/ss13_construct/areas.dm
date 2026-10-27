@@ -1,10 +1,10 @@
 /area/awaymission/secret/powered/construct
-	name = "construct"
+	name = "建造场"
 	ambience_index = null
 	ambient_buzz = null
 
 /area/awaymission/secret/unpowered/construct
-	name = "construct unpowered"
+	name = "建造场（未供电）"
 	ambient_buzz = null
 
 /area/awaymission/secret/powered/construct/fullbright

@@ -1,6 +1,6 @@
 /obj/effect/spawner/random/lizard_crate
-	name = "lizard loot spawner"
-	desc = "What wondrous lizard related good could it contain?"
+	name = "蜥蜴战利品生成器"
+	desc = "里面会有什么奇妙的蜥蜴相关好东西呢？"
 	icon_state = "plushie"
 	loot = list(
 		//plushies

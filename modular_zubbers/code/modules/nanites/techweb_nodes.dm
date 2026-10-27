@@ -1,7 +1,7 @@
 /datum/techweb_node/nanite_base
 	id = "nanite_base"
-	display_name = "Basic Nanite Programming"
-	description = "The basics of nanite construction and programming. Nanites will passively generate science points based on how many are hosting them."
+	display_name = "基础纳米机器人编程"
+	description = "纳米机器人构造与编程的基础。纳米机器人会根据宿主的数量被动产生科学点数。"
 	prereq_ids = list(TECHWEB_NODE_BCI)
 	design_ids = list(
 		// "access_nanites",
@@ -27,8 +27,8 @@
 
 /datum/techweb_node/nanite_smart
 	id = "nanite_smart"
-	display_name = "Smart Nanite Programming"
-	description = "Nanite programs that require nanites to perform complex actions, act independently, roam or seek targets."
+	display_name = "智能纳米机器人编程"
+	description = "需要纳米机器人执行复杂动作、自主行动、四处游荡或搜寻目标的纳米机器人程序。"
 	prereq_ids = list("nanite_base", TECHWEB_NODE_PROGRAMMING)
 	design_ids = list(
 		"memleak_nanites",
@@ -42,8 +42,8 @@
 
 /datum/techweb_node/nanite_mesh
 	id = "nanite_mesh"
-	display_name = "Mesh Nanite Programming"
-	description = "Nanite programs that require static structures and membranes."
+	display_name = "网状纳米机器人编程"
+	description = "需要静态结构与膜结构的纳米机器人程序。"
 	prereq_ids = list("nanite_base", TECHWEB_NODE_MOD_ENGI_ADV)
 	design_ids = list(
 		"conductive_nanites",
@@ -59,8 +59,8 @@
 
 /datum/techweb_node/nanite_bio
 	id = "nanite_bio"
-	display_name = "Biological Nanite Programming"
-	description = "Nanite programs that require complex biological interaction."
+	display_name = "生物纳米机器人编程"
+	description = "需要复杂生物交互的纳米机器人程序。"
 	prereq_ids = list("nanite_base", TECHWEB_NODE_MOD_MEDICAL_ADV)
 	design_ids = list(
 		"bloodheal_nanites",
@@ -77,8 +77,8 @@
 
 /datum/techweb_node/nanite_neural
 	id = "nanite_neural"
-	display_name = "Neural Nanite Programming"
-	description = "Nanite programs affecting nerves and brain matter."
+	display_name = "神经纳米机器人编程"
+	description = "影响神经与脑组织的纳米机器人程序。"
 	prereq_ids = list("nanite_bio")
 	design_ids = list(
 		"bad_mood_nanites",
@@ -93,8 +93,8 @@
 
 /datum/techweb_node/nanite_synaptic
 	id = "nanite_synaptic"
-	display_name = "Synaptic Nanite Programming"
-	description = "Nanite programs affecting mind and thoughts."
+	display_name = "突触纳米机器人编程"
+	description = "影响心智与思维的纳米机器人程序。"
 	prereq_ids = list("nanite_neural", TECHWEB_NODE_SURGERY_EXP)
 	design_ids = list(
 		"blinding_nanites",
@@ -109,8 +109,8 @@
 
 /datum/techweb_node/nanite_harmonic
 	id = "nanite_harmonic"
-	display_name = "Harmonic Nanite Programming"
-	description = "Nanite programs that require seamless integration between nanites and biology. Passively increases nanite regeneration rate for all clouds upon researching."
+	display_name = "谐和纳米机器人编程"
+	description = "需要纳米机器人与生物体无缝整合的纳米机器人程序。研究完成后会被动提高所有纳米云的重生速率。"
 	prereq_ids = list("nanite_bio","nanite_smart","nanite_mesh")
 	design_ids = list(
 		"regenerative_nanites",
@@ -125,8 +125,8 @@
 
 /datum/techweb_node/nanite_combat
 	id = "nanite_military"
-	display_name = "Military Nanite Programming"
-	description = "Nanite programs that perform military-grade functions."
+	display_name = "军用纳米机器人编程"
+	description = "执行军用级功能的纳米机器人程序。"
 	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_SYNDICATE_BASIC)
 	design_ids = list(
 		// "explosive_nanites",
@@ -139,8 +139,8 @@
 
 /datum/techweb_node/nanite_hazard
 	id = "nanite_hazard"
-	display_name = "Hazard Nanite Programs"
-	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
+	display_name = "危险纳米机器人程序"
+	description = "极为先进的纳米机器人程序，具有极端危险的潜力。"
 	prereq_ids = list("nanite_harmonic", TECHWEB_NODE_ALIENTECH)
 	design_ids = list(
 		"mindcontrol_nanites",
@@ -151,8 +151,8 @@
 
 /datum/techweb_node/nanite_replication_protocols
 	id = "nanite_replication_protocols"
-	display_name = "Nanite Replication Protocols"
-	description = "Protocols that overwrite the default nanite replication routine to achieve more efficiency in certain circumstances."
+	display_name = "纳米机器人复制协议"
+	description = "覆写默认纳米机器人复制程序的协议，可在特定情况下获得更高效率。"
 	prereq_ids = list("nanite_smart")
 	design_ids = list(
 		"factory_nanites",
@@ -166,8 +166,8 @@
 
 /datum/techweb_node/nanite_storage_protocols
 	id = "nanite_storage_protocols"
-	display_name = "Nanite Storage Protocols"
-	description = "Protocols that overwrite the default nanite storage routine to achieve more efficiency or greater capacity."
+	display_name = "纳米机器人储存协议"
+	description = "覆写默认纳米机器人储存程序的协议，可获得更高效率或更大容量。"
 	prereq_ids = list("nanite_smart")
 	design_ids = list(
 		"free_range_nanites",

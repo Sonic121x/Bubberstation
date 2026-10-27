@@ -4,7 +4,7 @@
 	// Feel free to remove this if you ever decide so
 	// ~Waterpig
 	exp_required_type_department = EXP_TYPE_SECURITY
-	rpg_title = "Beefeater"
+	rpg_title = "伦敦塔看守"
 	alt_titles = list(
 		"Warden",
 		"Armory Superintendent",

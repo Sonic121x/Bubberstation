@@ -1,5 +1,5 @@
 /obj/effect/mob_spawn/corpse/human/nanotrasensoldier/deathsquad
-	name = "NT asset protection corpse"
+	name = "纳米传讯资产保护部尸体"
 	outfit = /datum/outfit/nanotrasensoldiercorpse/deathsquad
 
 /datum/outfit/nanotrasensoldiercorpse/deathsquad

@@ -4,8 +4,8 @@
 	theme = /datum/mod_theme/lustwish
 
 /obj/item/mod/module/hypno_visor
-	name = "\improper MOD hypnotic visor module"
-	desc = "A module inserted into the visor of a suit in which commands can be processed."
+	name = "\improper MOD 催眠目镜模块"
+	desc = "一种装入外骨骼目镜的模块，可在其中处理指令。"
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module_hypno"
 	complexity = 0
@@ -17,32 +17,32 @@
 	module_type = MODULE_TOGGLE //This is changed when the control wire is snipped
 	///Does the visor overlay show on the character sprite when installed? Only eligible with certain skins.
 	var/visor_effect = TRUE
-	var/hypno_message = "Obey"
+	var/hypno_message = "服从"
 
 
 /obj/item/mod/module/hypno_visor/examine(mob/user)
 	. = ..()
-	. += span_info("It's currently programmed with the following directive: \"[hypno_message]\" Use it in-hand to rewrite it.")
-	. += span_info("Its visor will [visor_effect ? "" : "<b>not</b> "]display an external hypnotic effect. Use a screwdriver to toggle.")
-	. += span_info("Its control wire is currently [(module_type == MODULE_TOGGLE) ? \
-						"<b>intact,</b> allowing for on-the-fly configuration via the MOD UI." \
+	. += span_info("它目前被编程为以下指令：“[hypno_message]”。在手中使用可重写该指令。")
+	. += span_info("其目镜将[visor_effect ? "" : "<b>不会</b>"]显示外部的催眠效果。使用螺丝刀切换。")
+	. += span_info("其控制线目前[(module_type == MODULE_TOGGLE) ? \
+						"<b>完好，</b>可通过 MOD 界面进行即时配置。" \
 						: \
-						"<b>snipped,</b> forcing the module to be always-on when the helmet is activated."] \
-					Use wirecutters to toggle.")
+						"<b>已被剪断，</b>强制该模块在头盔激活时始终开启。"] \
+					使用剪线钳切换。")
 
 /obj/item/mod/module/hypno_visor/attack_self(mob/user)
 	. = ..()
-	var/message_input = tgui_input_text(user, "Change the hypnotic phrase.", default = hypno_message, max_length = MAX_MESSAGE_LEN)
+	var/message_input = tgui_input_text(user, "修改催眠短语。", default = hypno_message, max_length = MAX_MESSAGE_LEN)
 	if(message_input)
 		hypno_message = message_input
 	else
-		hypno_message = "Obey"
+		hypno_message = "服从"
 
 /obj/item/mod/module/hypno_visor/screwdriver_act(mob/living/user, obj/item/tool)
 	visor_effect = !visor_effect
 	playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-	to_chat(user, span_notice("You turn the visor display of [src] [visor_effect ? "on" : "off"]."))
-	balloon_alert(user, "visor effect [visor_effect ? "on" : "off"]")
+	to_chat(user, span_notice("你将[src]的目镜显示[visor_effect ? "开启" : "关闭"]。"))
+	balloon_alert(user, "目镜效果[visor_effect ? "开启" : "关闭"]")
 	return TRUE
 
 /obj/item/mod/module/hypno_visor/wirecutter_act(mob/living/user, obj/item/tool)
@@ -51,8 +51,8 @@
 	else
 		module_type = MODULE_TOGGLE
 	playsound(src, 'sound/items/tools/wirecutter.ogg', 30, TRUE)
-	to_chat(user, span_notice("You [(module_type == MODULE_TOGGLE) ? "mend" : "snip"] the control wire on [src]."))
-	balloon_alert(user, "control wire [(module_type == MODULE_TOGGLE) ? "mend" : "snipp"]ed")
+	to_chat(user, span_notice("你[(module_type == MODULE_TOGGLE) ? "接上" : "剪断"]了[src]的控制线。"))
+	balloon_alert(user, "控制线已[(module_type == MODULE_TOGGLE) ? "接上" : "剪断"]")
 	return TRUE
 
 /obj/item/mod/module/hypno_visor/on_install()
@@ -62,13 +62,13 @@
 		addtimer(CALLBACK(src, PROC_REF(say_visor_no_worky), usr), 0.5 SECONDS)
 
 /obj/item/mod/module/hypno_visor/proc/say_visor_no_worky(user)
-		balloon_alert(user, "visor effect unavailable for this plating!")
+		balloon_alert(user, "该镀层无法使用目镜效果！")
 
 /obj/item/mod/module/hypno_visor/proc/apply_hypnosis()
 	if(!(mod.wearer.client?.prefs?.read_preference(/datum/preference/toggle/erp/hypnosis) && mod.wearer.client.prefs.read_preference(/datum/preference/toggle/erp/sex_toy)))
-		return to_chat(mod.wearer, span_warning("Mind resilient to hypnotic effects: Shutting down"))
+		return to_chat(mod.wearer, span_warning("心智对催眠效果具有抗性：正在关闭"))
 	if(hypno_message == "" || isnull(hypno_message))
-		hypno_message = "Obey"
+		hypno_message = "服从"
 	mod.wearer.gain_trauma(new /datum/brain_trauma/very_special/induced_hypnosis(hypno_message), TRAUMA_RESILIENCE_MAGIC)
 
 /obj/item/mod/module/hypno_visor/Destroy()
@@ -105,21 +105,21 @@
 /obj/item/mod/module/hypno_visor/get_configuration()
 	. = ..()
 	if(module_type == MODULE_TOGGLE)
-		.["hypno_message"] = add_ui_configuration("Hypnotic Message", "button", "list")
-		.["visor_effect"] = add_ui_configuration("Visor Effect", "bool", visor_effect)
+		.["hypno_message"] = add_ui_configuration("催眠信息", "button", "list")
+		.["visor_effect"] = add_ui_configuration("目镜效果", "bool", visor_effect)
 
 /obj/item/mod/module/hypno_visor/configure_edit(key, value)
 	switch(key)
 		if("hypno_message")
-			hypno_message = tgui_input_text(usr, "Change the hypnotic phrase.", default = hypno_message, max_length = MAX_MESSAGE_LEN)
+			hypno_message = tgui_input_text(usr, "修改催眠短语。", default = hypno_message, max_length = MAX_MESSAGE_LEN)
 			if(active)
-				balloon_alert(usr, "restart to finalize changes")
+				balloon_alert(usr, "重启以完成更改")
 		if("visor_effect")
 			if(mod.skin != "lustwish")
-				return balloon_alert(usr, "visor effect unavailable for this plating!")
+				return balloon_alert(usr, "该镀层无法使用目镜效果！")
 			visor_effect = text2num(value)
 			if(active)
-				balloon_alert(usr, "restart to finalize changes")
+				balloon_alert(usr, "重启以完成更改")
 
 
 /datum/storage/pockets/small/remote_module
@@ -130,8 +130,8 @@
 	set_holdable(can_hold_list = list(/obj/item/remote_controller))
 
 /obj/item/mod/module/remote_control
-	name = "modsuit remote module"
-	desc = "A module, once inserted, will allow anyone with its linked remote to control all functionality of the suit."
+	name = "MOD 外骨骼遥控模块"
+	desc = "一种模块，装入后，任何持有其配对遥控器的人都能控制这套外骨骼的全部功能。"
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module_remote"
 	module_type = MODULE_PASSIVE
@@ -155,7 +155,7 @@
 
 /obj/item/mod/module/remote_control/can_install(obj/item/mod/control/mod)
 	if(locate(/obj/item/remote_controller) in contents)
-		balloon_alert(usr, "remove remote from storage")
+		balloon_alert(usr, "请先从储存中取出遥控器")
 		return FALSE
 	return TRUE
 
@@ -164,8 +164,8 @@
 	atom_storage?.open_storage(user)
 
 /obj/item/remote_controller
-	name = "modsuit remote"
-	desc = "A remote that allows control of a modsuit once its paired module is inserted."
+	name = "MOD 外骨骼遥控器"
+	desc = "一种遥控器，在其配对模块装入后即可控制 MOD 外骨骼。"
 	icon = 'modular_zubbers/icons/mob/clothing/modsuit/mod_modules.dmi'
 	icon_state = "remote_item"
 	w_class = WEIGHT_CLASS_SMALL

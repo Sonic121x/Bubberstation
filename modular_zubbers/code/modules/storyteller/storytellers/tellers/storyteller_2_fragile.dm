@@ -1,8 +1,8 @@
 /datum/storyteller/fragile
-	name = "Fragile (Mid-Low Event/Antag Rolls)"
-	desc = "This storyteller will limit destructive, combat-focused, and chaotic events. \
-	Spawns more events than the Light storyteller, but less than Default Andy."
-	welcome_text = "Handle with care!"
+	name = "脆弱（事件/反派抽取中低）"
+	desc = "这位故事讲述者会限制破坏性、以战斗为主以及混乱的事件。\
+	生成的事件比“轻度”故事讲述者多，但比“默认安迪”少。"
+	welcome_text = "小心轻放！"
 
 	event_repetition_multiplier = 0.5
 

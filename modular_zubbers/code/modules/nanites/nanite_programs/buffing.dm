@@ -1,8 +1,8 @@
 //Programs that buff the host in generally passive ways.
 
 /datum/nanite_program/nervous
-	name = "Nerve Support"
-	desc = "The nanites act as a secondary nervous system, reducing the amount of time the host is stunned."
+	name = "神经辅助"
+	desc = "纳米机器人充当第二套神经系统，缩短宿主被击晕的时间。"
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
@@ -19,11 +19,11 @@
 		H.physiology.stun_mod *= 2
 
 /datum/nanite_program/dermal_armor
-	name = "Dermal Hardening"
-	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts. \
-			Each hit costs nanites two times to damage, but the more nanites you have, the more protection you get. \
-			50 nanites = 1 flat armor, with each hit costing two times it's damage in nanites. \
-			Will not turn on with other dermal armor programs."
+	name = "真皮硬化"
+	desc = "纳米机器人在宿主皮肤下形成网状结构，保护其免受近战与子弹冲击。 \
+			每次受击都会按伤害的两倍消耗纳米机器人，但纳米机器人越多，获得的防护也越强。 \
+			50 纳米机器人 = 1 点固定护甲，每次受击按伤害的两倍消耗纳米机器人。 \
+			无法与其他真皮护甲程序同时启用。"
 	use_rate = 2
 	rogue_types = list(/datum/nanite_program/skin_decay)
 	var/damage_type = BRUTE
@@ -95,7 +95,7 @@
 	if(actual_damage >= nanites.nanite_volume)
 		playsound(host_mob, SFX_SHATTER)
 		host_mob.Knockdown(1 SECONDS)
-		to_chat(host_mob, span_warning("Something shatters under your skin, and you feel a sharp pain!"))
+		to_chat(host_mob, span_warning("你皮肤下有东西碎裂，一阵剧痛袭来！"))
 		disable_passive_effect()
 		return
 
@@ -170,11 +170,11 @@
 	humie.physiology.flat_brute_mod -= valid_change
 
 /datum/nanite_program/dermal_armor/refractive
-	name = "Dermal Refractive Surface"
-	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts. \
-			Each hit costs nanites equilavent to damage, but the more nanites you have, the more protection you get. \
-			50 nanites = 1 flat armor, with each hit costing two times it's damage in nanites. \
-			Will not turn on with other dermal armor programs."
+	name = "真皮折射层"
+	desc = "纳米机器人在宿主皮肤上形成一层膜，减轻激光与能量冲击的影响。 \
+			每次受击都会消耗与伤害等量的纳米机器人，但纳米机器人越多，获得的防护也越强。 \
+			50 纳米机器人 = 1 点固定护甲，每次受击按伤害的两倍消耗纳米机器人。 \
+			无法与其他真皮护甲程序同时启用。"
 	damage_type = BURN
 	rgb_color = list(255, 255, 0)
 
@@ -187,8 +187,8 @@
 	humie.physiology.flat_burn_mod += amount
 
 /datum/nanite_program/coagulating
-	name = "Vein Repressurization"
-	desc = "The nanites re-route circulating blood away from open wounds, dramatically reducing bleeding rate."
+	name = "静脉增压"
+	desc = "纳米机器人将循环中的血液从开放性伤口引流开，大幅降低出血速度。"
 	use_rate = 0.20
 	rogue_types = list(/datum/nanite_program/suffocating)
 
@@ -205,8 +205,8 @@
 		H.physiology.bleed_mod *= 2
 
 /datum/nanite_program/conductive
-	name = "Electric Conduction"
-	desc = "The nanites act as a grounding rod for electric shocks, protecting the host. Shocks can still damage the nanites themselves."
+	name = "导电"
+	desc = "纳米机器人充当电击的接地棒，保护宿主。电击仍可能损坏纳米机器人本身。"
 	use_rate = 0.20
 	program_flags = NANITE_SHOCK_IMMUNE
 	rogue_types = list(/datum/nanite_program/nerve_decay)
@@ -220,8 +220,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_SHOCKIMMUNE, NANITES_TRAIT)
 
 /datum/nanite_program/mindshield
-	name = "Mental Barrier"
-	desc = "The nanites form a protective membrane around the host's brain, shielding them from abnormal influences while they're active."
+	name = "精神屏障"
+	desc = "纳米机器人在宿主大脑周围形成保护膜，在其激活期间抵御异常影响。"
 	use_rate = 0.40
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 

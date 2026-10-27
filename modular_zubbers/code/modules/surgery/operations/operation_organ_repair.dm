@@ -1,7 +1,7 @@
 /datum/surgery_operation/organ/repair/brain/advanced
-	name = "trauma surgery"
-	rnd_name = "Neurectomy (Advanced Brain Surgery)"
-	desc = "An invasive surgical procedure which guarantees removal of deep-rooted brain traumas, but takes a while for the body to recover..."
+	name = "创伤手术"
+	rnd_name = "神经切除术（高级脑部手术）"
+	desc = "一种侵入性外科手术，可确保移除根深蒂固的脑创伤，但身体需要一段时间才能恢复……"
 	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_PRIORITY_NEXT_STEP
 	time = 15 SECONDS
 	implements = list(
@@ -18,9 +18,9 @@
 
 /datum/surgery_operation/organ/repair/brain/advanced/all_required_strings()
 	if(!isnull(reagent_2_type))
-		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1_type.name]", "the patient must be dosed with >= [reagent_2_amount]u [reagent_2_type.name]")
+		return ..() + list("患者必须摄入至少 [reagent_1_amount]u 的 [reagent_1_type.name]", "患者必须摄入至少 [reagent_2_amount]u 的 [reagent_2_type.name]")
 	else
-		return ..() + list("the patient must be dosed with >= [reagent_1_amount]u [reagent_1_type.name]")
+		return ..() + list("患者必须摄入至少 [reagent_1_amount]u 的 [reagent_1_type.name]")
 
 /datum/surgery_operation/organ/repair/brain/advanced/state_check(obj/item/organ/brain/organ)
 	var/mob/living/carbon/human/brain_owner = organ.owner
@@ -42,14 +42,14 @@
 	var/obj/item/organ/brain/human_brain = operating_on
 	var/mob/living/carbon/human/brain_owner = human_brain.owner
 	if(brain_owner.reagents?.get_reagent_amount(reagent_1_type) < reagent_1_amount)
-		surgeon.balloon_alert(surgeon, "missing [LOWER_TEXT(reagent_1_type.name)]!")
+		surgeon.balloon_alert(surgeon, "缺少 [LOWER_TEXT(reagent_1_type.name)]！")
 		return FALSE
 
 	if(reagent_2_type && (brain_owner.reagents?.get_reagent_amount(reagent_2_type) < reagent_2_amount))
-		surgeon.balloon_alert(surgeon, "missing [LOWER_TEXT(reagent_2_type.name)]!")
+		surgeon.balloon_alert(surgeon, "缺少 [LOWER_TEXT(reagent_2_type.name)]！")
 		return FALSE
 
-	surgeon.balloon_alert_to_viewers("applying chemicals...", vision_distance = COMBAT_MESSAGE_RANGE)
+	surgeon.balloon_alert_to_viewers("正在施用药物……", vision_distance = COMBAT_MESSAGE_RANGE)
 	if(do_after(surgeon, 1.5 SECONDS))
 		return TRUE
 
@@ -59,21 +59,21 @@
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You begin to excise the failed nerve in [FORMAT_ORGAN_OWNER(organ)]'s brain..."),
-		span_notice("[surgeon] begins to fix [FORMAT_ORGAN_OWNER(organ)]'s brain."),
-		span_notice("[surgeon] begins to perform surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_notice("你开始切除 [FORMAT_ORGAN_OWNER(organ)] 脑中的坏死神经……"),
+		span_notice("[surgeon] 开始修复 [FORMAT_ORGAN_OWNER(organ)] 的大脑。"),
+		span_notice("[surgeon] 开始对 [FORMAT_ORGAN_OWNER(organ)] 的大脑进行手术。"),
 	)
-	display_pain(organ.owner, "Your mind feels like it's being defragmented!")
+	display_pain(organ.owner, "你的意识仿佛正在被碎片整理！")
 
 /datum/surgery_operation/organ/repair/brain/advanced/on_success(obj/item/organ/brain/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
 		surgeon,
 		organ.owner,
-		span_notice("You succeed in excising [FORMAT_ORGAN_OWNER(organ)]'s failed nerve, curing the trauma."),
-		span_notice("[surgeon] successfully cures [FORMAT_ORGAN_OWNER(organ)]'s trauma!"),
-		span_notice("[surgeon] completes the surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_notice("你成功切除了 [FORMAT_ORGAN_OWNER(organ)] 的坏死神经，治愈了创伤。"),
+		span_notice("[surgeon] 成功治愈了 [FORMAT_ORGAN_OWNER(organ)] 的创伤！"),
+		span_notice("[surgeon] 完成了对 [FORMAT_ORGAN_OWNER(organ)] 大脑的手术。"),
 	)
-	display_pain(organ.owner, "Your mind feels normal again. As normal as it ever was, at least.")
+	display_pain(organ.owner, "你的意识又恢复正常了。至少和以前一样正常。")
 	for(var/i in TRAUMA_RESILIENCE_BASIC to resilience_level)
 		if(i == TRAUMA_RESILIENCE_WOUND)
 			continue
@@ -86,19 +86,19 @@
 	display_results(
 		surgeon,
 		organ.owner,
-		span_warning("You screw up, causing more damage!"),
-		span_warning("[surgeon] screws up, causing brain damage!"),
-		span_notice("[surgeon] completes the surgery on [FORMAT_ORGAN_OWNER(organ)]'s brain."),
+		span_warning("你搞砸了，造成了更多损伤！"),
+		span_warning("[surgeon] 搞砸了，造成了脑损伤！"),
+		span_notice("[surgeon] 完成了对 [FORMAT_ORGAN_OWNER(organ)] 大脑的手术。"),
 	)
-	display_pain(organ.owner, "Oh no... it does not feel like this is going as it should...")
+	display_pain(organ.owner, "哦不……感觉事情的发展不太对劲……")
 	if(resilience_level == TRAUMA_RESILIENCE_MAGIC)
 		organ.owner.adjust_oxy_loss(200)
 	else
 		organ.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_MAGIC)
 
 /datum/surgery_operation/organ/repair/brain/advanced/mechanic
-	name = "trigger trauma debugging"
-	rnd_name = "Neural Defragmentation (Neurectomy)"
+	name = "触发创伤调试"
+	rnd_name = "神经碎片整理（神经切除术）"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,
 		TOOL_SCALPEL = 1.05,
@@ -112,17 +112,17 @@
 	reagent_1_type = /datum/reagent/medicine/liquid_solder
 
 /datum/surgery_operation/organ/repair/brain/advanced/blessed
-	name = "blessed trauma surgery"
-	rnd_name = "Blessed Neurectomy (Blessed Advanced Brain Surgery)"
-	desc = "We're not quite sure exactly how it works, but with the blessing of a chaplain combined with modern chemicals, this manages to remove soul-bound traumas once thought to be magic."
+	name = "祝福创伤手术"
+	rnd_name = "受祝神经切除术（受祝高级脑部手术）"
+	desc = "我们不太确定它究竟是如何起作用的，但借助牧师的祝福与现代化学药剂，它能够移除曾被认为是魔法的、与灵魂绑定的创伤。"
 	success_sound = 'sound/effects/magic/repulse.ogg'
 	resilience_level = TRAUMA_RESILIENCE_MAGIC
 	reagent_2_type = /datum/reagent/water/holywater
 	reagent_2_amount = 1
 
 /datum/surgery_operation/organ/repair/brain/advanced/blessed/mechanic
-	name = "trigger godmode trauma debugging"
-	rnd_name = "Divine Defragmentation (Blessed Neurectomy)"
+	name = "触发上帝模式创伤调试"
+	rnd_name = "神圣碎片整理（受祝神经切除术）"
 	implements = list(
 		TOOL_MULTITOOL = 1.15,
 		TOOL_HEMOSTAT = 1.05,

@@ -9,5 +9,5 @@ GLOBAL_VAR(master_public_log_file)
 			rustg_file_append("\[[time2text(world.timeofday)]\] : [redacted_log_text]\n", GLOB.master_public_log_file)
 			return
 		var/regex/stripping = regex(@"\((\w+)\)", "i")
-		var/stripped_copy = replacetext(redacted_log_text, stripping, "redacted key")
+		var/stripped_copy = replacetext(redacted_log_text, stripping, "已删节标识")
 		rustg_file_append("\[[time2text(world.timeofday)]\] : [stripped_copy]\n", GLOB.master_public_log_file)

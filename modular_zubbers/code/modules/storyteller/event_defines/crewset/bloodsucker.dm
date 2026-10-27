@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/bloodsucker
-	name = "Bloodsuckers"
+	name = "吸血鬼"
 	roundstart = TRUE
 
 	antag_flag = ROLE_BLOODSUCKER
@@ -12,11 +12,11 @@
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_CREW_ANTAG)
 
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
-	name = "Vampiric Accident"
+	name = "吸血鬼事故"
 	roundstart = FALSE
 
 /datum/round_event_control/antagonist/solo/bloodsucker/event
-	name = "Event Generated Bloodsucker"
+	name = "事件生成的吸血鬼"
 	roundstart = FALSE
 	tags = list(TAG_ANTAG_REROLL)
 	max_occurrences = 0

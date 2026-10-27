@@ -1,6 +1,6 @@
 /datum/antagonist/changeling_zombie
 
-	name = "\improper Changeling Zombie"
+	name = "\improper 变形怪僵尸"
 	pref_flag = ROLE_CHANGELING_ZOMBIE
 	replace_banned = FALSE
 	show_to_ghosts = TRUE
@@ -15,10 +15,10 @@
 	hud_icon = 'modular_zubbers/icons/mob/huds/czombie.dmi'
 	antag_hud_name = "zombie"
 
-	antag_memory = "You are a mutated experiment, or a victim of one. Your mind is torn apart, you do not remember who you are. \
-	All you know is that you must infect."
+	antag_memory = "你是一场变异实验的产物，或者就是它的受害者。你的心智已被撕碎，连自己是谁都不记得。\
+	你唯一知道的是，你必须去感染别人。"
 
-	default_custom_objective = "Infect as many crewmembers as possible!"
+	default_custom_objective = "尽可能多地感染船员！"
 
 /datum/antagonist/changeling_zombie/on_gain()
 
@@ -41,12 +41,12 @@
 	. = ..()
 
 /datum/objective/changeling_zombie_infect
-	explanation_text = "Infect at least 5 other victims."
+	explanation_text = "至少感染 5 名其他受害者。"
 	var/required_infections = 5
 	var/total_infections = 0
 
 /datum/objective/changeling_zombie_infect/update_explanation_text()
-	explanation_text = "Infect at least [required_infections] other victims."
+	explanation_text = "至少感染 [required_infections] 名其他受害者。"
 
 /datum/objective/changeling_zombie_infect/check_completion()
 	return total_infections >= required_infections

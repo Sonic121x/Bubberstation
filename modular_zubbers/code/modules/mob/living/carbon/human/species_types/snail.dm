@@ -4,27 +4,27 @@
 
 /datum/species/snail/get_species_description()
 	return list(
-		"Snailpeople are viscous, slimy beings with a shell on their back. They have no bones, and have two hearts, making their organs remarkably resilient, \
-		and they can tolerate eating almost anything short of dairy and sugar. Unfortunately, these impressive evolutionary advantages are offset by the fact that you are a snail."
+		"蜗牛人是背上背着壳的黏滑生物。他们没有骨头，有两颗心脏，器官因此格外坚韧， \
+		而且几乎除了乳制品和糖以外什么都能吃。不幸的是，这些令人印象深刻的进化优势被一个事实抵消了：你是一只蜗牛。"
 	)
 
 /datum/species/snail/get_species_lore()
 	return list(
-		"Snailpeople are a species of snail that has evolved from the Common Mollusk, \
-		defying expectations after its introduction to the planet Elizabeth II in the Australicus sector. \
-		Galactic observers believed that the sentient species that came about mostly by accident during \
-		the terraforming process would surely die out due to their slow speed.",
+		"蜗牛人是由普通软体动物进化而来的蜗牛物种， \
+		在被引入澳斯特拉利库斯星区的伊丽莎白二世星球后，它们的发展出乎了所有人的预料。 \
+		银河观察者曾认为，这个主要在地球化过程中偶然产生的智慧物种， \
+		必定会因为速度缓慢而灭绝。",
 
-		"They were wrong. Snailpeople just have way too many children, and they taste horrible to predators. \
-		Almost 100 years later, they have formed something resembling a functioning civilization. Snailpeople are relatively new to the universe, \
-		being forcibly uplifted mostly out of a sense of \"We can't just leave them like this.\" \
-		They have tightly packed residential cities, complete with functioning sewer systems, \
-		and more, all as a result of generous research investments on the first unique species to be accidentally created by Humanity.",
+		"他们错了。蜗牛人只是生了太多孩子，而且对捕食者来说味道很糟。 \
+		近 100 年后，他们已形成了某种类似正常运转的文明。蜗牛人在宇宙中相对年轻， \
+		他们被强行提升，主要是出于一种“我们不能就这样放着他们不管”的想法。 \
+		他们建起了拥挤的居住城市，配有运转正常的下水道系统， \
+		以及更多设施，这一切都源于人类对第一个意外创造出的独特物种的慷慨研究投入。",
 
-		"Despite this, the evolutionary failures of Snailpeople mean that their causes of death are usually mundane and deeply saddening. \
-		Statistically, the most common cause of death for Snailpeople is a lack of food, or water, due to their pitifully low mobility. \
-		They can also die due to prolonged exposure to sea air, making them less common in oceanic planets. This means that when leaving Elizabeth II, \
-		they naturally trend towards dangerous environs in order to find work, which also increases their already high mortality rate. \
-		They are extremely effective janitors and have an impressive eye for messes and beauty. Socially, their habits resemble humanity's in many ways, \
-		though they never developed monogamy. Due to their prolific mating, Snailperson researchers have directly cured most STDs in the known universe.",
+		"尽管如此，蜗牛人的进化缺陷意味着他们的死因通常平淡却令人深感悲伤。 \
+		从统计上看，蜗牛人最常见的死因是缺乏食物或水，因为他们行动能力低得可怜。 \
+		他们也可能因长期暴露在海风中而死，这使他们在海洋星球上不那么常见。这意味着离开伊丽莎白二世后， \
+		他们为了找工作自然会流向危险环境，这也提高了他们本已很高的死亡率。 \
+		他们是非常高效的清洁工，对脏乱和美感都有惊人的眼力。在社交方面，他们的习惯在许多方面与人类相似， \
+		不过他们从未发展出一夫一妻制。由于其旺盛的繁殖力，蜗牛人研究者已直接治愈了已知宇宙中的大多数性病。",
 	)

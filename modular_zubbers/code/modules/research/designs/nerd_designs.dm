@@ -1,6 +1,6 @@
 //Nerd
 /datum/design/nerd_suit
-	name = "D.O.T.A. Suit"
+	name = "D.O.T.A. 套装"
 	id = "nerd_suit"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -19,7 +19,7 @@
 	construction_time = 100
 
 /datum/design/nerd_glases
-	name = "Ultra Nerd Glasses"
+	name = "超级书呆子眼镜"
 	id = "nerd_glases"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -38,7 +38,7 @@
 
 //Advanced Nerd
 /datum/design/fast_crowbar
-	name = "Physicist's Crowbar"
+	name = "物理学家的撬棍"
 	id = "fast_crowbar"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
@@ -55,7 +55,7 @@
 
 
 /datum/design/physgun
-	name = "Physics Manipulation Tool"
+	name = "物理枪"
 	id = "physgun"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE

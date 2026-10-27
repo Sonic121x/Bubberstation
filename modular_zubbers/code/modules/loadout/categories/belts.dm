@@ -1,5 +1,5 @@
 /datum/loadout_category/belts
-	category_name = "Belts"
+	category_name = "腰带"
 	category_ui_icon = FA_ICON_USER_TIE
 	type_to_generate = /datum/loadout_item/belts
 	tab_order = /datum/loadout_category/head::tab_order + 6
@@ -13,60 +13,60 @@
 	outfit.belt = item_path
 
 /datum/loadout_item/belts/fanny_pack_black
-	name = "Black Fannypack"
+	name = "黑色腰包"
 	item_path = /obj/item/storage/belt/fannypack/black
 
 /datum/loadout_item/belts/fanny_pack_blue
-	name = "Blue Fannypack"
+	name = "蓝色腰包"
 	item_path = /obj/item/storage/belt/fannypack/blue
 
 /datum/loadout_item/belts/fanny_pack_brown
-	name = "Brown Fannypack"
+	name = "棕色腰包"
 	item_path = /obj/item/storage/belt/fannypack
 
 /datum/loadout_item/belts/fanny_pack_cyan
-	name = "Cyan Fannypack"
+	name = "青色腰包"
 	item_path = /obj/item/storage/belt/fannypack/cyan
 
 /datum/loadout_item/belts/fanny_pack_green
-	name = "Green Fannypack"
+	name = "绿色腰包"
 	item_path = /obj/item/storage/belt/fannypack/green
 
 /datum/loadout_item/belts/fanny_pack_orange
-	name = "Orange Fannypack"
+	name = "橙色腰包"
 	item_path = /obj/item/storage/belt/fannypack/orange
 
 /datum/loadout_item/belts/fanny_pack_pink
-	name = "Pink Fannypack"
+	name = "粉色腰包"
 	item_path = /obj/item/storage/belt/fannypack/pink
 
 /datum/loadout_item/belts/fanny_pack_purple
-	name = "Purple Fannypack"
+	name = "紫色腰包"
 	item_path = /obj/item/storage/belt/fannypack/purple
 
 /datum/loadout_item/belts/fanny_pack_red
-	name = "Red Fannypack"
+	name = "红色腰包"
 	item_path = /obj/item/storage/belt/fannypack/red
 
 /datum/loadout_item/belts/fanny_pack_yellow
-	name = "Yellow Fannypack"
+	name = "黄色腰包"
 	item_path = /obj/item/storage/belt/fannypack/yellow
 
 /datum/loadout_item/belts/fanny_pack_white
-	name = "White Fannypack"
+	name = "白色腰包"
 	item_path = /obj/item/storage/belt/fannypack/white
 
 /datum/loadout_item/belts/lantern
-	name = "Lantern"
+	name = "提灯"
 	item_path = /obj/item/flashlight/lantern
 
 /datum/loadout_item/belts/darksabresheath
-	name = "Dark Sabre Sheath"
+	name = "暗黑军刀刀鞘"
 	item_path = /obj/item/storage/belt/sheath/sabre/darksabre
 	//ckeywhitelist = list("inferno707")
 
 /datum/loadout_item/belts/trinket_belt
-	name = "Trinket Belt"
+	name = "饰品腰带"
 	item_path = /obj/item/storage/belt/fannypack/occult
 	//ckeywhitelist = list("gamerguy14948")
 
@@ -75,41 +75,41 @@
 */
 
 /datum/loadout_item/belts/webbing
-	name = "Webbing - Basic"
+	name = "织带·基础"
 	item_path = /obj/item/storage/belt/webbing
 
 /datum/loadout_item/belts/webbing_colonial
-	name = "Webbing - Colonial"
+	name = "织带·殖民地"
 	item_path = /obj/item/storage/belt/webbing/colonial_webbing
 
 /datum/loadout_item/belts/webbing_vest_brown
-	name = "Webbing - Vest, Brown"
+	name = "织带·背心（棕色）"
 	item_path = /obj/item/storage/belt/webbing_vest
 
 /datum/loadout_item/belts/webbing_vest_black
-	name = "Webbing - Vest, Black"
+	name = "织带·背心（黑色）"
 	item_path = /obj/item/storage/belt/webbing_vest/black
 
 /datum/loadout_item/belts/webbing_vest_white
-	name = "Webbing - Vest, White"
+	name = "织带·背心（白色）"
 	item_path = /obj/item/storage/belt/webbing_vest/white
 
 /datum/loadout_item/belts/webbing_pouch_brown
-	name = "Webbing - Drop Pouches, Brown"
+	name = "织带·投放袋（棕色）"
 	item_path = /obj/item/storage/belt/webbing_pouch
 
 /datum/loadout_item/belts/webbing_pouch_black
-	name = "Webbing - Drop Pouches, Black"
+	name = "织带·投放袋（黑色）"
 	item_path = /obj/item/storage/belt/webbing_pouch/black
 
 /datum/loadout_item/belts/webbing_pouch_white
-	name = "Webbing - Drop Pouches, White"
+	name = "织带·投放袋（白色）"
 	item_path = /obj/item/storage/belt/webbing_pouch/white
 
 /datum/loadout_item/belts/webbing_pilot_standard
-	name = "Webbing - Rigging, Standard"
+	name = "织带·索具（标准）"
 	item_path = /obj/item/storage/belt/webbing_pilot
 
 /datum/loadout_item/belts/webbing_pilot_low
-	name = "Webbing - Rigging, Low Slung"
+	name = "织带·索具（低垂）"
 	item_path = /obj/item/storage/belt/webbing_pilot/low

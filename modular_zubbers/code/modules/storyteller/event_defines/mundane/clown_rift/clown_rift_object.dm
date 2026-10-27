@@ -1,5 +1,5 @@
 /obj/effect/countdown/clown_rift
-	name = "Clown rift countdown"
+	name = "小丑裂隙倒计时"
 
 /obj/effect/countdown/clown_rift/get_value()
 	var/obj/effect/clown_rift/rift = attached_to
@@ -9,8 +9,8 @@
 	return "[round(seconds_left)]"
 
 /obj/effect/clown_rift
-	name = "clown rift"
-	desc = "A tear in the fabric of reality, leading to a dimension overflowing with fun and pranks."
+	name = "小丑裂隙"
+	desc = "现实结构上的一道裂口，通往一个充满乐趣与恶作剧的维度。"
 	icon = 'modular_zubbers/icons/effects/clown_rift.dmi' // Testing until I make icons
 	icon_state = "rift_forming"
 	density = FALSE

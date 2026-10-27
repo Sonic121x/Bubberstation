@@ -71,7 +71,7 @@ GLOBAL_VAR_INIT(vitezstvi_home_dock_original, null)
 		home_port.forceMove(target)
 		// shuttle rotates to match its dock, so a random facing varies the angle of entry
 		home_port.setDir(pick(GLOB.cardinals))
-		GLOB.vitezstvi_crash_area_name = crash_area?.name || "an unknown compartment"
+		GLOB.vitezstvi_crash_area_name = crash_area?.name || "一个未知的舱室"
 		return TRUE
 	return FALSE
 
@@ -100,17 +100,17 @@ GLOBAL_VAR_INIT(vitezstvi_home_dock_original, null)
 
 /// Ghosts get a seat, admins get a veto.
 /proc/vitezstvi_announce_target(rerouted = FALSE)
-	var/site = GLOB.vitezstvi_crash_area_name || "somewhere important"
+	var/site = GLOB.vitezstvi_crash_area_name || "某个重要的地方"
 	var/obj/docking_port/mobile/emergency/vitezstvi/port = locate() in SSshuttle.mobile_docking_ports
 	notify_ghosts(
-		"The VARS-7 Provodnik is [rerouted ? "now" : ""] inbound to [site].",
+		"VARS-7“向导”号[rerouted ? "现已改道，" : "即将"]飞往 [site]。",
 		source = port,
-		header = "Incoming Shuttle",
+		header = "穿梭机来袭",
 	)
 	if(!port)
-		message_admins("VARS-7 Provodnik is inbound to [site].")
+		message_admins("VARS-7“向导”号正飞往 [site]。")
 		return
-	message_admins("VARS-7 Provodnik is inbound to [site]. (<a href='byond://?src=[REF(port)];vitezstvi_retarget=1'>CHANGE LANDING ZONE</a>)")
+	message_admins("VARS-7“向导”号正飞往 [site]。（<a href='byond://?src=[REF(port)];vitezstvi_retarget=1'>更改降落区</a>）")
 
 #undef VITEZSTVI_FUNNY_LANDING_CHANCE
 #undef VITEZSTVI_EDGE_MARGIN

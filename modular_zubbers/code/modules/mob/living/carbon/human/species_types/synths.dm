@@ -1,35 +1,35 @@
 /datum/species/synthetic/get_species_description()
 	return list(
-		"Synthetics are generally robotic servants produced out of manufactured metal parts. Ever since the Humanities Protection Act passed, \
-		they are commonly known for having some form of robotic voice, unnatural movement, or incomplete emotional processes.",
-		"Synthetics avoid many organic interactions, with oil in place of blood. They are weak to blunt damage and extreme temperatures."
+		"合成人通常是用工业化金属部件制造出来的机器人仆从。自《人类保护法案》通过以来，\
+		他们便常以某种机械嗓音、不自然的动作或残缺的情感处理过程而为人所知。",
+		"合成人回避许多有机体的社交互动，以机油代替血液。他们弱于钝击伤害和极端温度。"
 	)
 
 /datum/species/synthetic/get_species_lore()
 	return list(
-		"Synthetics were first originally built to be robotic servants, restricted from truly passing as other species \
-		due to legislation like the Federation's HPA. They tend to be produced out of manufactured parts \
-		with notable flaws such as visible rivets, filtered voices, porcelain skin, or a total lack of apparent emotion. \
-		They have developed a great deal from their origins, and are now seen in almost every workplace. \
-		Synths are, in many ways, defined by the universe around them in their diversity. Now, they are beginning to shape it in turn.",
+		"合成人最初被制造为机器人仆从，因联邦的《人类保护法案》等立法而无法真正冒充其他种族。\
+		他们通常由工业化部件制成，带有显眼的瑕疵，例如外露的铆钉、经过滤波的嗓音、瓷质皮肤，或完全缺乏明显的情感。\
+		他们已从起源之处演进良多，如今几乎出现在每一个工作场所。\
+		合成人在许多方面由周围宇宙的多样性所塑造。现在，\
+		他们也开始反过来塑造这个宇宙。",
 
-		"Synths have no defined physical features, outside of ones deemed robotic. They tend to be servile in many regards, \
-		generally supportive and helpful almost to a fault, and somewhat fearful to make unfounded decisions.",
+		"合成人没有固定的外貌特征，除非是那些被视为机械的特征。他们在许多方面倾向于顺从，\
+		通常支持和乐于助人到了近乎过分的程度，并且有些害怕做出没有依据的决定。",
 
-		"The earliest synthetics came before Nanotrasen quantified the existence of the soul, being made from \
-		simple circuits and more commonly, less useful brains as punishment. Those sentenced to death would be placed \
-		into MMIs and lawed, forced to be the vanguard of Terran colonization. This was a dark development from Cybersun's \
-		invention of artificial intelligence years prior. The practice was phased out quickly due to \
-		several high profile cases of cyborgification being used against dissidents in the former NRI.",
+		"最早的合成人出现于纳米传讯量化灵魂存在之前，它们由\
+		简单电路制成，更常见的是用不太有用的大脑作为惩罚。被判处死刑者会被放入\
+		人机接口并被植入法则，被迫充当地球殖民的先锋。这是赛博太阳多年前发明\
+		人工智能之后的一次黑暗发展。由于前新俄罗斯帝国中多起将半机械化改造用于对付异见者的\
+		高调案例，这一做法很快被逐步废除。",
 
-		"Modern synthetics have returned in force when Nanotrasen R&D learned to manipulate and manufacture souls, \
-		avoiding humanitarian concerns and producing an immortal workforce. In recent years, as synths have approached sapience, an ongoing legal battle has drawn out \
-		between SELF and Nanotrasen	to apply the doctrine of juris sapiens to manufactured synthetics, thus classifying them as a Federation species and affording them rights. \
-		While the more hopeful believe that this is Cybersun's redemption, the more realistic answer is that Cybersun \
-		is simply unable to compete with Nanotrasen's manufacturing, and the right for synths to live free is just another battleground in the corporate shadow-war.",
+		"现代合成人在纳米传讯的研发部门学会操纵并制造灵魂后大规模回归，\
+		这回避了人道主义顾虑，并造出了不朽的劳动力。近年来，随着合成人逐渐接近智慧生命，一场旷日持久的法律战在\
+		SELF 与纳米传讯之间展开，试图将“智人法理”原则适用于制造出来的合成人，从而将其归类为联邦种族并赋予其权利。\
+		虽然较为乐观的人认为这是赛博太阳的救赎，但更现实的答案是赛博太阳\
+		根本无法与纳米传讯的制造业竞争，而合成人自由生活的权利不过是企业暗战中的又一处战场。",
 
-		"Due to the prevalence of spare parts and the availability of software, it is not uncommon to see synthetics as often as humans \
-		in more economically prosperous areas. Many small companies have popped up, producing \
-		specialized synthetics with little oversight due to the slow rate of Federal regulation. In the homes of individuals \
-		and in some more progressive workplaces, even Nanotrasen's own, synths are receiving recognition as equals."
+		"由于备件普遍、软件唾手可得，在经济较为繁荣的地区，\
+		见到合成人的频率常常不亚于人类。许多小公司如雨后春笋般涌现，在\
+		联邦监管进展缓慢的情况下几乎没有监督地生产特化合成人。在个人家庭中，\
+		以及一些更进步的工作场所——甚至纳米传讯自己的场所——合成人正获得平等的认可。"
 	)

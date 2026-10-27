@@ -1,27 +1,27 @@
 /obj/item/ammo_casing/c46x30mm
-	name = "4.6x30mm bullet casing"
-	desc = "A 4.6x30mm bullet casing."
+	name = "4.6x30mm 子弹壳"
+	desc = "一枚 4.6x30mm 子弹壳。"
 	can_be_printed = TRUE
 	advanced_print_req = TRUE
 	custom_materials = AMMO_MATS_BASIC
 
 /obj/item/ammo_casing/c46x30mm/ap
-	name = "4.6x30mm armor-piercing bullet casing"
-	desc = "A 4.6x30mm armor-piercing bullet casing."
+	name = "4.6x30mm 穿甲子弹壳"
+	desc = "一枚 4.6x30mm 穿甲子弹壳。"
 	can_be_printed = TRUE
 	advanced_print_req = TRUE
 	custom_materials = AMMO_MATS_AP
 
 /obj/item/ammo_casing/c46x30mm/inc
-	name = "4.6x30mm incendiary bullet casing"
-	desc = "A 4.6x30mm incendiary bullet casing."
+	name = "4.6x30mm 燃烧子弹壳"
+	desc = "一枚 4.6x30mm 燃烧子弹壳。"
 	can_be_printed = FALSE
 	advanced_print_req = TRUE
 	custom_materials = AMMO_MATS_TEMP
 
 /obj/item/ammo_casing/c46x30mm/compressed
-	name = "compressed 4.6x30mm bullet casing"
-	desc = "A compressed 4.6x30mm bullet casing."
+	name = "压缩 4.6x30mm 子弹壳"
+	desc = "一枚压缩 4.6x30mm 子弹壳。"
 	projectile_type = /obj/projectile/bullet/c46x30mm/compressed
 	can_be_printed = TRUE
 	advanced_print_req = TRUE

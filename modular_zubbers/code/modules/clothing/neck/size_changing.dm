@@ -1,7 +1,7 @@
 // Syntech Pendant
 /obj/item/clothing/neck/syntech
-	name = "normalizer pendant"
-	desc = "A vibrant violet jewel cast in silvery-gold metals. It will 'normalize' the size of the user to a specified height for approved work-conditions, as long as it is equipped. The artificial violet gem inside twinkles ominously."
+	name = "标准化吊坠"
+	desc = "一颗镶嵌在银金色金属中的鲜艳紫罗兰宝石。装备后，它会把使用者的体型“标准化”为经批准的工作条件所规定的身高。里面的人造紫色宝石不祥地闪烁着。"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	worn_icon_state = "pendant"
@@ -26,14 +26,14 @@
 
 // Syntech Choker
 /obj/item/clothing/neck/syntech/choker
-	name = "normalizer choker"
-	desc = "A sleek, tight-fitting choker embezzled with silver to gold. It will 'normalize' the size of the user to a specified height for approved work-conditions, as long as it is equipped. There is a small screen buzzing with information."
+	name = "标准化颈环"
+	desc = "一条光滑贴身的颈环，由银色渐变至金色。装备后，它会把使用者的体型“标准化”为经批准的工作条件所规定的身高。上面有一块嗡嗡闪烁着信息的小屏幕。"
 	worn_icon_state = "collar"
 	icon_state = "choker"
 
 // Syntech Collar
 /obj/item/clothing/neck/syntech/collar
-	name = "normalizer collar"
-	desc = "A cute pet collar, technologically designed with vibrant purples and smooth silvers. It will 'normalize' the size of the user to a specified height for approved work-conditions, as long as it is equipped. The artificial violet gem inside twinkles ominously."
+	name = "标准化项圈"
+	desc = "一条可爱的宠物项圈，采用鲜艳的紫色与光滑的银色进行科技化设计。装备后，它会把使用者的体型“标准化”为经批准的工作条件所规定的身高。里面的人造紫色宝石不祥地闪烁着。"
 	worn_icon_state = "collar"
 	icon_state = "collar"

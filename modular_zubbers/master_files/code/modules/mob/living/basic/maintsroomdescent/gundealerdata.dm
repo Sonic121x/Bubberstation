@@ -7,7 +7,7 @@
 	///Sound used when item sold/bought
 	sell_sound = 'sound/effects/cashregister.ogg'
 	///The currency name
-	currency_name = "credits"
+	currency_name = "信用点"
 	///The initial products that the trader offers
 	/// one crew paycheck is 50 credits
 	initial_products = list(
@@ -79,54 +79,54 @@
 	///The speech data of the trader
 	say_phrases = list(
 		ITEM_REJECTED_PHRASE = list(
-			"I'm not a fan of any of the gear you're showing. Come back when you have something I want.",
+			"你拿给我看的那些装备我一样都不喜欢。等你有了我想要的东西再来。",
 		),
 		ITEM_SELLING_CANCELED_PHRASE = list(
-			"I'll be here.",
+			"我会在这儿的。",
 		),
 		ITEM_SELLING_ACCEPTED_PHRASE = list(
-			"Thanks, ill make a good turn around on this.",
+			"谢了，我会好好把它转手出去的。",
 		),
 		INTERESTED_PHRASE = list(
-			"Hey, you've got a gun that interests me. I would like to buy it, I will give you some credits for it.",
+			"嘿，你有把枪让我挺感兴趣。我想买下它，会给你些信用点。",
 		),
 		BUY_PHRASE = list(
-			"Use those tools well, their serial numbers are scrubbed.",
+			"好好用这些家伙什，它们的序列号都已经擦干净了。",
 		),
 		NO_CASH_PHRASE = list(
-			"Look man- I know these prices are really high but the conversion rate of credits to any real money is a hundred to one. These are just the prices I got to charge to stay profitable.",
+			"瞧，老兄——我知道这些价格高得离谱，但信用点兑真钱的汇率是一百比一。我定这些价只是为了保持盈利。",
 		),
 		NO_STOCK_PHRASE = list(
-			"Somebody else came through and bought that gun earlier. Come back a different cycle- when everything resets here and after I have gotten a chance to restock.",
+			"之前有人来过，把那把枪买走了。换个周期再来——等这里一切重置、我也补完货之后。",
 		),
 		NOT_WILLING_TO_BUY_PHRASE = list(
-			"I don't want to buy that gun right now buddy. Come back a different cycle.",
+			"我现在不想买那把枪，伙计。换个周期再来。",
 		),
 		ITEM_IS_WORTHLESS_PHRASE = list(
-			"This gun is dogshit, take that fucking donksoft toy elsewhere. I dont shoot guns much myself but- i know the prices of guns in the main systems and thats just not worth much.",
+			"这枪就是垃圾，把那把他妈的咚克软玩具拿到别处去。我自己不怎么开枪，但——我知道主星系里枪的价格，那玩意儿根本值不了几个钱。",
 		),
 		TRADER_HAS_ENOUGH_ITEM_PHRASE = list(
-			"Are you guys trying to flood the market and cause inflation? I cant buy anymore of that right now.",
+			"你们是想让市场泛滥、搞出通货膨胀吗？我现在不能再买那个了。",
 		),
 		TRADER_LORE_PHRASE = list(
-			"Heya buddy- you made your way here- somehow. From what I have seen that ladder has many many MANY entrances but you will leave the same way you came in. I come here to do deals every cycle and I make a killing with it. Although the low stability gets to my mind sometimes.",
-			"How did I get here? Well- there is this wall that i know that never seems right. Walking through said wall brings me here, I climb that ladder a few times and I saw what was on the other side. After that I decided it was not my time to venture out of this room, but this place allowed me to quit my deadend job and peddle weapons instead.",
-			"A flyer? What I dont hand out any flyers you must be mistaken, that one doesnt look like anything I wrote but- its, true, i do sell ballistic guns and buy energy guns, I-, whatever. That HAS to be a coincidence but it sucks to know I have competition.",
+			"嘿，朋友——你居然走到了这里——也不知怎么走的。据我所见，那架梯子有好多好多好多的入口，但你离开时会走你进来的同一条路。我每个周期都来这儿做买卖，靠这个赚得盆满钵满。不过这里的低稳定性有时会侵蚀我的理智。",
+			"我怎么到这儿来的？嗯——我知道有那么一堵墙，看起来永远都不对劲。穿过那堵墙就能把我带到这里，我爬了那架梯子几次，看到了另一边的景象。之后我决定不该是我离开这个房间去外面闯荡的时候，但这个地方让我辞掉了那份没前途的工作，改行卖武器。",
+			"传单？什么传单，我从不发传单，你一定是搞错了，那张东西看起来不像是我写的，但——没错，我确实卖实弹枪、收购能量枪，我——随便吧。那肯定只是巧合，但知道自己有竞争对手可真让人不爽。",
 		),
 		TRADER_NOT_BUYING_ANYTHING = list(
-			"I'm not buying anythhing else today if I peddle away too many weapons the cops get suspicious- well, the ones who I DONT pay off get suspicious and THATS a real problem.",
+			"我今天不再买别的东西了，要是我经手太多武器，条子就会起疑——嗯，那些我他妈的没打点过的家伙会起疑，那才是真正的麻烦。",
 		),
 		TRADER_NOT_SELLING_ANYTHING = list(
-			"I have sold everything I brought with me through the veil today buddy, I can only go through twice every cycle one time in one time out so come back next cycle when everything in this place resets itself for more.",
+			"今天我已经把带来的东西全透过帷幕卖光了，伙计，我每个周期只能来回两趟，一进一出，所以等这里的一切重置之后，下个周期再来多买点。",
 		),
 		TRADER_BATTLE_START_PHRASE = list(
-			"Time to take directly from the source.",
+			"该直接从源头拿货了。",
 		),
 		TRADER_BATTLE_END_PHRASE = list(
-			"Now THAT is some free produce!",
+			"这才叫免费的收获！",
 		),
 		TRADER_SHOP_OPENING_PHRASE = list(
-			"Welcome to my tool store, I sell tools for any situation- but you seem to be from the stations and uh. Your going to be paying, a lot of credits heh. Sorry that the conversion rate of credits to dollars is a hundred to one.",
+			"欢迎光临我的工具店，我卖应付各种情况的工具——不过你看起来是从空间站来的，呃。你可得付，很多很多信用点，嘿嘿。抱歉，信用点兑美元的汇率是一百比一。",
 		),
 	)
 

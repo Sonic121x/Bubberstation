@@ -1,7 +1,7 @@
 /datum/storyteller/enemy
-	name = "Enemy Within (Crew Antag Spawns Ultra-Focus)"
-	desc = "This storyteller aims to ensure that there are only crew antagonists while also prioritizing spawns for those antagonist types."
-	welcome_text = "Chat, I think there is an imposter among us on this Space Station 13. I have grown suspicious."
+	name = "内鬼（船员反派生成极致侧重）"
+	desc = "这位故事讲述者力求只出现船员反派，同时优先安排这类反派的生成。"
+	welcome_text = "各位，我觉得这座空间站 13 上我们中间有个内鬼。我越来越怀疑了。"
 	votable = FALSE
 
 	tag_multipliers = list(

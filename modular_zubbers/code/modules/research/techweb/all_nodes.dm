@@ -3,8 +3,8 @@
 // cyber nodes
 /datum/techweb_node/cyber/empathy_implant
 	id = TECHWEB_NODE_EMPATHY_IMPLANT
-	display_name = "Empathic Sensor Implant"
-	description = "The result of assuredly-ethical experiments conducted on those with special minds."
+	display_name = "共情传感器植入体"
+	description = "对拥有特殊心智者进行绝对合乎伦理的实验后所得的成果。"
 	prereq_ids = list(TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
 		"ci_empathic_sensor",
@@ -49,8 +49,8 @@
 
 /datum/techweb_node/cyber/night_vision_implants
 	id = TECHWEB_NODE_NIGHT_VISION_IMPLANTS
-	display_name = "Night vision implants"
-	description = "Now you can work all night, even if you lost your glasses!"
+	display_name = "夜视植入体"
+	description = "现在你可以通宵工作了，哪怕弄丢了眼镜！"
 	prereq_ids = list(TECHWEB_NODE_NIGHT_VISION, TECHWEB_NODE_CYBER_IMPLANTS)
 	design_ids = list(
 		"ci-nv",
@@ -60,8 +60,8 @@
 
 /datum/techweb_node/botanygene
 	id = TECHWEB_NODE_BOTANY_ADV
-	display_name = "Experimental Botanical Engineering"
-	description = "Further advancement in plant cultivation techniques and machinery, enabling careful manipulation of plant DNA."
+	display_name = "实验性植物工程学"
+	description = "植物培育技术与机械的进一步进展，可对植物 DNA 进行精细操作。"
 	prereq_ids = list(TECHWEB_NODE_PARTS_ADV, TECHWEB_NODE_SELECTION)
 	design_ids = list(
 		"diskplantgene",
@@ -78,8 +78,8 @@
 //Research borg tech node
 /datum/techweb_node/borg_research
 	id = TECHWEB_NODE_BORG_RESEARCH
-	display_name = "Research Cyborg Upgrades"
-	description = "They are taking our jobs now!"
+	display_name = "研究型半机械人升级"
+	description = "它们现在要抢我们的饭碗了！"
 	prereq_ids = list(TECHWEB_NODE_BORG_ENGI, TECHWEB_NODE_BORG_MEDICAL)
 	design_ids = list(
 		"bs_experi_scanner_cyborg",
@@ -192,8 +192,8 @@
 	)
 /datum/techweb_node/mechlaunchpad
 	id = TECHWEB_NODE_MECHLAUNCHPAD
-	display_name = "Mech Logistics Solutions"
-	description = "Advancements in utilizing bluespace technology allow us to rapidly deliver mechs from workshop to destination."
+	display_name = "机甲后勤解决方案"
+	description = "蓝空间技术应用的进步，使我们能将机甲从工坊迅速运送至目的地。"
 	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL, TECHWEB_NODE_MECH_EQUIPMENT)
 	design_ids = list(
 		"mechlauncher_pad",
@@ -238,8 +238,8 @@
 
 /datum/techweb_node/bullet_weapons //This is for advanced bullet weapon designs and upgrades
 	id = TECHWEB_NODE_BULLET_WEAPONS
-	display_name = "Advanced Ballistic Weaponry"
-	description = "As if shooting a bullet could get any more complicated."
+	display_name = "高级弹道武器"
+	description = "说得好像开枪还能更复杂似的。"
 	prereq_ids = list(TECHWEB_NODE_EXOTIC_AMMO)
 	design_ids = list(
 		"wt550_burst",
@@ -251,8 +251,8 @@
 
 /datum/techweb_node/advanced_armor //This is for advanced armor and shields
 	id = TECHWEB_NODE_ADVANCED_ARMOR
-	display_name = "Advanced Security Protection"
-	description = "If we can't hurt them, we can outlast them."
+	display_name = "高级安保防护"
+	description = "如果伤不到他们，那我们就耗赢他们。"
 	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION, TECHWEB_NODE_GAS_COMPRESSION)
 	design_ids = list(
 		"security_juggernaut"
@@ -267,8 +267,8 @@
 
 /datum/techweb_node/nerd
 	id = TECHWEB_NODE_NERD
-	display_name = "Theoretical Physics"
-	description = "They asked me how well I understood theoretical physics. I said I had a theoretical degree in physics."
+	display_name = "理论物理学"
+	description = "他们问我有多懂理论物理学。我说我有一个理论物理学学位。"
 	prereq_ids = list(
 		TECHWEB_NODE_ROBOTICS, //Suit AI
 		TECHWEB_NODE_CHEM_SYNTHESIS, //Wound analyzer (and morphine production).
@@ -284,8 +284,8 @@
 
 /datum/techweb_node/advanced_nerd
 	id = TECHWEB_NODE_NERD_ADV
-	display_name = "Advanced Theoretical Physics"
-	description = "Scientists aren't supposed to have guns."
+	display_name = "高级理论物理学"
+	description = "科学家不该有枪。"
 	prereq_ids = list(
 		TECHWEB_NODE_ALIENTECH, //Memes.
 		TECHWEB_NODE_ANOMALY_SHELLS, //Physgun

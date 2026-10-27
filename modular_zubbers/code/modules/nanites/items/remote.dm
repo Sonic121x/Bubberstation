@@ -5,8 +5,8 @@
 #define REMOTE_MODE_RELAY "Relay"
 
 /obj/item/nanite_remote
-	name = "nanite remote control"
-	desc = "A device that can remotely control active nanites through wireless signals."
+	name = "纳米机器人遥控器"
+	desc = "一种可通过无线信号远程控制活跃纳米机器人的装置。"
 	w_class = WEIGHT_CLASS_SMALL
 	req_access = list(ACCESS_ROBOTICS)
 	icon = 'modular_zubbers/icons/obj/devices/nanite_devices.dmi'
@@ -19,12 +19,12 @@
 	var/last_id = 0
 	var/code = 0
 	var/relay_code = 0
-	var/current_program_name = "Program"
+	var/current_program_name = "程序"
 
 /obj/item/nanite_remote/examine(mob/user)
 	. = ..()
 	if(locked)
-		. += span_notice("Alt-click to unlock.")
+		. += span_notice("Alt 单击以解锁。")
 
 /obj/item/nanite_remote/click_alt(mob/user)
 	. = ..()
@@ -32,16 +32,16 @@
 		return
 	if(locked)
 		if(allowed(user))
-			to_chat(user, span_notice("You unlock [src]."))
+			to_chat(user, span_notice("你解锁了 [src]。"))
 			locked = FALSE
 			update_appearance()
 		else
-			to_chat(user, span_warning("Access denied."))
+			to_chat(user, span_warning("访问被拒绝。"))
 
 /obj/item/nanite_remote/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, span_warning("You override [src]'s ID lock."))
+	to_chat(user, span_warning("你覆盖了 [src] 的 ID 锁。"))
 	obj_flags |= EMAGGED
 	if(locked)
 		locked = FALSE
@@ -63,23 +63,23 @@
 /obj/item/nanite_remote/proc/trigger_nanites(atom/interacting_with, mob/living/user, list/modifiers)
 	switch(mode)
 		if(REMOTE_MODE_SELF)
-			to_chat(user, span_notice("You activate [src], signaling the nanites in your bloodstream."))
+			to_chat(user, span_notice("你激活了 [src]，向血液中的纳米机器人发送信号。"))
 			signal_mob(user, code, key_name(user))
 			return ITEM_INTERACT_SUCCESS
 		if(REMOTE_MODE_TARGET)
 			if(!istype(interacting_with, /mob/living))
 				return NONE
 			if(isliving(interacting_with) && (get_dist(interacting_with, get_turf(src)) <= 7))
-				to_chat(user, span_notice("You activate [src], signaling the nanites inside [interacting_with]."))
+				to_chat(user, span_notice("你激活了 [src]，向 [interacting_with] 体内的纳米机器人发送信号。"))
 				signal_mob(interacting_with, code, key_name(user))
 			return ITEM_INTERACT_SUCCESS
 		if(REMOTE_MODE_AOE)
-			to_chat(user, span_notice("You activate [src], signaling the nanites inside every host around you."))
+			to_chat(user, span_notice("你激活了 [src]，向你周围所有宿主体内的纳米机器人发送信号。"))
 			for(var/mob/living/L in view(user, 7))
 				signal_mob(L, code, key_name(user))
 			return ITEM_INTERACT_SUCCESS
 		if(REMOTE_MODE_RELAY)
-			to_chat(user, span_notice("You activate [src], signaling all connected relay nanites."))
+			to_chat(user, span_notice("你激活了 [src]，向所有已连接的中继纳米机器人发送信号。"))
 			signal_relay(code, relay_code, key_name(user))
 			return ITEM_INTERACT_SUCCESS
 	return NONE
@@ -182,8 +182,8 @@
 
 
 /obj/item/nanite_remote/comm
-	name = "nanite communication remote"
-	desc = "A device that can send text messages to specific programs."
+	name = "纳米机器人通讯遥控器"
+	desc = "一种可向特定程序发送文本消息的装置。"
 	icon_state = "nanite_comm_remote"
 	custom_materials = list(/datum/material/glass = 500, /datum/material/iron = 500)
 	var/comm_message = ""
@@ -193,18 +193,18 @@
 		if(REMOTE_MODE_OFF)
 			return
 		if(REMOTE_MODE_SELF)
-			to_chat(user, span_notice("You activate [src], signaling the nanites in your bloodstream."))
+			to_chat(user, span_notice("你激活了 [src]，向血液中的纳米机器人发送信号。"))
 			signal_mob(user, code, key_name(user))
 		if(REMOTE_MODE_TARGET)
 			if(isliving(target) && (get_dist(target, get_turf(src)) <= 7))
-				to_chat(user, span_notice("You activate [src], signaling the nanites inside [target]."))
+				to_chat(user, span_notice("你激活了 [src]，向 [target] 体内的纳米机器人发送信号。"))
 				signal_mob(target, code, key_name(user))
 		if(REMOTE_MODE_AOE)
-			to_chat(user, span_notice("You activate [src], signaling the nanites inside every host around you."))
+			to_chat(user, span_notice("你激活了 [src]，向你周围所有宿主体内的纳米机器人发送信号。"))
 			for(var/mob/living/L in view(user, 7))
 				signal_mob(L, code, key_name(user))
 		if(REMOTE_MODE_RELAY)
-			to_chat(user, span_notice("You activate [src], signaling all connected relay nanites."))
+			to_chat(user, span_notice("你激活了 [src]，向所有已连接的中继纳米机器人发送信号。"))
 			signal_relay(code, relay_code, key_name(user))
 
 /obj/item/nanite_remote/comm/signal_mob(mob/living/M, code, source)

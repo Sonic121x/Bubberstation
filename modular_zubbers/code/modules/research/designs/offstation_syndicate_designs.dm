@@ -1,6 +1,6 @@
 /datum/design/syndicate_express_console
-	name = "Syndicate Express Cargo Console"
-	desc = "The circuit board for a computer used to purchase goods on a black market."
+	name = "英特戴恩快速补给控制台"
+	desc = "用于在黑市采购货物的电脑电路板。"
 	id = "cargoconsole_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -12,8 +12,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/syndicate_bounty_pad
-	name = "Syndicate Bounty Pad"
-	desc = "The circuit board for a machine used to sell goods on a black market."
+	name = "英特戴恩悬赏交货平台"
+	desc = "用于在黑市出售货物的机器电路板。"
 	id = "bountypad_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -25,8 +25,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/syndicate_bounty_pad_console
-	name = "Syndicate Bounty Pad Console"
-	desc = "The circuit board for the computer used to control a bounty pad to sell goods on a black market."
+	name = "英特戴恩悬赏控制终端"
+	desc = "用于控制悬赏交货平台在黑市出售货物的电脑电路板。"
 	id = "bountyconsole_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -38,8 +38,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/syndicate_powerator
-	name = "Syndicate Powerator"
-	desc = "The circuit board for a machine that can sell power."
+	name = "英特戴恩电力贩子"
+	desc = "一种可出售电力的机器电路板。"
 	id = "powerator_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -51,8 +51,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 
 /datum/design/syndicate_exofab
-	name = "Syndicate Exofab"
-	desc = "The circuit board for a standard issue exofab produced by Interdyne."
+	name = "辛迪加外骨骼制造机"
+	desc = "英特戴恩生产的标准配发外骨骼制造机电路板。"
 	id = "exofab_syndicate"
 	build_type = AWAY_IMPRINTER
 	materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1)
@@ -65,8 +65,8 @@
 
 //Items
 /datum/design/syndicate_firing_pin
-	name = "Syndicate Firing Pin"
-	desc = "A Syndicate Implant restricted firing pin."
+	name = "辛迪加击针"
+	desc = "一种辛迪加植入体限制击针。"
 	id = "syndicate_firing_pin"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
@@ -77,8 +77,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/syndicateciv_headset
-	name = "Syndicate Headset"
-	desc = "Standard issue headset for syndicate civillians."
+	name = "辛迪加耳机"
+	desc = "辛迪加平民的标准配发耳机。"
 	id = "syndicate_headset"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 0.7)
@@ -89,8 +89,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/interdyne_key
-	name = "Interdyne Encryption Key"
-	desc = "Standard issue headset for syndicate civillians."
+	name = "英特戴恩加密密钥"
+	desc = "辛迪加平民的标准配发耳机。"
 	id = "interdyne_encryption"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
@@ -102,8 +102,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/cybersun_key
-	name = "Cybersun Encryption Key"
-	desc = "Standard issue headset for syndicate civillians."
+	name = "赛博太阳加密密钥"
+	desc = "辛迪加平民的标准配发耳机。"
 	id = "cybersun_encryption"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*1)
@@ -115,8 +115,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/board/interdyne_mining_equipment_vendor
-	name = "Offstation Mining Rewards Vendor Board"
-	desc = "The circuit board for a offstation Mining Rewards Vendor."
+	name = "离站采矿奖励售货机电路板"
+	desc = "离站采矿奖励售货机的电路板。"
 	id = "interdyne_mining_equipment_vendor"
 	build_type = AWAY_IMPRINTER
 	build_path = /obj/item/circuitboard/computer/order_console/mining/interdyne

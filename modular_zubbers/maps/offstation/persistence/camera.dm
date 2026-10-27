@@ -1,5 +1,5 @@
 /obj/machinery/computer/security/persistence
-	name = "persistence camera console"
-	desc = "Used to access the various cameras on the Persistence."
+	name = "恒久号监控控制台"
+	desc = "用于访问恒久号上的各个摄像头。"
 	network = list("persistence_ext","persistence_xeno")
 	circuit = null

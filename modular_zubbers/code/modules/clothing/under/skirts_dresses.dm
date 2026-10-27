@@ -3,14 +3,14 @@
 	icon = 'modular_zubbers/icons/obj/clothing/under/skirts_dresses.dmi'
 
 /obj/item/clothing/under/dress/bubber/strapped
-	name = "formal evening gown"
-	desc = "A richly made dress of quality fabrics, but not much of them."
+	name = "正式晚礼服"
+	desc = "一件用料考究的高级面料礼服，只不过用料不多。"
 	icon_state = "dress_strapped"
 	body_parts_covered = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/dress/miniskirt
-	name = "miniskirt"
-	desc = "This skirt is quite small, even by skirt standards."
+	name = "迷你短裙"
+	desc = "这条短裙相当小，就算以短裙的标准来看也是如此。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/miniskirt"
 	post_init_icon_state = "miniskirt"
@@ -26,8 +26,8 @@
 	body_parts_covered = GROIN | LEGS
 
 /obj/item/clothing/under/dress/bubber/midnight_gown
-	name = "midnight gown"
-	desc = "A seductive gown purpose tailored to show off one's legs."
+	name = "午夜长裙"
+	desc = "一件为展现双腿而量身定制的诱人长裙。"
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/bubber/midnight_gown"
 	post_init_icon_state = "midnight_right"
@@ -52,15 +52,15 @@
 	greyscale_item_path = /obj/item/clothing/under/dress/bubber/midnight_gown
 
 /datum/atom_skin/midnight_gown/right
-	preview_name = "Right"
+	preview_name = "右侧"
 	new_icon_state = "midnight_right"
 
 /datum/atom_skin/midnight_gown/left
-	preview_name = "Left"
+	preview_name = "左侧"
 	new_icon_state = "midnight_left"
 
 /datum/atom_skin/midnight_gown/middle
-	preview_name = "Middle"
+	preview_name = "中间"
 	new_icon_state = "midnight_mid"
 
 /datum/atom_skin/giant_scarf
@@ -68,52 +68,52 @@
 	greyscale_item_path = /obj/item/clothing/under/dress/bubber/giant_scarf
 
 /datum/atom_skin/giant_scarf/giant_scarf
-	preview_name = "Plain"
+	preview_name = "素色"
 	new_icon_state = "giant_scarf"
 
 /datum/atom_skin/giant_scarf/giant_scarf_crystal
-	preview_name = "Crystal"
+	preview_name = "水晶"
 	new_icon_state = "giant_scarf_crystal"
 
 /datum/atom_skin/giant_scarf/giant_scarf_stripe
-	preview_name = "Stripe"
+	preview_name = "条纹"
 	new_icon_state = "giant_scarf_stripe"
 
 /datum/atom_skin/giant_scarf/giant_scarf_twotone
-	preview_name = "Two-tone"
+	preview_name = "双色"
 	new_icon_state = "giant_scarf_twotone"
 
 /datum/atom_skin/giant_scarf/giant_scarf_arrow
-	preview_name = "Arrow"
+	preview_name = "箭头"
 	new_icon_state = "giant_scarf_arrow"
 
 /datum/atom_skin/giant_scarf/giant_scarf_fancy
-	preview_name = "Fancy"
+	preview_name = "华丽"
 	new_icon_state = "giant_scarf_fancy"
 
 /datum/atom_skin/giant_scarf/giant_scarf_sepharim
-	preview_name = "Sepharim"
+	preview_name = "塞拉菲姆"
 	new_icon_state = "giant_scarf_sepharim"
 
 /datum/atom_skin/giant_scarf/giant_scarf_bones
-	preview_name = "Bones"
+	preview_name = "骨骼"
 	new_icon_state = "giant_scarf_bones"
 
 /datum/atom_skin/giant_scarf/giant_scarf_lines
-	preview_name = "Lines"
+	preview_name = "线条"
 	new_icon_state = "giant_scarf_lines"
 
 /datum/atom_skin/giant_scarf/giant_scarf_runes
-	preview_name = "Runes"
+	preview_name = "符文"
 	new_icon_state = "giant_scarf_runes"
 
 /datum/atom_skin/giant_scarf/giant_scarf_heart
-	preview_name = "Heart"
+	preview_name = "爱心"
 	new_icon_state = "giant_scarf_heart"
 
 /obj/item/clothing/under/dress/bubber/giant_scarf
-	name = "giant scarf"
-	desc = "An absurdly massive scarf, worn as the main article of clothing over the body. Ironically, not very suitable for the cold."
+	name = "巨型围巾"
+	desc = "一条大得离谱的围巾，直接当作主要衣物披在身上。讽刺的是，它并不太适合御寒。"
 	body_parts_covered = CHEST|GROIN|LEGS
 	icon = 'icons/map_icons/clothing/under/dress.dmi'
 	icon_state = "/obj/item/clothing/under/dress/bubber/giant_scarf"
@@ -127,7 +127,7 @@
 
 /obj/item/clothing/under/dress/bubber/giant_scarf/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/giant_scarf, initial_skin = "Plain")
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/giant_scarf, initial_skin = "素色")
 
 /obj/item/clothing/under/dress/striped
 	greyscale_config_worn = /datum/greyscale_config/striped_dress/worn

@@ -1,12 +1,12 @@
 // Intended to be how mining vents work but instead of ore, at the end it spawns a chest with loot
 // Implemented on Port Tarkon as standard.
 /obj/structure/wave_defence
-	name = "Emergency Backup Generator"
-	desc = "A small, rusty looking engine used to run emergency systems. Call in a Hack-C pod to begin the reboot sequence."
+	name = "应急备用发电机"
+	desc = "一台小巧、锈迹斑斑的发动机，用于驱动应急系统。呼叫一个 Hack-C 维修舱即可开始重启程序。"
 	icon = 'modular_zubbers/icons/obj/machines/wavedef.dmi'
 	icon_state = "emerg_engine"
 	base_icon_state = "emerg_engine"
-	var/excavation_warning = "This will be awfully loud. Are you ready to protect the hacking pod?"
+	var/excavation_warning = "这会非常吵闹。你准备好保护破解舱了吗？"
 	var/list/defending_mobs = list(/mob/living/basic/alien/drone/tarkon)
 	var/static/list/scanning_equipment = list(/obj/item/hackc)
 	move_resist = MOVE_FORCE_OVERPOWERING
@@ -29,18 +29,18 @@
 	var/spawn_mod = 0 // used to adjust distance that creatures can spawn
 
 /obj/item/hackc
-	name = "Hack-C repair pod signaller"
+	name = "Hack-C 维修舱信号器"
 	icon = 'modular_zubbers/icons/obj/machines/wavedef_items.dmi'
 	icon_state = "hackc"
-	desc = "A small tool with a bunch of ones and zeros on it. The label say 'For emergency use only!'"
+	desc = "一件小巧的工具，上面印着一串 1 和 0。标签上写着“仅供紧急情况使用”！"
 	custom_materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT,
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT
 	)
 
 /mob/living/basic/node_drone/hackc
-	name = "Hack-C drone"
-	desc = "A lightweight version of the standard NT drones. This one has been modified for basic repairs and electrical engineering work."
+	name = "Hack-C 无人机"
+	desc = "标准 NT 无人机的轻量型号。这一台经过改装，可用于基础维修与电气工程作业。"
 	icon = 'modular_zubbers/icons/obj/machines/wavedef_items.dmi'
 	icon_state = "mining_node_active"
 	icon_living = "mining_node_active"
@@ -62,7 +62,7 @@
 	animate(src, pixel_z = 0, time = 2 SECONDS, easing = QUAD_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 
 /obj/structure/wave_defence/examine(mob/user)
-	. += span_notice("This can be repaired by calling in a drone with a [span_bold("Hack-C signaller")].")
+	. += span_notice("可以使用 [span_bold("Hack-C 信号器")] 呼叫一架无人机来修复它。")
 
 /obj/structure/wave_defence/Destroy() // we dont want to affect the resource gen
 	reset_drone(success = FALSE)
@@ -85,7 +85,7 @@
 
 /obj/structure/ore_vent/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
 	if(is_type_in_list(held_item, scanning_equipment))
-		context[SCREENTIP_CONTEXT_LMB] = "Signal hacking drone"
+		context[SCREENTIP_CONTEXT_LMB] = "呼叫破解无人机"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/structure/wave_defence/attackby(obj/item/attacking_item, mob/user, params)
@@ -95,13 +95,13 @@
 	if(!is_type_in_list(attacking_item, scanning_equipment))
 		return TRUE
 	if(tapped)
-		balloon_alert_to_viewers("engine repaired!")
+		balloon_alert_to_viewers("引擎已修复！")
 		return TRUE
 	scan_and_confirm(user)
 	return TRUE
 
 /obj/structure/wave_defence/proc/pre_wave_defense(mob/user, spawn_drone = TRUE)
-	if(tgui_alert(user, excavation_warning, "Begin defending emergency engine?", list("Yes", "No")) != "Yes")
+	if(tgui_alert(user, excavation_warning, "开始防守应急发电机？", list("是", "否")) != "是")
 		return FALSE
 	if(!can_interact(user))
 		return FALSE
@@ -129,7 +129,7 @@
 		max_spawned = 10 + difficulty_modifier, \
 		max_spawn_per_attempt = 1 + difficulty_modifier, \
 		max_spawn_per_attempt = 4 + difficulty_modifier + spawn_mod, \
-		spawn_text = "appears to assault", \
+		spawn_text = "出现并开始袭击", \
 		spawn_distance = 4 + spawn_mod, \
 		spawn_distance_exclude = 2, \
 	)
@@ -150,18 +150,18 @@
 		return
 
 	if(QDELETED(node))
-		initiate_wave_loss(loss_message = "\the [src] creaks and groans as the hacking attempt fails, and the engine grinds to a halt.")
+		initiate_wave_loss(loss_message = "\the [src] 在破解尝试失败之际吱嘎呻吟，引擎随之骤然停转。")
 		return
 
 	if(get_turf(node) != get_turf(src))
-		initiate_wave_loss(loss_message = "The [node] detaches from the [src], and the engine seizes up!")
+		initiate_wave_loss(loss_message = "[node] 从 [src] 上脱落，引擎随即卡死！")
 		return //Start over!
 
 	initiate_wave_win()
 
 /obj/structure/wave_defence/proc/initiate_wave_win()
 	tapped = TRUE
-	balloon_alert_to_viewers("engine started!")
+	balloon_alert_to_viewers("引擎已启动！")
 	icon_state = icon_state_tapped
 	update_appearance(UPDATE_ICON_STATE)
 	qdel(GetComponent(/datum/component/gps))
@@ -173,19 +173,19 @@
 
 /obj/structure/wave_defence/proc/scan_and_confirm(mob/living/user)
 	if(tapped)
-		balloon_alert_to_viewers("engine started!")
+		balloon_alert_to_viewers("引擎已启动！")
 		return
 	if(!COOLDOWN_FINISHED(src, wave_cooldown) || node) //We're already defending the vent, so don't scan it again.
 		return
 
 	if(DOING_INTERACTION_WITH_TARGET(user, src))
-		balloon_alert(user, "already calling!")
+		balloon_alert(user, "已在呼叫中！")
 		return
-	balloon_alert(user, "calling pod...")
+	balloon_alert(user, "正在呼叫维修舱……")
 	playsound(src, 'sound/items/timer.ogg', 30, TRUE)
 	if(!do_after(user, 4 SECONDS, src))
 		return
-	balloon_alert(user, "engine started!")
+	balloon_alert(user, "引擎已启动！")
 
 	if(!pre_wave_defense(user, spawn_drone_on_tap))
 		return

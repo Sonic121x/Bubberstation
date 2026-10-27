@@ -1,7 +1,7 @@
 // SynTech ring
 /obj/item/clothing/gloves/ring/syntech
-	name = "normalizer ring"
-	desc = "An expensive, shimmering ring gilded with golden markings. It will 'normalize' the size of the user to a specified height approved for work-conditions, as long as it is equipped. The artificial violet gem inside twinkles ominously."
+	name = "标准化戒指"
+	desc = "一枚昂贵而闪耀的戒指，镀有金色纹饰。装备后，它会把使用者的体型“标准化”为经批准的工作条件所规定的身高。里面的人造紫色宝石不祥地闪烁着。"
 	icon = 'modular_zubbers/icons/obj/clothing/gloves/gloves.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/gloves/gloves.dmi'
 	worn_icon_state = "sring"
@@ -29,7 +29,7 @@
 
 // SynTech Wristband
 /obj/item/clothing/gloves/ring/syntech/band
-	name = "normalizer wristband"
-	desc = "An expensive technological wristband cast in purples with shimmering golds. It will 'normalize' the size of the user to a specified height for approved work-conditions, as long as it is equipped. There is a small screen buzzing with information."
+	name = "标准化腕带"
+	desc = "一条昂贵的科技腕带，以紫色铸造并点缀着闪耀的金色。装备后，它会把使用者的体型“标准化”为经批准的工作条件所规定的身高。上面有一块嗡嗡闪烁着信息的小屏幕。"
 	worn_icon_state = "syntechband"
 	icon_state = "wristband"

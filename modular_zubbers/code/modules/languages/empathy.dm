@@ -1,6 +1,6 @@
 /datum/language/marish
 	name = "Marish"
-	desc = "Where shadekin have a language rooted in empathy, there are still subtle tones and syllables that are as delicate as the emotions that shadekin normally communicate with."
+	desc = "影裔的语言虽植根于共感，其中仍有微妙的声调与音节，细腻得一如影裔平日交流时所传递的情感。"
 	key = "M"
 	space_chance = 55
 	icon = 'modular_zubbers/icons/misc/language.dmi'
@@ -19,8 +19,8 @@
 							/datum/language/marish/empathy = list(LANGUAGE_ATOM),
 							)
 /obj/item/organ/tongue/shadekin
-	name = "shadekin tongue"
-	desc = "A mysterious tongue."
+	name = "影裔舌头"
+	desc = "一条神秘的舌头。"
 	icon_state = "silvertongue"
 	say_mod = "mars"
 	sense_of_taste = TRUE
@@ -28,8 +28,8 @@
 	languages_native = list(/datum/language/marish/empathy)
 
 /obj/item/organ/ears/shadekin
-	name = "shadekin ears"
-	desc = "Ears, covered in fur."
+	name = "影裔耳朵"
+	desc = "覆满绒毛的耳朵。"
 	icon = 'icons/obj/clothing/head/costume.dmi'
 	icon_state = "kitty"
 	damage_multiplier = 2.5 // Shadekins big ears are easy to damage with loud noises.
@@ -38,7 +38,7 @@
 
 /datum/language/marish/empathy
 	name = "Empathy"
-	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
+	desc = "影裔似乎总能知道彼此在想什么。原因大概就在这里。"
 	key = "9"
 	icon_state = "empathy"
 
@@ -58,7 +58,7 @@
 	var/empathy_timer = 2 SECONDS
 	var/obj/item/organ/ears/shadekin/user_ears = user.get_organ_slot(ORGAN_SLOT_EARS)
 	var/mode = istype(user_ears)
-	user.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "projecting thoughts...")
+	user.balloon_alert_to_viewers("[mode ? "耳朵颤动" : "微微颤抖"]", "正在投射思绪……")
 
 	switch(shadekin_mood)
 		if(SANITY_LEVEL_GREAT)
@@ -88,7 +88,7 @@
 		to_chat(living_mob, rendered)
 		if(living_mob != user)
 			mode = istype(target_ears)
-			living_mob.balloon_alert_to_viewers("[mode ? "ears vibrate" : "shivers"]", "transmission heard...")
+			living_mob.balloon_alert_to_viewers("[mode ? "耳朵颤动" : "微微颤抖"]", "接收到传念……")
 
 	if(length(GLOB.dead_mob_list))
 		for(var/mob/dead_mob in GLOB.dead_mob_list)

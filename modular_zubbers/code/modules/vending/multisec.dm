@@ -1,13 +1,13 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper Security Outfitting Station"
-	desc = "A vending machine stocked with a multitude of security outfits, including standardized uniforms and general equipment."
+	name = "\improper 安保制服配给站"
+	desc = "一台备有各式安保服装的售货机，包括标准化制服与通用装备。"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "secdrobe"
 	light_mask = null
 	products = list() // Overriding this to the default to prevent any issues when building the product menu
 	product_categories = list(
 		list(
-			"name" = "Red",
+			"name" = "红色",
 			"icon" = "shield",
 			"products" = list(
 					/obj/item/clothing/suit/hooded/wintercoat/security/redsec = 6,
@@ -86,7 +86,7 @@
 				),
 			),
 		list(
-			"name" = "Medic",
+			"name" = "医疗",
 			"icon" = "notes-medical",
 			"products" = list(
 					/obj/item/clothing/suit/toggle/labcoat/skyrat/security_medic = 3,
@@ -104,7 +104,7 @@
 				)
 			),
 		list(
-			"name" = "Corrections",
+			"name" = "惩教",
 			"icon" = "handcuffs",
 			"products" = list(
 				/obj/item/clothing/under/rank/security/corrections_officer = 2, //If, or more likely when the Brig Officers abandon them, you can now get 'em here! Yay! Wahoo!
@@ -163,4 +163,4 @@
 
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "Security Outfitting Station"
+	machine_name = "安保制服配给站"

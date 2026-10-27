@@ -58,20 +58,20 @@
 	if(SSticker.HasRoundStarted())
 		if(roundstart)
 			if(!can_run_post_roundstart)
-				return "<a class='linkOff'>Fire</a> <a class='linkOff'>Schedule</a>"
-			return "<a href='byond://?src=[REF(src)];action=fire'>Fire</a> <a href='byond://?src=[REF(src)];action=schedule'>Schedule</a>"
+				return "<a class='linkOff'>触发</a> <a class='linkOff'>安排</a>"
+			return "<a href='byond://?src=[REF(src)];action=fire'>触发</a> <a href='byond://?src=[REF(src)];action=schedule'>安排</a>"
 		else
-			return "<a href='byond://?src=[REF(src)];action=fire'>Fire</a> <a href='byond://?src=[REF(src)];action=schedule'>Schedule</a> <a href='byond://?src=[REF(src)];action=force_next'>Force Next</a>"
+			return "<a href='byond://?src=[REF(src)];action=fire'>触发</a> <a href='byond://?src=[REF(src)];action=schedule'>安排</a> <a href='byond://?src=[REF(src)];action=force_next'>强制下一个</a>"
 	else
 		if(roundstart)
-			return "<a href='byond://?src=[REF(src)];action=force_next'>Force Roundstart</a>"
+			return "<a href='byond://?src=[REF(src)];action=force_next'>强制回合开始</a>"
 		else
-			return "<a class='linkOff'>Fire</a> <a class='linkOff'>Schedule</a> <a class='linkOff'>Force Next</a>"
+			return "<a class='linkOff'>触发</a> <a class='linkOff'>安排</a> <a class='linkOff'>强制下一个</a>"
 
 /datum/round_event_control/Topic(href, href_list)
 	. = ..()
 	switch(href_list["action"])
 		if("force_next")
-			message_admins("[key_name_admin(usr)] has forced scheduled event [src.name].")
-			log_admin_private("[key_name(usr)] has forced scheduled event [src.name].")
+			message_admins("[key_name_admin(usr)] 强制触发了预定事件 [src.name]。")
+			log_admin_private("[key_name(usr)] 强制触发了预定事件 [src.name]。")
 			SSgamemode.force_event(src)

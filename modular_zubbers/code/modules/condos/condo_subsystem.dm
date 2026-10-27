@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(condos)
-	name = "Condos"
+	name = "公寓"
 	ss_flags = SS_NO_FIRE
 	init_stage = INITSTAGE_LAST
 	/// All possible condo templates.
@@ -60,14 +60,14 @@ SUBSYSTEM_DEF(condos)
 	if(active_condos["[condo_number]"])
 		var/datum/turf_reservation/condo/target_active_condo = active_condos["[condo_number]"]
 		if(!target_active_condo)
-			to_chat(user, span_warning("Condo [condo_number] error. Unable to find condo reservation!"))
+			to_chat(user, span_warning("公寓 [condo_number] 出错：找不到公寓预留记录！"))
 			return FALSE
 
 		do_sparks(3, FALSE, get_turf(user))
 
 		var/turf/condo_bottom_left = target_active_condo.bottom_left_turfs[1]
 		if(!condo_bottom_left)
-			to_chat(user, span_warning("Condo [condo_number] error. Unable to find entry turf!"))
+			to_chat(user, span_warning("公寓 [condo_number] 出错：找不到入口地砖！"))
 			return FALSE
 
 		if(user.forceMove(locate(
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(condos)
 		)))
 			return TRUE
 
-	to_chat(user, span_warning("Condo [condo_number] error. Mystery failure!"))
+	to_chat(user, span_warning("公寓 [condo_number] 出错：原因不明的失败！"))
 	return FALSE
 
 /// No condo was found on the number we input - create a new reservation, load our template, assign it in active_condos - and warp our user to the landing zone
@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(condos)
 	var/datum/turf_reservation/condo/condo_reservation = SSmapping.request_turf_block_reservation(our_condo.width, our_condo.height, 1, reservation_type = /datum/turf_reservation/condo)
 	var/turf/bottom_left = condo_reservation.bottom_left_turfs[1]
 	if(!bottom_left)
-		to_chat(user, span_warning("Failed to reserve a room for you! Contact the technical concierge."))
+		to_chat(user, span_warning("无法为你预留房间！请联系技术礼宾。"))
 		return
 	our_condo.load(bottom_left)
 	condo_reservation.condo_template = our_condo
@@ -104,17 +104,17 @@ SUBSYSTEM_DEF(condos)
 /datum/controller/subsystem/condos/proc/link_condo_turfs(datum/turf_reservation/condo/current_reservation, condo_number, parent_object)
 	var/turf/condo_bottom_left = current_reservation.bottom_left_turfs[1]
 	var/area/misc/condo/current_area = get_area(condo_bottom_left)
-	current_area.name = "Condo [condo_number]"
+	current_area.name = "公寓 [condo_number]"
 	current_area.parent_object = parent_object
 	current_area.condo_number = condo_number
 	current_area.reservation = current_reservation
 
 	for(var/turf/closed/indestructible/hoteldoor/door in current_reservation.reserved_turfs)
 		door.parentSphere = parent_object
-		door.desc = "The door to this condo. \
-			The placard reads 'Room [condo_number]'. \
-			Strangely, this door doesn't even seem openable. \
-			The doorknob, however, seems to buzz with unusual energy...<br/>\
-			[span_info("Alt-Click to look through the peephole.")]"
+		door.desc = "这间公寓的门。 \
+			门上标牌写着“房间 [condo_number]”。 \
+			奇怪的是，这扇门似乎根本打不开。 \
+			但门把手似乎嗡鸣着不寻常的能量……<br/>\
+			[span_info("Alt 点击可从窥视孔向里看。")]"
 	for(var/turf/open/space/bluespace/bluespace_turf in current_reservation.reserved_turfs)
 		bluespace_turf.parentSphere = parent_object

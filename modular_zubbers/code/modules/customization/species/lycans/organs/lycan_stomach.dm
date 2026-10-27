@@ -1,3 +1,3 @@
 /obj/item/organ/stomach/lycan
-	name = "lupine stomach"
-	desc = "A large stomach, good for holding large meals, you suppose."
+	name = "狼人胃"
+	desc = "一个大胃，你猜装大餐正合适。"

@@ -3,21 +3,21 @@
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
-	name = "black divers boots"
-	desc = "An old pair of boots used by a now-defunct mining coalition, it seems close to the ones used by Nanotrasen miners, but without the compartments for fitting small items."
+	name = "黑色潜水靴"
+	desc = "一双老旧靴子，曾属于如今已解体的某个采矿联盟，外形接近纳米传讯矿工所穿的款式，只是没有用来装小物件的隔层。"
 	icon_state = "diver"
 	worn_icon_state = "diver"
 
 /obj/item/clothing/shoes/fancy_heels/cc
-	name = "nanotrasen heels"
-	desc = "Surely these aren't official. Right?"
+	name = "纳米传讯高跟鞋"
+	desc = "这肯定不是官方配发的。对吧？"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/cc"
 	greyscale_colors = "#316E4A"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/syndi
-	name = "syndiheels"
-	desc = "Heel in more way than one."
+	name = "辛迪加高跟鞋"
+	desc = "一双在“跟”字上做足文章的高跟鞋。"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/syndi"
 	greyscale_colors = "#18191E"
 	body_parts_covered = parent_type::body_parts_covered | LEGS
@@ -29,13 +29,13 @@
 	force = 10
 	throwforce = 15
 	sharpness = SHARP_POINTY
-	attack_verb_continuous = list("attacks", "slices", "slashes", "cuts", "stabs")
-	attack_verb_simple = list("attack", "slice", "slash", "cut", "stab")
+	attack_verb_continuous = list("攻击", "切片", "斩击", "切割", "刺击")
+	attack_verb_simple = list("攻击", "切片", "斩击", "切割", "刺击")
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/wizard
-	name = "magical heels"
-	desc = "A pair of heels that seem to magically solve all the problems with walking in heels."
+	name = "魔法高跟鞋"
+	desc = "一双似乎能用魔法解决穿高跟鞋行走一切问题的鞋子。"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/wizard"
 	strip_delay = 2 SECONDS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -43,20 +43,20 @@
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/red
-	name = "red heels"
-	desc = "A pair of classy red heels."
+	name = "红色高跟鞋"
+	desc = "一双优雅的红色高跟鞋。"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/red"
 	greyscale_colors = "#921C25"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/blue
-	name = "blue heels"
+	name = "蓝色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/blue"
 	greyscale_colors = "#41579a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/lightgrey
-	name = "light grey heels"
+	name = "浅灰色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/lightgrey"
 	greyscale_colors = "#d0d7da"
 	flags_1 = null
@@ -64,8 +64,8 @@
 //HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/shoes/workboots/mining/heeled
-	name = "heeled mining boots"
-	desc = "Steel-toed mining heels for mining in hazardous environments. This was an awful idea."
+	name = "高跟采矿靴"
+	desc = "钢头采矿高跟靴，专为危险环境下的采矿作业打造。这主意糟透了。"
 	icon_state = "explorer_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -73,14 +73,14 @@
 	species_exception = null
 
 /obj/item/clothing/shoes/fancy_heels/navyblue
-	name = "navy blue heels"
+	name = "藏青色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/navyblue"
 	greyscale_colors = "#362f68"
 	flags_1 = null
 
 /obj/item/clothing/shoes/workboots/heeled
-	name = "heeled work boots"
-	desc = "Nanotrasen-issue Engineering lace-up work heels that seem almost especially designed to cause a workplace accident."
+	name = "高跟工作靴"
+	desc = "纳米传讯工程部配发的系带高跟工作靴，几乎像是专门为了引发工伤事故而设计的。"
 	icon_state = "workboots_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -90,13 +90,13 @@
 //MEDICAL
 
 /obj/item/clothing/shoes/fancy_heels/white
-	name = "white heels"
+	name = "白色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/white"
 	greyscale_colors = "#ffffff"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/darkblue
-	name = "dark blue heels"
+	name = "深蓝色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkblue"
 	greyscale_colors = "#364660"
 	flags_1 = null
@@ -104,13 +104,13 @@
 //SCIENCE
 
 /obj/item/clothing/shoes/fancy_heels/black
-	name = "black heels"
+	name = "黑色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/black"
 	greyscale_colors = "#39393f"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/purple
-	name = "purple heels"
+	name = "紫色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/purple"
 	greyscale_colors = "#7e1980"
 	flags_1 = null
@@ -118,25 +118,25 @@
 //SECURITY
 
 /obj/item/clothing/shoes/fancy_heels/red
-	name = "red heels"
+	name = "红色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/red"
 	greyscale_colors = "#a52f29"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/grey
-	name = "grey heels"
+	name = "灰色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/grey"
 	greyscale_colors = "#918f8c"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/brown
-	name = "brown heels"
+	name = "棕色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/brown"
 	greyscale_colors = "#784f44"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/orange
-	name = "orange heels"
+	name = "橙色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/orange"
 	greyscale_colors = "#ff8d1e"
 	flags_1 = null
@@ -144,8 +144,8 @@
 //HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/shoes/jackboots/gogo_boots
-	name = "tactical go-go boots"
-	desc = "Highly tactical footwear designed to give you a better view of the battlefield."
+	name = "战术戈戈靴"
+	desc = "极具战术性的鞋履，专为让你更好地观察战场而设计。"
 	icon_state = "hos_boots"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -155,7 +155,7 @@
 //SERVICE
 
 /obj/item/clothing/shoes/fancy_heels/lightblue
-	name = "light blue heels"
+	name = "浅蓝色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/lightblue"
 	greyscale_colors = "#3e6588"
 	flags_1 = null
@@ -163,8 +163,8 @@
 //HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/shoes/galoshes/heeled
-	name = "heeled galoshes"
-	desc = "A pair of yellow rubber heels, designed to prevent slipping on wet surfaces. These are even harder to walk in than normal heels."
+	name = "高跟套鞋"
+	desc = "一双黄色橡胶高跟套鞋，用于防止在湿滑地面上滑倒。穿着它走路比普通高跟鞋还要难。"
 	icon_state ="galoshes_heeled"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -172,7 +172,7 @@
 	custom_premium_price = PAYCHECK_CREW * 3
 
 /obj/item/clothing/shoes/fancy_heels/green
-	name = "green heels"
+	name = "绿色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/green"
 	greyscale_colors = "#50d967"
 	flags_1 = null
@@ -180,45 +180,45 @@
 //HEELED STUFF (NOT THE FANCY HEELS) SPRITES BY DimWhat OF MONKE STATION
 
 /obj/item/clothing/shoes/clown_shoes/heeled
-	name = "honk heels"
-	desc = "A pair of high heeled clown shoes. What kind of maniac would design these?"
+	name = "洪克高跟鞋"
+	desc = "一双高跟小丑鞋。什么样的疯子才会设计这种东西？"
 	icon_state ="honk_heels"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 
 /obj/item/clothing/shoes/fancy_heels/darkgreen
-	name = "dark green heels"
+	name = "深绿色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkgreen"
 	greyscale_colors = "#47853a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/teal
-	name = "teal heels"
+	name = "青蓝色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/teal"
 	greyscale_colors = "#5cbfaa"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/mutedblack
-	name = "muted black heels"
+	name = "暗哑黑高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/mutedblack"
 	greyscale_colors = "#2f3038"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/mutedblue
-	name = "muted blue heels"
+	name = "暗哑蓝高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/mutedblue"
 	greyscale_colors = "#1165c5"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/beige
-	name = "beige heels"
+	name = "米色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/beige"
 	greyscale_colors = "#a69e9a"
 	flags_1 = null
 
 /obj/item/clothing/shoes/fancy_heels/darkgrey
-	name = "dark grey heels"
+	name = "深灰色高跟鞋"
 	icon_state = "/obj/item/clothing/shoes/fancy_heels/darkgrey"
 	greyscale_colors = "#46464d"
 	flags_1 = null
@@ -228,8 +228,8 @@
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
-	name = "banana slippers"
-	desc = "Stylish banana shaped shoes that make it impossible to walk without slipping. Due to the slippery nature of them, removal will require the help of a friend!"
+	name = "香蕉拖鞋"
+	desc = "时尚的香蕉造型鞋子，穿上之后根本没法不打滑地走路。由于它们实在太滑，想脱下来还得请朋友帮忙！"
 	icon_state = "banana_slippers"
 	worn_icon_state = "banana_slippers"
 	fastening_type = SHOES_SLIPON
@@ -250,20 +250,20 @@
 			var/obj/item/hit_human_shoes = hit_human.shoes
 			// check if the item has NODROP
 			if(HAS_TRAIT(hit_human_shoes, TRAIT_NODROP))
-				hit_human.visible_message(span_warning("[src] bounces off [hit_human]'s [hit_human_shoes.name]!"), span_warning("[src] bounces off your [hit_human_shoes.name], falling to the floor."))
+				hit_human.visible_message(span_warning("[src] 从 [hit_human] 的[hit_human_shoes.name]上弹开了！"), span_warning("[src] 从你的[hit_human_shoes.name]上弹开，掉到了地板上。"))
 				return
 			// check if the item is an actual clothing feet item, since some non-clothing items can be worn
 			if(istype(hit_human_shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/head/hit_human_shoes_confirmed = hit_human_shoes
 				// SNUG_FIT shoes are immune to being knocked off
 				if(hit_human_shoes_confirmed.clothing_flags & SNUG_FIT)
-					hit_human.visible_message(span_warning("[src] bounces off [hit_human]'s [hit_human_shoes_confirmed.name]!"), span_warning("[src] bounces off your [hit_human_shoes_confirmed.name], falling to the floor."))
+					hit_human.visible_message(span_warning("[src] 从 [hit_human] 的[hit_human_shoes_confirmed.name]上弹开了！"), span_warning("[src] 从你的[hit_human_shoes_confirmed.name]上弹开，掉到了地板上。"))
 					return
 			// if the slippers manages to knock something off
 			if(hit_human.dropItemToGround(hit_human_shoes))
-				hit_human.visible_message(span_warning("[src] slips [hit_human_shoes] off [hit_human]'s feet!"), span_warning("[hit_human_shoes] is suddenly slipped off your feet by [src]!"))
+				hit_human.visible_message(span_warning("[src] 把[hit_human_shoes]从 [hit_human] 的脚上蹭了下来！"), span_warning("[hit_human_shoes]突然被[src]从你脚上蹭掉了！"))
 		if(hit_human.equip_to_slot_if_possible(src, ITEM_SLOT_FEET, 0, 1, 1))
-			hit_human.visible_message(span_notice("[src] lands neatly on [hit_human]'s feet!"), span_notice("[src] lands perfectly onto your feet!"))
+			hit_human.visible_message(span_notice("[src] 稳稳地落在 [hit_human] 的脚上！"), span_notice("[src] 完美地套在了你的脚上！"))
 			hit_human.update_held_items() //force update hands to prevent ghost sprites appearing when throw mode is on
 		return
 	if(iscyborg(hit_atom))
@@ -300,8 +300,8 @@
 	return TRUE
 
 /obj/item/clothing/shoes/horseshoe
-	name = "horseshoes"
-	desc = "A pair of horseshoes made out of chains."
+	name = "马蹄铁"
+	desc = "一副用链条制成的马蹄铁。"
 	icon = 'modular_skyrat/modules/reagent_forging/icons/obj/forge_clothing.dmi'
 	worn_icon = 'modular_skyrat/modules/reagent_forging/icons/mob/clothing/forge_clothing.dmi'
 	icon_state = "horseshoe"
@@ -314,8 +314,8 @@
 // sprites by Aeri/unionheart
 // digi sprites by @sippykot
 /obj/item/clothing/shoes/jackboots/heel
-	name = "high-heeled jackboots"
-	desc = "Synth-leather jackboots, the material polished to an almost mirror sheen - and with a curious addition of a rather aggressive heel."
+	name = "高跟长筒军靴"
+	desc = "合成皮革长筒军靴，材质被打磨得几乎像镜面一样发亮——还古怪地加了一只相当有攻击性的鞋跟。"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
@@ -331,24 +331,24 @@
 
 // Diesel Boots | Sprites by Fluff from Bad Deathclaw
 /obj/item/clothing/shoes/jackboots/diesel_m
-	name = "male diesel boots"
-	desc = "Fancy mens' steel-toed boots."
+	name = "男式柴油靴"
+	desc = "考究的男式钢头靴。"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_m"
 
 /obj/item/clothing/shoes/jackboots/diesel_f
-	name = "female diesel boots"
-	desc = "Fancy womens' knee-high platform boots with shiny steel clasps."
+	name = "女式柴油靴"
+	desc = "考究的女式及膝厚底靴，配有锃亮的钢制搭扣。"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/feet/feet_digi.dmi'
 	icon_state = "diesel_f"
 
 /obj/item/clothing/shoes/jackboots/toeless // Ported from SPLURT
-	name = "toe-less jackboots"
-	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
+	name = "露趾长筒军靴"
+	desc = "经过改装的长筒军靴，对脚趾带爪的种族格外友好。"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	icon_state = "jackboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -356,8 +356,8 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 /obj/item/clothing/shoes/workboots/toeless // Ported from SPLURT
-	name = "toe-less workboots"
-	desc = "A pair of toe-less work boots designed for use in industrial settings. Modified for species whose toes have claws."
+	name = "露趾工作靴"
+	desc = "一双为工业场景设计的露趾工作靴。经过改装，适合脚趾带爪的种族。"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	icon_state = "workboots-toeless"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -366,8 +366,8 @@
 
 
 /obj/item/clothing/shoes/jackboots/combine
-	name = "union jackboots"
-	desc = "Crushing cans and crushing skulls."
+	name = "联合军长筒靴"
+	desc = "碾扁易拉罐，也碾碎头骨。"
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
 
 /obj/item/clothing/shoes/jackboots/combine/Initialize(mapload)
@@ -385,8 +385,8 @@
 
 //MGS stuff sprited by Crumpaloo for onlyplateau, please credit when porting, which you obviously have permission to do.
 /obj/item/clothing/shoes/combat/boss
-	name = "patriot's boots"
-	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	name = "爱国者的靴子"
+	desc = "如今我心中已空无一物。什么都不剩了。没有仇恨，甚至连悔意也没有。"
 	icon_state = "boss"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -395,8 +395,8 @@
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) //Stealth suit.
 
 /obj/item/clothing/shoes/jackboots/boss
-	name = "mecury woman's boots"
-	desc = "There is nothing left inside me now. Nothing at all. No hatred, not even regret."
+	name = "水星女郎的靴子"
+	desc = "如今我心中已空无一物。什么都不剩了。没有仇恨，甚至连悔意也没有。"
 	icon_state = "boss"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -404,8 +404,8 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 /obj/item/clothing/shoes/jackboots/snake
-	name = "stealth boots"
-	desc = "We will leave our motherlands behind us."
+	name = "潜行靴"
+	desc = "我们将把故土抛在身后。"
 	icon_state = "snake"
 	icon = 'modular_zubbers/icons/obj/clothing/feet/feet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/feet/feet.dmi'
@@ -447,8 +447,8 @@
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/feet/feet_teshari.dmi'
 
 /obj/item/clothing/shoes/combat/bluespace
-	name = "technician's boots"
-	desc = "The combat boots that you shouldn't have. Insoles lined with bluespace fabric enable it to do bullshit."
+	name = "技师靴"
+	desc = "一双你本不该拥有的作战靴。鞋垫衬着蓝空间织物，让它能干出些胡扯的事来。"
 	strip_delay = 60 SECONDS
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF
 	lace_time = 0.5 SECONDS
@@ -459,7 +459,7 @@
 	var/free_move = FALSE
 	var/list/active_traits = list(TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE, TRAIT_NO_SLIP_ALL, TRAIT_SPACEWALK)
 
-GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Freedom of Movement", null)
+GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "切换自由移动", null)
 
 	if(!can_use(usr))
 		return
@@ -472,10 +472,10 @@ GAME_VERB_SRC(/obj/item/clothing/shoes/combat/bluespace, toggle, usr, "Toggle Fr
 	else
 		detach_clothing_traits(active_traits)
 
-	balloon_alert(user, "freedom of movement [free_move ? "activated" : "deactivated"]")
+	balloon_alert(user, "自由移动已[free_move ? "激活" : "停用"]")
 
 
 
 /obj/item/clothing/shoes/combat/bluespace/examine(mob/user)
 	. = ..()
-	. += "Its bluespace free movement device appears to be [free_move ? "activated" : "deactivated"]."
+	. += "它的蓝空间自由移动装置似乎处于[free_move ? "激活" : "停用"]状态。"

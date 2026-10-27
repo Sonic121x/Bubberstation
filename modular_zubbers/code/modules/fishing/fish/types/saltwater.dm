@@ -1,7 +1,7 @@
 /obj/item/fish/shrimp
-	name = "shrimp"
+	name = "虾"
 	fish_id = "shrimp"
-	desc = "A reddish pink crustacean. How many of them would you have to eat for your skin to turn pink?"
+	desc = "一种偏红粉色的甲壳类。你得吃下多少只，皮肤才会变成粉色呢？"
 	icon = 'modular_zubbers/icons/obj/aquarium/fish.dmi'
 	icon_state = "shrimp"
 	dedicated_in_aquarium_icon = 'modular_zubbers/icons/obj/aquarium/fish.dmi'
@@ -18,4 +18,4 @@
 	fillet_type = /obj/item/food/fishmeat/shrimp
 
 /obj/item/fish/shrimp/get_fish_taste()
-	return list("raw shrimp" = 2)
+	return list("生虾" = 2)

@@ -2,7 +2,7 @@
 	id = SPECIES_PROTEAN
 	examine_limb_id = SPECIES_PROTEAN
 
-	name = "\improper Protean"
+	name = "\improper 普罗蒂安"
 	sexes = TRUE
 
 	siemens_coeff = 1.5 // Electricty messes you up.
@@ -114,8 +114,8 @@
 
 	organ.Remove(source)
 	organ.forceMove(get_turf(source))
-	to_chat(source, span_danger("Your mass rejected [organ]!"))
-	organ.balloon_alert_to_viewers("rejected!", vision_distance = 1)
+	to_chat(source, span_danger("你的质量体排斥了 [organ]！"))
+	organ.balloon_alert_to_viewers("已被排斥！", vision_distance = 1)
 
 /datum/species/protean/on_species_loss(mob/living/carbon/human/gainer, datum/species/new_species, pref_load)
 	. = ..()
@@ -166,12 +166,12 @@
 
 /datum/species/protean/proc/assimilate_modsuit(mob/living/user, obj/item/mod/control/to_assimilate, forced = FALSE)
 	if(species_modsuit.stored_modsuit)
-		to_chat(user, span_warning("Can't absorb two modsuits!"))
+		to_chat(user, span_warning("无法吸收两套 MOD 外骨骼！"))
 		if(forced)
 			stack_trace("assimilate_modsuit() tried to assimilate two modsuits. stored_modsuit: [species_modsuit.stored_modsuit], new_modsuit: [to_assimilate]")
 		return
 	if(!user?.transferItemToLoc(to_assimilate, species_modsuit, forced))
-		owner.balloon_alert(user, "stuck!")
+		owner.balloon_alert(user, "卡住了！")
 	if(!forced)
 		for(var/obj/item/part as anything in species_modsuit.get_parts())
 			if(part.loc == src)
@@ -203,13 +203,13 @@
 
 /datum/species/protean/proc/unassimilate_modsuit(mob/living/user, forced = FALSE)
 	if(!species_modsuit.stored_modsuit)
-		to_chat(user, span_warning("There is no assimilated suit."))
+		to_chat(user, span_warning("没有已同化的外骨骼。"))
 		return
 	if(species_modsuit.active && !forced)
-		user.balloon_alert(user, "deactivate modsuit")
+		user.balloon_alert(user, "请先关闭 MOD 外骨骼")
 		return
 	if(!(user?.has_active_hand()) && !forced)
-		user.balloon_alert(user, "need active hand")
+		user.balloon_alert(user, "需要空出一只手")
 		return
 
 	for(var/obj/item/part in species_modsuit.get_parts())
@@ -224,7 +224,7 @@
 			continue
 		species_modsuit.uninstall(module, user)
 		if(!species_modsuit.stored_modsuit.install(module, user, TRUE))
-			to_chat(user, span_notice("[module] has fallen to the floor!"))
+			to_chat(user, span_notice("[module] 掉到了地上！"))
 			module.forceMove(get_turf(species_modsuit))
 		species_modsuit.cached_modules -= module
 
@@ -278,10 +278,10 @@
 
 /datum/species/protean/get_species_description()
 	return list(
-			"Trillions of small machines swarm into a single crewmember. This is a Protean, a walking coherent blob of metallic mass, and a churning factory that turns materials into more of itself. \
-			Proteans are unkillable. Instead, they shunt themselves away into their core when catastrophic losses to their swarm occur. Their cores also mimic the functions of a modsuit and can even assimilate more functional suits to use. \
-			Proteans only have a few vital organs, which can only be replaced via cargo. Their refactory is a miniature factory, and without it, they will face slow, agonizing degradation. Their Orchestrator is a miniature processor required for ease of movement. \
-			Proteans are an extremely fragile species, weak in combat, but a powerful aid, or a puppeteer pulling the strings.")
+			"数以万亿计的微小机械汇聚成一名船员。这就是普罗蒂安——一团会走路的、由金属物质凝聚而成的团块，也是一座不断翻搅、把材料变成更多自己的工厂。 \
+			普罗蒂安无法被杀死。当它们的蜂群遭遇灾难性损失时，它们会把自己转入核心之中。它们的核心还能模拟 MOD 外骨骼的功能，甚至能同化功能更完善的外骨骼来使用。 \
+			普罗蒂安只有少数几个重要器官，且只能通过货运更换。它们的重构厂是一座微型工厂，失去它，它们就会缓慢而痛苦地崩解。它们的调度模块是一枚微型处理器，是顺畅行动所必需的。 \
+			普罗蒂安是极其脆弱的种族，战斗能力低下，但能成为强大的助力，或是在幕后提线的操纵者。")
 
 /datum/species/protean/create_pref_unique_perks()
 	var/list/perk_descriptions = list()
@@ -289,15 +289,15 @@
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 		SPECIES_PERK_ICON = FA_ICON_REFRESH,
-		SPECIES_PERK_NAME = "MODsuit Mode",
-		SPECIES_PERK_DESC = "[plural_form] are able to turn into MODsuits, and have some special components available to them. When [plural_form] enter a critical state, they instead withdraw into MODsuit form until a refactory is inserted into them."
+		SPECIES_PERK_NAME = "MOD 外骨骼形态",
+		SPECIES_PERK_DESC = "普罗蒂安能够变成 MOD 外骨骼，并拥有一些专属的特殊组件。当普罗蒂安进入危急状态时，它们会缩回 MOD 外骨骼形态，直到有人为它们装入重构厂。"
 	))
 
 	perk_descriptions += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = FA_ICON_SQUARE_VIRUS,
-		SPECIES_PERK_NAME = "Protean Oddities",
-		SPECIES_PERK_DESC = "[plural_form] are inorganic beings. They are unable to gain nutrition from traditional foods. Instead, they must consume metals - Primarily, iron. \ In addition to this, [plural_form] are unable to be surgically or chemically healed; [plural_form] regenerate their body over time, consuming their nutrition to do so."
+		SPECIES_PERK_NAME = "普罗蒂安的异处",
+		SPECIES_PERK_DESC = "普罗蒂安是无机生命体，无法从传统食物中获取营养，而必须摄入金属——主要是铁。 \ 此外，普罗蒂安无法通过手术或药物治愈；它们会随时间自行再生身体，并为此消耗自身的营养。"
 	))
 
 	return perk_descriptions

@@ -85,7 +85,7 @@
 /obj/machinery/vending/wardrobe/robo_wardrobe
 	product_categories = list(
 		list(
-			"name" = "Clothing",
+			"name" = "服装",
 			"icon" = FA_ICON_SHIRT,
 			"products" = list(
 				/obj/item/clothing/glasses/welding/steampunk_goggles = 2,
@@ -106,7 +106,7 @@
 			),
 		),
 		list(
-			"name" = "Surgery",
+			"name" = "手术",
 			"icon" = FA_ICON_VIAL,
 			"products" = list(
 				/obj/item/bonesetter = 2, // for dislocations
@@ -128,8 +128,8 @@
 		)
 	)
 /obj/machinery/vending/wardrobe/robo_wardrobe // I don't know why but if I don't put this in here again, contraband and premium don't want to work.
-	name = "RoboVend"
-	desc = "A vending machine designed to dispense clothing and tools for roboticists."
+	name = "机器人售货机"
+	desc = "一台专为机器人学家发放服装与工具的售货机。"
 	contraband = list(
 		/obj/item/organ/tongue/lizard/robot = 2,
 		/obj/item/storage/box/purity_seal_box = 2, // purity seals for any techpriests working in robotics!
@@ -147,7 +147,7 @@
 	. = ..()
 
 /obj/item/vending_refill/wardrobe/robo_wardrobe
-	machine_name = "RoboVend"
+	machine_name = "机器人售货机"
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
 	zubbers_products = list(

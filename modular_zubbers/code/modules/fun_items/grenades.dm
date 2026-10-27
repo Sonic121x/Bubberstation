@@ -1,6 +1,6 @@
 /obj/item/grenade/chem_grenade/wehnade
-	name = "wehnade"
-	desc = "A weird, old looking grenade casing. If you shake it you can hear liquid inside. It has no markings on it beside a hand written sticker that says 'Weh'!"
+	name = "weh 手雷"
+	desc = "一个古怪而陈旧的化学手雷外壳。摇晃时会听到里面有液体晃动的声音。外壳上没有任何标记，只有一张手写的贴纸，上面写着“Weh”！"
 	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/wehnade/Initialize(mapload)

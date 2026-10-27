@@ -1,7 +1,7 @@
 /datum/mkultra_command/relax
-	name = "Relax"
-	description = "Gives 30 seconds of bonus progress."
-	feedback = "visibly relaxes from the command."
+	name = "放松"
+	description = "提供 30 秒的额外进度。"
+	feedback = "因这道命令而明显放松下来。"
 	trigger = "relax|obey|serve|love|calm down"
 	cooldown = 30 SECONDS
 

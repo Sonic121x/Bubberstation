@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/tarkon
-	name = "tarkon industries backpack"
-	desc = "A rugged backpack for colony and port life. Made in the typical tarkon colours"
+	name = "塔肯工业背包"
+	desc = "适合殖民地与港口生活的一款结实背包。采用塔肯的经典配色。"
 	icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
 	icon_state = "backpack-tarkon"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
@@ -8,8 +8,8 @@
 	resistance_flags = FIRE_PROOF //Industrial grade
 
 /obj/item/storage/backpack/satchel/tarkon
-	name = "tarkon industries satchel"
-	desc = "A rugged satchel for colony and port life. Made in the typical tarkon colours"
+	name = "塔肯工业挎包"
+	desc = "适合殖民地与港口生活的一款结实挎包。采用塔肯的经典配色。"
 	icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
 	icon_state = "satchel-tarkon"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
@@ -17,8 +17,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/duffelbag/tarkon
-	name = "tarkon industries duffelbag"
-	desc = "A rugged duffelbag for colony and port life. Made in the typical tarkon colours"
+	name = "塔肯工业行李袋"
+	desc = "适合殖民地与港口生活的一款结实行李袋。采用塔肯的经典配色。"
 	icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
 	icon_state = "duffel-tarkon"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'
@@ -29,8 +29,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/messenger/tarkon
-	name = "tarkon industries messenger bag"
-	desc = "A rugged messenger bag for colony and port life. Made in the typical tarkon colours"
+	name = "塔肯工业邮差包"
+	desc = "适合殖民地与港口生活的一款结实邮差包。采用塔肯的经典配色。"
 	icon = 'modular_zubbers/icons/obj/clothing/back/backpack.dmi'
 	icon_state = "messenger-tarkon"
 	worn_icon = 'modular_zubbers/icons/mob/clothing/back/backpack.dmi'

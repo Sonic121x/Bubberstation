@@ -17,7 +17,7 @@
 	if(isnull(preferred_limb) || !IS_ROBOTIC_LIMB(preferred_limb))
 		return NONE
 	if(!(preferred_limb.burn_dam > 0))
-		balloon_alert(user, "limb not damaged")
+		balloon_alert(user, "肢体未受损")
 		return ITEM_INTERACT_BLOCKING
 	var/list/damaged_limbs = list()
 	for(var/obj/item/bodypart/limb as anything in carbon_patient.bodyparts)
@@ -33,14 +33,14 @@
 		var/list/updated_damaged_limbs = damaged_limbs
 		updated_damaged_limbs.Remove(repaired)
 		if(!length(damaged_limbs))
-			user.balloon_alert(user, "fully repaired")
+			user.balloon_alert(user, "已完全修复")
 			return ITEM_INTERACT_SUCCESS
-		user.balloon_alert(user, "repairing [updated_damaged_limbs[1]]")
+		user.balloon_alert(user, "正在修复[updated_damaged_limbs[1]]")
 		INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, updated_damaged_limbs, preferred_limb)
 		return
 
-	user.visible_message(span_notice("[user] starts to fix some of the wires in [attacked_humanoid == user ? user.p_their() : "[attacked_humanoid]'s"] [repaired.name]."),
-		span_notice("You start fixing some of the wires in [attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [repaired.name]."))
+	user.visible_message(span_notice("[user]开始修复[attacked_humanoid == user ? "自己" : "[attacked_humanoid]"]的[repaired.name]上的部分线缆。"),
+		span_notice("你开始修复[attacked_humanoid == user ? "你" : "[attacked_humanoid]"]的[repaired.name]上的部分线缆。"))
 	var/use_delay = 1 SECONDS
 	if(user == attacked_humanoid)
 		use_delay = 5 SECONDS
@@ -49,8 +49,8 @@
 		return ITEM_INTERACT_BLOCKING
 
 	repaired.heal_damage(brute = 0, burn = 15, required_bodytype = BODYTYPE_ROBOTIC)
-	user.visible_message(span_notice("[user] fixes some of the burnt wires on [attacked_humanoid]'s [repaired.name]."), \
-		span_notice("You fix some of the burnt wires on [attacked_humanoid == user ? "your" : "[attacked_humanoid]'s"] [repaired.name]."))
+	user.visible_message(span_notice("[user]修好了[attacked_humanoid]的[repaired.name]上部分烧毁的线缆。"), \
+		span_notice("你修好了[attacked_humanoid == user ? "你" : "[attacked_humanoid]"]的[repaired.name]上部分烧毁的线缆。"))
 
 	if (use(1) && amount > 0)
 		INVOKE_ASYNC(src, PROC_REF(try_auto_heal), interacting_with, user, damaged_limbs, preferred_limb)

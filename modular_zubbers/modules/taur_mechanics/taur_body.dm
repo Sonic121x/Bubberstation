@@ -1,7 +1,7 @@
 #define LAYDOWN_COOLDOWN 1 SECONDS
 
 /obj/item/organ/taur_body
-	name = "taur body"
+	name = "半人马身躯"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_EXTERNAL_TAUR
 	external_bodyshapes = BODYSHAPE_TAUR
@@ -15,9 +15,9 @@
 	var/clothing_cropping_state = DEFAULT_TAUR_CLIPPING_MASK
 
 	/// If not null, the left leg limb we add to our mob will have this name.
-	var/left_leg_name = "front legs"
+	var/left_leg_name = "前腿"
 	/// If not null, the right leg limb we add to our mob will have this name.
-	var/right_leg_name = "back legs"
+	var/right_leg_name = "后腿"
 
 	/// The mob's old right leg. Used if the person switches to this organ and then back, so they don't just, have no legs anymore. Can be null.
 	var/old_right_leg = null
@@ -68,20 +68,20 @@
 	)
 
 /obj/item/organ/taur_body/serpentine
-	left_leg_name = "upper serpentine body"
-	right_leg_name = "lower serpentine body"
+	left_leg_name = "上半蛇身"
+	right_leg_name = "下半蛇身"
 
 /obj/item/organ/taur_body/spider
-	left_leg_name = "left legs"
-	right_leg_name = "right legs"
+	left_leg_name = "左侧腿"
+	right_leg_name = "右侧腿"
 
 /obj/item/organ/taur_body/tentacle
-	left_leg_name = "front tentacles"
-	right_leg_name = "back tentacles"
+	left_leg_name = "前触手"
+	right_leg_name = "后触手"
 
 /obj/item/organ/taur_body/blob
-	left_leg_name = "outer blob"
-	right_leg_name = "inner blob"
+	left_leg_name = "外层胶体"
+	right_leg_name = "内层胶体"
 
 /obj/item/organ/taur_body/anthro
 	left_leg_name = null
@@ -141,10 +141,10 @@
 		new_right_leg = new /obj/item/bodypart/leg/right/synth/taur()
 
 	if (left_leg_name)
-		new_left_leg.name = left_leg_name + " (Left leg)"
+		new_left_leg.name = left_leg_name + "（左侧）"
 		new_left_leg.plaintext_zone = LOWER_TEXT(new_left_leg.name) // weird otherwise
 	if (right_leg_name)
-		new_right_leg.name = right_leg_name + " (Right leg)"
+		new_right_leg.name = right_leg_name + "（右侧）"
 		new_right_leg.plaintext_zone = LOWER_TEXT(new_right_leg.name)
 
 	new_left_leg.bodyshape |= external_bodyshapes
@@ -204,7 +204,7 @@
 		TEXT_WEST = list(round(riding_offset_side_x * scaling_mult, 1), round((riding_offset_side_y + taur_specific_clothing_y_offsets?[TEXT_WEST]) * scaling_mult, 1)),
 	)
 
-GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "Toggle Laying Down", "Taur")
+GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "切换伏卧", "半人马")
 	var/mob/living/carbon/human/owner = src
 	if(!istype(owner))
 		return
@@ -218,10 +218,10 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "Toggle Laying Down", "
 	if(!overlay.can_lay_down)
 		return
 	if(owner.resting)
-		to_chat(owner, span_notice("You have to be standing up in order to lay down properly!"))
+		to_chat(owner, span_notice("你得先站起来，才能好好趴下！"))
 	if(overlay.laying_down)
 		// Rising up
-		to_chat(owner, span_notice("You start lifting your body up."))
+		to_chat(owner, span_notice("你开始撑起身子。"))
 		if(!do_after(owner, LAYDOWN_COOLDOWN))
 			return
 		if(!overlay.laying_down) // Prevent multiple standups at once
@@ -233,7 +233,7 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "Toggle Laying Down", "
 
 		owner.SetImmobilized(0, TRUE)
 		REMOVE_TRAIT(owner, TRAIT_UNDENSE, TRAIT_SOURCE_TAURLAY)
-		to_chat(owner, span_notice("You stand up."))
+		to_chat(owner, span_notice("你站了起来。"))
 	else
 		// And laying back down
 		overlay.laying_down = TRUE
@@ -243,13 +243,13 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_laying, "Toggle Laying Down", "
 
 		owner.Immobilize(INFINITY, TRUE)
 		ADD_TRAIT(owner, TRAIT_UNDENSE, TRAIT_SOURCE_TAURLAY)
-		to_chat(owner, span_notice("You lay down."))
+		to_chat(owner, span_notice("你趴了下来。"))
 		if(owner.has_gravity())
 			playsound(owner, "bodyfall", 50, TRUE)
 
 #undef LAYDOWN_COOLDOWN
 
-GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_cropping, "Override Taur Cropping Settings", "Taur")
+GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_cropping, "覆盖半人马衣物裁剪设置", "半人马")
 	var/mob/living/carbon/human/owner = src
 	if(!istype(owner))
 		return
@@ -265,7 +265,7 @@ GAME_VERB_PROC(/obj/item/organ/taur_body, toggle_cropping, "Override Taur Croppi
 		else
 			ADD_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING, TRAIT_SOURCE_TAURCROP)
 
-		var/setting_string = (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING) ? "now ignoring cropping" : "no longer ignoring cropping")
+		var/setting_string = (HAS_TRAIT(owner, TRAIT_TAUR_IGNORING_CROPPING) ? "现在忽略裁剪" : "不再忽略裁剪")
 		balloon_alert(owner, setting_string)
 
 		owner.update_clothing(ITEM_SLOT_OCLOTHING|ITEM_SLOT_ICLOTHING) // the only items with taur cropping

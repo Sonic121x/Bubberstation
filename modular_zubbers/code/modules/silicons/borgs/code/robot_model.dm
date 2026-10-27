@@ -4,7 +4,7 @@
 /* Centcom Cyborgs */
 
 /obj/item/robot_model/centcom
-	name = "Central Command"
+	name = "中央指挥部"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/pen/cyborg,
@@ -84,7 +84,7 @@
 /* Research cyborgs */
 
 /obj/item/robot_model/sci
-	name = "Research"
+	name = "科研"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/extinguisher,

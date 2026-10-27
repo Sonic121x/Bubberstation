@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/binary
-	name = "crow feather cloak"
-	desc = "It's a sad piece of clothing where one finds many graves."
+	name = "乌鸦羽毛斗篷"
+	desc = "这是一件令人悲伤的衣物，上面能找到许多坟墓。"
 	icon = 'modular_zubbers/icons/obj/clothing/neck/neck.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/neck/neck.dmi'
 	worn_icon_teshari = 'modular_zubbers/icons/mob/clothing/neck/neck_teshari.dmi'

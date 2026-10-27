@@ -1,6 +1,6 @@
 /obj/item/melee/fakebeesword
-	name = "The Stinger"
-	desc = "A cheap replica of The Stinger. It isn't nearly as powerful, no wonder it's wielder died."
+	name = "毒刺"
+	desc = "一把“毒刺”的廉价仿制品。威力远远不及正品，难怪它的主人会死。"
 	icon = 'icons/obj/weapons/sword.dmi'
 	icon_state = "beesword"
 	inhand_icon_state = "stinger"
@@ -15,8 +15,8 @@
 	attack_speed = CLICK_CD_RAPID
 	block_chance = 20
 	armour_penetration = 65
-	attack_verb_continuous = list("slashes", "stings", "prickles", "pokes")
-	attack_verb_simple = list("slash", "sting", "prickle", "poke")
+	attack_verb_continuous = list("劈砍", "蜇刺", "扎", "戳")
+	attack_verb_simple = list("劈砍", "蜇刺", "扎", "戳")
 	hitsound = 'sound/items/weapons/rapierhit.ogg'
 
 /obj/item/melee/fakebeesword/afterattack(atom/target, mob/user, proximity)

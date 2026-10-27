@@ -3,10 +3,10 @@
 	icon_state = "eggnog"
 
 /datum/reagent/consumable/moth_milk
-	name = "Moth Milk"
-	description = "Whoever thought that milking moths is a good idea was totally wrong. Is it even milk?"
+	name = "蛾奶"
+	description = "当初觉得挤蛾奶是个好主意的人完全错了。这玩意儿真的算奶吗？"
 	color = "#F0E9DA" // rgb: 240, 233, 218
-	taste_description = "salty and oily substance"
+	taste_description = "咸味油状物"
 	ph = 6.5
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
@@ -24,11 +24,11 @@
 
 
 /datum/reagent/consumable/icetea/blood_tea
-	name = "Hemoglobin Iced Tea"
-	description = "A mix of blood and iced tea, with a slice of juicy blood tomato as a garnish."
+	name = "血红蛋白冰茶"
+	description = "血液与冰茶的混合物，还配上一片多汁的血番茄作点缀。"
 	color = "#B85D52"//rgb(184, 93, 82)
 	quality = DRINK_GOOD
-	taste_description = "chilly sweet tea with an iron bite"
+	taste_description = "冰凉甜茶带着一丝铁味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -45,16 +45,16 @@
 	required_drink_type = /datum/reagent/consumable/icetea/blood_tea
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "bloodteaglass"
-	name = "cup of hemoglobin iced tea"
-	desc = "Delicious sweet ice tea flavored with blood."
+	name = "一杯血红蛋白冰茶"
+	desc = "以血液调味的香甜冰茶，十分美味。"
 
 
 /datum/reagent/consumable/coffee/blood_coffee
-	name = "Blood Coffee"
-	description = "Hot black coffee mixed with rich blood, a hemophage's favorite!"
+	name = "鲜血咖啡"
+	description = "浓郁血液调入热黑咖啡，嗜血者的最爱！"
 	color = "#8E272B"//rgb(142, 39, 43)
 	quality = DRINK_GOOD
-	taste_description = "bitter iron"
+	taste_description = "苦涩的铁味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -71,16 +71,16 @@
 	required_drink_type = /datum/reagent/consumable/coffee/blood_coffee
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "bloodcoffeeglass"
-	name = "mug of blood coffee"
-	desc = "A mug of hot black coffee mixed with fresh blood."
+	name = "一杯鲜血咖啡"
+	desc = "一杯混入新鲜血液的热黑咖啡。"
 
 
 /datum/reagent/consumable/intraverde
 	name = "Intraverde"
-	description = "A melon soda float topped with blood-infused whipped cream."
+	description = "一杯蜜瓜苏打冰浮，顶上覆着掺血的鲜奶油。"
 	color = "#40e729"
 	quality = DRINK_GOOD
-	taste_description = "tart sugar and a bit lip."
+	taste_description = "酸涩的糖味，还有一点咬破嘴唇的味道。"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -98,16 +98,16 @@
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "intraverde"
 	name = "Intraverde"
-	desc = "A fang-rotting float, often requested by hemophage fledglings who have yet grown the taste for ichor. The whipped cream top is infused with blood."
+	desc = "一杯能把獠牙甜坏的冰浮，常被还没喝惯灵浆的嗜血者幼崽点单。顶上的鲜奶油掺了血。"
 
 
 /datum/reagent/consumable/ethanol/venetian_waltz
-	name = "Venetian Waltz"
-	description = "A chocolate-caramel dessert cocktail, made for blood-drinkers."
+	name = "威尼斯华尔兹"
+	description = "一款巧克力焦糖甜点鸡尾酒，专为饮血者调制。"
 	color = "#38210b"
 	boozepwr = 15
 	quality = DRINK_GOOD
-	taste_description = "dark and bloody chocolate"
+	taste_description = "浓郁带血的巧克力"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -124,17 +124,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/venetian_waltz
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "venetian_waltz"
-	name = "Venetian Waltz"
-	desc = "Despite the presentation, its scoffed at by older generations for its dessert-like flavour, and is relegated to the tables of sororities and heemoboos as punishment."
+	name = "威尼斯华尔兹"
+	desc = "尽管摆盘精致，它却因甜点般的风味而被老一辈嗤之以鼻，只能端到姊妹会和憨憨帅哥的桌上当作惩罚。"
 
 
 /datum/reagent/consumable/ethanol/cranberry_cadillac
-	name = "Cranberry Cadillac"
-	description = "A bubbly, candy-rimmed cocktail."
+	name = "蔓越莓凯迪拉克"
+	description = "一款冒着气泡、杯口镶糖的鸡尾酒。"
 	color = "#ac1e2a"
 	boozepwr = 45
 	quality = DRINK_GOOD
-	taste_description = "a hit-and-run made of candy"
+	taste_description = "一场糖果做的肇事逃逸"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -151,17 +151,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/cranberry_cadillac
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "cranberry_cadillac"
-	name = "Cranberry Cadillac"
-	desc = "The sugar crystals that rim the glass are red with real blood, inviting the hungry to lick it clean. Served with half a lemon slice to counter the sweetness."
+	name = "蔓越莓凯迪拉克"
+	desc = "杯口那圈糖晶被真血染得通红，诱得饥渴者把杯子舔干净。上桌时配半片柠檬，用来压住甜味。"
 
 
 /datum/reagent/consumable/ethanol/jubokko
-	name = "Jubokko"
-	description = "A drink set of sake, and yukake mixed with blood."
+	name = "树婴"
+	description = "一份清酒套餐，外加掺了血的夕烧酒。"
 	color = "#ac1e2a"
 	boozepwr = 30
 	quality = DRINK_GOOD
-	taste_description = "danger looming above you"
+	taste_description = "头顶迫近的危险"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 
@@ -178,18 +178,18 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/jubokko
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "jubokko"
-	name = "Jubokko"
-	desc = "The martian, blood-drinking chaebol serve this to their guests. Tasteful as it appears, any good poet knows foreshadowing when it's put in front of them."
+	name = "树婴"
+	desc = "火星的吸血财阀用它招待客人。看起来再怎么雅致，任何懂行的诗人都能看出摆在眼前的伏笔。"
 
 
 /datum/reagent/consumable/ethanol/morocco_coffin
-	name = "Morocco Coffin"
-	description = "A cold pressed coffee with a tinge of iron."
+	name = "摩洛哥棺材"
+	description = "一杯带着铁锈味的冷萃咖啡。"
 	color = "#200608"
 	boozepwr = 20
 	overdose_threshold = 75
 	quality = DRINK_GOOD
-	taste_description = "waking up at midnight"
+	taste_description = "午夜醒来的滋味"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 	metabolized_traits = list(TRAIT_STIMULATED)
@@ -218,18 +218,18 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/morocco_coffin
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "morocco_coffin"
-	name = "Morocco Coffin"
-	desc = "For waking up when the sun goes down. Cools you down and wakes you up."
+	name = "摩洛哥棺材"
+	desc = "专为太阳落山时醒来的人准备。让你冷静下来，也让你清醒过来。"
 
 
 /datum/reagent/consumable/ethanol/bat_outta_hell
-	name = "Bat Outta' Hell"
-	description = "Brave bull mixed with blood, with an absinthe 'varnish' sitting on top."
+	name = "地狱狂蝠"
+	description = "勇敢的公牛混入血液，上面再刷一层苦艾酒“清漆”。"
 	color = "#3d1013"
 	boozepwr = 70
 	overdose_threshold = 47
 	quality = DRINK_VERYGOOD
-	taste_description = "the blinding thrill of a HOME RUN, BABY!!"
+	taste_description = "一记全垒打那令人目眩的快感，宝贝！！"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	chemical_flags_skyrat = REAGENT_BLOOD_REGENERATING
 	metabolization_rate = 1.2 * REAGENTS_METABOLISM
@@ -264,19 +264,19 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/bat_outta_hell
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "bat_outta_hell"
-	name = "Bat Outta' Hell"
-	desc = "Strong enough to send you flyin' out of the park! Or maybe stumbling..."
+	name = "地狱狂蝠"
+	desc = "劲道足得能把你轰出球场！也可能只是让你踉跄几步……"
 
 //Ethereal Drinks
 
 /datum/reagent/consumable/ethanol/karakrak
-	name = "Karakrak"
-	description = "A lightly charged ration made with filtered wine"
+	name = "卡拉拉克"
+	description = "用过滤葡萄酒制成的轻充能配给饮品"
 	color = "#5c0b12"
 	boozepwr = 0
 	quality = DRINK_NICE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	taste_description = "bitter, watered down energy"
+	taste_description = "苦涩、被稀释的能量"
 
 /datum/reagent/consumable/ethanol/karakrak/expose_mob(mob/living/affected_mob, methods=TOUCH, reac_volume)
 	. = ..()
@@ -292,17 +292,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/karakrak
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "karakrak"
-	name = "Karakrak"
-	desc = "A sort of electric, alcohol-stripped wine served to the lowest castes of the ethereal masses, typically distributed by the clergy. Served on a rubber coaster to keep what very little charge exists from dissipating into the table."
+	name = "卡拉拉克"
+	desc = "一种带电的脱醇葡萄酒，供给以太人底层民众，通常由教会分发。上桌时垫着橡胶杯垫，以免那点微薄的电荷散进桌面。"
 
 
 /datum/reagent/consumable/ethanol/szzszz
-	name = "Szz Szz"
-	description = "A bootlegged version of ethereal monastic wine"
+	name = "滋滋"
+	description = "以太人修道院葡萄酒的私酿版本"
 	color = "#5c0b12"
 	boozepwr = 25
 	quality = DRINK_GOOD
-	taste_description = "bitter-sweet sin"
+	taste_description = "苦甜交织的罪恶"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_STIMULATED)
 	var/obj/effect/light_holder
@@ -339,16 +339,16 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/szzszz
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "szzszz"
-	name = "Szz Szz"
-	desc = "A bootlegged version of the Divine Conduit's exclusive monastic wine. The flavour has been approximated by a thousand different tongues, who for at threat of persecution, have never actually tasted it."
+	name = "滋滋"
+	desc = "神圣导管专属修道院葡萄酒的私酿版本。它的味道被上千条舌头揣摩近似，而那些人因惧怕迫害，其实从未真正尝过。"
 
 
 /datum/reagent/consumable/blumpkin_compot
-	name = "Blumpkin Compot"
-	description = "Stewed fruit, sugar, and yerba leaf. An ethereal energy drink."
+	name = "蓝瓜果羹"
+	description = "炖煮的果实、糖与马黛叶。以太人的能量饮料。"
 	color = "#3cc6e9"
 	quality = DRINK_VERYGOOD
-	taste_description = "clean, reliable energy"
+	taste_description = "干净可靠的能源"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_STIMULATED)
 
@@ -373,17 +373,17 @@
 	required_drink_type = /datum/reagent/consumable/blumpkin_compot
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "blumpkin_compot"
-	name = "Blumpkin Compot"
-	desc = "A drink created by ethereal expats made of stewed blumpkin flesh and whole berries. Sugar helps to draws out the conductive elements, making for a politely energizing beverage that's safe to drink, and also doesnt taste like window cleaner."
+	name = "蓝瓜果羹"
+	desc = "以太人侨民发明的饮品，用炖烂的蓝瓜果肉和整颗浆果制成。糖分能帮助析出导电成分，使它成为一杯礼貌又提神的饮料，喝起来也绝不像玻璃清洁剂。"
 
 
 /datum/reagent/consumable/ethanol/storm_over_avon
-	name = "Storm-Over-Avon"
-	description = "A ginny, minty cocktail for ethereal artisans."
+	name = "埃文河上风暴"
+	description = "一款为以太人工匠调制的杜松子薄荷鸡尾酒。"
 	color = "#ffca37"
 	boozepwr = 50
 	quality = DRINK_VERYGOOD
-	taste_description = "energetic snobbery"
+	taste_description = "精力充沛的势利"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_STIMULATED)
 	var/obj/effect/light_holder
@@ -403,8 +403,8 @@
 		affected_mob.set_jitter_if_lower(5 SECONDS * REM * reac_volume)
 		unluckyshock = rand(1, 15)
 		if(unluckyshock == 1)
-			to_chat(affected_mob, span_userdanger("You feel a sharp jolt of energy spark off your tongue!"))
-			affected_mob.electrocute_act(rand(1, 5), "Storm-Over-Avon shock", 1, SHOCK_NOGLOVES)
+			to_chat(affected_mob, span_userdanger("你感觉舌尖迸出一阵尖锐的能量电击！"))
+			affected_mob.electrocute_act(rand(1, 5), "埃文河上风暴电击", 1, SHOCK_NOGLOVES)
 			playsound(affected_mob, 'sound/machines/defib/defib_zap.ogg', 30, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /datum/reagent/consumable/ethanol/storm_over_avon/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
@@ -432,17 +432,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/storm_over_avon
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "storm_over_avon"
-	name = "Storm-Over-Avon"
-	desc = "A complicated cocktail preferred by devotees of the Everlasting Note. While its original ingredients are impossible to source off of Sprout, this drink-alike still resonates with the pretention that only a musical ecclesiarchy can hone. Known to rarely shock non-ethereals."
+	name = "埃文河上风暴"
+	desc = "一款工序复杂的鸡尾酒，深受“永恒音符”信徒喜爱。它的原始配料在斯普劳特之外无处可寻，但这款仿制品仍散发着只有音乐教团才能磨出的那股做派。已知偶尔会电到非以太人。"
 
 
 /datum/reagent/consumable/ethanol/coilhouse_cocktail
-	name = "Coilhouse Cocktail"
-	description = "A citrusy, electrified drink with orange juice and lemon."
+	name = "线圈屋鸡尾酒"
+	description = "一款柑橘味的带电饮品，用橙汁和柠檬调成。"
 	color = "#d6ff21"
 	boozepwr = 30
 	quality = DRINK_VERYGOOD
-	taste_description = "a disco ball in your mouth"
+	taste_description = "嘴里的一颗迪斯科球"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_STIMULATED)
 	metabolization_rate = 1.1 * REAGENTS_METABOLISM
@@ -463,8 +463,8 @@
 		affected_mob.set_jitter_if_lower(10 SECONDS * REM * reac_volume)
 		unluckyshock = rand(1, 6)
 		if(unluckyshock == 1)
-			to_chat(affected_mob, span_userdanger("You feel a sharp jolt of energy spark off your tongue!"))
-			affected_mob.electrocute_act(rand(2, 8), "Coilhouse Cocktail shock", 1, SHOCK_NOGLOVES)
+			to_chat(affected_mob, span_userdanger("你感觉舌尖迸出一阵尖锐的能量电击！"))
+			affected_mob.electrocute_act(rand(2, 8), "线圈屋鸡尾酒电击", 1, SHOCK_NOGLOVES)
 			playsound(affected_mob, 'sound/machines/defib/defib_zap.ogg', 40, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /datum/reagent/consumable/ethanol/coilhouse_cocktail/on_mob_metabolize(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
@@ -487,17 +487,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/coilhouse_cocktail
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "coilhouse_cocktail"
-	name = "Coilhouse Cocktail"
-	desc = "An ethereal cocktail too bombastic to have been born inside Soatii space. Also known as a Shocktown Jitter to those not made of electricity, for reasons that will become quickly apparent."
+	name = "线圈屋鸡尾酒"
+	desc = "一款过于张扬、不像是诞生于索阿托领空的以太人鸡尾酒。对于不是电构成的人，它又叫“电镇颤抖”，原因很快就会显现。"
 
 
 /datum/reagent/consumable/ethanol/electric_avenue
-	name = "Electric Avenue"
-	description = "A cocktail made of goldschlager and citrus, with salt."
+	name = "电气大道"
+	description = "一款用金箔肉桂酒与柑橘调制、再加盐的鸡尾酒。"
 	color = "#d37810"
 	boozepwr = 25
 	quality = DRINK_VERYGOOD
-	taste_description = "a sour, electric chair"
+	taste_description = "酸涩的电椅"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_STIMULATED)
 	metabolization_rate = 1.6 * REAGENTS_METABOLISM
@@ -518,8 +518,8 @@
 		affected_mob.set_jitter_if_lower(10 SECONDS * REM * reac_volume)
 		unluckyshock = rand(1, 3)
 		if(unluckyshock == 1)
-			to_chat(affected_mob, span_userdanger("You feel a violent jolt of energy spark off your tongue!"))
-			affected_mob.electrocute_act(rand(15, 35), "Electric avenue shock", 1, SHOCK_NOGLOVES)
+			to_chat(affected_mob, span_userdanger("你感觉舌尖迸出一阵剧烈的能量电击！"))
+			affected_mob.electrocute_act(rand(15, 35), "电气大道电击", 1, SHOCK_NOGLOVES)
 			playsound(affected_mob, 'sound/machines/defib/defib_zap.ogg', 55, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /datum/reagent/consumable/ethanol/electric_avenue/on_mob_metabolize(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
@@ -542,17 +542,17 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/electric_avenue
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "electric_avenue"
-	name = "Electric Avenue"
-	desc = "Named after a mythical location in the Sol System, this drink is meant to be sipped slowly through the narrow copper straw, representing the long but brisk taste of life. But to non-ethereals, it's a warp lane to the emergency room."
+	name = "电气大道"
+	desc = "这款酒得名于太阳系中的一处神话地点，本意是让人用细长的铜吸管慢慢啜饮，体会人生悠长又轻快的滋味。但对非以太人而言，它是直奔急诊室的捷径。"
 
 
 /datum/reagent/consumable/ethanol/ira_de_zeus
-	name = "Ira de Zeus"
-	description = "A deep blue cocktail made by harnessing electricity and fire."
+	name = "宙斯之怒"
+	description = "一款以电与火调和而成的深蓝色鸡尾酒。"
 	color = "#3e1ef1"
 	boozepwr = 60
 	quality = DRINK_VERYGOOD
-	taste_description = "sharp, spiced hypocracy"
+	taste_description = "尖锐、加了香料的虚伪"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	metabolized_traits = list(TRAIT_STIMULATED)
 	metabolization_rate = 1.1 * REAGENTS_METABOLISM
@@ -573,8 +573,8 @@
 		affected_mob.set_jitter_if_lower(5 SECONDS * REM * reac_volume)
 		unluckyshock = rand(1, 8)
 		if(unluckyshock == 1)
-			to_chat(affected_mob, span_userdanger("You feel a violent jolt of energy spark off your tongue!"))
-			affected_mob.electrocute_act(rand(10, 25), "Ira de Zeus shock", 1, SHOCK_NOGLOVES)
+			to_chat(affected_mob, span_userdanger("你感觉舌尖迸出一阵剧烈的能量电击！"))
+			affected_mob.electrocute_act(rand(10, 25), "宙斯之怒电击", 1, SHOCK_NOGLOVES)
 			playsound(affected_mob, 'sound/machines/defib/defib_zap.ogg', 40, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 
 /datum/reagent/consumable/ethanol/ira_de_zeus/on_mob_metabolize(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
@@ -598,20 +598,20 @@
 	required_drink_type = /datum/reagent/consumable/ethanol/ira_de_zeus
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "ira_de_zeus"
-	name = "Ira De Zeus"
-	desc = "A radiant ethereal drink that warms the body and tickles the tongue. The original recipie, fabled to have originated from the tables of Sprout's upper-caste clergy, would imply heresy of the highest order. Good thing it's only a fable... May shock non-ethereals."
+	name = "宙斯之怒"
+	desc = "一款光芒四射的以太人饮品，暖身又撩舌。据传其原始配方出自斯普劳特上层祭司的餐桌，那将意味着最高等级的异端。好在它只是个传说……可能会电到非以太人。"
 
 /datum/reagent/consumable/ethanol/orange_creamsicle
-	name = "Orange Creamsicle"
+	name = "橙香奶油冰棒"
 	color = "#f8dd64" //(248, 221, 100)
-	description = "A sweet, tangy, and fruity orange drink with a creamy finish."
+	description = "一款香甜、微酸、果味十足的橙色饮品，尾韵奶香浓郁。"
 	boozepwr = 40
-	taste_description = "sweet creamy citrus and nostalgia"
+	taste_description = "香甜奶滑的柑橘与怀旧味"
 	quality = DRINK_VERYGOOD
 
 /datum/glass_style/drinking_glass/orange_creamsicle
 	required_drink_type = /datum/reagent/consumable/ethanol/orange_creamsicle
 	icon = 'modular_zubbers/icons/obj/drinks/mixed_drinks.dmi'
 	icon_state = "orange_creamsicle"
-	name = "Orange Creamsicle"
-	desc = "A refreshing orange creamsicle drink in a glass, topped with a swirl of whipped cream and a slice of orange. The perfect drink for a hot station day, or whenever you want to feel like you're on a tropical vacation."
+	name = "橙香奶油冰棒"
+	desc = "一杯清爽的橙香奶油冰棒饮品，顶上旋着一圈鲜奶油，再配一片橙子。最适合空间站炎热的一天，或者任何时候你想感觉自己正在热带度假。"

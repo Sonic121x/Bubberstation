@@ -1,7 +1,7 @@
 /obj/machinery/vending/games
 	zubbers_product_categories = list(
 		list(
-			"name" = "Toys",
+			"name" = "玩具",
 			"icon" = "hat-wizard",
 			"products" = list(
 				/obj/item/laser_pointer/limited = 3,
@@ -107,7 +107,7 @@
 			),
 		),
 		list(
-			"name" = "Art",
+			"name" = "美术用品",
 			"icon" = "palette",
 			"products" = list(
 				/obj/item/modular_computer/mini_painting_printer = 2,
@@ -115,7 +115,7 @@
 		),
 
 		list(
-			"name" = "Other",
+			"name" = "其他",
 			"icon" = "star",
 			"products" = list(
 				/obj/item/attachable_soulcatcher = 5,

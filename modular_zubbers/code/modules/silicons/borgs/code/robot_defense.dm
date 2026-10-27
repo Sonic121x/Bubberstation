@@ -4,15 +4,15 @@
 		return ..()
 	if(!wiresexposed)
 		if(!cell)
-			balloon_alert(user, "no cell!")
+			balloon_alert(user, "没有电池！")
 			return TRUE
-		balloon_alert(user, "removing cell...")
+		balloon_alert(user, "正在取出电池……")
 		tool.play_tool_sound(src, 100)
 		if(!tool.use_tool(src, user, 3 SECONDS) || !opened)
-			balloon_alert(user, "interrupted!")
+			balloon_alert(user, "被打断！")
 			return TRUE
 		tool.play_tool_sound(src, 100)
-		balloon_alert(user, "cell removed")
+		balloon_alert(user, "电池已取出")
 		cell.forceMove(drop_location())
 		diag_hud_set_borgcell()
 	return TRUE

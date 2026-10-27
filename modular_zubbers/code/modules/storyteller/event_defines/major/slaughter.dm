@@ -1,5 +1,5 @@
 /datum/round_event_control/slaughter
-	name = "Spawn Slaughter Demon"
+	name = "生成屠戮恶魔"
 	typepath = /datum/round_event/ghost_role/slaughter
 	weight = 0
 	track = EVENT_TRACK_MAJOR
@@ -8,13 +8,13 @@
 	earliest_start = 1 HOURS
 	min_players = 20
 	category = EVENT_CATEGORY_ENTITIES
-	description = "Spawns a slaughter demon, to hunt by travelling through pools of blood."
+	description = "生成一只屠戮恶魔，它可借血泊穿梭进行猎杀。"
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 
 /datum/round_event/ghost_role/slaughter
 	minimum_required = 1
-	role_name = "slaughter demon"
+	role_name = "屠戮恶魔"
 
 /datum/round_event/ghost_role/slaughter/spawn_role()
 	var/mob/chosen_one = SSpolling.poll_ghost_candidates(check_jobban = ROLE_ALIEN, role = ROLE_ALIEN, alert_pic = /mob/living/basic/demon/slaughter, role_name_text = role_name, amount_to_pick = 1)
@@ -31,7 +31,7 @@
 
 	player_mind.transfer_to(spawned)
 
-	message_admins("[ADMIN_LOOKUPFLW(spawned)] has been made into a slaughter demon by an event.")
-	spawned.log_message("was spawned as a slaughter demon by an event.", LOG_GAME)
+	message_admins("[ADMIN_LOOKUPFLW(spawned)] 因事件被转化为屠戮恶魔。")
+	spawned.log_message("因事件被生成为屠戮恶魔。", LOG_GAME)
 	spawned_mobs += spawned
 	return SUCCESSFUL_SPAWN

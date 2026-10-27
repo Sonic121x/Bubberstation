@@ -33,8 +33,8 @@
 	return mind.clocked_out_of_job
 
 /obj/item/duty_checker //Test item
-	name = "duty checker"
-	desc = "Checks if the mob this is used on is off-duty. You probably shouldn't see this in-game..."
+	name = "值班检查器"
+	desc = "检查被使用者是否处于下班状态。你大概不该在游戏里见到这个……"
 	icon = 'icons/obj/devices/remote.dmi'
 	icon_state = "botpad_controller"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
@@ -47,8 +47,8 @@
 		return FALSE
 
 	if(target_human.check_if_off_duty(list(/datum/job_department/security)))
-		to_chat(user, span_notice("[target_human] is off-duty!"))
+		to_chat(user, span_notice("[target_human] 已下班！"))
 		return TRUE
 
-	to_chat(user, span_notice("[target_human] is not off-duty!"))
+	to_chat(user, span_notice("[target_human] 尚未下班！"))
 	return FALSE

@@ -1,6 +1,6 @@
 /datum/job/blacksmith
 	title = JOB_BLACKSMITH
-	description = "Smith wares, Sell them."
+	description = "锻造货品，再把它们卖掉。"
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -33,7 +33,7 @@
 	job_spawn_title = JOB_ASSISTANT
 
 	voice_of_god_silence_power = 3
-	rpg_title = "Smithy"
+	rpg_title = "铁匠"
 	required_languages = null
 	alt_titles = list(
 		"Blacksmith",
@@ -69,68 +69,68 @@
 	skillchips = list(/obj/item/skillchip/job/blacksmith)
 
 /obj/item/paper/pamphlet/blacksmith_tutorial
-	name = "blacksmithing pamphlet"
-	default_raw_text = "Blacksmiths are the ones responsible for fine craftsmanship of all types of equipment: swords, armor, toolbelts, and more.<br>\n\
-	If someone wants specialized equipment -- especially old stuff -- they should go to you.<br>\n\
-	If you have a dedicated department room, it should come with the following:<br> \n\
-	The <b>forge</b> heats up sheets of metal to be worked into desired shapes.<br> \n\
-	The <b>wall mounted A/C unit</b> will cool down the excess heat that your forge leaks, so that you do not boil yourself alive. <b>Remember to turn it on!</b><br> \n\
-	The <b>anvil</b> can hold a heated, incomplete item.<br>\n\
-	The <b>quenching basin</b> allows you to cool a heated item.<br>\n\
-	The <b>workbench</b> is where you will finish crafting your equipment.<br>\n\
-	The <b>billows</b> blow air into your forge to accelerate its heating process.<br>\n\
-	The <b>tongs</b> let you safely insert a sheet of material into your forge, and safely handle hot items.<br>\n\
-	The <b>forging mallet</b> is used alongside an anvil to work an item into shape.<br>\n\
-	If you lack a dedicated department room then you can purchase a 'Blacksmithing Workstation Pack' from the cargo order console for your stationary tools, and a 'Blacksmithing Tools Pack' for handheld tools. Failing that, almost all of the above can be crafted using basic wood and iron (except the anvil, which requires titanium). Click on a stack of wood, iron, or titanium while holding it to take a look.<br>\n\
+	name = "锻造手册"
+	default_raw_text = "铁匠负责各类装备的精工细作：刀剑、护甲、工具腰带等等。<br>\n\
+	如果有人想要专门定制的装备——尤其是老式货色——那就该来找你。<br>\n\
+	如果你有一间专属的部门房间，里面应当配有以下设施：<br> \n\
+	用<b>锻炉</b>加热金属板，好把它锻打成想要的形状。<br> \n\
+	<b>壁挂空调</b>会带走锻炉逸散的多余热量，免得你把自己活活煮熟。<b>记得把它打开！</b><br> \n\
+	<b>铁砧</b>可以放置烧热但尚未成形的物品。<br>\n\
+	<b>淬火槽</b>可用来冷却烧热的物品。<br>\n\
+	<b>工作台</b>是你最终完成装备制作的地方。<br>\n\
+	<b>风箱</b>朝锻炉内鼓风，加快升温。<br>\n\
+	<b>夹钳</b>能让你安全地把材料送进锻炉，也能安全地夹取灼热的物品。<br>\n\
+	<b>锻造锤</b>配合铁砧使用，可将物品敲打成形。<br>\n\
+	如果没有专属的部门房间，你可以在货运订购控制台购买“锻造工作站套装”来获取固定设备，购买“铁匠工具套装”来获取手持工具。实在不行，上述设施几乎都能用普通木材和铁打造（铁砧除外，它需要钛）。手持一叠木材、铁或钛时点击它，即可查看可制作的物品。<br>\n\
 	<br> \
-	How to heat your forge:<br>\n\
-	-1: Acquire a fuel source. You can use coal or wood for this purpose.<br>\n\
-	-2: Insert your fuel into the forge.<br>\n\
-	-3: Use your billows to blow air into the forge, accelerating its heating process.<br>\n\
-	-3a: If you don't blow air into the forge then the burning fuel will heat by itself.<br>\n\
+	如何加热你的锻炉：<br>\n\
+	-1：准备燃料。煤或木材都可以。<br>\n\
+	-2：把燃料放进锻炉。<br>\n\
+	-3：用风箱向锻炉鼓风，加快升温。<br>\n\
+	-3a：如果不往锻炉里鼓风，燃烧的燃料也会自行加热。<br>\n\
 	<br>\n\
-	How to make a weapon:<br>\n\
-	-1: Pick up a sheet of iron or glass (or a different smithable material) using your tongs, then insert it into your heated forge.<br>\n\
-	-2: Decide on what you want to craft. Then, use tongs to pull the heated item from your forge and place it on your anvil. <br>\n\
-	-3: Hit it a whole bunch with your hammer! Pay attention to your timing; <b>swing with the correct pace, and you'll smith it perfectly</b>.<br>\n\
-	-3a: Your heated metal might cool down before it's ready, if you're too slow. If this happens, pick it up with your tongs and reheat them at your forge. <br>\n\
-	-4: Once you think it's ready, use a smithing basin to quench your metal.<br>\n\
-	-5: Pick up the quenched weapon head and secure it onto your crafting table. Have some wood set aside to use as a base, then use your hammer at the bench to finish the weapon!<br>\n\
+	如何打造武器：<br>\n\
+	-1：用夹钳夹起一块铁板或玻璃板（或其他可锻造材料），送进已加热的锻炉。<br>\n\
+	-2：想好要打造什么。然后用夹钳把加热好的物品从锻炉中取出，放到铁砧上。 <br>\n\
+	-3：抡起锤子一顿猛敲！注意节奏；<b>以正确的节奏挥锤，就能锻造得完美无缺</b>。<br>\n\
+	-3a：动作太慢的话，加热的金属可能在成形前就冷却了。若真如此，用夹钳把它夹起来，放回锻炉重新加热。 <br>\n\
+	-4：觉得差不多了，就用淬火槽为金属淬火。<br>\n\
+	-5：拿起淬火后的武器部件，固定到制作台上。提前备好木材作底座，然后在台边用锤子把武器完成！<br>\n\
 	<br>\n\
-	How to make other equipment:<br>\n\
-	-1: With a bare hand, click on your crafting table to check what you can craft.<br>\n\
-	-2: Once you decide on what to craft, the table should now have that recipe selected. Examine the table (shift + click) to see what ingredients are required.<br>\n\
-	-3: Obtain your ingredients and set them aside next to the table.<br>\n\
-	-3a: The most common ingredients will be wooden planks (produced by botany, or ordered via cargo), leather (from botany or cargo) and smithed plates (smithed from metal via your forge).<br>\n\
-	-4: Once all your material is placed next to the table, get your hammer ready and start working at the table to produce your equipment!<br>\n\
+	如何制作其他装备：<br>\n\
+	-1：空手点击制作台，查看你能制作哪些东西。<br>\n\
+	-2：选定要制作的物品后，制作台就会选中对应配方。检查制作台（Shift + 点击）即可查看所需材料。<br>\n\
+	-3：备齐材料，放在制作台旁边。<br>\n\
+	-3a：最常见的材料是木板（由植物学产出，或经货运订购）、皮革（来自植物学或货运）和锻造板（用锻炉从金属锻打而成）。<br>\n\
+	-4：材料都放到制作台旁后，拿起锤子，在台边开工，做出你的装备！<br>\n\
 	<br>\n\
-	Reforging/Repairing Smithed Equipment:<br>\n\
-	-1: Insert your equipment into the forge using tongs or your bare hands.<br>\n\
-	-2: Once heated, place it onto the smithing table and work it like you'd work an incomplete smithed item.<br>\n\
-	-3: Once it sounds done, quench it at a basin to cool it.<br>\n\
+	重锻/修复已锻造装备：<br>\n\
+	-1：用夹钳或直接用空手把装备放进锻炉。<br>\n\
+	-2：加热后放到锻造工作台上，像处理未完成的锻造物品那样加工它。<br>\n\
+	-3：听声音判断已经好了，就拿到淬火槽里冷却。<br>\n\
 	<br>\n\
-	Reagent Imbuing:<br>\n\
-	This is an ancient technique used to imbue most smithed equipment with properties from a chosen liquid reagent. Using reagents other than smithing oil will cause the equipment to be less effective, but depending on what chemical is imbued, the tradeoff may be worth it.<br>\n\
-	Be warned; reagent imbuing stresses the material and will wear it down whenever its imbue effect activates!<br>\n\
-	Normally, anything that can be imbued will be imbued upon being quenched in liquid. However, reagent imbue effects can be changed by reforging the equipment, or by manually imbuing it:<br>\n\
-	-1: Prepare at least 60 units of chemical solution to imbue.<br>\n\
-	-2: Transfer those chemicals into your smithed equipment.<br>\n\
-	-3: Insert your equipment into a heated forge to set the chemicals into the material.<br>\n\
+	试剂注入：<br>\n\
+	这是一种古老技艺，可将所选液体试剂的特性注入大多数锻造装备。使用锻造油以外的试剂会降低装备效能，但视注入的化学品而定，这点代价或许是值得的。<br>\n\
+	注意：试剂注入会给材料带来额外压力，每当注入效果触发时都会造成磨损！<br>\n\
+	通常，任何可注入的物品都会在液体中淬火时完成注入。不过，试剂注入效果可以通过重锻装备或手动注入来改变：<br>\n\
+	-1：准备至少 60 单位的化学溶液用于注入。<br>\n\
+	-2：把这些化学品转移到你的锻造装备中。<br>\n\
+	-3：把装备放进加热的锻炉，让化学品渗入材料。<br>\n\
 	<br>\n\
-	Other notes:<br>\n\
-	-Use your eyes! If you <b>inspect</b> your equipment -- whether it's your crafting stations or handheld tools -- you'll usually be able to discern something useful.<br>\n\
-	-Vary up what you make! You'll learn/relearn your skills fastest if you make new products each time.<br>\n\
-	-Reagent imbuing is powerful, but if you don't know what chemical to imbue, smithing oil is a good fallback; it will enhance the expected capabilities of the equipment.<br>\n\
-	-As you create weapons and equipment, your muscle memory will build over time -- which will let you make new equipment. Check your forge and your crafting bench for new items.<br>\n\
-	-Be mindful of the material you use; material properties will change the usefulness of what you produce. Experiment, but don't expect a pizza katana to be worth more than a laugh.<br>\n\
-	-You can build a two-handed hammer at your forge. Make it well, and it will work faster than your Nanotrasen-assigned hammer!"
+	其他提示：<br>\n\
+	-擦亮眼睛！<b>检查</b>你的装备——无论是制作设备还是手持工具——通常都能看出些有用的信息。<br>\n\
+	-多做些花样！每次都制作新产品，你的技能会学得/重新拾得最快。<br>\n\
+	-试剂注入很强大，但若不知道注入什么化学品，锻造油是不错的保底选择；它能强化装备的预期性能。<br>\n\
+	-随着你不断打造武器和装备，肌肉记忆会逐渐积累——从而让你能制作新的装备。留意锻炉和制作台上新出现的物品。<br>\n\
+	-留意你使用的材料；材料特性会改变成品的实用性。尽管去试验，但别指望披萨武士刀除了逗人一笑还能有什么价值。<br>\n\
+	-你可以在锻炉打造一把双手锤。做得好的话，它比纳米传讯配发的锤子用起来更快！"
 
 /obj/item/choice_beacon/blacksmith
-	name = "smithing supply beacon"
-	desc = "Calls a supplypod containing all the required equipment for blacksmithing."
+	name = "锻造补给信标"
+	desc = "呼叫一个补给舱，内含锻造所需的全部装备。"
 	icon_state = "sb_delivery"
 	inhand_icon_state = "sb_delivery"
 
 /obj/item/choice_beacon/blacksmith/generate_display_names()
-	return list("Smithing Equipment Crate" = /obj/structure/closet/crate/large/smithing)
+	return list("锻造设备箱" = /obj/structure/closet/crate/large/smithing)
 

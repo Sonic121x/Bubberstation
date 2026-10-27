@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/toggle/labcoat/vic_dresscoat_donator // modified on request of nikotheguydude, the person who donated for this upstream
-	name = "elaborate dresscoat"
-	special_desc = "On a closer inspection, it would appear the interior is modified with protective material and mounting points \
-	most often found on medical labcoats."
+	name = "精致礼服大衣"
+	special_desc = "仔细一看，内衬似乎用防护材料做了改装，还带有 \
+	常见于医疗实验服的挂载点。"
 
 //@EspeciallyStrange @Wolf751  for the sprite if reaching out to us is needed
 // Sprites are donated from either project kepler or hand done by me for this occasion, They can be used for anything else
@@ -9,15 +9,15 @@
 // Placed in these file so that You and others may remove them if I am not playing here anymore, or if it were to be used for anything else!
 
 /obj/item/clothing/head/helmet/sec/sol/idma_helmet
-	name = "ironmoon service helmet."
-	desc = "A helmet worn by the romulus expeditionary force."
+	name = "铁月勤务头盔。"
+	desc = "罗穆卢斯远征军佩戴的头盔。"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	icon_state = "romulushelmet"
 
 /obj/item/clothing/head/idma_beret
-	name = "ironmoon service beret."
-	desc = "A beret worn by the romulus national guard during ceremonies or in time of peace as it provides no protection whatsoever."
+	name = "铁月勤务贝雷帽。"
+	desc = "一种在仪式或和平时期由罗穆卢斯国民警卫队佩戴的贝雷帽，因为它完全不具备任何防护能力。"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	icon_state = "romulusberet"
@@ -25,8 +25,8 @@
 //provide no armor because it's a ceremonial piece. meant to be available across all role. I would not like to get it burnt off however
 
 /obj/item/clothing/under/rank/security/idma_fatigue
-	name = "ironmoon service fatigue"
-	desc = "An old snow pattern uniform worn by the romulus expeditionary force during the kepler emergency."
+	name = "铁月勤务作战服"
+	desc = "一套旧式雪地图案制服，罗穆卢斯远征军在开普勒紧急事件期间穿着。"
 	icon_state = "romulusmarine"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
@@ -35,8 +35,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/idma_utility
-	name = "ironmoon utility fatigue"
-	desc = "An old snow pattern uniform worn commonly worn by IDMA Staff."
+	name = "铁月通用作战服"
+	desc = "一套旧式雪地图案制服，IDMA 员工常穿。"
 	icon_state = "romulusutility"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
@@ -46,13 +46,13 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/under/rank/security/idma_fatigue/alt
-	name = "argnostan service fatigue"
-	desc = "An old desert uniform worn by the romulus expeditionary force up until march 21st 2181. Attached to it is a silver medal"
+	name = "阿格诺斯坦勤务作战服"
+	desc = "一套旧式沙漠制服，罗穆卢斯远征军一直穿到 2181 年 3 月 21 日。上面还附着一枚银质奖章"
 	icon_state = "argnostanuniform"
 
 /obj/item/clothing/suit/jacket/vera_jacket
-	name = "silicon administrator vest"
-	desc = "A purple vest with gold trims, fits for a snobbish research director."
+	name = "硅基管理员背心"
+	desc = "一件带金色饰边的紫色背心，正适合势利眼的科研主管。"
 	icon_state = "verajacket"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
@@ -90,8 +90,8 @@
 	)
 
 /obj/item/clothing/suit/jacket/idma_jacket
-	name = "ironmoon service coat"
-	desc = "A lightweight jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, this one is meant to be worn as utility coat."
+	name = "铁月勤务外套"
+	desc = "一件轻便夹克，上面带有“罗穆卢斯远征军”徽记，这件是作为勤务外套穿着的。"
 	icon_state = "romulusofficer"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
@@ -99,16 +99,16 @@
 
 
 /obj/item/clothing/suit/armor/vest/idma_vest
-	name = "IDMA Combat Vest"
-	desc = "A light ballistic vest worn with  a '/Romulus Expeditionary Force/' insignia on it, contains a class IIA plating to protect the wearer from harms."
+	name = "IDMA 作战背心"
+	desc = "一件轻型防弹背心，上面带有“罗穆卢斯远征军”徽记，内含 IIA 级防弹插板，可保护穿着者免受伤害。"
 	icon_state = "romfed_armor"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/suit/armor/vest/idma_vest/idma_jacket
-	name = "ironmoon heavy service coat"
-	desc = "A heavy jacket worn with  a '/Romulus Expeditionary Force/' insignia on it, this one is armoured."
+	name = "铁月重型勤务外套"
+	desc = "一件厚重的夹克，上面带有“罗穆卢斯远征军”徽记，这一件带有装甲。"
 	icon_state = "romulusarmoured"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
@@ -116,20 +116,20 @@
 
 
 /obj/item/clothing/accessory/armband/idmaarmband
-	name = "ironmoon police armband"
-	desc = "A fancy red armband normally seen used by the romulus federation police"
+	name = "铁月警察臂章"
+	desc = "一枚精致的红色臂章，通常为罗穆卢斯联邦警察所使用"
 	icon_state = "romuluspolice"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/under/idmaco_worn.dmi'
 	resistance_flags = FIRE_PROOF
 
 /obj/item/toy/plush/especiallystrange
-	name = "ironmoon tajaran plushie"
-	desc = "A small plushie based on the thousand tajaran volunteer, this one in particular seems to be a gun maintainer."
+	name = "铁月塔亚拉毛绒玩偶"
+	desc = "一个以千名塔亚拉志愿兵为原型的小毛绒玩偶，这一只似乎是枪械维护员。"
 	icon_state = "travian"
 	icon = 'modular_zubbers/icons/donator/idmaco.dmi'
-	attack_verb_continuous = list ("cuddles", "meows", "hisses")
-	attack_verb_simple = list ("cuddle", "meow", "hiss")
+	attack_verb_continuous = list ("依偎", "喵叫", "嘶叫")
+	attack_verb_simple = list ("依偎", "喵叫", "嘶叫")
 	squeak_override = list ('modular_zubbers/sound/voice/merowr.ogg' = 1)
 	resistance_flags = FIRE_PROOF
 

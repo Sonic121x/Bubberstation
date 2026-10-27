@@ -2,8 +2,8 @@
 #define SPAWN_MODE_MEGAFAUNA_COOLDOWN 30 SECONDS
 
 /datum/phystool_mode/spawn_mode
-	name = "Spawn mode"
-	desc = "Use LMB to spawn, use in hands to choose spawn type."
+	name = "生成模式"
+	desc = "使用左键生成，在手中使用以选择生成类型。"
 	var/atom/selected_object
 
 	var/list/atom/black_list = list(
@@ -19,9 +19,9 @@
 
 /datum/phystool_mode/spawn_mode/use_act(mob/user)
 	. = ..()
-	var/text_path = tgui_input_text(user, "Enter object path:", "Spawn tool", "none", 256, FALSE)
+	var/text_path = tgui_input_text(user, "输入对象路径：", "生成工具", "none", 256, FALSE)
 	if(!text_path)
-		user.balloon_alert(user, "enter path!")
+		user.balloon_alert(user, "请输入路径！")
 		return FALSE
 	selected_object = text2path(text_path)
 	if(!ispath(selected_object))
@@ -29,20 +29,20 @@
 	for(var/black_list_item in black_list)
 		if(ispath(selected_object, black_list_item))
 			selected_object = null
-			user.balloon_alert(user, "spawn blocked!")
+			user.balloon_alert(user, "生成被禁止！")
 			return FALSE
-	user.balloon_alert(user, "selected!")
-	to_chat(user, span_notice("Current spawn type [selected_object]."))
+	user.balloon_alert(user, "已选定！")
+	to_chat(user, span_notice("当前生成类型为[selected_object]。"))
 
 /datum/phystool_mode/spawn_mode/main_act(atom/target, mob/user)
 	. = ..()
 
 	if(!selected_object)
-		user.balloon_alert(user, "select type first!")
+		user.balloon_alert(user, "请先选择类型！")
 		return FALSE
 
 	if(!COOLDOWN_FINISHED(src, spawn_cooldown))
-		user.balloon_alert(user, "wait!")
+		user.balloon_alert(user, "请稍等！")
 		return FALSE
 	var/target_cooldown
 	if(ispath(selected_object, /mob/living/simple_animal/hostile/megafauna))

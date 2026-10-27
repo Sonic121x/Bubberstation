@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/hooded/seva
-	name = "SEVA suit"
-	desc = "A fire-proof suit for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
+	name = "SEVA 防护服"
+	desc = "一套防火服，用于探索高温环境。其设计不允许用歌利亚护甲板进行升级。"
 	icon = 'modular_zubbers/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/suits/armor.dmi'
 	worn_icon_digi = 'modular_zubbers/icons/mob/clothing/suits/armor_digi.dmi'
@@ -30,8 +30,8 @@
 	wound = 10
 
 /obj/item/clothing/head/hooded/seva
-	name = "SEVA hood"
-	desc = "A fire-proof hood for exploring hot environments. Its design doesn't allow for upgrading with goliath plates."
+	name = "SEVA 兜帽"
+	desc = "一顶防火兜帽，用于探索高温环境。其设计不允许用歌利亚护甲板进行升级。"
 	icon = 'modular_zubbers/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/head/helmet.dmi'
 	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/head/helmet_muzzled.dmi'
@@ -53,8 +53,8 @@
 	allowed = GLOB.mining_suit_allowed
 
 /obj/item/clothing/mask/gas/seva
-	name = "SEVA mask"
-	desc = "A head-covering mask that can be connected to an external air supply. Intended for use with the SEVA Suit."
+	name = "SEVA 面具"
+	desc = "一种可连接外部气源的全头式面具。专为搭配 SEVA 防护服使用。"
 	icon = 'modular_zubbers/icons/obj/clothing/mask/mask.dmi'
 	worn_icon = 'modular_zubbers/icons/mob/clothing/mask/mask.dmi'
 	worn_icon_muzzled = 'modular_zubbers/icons/mob/clothing/mask/mask_muzzled.dmi'

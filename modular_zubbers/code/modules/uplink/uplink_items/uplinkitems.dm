@@ -1,6 +1,6 @@
 /obj/item/storage/box/syndibunny
-	name = "Syndicate bunny assassin outfit"
-	desc = "A box containing a high tech specialized syndicate... bunny suit?"
+	name = "辛迪加兔子刺客套装"
+	desc = "一只箱子，里面装着一套高科技特制的辛迪加……兔子服？"
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/syndibunny/PopulateContents()
@@ -14,21 +14,21 @@
 	), src)
 
 /obj/item/clothing/head/henchmen_hat/traitor
-	name = "armored henchmen cap"
-	desc = "Alright boss.. I'll handle it. It seems to be armored."
+	name = "装甲打手帽"
+	desc = "好的老板……我来处理。它似乎带装甲。"
 	icon_state = "/obj/item/clothing/head/henchmen_hat/traitor"
 	armor_type = /datum/armor/suit_armor
 	greyscale_colors = "#240d0d"
 
 /obj/item/clothing/suit/jacket/henchmen_coat/traitor
-	name = "armored henchmen coat"
-	desc = "Alright boss.. I'll handle it. It seems to be armored."
+	name = "装甲打手大衣"
+	desc = "好的老板……我来处理。它似乎带装甲。"
 	icon_state = "/obj/item/clothing/suit/jacket/henchmen_coat/traitor"
 	armor_type = /datum/armor/suit_armor
 	greyscale_colors = "#240d0d"
 
 /obj/item/storage/box/syndicate/henchmen_traitor_outfit
-	name = "henchmen outfit box"
+	name = "打手服装盒"
 
 /obj/item/storage/box/syndicate/henchmen_traitor_outfit/PopulateContents()
 	var/static/items_inside = list(

@@ -1,7 +1,7 @@
 /obj/machinery/vending/clothing
 	zubbers_product_categories = list(
 		list(
-			"name" = "Head",
+			"name" = "头部",
 			"icon" = "hat-cowboy",
 			"products" = list(
 				/obj/item/clothing/head/avipilot = 5,
@@ -34,7 +34,7 @@
 		),
 
 		list(
-			"name" = "Accessories",
+			"name" = "配饰",
 			"icon" = "glasses",
 			"products" = list(
 				/obj/item/clothing/accessory/badge/holo/jade = 5,
@@ -80,7 +80,7 @@
 		),
 
 		list(
-			"name" = "Under",
+			"name" = "内搭",
 			"icon" = "shirt",
 			"products" = list(
 				/obj/item/clothing/under/costume/ba_cheerleader = 5,
@@ -138,7 +138,7 @@
 		),
 
 		list(
-			"name" = "Suits & Skirts",
+			"name" = "西装与裙子",
 			"icon" = "vest",
 			"products" = list(
 				/obj/item/clothing/suit/apron/chef/colorable_apron = 5,
@@ -212,7 +212,7 @@
 		),
 
 		list(
-			"name" = "Shoes",
+			"name" = "鞋子",
 			"icon" = "socks",
 			"products" = list(
 				/obj/item/clothing/shoes/sneakers/ba_cheerleader = 5,
@@ -235,7 +235,7 @@
 
 		//Only put clothing in Special thats either Families or exteremly out-of-place
 		list(
-			"name" = "Special",
+			"name" = "特殊",
 			"icon" = "star",
 			"products" = list(
 				/obj/item/clothing/head/drake_skull = 5,

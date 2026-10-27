@@ -1,8 +1,8 @@
 /obj/item/breastpump
-	name = "breast pump"
+	name = "吸乳泵"
 	icon = 'modular_zubbers/icons/obj/lewd.dmi'
 	icon_state = "breastpump"
-	desc = "A breast pump, designed to take beakers or cups to help assist lactating patients."
+	desc = "一台吸乳泵，可接入烧杯或杯子，用以帮助需要泌乳的患者。"
 	w_class = WEIGHT_CLASS_SMALL
 	/// Only allowed to input beaker or cup type objects
 	var/list/allowed_containers = list(/obj/item/reagent_containers/cup/beaker, /obj/item/reagent_containers/cup/glass)
@@ -21,18 +21,18 @@
 /obj/item/breastpump/examine(mob/user)
 	. = ..()
 	if(container)
-		. += "[container] contains [container.reagents.total_volume]u of liquids."
+		. += "[container] 中含有 [container.reagents.total_volume]u 液体。"
 	else
-		. += "It has no container loaded in."
+		. += "它尚未装入容器。"
 
 /obj/item/breastpump/proc/unload_container(obj/object, mob/user)
 	if(!object)
-		to_chat(user, span_notice("This container isn't loaded!"))
+		to_chat(user, span_notice("尚未装入容器！"))
 		return
 
 	container.forceMove(user.loc)
 	user.put_in_hands(container)
-	to_chat(user, span_notice("You remove [object] from [src]."))
+	to_chat(user, span_notice("你将 [object] 从 [src] 中取出。"))
 	container = null
 	update_icon()
 	playsound(loc, 'sound/items/weapons/empty.ogg', 50, 1)
@@ -47,18 +47,18 @@
 		else
 			container.forceMove(quickswap_loc)
 	container = new_container
-	user.visible_message(span_notice("[user] has loaded a container into [src]."), span_notice("You have loaded [container] into [src]."))
+	user.visible_message(span_notice("[user] 将容器装入了 [src]。"), span_notice("你将 [container] 装入了 [src]。"))
 	playsound(loc, 'sound/items/weapons/autoguninsert.ogg', 35, 1)
 	update_appearance()
 
 /obj/item/breastpump/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(!is_type_in_list(tool, allowed_containers))
-		to_chat(user, span_notice("[src] doesn't accept this type of container."))
+		to_chat(user, span_notice("[src] 不接受这种容器。"))
 		return NONE
 	if(isnull(container) || quickload)
 		insert_container(tool, user)
 		return ITEM_INTERACT_SUCCESS
-	to_chat(user, span_warning("[src] is only able to hold one container!"))
+	to_chat(user, span_warning("[src] 只能容纳一个容器！"))
 	return ITEM_INTERACT_BLOCKING
 
 /obj/item/breastpump/proc/try_pump(atom/target, mob/user)
@@ -76,28 +76,28 @@
 	if(!target.reagents)
 		return NONE
 	if(!src.container)
-		to_chat(user, span_warning("No container loaded!"))
+		to_chat(user, span_warning("未装入容器！"))
 		return ITEM_INTERACT_BLOCKING
 	if(!try_pump(target, user))
 		return ITEM_INTERACT_BLOCKING
 	if(target != user)
-		to_chat(user, span_warning("You cannot use the breast pump on someone else!"))
+		to_chat(user, span_warning("你不能对别人使用吸乳泵！"))
 		return ITEM_INTERACT_BLOCKING
 
 	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE_WITHDRAW, user)
 
 	if(src.container.reagents.holder_full())
-		to_chat(user, span_notice("[src] is full."))
+		to_chat(user, span_notice("[src] 已满。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/obj/item/organ/genital/breasts/breasts = user.get_organ_slot(ORGAN_SLOT_BREASTS)
 
 	if (breasts == null)
-		to_chat(user, span_notice("[user] does not have compatible breasts."))
+		to_chat(user, span_notice("[user] 没有可用的乳房。"))
 		return ITEM_INTERACT_BLOCKING
 
 	if (breasts.reagents.total_volume <= 0)
-		to_chat(user, span_notice("[user]'s breasts are empty."))
+		to_chat(user, span_notice("[user] 的乳房是空的。"))
 		return ITEM_INTERACT_BLOCKING
 
 	var/fluid_multiplier = 3
@@ -105,10 +105,10 @@
 	if(user.has_status_effect(/datum/status_effect/climax))
 		fluid_multiplier = 5
 
-	to_chat(user, span_notice("[src] whirs.."))
+	to_chat(user, span_notice("[src] 嗡嗡转动……"))
 	var/trans = breasts.reagents.trans_to(src.container, 1 * fluid_multiplier, transferred_by = user) // transfer from, transfer to - who cares?
 	if(trans)
-		to_chat(user, span_notice("You fill [src.container] with [trans] units of the solution. It now contains [src.container.reagents.total_volume] units."))
+		to_chat(user, span_notice("你向 [src.container] 中注入了 [trans] 单位溶液。现在它含有 [src.container.reagents.total_volume] 单位。"))
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/breastpump/attack_hand(mob/living/user)
@@ -125,6 +125,6 @@
 
 /obj/item/breastpump/examine(mob/user)
 	. = ..()
-	. += span_notice("A personal breast pump machine, useable on one's self with a functioning pair of breasts. <b>Left-Click</b> on yourself to use.")
+	. += span_notice("一台个人吸乳泵，在拥有一对功能正常的乳房时可对自己使用。对自己<b>左键点击</b>即可使用。")
 
 

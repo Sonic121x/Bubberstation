@@ -1,8 +1,8 @@
 /datum/storyteller/default
-	name = "Default Andy (Normal Event/Antag Rolls)"
-	desc = "This is the default Storyteller, and the comparison point for every other Storyteller. \
-	It's a midpoint between the other event storytellers. Best for an average, varied experience."
-	welcome_text = "If I chopped you up in a meat grinder..."
+	name = "默认安迪（正常事件/反派抽取）"
+	desc = "这是默认的故事讲述者，也是衡量其他所有故事讲述者的基准。\
+	它处于其他事件讲述者的中间位置。最适合平均而多样的游戏体验。"
+	welcome_text = "如果我把你丢进绞肉机里剁碎……"
 	antag_divisor = 8
 	storyteller_type = STORYTELLER_TYPE_ALWAYS_AVAILABLE
 

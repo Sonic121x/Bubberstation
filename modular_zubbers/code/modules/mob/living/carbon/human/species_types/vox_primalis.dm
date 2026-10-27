@@ -1,4 +1,4 @@
 /datum/species/vox_primalis/get_species_description()
-	return list("The Vox seem to be nomadic, bio-engineered alien creatures that operate in and around human space at the behest of crazed and dreaming gods. \
-		In reality, we know them to be originally designed by the Vox Auralis, a wholly-reclusive variety of powerful psychics, and present a cold shoulder to all other known cultures, and generally their only visible role on the galactic stage is to act as auxiliary workforce of which they are functionally suited for. \
-		The massive moon-sized arkships that serve as their homes travel meandering and convoluted migratory trails through the Milky Way, and the appearance of their looted and repurposed ships is almost always a cause for alarm.",)
+	return list("沃克斯似乎是游牧的、经过生物工程改造的外星生物，在疯狂而耽于梦境的神祇驱使下于人类空间内外活动。\
+		实际上，我们知道他们最初由沃克斯·奥拉利斯——一个完全与世隔绝的强大灵能者族群——设计，并对所有其他已知文化都冷淡以对，而他们在银河舞台上唯一可见的角色，通常就是充当他们在职能上恰好适合的辅助劳动力。\
+		那些作为家园、月球大小的巨大方舟舰沿着银河中蜿蜒曲折的迁徙路线游荡，而他们那些被掠夺并改造的飞船一旦出现，几乎总是会引起警觉。",)

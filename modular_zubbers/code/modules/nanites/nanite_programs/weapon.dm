@@ -2,8 +2,8 @@
 //Very dangerous!
 
 /datum/nanite_program/flesh_eating
-	name = "Cellular Breakdown"
-	desc = "The nanites destroy cellular structures in the host's body, causing brute damage."
+	name = "细胞崩解"
+	desc = "纳米机器人破坏宿主体内的细胞结构，造成钝击伤害。"
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 
@@ -14,25 +14,25 @@
 	else
 		host_mob.adjust_brute_loss(1, TRUE)
 	if(prob(3))
-		to_chat(host_mob, span_warning("You feel a stab of pain from somewhere inside you."))
+		to_chat(host_mob, span_warning("你感到身体某处传来一阵刺痛。"))
 
 /datum/nanite_program/poison
-	name = "Poisoning"
-	desc = "The nanites deliver poisonous chemicals to the host's internal organs, causing toxin damage and vomiting."
+	name = "中毒"
+	desc = "纳米机器人向宿主的内部器官释放有毒化学物质，造成毒素伤害并引发呕吐。"
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/poison/active_effect()
 	host_mob.adjust_tox_loss(1)
 	if(prob(2))
-		to_chat(host_mob, span_warning("You feel nauseous."))
+		to_chat(host_mob, span_warning("你感到反胃。"))
 		if(iscarbon(host_mob))
 			var/mob/living/carbon/C = host_mob
 			C.vomit(20)
 
 /datum/nanite_program/memory_leak
-	name = "Memory Leak"
-	desc = "This program invades the memory space used by other programs, causing frequent corruptions and errors."
+	name = "内存泄漏"
+	desc = "该程序侵入其他程序占用的内存空间，导致频繁的损坏与错误。"
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/toxic)
 
@@ -42,12 +42,12 @@
 		if(target == src)
 			return
 		target.software_error()
-		host_mob.investigate_log("[target] nanite program received a software error due to Memory Leak program.", INVESTIGATE_NANITES)
+		host_mob.investigate_log("[target] 纳米机器人程序因内存泄漏程序出现软件错误。", INVESTIGATE_NANITES)
 
 /datum/nanite_program/aggressive_replication
-	name = "Aggressive Replication"
-	desc = "Nanites will consume organic matter to improve their replication rate, damaging the host. The efficiency increases with the volume of nanites, requiring 200 to break even, \
-			and scaling linearly for a net positive of 0.1 production rate per 20 nanite volume beyond that."
+	name = "侵略性复制"
+	desc = "纳米机器人会消耗有机物质以提高复制速率，并对宿主造成伤害。效率随纳米机器人容量提升，需要 200 点才能收支平衡， \
+			此后每超出 20 点纳米机器人容量，产出速率便线性增加 0.1。"
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/necrotic)
 
@@ -57,9 +57,9 @@
 	host_mob.adjust_brute_loss(extra_regen / 2, TRUE)
 
 /datum/nanite_program/meltdown
-	name = "Meltdown"
-	desc = "Causes an internal meltdown inside the nanites, causing internal burns inside the host as well as rapidly destroying the nanite population.\
-			Sets the nanites' safety threshold to 0 when activated."
+	name = "熔毁"
+	desc = "在纳米机器人内部引发熔毁，对宿主造成内部烧伤，并迅速摧毁纳米机器人。 \
+			激活时将纳米机器人的安全阈值设为 0。"
 	use_rate = 10
 	rogue_types = list(/datum/nanite_program/glitch)
 
@@ -68,24 +68,24 @@
 
 /datum/nanite_program/meltdown/enable_passive_effect()
 	. = ..()
-	to_chat(host_mob, span_userdanger("Your blood is burning!"))
+	to_chat(host_mob, span_userdanger("你的血液在燃烧！"))
 	nanites.safety_threshold = 0
 
 /datum/nanite_program/meltdown/disable_passive_effect()
 	. = ..()
-	to_chat(host_mob, span_warning("Your blood cools down, and the pain gradually fades."))
+	to_chat(host_mob, span_warning("你的血液冷却下来，疼痛逐渐消退。"))
 
 /datum/nanite_program/explosive
-	name = "Chain Detonation"
-	desc = "Detonates all the nanites inside the host in a chain reaction when triggered."
+	name = "连锁引爆"
+	desc = "触发时，以连锁反应引爆宿主体内的所有纳米机器人。"
 	can_trigger = TRUE
 	trigger_cost = 25 //plus every idle nanite left afterwards
 	trigger_cooldown = 100 //Just to avoid double-triggering
 	rogue_types = list(/datum/nanite_program/toxic)
 
 /datum/nanite_program/explosive/on_trigger(comm_message)
-	host_mob.visible_message(span_warning("[host_mob] starts emitting a high-pitched buzzing, and [host_mob.p_their()] skin begins to glow..."),\
-							span_userdanger("You start emitting a high-pitched buzzing, and your skin begins to glow..."))
+	host_mob.visible_message(span_warning("[host_mob] 开始发出尖锐的嗡鸣，皮肤开始发光……"),\
+							span_userdanger("你开始发出尖锐的嗡鸣，皮肤开始发光……"))
 	addtimer(CALLBACK(src, PROC_REF(boom)), clamp((nanites.nanite_volume * 0.35), 25, 150))
 
 /datum/nanite_program/explosive/proc/boom()
@@ -95,8 +95,8 @@
 //TODO make it defuse if triggered again
 
 /datum/nanite_program/heart_stop
-	name = "Heart-Stopper"
-	desc = "Stops the host's heart when triggered; restarts it if triggered again."
+	name = "止心器"
+	desc = "触发时使宿主心脏停跳；再次触发则使其重新跳动。"
 	can_trigger = TRUE
 	trigger_cost = 12
 	trigger_cooldown = 10
@@ -113,8 +113,8 @@
 				heart.Restart()
 
 /datum/nanite_program/emp
-	name = "Electromagnetic Resonance"
-	desc = "The nanites cause an electromagnetic pulse around the host when triggered. Will corrupt other nanite programs!"
+	name = "电磁共振"
+	desc = "触发时，纳米机器人会在宿主周围引发电磁脉冲。会损坏其他纳米机器人程序！"
 	can_trigger = TRUE
 	trigger_cost = 10
 	trigger_cooldown = 50
@@ -125,8 +125,8 @@
 	empulse(host_mob, 1, 2)
 
 /datum/nanite_program/pyro
-	name = "Sub-Dermal Combustion"
-	desc = "The nanites cause buildup of flammable fluids under the host's skin, then ignites them."
+	name = "皮下燃烧"
+	desc = "纳米机器人在宿主皮肤下积聚易燃液体，然后将其点燃。"
 	use_rate = 4
 	rogue_types = list(/datum/nanite_program/skin_decay, /datum/nanite_program/cryo)
 
@@ -140,8 +140,8 @@
 	host_mob.ignite_mob()
 
 /datum/nanite_program/cryo
-	name = "Cryogenic Treatment"
-	desc = "The nanites rapidly sink heat through the host's skin, lowering their temperature."
+	name = "低温治疗"
+	desc = "纳米机器人通过宿主皮肤迅速散发热量，降低其体温。"
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/skin_decay, /datum/nanite_program/pyro)
 
@@ -154,8 +154,8 @@
 	host_mob.adjust_bodytemperature(-rand(15,25), 50)
 
 /datum/nanite_program/comm/mind_control
-	name = "Mind Control"
-	desc = "The nanites imprint an absolute directive onto the host's brain for one minute when triggered."
+	name = "精神控制"
+	desc = "触发时，纳米机器人会将一条绝对指令烙印在宿主脑中，持续一分钟。"
 	trigger_cost = 30
 	trigger_cooldown = 1800
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
@@ -172,14 +172,14 @@
 		var/datum/nanite_extra_setting/ES = extra_settings[NES_DIRECTIVE]
 		sent_directive = ES.get_value()
 	brainwash(host_mob, sent_directive)
-	log_game("A mind control nanite program brainwashed [key_name(host_mob)] with the objective '[sent_directive]'.")
-	host_mob.log_message("has been brainwashed with the objective '[sent_directive]' triggered by a mind control nanite program.", LOG_ATTACK)
+	log_game("精神控制纳米机器人程序洗脑了 [key_name(host_mob)]，目标为“[sent_directive]”。")
+	host_mob.log_message("被精神控制纳米机器人程序洗脑，目标为“[sent_directive]”。", LOG_ATTACK)
 	addtimer(CALLBACK(src, PROC_REF(end_brainwashing)), 600)
 
 /datum/nanite_program/comm/mind_control/proc/end_brainwashing()
 	if(host_mob.mind && host_mob.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		host_mob.mind.remove_antag_datum(/datum/antagonist/brainwashed)
-	log_game("[key_name(host_mob)] is no longer brainwashed by nanites.")
+	log_game("[key_name(host_mob)] 不再受纳米机器人洗脑。")
 
 /datum/nanite_program/comm/mind_control/disable_passive_effect()
 	. = ..()

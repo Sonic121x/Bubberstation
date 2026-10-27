@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/human_petcollar/locked/ringbell
-	name = "ringing bell collar"
-	desc = "A soft collar that chimes for your little pet!"
+	name = "铃铛项圈"
+	desc = "一条柔软的项圈，会为你的小宠物叮当作响！"
 	icon_state = "/obj/item/clothing/neck/human_petcollar/locked/ringbell"
 	post_init_icon_state = "ringbell"
 	greyscale_config = /datum/greyscale_config/collar/ringbell
@@ -12,8 +12,8 @@
 	AddComponent(/datum/component/squeak, list('modular_zubbers/sound/misc/collarbell1.ogg'=1,'modular_zubbers/sound/misc/collarbell2.ogg'=1), 50, 100, 8)
 
 /obj/item/clothing/neck/kink_collar/locked/gps
-	name = "tracking collar"
-	desc = "A collar that lets you find your pet anywhere with GPS!"
+	name = "追踪项圈"
+	desc = "一条项圈，让你能用 GPS 在任何地方找到你的宠物！"
 	icon_state = "/obj/item/clothing/neck/kink_collar/locked/gps"
 	var/datum/component/gps/gps
 	post_init_icon_state = "gps"
@@ -44,16 +44,16 @@
 
 /obj/item/clothing/neck/kink_collar/locked/gps/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to [gps.tracking ? "disable":"enable"] tracking.")
+	. += span_notice("Alt-点击以[gps.tracking ? "停用":"启用"]追踪。")
 
 ///Calls toggletracking
 /obj/item/clothing/neck/kink_collar/locked/gps/click_alt(mob/user)
 	if(locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "它锁上了！")
 		playsound(src, 'sound/items/click.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	else
 		toggletracking(user)
-		balloon_alert(user, "tracking [gps.tracking ? "enabled":"disabled"]")
+		balloon_alert(user, "追踪已[gps.tracking ? "启用":"停用"]")
 		playsound(src, 'sound/machines/click.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 	return CLICK_ACTION_SUCCESS
 
@@ -65,7 +65,7 @@
 /obj/item/clothing/neck/kink_collar/locked/gps/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
 	if(!locked)
-		context[SCREENTIP_CONTEXT_ALT_LMB] = "[gps.tracking ? "Disable":"Enable"] tracking"
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "[gps.tracking ? "停用":"启用"]追踪"
 		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/clothing/neck/kink_collar/locked/gps/update_overlays()

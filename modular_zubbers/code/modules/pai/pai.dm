@@ -2,8 +2,8 @@
 /mob/living/silicon/pai/proc/pai_cryo()
 	if(incapacitated)
 		return
-	switch(alert("Are you sure you wish to wipe yourself? This will ghost you",,"Yes.","No."))
-		if("Yes.")
+	switch(alert("你确定要抹除自己吗？这会使你变成幽灵",,"是。","否。"))
+		if("是。")
 			fold_in(TRUE)
 			send_applicable_messages()
 			ghostize(FALSE)

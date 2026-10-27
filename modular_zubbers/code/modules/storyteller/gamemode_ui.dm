@@ -3,12 +3,12 @@
 /datum/controller/subsystem/gamemode/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "ZubbersStoryteller", "Storyteller control panel")
+		ui = new(user, src, "ZubbersStoryteller", "故事讲述者控制面板")
 		ui.open()
 
 /datum/controller/subsystem/gamemode/ui_data(mob/user)
 	var/list/data = list()
-	data["storyteller_name"] = storyteller ? storyteller.name : "None"
+	data["storyteller_name"] = storyteller ? storyteller.name : "无"
 	data["storyteller_halt"] = storyteller_halted
 	data["antag_count"] = GLOB.current_living_antags.len // Switch this up if the calculation for the cap changes (It probably will)
 	data["antag_cap"] = get_antag_cap()
@@ -72,7 +72,7 @@
 		for(var/datum/round_event_control/event as anything in event_list)
 			static_data["events"][event_category]["events"][event.type] = event.generate_ui_data()
 	// Uncategorized shit
-	static_data["events"]["Uncategorized"] = list("name" = "Uncategorized", "events" = list())
+	static_data["events"]["Uncategorized"] = list("name" = "未分类", "events" = list())
 	for(var/datum/round_event_control/event as anything in uncategorized)
 		static_data["events"]["Uncategorized"]["events"][event.type] = event.generate_ui_data()
 	return static_data
@@ -89,10 +89,10 @@
 			for(var/storyteller_type in storytellers)
 				var/datum/storyteller/storyboy = storytellers[storyteller_type]
 				name_list[storyboy.name] = storyboy.type
-			var/new_storyteller_name = input(usr, "Choose new storyteller (circumvents voted one):", "Storyteller")  as null|anything in name_list
+			var/new_storyteller_name = input(usr, "选择新的故事讲述者（将绕过投票结果）：", "故事讲述者")  as null|anything in name_list
 			if(!new_storyteller_name)
 				return
-			message_admins("[key_name_admin(usr)] has changed the Storyteller to [new_storyteller_name].")
+			message_admins("[key_name_admin(usr)] 已将故事讲述者更换为 [new_storyteller_name]。")
 			var/new_storyteller_type = name_list[new_storyteller_name]
 			set_storyteller(new_storyteller_type, TRUE, usr.ckey)
 		if("halt_storyteller")
@@ -103,8 +103,8 @@
 					var/track_to_adjust = params["track"]
 					var/num = tgui_input_number(\
 					usr, \
-					"Set [track_to_adjust] track points",
-					title = "Track points", \
+					"设置 [track_to_adjust] 的事件进度点数",
+					title = "事件进度点数", \
 					default = event_track_points[track_to_adjust], \
 					max_value = point_thresholds[track_to_adjust]*5, \
 					)
@@ -120,25 +120,25 @@
 				return
 			switch(params["action"])
 				if("cancel")
-					message_admins("[key_name_admin(usr)] cancelled scheduled event [sch_event.event.name].")
-					log_admin_private("[key_name(usr)] cancelled scheduled event [sch_event.event.name].")
+					message_admins("[key_name_admin(usr)] 已取消预定事件 [sch_event.event.name]。")
+					log_admin_private("[key_name(usr)] 已取消预定事件 [sch_event.event.name]。")
 					SSgamemode.remove_scheduled_event(sch_event)
 				if("refund")
-					message_admins("[key_name_admin(usr)] refunded scheduled event [sch_event.event.name].")
-					log_admin_private("[key_name(usr)] refunded scheduled event [sch_event.event.name].")
+					message_admins("[key_name_admin(usr)] 已退还预定事件 [sch_event.event.name] 的消耗。")
+					log_admin_private("[key_name(usr)] 已退还预定事件 [sch_event.event.name] 的消耗。")
 					SSgamemode.refund_scheduled_event(sch_event)
 				if("reschedule")
-					var/new_schedule = tgui_input_number(usr, "Set time in seconds in which to fire event", "Rescheduling event", 0, 3600, 0)
+					var/new_schedule = tgui_input_number(usr, "设置触发事件的倒计时（秒）", "重新安排事件", 0, 3600, 0)
 					if(isnull(new_schedule) || QDELETED(sch_event))
 						return
 					sch_event.start_time = world.time + (new_schedule SECONDS)
-					message_admins("[key_name_admin(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
-					log_admin_private("[key_name(usr)] rescheduled event [sch_event.event.name] to [new_schedule] seconds.")
+					message_admins("[key_name_admin(usr)] 已将事件 [sch_event.event.name] 重新安排到 [new_schedule] 秒后。")
+					log_admin_private("[key_name(usr)] 已将事件 [sch_event.event.name] 重新安排到 [new_schedule] 秒后。")
 				if("fire")
 					if(!SSticker.HasRoundStarted())
 						return
-					message_admins("[key_name_admin(usr)] has fired scheduled event [sch_event.event.name].")
-					log_admin_private("[key_name(usr)] has fired scheduled event [sch_event.event.name].")
+					message_admins("[key_name_admin(usr)] 已触发预定事件 [sch_event.event.name]。")
+					log_admin_private("[key_name(usr)] 已触发预定事件 [sch_event.event.name]。")
 					sch_event.try_fire()
 		if("panel_action")
 			var/datum/round_event_control/event = get_event_by_track_and_type(params["track"], params["type"])
@@ -147,16 +147,16 @@
 				return
 			switch(params["action"])
 				if("fire")
-					message_admins("[key_name_admin(usr)] has fired event [event.name].")
-					log_admin_private("[key_name(usr)] has fired event [event.name].")
+					message_admins("[key_name_admin(usr)] 已触发事件 [event.name]。")
+					log_admin_private("[key_name(usr)] 已触发事件 [event.name]。")
 					SSgamemode.TriggerEvent(event)
 				if("force_next")
-					message_admins("[key_name_admin(usr)] has forced next event on track [track] to be [event.name].")
-					log_admin_private("[key_name(usr)] has forced next event on track [track] to be [event.name].")
+					message_admins("[key_name_admin(usr)] 已将 [track] 轨道的下一个事件强制设为 [event.name]。")
+					log_admin_private("[key_name(usr)] 已将 [track] 轨道的下一个事件强制设为 [event.name]。")
 					SSgamemode.force_event(event)
 				if ("schedule")
-					message_admins("[key_name_admin(usr)] has scheduled event [event.name].")
-					log_admin_private("[key_name(usr)] has scheduled event [event.name].")
+					message_admins("[key_name_admin(usr)] 已预定事件 [event.name]。")
+					log_admin_private("[key_name(usr)] 已预定事件 [event.name]。")
 					SSgamemode.schedule_event(event, (rand(3, 4) MINUTES), 0)
 		if("panel_update")
 			if(storyteller)

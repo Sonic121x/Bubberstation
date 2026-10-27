@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/changeling
-	name = "Changelings"
+	name = "变形怪"
 	roundstart = TRUE
 
 	antag_flag = ROLE_CHANGELING
@@ -12,11 +12,11 @@
 	tags = list(TAG_COMBAT, TAG_CREW_ANTAG)
 
 /datum/round_event_control/antagonist/solo/changeling/midround
-	name = "Genome Awakening (Changelings)"
+	name = "基因组觉醒（变形怪）"
 	roundstart = FALSE
 
 /datum/round_event_control/antagonist/solo/changeling/event
-	name = "Event Generated Changeling"
+	name = "事件生成的变形怪"
 	roundstart = FALSE
 	tags = list(TAG_ANTAG_REROLL)
 	max_occurrences = 0

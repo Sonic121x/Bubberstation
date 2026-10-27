@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun/stun/tacticool
-	name = "tacticool energy gun"
-	desc = "An older edition of a tactical energy gun, clearly having not been maintained very well. The weapon's cell seems to be stressed extremely by it's taser."
+	name = "战术酷炫能量枪"
+	desc = "一把旧型号的战术能量枪，显然没有得到很好的保养。它的电击模式似乎给电池带来了极大的负担。"
 	icon_state = "energytac"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 	ammo_x_offset = 2
@@ -24,9 +24,9 @@
 	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 
 /obj/item/gun/energy/e_gun/nuclear_smg
-	name = "advanced energy smg"
-	desc = "A self-charging dual-mode rapid-fire energy weapon created as a disgusting hybrid of a laser carbine, a disabler smg and an advanced energy gun. \
-			Modifications to the micro reactor have caused allowed a more stable, but less efficient generation of power. Comes with two settings: disable and kill."
+	name = "高级能量冲锋枪"
+	desc = "一种自充电、双模式的速射能量武器，是激光卡宾枪、失能冲锋枪与高级能量枪三者令人作呕的杂交产物。\
+			对微型反应堆的改造使其发电更稳定，但效率更低。配有“失能”与“击杀”两种模式。"
 	icon = 'modular_zubbers/icons/obj/weapons/guns/energy.dmi'
 	icon_state = "nuclear_smg"
 	inhand_icon_state = "nucgun"

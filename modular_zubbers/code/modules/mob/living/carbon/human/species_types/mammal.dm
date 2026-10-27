@@ -1,2 +1,2 @@
 /datum/species/mammal/get_species_description()
-	return list("This is a template species for your own creations!",)
+	return list("这是一个供你自行创作的模板种族！",)

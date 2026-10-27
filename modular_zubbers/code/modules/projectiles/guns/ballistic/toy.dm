@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/toy/foamforce_implant
-	name = "Pop-up Donksoft Blaster"
-	desc = "A spring primed Donksoft blaster that pops out of a panel on your arm. You wonder if having a high tension spring installed in your arm was a good idea."
+	name = "\improper 弹出式咚克软玩具枪"
+	desc = "一把弹簧上膛的咚克软玩具枪，会从你手臂上的面板里弹出来。你不禁琢磨，在手臂里装一根高张力弹簧究竟算不算个好主意。"
 	icon = 'modular_zubbers/icons/obj/guns/popupdart_toy.dmi' //modified Derringer sprite by the wonderful Niim. Further modified by myself/MrGloopy.
 	icon_state = "popupdart_toy"
 	force = 0
@@ -21,7 +21,7 @@
 			jammed = FALSE
 			unjam_chance = initial(unjam_chance)
 		else
-			balloon_alert(user, "jammed!")
+			balloon_alert(user, "卡壳了！")
 			playsound(user,'sound/items/weapons/jammed.ogg', 75, TRUE)
 			return FALSE
 	return ..()
@@ -40,7 +40,7 @@
 	if (bolt_locked)
 		drop_bolt(user)
 		return
-	balloon_alert(user, "plunger deprimed")
+	balloon_alert(user, "推杆已释放")
 	playsound(src, rack_sound, rack_sound_volume, rack_sound_vary)
 	handle_chamber(empty_chamber =  FALSE, from_firing = FALSE, chamber_next_round = FALSE)
 	bolt_locked = TRUE
@@ -50,7 +50,7 @@
 	if(!do_after(user, draw_time, target = src))
 		return
 	playsound(src, bolt_drop_sound, bolt_drop_sound_volume, FALSE)
-	balloon_alert(user, "plunger drawn")
+	balloon_alert(user, "推杆已拉动")
 	chamber_round()
 	bolt_locked = FALSE
 	update_appearance()
@@ -71,7 +71,7 @@
 
 /obj/item/gun/ballistic/toy/foamforce_implant/examine(mob/user)
 	. = ..()
-	. += "The blaster is [bolt_locked ? "not ready" : "ready"] to fire."
+	. += "发射器[bolt_locked ? "尚未准备好" : "已准备好"]开火。"
 
 /obj/item/gun/ballistic/toy/foamforce_implant/update_overlays()
 	. = ..()
@@ -98,7 +98,7 @@
 	can_suppress = FALSE
 	weapon_weight = WEAPON_LIGHT
 	pb_knockback = 0
-	cartridge_wording = "dart"
+	cartridge_wording = "飞镖"
 	pinless = TRUE
 	gun_flags = NOT_A_REAL_GUN
 	can_muzzle_flash = FALSE
@@ -106,6 +106,6 @@
 	semi_auto = FALSE
 	can_be_sawn_off = FALSE
 	tac_reloads = FALSE
-	bolt_wording = "plunger"
+	bolt_wording = "推杆"
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	mag_display = FALSE

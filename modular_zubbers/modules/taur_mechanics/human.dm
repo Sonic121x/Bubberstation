@@ -13,23 +13,23 @@
 		return FALSE
 
 	var/delay = SADDLE_MOUNTING_TIME
-	var/ridee_string = ""
+	var/ridee_string = "骑上 "
 	var/list/mobs_with_special_messages = list(src)
 	if (buckling != user)
-		ridee_string = " [buckling] onto"
+		ridee_string = "把 [buckling] 扶上 "
 		mobs_with_special_messages += buckling
 		delay *= SADDLE_MOUNTING_OTHER_MULT
 
-	user.visible_message(span_warning("[user] starts to mount[ridee_string] [src]..."), span_notice("You start to mount[ridee_string] [src]..."), ignored_mobs = mobs_with_special_messages)
-	to_chat(src, span_warning("[user] starts to mount[ridee_string] you!"))
+	user.visible_message(span_warning("[user] 开始[ridee_string][src]……"), span_notice("你开始[ridee_string][src]……"), ignored_mobs = mobs_with_special_messages)
+	to_chat(src, span_warning("[user] 开始[ridee_string]你！"))
 	if (buckling != user)
-		to_chat(buckling, span_boldwarning("[user] starts to mount you onto [src]!"))
+		to_chat(buckling, span_boldwarning("[user] 开始把你扶上[src]！"))
 
 	if (!do_after(user, SADDLE_MOUNTING_TIME, target = src))
-		user.visible_message(span_warning("[user] fails to mount[ridee_string] [src]!"), span_warning("You fail to mount[ridee_string] [src]!"), ignored_mobs = mobs_with_special_messages)
-		to_chat(src, span_warning("[user] fails to mount[ridee_string] you!"))
+		user.visible_message(span_warning("[user] 没能[ridee_string][src]！"), span_warning("你没能[ridee_string][src]！"), ignored_mobs = mobs_with_special_messages)
+		to_chat(src, span_warning("[user] 没能[ridee_string]你！"))
 		if (buckling != user)
-			to_chat(buckling, span_warning("[user] fails to mount you onto [src]!"))
+			to_chat(buckling, span_warning("[user] 没能把你扶上[src]！"))
 		return FALSE
 
 	if (!can_be_ridden_by(buckling, user)) // because we slept
@@ -64,17 +64,17 @@
 	/// Conditions that prevent riding, with a balloon alert
 	var/cant_buckle_message
 	if (to_buckle == src)
-		cant_buckle_message = "can't ride self!"
+		cant_buckle_message = "不能骑自己！"
 	else if (body_position == LYING_DOWN)
-		cant_buckle_message = "can't ride resting!"
+		cant_buckle_message = "躺着的时候不能骑！"
 	else if (incapacitated)
-		cant_buckle_message = "can't mount incapacitated mobs!"
+		cant_buckle_message = "不能骑乘失去行动能力的生物！"
 	else if (INCAPACITATED_IGNORING(user, INCAPABLE_GRAB))
-		cant_buckle_message = "you are incapacitated!"
+		cant_buckle_message = "你失去了行动能力！"
 	else if (INCAPACITATED_IGNORING(to_buckle, INCAPABLE_GRAB))
-		cant_buckle_message = "rider incapacitated!"
+		cant_buckle_message = "骑手失去了行动能力！"
 	else if (length(buckled_mobs))
-		cant_buckle_message = "already being ridden!"
+		cant_buckle_message = "已经有人骑着了！"
 
 	if (cant_buckle_message)
 		if (!silent)

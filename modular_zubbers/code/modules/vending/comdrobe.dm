@@ -1,11 +1,11 @@
 /obj/machinery/vending/access/command
-	name = "\improper Command Outfitting Station"
-	desc = "A vending machine for specialised clothing for members of Command."
-	product_ads = "File paperwork in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
+	name = "\improper 指挥制服配给站"
+	desc = "一台为指挥部成员提供专用服装的售货机。"
+	product_ads = "有型地处理文书！;它是红色的，所以你看不见血迹！;你有权保持时尚！;现在你可以成为你一直想当的时尚警察了！"
 	icon = 'modular_zubbers/icons/obj/machines/vending.dmi'
 	icon_state = "commdrobe"
 	light_mask = "wardrobe-light-mask"
-	vend_reply = "Thank you for using the CommDrobe!"
+	vend_reply = "感谢使用指挥制服配给站！"
 	auto_build_products = TRUE
 	payment_department = ACCOUNT_CMD
 	allow_custom = TRUE
@@ -15,7 +15,7 @@
 	light_color = COLOR_COMMAND_BLUE
 
 /obj/item/vending_refill/wardrobe/comm_wardrobe
-	machine_name = "CommDrobe"
+	machine_name = "指挥制服配给站"
 
 /obj/machinery/vending/access/command/build_access_list(list/access_lists)
 	access_lists["[ACCESS_CAPTAIN]"] = list(

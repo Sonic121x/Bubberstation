@@ -1,16 +1,16 @@
 //Title Capitalization for names please!!!
 
 /datum/loadout_item/inhand/unioncard //sprites by Scuhf_
-	name = "Worker's Union Card"
+	name = "工人工会卡"
 	item_path = /obj/item/card/cardboard/unioncard
 	donator_only = TRUE //donator item for arandomhyena
 
 /datum/loadout_item/inhand/challengecoin
-	name = "SAC Challenge Coin"
+	name = "SAC 挑战币"
 	item_path = /obj/item/coin/challenge
 
 /datum/loadout_item/inhand/pet/mrfluff_mothroach
-	name = "Mr. Fluff"
+	name = "绒绒先生"
 	item_path = /obj/item/mob_holder/pet/donator/centralsmith
 	ckeywhitelist = list("centralsmith")
 
@@ -25,26 +25,26 @@
 	holder.held_mob.befriend(equipper)
 
 /datum/loadout_item/inhand/saddlebags
-	name = "Saddlebags"
+	name = "马鞍包"
 	item_path = /obj/item/storage/backpack/saddlebags
 
 /datum/loadout_item/inhand/saddle // these should be in the other category but apparantly those are "pocket" loadout items so idk?
-	name = "Leather Saddle"
+	name = "皮革马鞍"
 	item_path = /obj/item/riding_saddle/leather
 
 /datum/loadout_item/inhand/saddle_peacekeeper
-	name = "Peacekeeper Saddle"
+	name = "维和马鞍"
 	item_path = /obj/item/riding_saddle/leather/peacekeeper
 	restricted_roles = list(ALL_JOBS_SEC)
 
 /datum/loadout_item/inhand/wheelchair
-	name = "Folded Wheelchair"
+	name = "折叠轮椅"
 	item_path = /obj/item/wheelchair
 
 /datum/loadout_item/inhand/sex_sign
-	name = "Sex Holosign Projector"
+	name = "性爱全息告示投影器"
 	item_path = /obj/item/holosign_creator/sex
 
 /datum/loadout_item/inhand/umbrella
-	name = "Umbrella"
+	name = "雨伞"
 	item_path = /obj/item/umbrella
